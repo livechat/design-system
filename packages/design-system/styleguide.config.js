@@ -7,10 +7,6 @@ module.exports = {
 	webpackConfig: config,
 	title: 'LC Design System',
 	skipComponentsWithoutExample: true,
-	// styleguideComponents: {
-	// 	Wrapper: path.join(__dirname, './Wrapper'),
-	// 	StyleGuideRenderer: path.join(__dirname, './StyleGuideRenderer'),
-	// },
 	require: [path.resolve(__dirname, 'setup.js')],
 	sections: [
 		{
@@ -22,7 +18,6 @@ module.exports = {
       sections: [
         {
           name: 'Button',
-          // content: './src/components/Button/Button.md',
           components: './src/components/Button/Button.js',
         },
       ]
