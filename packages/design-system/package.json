@@ -2,17 +2,22 @@
   "name": "@livechat/design-system",
   "version": "0.0.0",
   "description": "",
+  "homepage": "https://livechat.github.io/design-system/",
   "main": "dist/design-system.cjs.js",
   "module": "dist/design-system.es.js",
   "jsnext:main": "dist/design-system.es.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rollup -c",
     "prebuild": "rimraf dist",
     "prepare": "npm run build",
     "start": "rollup -c --watch",
     "styleguide": "cross-env NODE_ENV=development styleguidist server",
-    "styleguide:build": "cross-env NODE_ENV=production styleguidist build"
+    "styleguide:build": "cross-env NODE_ENV=production styleguidist build",
+    "predeploy": "npm run-script styleguide:build",
+    "deploy": "gh-pages -d styleguide"
   },
   "author": "",
   "license": "ISC",
@@ -61,6 +66,7 @@
     "@livechat/data-utils": "^0.2.3",
     "create-emotion": "^9.2.5",
     "create-emotion-styled": "^9.2.5",
+    "gh-pages": "^1.2.0",
     "normalize.css": "^8.0.0",
     "prop-types": "^15.6.2",
     "stylis-custom-properties": "0.0.3"
