@@ -9,7 +9,8 @@
   "env": {
     "browser": true,
     "es6": true,
-    "jquery": true
+    "jquery": true,
+    "jest": true
   },
   "extends": ["airbnb", "prettier"],
   "plugins": ["prettier", "babel"],
