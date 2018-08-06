@@ -68,7 +68,7 @@
         "extensions": [".js", ".jsx", ".tsx", ".ts"]
       },
       "webpack": {
-        "config": "webpack/webpack.dev.js"
+        "config": "./webpack.config.js"
       }
     }
   },

@@ -1,0 +1,86 @@
+.btn {
+  max-width: 320px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  text-decoration: none;
+  transition-property: opacity, border, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.64, 0, 0.35, 1);
+  border-width: 1px;
+  border-style: solid;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 600;
+  display: inline-flex;
+  background-color: #fff;
+  color: rgba(66,77,87,1);
+  border-color: #bcc6d0;
+  font-size: 15px;
+  padding: 0 16px;
+  min-width: 36px;
+  min-height: 36px;
+  line-height: 36px;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+.btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 1px #427fe1;
+}
+
+.btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.btn .icon {
+  color: #4384f5;
+  margin-right: 7px;
+}
+
+.btn-fw {
+  display: flex;
+  width: 100%;
+}
+
+.btn-primary {
+  background-color: #4384f5;
+  color: #fff;
+  border-color: #4384f5;
+}
+
+.btn-primary:focus {
+  box-shadow: 0 0 0 1px #427fe1;
+}
+
+.btn-destructive {
+  background-color: #f4574c;
+  color: #fff;
+  border-color: #f4574c;
+}
+
+.btn-destructive:focus {
+  box-shadow: 0 0 0 1px #f4574c;
+}
+
+.btn-lg {
+  font-size: 15px;
+  padding: 0 24px;
+  min-width: 42px;
+  min-height: 42px;
+  line-height: 42px;
+}
+
+.btn-sm {
+  font-size: 14px;
+  padding: 0 16px;
+  min-width: 32px;
+  min-height: 32px;
+  line-height: 32px;
+}

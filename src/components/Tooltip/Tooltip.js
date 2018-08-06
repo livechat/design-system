@@ -1,7 +1,8 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import styled from '../../styled';
-import TooltipContent from './TooltipContent';
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import styles from './style.css';
+import TooltipBox from './TooltipBox';
 import throttle from '../../helpers/throttle';
 
 const TooltipDirection = {
@@ -15,10 +16,6 @@ const TooltipAlignment = {
   Top: 'top',
   Center: 'center'
 };
-
-export const StyledTooltip = styled.div`
-  position: relative;
-`;
 
 class Tooltip extends React.Component {
   constructor(props) {
@@ -145,7 +142,7 @@ class Tooltip extends React.Component {
 
   calculatePosition(direction) {
     const tooltipRefRect = this.tooltipRef.current.getBoundingClientRect();
-    const tooltipContentRefRect = this.tooltipContentRef.current.getBoundingClientRect();
+    const tooltipBoxRefRect = this.tooltipBoxRef.current.getBoundingClientRect();
     let tooltipXPosition;
     let tooltipYPosition;
 
@@ -157,15 +154,15 @@ class Tooltip extends React.Component {
       case TooltipDirection.Top:
         tooltipXPosition =
           tooltipRefRect.left +
-          (tooltipRefRect.width / 2 - tooltipContentRefRect.width / 2);
+          (tooltipRefRect.width / 2 - tooltipBoxRefRect.width / 2);
         tooltipYPosition =
-          tooltipRefRect.top - tooltipContentRefRect.height - this.state.offset;
+          tooltipRefRect.top - tooltipBoxRefRect.height - this.state.offset;
         break;
 
       case TooltipDirection.Bottom:
         tooltipXPosition =
           tooltipRefRect.left +
-          (tooltipRefRect.width / 2 - tooltipContentRefRect.width / 2);
+          (tooltipRefRect.width / 2 - tooltipBoxRefRect.width / 2);
         tooltipYPosition =
           tooltipRefRect.top + tooltipRefRect.height + this.state.offset;
         break;
@@ -176,22 +173,22 @@ class Tooltip extends React.Component {
         tooltipYPosition =
           tooltipRefRect.top +
           tooltipRefRect.height / 2 -
-          tooltipContentRefRect.height / 2;
+          tooltipBoxRefRect.height / 2;
         break;
       // 131 34 220
       // 131 34 255
       case TooltipDirection.Left:
         tooltipXPosition =
-          tooltipRefRect.left - tooltipContentRefRect.width - this.state.offset;
+          tooltipRefRect.left - tooltipBoxRefRect.width - this.state.offset;
         switch (align) {
           case TooltipAlignment.Center:
             tooltipYPosition =
               tooltipRefRect.top +
               tooltipRefRect.height / 2 -
-              tooltipContentRefRect.height / 2;
+              tooltipBoxRefRect.height / 2;
             break;
           case TooltipAlignment.Top:
-            tooltipYPosition = tooltipRefRect.top - 4 - 10; // minus TooltipContent margin and overlap
+            tooltipYPosition = tooltipRefRect.top - 4 - 10; // minus TooltipBox margin and overlap
             break;
           // no default
         }
@@ -232,20 +229,20 @@ class Tooltip extends React.Component {
   }
 
   tooltipRef = React.createRef();
-  tooltipContentRef = React.createRef();
+  tooltipBoxRef = React.createRef();
 
   render() {
     return (
-      <StyledTooltip
-        innerRef={this.tooltipRef}
+      <div
+        className={classNames(styles.tooltip, this.props.className)}
+        ref={this.tooltipRef}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
-        className={this.props.className}
       >
         {this.props.children}
 
-        <TooltipContent
-          contentRef={this.tooltipContentRef}
+        <TooltipBox
+          contentRef={this.tooltipBoxRef}
           isVisible={
             (this.props.trigger === 'custom' && this.props.isTooltipVisible) ||
             this.state.isVisible
@@ -256,8 +253,8 @@ class Tooltip extends React.Component {
           onContentMouseLeave={this.onContentMouseLeave}
         >
           {this.props.content}
-        </TooltipContent>
-      </StyledTooltip>
+        </TooltipBox>
+      </div>
     );
   }
 }

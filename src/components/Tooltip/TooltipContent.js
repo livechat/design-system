@@ -1,59 +1,51 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import styled from '../../styled';
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames/bind';
+import styles from './style.css';
 
-const noop = () => {};
-
-const StyledTooltipContent = styled.div`
-  position: fixed;
-  top: ${props => `${props.yPosition}px`};
-  left: ${props => `${props.xPosition}px`};
-  visibility: ${props => (props.isVisible ? 'visible' : 'hidden')};
-  opacity: ${props => (props.isVisible ? 1 : 0)};
-`;
-
-const StyledTooltipBox = styled.div`
-  position: relative;
-`;
+const cx = classNames.bind(styles);
 
 const TooltipContent = ({
-  isVisible,
-  xPosition,
-  yPosition,
-  contentRef,
-  onContentMouseEnter,
-  onContentMouseLeave,
+  backgroundColor,
+  className, // eslint-disable-line
+  fontColor,
+  arrowPosition,
+  arrowOffset,
   children
 }) => (
-  <StyledTooltipContent
-    onMouseEnter={onContentMouseEnter}
-    onMouseLeave={onContentMouseLeave}
-    innerRef={contentRef}
-    isVisible={isVisible}
-    xPosition={xPosition}
-    yPosition={yPosition}
+  <div
+    className={cx({
+      'tooltip-content': true,
+      [`tooltip-content-arrow-${arrowPosition}`]: true,
+      'tooltip-conent-arrow-no-offset': !arrowOffset
+    })}
+    style={{
+      backgroundColor,
+      color: fontColor,
+      borderColor: backgroundColor,
+      top: arrowOffset ? `${arrowOffset}px` : null
+    }}
   >
-    <StyledTooltipBox>{children}</StyledTooltipBox>
-  </StyledTooltipContent>
+    {children}
+  </div>
 );
 
 TooltipContent.propTypes = {
+  backgroundColor: PropTypes.string,
+  className: PropTypes.string,
+  fontColor: PropTypes.string,
   children: PropTypes.node.isRequired,
-  isVisible: PropTypes.bool.isRequired,
-  xPosition: PropTypes.number.isRequired,
-  yPosition: PropTypes.number.isRequired,
-  onContentMouseEnter: PropTypes.func,
-  onContentMouseLeave: PropTypes.func,
-  contentRef: PropTypes.oneOfType([
-    PropTypes.object,
-    PropTypes.func,
-    PropTypes.string
-  ]).isRequired
+  arrowPosition: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
+  arrowOffset: PropTypes.number
 };
 
 TooltipContent.defaultProps = {
-  onContentMouseEnter: noop,
-  onContentMouseLeave: noop
+  arrowPosition: 'left',
+  fontColor: '#fff',
+  className: null,
+  backgroundColor: '#3a343c',
+  arrowOffset: null
 };
 
+/** @component */
 export default TooltipContent;

@@ -1,5 +1,8 @@
 const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const postCssFlexbugsfixes = require('postcss-flexbugs-fixes');
+const babelrc = require('./.babelrc.js');
 
 const { NODE_ENV } = process.env;
 
@@ -12,22 +15,42 @@ const config = {
         use: [
           {
             loader: 'babel-loader',
-            options: require('./.babelrc.js')
+            options: babelrc
           }
         ],
         exclude: /node_modules\/(?!buble)/
       },
       {
-        test: /emotion\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: {
-            loader: 'css-loader',
+        test: /\.css$/,
+        use: [
+          require.resolve('style-loader'),
+          {
+            loader: require.resolve('css-loader'),
             options: {
-              sourceMap: true
+              importLoaders: 1,
+              modules: true,
+              localIdentName: 'lc_[local]'
+            }
+          },
+          {
+            loader: require.resolve('postcss-loader'),
+            options: {
+              ident: 'postcss',
+              plugins: () => [
+                postCssFlexbugsfixes,
+                autoprefixer({
+                  browsers: [
+                    '>1%',
+                    'last 4 versions',
+                    'Firefox ESR',
+                    'not ie < 9'
+                  ],
+                  flexbox: 'no-2009'
+                })
+              ]
             }
           }
-        })
+        ]
       }
     ]
   },

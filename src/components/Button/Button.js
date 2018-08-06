@@ -1,103 +1,10 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import styled from '../../styled';
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames/bind';
+import styles from './style.css';
 
+const cx = classNames.bind(styles);
 const noop = () => {};
-
-const StyledButton = styled.button`
-  position: relative;
-  display: ${props => (props.fullWidth ? 'flex' : 'inline-flex')};
-  width: ${props => (props.fullWidth ? '100%' : '')};
-  max-width: 320px;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-  text-decoration: none;
-  transition-property: opacity, border, box-shadow;
-  transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(0.64, 0, 0.35, 1);
-  border-width: 1px;
-  border-style: solid;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 4px;
-  font-weight: 600;
-
-  &:hover {
-    opacity: 0.8;
-  }
-
-  &:focus {
-    outline: 0;
-  }
-
-  &:disabled {
-    opacity: 0.65;
-    cursor: not-allowed;
-  }
-
-  .icon {
-    color: #4384f5;
-    margin-right: 7px;
-  }
-
-  ${props => {
-    if (props.primary) {
-      return `
-        background-color: #4384f5;
-        color: #fff;
-        border-color: #4384f5;
-        &:focus {
-          box-shadow: 0 0 0 1px #427fe1;
-        }
-      `;
-    } else if (props.destructive) {
-      return `
-        background-color: #f4574c;
-        color: #fff;
-        border-color: #f4574c;
-        &:focus {
-          box-shadow: 0 0 0 1px #f4574c;
-        }
-      `;
-    }
-    return `
-      background-color: #fff;
-      color: rgba(66,77,87,1);
-      border-color: #bcc6d0;
-      &:focus {
-        box-shadow: 0 0 0 1px #427fe1;
-      }
-    `;
-  }};
-
-  ${props => {
-    if (props.size === 'large') {
-      return `
-        font-size: 15px;
-        padding: 0 24px;
-        min-weight: 42px;
-        min-height: 42px;
-        line-height: 42px;
-      `;
-    } else if (props.size === 'compact') {
-      return `
-        font-size: 14px;
-        padding: 0 16px;
-        min-weight: 32px;
-        min-height: 32px;
-        line-height: 32px;
-      `;
-    }
-    return `
-      font-size: 15px;
-      padding: 0 16px;
-      min-weight: 36px;
-      min-height: 36px;
-      line-height: 36px;
-    `;
-  }};
-`;
 
 const Button = props => {
   const {
@@ -118,25 +25,42 @@ const Button = props => {
 
   const isDisabled = disabled || loading;
   const type = submit ? 'submit' : 'button';
+  let buttonType = null;
+  let buttonSize = null;
+
+  if (primary) {
+    buttonType = 'primary';
+  } else if (destructive) {
+    buttonType = 'destructive';
+  }
+
+  if (size === 'large') {
+    buttonSize = 'large';
+  } else if (size === 'compact') {
+    buttonSize = 'compact';
+  }
 
   return (
-    <StyledButton
+    <button
       id={id}
-      primary={primary}
       type={type}
-      destructive={destructive}
       onClick={onClick}
       onFocus={onFocus}
-      size={size}
       onBlur={onBlur}
       disabled={isDisabled}
       role={loading ? 'alert' : undefined}
       aria-busy={loading ? true : undefined}
-      fullWidth={fullWidth}
-      className={className}
+      className={cx({
+        btn: true,
+        'btn-fw': fullWidth,
+        'btn-primary': buttonType === 'primary',
+        'btn-destructive': buttonType === 'destructive',
+        'btn-lg': buttonSize === 'large',
+        'btn-sm': buttonSize === 'compact'
+      })}
     >
       {children}
-    </StyledButton>
+    </button>
   );
 };
 

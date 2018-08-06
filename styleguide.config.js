@@ -2,8 +2,6 @@ const path = require('path');
 const config = require('./webpack.config.js');
 
 module.exports = {
-  showCode: true,
-  showUsage: true,
   pagePerSection: true,
   assetsDir: './assets',
   webpackConfig: config,
@@ -39,7 +37,7 @@ module.exports = {
         {
           name: 'Tooltip',
           components: [
-            './src/components/Tooltip/DarkTooltip.js',
+            './src/components/Tooltip/TooltipContent.js',
             './src/components/Tooltip/Tooltip.js'
           ],
           sectionDepth: 0

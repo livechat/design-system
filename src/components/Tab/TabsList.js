@@ -1,11 +1,13 @@
-import styled from '../../styled';
+import React from 'react';
+import PropTypes from 'prop-types';
+import styles from './style.css';
 
-const TabsList = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  font-size: 14px;
-  margin: 0 -8px;
-`;
+const TabsList = ({ children }) => (
+  <div className={styles['tabs_list']}>{children}</div>
+);
+
+TabsList.propTypes = {
+  children: PropTypes.node.isRequired
+};
 
 export default TabsList;

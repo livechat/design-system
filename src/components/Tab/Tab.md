@@ -4,7 +4,7 @@ Give tab a clear label that describes its content.
 Tab label should be set in sentence case, and should not exceed three words. Don’t use icons in the tab labels.
 
 ```js
-<Tabs>
+<TabsWrapper>
   <TabsList>
     <Tab isSelected lightText="1">
       Agents
@@ -13,5 +13,14 @@ Tab label should be set in sentence case, and should not exceed three words. Don
       Groups
     </Tab>
   </TabsList>
-</Tabs>               
+</TabsWrapper>               
+```
+
+```html
+<div class="lc_tabs-wrapper">
+  <div class="lc_tabs-list">
+    <button class="lc_tab lc_tab-selected">Agents<span class="lc_light-text">(1)</span></button>
+    <button class="lc_tab">Groups<span class="lc_light-text">(3)</span></button>
+  </div>
+</div>
 ```

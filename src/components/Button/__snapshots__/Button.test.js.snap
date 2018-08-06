@@ -2,6 +2,7 @@
 
 exports[`Button should render primary button 1`] = `
 <Button
+  className={null}
   destructive={true}
   disabled={false}
   fullWidth={false}
@@ -10,36 +11,20 @@ exports[`Button should render primary button 1`] = `
   onBlur={[Function]}
   onClick={[Function]}
   onFocus={[Function]}
-  outline={false}
   primary={true}
   size={null}
   submit={false}
 >
-  <Styled(button)
-    destructive={true}
+  <button
+    className="btn btn-primary"
     disabled={false}
-    fullWidth={false}
     id={null}
     onBlur={[Function]}
     onClick={[Function]}
     onFocus={[Function]}
-    outline={false}
-    primary={true}
-    size={null}
     type="button"
   >
-    <button
-      className="lc-ir4o8b e18gsoqa0"
-      disabled={false}
-      id={null}
-      onBlur={[Function]}
-      onClick={[Function]}
-      onFocus={[Function]}
-      size={null}
-      type="button"
-    >
-      Click me
-    </button>
-  </Styled(button)>
+    Click me
+  </button>
 </Button>
 `;

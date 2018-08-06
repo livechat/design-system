@@ -2,16 +2,50 @@ import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
+import postcss from 'rollup-plugin-postcss';
 import uglify from 'rollup-plugin-uglify';
-import pkg from './package.json';
+import postcssUrl from 'postcss-url';
+import postcssImport from 'postcss-import';
+import globalImport from 'postcss-global-import';
+import autoprefixer from 'autoprefixer';
+import precss from 'precss';
+import cssnano from 'cssnano';
+import pkg from './package.json'; // eslint-disable-line
+
+const cssExportMap = {};
 
 const mergeAll = objs => Object.assign({}, ...objs);
 
 const commonPlugins = [
   nodeResolve({ jsnext: true }),
+  postcss({
+    modules: {
+      getJSON(id, exportTokens) {
+        cssExportMap[id] = exportTokens;
+      },
+      generateScopedName: 'lc_[local]'
+    },
+    plugins: [
+      postcssImport(),
+      globalImport(),
+      postcssUrl({
+        url: 'inline'
+      }),
+      precss(),
+      autoprefixer(),
+      cssnano()
+    ],
+    sourceMap: true,
+    getExportNamed: false,
+    getExport(id) {
+      return cssExportMap[id];
+    },
+    extract: pkg.style
+  }),
   babel({
     exclude: 'node_modules/**',
-    plugins: ['external-helpers']
+    presets: ['react', ['env', { modules: false }], 'stage-2'],
+    plugins: ['transform-class-properties', 'external-helpers']
   }),
   commonjs()
 ];
