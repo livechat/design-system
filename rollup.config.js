@@ -44,8 +44,7 @@ const commonPlugins = [
   }),
   babel({
     exclude: 'node_modules/**',
-    presets: ['react', ['env', { modules: false }], 'stage-2'],
-    plugins: ['transform-class-properties', 'external-helpers']
+    plugins: ['external-helpers']
   }),
   commonjs()
 ];

@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const postCssFlexbugsfixes = require('postcss-flexbugs-fixes');
-const babelrc = require('./.babelrc.js');
 
 const { NODE_ENV } = process.env;
 
@@ -14,8 +13,7 @@ const config = {
         test: /\.jsx?$/,
         use: [
           {
-            loader: 'babel-loader',
-            options: babelrc
+            loader: 'babel-loader'
           }
         ],
         exclude: /node_modules\/(?!buble)/

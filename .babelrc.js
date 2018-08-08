@@ -3,7 +3,7 @@ const cjs = BABEL_ENV === 'cjs' || NODE_ENV === 'test'
 
 module.exports = {
 	presets: [['env', { loose: true, modules: false }], 'react', 'stage-2'],
-	plugins: ['transform-class-properties', cjs && 'transform-es2015-modules-commonjs'].filter(
+	plugins: [cjs && 'transform-es2015-modules-commonjs'].filter(
 		Boolean,
 	),
 }
