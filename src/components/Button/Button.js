@@ -4,12 +4,11 @@ import classNames from 'classnames/bind';
 import styles from './style.css';
 
 const cx = classNames.bind(styles);
-const noop = () => {};
+const acceptedSizes = ['large', 'compact'];
 
 const Button = props => {
   const {
     children,
-    id,
     primary,
     destructive,
     disabled,
@@ -17,16 +16,15 @@ const Button = props => {
     size,
     fullWidth,
     submit,
-    onClick,
-    onFocus,
-    onBlur,
-    className
+    accessibilityLabel,
+    ariaControls,
+    ariaExpanded,
+    ...buttonProps
   } = props;
 
   const isDisabled = disabled || loading;
   const type = submit ? 'submit' : 'button';
   let buttonType = null;
-  let buttonSize = null;
 
   if (primary) {
     buttonType = 'primary';
@@ -34,29 +32,22 @@ const Button = props => {
     buttonType = 'destructive';
   }
 
-  if (size === 'large') {
-    buttonSize = 'large';
-  } else if (size === 'compact') {
-    buttonSize = 'compact';
-  }
-
   return (
     <button
-      id={id}
+      {...buttonProps}
       type={type}
-      onClick={onClick}
-      onFocus={onFocus}
-      onBlur={onBlur}
       disabled={isDisabled}
       role={loading ? 'alert' : undefined}
       aria-busy={loading ? true : undefined}
+      aria-label={accessibilityLabel}
+      aria-controls={ariaControls}
+      aria-expanded={ariaExpanded}
       className={cx({
         btn: true,
-        'btn-fw': fullWidth,
-        'btn-primary': buttonType === 'primary',
-        'btn-destructive': buttonType === 'destructive',
-        'btn-lg': buttonSize === 'large',
-        'btn-sm': buttonSize === 'compact'
+        'btn--full-width': fullWidth,
+        'btn--primary': buttonType === 'primary',
+        'btn--destructive': buttonType === 'destructive',
+        [`btn--${size}`]: acceptedSizes.some(s => s === size)
       })}
     >
       {children}
@@ -65,13 +56,7 @@ const Button = props => {
 };
 
 Button.propTypes = {
-  /**
-   * Content of button, i.e. text
-   */
-  children: PropTypes.string.isRequired,
-  /**
-   * ID of html element
-   */
+  children: PropTypes.node.isRequired,
   id: PropTypes.string,
   /**
    * Type of button
@@ -81,51 +66,24 @@ Button.propTypes = {
    * Type of button
    */
   destructive: PropTypes.bool,
-  /**
-   * Html disabled property
-   */
   disabled: PropTypes.bool,
-  /**
-   * Show/hide loading state
-   */
   loading: PropTypes.bool,
   /**
-   * Size of button: compact, regular, large
+   * Size of button
    */
   size: PropTypes.oneOf(['compact', 'large']),
   /**
    * Sets button width to max-width=320px
    */
   fullWidth: PropTypes.bool,
-  /**
-   * Click button handler
-   */
   onClick: PropTypes.func,
-  /**
-   * Focus button handler
-   */
   onFocus: PropTypes.func,
-  /**
-   * Blur button handler
-   */
   onBlur: PropTypes.func,
   submit: PropTypes.bool,
-  className: PropTypes.string
-};
-
-Button.defaultProps = {
-  id: null,
-  primary: false,
-  destructive: false,
-  disabled: false,
-  loading: false,
-  size: null,
-  fullWidth: false,
-  onClick: noop,
-  onFocus: noop,
-  onBlur: noop,
-  submit: false,
-  className: null
+  className: PropTypes.string,
+  accessibilityLabel: PropTypes.string,
+  ariaControls: PropTypes.string,
+  ariaExpanded: PropTypes.string
 };
 
 export default Button;

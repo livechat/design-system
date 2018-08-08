@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export type ButtonSize = 'slim' | 'large';
+export type ButtonSize = 'compact' | 'large';
 
 export interface ButtonProps {
   children?: string;

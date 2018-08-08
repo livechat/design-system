@@ -59,7 +59,9 @@
     "babel/semi": 1,
     "babel/no-unused-expressions": 1,
     "no-restricted-globals": "warn",
-    "react/forbid-prop-types": "warn"
+    "react/forbid-prop-types": "warn",
+    "react/require-default-props": "off",
+    "react/no-unused-prop-types": "warn"
   },
   "settings": {
     "ecmascript": 6,

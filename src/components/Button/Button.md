@@ -35,7 +35,7 @@ Use for the main call to action in empty states or for calls to action shown wit
 <Button size="large" primary>Large Button</Button>
 ```
 ```html
-<button type="button" class="lc_btn lc_btn-primary lc_btn-lg">Large Button</button>
+<button type="button" class="lc-btn lc-btn--primary lc-btn--large">Large Button</button>
 ```
 #### Full-width
 
@@ -44,7 +44,7 @@ Button expanded to the full width to fill the parent container (max-width: 320px
 <Button fullWidth primary>Full-width Button</Button>
 ```
 ```html
-<button type="button" class="lc_btn lc_btn-fw lc_btn-primary">Full-width Button</button>
+<button type="button" class="lc-btn lc-btn--full-width lc-btn--primary">Full-width Button</button>
 ```
 
 ### Best practices

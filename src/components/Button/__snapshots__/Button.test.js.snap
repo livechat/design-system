@@ -2,26 +2,11 @@
 
 exports[`Button should render primary button 1`] = `
 <Button
-  className={null}
   destructive={true}
-  disabled={false}
-  fullWidth={false}
-  id={null}
-  loading={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onFocus={[Function]}
   primary={true}
-  size={null}
-  submit={false}
 >
   <button
-    className="btn btn-primary"
-    disabled={false}
-    id={null}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onFocus={[Function]}
+    className="btn btn--primary"
     type="button"
   >
     Click me

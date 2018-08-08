@@ -6,7 +6,7 @@ import styles from './style.css';
 const noop = () => {};
 const cx = classNames.bind(styles);
 
-const Tab = ({ onSelect, href, isSelected, children, lightText }) => {
+const Tab = ({ onSelect, href, isSelected, children, description }) => {
   const Component = props => (href ? <a {...props} /> : <button {...props} />);
 
   return (
@@ -15,11 +15,11 @@ const Tab = ({ onSelect, href, isSelected, children, lightText }) => {
       onClick={onSelect}
       className={cx({
         tab: true,
-        'tab-selected': isSelected
+        'tab--selected': isSelected
       })}
     >
       {children}
-      {lightText && <span className={styles['light-text']}>({lightText})</span>}
+      {description && <span className={styles['tab__description']}>({description})</span>}
     </Component>
   );
 };
@@ -27,14 +27,14 @@ const Tab = ({ onSelect, href, isSelected, children, lightText }) => {
 Tab.propTypes = {
   children: PropTypes.node.isRequired,
   onSelect: PropTypes.func,
-  lightText: PropTypes.string,
+  description: PropTypes.string,
   href: PropTypes.string,
   isSelected: PropTypes.bool
 };
 
 Tab.defaultProps = {
   onSelect: noop,
-  lightText: null,
+  description: null,
   href: null,
   isSelected: false
 };

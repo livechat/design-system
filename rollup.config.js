@@ -23,7 +23,7 @@ const commonPlugins = [
       getJSON(id, exportTokens) {
         cssExportMap[id] = exportTokens;
       },
-      generateScopedName: 'lc_[local]'
+      generateScopedName: 'lc-[local]'
     },
     plugins: [
       postcssImport(),

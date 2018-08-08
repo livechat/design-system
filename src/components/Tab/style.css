@@ -32,34 +32,34 @@
   height: 0;
 }
 
-.tab-selected {
+.tab--selected {
   font-weight: 700;
 }
 
-.tab-selected:before {
+.tab--selected:before {
     height: 5px;
 }
 
-.tab .light-text {
+.tab .tab__description {
   display: inline-block;
   color: rgba(0, 0, 0, 0.6);
   padding-left: 3px;
   transition: color 0.25s;
 }
 
-.tab:hover .light-text {
+.tab:hover .tab__description {
   color: rgba(0, 0, 0, 1);
 }
 
-.tab-selected .light-text {
+.tab--selected .tab__description {
   color: rgba(66, 77, 87, 1);
 }
 
-.tabs_wrapper {
+.tabs {
   position: relative;
 }
 
-.tabs_list {
+.tabs__list {
   position: relative;
   display: flex;
   flex-direction: row;

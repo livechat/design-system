@@ -6,10 +6,10 @@ Tab label should be set in sentence case, and should not exceed three words. Don
 ```js
 <TabsWrapper>
   <TabsList>
-    <Tab isSelected lightText="1">
+    <Tab isSelected description="1">
       Agents
     </Tab>
-    <Tab lightText="3">
+    <Tab description="3">
       Groups
     </Tab>
   </TabsList>
@@ -17,10 +17,10 @@ Tab label should be set in sentence case, and should not exceed three words. Don
 ```
 
 ```html
-<div class="lc_tabs-wrapper">
-  <div class="lc_tabs-list">
-    <button class="lc_tab lc_tab-selected">Agents<span class="lc_light-text">(1)</span></button>
-    <button class="lc_tab">Groups<span class="lc_light-text">(3)</span></button>
+<div class="lc-tabs">
+  <div class="lc-tabs__list">
+    <button class="lc-tab lc-tab--selected">Agents<span class="lc-tab__description">(1)</span></button>
+    <button class="lc-tab">Groups<span class="lc-tab__description">(3)</span></button>
   </div>
 </div>
 ```

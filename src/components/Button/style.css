@@ -44,32 +44,32 @@
   margin-right: 7px;
 }
 
-.btn-fw {
+.btn--full-width {
   display: flex;
   width: 100%;
 }
 
-.btn-primary {
+.btn--primary {
   background-color: #4384f5;
   color: #fff;
   border-color: #4384f5;
 }
 
-.btn-primary:focus {
+.btn--primary:focus {
   box-shadow: 0 0 0 1px #427fe1;
 }
 
-.btn-destructive {
+.btn--destructive {
   background-color: #f4574c;
   color: #fff;
   border-color: #f4574c;
 }
 
-.btn-destructive:focus {
+.btn--destructive:focus {
   box-shadow: 0 0 0 1px #f4574c;
 }
 
-.btn-lg {
+.btn--large {
   font-size: 15px;
   padding: 0 24px;
   min-width: 42px;
@@ -77,7 +77,7 @@
   line-height: 42px;
 }
 
-.btn-sm {
+.btn--compact {
   font-size: 14px;
   padding: 0 16px;
   min-width: 32px;

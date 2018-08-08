@@ -29,7 +29,7 @@ const config = {
             options: {
               importLoaders: 1,
               modules: true,
-              localIdentName: 'lc_[local]'
+              localIdentName: 'lc-[local]'
             }
           },
           {

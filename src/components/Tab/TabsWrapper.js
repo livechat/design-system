@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './style.css';
 
 const TabsWrapper = ({ children }) => (
-  <div className={styles['tabs_wrapper']}>{children}</div>
+  <div className={styles.tabs}>{children}</div>
 );
 
 TabsWrapper.propTypes = {
