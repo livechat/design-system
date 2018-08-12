@@ -1,29 +1,29 @@
 ```js
-<Tooltip
-  offset={1}
-  align="center"
-  trigger="hover"
-  content={<TooltipContent style={{maxWidth: '200px'}} arrowPosition="right" backgroundColor="rgba(66, 77, 87, 0.6)" fontColor="#fff" arrowOffset={20}>
-    Your customers can hear sound notifications when using your chat window. They can mute/unmute them during chat. Your customers can hear sound notifications when using your chat window. They can mute/unmute them during chat.
-  </TooltipContent>}
-  directions={['left']}
->
-  <div style={{width: '100px'}}>hover me</div>
-</Tooltip>
+<div style={{display: 'flex'}}>
+  <Tooltip
+    offset={1}
+    align="top"
+    trigger="hover"
+    content={<TooltipContent arrowPosition="top">
+      Your customers can hear sound notifications when using your chat window. They can mute/unmute them during chat. Your customers can hear sound notifications when using your chat window. They can mute/unmute them during chat.
+    </TooltipContent>}
+    directions={['bottom']}
+  >
+    <div style={{border: '1px solid rgb(66, 77, 87)', borderRadius: '5px', padding: '5px'}}>hover me</div>
+  </Tooltip>
+</div>
 ```
 ```html
-<div class="lc_tooltip">
-  <div style="width: 100px;">hover me</div>
-  <div class="lc_tooltip-box" style="top: 157px; left: -913.984p">
-    <div class="lc_tooltip-box-content">
-      <div class="lc_tooltip-content lc_tooltip-content-arrow-right"
-           style="background-color: rgba(66, 77, 87, 0.6); color: rgb(255, 255, 255); border-color: 
-                  rgba(66, 77, 87, 0.6); top: 20px;"
-      >
-        Your customers can hear sound notifications when using your 
-        chat window. They can mute/unmute them during chat. Your 
-        customers can hear sound notifications when using your chat 
-        window. They can mute/unmute them during chat.
+<div class="lc-tooltip">
+  <div style="border: 1px solid rgb(66, 77, 87); border-radius: 5px; padding: 5px;">
+    hover me
+  </div>
+  <div class="lc-tooltip-box" style="top: 212px; left: 380.305px;">
+    <div class="lc-tooltip-box-content">
+      <div class="lc-tooltip__content lc-tooltip__arrow--top">
+        Your customers can hear sound notifications when using your chat window.
+        They can mute/unmute them during chat. Your customers can hear sound 
+        notifications when using your chat window. They can mute/unmute them during chat.
       </div>
     </div>
   </div>

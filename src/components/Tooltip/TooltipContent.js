@@ -7,45 +7,45 @@ const cx = classNames.bind(styles);
 
 const TooltipContent = ({
   backgroundColor,
-  className, // eslint-disable-line
+  className,
   fontColor,
   arrowPosition,
-  arrowOffset,
   children
-}) => (
-  <div
-    className={cx({
-      'tooltip-content': true,
-      [`tooltip-content-arrow-${arrowPosition}`]: true,
-      'tooltip-conent-arrow-no-offset': !arrowOffset
-    })}
-    style={{
-      backgroundColor,
-      color: fontColor,
-      borderColor: backgroundColor,
-      top: arrowOffset ? `${arrowOffset}px` : null
-    }}
-  >
-    {children}
-  </div>
-);
+}) => {
+  const componentClassNames = `
+    ${cx({
+      tooltip__content: true,
+      [`tooltip__arrow--${arrowPosition}`]: true
+    })} ${className}
+  `;
+
+  return (
+    <div
+      className={componentClassNames}
+      style={{
+        backgroundColor,
+        color: fontColor,
+        borderColor: backgroundColor
+      }}
+    >
+      {children}
+    </div>
+  );
+};
 
 TooltipContent.propTypes = {
   backgroundColor: PropTypes.string,
   className: PropTypes.string,
   fontColor: PropTypes.string,
   children: PropTypes.node.isRequired,
-  arrowPosition: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
-  arrowOffset: PropTypes.number
+  arrowPosition: PropTypes.oneOf(['left', 'right', 'top', 'bottom'])
 };
 
 TooltipContent.defaultProps = {
   arrowPosition: 'left',
   fontColor: '#fff',
-  className: null,
   backgroundColor: '#3a343c',
-  arrowOffset: null
+  className: ''
 };
 
-/** @component */
 export default TooltipContent;

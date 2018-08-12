@@ -1,45 +1,42 @@
-.tooltip-content {
+.tooltip__content {
   box-shadow: 0 4px 16px -8px rgba(0, 0, 0, 0.5);
   margin: 4px;
   font-size: 14px;
   border-radius: 4px;
   padding: 11px 12px;
+  max-width: 260px;
 }
 
-.tooltip-content::before {
+.tooltip__content::before {
   content: ' ';
   position: absolute;
   border-width: 4px;
   border-style: solid;
   border-color: transparent;
-  top: inherit;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.tooltip-content-arrow-left::before {
+.tooltip__arrow--left::before {
   border-right-color: inherit;
   left: -4px;
 }
 
-.tooltip-content-arrow-right::before {
+.tooltip__arrow--right::before {
   border-left-color: inherit;
   right: -4px;
 }
 
-.tooltip-content-arrow-top::before {
+.tooltip__arrow--top::before {
   border-bottom-color: inherit;
   top: -4px;
   left: calc(50% - 4px);
 }
 
-.tooltip-content-arrow-bottom::before {
+.tooltip__arrow--bottom::before {
   border-top-color: inherit;
   bottom: -4px;
   left: calc(50% - 4px);
-}
-
-.tooltip-conent-arrow-no-offset::before {
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .tooltip-box {
