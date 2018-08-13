@@ -1,25 +1,47 @@
-const path = require('path')
-const config = require('./webpack.config.js')
+const path = require('path');
+const config = require('./webpack.config.js');
 
 module.exports = {
-	showCode: true,
-	showUsage: true,
-	webpackConfig: config,
-	title: 'LC Design System',
-	skipComponentsWithoutExample: true,
-	require: [path.resolve(__dirname, 'setup.js')],
-	sections: [
-		{
-			name: 'Introduction',
-			content: './docs/Introduction.md',
+  pagePerSection: true,
+  assetsDir: './assets',
+  webpackConfig: config,
+  title: 'LC Design System',
+  skipComponentsWithoutExample: true,
+  require: [path.resolve(__dirname, 'setup.js')],
+  sections: [
+    {
+      name: 'Introduction',
+      content: './docs/Introduction.md'
+    },
+    {
+      name: 'Foundations',
+      sections: [
+        {
+          name: 'Typography',
+          content: './src/foundations/Typography/Typography.md'
+        }
+      ],
+      sectionDepth: 2
     },
     {
       name: 'Components',
       sections: [
         {
           name: 'Button',
-          components: './src/components/Button/Button.js',
+          components: './src/components/Button/Button.js'
         },
+        {
+          name: 'Tab',
+          components: './src/components/Tab/Tab.js'
+        },
+        {
+          name: 'Tooltip',
+          components: [
+            './src/components/Tooltip/TooltipContent.js',
+            './src/components/Tooltip/Tooltip.js'
+          ],
+          sectionDepth: 0
+        }
       ]
     }
   ],
@@ -34,15 +56,18 @@ module.exports = {
         },
         {
           rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600'
-        },
-        {
-          rel: 'stylesheet',
-          type: 'text/css',
-          href: './assets/style.css'
+          href:
+            'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600'
         }
-      ]
+      ],
+      raw: `
+        <style>
+          body {
+            font-family: 'Source Sans Pro';
+          }
+        </style>
+      `
     }
   },
   defaultExample: false
-}
+};

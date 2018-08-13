@@ -2,21 +2,49 @@
 
 Use when there is an action that is more important than any other actions and you need to draw attention to it. Don’t use more than one primary button per screen to avoid confusing users. Not every screen needs a primary button.
 ```js
-<Button primary>Click me</Button>
+<Button primary>Primary Button</Button>
 ```
 
 ### Basic Button
 
 The standard button for most use cases. Only use another style if a button requires more or less visual attention.
 ```js
-<Button>Click me</Button>
+<Button>Basic Button</Button>
 ```
 
 ### Destructive Button
 
 Use as a final confirmation for a destructive action such as deleting. These are found mostly in confirmation modals.
 ```js
-<Button destructive>Click me</Button>
+<Button destructive>Destructive Button</Button>
+```
+
+### Button Sizes
+#### Compact
+Use in a table or list where space is tight.
+```js
+<Button size="compact" primary>Compact Button</Button>
+```
+#### Regular
+```js
+<Button primary>Regular Button</Button>
+```
+#### Large
+Use for the main call to action in empty states or for calls to action shown with large illustrations.
+```js
+<Button size="large" primary>Large Button</Button>
+```
+```html
+<button type="button" class="lc-btn lc-btn--primary lc-btn--large">Large Button</button>
+```
+#### Full-width
+
+Button expanded to the full width to fill the parent container (max-width: 320px)
+```js
+<Button fullWidth primary>Full-width Button</Button>
+```
+```html
+<button type="button" class="lc-btn lc-btn--full-width lc-btn--primary">Full-width Button</button>
 ```
 
 ### Best practices
