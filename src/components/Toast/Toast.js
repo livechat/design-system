@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { InformationIcon, CloseIcon } from 'react-material-icon-svg';
 import classNames from 'classnames/bind';
 import styles from './style.css';
-import TooltipContent from "../Tooltip/TooltipContent";
 
 const cx = classNames.bind(styles);
 
