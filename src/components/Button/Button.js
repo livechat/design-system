@@ -1,132 +1,89 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import styled from '../../styled';
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames/bind';
+import styles from './style.css';
 
-const StyledButton = styled.button`
-  position: relative;
-  display: ${props => (props.fullWidth ? 'flex' : 'inline-flex')};
-  width: ${props => (props.fullWidth ? '100%' : '')};
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  cursor: pointer;
-  user-select: none;
-  text-decoration: none;
-  transition-property: opacity, border, box-shadow;
-  transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(0.64, 0, 0.35, 1);
-  border: 1px solid ${props => (props.primary ? '#4384f5' : '#bcc6d0')};
-  line-height: 1;
-  min-height: 36px;
-  min-width: 104px;
-  border-radius: 4px;
-  color: ${props => (props.primary ? '#fff' : 'rgba(66,77,87,1)')};
-  font-size: 15px;
-  font-weight: 600;
-  padding: 0 16px;
+const cx = classNames.bind(styles);
+const acceptedSizes = ['large', 'compact'];
 
-  background-color: ${props => (props.primary ? '#4384f5' : '#fff')};
+const Button = props => {
+  const {
+    children,
+    primary,
+    destructive,
+    disabled,
+    loading,
+    size,
+    fullWidth,
+    submit,
+    accessibilityLabel,
+    ariaControls,
+    ariaExpanded,
+    ...buttonProps
+  } = props;
 
-  &:hover {
-    opacity: 0.8;
-  }
-
-  &:focus {
-    outline: 0;
-    box-shadow: 0 0 0 1px #427fe1;
-  }
-
-  &:disabled {
-    opacity: 0.65;
-    cursor: not-allowed;
-  }
-
-  .icon {
-    color: #4384f5;
-    margin-right: 7px;
-  }
-
-  ${props => {
-    if (props.destructive) {
-      return `
-        background-color: #f4574c;
-        color: #fff;
-        border-color: #f4574c;
-        box-shadow: 0 0 0 1px #f4574c;
-      `;
-    }
-    return '';
-  }}
-`;
-
-const Button = ({
-  children,
-  id,
-  primary,
-  destructive,
-  disabled,
-  loading,
-  size,
-  outline,
-  fullWidth,
-  icon,
-  submit,
-  accessibilityLabel,
-  ariaControls,
-  ariaExpanded,
-  onClick,
-  onFocus,
-  onBlur,
-  renderIcon
-}) => {
   const isDisabled = disabled || loading;
   const type = submit ? 'submit' : 'button';
+  let buttonType = null;
+
+  if (primary) {
+    buttonType = 'primary';
+  } else if (destructive) {
+    buttonType = 'destructive';
+  }
 
   return (
-    <StyledButton
-      id={id}
-      primary={primary}
+    <button
+      {...buttonProps}
       type={type}
-      destructive={destructive}
-      onClick={onClick}
-      onFocus={onFocus}
-      onBlur={onBlur}
       disabled={isDisabled}
+      role={loading ? 'alert' : undefined}
+      aria-busy={loading ? true : undefined}
       aria-label={accessibilityLabel}
       aria-controls={ariaControls}
       aria-expanded={ariaExpanded}
-      role={loading ? 'alert' : undefined}
-      aria-busy={loading ? true : undefined}
-      fullWidth={fullWidth}
+      className={cx({
+        btn: true,
+        'btn--full-width': fullWidth,
+        'btn--primary': buttonType === 'primary',
+        'btn--destructive': buttonType === 'destructive',
+        [`btn--${size}`]: acceptedSizes.some(s => s === size)
+      })}
     >
-      {renderIcon && <span className="icon">{renderIcon}</span>}
       {children}
-    </StyledButton>
+    </button>
   );
 };
 
 Button.propTypes = {
-  /**
-   * Content of button, i.e. text
-   */
-  children: PropTypes.string,
+  children: PropTypes.node.isRequired,
   id: PropTypes.string,
+  /**
+   * Type of button
+   */
   primary: PropTypes.bool,
+  /**
+   * Type of button
+   */
   destructive: PropTypes.bool,
-  // disabled?: boolean;
-  // loading?: boolean;
-  // size?: Size;
-  // outline?: boolean;
-  // fullWidth?: boolean;
-  // icon?: any;
-  // submit?: boolean;
-  // accessibilityLabel?: string;
-  // ariaControls?: string;
-  // ariaExpanded?: boolean;
-  // onClick?(): void;
-  // onFocus?(): void;
-  // onBlur?(): void;
-  // renderIcon?: string | React.ReactNode
-}
+  disabled: PropTypes.bool,
+  loading: PropTypes.bool,
+  /**
+   * Size of button
+   */
+  size: PropTypes.oneOf(['compact', 'large']),
+  /**
+   * Sets button width to max-width=320px
+   */
+  fullWidth: PropTypes.bool,
+  onClick: PropTypes.func,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  submit: PropTypes.bool,
+  className: PropTypes.string,
+  accessibilityLabel: PropTypes.string,
+  ariaControls: PropTypes.string,
+  ariaExpanded: PropTypes.string
+};
 
 export default Button;
