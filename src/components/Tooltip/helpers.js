@@ -1,4 +1,4 @@
-import { DIRECTION, ALIGMENT, ARROW_WIDTH, TOOLTIP_MARGIN } from './constants';
+import { DIRECTION, ALIGMENT, TOOLTIP_MARGIN } from './constants';
 
 export const getTooltipPosition = opts => {
   const { direction, align, offset, tooltipRefRect, tooltipBoxRefRect } = opts;
@@ -15,10 +15,10 @@ export const getTooltipPosition = opts => {
       break;
 
     case DIRECTION.Bottom:
+      tooltipYPosition = tooltipRefRect.top + tooltipRefRect.height + offset;
       tooltipXPosition =
         tooltipRefRect.left +
         (tooltipRefRect.width / 2 - tooltipBoxRefRect.width / 2);
-      tooltipYPosition = tooltipRefRect.top + tooltipRefRect.height + offset;
       break;
 
     case DIRECTION.Right:
@@ -32,7 +32,7 @@ export const getTooltipPosition = opts => {
             tooltipBoxRefRect.height / 2;
           break;
         case ALIGMENT.Top:
-          tooltipYPosition = tooltipRefRect.top - ARROW_WIDTH - TOOLTIP_MARGIN;
+          tooltipYPosition = tooltipRefRect.top - TOOLTIP_MARGIN;
           break;
       }
       break;
@@ -48,7 +48,7 @@ export const getTooltipPosition = opts => {
             tooltipBoxRefRect.height / 2;
           break;
         case ALIGMENT.Top:
-          tooltipYPosition = tooltipRefRect.top - ARROW_WIDTH - TOOLTIP_MARGIN;
+          tooltipYPosition = tooltipRefRect.top - TOOLTIP_MARGIN;
           break;
       }
       break;

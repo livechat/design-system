@@ -4,7 +4,7 @@
     offset={1}
     align="top"
     trigger="hover"
-    content={<TooltipContent arrowPosition="top">
+    content={<TooltipContent arrowPosition="top" arrowOffset={12}>
       Your customers can hear sound notifications when using your chat window. They can mute/unmute them during chat. Your customers can hear sound notifications when using your chat window. They can mute/unmute them during chat.
     </TooltipContent>}
     directions={['bottom']}

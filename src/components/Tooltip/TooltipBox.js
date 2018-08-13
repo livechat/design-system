@@ -17,15 +17,15 @@ const TooltipBox = ({
 }) => (
   <div
     className={cx({
-      'tooltip-box': true,
-      'tooltip-box-visible': isVisible
+      tooltip__box: true,
+      'tooltip__box--visible': isVisible
     })}
     style={{ top: `${yPosition}px`, left: `${xPosition}px` }}
     onMouseEnter={onContentMouseEnter}
     onMouseLeave={onContentMouseLeave}
     ref={contentRef}
   >
-    <div className={styles['tooltip-box-content']}>{children}</div>
+    <div className={styles['tooltip__box-content']}>{children}</div>
   </div>
 );
 

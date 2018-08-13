@@ -1,5 +1,5 @@
 import { getTooltipPosition } from './helpers';
-import { DIRECTION, ALIGMENT, ARROW_WIDTH, TOOLTIP_MARGIN } from './constants';
+import { DIRECTION, ALIGMENT, TOOLTIP_MARGIN } from './constants';
 
 describe('Tooltip', () => {
   describe('Calculate tooltip position', () => {
@@ -62,7 +62,7 @@ describe('Tooltip', () => {
         20
       );
       expect(tooltipXPosition).toEqual(280);
-      expect(tooltipYPosition).toEqual(500 - ARROW_WIDTH - TOOLTIP_MARGIN);
+      expect(tooltipYPosition).toEqual(500 - TOOLTIP_MARGIN);
     });
 
     it('should correct position for direction right and align center', () => {
@@ -82,7 +82,7 @@ describe('Tooltip', () => {
         20
       );
       expect(tooltipXPosition).toEqual(1020);
-      expect(tooltipYPosition).toEqual(500 - ARROW_WIDTH - TOOLTIP_MARGIN);
+      expect(tooltipYPosition).toEqual(500 - TOOLTIP_MARGIN);
     });
   });
 });

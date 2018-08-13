@@ -10,6 +10,4 @@ export const ALIGMENT = {
   Center: 'center'
 };
 
-export const ARROW_WIDTH = 4;
-
 export const TOOLTIP_MARGIN = 10;
