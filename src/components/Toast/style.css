@@ -22,6 +22,7 @@
 
 .toast-icon, .toast-close {
   padding-right: 12px;
+  align-self: baseline;
 }
 
 .toast-icon svg {

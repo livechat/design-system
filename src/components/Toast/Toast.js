@@ -29,21 +29,44 @@ const Toast = props => {
     ...toastProps
   } = props;
 
+  let toastType = false;
+
+  if (success) {
+    toastType = 'success';
+  } else if (warning) {
+    toastType = 'warning';
+  } else if (error) {
+    toastType = 'error';
+  } else if (info) {
+    toastType = 'info';
+  }
+
+  function Icon() {
+    switch (toastType) {
+      case 'success':
+        return <CheckCircleIcon />;
+      case 'warning':
+        return <AlertIcon />;
+      case 'error':
+        return <AlertCircleIcon />;
+      default:
+        return <InformationIcon />;
+    }
+  }
+
   const componentClassNames = `
     ${cx({
-      toast: true,
-      'toast--success': success,
-      'toast--warning': warning,
-      'toast--error': error,
-      'toast--info': info,
-      'toast--fixed': fixed,
-      [`toast--horizontal-${horizontalPosition}`]:
-        fixed && acceptedHorizontalPositions.some(s => s === horizontalPosition),
-      [`toast--vertical-${verticalPosition}`]:
-        fixed && acceptedVerticalPositions.some(s => s === verticalPosition),
-      'toast--centered':
-        horizontalPosition === 'center' && verticalPosition === 'middle',
-    })} ${className}
+    toast: true,
+    'toast--fixed': fixed,
+    [`toast--${toastType}`]: toastType,
+    [`toast--horizontal-${horizontalPosition}`]:
+    fixed &&
+    acceptedHorizontalPositions.some(s => s === horizontalPosition),
+    [`toast--vertical-${verticalPosition}`]:
+    fixed && acceptedVerticalPositions.some(s => s === verticalPosition),
+    'toast--centered':
+      horizontalPosition === 'center' && verticalPosition === 'middle'
+  })} ${className}
   `;
 
   if (autoHideDuration && onClose) {
@@ -53,28 +76,23 @@ const Toast = props => {
   }
 
   return (
-    <div
-      {...toastProps}
-      className={componentClassNames}
-      id={id}
-    >
-      <div className={cx({
-        'toast-icon': true,
-      })}>
-        {(success) ? <CheckCircleIcon /> : (
-          (warning) ? <AlertIcon /> : (
-            (error) ? <AlertCircleIcon /> :
-              <InformationIcon />
-          )
-        )}
+    <div {...toastProps} className={componentClassNames} id={id}>
+      <div
+        className={cx({
+          'toast-icon': true
+        })}
+      >
+        <Icon />
       </div>
-      <div className={cx({
-        'toast-content': true,
-      })}>
+      <div
+        className={cx({
+          'toast-content': true
+        })}
+      >
         {children}
       </div>
-      {(onClose &&
-        <div className={cx({'toast-close': true,})} onClick={onClose}>
+      {onClose && (
+        <div className={cx({ 'toast-close': true })} onClick={onClose}>
           <CloseIcon />
         </div>
       )}
@@ -88,11 +106,11 @@ Toast.propTypes = {
   id: PropTypes.string,
   autoHideDuration: PropTypes.number,
   /**
-   * Toast's horizontal position. Available values: 'left', 'center', 'right'
+   * Toast's horizontal position. Available values: 'left' | 'center' | 'right'
    */
   horizontalPosition: PropTypes.string,
   /**
-   * Toast's vertical position. Available values: 'top', 'middle', 'bottom'
+   * Toast's vertical position. Available values: 'top' | 'middle' | 'bottom'
    */
   verticalPosition: PropTypes.string,
   fixed: PropTypes.bool,
@@ -115,7 +133,7 @@ Toast.propTypes = {
   /**
    * Function triggered on toast's close action (both on click and after auto-hide duration)
    */
-  onClose: PropTypes.func,
+  onClose: PropTypes.func
 };
 
 Toast.defaultProps = {
@@ -123,7 +141,7 @@ Toast.defaultProps = {
   fixed: true,
   autoHideDuration: 0,
   horizontalPosition: 'center',
-  verticalPosition: 'top',
+  verticalPosition: 'top'
 };
 
 export default Toast;

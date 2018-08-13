@@ -1,6 +1,7 @@
-### Toast
+Toast is a small message that by default shows up in the top middle of the screen. It disappears on its own after a few seconds. It provides a feedback about an operation for user.
 
-Fixed & Autohide Toast with auto-hide duration
+### Fixed Toast with auto-hide duration
+
 ```js
 initialState = { openToast: false };
 
@@ -18,9 +19,12 @@ initialState = { openToast: false };
 </div>
 ```
 
-### Toast's position
+### Positions
 
-Toast's position
+You can set vertical and horizontal position of a Toast. Available options are:
+- vertical: `'top' | 'middle' | 'bottom'`
+- horizontal: `'left' | 'center' | 'right'`
+
 ```js
 initialState = { openToast: false, vertical: 'top', horizontal: 'center' };
 
@@ -89,6 +93,4 @@ initialState = { openToast: false, vertical: 'top', horizontal: 'center' };
 
 ### TODO
 
-Multi-line toats (icon + close position)
-Stack toasts
-Toasts under Alerts
+- Stack toasts
