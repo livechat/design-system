@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import { ARROW_POSITION, ALIGMENT } from './constants';
+import { getArrowOffsetStyle } from './helpers';
 import styles from './style.css';
 
 const cx = classNames.bind(styles);
@@ -11,25 +13,14 @@ const TooltipContent = ({
   fontColor,
   arrowPosition,
   children,
-  arrowOffset
+  arrowOffset,
+  align
 }) => {
   const componentClassNames = `
     ${cx({
       tooltip__content: true
     })} ${className}
   `;
-
-  const getArrowOffset = () => {
-    if (!arrowOffset) {
-      return {};
-    }
-    if (arrowPosition === 'left' || arrowPosition === 'right') {
-      return { top: `${arrowOffset}px` };
-    } else if (arrowPosition === 'top' || arrowPosition === 'bottom') {
-      return { left: `${arrowOffset}px` };
-    }
-    return {};
-  };
 
   return (
     <div
@@ -45,7 +36,7 @@ const TooltipContent = ({
           tooltip__arrow: true,
           [`tooltip__arrow--${arrowPosition}`]: true
         })}
-        style={getArrowOffset()}
+        style={getArrowOffsetStyle(arrowOffset, arrowPosition, align)}
       />
       {children}
     </div>
@@ -57,12 +48,24 @@ TooltipContent.propTypes = {
   className: PropTypes.string,
   fontColor: PropTypes.string,
   children: PropTypes.node.isRequired,
-  arrowPosition: PropTypes.oneOf(['left', 'right', 'top', 'bottom']),
+  arrowPosition: PropTypes.oneOf([
+    ARROW_POSITION.Left,
+    ARROW_POSITION.Right,
+    ARROW_POSITION.Top,
+    ARROW_POSITION.Bottom
+  ]),
+  align: PropTypes.oneOf([
+    ALIGMENT.Top,
+    ALIGMENT.Bottom,
+    ALIGMENT.Left,
+    ALIGMENT.Right,
+    ALIGMENT.Center
+  ]),
   arrowOffset: PropTypes.number
 };
 
 TooltipContent.defaultProps = {
-  arrowPosition: 'left',
+  arrowPosition: ARROW_POSITION.Left,
   fontColor: '#fff',
   backgroundColor: '#3a343c',
   className: ''

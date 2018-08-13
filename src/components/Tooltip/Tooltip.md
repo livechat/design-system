@@ -2,7 +2,7 @@
 <div style={{display: 'flex'}}>
   <Tooltip
     offset={1}
-    align="top"
+    align="center"
     trigger="hover"
     content={<TooltipContent arrowPosition="left">tooltip</TooltipContent>}
     directions={['right']}

@@ -35,7 +35,8 @@
 
 .tooltip__arrow--bottom {
   border-top-color: inherit;
-  bottom: -4px;
+  bottom: -12px;
+  top: auto;
   left: calc(50% - 4px);
 }
 

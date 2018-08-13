@@ -87,10 +87,10 @@ class Tooltip extends React.Component {
 
   getAlignment(direction) {
     const supportedAlignments = {
-      [DIRECTION.Left]: [ALIGMENT.Center, ALIGMENT.Top],
-      [DIRECTION.Right]: [ALIGMENT.Center, ALIGMENT.Top],
-      [DIRECTION.Top]: [ALIGMENT.Center],
-      [DIRECTION.Bottom]: [ALIGMENT.Center]
+      [DIRECTION.Left]: [ALIGMENT.Center, ALIGMENT.Top, ALIGMENT.Bottom],
+      [DIRECTION.Right]: [ALIGMENT.Center, ALIGMENT.Top, ALIGMENT.Bottom],
+      [DIRECTION.Top]: [ALIGMENT.Center, ALIGMENT.left, ALIGMENT.Right],
+      [DIRECTION.Bottom]: [ALIGMENT.Center, ALIGMENT.Left, ALIGMENT.Right]
     };
 
     if (
@@ -205,7 +205,7 @@ Tooltip.propTypes = {
   isTooltipVisible: PropTypes.bool,
   offset: PropTypes.number,
   trigger: PropTypes.oneOf(['hover', 'click', 'custom']),
-  align: PropTypes.oneOf(['top', 'center']),
+  align: PropTypes.oneOf(['top', 'center', 'bottom', 'left', 'right']),
   directions: (props, propName, componentName) => {
     const values = obj => Object.keys(obj).map(key => obj[key]);
 

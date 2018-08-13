@@ -15,6 +15,7 @@ node_modules
 
 # IDE
 .idea
+.vscode
 
 # others
 .DS_Store

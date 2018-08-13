@@ -20,9 +20,7 @@ const Tab = ({ onSelect, href, isSelected, children, description }) => {
     >
       {children}
       {description && (
-        <span className={styles['tab__description']}>
-          ({description})
-        </span>
+        <span className={styles.tab__description}>({description})</span>
       )}
     </Component>
   );
