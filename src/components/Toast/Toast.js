@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { InformationIcon, CloseIcon } from 'react-material-icon-svg';
+import InformationIcon from 'react-material-icon-svg/dist/InformationIcon';
+import CheckCircleIcon from 'react-material-icon-svg/dist/CheckCircleIcon';
+import AlertIcon from 'react-material-icon-svg/dist/AlertIcon';
+import AlertCircleIcon from 'react-material-icon-svg/dist/AlertCircleIcon';
+import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 import classNames from 'classnames/bind';
 import styles from './style.css';
 
@@ -9,25 +13,16 @@ const cx = classNames.bind(styles);
 const Toast = props => {
   const {
     children,
+    hideDuration,
+    fixed,
     success,
     warning,
     error,
     info,
     className,
+    onClose,
     ...toastProps
   } = props;
-
-  let toastType = 'notification';
-
-  if (success) {
-    toastType = 'success';
-  } else if (warning) {
-    toastType = 'warning';
-  } else if (error) {
-    toastType = 'error';
-  } else if (info) {
-    toastType = 'info';
-  }
 
   const componentClassNames = `
   ${cx({
@@ -36,8 +31,15 @@ const Toast = props => {
     'toast--warning': warning,
     'toast--error': error,
     'toast--info': info,
+    'toast--fixed': fixed,
   })} ${className}
 `;
+
+  if (hideDuration && onClose) {
+    setTimeout(() => {
+      onClose();
+    }, hideDuration);
+  }
 
   return (
     <div
@@ -47,23 +49,33 @@ const Toast = props => {
       <div className={cx({
         'toast-icon': true,
       })}>
-        <InformationIcon />
+        {(success) ? <CheckCircleIcon /> : (
+          (warning) ? <AlertIcon /> : (
+            (error) ? <AlertCircleIcon /> :
+              <InformationIcon />
+          )
+        )}
       </div>
       <div className={cx({
         'toast-content': true,
       })}>
         {children}
       </div>
-      <div className={cx({'toast-close': true,})}>
-        <CloseIcon />
-      </div>
+      {(onClose &&
+        <div className={cx({'toast-close': true,})} onClick={onClose}>
+          <CloseIcon />
+        </div>
+      )}
     </div>
   );
 };
 
 Toast.propTypes = {
   children: PropTypes.node.isRequired,
-  id: PropTypes.string,
+  className: PropTypes.string,
+  trigger: PropTypes.bool,
+  hideDuration: PropTypes.number,
+  fixed: PropTypes.bool,
   /**
    * Type of toast
    */
@@ -80,14 +92,16 @@ Toast.propTypes = {
    * Type of toast
    */
   info: PropTypes.bool,
-  onClick: PropTypes.func,
-  onFocus: PropTypes.func,
-  onBlur: PropTypes.func,
-  className: PropTypes.string,
+  /**
+   * Function triggered on close (both by click and auto-hide)
+   */
+  onClose: PropTypes.func,
 };
 
 Toast.defaultProps = {
-  className: ''
+  className: '',
+  fixed: true,
+  hideDuration: 0,
 };
 
 export default Toast;

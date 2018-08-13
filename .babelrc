@@ -1,13 +1,5 @@
 {
   "presets": [
     "./.babelrc.js"
-  ],
-  "plugins": [
-    ["transform-imports", {
-      "react-material-icon-svg": {
-        "transform": "react-material-icon-svg/dist/${member}",
-        "preventFullImport": true
-      }
-    }]
   ]
 }
