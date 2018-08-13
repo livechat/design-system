@@ -35,6 +35,10 @@ module.exports = {
           components: './src/components/Tab/Tab.js'
         },
         {
+          name: 'Toast',
+          components: './src/components/Toast/Toast.js'
+        },
+        {
           name: 'Tooltip',
           components: [
             './src/components/Tooltip/TooltipContent.js',

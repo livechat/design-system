@@ -1,0 +1,65 @@
+.toast {
+  display: flex;
+  align-items: center;
+  width: 360px;
+  padding: 10px 5px 10px 12px;
+  font-size: 15px;
+  background: #ffffff;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 20px;
+  letter-spacing: normal;
+  color: rgba(66,77,87,1);
+  box-shadow: 0 6px 30px -10px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.toast svg {
+  display: flex;
+}
+
+.toast-icon, .toast-close {
+  padding-right: 12px;
+}
+
+.toast-icon svg {
+  fill: #4384f5;
+  height: 20px;
+  width: 20px;
+}
+
+.toast-close {
+  margin-left: auto;
+}
+
+.toast-close svg {
+  fill: #9c999d;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+}
+
+.toast--success {
+  background: #4bb678;
+}
+
+.toast--warning {
+  background: #efa842;
+}
+
+.toast--error {
+  background: #f4574c;
+}
+
+.toast--info {
+  background: #5ca8f5;
+}
+
+.toast--success, .toast--warning, .toast--error, .toast--info {
+  color: #ffffff;
+}
+
+.toast--success svg, .toast--warning svg, .toast--error svg, .toast--info svg {
+  fill: currentColor;
+}

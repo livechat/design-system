@@ -6,3 +6,4 @@ global.TabsWrapper = Components.TabsWrapper;
 global.TabsList = Components.TabsList;
 global.Tooltip = Components.Tooltip;
 global.TooltipContent = Components.TooltipContent;
+global.Toast = Components.Toast;
