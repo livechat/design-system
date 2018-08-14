@@ -31,6 +31,10 @@ module.exports = {
           components: './src/components/Button/Button.js'
         },
         {
+          name: 'Normalize',
+          content: './src/components/Normalize/Normalize.md'
+        },
+        {
           name: 'Tab',
           components: './src/components/Tab/Tab.js'
         },
