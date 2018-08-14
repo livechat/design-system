@@ -9,8 +9,45 @@ initialState = { openToast: false };
     {(state.openToast && 
       <Toast
         success
-        hideDuration={5000}
+        autoHideDuration={5000}
         onClose={() => setState({openToast: false})}
+      >
+        Toast showed!
+      </Toast>
+    )}
+</div>
+```
+
+### Toast's position
+
+Toast's position
+```js
+initialState = { openToast: false, vertical: 'top', horizontal: 'center' };
+
+<div>
+    <div style={{marginBottom: "15px"}}>
+        <label style={{marginRight: "15px"}}>Vertical position</label>
+        <select value={state.vertical} onChange={(event) => setState({ vertical: event.target.value})}>
+            <option value="top">Top</option>
+            <option value="middle">Middle</option>
+            <option value="bottom">Bottom</option>
+        </select>
+    </div>
+    <div style={{marginBottom: "15px"}}>
+        <label style={{marginRight: "15px"}}>Horizontal position</label>
+        <select value={state.horizontal} onChange={(event) => setState({ horizontal: event.target.value})}>
+            <option value="left">Left</option>
+            <option value="center">Center</option>
+            <option value="right">Right</option>
+        </select>
+    </div>
+    <Button onClick={() => setState({openToast: true})}>{(state.openToast) ? 'Hide' : 'Show'} toast</Button>
+    {(state.openToast && 
+      <Toast
+        success
+        horizontalPosition={state.horizontal}
+        verticalPosition={state.vertical}
+        onClose={() => setState({openToast: !state.openToast})}
       >
         Toast showed!
       </Toast>

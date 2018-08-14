@@ -13,38 +13,48 @@ const cx = classNames.bind(styles);
 const Toast = props => {
   const {
     children,
-    hideDuration,
+    className,
+    id,
+    autoHideDuration,
+    horizontalPosition,
+    verticalPosition,
     fixed,
     success,
     warning,
     error,
     info,
-    className,
     onClose,
     ...toastProps
   } = props;
 
-  const componentClassNames = `
-  ${cx({
+
+
+  const cssClasses = {
     toast: true,
     'toast--success': success,
     'toast--warning': warning,
     'toast--error': error,
     'toast--info': info,
     'toast--fixed': fixed,
-  })} ${className}
-`;
+  };
 
-  if (hideDuration && onClose) {
+  cssClasses['toast--horizontal-' + horizontalPosition] = fixed;
+  cssClasses['toast--vertical-' + verticalPosition] = fixed;
+  cssClasses['toast--centered'] = (horizontalPosition == 'center' && verticalPosition == 'middle');
+
+  const componentClassNames = `${cx(cssClasses)} ${className}`;
+
+  if (autoHideDuration && onClose) {
     setTimeout(() => {
       onClose();
-    }, hideDuration);
+    }, autoHideDuration);
   }
 
   return (
     <div
       {...toastProps}
       className={componentClassNames}
+      id={id}
     >
       <div className={cx({
         'toast-icon': true,
@@ -73,8 +83,10 @@ const Toast = props => {
 Toast.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  trigger: PropTypes.bool,
-  hideDuration: PropTypes.number,
+  id: PropTypes.string,
+  autoHideDuration: PropTypes.number,
+  horizontalPosition: PropTypes.string,
+  verticalPosition: PropTypes.string,
   fixed: PropTypes.bool,
   /**
    * Type of toast
@@ -93,7 +105,7 @@ Toast.propTypes = {
    */
   info: PropTypes.bool,
   /**
-   * Function triggered on close (both by click and auto-hide)
+   * Function triggered on toast's close action (both on click and after auto-hide duration)
    */
   onClose: PropTypes.func,
 };
@@ -101,7 +113,9 @@ Toast.propTypes = {
 Toast.defaultProps = {
   className: '',
   fixed: true,
-  hideDuration: 0,
+  autoHideDuration: 0,
+  horizontalPosition: 'center',
+  verticalPosition: 'top',
 };
 
 export default Toast;

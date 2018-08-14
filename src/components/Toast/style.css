@@ -43,10 +43,39 @@
 
 .toast--fixed {
   position: fixed;
-  top: 5px;
+  z-index: 5318008;
+}
+
+.toast--horizontal-left {
+  left: 5px;
+}
+
+.toast--horizontal-center {
   left: 50%;
   transform: translateX(-50%);
-  z-index: 5318008;
+}
+
+.toast--horizontal-right {
+  right: 5px;
+}
+
+.toast--vertical-top {
+  top: 5px;
+}
+
+.toast--vertical-middle {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.toast--vertical-bottom {
+  bottom: 5px;
+}
+
+.toast--centered {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .toast--success {
