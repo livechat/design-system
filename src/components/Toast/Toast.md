@@ -12,7 +12,7 @@ initialState = { openToast: false };
         autoHideDuration={5000}
         onClose={() => setState({openToast: false})}
       >
-        Toast showed!
+        Toast showed! 
       </Toast>
     )}
 </div>
@@ -86,3 +86,9 @@ initialState = { openToast: false, vertical: 'top', horizontal: 'center' };
 ```js
 <Toast fixed={false}>Notification message</Toast>
 ```
+
+### TODO
+
+Multi-line toats (icon + close position)
+Stack toasts
+Toasts under Alerts
