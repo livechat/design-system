@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export type ToastHorizontalPosition = 'left' | 'center' | 'right';
 export type ToastVerticalPosition = 'top' | 'middle' | 'bottom';
 
