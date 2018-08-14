@@ -2,7 +2,8 @@ import React from 'react';
 
 class Normalize extends React.Component {
   componentDidMount() {
-    const $style = document.createElement('style');
+    const parent = document.getElementsByTagName('style')[0];
+    const style = document.createElement('style');
     const css = `
 html {
   box-sizing: border-box;
@@ -21,9 +22,9 @@ body {
     background-color: #fff;
   }
 }`;
-    $style.type = 'text/css';
-    $style.appendChild(document.createTextNode(css));
-    document.head.appendChild($style);
+    style.type = 'text/css';
+    style.appendChild(document.createTextNode(css));
+    document.head.insertBefore(style, parent);
   }
 
   render() {
