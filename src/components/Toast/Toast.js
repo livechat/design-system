@@ -9,6 +9,8 @@ import classNames from 'classnames/bind';
 import styles from './style.css';
 
 const cx = classNames.bind(styles);
+const acceptedHorizontalPositions = ['left', 'center', 'right'];
+const acceptedVerticalPositions = ['top', 'middle', 'bottom'];
 
 const Toast = props => {
   const {
@@ -27,22 +29,22 @@ const Toast = props => {
     ...toastProps
   } = props;
 
-
-
-  const cssClasses = {
-    toast: true,
-    'toast--success': success,
-    'toast--warning': warning,
-    'toast--error': error,
-    'toast--info': info,
-    'toast--fixed': fixed,
-  };
-
-  cssClasses['toast--horizontal-' + horizontalPosition] = fixed;
-  cssClasses['toast--vertical-' + verticalPosition] = fixed;
-  cssClasses['toast--centered'] = (horizontalPosition == 'center' && verticalPosition == 'middle');
-
-  const componentClassNames = `${cx(cssClasses)} ${className}`;
+  const componentClassNames = `
+    ${cx({
+      toast: true,
+      'toast--success': success,
+      'toast--warning': warning,
+      'toast--error': error,
+      'toast--info': info,
+      'toast--fixed': fixed,
+      [`toast--horizontal-${horizontalPosition}`]:
+        fixed && acceptedHorizontalPositions.some(s => s === horizontalPosition),
+      [`toast--vertical-${verticalPosition}`]:
+        fixed && acceptedVerticalPositions.some(s => s === verticalPosition),
+      'toast--centered':
+        horizontalPosition === 'center' && verticalPosition === 'middle',
+    })} ${className}
+  `;
 
   if (autoHideDuration && onClose) {
     setTimeout(() => {
@@ -85,7 +87,13 @@ Toast.propTypes = {
   className: PropTypes.string,
   id: PropTypes.string,
   autoHideDuration: PropTypes.number,
+  /**
+   * Toast's horizontal position. Available values: 'left', 'center', 'right'
+   */
   horizontalPosition: PropTypes.string,
+  /**
+   * Toast's vertical position. Available values: 'top', 'middle', 'bottom'
+   */
   verticalPosition: PropTypes.string,
   fixed: PropTypes.bool,
   /**

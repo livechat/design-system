@@ -1,6 +1,6 @@
 ### Toast
 
-Fixed & Autohide Toast
+Fixed & Autohide Toast with auto-hide duration
 ```js
 initialState = { openToast: false };
 
@@ -41,36 +41,13 @@ initialState = { openToast: false, vertical: 'top', horizontal: 'center' };
             <option value="right">Right</option>
         </select>
     </div>
-    <Button onClick={() => setState({openToast: true})}>{(state.openToast) ? 'Hide' : 'Show'} toast</Button>
+    <Button onClick={() => setState({openToast: !state.openToast})}>{(state.openToast) ? 'Hide' : 'Show'} toast</Button>
     {(state.openToast && 
       <Toast
         success
         horizontalPosition={state.horizontal}
         verticalPosition={state.vertical}
         onClose={() => setState({openToast: !state.openToast})}
-      >
-        Toast showed!
-      </Toast>
-    )}
-</div>
-```
-
-### Close Toast
-
-```js
-initialState = { openToast: true };
-
-<div>
-    {(!state.openToast && 
-      <Button onClick={() => setState({openToast: true})}>
-        Show toast
-      </Button>
-    )}
-    {(state.openToast && 
-      <Toast
-        success
-        fixed={false}
-        onClose={() => setState({openToast: false})}
       >
         Toast showed!
       </Toast>
