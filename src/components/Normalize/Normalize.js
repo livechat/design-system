@@ -2,7 +2,7 @@ import React from 'react';
 
 class Normalize extends React.Component {
   componentDidMount() {
-    const parent = document.getElementsByTagName('style')[0];
+    const firstStyleTag = document.head.getElementsByTagName('style')[0];
     const style = document.createElement('style');
     const css = `
 html {
@@ -24,7 +24,7 @@ body {
 }`;
     style.type = 'text/css';
     style.appendChild(document.createTextNode(css));
-    document.head.insertBefore(style, parent);
+    document.head.insertBefore(style, firstStyleTag);
   }
 
   render() {
