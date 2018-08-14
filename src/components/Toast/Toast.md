@@ -57,9 +57,9 @@ initialState = { openToast: true };
 </div>
 ```
 
-### Fixed Toast
+### Fixed & Autohide Toast
 
-Fixed Toast
+Fixed & Autohide Toast
 ```js
 initialState = { openToast: false };
 
@@ -68,26 +68,7 @@ initialState = { openToast: false };
     {(state.openToast && 
       <Toast
         success
-        onClose={() => setState({openToast: false})}
-      >
-        Toast showed!
-      </Toast>
-    )}
-</div>
-```
-
-### Autohide Toast
-
-Autohide Toast
-```js
-initialState = { openToast: false };
-
-<div>
-    <Button onClick={() => setState({openToast: true})}>Show toast</Button>
-    {(state.openToast && 
-      <Toast
-        success
-        hideDuration={2000}
+        hideDuration={5000}
         onClose={() => setState({openToast: false})}
       >
         Toast showed!
