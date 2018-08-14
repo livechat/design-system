@@ -66,8 +66,23 @@ module.exports = {
       ],
       raw: `
         <style>
+          html {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+          }
+          *, *::before, *::after {
+            box-sizing: inherit;
+          }
           body {
+            margin: 0;
+            padding: 0;
             font-family: 'Source Sans Pro';
+          }
+          @media print {
+            body {
+              background-color: #fff;
+            }
           }
         </style>
       `
