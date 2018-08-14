@@ -1,3 +1,5 @@
+LiveChat Design System provides a `Normalize` component to create an elegant, consistent, and simple base to build your app upon.
+
 This component appends `<style>` tag to the `<head>` tag. It includes the following CSS code:
 
 ```css
@@ -20,8 +22,22 @@ body {
 }
 ```
 
-Usage:
+Example usage:
 
 ```js static
-<Normalize/>
+import React from 'react';
+import { Normalize } from '@livechat/design-system';
+
+class App extends React.Component {
+    render(){
+        return (
+            <React.Fragment>
+                <Normalize />
+                {/* The rest of your application */}
+            </React.Fragment>
+        );
+    }
+}
+
+export default App;
 ```
