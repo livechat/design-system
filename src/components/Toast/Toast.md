@@ -2,13 +2,6 @@ Toast is a small message that by default shows up in the top middle of the scree
 
 ### Fixed Toast with auto-hide duration
 
-<<<<<<< HEAD
-=======
-Small message that by default shows up in the top middle of the screen. It disappears on its own after a few seconds. It provides a feedback about an operation for user.
-
-#### Fixed Toast with auto-hide duration
-
->>>>>>> toast docs cleanup + Toast under Alerts
 ```js
 initialState = { openToast: false };
 
@@ -26,11 +19,7 @@ initialState = { openToast: false };
 </div>
 ```
 
-<<<<<<< HEAD
 ### Positions
-=======
-#### Positions
->>>>>>> toast docs cleanup + Toast under Alerts
 
 You can set vertical and horizontal position of a Toast. Available options are:
 - vertical: `'top' | 'middle' | 'bottom'`
@@ -70,33 +59,33 @@ initialState = { openToast: false, vertical: 'top', horizontal: 'center' };
 </div>
 ```
 
-#### Toast types
+### Toast types
 
-*Success toast*
+#### Success toast
 
 ```js
 <Toast success fixed={false}>Message sent!</Toast>
 ```
 
-*Warning Toast*
+#### Warning Toast
 
 ```js
 <Toast warning fixed={false}>Check if everything is fine.</Toast>
 ```
 
-*Error Toast*
+#### Error Toast
 
 ```js
 <Toast error fixed={false}>Message could not be sent.</Toast>
 ```
 
-*Info Toast*
+#### Info Toast
 
 ```js
 <Toast info fixed={false}>Sending message...</Toast>
 ```
 
-*Notification Toast*
+#### Notification Toast
 
 ```js
 <Toast fixed={false}>Notification message</Toast>
@@ -104,8 +93,4 @@ initialState = { openToast: false, vertical: 'top', horizontal: 'center' };
 
 ### TODO
 
-<<<<<<< HEAD
-=======
-- Multi-line toats (icon + close position)
->>>>>>> toast docs cleanup + Toast under Alerts
 - Stack toasts
