@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { ARROW_POSITION, ALIGMENT } from './constants';
 import { getArrowOffsetStyle } from './helpers';
-import styles from './style.css';
+import styles from './style.scss';
 
 const cx = classNames.bind(styles);
 
@@ -66,8 +66,6 @@ TooltipContent.propTypes = {
 
 TooltipContent.defaultProps = {
   arrowPosition: ARROW_POSITION.Left,
-  fontColor: '#fff',
-  backgroundColor: '#3a343c',
   className: ''
 };
 

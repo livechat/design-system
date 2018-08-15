@@ -1,0 +1,88 @@
+@import '../../scss/variables/colors';
+
+.btn {
+  @import '../../scss/component-reset';
+
+  max-width: 320px;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  text-decoration: none;
+  transition-property: opacity, border, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.64, 0, 0.35, 1);
+  border-width: 1px;
+  border-style: solid;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: 600;
+  display: inline-flex;
+  background-color: #fff;
+  color: $font-primary-color;
+  border-color: $border-primary-color;
+  font-size: 15px;
+  padding: 0 16px;
+  min-width: 36px;
+  min-height: 36px;
+  line-height: 36px;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 1px $primary-color;
+  }
+
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+
+  &--full-width {
+    display: flex;
+    width: 100%;
+  }
+
+  &--primary {
+    background-color: $primary-color;
+    color: #fff;
+    border-color: $primary-color;
+    &:focus {
+      box-shadow: 0 0 0 1px $primary-color;
+    }
+  }
+
+  &--destructive {
+    background-color: $error-color;
+    color: #fff;
+    border-color: $error-color;
+    &:focus {
+      box-shadow: 0 0 0 1px $error-color;
+    }
+  }
+  
+  &--large {
+    font-size: 15px;
+    padding: 0 24px;
+    min-width: 42px;
+    min-height: 42px;
+    line-height: 42px;
+  }
+
+  &--compact {
+    font-size: 14px;
+    padding: 0 16px;
+    min-width: 32px;
+    min-height: 32px;
+    line-height: 32px;
+  }
+
+  .icon {
+    color: $primary-color;
+    margin-right: 7px;
+  }
+}

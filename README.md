@@ -35,7 +35,8 @@ Libary has separate css file with components styles. You need to import it in yo
 
 ### NPM Scripts
 * `styleguide`: run styleguidist server with eslint at http://localhost:6060
-* `styleguide:build`: run styleguidist build 
+* `styleguide:build`: run styleguidist build
+* `start`: bundles the library with watch flag, usefull for development with external app instead of styleguidist
 * `build`: bundles the library with rollup to the dist dir
 * `prebuild`: removes build directory (before build script)
 * `prepare`: runs both before the package is packed and published and on local npm install
@@ -55,6 +56,8 @@ A typical UI component should comply with the following guidelines:
 * All code must follow the configured code style.
 * For any design concept, follow styles from [Zeplin](https://zpl.io/a8K8YnE).
 * Component example file should contain html markup for aplications/websites which doesn't use React
+* Component should use scss style file
+* Style file should use defined sass variables, mixins etc.
 
 You can view and test your component in two ways:
 - use styleguidist as development enviroment for your component
@@ -65,7 +68,7 @@ You should start with executing these two commands:
 - design-system library root directory -> run `npm link`
 - app root directory -> run `npm link @livechat/design-system`
 
-You can run build script after new changes (or use npm run-script build -- --watch) or if you are using webpack just add to webpack.config.js few lines to see changes without unnecessary bundling library:
+You can run build script after new changes (or use npm start) or if you are using webpack just add to webpack.config.js few lines to see changes without unnecessary bundling library:
 
 ```
 const designSystemComponentsPath = fs.realpathSync(
