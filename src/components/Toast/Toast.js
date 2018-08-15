@@ -1,147 +1,96 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import InformationIcon from 'react-material-icon-svg/dist/InformationIcon';
-import CheckCircleIcon from 'react-material-icon-svg/dist/CheckCircleIcon';
-import AlertIcon from 'react-material-icon-svg/dist/AlertIcon';
-import AlertCircleIcon from 'react-material-icon-svg/dist/AlertCircleIcon';
-import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
-import classNames from 'classnames/bind';
-import styles from './style.css';
+Toast is a small message that by default shows up in the top middle of the screen. It disappears on its own after a few seconds. It provides a feedback about an operation for user.
 
-const cx = classNames.bind(styles);
-const acceptedHorizontalPositions = ['left', 'center', 'right'];
-const acceptedVerticalPositions = ['top', 'middle', 'bottom'];
+  ### Fixed Toast with auto-hide duration
 
-const Toast = props => {
-  const {
-    children,
-    className,
-    id,
-    autoHideDuration,
-    horizontalPosition,
-    verticalPosition,
-    fixed,
-    success,
-    warning,
-    error,
-    info,
-    onClose,
-    ...toastProps
-  } = props;
+  ```js
+initialState = { openToast: false };
 
-  let toastType = false;
-
-  if (success) {
-    toastType = 'success';
-  } else if (warning) {
-    toastType = 'warning';
-  } else if (error) {
-    toastType = 'error';
-  } else if (info) {
-    toastType = 'info';
-  }
-
-  function Icon() {
-    switch (toastType) {
-      case 'success':
-        return <CheckCircleIcon />;
-      case 'warning':
-        return <AlertIcon />;
-      case 'error':
-        return <AlertCircleIcon />;
-      default:
-        return <InformationIcon />;
-    }
-  }
-
-  const componentClassNames = `
-    ${cx({
-    toast: true,
-    'toast--fixed': fixed,
-    [`toast--${toastType}`]: toastType,
-    [`toast--horizontal-${horizontalPosition}`]:
-    fixed &&
-    acceptedHorizontalPositions.some(s => s === horizontalPosition),
-    [`toast--vertical-${verticalPosition}`]:
-    fixed && acceptedVerticalPositions.some(s => s === verticalPosition),
-    'toast--centered':
-      horizontalPosition === 'center' && verticalPosition === 'middle'
-  })} ${className}
-  `;
-
-  if (autoHideDuration && onClose) {
-    setTimeout(() => {
-      onClose();
-    }, autoHideDuration);
-  }
-
-  return (
-    <div {...toastProps} className={componentClassNames} id={id}>
-      <div
-        className={cx({
-          'toast-icon': true
-        })}
+<div>
+    <Button onClick={() => setState({openToast: true})}>Show toast</Button>
+    {(state.openToast && 
+      <Toast
+        success
+        autoHideDuration={5000}
+        onClose={() => setState({openToast: false})}
       >
-        <Icon />
-      </div>
-      <div
-        className={cx({
-          'toast-content': true
-        })}
-      >
-        {children}
-      </div>
-      {onClose && (
-        <div className={cx({ 'toast-close': true })} onClick={onClose}>
-          <CloseIcon />
-        </div>
-      )}
+        Toast showed! 
+      </Toast>
+    )}
+</div>
+```
+
+### Positions
+
+You can set vertical and horizontal position of a Toast. Available options are:
+  - vertical: `'top' | 'middle' | 'bottom'`
+- horizontal: `'left' | 'center' | 'right'`
+
+  ```js
+initialState = { openToast: false, vertical: 'top', horizontal: 'center' };
+
+<div>
+    <div style={{marginBottom: "15px"}}>
+        <label style={{marginRight: "15px"}}>Vertical position</label>
+        <select value={state.vertical} onChange={(event) => setState({ vertical: event.target.value})}>
+            <option value="top">Top</option>
+            <option value="middle">Middle</option>
+            <option value="bottom">Bottom</option>
+        </select>
     </div>
-  );
-};
+    <div style={{marginBottom: "15px"}}>
+        <label style={{marginRight: "15px"}}>Horizontal position</label>
+        <select value={state.horizontal} onChange={(event) => setState({ horizontal: event.target.value})}>
+            <option value="left">Left</option>
+            <option value="center">Center</option>
+            <option value="right">Right</option>
+        </select>
+    </div>
+    <Button onClick={() => setState({openToast: !state.openToast})}>{(state.openToast) ? 'Hide' : 'Show'} toast</Button>
+    {(state.openToast && 
+      <Toast
+        success
+        horizontalPosition={state.horizontal}
+        verticalPosition={state.vertical}
+        onClose={() => setState({openToast: !state.openToast})}
+      >
+        Toast showed!
+      </Toast>
+    )}
+</div>
+```
 
-Toast.propTypes = {
-  children: PropTypes.node.isRequired,
-  className: PropTypes.string,
-  id: PropTypes.string,
-  autoHideDuration: PropTypes.number,
-  /**
-   * Toast's horizontal position. Available values: 'left' | 'center' | 'right'
-   */
-  horizontalPosition: PropTypes.string,
-  /**
-   * Toast's vertical position. Available values: 'top' | 'middle' | 'bottom'
-   */
-  verticalPosition: PropTypes.string,
-  fixed: PropTypes.bool,
-  /**
-   * Type of toast
-   */
-  success: PropTypes.bool,
-  /**
-   * Type of toast
-   */
-  warning: PropTypes.bool,
-  /**
-   * Type of toast
-   */
-  error: PropTypes.bool,
-  /**
-   * Type of toast
-   */
-  info: PropTypes.bool,
-  /**
-   * Function triggered on toast's close action (both on click and after auto-hide duration)
-   */
-  onClose: PropTypes.func
-};
+### Toast types
 
-Toast.defaultProps = {
-  className: '',
-  fixed: true,
-  autoHideDuration: 0,
-  horizontalPosition: 'center',
-  verticalPosition: 'top'
-};
+#### Success toast
 
-export default Toast;
+  ```js
+<Toast success fixed={false}>Message sent!</Toast>
+```
+
+#### Warning Toast
+
+  ```js
+<Toast warning fixed={false}>Check if everything is fine.</Toast>
+```
+
+#### Error Toast
+
+  ```js
+<Toast error fixed={false}>Message could not be sent.</Toast>
+```
+
+#### Info Toast
+
+  ```js
+<Toast info fixed={false}>Sending message...</Toast>
+```
+
+#### Notification Toast
+
+  ```js
+<Toast fixed={false}>Notification message</Toast>
+```
+
+### TODO
+
+- Stack toasts

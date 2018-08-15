@@ -27,6 +27,10 @@ module.exports = {
       name: 'Components',
       sections: [
         {
+          name: 'Alerts',
+          components: './src/components/Toast/Toast.js'
+        },
+        {
           name: 'Button',
           components: './src/components/Button/Button.js'
         },
@@ -37,10 +41,6 @@ module.exports = {
         {
           name: 'Tab',
           components: './src/components/Tab/Tab.js'
-        },
-        {
-          name: 'Toast',
-          components: './src/components/Toast/Toast.js'
         },
         {
           name: 'Tooltip',
