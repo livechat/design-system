@@ -1,14 +1,8 @@
-& {
+*[class^="lc-"] {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-&, &:before, &:after {
+*[class^="lc-"], *[class^="lc-"]:before, *[class^="lc-"]:after {
   box-sizing: inherit;
-}
-
-@media print {
-  & {
-    background-color: #fff;
-  }
 }

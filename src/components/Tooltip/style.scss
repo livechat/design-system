@@ -1,8 +1,6 @@
 @import '../../scss/variables/colors';
 
 .tooltip {
-  @import '../../scss/component-reset';
-
   position: relative;
 
   &__content {
