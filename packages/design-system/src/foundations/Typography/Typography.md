@@ -86,7 +86,7 @@ Use contrast to communicate hierarchy and meaning to keep the color choices simp
 - Secondary - 80% contrast on white
 - Light secondary - 60% contrast on white
 - Placeholder - 30% contrast on white
-<img style="width: 100%;" src="/colors_gray.png" alt="Semantic colors" />
+<img style="width: 100%;" src="./colors_gray.png" alt="Semantic colors" />
 
 - Semantic (Success, Info, Warning) 100%
-<img style="width: 100%;" src="/colors.png" alt="Semantic colors" />
+<img style="width: 100%;" src="./colors.png" alt="Semantic colors" />
