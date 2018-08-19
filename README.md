@@ -57,6 +57,7 @@ A typical UI component should comply with the following guidelines:
 * For any design concept, follow styles from [Zeplin](https://zpl.io/a8K8YnE).
 * Component example file should contain html markup for aplications/websites which doesn't use React
 * Component should use scss style file
+* Css should be inspired by BEM, but doesn't need to follow it strickly 
 * Style file should use defined sass variables, mixins etc.
 
 You can view and test your component in two ways:
@@ -121,7 +122,7 @@ If you want to learn more about npm link read [this basic article](https://pozna
 * `npm run-script styleguidist`
 * Open a browser at `http://localhost:6060`
 
-Styleguidist monitors the `<root-dir>/src/components` directory for components. Nevertheless, examples are user-defined in a `<Component-name>.md` file within the subdirectory of the component.
+Styleguidist monitors the `<root-dir>/src/components` directory for components. Nevertheless, examples are user-defined in a `<Component-name>.md` file within the subdirectory of the component. Remember to add your new component in `setup.js` to see it in docs.
 
 ### Running tests
 Unit and snapshot tests, uses Jest as test runner.
