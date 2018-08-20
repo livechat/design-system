@@ -21,6 +21,7 @@ _Release: 2018-08-01_
 * [First Release] Jest and Enzyme for testing
 * [First Release] Istanbul as coverage reporter
 * [First Release] CSS by PostCSS with PreCSS and Autoprefixer as a plugins
+* [First Release] Scss support
 * [First Release] React Styleguidist for component documentation
 * [First Release] Button component with different sizes and color sets
 * [First Release] Tab component (with releated TabList and TabWrapper)

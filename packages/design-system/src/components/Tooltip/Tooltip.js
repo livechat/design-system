@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { throttle } from '@livechat/data-utils';
-import styles from './style.css';
+import styles from './style.scss';
 import TooltipBox from './TooltipBox';
 import { getTooltipPosition } from './helpers';
 import { DIRECTION, ALIGMENT } from './constants';
