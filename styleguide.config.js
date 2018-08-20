@@ -65,6 +65,14 @@ module.exports = {
           body {
             font-family: 'Source Sans Pro';
           }
+          *[class^="lc-"] {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+          }
+          *[class^="lc-"], *[class^="lc-"]:before, *[class^="lc-"]:after {
+            box-sizing: inherit;
+          }
         </style>
       `
     }

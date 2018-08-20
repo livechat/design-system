@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import styles from './style.css';
+import styles from './style.scss';
 
 const noop = () => {};
 const cx = classNames.bind(styles);
