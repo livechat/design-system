@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './style.css';
+import styles from './style.scss';
 
 const TabsWrapper = ({ children }) => (
   <div className={styles.tabs}>{children}</div>
