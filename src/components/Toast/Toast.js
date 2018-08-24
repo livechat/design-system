@@ -56,18 +56,18 @@ const Toast = props => {
 
   const componentClassNames = `
     ${cx({
-    toast: true,
-    'toast--fixed': fixed,
-    [`toast--${toastType}`]: toastType,
-    [`toast--horizontal-${horizontalPosition}`]:
-    fixed &&
-    acceptedHorizontalPositions.some(s => s === horizontalPosition),
-    [`toast--vertical-${verticalPosition}`]:
-    fixed && acceptedVerticalPositions.some(s => s === verticalPosition),
-    'toast--centered':
-      horizontalPosition === 'center' && verticalPosition === 'middle'
-  })} ${className}
-  `;
+      toast: true,
+      'toast--fixed': fixed,
+      [`toast--${toastType}`]: toastType,
+      [`toast--horizontal-${horizontalPosition}`]:
+        fixed &&
+        acceptedHorizontalPositions.some(s => s === horizontalPosition),
+      [`toast--vertical-${verticalPosition}`]:
+        fixed && acceptedVerticalPositions.some(s => s === verticalPosition),
+      'toast--centered':
+        horizontalPosition === 'center' && verticalPosition === 'middle'
+    })} ${className}
+    `;
 
   if (autoHideDuration && onClose) {
     setTimeout(() => {
