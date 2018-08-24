@@ -22,4 +22,13 @@ describe('Toast', () => {
     closeEl.simulate('click');
     expect(closeFn).toHaveBeenCalled();
   });
+
+  it('after autoHideDuration timeout call onClose function', () => {
+    const autoHideDuration = 2000;
+    mount(<Toast onClose={closeFn} autoHideDuration={autoHideDuration}>Click me</Toast>);
+
+    setTimeout(() => {
+      expect(closeFn).toHaveBeenCalled();
+    }, autoHideDuration);
+  });
 });
