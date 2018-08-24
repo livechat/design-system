@@ -13,9 +13,12 @@
   font-stretch: normal;
   line-height: 20px;
   letter-spacing: normal;
-  color: $font-primary-color;
   box-shadow: 0 6px 30px -10px rgba(0, 0, 0, 0.3);
   border-radius: 4px;
+
+  .toast-content {
+    color: $font-primary-color;
+  }
 
   svg {
     display: flex;
@@ -114,10 +117,12 @@
   }
 
   &.toast--success, &.toast--warning, &.toast--error, &.toast--info {
-    color: #ffffff;
+    .toast-content {
+       color: #fff;
+     }
 
     svg {
-      fill: currentColor;
+      fill: #fff;
     }
   }
 }
