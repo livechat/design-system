@@ -89,7 +89,3 @@ initialState = { openToast: false, vertical: 'top', horizontal: 'center' };
 ```js
 <Toast fixed={false}>Notification message</Toast>
 ```
-
-### TODO
-
-- Stack toasts

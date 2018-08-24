@@ -6,7 +6,7 @@ import AlertIcon from 'react-material-icon-svg/dist/AlertIcon';
 import AlertCircleIcon from 'react-material-icon-svg/dist/AlertCircleIcon';
 import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 import classNames from 'classnames/bind';
-import styles from './style.css';
+import styles from './style.scss';
 
 const cx = classNames.bind(styles);
 const acceptedHorizontalPositions = ['left', 'center', 'right'];
