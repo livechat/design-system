@@ -1,6 +1,7 @@
 {
   "name": "@livechat/design-system",
   "version": "0.0.1",
+  "private": true,
   "description": "LiveChat Design System React components with css styles",
   "homepage": "https://livechat.github.io/design-system/",
   "repository": {
