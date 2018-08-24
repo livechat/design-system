@@ -37,7 +37,7 @@
   }
 
   .toast-close svg {
-    fill: #9c999d;
+    fill: $font-tertiary-color;
     height: 20px;
     width: 20px;
     cursor: pointer;
@@ -74,12 +74,6 @@
     bottom: 5px;
   }
 
-  &.toast--centered {
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-
   &.toast--horizontal-right {
     right: 5px;
   }
@@ -95,6 +89,12 @@
 
   &.toast--vertical-bottom {
     bottom: 5px;
+  }
+
+  &.toast--centered {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 
   &.toast--success {
