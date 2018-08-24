@@ -22,7 +22,7 @@ initialState = { openToast: false };
 ### Positions
 
 You can set vertical and horizontal position of a Toast. Available options are:
-- vertical: `'top' | 'middle' | 'bottom'`
+- vertical: `'top' | 'bottom'`
 - horizontal: `'left' | 'center' | 'right'`
 
 ```js
@@ -33,7 +33,6 @@ initialState = { openToast: false, vertical: 'top', horizontal: 'center' };
         <label style={{marginRight: "15px"}}>Vertical position</label>
         <select value={state.vertical} onChange={(event) => setState({ vertical: event.target.value})}>
             <option value="top">Top</option>
-            <option value="middle">Middle</option>
             <option value="bottom">Bottom</option>
         </select>
     </div>
