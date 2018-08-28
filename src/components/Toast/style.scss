@@ -118,23 +118,6 @@ $toast-leave-animation-timeout: 100ms;
     }
   }
 
-  &.toast--horizontal-right {
-    right: 5px;
-  }
-
-  &.toast--vertical-top {
-    top: 5px;
-  }
-
-  &.toast--vertical-middle {
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  &.toast--vertical-bottom {
-    bottom: 5px;
-  }
-
   &.toast--centered {
     left: 50%;
     top: 50%;
