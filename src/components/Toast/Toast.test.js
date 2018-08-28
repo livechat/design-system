@@ -7,10 +7,36 @@ const closeFn = jest.fn();
 describe('Toast', () => {
   it('should render success toast', () => {
     const component = mount(
-      <Toast error success>
+      <Toast warning success>
         Toast content
       </Toast>
     );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  it('should render warning toast', () => {
+    const component = mount(
+      <Toast error warning>
+        Toast content
+      </Toast>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  it('should render error toast', () => {
+    const component = mount(
+      <Toast info error>
+        Toast content
+      </Toast>
+    );
+
+    expect(component).toMatchSnapshot();
+  });
+
+  it('should render info toast', () => {
+    const component = mount(<Toast info>Toast content</Toast>);
 
     expect(component).toMatchSnapshot();
   });

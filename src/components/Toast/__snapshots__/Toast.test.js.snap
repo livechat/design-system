@@ -1,19 +1,104 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Toast should render success toast 1`] = `
+exports[`Toast should render error toast 1`] = `
 <Toast
   autoHideDuration={0}
   className=""
   error={true}
   fixed={true}
   horizontalPosition="center"
-  success={true}
+  info={true}
   verticalPosition="top"
 >
   <div
     className="
+    toast toast--fixed toast--error toast--horizontal-center toast--vertical-top 
+    "
+  >
+    <div
+      className="toast-icon"
+    >
+      <Icon>
+        <AlertCircleIcon>
+          <svg
+            className="material material-alert-circle-icon undefined"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13 13h-2V7h2m0 10h-2v-2h2M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"
+            />
+          </svg>
+        </AlertCircleIcon>
+      </Icon>
+    </div>
+    <div
+      className="toast-content"
+    >
+      Toast content
+    </div>
+  </div>
+</Toast>
+`;
+
+exports[`Toast should render info toast 1`] = `
+<Toast
+  autoHideDuration={0}
+  className=""
+  fixed={true}
+  horizontalPosition="center"
+  info={true}
+  verticalPosition="top"
+>
+  <div
+    className="
+    toast toast--fixed toast--info toast--horizontal-center toast--vertical-top 
+    "
+  >
+    <div
+      className="toast-icon"
+    >
+      <Icon>
+        <InformationIcon>
+          <svg
+            className="material material-information-icon undefined"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"
+            />
+          </svg>
+        </InformationIcon>
+      </Icon>
+    </div>
+    <div
+      className="toast-content"
+    >
+      Toast content
+    </div>
+  </div>
+</Toast>
+`;
+
+exports[`Toast should render success toast 1`] = `
+<Toast
+  autoHideDuration={0}
+  className=""
+  fixed={true}
+  horizontalPosition="center"
+  success={true}
+  verticalPosition="top"
+  warning={true}
+>
+  <div
+    className="
     toast toast--fixed toast--success toast--horizontal-center toast--vertical-top 
-  "
+    "
   >
     <div
       className="toast-icon"
@@ -32,6 +117,49 @@ exports[`Toast should render success toast 1`] = `
             />
           </svg>
         </CheckCircleIcon>
+      </Icon>
+    </div>
+    <div
+      className="toast-content"
+    >
+      Toast content
+    </div>
+  </div>
+</Toast>
+`;
+
+exports[`Toast should render warning toast 1`] = `
+<Toast
+  autoHideDuration={0}
+  className=""
+  error={true}
+  fixed={true}
+  horizontalPosition="center"
+  verticalPosition="top"
+  warning={true}
+>
+  <div
+    className="
+    toast toast--fixed toast--warning toast--horizontal-center toast--vertical-top 
+    "
+  >
+    <div
+      className="toast-icon"
+    >
+      <Icon>
+        <AlertIcon>
+          <svg
+            className="material material-alert-icon undefined"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M13 14h-2v-4h2m0 8h-2v-2h2M1 21h22L12 2 1 21z"
+            />
+          </svg>
+        </AlertIcon>
       </Icon>
     </div>
     <div
