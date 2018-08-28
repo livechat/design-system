@@ -1,9 +1,13 @@
 @import '../../scss/variables/colors';
 
+$toast-width: 360px;
+$toast-appear-animation-timeout: 100ms;
+$toast-leave-animation-timeout: 100ms;
+
 .toast {
   display: flex;
   align-items: center;
-  width: 360px;
+  width: $toast-width;
   max-width: 90%;
   padding: 10px 5px 10px 12px;
   font-size: 15px;
@@ -56,8 +60,7 @@
   }
 
   &.toast--horizontal-center {
-    left: 50%;
-    transform: translateX(-50%);
+    left: calc( 50% - (.5 * #{$toast-width}));
   }
 
   &.toast--horizontal-right {
@@ -73,8 +76,46 @@
     transform: translateY(-50%);
   }
 
+  &.toast--vertical-top, &.toast--vertical-middle {
+    &.toast--animation-appear {
+      transform: translateY(-100%) !important;
+    }
+
+    &.toast--animation-appear.toast--animation-appear-active {
+      transform: translateY(0) !important;
+      transition: transform $toast-appear-animation-timeout ease-in;
+    }
+
+    &.toast--animation-leave {
+      transform: translateY(0) !important;
+    }
+
+    &.toast--animation-leave.toast--animation-leave-active {
+      transform: translateY(-100%) !important;
+      transition: transform $toast-leave-animation-timeout ease-in;
+    }
+  }
+
   &.toast--vertical-bottom {
     bottom: 5px;
+
+    &.toast--animation-appear {
+      transform: translateY(100%) !important;
+    }
+
+    &.toast--animation-appear.toast--animation-appear-active {
+      transform: translateY(0) !important;
+      transition: transform $toast-appear-animation-timeout ease-in;
+    }
+
+    &.toast--animation-leave {
+      transform: translateY(0) !important;
+    }
+
+    &.toast--animation-leave.toast--animation-leave-active {
+      transform: translateY(100%) !important;
+      transition: transform $toast-leave-animation-timeout ease-in;
+    }
   }
 
   &.toast--horizontal-right {

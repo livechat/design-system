@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import PropTypes from 'prop-types';
 import InformationIcon from 'react-material-icon-svg/dist/InformationIcon';
 import CheckCircleIcon from 'react-material-icon-svg/dist/CheckCircleIcon';
@@ -29,6 +30,10 @@ const Toast = props => {
     ...toastProps
   } = props;
 
+  const animationDuration = 100;
+
+  const toastRef = React.createRef();
+
   let toastType = false;
 
   if (success) {
@@ -54,6 +59,18 @@ const Toast = props => {
     }
   }
 
+  function handleToastClose(onCloseCallback) {
+    if (fixed) {
+      toastRef.current.classList.add('lc-toast--animation-leave');
+      toastRef.current.classList.add('lc-toast--animation-leave-active');
+      setTimeout(() => {
+        onCloseCallback();
+      }, animationDuration);
+    } else {
+      onCloseCallback();
+    }
+  }
+
   const componentClassNames = `
     ${cx({
       toast: true,
@@ -71,32 +88,52 @@ const Toast = props => {
 
   if (autoHideDuration && onClose) {
     setTimeout(() => {
-      onClose();
+      handleToastClose(onClose);
     }, autoHideDuration);
   }
 
   return (
-    <div {...toastProps} className={componentClassNames} id={id}>
+    <ReactCSSTransitionGroup
+      transitionName={{
+        appear: 'lc-toast--animation-appear',
+        appearActive: 'lc-toast--animation-appear-active'
+      }}
+      transitionAppear={fixed}
+      transitionAppearTimeout={animationDuration}
+      transitionLeave={false}
+      transitionEnter={false}
+    >
       <div
-        className={cx({
-          'toast-icon': true
-        })}
+        {...toastProps}
+        className={componentClassNames}
+        id={id}
+        key="toast"
+        ref={toastRef}
       >
-        <Icon />
-      </div>
-      <div
-        className={cx({
-          'toast-content': true
-        })}
-      >
-        {children}
-      </div>
-      {onClose && (
-        <div className={cx({ 'toast-close': true })} onClick={onClose}>
-          <CloseIcon />
+        <div
+          className={cx({
+            'toast-icon': true
+          })}
+        >
+          <Icon />
         </div>
-      )}
-    </div>
+        <div
+          className={cx({
+            'toast-content': true
+          })}
+        >
+          {children}
+        </div>
+        {onClose && (
+          <div
+            className={cx({ 'toast-close': true })}
+            onClick={() => handleToastClose(onClose)}
+          >
+            <CloseIcon />
+          </div>
+        )}
+      </div>
+    </ReactCSSTransitionGroup>
   );
 };
 

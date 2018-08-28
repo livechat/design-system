@@ -10,36 +10,81 @@ exports[`Toast should render error toast 1`] = `
   info={true}
   verticalPosition="top"
 >
-  <div
-    className="
+  <CSSTransitionGroup
+    transitionAppear={true}
+    transitionAppearTimeout={100}
+    transitionEnter={false}
+    transitionLeave={false}
+    transitionName={
+      Object {
+        "appear": "lc-toast--animation-appear",
+        "appearActive": "lc-toast--animation-appear-active",
+      }
+    }
+  >
+    <TransitionGroup
+      childFactory={[Function]}
+      component="span"
+      transitionAppear={true}
+      transitionAppearTimeout={100}
+      transitionEnter={false}
+      transitionLeave={false}
+      transitionName={
+        Object {
+          "appear": "lc-toast--animation-appear",
+          "appearActive": "lc-toast--animation-appear-active",
+        }
+      }
+    >
+      <span>
+        <CSSTransitionGroupChild
+          appear={true}
+          appearTimeout={100}
+          enter={false}
+          key=".$toast"
+          leave={false}
+          name={
+            Object {
+              "appear": "lc-toast--animation-appear",
+              "appearActive": "lc-toast--animation-appear-active",
+            }
+          }
+        >
+          <div
+            className="
     toast toast--fixed toast--error toast--horizontal-center toast--vertical-top 
     "
-  >
-    <div
-      className="toast-icon"
-    >
-      <Icon>
-        <AlertCircleIcon>
-          <svg
-            className="material material-alert-circle-icon undefined"
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
+            key=".$toast"
           >
-            <path
-              d="M13 13h-2V7h2m0 10h-2v-2h2M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"
-            />
-          </svg>
-        </AlertCircleIcon>
-      </Icon>
-    </div>
-    <div
-      className="toast-content"
-    >
-      Toast content
-    </div>
-  </div>
+            <div
+              className="toast-icon"
+            >
+              <Icon>
+                <AlertCircleIcon>
+                  <svg
+                    className="material material-alert-circle-icon undefined"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M13 13h-2V7h2m0 10h-2v-2h2M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"
+                    />
+                  </svg>
+                </AlertCircleIcon>
+              </Icon>
+            </div>
+            <div
+              className="toast-content"
+            >
+              Toast content
+            </div>
+          </div>
+        </CSSTransitionGroupChild>
+      </span>
+    </TransitionGroup>
+  </CSSTransitionGroup>
 </Toast>
 `;
 
@@ -52,36 +97,81 @@ exports[`Toast should render info toast 1`] = `
   info={true}
   verticalPosition="top"
 >
-  <div
-    className="
+  <CSSTransitionGroup
+    transitionAppear={true}
+    transitionAppearTimeout={100}
+    transitionEnter={false}
+    transitionLeave={false}
+    transitionName={
+      Object {
+        "appear": "lc-toast--animation-appear",
+        "appearActive": "lc-toast--animation-appear-active",
+      }
+    }
+  >
+    <TransitionGroup
+      childFactory={[Function]}
+      component="span"
+      transitionAppear={true}
+      transitionAppearTimeout={100}
+      transitionEnter={false}
+      transitionLeave={false}
+      transitionName={
+        Object {
+          "appear": "lc-toast--animation-appear",
+          "appearActive": "lc-toast--animation-appear-active",
+        }
+      }
+    >
+      <span>
+        <CSSTransitionGroupChild
+          appear={true}
+          appearTimeout={100}
+          enter={false}
+          key=".$toast"
+          leave={false}
+          name={
+            Object {
+              "appear": "lc-toast--animation-appear",
+              "appearActive": "lc-toast--animation-appear-active",
+            }
+          }
+        >
+          <div
+            className="
     toast toast--fixed toast--info toast--horizontal-center toast--vertical-top 
     "
-  >
-    <div
-      className="toast-icon"
-    >
-      <Icon>
-        <InformationIcon>
-          <svg
-            className="material material-information-icon undefined"
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
+            key=".$toast"
           >
-            <path
-              d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"
-            />
-          </svg>
-        </InformationIcon>
-      </Icon>
-    </div>
-    <div
-      className="toast-content"
-    >
-      Toast content
-    </div>
-  </div>
+            <div
+              className="toast-icon"
+            >
+              <Icon>
+                <InformationIcon>
+                  <svg
+                    className="material material-information-icon undefined"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"
+                    />
+                  </svg>
+                </InformationIcon>
+              </Icon>
+            </div>
+            <div
+              className="toast-content"
+            >
+              Toast content
+            </div>
+          </div>
+        </CSSTransitionGroupChild>
+      </span>
+    </TransitionGroup>
+  </CSSTransitionGroup>
 </Toast>
 `;
 
@@ -95,36 +185,81 @@ exports[`Toast should render success toast 1`] = `
   verticalPosition="top"
   warning={true}
 >
-  <div
-    className="
+  <CSSTransitionGroup
+    transitionAppear={true}
+    transitionAppearTimeout={100}
+    transitionEnter={false}
+    transitionLeave={false}
+    transitionName={
+      Object {
+        "appear": "lc-toast--animation-appear",
+        "appearActive": "lc-toast--animation-appear-active",
+      }
+    }
+  >
+    <TransitionGroup
+      childFactory={[Function]}
+      component="span"
+      transitionAppear={true}
+      transitionAppearTimeout={100}
+      transitionEnter={false}
+      transitionLeave={false}
+      transitionName={
+        Object {
+          "appear": "lc-toast--animation-appear",
+          "appearActive": "lc-toast--animation-appear-active",
+        }
+      }
+    >
+      <span>
+        <CSSTransitionGroupChild
+          appear={true}
+          appearTimeout={100}
+          enter={false}
+          key=".$toast"
+          leave={false}
+          name={
+            Object {
+              "appear": "lc-toast--animation-appear",
+              "appearActive": "lc-toast--animation-appear-active",
+            }
+          }
+        >
+          <div
+            className="
     toast toast--fixed toast--success toast--horizontal-center toast--vertical-top 
     "
-  >
-    <div
-      className="toast-icon"
-    >
-      <Icon>
-        <CheckCircleIcon>
-          <svg
-            className="material material-check-circle-icon undefined"
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
+            key=".$toast"
           >
-            <path
-              d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2m-1 14.5l7-7-1.41-1.41L11 13.67l-3.09-3.08L6.5 12l4.5 4.5z"
-            />
-          </svg>
-        </CheckCircleIcon>
-      </Icon>
-    </div>
-    <div
-      className="toast-content"
-    >
-      Toast content
-    </div>
-  </div>
+            <div
+              className="toast-icon"
+            >
+              <Icon>
+                <CheckCircleIcon>
+                  <svg
+                    className="material material-check-circle-icon undefined"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2m-1 14.5l7-7-1.41-1.41L11 13.67l-3.09-3.08L6.5 12l4.5 4.5z"
+                    />
+                  </svg>
+                </CheckCircleIcon>
+              </Icon>
+            </div>
+            <div
+              className="toast-content"
+            >
+              Toast content
+            </div>
+          </div>
+        </CSSTransitionGroupChild>
+      </span>
+    </TransitionGroup>
+  </CSSTransitionGroup>
 </Toast>
 `;
 
@@ -138,35 +273,80 @@ exports[`Toast should render warning toast 1`] = `
   verticalPosition="top"
   warning={true}
 >
-  <div
-    className="
+  <CSSTransitionGroup
+    transitionAppear={true}
+    transitionAppearTimeout={100}
+    transitionEnter={false}
+    transitionLeave={false}
+    transitionName={
+      Object {
+        "appear": "lc-toast--animation-appear",
+        "appearActive": "lc-toast--animation-appear-active",
+      }
+    }
+  >
+    <TransitionGroup
+      childFactory={[Function]}
+      component="span"
+      transitionAppear={true}
+      transitionAppearTimeout={100}
+      transitionEnter={false}
+      transitionLeave={false}
+      transitionName={
+        Object {
+          "appear": "lc-toast--animation-appear",
+          "appearActive": "lc-toast--animation-appear-active",
+        }
+      }
+    >
+      <span>
+        <CSSTransitionGroupChild
+          appear={true}
+          appearTimeout={100}
+          enter={false}
+          key=".$toast"
+          leave={false}
+          name={
+            Object {
+              "appear": "lc-toast--animation-appear",
+              "appearActive": "lc-toast--animation-appear-active",
+            }
+          }
+        >
+          <div
+            className="
     toast toast--fixed toast--warning toast--horizontal-center toast--vertical-top 
     "
-  >
-    <div
-      className="toast-icon"
-    >
-      <Icon>
-        <AlertIcon>
-          <svg
-            className="material material-alert-icon undefined"
-            height="24"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
+            key=".$toast"
           >
-            <path
-              d="M13 14h-2v-4h2m0 8h-2v-2h2M1 21h22L12 2 1 21z"
-            />
-          </svg>
-        </AlertIcon>
-      </Icon>
-    </div>
-    <div
-      className="toast-content"
-    >
-      Toast content
-    </div>
-  </div>
+            <div
+              className="toast-icon"
+            >
+              <Icon>
+                <AlertIcon>
+                  <svg
+                    className="material material-alert-icon undefined"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M13 14h-2v-4h2m0 8h-2v-2h2M1 21h22L12 2 1 21z"
+                    />
+                  </svg>
+                </AlertIcon>
+              </Icon>
+            </div>
+            <div
+              className="toast-content"
+            >
+              Toast content
+            </div>
+          </div>
+        </CSSTransitionGroupChild>
+      </span>
+    </TransitionGroup>
+  </CSSTransitionGroup>
 </Toast>
 `;

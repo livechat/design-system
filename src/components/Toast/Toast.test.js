@@ -3,6 +3,7 @@ import { mount } from 'enzyme';
 import Toast from './Toast';
 
 const closeFn = jest.fn();
+const animationDuration = 100;
 
 describe('Toast', () => {
   it('should render success toast', () => {
@@ -46,19 +47,21 @@ describe('Toast', () => {
     const closeEl = component.find('.toast-close');
 
     closeEl.simulate('click');
-    expect(closeFn).toHaveBeenCalled();
+    setTimeout(() => {
+      expect(closeFn).toHaveBeenCalled();
+    }, animationDuration);
   });
 
   it('after autoHideDuration timeout call onClose function', () => {
     const autoHideDuration = 2000;
     mount(
       <Toast onClose={closeFn} autoHideDuration={autoHideDuration}>
-        Click me
+        Toast content
       </Toast>
     );
 
     setTimeout(() => {
       expect(closeFn).toHaveBeenCalled();
-    }, autoHideDuration);
+    }, autoHideDuration + animationDuration);
   });
 });
