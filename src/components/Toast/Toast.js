@@ -30,6 +30,9 @@ const Toast = props => {
     ...toastProps
   } = props;
 
+  if (horizontalPosition === 'center' && verticalPosition === 'middle')
+    throw new Error("Toast can't be positioned on center of the screen!");
+
   const animationDuration = 100;
 
   const toastRef = React.createRef();
@@ -80,9 +83,7 @@ const Toast = props => {
         fixed &&
         acceptedHorizontalPositions.some(s => s === horizontalPosition),
       [`toast--vertical-${verticalPosition}`]:
-        fixed && acceptedVerticalPositions.some(s => s === verticalPosition),
-      'toast--centered':
-        horizontalPosition === 'center' && verticalPosition === 'middle'
+        fixed && acceptedVerticalPositions.some(s => s === verticalPosition)
     })} ${className}
     `;
 

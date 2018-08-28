@@ -118,12 +118,6 @@ $toast-leave-animation-timeout: 100ms;
     }
   }
 
-  &.toast--centered {
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-
   &.toast--success {
     background: $success-color;
   }
