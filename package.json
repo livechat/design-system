@@ -102,8 +102,8 @@
     "@livechat/data-utils": "^0.2.3",
     "classnames": "^2.2.6",
     "prop-types": "^15.6.2",
-    "react-addons-css-transition-group": "^15.6.2",
-    "react-material-icon-svg": "^1.6.1"
+    "react-material-icon-svg": "^1.6.1",
+    "react-transition-group": "^2.4.0"
   },
   "postcss": {},
   "jest": {

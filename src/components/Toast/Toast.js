@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 import classNames from 'classnames/bind';
@@ -13,44 +13,37 @@ import styles from './style.scss';
 
 const cx = classNames.bind(styles);
 
-const Toast = props => {
-  const {
-    children,
-    className,
-    id,
-    hideDelayTime,
-    horizontalPosition,
-    verticalPosition,
-    fixed,
-    success,
-    warning,
-    error,
-    info,
-    onClose,
-    ...toastProps
-  } = props;
+class Toast extends React.Component {
+  constructor(props) {
+    super(props);
 
-  if (horizontalPosition === 'center' && verticalPosition === 'middle')
-    throw new Error("Toast can't be positioned on center of the screen!");
-
-  const toastRef = React.createRef();
-
-  let toastType = null;
-
-  if (success) {
-    toastType = 'success';
-  } else if (warning) {
-    toastType = 'warning';
-  } else if (error) {
-    toastType = 'error';
-  } else if (info) {
-    toastType = 'info';
+    this.hideDelayTimeout = null;
+    this.state = {
+      exit: false
+    };
   }
 
-  function handleToastClose(onCloseCallback) {
-    if (fixed) {
-      toastRef.current.classList.add('lc-toast--animation-leave');
-      toastRef.current.classList.add('lc-toast--animation-leave-active');
+  componentDidMount() {
+    const { hideDelayTime, onClose } = this.props;
+
+    if (hideDelayTime && onClose) {
+      this.hideDelayTimeout = setTimeout(() => {
+        this.handleToastClose(onClose);
+      }, hideDelayTime);
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.hideDelayTimeout) {
+      clearTimeout(this.hideDelayTimeout);
+    }
+  }
+
+  handleToastClose(onCloseCallback) {
+    if (this.props.fixed) {
+      this.setState({
+        exit: true
+      });
       setTimeout(() => {
         onCloseCallback();
       }, ANIMATION_TIME);
@@ -59,7 +52,38 @@ const Toast = props => {
     }
   }
 
-  const componentClassNames = `
+  render() {
+    const {
+      children,
+      className,
+      id,
+      horizontalPosition,
+      verticalPosition,
+      fixed,
+      success,
+      warning,
+      error,
+      info,
+      onClose,
+      ...toastProps
+    } = this.props;
+
+    if (horizontalPosition === 'center' && verticalPosition === 'middle')
+      throw new Error("Toast can't be positioned on center of the screen!");
+
+    let toastType = null;
+
+    if (success) {
+      toastType = 'success';
+    } else if (warning) {
+      toastType = 'warning';
+    } else if (error) {
+      toastType = 'error';
+    } else if (info) {
+      toastType = 'info';
+    }
+
+    const componentClassNames = `
     ${cx({
       toast: true,
       'toast--fixed': fixed,
@@ -67,60 +91,55 @@ const Toast = props => {
       [`toast--horizontal-${horizontalPosition}`]:
         fixed && HORIZONTAL_POSITION.some(s => s === horizontalPosition),
       [`toast--vertical-${verticalPosition}`]:
-        fixed && VERTICAL_POSITION.some(s => s === verticalPosition)
+        fixed && VERTICAL_POSITION.some(s => s === verticalPosition),
+      'toast--animation-exit': this.state.exit,
+      'toast--animation-exit-active': this.state.exit
     })} ${className}
     `;
 
-  if (hideDelayTime && onClose) {
-    setTimeout(() => {
-      handleToastClose(onClose);
-    }, hideDelayTime);
-  }
-
-  return (
-    <ReactCSSTransitionGroup
-      transitionName={{
-        appear: 'lc-toast--animation-appear',
-        appearActive: 'lc-toast--animation-appear-active'
-      }}
-      transitionAppear={fixed}
-      transitionAppearTimeout={ANIMATION_TIME}
-      transitionLeave={false}
-      transitionEnter={false}
-    >
-      <div
-        {...toastProps}
-        className={componentClassNames}
-        id={id}
-        key="toast"
-        ref={toastRef}
-      >
-        <div
-          className={cx({
-            'toast-icon': true
-          })}
+    return (
+      <TransitionGroup>
+        <CSSTransition
+          key="toast"
+          classNames={{
+            appear: 'lc-toast--animation-appear',
+            appearActive: 'lc-toast--animation-appear-active',
+            exit: 'lc-toast--animation-exit',
+            exitActive: 'lc-toast--animation-exit-active'
+          }}
+          appear={fixed}
+          timeout={ANIMATION_TIME}
+          enter={false}
         >
-          <ToastIcon toastType={toastType} />
-        </div>
-        <div
-          className={cx({
-            'toast-content': true
-          })}
-        >
-          {children}
-        </div>
-        {onClose && (
-          <div
-            className={cx({ 'toast-close': true })}
-            onClick={() => handleToastClose(onClose)}
-          >
-            <CloseIcon />
+          <div {...toastProps} className={componentClassNames} id={id}>
+            <div
+              className={cx({
+                'toast-icon': true
+              })}
+            >
+              <ToastIcon toastType={toastType} />
+            </div>
+            <div
+              className={cx({
+                'toast-content': true
+              })}
+            >
+              {children}
+            </div>
+            {onClose && (
+              <div
+                className={cx({ 'toast-close': true })}
+                onClick={() => this.handleToastClose(onClose)}
+              >
+                <CloseIcon />
+              </div>
+            )}
           </div>
-        )}
-      </div>
-    </ReactCSSTransitionGroup>
-  );
-};
+        </CSSTransition>
+      </TransitionGroup>
+    );
+  }
+}
 
 Toast.propTypes = {
   children: PropTypes.node.isRequired,

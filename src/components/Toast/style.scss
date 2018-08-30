@@ -2,7 +2,7 @@
 
 $toast-width: 360px;
 $toast-appear-animation-timeout: 100ms;
-$toast-leave-animation-timeout: 100ms;
+$toast-exit-animation-timeout: 100ms;
 
 .toast {
   display: flex;
@@ -86,13 +86,13 @@ $toast-leave-animation-timeout: 100ms;
       transition: transform $toast-appear-animation-timeout ease-in;
     }
 
-    &.toast--animation-leave {
+    &.toast--animation-exit {
       transform: translateY(0) !important;
     }
 
-    &.toast--animation-leave.toast--animation-leave-active {
+    &.toast--animation-exit.toast--animation-exit-active {
       transform: translateY(-100%) !important;
-      transition: transform $toast-leave-animation-timeout ease-in;
+      transition: transform $toast-exit-animation-timeout ease-in;
     }
   }
 
@@ -108,13 +108,13 @@ $toast-leave-animation-timeout: 100ms;
       transition: transform $toast-appear-animation-timeout ease-in;
     }
 
-    &.toast--animation-leave {
+    &.toast--animation-exit {
       transform: translateY(0) !important;
     }
 
-    &.toast--animation-leave.toast--animation-leave-active {
+    &.toast--animation-exit.toast--animation-exit-active {
       transform: translateY(100%) !important;
-      transition: transform $toast-leave-animation-timeout ease-in;
+      transition: transform $toast-exit-animation-timeout ease-in;
     }
   }
 

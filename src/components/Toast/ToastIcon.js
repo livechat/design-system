@@ -19,5 +19,5 @@ export const ToastIcon = props => {
 };
 
 ToastIcon.propTypes = {
-  toastType: PropTypes.string.isRequired
+  toastType: PropTypes.string
 };
