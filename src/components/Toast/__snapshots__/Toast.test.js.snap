@@ -10,56 +10,53 @@ exports[`Toast should render success toast 1`] = `
   verticalPosition="top"
   warning={true}
 >
-  <CSSTransitionGroup
-    transitionAppear={true}
-    transitionAppearTimeout={100}
-    transitionEnter={false}
-    transitionLeave={false}
-    transitionName={
-      Object {
-        "appear": "lc-toast--animation-appear",
-        "appearActive": "lc-toast--animation-appear-active",
-      }
-    }
+  <TransitionGroup
+    childFactory={[Function]}
+    component="div"
   >
-    <TransitionGroup
-      childFactory={[Function]}
-      component="span"
-      transitionAppear={true}
-      transitionAppearTimeout={100}
-      transitionEnter={false}
-      transitionLeave={false}
-      transitionName={
-        Object {
-          "appear": "lc-toast--animation-appear",
-          "appearActive": "lc-toast--animation-appear-active",
-        }
-      }
-    >
-      <span>
-        <CSSTransitionGroupChild
-          appear={true}
-          appearTimeout={100}
-          enter={false}
-          key=".$toast"
-          leave={false}
-          name={
-            Object {
-              "appear": "lc-toast--animation-appear",
-              "appearActive": "lc-toast--animation-appear-active",
-            }
+    <div>
+      <CSSTransition
+        appear={true}
+        classNames={
+          Object {
+            "appear": "lc-toast--animation-appear",
+            "appearActive": "lc-toast--animation-appear-active",
+            "exit": "lc-toast--animation-exit",
+            "exitActive": "lc-toast--animation-exit-active",
           }
+        }
+        enter={false}
+        in={true}
+        key=".$toast"
+        onExited={[Function]}
+        timeout={100}
+      >
+        <Transition
+          appear={true}
+          enter={false}
+          exit={true}
+          in={true}
+          mountOnEnter={false}
+          onEnter={[Function]}
+          onEntered={[Function]}
+          onEntering={[Function]}
+          onExit={[Function]}
+          onExited={[Function]}
+          onExiting={[Function]}
+          timeout={100}
+          unmountOnExit={false}
         >
           <div
             className="
     toast toast--fixed toast--success toast--horizontal-center toast--vertical-top 
     "
-            key=".$toast"
           >
             <div
               className="toast-icon"
             >
-              <Icon>
+              <ToastIcon
+                toastType="success"
+              >
                 <CheckCircleIcon>
                   <svg
                     className="material material-check-circle-icon undefined"
@@ -73,7 +70,7 @@ exports[`Toast should render success toast 1`] = `
                     />
                   </svg>
                 </CheckCircleIcon>
-              </Icon>
+              </ToastIcon>
             </div>
             <div
               className="toast-content"
@@ -81,9 +78,9 @@ exports[`Toast should render success toast 1`] = `
               Toast content
             </div>
           </div>
-        </CSSTransitionGroupChild>
-      </span>
-    </TransitionGroup>
-  </CSSTransitionGroup>
+        </Transition>
+      </CSSTransition>
+    </div>
+  </TransitionGroup>
 </Toast>
 `;

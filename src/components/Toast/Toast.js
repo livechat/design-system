@@ -53,6 +53,9 @@ class Toast extends React.Component {
   }
 
   render() {
+    const toastProps = Object.assign({}, this.props);
+    delete toastProps.hideDelayTime;
+
     const {
       children,
       className,
@@ -65,8 +68,8 @@ class Toast extends React.Component {
       error,
       info,
       onClose,
-      ...toastProps
-    } = this.props;
+      ...restProps
+    } = toastProps;
 
     if (horizontalPosition === 'center' && verticalPosition === 'middle')
       throw new Error("Toast can't be positioned on center of the screen!");
@@ -111,7 +114,7 @@ class Toast extends React.Component {
           timeout={ANIMATION_TIME}
           enter={false}
         >
-          <div {...toastProps} className={componentClassNames} id={id}>
+          <div {...restProps} className={componentClassNames} id={id}>
             <div
               className={cx({
                 'toast-icon': true
