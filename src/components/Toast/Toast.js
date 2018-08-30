@@ -1,12 +1,9 @@
 import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import PropTypes from 'prop-types';
-import InformationIcon from 'react-material-icon-svg/dist/InformationIcon';
-import CheckCircleIcon from 'react-material-icon-svg/dist/CheckCircleIcon';
-import AlertIcon from 'react-material-icon-svg/dist/AlertIcon';
-import AlertCircleIcon from 'react-material-icon-svg/dist/AlertCircleIcon';
 import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 import classNames from 'classnames/bind';
+import { ToastIcon } from './ToastIcon';
 import {
   HORIZONTAL_POSITION,
   VERTICAL_POSITION,
@@ -48,19 +45,6 @@ const Toast = props => {
     toastType = 'error';
   } else if (info) {
     toastType = 'info';
-  }
-
-  function Icon() {
-    switch (toastType) {
-      case 'success':
-        return <CheckCircleIcon />;
-      case 'warning':
-        return <AlertIcon />;
-      case 'error':
-        return <AlertCircleIcon />;
-      default:
-        return <InformationIcon />;
-    }
   }
 
   function handleToastClose(onCloseCallback) {
@@ -116,7 +100,7 @@ const Toast = props => {
             'toast-icon': true
           })}
         >
-          <Icon />
+          <ToastIcon toastType={toastType} />
         </div>
         <div
           className={cx({
