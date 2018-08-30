@@ -5,7 +5,7 @@ export interface ToastProps {
     children?: string;
     className: string,
     id?: string;
-    autoHideDuration?: number;
+    hideDelayTime?: number;
     horizontalPosition?: ToastHorizontalPosition;
     verticalPosition?: ToastVerticalPosition;
     fixed?: boolean;

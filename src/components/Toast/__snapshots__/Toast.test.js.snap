@@ -2,9 +2,9 @@
 
 exports[`Toast should render success toast 1`] = `
 <Toast
-  autoHideDuration={0}
   className=""
   fixed={true}
+  hideDelayTime={0}
   horizontalPosition="center"
   success={true}
   verticalPosition="top"

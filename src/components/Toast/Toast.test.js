@@ -1,9 +1,9 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import Toast from './Toast';
+import { ANIMATION_TIME } from './constants';
 
 const closeFn = jest.fn();
-const animationDuration = 100;
 
 describe('Toast', () => {
   it('should render success toast', () => {
@@ -23,19 +23,19 @@ describe('Toast', () => {
     closeEl.simulate('click');
     setTimeout(() => {
       expect(closeFn).toHaveBeenCalled();
-    }, animationDuration);
+    }, ANIMATION_TIME);
   });
 
-  it('after autoHideDuration timeout call onClose function', () => {
-    const autoHideDuration = 2000;
+  it('after hideDelayTime timeout call onClose function', () => {
+    const hideDelayTime = 2000;
     mount(
-      <Toast onClose={closeFn} autoHideDuration={autoHideDuration}>
+      <Toast onClose={closeFn} hideDelayTime={hideDelayTime}>
         Toast content
       </Toast>
     );
 
     setTimeout(() => {
       expect(closeFn).toHaveBeenCalled();
-    }, autoHideDuration + animationDuration);
+    }, hideDelayTime + ANIMATION_TIME);
   });
 });

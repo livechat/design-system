@@ -10,7 +10,7 @@ initialState = { openToast: false };
     {(state.openToast && 
       <Toast
         success
-        autoHideDuration={5000}
+        hideDelayTime={5000}
         onClose={() => setState({openToast: false})}
       >
         Toast showed! 

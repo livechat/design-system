@@ -7,18 +7,21 @@ import AlertIcon from 'react-material-icon-svg/dist/AlertIcon';
 import AlertCircleIcon from 'react-material-icon-svg/dist/AlertCircleIcon';
 import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 import classNames from 'classnames/bind';
+import {
+  HORIZONTAL_POSITION,
+  VERTICAL_POSITION,
+  ANIMATION_TIME
+} from './constants';
 import styles from './style.scss';
 
 const cx = classNames.bind(styles);
-const acceptedHorizontalPositions = ['left', 'center', 'right'];
-const acceptedVerticalPositions = ['top', 'middle', 'bottom'];
 
 const Toast = props => {
   const {
     children,
     className,
     id,
-    autoHideDuration,
+    hideDelayTime,
     horizontalPosition,
     verticalPosition,
     fixed,
@@ -33,11 +36,9 @@ const Toast = props => {
   if (horizontalPosition === 'center' && verticalPosition === 'middle')
     throw new Error("Toast can't be positioned on center of the screen!");
 
-  const animationDuration = 100;
-
   const toastRef = React.createRef();
 
-  let toastType = false;
+  let toastType = null;
 
   if (success) {
     toastType = 'success';
@@ -68,7 +69,7 @@ const Toast = props => {
       toastRef.current.classList.add('lc-toast--animation-leave-active');
       setTimeout(() => {
         onCloseCallback();
-      }, animationDuration);
+      }, ANIMATION_TIME);
     } else {
       onCloseCallback();
     }
@@ -80,17 +81,16 @@ const Toast = props => {
       'toast--fixed': fixed,
       [`toast--${toastType}`]: toastType,
       [`toast--horizontal-${horizontalPosition}`]:
-        fixed &&
-        acceptedHorizontalPositions.some(s => s === horizontalPosition),
+        fixed && HORIZONTAL_POSITION.some(s => s === horizontalPosition),
       [`toast--vertical-${verticalPosition}`]:
-        fixed && acceptedVerticalPositions.some(s => s === verticalPosition)
+        fixed && VERTICAL_POSITION.some(s => s === verticalPosition)
     })} ${className}
     `;
 
-  if (autoHideDuration && onClose) {
+  if (hideDelayTime && onClose) {
     setTimeout(() => {
       handleToastClose(onClose);
-    }, autoHideDuration);
+    }, hideDelayTime);
   }
 
   return (
@@ -100,7 +100,7 @@ const Toast = props => {
         appearActive: 'lc-toast--animation-appear-active'
       }}
       transitionAppear={fixed}
-      transitionAppearTimeout={animationDuration}
+      transitionAppearTimeout={ANIMATION_TIME}
       transitionLeave={false}
       transitionEnter={false}
     >
@@ -142,7 +142,7 @@ Toast.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   id: PropTypes.string,
-  autoHideDuration: PropTypes.number,
+  hideDelayTime: PropTypes.number,
   /**
    * Toast's horizontal position. Available values: 'left' | 'center' | 'right'
    */
@@ -177,7 +177,7 @@ Toast.propTypes = {
 Toast.defaultProps = {
   className: '',
   fixed: true,
-  autoHideDuration: 0,
+  hideDelayTime: 0,
   horizontalPosition: 'center',
   verticalPosition: 'top'
 };
