@@ -44,7 +44,11 @@ module.exports = {
         },
         {
           name: 'Form',
-          components: ['./src/components/TextInput/TextInput.js'],
+          components: [
+            './src/components/TextInput/TextInput.js',
+            './src/components/RadioButton/RadioButton.js',
+            './src/components/FieldsGroup/FieldsGroup.js'
+          ],
           sectionDepth: 0
         }
       ]

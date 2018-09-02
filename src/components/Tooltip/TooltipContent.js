@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import getMergedClassNames from '../../utils/getMergedClassNames';
 import { ARROW_POSITION, ALIGMENT } from './constants';
 import { getArrowOffsetStyle } from './helpers';
 import styles from './style.scss';
@@ -16,15 +17,16 @@ const TooltipContent = ({
   arrowOffset,
   align
 }) => {
-  const componentClassNames = `
-    ${cx({
+  const mergedClassNames = getMergedClassNames(
+    cx({
       tooltip__content: true
-    })} ${className}
-  `;
+    }),
+    className
+  );
 
   return (
     <div
-      className={componentClassNames}
+      className={mergedClassNames}
       style={{
         backgroundColor,
         color: fontColor,
