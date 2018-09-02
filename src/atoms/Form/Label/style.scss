@@ -1,0 +1,9 @@
+@import '../../../scss/variables/colors';
+
+.label {
+  font-size: 14px;
+  color: $font-primary-color;
+  display: block;
+  line-height: 20px;
+  margin-bottom: 4px;
+}
