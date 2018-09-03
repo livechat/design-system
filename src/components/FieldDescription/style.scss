@@ -1,10 +1,10 @@
-@import '../../../scss/variables/colors';
+@import '../../scss/variables/colors';
 
-.field-error {
+.field-description {
   font-size: 14px;
   font-weight: 400;
   line-height: 16px;
-  color: $error-color;
+  color: $font-secondary-color;
   display: block;
   margin: 0;
   margin-top: 2px;

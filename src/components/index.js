@@ -5,3 +5,7 @@ export { default as TextInput } from './TextInput';
 export { default as RadioButton } from './RadioButton';
 export { default as FieldsGroup } from './FieldsGroup';
 export { default as RadioGroup } from './RadioGroup';
+export { default as FieldError } from './FieldError';
+export { default as Input } from './Input';
+export { default as FieldLabel } from './FieldLabel';
+export { default as FieldDescription } from './FieldDescription';

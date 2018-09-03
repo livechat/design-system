@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './style.scss';
-import getMergedClassNames from '../../../utils/getMergedClassNames';
+import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const FieldDescription = ({ children, className }) => {
   const mergedClassNames = getMergedClassNames(

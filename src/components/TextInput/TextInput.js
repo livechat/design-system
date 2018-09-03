@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import { Input, Label, FieldError, FieldDescription } from '../../atoms/Form';
 import styles from './style.scss';
+import Input from '../Input';
+import FieldLabel from '../FieldLabel';
+import FieldError from '../FieldError';
+import FieldDescription from '../FieldDescription';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const cx = classNames.bind(styles);
@@ -31,7 +34,7 @@ const TextInput = props => {
           'text-input__label--inline': inline
         })}
       >
-        <Label htmlFor={props.id}>{labelText}</Label>
+        <FieldLabel htmlFor={props.id}>{labelText}</FieldLabel>
       </div>
       <div>
         <Input {...restProps} error={error} />
