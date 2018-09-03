@@ -47,6 +47,7 @@ module.exports = {
           components: [
             './src/components/TextInput/TextInput.js',
             './src/components/RadioButton/RadioButton.js',
+            './src/components/RadioGroup/RadioGroup.js',
             './src/components/FieldsGroup/FieldsGroup.js'
           ],
           sectionDepth: 0

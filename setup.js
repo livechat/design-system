@@ -11,6 +11,7 @@ global.TooltipContent = Components.TooltipContent;
 global.TextInput = Components.TextInput;
 global.RadioButton = Components.RadioButton;
 global.FieldsGroup = Components.FieldsGroup;
+global.RadioGroup = Components.RadioGroup;
 
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;

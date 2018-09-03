@@ -27,19 +27,19 @@ onInputChange = (e) => {
 />
 ```
 ```js noeditor
-  initialState = { value: 'Text Input text', error: 'Validation message here' };
+initialState = { value: 'Text Input text', error: 'Validation message here' };
 
-  <ComponentHtmlMarkup>
-    <TextInput
-      value={state.value}
-      labelText='Text Input label'
-      error={state.error}
-      id='text-input-example-1'
-      placeholder='Placeholder...'
-      description='Optional helper text goes here'
-      onChange={onInputChange}
-    />
-  </ComponentHtmlMarkup>
+<ComponentHtmlMarkup>
+  <TextInput
+    value={state.value}
+    labelText='Text Input label'
+    error={state.error}
+    id='text-input-example-1'
+    placeholder='Placeholder...'
+    description='Optional helper text goes here'
+    onChange={onInputChange}
+  />
+</ComponentHtmlMarkup>
 ```
 
 Inline Text Input
@@ -72,18 +72,42 @@ onInputChange = (e) => {
 />
 ```
 ```js noeditor
-  initialState = { value: 'Text Input text', error: 'Validation message here' };
+initialState = { value: 'Text Input text', error: 'Validation message here' };
 
-  <ComponentHtmlMarkup>
-    <TextInput
-      value={state.value}
-      inline
-      labelText='Text Input label'
-      error={state.error}
-      id='text-input-example-4'
-      placeholder='Placeholder...'
-      description='Validation message here'
-      onChange={onInputChange}
-    />
-  </ComponentHtmlMarkup>
+<ComponentHtmlMarkup>
+  <TextInput
+    value={state.value}
+    inline
+    labelText='Text Input label'
+    error={state.error}
+    id='text-input-example-4'
+    placeholder='Placeholder...'
+    description='Validation message here'
+    onChange={onInputChange}
+  />
+</ComponentHtmlMarkup>
+```
+
+Text Input Disabled
+```js
+<TextInput
+  value='Text Input text'
+  labelText='Text Input label'
+  disabled
+  id='text-input-example-5'
+  placeholder='Placeholder...'
+  description='Input is disabled'
+/>
+```
+```js noeditor
+<ComponentHtmlMarkup>
+  <TextInput
+    value='Text Input text'
+    labelText='Text Input label'
+    disabled
+    id='text-input-example-5'
+    placeholder='Placeholder...'
+    description='Input is disabled'
+  />
+</ComponentHtmlMarkup>
 ```

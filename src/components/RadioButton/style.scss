@@ -3,7 +3,7 @@
 $base-class: 'radio-button';
 
 .#{$base-class} {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   cursor: pointer;
 

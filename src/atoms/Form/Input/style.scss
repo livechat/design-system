@@ -38,5 +38,6 @@
   &:disabled {
     color: $font-primary-color;
     opacity: 0.4;
+    cursor: not-allowed;
   }
 }

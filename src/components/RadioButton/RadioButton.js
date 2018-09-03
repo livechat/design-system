@@ -7,7 +7,7 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 const cx = classNames.bind(styles);
 
 const RadioButton = props => {
-  const { className, children, checked, disabled, ...restProps } = props;
+  const { className, children, checked, disabled, id, ...restProps } = props;
 
   const baseClass = 'radio-button';
   const mergedClassNames = getMergedClassNames(
@@ -20,13 +20,14 @@ const RadioButton = props => {
   );
 
   return (
-    <label className={mergedClassNames}>
+    <label className={mergedClassNames} htmlFor={id}>
       <div className={styles[`${baseClass}__circle`]}>
         <span className={styles[`${baseClass}__inner-circle`]} />
         <input
           className={styles[`${baseClass}__input`]}
           {...restProps}
           type="radio"
+          id={id}
           checked={checked}
           disabled={disabled}
         />
@@ -38,10 +39,16 @@ const RadioButton = props => {
 
 RadioButton.propTypes = {
   className: PropTypes.string,
+  id: PropTypes.string.isRequired,
   onClick: PropTypes.func,
+  onChange: PropTypes.func,
   checked: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
   disabled: PropTypes.bool
+};
+
+RadioButton.defaultProps = {
+  onChange: () => {}
 };
 
 export default RadioButton;

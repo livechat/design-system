@@ -1,13 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './style.scss';
+import getMergedClassNames from '../../../utils/getMergedClassNames';
 
-const FieldError = ({ children }) => (
-  <span className={styles['field-error']}>{children}</span>
-);
+const FieldError = ({ children, className }) => {
+  const mergedClassNames = getMergedClassNames(
+    styles['field-error'],
+    className
+  );
+
+  return <span className={mergedClassNames}>{children}</span>;
+};
 
 FieldError.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  className: PropTypes.string
 };
 
 export default FieldError;
