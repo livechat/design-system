@@ -13,6 +13,7 @@ global.RadioButton = Components.RadioButton;
 global.FormGroup = Components.FormGroup;
 global.FieldGroup = Components.FieldGroup;
 global.TextAreaField = Components.TextAreaField;
+global.CheckboxField = Components.CheckboxField;
 
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;

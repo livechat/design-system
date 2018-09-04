@@ -1,4 +1,4 @@
-Use FormGroup component to group fields not related to each other.
+Use FormGroup component to group elements and display it in nice layout (inline or stacked).
 
 Form Group
 ```js

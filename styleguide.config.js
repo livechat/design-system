@@ -48,6 +48,7 @@ module.exports = {
             './src/components/InputField/InputField.js',
             './src/components/TextAreaField/TextAreaField.js',
             './src/components/RadioButton/RadioButton.js',
+            './src/components/CheckboxField/CheckboxField.js',
             './src/components/FieldGroup/FieldGroup.js',
             './src/components/FormGroup/FormGroup.js'
           ],

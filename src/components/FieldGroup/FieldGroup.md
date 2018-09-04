@@ -1,3 +1,5 @@
+Use FieldGroup component to group related elements, ie. checkboxes or radio buttons. Component provides label for group of fields which improves accessibility of your form.
+
 Field Group
 ```js
 initialState = { formValue: '1' };
