@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './style.scss';
-import Input from '../Input';
 import FieldLabel from '../FieldLabel';
 import FieldError from '../FieldError';
 import FieldDescription from '../FieldDescription';
@@ -10,19 +9,22 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const cx = classNames.bind(styles);
 
-const TextInput = props => {
+const TextField = props => {
   const {
     inline,
     error,
     description,
     labelText,
     className,
-    ...restProps
+    id,
+    children
   } = props;
 
+  const baseClass = 'text-field';
   const mergedClassNames = getMergedClassNames(
     cx({
-      'text-input--inline': inline
+      [baseClass]: true,
+      [`${baseClass}--inline`]: inline
     }),
     className
   );
@@ -31,13 +33,13 @@ const TextInput = props => {
     <div className={mergedClassNames}>
       <div
         className={cx({
-          'text-input__label--inline': inline
+          [`${baseClass}__label--inline`]: inline
         })}
       >
-        <FieldLabel htmlFor={props.id}>{labelText}</FieldLabel>
+        <FieldLabel htmlFor={id}>{labelText}</FieldLabel>
       </div>
       <div>
-        <Input {...restProps} error={error} />
+        {children}
         <FieldError>{error}</FieldError>
         <FieldDescription>{description}</FieldDescription>
       </div>
@@ -45,19 +47,14 @@ const TextInput = props => {
   );
 };
 
-TextInput.propTypes = {
+TextField.propTypes = {
   labelText: PropTypes.string,
   id: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
   className: PropTypes.string,
   inline: PropTypes.bool,
-  type: PropTypes.string,
   error: PropTypes.string,
-  description: PropTypes.string
+  description: PropTypes.string,
+  children: PropTypes.node
 };
 
-TextInput.defaultProps = {
-  type: 'text'
-};
-
-export default TextInput;
+export default TextField;

@@ -1,4 +1,6 @@
-.text-input {
+$base-class: 'text-field';
+
+.#{$base-class} {
   &--inline {
     display: flex;
     flex-direction: row;

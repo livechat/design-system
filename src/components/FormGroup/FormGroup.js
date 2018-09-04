@@ -6,10 +6,10 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const cx = classNames.bind(styles);
 
-const FieldsGroup = props => {
+const FormGroup = props => {
   const { className, children, inline } = props;
 
-  const baseClass = 'field-group';
+  const baseClass = 'form-group';
   const mergedClassNames = getMergedClassNames(
     cx({
       [baseClass]: true,
@@ -21,10 +21,10 @@ const FieldsGroup = props => {
   return <div className={mergedClassNames}>{children}</div>;
 };
 
-FieldsGroup.propTypes = {
+FormGroup.propTypes = {
   className: PropTypes.string,
   inline: PropTypes.bool,
   children: PropTypes.node.isRequired
 };
 
-export default FieldsGroup;
+export default FormGroup;

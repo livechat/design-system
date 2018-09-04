@@ -1,11 +1,15 @@
 @import '../../scss/variables/colors';
 
-$base-class: 'radio-button';
+$base-class: 'radio';
 
 .#{$base-class} {
-  display: inline-flex;
-  align-items: center;
-  cursor: pointer;
+  display: inline-block;
+
+  &__label {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+  }
 
   &__circle {
     position: relative;
@@ -41,7 +45,7 @@ $base-class: 'radio-button';
     }
   }
 
-  &__label {
+  &__text {
     font-size: 15px;
     color: $font-primary-color;
   }
@@ -54,7 +58,6 @@ $base-class: 'radio-button';
   }
 
   &--disabled {
-    cursor: not-allowed;
     .#{$base-class} {
       &__circle {
         border-color: $font-tertiary-color;
@@ -64,11 +67,17 @@ $base-class: 'radio-button';
       }
       &__label {
         color: $font-primary-color;
+        cursor: not-allowed;
       }
       &__input {
         cursor: not-allowed;
       }
     }
+  }
+
+  &__helper {
+    cursor: default;
+    margin-left: 24px;
   }
 } 
 

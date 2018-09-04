@@ -1,4 +1,6 @@
-Fields Group
+Use FormGroup component to group fields not related to each other.
+
+Form Group
 ```js
 initialState = { formValue: '1' };
 
@@ -8,12 +10,12 @@ onRadioChange = (e) => {
   })
 }
 
-<FieldsGroup>
+<FormGroup>
   <RadioButton
     checked={state.formValue === '1'}
     value='1'
-    id='field-group-example-1'
-    name='field-group-example'
+    id='form-group-example-1'
+    name='form-group-example'
     onChange={onRadioChange}
   >
     Radio button label
@@ -21,38 +23,38 @@ onRadioChange = (e) => {
   <RadioButton
     checked={state.formValue === '2'}
     value='2'
-    id='field-group-example-2'
-    name='field-group-example'
+    id='form-group-example-2'
+    name='form-group-example'
     onChange={onRadioChange}
   >
     Radio button label
   </RadioButton>
-</FieldsGroup>
+</FormGroup>
 
 ```
 ```js noeditor
 <ComponentHtmlMarkup>
-  <FieldsGroup>
+  <FormGroup>
     <RadioButton
       checked
       value='1'
-      id='field-group-example-1'
-      name='field-group-example'
+      id='form-group-example-1'
+      name='form-group-example'
     >
       Radio button label
     </RadioButton>
     <RadioButton
       value='2'
-      id='field-group-example-2'
-      name='field-group-example'
+      id='form-group-example-2'
+      name='form-group-example'
     >
       Radio button label
     </RadioButton>
-  </FieldsGroup>
+  </FormGroup>
 </ComponentHtmlMarkup>
 ```
 
-Fields Group inline
+Form Group inline
 ```js
 initialState = { formValue: '1' };
 
@@ -62,12 +64,12 @@ onRadioChange = (e) => {
   })
 }
 
-<FieldsGroup inline>
+<FormGroup inline>
   <RadioButton
     checked={state.formValue === '1'}
     value='1'
-    name='field-group-example'
-    id='field-group-example-3'
+    name='form-group-example'
+    id='form-group-example-3'
     onClick={onRadioChange}
   >
     Radio button label
@@ -75,32 +77,32 @@ onRadioChange = (e) => {
   <RadioButton
     checked={state.formValue === '2'}
     value='2'
-    id='field-group-example-4'
-    name='field-group-example'
+    id='form-group-example-4'
+    name='form-group-example'
     onClick={onRadioChange}
   >
     Radio button label
   </RadioButton>
-</FieldsGroup>
+</FormGroup>
 ```
 ```js noeditor
 <ComponentHtmlMarkup>
-  <FieldsGroup inline>
+  <FormGroup inline>
     <RadioButton
       checked
       value='1'
-      id='field-group-example-3'
-      name='field-group-example'
+      id='form-group-example-3'
+      name='form-group-example'
     >
       Radio button label
     </RadioButton>
     <RadioButton
       value='2'
-      id='field-group-example-4'
-      name='field-group-example'
+      id='form-group-example-4'
+      name='form-group-example'
     >
       Radio button label
     </RadioButton>
-  </FieldsGroup>
+  </FormGroup>
 </ComponentHtmlMarkup>
 ```

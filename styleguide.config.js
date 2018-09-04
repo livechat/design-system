@@ -45,10 +45,11 @@ module.exports = {
         {
           name: 'Form',
           components: [
-            './src/components/TextInput/TextInput.js',
+            './src/components/InputField/InputField.js',
+            './src/components/TextAreaField/TextAreaField.js',
             './src/components/RadioButton/RadioButton.js',
-            './src/components/RadioGroup/RadioGroup.js',
-            './src/components/FieldsGroup/FieldsGroup.js'
+            './src/components/FieldGroup/FieldGroup.js',
+            './src/components/FormGroup/FormGroup.js'
           ],
           sectionDepth: 0
         }
@@ -71,6 +72,7 @@ module.exports = {
         }
       ],
       raw: `
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?autoload=false"></script>
         <script src="https://unpkg.com/prettier@1.13.0/standalone.js"></script>
         <script src="https://unpkg.com/prettier@1.13.0/parser-babylon.js"></script>

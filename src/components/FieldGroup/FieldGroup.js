@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
-const RadioGroup = props => {
+const FieldGroup = props => {
   const { className, children, labelText } = props;
 
-  const baseClass = 'radio-group';
+  const baseClass = 'field-group';
   const mergedClassNames = getMergedClassNames(styles[baseClass], className);
 
   return (
@@ -17,10 +17,10 @@ const RadioGroup = props => {
   );
 };
 
-RadioGroup.propTypes = {
+FieldGroup.propTypes = {
   className: PropTypes.string,
   labelText: PropTypes.string,
   children: PropTypes.node.isRequired
 };
 
-export default RadioGroup;
+export default FieldGroup;

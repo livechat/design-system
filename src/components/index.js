@@ -1,10 +1,11 @@
 export { default as Tab, TabsWrapper, TabsList } from './Tab';
 export { default as Tooltip, TooltipContent } from './Tooltip';
 export { default as Button } from './Button';
-export { default as TextInput } from './TextInput';
+export { default as InputField } from './InputField';
+export { default as TextAreaField } from './TextAreaField';
 export { default as RadioButton } from './RadioButton';
-export { default as FieldsGroup } from './FieldsGroup';
-export { default as RadioGroup } from './RadioGroup';
+export { default as FormGroup } from './FormGroup';
+export { default as FieldGroup } from './FieldGroup';
 export { default as FieldError } from './FieldError';
 export { default as Input } from './Input';
 export { default as FieldLabel } from './FieldLabel';

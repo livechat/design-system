@@ -8,10 +8,11 @@ global.TabsWrapper = Components.TabsWrapper;
 global.TabsList = Components.TabsList;
 global.Tooltip = Components.Tooltip;
 global.TooltipContent = Components.TooltipContent;
-global.TextInput = Components.TextInput;
+global.InputField = Components.InputField;
 global.RadioButton = Components.RadioButton;
-global.FieldsGroup = Components.FieldsGroup;
-global.RadioGroup = Components.RadioGroup;
+global.FormGroup = Components.FormGroup;
+global.FieldGroup = Components.FieldGroup;
+global.TextAreaField = Components.TextAreaField;
 
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;

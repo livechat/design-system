@@ -1,15 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import FieldDescription from '../FieldDescription';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const cx = classNames.bind(styles);
 
 const RadioButton = props => {
-  const { className, children, checked, disabled, id, ...restProps } = props;
+  const {
+    className,
+    children,
+    checked,
+    disabled,
+    id,
+    description,
+    ...restProps
+  } = props;
 
-  const baseClass = 'radio-button';
+  const baseClass = 'radio';
   const mergedClassNames = getMergedClassNames(
     cx({
       [baseClass]: true,
@@ -20,20 +29,27 @@ const RadioButton = props => {
   );
 
   return (
-    <label className={mergedClassNames} htmlFor={id}>
-      <div className={styles[`${baseClass}__circle`]}>
-        <span className={styles[`${baseClass}__inner-circle`]} />
-        <input
-          className={styles[`${baseClass}__input`]}
-          {...restProps}
-          type="radio"
-          id={id}
-          checked={checked}
-          disabled={disabled}
-        />
-      </div>
-      <div className={styles[`${baseClass}__label`]}>{children}</div>
-    </label>
+    <div className={mergedClassNames}>
+      <label className={styles[`${baseClass}__label`]} htmlFor={id}>
+        <div className={styles[`${baseClass}__circle`]}>
+          <span className={styles[`${baseClass}__inner-circle`]} />
+          <input
+            className={styles[`${baseClass}__input`]}
+            {...restProps}
+            type="radio"
+            id={id}
+            checked={checked}
+            disabled={disabled}
+          />
+        </div>
+        <div className={styles[`${baseClass}__text`]}>{children}</div>
+      </label>
+      {description && (
+        <FieldDescription className={styles[`${baseClass}__helper`]}>
+          {description}
+        </FieldDescription>
+      )}
+    </div>
   );
 };
 
@@ -44,6 +60,7 @@ RadioButton.propTypes = {
   onChange: PropTypes.func,
   checked: PropTypes.bool.isRequired,
   children: PropTypes.node.isRequired,
+  description: PropTypes.string,
   disabled: PropTypes.bool
 };
 
