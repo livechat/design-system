@@ -152,11 +152,11 @@ Toast.propTypes = {
   /**
    * Toast's horizontal position. Available values: 'left' | 'center' | 'right'
    */
-  horizontalPosition: PropTypes.oneOf(HORIZONTAL_POSITION),
+  horizontalPosition: PropTypes.oneOf(['left', 'center', 'right']),
   /**
    * Toast's vertical position. Available values: 'top' | 'middle' | 'bottom'
    */
-  verticalPosition: PropTypes.oneOf(VERTICAL_POSITION),
+  verticalPosition: PropTypes.oneOf(['top', 'middle', 'bottom']),
   fixed: PropTypes.bool,
   /**
    * Type of toast
