@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toast should render success toast 1`] = `
+<Toast
+  className=""
+  fixed={true}
+  hideDelayTime={0}
+  horizontalPosition="center"
+  success={true}
+  verticalPosition="top"
+  warning={true}
+>
+  <TransitionGroup
+    childFactory={[Function]}
+    component="div"
+  >
+    <div>
+      <CSSTransition
+        appear={true}
+        classNames={
+          Object {
+            "appear": "lc-toast--animation-appear",
+            "appearActive": "lc-toast--animation-appear-active",
+            "exit": "lc-toast--animation-exit",
+            "exitActive": "lc-toast--animation-exit-active",
+          }
+        }
+        enter={false}
+        in={true}
+        key=".$toast"
+        onExited={[Function]}
+        timeout={100}
+      >
+        <Transition
+          appear={true}
+          enter={false}
+          exit={true}
+          in={true}
+          mountOnEnter={false}
+          onEnter={[Function]}
+          onEntered={[Function]}
+          onEntering={[Function]}
+          onExit={[Function]}
+          onExited={[Function]}
+          onExiting={[Function]}
+          timeout={100}
+          unmountOnExit={false}
+        >
+          <div
+            className="
+    toast toast--fixed toast--success toast--horizontal-center toast--vertical-top 
+    "
+          >
+            <div
+              className="toast-icon"
+            >
+              <ToastIcon
+                toastType="success"
+              >
+                <CheckCircleIcon>
+                  <svg
+                    className="material material-check-circle-icon undefined"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2m-1 14.5l7-7-1.41-1.41L11 13.67l-3.09-3.08L6.5 12l4.5 4.5z"
+                    />
+                  </svg>
+                </CheckCircleIcon>
+              </ToastIcon>
+            </div>
+            <div
+              className="toast-content"
+            >
+              Toast content
+            </div>
+          </div>
+        </Transition>
+      </CSSTransition>
+    </div>
+  </TransitionGroup>
+</Toast>
+`;
