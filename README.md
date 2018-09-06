@@ -64,6 +64,15 @@ You can view and test your component in two ways:
 - use styleguidist as development enviroment for your component
 - use npm link feature to see it in your app
 
+### Icons
+
+Currently, Design System uses [react-material-icon-svg](https://www.npmjs.com/package/react-material-icon-svg) to implement [Material Design icons](https://material.io/tools/icons/). The library is extended with community icons, which can be found [here](https://materialdesignicons.com/). Example usage:
+```javascript
+import CheckboxMarkedIcon from 'react-material-icon-svg/dist/CheckboxMarkedIcon';
+
+<CheckboxMarkedIcon />
+``` 
+
 ### NPM Link
 You should start with executing these two commands:
 - design-system library root directory -> run `npm link`
