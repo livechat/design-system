@@ -24,12 +24,7 @@ const InputField = props => {
       className={className}
       id={id}
     >
-      <Input
-        {...restProps}
-        fieldClassName={fieldClassName}
-        id={id}
-        error={error}
-      />
+      <Input {...restProps} className={fieldClassName} id={id} error={error} />
     </TextField>
   );
 };

@@ -48,8 +48,8 @@ class ComponentHtmlMarkup extends React.Component {
         <button
           type="button"
           className={cx({
-            'rsg--button-30': true,
-            'rsg--isActive-31': this.state.isCodeVisible
+            'view-html-btn': true,
+            'view-html-btn--active': this.state.isCodeVisible
           })}
           onClick={this.toggleCodeVisibility}
         >

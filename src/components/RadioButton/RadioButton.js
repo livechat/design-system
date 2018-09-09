@@ -58,7 +58,7 @@ RadioButton.propTypes = {
   id: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   onChange: PropTypes.func,
-  checked: PropTypes.bool.isRequired,
+  checked: PropTypes.bool,
   children: PropTypes.node.isRequired,
   description: PropTypes.string,
   disabled: PropTypes.bool

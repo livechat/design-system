@@ -44,6 +44,7 @@ module.exports = {
         },
         {
           name: 'Form',
+          content: './src/foundations/Form/Form.md',
           components: [
             './src/components/InputField/InputField.js',
             './src/components/TextAreaField/TextAreaField.js',
@@ -88,6 +89,78 @@ module.exports = {
           }
           *[class^="lc-"], *[class^="lc-"]:before, *[class^="lc-"]:after {
             box-sizing: inherit;
+          }
+
+          .view-html-btn {
+            border-collapse: separate;
+            caption-side: top;
+            caret-color: auto;
+            color: inherit;
+            cursor: auto;
+            empty-cells: show;
+            font-family: inherit;
+            font-feature-settings: normal;
+            font-kerning: auto;
+            font-size: inherit;
+            font-stretch: normal;
+            font-style: normal;
+            font-variant-caps: normal;
+            font-variant-east-asian: normal;
+            font-variant-ligatures: normal;
+            font-variant-numeric: normal;
+            font-weight: normal;
+            hyphens: none;
+            image-rendering: auto;
+            letter-spacing: normal;
+            line-height: inherit;
+            list-style-image: none;
+            list-style-position: outside;
+            list-style-type: disc;
+            object-position: 50% 50%;
+            orphans: 2;
+            overflow-wrap: normal;
+            pointer-events: auto;
+            quotes: initial;
+            tab-size: 8;
+            text-align: initial;
+            text-align-last: auto;
+            text-combine-upright: none;
+            text-indent: 0px;
+            text-orientation: mixed;
+            text-rendering: auto;
+            text-shadow: none;
+            text-transform: none;
+            text-underline-position: auto;
+            visibility: visible;
+            white-space: normal;
+            widows: 2;
+            word-break: normal;
+            word-spacing: normal;
+            word-wrap: normal;
+            writing-mode: horizontal-tb;
+            -webkit-appearance: none;
+            backface-visibility: visible;
+            bottom: auto;
+            box-shadow: none;
+            padding: 8px 0;
+            font-family: "Source Sans Pro";
+            font-size: 15px;
+            color: #767676;
+            background: transparent;
+            text-transform: uppercase;
+            transition: color 750ms ease-out;
+            border: none;
+            cursor: pointer;
+          }
+
+          .view-html-btn:hover, .view-html-btn:focus {
+            outline: 0;
+            color: #f28a25;
+            transition: color 150ms ease-in;
+          }
+
+          .view-html-btn--active {
+            border-bottom: 2px #f28a25 solid;
           }
           
           pre.prettyprint { display: block; background-color: #0a001f; font-size: 13px; font-family: monospace; margin: 0; padding: 8px 16px;}

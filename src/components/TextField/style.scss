@@ -1,6 +1,7 @@
 $base-class: 'text-field';
 
 .#{$base-class} {
+  margin-bottom: 20px;
   &--inline {
     display: flex;
     flex-direction: row;

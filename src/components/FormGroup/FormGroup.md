@@ -1,108 +1,60 @@
-Use FormGroup component to group elements and display it in nice layout (inline or stacked).
+Use FormGroup component to group related fieldsets. Component provides label for group of fields which improves accessibility of your form.
 
 Form Group
 ```js
 initialState = { formValue: '1' };
 
-onRadioChange = (e) => {
+onRadioClick = (e) => {
   setState({
     formValue: e.target.value
   })
 }
 
-<FormGroup>
-  <RadioButton
-    checked={state.formValue === '1'}
-    value='1'
-    id='form-group-example-1'
-    name='form-group-example'
-    onChange={onRadioChange}
-  >
-    Radio button label
-  </RadioButton>
-  <RadioButton
-    checked={state.formValue === '2'}
-    value='2'
-    id='form-group-example-2'
-    name='form-group-example'
-    onChange={onRadioChange}
-  >
-    Radio button label
-  </RadioButton>
-</FormGroup>
-
-```
-```js noeditor
-<ComponentHtmlMarkup>
-  <FormGroup>
+<FormGroup labelText='Form Group example' helperText={'Form Group helper text'}>
+  <FieldGroup>
     <RadioButton
-      checked
+      checked={state.formValue === '1'}
       value='1'
+      name='form-group-example'
       id='form-group-example-1'
-      name='form-group-example'
+      onClick={onRadioClick}
     >
-      Radio button label
+      Radio button label 1
     </RadioButton>
     <RadioButton
+      checked={state.formValue === '2'}
       value='2'
-      id='form-group-example-2'
       name='form-group-example'
+      id='form-group-example-2'
+      onClick={onRadioClick}
     >
-      Radio button label
+      Radio button label 2
     </RadioButton>
-  </FormGroup>
-</ComponentHtmlMarkup>
-```
-
-Form Group inline
-```js
-initialState = { formValue: '1' };
-
-onRadioChange = (e) => {
-  setState({
-    formValue: e.target.value
-  })
-}
-
-<FormGroup inline>
-  <RadioButton
-    checked={state.formValue === '1'}
-    value='1'
-    name='form-group-example'
-    id='form-group-example-3'
-    onClick={onRadioChange}
-  >
-    Radio button label
-  </RadioButton>
-  <RadioButton
-    checked={state.formValue === '2'}
-    value='2'
-    id='form-group-example-4'
-    name='form-group-example'
-    onClick={onRadioChange}
-  >
-    Radio button label
-  </RadioButton>
+  </FieldGroup>
 </FormGroup>
 ```
+
 ```js noeditor
+
 <ComponentHtmlMarkup>
-  <FormGroup inline>
-    <RadioButton
-      checked
-      value='1'
-      id='form-group-example-3'
-      name='form-group-example'
-    >
-      Radio button label
-    </RadioButton>
-    <RadioButton
-      value='2'
-      id='form-group-example-4'
-      name='form-group-example'
-    >
-      Radio button label
-    </RadioButton>
+  <FormGroup labelText='Form Group example' helperText={'Form Group helper text'}>
+    <FieldGroup>
+      <RadioButton
+        checked
+        value='1'
+        name='form-group-example'
+        id='form-group-example-1'
+      >
+        Radio button label 1
+      </RadioButton>
+      <RadioButton
+        value='2'
+        name='form-group-example'
+        id='form-group-example-2'
+      >
+        Radio button label 2
+      </RadioButton>
+    </FieldGroup>
   </FormGroup>
 </ComponentHtmlMarkup>
 ```
