@@ -5,6 +5,7 @@ initialState = {
   gender: 'male',
   name: '',
   surname: '',
+  description: '',
   nameError: null,
   surnameError: null
 };
@@ -43,6 +44,8 @@ onInputChange = (e) => {
   }
 }
 
+onDescriptionChange = (e) => setState({ description: e.target.value })
+
 onSubmit = (e) => {
   e.preventDefault();
   const errors = validate([
@@ -66,32 +69,38 @@ onSubmit = (e) => {
 
 <Form onSubmit={onSubmit} noValidate>
   <FormGroup labelText='Personal data' helperText={'Fill fields with your name and surname'}>
-    <FieldGroup>
-      <InputField
-        value={state.name}
-        name='name'
-        labelText='Name'
-        required
-        error={state.nameError}
-        id='input-field-example-1'
-        placeholder='Name...'
-        description='Field is required and should contain only letters'
-        onChange={onInputChange}
-      />
+    <FieldGroup inline>
+    <InputField
+      value={state.name}
+      name='name'
+      labelText='Name'
+      required
+      error={state.nameError}
+      id='input-field-example-1'
+      placeholder='Name...'
+      description='Field is required and should contain only letters'
+      onChange={onInputChange}
+    />
+    <InputField
+      value={state.surname}
+      labelText='Surname'
+      name='surname'
+      required
+      error={state.surnameError}
+      id='input-field-example-1'
+      placeholder='Surname...'
+      description='Field is required and should contain only letters'
+      onChange={onInputChange}
+    />
     </FieldGroup>
-    <FieldGroup>
-      <InputField
-        value={state.surname}
-        labelText='Surname'
-        name='surname'
-        required
-        error={state.surnameError}
-        id='input-field-example-1'
-        placeholder='Placeholder...'
-        description='Field is required and should contain only letters'
-        onChange={onInputChange}
-      />
-    </FieldGroup>
+    <TextAreaField
+      value={state.description}
+      labelText='Description'
+      id='text-area-field-example-1'
+      placeholder='Text...'
+      description='Describe yourself'
+      onChange={onDescriptionChange}
+    />
   </FormGroup>
   <FormGroup labelText='Gender' helperText={'Choose your gender'}>
     <FieldGroup inline>
@@ -117,4 +126,62 @@ onSubmit = (e) => {
   </FormGroup>
   <Button primary submit>Save changes</Button>
 </Form>
+```
+
+```js noeditor
+  <ComponentHtmlMarkup>
+    <Form onSubmit={onSubmit} noValidate>
+      <FormGroup labelText='Personal data' helperText={'Fill fields with your name and surname'}>
+        <FieldGroup inline>
+        <InputField
+          value=''
+          name='name'
+          labelText='Name'
+          required
+          error='Field is required'
+          id='input-field-example-1'
+          placeholder='Name...'
+          description='Field is required and should contain only letters'
+        />
+        <InputField
+          value=''
+          labelText='Surname'
+          name='surname'
+          required
+          error='Field is required'
+          id='input-field-example-1'
+          placeholder='Surname...'
+          description='Field is required and should contain only letters'
+        />
+        </FieldGroup>
+        <TextAreaField
+          value=''
+          labelText='Description'
+          id='text-area-field-example-1'
+          placeholder='Text...'
+          description='Describe yourself'
+        />
+      </FormGroup>
+      <FormGroup labelText='Gender' helperText={'Choose your gender'}>
+        <FieldGroup inline>
+          <RadioButton
+            checked
+            value='male'
+            name='gender'
+            id='gender-radio'
+          >
+            Male
+          </RadioButton>
+          <RadioButton
+            value='female'
+            name='gender'
+            id='gender-radio'
+          >
+            Female
+          </RadioButton>
+        </FieldGroup>
+      </FormGroup>
+      <Button primary submit>Save changes</Button>
+    </Form>
+  </ComponentHtmlMarkup>
 ```
