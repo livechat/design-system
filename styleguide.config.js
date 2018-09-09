@@ -43,9 +43,9 @@ module.exports = {
           sectionDepth: 0
         },
         {
-          name: 'Form',
-          content: './src/foundations/Form/Form.md',
+          name: 'Forms',
           components: [
+            './src/components/Form/Form.js',
             './src/components/InputField/InputField.js',
             './src/components/TextAreaField/TextAreaField.js',
             './src/components/RadioButton/RadioButton.js',

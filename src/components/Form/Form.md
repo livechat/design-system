@@ -15,19 +15,21 @@ onRadioClick = (e) => {
   })
 }
 
-validate = (name, value) => {
-  if (!value || value.lenght === 0) {
-    return 'This field is required';
-  } else if (!/^[a-z]+$/i.test(value)) {
-    return 'Field should contain only letters';
-  }
-  return null;
+validate = (fields) => {
+  return fields.reduce((acc, field) => {
+    const { name, value } = field;
+    if (!value || value.lenght === 0) {
+      acc[name] = 'This field is required';
+    } else if (!/^[a-z]+$/i.test(value)) {
+      acc[name] = 'Field should contain only letters';
+    }
+    return acc;
+  }, {})
 }
 
 onInputChange = (e) => {
   const { name, value } = e.target;
-  const error = validate(name, value);
-  console.log(error)
+  const { [name]: error } = validate([{name, value}]);
   if (error) {
     setState({
       [name]: value,
@@ -43,10 +45,26 @@ onInputChange = (e) => {
 
 onSubmit = (e) => {
   e.preventDefault();
-  console.log('submit')
+  const errors = validate([
+    {name: 'name', value: state.name},
+    {name: 'surname', value: state.surname}
+  ]);
+  if (Object.keys(errors).length !== 0) {
+    const newState = Object.keys(errors).reduce((acc, field) => {
+      acc[`${field}Error`] = errors[field];
+      return acc;
+    }, {})
+    setState(newState);
+  } else {
+    alert(`
+      name: ${state.name}
+      surname: ${state.surname}
+      gender: ${state.gender}
+    `)
+  }  
 }
 
-<form onSubmit={onSubmit}>
+<Form onSubmit={onSubmit} noValidate>
   <FormGroup labelText='Personal data' helperText={'Fill fields with your name and surname'}>
     <FieldGroup>
       <InputField
@@ -97,5 +115,6 @@ onSubmit = (e) => {
       </RadioButton>
     </FieldGroup>
   </FormGroup>
-</form>
+  <Button primary submit>Save changes</Button>
+</Form>
 ```

@@ -10,6 +10,7 @@ global.Tooltip = Components.Tooltip;
 global.TooltipContent = Components.TooltipContent;
 global.InputField = Components.InputField;
 global.RadioButton = Components.RadioButton;
+global.Form = Components.Form;
 global.FormGroup = Components.FormGroup;
 global.FieldGroup = Components.FieldGroup;
 global.TextAreaField = Components.TextAreaField;
