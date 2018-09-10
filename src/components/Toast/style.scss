@@ -4,7 +4,9 @@ $toast-width: 360px;
 $toast-appear-animation-timeout: 100ms;
 $toast-exit-animation-timeout: 100ms;
 
-.toast {
+$base-class: 'toast';
+
+.#{$base-class} {
   display: flex;
   align-items: center;
   width: $toast-width;
@@ -20,35 +22,64 @@ $toast-exit-animation-timeout: 100ms;
   box-shadow: 0 6px 30px -10px rgba(0, 0, 0, 0.3);
   border-radius: 4px;
 
-  .toast-content {
+  &__content {
     color: $font-primary-color;
   }
 
-  svg {
-    display: flex;
-  }
-
-  .toast-icon, .toast-close {
+  &__icon, &__close {
     padding-right: 12px;
     align-self: baseline;
   }
 
-  .toast-close {
+  &__close {
     margin-left: auto;
+    svg {
+      display: flex;
+      fill: $font-tertiary-color;
+      height: 20px;
+      width: 20px;
+      cursor: pointer;
+    }
   }
 
-  .toast-icon svg {
+  &__icon svg {
+    display: flex;
     fill: $primary-color;
     height: 20px;
     width: 20px;
   }
 
-  .toast-close svg {
-    fill: $font-tertiary-color;
-    height: 20px;
-    width: 20px;
-    cursor: pointer;
+  &--success {
+    background: $success-color;
   }
+
+  &--warning {
+    background: $warning-color;
+  }
+
+  &--error {
+    background: $error-color;
+  }
+
+  &--info {
+    background: $info-color;
+  }
+
+  &--success, &--warning, &--error, &--info {
+    .#{$base-class}__content {
+       color: #fff;
+     }
+
+    svg {
+      fill: #fff;
+    }
+  }
+
+
+
+
+
+
 
   &.toast--fixed {
     position: fixed;
@@ -118,29 +149,5 @@ $toast-exit-animation-timeout: 100ms;
     }
   }
 
-  &.toast--success {
-    background: $success-color;
-  }
 
-  &.toast--warning {
-    background: $warning-color;
-  }
-
-  &.toast--error {
-    background: $error-color;
-  }
-
-  &.toast--info {
-    background: $info-color;
-  }
-
-  &.toast--success, &.toast--warning, &.toast--error, &.toast--info {
-    .toast-content {
-       color: #fff;
-     }
-
-    svg {
-      fill: #fff;
-    }
-  }
 }

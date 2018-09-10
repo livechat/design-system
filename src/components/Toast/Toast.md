@@ -3,19 +3,18 @@ Toast is a small message that by default shows up in the top middle of the scree
 ### Fixed Toast with auto-hide duration
 
 ```js
-initialState = { openToast: false };
+const toastSystem = new ToastSystem();
 
 <div>
-    <Button onClick={() => setState({openToast: true})}>Show toast</Button>
-    {(state.openToast && 
-      <Toast
-        success
-        hideDelayTime={5000}
-        onClose={() => setState({openToast: false})}
-      >
-        Toast showed! 
-      </Toast>
-    )}
+  <ToastProvider attachApi={toastSystem.setProvider} fixed />
+  <Button onClick={() => toastSystem.addToast({
+    content: 'Toast showed!',
+    variant: 'success'
+  })}>Show toast</Button>
+  <Button onClick={() => toastSystem.addToast({
+    content: 'Toast showed!',
+    variant: 'error'
+  })}>Show toast</Button>
 </div>
 ```
 
@@ -46,14 +45,14 @@ initialState = { openToast: false, vertical: 'top', horizontal: 'center' };
     </div>
     <Button onClick={() => setState({openToast: !state.openToast})}>{(state.openToast) ? 'Hide' : 'Show'} toast</Button>
     {(state.openToast && 
-      <Toast
+      <ToastWrapper
         success
         horizontalPosition={state.horizontal}
         verticalPosition={state.vertical}
         onClose={() => setState({openToast: !state.openToast})}
       >
         Toast showed!
-      </Toast>
+      </ToastWrapper>
     )}
 </div>
 ```
@@ -63,29 +62,44 @@ initialState = { openToast: false, vertical: 'top', horizontal: 'center' };
 #### Success toast
 
 ```js
-<Toast success fixed={false}>Message sent!</Toast>
+const toastSystem = new ToastSystem();
+
+setTimeout(() => {
+  toastSystem.addToast({content: 'Message sent!', variant: 'success'});
+}, 0);
+
+<ToastProvider attachApi={toastSystem.setProvider} fixed={false}/>
+
 ```
 
 #### Warning Toast
 
 ```js
-<Toast warning fixed={false}>Check if everything is fine.</Toast>
+<ToastWrapper fixed={false} elements={[
+  {id: '1', content: 'Check if everything is fine.', variant: 'warning'}
+]} />
 ```
 
 #### Error Toast
 
 ```js
-<Toast error fixed={false}>Message could not be sent.</Toast>
+<ToastWrapper fixed={false} elements={[
+  {id: '1', content: 'Message could not be sent.', variant: 'error'}
+]} />
 ```
 
 #### Info Toast
 
 ```js
-<Toast info fixed={false}>Sending message...</Toast>
+<ToastWrapper fixed={false} elements={[
+  {id: '1', content: 'Sending message...', variant: 'info'}
+]} />
 ```
 
 #### Notification Toast
 
 ```js
-<Toast fixed={false}>Notification message</Toast>
+<ToastWrapper fixed={false} elements={[
+  {id: '1', content: 'Notification message', variant: null}
+]} />
 ```
