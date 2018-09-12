@@ -3,18 +3,22 @@ Toast is a small message that by default shows up in the top middle of the scree
 ### Fixed Toast with auto-hide duration
 
 ```js
-const toastSystem = new ToastSystem();
+const toastSystem = createToastSystem();
+
+const createRandomToast = () => {
+  const opts = {
+    content: 'Toast showed!',
+    autoHideDelayTime: 2000
+  };
+  const variants = ['success', 'warning', 'error', 'info', 'default'];
+  const randomVariant = variants[Math.floor(Math.random() * variants.length)];
+
+  return toastSystem[randomVariant](opts);
+}
 
 <div>
-  <ToastProvider attachApi={toastSystem.setProvider} fixed />
-  <Button onClick={() => toastSystem.addToast({
-    content: 'Toast showed!',
-    variant: 'success'
-  })}>Show toast</Button>
-  <Button onClick={() => toastSystem.addToast({
-    content: 'Toast showed!',
-    variant: 'error'
-  })}>Show toast</Button>
+  <ToastContainer itemsLimit={3} setToastSystem={toastSystem.setContainer} fixed />
+  <Button onClick={createRandomToast}>Show toast</Button>
 </div>
 ```
 
@@ -62,44 +66,60 @@ initialState = { openToast: false, vertical: 'top', horizontal: 'center' };
 #### Success toast
 
 ```js
-const toastSystem = new ToastSystem();
+const toastSystem = createToastSystem();
 
 setTimeout(() => {
-  toastSystem.addToast({content: 'Message sent!', variant: 'success'});
+  toastSystem.success({content: 'Message sent!'});
 }, 0);
 
-<ToastProvider attachApi={toastSystem.setProvider} fixed={false}/>
+<ToastContainer setToastSystem={toastSystem.setContainer} fixed={false}/>
 
 ```
 
 #### Warning Toast
 
 ```js
-<ToastWrapper fixed={false} elements={[
-  {id: '1', content: 'Check if everything is fine.', variant: 'warning'}
-]} />
+const toastSystem = createToastSystem();
+
+setTimeout(() => {
+  toastSystem.warning({content: 'Check if everything is fine.'});
+}, 0);
+
+<ToastContainer setToastSystem={toastSystem.setContainer} fixed={false}/>
 ```
 
 #### Error Toast
 
 ```js
-<ToastWrapper fixed={false} elements={[
-  {id: '1', content: 'Message could not be sent.', variant: 'error'}
-]} />
+const toastSystem = createToastSystem();
+
+setTimeout(() => {
+  toastSystem.error({content: 'Message could not be sent.'});
+}, 0);
+
+<ToastContainer setToastSystem={toastSystem.setContainer} fixed={false}/>
 ```
 
 #### Info Toast
 
 ```js
-<ToastWrapper fixed={false} elements={[
-  {id: '1', content: 'Sending message...', variant: 'info'}
-]} />
+const toastSystem = createToastSystem();
+
+setTimeout(() => {
+  toastSystem.info({content: 'Sending message...'});
+}, 0);
+
+<ToastContainer setToastSystem={toastSystem.setContainer} fixed={false}/>
 ```
 
 #### Notification Toast
 
 ```js
-<ToastWrapper fixed={false} elements={[
-  {id: '1', content: 'Notification message', variant: null}
-]} />
+const toastSystem = createToastSystem();
+
+setTimeout(() => {
+  toastSystem.default({content: 'Notification message'});
+}, 0);
+
+<ToastContainer setToastSystem={toastSystem.setContainer} fixed={false}/>
 ```

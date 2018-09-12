@@ -46,7 +46,7 @@ const ToastWrapper = props => {
         >
           <Toast
             className={componentClassNames}
-            // style={{ top: `calc(${index * 40}px + ${(index + 1) * 5}px)` }}
+            style={{ top: `calc(${index * 40}px + ${(index + 1) * 5}px)` }}
             variant={variant}
             onClose={onClose}
           >
