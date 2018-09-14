@@ -19,7 +19,8 @@ class ToastSystem {
     const defaults = {
       content: '',
       variant: null,
-      autoHideDelayTime: null
+      autoHideDelayTime: null,
+      removable: false
     };
 
     this.container.addToast({ ...defaults, ...opts });

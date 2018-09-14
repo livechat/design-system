@@ -23,19 +23,14 @@ class ToastContainer extends React.Component {
   shouldPickFromQueue = () => {
     const { toasts, queue } = this.state;
     const { itemsLimit } = this.props;
-    console.log(
-      'shouldPickFromQueue',
-      itemsLimit,
-      queue.length > 0,
-      Object.keys(toasts).length
-    );
+
     return (
       itemsLimit && queue.length > 0 && Object.keys(toasts).length < itemsLimit
     );
   };
 
   addToast = toast => {
-    const { content, variant, autoHideDelayTime, onClick } = toast;
+    const { content, variant, autoHideDelayTime, onClick, removable } = toast;
     const { itemsLimit } = this.props;
     const { toasts } = this.state;
 
@@ -51,6 +46,7 @@ class ToastContainer extends React.Component {
           [toastId]: {
             content,
             variant,
+            removable,
             onClose: callAll(onClick, () => this.removeToast(toastId))
           }
         }
@@ -66,7 +62,6 @@ class ToastContainer extends React.Component {
   };
 
   addToQueue = toast => {
-    console.log('addToQueue', toast, this.state.queue);
     this.setState({
       queue: [...this.state.queue, toast]
     });
@@ -75,7 +70,6 @@ class ToastContainer extends React.Component {
   pickFromQueue = () => {
     if (this.state.queue.length > 0) {
       const [queued, ...restQueued] = this.state.queue;
-      console.log('pickFromQueue', queued);
       this.setState(
         {
           queue: [...restQueued]

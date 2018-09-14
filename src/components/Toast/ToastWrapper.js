@@ -32,28 +32,31 @@ const ToastWrapper = props => {
 
   return (
     <TransitionGroup>
-      {props.toasts.map(({ toastId, variant, content, onClose }, index) => (
-        <CSSTransition
-          key={toastId}
-          classNames={{
-            enter: 'lc-toast--animation-appear',
-            enterActive: 'lc-toast--animation-appear-active',
-            exit: 'lc-toast--animation-exit',
-            exitActive: 'lc-toast--animation-exit-active'
-          }}
-          appear={fixed}
-          timeout={ANIMATION_TIME}
-        >
-          <Toast
-            className={componentClassNames}
-            style={{ top: `calc(${index * 40}px + ${(index + 1) * 5}px)` }}
-            variant={variant}
-            onClose={onClose}
+      {props.toasts.map(
+        ({ toastId, variant, content, onClose, removable }, index) => (
+          <CSSTransition
+            key={toastId}
+            classNames={{
+              enter: 'lc-toast--animation-appear',
+              enterActive: 'lc-toast--animation-appear-active',
+              exit: 'lc-toast--animation-exit',
+              exitActive: 'lc-toast--animation-exit-active'
+            }}
+            appear={fixed}
+            timeout={ANIMATION_TIME}
           >
-            {content}
-          </Toast>
-        </CSSTransition>
-      ))}
+            <Toast
+              className={componentClassNames}
+              style={{ top: `calc(${index * 40}px + ${(index + 1) * 5}px)` }}
+              variant={variant}
+              onClose={onClose}
+              removable={removable}
+            >
+              {content}
+            </Toast>
+          </CSSTransition>
+        )
+      )}
     </TransitionGroup>
   );
 };

@@ -8,7 +8,8 @@ const toastSystem = createToastSystem();
 const createRandomToast = () => {
   const opts = {
     content: 'Toast showed!',
-    autoHideDelayTime: 2000
+    autoHideDelayTime: 2000,
+    removable: true
   };
   const variants = ['success', 'warning', 'error', 'info', 'default'];
   const randomVariant = variants[Math.floor(Math.random() * variants.length)];

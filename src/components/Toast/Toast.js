@@ -9,7 +9,14 @@ import styles from './style.scss';
 const cx = classNames.bind(styles);
 
 const Toast = props => {
-  const { children, className, variant, onClose, ...restProps } = props;
+  const {
+    children,
+    className,
+    variant,
+    onClose,
+    removable,
+    ...restProps
+  } = props;
 
   const componentClassNames = `
     ${cx({
@@ -24,7 +31,7 @@ const Toast = props => {
         <ToastIcon toastType={variant} />
       </div>
       <div className={styles.toast__content}>{children}</div>
-      {onClose && (
+      {removable && (
         <div className={styles.toast__close} onClick={onClose}>
           <CloseIcon />
         </div>
@@ -36,7 +43,8 @@ const Toast = props => {
 Toast.propTypes = {
   children: PropTypes.node.isRequired,
   variand: PropTypes.oneOf(VARIANTS),
-  onClose: PropTypes.func
+  onClose: PropTypes.func,
+  removable: PropTypes.bool
 };
 
 export default Toast;
