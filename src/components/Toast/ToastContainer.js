@@ -30,7 +30,7 @@ class ToastContainer extends React.Component {
   };
 
   addToast = toast => {
-    const { content, variant, autoHideDelayTime, onClick, removable } = toast;
+    const { content, variant, autoHideDelayTime, onClose, removable } = toast;
     const { itemsLimit } = this.props;
     const { toasts } = this.state;
 
@@ -47,7 +47,7 @@ class ToastContainer extends React.Component {
             content,
             variant,
             removable,
-            onClose: callAll(onClick, () => this.removeToast(toastId))
+            onClose: callAll(onClose, () => this.removeToast(toastId))
           }
         }
       },
