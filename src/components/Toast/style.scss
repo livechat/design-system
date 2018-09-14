@@ -1,8 +1,8 @@
 @import '../../scss/variables/colors';
 
 $toast-width: 360px;
-$toast-appear-animation-timeout: 100ms;
-$toast-exit-animation-timeout: 100ms;
+$toast-appear-animation-timeout: 200ms;
+$toast-exit-animation-timeout: 200ms;
 
 $base-class: 'toast';
 
@@ -21,6 +21,7 @@ $base-class: 'toast';
   letter-spacing: normal;
   box-shadow: 0 6px 30px -10px rgba(0, 0, 0, 0.3);
   border-radius: 4px;
+  margin-bottom: 5px;
 
   &__content {
     color: $font-primary-color;
@@ -75,53 +76,46 @@ $base-class: 'toast';
     }
   }
 
-
-
-
-
-
-
-  &.toast--fixed {
-    position: fixed;
-    z-index: 5318008;
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    &--fixed {
+      position: fixed;
+      z-index: 120;
+    }
+    &--horizontal-center {
+      left: calc( 50% - (.5 * #{$toast-width}));
+    }
+    &--horizontal-left {
+      left: 5px;
+    }
+    &--horizontal-right {
+      right: 5px;
+    }
+    &--vertical-middle {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    &--vertical-top {
+      top: 5px;
+    }
   }
 
-  &.toast--horizontal-left {
-    left: 5px;
-  }
-
-  &.toast--horizontal-center {
-    left: calc( 50% - (.5 * #{$toast-width}));
-  }
-
-  &.toast--horizontal-right {
-    right: 5px;
-  }
-
-  &.toast--vertical-top {
-    top: 5px;
-  }
-
-  &.toast--vertical-middle {
-    top: 50%;
-    transform: translateY(-50%);
-  }
-
-  &.toast--vertical-top, &.toast--vertical-middle {
-    &.toast--animation-appear {
+  &__wrapper--vertical-top, &__wrapper--vertical-middle {
+    .toast--animation-appear {
       transform: translateY(-100%) !important;
     }
 
-    &.toast--animation-appear.toast--animation-appear-active {
+    .toast--animation-appear.toast--animation-appear-active {
       transform: translateY(0) !important;
       transition: transform $toast-appear-animation-timeout ease-in;
     }
 
-    &.toast--animation-exit {
+    .toast--animation-exit {
       transform: translateY(0) !important;
     }
 
-    &.toast--animation-exit.toast--animation-exit-active {
+    .toast--animation-exit.toast--animation-exit-active {
       transform: translateY(-100%) !important;
       transition: transform $toast-exit-animation-timeout ease-in;
     }

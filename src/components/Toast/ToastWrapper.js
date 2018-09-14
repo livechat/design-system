@@ -19,45 +19,48 @@ const ToastWrapper = props => {
   if (horizontalPosition === 'center' && verticalPosition === 'middle')
     throw new Error("Toast can't be positioned on center of the screen!");
 
+  const baseClass = 'toast__wrapper';
+
   const componentClassNames = `
     ${cx({
-      toast: true,
-      'toast--fixed': fixed,
-      [`toast--horizontal-${horizontalPosition}`]:
+      [baseClass]: true,
+      [`${baseClass}--fixed`]: fixed,
+      [`${baseClass}--horizontal-${horizontalPosition}`]:
         fixed && HORIZONTAL_POSITION.some(s => s === horizontalPosition),
-      [`toast--vertical-${verticalPosition}`]:
+      [`${baseClass}--vertical-${verticalPosition}`]:
         fixed && VERTICAL_POSITION.some(s => s === verticalPosition)
     })} ${className}
     `;
 
   return (
-    <TransitionGroup>
-      {props.toasts.map(
-        ({ toastId, variant, content, onClose, removable }, index) => (
-          <CSSTransition
-            key={toastId}
-            classNames={{
-              enter: 'lc-toast--animation-appear',
-              enterActive: 'lc-toast--animation-appear-active',
-              exit: 'lc-toast--animation-exit',
-              exitActive: 'lc-toast--animation-exit-active'
-            }}
-            appear={fixed}
-            timeout={ANIMATION_TIME}
-          >
-            <Toast
-              className={componentClassNames}
-              style={{ top: `calc(${index * 40}px + ${(index + 1) * 5}px)` }}
-              variant={variant}
-              onClose={onClose}
-              removable={removable}
+    <div className={componentClassNames}>
+      <TransitionGroup>
+        {props.toasts.map(
+          ({ toastId, variant, content, onClose, removable }) => (
+            <CSSTransition
+              key={toastId}
+              classNames={{
+                enter: 'lc-toast--animation-appear',
+                enterActive: 'lc-toast--animation-appear-active',
+                exit: 'lc-toast--animation-exit',
+                exitActive: 'lc-toast--animation-exit-active'
+              }}
+              appear={fixed}
+              timeout={ANIMATION_TIME}
             >
-              {content}
-            </Toast>
-          </CSSTransition>
-        )
-      )}
-    </TransitionGroup>
+              <Toast
+                variant={variant}
+                onClose={onClose}
+                removable={removable}
+                className={styles.toast__single}
+              >
+                {content}
+              </Toast>
+            </CSSTransition>
+          )
+        )}
+      </TransitionGroup>
+    </div>
   );
 };
 

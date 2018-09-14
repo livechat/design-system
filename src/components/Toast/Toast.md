@@ -18,7 +18,7 @@ const createRandomToast = () => {
 }
 
 <div>
-  <ToastContainer itemsLimit={3} setToastSystem={toastSystem.setContainer} fixed />
+  <ToastContainer itemsLimit={6} setToastSystem={toastSystem.setContainer} fixed />
   <Button onClick={createRandomToast}>Show toast</Button>
 </div>
 ```
