@@ -191,6 +191,9 @@ module.exports = {
       base: '"Source Sans Pro"',
       monospace: 'monospace'
     },
+    color: {
+      base: '#424d57'
+    },
     fontSize: {
       base: 15,
       text: 15,

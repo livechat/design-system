@@ -61,15 +61,13 @@ $base-class: 'radio';
     .#{$base-class} {
       &__circle {
         border-color: $font-tertiary-color;
+        opacity: 0.4;
       }
       &__inner-circle {
         background-color: $font-tertiary-color;
       }
-      &__label {
-        color: $font-primary-color;
-        cursor: not-allowed;
-      }
-      &__input {
+      &__label, &__input, &__text {
+        color: $font-tertiary-color;
         cursor: not-allowed;
       }
     }

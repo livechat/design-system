@@ -32,6 +32,11 @@
     outline: 1px solid transparent
   }
 
+  &:hover {
+    border-color: $field-hover-border-color;
+    outline: 1px solid transparent;
+  }
+
   &--error, &--error:focus {
     border-color: $error-color;
   }

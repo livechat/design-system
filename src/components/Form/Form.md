@@ -67,7 +67,7 @@ onSubmit = (e) => {
   }  
 }
 
-<Form onSubmit={onSubmit} noValidate>
+<Form onSubmit={onSubmit} labelText='Settings' helperText='Use form layout to arrange fields within a form using standard spacing. We recomme stacking fields vertically for easier scanning and faster completion, but you can also arrange them vertically.' noValidate>
   <FormGroup labelText='Personal data' helperText={'Fill fields with your name and surname'}>
     <FieldGroup inline>
     <InputField
@@ -131,7 +131,7 @@ onSubmit = (e) => {
 ```js noeditor
   <ComponentHtmlMarkup>
     <Form onSubmit={onSubmit} noValidate>
-      <FormGroup labelText='Personal data' helperText={'Fill fields with your name and surname'}>
+      <FormGroup labelText='Personal data' helperText="Fill fields with your name and surname">
         <FieldGroup inline>
         <InputField
           value=''

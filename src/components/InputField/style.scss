@@ -26,9 +26,14 @@
     opacity: 0.4;
   }
 
+  &:hover {
+    border-color: $field-hover-border-color;
+    outline: 1px solid transparent;
+  }
+
   &:focus {
     border-color: $primary-color;
-    outline: 1px solid transparent
+    outline: 1px solid transparent;
   }
 
   &--error, &--error:focus {
