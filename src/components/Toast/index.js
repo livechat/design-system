@@ -1,6 +1,7 @@
 import Toast from './Toast';
 
 export { default as ToastWrapper } from './ToastWrapper';
-export { default as createToastSystem } from './createToastSystem';
-export { default as ToastContainer } from './ToastContainer';
+export { default as withToast } from './withToast';
+export { default as ToastProvider } from './ToastProvider';
+export { ToastConsumer } from './ToastContext';
 export default Toast;

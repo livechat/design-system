@@ -42,7 +42,7 @@ const Toast = props => {
 
 Toast.propTypes = {
   children: PropTypes.node.isRequired,
-  variand: PropTypes.oneOf(VARIANTS),
+  variant: PropTypes.oneOf(VARIANTS),
   onClose: PropTypes.func,
   removable: PropTypes.bool
 };

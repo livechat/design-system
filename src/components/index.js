@@ -4,6 +4,7 @@ export { default as Button } from './Button';
 export {
   default as Toast,
   ToastWrapper,
-  createToastSystem,
-  ToastContainer
+  withToast,
+  ToastProvider,
+  ToastConsumer
 } from './Toast';

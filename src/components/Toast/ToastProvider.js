@@ -1,18 +1,18 @@
 import React from 'react';
 import { generateUniqueId } from '@livechat/data-utils';
 import ToastWrapper from './ToastWrapper';
+import { INFO, WARNING, ERROR, SUCCESS } from './constants';
+import ToastContext from './ToastContext';
 
 const callAll = (...fns) => (...args) => fns.forEach(fn => fn && fn(...args));
 
-class ToastContainer extends React.Component {
+class ToastProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       toasts: {},
       queue: []
     };
-
-    this.props.setToastSystem(this);
     this.timeouts = {};
   }
 
@@ -30,7 +30,17 @@ class ToastContainer extends React.Component {
   };
 
   addToast = toast => {
-    const { content, variant, autoHideDelayTime, onClose, removable } = toast;
+    const defaults = {
+      content: '',
+      variant: null,
+      autoHideDelayTime: null,
+      removable: false
+    };
+
+    const { content, variant, autoHideDelayTime, onClose, removable } = {
+      ...defaults,
+      ...toast
+    };
     const { itemsLimit } = this.props;
     const { toasts } = this.state;
 
@@ -93,15 +103,43 @@ class ToastContainer extends React.Component {
     );
   };
 
+  success = opts => this.addToast({ ...opts, variant: SUCCESS });
+
+  info = opts => this.addToast({ ...opts, variant: INFO });
+
+  warning = opts => this.addToast({ ...opts, variant: WARNING });
+
+  error = opts => this.addToast({ ...opts, variant: ERROR });
+
+  default = opts => {
+    const { variant, ...restOpts } = opts;
+    return this.addToast(restOpts);
+  };
+
   render() {
-    const { toastSystem, ...restProps } = this.props;
+    const { toastSystem, children, ...restProps } = this.props;
     const toasts = Object.keys(this.state.toasts).map(toastId => ({
       ...this.state.toasts[toastId],
       toastId
     }));
 
-    return <ToastWrapper {...restProps} toasts={toasts} />;
+    return (
+      <React.Fragment>
+        <ToastWrapper {...restProps} toasts={toasts} />
+        <ToastContext.Provider
+          value={{
+            success: this.success,
+            info: this.info,
+            warning: this.warning,
+            error: this.error,
+            default: this.default
+          }}
+        >
+          {children}
+        </ToastContext.Provider>
+      </React.Fragment>
+    );
   }
 }
 
-export default ToastContainer;
+export default ToastProvider;
