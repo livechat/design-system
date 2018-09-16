@@ -14,26 +14,24 @@ import Toast from './Toast';
 const cx = classNames.bind(styles);
 
 const ToastWrapper = props => {
-  const { className, horizontalPosition, verticalPosition, fixed } = props;
+  const { verticalPosition, horizontalPosition, fixed } = props;
 
-  if (horizontalPosition === 'center' && verticalPosition === 'middle')
-    throw new Error("Toast can't be positioned on center of the screen!");
+  const baseClass = 'toast-wrapper';
 
-  const baseClass = 'toast__wrapper';
-
-  const componentClassNames = `
-    ${cx({
+  const getWrapperClassNames = () => {
+    const wrapperClassNames = cx({
       [baseClass]: true,
       [`${baseClass}--fixed`]: fixed,
       [`${baseClass}--horizontal-${horizontalPosition}`]:
         fixed && HORIZONTAL_POSITION.some(s => s === horizontalPosition),
       [`${baseClass}--vertical-${verticalPosition}`]:
         fixed && VERTICAL_POSITION.some(s => s === verticalPosition)
-    })} ${className}
-    `;
+    });
+    return wrapperClassNames;
+  };
 
   return (
-    <div className={componentClassNames}>
+    <div className={getWrapperClassNames()}>
       <TransitionGroup>
         {props.toasts.map(
           ({ toastId, variant, content, onClose, removable }) => (
@@ -71,24 +69,14 @@ ToastWrapper.propTypes = {
       variant: PropTypes.oneOf(VARIANTS)
     })
   ),
-  className: PropTypes.string,
-  /**
-   * Toast's horizontal position. Available values: 'left' | 'center' | 'right'
-   */
-  horizontalPosition: PropTypes.string,
-  /**
-   * Toast's vertical position. Available values: 'top' | 'middle' | 'bottom'
-   */
+  fixed: PropTypes.bool,
   verticalPosition: PropTypes.string,
-  fixed: PropTypes.bool
+  horizontalPosition: PropTypes.string
 };
 
 ToastWrapper.defaultProps = {
-  className: '',
   toasts: [],
-  fixed: true,
-  horizontalPosition: 'center',
-  verticalPosition: 'top'
+  fixed: true
 };
 
 export default ToastWrapper;

@@ -31,18 +31,19 @@ const Toast = props => {
         <ToastIcon toastType={variant} />
       </div>
       <div className={styles.toast__content}>{children}</div>
-      {removable && (
-        <div className={styles.toast__close} onClick={onClose}>
-          <CloseIcon />
-        </div>
-      )}
+      {removable &&
+        onClose && (
+          <div className={styles.toast__close} onClick={onClose}>
+            <CloseIcon />
+          </div>
+        )}
     </div>
   );
 };
 
 Toast.propTypes = {
   children: PropTypes.node.isRequired,
-  variant: PropTypes.oneOf(VARIANTS),
+  variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']),
   onClose: PropTypes.func,
   removable: PropTypes.bool
 };

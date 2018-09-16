@@ -76,7 +76,7 @@ $base-class: 'toast';
     }
   }
 
-  &__wrapper {
+  &-wrapper {
     display: flex;
     align-items: center;
     &--fixed {
@@ -92,16 +92,17 @@ $base-class: 'toast';
     &--horizontal-right {
       right: 5px;
     }
-    &--vertical-middle {
-      top: 50%;
-      transform: translateY(-50%);
-    }
+
     &--vertical-top {
       top: 5px;
     }
+
+    &--vertical-bottom {
+      bottom: 5px;
+    }
   }
 
-  &__wrapper--vertical-top, &__wrapper--vertical-middle {
+  &-wrapper--vertical-top {
     .toast--animation-appear {
       transform: translateY(-100%) !important;
     }
@@ -121,27 +122,23 @@ $base-class: 'toast';
     }
   }
 
-  &.toast--vertical-bottom {
-    bottom: 5px;
-
-    &.toast--animation-appear {
+  &-wrapper--vertical-bottom {
+    .toast--animation-appear {
       transform: translateY(100%) !important;
     }
 
-    &.toast--animation-appear.toast--animation-appear-active {
+    .toast--animation-appear.toast--animation-appear-active {
       transform: translateY(0) !important;
       transition: transform $toast-appear-animation-timeout ease-in;
     }
 
-    &.toast--animation-exit {
+    .toast--animation-exit {
       transform: translateY(0) !important;
     }
 
-    &.toast--animation-exit.toast--animation-exit-active {
+    .toast--animation-exit.toast--animation-exit-active {
       transform: translateY(100%) !important;
       transition: transform $toast-exit-animation-timeout ease-in;
     }
   }
-
-
 }

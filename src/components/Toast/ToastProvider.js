@@ -5,15 +5,24 @@ import { INFO, WARNING, ERROR, SUCCESS } from './constants';
 import ToastContext from './ToastContext';
 
 const callAll = (...fns) => (...args) => fns.forEach(fn => fn && fn(...args));
+const initialState = {
+  toasts: {},
+  queue: []
+};
 
 class ToastProvider extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      toasts: {},
-      queue: []
-    };
+    this.state = initialState;
     this.timeouts = {};
+    this.wrappers = [
+      { id: 1, vertical: 'top', horizontal: 'right' },
+      { id: 2, vertical: 'top', horizontal: 'center' },
+      { id: 3, vertical: 'top', horizontal: 'left' },
+      { id: 4, vertical: 'bottom', horizontal: 'right' },
+      { id: 5, vertical: 'bottom', horizontal: 'center' },
+      { id: 6, vertical: 'bottom', horizontal: 'left' }
+    ];
   }
 
   componentWillUnmount() {
@@ -34,10 +43,20 @@ class ToastProvider extends React.Component {
       content: '',
       variant: null,
       autoHideDelayTime: null,
-      removable: false
+      removable: false,
+      verticalPosition: 'top',
+      horizontalPosition: 'center'
     };
 
-    const { content, variant, autoHideDelayTime, onClose, removable } = {
+    const {
+      content,
+      variant,
+      autoHideDelayTime,
+      onClose,
+      verticalPosition,
+      horizontalPosition,
+      removable
+    } = {
       ...defaults,
       ...toast
     };
@@ -55,6 +74,8 @@ class ToastProvider extends React.Component {
           ...toasts,
           [toastId]: {
             content,
+            horizontalPosition,
+            verticalPosition,
             variant,
             removable,
             onClose: callAll(onClose, () => this.removeToast(toastId))
@@ -116,6 +137,10 @@ class ToastProvider extends React.Component {
     return this.addToast(restOpts);
   };
 
+  removeAllToasts = () => {
+    this.setState(initialState);
+  };
+
   render() {
     const { toastSystem, children, ...restProps } = this.props;
     const toasts = Object.keys(this.state.toasts).map(toastId => ({
@@ -125,14 +150,28 @@ class ToastProvider extends React.Component {
 
     return (
       <React.Fragment>
-        <ToastWrapper {...restProps} toasts={toasts} />
+        {this.wrappers.map(({ id, vertical, horizontal }) => (
+          <ToastWrapper
+            key={id}
+            {...restProps}
+            verticalPosition={vertical}
+            horizontalPosition={horizontal}
+            toasts={toasts.filter(
+              toast =>
+                toast.horizontalPosition === horizontal &&
+                toast.verticalPosition === vertical
+            )}
+          />
+        ))}
         <ToastContext.Provider
           value={{
             success: this.success,
             info: this.info,
             warning: this.warning,
             error: this.error,
-            default: this.default
+            default: this.default,
+            removeAllToasts: this.removeAllToasts,
+            removeToast: this.removeToast
           }}
         >
           {children}

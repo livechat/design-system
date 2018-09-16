@@ -38,13 +38,21 @@ Design System
 ```js
 const ButtonWithToast = props => {
   const createRandomToast = () => {
+    const variants = ['success', 'warning', 'error', 'info', 'default'];
+    const horizontalPositions = ['left', 'center', 'right'];
+    const verticalPositions = ['top', 'bottom'];
+
+    const randomVariant = variants[Math.floor(Math.random() * variants.length)];
+    const randomHorizontalPosition = horizontalPositions[Math.floor(Math.random() * horizontalPositions.length)];
+    const randomVerticalPosition = verticalPositions[Math.floor(Math.random() * verticalPositions.length)];
+
     const opts = {
       content: 'Toast showed!',
       autoHideDelayTime: 2000,
-      removable: true
+      removable: true,
+      horizontalPosition: randomHorizontalPosition,
+      verticalPosition: randomVerticalPosition
     };
-    const variants = ['success', 'warning', 'error', 'info', 'default'];
-    const randomVariant = variants[Math.floor(Math.random() * variants.length)];
 
     return props.toast[randomVariant](opts);
   }
@@ -68,34 +76,46 @@ You can set vertical and horizontal position of a Toast. Available options are:
 - horizontal: `'left' | 'center' | 'right'`
 
 ```js
-initialState = { openToast: false, vertical: 'top', horizontal: 'center' };
+initialState = { isToastVisible: false, vertical: 'top', horizontal: 'center' };
 
-<div>
-    <div style={{marginBottom: "15px"}}>
-        <label style={{marginRight: "15px"}}>Vertical position</label>
-        <select value={state.vertical} onChange={(event) => setState({ vertical: event.target.value})}>
-            <option value="top">Top</option>
-            <option value="bottom">Bottom</option>
-        </select>
-    </div>
-    <div style={{marginBottom: "15px"}}>
-        <label style={{marginRight: "15px"}}>Horizontal position</label>
-        <select value={state.horizontal} onChange={(event) => setState({ horizontal: event.target.value})}>
-            <option value="left">Left</option>
-            <option value="center">Center</option>
-            <option value="right">Right</option>
-        </select>
-    </div>
-    <Button onClick={() => setState({openToast: !state.openToast})}>{(state.openToast) ? 'Hide' : 'Show'} toast</Button>
-    {(state.openToast && 
-      <ToastWrapper
-        success
-        horizontalPosition={state.horizontal}
-        verticalPosition={state.vertical}
-        onClose={() => setState({openToast: !state.openToast})}
-      >
-        Toast showed!
-      </ToastWrapper>
+const onClick = (toast) => {
+  if (!state.isToastVisible) {
+    const opts = {
+      content: 'Toast showed!',
+      horizontalPosition: state.horizontal,
+      verticalPosition: state.vertical,
+      onClose: onClick
+    };
+    toast.success(opts);
+  } else {
+    toast.removeAllToasts();
+  }
+
+  setState({
+    isToastVisible: !state.isToastVisible
+  });
+}
+
+<ToastProvider itemsLimit={6} fixed>
+  <div style={{marginBottom: "15px"}}>
+    <label style={{marginRight: "15px"}}>Vertical position</label>
+    <select value={state.vertical} onChange={(event) => setState({ vertical: event.target.value})}>
+        <option value="top">Top</option>
+        <option value="bottom">Bottom</option>
+    </select>
+  </div>
+  <div style={{marginBottom: "15px"}}>
+    <label style={{marginRight: "15px"}}>Horizontal position</label>
+    <select value={state.horizontal} onChange={(event) => setState({ horizontal: event.target.value})}>
+        <option value="left">Left</option>
+        <option value="center">Center</option>
+        <option value="right">Right</option>
+    </select>
+  </div>
+  <ToastConsumer>
+    {toast => (
+      <Button onClick={() => onClick(toast)}>{(state.isToastVisible) ? 'Hide' : 'Show'} toast</Button>
     )}
-</div>
+  </ToastConsumer>
+</ToastProvider>
 ```

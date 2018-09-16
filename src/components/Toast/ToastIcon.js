@@ -5,8 +5,8 @@ import AlertIcon from 'react-material-icon-svg/dist/AlertIcon';
 import AlertCircleIcon from 'react-material-icon-svg/dist/AlertCircleIcon';
 import InformationIcon from 'react-material-icon-svg/dist/InformationIcon';
 
-export const ToastIcon = props => {
-  switch (props.toastType) {
+export const ToastIcon = ({ variant }) => {
+  switch (variant) {
     case 'success':
       return <CheckCircleIcon />;
     case 'warning':
@@ -19,5 +19,5 @@ export const ToastIcon = props => {
 };
 
 ToastIcon.propTypes = {
-  toastType: PropTypes.string
+  variant: PropTypes.string
 };
