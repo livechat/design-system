@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { generateUniqueId } from '@livechat/data-utils';
 import ToastWrapper from './ToastWrapper';
 import { INFO, WARNING, ERROR, SUCCESS } from './constants';
@@ -170,8 +171,8 @@ class ToastProvider extends React.Component {
             warning: this.warning,
             error: this.error,
             default: this.default,
-            removeAllToasts: this.removeAllToasts,
-            removeToast: this.removeToast
+            removeToast: this.removeToast,
+            removeAllToasts: this.removeAllToasts
           }}
         >
           {children}
@@ -180,5 +181,13 @@ class ToastProvider extends React.Component {
     );
   }
 }
+
+ToastProvider.propTypes = {
+  itemsLimit: PropTypes.number
+};
+
+ToastProvider.defaultProps = {
+  itemsLimit: 1
+};
 
 export default ToastProvider;

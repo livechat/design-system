@@ -33,7 +33,11 @@ const Toast = props => {
       <div className={styles.toast__content}>{children}</div>
       {removable &&
         onClose && (
-          <div className={styles.toast__close} onClick={onClose}>
+          <div
+            className={styles.toast__close}
+            aria-label="Close toast"
+            onClick={onClose}
+          >
             <CloseIcon />
           </div>
         )}
