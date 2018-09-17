@@ -14,7 +14,7 @@ import Toast from './Toast';
 const cx = classNames.bind(styles);
 
 const ToastWrapper = props => {
-  const { verticalPosition, horizontalPosition, fixed } = props;
+  const { verticalPosition, horizontalPosition, fixed, block } = props;
 
   const baseClass = 'toast-wrapper';
 
@@ -22,6 +22,7 @@ const ToastWrapper = props => {
     const wrapperClassNames = cx({
       [baseClass]: true,
       [`${baseClass}--fixed`]: fixed,
+      [`${baseClass}--block`]: !fixed && block,
       [`${baseClass}--horizontal-${horizontalPosition}`]: HORIZONTAL_POSITION.some(
         s => s === horizontalPosition
       ),
@@ -67,18 +68,25 @@ const ToastWrapper = props => {
 ToastWrapper.propTypes = {
   toasts: PropTypes.arrayOf(
     PropTypes.shape({
+      toastId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       content: PropTypes.node,
-      variant: PropTypes.oneOf(VARIANTS)
+      variant: PropTypes.oneOf(VARIANTS),
+      autoHideDelayTime: PropTypes.number,
+      removable: PropTypes.bool
     })
   ),
   fixed: PropTypes.bool,
+  block: PropTypes.bool,
   verticalPosition: PropTypes.string,
   horizontalPosition: PropTypes.string
 };
 
 ToastWrapper.defaultProps = {
   toasts: [],
-  fixed: true
+  fixed: true,
+  block: false,
+  verticalPosition: 'top',
+  horizontalPosition: 'center'
 };
 
 export default ToastWrapper;

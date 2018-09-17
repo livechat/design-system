@@ -84,6 +84,9 @@ $base-class: 'toast';
     &--fixed {
       position: fixed;
     }
+    &--block {
+      position: static;
+    }
     &--horizontal-center {
       left: calc( 50% - (.5 * #{$toast-width}));
     }

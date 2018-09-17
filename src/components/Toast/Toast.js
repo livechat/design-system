@@ -15,6 +15,7 @@ const Toast = props => {
     variant,
     onClose,
     removable,
+    toastId,
     ...restProps
   } = props;
 
@@ -28,7 +29,7 @@ const Toast = props => {
   return (
     <div {...restProps} className={componentClassNames}>
       <div className={styles.toast__icon}>
-        <ToastIcon toastType={variant} />
+        <ToastIcon variant={variant} />
       </div>
       <div className={styles.toast__content}>{children}</div>
       {removable &&
