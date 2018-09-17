@@ -28,7 +28,10 @@ module.exports = {
       sections: [
         {
           name: 'Alerts',
-          components: './src/components/Toast/Toast.js'
+          components: [
+            './src/components/Toast/Toast.js',
+            './src/components/Toast/ToastProvider.js'
+          ]
         },
         {
           name: 'Button',

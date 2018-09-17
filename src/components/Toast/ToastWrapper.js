@@ -22,10 +22,12 @@ const ToastWrapper = props => {
     const wrapperClassNames = cx({
       [baseClass]: true,
       [`${baseClass}--fixed`]: fixed,
-      [`${baseClass}--horizontal-${horizontalPosition}`]:
-        fixed && HORIZONTAL_POSITION.some(s => s === horizontalPosition),
-      [`${baseClass}--vertical-${verticalPosition}`]:
-        fixed && VERTICAL_POSITION.some(s => s === verticalPosition)
+      [`${baseClass}--horizontal-${horizontalPosition}`]: HORIZONTAL_POSITION.some(
+        s => s === horizontalPosition
+      ),
+      [`${baseClass}--vertical-${verticalPosition}`]: VERTICAL_POSITION.some(
+        s => s === verticalPosition
+      )
     });
     return wrapperClassNames;
   };

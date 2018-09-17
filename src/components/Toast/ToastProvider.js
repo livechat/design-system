@@ -64,12 +64,14 @@ class ToastProvider extends React.Component {
     const { itemsLimit } = this.props;
     const { toasts } = this.state;
 
+    const toastId = generateUniqueId(toasts);
+
     if (itemsLimit && Object.keys(toasts).length >= itemsLimit) {
-      return this.addToQueue(toast);
+      this.addToQueue({ ...toast, id: toastId });
+      return toastId;
     }
 
-    const toastId = generateUniqueId(toasts);
-    return this.setState(
+    this.setState(
       {
         toasts: {
           ...toasts,
@@ -91,6 +93,7 @@ class ToastProvider extends React.Component {
         }
       }
     );
+    return toastId;
   };
 
   addToQueue = toast => {
@@ -113,9 +116,14 @@ class ToastProvider extends React.Component {
 
   removeToast = toastId => {
     const { [toastId]: id, ...restToasts } = this.state.toasts;
+    const filteredQueue = this.state.queue.filter(
+      queued => queued.id !== toastId
+    );
+
     this.setState(
       {
-        toasts: { ...restToasts }
+        toasts: { ...restToasts },
+        queue: filteredQueue
       },
       () => {
         if (this.shouldPickFromQueue()) {
@@ -133,7 +141,7 @@ class ToastProvider extends React.Component {
 
   error = opts => this.addToast({ ...opts, variant: ERROR });
 
-  default = opts => {
+  notification = opts => {
     const { variant, ...restOpts } = opts;
     return this.addToast(restOpts);
   };
@@ -151,26 +159,29 @@ class ToastProvider extends React.Component {
 
     return (
       <React.Fragment>
-        {this.wrappers.map(({ id, vertical, horizontal }) => (
-          <ToastWrapper
-            key={id}
-            {...restProps}
-            verticalPosition={vertical}
-            horizontalPosition={horizontal}
-            toasts={toasts.filter(
-              toast =>
-                toast.horizontalPosition === horizontal &&
-                toast.verticalPosition === vertical
-            )}
-          />
-        ))}
+        {this.wrappers.map(({ id, vertical, horizontal }) => {
+          const wrapperToasts = toasts.filter(
+            toast =>
+              toast.horizontalPosition === horizontal &&
+              toast.verticalPosition === vertical
+          );
+          return (
+            <ToastWrapper
+              key={id}
+              {...restProps}
+              verticalPosition={vertical}
+              horizontalPosition={horizontal}
+              toasts={wrapperToasts}
+            />
+          );
+        })}
         <ToastContext.Provider
           value={{
             success: this.success,
             info: this.info,
             warning: this.warning,
             error: this.error,
-            default: this.default,
+            notification: this.notification,
             removeToast: this.removeToast,
             removeAllToasts: this.removeAllToasts
           }}
@@ -183,11 +194,19 @@ class ToastProvider extends React.Component {
 }
 
 ToastProvider.propTypes = {
-  itemsLimit: PropTypes.number
+  /**
+   * limit of visible toasts
+   */
+  itemsLimit: PropTypes.number,
+  /**
+   * fixed position of toasts
+   */
+  fixed: PropTypes.bool
 };
 
 ToastProvider.defaultProps = {
-  itemsLimit: 1
+  itemsLimit: 1,
+  fixed: true
 };
 
 export default ToastProvider;

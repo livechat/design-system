@@ -79,9 +79,10 @@ $base-class: 'toast';
   &-wrapper {
     display: flex;
     align-items: center;
+    z-index: 120;
+    position: absolute;
     &--fixed {
       position: fixed;
-      z-index: 120;
     }
     &--horizontal-center {
       left: calc( 50% - (.5 * #{$toast-width}));
