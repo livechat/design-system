@@ -37,7 +37,7 @@ const CheckboxField = props => {
           <input
             className={styles[`${baseClass}__input`]}
             {...restProps}
-            type="radio"
+            type="checkbox"
             id={id}
             checked={checked}
             disabled={disabled}

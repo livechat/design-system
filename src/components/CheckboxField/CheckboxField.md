@@ -8,8 +8,8 @@ initialState = { checked: false };
 <CheckboxField
   checked={state.checked}
   onClick={() => setState({checked: !state.checked})}
-  id='checkbox-example-1'
-  description='checkbox helper text'
+  id="checkbox-example-1"
+  description="checkbox helper text"
 >
   Checkbox label
 </CheckboxField>
@@ -18,8 +18,8 @@ initialState = { checked: false };
   <ComponentHtmlMarkup>
     <CheckboxField
       checked
-      id='checkbox-example-1'
-      description='checkbox helper text'
+      id="checkbox-example-1"
+      description="checkbox helper text"
     >
       Checkbox label
     </CheckboxField>
@@ -32,7 +32,7 @@ initialState = { checked: false };
 <CheckboxField
   checked
   disabled
-  id='checkbox-example-2'
+  id="checkbox-example-2"
 >
   Checkbox Field label
 </CheckboxField>
@@ -42,7 +42,7 @@ initialState = { checked: false };
     <CheckboxField
       checked
       disabled
-      id='checkbox-example-2'
+      id="checkbox-example-2"
     >
       Checkbox Field label
     </CheckboxField>
