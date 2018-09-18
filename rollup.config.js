@@ -44,7 +44,7 @@ const commonPlugins = [
   }),
   babel({
     exclude: 'node_modules/**',
-    plugins: ['external-helpers']
+    plugins: ['external-helpers', 'transform-react-remove-prop-types']
   }),
   commonjs()
 ];
@@ -66,11 +66,10 @@ const umdConfig = mergeAll([
       name: 'DesignSystem',
       globals: {
         react: 'React',
-        'react-dom': 'ReactDOM',
-        'prop-types': 'PropTypes'
+        'react-dom': 'ReactDOM'
       }
     },
-    external: Object.keys(pkg.peerDependencies || {}).concat('prop-types')
+    external: Object.keys(pkg.peerDependencies || {})
   }
 ]);
 

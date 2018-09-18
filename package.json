@@ -45,6 +45,7 @@
     "babel-plugin-transform-imports": "^1.5.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.15",
     "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2015-rollup": "^3.0.0",
@@ -80,6 +81,7 @@
     "precss": "^3.1.2",
     "prettier": "1.14.2",
     "prettier-eslint-cli": "^4.7.0",
+    "prop-types": "^15.6.2",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-styleguidist": "7.0.20",
@@ -102,7 +104,6 @@
   "dependencies": {
     "@livechat/data-utils": "^0.2.3",
     "classnames": "^2.2.6",
-    "prop-types": "^15.6.2",
     "react-material-icon-svg": "^1.7.0"
   },
   "postcss": {},
