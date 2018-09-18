@@ -32,6 +32,7 @@ $base-class: 'checkbox';
     height: 10px;
     fill: #fff;
     transition: all 0.2s ease;
+    pointer-events: none;
   }
 
   &--selected {

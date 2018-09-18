@@ -18,8 +18,8 @@ Form.propTypes = {
    * Provide children to be rendered inside of the <form> element
    */
   children: PropTypes.node.isRequired,
-  onSubmit: PropTypes.func,
-  header: PropTypes.node,
+  labelText: PropTypes.string,
+  helperText: PropTypes.string,
   /**
    * Provide a custom className to be applied on the containing <form> node
    */

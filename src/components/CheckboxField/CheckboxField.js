@@ -31,7 +31,7 @@ const CheckboxField = props => {
 
   return (
     <div className={mergedClassNames}>
-      <label className={styles[`${baseClass}__label`]} htmlFor={id}>
+      <label className={styles[`${baseClass}__label`]}>
         <div className={styles[`${baseClass}__square`]}>
           <CheckIcon className={styles[`${baseClass}__checkmark`]} />
           <input

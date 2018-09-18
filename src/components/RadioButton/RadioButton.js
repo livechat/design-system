@@ -30,7 +30,7 @@ const RadioButton = props => {
 
   return (
     <div className={mergedClassNames}>
-      <label className={styles[`${baseClass}__label`]} htmlFor={id}>
+      <label className={styles[`${baseClass}__label`]}>
         <div className={styles[`${baseClass}__circle`]}>
           <span className={styles[`${baseClass}__inner-circle`]} />
           <input
@@ -55,8 +55,6 @@ const RadioButton = props => {
 
 RadioButton.propTypes = {
   className: PropTypes.string,
-  id: PropTypes.string.isRequired,
-  onClick: PropTypes.func,
   onChange: PropTypes.func,
   checked: PropTypes.bool,
   children: PropTypes.node.isRequired,

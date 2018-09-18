@@ -28,12 +28,12 @@
 
   &:hover {
     border-color: $field-hover-border-color;
-    outline: 1px solid transparent;
+    outline: 0;
   }
 
   &:focus {
     border-color: $primary-color;
-    outline: 1px solid transparent;
+    outline: 0;
   }
 
   &--error, &--error:focus {
