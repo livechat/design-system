@@ -8,3 +8,9 @@ export {
   ToastProvider,
   ToastConsumer
 } from './Toast';
+
+export {
+  NotificationProvider,
+  ToastConsumerNew,
+  notificationConnect
+} from './NotificationSystem';

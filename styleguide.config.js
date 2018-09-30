@@ -35,6 +35,10 @@ module.exports = {
           ]
         },
         {
+          name: 'Notification System',
+          content: './src/components/NotificationSystem/NotificationSystem.md'
+        },
+        {
           name: 'Button',
           components: './src/components/Button/Button.js'
         },

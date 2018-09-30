@@ -11,3 +11,6 @@ global.ToastWrapper = Components.ToastWrapper;
 global.withToast = Components.withToast;
 global.ToastProvider = Components.ToastProvider;
 global.ToastConsumer = Components.ToastConsumer;
+global.NotificationProvider = Components.NotificationProvider;
+global.ToastConsumerNew = Components.ToastConsumerNew;
+global.notificationConnect = Components.notificationConnect;

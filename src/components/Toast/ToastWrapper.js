@@ -36,30 +36,28 @@ const ToastWrapper = props => {
   return (
     <div className={getWrapperClassNames()}>
       <TransitionGroup>
-        {props.toasts.map(
-          ({ toastId, variant, content, onClose, removable }) => (
-            <CSSTransition
-              key={toastId}
-              classNames={{
-                enter: 'lc-toast--animation-appear',
-                enterActive: 'lc-toast--animation-appear-active',
-                exit: 'lc-toast--animation-exit',
-                exitActive: 'lc-toast--animation-exit-active'
-              }}
-              appear={fixed}
-              timeout={ANIMATION_TIME}
+        {props.toasts.map(({ id, variant, content, onClose, removable }) => (
+          <CSSTransition
+            key={id}
+            classNames={{
+              enter: 'lc-toast--animation-appear',
+              enterActive: 'lc-toast--animation-appear-active',
+              exit: 'lc-toast--animation-exit',
+              exitActive: 'lc-toast--animation-exit-active'
+            }}
+            appear={fixed}
+            timeout={ANIMATION_TIME}
+          >
+            <Toast
+              variant={variant}
+              onClose={onClose}
+              removable={removable}
+              className={styles.toast__single}
             >
-              <Toast
-                variant={variant}
-                onClose={onClose}
-                removable={removable}
-                className={styles.toast__single}
-              >
-                {content}
-              </Toast>
-            </CSSTransition>
-          )
-        )}
+              {content}
+            </Toast>
+          </CSSTransition>
+        ))}
       </TransitionGroup>
     </div>
   );
