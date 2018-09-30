@@ -16,7 +16,7 @@ $base-class: 'checkbox';
     width: 16px;
     height: 16px;
     border-radius: 4px;
-    background-color:#f3f7f9;
+    background-color: #f3f7f9;
     border: 1px solid #bcc6d0;
     margin-right: 8px;
     transition: all 0.2s ease;
@@ -40,7 +40,7 @@ $base-class: 'checkbox';
       background-color: $primary-color;
       border-color: $primary-color;
     }
-  
+
     .#{$base-class}__checkmark {
       opacity: 1;
     }
@@ -65,7 +65,10 @@ $base-class: 'checkbox';
         border-color: $font-tertiary-color;
         background-color: $font-tertiary-color;
       }
-      &__label, &__input, &__text {
+
+      &__label,
+      &__input,
+      &__text {
         color: $font-tertiary-color;
         cursor: not-allowed;
       }
@@ -76,4 +79,4 @@ $base-class: 'checkbox';
     cursor: default;
     margin-left: 24px;
   }
-} 
+}

@@ -3,6 +3,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-*[class^="lc-"], *[class^="lc-"]:before, *[class^="lc-"]:after {
+
+*[class^="lc-"],
+*[class^="lc-"]::before,
+*[class^="lc-"]::after {
   box-sizing: inherit;
 }

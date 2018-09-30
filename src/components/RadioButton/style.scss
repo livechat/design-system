@@ -39,7 +39,7 @@ $base-class: 'radio';
     .#{$base-class}__circle {
       border-color: $primary-color;
     }
-  
+
     .#{$base-class}__inner-circle {
       opacity: 1;
     }
@@ -63,10 +63,14 @@ $base-class: 'radio';
         border-color: $font-tertiary-color;
         opacity: 0.4;
       }
+
       &__inner-circle {
         background-color: $font-tertiary-color;
       }
-      &__label, &__input, &__text {
+
+      &__label,
+      &__input,
+      &__text {
         color: $font-tertiary-color;
         cursor: not-allowed;
       }
@@ -77,5 +81,4 @@ $base-class: 'radio';
     cursor: default;
     margin-left: 24px;
   }
-} 
-
+}

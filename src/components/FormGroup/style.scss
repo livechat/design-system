@@ -7,14 +7,17 @@ $base-class: 'form-group';
   margin: 0;
   padding: 0;
   min-width: auto;
+
   &__header {
     margin-bottom: 16px;
   }
+
   &__helper {
     font-size: 15px;
     color: $font-secondary-color;
     line-height: 20px;
   }
+
   &__label {
     display: block;
     font-size: 16px;
@@ -23,5 +26,4 @@ $base-class: 'form-group';
     color: $font-primary-color;
     line-height: 20px;
   }
-} 
-
+}

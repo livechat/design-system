@@ -81,6 +81,7 @@
     "precss": "^3.1.2",
     "prettier": "1.14.2",
     "prettier-eslint-cli": "^4.7.0",
+    "prettier-stylelint": "^0.4.2",
     "prop-types": "^15.6.2",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
@@ -94,6 +95,10 @@
     "rollup-plugin-replace": "^1.1.1",
     "rollup-plugin-uglify": "^2.0.1",
     "sass-loader": "^7.1.0",
+    "stylelint": "^9.6.0",
+    "stylelint-config-recommended-scss": "^3.2.0",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-scss": "^3.3.1",
     "webpack": "^3.6.0",
     "webpack-combine-loaders": "^2.0.3"
   },

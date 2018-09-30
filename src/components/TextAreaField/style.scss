@@ -17,12 +17,12 @@
     opacity: 0.4; /* Firefox */
   }
 
-  &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  &::-ms-input-placeholder { /* Microsoft Edge */
     color: $font-primary-color;
     opacity: 0.4;
   }
 
-  &::-ms-input-placeholder { /* Microsoft Edge */
+  &:-ms-input-placeholder { /* Internet Explorer 10-11 */
     color: $font-primary-color;
     opacity: 0.4;
   }
@@ -37,7 +37,8 @@
     outline: 0;
   }
 
-  &--error, &--error:focus {
+  &--error,
+  &--error:focus {
     border-color: $error-color;
   }
 

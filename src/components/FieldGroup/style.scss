@@ -5,15 +5,17 @@ $base-class: 'field-group';
   display: flex;
   align-items: flex-start;
   margin: -8px 0;
+
   & > * {
     padding: 8px 0;
   }
+
   &--inline {
     flex-direction: row;
     margin: 0 -8px;
+
     & > * {
       padding: 0 8px;
     }
   }
-} 
-
+}
