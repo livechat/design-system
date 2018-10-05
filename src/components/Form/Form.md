@@ -75,29 +75,29 @@ onSubmit = (e) => {
   formFooter={<Button primary submit>Save changes</Button>}
 >
   <FormGroup labelText='Personal data' helperText={'Fill fields with your name and surname'}>
-    <FieldGroup inline>
-    <InputField
-      value={state.name}
-      name='name'
-      labelText='Name'
-      required
-      error={state.nameError}
-      id='input-field-example-1'
-      placeholder='Name...'
-      description='Field is required and should contain only letters'
-      onChange={onInputChange}
-    />
-    <InputField
-      value={state.surname}
-      labelText='Surname'
-      name='surname'
-      required
-      error={state.surnameError}
-      id='input-field-example-1'
-      placeholder='Surname...'
-      description='Field is required and should contain only letters'
-      onChange={onInputChange}
-    />
+    <FieldGroup inline stretch>
+      <InputField
+        value={state.name}
+        name='name'
+        labelText='Name'
+        required
+        error={state.nameError}
+        id='input-field-example-1'
+        placeholder='Name...'
+        description='Field is required and should contain only letters'
+        onChange={onInputChange}
+      />
+      <InputField
+        value={state.surname}
+        labelText='Surname'
+        name='surname'
+        required
+        error={state.surnameError}
+        id='input-field-example-1'
+        placeholder='Surname...'
+        description='Field is required and should contain only letters'
+        onChange={onInputChange}
+      />
     </FieldGroup>
     <TextAreaField
       value={state.description}

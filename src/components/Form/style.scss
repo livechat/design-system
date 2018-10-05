@@ -1,12 +1,8 @@
 @import '../../scss/variables/colors';
 
 .form {
+  &__header,
   &__footer {
-    margin-top: 32px;
-    margin-bottom: 32px;
-  }
-
-  &__header {
     margin-bottom: 32px;
   }
 

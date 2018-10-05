@@ -18,4 +18,10 @@ $base-class: 'field-group';
       padding: 0 8px;
     }
   }
+
+  &--stretched {
+    & > * {
+      width: 100%;
+    }
+  }
 }
