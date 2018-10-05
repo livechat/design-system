@@ -18,7 +18,7 @@ class Tooltip extends React.Component {
       yPosition: 0
     };
 
-    this.scrollListener = throttle(() => this.onWindowScroll(), 50);
+    this.scrollListener = throttle(50, this.onWindowScroll);
   }
 
   static getDerivedStateFromProps(props) {

@@ -29,7 +29,7 @@ const Tab = ({ onSelect, href, isSelected, children, description }) => {
 Tab.propTypes = {
   children: PropTypes.node.isRequired,
   onSelect: PropTypes.func,
-  description: PropTypes.string,
+  description: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   href: PropTypes.string,
   isSelected: PropTypes.bool
 };
