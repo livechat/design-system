@@ -1,0 +1,18 @@
+$base-class: 'text-field';
+
+.#{$base-class} {
+  margin-bottom: 20px;
+
+  &--inline {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__label--inline {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 38px;
+    margin-right: 10px;
+  }
+}

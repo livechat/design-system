@@ -24,15 +24,7 @@
     transition: color 0.25s;
   }
 
-  &:hover {
-    color: #000;
-    text-decoration: none;
-    .tab__description {
-      color: #000;
-    }
-  }
-
-  &:before {
+  &::before {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -46,11 +38,22 @@
 
   &--selected {
     font-weight: 700;
-    &:before {
-      height: 5px;
-    }
+
     .tab__description {
       color: $font-primary-color;
+    }
+
+    &::before {
+      height: 5px;
+    }
+  }
+
+  &:hover {
+    color: #000;
+    text-decoration: none;
+
+    .tab__description {
+      color: #000;
     }
   }
 }
