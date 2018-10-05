@@ -12,7 +12,7 @@ const ButtonWithToast = ({ notification, children }) => {
   const onClick = () => {
     
     let toastId = state.currentToastId;
-    // if (!state.currentToastId) {
+    if (!state.currentToastId) {
       const opts = {
         type: 'toast',
         payload: {
@@ -24,10 +24,10 @@ const ButtonWithToast = ({ notification, children }) => {
         }
       };
       toastId = notification.add(opts);
-    // } else {
-    //   notification.remove(toastId);
-    //   toastId = null;
-    // }
+    } else {
+      notification.remove(toastId);
+      toastId = null;
+    }
     setState({
       currentToastId: toastId
     });
@@ -37,6 +37,7 @@ const ButtonWithToast = ({ notification, children }) => {
 }
 
 const ToastedButton = notificationConnect(ButtonWithToast);
+
 <div>
 <NotificationProvider>
   <ToastConsumerNew horizontalPosition="center" fixed verticalPosition="top" />

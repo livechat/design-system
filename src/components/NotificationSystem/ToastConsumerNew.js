@@ -27,15 +27,6 @@ class ToastConsumerNew extends React.Component {
     return true;
   };
 
-  shouldPickFromQueue = () => {
-    const { queue } = this.state;
-    const { toasts, itemsLimit } = this.props;
-
-    return (
-      itemsLimit && queue.length > 0 && Object.keys(toasts).length < itemsLimit
-    );
-  };
-
   render() {
     const {
       verticalPosition,

@@ -2,12 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { generateUniqueId } from '@livechat/data-utils';
 import NotificationContext from './NotificationContext';
+import NotificationQueueManager from './NotificationQueueManager';
 
 const initialState = {
   notifications: {}
 };
 
 class NotificationProvider extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = initialState;
+    this.queueManager = new NotificationQueueManager(0, 10);
+  }
   state = initialState;
 
   add = opts => {
@@ -25,10 +31,17 @@ class NotificationProvider extends React.Component {
 
     const notificationId = generateUniqueId(notifications);
 
+    if (this.queueManager.shouldAddToQueue(Object.keys(notifications))) {
+      return this.queueManager.addToQueue();
+    }
+
     this.setState({
       notifications: {
         ...notifications,
-        [notificationId]: notification
+        [notificationId]: {
+          ...notification,
+          id: notificationId
+        }
       }
     });
     return notificationId;
@@ -36,7 +49,7 @@ class NotificationProvider extends React.Component {
 
   remove = notificationId => {
     const {
-      [notificationId]: id,
+      [notificationId]: removedNotification,
       ...restNotifications
     } = this.state.notifications;
 
