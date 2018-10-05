@@ -16,7 +16,7 @@ const TextField = props => {
     description,
     labelText,
     className,
-    id,
+    htmlFor,
     children
   } = props;
 
@@ -36,7 +36,7 @@ const TextField = props => {
           [`${baseClass}__label--inline`]: inline
         })}
       >
-        <FieldLabel htmlFor={id}>{labelText}</FieldLabel>
+        <FieldLabel htmlFor={htmlFor}>{labelText}</FieldLabel>
       </div>
       <div>
         {children}
@@ -49,7 +49,7 @@ const TextField = props => {
 
 TextField.propTypes = {
   labelText: PropTypes.string,
-  id: PropTypes.string.isRequired,
+  htmlFor: PropTypes.string.isRequired,
   className: PropTypes.string,
   inline: PropTypes.bool,
   error: PropTypes.string,

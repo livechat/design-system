@@ -1,7 +1,7 @@
 @import '../../scss/variables/colors';
 
 .form {
-  & > :last-child {
+  &__footer {
     margin-top: 32px;
     margin-bottom: 32px;
   }

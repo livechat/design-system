@@ -22,7 +22,7 @@ const TextAreaField = props => {
       description={description}
       labelText={labelText}
       className={className}
-      id={id}
+      htmlFor={id}
     >
       <TextArea
         id={id}

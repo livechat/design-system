@@ -22,7 +22,7 @@ const InputField = props => {
       description={description}
       labelText={labelText}
       className={className}
-      id={id}
+      htmlFor={id}
     >
       <Input {...restProps} className={fieldClassName} id={id} error={error} />
     </TextField>

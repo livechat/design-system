@@ -67,7 +67,13 @@ onSubmit = (e) => {
   }  
 }
 
-<Form onSubmit={onSubmit} labelText='Settings' helperText='Use form layout to arrange fields within a form using standard spacing. We recomme stacking fields vertically for easier scanning and faster completion, but you can also arrange them vertically.' noValidate>
+<Form
+  onSubmit={onSubmit}
+  labelText='Settings'
+  helperText='Use form layout to arrange fields within a form using standard spacing. We recomme stacking fields vertically for easier scanning and faster completion, but you can also arrange them vertically.'
+  noValidate
+  formFooter={<Button primary submit>Save changes</Button>}
+>
   <FormGroup labelText='Personal data' helperText={'Fill fields with your name and surname'}>
     <FieldGroup inline>
     <InputField
@@ -124,7 +130,6 @@ onSubmit = (e) => {
       </RadioButton>
     </FieldGroup>
   </FormGroup>
-  <Button primary submit>Save changes</Button>
 </Form>
 ```
 
