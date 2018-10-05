@@ -23,7 +23,7 @@ To install LiveChat Design System Components Library with npm, run the following
 ```
 npm install --save @livechat/design-system
 ```
-Libary has separate css file with components styles. You need to import it in your app as well. You can find it in `mode-modules/@livechat/design-system/dist/design-system.css`
+Libary has separate css file with components styles. You need to import it in your app as well. You can find it in `node-modules/@livechat/design-system/dist/design-system.css`
 
 
 ## Contribution
@@ -59,6 +59,7 @@ A typical UI component should comply with the following guidelines:
 * Component should use scss style file
 * Css should be inspired by BEM, but doesn't need to follow it strickly 
 * Style file should use defined sass variables, mixins etc.
+* Component should have typescript typings
 
 You can view and test your component in two ways:
 - use styleguidist as development enviroment for your component
