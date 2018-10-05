@@ -24,6 +24,18 @@
     transition: color 0.25s;
   }
 
+  &::before {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    display: block;
+    content: '';
+    background-color: $primary-color;
+    height: 0;
+  }
+
   &--selected {
     font-weight: 700;
 
@@ -43,18 +55,6 @@
     .tab__description {
       color: #000;
     }
-  }
-
-  &::before {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    display: block;
-    content: '';
-    background-color: $primary-color;
-    height: 0;
   }
 }
 
