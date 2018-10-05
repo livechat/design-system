@@ -49,6 +49,7 @@
     background-color: $primary-color;
     color: #fff;
     border-color: $primary-color;
+
     &:focus {
       box-shadow: 0 0 0 1px $primary-color;
     }
@@ -58,11 +59,12 @@
     background-color: $error-color;
     color: #fff;
     border-color: $error-color;
+
     &:focus {
       box-shadow: 0 0 0 1px $error-color;
     }
   }
-  
+
   &--large {
     font-size: 15px;
     padding: 0 24px;

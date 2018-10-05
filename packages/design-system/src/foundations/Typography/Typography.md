@@ -8,15 +8,16 @@ Keep the number of styles to the minimum, so as not to confuse users. Typographi
 
 ## Text sizes
 
-<h1 style="font-size: 32px; line-height: 40px; font-weight: 600;">H1/Heading Large</h1>
-
+```js noeditor
+<h1>H1/Heading Large</h1>
+```
 ```css
 font-size: 32px;
 line-height: 40px;
 font-weight: 600;
 ```
 
-<h2 style={{fontSize: '24px', lineHeight: '28px', fontWeight: 600}}>H2/Page title/Modal title</h2>
+<h2>H2/Page title/Modal title</h2>
 
 ```css
 font-size: 24px;
@@ -24,7 +25,7 @@ line-height: 28px;
 font-weight: 600;
 ```
 
-<h3 style={{fontSize: '20px', lineHeight: '24px', fontWeight: 600}}>H3/Heading</h3>
+<h3>H3/Heading</h3>
 
 ```css
 font-size: 20px;
@@ -32,7 +33,7 @@ line-height: 24px;
 font-weight: 600;
 ```
 
-<h4 style={{fontSize: '16px', lineHeight: '24px', fontWeight: 600}}>H4/Subheading</h4>
+<h4>H4/Subheading</h4>
 
 ```css
 font-size: 16px;
@@ -40,11 +41,11 @@ line-height: 24px;
 font-weight: 600;
 ```
 
-<p style={{fontSize: '15px', lineHeight: '20px', fontWeight: 400}}>Body default</p>
+<p>Body default</p>
 
 ```css
 font-size: 15px;
-line-height: 20px;
+line-height: 22px;
 font-weight: 400;
 ```
 
