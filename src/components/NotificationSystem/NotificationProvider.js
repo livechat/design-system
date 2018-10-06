@@ -26,10 +26,6 @@ class NotificationProvider extends React.Component {
     Object.keys(this.timeouts).forEach(t => clearTimeout(t));
   }
 
-  get hasQueue() {
-    return !!this.queueManager;
-  }
-
   setRemoveDelay = notification => {
     if (notification.autoHideDelayTime) {
       this.timeouts[notification.id] = setTimeout(() => {
@@ -116,6 +112,9 @@ class NotificationProvider extends React.Component {
   removeAll = () => {
     const notificationsIds = Object.keys(this.state.notifications);
     this.setState(initialState);
+    if (this.queueManager) {
+      this.queueManager.clearQueue();
+    }
     return notificationsIds;
   };
 
