@@ -7,7 +7,7 @@ export default class NotificationQueueManager {
 
   shouldAddToQueue = currentItems => {
     if (
-      currentItems.length > this.itemsLimit &&
+      currentItems.length >= this.itemsLimit &&
       this.queue.length <= this.queueLimit
     ) {
       return true;
@@ -30,15 +30,11 @@ export default class NotificationQueueManager {
   };
 
   pickFromQueue = () => {
-    if (this.state.queue.length > 0) {
-      const [picked, ...restQueued] = this.queue;
+    const [picked, ...restQueued] = this.queue;
 
-      this.queue = [...restQueued];
+    this.queue = restQueued;
 
-      return picked;
-    }
-
-    return null;
+    return picked;
   };
 
   clearQueue = () => {

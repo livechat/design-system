@@ -12,38 +12,71 @@ class NotificationProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = initialState;
-    this.queueManager = new NotificationQueueManager(0, 10);
+    this.timeouts = {};
+    if (props.queueLimit) {
+      this.queueManager = new NotificationQueueManager(
+        props.itemsLimit,
+        props.queueLimit
+      );
+    }
   }
   state = initialState;
+
+  componentWillUnmount() {
+    Object.keys(this.timeouts).forEach(t => clearTimeout(t));
+  }
+
+  get hasQueue() {
+    return !!this.queueManager;
+  }
+
+  setRemoveDelay = notification => {
+    if (notification.autoHideDelayTime) {
+      this.timeouts[notification.id] = setTimeout(() => {
+        this.remove(notification.id);
+      }, notification.autoHideDelayTime);
+    }
+  };
 
   add = opts => {
     const defaults = {
       type: 'toast',
+      autoHideDelayTime: null,
       payload: {}
-    };
-
-    const notification = {
-      ...defaults,
-      ...opts
     };
 
     const { notifications } = this.state;
 
     const notificationId = generateUniqueId(notifications);
 
-    if (this.queueManager.shouldAddToQueue(Object.keys(notifications))) {
-      return this.queueManager.addToQueue();
+    const notification = {
+      ...defaults,
+      ...opts,
+      id: notificationId
+    };
+
+    if (
+      this.queueManager &&
+      this.queueManager.shouldAddToQueue(Object.keys(notifications))
+    ) {
+      return this.queueManager.addToQueue(notification);
     }
 
-    this.setState({
-      notifications: {
-        ...notifications,
-        [notificationId]: {
-          ...notification,
-          id: notificationId
+    if (Object.keys(notifications).length >= this.props.itemsLimit) {
+      return null;
+    }
+
+    this.setState(
+      {
+        notifications: {
+          ...notifications,
+          [notificationId]: {
+            ...notification
+          }
         }
-      }
-    });
+      },
+      () => this.setRemoveDelay(notification)
+    );
     return notificationId;
   };
 
@@ -53,17 +86,48 @@ class NotificationProvider extends React.Component {
       ...restNotifications
     } = this.state.notifications;
 
-    this.setState({
-      notifications: { ...restNotifications }
-    });
+    let newState = { notifications: { ...restNotifications } };
+    let notificationFromQueue;
+
+    if (
+      this.queueManager &&
+      this.queueManager.shouldPickFromQueue(Object.keys(restNotifications))
+    ) {
+      notificationFromQueue = this.queueManager.pickFromQueue();
+      newState = {
+        notifications: {
+          ...restNotifications,
+          [notificationFromQueue.id]: notificationFromQueue
+        }
+      };
+    }
+
+    this.clearDelayTimeout(notificationId);
+
+    if (!notificationFromQueue) {
+      this.setState(newState);
+      return null;
+    }
+
+    this.setState(newState, () => this.setRemoveDelay(notificationFromQueue));
+    return notificationFromQueue.id;
   };
 
   removeAll = () => {
+    const notificationsIds = Object.keys(this.state.notifications);
     this.setState(initialState);
+    return notificationsIds;
+  };
+
+  clearDelayTimeout = id => {
+    const { [id]: timeoutToClear, ...restTimeouts } = this.timeouts;
+    clearTimeout(timeoutToClear);
+    this.timeouts = restTimeouts;
   };
 
   render() {
     const { notifications } = this.state;
+
     return (
       <NotificationContext.Provider
         value={{
@@ -71,8 +135,7 @@ class NotificationProvider extends React.Component {
           remove: this.remove,
           removeAll: this.removeAll,
           notifications: Object.keys(notifications).map(id => ({
-            ...notifications[id],
-            id
+            ...notifications[id]
           }))
         }}
       >
@@ -83,7 +146,13 @@ class NotificationProvider extends React.Component {
 }
 
 NotificationProvider.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  itemsLimit: PropTypes.number,
+  queueLimit: PropTypes.number
+};
+
+NotificationProvider.defaultProps = {
+  itemsLimit: 1
 };
 
 export default NotificationProvider;

@@ -15,6 +15,7 @@ const ButtonWithToast = ({ notification, children }) => {
     if (!state.currentToastId) {
       const opts = {
         type: 'toast',
+        autoHideDelayTime: 1000,
         payload: {
           variant: 'success',
           content: 'Toast showed!',
@@ -39,27 +40,77 @@ const ButtonWithToast = ({ notification, children }) => {
 const ToastedButton = notificationConnect(ButtonWithToast);
 
 <div>
-<NotificationProvider>
-  <ToastConsumerNew horizontalPosition="center" fixed verticalPosition="top" />
-  <ToastConsumerNew horizontalPosition="left" fixed verticalPosition="top" />
-  <div>
-    <div style={{marginBottom: "15px"}}>
-      <label style={{marginRight: "15px"}}>Vertical position</label>
-      <select value={state.vertical} onChange={(event) => setState({ vertical: event.target.value})}>
-          <option value="top">Top</option>
-          <option value="bottom">Bottom</option>
-      </select>
+  <NotificationProvider>
+    <ToastConsumerNew horizontalPosition="center" fixed verticalPosition="top" />
+    <ToastConsumerNew horizontalPosition="left" fixed verticalPosition="top" />
+    <div>
+      <div style={{marginBottom: "15px"}}>
+        <label style={{marginRight: "15px"}}>Vertical position</label>
+        <select value={state.vertical} onChange={(event) => setState({ vertical: event.target.value})}>
+            <option value="top">Top</option>
+            <option value="bottom">Bottom</option>
+        </select>
+      </div>
+      <div style={{marginBottom: "15px"}}>
+        <label style={{marginRight: "15px"}}>Horizontal position</label>
+        <select value={state.horizontal} onChange={(event) => setState({ horizontal: event.target.value})}>
+            <option value="left">Left</option>
+            <option value="center">Center</option>
+            <option value="right">Right</option>
+        </select>
+      </div>
+      <ToastedButton>{(state.currentToastId) ? 'Hide' : 'Show'} toast</ToastedButton>
     </div>
-    <div style={{marginBottom: "15px"}}>
-      <label style={{marginRight: "15px"}}>Horizontal position</label>
-      <select value={state.horizontal} onChange={(event) => setState({ horizontal: event.target.value})}>
-          <option value="left">Left</option>
-          <option value="center">Center</option>
-          <option value="right">Right</option>
-      </select>
+  </NotificationProvider>
+</div>
+```
+
+
+
+
+
+```js
+const ButtonWithToast = ({ notification, children }) => {
+  const createRandomToast = () => {
+    const variants = ['success', 'warning', 'error', 'info', 'notification'];
+    const horizontalPositions = ['left', 'center', 'right'];
+    const verticalPositions = ['top', 'bottom'];
+
+    const randomVariant = variants[Math.floor(Math.random() * variants.length)];
+    const randomHorizontalPosition = horizontalPositions[Math.floor(Math.random() * horizontalPositions.length)];
+    const randomVerticalPosition = verticalPositions[Math.floor(Math.random() * verticalPositions.length)];
+
+    const opts = {
+      type: 'toast',
+      autoHideDelayTime: 5000,
+      payload: {
+        variant: randomVariant,
+        content: 'Toast showed!',
+        horizontalPosition: randomHorizontalPosition,
+        verticalPosition: randomVerticalPosition,
+        removable: true
+      }
+    };
+
+    return notification.add(opts);
+  }
+
+  return <Button onClick={createRandomToast}>{children}</Button>
+}
+
+const ToastedButton = notificationConnect(ButtonWithToast);
+
+<div>
+  <NotificationProvider itemsLimit={3} queueLimit={20}>
+    <ToastConsumerNew horizontalPosition="center" fixed verticalPosition="top" />
+    <ToastConsumerNew horizontalPosition="center" fixed verticalPosition="bottom" />
+    <ToastConsumerNew horizontalPosition="left" fixed verticalPosition="top" />
+    <ToastConsumerNew horizontalPosition="left" fixed verticalPosition="bottom" />
+    <ToastConsumerNew horizontalPosition="right" fixed verticalPosition="top" />
+    <ToastConsumerNew horizontalPosition="right" fixed verticalPosition="bottom" />
+    <div>
+      <ToastedButton>Show toast</ToastedButton>
     </div>
-    <ToastedButton>{(state.currentToastId) ? 'Hide' : 'Show'} toast</ToastedButton>
-  </div>
-</NotificationProvider>
+  </NotificationProvider>
 </div>
 ```
