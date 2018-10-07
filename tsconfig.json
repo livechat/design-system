@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "module": "es2015",
+    "moduleResolution": "node",
+    "target": "es2015",
+    "jsx": "react",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "removeComments": false,
+    "baseUrl": "src",
+    "paths": {
+      "components/*": ["components/*"],
+      "interfaces/*": ["interfaces/*"]
+    }
+  },
+  "include": ["./src/**/*.ts"],
+  "exclude": ["node_modules"],
+  "lib": ["es2017", "dom"],
+  "typeRoots": ["./node_modules/@types"]
+}

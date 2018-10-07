@@ -32,16 +32,15 @@ const Toast = props => {
         <ToastIcon variant={variant} />
       </div>
       <div className={styles.toast__content}>{children}</div>
-      {removable &&
-        onClose && (
-          <div
-            className={styles.toast__close}
-            aria-label="Close toast"
-            onClick={onClose}
-          >
-            <CloseIcon />
-          </div>
-        )}
+      {removable && (
+        <div
+          className={styles.toast__close}
+          aria-label="Close toast"
+          onClick={onClose}
+        >
+          <CloseIcon />
+        </div>
+      )}
     </div>
   );
 };

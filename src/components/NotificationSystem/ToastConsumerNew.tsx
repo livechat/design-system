@@ -1,16 +1,42 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import ToastWrapper from '../Toast/ToastWrapper';
 import { VARIANTS } from './constants';
 import NotificationContext from './NotificationContext';
+import { IToastConsumerProps } from './interfaces';
 
-// const callAll = (...fns) => (...args) => fns.forEach(fn => fn && fn(...args));
+const callAll = (...fns) => (...args) => fns.forEach(fn => fn && fn(...args));
 const initialState = {
   queue: []
 };
 
-class ToastConsumerNew extends React.Component {
-  state = initialState;
+interface IState {
+  queue: Array<any>;
+}
+
+class ToastConsumerNew extends React.Component<IToastConsumerProps, IState> {
+  static propTypes = {
+    /**
+     * limit of visible toasts
+     */
+    itemsLimit: PropTypes.number,
+    /**
+     * fixed position of toasts
+     */
+    fixed: PropTypes.bool,
+    verticalPosition: PropTypes.string,
+    horizontalPosition: PropTypes.string
+  };
+
+  static defaultProps = {
+    itemsLimit: 1,
+    fixed: true
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = initialState;
+  }
 
   validateToast = ({ payload }) => {
     if (!VARIANTS.some(v => v === payload.variant)) {
@@ -49,7 +75,10 @@ class ToastConsumerNew extends React.Component {
                 content: el.payload.content,
                 variant: el.payload.variant,
                 id: el.id,
-                removable: el.payload.removable
+                removable: el.payload.removable,
+                onClose: callAll(el.payload.onClose, () =>
+                  notificationSystem.remove(el.id)
+                )
               }))}
           />
         )}
@@ -57,23 +86,5 @@ class ToastConsumerNew extends React.Component {
     );
   }
 }
-
-ToastConsumerNew.propTypes = {
-  /**
-   * limit of visible toasts
-   */
-  itemsLimit: PropTypes.number,
-  /**
-   * fixed position of toasts
-   */
-  fixed: PropTypes.bool,
-  verticalPosition: PropTypes.string,
-  horizontalPosition: PropTypes.string
-};
-
-ToastConsumerNew.defaultProps = {
-  itemsLimit: 1,
-  fixed: true
-};
 
 export default ToastConsumerNew;
