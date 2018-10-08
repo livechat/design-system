@@ -6,7 +6,10 @@ const notificationConnect = Component =>
     return (
       <NotificationContext.Consumer>
         {({ add, remove, removeAll }) => (
-          <Component {...props} notification={{ add, remove, removeAll }} />
+          <Component
+            {...props}
+            notificationSystem={{ add, remove, removeAll }}
+          />
         )}
       </NotificationContext.Consumer>
     );

@@ -1,4 +1,4 @@
-import * as React from 'react';
+// <reference types="react" />
 
 export interface IToastConsumerProps {
   verticalPosition: string;

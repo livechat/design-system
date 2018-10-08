@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/livechat/design-system"
   },
-  "typings": "dist/index.d.ts",
+  "typings": "dist/design-system.d.ts",
   "main": "dist/design-system.cjs.js",
   "module": "dist/design-system.es.js",
   "jsnext:main": "dist/design-system.es.js",
@@ -20,7 +20,8 @@
   ],
   "scripts": {
     "start": "rollup -c --watch",
-    "build": "rollup -c",
+    "build": "rollup -c && npm run-script dts",
+    "dts": "dts-bundle --name @livechat/design-system --main src/interfaces/index.d.ts --baseDir . --out dist/design-system.d.ts",
     "prebuild": "rimraf dist",
     "prepare": "npm run build",
     "styleguide": "cross-env NODE_ENV=development styleguidist server",

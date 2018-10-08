@@ -1,4 +1,4 @@
-import * as React from 'react';
+// <reference types="react" />
 
 export interface INotificationContext {
   add?: (
@@ -40,4 +40,4 @@ export interface INotificationProviderProps {
 /* eslint-disable */
 export var NotificationProvider: React.ComponentType<INotificationProviderProps>;
 export var NotificationContext: React.Context<INotificationContext>;
-export var notificationConnect: React.ComponentType<React.ComponentClass>
+export var notificationConnect: <P extends INotificationContext>(Component: React.ComponentType<P>) => React.ComponentType<P>;

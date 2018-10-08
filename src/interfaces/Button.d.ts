@@ -1,8 +1,8 @@
-import * as React from 'react';
+// <reference types="react" />
 
 export type ButtonSize = 'compact' | 'large';
 
-export interface ButtonProps {
+export interface IButtonProps {
   children?: string;
   id?: string;
   primary?: boolean;
@@ -22,3 +22,6 @@ export interface ButtonProps {
   onBlur?(): void;
   renderIcon?: string | React.ReactNode;
 }
+
+/* eslint-disable */
+export var Button: React.ComponentType<IButtonProps>;

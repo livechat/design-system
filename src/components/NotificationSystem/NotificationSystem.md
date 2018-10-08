@@ -9,7 +9,7 @@ These components are based on new React context API.
 ```js
 initialState = { currentToastId: null, vertical: 'top', horizontal: 'center' };
 
-const ButtonWithToast = ({ notification, children }) => {
+const ButtonWithToast = ({ notificationSystem, children }) => {
   const onClick = () => {
     
     let toastId = state.currentToastId;
@@ -24,9 +24,9 @@ const ButtonWithToast = ({ notification, children }) => {
           removable: true
         }
       };
-      toastId = notification.add(opts);
+      toastId = notificationSystem.add(opts);
     } else {
-      notification.remove(toastId);
+      notificationSystem.remove(toastId);
       toastId = null;
     }
     setState({
@@ -72,7 +72,7 @@ const ToastedButton = notificationConnect(ButtonWithToast);
 Use NotificationSystem components to display Toasts with visible items limit and queue.
 
 ```js
-const ButtonWithToast = ({ notification, children }) => {
+const ButtonWithToast = ({ notificationSystem, children }) => {
   const createRandomToast = () => {
     const variants = ['success', 'warning', 'error', 'info', 'notification'];
     const horizontalPositions = ['left', 'center', 'right'];
@@ -94,7 +94,7 @@ const ButtonWithToast = ({ notification, children }) => {
       }
     };
 
-    return notification.add(opts);
+    return notificationSystem.add(opts);
   }
 
   return <Button onClick={createRandomToast}>{children}</Button>
