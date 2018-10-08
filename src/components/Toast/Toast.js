@@ -47,7 +47,7 @@ const Toast = props => {
 
 Toast.propTypes = {
   children: PropTypes.node.isRequired,
-  variant: PropTypes.oneOf(['success', 'warning', 'error', 'info']),
+  variant: PropTypes.oneOf(VARIANTS),
   onClose: PropTypes.func,
   removable: PropTypes.bool
 };

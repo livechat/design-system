@@ -30,7 +30,6 @@ module.exports = {
           name: 'Alerts',
           components: [
             './src/components/Toast/Toast.js',
-            './src/components/Toast/ToastProvider.js',
             './src/components/Toast/ToastWrapper.js'
           ]
         },

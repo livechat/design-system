@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import { IToastConsumerProps } from 'interfaces/Toast';
 import ToastWrapper from '../Toast/ToastWrapper';
 import { VARIANTS } from './constants';
 import NotificationContext from './NotificationContext';
-import { IToastConsumerProps } from './interfaces';
 
 const callAll = (...fns) => (...args) => fns.forEach(fn => fn && fn(...args));
 const initialState = {
@@ -14,7 +14,7 @@ interface IState {
   queue: Array<any>;
 }
 
-class ToastConsumerNew extends React.Component<IToastConsumerProps, IState> {
+class ToastConsumer extends React.Component<IToastConsumerProps, IState> {
   static propTypes = {
     /**
      * limit of visible toasts
@@ -87,4 +87,4 @@ class ToastConsumerNew extends React.Component<IToastConsumerProps, IState> {
   }
 }
 
-export default ToastConsumerNew;
+export default ToastConsumer;

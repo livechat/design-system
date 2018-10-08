@@ -33,16 +33,11 @@ export interface INotificationQueueManagerConstructor {
 }
 
 export interface INotificationProviderProps {
-  queueLimit: number;
-  itemsLimit: number;
-}
-
-export interface IToastConsumerProps {
-  verticalPosition: string;
-  horizontalPosition: string;
-  fixed: boolean;
+  queueLimit?: number;
+  itemsLimit?: number;
 }
 
 /* eslint-disable */
 export var NotificationProvider: React.ComponentType<INotificationProviderProps>;
-export var NotificationConsumer: React.Context<INotificationContext>;
+export var NotificationContext: React.Context<INotificationContext>;
+export var notificationConnect: React.ComponentType<React.ComponentClass>

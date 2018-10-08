@@ -2,8 +2,9 @@ The simplest way to use toasts from LiveChat Design System is using our ToastPro
 These components are based on new React context API.
 
 ### Usage
-- wrap your components with `ToastProvider` which makes the ToastProvider methods available to the rest of your app:
-- use `ToastContext` to get access to toast methods
+- wrap your components with `NotificationProvider` which makes the NotificationProvider methods available to the rest of your app,
+- use consumer component (i.e. `ToastConsumer`) where you need your notifications to appear,
+- use `NotificationContext` to get access to toast methods
 
 ```js
 initialState = { currentToastId: null, vertical: 'top', horizontal: 'center' };
@@ -15,7 +16,6 @@ const ButtonWithToast = ({ notification, children }) => {
     if (!state.currentToastId) {
       const opts = {
         type: 'toast',
-        autoHideDelayTime: 1000,
         payload: {
           variant: 'success',
           content: 'Toast showed!',
@@ -41,8 +41,12 @@ const ToastedButton = notificationConnect(ButtonWithToast);
 
 <div>
   <NotificationProvider>
-    <ToastConsumerNew horizontalPosition="center" fixed verticalPosition="top" />
-    <ToastConsumerNew horizontalPosition="left" fixed verticalPosition="top" />
+    <ToastConsumer horizontalPosition="center" fixed verticalPosition="top" />
+    <ToastConsumer horizontalPosition="center" fixed verticalPosition="bottom" />
+    <ToastConsumer horizontalPosition="left" fixed verticalPosition="top" />
+    <ToastConsumer horizontalPosition="left" fixed verticalPosition="bottom" />
+    <ToastConsumer horizontalPosition="right" fixed verticalPosition="top" />
+    <ToastConsumer horizontalPosition="right" fixed verticalPosition="bottom" />
     <div>
       <div style={{marginBottom: "15px"}}>
         <label style={{marginRight: "15px"}}>Vertical position</label>
@@ -65,9 +69,7 @@ const ToastedButton = notificationConnect(ButtonWithToast);
 </div>
 ```
 
-
-
-
+Use NotificationSystem components to display Toasts with visible items limit and queue.
 
 ```js
 const ButtonWithToast = ({ notification, children }) => {
@@ -101,13 +103,13 @@ const ButtonWithToast = ({ notification, children }) => {
 const ToastedButton = notificationConnect(ButtonWithToast);
 
 <div>
-  <NotificationProvider itemsLimit={3} queueLimit={20}>
-    <ToastConsumerNew horizontalPosition="center" fixed verticalPosition="top" />
-    <ToastConsumerNew horizontalPosition="center" fixed verticalPosition="bottom" />
-    <ToastConsumerNew horizontalPosition="left" fixed verticalPosition="top" />
-    <ToastConsumerNew horizontalPosition="left" fixed verticalPosition="bottom" />
-    <ToastConsumerNew horizontalPosition="right" fixed verticalPosition="top" />
-    <ToastConsumerNew horizontalPosition="right" fixed verticalPosition="bottom" />
+  <NotificationProvider itemsLimit={5} queueLimit={20}>
+    <ToastConsumer horizontalPosition="center" fixed verticalPosition="top" />
+    <ToastConsumer horizontalPosition="center" fixed verticalPosition="bottom" />
+    <ToastConsumer horizontalPosition="left" fixed verticalPosition="top" />
+    <ToastConsumer horizontalPosition="left" fixed verticalPosition="bottom" />
+    <ToastConsumer horizontalPosition="right" fixed verticalPosition="top" />
+    <ToastConsumer horizontalPosition="right" fixed verticalPosition="bottom" />
     <div>
       <ToastedButton>Show toast</ToastedButton>
     </div>

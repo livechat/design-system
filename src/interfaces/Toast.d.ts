@@ -3,7 +3,7 @@ import * as React from 'react';
 export interface IToastConsumerProps {
   verticalPosition: string;
   horizontalPosition: string;
-  fixed: boolean;
+  fixed?: boolean;
 }
 
 /* eslint-disable */

@@ -11,11 +11,9 @@ global.TooltipContent = Components.TooltipContent;
 
 global.Toast = Components.Toast;
 global.ToastWrapper = Components.ToastWrapper;
-global.withToast = Components.withToast;
-global.ToastProvider = Components.ToastProvider;
-global.ToastConsumer = Components.ToastConsumer;
+
 global.NotificationProvider = Components.NotificationProvider;
-global.ToastConsumerNew = Components.ToastConsumerNew;
+global.ToastConsumer = Components.ToastConsumer;
 global.notificationConnect = Components.notificationConnect;
 
 global.InputField = Components.InputField;
