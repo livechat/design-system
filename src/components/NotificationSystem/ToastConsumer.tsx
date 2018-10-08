@@ -6,15 +6,8 @@ import { VARIANTS } from './constants';
 import NotificationContext from './NotificationContext';
 
 const callAll = (...fns) => (...args) => fns.forEach(fn => fn && fn(...args));
-const initialState = {
-  queue: []
-};
 
-interface IState {
-  queue: Array<any>;
-}
-
-class ToastConsumer extends React.Component<IToastConsumerProps, IState> {
+class ToastConsumer extends React.Component<IToastConsumerProps> {
   static propTypes = {
     /**
      * limit of visible toasts
@@ -32,11 +25,6 @@ class ToastConsumer extends React.Component<IToastConsumerProps, IState> {
     itemsLimit: 1,
     fixed: true
   };
-
-  constructor(props) {
-    super(props);
-    this.state = initialState;
-  }
 
   validateToast = ({ payload }) => {
     if (!VARIANTS.some(v => v === payload.variant)) {
