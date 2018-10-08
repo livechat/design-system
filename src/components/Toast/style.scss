@@ -10,10 +10,10 @@ $base-class: 'toast';
   display: flex;
   align-items: center;
   width: $toast-width;
-  max-width: 90%;
+  min-width: 320px;
   padding: 10px 5px 10px 12px;
   font-size: 15px;
-  background: #ffffff;
+  background: #fff;
   font-weight: 600;
   font-style: normal;
   font-stretch: normal;
@@ -27,13 +27,15 @@ $base-class: 'toast';
     color: $font-primary-color;
   }
 
-  &__icon, &__close {
+  &__icon,
+  &__close {
     padding-right: 12px;
     align-self: baseline;
   }
 
   &__close {
     margin-left: auto;
+
     svg {
       display: flex;
       fill: $font-tertiary-color;
@@ -66,10 +68,13 @@ $base-class: 'toast';
     background: $info-color;
   }
 
-  &--success, &--warning, &--error, &--info {
+  &--success,
+  &--warning,
+  &--error,
+  &--info {
     .#{$base-class}__content {
-       color: #fff;
-     }
+      color: #fff;
+    }
 
     svg {
       fill: #fff;
@@ -81,68 +86,69 @@ $base-class: 'toast';
     align-items: center;
     z-index: 120;
     position: absolute;
+
     &--fixed {
       position: fixed;
     }
+
     &--block {
       position: static;
     }
+
     &--horizontal-center {
-      left: calc( 50% - (.5 * #{$toast-width}));
+      left: calc(50% - (0.5 * #{$toast-width}));
     }
+
     &--horizontal-left {
       left: 5px;
     }
+
     &--horizontal-right {
       right: 5px;
     }
 
     &--vertical-top {
       top: 5px;
+
+      .toast--animation-appear {
+        transform: translateY(-100%) !important;
+      }
+
+      .toast--animation-appear.toast--animation-appear-active {
+        transform: translateY(0) !important;
+        transition: transform $toast-appear-animation-timeout ease-in;
+      }
+
+      .toast--animation-exit {
+        transform: translateY(0) !important;
+      }
+
+      .toast--animation-exit.toast--animation-exit-active {
+        transform: translateY(-100%) !important;
+        transition: transform $toast-exit-animation-timeout ease-in;
+      }
     }
 
     &--vertical-bottom {
       bottom: 5px;
-    }
-  }
 
-  &-wrapper--vertical-top {
-    .toast--animation-appear {
-      transform: translateY(-100%) !important;
-    }
+      .toast--animation-appear {
+        transform: translateY(100%) !important;
+      }
 
-    .toast--animation-appear.toast--animation-appear-active {
-      transform: translateY(0) !important;
-      transition: transform $toast-appear-animation-timeout ease-in;
-    }
+      .toast--animation-appear.toast--animation-appear-active {
+        transform: translateY(0) !important;
+        transition: transform $toast-appear-animation-timeout ease-in;
+      }
 
-    .toast--animation-exit {
-      transform: translateY(0) !important;
-    }
+      .toast--animation-exit {
+        transform: translateY(0) !important;
+      }
 
-    .toast--animation-exit.toast--animation-exit-active {
-      transform: translateY(-100%) !important;
-      transition: transform $toast-exit-animation-timeout ease-in;
-    }
-  }
-
-  &-wrapper--vertical-bottom {
-    .toast--animation-appear {
-      transform: translateY(100%) !important;
-    }
-
-    .toast--animation-appear.toast--animation-appear-active {
-      transform: translateY(0) !important;
-      transition: transform $toast-appear-animation-timeout ease-in;
-    }
-
-    .toast--animation-exit {
-      transform: translateY(0) !important;
-    }
-
-    .toast--animation-exit.toast--animation-exit-active {
-      transform: translateY(100%) !important;
-      transition: transform $toast-exit-animation-timeout ease-in;
+      .toast--animation-exit.toast--animation-exit-active {
+        transform: translateY(100%) !important;
+        transition: transform $toast-exit-animation-timeout ease-in;
+      }
     }
   }
 }
