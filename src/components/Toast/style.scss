@@ -1,17 +1,17 @@
 @import '../../scss/variables/colors';
 
-$toast-width: 360px;
 $toast-appear-animation-timeout: 200ms;
 $toast-exit-animation-timeout: 200ms;
 
 $base-class: 'toast';
 
 .#{$base-class} {
-  display: flex;
-  align-items: center;
-  width: $toast-width;
-  min-width: 320px;
-  padding: 10px 5px 10px 12px;
+  display: inline-flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+  min-width: 300px;
+  max-width: 500px;
+  padding: 10px 12px 10px 12px;
   font-size: 15px;
   background: #fff;
   font-weight: 600;
@@ -33,23 +33,42 @@ $base-class: 'toast';
     align-self: baseline;
   }
 
-  &__close {
-    margin-left: auto;
-
-    svg {
-      display: flex;
-      fill: $font-tertiary-color;
-      height: 20px;
-      width: 20px;
-      cursor: pointer;
-    }
-  }
-
   &__icon svg {
     display: flex;
     fill: $primary-color;
     height: 20px;
     width: 20px;
+  }
+
+  &__actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    height: 20px;
+
+    &-close {
+      margin-left: auto;
+
+      svg {
+        display: flex;
+        fill: $font-tertiary-color;
+        height: 16px;
+        width: 16px;
+        cursor: pointer;
+      }
+    }
+
+    &-custom {
+      background-color: transparent;
+      outline: 0;
+      border: 0;
+      margin: 0 16px;
+      color: $font-primary-color;
+      cursor: pointer;
+      font-weight: 600;
+      padding: 0;
+      line-height: 20px;
+    }
   }
 
   &--success {
@@ -72,7 +91,8 @@ $base-class: 'toast';
   &--warning,
   &--error,
   &--info {
-    .#{$base-class}__content {
+    .#{$base-class}__content,
+    .#{$base-class}__actions-custom {
       color: #fff;
     }
 
@@ -96,7 +116,7 @@ $base-class: 'toast';
     }
 
     &--horizontal-center {
-      left: calc(50% - (0.5 * #{$toast-width}));
+      left: calc(50% - 50%);
     }
 
     &--horizontal-left {

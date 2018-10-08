@@ -5,9 +5,7 @@ exports[`Toast should render success toast 1`] = `
   variant="success"
 >
   <div
-    className="
-    toast toast--success undefined
-  "
+    className="toast toast--success"
   >
     <div
       className="toast__icon"

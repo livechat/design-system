@@ -5,8 +5,11 @@ import classNames from 'classnames/bind';
 import { ToastIcon } from './ToastIcon';
 import { VARIANTS } from './constants';
 import styles from './style.scss';
+import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const cx = classNames.bind(styles);
+
+const callAll = (...fns) => (...args) => fns.forEach(fn => fn && fn(...args));
 
 const Toast = props => {
   const {
@@ -14,31 +17,54 @@ const Toast = props => {
     className,
     variant,
     onClose,
+    action,
     removable,
     toastId,
     ...restProps
   } = props;
 
-  const componentClassNames = `
-    ${cx({
+  const mergedClassNames = getMergedClassNames(
+    cx({
       toast: true,
       [`toast--${variant}`]: VARIANTS.some(option => option === variant)
-    })} ${className}
-  `;
+    }),
+    className
+  );
+
+  const onActionClick = actionProp => {
+    if (actionProp && actionProp.closeOnClick && onClose) {
+      return callAll(actionProp.handler, onClose);
+    }
+    return action.handler;
+  };
 
   return (
-    <div {...restProps} className={componentClassNames}>
+    <div {...restProps} className={mergedClassNames}>
       <div className={styles.toast__icon}>
         <ToastIcon variant={variant} />
       </div>
       <div className={styles.toast__content}>{children}</div>
-      {removable && (
-        <div
-          className={styles.toast__close}
-          aria-label="Close toast"
-          onClick={onClose}
-        >
-          <CloseIcon />
+      {(action || removable) && (
+        <div className={styles.toast__actions}>
+          {action &&
+            action.label &&
+            action.handler && (
+              <button
+                className={styles['toast__actions-custom']}
+                onClick={onActionClick(action)}
+              >
+                {action.label}
+              </button>
+            )}
+          {removable && (
+            <div
+              className={styles['toast__actions-close']}
+              aria-label="Close toast"
+              onClick={onClose}
+            >
+              <CloseIcon />
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -49,7 +75,12 @@ Toast.propTypes = {
   children: PropTypes.node.isRequired,
   variant: PropTypes.oneOf(VARIANTS),
   onClose: PropTypes.func,
-  removable: PropTypes.bool
+  removable: PropTypes.bool,
+  action: PropTypes.shape({
+    handler: PropTypes.func.isRequired,
+    label: PropTypes.string.isRequired,
+    closeOnClick: PropTypes.bool
+  })
 };
 
 export default Toast;
