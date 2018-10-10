@@ -14,6 +14,7 @@ global.ToastWrapper = Components.ToastWrapper;
 
 global.NotificationProvider = Components.NotificationProvider;
 global.ToastConsumer = Components.ToastConsumer;
+global.NotificationContext = Components.NotificationContext;
 global.notificationConnect = Components.notificationConnect;
 
 global.InputField = Components.InputField;

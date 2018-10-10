@@ -21,7 +21,7 @@ $base-class: 'toast';
   letter-spacing: normal;
   box-shadow: 0 6px 30px -10px rgba(0, 0, 0, 0.3);
   border-radius: 4px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 
   &__content {
     color: $font-primary-color;
@@ -103,6 +103,7 @@ $base-class: 'toast';
 
   &-wrapper {
     display: flex;
+    flex-direction: column;
     align-items: center;
     z-index: 120;
     position: absolute;
@@ -116,7 +117,8 @@ $base-class: 'toast';
     }
 
     &--horizontal-center {
-      left: calc(50% - 50%);
+      left: calc(50%);
+      transform: translateX(-50%);
     }
 
     &--horizontal-left {

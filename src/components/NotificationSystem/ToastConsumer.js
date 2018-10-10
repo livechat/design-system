@@ -1,13 +1,12 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { IToastConsumerProps } from 'interfaces/Toast';
 import ToastWrapper from '../Toast/ToastWrapper';
 import { VARIANTS } from './constants';
 import NotificationContext from './NotificationContext';
 
 const callAll = (...fns) => (...args) => fns.forEach(fn => fn && fn(...args));
 
-class ToastConsumer extends React.Component<IToastConsumerProps> {
+class ToastConsumer extends React.Component {
   static propTypes = {
     /**
      * limit of visible toasts
@@ -66,7 +65,8 @@ class ToastConsumer extends React.Component<IToastConsumerProps> {
                 removable: el.payload.removable,
                 onClose: callAll(el.payload.onClose, () =>
                   notificationSystem.remove(el.id)
-                )
+                ),
+                action: el.payload.action
               }))}
           />
         )}

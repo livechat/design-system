@@ -16,7 +16,7 @@
       "interfaces/*": ["interfaces/*"]
     }
   },
-  "include": ["./src/**/*.ts"],
+  "include": ["./src/interfaces/*.d.ts"],
   "exclude": ["node_modules"],
   "lib": ["es2017", "dom"],
   "typeRoots": ["./node_modules/@types"]

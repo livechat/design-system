@@ -1,14 +1,3 @@
-export enum HorizontalPosition {
-  Left = 'left',
-  Center = 'center',
-  Right = 'right'
-}
-
-export enum VerticalPosition {
-  Top = 'top',
-  Bottom = 'bottom'
-}
-
 export const ANIMATION_TIME = 200;
 
 export const INFO = 'info';

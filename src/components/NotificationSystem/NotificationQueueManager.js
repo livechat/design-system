@@ -1,11 +1,5 @@
-import { INotificationQueueManager } from 'interfaces/NotificationSystem';
-
-class NotificationQueueManager implements INotificationQueueManager {
-  queue: Array<any>;
-  queueLimit: number;
-  itemsLimit: number;
-
-  constructor(itemsLimit: number, queueLimit: number = 20) {
+class NotificationQueueManager {
+  constructor(itemsLimit, queueLimit = 20) {
     this.queue = [];
     this.queueLimit = queueLimit;
     this.itemsLimit = itemsLimit;

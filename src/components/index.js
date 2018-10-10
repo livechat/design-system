@@ -7,6 +7,7 @@ export { default as Toast, ToastWrapper } from './Toast';
 export {
   NotificationProvider,
   ToastConsumer,
+  NotificationContext,
   notificationConnect
 } from './NotificationSystem';
 

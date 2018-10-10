@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { generateUniqueId } from '@livechat/data-utils';
-import { INotificationProviderProps } from 'interfaces/NotificationSystem';
 import NotificationContext from './NotificationContext';
 import NotificationQueueManager from './NotificationQueueManager';
 
@@ -9,24 +8,7 @@ const initialState = {
   notifications: {}
 };
 
-interface IState {
-  notifications: any;
-}
-
-class NotificationProvider extends React.Component<
-  INotificationProviderProps,
-  IState
-> {
-  static propTypes = {
-    children: PropTypes.node,
-    itemsLimit: PropTypes.number,
-    queueLimit: PropTypes.number
-  };
-
-  static defaultProps = {
-    itemsLimit: 1
-  };
-
+class NotificationProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = initialState;
@@ -141,9 +123,6 @@ class NotificationProvider extends React.Component<
     this.timeouts = restTimeouts;
   };
 
-  timeouts: { [key: string]: number };
-  queueManager: NotificationQueueManager;
-
   render() {
     const { notifications } = this.state;
 
@@ -163,5 +142,15 @@ class NotificationProvider extends React.Component<
     );
   }
 }
+
+NotificationProvider.propTypes = {
+  children: PropTypes.node,
+  itemsLimit: PropTypes.number,
+  queueLimit: PropTypes.number
+};
+
+NotificationProvider.defaultProps = {
+  itemsLimit: 1
+};
 
 export default NotificationProvider;

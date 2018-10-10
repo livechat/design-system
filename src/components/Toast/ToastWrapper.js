@@ -35,29 +35,32 @@ const ToastWrapper = props => {
 
   return (
     <div className={getWrapperClassNames()}>
-      <TransitionGroup>
-        {props.toasts.map(({ id, variant, content, onClose, removable }) => (
-          <CSSTransition
-            key={id}
-            classNames={{
-              enter: 'lc-toast--animation-appear',
-              enterActive: 'lc-toast--animation-appear-active',
-              exit: 'lc-toast--animation-exit',
-              exitActive: 'lc-toast--animation-exit-active'
-            }}
-            appear={fixed}
-            timeout={ANIMATION_TIME}
-          >
-            <Toast
-              variant={variant}
-              onClose={onClose}
-              removable={removable}
-              className={styles.toast__single}
+      <TransitionGroup component={null}>
+        {props.toasts.map(
+          ({ id, variant, content, onClose, removable, action }) => (
+            <CSSTransition
+              key={id}
+              classNames={{
+                enter: 'lc-toast--animation-appear',
+                enterActive: 'lc-toast--animation-appear-active',
+                exit: 'lc-toast--animation-exit',
+                exitActive: 'lc-toast--animation-exit-active'
+              }}
+              appear={fixed}
+              timeout={ANIMATION_TIME}
             >
-              {content}
-            </Toast>
-          </CSSTransition>
-        ))}
+              <Toast
+                variant={variant}
+                onClose={onClose}
+                removable={removable}
+                action={action}
+                className={styles.toast__single}
+              >
+                {content}
+              </Toast>
+            </CSSTransition>
+          )
+        )}
       </TransitionGroup>
     </div>
   );
@@ -66,7 +69,7 @@ const ToastWrapper = props => {
 ToastWrapper.propTypes = {
   toasts: PropTypes.arrayOf(
     PropTypes.shape({
-      toastId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       content: PropTypes.node,
       variant: PropTypes.oneOf(VARIANTS),
       autoHideDelayTime: PropTypes.number,

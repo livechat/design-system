@@ -90,7 +90,14 @@ const ButtonWithToast = ({ notificationSystem, children }) => {
         content: 'Toast showed!',
         horizontalPosition: randomHorizontalPosition,
         verticalPosition: randomVerticalPosition,
-        removable: true
+        removable: true,
+        action: {
+          label: 'Action',
+          handler: () => {
+            console.log('action');
+          },
+          closeOnClick: true
+        }
       }
     };
 

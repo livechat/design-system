@@ -37,7 +37,6 @@ export interface INotificationProviderProps {
   itemsLimit?: number;
 }
 
-/* eslint-disable */
 export var NotificationProvider: React.ComponentType<INotificationProviderProps>;
 export var NotificationContext: React.Context<INotificationContext>;
 export var notificationConnect: <P extends INotificationContext>(Component: React.ComponentType<P>) => React.ComponentType<P>;

@@ -3,7 +3,7 @@
 export type ButtonSize = 'compact' | 'large';
 
 export interface IButtonProps {
-  children?: string;
+  children: string;
   id?: string;
   primary?: boolean;
   destructive?: boolean;
@@ -23,5 +23,4 @@ export interface IButtonProps {
   renderIcon?: string | React.ReactNode;
 }
 
-/* eslint-disable */
 export var Button: React.ComponentType<IButtonProps>;

@@ -19,7 +19,7 @@ const Toast = props => {
     onClose,
     action,
     removable,
-    toastId,
+    id,
     ...restProps
   } = props;
 
@@ -39,7 +39,7 @@ const Toast = props => {
   };
 
   return (
-    <div {...restProps} className={mergedClassNames}>
+    <div {...restProps} className={mergedClassNames} id={id}>
       <div className={styles.toast__icon}>
         <ToastIcon variant={variant} />
       </div>
