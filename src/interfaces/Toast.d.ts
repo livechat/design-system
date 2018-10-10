@@ -23,6 +23,7 @@ export interface IToastConsumerProps {
   verticalPosition: string;
   horizontalPosition: string;
   fixed?: boolean;
+  animationType?: string;
 }
 
 export interface IToastProps {
@@ -51,6 +52,7 @@ export interface ToastWrapperProps {
   }>;
   fixed?: boolean;
   block?: boolean;
+  animationType?: string;
   verticalPosition: VerticalPosition;
   horizontalPosition: HorizontalPosition;
 }
