@@ -21,6 +21,7 @@
   "scripts": {
     "start": "rollup -c --watch",
     "build": "rollup -c && npm run-script dts",
+    "build:noremove": "rollup -c && npm run-script dts",
     "dts": "dts-bundle --name @livechat/design-system --main src/interfaces/index.d.ts --baseDir . --out dist/design-system.d.ts",
     "prebuild": "rimraf dist",
     "prepare": "npm run build",

@@ -16,12 +16,14 @@ class ToastConsumer extends React.Component {
      * fixed position of toasts
      */
     fixed: PropTypes.bool,
+    animationType: PropTypes.string,
     verticalPosition: PropTypes.string,
     horizontalPosition: PropTypes.string
   };
 
   static defaultProps = {
     itemsLimit: 1,
+    animationType: 'slide',
     fixed: true
   };
 
@@ -45,6 +47,7 @@ class ToastConsumer extends React.Component {
       verticalPosition,
       horizontalPosition,
       fixed,
+      animationType,
       ...restProps
     } = this.props;
 
@@ -56,6 +59,7 @@ class ToastConsumer extends React.Component {
             fixed={fixed}
             verticalPosition={verticalPosition}
             horizontalPosition={horizontalPosition}
+            animationType={animationType}
             toasts={notificationSystem.notifications
               .filter(this.validateToast)
               .map(el => ({

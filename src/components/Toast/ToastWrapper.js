@@ -14,7 +14,13 @@ import Toast from './Toast';
 const cx = classNames.bind(styles);
 
 const ToastWrapper = props => {
-  const { verticalPosition, horizontalPosition, fixed, block } = props;
+  const {
+    verticalPosition,
+    horizontalPosition,
+    fixed,
+    block,
+    animationType
+  } = props;
 
   const baseClass = 'toast-wrapper';
 
@@ -41,12 +47,11 @@ const ToastWrapper = props => {
             <CSSTransition
               key={id}
               classNames={{
-                enter: 'lc-toast--animation-appear',
-                enterActive: 'lc-toast--animation-appear-active',
-                exit: 'lc-toast--animation-exit',
-                exitActive: 'lc-toast--animation-exit-active'
+                enter: `lc-toast-appear--${animationType}`,
+                enterActive: `lc-toast-appear-active--${animationType}`,
+                exit: `lc-toast-exit--${animationType}`,
+                exitActive: `lc-toast-exit-active--${animationType}`
               }}
-              appear={fixed}
               timeout={ANIMATION_TIME}
             >
               <Toast
@@ -78,6 +83,7 @@ ToastWrapper.propTypes = {
   ),
   fixed: PropTypes.bool,
   block: PropTypes.bool,
+  animationType: PropTypes.string,
   verticalPosition: PropTypes.string,
   horizontalPosition: PropTypes.string
 };
@@ -86,6 +92,7 @@ ToastWrapper.defaultProps = {
   toasts: [],
   fixed: true,
   block: false,
+  animationType: 'slide',
   verticalPosition: 'top',
   horizontalPosition: 'center'
 };
