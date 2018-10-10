@@ -46,7 +46,7 @@ $base-class: 'toast';
     height: 20px;
 
     &-close {
-      margin-left: auto;
+      margin-left: 16px;
 
       svg {
         display: flex;
@@ -61,7 +61,7 @@ $base-class: 'toast';
       background-color: transparent;
       outline: 0;
       border: 0;
-      margin: 0 16px;
+      margin-left: 16px;
       color: $font-primary-color;
       cursor: pointer;
       font-weight: 600;
