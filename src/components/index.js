@@ -1,8 +1,8 @@
-export { default as Tab, TabsWrapper, TabsList } from './Tab';
-export { default as Tooltip, TooltipContent } from './Tooltip';
+export { Tab, TabsWrapper, TabsList } from './Tab';
+export { Tooltip, TooltipContent } from './Tooltip';
 export { default as Button } from './Button';
 
-export { default as Toast, ToastWrapper } from './Toast';
+export { Toast, ToastWrapper } from './Toast';
 
 export {
   NotificationProvider,

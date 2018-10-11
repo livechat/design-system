@@ -1,10 +1,9 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import ToastWrapper from '../Toast/ToastWrapper';
-import { VARIANTS } from './constants';
 import NotificationContext from './NotificationContext';
-
-const callAll = (...fns) => (...args) => fns.forEach(fn => fn && fn(...args));
+import { VARIANTS } from '../../constants/toast';
+import callAll from '../../utils/callAll';
 
 class ToastConsumer extends React.Component {
   validateToast = ({ payload }) => {

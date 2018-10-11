@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import Toast from './Toast';
-import { ANIMATION_TIME } from './constants';
+import { ANIMATION_TIME } from '../../constants/toast';
 
 const closeFn = jest.fn();
 

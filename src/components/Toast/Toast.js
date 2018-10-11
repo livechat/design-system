@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 import classNames from 'classnames/bind';
 import { ToastIcon } from './ToastIcon';
-import { VARIANTS } from './constants';
+import { VARIANTS } from '../../constants/toast';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
+import callAll from '../../utils/callAll';
 
 const cx = classNames.bind(styles);
-
-const callAll = (...fns) => (...args) => fns.forEach(fn => fn && fn(...args));
 
 const Toast = props => {
   const {

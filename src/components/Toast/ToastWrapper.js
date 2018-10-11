@@ -7,7 +7,7 @@ import {
   VERTICAL_POSITION,
   ANIMATION_TIME,
   VARIANTS
-} from './constants';
+} from '../../constants/toast';
 import styles from './style.scss';
 import Toast from './Toast';
 
