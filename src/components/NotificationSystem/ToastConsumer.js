@@ -7,28 +7,12 @@ import NotificationContext from './NotificationContext';
 const callAll = (...fns) => (...args) => fns.forEach(fn => fn && fn(...args));
 
 class ToastConsumer extends React.Component {
-  static propTypes = {
-    /**
-     * limit of visible toasts
-     */
-    itemsLimit: PropTypes.number,
-    /**
-     * fixed position of toasts
-     */
-    fixed: PropTypes.bool,
-    animationType: PropTypes.string,
-    verticalPosition: PropTypes.string,
-    horizontalPosition: PropTypes.string
-  };
-
-  static defaultProps = {
-    itemsLimit: 1,
-    animationType: 'slide',
-    fixed: true
-  };
-
   validateToast = ({ payload }) => {
     if (!VARIANTS.some(v => v === payload.variant)) {
+      return false;
+    }
+
+    if (this.props.name && this.props.name !== payload.consumerName) {
       return false;
     }
 
@@ -47,6 +31,7 @@ class ToastConsumer extends React.Component {
       verticalPosition,
       horizontalPosition,
       fixed,
+      name,
       animationType,
       ...restProps
     } = this.props;
@@ -78,5 +63,26 @@ class ToastConsumer extends React.Component {
     );
   }
 }
+
+ToastConsumer.propTypes = {
+  /**
+   * limit of visible toasts
+   */
+  itemsLimit: PropTypes.number,
+  /**
+   * fixed position of toasts
+   */
+  name: PropTypes.string,
+  fixed: PropTypes.bool,
+  animationType: PropTypes.string,
+  verticalPosition: PropTypes.string.isRequired,
+  horizontalPosition: PropTypes.string.isRequired
+};
+
+ToastConsumer.defaultProps = {
+  itemsLimit: 1,
+  animationType: 'slide',
+  fixed: true
+};
 
 export default ToastConsumer;

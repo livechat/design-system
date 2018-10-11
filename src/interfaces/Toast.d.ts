@@ -24,6 +24,7 @@ export interface IToastConsumerProps {
   horizontalPosition: string;
   fixed?: boolean;
   animationType?: string;
+  name?: string;
 }
 
 export interface IToastProps {
