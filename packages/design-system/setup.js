@@ -8,6 +8,15 @@ global.TabsWrapper = Components.TabsWrapper;
 global.TabsList = Components.TabsList;
 global.Tooltip = Components.Tooltip;
 global.TooltipContent = Components.TooltipContent;
+
+global.Toast = Components.Toast;
+global.ToastWrapper = Components.ToastWrapper;
+
+global.NotificationProvider = Components.NotificationProvider;
+global.ToastConsumer = Components.ToastConsumer;
+global.NotificationContext = Components.NotificationContext;
+global.notificationConnect = Components.notificationConnect;
+
 global.InputField = Components.InputField;
 global.RadioButton = Components.RadioButton;
 global.Form = Components.Form;

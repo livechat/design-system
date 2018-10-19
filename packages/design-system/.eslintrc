@@ -60,7 +60,8 @@
     "no-restricted-globals": "warn",
     "react/forbid-prop-types": "warn",
     "react/require-default-props": "off",
-    "react/no-unused-prop-types": "warn"
+    "react/no-unused-prop-types": "warn",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
   },
   "settings": {
     "ecmascript": 6,
