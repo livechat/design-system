@@ -14,15 +14,33 @@ _Release: XXXX-XX-XX_
 _Release: 2018-08-01_
 
 ##### New Features
-* [First Release] Webpack build for styleguidist
-* [First Release] Rollup for bundling package
-* [First Release] Introducing css-modules to build library with standalone css file 
-* [First Release] Eslint extended with Airbnb config
-* [First Release] Jest and Enzyme for testing
-* [First Release] Istanbul as coverage reporter
-* [First Release] CSS by PostCSS with PreCSS and Autoprefixer as a plugins
-* [First Release] Scss support
-* [First Release] React Styleguidist for component documentation
-* [First Release] Button component with different sizes and color sets
-* [First Release] Tab component (with releated TabList and TabWrapper)
-* [First Release] Tooltip component
+* Webpack build for styleguidist
+* Rollup for bundling package
+* Introducing css-modules to build library with standalone css file 
+* Eslint extended with Airbnb config
+* Jest and Enzyme for testing
+* Istanbul as coverage reporter
+* CSS by PostCSS with PreCSS and Autoprefixer as a plugins
+* Scss support
+* React Styleguidist for component documentation
+* Button component with different sizes and color sets
+* Tab component (with releated TabList and TabWrapper)
+* Tooltip component
+
+----
+### v0.0.2
+_Release: 2018-10-22_
+
+##### New Features
+* UI form components
+  * Form
+  * FieldGroup
+  * FormGroup
+  * InputField
+  * TextAreaField
+  * CheckboxField
+  * RadioButton
+* Single Toasts components (5 types) and ToastWrapper for positioning and animations (slide, fade)
+* NotificationSystem for managing Toasts across app
+* Html snippets in documentation
+* Typescript types for Button, NotificationSystem and Toasts
