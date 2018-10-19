@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import getMergedClassNames from '../../utils/getMergedClassNames';
-import { ARROW_POSITION, ALIGMENT } from './constants';
+import { ARROW_POSITION, ALIGMENT } from '../../constants/tooltip';
 import { getArrowOffsetStyle } from './helpers';
 import styles from './style.scss';
 
