@@ -10,6 +10,8 @@ import globalImport from 'postcss-global-import';
 import autoprefixer from 'autoprefixer';
 import precss from 'precss';
 import cssnano from 'cssnano';
+import typescriptPlugin from 'rollup-plugin-typescript2';
+import typescript from 'typescript';
 import pkg from './package.json'; // eslint-disable-line
 
 const cssExportMap = {};
@@ -41,6 +43,11 @@ const commonPlugins = [
       return cssExportMap[id];
     },
     extract: pkg.style
+  }),
+  typescriptPlugin({
+    typescript,
+    tsconfig: 'tsconfig.json',
+    useTsconfigDeclarationDir: true
   }),
   babel({
     exclude: 'node_modules/**',

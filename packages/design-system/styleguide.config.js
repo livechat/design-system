@@ -27,6 +27,17 @@ module.exports = {
       name: 'Components',
       sections: [
         {
+          name: 'Alerts',
+          components: [
+            './src/components/Toast/Toast.js',
+            './src/components/Toast/ToastWrapper.js'
+          ]
+        },
+        {
+          name: 'Notification System',
+          content: './src/components/NotificationSystem/NotificationSystem.md'
+        },
+        {
           name: 'Button',
           components: './src/components/Button/Button.js'
         },
