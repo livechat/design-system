@@ -11,7 +11,10 @@ class ToastConsumer extends React.Component {
       return false;
     }
 
-    if (this.props.name && this.props.name !== payload.consumerName) {
+    if (
+      (this.props.name || payload.consumerName) &&
+      this.props.name !== payload.consumerName
+    ) {
       return false;
     }
 

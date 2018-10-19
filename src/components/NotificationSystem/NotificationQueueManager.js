@@ -1,5 +1,5 @@
 class NotificationQueueManager {
-  constructor(itemsLimit, queueLimit = 20) {
+  constructor(itemsLimit, queueLimit) {
     this.queue = [];
     this.queueLimit = queueLimit;
     this.itemsLimit = itemsLimit;
@@ -15,7 +15,6 @@ class NotificationQueueManager {
     return false;
   }
 
-  /* eslint-disable-next-line */
   shouldPickFromQueue(currentItems) {
     return (
       this.itemsLimit &&

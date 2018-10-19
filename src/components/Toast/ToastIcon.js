@@ -4,14 +4,15 @@ import CheckCircleIcon from 'react-material-icon-svg/dist/CheckCircleIcon';
 import AlertIcon from 'react-material-icon-svg/dist/AlertIcon';
 import AlertCircleIcon from 'react-material-icon-svg/dist/AlertCircleIcon';
 import InformationIcon from 'react-material-icon-svg/dist/InformationIcon';
+import { SUCCESS, WARNING, ERROR } from '../../constants/toast';
 
 export const ToastIcon = ({ variant }) => {
   switch (variant) {
-    case 'success':
+    case SUCCESS:
       return <CheckCircleIcon />;
-    case 'warning':
+    case WARNING:
       return <AlertIcon />;
-    case 'error':
+    case ERROR:
       return <AlertCircleIcon />;
     default:
       return <InformationIcon />;
