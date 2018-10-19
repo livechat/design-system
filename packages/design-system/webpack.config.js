@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const path = require('path');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const postCssFlexbugsfixes = require('postcss-flexbugs-fixes');
@@ -9,6 +10,11 @@ const config = {
   devtool: false,
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        include: /src/,
+        use: ['ts-loader']
+      },
       {
         test: /\.jsx?$/,
         use: [
@@ -75,6 +81,13 @@ const config = {
   node: {
     Buffer: false,
     setImmediate: false
+  },
+  resolve: {
+    alias: {
+      components: path.resolve(__dirname, 'src/components'),
+      interfaces: path.resolve(__dirname, 'src/interfaces')
+    },
+    extensions: ['.ts', '.tsx', '.d.ts', '.js', '.json']
   }
 };
 

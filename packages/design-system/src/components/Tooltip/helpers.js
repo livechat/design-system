@@ -3,7 +3,7 @@ import {
   ALIGMENT,
   TOOLTIP_MARGIN,
   ARROW_POSITION
-} from './constants';
+} from '../../constants/tooltip';
 
 export const getTooltipPosition = opts => {
   const { direction, align, offset, tooltipRefRect, tooltipBoxRefRect } = opts;

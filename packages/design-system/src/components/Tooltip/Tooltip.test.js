@@ -1,5 +1,5 @@
 import { getTooltipPosition } from './helpers';
-import { DIRECTION, ALIGMENT, TOOLTIP_MARGIN } from './constants';
+import { DIRECTION, ALIGMENT, TOOLTIP_MARGIN } from '../../constants/tooltip';
 
 describe('Tooltip', () => {
   describe('Calculate tooltip position', () => {
