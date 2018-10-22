@@ -5,6 +5,7 @@ $base-class: 'select';
 .#{$base-class} {
   position: relative;
   width: inherit;
+  color: $font-primary-color;
 
   &__head {
     position: relative;
@@ -27,11 +28,17 @@ $base-class: 'select';
     align-items: stretch;
     border-radius: 4px;
     background-color: #fff;
-    opacity: 1;
-    visibility: visible;
+    opacity: 0;
+    visibility: hidden;
     transition: all 0.15s ease-in-out;
     overflow: hidden;
     z-index: 10;
+
+    &--visible {
+      opacity: 1;
+      visibility: visible;
+      transition: all 0.15s ease-in-out;
+    }
   }
 
   &__input {
@@ -49,6 +56,12 @@ $base-class: 'select';
 
     &::placeholder {
       opacity: 0.6;
+    }
+
+    &:focus,
+    &:active,
+    &:hover {
+      outline: none;
     }
   }
 
@@ -90,39 +103,38 @@ $base-class: 'select';
     }
   }
 
+  &__checkmark {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.15s ease-in-out;
+    fill: $primary-color;
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+  }
+
   &__item {
     display: flex;
     padding: 6px;
-
-    &-checkbox {
-      margin-left: 5px;
-    }
-
-    &--disabled {
-      .checkbox__square {
-        opacity: 0.4;
-        border-color: $font-tertiary-color;
-        background-color: $font-tertiary-color;
-      }
-    }
+    align-items: center;
 
     &--selected {
-      color: #fff;
-      background-color: $primary-color;
-
-      .checkbox__square {
-        background-color: $primary-color;
-        border-color: $primary-color;
-      }
-
-      .checkbox__checkmark {
+      .#{$base-class}__checkmark {
         opacity: 1;
+        visibility: visible;
+        transition: all 0.15s ease-in-out;
       }
     }
 
     &--focused {
-      color: #fff;
-      background-color: $primary-color-30;
+      background-color: $hover-backgroud-color-light;
     }
+  }
+
+  &__selected-item {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
   }
 }

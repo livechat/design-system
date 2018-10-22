@@ -1,10 +1,11 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import { CheckIcon } from 'react-material-icon-svg';
 import Checkbox from '../CheckboxField/Checkbox';
 import styles from './style.scss';
 
-const baseClass = 'select__item';
+const baseClass = 'select';
 const cx = classNames.bind(styles);
 
 const SelectItem = props => {
@@ -12,17 +13,14 @@ const SelectItem = props => {
   return (
     <li
       className={cx({
-        [`${baseClass}`]: true,
-        [`${baseClass}--selected`]: isSelected,
-        [`${baseClass}--disabled`]: disabled,
-        [`${baseClass}--focused`]: isFocused
+        [`${baseClass}__item`]: true,
+        [`${baseClass}__item--selected`]: isSelected,
+        [`${baseClass}__item--disabled`]: disabled,
+        [`${baseClass}__item--focused`]: isFocused
       })}
       {...props}
     >
-      <Checkbox
-        className={styles[`${baseClass}-checkbox`]}
-        checked={isSelected}
-      />
+      <CheckIcon className={styles[`${baseClass}__checkmark`]} />
       <div>{children}</div>
     </li>
   );
@@ -30,6 +28,7 @@ const SelectItem = props => {
 
 SelectItem.propTypes = {
   isSelected: PropTypes.bool,
+  isFocused: PropTypes.bool,
   children: PropTypes.node,
   disabled: PropTypes.bool
 };
