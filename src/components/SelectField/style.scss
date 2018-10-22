@@ -1,0 +1,128 @@
+@import '../../scss/variables/colors';
+
+$base-class: 'select';
+
+.#{$base-class} {
+  position: relative;
+  width: inherit;
+
+  &__head {
+    position: relative;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $border-primary-color;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    height: 38px;
+  }
+
+  &__search {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: stretch;
+    border-radius: 4px;
+    background-color: #fff;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.15s ease-in-out;
+    overflow: hidden;
+    z-index: 10;
+  }
+
+  &__input {
+    display: block;
+    margin: 0;
+    height: 100%;
+    padding: 8px 10px;
+    font-size: 16px;
+    line-height: 18px;
+    color: #424d57;
+    border: none;
+    background-color: transparent;
+    box-sizing: border-box;
+    outline: none;
+
+    &::placeholder {
+      opacity: 0.6;
+    }
+  }
+
+  &__body {
+    position: absolute;
+    top: 100%;
+    width: inherit;
+    margin-top: 2px;
+    background-color: #fff;
+    box-sizing: border-box;
+    box-shadow: 0 6px 30px -10px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10%);
+    transform-origin: top center;
+    transition: all 0.15s ease-in-out;
+    overflow: hidden;
+    z-index: 100000;
+    padding: 14px 0;
+
+    &--visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      transition: all 0.15s ease-in-out;
+    }
+
+    ul {
+      max-height: 224px;
+      margin: 0;
+      padding: 0;
+      overflow-y: scroll;
+    }
+
+    li {
+      position: relative;
+      list-style: none;
+      cursor: pointer;
+    }
+  }
+
+  &__item {
+    display: flex;
+    padding: 6px;
+
+    &-checkbox {
+      margin-left: 5px;
+    }
+
+    &--disabled {
+      .checkbox__square {
+        opacity: 0.4;
+        border-color: $font-tertiary-color;
+        background-color: $font-tertiary-color;
+      }
+    }
+
+    &--selected {
+      color: #fff;
+      background-color: $primary-color;
+
+      .checkbox__square {
+        background-color: $primary-color;
+        border-color: $primary-color;
+      }
+
+      .checkbox__checkmark {
+        opacity: 1;
+      }
+    }
+
+    &--focused {
+      color: #fff;
+      background-color: $primary-color-30;
+    }
+  }
+}
