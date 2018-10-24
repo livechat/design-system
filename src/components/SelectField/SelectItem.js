@@ -1,8 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import { CheckIcon } from 'react-material-icon-svg';
-import Checkbox from '../CheckboxField/Checkbox';
+import CheckIcon from 'react-material-icon-svg/dist/CheckIcon';
 import styles from './style.scss';
 
 const baseClass = 'select';
@@ -20,8 +19,8 @@ const SelectItem = props => {
       })}
       {...props}
     >
-      <CheckIcon className={styles[`${baseClass}__checkmark`]} />
       <div>{children}</div>
+      <CheckIcon className={styles[`${baseClass}__checkmark`]} />
     </li>
   );
 };

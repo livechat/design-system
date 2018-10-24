@@ -143,7 +143,6 @@ class SelectField extends React.PureComponent {
     } = this.props;
     const { isOpen, searchPhrase, focusedItemKey } = this.state;
     const selectedItemModel = items.find(item => item.key === selectedItem);
-    console.log(selectedItemModel, selectedItem);
     const filteredItems = items.filter(v => this.filterItem(v));
 
     return (

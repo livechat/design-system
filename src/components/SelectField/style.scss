@@ -15,6 +15,8 @@ $base-class: 'select';
     border-radius: 4px;
     background-color: #fff;
     cursor: pointer;
+    display: flex;
+    align-items: center;
     height: 38px;
   }
 
@@ -72,7 +74,7 @@ $base-class: 'select';
     margin-top: 2px;
     background-color: #fff;
     box-sizing: border-box;
-    box-shadow: 0 6px 30px -10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.2);
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10%);
@@ -110,15 +112,18 @@ $base-class: 'select';
     fill: $primary-color;
     width: 15px;
     height: 15px;
-    margin-right: 5px;
+    margin-left: auto;
+    padding-left: 5px;
   }
 
   &__item {
     display: flex;
-    padding: 6px;
+    padding: 8px 10px;
     align-items: center;
 
     &--selected {
+      font-weight: 600;
+
       .#{$base-class}__checkmark {
         opacity: 1;
         visibility: visible;
@@ -135,6 +140,6 @@ $base-class: 'select';
     height: 100%;
     display: flex;
     align-items: center;
-    padding: 0 10px;
+    margin: 0 10px;
   }
 }

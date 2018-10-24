@@ -1,19 +1,9 @@
 ```js
 const items = [
-  { 
-    key: '1', 
-    props: {
-      name: 'asdas',
-      value: '1'
-    }
-  },
-  { 
-    key: '2', 
-    props: {
-      name: 'as',
-      value: '2'
-    }
-  },
+  {key: '1', props: {name: 'option 1', value: '1'}},
+  {key: '2', props: {name: 'option 2', value: '2'}},
+  {key: '3', props: {name: 'option 3', value: '3'}},
+  {key: '4', props: {name: 'option 4', value: '4'}},
 ];
 initialState = {
   selectedItem: null
@@ -30,7 +20,7 @@ const getItemBody = props => {
 
 const getSelectedItemBody = props => {
   if (!props) {
-    return null;
+    return <div>Select option...</div>;
   }
   return <div id={props.value}>{props.name}</div>;
 };
