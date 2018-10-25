@@ -2,13 +2,13 @@
 
 export type ToastVariant = 'info' | 'success' | 'warning' | 'error' | 'notification';
 
-export type HorizontalPosition = 'top' | 'bottom';
+export type HorizontalPosition = 'left' | 'center' | 'right';
 
 export type VerticalPosition = 'top' | 'bottom';
 
 export interface IToastConsumerProps {
-  verticalPosition: string;
-  horizontalPosition: string;
+  verticalPosition: VerticalPosition;
+  horizontalPosition: HorizontalPosition;
   fixed?: boolean;
   animationType?: string;
   name?: string;
