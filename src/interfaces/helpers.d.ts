@@ -1,5 +1,3 @@
-import { string } from "prop-types";
-
 export var helpers: {
   generateNotificationUniqueId: (notifications: {[id: string]: { [key: string]: any; }}) => string;
   getMergedClassNames: (classNames: string, classNameProperty: string) => string;
