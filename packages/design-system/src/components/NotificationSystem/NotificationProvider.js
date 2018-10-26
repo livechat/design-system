@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { generateUniqueId } from '@livechat/data-utils';
+import generateNotificationUniqueId from '../../utils/generateNotificationUniqueId';
 import NotificationContext from './NotificationContext';
 import NotificationQueueManager from './NotificationQueueManager';
 
@@ -42,7 +42,7 @@ class NotificationProvider extends React.Component {
 
     const { notifications } = this.state;
 
-    const notificationId = generateUniqueId(notifications);
+    const notificationId = generateNotificationUniqueId(notifications);
 
     const notification = {
       ...defaults,
