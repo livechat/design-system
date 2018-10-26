@@ -29,7 +29,7 @@ _Release: 2018-08-01_
 
 ----
 ### v0.0.2
-_Release: 2018-10-22_
+_Release: 2018-10-26_
 
 ##### New Features
 * UI form components
@@ -44,3 +44,6 @@ _Release: 2018-10-22_
 * NotificationSystem for managing Toasts across app
 * Html snippets in documentation
 * Typescript types for Button, NotificationSystem and Toasts
+
+##### Bug Fixes
+* Missing className prop on Button
