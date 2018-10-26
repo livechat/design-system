@@ -3,9 +3,9 @@
 export type ButtonSize = 'compact' | 'large';
 
 export interface IButtonProps {
+  id?: string;
   children: string;
   className: string;
-  id?: string;
   primary?: boolean;
   destructive?: boolean;
   disabled?: boolean;
