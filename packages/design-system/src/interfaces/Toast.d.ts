@@ -1,34 +1,21 @@
 // <reference types="react" />
 
-export enum ToastVariants {
-  Info = 'info',
-  Success = 'success',
-  Warning = 'warning',
-  Error = 'error',
-  Notification = 'notification'
-}
+export type ToastVariant = 'info' | 'success' | 'warning' | 'error' | 'notification';
 
-export enum HorizontalPosition {
-  Left = 'left',
-  Center = 'center',
-  Right = 'right'
-}
+export type HorizontalPosition = 'left' | 'center' | 'right';
 
-export enum VerticalPosition {
-  Top = 'top',
-  Bottom = 'bottom'
-}
+export type VerticalPosition = 'top' | 'bottom';
 
 export interface IToastConsumerProps {
-  verticalPosition: string;
-  horizontalPosition: string;
+  verticalPosition: VerticalPosition;
+  horizontalPosition: HorizontalPosition;
   fixed?: boolean;
   animationType?: string;
   name?: string;
 }
 
 export interface IToastProps {
-  variant: ToastVariants,
+  variant: ToastVariant,
   onClose?: () => any,
   removable?: boolean,
   action?: {
@@ -38,11 +25,11 @@ export interface IToastProps {
   }
 }
 
-export interface ToastWrapperProps {
+export interface IToastWrapperProps {
   toasts: Array<{
     id?: string | number;
     content: React.ReactNode;
-    variant: ToastVariants;
+    variant: ToastVariant;
     autoHideDelayTime?: number;
     removable?: boolean;
     action?: {
@@ -60,4 +47,4 @@ export interface ToastWrapperProps {
 
 export var ToastConsumer: React.ComponentType<IToastConsumerProps>;
 export var Toast: React.ComponentType<IToastProps>;
-export var ToastWrapper: React.ComponentType<ToastWrapperProps>;
+export var ToastWrapper: React.ComponentType<IToastWrapperProps>;

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './style.scss';
+import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const cx = classNames.bind(styles);
 const acceptedSizes = ['large', 'compact'];
@@ -19,6 +20,7 @@ const Button = props => {
     accessibilityLabel,
     ariaControls,
     ariaExpanded,
+    className,
     ...buttonProps
   } = props;
 
@@ -32,9 +34,22 @@ const Button = props => {
     buttonType = 'destructive';
   }
 
+  const baseClass = 'btn';
+  const mergedClassNames = getMergedClassNames(
+    cx({
+      [baseClass]: true,
+      [`${baseClass}--full-width`]: fullWidth,
+      [`${baseClass}--primary`]: buttonType === 'primary',
+      [`${baseClass}--destructive`]: buttonType === 'destructive',
+      [`${baseClass}--${size}`]: acceptedSizes.some(s => s === size)
+    }),
+    className
+  );
+
   return (
     <button
       {...buttonProps}
+      className={mergedClassNames}
       type={type}
       disabled={isDisabled}
       role={loading ? 'alert' : undefined}
@@ -42,13 +57,6 @@ const Button = props => {
       aria-label={accessibilityLabel}
       aria-controls={ariaControls}
       aria-expanded={ariaExpanded}
-      className={cx({
-        btn: true,
-        'btn--full-width': fullWidth,
-        'btn--primary': buttonType === 'primary',
-        'btn--destructive': buttonType === 'destructive',
-        [`btn--${size}`]: acceptedSizes.some(s => s === size)
-      })}
     >
       {children}
     </button>
