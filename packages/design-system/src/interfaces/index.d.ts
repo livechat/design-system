@@ -1,4 +1,4 @@
 export * from './notificationSystem';
-export * from './toast';
-export * from './button';
+export * from './toasts';
+export * from './buttons';
 export * from './helpers';
