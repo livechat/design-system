@@ -47,3 +47,10 @@ _Release: 2018-10-26_
 
 ##### Bug Fixes
 * Missing className prop on Button
+
+----
+### v0.0.3
+_Release: 2018-10-28_
+
+##### Bug Fixes
+* Fixing rollup bundle issue with undefined React named exports
