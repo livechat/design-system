@@ -1,4 +1,6 @@
 import nodeResolve from 'rollup-plugin-node-resolve';
+import fs from 'fs';
+import nodeEval from 'node-eval';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
@@ -17,6 +19,26 @@ import pkg from './package.json'; // eslint-disable-line
 const cssExportMap = {};
 
 const mergeAll = objs => Object.assign({}, ...objs);
+
+function getModuleExports(moduleId) {
+  const id = require.resolve(moduleId);
+  const moduleOut = nodeEval(fs.readFileSync(id).toString(), id);
+  let result = [];
+  const excludeExports = /^(default|__)/;
+  if (moduleOut && typeof moduleOut === 'object') {
+    result = Object.keys(moduleOut).filter(name => !excludeExports.test(name));
+  }
+
+  return result;
+}
+
+function getNamedExports(moduleIds) {
+  const result = {};
+  moduleIds.forEach(id => {
+    result[id] = getModuleExports(id);
+  });
+  return result;
+}
 
 const commonPlugins = [
   nodeResolve({ jsnext: true }),
@@ -53,7 +75,9 @@ const commonPlugins = [
     exclude: 'node_modules/**',
     plugins: ['external-helpers', 'transform-react-remove-prop-types']
   }),
-  commonjs()
+  commonjs({
+    namedExports: getNamedExports(['react', 'react-dom'])
+  })
 ];
 
 const configBase = {
