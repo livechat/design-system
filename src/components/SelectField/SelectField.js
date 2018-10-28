@@ -131,6 +131,8 @@ class SelectField extends React.PureComponent {
     return true;
   };
 
+  selectHead = React.createRef();
+
   render() {
     const {
       items,
@@ -152,6 +154,9 @@ class SelectField extends React.PureComponent {
             [`${baseClass}__head`]: true
           })}
           onClick={this.onSelectHeadClick}
+          tabIndex={0}
+          onFocus={this.showSelectBody}
+          ref={this.selectHead}
         >
           <div className={styles[`${baseClass}__selected-item`]}>
             {getSelectedItemBody(
@@ -187,6 +192,7 @@ class SelectField extends React.PureComponent {
           <SelectList
             getItemBody={getItemBody}
             isOpen={isOpen}
+            onListClose={this.hideSelectBody}
             items={filteredItems}
             getSelectedItemBody={getSelectedItemBody}
             selectedItems={[selectedItem]}

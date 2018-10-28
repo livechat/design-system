@@ -83,6 +83,10 @@ class SelectList extends React.PureComponent {
   keydownEventHandler = event => {
     const { keyCode } = event;
 
+    if (keyCode === 9 || keyCode === 27) {
+      this.props.onListClose();
+    }
+
     if (keyCode === KeyCodes.arrowDown || keyCode === KeyCodes.arrowUp) {
       this.handleArrowKeyUse(event);
     }
@@ -190,6 +194,7 @@ SelectList.propTypes = {
       props: PropTypes.object
     })
   ),
+  onListClose: PropTypes.func,
   selectedItems: PropTypes.arrayOf(PropTypes.string),
   getItemSelectedHandler: PropTypes.func,
   onEnterKey: PropTypes.func,
