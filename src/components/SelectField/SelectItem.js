@@ -8,7 +8,7 @@ const baseClass = 'select';
 const cx = classNames.bind(styles);
 
 const SelectItem = props => {
-  const { isSelected, disabled, children, isFocused } = props;
+  const { isSelected, disabled, children, isFocused, ...restProps } = props;
   return (
     <li
       className={cx({
@@ -17,7 +17,7 @@ const SelectItem = props => {
         [`${baseClass}__item--disabled`]: disabled,
         [`${baseClass}__item--focused`]: isFocused
       })}
-      {...props}
+      {...restProps}
     >
       <div>{children}</div>
       <CheckIcon className={styles[`${baseClass}__checkmark`]} />

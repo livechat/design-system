@@ -1,5 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import MenuDownIcon from 'react-material-icon-svg/dist/MenuDownIcon';
+import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 import classNames from 'classnames/bind';
 import styles from './style.scss';
 import SelectList from './SelectList';
@@ -13,7 +15,7 @@ class SelectField extends React.PureComponent {
     super(props);
 
     this.state = {
-      isOpen: props.defaultIsOpen || false,
+      isOpen: props.openedOnInit || false,
       searchPhrase: '',
       focusedItemKey: null
     };
@@ -21,12 +23,13 @@ class SelectField extends React.PureComponent {
     this.timerId = null;
     this.containerRef = React.createRef();
     this.searchInputRef = React.createRef();
+    this.selectHead = React.createRef();
+    this.closeIcon = React.createRef();
   }
 
   componentDidUpdate(_prevProps, prevState) {
     if (this.state.isOpen && prevState.isOpen !== this.state.isOpen) {
       document.addEventListener('click', this.onDocumentClick);
-
       this.timerId = setTimeout(() => {
         this.searchInputRef.current.focus();
       }, 150);
@@ -77,6 +80,9 @@ class SelectField extends React.PureComponent {
   };
 
   onSelectHeadClick = event => {
+    if (this.closeIcon.current.contains(event.target)) {
+      return;
+    }
     event.preventDefault();
     this.showSelectBody();
   };
@@ -114,6 +120,12 @@ class SelectField extends React.PureComponent {
     });
   };
 
+  clearSelectedOption = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    this.props.onItemSelected(null);
+  };
+
   filterItem = item => {
     const { searchProperty } = this.props;
     const { searchPhrase } = this.state;
@@ -131,8 +143,6 @@ class SelectField extends React.PureComponent {
     return true;
   };
 
-  selectHead = React.createRef();
-
   render() {
     const {
       items,
@@ -141,7 +151,8 @@ class SelectField extends React.PureComponent {
       getItemBody,
       getSelectedItemBody,
       turnOffSearch,
-      disabled
+      disabled,
+      selectedItemPlaceholder
     } = this.props;
     const { isOpen, searchPhrase, focusedItemKey } = this.state;
     const selectedItemModel = items.find(item => item.key === selectedItem);
@@ -151,16 +162,28 @@ class SelectField extends React.PureComponent {
       <div ref={this.containerRef} className={styles[baseClass]}>
         <div
           className={cx({
-            [`${baseClass}__head`]: true
+            [`${baseClass}__head`]: true,
+            [`${baseClass}__head--focused`]: isOpen
           })}
           onClick={this.onSelectHeadClick}
           tabIndex={0}
           onFocus={this.showSelectBody}
           ref={this.selectHead}
         >
-          <div className={styles[`${baseClass}__selected-item`]}>
-            {getSelectedItemBody(
-              selectedItemModel ? selectedItemModel.props : null
+          <div
+            className={cx({
+              [`${baseClass}__selected-item`]: true,
+              [`${baseClass}__selected-item--hidden`]: isOpen
+            })}
+          >
+            {selectedItemModel ? (
+              getSelectedItemBody(selectedItemModel.props)
+            ) : (
+              <div
+                className={styles[`${baseClass}__selected-item-placeholder`]}
+              >
+                {selectedItemPlaceholder}
+              </div>
             )}
           </div>
           <div
@@ -182,11 +205,31 @@ class SelectField extends React.PureComponent {
               disabled={disabled}
             />
           </div>
+          <div
+            ref={this.closeIcon}
+            className={cx({
+              [`${baseClass}__clear`]: true,
+              [`${baseClass}__clear--visible`]: selectedItem && !isOpen
+            })}
+          >
+            <CloseIcon
+              width="20px"
+              height="20px"
+              fill="#4384f5"
+              onClick={this.clearSelectedOption}
+            />
+          </div>
+          <MenuDownIcon
+            width="24px"
+            height="24px"
+            fill="#424d57"
+            className={styles[`${baseClass}__dropdown-icon`]}
+          />
         </div>
         <div
           className={cx({
             [`${baseClass}__body`]: true,
-            [`${baseClass}__body--visible`]: isOpen
+            [`${baseClass}__body--visible`]: isOpen && filteredItems.length > 0
           })}
         >
           <SelectList
@@ -220,12 +263,13 @@ SelectField.propTypes = {
       props: PropTypes.object
     })
   ),
+  selectedItemPlaceholder: PropTypes.string,
   searchProperty: PropTypes.string.isRequired,
   selectedItem: PropTypes.string,
   turnOffSearch: PropTypes.bool,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
-  defaultIsOpen: PropTypes.bool
+  openedOnInit: PropTypes.bool
 };
 
 SelectField.defaultProps = {

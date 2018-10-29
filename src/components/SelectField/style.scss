@@ -9,26 +9,55 @@ $base-class: 'select';
 
   &__head {
     position: relative;
-    border-width: 1px;
-    border-style: solid;
-    border-color: $border-primary-color;
+    border: 1px solid $border-primary-color;
     border-radius: 4px;
     background-color: #fff;
     cursor: pointer;
     display: flex;
     align-items: center;
-    height: 38px;
+    padding: 8px 10px;
+    outline: 0;
+    transition: border 0.15s ease-in-out;
+
+    &:hover {
+      border-color: $field-hover-border-color;
+      transition: border 0.15s ease-in-out;
+    }
+
+    &--focused {
+      border-color: $primary-color;
+      transition: border 0.15s ease-in-out;
+
+      &:hover {
+        border-color: $primary-color;
+        transition: border 0.15s ease-in-out;
+      }
+    }
+  }
+
+  // &__dropdown-icon {
+  // }
+
+  &__clear {
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    transition: all 0.15s ease-in-out;
+
+    &--visible {
+      opacity: 1;
+      visibility: visible;
+      transition: all 0.15s ease-in-out;
+    }
   }
 
   &__search {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: stretch;
     border-radius: 4px;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 50px;
     background-color: #fff;
     opacity: 0;
     visibility: hidden;
@@ -37,6 +66,7 @@ $base-class: 'select';
     z-index: 10;
 
     &--visible {
+      flex: 1;
       opacity: 1;
       visibility: visible;
       transition: all 0.15s ease-in-out;
@@ -47,23 +77,33 @@ $base-class: 'select';
     display: block;
     margin: 0;
     height: 100%;
-    padding: 8px 10px;
+    width: 100%;
     font-size: 16px;
     line-height: 18px;
-    color: #424d57;
+    color: $font-primary-color;
     border: none;
     background-color: transparent;
     box-sizing: border-box;
     outline: none;
 
-    &::placeholder {
-      opacity: 0.6;
+    ::placeholder,
+    ::-webkit-input-placeholder,
+    ::-moz-placeholder,
+    :-moz-placeholder,
+    :-ms-input-placeholder,
+    ::-ms-input-placeholder {
+      opacity: 0.4;
+      color: $font-primary-color;
     }
 
     &:focus,
     &:active,
     &:hover {
       outline: none;
+
+      .#{$base-class}__head {
+        border: 1px solid $primary-color;
+      }
     }
   }
 
@@ -122,7 +162,7 @@ $base-class: 'select';
     align-items: center;
 
     &--selected {
-      font-weight: 600;
+      color: $primary-color;
 
       .#{$base-class}__checkmark {
         opacity: 1;
@@ -140,6 +180,21 @@ $base-class: 'select';
     height: 100%;
     display: flex;
     align-items: center;
-    margin: 0 10px;
+    margin: 0;
+    flex: 1;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.15s ease-in-out;
+
+    &--hidden {
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.15s ease-in-out;
+    }
+
+    &-placeholder {
+      opacity: 0.4;
+      color: $font-primary-color;
+    }
   }
 }

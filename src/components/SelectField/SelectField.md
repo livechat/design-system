@@ -19,9 +19,6 @@ const getItemBody = props => {
 };
 
 const getSelectedItemBody = props => {
-  if (!props) {
-    return <div>Select option...</div>;
-  }
   return <div id={props.value}>{props.name}</div>;
 };
 
@@ -31,6 +28,7 @@ const getSelectedItemBody = props => {
     searchProperty='name'
     onItemSelected={handleItemSelect}
     getItemBody={getItemBody}
+    selectedItemPlaceholder='Select option'
     getSelectedItemBody={getSelectedItemBody}
     selectedItem={state.selectedItem}
     placeholder='Search...'
