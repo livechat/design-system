@@ -27,9 +27,7 @@ const SelectHead = React.forwardRef((props, ref) => {
 
 SelectHead.propTypes = {
   children: PropTypes.node,
-  isFocused: PropTypes.bool,
-  onClick: PropTypes.func,
-  onFocus: PropTypes.func
+  isFocused: PropTypes.bool
 };
 
 export default SelectHead;

@@ -8,6 +8,7 @@ import SelectHead from './SelectHead';
 import SelectHeadItem from './SelectHeadItem';
 import ClearButton from './ClearButton';
 import Search from './Search';
+import { KeyCodes } from '../../constants/keyCodes';
 
 const cx = classNames.bind(styles);
 
@@ -20,7 +21,8 @@ class SelectField extends React.PureComponent {
     this.state = {
       isOpen: props.openedOnInit || false,
       searchPhrase: '',
-      focusedItemKey: null
+      focusedItemKey: null,
+      isFocused: false
     };
 
     this.timerId = null;
@@ -30,22 +32,22 @@ class SelectField extends React.PureComponent {
     this.clearButtonRef = React.createRef();
   }
 
+  componentDidMount() {
+    if (this.props.openedOnInit) {
+      this.onBodyOpen();
+    }
+  }
+
   componentDidUpdate(_prevProps, prevState) {
     if (this.state.isOpen && prevState.isOpen !== this.state.isOpen) {
-      document.addEventListener('click', this.onDocumentClick);
-      this.timerId = setTimeout(() => {
-        this.searchInputRef.current.focus();
-      }, 150);
+      this.onBodyOpen();
     } else if (!this.state.isOpen && prevState.isOpen !== this.state.isOpen) {
-      document.removeEventListener('click', this.onDocumentClick);
+      this.onBodyClose();
     }
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.onDocumentClick);
-    if (this.timerId) {
-      clearTimeout(this.timerId);
-    }
+    this.onBodyClose();
   }
 
   onDocumentClick = event => {
@@ -76,12 +78,51 @@ class SelectField extends React.PureComponent {
     );
   };
 
+  onBodyOpen = () => {
+    document.addEventListener('click', this.onDocumentClick);
+    if (this.props.search) {
+      this.timerId = setTimeout(() => {
+        this.searchInputRef.current.focus();
+      }, 150);
+    }
+  };
+
+  onBodyClose = () => {
+    document.removeEventListener('click', this.onDocumentClick);
+    if (this.timerId) {
+      clearTimeout(this.timerId);
+    }
+  };
+
   onSelectHeadClick = event => {
     if (this.clearButtonRef.current.contains(event.target)) {
       return;
     }
     event.preventDefault();
     this.showSelectBody();
+  };
+
+  onSelectHeadFocus = () => {
+    this.setState({
+      isFocused: true
+    });
+    if (!this.state.isOpen) {
+      document.addEventListener('keydown', this.onArrowPress);
+    }
+  };
+
+  onSelectHeadBlur = () => {
+    this.setState({
+      isFocused: false
+    });
+    document.removeEventListener('keydown', this.onArrowPress);
+  };
+
+  onArrowPress = e => {
+    if (e.keyCode === KeyCodes.arrowDown || e.keyCode === KeyCodes.arrowUp) {
+      e.preventDefault();
+      this.showSelectBody();
+    }
   };
 
   getItemSelectedHandler = itemKey => event => {
@@ -104,9 +145,14 @@ class SelectField extends React.PureComponent {
   };
 
   hideSelectBody = () => {
-    this.setState({
-      isOpen: false
-    });
+    this.setState(
+      {
+        isOpen: false
+      },
+      () => {
+        this.headRef.current.focus();
+      }
+    );
   };
 
   changeFocusedItem = itemKey => {
@@ -150,17 +196,18 @@ class SelectField extends React.PureComponent {
       disabled,
       selectedItemPlaceholder
     } = this.props;
-    const { isOpen, searchPhrase, focusedItemKey } = this.state;
+    const { isOpen, searchPhrase, focusedItemKey, isFocused } = this.state;
     const selectedItemModel = items.find(item => item.key === selectedItem);
     const filteredItems = items.filter(v => this.filterItem(v));
 
     return (
       <div ref={this.containerRef} className={styles[baseClass]}>
         <SelectHead
-          isFocused={isOpen}
+          isFocused={isOpen || isFocused}
           ref={this.headRef}
           onClick={this.onSelectHeadClick}
-          onFocus={this.showSelectBody}
+          onFocus={this.onSelectHeadFocus}
+          onBlur={this.onSelectHeadBlur}
         >
           <SelectHeadItem
             getSelectedItemBody={getSelectedItemBody}

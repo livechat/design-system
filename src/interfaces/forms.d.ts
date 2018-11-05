@@ -1,0 +1,23 @@
+// <reference types="react" />
+
+export interface ISelectFieldProps {
+  items: {
+    key: string;
+    props: {
+      [key: string]: any;
+    }
+  }[];
+  searchProperty?: string;
+  search?: boolean;
+  selectedItemPlaceholder?: React.ReactNode;
+  placeholder?: React.ReactNode;
+  selectedItem?: string | number;
+  openedOnInit?: boolean;
+  disabled?: boolean;
+  required?: boolean;
+  getItemBody(props: { [key: string]: any }): React.ReactNode;
+  getSelectedItemBody(props: { [key: string]: any }): React.ReactNode;
+  onItemSelected(itemKey: string | number): void;
+}
+
+export var SelectField: React.ComponentType<ISelectFieldProps>;

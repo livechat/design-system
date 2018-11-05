@@ -7,12 +7,21 @@ import styles from './style.scss';
 const baseClass = 'select-body';
 
 class SelectList extends React.PureComponent {
+  componentDidMount() {
+    if (this.props.isOpen) {
+      document.addEventListener('keydown', this.onKeydown);
+    }
+  }
+
   componentDidUpdate(prevProps) {
     if (!prevProps.isOpen && this.props.isOpen) {
       this.listRef.current.scrollTop = 0;
       document.addEventListener('keydown', this.onKeydown);
     } else if (prevProps.isOpen && !this.props.isOpen) {
       document.removeEventListener('keydown', this.onKeydown);
+      if (this.timerId) {
+        clearTimeout(this.timerId);
+      }
     }
   }
 
@@ -76,7 +85,8 @@ class SelectList extends React.PureComponent {
       if (relativeTop > ulHeight) {
         this.listRef.current.scrollTop = itemOfsetTop - ulHeight + itemHeigth;
       } else if (itemTop < ulTop) {
-        this.listRef.current.scrollTop = itemOfsetTop;
+        this.listRef.current.scrollTop =
+          itemOfsetTop - (itemOfsetTop % itemHeigth);
       }
       this.timerId = setTimeout(
         () => this.listRef.current.classList.remove('disable-hover'),
