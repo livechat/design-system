@@ -7,7 +7,7 @@ $base-class: 'select';
   width: inherit;
   color: $font-primary-color;
 
-  &__head {
+  &-head {
     position: relative;
     border: 1px solid $border-primary-color;
     border-radius: 4px;
@@ -35,10 +35,7 @@ $base-class: 'select';
     }
   }
 
-  // &__dropdown-icon {
-  // }
-
-  &__clear {
+  &-head__clear {
     opacity: 0;
     visibility: hidden;
     display: flex;
@@ -51,7 +48,7 @@ $base-class: 'select';
     }
   }
 
-  &__search {
+  &-head__search {
     border-radius: 4px;
     position: absolute;
     left: 10px;
@@ -73,7 +70,7 @@ $base-class: 'select';
     }
   }
 
-  &__input {
+  &-head__input {
     display: block;
     margin: 0;
     height: 100%;
@@ -101,13 +98,13 @@ $base-class: 'select';
     &:hover {
       outline: none;
 
-      .#{$base-class}__head {
+      .#{$base-class}-head {
         border: 1px solid $primary-color;
       }
     }
   }
 
-  &__body {
+  &-body {
     position: absolute;
     top: 100%;
     width: inherit;
@@ -131,21 +128,38 @@ $base-class: 'select';
       transition: all 0.15s ease-in-out;
     }
 
-    ul {
+    &__list {
       max-height: 224px;
       margin: 0;
       padding: 0;
       overflow-y: scroll;
     }
 
-    li {
+    &__item {
       position: relative;
       list-style: none;
       cursor: pointer;
+      display: flex;
+      padding: 8px 10px;
+      align-items: center;
+
+      &--selected {
+        color: $primary-color;
+
+        .#{$base-class}-body__checkmark {
+          opacity: 1;
+          visibility: visible;
+          transition: all 0.15s ease-in-out;
+        }
+      }
+
+      &--focused {
+        background-color: $hover-backgroud-color-light;
+      }
     }
   }
 
-  &__checkmark {
+  &-body__checkmark {
     opacity: 0;
     visibility: hidden;
     transition: all 0.15s ease-in-out;
@@ -156,39 +170,19 @@ $base-class: 'select';
     padding-left: 5px;
   }
 
-  &__item {
-    display: flex;
-    padding: 8px 10px;
-    align-items: center;
-
-    &--selected {
-      color: $primary-color;
-
-      .#{$base-class}__checkmark {
-        opacity: 1;
-        visibility: visible;
-        transition: all 0.15s ease-in-out;
-      }
-    }
-
-    &--focused {
-      background-color: $hover-backgroud-color-light;
-    }
-  }
-
-  &__selected-item {
+  &-head__item {
     height: 100%;
     display: flex;
     align-items: center;
     margin: 0;
     flex: 1;
-    opacity: 1;
-    visibility: visible;
+    opacity: 0;
+    visibility: hidden;
     transition: all 0.15s ease-in-out;
 
-    &--hidden {
-      opacity: 0;
-      visibility: hidden;
+    &--visible {
+      opacity: 1;
+      visibility: visible;
       transition: all 0.15s ease-in-out;
     }
 

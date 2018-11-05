@@ -1,10 +1,13 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import MenuDownIcon from 'react-material-icon-svg/dist/MenuDownIcon';
-import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 import classNames from 'classnames/bind';
 import styles from './style.scss';
 import SelectList from './SelectList';
+import SelectHead from './SelectHead';
+import SelectHeadItem from './SelectHeadItem';
+import ClearButton from './ClearButton';
+import Search from './Search';
 
 const cx = classNames.bind(styles);
 
@@ -23,8 +26,8 @@ class SelectField extends React.PureComponent {
     this.timerId = null;
     this.containerRef = React.createRef();
     this.searchInputRef = React.createRef();
-    this.selectHead = React.createRef();
-    this.closeIcon = React.createRef();
+    this.headRef = React.createRef();
+    this.clearButtonRef = React.createRef();
   }
 
   componentDidUpdate(_prevProps, prevState) {
@@ -73,21 +76,13 @@ class SelectField extends React.PureComponent {
     );
   };
 
-  onEnterKey = event => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-    }
-  };
-
   onSelectHeadClick = event => {
-    if (this.closeIcon.current.contains(event.target)) {
+    if (this.clearButtonRef.current.contains(event.target)) {
       return;
     }
     event.preventDefault();
     this.showSelectBody();
   };
-
-  getPlaceholder = () => this.props.placeholder || 'Search...';
 
   getItemSelectedHandler = itemKey => event => {
     event.preventDefault();
@@ -150,7 +145,8 @@ class SelectField extends React.PureComponent {
       selectedItem,
       getItemBody,
       getSelectedItemBody,
-      turnOffSearch,
+      search,
+      required,
       disabled,
       selectedItemPlaceholder
     } = this.props;
@@ -160,76 +156,37 @@ class SelectField extends React.PureComponent {
 
     return (
       <div ref={this.containerRef} className={styles[baseClass]}>
-        <div
-          className={cx({
-            [`${baseClass}__head`]: true,
-            [`${baseClass}__head--focused`]: isOpen
-          })}
+        <SelectHead
+          isFocused={isOpen}
+          ref={this.headRef}
           onClick={this.onSelectHeadClick}
-          tabIndex={0}
           onFocus={this.showSelectBody}
-          ref={this.selectHead}
         >
-          <div
-            className={cx({
-              [`${baseClass}__selected-item`]: true,
-              [`${baseClass}__selected-item--hidden`]: isOpen
-            })}
-          >
-            {selectedItemModel ? (
-              getSelectedItemBody(selectedItemModel.props)
-            ) : (
-              <div
-                className={styles[`${baseClass}__selected-item-placeholder`]}
-              >
-                {selectedItemPlaceholder}
-              </div>
-            )}
-          </div>
-          <div
-            className={cx({
-              [`${baseClass}__search`]: true,
-              [`${baseClass}__search--visible`]: turnOffSearch ? false : isOpen
-            })}
-          >
-            <input
-              ref={this.searchInputRef}
-              className={styles[`${baseClass}__input`]}
-              type="text"
-              placeholder={this.getPlaceholder()}
-              name="select-box-input"
-              value={searchPhrase}
-              onChange={this.onSearchChange}
-              onKeyPress={this.onEnterKey}
-              autoComplete="off"
-              disabled={disabled}
-            />
-          </div>
-          <div
-            ref={this.closeIcon}
-            className={cx({
-              [`${baseClass}__clear`]: true,
-              [`${baseClass}__clear--visible`]: selectedItem && !isOpen
-            })}
-          >
-            <CloseIcon
-              width="20px"
-              height="20px"
-              fill="#4384f5"
-              onClick={this.clearSelectedOption}
-            />
-          </div>
-          <MenuDownIcon
-            width="24px"
-            height="24px"
-            fill="#424d57"
-            className={styles[`${baseClass}__dropdown-icon`]}
+          <SelectHeadItem
+            getSelectedItemBody={getSelectedItemBody}
+            selectedItem={selectedItemModel}
+            isVisible={!(isOpen && search)}
+            placeholder={selectedItemPlaceholder}
           />
-        </div>
+          <Search
+            isVisible={!search ? false : isOpen}
+            inputRef={this.searchInputRef}
+            placeholder={this.props.placeholder || 'Search...'}
+            value={searchPhrase}
+            onChange={this.onSearchChange}
+            disabled={disabled}
+          />
+          <ClearButton
+            isVisible={!!selectedItemModel && !isOpen && !required}
+            ref={this.clearButtonRef}
+            clearSelectedOption={this.clearSelectedOption}
+          />
+          <MenuDownIcon width="24px" height="24px" fill="#424d57" />
+        </SelectHead>
         <div
           className={cx({
-            [`${baseClass}__body`]: true,
-            [`${baseClass}__body--visible`]: isOpen && filteredItems.length > 0
+            [`${baseClass}-body`]: true,
+            [`${baseClass}-body--visible`]: isOpen && filteredItems.length > 0
           })}
         >
           <SelectList
@@ -238,10 +195,9 @@ class SelectField extends React.PureComponent {
             onListClose={this.hideSelectBody}
             items={filteredItems}
             getSelectedItemBody={getSelectedItemBody}
-            selectedItems={[selectedItem]}
+            selectedItem={selectedItem}
             getItemSelectedHandler={this.getItemSelectedHandler}
             searchPhrase={searchPhrase}
-            selectedDisabled
             searchProperty={searchProperty}
             onEnterKey={this.handleEnterKeyUse}
             onFocusedItemChange={this.changeFocusedItem}
@@ -264,9 +220,10 @@ SelectField.propTypes = {
     })
   ),
   selectedItemPlaceholder: PropTypes.string,
-  searchProperty: PropTypes.string.isRequired,
+  searchProperty: PropTypes.string,
   selectedItem: PropTypes.string,
-  turnOffSearch: PropTypes.bool,
+  search: PropTypes.bool,
+  required: PropTypes.bool,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   openedOnInit: PropTypes.bool

@@ -4,17 +4,16 @@ import classNames from 'classnames/bind';
 import CheckIcon from 'react-material-icon-svg/dist/CheckIcon';
 import styles from './style.scss';
 
-const baseClass = 'select';
+const baseClass = 'select-body';
 const cx = classNames.bind(styles);
 
 const SelectItem = props => {
-  const { isSelected, disabled, children, isFocused, ...restProps } = props;
+  const { isSelected, children, isFocused, ...restProps } = props;
   return (
     <li
       className={cx({
         [`${baseClass}__item`]: true,
         [`${baseClass}__item--selected`]: isSelected,
-        [`${baseClass}__item--disabled`]: disabled,
         [`${baseClass}__item--focused`]: isFocused
       })}
       {...restProps}
@@ -28,8 +27,7 @@ const SelectItem = props => {
 SelectItem.propTypes = {
   isSelected: PropTypes.bool,
   isFocused: PropTypes.bool,
-  children: PropTypes.node,
-  disabled: PropTypes.bool
+  children: PropTypes.node
 };
 
 export default SelectItem;
