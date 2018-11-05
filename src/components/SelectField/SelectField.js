@@ -48,6 +48,7 @@ class SelectField extends React.PureComponent {
 
   componentWillUnmount() {
     this.onBodyClose();
+    document.removeEventListener('keydown', this.onArrowPress);
   }
 
   onDocumentClick = event => {
