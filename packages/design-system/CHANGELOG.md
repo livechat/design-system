@@ -54,3 +54,10 @@ _Release: 2018-10-28_
 
 ##### Bug Fixes
 * Fixing rollup bundle issue with undefined React named exports
+
+----
+### v0.0.4
+_Release: 2018-11-06_
+
+##### Refactors
+* Adding ts typings for Tooltip and TooltipContent
