@@ -9,9 +9,9 @@ export interface ISelectFieldProps {
   }[];
   searchProperty?: string;
   search?: boolean;
-  selectedItemPlaceholder?: React.ReactNode;
   placeholder?: React.ReactNode;
-  selectedItem?: string | number;
+  searchPlaceholder?: React.ReactNode;
+  selected: string | number;
   openedOnInit?: boolean;
   disabled?: boolean;
   required?: boolean;
