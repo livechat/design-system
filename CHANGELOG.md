@@ -61,3 +61,10 @@ _Release: 2018-11-06_
 
 ##### Refactors
 * Adding ts typings for Tooltip and TooltipContent
+
+----
+### v0.0.5
+_Release: 2018-11-07_
+
+##### New Features
+* Add inline option for tooltips for positioning it with inline elements
