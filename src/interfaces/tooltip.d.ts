@@ -10,6 +10,7 @@ export interface ITooltipProps {
   offset?: number;
   trigger?: TooltipTrigger;
   align?: TooltipAlign;
+  inline?: boolean;
   directions?: TooltipDirection[];
   children: React.ReactNode;
   content: React.ReactNode;

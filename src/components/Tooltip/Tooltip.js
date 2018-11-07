@@ -18,7 +18,7 @@ class Tooltip extends React.Component {
       yPosition: 0
     };
 
-    this.scrollListener = throttle(50, this.onWindowScroll);
+    this.viewportListener = throttle(50, this.onViewportChange);
   }
 
   static getDerivedStateFromProps(props) {
@@ -53,7 +53,7 @@ class Tooltip extends React.Component {
     this.removeEventHandlers();
   }
 
-  onWindowScroll = () => {
+  onViewportChange = () => {
     if (this.state.isVisible) {
       this.setState({ isVisible: false });
     }
@@ -104,11 +104,13 @@ class Tooltip extends React.Component {
   }
 
   addEventHandlers() {
-    window.addEventListener('scroll', this.scrollListener);
+    window.addEventListener('scroll', this.viewportListener);
+    window.addEventListener('resize', this.viewportListener);
   }
 
   removeEventHandlers() {
-    window.removeEventListener('scroll', this.scrollListener);
+    window.removeEventListener('scroll', this.viewportListener);
+    window.removeEventListener('resize', this.viewportListener);
   }
 
   recalculatePosition() {
@@ -166,13 +168,21 @@ class Tooltip extends React.Component {
     return DIRECTION.Top;
   }
 
+  tooltipClassNames() {
+    return classNames(
+      styles.tooltip,
+      { [`${styles.tooltip}--inline`]: this.props.inline },
+      this.props.className
+    );
+  }
+
   tooltipRef = React.createRef();
   tooltipBoxRef = React.createRef();
 
   render() {
     return (
       <div
-        className={classNames(styles.tooltip, this.props.className)}
+        className={this.tooltipClassNames()}
         ref={this.tooltipRef}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
@@ -206,11 +216,12 @@ Tooltip.propTypes = {
   offset: PropTypes.number,
   trigger: PropTypes.oneOf(['hover', 'click', 'custom']),
   align: PropTypes.oneOf(['top', 'center', 'bottom', 'left', 'right']),
+  inline: PropTypes.bool,
   directions: (props, propName, componentName) => {
     const values = obj => Object.keys(obj).map(key => obj[key]);
 
     const validationError = new Error(
-      `Invalid prop \`${propName}\` supplied to \`${componentName}\`. 
+      `Invalid prop \`${propName}\` supplied to \`${componentName}\`.
       Prop should be equal to array with some of values ${values(
         DIRECTION
       ).join(', ')}. Validation failed.`
@@ -238,6 +249,7 @@ Tooltip.defaultProps = {
   offset: 0,
   trigger: 'hover',
   align: 'top',
+  inline: false,
   directions: ['bottom']
 };
 
