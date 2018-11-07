@@ -35,14 +35,17 @@ class SelectField extends React.PureComponent {
 
   componentDidMount() {
     if (this.props.openedOnInit) {
+      this.props.onDropdownToggle(true);
       this.onBodyOpen();
     }
   }
 
   componentDidUpdate(_prevProps, prevState) {
     if (this.state.isOpen && prevState.isOpen !== this.state.isOpen) {
+      this.props.onDropdownToggle(true);
       this.onBodyOpen();
     } else if (!this.state.isOpen && prevState.isOpen !== this.state.isOpen) {
+      this.props.onDropdownToggle(false);
       this.onBodyClose();
     }
   }
@@ -287,12 +290,14 @@ SelectField.propTypes = {
   required: PropTypes.bool,
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
-  openedOnInit: PropTypes.bool
+  openedOnInit: PropTypes.bool,
+  onDropdownToggle: PropTypes.func
 };
 
 SelectField.defaultProps = {
   items: [],
-  selected: null
+  selected: null,
+  onDropdownToggle: () => {}
 };
 
 export default SelectField;

@@ -18,6 +18,7 @@ export interface ISelectFieldProps {
   getItemBody(props: { [key: string]: any }): React.ReactNode;
   getSelectedItemBody(props: { [key: string]: any }): React.ReactNode;
   onItemSelected(itemKey: string | number): void;
+  onDropdownToggle?(isOpen: boolean): any;
 }
 
 export var SelectField: React.ComponentType<ISelectFieldProps>;
