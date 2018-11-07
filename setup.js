@@ -26,6 +26,7 @@ global.TextAreaField = Components.TextAreaField;
 global.CheckboxField = Components.CheckboxField;
 global.SelectField = Components.SelectField;
 global.Select = Components.Select;
+global.MultiSelectField = Components.MultiSelectField;
 
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;
