@@ -21,7 +21,7 @@ class SelectField extends React.PureComponent {
     this.state = {
       isOpen: props.openedOnInit || false,
       searchPhrase: '',
-      focusedItemKey: null,
+      focusedItemKey: this.props.items[0] ? this.props.items[0].key : null,
       isFocused: false
     };
 
@@ -30,6 +30,7 @@ class SelectField extends React.PureComponent {
     this.searchInputRef = React.createRef();
     this.headRef = React.createRef();
     this.clearButtonRef = React.createRef();
+    this.listRef = React.createRef();
   }
 
   componentDidMount() {
@@ -56,6 +57,7 @@ class SelectField extends React.PureComponent {
       this.state.isOpen &&
       !this.containerRef.current.contains(event.target)
     ) {
+      this.listRef.current.scrollTop = 0;
       this.hideSelectBody();
     }
   };
@@ -67,7 +69,7 @@ class SelectField extends React.PureComponent {
       },
       () => {
         const filteredItems = this.props.items.filter(
-          v => this.filterItem(v) && this.props.selectedItem !== v.key
+          v => this.filterItem(v) && this.props.selected !== v.key
         );
         const focusedItemKey =
           filteredItems.length > 0 ? filteredItems[0].key : null;
@@ -96,7 +98,10 @@ class SelectField extends React.PureComponent {
   };
 
   onSelectHeadClick = event => {
-    if (this.clearButtonRef.current.contains(event.target)) {
+    if (
+      this.clearButtonRef.current &&
+      this.clearButtonRef.current.contains(event.target)
+    ) {
       return;
     }
     event.preventDefault();
@@ -133,8 +138,8 @@ class SelectField extends React.PureComponent {
     this.hideSelectBody();
   };
 
-  handleEnterKeyUse = number => {
-    this.props.onItemSelected(number);
+  handleEnterKeyUse = itemKey => {
+    this.props.onItemSelected(itemKey);
     this.hideSelectBody();
   };
 
@@ -148,7 +153,8 @@ class SelectField extends React.PureComponent {
   hideSelectBody = () => {
     this.setState(
       {
-        isOpen: false
+        isOpen: false,
+        focusedItemKey: this.props.items[0] ? this.props.items[0].key : null
       },
       () => {
         this.headRef.current.focus();
@@ -157,7 +163,12 @@ class SelectField extends React.PureComponent {
   };
 
   changeFocusedItem = itemKey => {
-    this.setState({
+    if (typeof itemKey === 'undefined' || itemKey === null) {
+      return this.setState({
+        focusedItemKey: this.props.items[0] ? this.props.items[0].key : null
+      });
+    }
+    return this.setState({
       focusedItemKey: itemKey
     });
   };
@@ -189,17 +200,18 @@ class SelectField extends React.PureComponent {
     const {
       items,
       searchProperty,
-      selectedItem,
       getItemBody,
       getSelectedItemBody,
       search,
       required,
       disabled,
-      selectedItemPlaceholder
+      searchPlaceholder,
+      placeholder,
+      selected
     } = this.props;
     const { isOpen, searchPhrase, focusedItemKey, isFocused } = this.state;
-    const selectedItemModel = items.find(item => item.key === selectedItem);
-    const filteredItems = items.filter(v => this.filterItem(v));
+    const selectedItemModel = items.find(item => item.key === selected);
+    const filteredItems = items.filter(this.filterItem);
 
     return (
       <div ref={this.containerRef} className={styles[baseClass]}>
@@ -214,12 +226,12 @@ class SelectField extends React.PureComponent {
             getSelectedItemBody={getSelectedItemBody}
             selectedItem={selectedItemModel}
             isVisible={!(isOpen && search)}
-            placeholder={selectedItemPlaceholder}
+            placeholder={placeholder}
           />
           <Search
             isVisible={!search ? false : isOpen}
             inputRef={this.searchInputRef}
-            placeholder={this.props.placeholder || 'Search...'}
+            placeholder={searchPlaceholder || 'Search...'}
             value={searchPhrase}
             onChange={this.onSearchChange}
             disabled={disabled}
@@ -238,12 +250,13 @@ class SelectField extends React.PureComponent {
           })}
         >
           <SelectList
+            listRef={this.listRef}
             getItemBody={getItemBody}
             isOpen={isOpen}
             onListClose={this.hideSelectBody}
             items={filteredItems}
             getSelectedItemBody={getSelectedItemBody}
-            selectedItem={selectedItem}
+            selectedItem={selected}
             getItemSelectedHandler={this.getItemSelectedHandler}
             searchPhrase={searchPhrase}
             searchProperty={searchProperty}
@@ -267,9 +280,9 @@ SelectField.propTypes = {
       props: PropTypes.object
     })
   ),
-  selectedItemPlaceholder: PropTypes.string,
+  searchPlaceholder: PropTypes.string,
   searchProperty: PropTypes.string,
-  selectedItem: PropTypes.string,
+  selected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   search: PropTypes.bool,
   required: PropTypes.bool,
   placeholder: PropTypes.string,
@@ -279,7 +292,7 @@ SelectField.propTypes = {
 
 SelectField.defaultProps = {
   items: [],
-  selectedItem: null
+  selected: null
 };
 
 export default SelectField;

@@ -1,3 +1,5 @@
+SelectField:
+
 ```js
 const items = [
   {key: '1', props: {name: 'option 1', value: '1'}},
@@ -33,10 +35,10 @@ const getSelectedItemBody = props => {
     onItemSelected={handleItemSelect}
     getItemBody={getItemBody}
     search
-    selectedItemPlaceholder='Select option'
+    placeholder='Select option'
     getSelectedItemBody={getSelectedItemBody}
-    selectedItem={state.selectedItem}
-    placeholder='Search...'
+    selected={state.selectedItem}
+    searchPlaceholder='Search...'
   />
 </div>
 ```

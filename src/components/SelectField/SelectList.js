@@ -15,7 +15,7 @@ class SelectList extends React.PureComponent {
 
   componentDidUpdate(prevProps) {
     if (!prevProps.isOpen && this.props.isOpen) {
-      this.listRef.current.scrollTop = 0;
+      this.props.listRef.current.scrollTop = 0;
       document.addEventListener('keydown', this.onKeydown);
     } else if (prevProps.isOpen && !this.props.isOpen) {
       document.removeEventListener('keydown', this.onKeydown);
@@ -37,6 +37,7 @@ class SelectList extends React.PureComponent {
     const { keyCode } = event;
 
     if (keyCode === 9 || keyCode === 27) {
+      this.props.listRef.current.scrollTop = 0;
       this.props.onListClose();
     }
 
@@ -52,7 +53,7 @@ class SelectList extends React.PureComponent {
   getHoveredItemCallback = itemKey => {
     if (!this.hoverCallbacks[itemKey]) {
       this.hoverCallbacks[itemKey] = () => {
-        if (!this.listRef.current.classList.contains('disable-hover')) {
+        if (!this.props.listRef.current.classList.contains('disable-hover')) {
           this.props.onFocusedItemChange(itemKey);
         }
       };
@@ -65,16 +66,16 @@ class SelectList extends React.PureComponent {
     this.props.items.map(item => item.key).indexOf(itemKey);
 
   scrollItems = () => {
-    const focusedElement = this.listRef.current.querySelector(
+    const focusedElement = this.props.listRef.current.querySelector(
       `.lc-${baseClass}__item--focused`
     );
 
     if (focusedElement) {
-      this.listRef.current.classList.add('disable-hover');
+      this.props.listRef.current.classList.add('disable-hover');
       const {
         height: ulHeight,
         top: ulTop
-      } = this.listRef.current.getBoundingClientRect();
+      } = this.props.listRef.current.getBoundingClientRect();
       const {
         height: itemHeigth,
         top: itemTop
@@ -83,30 +84,25 @@ class SelectList extends React.PureComponent {
       const itemOfsetTop = focusedElement.offsetTop;
 
       if (relativeTop > ulHeight) {
-        this.listRef.current.scrollTop = itemOfsetTop - ulHeight + itemHeigth;
+        this.props.listRef.current.scrollTop =
+          itemOfsetTop - ulHeight + itemHeigth;
       } else if (itemTop < ulTop) {
-        this.listRef.current.scrollTop =
+        this.props.listRef.current.scrollTop =
           itemOfsetTop - (itemOfsetTop % itemHeigth);
       }
       this.timerId = setTimeout(
-        () => this.listRef.current.classList.remove('disable-hover'),
+        () => this.props.listRef.current.classList.remove('disable-hover'),
         100
       );
     }
   };
 
   handleEnterKeyUse = () => {
-    const {
-      isOpen,
-      focusedItemKey,
-      onEnterKey,
-      onFocusedItemChange
-    } = this.props;
+    const { isOpen, focusedItemKey, onEnterKey } = this.props;
 
     if (isOpen && focusedItemKey !== null) {
-      this.listRef.current.scrollTop = 0;
+      this.props.listRef.current.scrollTop = 0;
       onEnterKey(focusedItemKey);
-      onFocusedItemChange(null);
     }
   };
 
@@ -117,37 +113,39 @@ class SelectList extends React.PureComponent {
 
     const currentItemIndex = this.getFocusedItemIndex(focusedItemKey);
 
-    if (keyCode === KeyCodes.arrowDown && currentItemIndex + 1 < items.length) {
-      onFocusedItemChange(items[currentItemIndex + 1].key);
-    }
-
     if (keyCode === KeyCodes.arrowUp && currentItemIndex > 0) {
       onFocusedItemChange(items[currentItemIndex - 1].key);
+    }
+
+    if (keyCode === KeyCodes.arrowDown && currentItemIndex + 1 < items.length) {
+      onFocusedItemChange(items[currentItemIndex + 1].key);
     }
 
     this.scrollItems();
   };
 
+  isItemSelected = itemKey => {
+    if (this.props.selectedItem === null) {
+      return false;
+    }
+    return this.props.selectedItem === itemKey;
+  };
+
+  isItemFocused = itemKey => this.props.focusedItemKey === itemKey;
+
   timerId = null;
 
   hoverCallbacks = [];
-  listRef = React.createRef();
 
   render() {
-    const {
-      items,
-      selectedItem,
-      getItemBody,
-      getItemSelectedHandler,
-      focusedItemKey
-    } = this.props;
+    const { items, getItemBody, getItemSelectedHandler } = this.props;
 
     return (
-      <ul ref={this.listRef} className={styles[`${baseClass}__list`]}>
+      <ul ref={this.props.listRef} className={styles[`${baseClass}__list`]}>
         {items.filter(v => !v.props.hidden).map(item => (
           <SelectItem
-            isSelected={item.key === selectedItem}
-            isFocused={item.key === focusedItemKey}
+            isSelected={this.isItemSelected(item.key)}
+            isFocused={this.isItemFocused(item.key)}
             key={item.key}
             onClick={getItemSelectedHandler(item.key)}
             onMouseEnter={this.getHoveredItemCallback(item.key)}
@@ -170,11 +168,12 @@ SelectList.propTypes = {
     })
   ),
   onListClose: PropTypes.func,
-  selectedItem: PropTypes.string,
+  selectedItem: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   getItemSelectedHandler: PropTypes.func,
   onEnterKey: PropTypes.func,
   focusedItemKey: PropTypes.string,
-  onFocusedItemChange: PropTypes.func
+  onFocusedItemChange: PropTypes.func,
+  listRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) })
 };
 
 export default SelectList;
