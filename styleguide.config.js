@@ -63,6 +63,7 @@ module.exports = {
             './src/components/CheckboxField/CheckboxField.js',
             './src/components/FieldGroup/FieldGroup.js',
             './src/components/FormGroup/FormGroup.js',
+            './src/components/SelectField/Select.js',
             './src/components/SelectField/SelectField.js'
           ],
           sectionDepth: 0

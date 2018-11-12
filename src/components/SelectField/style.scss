@@ -33,10 +33,6 @@ $base-class: 'select';
         transition: border 0.15s ease-in-out;
       }
     }
-
-    &--error {
-      border-color: $error-color;
-    }
   }
 
   &-head__clear {
@@ -193,6 +189,12 @@ $base-class: 'select';
     &-placeholder {
       opacity: 0.4;
       color: $font-primary-color;
+    }
+  }
+
+  &--error {
+    .#{$base-class}-head {
+      border-color: $error-color;
     }
   }
 }

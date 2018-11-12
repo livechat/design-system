@@ -1,4 +1,5 @@
-SelectField:
+<h3>Select</h3>
+
 ```js
 const items = [
   {key: '1', props: {name: 'option 1', value: '1'}},
@@ -11,17 +12,10 @@ const items = [
   {key: '8', props: {name: 'option 8', value: '8'}},
 ];
 initialState = {
-  selectedItem: null,
-  error: null
+  selectedItem: null
 };
 
-const handleItemSelect = item => {
-  if (item === null) {
-    setState({selectedItem: item, error: 'Please select one option'});
-  } else {
-    setState({selectedItem: item, error: null});
-  }
-}
+const handleItemSelect = item => setState({selectedItem: item});
 
 const getItemBody = props => {
   if (!props) {
@@ -35,15 +29,12 @@ const getSelectedItemBody = props => {
 };
 
 <div style={{width: '340px'}}>
-  <SelectField
+  <Select
     id='select-example'
     items={items}
     searchProperty='name'
     onItemSelected={handleItemSelect}
     getItemBody={getItemBody}
-    description="Helper text"
-    labelText="Select example"
-    error={state.error}
     search
     placeholder='Select option'
     getSelectedItemBody={getSelectedItemBody}
@@ -76,15 +67,12 @@ const getSelectedItemBody = props => {
 };
 
 <ComponentHtmlMarkup>
-  <SelectField
+  <Select
     id='select-example'
     items={items}
     searchProperty='name'
     onItemSelected={item => {}}
     getItemBody={getItemBody}
-    description="Helper text"
-    labelText="Select example"
-    error="Error"
     search
     placeholder='Select option'
     getSelectedItemBody={getSelectedItemBody}
@@ -94,4 +82,18 @@ const getSelectedItemBody = props => {
 </ComponentHtmlMarkup>
 ```
 
-The SelectField component should be used especially in forms, when you need to validate field or add additional informations to field. It's provides additional props to Select, like: labelText, error and description.
+A select allows users to choose one option from a list of items. Use it when you have &gt;4 options.
+A select can allow users to search through a list of choices. When the user types in the input, suggestions are provided.
+When an item is selected, it appears highlighted, has a check mark and the primary color.
+The selected item replaces the input placeholder.
+
+<h3>Best practices</h3>
+<ul>
+  <li>
+    Have a default selected whenever possible
+	•	Sort the list in a logical order. E.g. put the most selected option at the top, or alphabetically.
+  </li>
+  <li>
+    Sort the list in a logical order. E.g. put the most selected option at the top, or alphabetically.
+  </li>
+</ul>
