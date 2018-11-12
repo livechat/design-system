@@ -33,6 +33,10 @@ $base-class: 'select';
         transition: border 0.15s ease-in-out;
       }
     }
+
+    &--error {
+      border-color: $error-color;
+    }
   }
 
   &-head__clear {

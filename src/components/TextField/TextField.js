@@ -31,17 +31,19 @@ const TextField = props => {
 
   return (
     <div className={mergedClassNames}>
-      <div
-        className={cx({
-          [`${baseClass}__label--inline`]: inline
-        })}
-      >
-        <FieldLabel htmlFor={htmlFor}>{labelText}</FieldLabel>
-      </div>
+      {labelText && (
+        <div
+          className={cx({
+            [`${baseClass}__label--inline`]: inline
+          })}
+        >
+          <FieldLabel htmlFor={htmlFor}>{labelText}</FieldLabel>
+        </div>
+      )}
       <div>
         {children}
-        <FieldError>{error}</FieldError>
-        <FieldDescription>{description}</FieldDescription>
+        {error && <FieldError>{error}</FieldError>}
+        {description && <FieldDescription>{description}</FieldDescription>}
       </div>
     </div>
   );
@@ -53,7 +55,7 @@ TextField.propTypes = {
   className: PropTypes.string,
   inline: PropTypes.bool,
   error: PropTypes.string,
-  description: PropTypes.string,
+  description: PropTypes.node,
   children: PropTypes.node
 };
 

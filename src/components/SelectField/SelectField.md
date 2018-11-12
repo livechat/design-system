@@ -30,6 +30,7 @@ const getSelectedItemBody = props => {
 
 <div style={{width: '340px'}}>
   <SelectField
+    id='select-example'
     items={items}
     searchProperty='name'
     onItemSelected={handleItemSelect}
