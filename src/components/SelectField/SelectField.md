@@ -39,7 +39,7 @@ const getSelectedItemBody = props => {
     id='select-example'
     items={items}
     searchProperty='name'
-    onItemSelected={handleItemSelect}
+    onItemSelect={handleItemSelect}
     getItemBody={getItemBody}
     description="Helper text"
     labelText="Select example"
@@ -80,7 +80,7 @@ const getSelectedItemBody = props => {
     id='select-example'
     items={items}
     searchProperty='name'
-    onItemSelected={item => {}}
+    onItemSelect={item => {}}
     getItemBody={getItemBody}
     description="Helper text"
     labelText="Select example"

@@ -2,7 +2,7 @@
 
 export interface ISelectProps {
   className?: string;
-  id: string;
+  id?: string;
   error?: string;
   items: {
     key: string;
@@ -20,7 +20,7 @@ export interface ISelectProps {
   required?: boolean;
   getItemBody(props: { [key: string]: any }): React.ReactNode;
   getSelectedItemBody(props: { [key: string]: any }): React.ReactNode;
-  onItemSelected(itemKey: string | number): void;
+  onItemSelect(itemKey: string | number): void;
   onDropdownToggle?(isOpen: boolean): any;
 }
 

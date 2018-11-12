@@ -138,12 +138,12 @@ class Select extends React.PureComponent {
   getItemSelectedHandler = itemKey => event => {
     event.preventDefault();
 
-    this.props.onItemSelected(itemKey);
+    this.props.onItemSelect(itemKey);
     this.hideSelectBody();
   };
 
   handleEnterKeyUse = itemKey => {
-    this.props.onItemSelected(itemKey);
+    this.props.onItemSelect(itemKey);
     this.hideSelectBody();
   };
 
@@ -180,7 +180,7 @@ class Select extends React.PureComponent {
   clearSelectedOption = e => {
     e.preventDefault();
     e.stopPropagation();
-    this.props.onItemSelected(null);
+    this.props.onItemSelect(null);
   };
 
   filterItem = item => {
@@ -290,7 +290,7 @@ Select.propTypes = {
   id: PropTypes.string,
   getItemBody: PropTypes.func.isRequired,
   getSelectedItemBody: PropTypes.func.isRequired,
-  onItemSelected: PropTypes.func.isRequired,
+  onItemSelect: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       key: PropTypes.string,
