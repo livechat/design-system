@@ -26,6 +26,7 @@ const Search = props => {
         ref={inputRef}
         className={styles[`${baseClass}__input`]}
         type="text"
+        size={props.size}
         placeholder={placeholder}
         name="select-box-input"
         value={value}
@@ -44,7 +45,8 @@ Search.propTypes = {
   placeholder: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  size: PropTypes.number
 };
 
 export default Search;

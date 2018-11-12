@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { KeyCodes } from '../../constants/keyCodes';
-import SelectItem from './SelectItem';
+import MultiSelectItem from './MultiSelectItem';
 import styles from './style.scss';
 
 const baseClass = 'multiselect-body';
 
-class SelectList extends React.PureComponent {
+class MultiSelectList extends React.PureComponent {
   componentDidMount() {
     if (this.props.isOpen) {
       document.addEventListener('keydown', this.onKeydown);
@@ -104,7 +104,7 @@ class SelectList extends React.PureComponent {
   handleEnterKeyUse = () => {
     const { isOpen, focusedItemKey, onEnterKey, toggleAllOptions } = this.props;
 
-    if (toggleAllOptions && !focusedItemKey) {
+    if (toggleAllOptions && focusedItemKey === null) {
       this.handleToggleAll();
     } else if (isOpen && focusedItemKey !== null) {
       onEnterKey(focusedItemKey);
@@ -178,19 +178,19 @@ class SelectList extends React.PureComponent {
     return (
       <ul ref={this.props.listRef} className={styles[`${baseClass}__list`]}>
         {toggleAllOptions && (
-          <SelectItem
+          <MultiSelectItem
             isFocused={this.isItemFocused(null)}
             onClick={this.handleToggleAll}
             isToggleItem
             onMouseEnter={this.onToggleAllOptionHover}
           >
             {this.isAllItemsSelected()
-              ? toggleAllOptions.clearLabel || 'Clear'
+              ? toggleAllOptions.clearLabel || 'Deselect all'
               : toggleAllOptions.selectLabel || 'Select all'}
-          </SelectItem>
+          </MultiSelectItem>
         )}
         {items.filter(v => !v.props.hidden).map(item => (
-          <SelectItem
+          <MultiSelectItem
             isSelected={this.isItemSelected(item.key)}
             isFocused={this.isItemFocused(item.key)}
             key={item.key}
@@ -198,14 +198,14 @@ class SelectList extends React.PureComponent {
             onMouseEnter={this.getHoveredItemCallback(item.key)}
           >
             {getItemBody(item.props)}
-          </SelectItem>
+          </MultiSelectItem>
         ))}
       </ul>
     );
   }
 }
 
-SelectList.propTypes = {
+MultiSelectList.propTypes = {
   getItemBody: PropTypes.func,
   isOpen: PropTypes.bool,
   items: PropTypes.arrayOf(
@@ -230,4 +230,4 @@ SelectList.propTypes = {
   })
 };
 
-export default SelectList;
+export default MultiSelectList;

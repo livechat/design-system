@@ -22,4 +22,4 @@ export { default as FieldError } from './FieldError';
 export { default as FieldLabel } from './FieldLabel';
 export { default as FieldDescription } from './FieldDescription';
 export { Select, SelectField } from './SelectField';
-export { default as MultiSelectField } from './MultiSelectField';
+export { MultiSelect, MultiSelectField } from './MultiSelectField';

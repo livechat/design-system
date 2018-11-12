@@ -13,27 +13,23 @@ const items = [
   {key: '10', props: {name: 'option 10', value: '10'}}
 ];
 initialState = {
-  selectedItems: null,
-  error: null
+  selectedItems: null
 };
 
 const handleItemSelect = item => {
   if (!state.selectedItems) {
-    return setState({selectedItems: [item], error: null})
+    return setState({selectedItems: [item]})
   }
   if (state.selectedItems.some(selected => item === selected)) {
     const newState = state.selectedItems.filter(selected => item !== selected);
-    return setState({selectedItems: newState.length === 0 ? null : newState, error: null});
+    return setState({selectedItems: newState.length === 0 ? null : newState});
   }
-  return setState({selectedItems: [...state.selectedItems, item], error: null}); 
+  return setState({selectedItems: [...state.selectedItems, item]}); 
 }
 
 const handleItemRemove = item => {
   const newState = state.selectedItems.filter(selected => selected !== item);
-  return setState({
-    selectedItems: newState.length > 0 ? newState : null,
-    error: newState.length === 0 ? 'Field error' : null
-  }); 
+  return setState({selectedItems: newState.length > 0 ? newState : null}); 
 }
 
 const getItemBody = props => {
@@ -50,23 +46,17 @@ const getSelectedItemBody = props => {
 const toggleAll = items => {
   if (!items) {
     return setState({
-      selectedItems: null,
-      error: 'Field error'
+      selectedItems: null
     })
   }
   return setState({
-    selectedItems: items,
-    error: null
+    selectedItems: items
   })
 }
  
 <div style={{width: '340px'}}>
-  <MultiSelectField
-    id='multiselect-example'
+  <MultiSelect
     items={items}
-    description='Field helper'
-    labelText='Field label'
-    error={state.error}
     searchProperty='name'
     onItemSelect={handleItemSelect}
     onItemRemove={handleItemRemove}
@@ -76,7 +66,6 @@ const toggleAll = items => {
     }}
     search
     maxItemsContainerHeight={72}
-    placeholder='Select option'
     getSelectedItemBody={getSelectedItemBody}
     selected={state.selectedItems}
     searchPlaceholder='Search...'
@@ -102,11 +91,7 @@ const getSelectedItemBody = props => {
 };
 
 <ComponentHtmlMarkup>
-  <MultiSelectField
-    id='multiselect-example'
-    error='Field error'
-    description='Field helper'
-    labelText='Field label'
+  <MultiSelect
     items={items}
     searchProperty='name'
     onItemSelect={() => {}}
