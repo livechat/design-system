@@ -123,3 +123,5 @@ const getSelectedItemBody = props => {
   />
 </ComponentHtmlMarkup>
 ```
+
+The MultiSelectField component should be used especially in forms, when you need to validate field or add additional informations to field. It's provides additional props to MultiSelect, like: labelText, error and description.

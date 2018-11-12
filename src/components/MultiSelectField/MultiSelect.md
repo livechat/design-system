@@ -1,4 +1,5 @@
-MultiSelectField
+<h3>MultiSelect</h3>
+
 ```js
 const items = [
   {key: '1', props: {name: 'option 1', value: '1'}},
@@ -108,3 +109,9 @@ const getSelectedItemBody = props => {
   />
 </ComponentHtmlMarkup>
 ```
+
+Multi-selects let users search and choose multiple options from a list. Multiselect doesn’t close after choosing an item.
+
+When an item is selected, it appears as a tag in the input field. Selected items are also marked on the selection menu. Users can deselect items either from the menu list, or from the input field. When an item is deselected it disappears from the text input field.
+
+Selected items don’t change order on the list to to increase findability.
