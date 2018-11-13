@@ -68,3 +68,11 @@ _Release: 2018-11-07_
 
 ##### New Features
 * Add inline option for tooltips for positioning it with inline elements
+
+----
+### v0.0.6
+_Release: 2018-11-12_
+
+##### New Features
+* New Select and SelectField components
+
