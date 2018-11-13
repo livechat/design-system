@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { CheckIcon } from 'react-material-icon-svg';
 import FieldDescription from '../FieldDescription';
+import Checkbox from './Checkbox';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
@@ -32,17 +33,12 @@ const CheckboxField = props => {
   return (
     <div className={mergedClassNames}>
       <label className={styles[`${baseClass}__label`]}>
-        <div className={styles[`${baseClass}__square`]}>
-          <CheckIcon className={styles[`${baseClass}__checkmark`]} />
-          <input
-            className={styles[`${baseClass}__input`]}
-            {...restProps}
-            type="checkbox"
-            id={id}
-            checked={checked}
-            disabled={disabled}
-          />
-        </div>
+        <Checkbox
+          {...restProps}
+          id={id}
+          checked={checked}
+          disabled={disabled}
+        />
         <div className={styles[`${baseClass}__text`]}>{children}</div>
       </label>
       {description && (
