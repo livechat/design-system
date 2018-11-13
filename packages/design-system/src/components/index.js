@@ -21,3 +21,4 @@ export { default as FieldGroup } from './FieldGroup';
 export { default as FieldError } from './FieldError';
 export { default as FieldLabel } from './FieldLabel';
 export { default as FieldDescription } from './FieldDescription';
+export { Select, SelectField } from './SelectField';
