@@ -74,7 +74,12 @@ _Release: 2018-11-07_
 _Release: 2018-11-12_
 
 ##### New Features
-* New components
-  * Select and SelectField
-  * MultiSelect and MultiSelectField
+* New Select and SelectField components
 
+----
+## v0.0.7
+_Release: 2018-11-13_
+
+##### New Features
+* New components
+  * MultiSelect and MultiSelectField
