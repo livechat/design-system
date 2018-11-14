@@ -47,7 +47,11 @@ module.exports = {
         },
         {
           name: 'Modal',
-          components: './src/components/Modal/Modal.js'
+          components: [
+            './src/components/Modal/Modal.js',
+            './src/components/Modal/PopupModal.js',
+            './src/components/Modal/ActionModal.js'
+          ]
         },
         {
           name: 'Tooltip',

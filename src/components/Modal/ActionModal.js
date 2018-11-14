@@ -21,7 +21,7 @@ const ActionModal = props => {
     <Modal className={mergedClassNames} {...restProps}>
       {title && <ActionModalHeader>{title}</ActionModalHeader>}
       <ActionModalBody>{children}</ActionModalBody>
-      {footer && <ActionModalFooter>{footer}</ActionModalFooter>}
+      <ActionModalFooter>{footer}</ActionModalFooter>
     </Modal>
   );
 };
@@ -29,7 +29,7 @@ const ActionModal = props => {
 ActionModal.propTypes = {
   ...Modal.propTypes,
   title: PropTypes.node,
-  footer: PropTypes.node
+  footer: PropTypes.node.isRequired
 };
 
 export default ActionModal;

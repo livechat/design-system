@@ -20,8 +20,8 @@ const PopupModal = props => {
 
   return (
     <Modal className={mergedClassNames} {...restProps}>
-      <PopupModalIcon>{icon}</PopupModalIcon>
-      <PopupModalTitle>{title}</PopupModalTitle>
+      {icon && <PopupModalIcon>{icon}</PopupModalIcon>}
+      {title && <PopupModalTitle>{title}</PopupModalTitle>}
       <PopupModalContent>{children}</PopupModalContent>
       <PopupModalActions>{actions}</PopupModalActions>
     </Modal>
@@ -32,7 +32,7 @@ PopupModal.propTypes = {
   ...Modal.propTypes,
   icon: PropTypes.node,
   title: PropTypes.node,
-  actions: PropTypes.node
+  actions: PropTypes.node.isRequired
 };
 
 export default PopupModal;

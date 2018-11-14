@@ -1,0 +1,49 @@
+```js
+initialState = {
+  isOpen: false
+};
+
+const handleModalOpen = () => setState({isOpen: true});
+
+const handleModalClose = () => setState({isOpen: false});
+
+const buttonStyle = {
+  width: '140px',
+  margin: '0 4px'
+};
+
+<div>
+  <ActionModal
+    onClose={handleModalClose}
+    closeOnEscClick
+    isOpen={state.isOpen}
+    style={{width: "600px", height: "400px"}}
+    title="Title"
+    footer={
+      <React.Fragment>
+        <Button style={buttonStyle} size="large" onClick={handleModalClose}>Secondary</Button>
+        <Button primary style={buttonStyle} size="large" onClick={handleModalClose}>Primary</Button>
+      </React.Fragment>  
+    }
+  >
+    Modal content
+  </ActionModal>
+  <Button onClick={handleModalOpen}>Open modal</Button>
+</div>
+```
+
+Action modals include input areas that the user may interact with, such as Forms, Dropdowns, Selectors, and Links. It includes 3 basic elements:
+<ul>
+  <li>
+    <b>Title (optional)</b><br />
+    Provides concise overview of the contents of the modal. The title mirrors the action or button that was clicked by the user.
+  </li>
+  <li>
+    <b>Body</b><br />
+    The body content within a Modal should be as minimal as possible. Components that may be used in Modals include: Form fields, Text Area, Select, and Radio Buttons.
+  </li>
+  <li>
+    <b>Footer</b><br />
+    The footer area of a Modal contains a set of buttons - primary action and secondary action.
+  </li>
+</ul>

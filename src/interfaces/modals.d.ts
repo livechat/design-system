@@ -1,7 +1,7 @@
 // <reference types="react" />
 
 export interface IModalProps {
-  isOpen: boolean;
+  isOpen?: boolean;
   className?: string;
   closeOnEscPress?: boolean; 
   onClose(): void;
@@ -14,7 +14,7 @@ export interface IPopupModalProps extends IModalProps {
 }
 
 export interface IActionModalProps extends IModalProps {
-  title: React.ReactNode,
+  title?: React.ReactNode,
   footer: React.ReactNode,
 }
 
