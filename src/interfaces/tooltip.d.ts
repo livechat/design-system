@@ -21,7 +21,7 @@ export var Tooltip: React.ComponentType<ITooltipProps>;
 
 export interface ITooltipContentProps {
   children: React.ReactNode;
-  arrowAlign?: TooltipArrowPosition;
+  arrowAlign?: TooltipArrowAlign;
   arrowOffset?:	number;
   arrowPosition?: TooltipArrowPosition;
   backgroundColor?: string;
