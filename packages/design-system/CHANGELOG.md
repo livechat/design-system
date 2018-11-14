@@ -76,3 +76,9 @@ _Release: 2018-11-12_
 ##### New Features
 * New Select and SelectField components
 
+----
+### v0.0.7
+_Release: 2018-11-14_
+
+##### Bug Fixes
+* Removing unnecessary css source map
