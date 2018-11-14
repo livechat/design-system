@@ -114,7 +114,7 @@ export const getTooltipPosition = opts => {
   };
 };
 
-export const getArrowOffsetStyle = (arrowOffset, arrowPosition, alignment) => {
+export const getArrowOffsetStyle = (arrowOffset, arrowPosition, arrowAlign) => {
   if (!arrowOffset) {
     return {};
   }
@@ -122,13 +122,13 @@ export const getArrowOffsetStyle = (arrowOffset, arrowPosition, alignment) => {
   switch (arrowPosition) {
     case ARROW_POSITION.Left:
     case ARROW_POSITION.Right:
-      if (alignment === ALIGMENT.Bottom) {
+      if (arrowAlign === ALIGMENT.Bottom) {
         return { bottom: `${arrowOffset}px`, top: 'auto' };
       }
       return { top: `${arrowOffset}px`, bottom: 'auto' };
     case ARROW_POSITION.Top:
     case ARROW_POSITION.Bottom:
-      if (alignment === ALIGMENT.Right) {
+      if (arrowAlign === ALIGMENT.Right) {
         return { right: `${arrowOffset}px`, left: 'auto' };
       }
       return { left: `${arrowOffset}px`, right: 'auto' };
