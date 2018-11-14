@@ -15,7 +15,7 @@ const TooltipContent = ({
   arrowPosition,
   children,
   arrowOffset,
-  align
+  arrowAlign
 }) => {
   const mergedClassNames = getMergedClassNames(
     cx({
@@ -38,7 +38,7 @@ const TooltipContent = ({
           tooltip__arrow: true,
           [`tooltip__arrow--${arrowPosition}`]: true
         })}
-        style={getArrowOffsetStyle(arrowOffset, arrowPosition, align)}
+        style={getArrowOffsetStyle(arrowOffset, arrowPosition, arrowAlign)}
       />
       {children}
     </div>
@@ -56,7 +56,7 @@ TooltipContent.propTypes = {
     ARROW_POSITION.Top,
     ARROW_POSITION.Bottom
   ]),
-  align: PropTypes.oneOf([
+  arrowAlign: PropTypes.oneOf([
     ALIGMENT.Top,
     ALIGMENT.Bottom,
     ALIGMENT.Left,
