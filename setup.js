@@ -17,6 +17,8 @@ global.ToastConsumer = Components.ToastConsumer;
 global.NotificationContext = Components.NotificationContext;
 global.notificationConnect = Components.notificationConnect;
 
+global.Modal = Components.Modal;
+
 global.InputField = Components.InputField;
 global.RadioButton = Components.RadioButton;
 global.Form = Components.Form;
