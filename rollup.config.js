@@ -59,7 +59,7 @@ const commonPlugins = [
       autoprefixer(),
       cssnano()
     ],
-    sourceMap: true,
+    sourceMap: false,
     getExportNamed: false,
     getExport(id) {
       return cssExportMap[id];
