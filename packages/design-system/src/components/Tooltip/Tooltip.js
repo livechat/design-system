@@ -89,14 +89,11 @@ class Tooltip extends React.Component {
     const supportedAlignments = {
       [DIRECTION.Left]: [ALIGMENT.Center, ALIGMENT.Top, ALIGMENT.Bottom],
       [DIRECTION.Right]: [ALIGMENT.Center, ALIGMENT.Top, ALIGMENT.Bottom],
-      [DIRECTION.Top]: [ALIGMENT.Center, ALIGMENT.left, ALIGMENT.Right],
+      [DIRECTION.Top]: [ALIGMENT.Center, ALIGMENT.Left, ALIGMENT.Right],
       [DIRECTION.Bottom]: [ALIGMENT.Center, ALIGMENT.Left, ALIGMENT.Right]
     };
 
-    if (
-      this.props.align &&
-      supportedAlignments[direction].indexOf(this.props.align) > -1
-    ) {
+    if (supportedAlignments[direction].indexOf(this.props.align) > -1) {
       return this.props.align;
     }
 
