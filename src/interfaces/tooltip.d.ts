@@ -1,6 +1,7 @@
 export type TooltipAlign = 'top' | 'center' | 'bottom' | 'left' | 'right';
 export type TooltipDirection = 'top' | 'bottom' | 'left' | 'right';
 export type TooltipArrowPosition = 'top' | 'bottom' | 'left' | 'right';
+export type TooltipArrowAlign = 'top' | 'center' | 'bottom' | 'left' | 'right';
 export type TooltipTrigger = 'hover' | 'click' |'custom';
 
 export interface ITooltipProps {
@@ -20,7 +21,7 @@ export var Tooltip: React.ComponentType<ITooltipProps>;
 
 export interface ITooltipContentProps {
   children: React.ReactNode;
-  align?: TooltipAlign;
+  arrowAlign?: TooltipArrowPosition;
   arrowOffset?:	number;
   arrowPosition?: TooltipArrowPosition;
   backgroundColor?: string;

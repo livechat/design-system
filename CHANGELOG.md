@@ -82,3 +82,13 @@ _Release: 2018-11-14_
 
 ##### Bug Fixes
 * Removing unnecessary css source map
+
+----
+### v0.0.8
+_Release: 2018-11-14_
+
+##### Bug Fixes
+* Fixing tooltip content arrow align (typo in the code)
+
+##### Deprecations
+* TooltipContent property change: align => arrowAlign
