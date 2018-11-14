@@ -11,7 +11,16 @@ export {
   notificationConnect
 } from './NotificationSystem';
 
-export { Modal } from './Modal';
+export {
+  Modal,
+  ActionModal,
+  PopupModal,
+  ActionModalFooter,
+  ActionModalHeader,
+  ActionModalBody
+} from './Modal';
+
+export { AlertCircleIcon } from './Icons';
 
 export { default as InputField } from './InputField';
 export { default as TextAreaField } from './TextAreaField';

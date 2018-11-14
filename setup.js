@@ -18,6 +18,11 @@ global.NotificationContext = Components.NotificationContext;
 global.notificationConnect = Components.notificationConnect;
 
 global.Modal = Components.Modal;
+global.ActionModal = Components.ActionModal;
+global.PopupModal = Components.PopupModal;
+global.ActionModalHeader = Components.ActionModalHeader;
+global.ActionModalFooter = Components.ActionModalFooter;
+global.ActionModalBody = Components.ActionModalBody;
 
 global.InputField = Components.InputField;
 global.RadioButton = Components.RadioButton;
@@ -28,6 +33,7 @@ global.TextAreaField = Components.TextAreaField;
 global.CheckboxField = Components.CheckboxField;
 global.SelectField = Components.SelectField;
 global.Select = Components.Select;
+global.AlertCircleIcon = Components.AlertCircleIcon;
 
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;

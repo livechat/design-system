@@ -1,19 +1,19 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 import styles from './style.scss';
 import { KeyCodes } from '../../constants/keyCodes';
 import ModalMask from './ModalMask';
+import ModalCloseButton from './ModalCloseButton';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const baseClass = 'modal';
 
 const cx = classNames.bind(styles);
 
-export class Modal extends React.Component {
+class Modal extends React.Component {
   static defaultProps = {
-    closeOnEscClick: true,
+    closeOnEscPress: true,
     isOpen: true
   };
 
@@ -51,7 +51,7 @@ export class Modal extends React.Component {
   };
 
   onKeyUp = event => {
-    if (event.keyCode === KeyCodes.enter && this.props.closeOnEscClick) {
+    if (event.keyCode === KeyCodes.enter && this.props.closeOnEscPress) {
       this.handleCloseModal();
     }
   };
@@ -67,7 +67,7 @@ export class Modal extends React.Component {
   };
 
   handleCloseModal = () => {
-    this.props.closeModal();
+    this.props.onClose();
   };
 
   modalRef = React.createRef();
@@ -77,10 +77,9 @@ export class Modal extends React.Component {
       className,
       children,
       title,
-      closeModal,
+      onClose,
       closeOnEscClick,
       isOpen,
-      allowOverflow,
       ...restProps
     } = this.props;
 
@@ -97,17 +96,8 @@ export class Modal extends React.Component {
         })}
       >
         <div className={mergedClassNames} {...restProps} ref={this.modalRef}>
-          {!!title && (
-            <div className={styles[`${baseClass}__header`]}>{title}</div>
-          )}
-          <button
-            title="Close modal"
-            className={styles[`${baseClass}__close`]}
-            onClick={this.onCloseButtonClick}
-          >
-            <CloseIcon width="14px" height="14px" fill="#000" />
-          </button>
-          <div className={styles[`${baseClass}__body`]}>{children}</div>
+          <ModalCloseButton onClick={this.onCloseButtonClick} />
+          {children}
         </div>
       </ModalMask>
     );
@@ -117,9 +107,9 @@ export class Modal extends React.Component {
 Modal.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
-  title: PropTypes.string,
-  closeModal: PropTypes.func.isRequired,
-  closeOnEscClick: PropTypes.bool,
-  isOpen: PropTypes.bool,
-  allowOverflow: PropTypes.bool
+  onClose: PropTypes.func.isRequired,
+  closeOnEscPress: PropTypes.bool,
+  isOpen: PropTypes.bool
 };
+
+export default Modal;
