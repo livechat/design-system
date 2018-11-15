@@ -38,7 +38,7 @@ initialState = { value: 'Input Field text', error: 'Validation message here' };
     id='input-field-example-1'
     placeholder='Placeholder...'
     description='Optional helper text goes here'
-    onChange={onInputChange}
+    onChange={() => {}}
   />
 </ComponentHtmlMarkup>
 ```
@@ -85,7 +85,7 @@ initialState = { value: 'Input Field text', error: 'Validation message here' };
     id='input-field-example-4'
     placeholder='Placeholder...'
     description='Validation message here'
-    onChange={onInputChange}
+    onChange={() => {}}
   />
 </ComponentHtmlMarkup>
 ```
@@ -100,6 +100,7 @@ initialState = { value: 'Input Field text', error: 'Validation message here' };
   id='input-field-example-5'
   placeholder='Placeholder...'
   description='Input is disabled'
+  onChange={() => {}}
 />
 ```
 ```js noeditor
@@ -111,6 +112,7 @@ initialState = { value: 'Input Field text', error: 'Validation message here' };
     id='input-field-example-5'
     placeholder='Placeholder...'
     description='Input is disabled'
+    onChange={() => {}}
   />
 </ComponentHtmlMarkup>
 ```
