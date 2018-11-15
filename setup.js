@@ -1,3 +1,4 @@
+import AlertCircleIcon from 'react-material-icon-svg/dist/AlertCircleIcon';
 import * as Components from './src';
 import ComponentHtmlMarkup from './src/docs/ComponentHtmlMarkup';
 
@@ -33,7 +34,7 @@ global.TextAreaField = Components.TextAreaField;
 global.CheckboxField = Components.CheckboxField;
 global.SelectField = Components.SelectField;
 global.Select = Components.Select;
-global.AlertCircleIcon = Components.AlertCircleIcon;
 
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;
+global.AlertCircleIcon = AlertCircleIcon;

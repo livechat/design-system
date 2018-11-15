@@ -78,7 +78,7 @@ class Modal extends React.Component {
       children,
       title,
       onClose,
-      closeOnEscClick,
+      closeOnEscPress,
       isOpen,
       ...restProps
     } = this.props;
