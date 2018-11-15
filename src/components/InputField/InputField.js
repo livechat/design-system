@@ -32,16 +32,11 @@ const InputField = props => {
 InputField.propTypes = {
   labelText: PropTypes.string,
   id: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
   className: PropTypes.string,
   inline: PropTypes.bool,
-  type: PropTypes.string,
   error: PropTypes.string,
-  description: PropTypes.string
-};
-
-InputField.defaultProps = {
-  type: 'text'
+  description: PropTypes.node
 };
 
 export default InputField;
