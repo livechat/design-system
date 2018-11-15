@@ -11,7 +11,7 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 const baseClass = 'popup-modal';
 
 const ActionModal = props => {
-  const { title, actions, icon, children, className, ...restProps } = props;
+  const { heading, actions, icon, children, className, ...restProps } = props;
 
   const mergedClassNames = getMergedClassNames(
     styles[`${baseClass}`],
@@ -21,9 +21,9 @@ const ActionModal = props => {
   return (
     <ModalBase className={mergedClassNames} {...restProps}>
       {icon && <ActionModalIcon>{icon}</ActionModalIcon>}
-      {title && <ActionModalTitle>{title}</ActionModalTitle>}
+      {heading && <ActionModalTitle>{heading}</ActionModalTitle>}
       <ActionModalContent>{children}</ActionModalContent>
-      <ActionModalActions>{actions}</ActionModalActions>
+      {actions && <ActionModalActions>{actions}</ActionModalActions>}
     </ModalBase>
   );
 };
@@ -31,8 +31,8 @@ const ActionModal = props => {
 ActionModal.propTypes = {
   ...ModalBase.propTypes,
   icon: PropTypes.node,
-  title: PropTypes.node,
-  actions: PropTypes.node.isRequired
+  heading: PropTypes.node,
+  actions: PropTypes.node
 };
 
 export default ActionModal;

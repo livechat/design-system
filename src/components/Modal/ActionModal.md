@@ -16,7 +16,7 @@ const buttonStyle = {
   {state.isOpen && (
     <ActionModal
       onClose={handleModalClose}
-      title="Danger! Danger!"
+      heading="Danger! Danger!"
       actions={
         <React.Fragment>
           <Button style={buttonStyle} size="large" onClick={handleModalClose}>Wait, go back</Button>
@@ -41,7 +41,7 @@ const buttonStyle = {
   <ActionModal
     onClose={() => {}}
     style={{width: '500px', height: '350px'}}
-    title="Danger! Danger!"
+    heading="Danger! Danger!"
     actions={
       <React.Fragment>
         <Button style={buttonStyle} size="large" onClick={() => {}}>Wait, go back</Button>

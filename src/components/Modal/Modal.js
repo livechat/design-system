@@ -10,7 +10,7 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 const baseClass = 'action-modal';
 
 const Modal = props => {
-  const { title, footer, children, className, ...restProps } = props;
+  const { heading, footer, children, className, ...restProps } = props;
 
   const mergedClassNames = getMergedClassNames(
     styles[`${baseClass}`],
@@ -19,7 +19,7 @@ const Modal = props => {
 
   return (
     <ModalBase className={mergedClassNames} {...restProps}>
-      {title && <ModalHeader>{title}</ModalHeader>}
+      {heading && <ModalHeader>{heading}</ModalHeader>}
       <ModalBody>{children}</ModalBody>
       <ModalFooter>{footer}</ModalFooter>
     </ModalBase>
@@ -28,7 +28,7 @@ const Modal = props => {
 
 Modal.propTypes = {
   ...ModalBase.propTypes,
-  title: PropTypes.node,
+  heading: PropTypes.node,
   footer: PropTypes.node.isRequired
 };
 

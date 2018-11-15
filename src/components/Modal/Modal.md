@@ -17,7 +17,7 @@ const buttonStyle = {
     <Modal
       onClose={handleModalClose}
       style={{width: "600px", height: "400px"}}
-      title="Title"
+      heading="Title"
       footer={
         <React.Fragment>
           <Button style={buttonStyle} size="large" onClick={handleModalClose}>Secondary</Button>
@@ -41,7 +41,7 @@ const buttonStyle = {
   <Modal
     onClose={() => {}}
     style={{width: "600px", height: "400px"}}
-    title="Title"
+    heading="Title"
     footer={
       <React.Fragment>
         <Button style={buttonStyle} size="large" onClick={() => {}}>Secondary</Button>
