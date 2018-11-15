@@ -13,26 +13,11 @@ const cx = classNames.bind(styles);
 
 class Modal extends React.Component {
   static defaultProps = {
-    closeOnEscPress: true,
-    isOpen: true
+    closeOnEscPress: true
   };
 
   componentDidMount() {
-    if (this.props.isOpen) {
-      this.addEventListeners();
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    const isVisible = !prevProps.isOpen && this.props.isOpen;
-    const isHidden = prevProps.isOpen && !this.props.isOpen;
-
-    if (isVisible) {
-      this.addEventListeners();
-    }
-    if (isHidden) {
-      this.removeEventListeners();
-    }
+    this.addEventListeners();
   }
 
   componentWillUnmount() {
@@ -51,13 +36,15 @@ class Modal extends React.Component {
   };
 
   onKeyUp = event => {
-    if (event.keyCode === KeyCodes.enter && this.props.closeOnEscPress) {
+    if (event.keyCode === KeyCodes.enter) {
       this.handleCloseModal();
     }
   };
 
   addEventListeners = () => {
-    document.addEventListener('keyup', this.onKeyUp, true);
+    if (this.props.closeOnEscPress) {
+      document.addEventListener('keyup', this.onKeyUp, true);
+    }
     document.addEventListener('click', this.onDocumentClick);
   };
 
@@ -79,7 +66,6 @@ class Modal extends React.Component {
       title,
       onClose,
       closeOnEscPress,
-      isOpen,
       ...restProps
     } = this.props;
 
@@ -90,10 +76,7 @@ class Modal extends React.Component {
 
     return (
       <ModalMask
-        className={cx({
-          [`${baseClass}__mask`]: true,
-          [`${baseClass}__mask--visible`]: isOpen
-        })}
+        className={cx(`${baseClass}__mask`, `${baseClass}__mask--visible`)}
       >
         <div className={mergedClassNames} {...restProps} ref={this.modalRef}>
           <ModalCloseButton onClick={this.onCloseButtonClick} />
@@ -108,8 +91,7 @@ Modal.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   onClose: PropTypes.func.isRequired,
-  closeOnEscPress: PropTypes.bool,
-  isOpen: PropTypes.bool
+  closeOnEscPress: PropTypes.bool
 };
 
 export default Modal;

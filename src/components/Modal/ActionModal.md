@@ -13,20 +13,21 @@ const buttonStyle = {
 };
 
 <div>
-  <ActionModal
-    onClose={handleModalClose}
-    isOpen={state.isOpen}
-    style={{width: "600px", height: "400px"}}
-    title="Title"
-    footer={
-      <React.Fragment>
-        <Button style={buttonStyle} size="large" onClick={handleModalClose}>Secondary</Button>
-        <Button primary style={buttonStyle} size="large" onClick={handleModalClose}>Primary</Button>
-      </React.Fragment>  
-    }
-  >
-    Modal content
-  </ActionModal>
+  {state.isOpen && (
+    <ActionModal
+      onClose={handleModalClose}
+      style={{width: "600px", height: "400px"}}
+      title="Title"
+      footer={
+        <React.Fragment>
+          <Button style={buttonStyle} size="large" onClick={handleModalClose}>Secondary</Button>
+          <Button primary style={buttonStyle} size="large" onClick={handleModalClose}>Primary</Button>
+        </React.Fragment>  
+      }
+    >
+      Modal content
+    </ActionModal>
+  )}
   <Button onClick={handleModalOpen}>Open modal</Button>
 </div>
 ```
@@ -39,7 +40,6 @@ const buttonStyle = {
 <ComponentHtmlMarkup>
   <ActionModal
     onClose={() => {}}
-    isOpen
     style={{width: "600px", height: "400px"}}
     title="Title"
     footer={

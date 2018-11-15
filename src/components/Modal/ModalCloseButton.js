@@ -11,7 +11,7 @@ const ModalCloseButton = props => (
     className={styles[`${baseClass}`]}
     onClick={props.onClick}
   >
-    <CloseIcon width="24px" height="24px" fill="#000" />
+    <CloseIcon width="24px" height="24px" fill="#424D57" />
   </button>
 );
 

@@ -1,7 +1,6 @@
 // <reference types="react" />
 
 export interface IModalProps {
-  isOpen?: boolean;
   className?: string;
   closeOnEscPress?: boolean; 
   onClose(): void;

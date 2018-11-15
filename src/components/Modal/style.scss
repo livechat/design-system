@@ -1,12 +1,17 @@
+@import '../../scss/variables/colors';
+
 .modal {
   position: relative;
   display: flex;
   flex-direction: column;
   margin: 10px;
+  max-width: 800px;
+  min-width: 400px;
   border-radius: 4px;
   box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.3);
   overflow: hidden;
   background-color: #fff;
+  color: $font-primary-color;
 
   &__mask {
     position: fixed;
@@ -17,7 +22,7 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.35);
+    background-color: rgba(0, 0, 0, 0.5);
     z-index: 13000;
 
     &--visible {
@@ -39,7 +44,7 @@
     border: none;
     background-color: transparent;
     box-shadow: none;
-    opacity: 0.7;
+    opacity: 0.5;
     outline: none;
     cursor: pointer;
 
@@ -52,7 +57,7 @@
 .action-modal {
   &__header {
     padding: 20px;
-    color: rgba(0, 0, 0, 0.7);
+    color: $font-primary-color;
     font-size: 18px;
     font-weight: 400;
     line-height: 22px;
@@ -68,7 +73,7 @@
     margin: 0;
     padding: 0;
     font-size: 20px;
-    color: #424d57;
+    color: $font-primary-color;
     line-height: 1.2;
     font-weight: 600;
     text-align: left;
@@ -85,6 +90,7 @@
     padding: 20px;
     box-sizing: border-box;
     background-color: #f8f8fa;
+    color: $font-primary-color;
   }
 
   &__footer {
@@ -95,7 +101,7 @@
 }
 
 .popup-modal {
-  padding: 20px;
+  padding: 52px 20px;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
@@ -103,7 +109,7 @@
   &__title {
     font-size: 24px;
     line-height: 1.33;
-    color: #4e5665;
+    color: $font-primary-color;
     text-align: center;
     font-weight: 600;
     margin: 0;
@@ -114,7 +120,7 @@
     font-size: 15px;
     line-height: 1.33;
     text-align: center;
-    color: #4e5665;
+    color: $font-primary-color;
   }
 
   &__actions {

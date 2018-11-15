@@ -20,7 +20,7 @@ export {
   ActionModalBody
 } from './Modal';
 
-export { default as InputField } from './InputField';
+export { Input, InputField } from './InputField';
 export { default as TextAreaField } from './TextAreaField';
 export { default as RadioButton } from './RadioButton';
 export { default as CheckboxField } from './CheckboxField';

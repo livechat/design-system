@@ -8,12 +8,13 @@ const handleModalOpen = () => setState({isOpen: true});
 const handleModalClose = () => setState({isOpen: false});
 
 <div>
-  <Modal
-    onClose={handleModalClose}
-    isOpen={state.isOpen}
-    style={{width: "600px", height: "400px"}}
-  >
-  </Modal>
+  {state.isOpen && (
+    <Modal
+      onClose={handleModalClose}
+      style={{width: "600px", height: "400px"}}
+    >
+    </Modal>
+  )}
   <Button onClick={handleModalOpen}>Open modal</Button>
 </div>
 ```
@@ -21,7 +22,6 @@ const handleModalClose = () => setState({isOpen: false});
 <ComponentHtmlMarkup>
   <Modal
     onClose={() => {}}
-    isOpen
     style={{width: "600px", height: "400px"}}
   >
   </Modal>
