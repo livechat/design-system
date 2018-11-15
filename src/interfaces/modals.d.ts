@@ -6,15 +6,15 @@ export interface IModalBaseProps {
   onClose(): void;
 }
 
+export interface IModalProps extends IModalBaseProps {
+  title?: React.ReactNode,
+  footer: React.ReactNode,
+}
+
 export interface IActionModalProps extends IModalBaseProps {
   title: React.ReactNode,
   icon: React.ReactNode,
   actions: React.ReactNode
-}
-
-export interface IModalProps extends IModalBaseProps {
-  title?: React.ReactNode,
-  footer: React.ReactNode,
 }
 
 export var ModalBase: React.ComponentType<IModalBaseProps>;
@@ -26,4 +26,4 @@ export var ModalBody: React.ComponentType<React.HTMLAttributes<HTMLDivElement>>;
 export var ActionModalActions: React.ComponentType<React.HTMLAttributes<HTMLDivElement>>;
 export var ActionModalContent: React.ComponentType<React.HTMLAttributes<HTMLDivElement>>;
 export var ActionModalIcon: React.ComponentType<React.HTMLAttributes<HTMLDivElement>>;
-export var ActionModalTitle: React.ComponentType<React.HTMLAttributes<HTMLDivElement>>;
+export var ActionModalTitle: React.ComponentType<React.HTMLAttributes<HTMLHeadingElement>>;
