@@ -92,3 +92,15 @@ _Release: 2018-11-14_
 
 ##### Deprecations
 * TooltipContent property change: align => arrowAlign
+
+----
+### v0.0.9
+_Release: 2018-11-15_
+
+##### New Features
+* Adding modals:
+  * BaseModal component with events handlers and overlay
+  * 2 predefined modal components: Modal and ActionModal
+
+##### Refactors
+* Adding ts typings for Input and InputField components

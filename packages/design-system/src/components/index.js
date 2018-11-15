@@ -11,7 +11,21 @@ export {
   notificationConnect
 } from './NotificationSystem';
 
-export { default as InputField } from './InputField';
+export {
+  ModalBase,
+  ModalPortal,
+  ActionModal,
+  ActionModalActions,
+  ActionModalContent,
+  ActionModalHeading,
+  ActionModalIcon,
+  Modal,
+  ModalFooter,
+  ModalHeader,
+  ModalBody
+} from './Modal';
+
+export { Input, InputField } from './InputField';
 export { default as TextAreaField } from './TextAreaField';
 export { default as RadioButton } from './RadioButton';
 export { default as CheckboxField } from './CheckboxField';

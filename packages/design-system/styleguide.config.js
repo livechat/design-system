@@ -46,6 +46,15 @@ module.exports = {
           components: './src/components/Tab/Tab.js'
         },
         {
+          name: 'Modals',
+          components: [
+            './src/components/Modal/ModalBase.js',
+            './src/components/Modal/ModalPortal.js',
+            './src/components/Modal/Modal.js',
+            './src/components/Modal/ActionModal.js'
+          ]
+        },
+        {
           name: 'Tooltip',
           components: [
             './src/components/Tooltip/TooltipContent.js',
