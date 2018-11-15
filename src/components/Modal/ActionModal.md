@@ -15,7 +15,6 @@ const buttonStyle = {
 <div>
   <ActionModal
     onClose={handleModalClose}
-    closeOnEscClick
     isOpen={state.isOpen}
     style={{width: "600px", height: "400px"}}
     title="Title"
@@ -30,6 +29,29 @@ const buttonStyle = {
   </ActionModal>
   <Button onClick={handleModalOpen}>Open modal</Button>
 </div>
+```
+```js noeditor
+const buttonStyle = {
+  width: '140px',
+  margin: '0 4px'
+};
+
+<ComponentHtmlMarkup>
+  <ActionModal
+    onClose={() => {}}
+    isOpen
+    style={{width: "600px", height: "400px"}}
+    title="Title"
+    footer={
+      <React.Fragment>
+        <Button style={buttonStyle} size="large" onClick={() => {}}>Secondary</Button>
+        <Button primary style={buttonStyle} size="large" onClick={() => {}}>Primary</Button>
+      </React.Fragment>  
+    }
+  >
+    Modal content
+  </ActionModal>
+</ComponentHtmlMarkup>
 ```
 
 Action modals include input areas that the user may interact with, such as Forms, Dropdowns, Selectors, and Links. It includes 3 basic elements:

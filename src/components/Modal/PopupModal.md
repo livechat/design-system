@@ -15,7 +15,6 @@ const buttonStyle = {
 <div>
   <PopupModal
     onClose={handleModalClose}
-    closeOnEscClick
     isOpen={state.isOpen}
     style={{width: '500px', height: '350px'}}
     title="Danger! Danger!"
@@ -31,6 +30,30 @@ const buttonStyle = {
   </PopupModal>
   <Button onClick={handleModalOpen}>Open modal</Button>
 </div>
+```
+```js noeditor
+const buttonStyle = {
+  margin: '0 4px',
+  width: '150px'
+};
+
+<ComponentHtmlMarkup>
+  <PopupModal
+    onClose={() => {}}
+    isOpen
+    style={{width: '500px', height: '350px'}}
+    title="Danger! Danger!"
+    actions={
+      <React.Fragment>
+        <Button style={buttonStyle} size="large" onClick={() => {}}>Wait, go back</Button>
+        <Button style={buttonStyle} size="large" onClick={() => {}} destructive>Yes, delete</Button>
+      </React.Fragment>
+    }
+    icon={<AlertCircleIcon height={54} width={54} fill="#424d57" />}
+  >
+    You’re about to do something that cannot be undone. Are you sure you want to continue?
+  </PopupModal>
+</ComponentHtmlMarkup>
 ```
 
 Examples:

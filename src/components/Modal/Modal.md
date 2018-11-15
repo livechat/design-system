@@ -8,15 +8,24 @@ const handleModalOpen = () => setState({isOpen: true});
 const handleModalClose = () => setState({isOpen: false});
 
 <div>
-  <ActionModal
+  <Modal
     onClose={handleModalClose}
-    closeOnEscClick
     isOpen={state.isOpen}
     style={{width: "600px", height: "400px"}}
   >
-  </ActionModal>
+  </Modal>
   <Button onClick={handleModalOpen}>Open modal</Button>
 </div>
+```
+```js noeditor
+<ComponentHtmlMarkup>
+  <Modal
+    onClose={() => {}}
+    isOpen
+    style={{width: "600px", height: "400px"}}
+  >
+  </Modal>
+</ComponentHtmlMarkup>
 ```
 
 Modals are pop-up that communicate information allowing the user to maintain the context of a particular task. They should be used sparingly as they disable the rest of the application until a required action has been taken.
