@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
-const baseClass = 'popup-modal__content';
+const baseClass = 'action-modal__content';
 
 const ActionModalContent = props => {
   const { className, children, ...restProps } = props;

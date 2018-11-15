@@ -1,6 +1,6 @@
 @import '../../scss/variables/colors';
 
-.modal {
+.modal-base {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -13,7 +13,7 @@
   background-color: #fff;
   color: $font-primary-color;
 
-  &__mask {
+  &__overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -54,7 +54,7 @@
   }
 }
 
-.action-modal {
+.modal {
   &__header {
     padding: 20px;
     color: $font-primary-color;
@@ -100,7 +100,7 @@
   }
 }
 
-.popup-modal {
+.action-modal {
   padding: 52px 20px;
   box-sizing: border-box;
   justify-content: center;

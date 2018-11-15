@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
-const baseClass = 'action-modal__footer';
+const baseClass = 'modal__footer';
 
 const ModalFooter = props => {
   const mergedClassNames = getMergedClassNames(

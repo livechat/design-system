@@ -3,11 +3,10 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './style.scss';
 import { KeyCodes } from '../../constants/keyCodes';
-import ModalOverlay from './ModalOverlay';
 import ModalCloseButton from './ModalCloseButton';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
-const baseClass = 'modal';
+const baseClass = 'modal-base';
 
 const cx = classNames.bind(styles);
 
@@ -75,14 +74,17 @@ class ModalBase extends React.Component {
     );
 
     return (
-      <ModalOverlay
-        className={cx(`${baseClass}__mask`, `${baseClass}__mask--visible`)}
+      <div
+        className={cx(
+          `${baseClass}__overlay`,
+          `${baseClass}__overlay--visible`
+        )}
       >
         <div className={mergedClassNames} {...restProps} ref={this.modalRef}>
           <ModalCloseButton onClick={this.onCloseButtonClick} />
           {children}
         </div>
-      </ModalOverlay>
+      </div>
     );
   }
 }

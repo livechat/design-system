@@ -8,7 +8,7 @@ import ActionModalIcon from './ActionModalIcon';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
-const baseClass = 'popup-modal';
+const baseClass = 'action-modal';
 
 const ActionModal = props => {
   const { heading, actions, icon, children, className, ...restProps } = props;

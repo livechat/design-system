@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
-const baseClass = 'action-modal';
+const baseClass = 'modal';
 
 const ModalHeader = props => {
   const mergedClassNames = getMergedClassNames(

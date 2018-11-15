@@ -7,7 +7,7 @@ import ModalFooter from './ModalFooter';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
-const baseClass = 'action-modal';
+const baseClass = 'modal';
 
 const Modal = props => {
   const { heading, footer, children, className, ...restProps } = props;

@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
-const baseClass = 'action-modal__body';
+const baseClass = 'modal__body';
 
 const ModalBody = props => {
   const { className, children, ...restProps } = props;

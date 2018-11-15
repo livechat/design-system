@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 import styles from './style.scss';
 
-const baseClass = 'modal__close';
+const baseClass = 'modal-base__close';
 
 const ModalCloseButton = props => (
   <button
