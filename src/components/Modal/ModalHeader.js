@@ -13,7 +13,7 @@ const ModalHeader = props => {
 
   return (
     <div className={mergedClassNames}>
-      <div className={styles[`${baseClass}__title`]}>{props.children}</div>
+      <div className={styles[`${baseClass}__heading`]}>{props.children}</div>
     </div>
   );
 };

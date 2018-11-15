@@ -3,9 +3,9 @@ import * as PropTypes from 'prop-types';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
-const baseClass = 'action-modal__title';
+const baseClass = 'action-modal__heading';
 
-const ActionModalTitle = props => {
+const ActionModalHeading = props => {
   const { className, children, ...restProps } = props;
   const mergedClassNames = getMergedClassNames(
     styles[`${baseClass}`],
@@ -19,9 +19,9 @@ const ActionModalTitle = props => {
   );
 };
 
-ActionModalTitle.propTypes = {
+ActionModalHeading.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node
 };
 
-export default ActionModalTitle;
+export default ActionModalHeading;

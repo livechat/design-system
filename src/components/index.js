@@ -17,7 +17,7 @@ export {
   ActionModal,
   ActionModalActions,
   ActionModalContent,
-  ActionModalTitle,
+  ActionModalHeading,
   ActionModalIcon,
   Modal,
   ModalFooter,

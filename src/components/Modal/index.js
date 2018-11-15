@@ -7,5 +7,5 @@ export { default as ModalBody } from './ModalBody';
 export { default as ActionModal } from './ActionModal';
 export { default as ActionModalActions } from './ActionModalActions';
 export { default as ActionModalContent } from './ActionModalContent';
-export { default as ActionModalTitle } from './ActionModalTitle';
+export { default as ActionModalHeading } from './ActionModalHeading';
 export { default as ActionModalIcon } from './ActionModalIcon';

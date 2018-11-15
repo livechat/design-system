@@ -32,4 +32,4 @@ export var ModalBody: React.ComponentType<React.HTMLAttributes<HTMLDivElement>>;
 export var ActionModalActions: React.ComponentType<React.HTMLAttributes<HTMLDivElement>>;
 export var ActionModalContent: React.ComponentType<React.HTMLAttributes<HTMLDivElement>>;
 export var ActionModalIcon: React.ComponentType<React.HTMLAttributes<HTMLDivElement>>;
-export var ActionModalTitle: React.ComponentType<React.HTMLAttributes<HTMLHeadingElement>>;
+export var ActionModalHeading: React.ComponentType<React.HTMLAttributes<HTMLHeadingElement>>;
