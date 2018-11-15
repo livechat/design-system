@@ -5,18 +5,23 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const baseClass = 'action-modal__body';
 
-const ModalBody = props => {
+const ActionModalBody = props => {
+  const { className, children, ...restProps } = props;
   const mergedClassNames = getMergedClassNames(
     styles[`${baseClass}`],
     props.className
   );
 
-  return <div className={mergedClassNames}>{props.children}</div>;
+  return (
+    <div {...restProps} className={mergedClassNames}>
+      {props.children}
+    </div>
+  );
 };
 
-ModalBody.propTypes = {
+ActionModalBody.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node
 };
 
-export default ModalBody;
+export default ActionModalBody;

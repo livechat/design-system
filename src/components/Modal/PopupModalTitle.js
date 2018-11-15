@@ -6,12 +6,17 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 const baseClass = 'popup-modal__title';
 
 const PopupModalTitle = props => {
+  const { className, children, ...restProps } = props;
   const mergedClassNames = getMergedClassNames(
     styles[`${baseClass}`],
     props.className
   );
 
-  return <h2 className={mergedClassNames}>{props.children}</h2>;
+  return (
+    <h2 {...restProps} className={mergedClassNames}>
+      {props.children}
+    </h2>
+  );
 };
 
 PopupModalTitle.propTypes = {

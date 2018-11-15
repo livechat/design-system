@@ -5,7 +5,7 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const baseClass = 'action-modal';
 
-const ModalHeader = props => {
+const ActionModalHeader = props => {
   const mergedClassNames = getMergedClassNames(
     styles[`${baseClass}__header`],
     props.className
@@ -18,9 +18,9 @@ const ModalHeader = props => {
   );
 };
 
-ModalHeader.propTypes = {
+ActionModalHeader.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node
 };
 
-export default ModalHeader;
+export default ActionModalHeader;

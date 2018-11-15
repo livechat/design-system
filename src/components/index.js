@@ -13,8 +13,12 @@ export {
 
 export {
   Modal,
-  ActionModal,
   PopupModal,
+  PopupModalActions,
+  PopupModalContent,
+  PopupModalTitle,
+  PopupModalIcon,
+  ActionModal,
   ActionModalFooter,
   ActionModalHeader,
   ActionModalBody

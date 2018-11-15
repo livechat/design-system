@@ -20,3 +20,10 @@ export interface IActionModalProps extends IModalProps {
 export var Modal: React.ComponentType<IModalProps>;
 export var PopupModal: React.ComponentType<IPopupModalProps>;
 export var ActionModal: React.ComponentType<IActionModalProps>;
+export var ActionModalHeader: React.ComponentType<React.HTMLAttributes<HTMLDivElement>>;
+export var ActionModalFooter: React.ComponentType<React.HTMLAttributes<HTMLDivElement>>;
+export var ActionModalBody: React.ComponentType<React.HTMLAttributes<HTMLDivElement>>;
+export var PopupModalActions: React.ComponentType<React.HTMLAttributes<HTMLDivElement>>;
+export var PopupModalContent: React.ComponentType<React.HTMLAttributes<HTMLDivElement>>;
+export var PopupModalIcon: React.ComponentType<React.HTMLAttributes<HTMLDivElement>>;
+export var PopupModalTitle: React.ComponentType<React.HTMLAttributes<HTMLDivElement>>;

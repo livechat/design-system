@@ -5,7 +5,7 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const baseClass = 'action-modal__footer';
 
-const ModalFooter = props => {
+const ActionModalFooter = props => {
   const mergedClassNames = getMergedClassNames(
     styles[`${baseClass}`],
     props.className
@@ -14,9 +14,9 @@ const ModalFooter = props => {
   return <div className={mergedClassNames}>{props.children}</div>;
 };
 
-ModalFooter.propTypes = {
+ActionModalFooter.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node
 };
 
-export default ModalFooter;
+export default ActionModalFooter;
