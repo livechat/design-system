@@ -3,24 +3,25 @@ import * as PropTypes from 'prop-types';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
-const baseClass = 'action-modal';
+const baseClass = 'popup-modal__content';
 
-const ActionModalHeader = props => {
+const ActionModalContent = props => {
+  const { className, children, ...restProps } = props;
   const mergedClassNames = getMergedClassNames(
-    styles[`${baseClass}__header`],
+    styles[`${baseClass}`],
     props.className
   );
 
   return (
-    <div className={mergedClassNames}>
-      <div className={styles[`${baseClass}__title`]}>{props.children}</div>
+    <div {...restProps} className={mergedClassNames}>
+      {props.children}
     </div>
   );
 };
 
-ActionModalHeader.propTypes = {
+ActionModalContent.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node
 };
 
-export default ActionModalHeader;
+export default ActionModalContent;

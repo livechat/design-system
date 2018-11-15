@@ -46,10 +46,11 @@ module.exports = {
           components: './src/components/Tab/Tab.js'
         },
         {
-          name: 'Modal',
+          name: 'Modals',
           components: [
+            './src/components/Modal/ModalBase.js',
+            './src/components/Modal/ModalPortal.js',
             './src/components/Modal/Modal.js',
-            './src/components/Modal/PopupModal.js',
             './src/components/Modal/ActionModal.js'
           ]
         },

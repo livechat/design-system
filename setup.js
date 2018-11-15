@@ -18,12 +18,13 @@ global.ToastConsumer = Components.ToastConsumer;
 global.NotificationContext = Components.NotificationContext;
 global.notificationConnect = Components.notificationConnect;
 
+global.ModalBase = Components.ModalBase;
+global.ModalPortal = Components.ModalPortal;
 global.Modal = Components.Modal;
 global.ActionModal = Components.ActionModal;
-global.PopupModal = Components.PopupModal;
-global.ActionModalHeader = Components.ActionModalHeader;
-global.ActionModalFooter = Components.ActionModalFooter;
-global.ActionModalBody = Components.ActionModalBody;
+global.ModalHeader = Components.ModalHeader;
+global.ModalFooter = Components.ModalFooter;
+global.ModalBody = Components.ModalBody;
 
 global.InputField = Components.InputField;
 global.RadioButton = Components.RadioButton;

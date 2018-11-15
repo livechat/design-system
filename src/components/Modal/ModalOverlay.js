@@ -6,7 +6,7 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const cx = classNames.bind(styles);
 
-const ModalMask = props => {
+const ModalOverlay = props => {
   const baseClass = 'modal-mask';
   const mergedClassNames = getMergedClassNames(
     cx({
@@ -23,11 +23,11 @@ const ModalMask = props => {
   );
 };
 
-ModalMask.propTypes = {
+ModalOverlay.propTypes = {
   className: PropTypes.string,
   onClick: PropTypes.func,
   isOpen: PropTypes.bool,
   children: PropTypes.node.isRequired
 };
 
-export default ModalMask;
+export default ModalOverlay;

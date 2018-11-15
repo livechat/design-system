@@ -12,16 +12,17 @@ export {
 } from './NotificationSystem';
 
 export {
-  Modal,
-  PopupModal,
-  PopupModalActions,
-  PopupModalContent,
-  PopupModalTitle,
-  PopupModalIcon,
+  ModalBase,
+  ModalPortal,
   ActionModal,
-  ActionModalFooter,
-  ActionModalHeader,
-  ActionModalBody
+  ActionModalActions,
+  ActionModalContent,
+  ActionModalTitle,
+  ActionModalIcon,
+  Modal,
+  ModalFooter,
+  ModalHeader,
+  ModalBody
 } from './Modal';
 
 export { Input, InputField } from './InputField';

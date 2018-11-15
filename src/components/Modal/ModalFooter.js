@@ -3,25 +3,20 @@ import * as PropTypes from 'prop-types';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
-const baseClass = 'popup-modal__content';
+const baseClass = 'action-modal__footer';
 
-const PopupModalContent = props => {
-  const { className, children, ...restProps } = props;
+const ModalFooter = props => {
   const mergedClassNames = getMergedClassNames(
     styles[`${baseClass}`],
     props.className
   );
 
-  return (
-    <div {...restProps} className={mergedClassNames}>
-      {props.children}
-    </div>
-  );
+  return <div className={mergedClassNames}>{props.children}</div>;
 };
 
-PopupModalContent.propTypes = {
+ModalFooter.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node
 };
 
-export default PopupModalContent;
+export default ModalFooter;

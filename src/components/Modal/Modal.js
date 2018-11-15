@@ -1,97 +1,35 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
+import ModalBase from './ModalBase';
+import ModalHeader from './ModalHeader';
+import ModalBody from './ModalBody';
+import ModalFooter from './ModalFooter';
 import styles from './style.scss';
-import { KeyCodes } from '../../constants/keyCodes';
-import ModalMask from './ModalMask';
-import ModalCloseButton from './ModalCloseButton';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
-const baseClass = 'modal';
+const baseClass = 'action-modal';
 
-const cx = classNames.bind(styles);
+const Modal = props => {
+  const { title, footer, children, className, ...restProps } = props;
 
-class Modal extends React.Component {
-  static defaultProps = {
-    closeOnEscPress: true
-  };
+  const mergedClassNames = getMergedClassNames(
+    styles[`${baseClass}`],
+    className
+  );
 
-  componentDidMount() {
-    this.addEventListeners();
-  }
-
-  componentWillUnmount() {
-    this.removeEventListeners();
-  }
-
-  onDocumentClick = event => {
-    if (this.modalRef && !this.modalRef.current.contains(event.target)) {
-      this.handleCloseModal();
-    }
-  };
-
-  onCloseButtonClick = event => {
-    event.preventDefault();
-    this.handleCloseModal();
-  };
-
-  onKeyUp = event => {
-    if (event.keyCode === KeyCodes.enter) {
-      this.handleCloseModal();
-    }
-  };
-
-  addEventListeners = () => {
-    if (this.props.closeOnEscPress) {
-      document.addEventListener('keyup', this.onKeyUp, true);
-    }
-    document.addEventListener('click', this.onDocumentClick);
-  };
-
-  removeEventListeners = () => {
-    document.removeEventListener('keyup', this.onKeyUp, true);
-    document.removeEventListener('click', this.onDocumentClick);
-  };
-
-  handleCloseModal = () => {
-    this.props.onClose();
-  };
-
-  modalRef = React.createRef();
-
-  render() {
-    const {
-      className,
-      children,
-      title,
-      onClose,
-      closeOnEscPress,
-      ...restProps
-    } = this.props;
-
-    const mergedClassNames = getMergedClassNames(
-      styles[`${baseClass}`],
-      className
-    );
-
-    return (
-      <ModalMask
-        className={cx(`${baseClass}__mask`, `${baseClass}__mask--visible`)}
-      >
-        <div className={mergedClassNames} {...restProps} ref={this.modalRef}>
-          <ModalCloseButton onClick={this.onCloseButtonClick} />
-          {children}
-        </div>
-      </ModalMask>
-    );
-  }
-}
+  return (
+    <ModalBase className={mergedClassNames} {...restProps}>
+      {title && <ModalHeader>{title}</ModalHeader>}
+      <ModalBody>{children}</ModalBody>
+      <ModalFooter>{footer}</ModalFooter>
+    </ModalBase>
+  );
+};
 
 Modal.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.node,
-  onClose: PropTypes.func.isRequired,
-  closeOnEscPress: PropTypes.bool
+  ...ModalBase.propTypes,
+  title: PropTypes.node,
+  footer: PropTypes.node.isRequired
 };
 
 export default Modal;

@@ -1,16 +1,17 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import Modal from './Modal';
-import ActionModalHeader from './ActionModalHeader';
-import ActionModalBody from './ActionModalBody';
-import ActionModalFooter from './ActionModalFooter';
+import ModalBase from './ModalBase';
+import ActionModalTitle from './ActionModalTitle';
+import ActionModalActions from './ActionModalActions';
+import ActionModalContent from './ActionModalContent';
+import ActionModalIcon from './ActionModalIcon';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
-const baseClass = 'action-modal';
+const baseClass = 'popup-modal';
 
 const ActionModal = props => {
-  const { title, footer, children, className, ...restProps } = props;
+  const { title, actions, icon, children, className, ...restProps } = props;
 
   const mergedClassNames = getMergedClassNames(
     styles[`${baseClass}`],
@@ -18,18 +19,20 @@ const ActionModal = props => {
   );
 
   return (
-    <Modal className={mergedClassNames} {...restProps}>
-      {title && <ActionModalHeader>{title}</ActionModalHeader>}
-      <ActionModalBody>{children}</ActionModalBody>
-      <ActionModalFooter>{footer}</ActionModalFooter>
-    </Modal>
+    <ModalBase className={mergedClassNames} {...restProps}>
+      {icon && <ActionModalIcon>{icon}</ActionModalIcon>}
+      {title && <ActionModalTitle>{title}</ActionModalTitle>}
+      <ActionModalContent>{children}</ActionModalContent>
+      <ActionModalActions>{actions}</ActionModalActions>
+    </ModalBase>
   );
 };
 
 ActionModal.propTypes = {
-  ...Modal.propTypes,
+  ...ModalBase.propTypes,
+  icon: PropTypes.node,
   title: PropTypes.node,
-  footer: PropTypes.node.isRequired
+  actions: PropTypes.node.isRequired
 };
 
 export default ActionModal;

@@ -3,9 +3,9 @@ import * as PropTypes from 'prop-types';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
-const baseClass = 'action-modal__body';
+const baseClass = 'popup-modal__icon';
 
-const ActionModalBody = props => {
+const ActionModalIcon = props => {
   const { className, children, ...restProps } = props;
   const mergedClassNames = getMergedClassNames(
     styles[`${baseClass}`],
@@ -19,9 +19,9 @@ const ActionModalBody = props => {
   );
 };
 
-ActionModalBody.propTypes = {
+ActionModalIcon.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node
 };
 
-export default ActionModalBody;
+export default ActionModalIcon;

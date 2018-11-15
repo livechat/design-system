@@ -8,24 +8,24 @@ const handleModalOpen = () => setState({isOpen: true});
 const handleModalClose = () => setState({isOpen: false});
 
 const buttonStyle = {
-  width: '140px',
-  margin: '0 4px'
+  margin: '0 4px',
+  width: '150px'
 };
 
 <div>
   {state.isOpen && (
     <ActionModal
       onClose={handleModalClose}
-      style={{width: "600px", height: "400px"}}
-      title="Title"
-      footer={
+      title="Danger! Danger!"
+      actions={
         <React.Fragment>
-          <Button style={buttonStyle} size="large" onClick={handleModalClose}>Secondary</Button>
-          <Button primary style={buttonStyle} size="large" onClick={handleModalClose}>Primary</Button>
-        </React.Fragment>  
+          <Button style={buttonStyle} size="large" onClick={handleModalClose}>Wait, go back</Button>
+          <Button style={buttonStyle} size="large" onClick={handleModalClose} destructive>Yes, delete</Button>
+        </React.Fragment>
       }
+      icon={<AlertCircleIcon height={54} width={54} fill="#424d57" />}
     >
-      Modal content
+      <div style={{maxWidth: '300px'}}>You’re about to do something that cannot be undone. Are you sure you want to continue?</div>
     </ActionModal>
   )}
   <Button onClick={handleModalOpen}>Open modal</Button>
@@ -33,39 +33,40 @@ const buttonStyle = {
 ```
 ```js noeditor
 const buttonStyle = {
-  width: '140px',
-  margin: '0 4px'
+  margin: '0 4px',
+  width: '150px'
 };
 
 <ComponentHtmlMarkup>
   <ActionModal
     onClose={() => {}}
-    style={{width: "600px", height: "400px"}}
-    title="Title"
-    footer={
+    style={{width: '500px', height: '350px'}}
+    title="Danger! Danger!"
+    actions={
       <React.Fragment>
-        <Button style={buttonStyle} size="large" onClick={() => {}}>Secondary</Button>
-        <Button primary style={buttonStyle} size="large" onClick={() => {}}>Primary</Button>
-      </React.Fragment>  
+        <Button style={buttonStyle} size="large" onClick={() => {}}>Wait, go back</Button>
+        <Button style={buttonStyle} size="large" onClick={() => {}} destructive>Yes, delete</Button>
+      </React.Fragment>
     }
+    icon={<AlertCircleIcon height={54} width={54} fill="#424d57" />}
   >
-    Modal content
+    You’re about to do something that cannot be undone. Are you sure you want to continue?
   </ActionModal>
 </ComponentHtmlMarkup>
 ```
 
-Action modals include input areas that the user may interact with, such as Forms, Dropdowns, Selectors, and Links. It includes 3 basic elements:
+Examples:
 <ul>
   <li>
-    <b>Title (optional)</b><br />
-    Provides concise overview of the contents of the modal. The title mirrors the action or button that was clicked by the user.
+    <b>Upgrade modal</b><br />
+    Upgrade Modals are used to validate user decisions or to gain secondary confirmation from the user.
   </li>
   <li>
-    <b>Body</b><br />
-    The body content within a Modal should be as minimal as possible. Components that may be used in Modals include: Form fields, Text Area, Select, and Radio Buttons.
+    <b>Confirmation modal</b><br />
+    Confirmation modals are used as a style of notification. They can encourage desired user behaviour. 
   </li>
   <li>
-    <b>Footer</b><br />
-    The footer area of a Modal contains a set of buttons - primary action and secondary action.
+    <b>Danger modal</b><br />
+    Danger Modals are used to validate destructive user actions.
   </li>
 </ul>
