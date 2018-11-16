@@ -4,7 +4,7 @@
     offset={1}
     align="right"
     trigger="hover"
-    content={<TooltipContent align="right" arrowPosition="bottom" arrowOffset={12}>
+    content={<TooltipContent arrowAlign="right" arrowPosition="bottom" arrowOffset={12}>
       Your customers can hear sound notifications when using your chat window. They can mute/unmute them during chat. Your customers can hear sound notifications when using your chat window. They can mute/unmute them during chat.
     </TooltipContent>}
     directions={['top']}
@@ -21,7 +21,7 @@
         offset={1}
         align="right"
         trigger="hover"
-        content={<TooltipContent align="right" arrowPosition="bottom" arrowOffset={12}>
+        content={<TooltipContent arrowAlign="right" arrowPosition="bottom" arrowOffset={12}>
           Your customers can hear sound notifications when using your chat window. They can mute/unmute them during chat. Your customers can hear sound notifications when using your chat window. They can mute/unmute them during chat.
         </TooltipContent>}
         directions={['top']}

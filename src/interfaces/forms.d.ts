@@ -71,7 +71,20 @@ export interface IMultiSelectFieldProps extends IMultiSelectProps {
   description?: React.ReactNode;
 }
 
+export interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  error?: string;
+}
+
+export interface IInputFieldProps extends IInputProps {
+  labelText?: string;
+  id: string;
+  inline?: boolean;
+  description?: React.ReactNode;
+}
+
 export var Select: React.ComponentType<ISelectProps>;
 export var SelectField: React.ComponentType<ISelectFieldProps>;
 export var MultiSelect: React.ComponentType<IMultiSelectProps>;
 export var MultiSelectField: React.ComponentType<IMultiSelectFieldProps>;
+export var Input: React.ComponentType<IInputProps>;
+export var InputField: React.ComponentType<IInputFieldProps>;

@@ -77,8 +77,36 @@ _Release: 2018-11-12_
 * New Select and SelectField components
 
 ----
-## v0.0.7
-_Release: 2018-11-13_
+### v0.0.7
+_Release: 2018-11-14_
+
+##### Bug Fixes
+* Removing unnecessary css source map
+
+----
+### v0.0.8
+_Release: 2018-11-14_
+
+##### Bug Fixes
+* Fixing tooltip content arrow align (typo in the code)
+
+##### Deprecations
+* TooltipContent property change: align => arrowAlign
+
+----
+### v0.0.9
+_Release: 2018-11-15_
+
+##### New Features
+* Adding modals:
+  * BaseModal component with events handlers and overlay
+  * 2 predefined modal components: Modal and ActionModal
+
+##### Refactors
+* Adding ts typings for Input and InputField components
+
+## v0.0.10
+_Release: 2018-11-16_
 
 ##### New Features
 * New components

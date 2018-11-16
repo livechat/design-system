@@ -22,7 +22,12 @@ const Input = props => {
 
 Input.propTypes = {
   error: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
+  type: PropTypes.string
+};
+
+Input.defaultProps = {
+  type: 'text'
 };
 
 export default Input;
