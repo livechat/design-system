@@ -44,7 +44,24 @@ export interface IInputFieldProps extends IInputProps {
   description?: React.ReactNode;
 }
 
+export interface INumericInputProps {
+  value: number;
+  error?: string;
+  max?: number;
+  min?: number;
+  onChange(value: number): void;
+}
+
+export interface INumericInputFieldProps extends INumericInputProps {
+  labelText?: string;
+  id: string;
+  inline?: boolean;
+  description?: React.ReactNode;
+}
+
 export var Select: React.ComponentType<ISelectProps>;
 export var SelectField: React.ComponentType<ISelectFieldProps>;
 export var Input: React.ComponentType<IInputProps>;
 export var InputField: React.ComponentType<IInputFieldProps>;
+export var NumericInput: React.ComponentType<INumericInputProps>;
+export var NumericInputField: React.ComponentType<INumericInputFieldProps>;

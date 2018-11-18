@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NumericInput should render NumericInput with all available props 1`] = `
+<span
+  className="numeric-input numeric-input--error numeric-input--with-max numeric-input--disabled numeric-test"
+>
+  <input
+    disabled={true}
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    size={3}
+    type="text"
+    value=""
+  />
+  <span
+    aria-label="Increment value"
+    className="numeric-input__increment"
+    onClick={[Function]}
+  />
+  <span
+    aria-label="Decrement value"
+    className="numeric-input__decrement"
+    onClick={[Function]}
+  />
+</span>
+`;
+
+exports[`NumericInput should render NumericInput with required props 1`] = `
+<span
+  className="numeric-input"
+>
+  <input
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    size={null}
+    type="text"
+    value={1}
+  />
+  <span
+    aria-label="Increment value"
+    className="numeric-input__increment"
+    onClick={[Function]}
+  />
+  <span
+    aria-label="Decrement value"
+    className="numeric-input__decrement"
+    onClick={[Function]}
+  />
+</span>
+`;

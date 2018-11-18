@@ -35,6 +35,8 @@ global.TextAreaField = Components.TextAreaField;
 global.CheckboxField = Components.CheckboxField;
 global.SelectField = Components.SelectField;
 global.Select = Components.Select;
+global.NumericInput = Components.NumericInput;
+global.NumericInputField = Components.NumericInputField;
 
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;
