@@ -114,10 +114,6 @@ $base-class: 'numeric-input';
     }
   }
 
-  &--with-max {
-    max-width: none;
-  }
-
   &--disabled {
     cursor: not-allowed;
     color: $font-primary-color;

@@ -100,6 +100,7 @@ class NumericInput extends React.PureComponent {
       onChange,
       value,
       disabled,
+      style,
       ...restProps
     } = this.props;
 
@@ -107,14 +108,13 @@ class NumericInput extends React.PureComponent {
       cx({
         [baseClass]: true,
         [`${baseClass}--error`]: error,
-        [`${baseClass}--with-max`]: max,
         [`${baseClass}--disabled`]: disabled
       }),
       className
     );
 
     return (
-      <span className={mergedClassNames}>
+      <span className={mergedClassNames} style={style}>
         <input
           type="text"
           {...restProps}
@@ -123,7 +123,6 @@ class NumericInput extends React.PureComponent {
           onChange={this.handleChange}
           onFocus={this.onFocus}
           onBlur={this.onBlur}
-          size={this.props.max ? String(this.props.max).length : null}
         />
         <span
           aria-label="Increment value"

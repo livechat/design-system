@@ -34,6 +34,7 @@ onInputChange = (value) => {
 <NumericInputField
   min={-10}
   max={1000}
+  style={{width: '80px'}}
   value={state.value}
   error={state.error}
   onChange={onInputChange}
