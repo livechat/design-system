@@ -4,8 +4,8 @@ export type ButtonSize = 'compact' | 'large';
 
 export interface IButtonProps {
   id?: string;
-  children: string;
-  className: string;
+  children: React.ReactNode;
+  className?: string;
   primary?: boolean;
   destructive?: boolean;
   disabled?: boolean;
