@@ -1,7 +1,9 @@
 <h3>Numeric Input</h3>
 
+Use when the input requires a numerical value.
+
 ```js
-initialState = { value: 51, error: null };
+initialState = { value: 1, error: null };
 
 onInputChange = (value) => {
   setState({
@@ -11,15 +13,26 @@ onInputChange = (value) => {
 }
 
 <NumericInput
-  min={1}
-  max={50}
+  width="60px"
   value={state.value}
   error={state.error}
   onChange={onInputChange}
 />
 ```
+```js noeditor
+<ComponentHtmlMarkup>
+  <NumericInput
+    width="60px"
+    value={1}
+    error="Field required"
+    onChange={() => {}}
+  />
+</ComponentHtmlMarkup>
+```
 
 <h3>Numeric Input Field</h3>
+
+You can pass min and max prop to component. In this example value should be within range [-10, 1000]
 
 ```js
 initialState = { value: 1000, error: null };
@@ -34,13 +47,56 @@ onInputChange = (value) => {
 <NumericInputField
   min={-10}
   max={1000}
-  style={{width: '80px'}}
+  width="75px"
   value={state.value}
   error={state.error}
   onChange={onInputChange}
   labelText="Number"
   description="Choose number"
 />
+```
+```js noeditor
+<ComponentHtmlMarkup>
+  <NumericInput
+    min={-10}
+    max={1000}
+    width="75px"
+    value={1000}
+    error="Field required"
+    onChange={() => {}}
+    labelText="Number"
+    description="Choose number"
+  />
+</ComponentHtmlMarkup>
+```
+
+<h3>Numeric Input without controls</h3>
+
+```js
+initialState = { value: 51 };
+
+onInputChange = (value) => {
+  setState({
+    value
+  });
+}
+
+<NumericInput
+  width="35px"
+  value={state.value}
+  noControls
+  onChange={onInputChange}
+/>
+```
+```js noeditor
+<ComponentHtmlMarkup>
+  <NumericInput
+    width="35px"
+    value={51}
+    noControls
+    onChange={() => {}}
+  />
+</ComponentHtmlMarkup>
 ```
 
 <h3>Disabled Numeric Input</h3>
@@ -62,4 +118,15 @@ onInputChange = (value) => {
   value={1}
   onChange={() => {}}
 />
+```
+```js noeditor
+<ComponentHtmlMarkup>
+  <NumericInput
+    min={1}
+    max={50}
+    disabled
+    value={1}
+    onChange={() => {}}
+  />
+</ComponentHtmlMarkup>
 ```

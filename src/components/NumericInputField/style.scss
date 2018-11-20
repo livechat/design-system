@@ -17,7 +17,7 @@ $base-class: 'numeric-input';
 .#{$base-class} {
   position: relative;
   display: inline-block;
-  max-width: 64px;
+  width: 64px;
   height: 36px;
 
   input {
@@ -28,7 +28,7 @@ $base-class: 'numeric-input';
     padding: 0 28px 0 4px;
     color: $font-secondary-color;
     text-align: right;
-    max-width: 100%;
+    width: 100%;
     box-sizing: border-box;
 
     &:hover {
@@ -142,6 +142,12 @@ $base-class: 'numeric-input';
     input,
     input:focus {
       border-color: $error-color;
+    }
+  }
+
+  &--no-controls {
+    input {
+      padding: 0 4px;
     }
   }
 }

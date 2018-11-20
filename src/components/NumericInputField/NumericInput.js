@@ -42,6 +42,17 @@ class NumericInput extends React.PureComponent {
     }
   };
 
+  getComponentStyles = () => {
+    const componentStyles = {
+      ...(this.props.style || {})
+    };
+    if (this.props.width) {
+      componentStyles.width = this.props.width;
+    }
+
+    return componentStyles;
+  };
+
   addKeyboardEventListeners = () => {
     document.addEventListener('keydown', this.onKeyDown);
   };
@@ -98,6 +109,7 @@ class NumericInput extends React.PureComponent {
       max,
       min,
       onChange,
+      noControls,
       value,
       disabled,
       style,
@@ -108,13 +120,14 @@ class NumericInput extends React.PureComponent {
       cx({
         [baseClass]: true,
         [`${baseClass}--error`]: error,
+        [`${baseClass}--no-controls`]: noControls,
         [`${baseClass}--disabled`]: disabled
       }),
       className
     );
 
     return (
-      <span className={mergedClassNames} style={style}>
+      <span className={mergedClassNames} style={this.getComponentStyles()}>
         <input
           type="text"
           {...restProps}
@@ -124,24 +137,28 @@ class NumericInput extends React.PureComponent {
           onFocus={this.onFocus}
           onBlur={this.onBlur}
         />
-        <span
-          aria-label="Increment value"
-          className={cx({
-            [`${baseClass}__increment`]: true,
-            [`${baseClass}__increment--disabled`]:
-              this.props.max && this.props.value === this.props.max
-          })}
-          onClick={this.changeValue(1)}
-        />
-        <span
-          aria-label="Decrement value"
-          className={cx({
-            [`${baseClass}__decrement`]: true,
-            [`${baseClass}__decrement--disabled`]:
-              this.props.min && this.props.value === this.props.min
-          })}
-          onClick={this.changeValue(-1)}
-        />
+        {!noControls && (
+          <React.Fragment>
+            <span
+              aria-label="Increment value"
+              className={cx({
+                [`${baseClass}__increment`]: true,
+                [`${baseClass}__increment--disabled`]:
+                  this.props.max && this.props.value === this.props.max
+              })}
+              onClick={this.changeValue(1)}
+            />
+            <span
+              aria-label="Decrement value"
+              className={cx({
+                [`${baseClass}__decrement`]: true,
+                [`${baseClass}__decrement--disabled`]:
+                  this.props.min && this.props.value === this.props.min
+              })}
+              onClick={this.changeValue(-1)}
+            />
+          </React.Fragment>
+        )}
       </span>
     );
   }
@@ -155,6 +172,8 @@ NumericInput.propTypes = {
   max: PropTypes.number,
   min: PropTypes.number,
   disabled: PropTypes.bool,
+  noControls: PropTypes.bool,
+  width: PropTypes.string,
   onChange: PropTypes.func.isRequired
 };
 

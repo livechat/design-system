@@ -46,15 +46,20 @@ export interface IInputFieldProps extends IInputProps {
 
 export interface INumericInputProps {
   value: number;
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
   error?: string;
   max?: number;
   min?: number;
+  noControls?: boolean;
+  width?: boolean;
   onChange(value: number): void;
 }
 
 export interface INumericInputFieldProps extends INumericInputProps {
-  labelText?: string;
   id: string;
+  labelText?: string;
   inline?: boolean;
   description?: React.ReactNode;
 }

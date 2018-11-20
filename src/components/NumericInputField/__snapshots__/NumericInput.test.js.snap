@@ -2,14 +2,14 @@
 
 exports[`NumericInput should render NumericInput with all available props 1`] = `
 <span
-  className="numeric-input numeric-input--error numeric-input--with-max numeric-input--disabled numeric-test"
+  className="numeric-input numeric-input--error numeric-input--disabled numeric-test"
+  style={Object {}}
 >
   <input
     disabled={true}
     onBlur={[Function]}
     onChange={[Function]}
     onFocus={[Function]}
-    size={3}
     type="text"
     value=""
   />
@@ -29,12 +29,12 @@ exports[`NumericInput should render NumericInput with all available props 1`] = 
 exports[`NumericInput should render NumericInput with required props 1`] = `
 <span
   className="numeric-input"
+  style={Object {}}
 >
   <input
     onBlur={[Function]}
     onChange={[Function]}
     onFocus={[Function]}
-    size={null}
     type="text"
     value={1}
   />
