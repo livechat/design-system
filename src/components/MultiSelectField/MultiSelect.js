@@ -58,6 +58,9 @@ class MultiSelect extends React.PureComponent {
   componentWillUnmount() {
     this.onBodyClose();
     document.removeEventListener('keydown', this.onArrowPress);
+    if (this.timerId) {
+      clearTimeout(this.timerId);
+    }
   }
 
   onDocumentClick = event => {
@@ -98,9 +101,6 @@ class MultiSelect extends React.PureComponent {
 
   onBodyClose = () => {
     document.removeEventListener('click', this.onDocumentClick);
-    if (this.timerId) {
-      clearTimeout(this.timerId);
-    }
   };
 
   onSelectHeadClick = event => {
@@ -174,8 +174,11 @@ class MultiSelect extends React.PureComponent {
   };
 
   handleItemRemove = (e, itemKey) => {
+    e.preventDefault();
     e.stopPropagation();
-    this.props.onItemRemove(itemKey);
+    this.timerId = setTimeout(() => {
+      this.props.onItemRemove(itemKey);
+    }, 0);
   };
 
   showSelectBody = () => {
