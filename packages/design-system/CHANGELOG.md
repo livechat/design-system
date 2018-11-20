@@ -104,3 +104,10 @@ _Release: 2018-11-15_
 
 ##### Refactors
 * Adding ts typings for Input and InputField components
+
+----
+### v0.0.10
+_Release: 2018-11-20_
+
+##### Bug Fixes
+* Fixing button interface
