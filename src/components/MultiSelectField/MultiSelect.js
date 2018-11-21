@@ -5,7 +5,6 @@ import classNames from 'classnames/bind';
 import styles from './style.scss';
 import MultiSelectList from './MultiSelectList';
 import MultiSelectHead from './MultiSelectHead';
-import MultiSelectHeadItems from './MultiSelectHeadItems';
 import MultiSelectHeadItem from './MultiSelectHeadItem';
 import Search from './Search';
 import { KeyCodes } from '../../constants/keyCodes';
@@ -26,7 +25,7 @@ class MultiSelect extends React.PureComponent {
       isFocused: false
     };
 
-    this.timerId = null;
+    this.timeouts = [];
     this.containerRef = React.createRef();
     this.searchInputRef = React.createRef();
     this.headRef = React.createRef();
@@ -58,9 +57,9 @@ class MultiSelect extends React.PureComponent {
   componentWillUnmount() {
     this.onBodyClose();
     document.removeEventListener('keydown', this.onArrowPress);
-    if (this.timerId) {
-      clearTimeout(this.timerId);
-    }
+    this.timeouts.forEach(timerId => {
+      clearTimeout(timerId);
+    });
   }
 
   onDocumentClick = event => {
@@ -94,9 +93,7 @@ class MultiSelect extends React.PureComponent {
 
   onBodyOpen = () => {
     document.addEventListener('click', this.onDocumentClick);
-    if (this.props.search) {
-      this.searchInputRef.current.focus();
-    }
+    this.asyncInputFocus();
   };
 
   onBodyClose = () => {
@@ -105,9 +102,7 @@ class MultiSelect extends React.PureComponent {
 
   onSelectHeadClick = event => {
     event.preventDefault();
-    if (this.props.search) {
-      this.searchInputRef.current.focus();
-    }
+    this.asyncInputFocus();
     this.showSelectBody();
   };
 
@@ -137,6 +132,7 @@ class MultiSelect extends React.PureComponent {
   getItemSelectedHandler = itemKey => event => {
     event.preventDefault();
     this.props.onItemSelect(itemKey);
+    this.asyncInputFocus();
   };
 
   getSelectedItems = () => {
@@ -154,6 +150,48 @@ class MultiSelect extends React.PureComponent {
     }
 
     return items.filter(item => selected.indexOf(item.key) > -1);
+  };
+
+  getDefaultInputSize = selectedItems => {
+    if (
+      (!selectedItems || selectedItems.length === 0) &&
+      this.props.placeholder
+    )
+      return this.props.placeholder.length;
+    return 1;
+  };
+
+  getInputSize = selectedItems => {
+    const defaultInputSize = this.getDefaultInputSize(selectedItems);
+
+    if (this.state.searchPhrase.length > defaultInputSize) {
+      return this.state.searchPhrase.length;
+    }
+    return defaultInputSize;
+  };
+
+  getSearchPlaceholder = selectedItems => {
+    if (
+      (!selectedItems || selectedItems.length === 0) &&
+      this.props.placeholder
+    ) {
+      return this.props.placeholder;
+    }
+    return '';
+  };
+
+  getSelectedItemsPlaceholder = selectedItems => {
+    if (
+      (!selectedItems || selectedItems.length === 0) &&
+      this.props.placeholder
+    ) {
+      return (
+        <div className={styles[`${baseClass}__placeholder`]}>
+          {this.props.placeholder}
+        </div>
+      );
+    }
+    return null;
   };
 
   shouldScrollItemsContainer = prevProps => {
@@ -176,9 +214,10 @@ class MultiSelect extends React.PureComponent {
   handleItemRemove = (e, itemKey) => {
     e.preventDefault();
     e.stopPropagation();
-    this.timerId = setTimeout(() => {
+    const timerId = setTimeout(() => {
       this.props.onItemRemove(itemKey);
     }, 0);
+    this.timeouts = [...this.timeouts, timerId];
   };
 
   showSelectBody = () => {
@@ -202,6 +241,15 @@ class MultiSelect extends React.PureComponent {
         this.headRef.current.focus();
       }
     );
+  };
+
+  asyncInputFocus = () => {
+    if (this.props.search && this.searchInputRef.current) {
+      const timerId = setTimeout(() => {
+        this.searchInputRef.current.focus();
+      }, 0);
+      this.timeouts = [...this.timeouts, timerId];
+    }
   };
 
   changeFocusedItem = itemKey => {
@@ -248,7 +296,6 @@ class MultiSelect extends React.PureComponent {
       getSelectedItemBody,
       search,
       disabled,
-      searchPlaceholder,
       toggleAllOptions,
       maxItemsContainerHeight
     } = this.props;
@@ -256,11 +303,6 @@ class MultiSelect extends React.PureComponent {
     const { isOpen, searchPhrase, focusedItemKey, isFocused } = this.state;
     const selectedItemsModels = this.getSelectedItemsModels();
     const filteredItems = items.filter(this.filterItem);
-
-    const defaultInputSize =
-      (!selectedItems || selectedItems.length === 0) && searchPlaceholder
-        ? searchPlaceholder.length
-        : 1;
 
     const mergedClassNames = getMergedClassNames(
       cx({
@@ -279,9 +321,10 @@ class MultiSelect extends React.PureComponent {
           onFocus={this.onSelectHeadFocus}
           onBlur={this.onSelectHeadBlur}
         >
-          <MultiSelectHeadItems
+          <div
+            className={styles[`${baseClass}-head__items`]}
+            style={{ maxHeight: maxItemsContainerHeight }}
             ref={this.selectedItemsContainerRef}
-            maxHeight={maxItemsContainerHeight}
           >
             {selectedItemsModels &&
               selectedItemsModels.map(item => (
@@ -292,25 +335,20 @@ class MultiSelect extends React.PureComponent {
                   onRemove={this.handleItemRemove}
                 />
               ))}
-            <Search
-              isVisible={search}
-              inputRef={this.searchInputRef}
-              placeholder={
-                (!selectedItems || selectedItems.length === 0) &&
-                searchPlaceholder
-                  ? searchPlaceholder
-                  : ''
-              }
-              size={
-                searchPhrase.length > defaultInputSize
-                  ? searchPhrase.length
-                  : defaultInputSize
-              }
-              value={searchPhrase}
-              onChange={this.onSearchChange}
-              disabled={disabled}
-            />
-          </MultiSelectHeadItems>
+            {search ? (
+              <Search
+                isDropdownOpen={isOpen}
+                inputRef={this.searchInputRef}
+                placeholder={this.getSearchPlaceholder(selectedItems)}
+                size={this.getInputSize(selectedItems)}
+                value={searchPhrase}
+                onChange={this.onSearchChange}
+                disabled={disabled}
+              />
+            ) : (
+              this.getSelectedItemsPlaceholder(selectedItems)
+            )}
+          </div>
           <MenuDownIcon
             className={styles[`${baseClass}__dropdown-icon`]}
             width="24px"
@@ -360,7 +398,7 @@ MultiSelect.propTypes = {
       props: PropTypes.object
     })
   ),
-  searchPlaceholder: PropTypes.string,
+  placeholder: PropTypes.string,
   searchProperty: PropTypes.string,
   selected: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.number])

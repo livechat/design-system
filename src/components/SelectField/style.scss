@@ -75,7 +75,7 @@ $base-class: 'select';
     margin: 0;
     height: 100%;
     width: 100%;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 18px;
     color: $font-primary-color;
     border: none;
@@ -111,6 +111,7 @@ $base-class: 'select';
     margin-top: 2px;
     background-color: #fff;
     box-sizing: border-box;
+    border-radius: 4px;
     box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.2);
     opacity: 0;
     visibility: hidden;
@@ -187,6 +188,7 @@ $base-class: 'select';
     }
 
     &-placeholder {
+      font-size: 15px;
       opacity: 0.4;
       color: $font-primary-color;
     }

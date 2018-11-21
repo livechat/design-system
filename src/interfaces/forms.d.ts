@@ -13,7 +13,7 @@ export interface ISelectProps {
   searchProperty?: string;
   search?: boolean;
   placeholder?: React.ReactNode;
-  searchPlaceholder?: React.ReactNode;
+  searchPlaceholder?: string;
   selected: string | number;
   openedOnInit?: boolean;
   disabled?: boolean;
@@ -44,7 +44,7 @@ export interface IMultiSelectProps {
     }
   }[];
   searchProperty?: string;
-  searchPlaceholder?: React.ReactNode;
+  placeholder?: string;
   search?: boolean;
   disabled?: boolean;
   openedOnInit?: boolean;

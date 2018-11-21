@@ -69,7 +69,7 @@ const toggleAll = items => {
     maxItemsContainerHeight={72}
     getSelectedItemBody={getSelectedItemBody}
     selected={state.selectedItems}
-    searchPlaceholder='Search...'
+    placeholder='Search...'
   />
 </div>
 ```
@@ -102,10 +102,10 @@ const getSelectedItemBody = props => {
       onToggleAll: () => {}
     }}
     search
-    maxItemsContainerHeight={72}
+    maxItemsContainerHeight={64}
     getSelectedItemBody={getSelectedItemBody}
     selected={['1']}
-    searchPlaceholder='Search...'
+    placeholder='Search...'
   />
 </ComponentHtmlMarkup>
 ```
