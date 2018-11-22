@@ -9,6 +9,8 @@ const cx = classNames.bind(styles);
 const baseClass = 'numeric-input';
 
 class NumericInput extends React.PureComponent {
+  static requiredValidator = value => value !== '' && value !== '-';
+
   componentDidMount() {
     if (this.props.max && this.props.value > this.props.max) {
       this.props.onChange(this.props.max);
@@ -23,22 +25,14 @@ class NumericInput extends React.PureComponent {
     this.removeKeyboardEventListeners();
   }
 
-  onFocus = () => {
-    this.addKeyboardEventListeners();
-  };
-
-  onBlur = () => {
-    this.removeKeyboardEventListeners();
-  };
-
   onKeyDown = e => {
     if (e.keyCode === KeyCodes.arrowDown) {
       e.preventDefault();
-      this.changeValue(-1)();
+      this.changeValue(-1);
     }
     if (e.keyCode === KeyCodes.arrowUp) {
       e.preventDefault();
-      this.changeValue(1)();
+      this.changeValue(1);
     }
   };
 
@@ -61,9 +55,13 @@ class NumericInput extends React.PureComponent {
     document.removeEventListener('keydown', this.onKeyDown);
   };
 
-  changeValue = val => () => {
-    if (this.props.value !== null) {
+  changeValue = val => {
+    if (this.props.value !== '' && this.props.value !== '-') {
       this.props.onChange(this.calcValue(parseInt(this.props.value, 10) + val));
+    } else if (this.props.min && val < this.props.min) {
+      this.props.onChange(this.props.min);
+    } else if (this.props.max && val > this.props.max) {
+      this.props.onChange(this.props.max);
     } else {
       this.props.onChange(val);
     }
@@ -73,22 +71,29 @@ class NumericInput extends React.PureComponent {
     e.preventDefault();
     e.stopPropagation();
     const { onChange, value } = this.props;
-    const inputVal = e.target.value.replace(/!^-?\d+/, '');
-    const val = parseInt(inputVal, 10);
+    const inputVal = e.target.value.replace(/((?!([-]|([-]?\d+))).)/, '');
 
     if (inputVal === '') {
-      onChange(null);
+      onChange('');
       return;
     }
+
+    if (inputVal === '-') {
+      onChange('-');
+      return;
+    }
+
+    const val = parseInt(inputVal, 10);
 
     if (String(val) !== inputVal) {
       onChange(value);
     } else {
-      onChange(this.calcValue(val));
+      const calculatedValue = this.calcValue(val);
+      onChange(calculatedValue);
     }
   };
 
-  calcValue(val) {
+  calcValue = val => {
     const { max, min } = this.props;
 
     if (max && val > max) {
@@ -98,9 +103,24 @@ class NumericInput extends React.PureComponent {
     if (min && val < min) {
       return min;
     }
-
     return val;
-  }
+  };
+
+  handleIncrementClick = () => {
+    this.changeValue(1);
+  };
+
+  handleDecrementClick = () => {
+    this.changeValue(-1);
+  };
+
+  handleFocus = () => {
+    this.addKeyboardEventListeners();
+  };
+
+  handleBlur = () => {
+    this.removeKeyboardEventListeners();
+  };
 
   render() {
     const {
@@ -127,39 +147,49 @@ class NumericInput extends React.PureComponent {
     );
 
     return (
-      <span className={mergedClassNames} style={this.getComponentStyles()}>
+      <div className={mergedClassNames} style={this.getComponentStyles()}>
         <input
           type="text"
           {...restProps}
-          value={value !== null ? value : ''}
+          value={value}
           disabled={disabled}
           onChange={this.handleChange}
-          onFocus={this.onFocus}
-          onBlur={this.onBlur}
+          onFocus={this.handleFocus}
+          onBlur={this.handleBlur}
         />
         {!noControls && (
           <React.Fragment>
-            <span
+            <button
+              tabIndex="-1"
+              disabled={
+                disabled ||
+                (this.props.max && this.props.value === this.props.max)
+              }
+              onClick={this.handleIncrementClick}
               aria-label="Increment value"
               className={cx({
                 [`${baseClass}__increment`]: true,
                 [`${baseClass}__increment--disabled`]:
                   this.props.max && this.props.value === this.props.max
               })}
-              onClick={this.changeValue(1)}
             />
-            <span
+            <button
+              tabIndex="-1"
+              disabled={
+                disabled ||
+                (this.props.min && this.props.value === this.props.min)
+              }
               aria-label="Decrement value"
               className={cx({
                 [`${baseClass}__decrement`]: true,
                 [`${baseClass}__decrement--disabled`]:
                   this.props.min && this.props.value === this.props.min
               })}
-              onClick={this.changeValue(-1)}
+              onClick={this.handleDecrementClick}
             />
           </React.Fragment>
         )}
-      </span>
+      </div>
     );
   }
 }
@@ -168,7 +198,7 @@ NumericInput.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
   error: PropTypes.string,
-  value: PropTypes.number,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   max: PropTypes.number,
   min: PropTypes.number,
   disabled: PropTypes.bool,

@@ -5,10 +5,10 @@ Use when the input requires a numerical value.
 ```js
 initialState = { value: 1, error: null };
 
-onInputChange = (value) => {
+handleInputChange = (value) => {
   setState({
     value,
-    error: value !== null ? null : 'Field required'
+    error: NumericInput.requiredValidator(value) ? null : 'Field required'
   });
 }
 
@@ -16,7 +16,7 @@ onInputChange = (value) => {
   width="60px"
   value={state.value}
   error={state.error}
-  onChange={onInputChange}
+  onChange={handleInputChange}
 />
 ```
 ```js noeditor
@@ -37,20 +37,21 @@ You can pass min and max prop to component. In this example value should be with
 ```js
 initialState = { value: 1000, error: null };
 
-onInputChange = (value) => {
+handleInputChange = (value) => {
   setState({
     value,
-    error: value !== null ? null : 'Field required'
+    error: NumericInput.requiredValidator(value) ? null : 'Field required'
   });
 }
 
 <NumericInputField
+  id="num-input-field"
   min={-10}
   max={1000}
   width="75px"
   value={state.value}
   error={state.error}
-  onChange={onInputChange}
+  onChange={handleInputChange}
   labelText="Number"
   description="Choose number"
 />
@@ -58,6 +59,7 @@ onInputChange = (value) => {
 ```js noeditor
 <ComponentHtmlMarkup>
   <NumericInput
+    id="num-input-field"
     min={-10}
     max={1000}
     width="75px"
@@ -75,7 +77,7 @@ onInputChange = (value) => {
 ```js
 initialState = { value: 51 };
 
-onInputChange = (value) => {
+handleInputChange = (value) => {
   setState({
     value
   });
@@ -85,7 +87,7 @@ onInputChange = (value) => {
   width="35px"
   value={state.value}
   noControls
-  onChange={onInputChange}
+  onChange={handleInputChange}
 />
 ```
 ```js noeditor
@@ -102,12 +104,11 @@ onInputChange = (value) => {
 <h3>Disabled Numeric Input</h3>
 
 ```js
-initialState = { value: 51, error: null };
+initialState = { value: 51 };
 
-onInputChange = (value) => {
+handleInputChange = (value) => {
   setState({
     value,
-    error: value !== null ? null : 'Field required'
   });
 }
 

@@ -24,12 +24,13 @@ $base-class: 'numeric-input';
     line-height: 36px;
     height: 100%;
     border-radius: 4px;
-    border: 1px solid #bcc6d0;
+    border: 1px solid $border-primary-color;
     padding: 0 28px 0 4px;
     color: $font-secondary-color;
     text-align: right;
     width: 100%;
     box-sizing: border-box;
+    -moz-appearance: textfield;
 
     &:hover {
       border-color: $field-hover-border-color;
@@ -46,21 +47,36 @@ $base-class: 'numeric-input';
       opacity: 0.5;
       cursor: not-allowed;
     }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
   }
 
   &__increment,
   &__decrement {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 1px;
+    right: 1px;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    background: transparent;
     height: 50%;
     width: 23px;
-    border-left: 1px solid #bcc6d0;
+    border-left: 1px solid $border-primary-color;
     cursor: pointer;
+
+    &:hover,
+    &:focus {
+      outline: 0;
+    }
 
     &::after {
       position: absolute;
-      top: calc(50% - 2px);
+      top: calc(50% - 3px);
       left: calc(50% - 4px);
       content: '';
 
@@ -75,7 +91,7 @@ $base-class: 'numeric-input';
       }
     }
 
-    &--disabled {
+    &:disabled {
       cursor: not-allowed;
 
       &::after,
@@ -89,8 +105,8 @@ $base-class: 'numeric-input';
 
   &__decrement {
     top: auto;
-    bottom: 0;
-    border-top: 1px solid #bcc6d0;
+    bottom: 1px;
+    border-top: 1px solid $border-primary-color;
 
     &::after {
       @include decrement-border($font-secondary-color);
@@ -102,7 +118,7 @@ $base-class: 'numeric-input';
       }
     }
 
-    &--disabled {
+    &:disabled {
       cursor: not-allowed;
 
       &::after,
@@ -118,24 +134,6 @@ $base-class: 'numeric-input';
     cursor: not-allowed;
     color: $font-primary-color;
     opacity: 0.5;
-
-    .#{$base-class}__increment {
-      cursor: not-allowed;
-      opacity: 0.5;
-
-      &:hover::after {
-        @include increment-border($font-secondary-color);
-      }
-    }
-
-    .#{$base-class}__decrement {
-      cursor: not-allowed;
-      opacity: 0.5;
-
-      &:hover::after {
-        @include decrement-border($font-secondary-color);
-      }
-    }
   }
 
   &--error {
