@@ -5,10 +5,11 @@ Use when the input requires a numerical value.
 ```js
 initialState = { value: '1', error: null };
 
+requiredValidator = value => value !== '' && value !== '-';
 handleInputChange = (value) => {
   setState({
     value,
-    error: NumericInput.requiredValidator(value) ? null : 'Field required'
+    error: requiredValidator(value) ? null : 'Field required'
   });
 }
 
@@ -24,7 +25,7 @@ handleInputChange = (value) => {
 <ComponentHtmlMarkup>
   <NumericInput
     width="60px"
-    value={1}
+    value="1"
     error="Field required"
     onChange={() => {}}
   />
@@ -36,12 +37,13 @@ handleInputChange = (value) => {
 You can pass min and max prop to component. In this example value should be within range [-10, 1000]
 
 ```js
-initialState = { value: 1000, error: null };
+initialState = { value: '1000', error: null };
 
+requiredValidator = value => value !== '' && value !== '-';
 handleInputChange = (value) => {
   setState({
     value,
-    error: NumericInput.requiredValidator(value) ? null : 'Field required'
+    error: requiredValidator(value) ? null : 'Field required'
   });
 }
 
@@ -64,7 +66,7 @@ handleInputChange = (value) => {
     min={-10}
     max={1000}
     width="75px"
-    value={1000}
+    value="1000"
     error="Field required"
     onChange={() => {}}
     labelText="Number"
@@ -76,7 +78,7 @@ handleInputChange = (value) => {
 <h3>Numeric Input without controls</h3>
 
 ```js
-initialState = { value: 51 };
+initialState = { value: '51' };
 
 handleInputChange = (value) => {
   setState({
@@ -95,7 +97,7 @@ handleInputChange = (value) => {
 <ComponentHtmlMarkup>
   <NumericInput
     width="35px"
-    value={51}
+    value="51"
     noControls
     onChange={() => {}}
   />
@@ -105,7 +107,8 @@ handleInputChange = (value) => {
 <h3>Disabled Numeric Input</h3>
 
 ```js
-initialState = { value: 51 };
+initialState = { value: '51' };
+requiredValidator = value => value !== '' && value !== '-';
 
 handleInputChange = (value) => {
   setState({
@@ -117,7 +120,7 @@ handleInputChange = (value) => {
   min={1}
   max={50}
   disabled
-  value={1}
+  value="1"
   onChange={() => {}}
 />
 ```
@@ -127,7 +130,7 @@ handleInputChange = (value) => {
     min={1}
     max={50}
     disabled
-    value={1}
+    value="1"
     onChange={() => {}}
   />
 </ComponentHtmlMarkup>

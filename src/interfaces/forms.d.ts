@@ -45,7 +45,7 @@ export interface IInputFieldProps extends IInputProps {
 }
 
 export interface INumericInputProps {
-  value: number;
+  value: string;
   id?: string;
   className?: string;
   style?: React.CSSProperties;
@@ -54,7 +54,7 @@ export interface INumericInputProps {
   min?: number;
   noControls?: boolean;
   width?: boolean;
-  onChange(value: number): void;
+  onChange(value: string): void;
 }
 
 export interface INumericInputFieldProps extends INumericInputProps {

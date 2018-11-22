@@ -9,8 +9,6 @@ const cx = classNames.bind(styles);
 const baseClass = 'numeric-input';
 
 class NumericInput extends React.PureComponent {
-  static requiredValidator = value => value !== '' && value !== '-';
-
   componentDidMount() {
     if (this.props.max && parseInt(this.props.value, 10) > this.props.max) {
       this.callOnChange(this.props.max);
@@ -200,6 +198,9 @@ NumericInput.propTypes = {
   disabled: PropTypes.bool,
   noControls: PropTypes.bool,
   width: PropTypes.string,
+  /**
+   * It's called with string value: '', '-' or '{number}'
+   */
   onChange: PropTypes.func.isRequired
 };
 
