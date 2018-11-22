@@ -12,12 +12,12 @@ class NumericInput extends React.PureComponent {
   static requiredValidator = value => value !== '' && value !== '-';
 
   componentDidMount() {
-    if (this.props.max && this.props.value > this.props.max) {
-      this.props.onChange(this.props.max);
+    if (this.props.max && parseInt(this.props.value, 10) > this.props.max) {
+      this.callOnChange(this.props.max);
     }
 
-    if (this.props.min && this.props.value < this.props.min) {
-      this.props.onChange(this.props.min);
+    if (this.props.min && parseInt(this.props.value, 10) < this.props.min) {
+      this.callOnChange(this.props.min);
     }
   }
 
@@ -57,41 +57,43 @@ class NumericInput extends React.PureComponent {
 
   changeValue = val => {
     if (this.props.value !== '' && this.props.value !== '-') {
-      this.props.onChange(this.calcValue(parseInt(this.props.value, 10) + val));
+      this.callOnChange(this.calcValue(parseInt(this.props.value, 10) + val));
     } else if (this.props.min && val < this.props.min) {
-      this.props.onChange(this.props.min);
+      this.callOnChange(this.props.min);
     } else if (this.props.max && val > this.props.max) {
-      this.props.onChange(this.props.max);
+      this.callOnChange(this.props.max);
     } else {
-      this.props.onChange(val);
+      this.callOnChange(val);
     }
   };
 
   handleChange = e => {
     e.preventDefault();
     e.stopPropagation();
-    const { onChange, value } = this.props;
+    const { value } = this.props;
     const inputVal = e.target.value.replace(/((?!([-]|([-]?\d+))).)/, '');
 
     if (inputVal === '') {
-      onChange('');
+      this.callOnChange('');
       return;
     }
 
     if (inputVal === '-') {
-      onChange('-');
+      this.callOnChange('-');
       return;
     }
 
     const val = parseInt(inputVal, 10);
 
     if (String(val) !== inputVal) {
-      onChange(value);
+      this.callOnChange(value);
     } else {
       const calculatedValue = this.calcValue(val);
-      onChange(calculatedValue);
+      this.callOnChange(calculatedValue);
     }
   };
+
+  callOnChange = value => this.props.onChange(String(value));
 
   calcValue = val => {
     const { max, min } = this.props;
@@ -163,28 +165,22 @@ class NumericInput extends React.PureComponent {
               tabIndex="-1"
               disabled={
                 disabled ||
-                (this.props.max && this.props.value === this.props.max)
+                (this.props.max &&
+                  parseInt(this.props.value, 10) === this.props.max)
               }
               onClick={this.handleIncrementClick}
               aria-label="Increment value"
-              className={cx({
-                [`${baseClass}__increment`]: true,
-                [`${baseClass}__increment--disabled`]:
-                  this.props.max && this.props.value === this.props.max
-              })}
+              className={styles[`${baseClass}__increment`]}
             />
             <button
               tabIndex="-1"
               disabled={
                 disabled ||
-                (this.props.min && this.props.value === this.props.min)
+                (this.props.min &&
+                  parseInt(this.props.value, 10) === this.props.min)
               }
               aria-label="Decrement value"
-              className={cx({
-                [`${baseClass}__decrement`]: true,
-                [`${baseClass}__decrement--disabled`]:
-                  this.props.min && this.props.value === this.props.min
-              })}
+              className={styles[`${baseClass}__decrement`]}
               onClick={this.handleDecrementClick}
             />
           </React.Fragment>
@@ -198,7 +194,7 @@ NumericInput.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
   error: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.string,
   max: PropTypes.number,
   min: PropTypes.number,
   disabled: PropTypes.bool,

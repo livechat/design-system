@@ -3,7 +3,7 @@
 Use when the input requires a numerical value.
 
 ```js
-initialState = { value: 1, error: null };
+initialState = { value: '1', error: null };
 
 handleInputChange = (value) => {
   setState({
@@ -14,6 +14,7 @@ handleInputChange = (value) => {
 
 <NumericInput
   width="60px"
+  min={1}
   value={state.value}
   error={state.error}
   onChange={handleInputChange}

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NumericInput should render NumericInput with all available props 1`] = `
-<span
+<div
   className="numeric-input numeric-input--error numeric-input--disabled numeric-test"
   style={Object {}}
 >
@@ -13,21 +13,25 @@ exports[`NumericInput should render NumericInput with all available props 1`] = 
     type="text"
     value=""
   />
-  <span
+  <button
     aria-label="Increment value"
     className="numeric-input__increment"
+    disabled={true}
     onClick={[Function]}
+    tabIndex="-1"
   />
-  <span
+  <button
     aria-label="Decrement value"
     className="numeric-input__decrement"
+    disabled={true}
     onClick={[Function]}
+    tabIndex="-1"
   />
-</span>
+</div>
 `;
 
 exports[`NumericInput should render NumericInput with required props 1`] = `
-<span
+<div
   className="numeric-input"
   style={Object {}}
 >
@@ -36,17 +40,19 @@ exports[`NumericInput should render NumericInput with required props 1`] = `
     onChange={[Function]}
     onFocus={[Function]}
     type="text"
-    value={1}
+    value="1"
   />
-  <span
+  <button
     aria-label="Increment value"
     className="numeric-input__increment"
     onClick={[Function]}
+    tabIndex="-1"
   />
-  <span
+  <button
     aria-label="Decrement value"
     className="numeric-input__decrement"
     onClick={[Function]}
+    tabIndex="-1"
   />
-</span>
+</div>
 `;
