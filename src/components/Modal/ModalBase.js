@@ -24,13 +24,17 @@ class ModalBase extends React.Component {
   }
 
   onDocumentClick = event => {
-    if (this.modalRef && !this.modalRef.current.contains(event.target)) {
+    if (
+      this.modalRef.current &&
+      !this.modalRef.current.contains(event.target)
+    ) {
       this.handleCloseModal();
     }
   };
 
   onCloseButtonClick = event => {
     event.preventDefault();
+    event.stopPropagation();
     this.handleCloseModal();
   };
 
