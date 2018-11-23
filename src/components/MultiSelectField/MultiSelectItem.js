@@ -4,17 +4,18 @@ import classNames from 'classnames/bind';
 import CheckIcon from 'react-material-icon-svg/dist/CheckIcon';
 import styles from './style.scss';
 
-const baseClass = 'select-body';
+const baseClass = 'multiselect-body';
 const cx = classNames.bind(styles);
 
 const SelectItem = props => {
-  const { isSelected, children, isFocused, ...restProps } = props;
+  const { isSelected, children, isFocused, isToggleItem, ...restProps } = props;
   return (
     <li
       className={cx({
         [`${baseClass}__item`]: true,
         [`${baseClass}__item--selected`]: isSelected,
-        [`${baseClass}__item--focused`]: isFocused
+        [`${baseClass}__item--focused`]: isFocused,
+        [`${baseClass}__item--toggle`]: isToggleItem
       })}
       {...restProps}
     >
@@ -31,6 +32,7 @@ const SelectItem = props => {
 SelectItem.propTypes = {
   isSelected: PropTypes.bool,
   isFocused: PropTypes.bool,
+  isToggleItem: PropTypes.bool,
   children: PropTypes.node
 };
 

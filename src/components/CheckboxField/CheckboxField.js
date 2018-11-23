@@ -1,7 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import { CheckIcon } from 'react-material-icon-svg';
 import FieldDescription from '../FieldDescription';
 import Checkbox from './Checkbox';
 import styles from './style.scss';
