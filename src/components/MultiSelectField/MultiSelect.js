@@ -153,7 +153,13 @@ class MultiSelect extends React.PureComponent {
       return null;
     }
 
-    return items.filter(item => selected.indexOf(item.key) > -1);
+    return selected.reduce((acc, selectedItemId) => {
+      const selectedItemModel = items.find(item => item.key === selectedItemId);
+      if (selectedItemModel) {
+        return [...acc, selectedItemModel];
+      }
+      return acc;
+    }, []);
   };
 
   getDefaultInputSize = selectedItems => {
