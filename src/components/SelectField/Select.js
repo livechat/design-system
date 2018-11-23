@@ -102,14 +102,18 @@ class Select extends React.PureComponent {
   };
 
   onSelectHeadClick = event => {
+    event.preventDefault();
     if (
       this.clearButtonRef.current &&
       this.clearButtonRef.current.contains(event.target)
     ) {
       return;
     }
-    event.preventDefault();
-    this.showSelectBody();
+    if (!this.state.isOpen) {
+      this.showSelectBody();
+    } else {
+      this.hideSelectBody();
+    }
   };
 
   onSelectHeadFocus = () => {

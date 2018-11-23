@@ -125,6 +125,14 @@ $base-class: 'multiselect';
       padding: 8px 10px;
       align-items: center;
 
+      &-content {
+        overflow-x: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: calc(100% - 20px);
+        width: 100%;
+      }
+
       &--selected {
         color: $primary-color;
 
@@ -150,8 +158,6 @@ $base-class: 'multiselect';
     visibility: hidden;
     transition: all 0.15s ease-in-out;
     fill: $primary-color;
-    width: 15px;
-    height: 15px;
     margin-left: auto;
     padding-left: 5px;
   }
@@ -189,6 +195,13 @@ $base-class: 'multiselect';
     font-size: 14px;
     display: flex;
     align-items: center;
+
+    &-content {
+      max-width: calc(100% - 22px);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 
     &-remove-icon {
       opacity: 0.5;

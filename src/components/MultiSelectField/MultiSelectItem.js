@@ -19,8 +19,12 @@ const SelectItem = props => {
       })}
       {...restProps}
     >
-      <div>{children}</div>
-      <CheckIcon className={styles[`${baseClass}__checkmark`]} />
+      <div className={styles[`${baseClass}__item-content`]}>{children}</div>
+      <CheckIcon
+        width="15px"
+        height="15px"
+        className={styles[`${baseClass}__checkmark`]}
+      />
     </li>
   );
 };

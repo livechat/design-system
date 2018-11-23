@@ -3,20 +3,22 @@ import * as PropTypes from 'prop-types';
 import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 import styles from './style.scss';
 
-const baseClass = 'multiselect-head';
+const baseClass = 'multiselect-head__item';
 
 const MultiSelectHeadItem = props => {
   const { item, getSelectedItemBody } = props;
   return (
-    <div className={styles[`${baseClass}__item`]}>
+    <div className={styles[`${baseClass}`]}>
       <CloseIcon
         width="14px"
         height="14px"
         fill="#fff"
         onClick={e => props.onRemove(e, item.key)}
-        className={styles[`${baseClass}__item-remove-icon`]}
+        className={styles[`${baseClass}-remove-icon`]}
       />
-      {getSelectedItemBody(item.props)}
+      <div className={styles[`${baseClass}-content`]}>
+        {getSelectedItemBody(item.props)}
+      </div>
     </div>
   );
 };

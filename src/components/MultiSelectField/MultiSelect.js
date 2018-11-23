@@ -102,8 +102,12 @@ class MultiSelect extends React.PureComponent {
 
   onSelectHeadClick = event => {
     event.preventDefault();
-    this.asyncInputFocus();
-    this.showSelectBody();
+    if (!this.state.isOpen) {
+      this.asyncInputFocus();
+      this.showSelectBody();
+    } else {
+      this.hideSelectBody();
+    }
   };
 
   onSelectHeadFocus = () => {

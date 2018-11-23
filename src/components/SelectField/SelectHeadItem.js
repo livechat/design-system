@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './style.scss';
 
-const baseClass = 'select-head';
+const baseClass = 'select-head__item';
 const cx = classNames.bind(styles);
 
 const SelectHeadItem = props => {
@@ -11,16 +11,16 @@ const SelectHeadItem = props => {
   return (
     <div
       className={cx({
-        [`${baseClass}__item`]: true,
-        [`${baseClass}__item--visible`]: isVisible
+        [`${baseClass}`]: true,
+        [`${baseClass}--visible`]: isVisible
       })}
     >
       {selectedItem ? (
-        getSelectedItemBody(selectedItem.props)
-      ) : (
-        <div className={styles[`${baseClass}__item-placeholder`]}>
-          {placeholder}
+        <div className={styles[`${baseClass}-content`]}>
+          {getSelectedItemBody(selectedItem.props)}
         </div>
+      ) : (
+        <div className={styles[`${baseClass}-placeholder`]}>{placeholder}</div>
       )}
     </div>
   );
