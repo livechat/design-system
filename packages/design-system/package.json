@@ -1,6 +1,6 @@
 {
   "name": "@livechat/design-system",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "publishConfig": {
     "access": "restricted"
   },
@@ -10,19 +10,18 @@
     "type": "git",
     "url": "https://github.com/livechat/design-system"
   },
-  "typings": "dist/design-system.d.ts",
+  "typings": "src/interfaces/index.d.ts",
   "main": "dist/design-system.cjs.js",
   "module": "dist/design-system.es.js",
   "jsnext:main": "dist/design-system.es.js",
   "style": "dist/design-system.css",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "start": "rollup -c --watch",
-    "build": "rollup -c && npm run-script dts",
-    "build:noremove": "rollup -c && npm run-script dts",
-    "dts": "dts-bundle --name @livechat/design-system --main src/interfaces/index.d.ts --baseDir . --out dist/design-system.d.ts",
+    "build": "rollup -c",
     "prebuild": "rimraf dist",
     "prepare": "npm run build",
     "styleguide": "cross-env NODE_ENV=development styleguidist server",
@@ -58,7 +57,6 @@
     "babel-preset-react": "^6.3.13",
     "cross-env": "^5.2.0",
     "cssnano": "^4.0.5",
-    "dts-bundle": "^0.7.3",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.4",
@@ -90,12 +88,11 @@
     "prettier": "1.14.2",
     "prettier-eslint-cli": "^4.7.0",
     "prettier-stylelint": "^0.4.2",
-    "prop-types": "^15.6.2",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-styleguidist": "7.0.20",
     "rimraf": "^2.6.1",
-    "rollup": "0.50.0",
+    "rollup": "^0.67.3",
     "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-commonjs": "^8.2.1",
     "rollup-plugin-node-resolve": "^3.0.0",
@@ -121,6 +118,7 @@
   "dependencies": {
     "@livechat/data-utils": "^0.2.3",
     "classnames": "^2.2.6",
+    "prop-types": "^15.6.2",
     "react-transition-group": "^2.4.0",
     "react-material-icon-svg": "1.7.0"
   },

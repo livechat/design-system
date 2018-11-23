@@ -1,6 +1,6 @@
 @import '../../scss/variables/colors';
 
-$base-class: 'select';
+$base-class: 'multiselect';
 
 .#{$base-class} {
   position: relative;
@@ -15,7 +15,7 @@ $base-class: 'select';
     cursor: pointer;
     display: flex;
     align-items: center;
-    padding: 8px 10px;
+    padding: 4px 3px;
     outline: 0;
     transition: border 0.15s ease-in-out;
 
@@ -49,34 +49,11 @@ $base-class: 'select';
   }
 
   &-head__search {
-    border-radius: 4px;
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 50px;
-    background-color: #fff;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.15s ease-in-out;
-    overflow: hidden;
-    z-index: 10;
-
-    &--visible {
-      flex: 1;
-      opacity: 1;
-      visibility: visible;
-      transition: all 0.15s ease-in-out;
-    }
-  }
-
-  &-head__input {
     display: block;
-    margin: 0;
-    height: 100%;
-    width: 100%;
-    font-size: 15px;
-    line-height: 18px;
+    width: 5px;
+    margin: 2px 3px;
+    font-size: 16px;
+    line-height: 28px;
     color: $font-primary-color;
     border: none;
     background-color: transparent;
@@ -101,6 +78,10 @@ $base-class: 'select';
       .#{$base-class}-head {
         border: 1px solid $primary-color;
       }
+    }
+
+    &--expanded {
+      width: auto;
     }
   }
 
@@ -133,6 +114,7 @@ $base-class: 'select';
       max-height: 224px;
       margin: 0;
       padding: 0;
+      overflow-x: hidden;
       overflow-y: auto;
     }
 
@@ -165,6 +147,10 @@ $base-class: 'select';
       &--focused {
         background-color: $hover-backgroud-color-light;
       }
+
+      &--toggle {
+        border-bottom: 1px solid $divider-color;
+      }
     }
   }
 
@@ -177,35 +163,57 @@ $base-class: 'select';
     padding-left: 5px;
   }
 
-  &-head__item {
+  &-head__items {
     height: 100%;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    overflow-y: auto;
     margin: 0;
     flex: 1;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.15s ease-in-out;
-    max-width: calc(100% - 44px);
-    width: 100%;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__placeholder {
+    margin: 2px 3px;
+    font-size: 15px;
+    line-height: 28px;
+    opacity: 0.4;
+    color: $font-primary-color;
+  }
+
+  &-head__item {
+    background-color: #59699e;
+    min-width: auto;
+    color: #fff;
+    position: relative;
+    margin: 2px 3px;
+    border-radius: 5px;
+    padding: 6px 10px;
+    cursor: default;
+    overflow: hidden;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
 
     &-content {
+      max-width: calc(100% - 22px);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
 
-    &--visible {
-      opacity: 1;
-      visibility: visible;
-      transition: all 0.15s ease-in-out;
+    &-remove-icon {
+      opacity: 0.5;
+      margin-right: 8px;
+      cursor: pointer;
     }
+  }
 
-    &-placeholder {
-      font-size: 15px;
-      opacity: 0.4;
-      color: $font-primary-color;
-    }
+  &__dropdown-icon {
+    align-self: flex-start;
+    margin-top: 5px;
   }
 
   &--error {

@@ -74,7 +74,9 @@ module.exports = {
             './src/components/FieldGroup/FieldGroup.js',
             './src/components/FormGroup/FormGroup.js',
             './src/components/SelectField/Select.js',
-            './src/components/SelectField/SelectField.js'
+            './src/components/SelectField/SelectField.js',
+            './src/components/MultiSelectField/MultiSelect.js',
+            './src/components/MultiSelectField/MultiSelectField.js'
           ],
           sectionDepth: 0
         }
