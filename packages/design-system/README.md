@@ -70,52 +70,7 @@ You should start with executing these two commands:
 - design-system library root directory -> run `npm link`
 - app root directory -> run `npm link @livechat/design-system`
 
-You can run build script after new changes (or use npm start) or if you are using webpack just add to webpack.config.js few lines to see changes without unnecessary bundling library:
-
-```
-const designSystemComponentsPath = fs.realpathSync(
-  path.resolve(__dirname, '../node_modules/@livechat/design-system/src')
-);
-const designSystemDistPath = fs.realpathSync(
-  path.resolve(__dirname, '../node_modules/@livechat/design-system/dist')
-);
-...
-  resolve: {
-    alias: Object.assign({}, {
-      '@livechat/design-system/dist': designSystemDistPath,
-      '@livechat/design-system': designSystemComponentsPath
-    }),
-  },
-...
-```
-That way you will need to install classnames and configure css modules for library 
-(in example new webpack config which runs dev server after command `npm start:ds`:
-```
-  rules: [
-    {
-      test: /\.css$/,
-      include: [designSystemComponentsPath],
-      use: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: [
-          {
-            loader: 'css-loader',
-            query: {
-              modules: true,
-              localIdentName: 'lc_[local]'
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-            }
-          },
-        ],
-      }),
-    },
-  ]
-```
+You can run build script after new changes (or use npm start).
 
 If you want to learn more about npm link read [this basic article](https://poznajprogramowanie.pl/enhance-your-development-workflow-with-npm-link/)
 

@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import {
   HORIZONTAL_POSITION,

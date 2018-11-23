@@ -111,3 +111,18 @@ _Release: 2018-11-20_
 
 ##### Bug Fixes
 * Fixing button interface
+
+----
+## v0.0.11
+_Release: 2018-11-21_
+
+##### New Features
+* New components
+  * MultiSelect and MultiSelectField
+  * NumericInput and NumericInputField
+
+##### Optimizations
+* Updating rollup config and refactoring config to reduce bundle size
+
+##### Refactors
+* Changing types path and removing dts-bundle lib

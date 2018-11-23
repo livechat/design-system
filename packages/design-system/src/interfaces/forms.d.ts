@@ -13,7 +13,7 @@ export interface ISelectProps {
   searchProperty?: string;
   search?: boolean;
   placeholder?: React.ReactNode;
-  searchPlaceholder?: React.ReactNode;
+  searchPlaceholder?: string;
   selected: string | number;
   openedOnInit?: boolean;
   disabled?: boolean;
@@ -25,6 +25,44 @@ export interface ISelectProps {
 }
 
 export interface ISelectFieldProps extends ISelectProps {
+  labelText?: string;
+  id: string;
+  className?: string,
+  inline?: boolean;
+  error?: string;
+  description?: React.ReactNode;
+}
+
+export interface IMultiSelectProps {
+  className?: string;
+  id?: string;
+  error?: string;
+  items: {
+    key: string;
+    props: {
+      [key: string]: any;
+    }
+  }[];
+  searchProperty?: string;
+  placeholder?: string;
+  search?: boolean;
+  disabled?: boolean;
+  openedOnInit?: boolean;
+  maxItemsContainerHeight: number;
+  selected: string[] | number[];
+  getItemBody(props: { [key: string]: any }): React.ReactNode;
+  getSelectedItemBody(props: { [key: string]: any }): React.ReactNode;
+  toggleAllOptions?: {
+    selectLabel: string;
+    clearLabel: string;
+    onToggleAll(values?: string[] | number[]): any;
+  };
+  onDropdownToggle?(isOpen: boolean): any;
+  onItemSelect(itemKey: string | number): any;
+  onItemRemove(itemKey: string | number): any;
+}
+
+export interface IMultiSelectFieldProps extends IMultiSelectProps {
   labelText?: string;
   id: string;
   className?: string,
@@ -66,6 +104,8 @@ export interface INumericInputFieldProps extends INumericInputProps {
 
 export var Select: React.ComponentType<ISelectProps>;
 export var SelectField: React.ComponentType<ISelectFieldProps>;
+export var MultiSelect: React.ComponentType<IMultiSelectProps>;
+export var MultiSelectField: React.ComponentType<IMultiSelectFieldProps>;
 export var Input: React.ComponentType<IInputProps>;
 export var InputField: React.ComponentType<IInputFieldProps>;
 export var NumericInput: React.ComponentType<INumericInputProps>;
