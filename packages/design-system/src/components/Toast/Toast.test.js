@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { mount, shallow } from 'enzyme';
 import Toast from './Toast';
 import { ANIMATION_TIME } from '../../constants/toast';

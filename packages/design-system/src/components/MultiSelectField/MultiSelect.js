@@ -3,35 +3,34 @@ import * as PropTypes from 'prop-types';
 import MenuDownIcon from 'react-material-icon-svg/dist/MenuDownIcon';
 import classNames from 'classnames/bind';
 import styles from './style.scss';
-import SelectList from './SelectList';
-import SelectHead from './SelectHead';
-import SelectHeadItem from './SelectHeadItem';
-import ClearButton from './ClearButton';
+import MultiSelectList from './MultiSelectList';
+import MultiSelectHead from './MultiSelectHead';
+import MultiSelectHeadItem from './MultiSelectHeadItem';
 import Search from './Search';
 import { KeyCodes } from '../../constants/keyCodes';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const cx = classNames.bind(styles);
 
-const baseClass = 'select';
+const baseClass = 'multiselect';
 
-class Select extends React.PureComponent {
+class MultiSelect extends React.PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
       isOpen: props.openedOnInit || false,
       searchPhrase: '',
-      focusedItemKey: this.props.items[0] ? this.props.items[0].key : null,
+      focusedItemKey: null,
       isFocused: false
     };
 
-    this.timerId = null;
+    this.timeouts = [];
     this.containerRef = React.createRef();
     this.searchInputRef = React.createRef();
     this.headRef = React.createRef();
-    this.clearButtonRef = React.createRef();
     this.listRef = React.createRef();
+    this.selectedItemsContainerRef = React.createRef();
   }
 
   componentDidMount() {
@@ -41,7 +40,7 @@ class Select extends React.PureComponent {
     }
   }
 
-  componentDidUpdate(_prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState) {
     if (this.state.isOpen && prevState.isOpen !== this.state.isOpen) {
       this.props.onDropdownToggle(true);
       this.onBodyOpen();
@@ -49,11 +48,18 @@ class Select extends React.PureComponent {
       this.props.onDropdownToggle(false);
       this.onBodyClose();
     }
+
+    if (this.shouldScrollItemsContainer(prevProps)) {
+      this.selectedItemsContainerRef.current.scrollTop = this.selectedItemsContainerRef.current.scrollHeight;
+    }
   }
 
   componentWillUnmount() {
     this.onBodyClose();
     document.removeEventListener('keydown', this.onArrowPress);
+    this.timeouts.forEach(timerId => {
+      clearTimeout(timerId);
+    });
   }
 
   onDocumentClick = event => {
@@ -87,29 +93,17 @@ class Select extends React.PureComponent {
 
   onBodyOpen = () => {
     document.addEventListener('click', this.onDocumentClick);
-    if (this.props.search) {
-      this.timerId = setTimeout(() => {
-        this.searchInputRef.current.focus();
-      }, 150);
-    }
+    this.asyncInputFocus();
   };
 
   onBodyClose = () => {
     document.removeEventListener('click', this.onDocumentClick);
-    if (this.timerId) {
-      clearTimeout(this.timerId);
-    }
   };
 
   onSelectHeadClick = event => {
     event.preventDefault();
-    if (
-      this.clearButtonRef.current &&
-      this.clearButtonRef.current.contains(event.target)
-    ) {
-      return;
-    }
     if (!this.state.isOpen) {
+      this.asyncInputFocus();
       this.showSelectBody();
     } else {
       this.hideSelectBody();
@@ -141,14 +135,99 @@ class Select extends React.PureComponent {
 
   getItemSelectedHandler = itemKey => event => {
     event.preventDefault();
-
     this.props.onItemSelect(itemKey);
-    this.hideSelectBody();
+    this.asyncInputFocus();
+  };
+
+  getSelectedItems = () => {
+    const { selected } = this.props;
+    if (selected === null) {
+      return null;
+    }
+    return selected;
+  };
+
+  getSelectedItemsModels = () => {
+    const { selected, items } = this.props;
+    if (selected === null) {
+      return null;
+    }
+
+    return selected.reduce((acc, selectedItemId) => {
+      const selectedItemModel = items.find(item => item.key === selectedItemId);
+      if (selectedItemModel) {
+        return [...acc, selectedItemModel];
+      }
+      return acc;
+    }, []);
+  };
+
+  getDefaultInputSize = selectedItems => {
+    if (
+      (!selectedItems || selectedItems.length === 0) &&
+      this.props.placeholder
+    )
+      return this.props.placeholder.length;
+    return 1;
+  };
+
+  getInputSize = selectedItems => {
+    const defaultInputSize = this.getDefaultInputSize(selectedItems);
+
+    if (this.state.searchPhrase.length > defaultInputSize) {
+      return this.state.searchPhrase.length;
+    }
+    return defaultInputSize;
+  };
+
+  getSearchPlaceholder = selectedItems => {
+    if (
+      (!selectedItems || selectedItems.length === 0) &&
+      this.props.placeholder
+    ) {
+      return this.props.placeholder;
+    }
+    return '';
+  };
+
+  getSelectedItemsPlaceholder = selectedItems => {
+    if (
+      (!selectedItems || selectedItems.length === 0) &&
+      this.props.placeholder
+    ) {
+      return (
+        <div className={styles[`${baseClass}__placeholder`]}>
+          {this.props.placeholder}
+        </div>
+      );
+    }
+    return null;
+  };
+
+  shouldScrollItemsContainer = prevProps => {
+    if (
+      this.props.selected === null ||
+      !this.selectedItemsContainerRef.current
+    ) {
+      return false;
+    }
+    return (
+      (prevProps.selected === null && this.props.selected) ||
+      prevProps.selected.length < this.props.selected.length
+    );
   };
 
   handleEnterKeyUse = itemKey => {
     this.props.onItemSelect(itemKey);
-    this.hideSelectBody();
+  };
+
+  handleItemRemove = (e, itemKey) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const timerId = setTimeout(() => {
+      this.props.onItemRemove(itemKey);
+    }, 0);
+    this.timeouts = [...this.timeouts, timerId];
   };
 
   showSelectBody = () => {
@@ -162,7 +241,11 @@ class Select extends React.PureComponent {
     this.setState(
       {
         isOpen: false,
-        focusedItemKey: this.props.items[0] ? this.props.items[0].key : null
+        searchPhrase: '',
+        focusedItemKey:
+          this.props.toggleAllOptions || !this.props.items[0]
+            ? null
+            : this.props.items[0].key
       },
       () => {
         this.headRef.current.focus();
@@ -170,8 +253,22 @@ class Select extends React.PureComponent {
     );
   };
 
+  asyncInputFocus = () => {
+    if (this.props.search && this.searchInputRef.current) {
+      const timerId = setTimeout(() => {
+        this.searchInputRef.current.focus();
+      }, 0);
+      this.timeouts = [...this.timeouts, timerId];
+    }
+  };
+
   changeFocusedItem = itemKey => {
-    if (typeof itemKey === 'undefined' || itemKey === null) {
+    if (this.props.toggleAllOptions && !itemKey) {
+      return this.setState({
+        focusedItemKey: null
+      });
+    }
+    if (!itemKey) {
       return this.setState({
         focusedItemKey: this.props.items[0] ? this.props.items[0].key : null
       });
@@ -179,12 +276,6 @@ class Select extends React.PureComponent {
     return this.setState({
       focusedItemKey: itemKey
     });
-  };
-
-  clearSelectedOption = e => {
-    e.preventDefault();
-    e.stopPropagation();
-    this.props.onItemSelect(null);
   };
 
   filterItem = item => {
@@ -206,23 +297,23 @@ class Select extends React.PureComponent {
 
   render() {
     const {
+      id,
+      className,
+      error,
       items,
       searchProperty,
       getItemBody,
       getSelectedItemBody,
       search,
-      required,
       disabled,
-      searchPlaceholder,
-      placeholder,
-      selected,
-      className,
-      id,
-      error
+      toggleAllOptions,
+      maxItemsContainerHeight
     } = this.props;
+    const selectedItems = this.getSelectedItems();
     const { isOpen, searchPhrase, focusedItemKey, isFocused } = this.state;
-    const selectedItemModel = items.find(item => item.key === selected);
+    const selectedItemsModels = this.getSelectedItemsModels();
     const filteredItems = items.filter(this.filterItem);
+
     const mergedClassNames = getMergedClassNames(
       cx({
         [baseClass]: true,
@@ -233,48 +324,63 @@ class Select extends React.PureComponent {
 
     return (
       <div ref={this.containerRef} className={mergedClassNames} id={id}>
-        <SelectHead
+        <MultiSelectHead
           isFocused={isOpen || isFocused}
           ref={this.headRef}
           onClick={this.onSelectHeadClick}
           onFocus={this.onSelectHeadFocus}
           onBlur={this.onSelectHeadBlur}
         >
-          <SelectHeadItem
-            getSelectedItemBody={getSelectedItemBody}
-            selectedItem={selectedItemModel}
-            isVisible={!(isOpen && search)}
-            placeholder={placeholder}
+          <div
+            className={styles[`${baseClass}-head__items`]}
+            style={{ maxHeight: maxItemsContainerHeight }}
+            ref={this.selectedItemsContainerRef}
+          >
+            {selectedItemsModels &&
+              selectedItemsModels.map(item => (
+                <MultiSelectHeadItem
+                  key={item.key}
+                  getSelectedItemBody={getSelectedItemBody}
+                  item={item}
+                  onRemove={this.handleItemRemove}
+                />
+              ))}
+            {search ? (
+              <Search
+                isDropdownOpen={isOpen}
+                inputRef={this.searchInputRef}
+                placeholder={this.getSearchPlaceholder(selectedItems)}
+                size={this.getInputSize(selectedItems)}
+                value={searchPhrase}
+                onChange={this.onSearchChange}
+                disabled={disabled}
+              />
+            ) : (
+              this.getSelectedItemsPlaceholder(selectedItems)
+            )}
+          </div>
+          <MenuDownIcon
+            className={styles[`${baseClass}__dropdown-icon`]}
+            width="24px"
+            height="24px"
+            fill="#424d57"
           />
-          <Search
-            isVisible={!search ? false : isOpen}
-            inputRef={this.searchInputRef}
-            placeholder={searchPlaceholder || 'Search...'}
-            value={searchPhrase}
-            onChange={this.onSearchChange}
-            disabled={disabled}
-          />
-          <ClearButton
-            isVisible={!!selectedItemModel && !isOpen && !required}
-            ref={this.clearButtonRef}
-            clearSelectedOption={this.clearSelectedOption}
-          />
-          <MenuDownIcon width="24px" height="24px" fill="#424d57" />
-        </SelectHead>
+        </MultiSelectHead>
         <div
           className={cx({
             [`${baseClass}-body`]: true,
             [`${baseClass}-body--visible`]: isOpen && filteredItems.length > 0
           })}
         >
-          <SelectList
+          <MultiSelectList
             listRef={this.listRef}
             getItemBody={getItemBody}
             isOpen={isOpen}
+            toggleAllOptions={toggleAllOptions}
             onListClose={this.hideSelectBody}
             items={filteredItems}
             getSelectedItemBody={getSelectedItemBody}
-            selectedItem={selected}
+            selectedItems={selectedItems}
             getItemSelectedHandler={this.getItemSelectedHandler}
             searchPhrase={searchPhrase}
             searchProperty={searchProperty}
@@ -288,34 +394,41 @@ class Select extends React.PureComponent {
   }
 }
 
-Select.propTypes = {
+MultiSelect.propTypes = {
+  id: PropTypes.string,
   className: PropTypes.string,
   error: PropTypes.string,
-  id: PropTypes.string,
   getItemBody: PropTypes.func.isRequired,
   getSelectedItemBody: PropTypes.func.isRequired,
   onItemSelect: PropTypes.func.isRequired,
+  onItemRemove: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       key: PropTypes.string,
       props: PropTypes.object
     })
   ),
-  searchPlaceholder: PropTypes.string,
-  searchProperty: PropTypes.string,
-  selected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  search: PropTypes.bool,
-  required: PropTypes.bool,
   placeholder: PropTypes.string,
+  searchProperty: PropTypes.string,
+  selected: PropTypes.arrayOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  ),
+  search: PropTypes.bool,
   disabled: PropTypes.bool,
   openedOnInit: PropTypes.bool,
+  toggleAllOptions: PropTypes.shape({
+    onToggleAll: PropTypes.func.isRequired,
+    selectLabel: PropTypes.string,
+    clearLabel: PropTypes.string
+  }),
+  maxItemsContainerHeight: PropTypes.number.isRequired,
   onDropdownToggle: PropTypes.func
 };
 
-Select.defaultProps = {
+MultiSelect.defaultProps = {
   items: [],
   selected: null,
   onDropdownToggle: () => {}
 };
 
-export default Select;
+export default MultiSelect;

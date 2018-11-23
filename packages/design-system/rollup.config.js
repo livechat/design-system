@@ -1,6 +1,4 @@
 import nodeResolve from 'rollup-plugin-node-resolve';
-import fs from 'fs';
-import nodeEval from 'node-eval';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import replace from 'rollup-plugin-replace';
@@ -20,22 +18,19 @@ const cssExportMap = {};
 
 const mergeAll = objs => Object.assign({}, ...objs);
 
-function getModuleExports(moduleId) {
-  const id = require.resolve(moduleId);
-  const moduleOut = nodeEval(fs.readFileSync(id).toString(), id);
-  let result = [];
-  const excludeExports = /^(default|__)/;
-  if (moduleOut && typeof moduleOut === 'object') {
-    result = Object.keys(moduleOut).filter(name => !excludeExports.test(name));
+const makeExternalPredicate = externalArr => {
+  if (externalArr.length === 0) {
+    return () => false;
   }
-
-  return result;
-}
+  const pattern = new RegExp(`^(${externalArr.join('|')})($|/)`);
+  return id => pattern.test(id);
+};
 
 function getNamedExports(moduleIds) {
   const result = {};
   moduleIds.forEach(id => {
-    result[id] = getModuleExports(id);
+    // eslint-disable-next-line
+    result[id] = Object.keys(require(id));
   });
   return result;
 }
@@ -73,17 +68,22 @@ const commonPlugins = [
   }),
   babel({
     exclude: 'node_modules/**',
-    plugins: ['external-helpers', 'transform-react-remove-prop-types']
+    plugins: [
+      'external-helpers',
+      ['transform-react-remove-prop-types', { mode: 'unsafe-wrap' }]
+    ]
   }),
   commonjs({
-    namedExports: getNamedExports(['react', 'react-dom'])
+    namedExports: getNamedExports(['react', 'react-dom', 'prop-types'])
   })
 ];
 
 const configBase = {
   input: 'src/index.js',
-  external: Object.keys(pkg.dependencies || {}).concat(
-    Object.keys(pkg.peerDependencies || {})
+  external: makeExternalPredicate(
+    Object.keys(pkg.dependencies || {}).concat(
+      Object.keys(pkg.peerDependencies || {})
+    )
   ),
   plugins: commonPlugins
 };
@@ -100,7 +100,7 @@ const umdConfig = mergeAll([
         'react-dom': 'ReactDOM'
       }
     },
-    external: Object.keys(pkg.peerDependencies || {})
+    external: makeExternalPredicate(Object.keys(pkg.peerDependencies || {}))
   }
 ]);
 

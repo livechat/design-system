@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import CheckCircleIcon from 'react-material-icon-svg/dist/CheckCircleIcon';
 import AlertIcon from 'react-material-icon-svg/dist/AlertIcon';
 import AlertCircleIcon from 'react-material-icon-svg/dist/AlertCircleIcon';

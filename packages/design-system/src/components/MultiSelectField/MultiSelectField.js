@@ -1,9 +1,9 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import TextArea from './TextArea';
+import MultiSelect from './MultiSelect';
 import TextField from '../TextField';
 
-const TextAreaField = props => {
+const MultiSelectField = props => {
   const {
     inline,
     error,
@@ -24,25 +24,23 @@ const TextAreaField = props => {
       className={className}
       htmlFor={id}
     >
-      <TextArea
-        id={id}
+      <MultiSelect
         {...restProps}
         className={fieldClassName}
+        id={id}
         error={error}
       />
     </TextField>
   );
 };
 
-TextAreaField.propTypes = {
+MultiSelectField.propTypes = {
   labelText: PropTypes.string,
   id: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
   className: PropTypes.string,
   inline: PropTypes.bool,
   error: PropTypes.string,
-  description: PropTypes.string,
-  fieldClassName: PropTypes.string
+  description: PropTypes.node
 };
 
-export default TextAreaField;
+export default MultiSelectField;
