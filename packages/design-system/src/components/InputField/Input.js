@@ -6,7 +6,7 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const cx = classNames.bind(styles);
 
-const Input = props => {
+const Input = React.forwardRef((props, ref) => {
   const { error, className, ...restProps } = props;
 
   const mergedClassNames = getMergedClassNames(
@@ -17,8 +17,8 @@ const Input = props => {
     className
   );
 
-  return <input className={mergedClassNames} {...restProps} />;
-};
+  return <input ref={ref} className={mergedClassNames} {...restProps} />;
+});
 
 Input.propTypes = {
   error: PropTypes.string,
