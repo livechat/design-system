@@ -26,13 +26,10 @@
   min-height: 36px;
   line-height: 36px;
 
+  &:focus,
   &:hover {
-    opacity: 0.8;
-  }
-
-  &:focus {
     outline: 0;
-    box-shadow: 0 0 0 1px $primary-color;
+    opacity: 0.8;
   }
 
   &:disabled {

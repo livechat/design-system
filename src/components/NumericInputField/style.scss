@@ -1,0 +1,151 @@
+@import '../../scss/variables/colors';
+
+$base-class: 'numeric-input';
+
+@mixin increment-border($color) {
+  border-style: solid;
+  border-width: 0 4px 4px 4px;
+  border-color: transparent transparent $color transparent;
+}
+
+@mixin decrement-border($color) {
+  border-style: solid;
+  border-width: 4px 4px 0 4px;
+  border-color: $color transparent transparent transparent;
+}
+
+.#{$base-class} {
+  position: relative;
+  display: inline-block;
+  width: 64px;
+  height: 36px;
+
+  input {
+    line-height: 36px;
+    height: 100%;
+    border-radius: 4px;
+    border: 1px solid $border-primary-color;
+    padding: 0 28px 0 4px;
+    color: $font-secondary-color;
+    text-align: right;
+    width: 100%;
+    box-sizing: border-box;
+    -moz-appearance: textfield;
+
+    &:hover {
+      border-color: $field-hover-border-color;
+      outline: 0;
+    }
+
+    &:focus {
+      border-color: $primary-color;
+      outline: 0;
+    }
+
+    &:disabled {
+      color: $font-primary-color;
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  &__increment,
+  &__decrement {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    background: transparent;
+    height: 50%;
+    width: 23px;
+    border-left: 1px solid $border-primary-color;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      outline: 0;
+    }
+
+    &::after {
+      position: absolute;
+      top: calc(50% - 3px);
+      left: calc(50% - 4px);
+      content: '';
+
+      @include increment-border($font-secondary-color);
+    }
+  }
+
+  &__increment {
+    &:hover {
+      &::after {
+        @include increment-border($font-primary-color);
+      }
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+
+      &::after,
+      &:hover::after {
+        opacity: 0.5;
+
+        @include increment-border($font-secondary-color);
+      }
+    }
+  }
+
+  &__decrement {
+    top: auto;
+    bottom: 1px;
+    border-top: 1px solid $border-primary-color;
+
+    &::after {
+      @include decrement-border($font-secondary-color);
+    }
+
+    &:hover {
+      &::after {
+        @include decrement-border($font-primary-color);
+      }
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+
+      &::after,
+      &:hover::after {
+        opacity: 0.5;
+
+        @include decrement-border($font-secondary-color);
+      }
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    color: $font-primary-color;
+    opacity: 0.5;
+  }
+
+  &--error {
+    input,
+    input:focus {
+      border-color: $error-color;
+    }
+  }
+
+  &--no-controls {
+    input {
+      padding: 0 4px;
+    }
+  }
+}
