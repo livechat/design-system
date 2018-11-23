@@ -82,9 +82,31 @@ export interface IInputFieldProps extends IInputProps {
   description?: React.ReactNode;
 }
 
+export interface INumericInputProps {
+  value: string;
+  id?: string;
+  className?: string;
+  style?: React.CSSProperties;
+  error?: string;
+  max?: number;
+  min?: number;
+  noControls?: boolean;
+  width?: boolean;
+  onChange(value: string): void;
+}
+
+export interface INumericInputFieldProps extends INumericInputProps {
+  id: string;
+  labelText?: string;
+  inline?: boolean;
+  description?: React.ReactNode;
+}
+
 export var Select: React.ComponentType<ISelectProps>;
 export var SelectField: React.ComponentType<ISelectFieldProps>;
 export var MultiSelect: React.ComponentType<IMultiSelectProps>;
 export var MultiSelectField: React.ComponentType<IMultiSelectFieldProps>;
 export var Input: React.ComponentType<IInputProps>;
 export var InputField: React.ComponentType<IInputFieldProps>;
+export var NumericInput: React.ComponentType<INumericInputProps>;
+export var NumericInputField: React.ComponentType<INumericInputFieldProps>;

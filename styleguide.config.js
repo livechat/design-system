@@ -67,6 +67,7 @@ module.exports = {
           components: [
             './src/components/Form/Form.js',
             './src/components/InputField/InputField.js',
+            './src/components/NumericInputField/NumericInput.js',
             './src/components/TextAreaField/TextAreaField.js',
             './src/components/RadioButton/RadioButton.js',
             './src/components/CheckboxField/CheckboxField.js',
