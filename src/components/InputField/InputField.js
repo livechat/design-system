@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import Input from './Input';
 import TextField from '../TextField';
 
-const InputField = props => {
+const InputField = React.forwardRef((props, ref) => {
   const {
     inline,
     error,
@@ -24,10 +24,10 @@ const InputField = props => {
       className={className}
       htmlFor={id}
     >
-      <Input {...restProps} className={fieldClassName} id={id} error={error} />
+      <Input {...restProps} ref={ref} className={fieldClassName} id={id} error={error} />
     </TextField>
   );
-};
+});
 
 InputField.propTypes = {
   labelText: PropTypes.string,
