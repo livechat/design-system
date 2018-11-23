@@ -133,7 +133,7 @@ $base-class: 'select';
       max-height: 224px;
       margin: 0;
       padding: 0;
-      overflow-y: scroll;
+      overflow-y: auto;
     }
 
     &__item {
@@ -145,7 +145,7 @@ $base-class: 'select';
       align-items: center;
 
       &-content {
-        overflow-x: hidden;
+        overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
         max-width: calc(100% - 20px);

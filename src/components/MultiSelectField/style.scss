@@ -114,7 +114,8 @@ $base-class: 'multiselect';
       max-height: 224px;
       margin: 0;
       padding: 0;
-      overflow-y: scroll;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
 
     &__item {
@@ -126,7 +127,7 @@ $base-class: 'multiselect';
       align-items: center;
 
       &-content {
-        overflow-x: hidden;
+        overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
         max-width: calc(100% - 20px);
