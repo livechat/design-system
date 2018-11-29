@@ -8,11 +8,12 @@ $base-class: 'radio';
   &__label {
     cursor: pointer;
     display: inline-flex;
-    align-items: center;
+    align-items: flex-start;
   }
 
   &__circle {
     position: relative;
+    margin-top: 2px;
     width: 16px;
     height: 16px;
     border-radius: 16px;
@@ -48,6 +49,8 @@ $base-class: 'radio';
   &__text {
     font-size: 15px;
     color: $font-primary-color;
+    line-height: 20px;
+    flex: 1;
   }
 
   &__input {
