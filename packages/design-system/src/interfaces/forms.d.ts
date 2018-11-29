@@ -102,6 +102,16 @@ export interface INumericInputFieldProps extends INumericInputProps {
   description?: React.ReactNode;
 }
 
+export interface ICheckboxFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  checked: boolean;
+  description?: React.ReactNode;
+}
+
+export interface IRadioButtonProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  checked?: boolean;
+  description?: React.ReactNode;
+}
+
 export var Select: React.ComponentType<ISelectProps>;
 export var SelectField: React.ComponentType<ISelectFieldProps>;
 export var MultiSelect: React.ComponentType<IMultiSelectProps>;
@@ -110,3 +120,5 @@ export var Input: React.ComponentType<IInputProps>;
 export var InputField: React.ComponentType<IInputFieldProps>;
 export var NumericInput: React.ComponentType<INumericInputProps>;
 export var NumericInputField: React.ComponentType<INumericInputFieldProps>;
+export var CheckboxField: React.ComponentType<ICheckboxFieldProps>;
+export var RadioButton: React.ComponentType<IRadioButtonProps>;
