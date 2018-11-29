@@ -8,13 +8,14 @@ $base-class: 'checkbox';
   &__label {
     cursor: pointer;
     display: inline-flex;
-    align-items: center;
+    align-items: flex-start;
   }
 
   &__square {
     position: relative;
     width: 16px;
     height: 16px;
+    margin-top: 2px;
     border-radius: 4px;
     background-color: #f3f7f9;
     border: 1px solid #bcc6d0;
@@ -48,6 +49,8 @@ $base-class: 'checkbox';
 
   &__text {
     font-size: 15px;
+    line-height: 20px;
+    flex: 1;
     color: $font-primary-color;
   }
 

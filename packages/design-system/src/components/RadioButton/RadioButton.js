@@ -13,7 +13,6 @@ const RadioButton = props => {
     children,
     checked,
     disabled,
-    id,
     description,
     ...restProps
   } = props;
@@ -37,7 +36,6 @@ const RadioButton = props => {
             className={styles[`${baseClass}__input`]}
             {...restProps}
             type="radio"
-            id={id}
             checked={checked}
             disabled={disabled}
           />

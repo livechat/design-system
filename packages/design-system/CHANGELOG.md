@@ -126,3 +126,13 @@ _Release: 2018-11-21_
 
 ##### Refactors
 * Changing types path and removing dts-bundle lib
+
+----
+## v0.0.12
+_Release: 2018-11-29_
+
+##### New Features
+* TS typings for CheckboxField and RadioButton 
+
+##### Bug Fixes
+* Style fixes in CheckboxField, RadioButton and Tooltips
