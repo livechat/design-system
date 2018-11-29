@@ -81,6 +81,10 @@ module.exports = {
           sectionDepth: 0
         }
       ]
+    },
+    {
+      name: 'Changelog',
+      content: './Changelog.md'
     }
   ],
   template: {
