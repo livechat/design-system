@@ -14,7 +14,6 @@ const CheckboxField = props => {
     children,
     checked,
     disabled,
-    id,
     description,
     ...restProps
   } = props;
@@ -32,12 +31,7 @@ const CheckboxField = props => {
   return (
     <div className={mergedClassNames}>
       <label className={styles[`${baseClass}__label`]}>
-        <Checkbox
-          {...restProps}
-          id={id}
-          checked={checked}
-          disabled={disabled}
-        />
+        <Checkbox {...restProps} checked={checked} disabled={disabled} />
         <div className={styles[`${baseClass}__text`]}>{children}</div>
       </label>
       {description && (
@@ -51,7 +45,6 @@ const CheckboxField = props => {
 
 CheckboxField.propTypes = {
   className: PropTypes.string,
-  id: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   onChange: PropTypes.func,
   checked: PropTypes.bool.isRequired,

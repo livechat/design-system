@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CheckIcon } from 'react-material-icon-svg';
+import CheckIcon from 'react-material-icon-svg/dist/CheckIcon';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
