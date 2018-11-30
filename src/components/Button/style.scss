@@ -27,7 +27,8 @@
   line-height: 36px;
 
   &:focus,
-  &:hover {
+  &:hover,
+  &:active {
     outline: 0;
   }
 
