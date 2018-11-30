@@ -29,7 +29,10 @@
   &:focus,
   &:hover {
     outline: 0;
-    opacity: 0.8;
+  }
+
+  &:focus {
+    border: 1px solid $primary-color
   }
 
   &:disabled {
@@ -46,6 +49,10 @@
     background-color: $primary-color;
     color: #fff;
     border-color: $primary-color;
+
+    &:hover {
+
+    }
 
     &:focus {
       box-shadow: 0 0 0 1px $primary-color;
