@@ -31,8 +31,17 @@
     outline: 0;
   }
 
+  &:hover {
+    background-color: $hover-background-color-light;
+  }
+
   &:focus {
     border: 1px solid $primary-color
+  }
+
+  &:active {
+    box-shadow: 0 0 0 1px $border-primary-color;
+    transition-duration: 100ms;
   }
 
   &:disabled {
@@ -51,10 +60,10 @@
     border-color: $primary-color;
 
     &:hover {
-
+      background-color: $hover-background-color-primary;
     }
 
-    &:focus {
+    &:active {
       box-shadow: 0 0 0 1px $primary-color;
     }
   }
@@ -64,7 +73,11 @@
     color: #fff;
     border-color: $error-color;
 
-    &:focus {
+    &:hover {
+      background-color: $hover-background-color-red;
+    }
+
+    &:active {
       box-shadow: 0 0 0 1px $error-color;
     }
   }
