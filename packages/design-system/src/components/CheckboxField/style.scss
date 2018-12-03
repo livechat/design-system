@@ -9,6 +9,7 @@ $base-class: 'checkbox';
     cursor: pointer;
     display: inline-flex;
     align-items: flex-start;
+    width: 100%;
   }
 
   &__square {
