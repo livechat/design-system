@@ -27,9 +27,22 @@
   line-height: 36px;
 
   &:focus,
-  &:hover {
+  &:hover,
+  &:active {
     outline: 0;
-    opacity: 0.8;
+  }
+
+  &:hover {
+    background-color: $hover-basic-color;
+  }
+
+  &:focus {
+    box-shadow: 0 0 1px 2px rgba($primary-color, .7);
+  }
+
+  &:active {
+    box-shadow: 0 0 0 1px $border-primary-color;
+    transition-duration: 100ms;
   }
 
   &:disabled {
@@ -47,7 +60,11 @@
     color: #fff;
     border-color: $primary-color;
 
-    &:focus {
+    &:hover {
+      background-color: $hover-primary-color;
+    }
+
+    &:active {
       box-shadow: 0 0 0 1px $primary-color;
     }
   }
@@ -57,7 +74,11 @@
     color: #fff;
     border-color: $error-color;
 
-    &:focus {
+    &:hover {
+      background-color: $hover-red-color;
+    }
+
+    &:active {
       box-shadow: 0 0 0 1px $error-color;
     }
   }
