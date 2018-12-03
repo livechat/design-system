@@ -136,3 +136,10 @@ _Release: 2018-11-29_
 
 ##### Bug Fixes
 * Style fixes in CheckboxField, RadioButton and Tooltips
+
+----
+## v0.0.13
+_Release: 2018-11-30_
+
+##### Refactors
+* New colors and styling for button's states (hover, focus, active)
