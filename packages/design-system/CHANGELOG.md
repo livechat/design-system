@@ -139,7 +139,10 @@ _Release: 2018-11-29_
 
 ----
 ## v0.0.13
-_Release: 2018-11-30_
+_Release: 2018-12-03_
 
 ##### Refactors
 * New colors and styling for button's states (hover, focus, active)
+
+##### Bug Fixes
+* Fixing issue with checkbox and radio label width
