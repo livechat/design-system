@@ -1,0 +1,211 @@
+@import '../../scss/variables/colors';
+
+$base-class: 'date-picker';
+
+.#{$base-class} {
+  display: inline-block;
+  font-size: 1rem;
+
+  &__wrapper {
+    position: relative;
+    flex-direction: row;
+    padding-bottom: 1em;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  &__months {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__month {
+    display: table;
+    margin: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  &__nav-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__nav-button {
+    display: block;
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &--prev {
+      color: #000;
+    }
+
+    &--next {
+      color: #000;
+    }
+
+    &--interaction-disabled {
+      display: none;
+    }
+  }
+
+  &__caption {
+    display: table-caption;
+    margin-bottom: 0.5em;
+    padding: 0 40px;
+    text-align: left;
+
+    & > div {
+      font-weight: normal;
+      font-size: 14px;
+      text-align: center;
+    }
+  }
+
+  &__weekdays {
+    display: table-header-group;
+    margin-top: 1em;
+  }
+
+  &__weekdays-row {
+    display: table-row;
+  }
+
+  &__weekday {
+    display: table-cell;
+    padding: 0.5em;
+    color: #8b9898;
+    text-align: center;
+    font-size: 12px;
+
+    abbr[title] {
+      border-bottom: none;
+      text-decoration: none;
+    }
+  }
+
+  &__week-number {
+    display: table-cell;
+    padding: 0.5em;
+    min-width: 1em;
+    border-right: 1px solid #eaecec;
+    color: #8b9898;
+    vertical-align: middle;
+    text-align: right;
+    font-size: 0.75em;
+    cursor: pointer;
+  }
+
+  &__body {
+    display: table-row-group;
+  }
+
+  &__week {
+    display: table-row;
+  }
+
+  &__day {
+    display: table-cell;
+    // padding: 5px;
+    border-radius: 50%;
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    font-size: 13px;
+    margin: 4px 3px;
+    width: 25px;
+    height: 18px;
+
+    &--today {
+      color: #d0021b;
+      font-weight: 700;
+    }
+
+    &--outside {
+      color: #8b9898;
+      cursor: default;
+    }
+
+    &--disabled {
+      color: #dce0e0;
+      cursor: default;
+    }
+
+    &--sunday {
+      background-color: #f7f8f8;
+    }
+
+    &--sunday:not(.#{$base-class}--today) {
+      color: #dce0e0;
+    }
+
+    &--selected {
+      background-color: red;
+      &:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--outside) {
+        position: relative;
+        background-color: #3e7ce4;
+        border-radius: 50%;
+        color: #f0f8ff;
+      }
+
+      &:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--outside):hover {
+        background-color: #51a0fa;
+      }
+    }
+  }
+
+  &--interaction-disabled {
+    .#{$base-class}__day {
+      cursor: default;
+    }
+  }
+
+  &__footer {
+    padding-top: 0.5em;
+  }
+
+  &__today-button {
+    border: none;
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    color: #4a90e2;
+    font-size: 0.875em;
+    cursor: pointer;
+  }
+
+  &__input {
+    display: inline-block;
+
+    &-overlay-wrapper {
+      position: relative;
+    }
+
+    &-overlay {
+      position: absolute;
+      left: 0;
+      z-index: 1;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  &:not(.#{$base-class}--interaction-disabled) &__day:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--selected):not(.#{$base-class}__day--outside):hover {
+    background-color: #f0f8ff;
+  }
+}

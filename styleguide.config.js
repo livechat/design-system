@@ -79,6 +79,10 @@ module.exports = {
             './src/components/MultiSelectField/MultiSelectField.js'
           ],
           sectionDepth: 0
+        },
+        {
+          name: 'DatePicker',
+          components: './src/components/DatePicker/DatePicker.js'
         }
       ]
     },
@@ -105,6 +109,7 @@ module.exports = {
       raw: `
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?autoload=false"></script>
+        <link rel="stylesheet" href="https://unpkg.com/react-day-picker/lib/style.css">
         <script src="https://unpkg.com/prettier@1.13.0/standalone.js"></script>
         <script src="https://unpkg.com/prettier@1.13.0/parser-babylon.js"></script>
         <style>

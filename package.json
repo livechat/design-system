@@ -119,8 +119,9 @@
     "@livechat/data-utils": "^0.2.3",
     "classnames": "^2.2.6",
     "prop-types": "^15.6.2",
-    "react-transition-group": "^2.4.0",
-    "react-material-icon-svg": "1.7.0"
+    "react-day-picker": "^7.2.4",
+    "react-material-icon-svg": "1.7.0",
+    "react-transition-group": "^2.4.0"
   },
   "postcss": {},
   "jest": {
