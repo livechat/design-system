@@ -38,4 +38,4 @@ export { default as FieldDescription } from './FieldDescription';
 export { Select, SelectField } from './SelectField';
 export { MultiSelect, MultiSelectField } from './MultiSelectField';
 export { NumericInput, NumericInputField } from './NumericInputField';
-export { DatePicker } from './DatePicker';
+export { DatePicker, DatePickerInput } from './DatePicker';

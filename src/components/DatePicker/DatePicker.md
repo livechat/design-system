@@ -13,5 +13,8 @@ const handleDayClick = (day, second) => {
   })
 };
 
-<DatePicker onDayClick={handleDayClick} selectedDays={state.selectedDate}/>
+<div>
+  <DatePickerInput />
+  <DatePicker onDayClick={handleDayClick} selectedDays={state.selectedDate}/>
+</div>
 ```

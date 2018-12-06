@@ -40,6 +40,7 @@ global.MultiSelect = Components.MultiSelect;
 global.NumericInput = Components.NumericInput;
 global.NumericInputField = Components.NumericInputField;
 global.DatePicker = Components.DatePicker;
+global.DatePickerInput = Components.DatePickerInput;
 
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;

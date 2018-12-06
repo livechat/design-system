@@ -197,15 +197,18 @@ $base-class: 'date-picker';
     }
 
     &-overlay {
-      position: absolute;
-      left: 0;
-      z-index: 1;
-      background: white;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+      display: block;
+      // position: absolute;
+      // left: 0;
+      // z-index: 1;
+      // background: white;
+      // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
     }
   }
 
   &:not(.#{$base-class}--interaction-disabled) &__day:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--selected):not(.#{$base-class}__day--outside):hover {
     background-color: #f0f8ff;
   }
+
+
 }

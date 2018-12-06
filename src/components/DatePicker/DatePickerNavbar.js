@@ -28,7 +28,7 @@ DatePickerNavbar.propTypes = {
   className: PropTypes.string,
   onPreviousClick: PropTypes.func,
   onNextClick: PropTypes.func,
-  classNames: PropTypes.object
+  classNames: PropTypes.objectOf(PropTypes.string)
 };
 
 export default DatePickerNavbar;
