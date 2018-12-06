@@ -195,6 +195,7 @@ $base-class: 'multiselect';
     font-size: 14px;
     display: flex;
     align-items: center;
+    flex-grow: 1;
 
     &-content {
       width: calc(100% - 22px);
