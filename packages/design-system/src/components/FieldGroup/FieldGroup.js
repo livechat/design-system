@@ -7,7 +7,7 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 const cx = classNames.bind(styles);
 
 const FieldGroup = props => {
-  const { className, children, inline, stretch } = props;
+  const { className, children, inline, stretch, ...restProps } = props;
 
   const baseClass = 'field-group';
   const mergedClassNames = getMergedClassNames(
@@ -19,7 +19,7 @@ const FieldGroup = props => {
     className
   );
 
-  return <div className={mergedClassNames}>{children}</div>;
+  return <div {...restProps} className={mergedClassNames}>{children}</div>;
 };
 
 FieldGroup.propTypes = {
