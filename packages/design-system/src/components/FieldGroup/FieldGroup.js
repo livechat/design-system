@@ -19,7 +19,11 @@ const FieldGroup = props => {
     className
   );
 
-  return <div {...restProps} className={mergedClassNames}>{children}</div>;
+  return (
+    <div {...restProps} className={mergedClassNames}>
+      {children}
+    </div>
+  );
 };
 
 FieldGroup.propTypes = {
