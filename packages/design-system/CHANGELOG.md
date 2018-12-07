@@ -146,3 +146,10 @@ _Release: 2018-12-03_
 
 ##### Bug Fixes
 * Fixing issue with checkbox and radio label width
+
+----
+## v0.0.14
+_Release: 2018-12-07_
+
+##### New Features
+* TS typings for FieldGroup component
