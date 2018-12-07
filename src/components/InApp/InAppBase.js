@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './style.scss';
 import { KeyCodes, KeyNames } from '../../constants/keyCodes';
-import InAppCloseButton from './InAppCloseButton';
+import InAppHeader from './InAppHeader';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const baseClass = 'inapp-base';
@@ -66,6 +66,9 @@ class InAppBase extends React.Component {
     const {
       className,
       children,
+      headerAvatar,
+      headerWho,
+      headerText,
       title,
       onClose,
       closeOnEscPress,
@@ -84,9 +87,16 @@ class InAppBase extends React.Component {
           `${baseClass}__overlay--visible`
         )}
       >
-        <div className={mergedClassNames} {...restProps} ref={this.inAppRef}>
-          <InAppCloseButton onClick={this.onCloseButtonClick} />
-          {children}
+        <div className={`${baseClass}__container`} ref={this.inAppRef}>
+          <InAppHeader
+            avatar={headerAvatar}
+            who={headerWho}
+            text={headerText}
+            onCloseButtonClick={this.onCloseButtonClick}
+          />
+          <div className={mergedClassNames} {...restProps}>
+            {children}
+          </div>
         </div>
       </div>
     );
@@ -96,6 +106,9 @@ class InAppBase extends React.Component {
 InAppBase.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
+  headerWho: PropTypes.string,
+  headerText: PropTypes.string,
+  headerAvatar: PropTypes.string,
   onClose: PropTypes.func.isRequired,
   closeOnEscPress: PropTypes.bool
 };

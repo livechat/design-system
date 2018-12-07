@@ -7,7 +7,7 @@ const baseClass = 'inapp-base__close';
 
 const InAppCloseButton = props => (
   <button
-    title="Close inApp"
+    title="Close"
     className={styles[`${baseClass}`]}
     onClick={props.onClick}
   >
