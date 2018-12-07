@@ -1,17 +1,22 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import ReactDayPicker from 'react-day-picker';
+import classNames from 'classnames/bind';
 import styles from './style.scss';
 import DatePickerNavbar from './DatePickerNavbar';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const baseClass = 'date-picker';
+const cx = classNames.bind(styles);
 
 const DatePicker = props => {
-  const { className, ...restProps } = props;
+  const { className, range, ...restProps } = props;
 
-  const classNames = {
-    container: styles[baseClass],
+  const datePickerClassNames = {
+    container: cx({
+      [baseClass]: true,
+      [`${baseClass}--range`]: range
+    }),
     wrapper: styles[`${baseClass}__wrapper`],
     interactionDisabled: styles[`${baseClass}--interaction-disabled`],
     months: styles[`${baseClass}__months`],
@@ -40,12 +45,13 @@ const DatePicker = props => {
     today: styles[`${baseClass}__day--today`],
     selected: styles[`${baseClass}__day--selected`],
     disabled: styles[`${baseClass}__day--disabled`],
-    outside: styles[`${baseClass}__day--outside`]
+    outside: styles[`${baseClass}__day--outside`],
+    start: styles[`${baseClass}__day--start`]
   };
 
   return (
     <ReactDayPicker
-      classNames={classNames}
+      classNames={datePickerClassNames}
       navbarElement={<DatePickerNavbar classNames={classNames} />}
       firstDayOfWeek={1}
       {...restProps}
@@ -54,7 +60,8 @@ const DatePicker = props => {
 };
 
 DatePicker.propTypes = {
-  className: PropTypes.string
+  className: PropTypes.string,
+  range: PropTypes.bool
 };
 
 export default DatePicker;
