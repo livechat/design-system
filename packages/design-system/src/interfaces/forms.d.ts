@@ -112,6 +112,12 @@ export interface IRadioButtonProps extends React.InputHTMLAttributes<HTMLInputEl
   description?: React.ReactNode;
 }
 
+export interface IFieldGroupProps extends React.HTMLAttributes<HTMLElement> {
+  children: React.ReactNode;
+  inline?: boolean;
+  stretch?: boolean;
+}
+
 export var Select: React.ComponentType<ISelectProps>;
 export var SelectField: React.ComponentType<ISelectFieldProps>;
 export var MultiSelect: React.ComponentType<IMultiSelectProps>;
@@ -122,3 +128,4 @@ export var NumericInput: React.ComponentType<INumericInputProps>;
 export var NumericInputField: React.ComponentType<INumericInputFieldProps>;
 export var CheckboxField: React.ComponentType<ICheckboxFieldProps>;
 export var RadioButton: React.ComponentType<IRadioButtonProps>;
+export var FieldGroup: React.ComponentType<IFieldGroupProps>;
