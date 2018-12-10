@@ -7,7 +7,13 @@ const baseClass = 'select-head__item';
 const cx = classNames.bind(styles);
 
 const SelectHeadItem = props => {
-  const { isVisible, selectedItem, placeholder, getSelectedItemBody } = props;
+  const {
+    isVisible,
+    selectedItem,
+    placeholder,
+    getSelectedItemBody,
+    selectedItemRenderer
+  } = props;
   return (
     <div
       className={cx({
@@ -17,7 +23,9 @@ const SelectHeadItem = props => {
     >
       {selectedItem ? (
         <div className={styles[`${baseClass}-content`]}>
-          {getSelectedItemBody(selectedItem.props)}
+          {selectedItemRenderer
+            ? selectedItemRenderer(selectedItem.props)
+            : getSelectedItemBody(selectedItem.props)}
         </div>
       ) : (
         <div className={styles[`${baseClass}-placeholder`]}>{placeholder}</div>
@@ -33,7 +41,8 @@ SelectHeadItem.propTypes = {
     props: PropTypes.object
   }),
   placeholder: PropTypes.string,
-  getSelectedItemBody: PropTypes.func
+  getSelectedItemBody: PropTypes.func,
+  selectedItemRenderer: PropTypes.func
 };
 
 export default SelectHeadItem;

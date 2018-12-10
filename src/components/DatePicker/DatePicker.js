@@ -9,7 +9,7 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 const baseClass = 'date-picker';
 const cx = classNames.bind(styles);
 
-const DatePicker = props => {
+const DatePicker = React.forwardRef((props, ref) => {
   const { className, range, ...restProps } = props;
 
   const datePickerClassNames = {
@@ -46,18 +46,47 @@ const DatePicker = props => {
     selected: styles[`${baseClass}__day--selected`],
     disabled: styles[`${baseClass}__day--disabled`],
     outside: styles[`${baseClass}__day--outside`],
-    start: styles[`${baseClass}__day--start`]
+    start: styles[`${baseClass}__day--start`],
+    end: styles[`${baseClass}__day--end`]
+  };
+
+  const datePickerRef = ref || React.createRef();
+
+  const handlePrevYearClick = () => {
+    datePickerRef.current.showPreviousYear();
+  };
+
+  const handleNextYearClick = () => {
+    datePickerRef.current.showNextYear();
+  };
+
+  const renderDay = day => {
+    const date = day.getDate();
+
+    return (
+      <div className={styles[`${baseClass}__day-wrapper`]}>
+        <div className={styles[`${baseClass}__day-content`]}>{date}</div>
+      </div>
+    );
   };
 
   return (
     <ReactDayPicker
       classNames={datePickerClassNames}
-      navbarElement={<DatePickerNavbar classNames={classNames} />}
+      navbarElement={
+        <DatePickerNavbar
+          classNames={datePickerClassNames}
+          onPrevYearClick={handlePrevYearClick}
+          onNexYearClick={handleNextYearClick}
+        />
+      }
       firstDayOfWeek={1}
+      renderDay={renderDay}
+      ref={datePickerRef}
       {...restProps}
     />
   );
-};
+});
 
 DatePicker.propTypes = {
   className: PropTypes.string,

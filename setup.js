@@ -41,6 +41,7 @@ global.NumericInput = Components.NumericInput;
 global.NumericInputField = Components.NumericInputField;
 global.DatePicker = Components.DatePicker;
 global.DatePickerInput = Components.DatePickerInput;
+global.SelectDatePicker = Components.SelectDatePicker;
 global.ReactDayPickerDateUtils = Components.ReactDayPickerDateUtils;
 
 // docs components

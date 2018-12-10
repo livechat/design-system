@@ -15,6 +15,8 @@ const InputField = React.forwardRef((props, ref) => {
     ...restProps
   } = props;
 
+  console.log('render', props.value);
+
   return (
     <TextField
       inline={inline}
@@ -24,7 +26,13 @@ const InputField = React.forwardRef((props, ref) => {
       className={className}
       htmlFor={id}
     >
-      <Input {...restProps} ref={ref} className={fieldClassName} id={id} error={error} />
+      <Input
+        {...restProps}
+        ref={ref}
+        className={fieldClassName}
+        id={id}
+        error={error}
+      />
     </TextField>
   );
 });
