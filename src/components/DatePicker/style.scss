@@ -41,10 +41,11 @@ $base-class: 'date-picker';
   }
 
   &__nav-button {
-    display: block;
+    display: flex;
+    align-content: center;
     background-color: transparent;
     border: none;
-    padding: 0 5px;
+    padding: 0;
 
     &:hover {
       opacity: 0.8;
@@ -66,7 +67,7 @@ $base-class: 'date-picker';
   &__caption {
     display: table-caption;
     margin-bottom: 20px;
-    padding: 0 80px;
+    padding: 0 50px;
     text-align: left;
 
     & > div {
@@ -122,8 +123,8 @@ $base-class: 'date-picker';
     display: table-cell;
     cursor: pointer;
     font-size: 14px;
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
 
     &--extreme {
       background: red;
@@ -135,9 +136,9 @@ $base-class: 'date-picker';
     }
 
     &-content {
-      width: 24px;
-      height: 24px;
-      line-height: 24px;
+      width: 18px;
+      height: 18px;
+      line-height: 18px;
       margin: 0 auto;
       vertical-align: middle;
       text-align: center;
@@ -158,34 +159,28 @@ $base-class: 'date-picker';
       cursor: default;
     }
 
-    // &--sunday {
-    //   background-color: #f7f8f8;
-    // }
-
-    // &--sunday:not(.#{$base-class}--today) {
-    //   color: #dce0e0;
-    // }
-
     &--selected {
-      &:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--outside):not(.#{$base-class}__day--start):not(.#{$base-class}__day--end) {
+      &:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--outside):not(.#{$base-class}__day--start):not(.#{$base-class}__day--end):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday) {
         .#{$base-class}__day-wrapper {
-          background-color: rgba(67, 132, 245, 0.2);
+          background-color: #DAE7FD;
         }
       }
 
-      &:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--outside):not(.#{$base-class}__day--start):not(.#{$base-class}__day--end):hover {
+      &:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--outside):not(.#{$base-class}__day--start):not(.#{$base-class}__day--end):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday):hover {
         .#{$base-class}__day-wrapper {
-          background-color: rgba(67, 132, 245, 0.2);
+          background-color: #DAE7FD;
         }
       }
     }
 
-    &--start .#{$base-class}__day-wrapper {
-      background: linear-gradient(to left, rgba(67, 132, 245, 0.2) 0%, rgba(67, 132, 245, 0.2) 50%, #fff 50%, #fff 100%);
+    &--start:not(.#{$base-class}__day--end):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday) .#{$base-class}__day-wrapper,
+    &--monday.#{$base-class}__day--selected:not(.#{$base-class}__day--end) .#{$base-class}__day-wrapper {
+      background: linear-gradient(to left, #DAE7FD 0%, #DAE7FD 50%, #fff 50%, #fff 100%);
     }
 
-    &--end .#{$base-class}__day-wrapper {
-      background: linear-gradient(to right, rgba(67, 132, 245, 0.2) 0%, rgba(67, 132, 245, 0.2) 50%, #fff 50%, #fff 100%);
+    &--end:not(.#{$base-class}__day--start):not(.#{$base-class}__day--monday):not(.#{$base-class}__day--sunday) .#{$base-class}__day-wrapper,
+    &--sunday.#{$base-class}__day--selected:not(.#{$base-class}__day--start) .#{$base-class}__day-wrapper {
+      background: linear-gradient(to right, #DAE7FD 0%, #DAE7FD 50%, #fff 50%, #fff 100%);
     }
 
     &--start,
@@ -197,14 +192,14 @@ $base-class: 'date-picker';
       }
     }
 
-    &--monday .#{$base-class}__day-wrapper {
-      border-top-left-radius: 12px;
-      border-bottom-left-radius: 12px;
+    &--monday.#{$base-class}__day--selected:not(.#{$base-class}__day--start):not(.#{$base-class}__day--end) .#{$base-class}__day-content {
+      background-color: #DAE7FD;
+      border-radius: 50%;
     }
 
-    &--sunday .#{$base-class}__day-wrapper {
-      border-top-right-radius: 12px;
-      border-bottom-right-radius: 12px;
+    &--sunday.#{$base-class}__day--selected:not(.#{$base-class}__day--start):not(.#{$base-class}__day--end) .#{$base-class}__day-content {
+      background-color: #DAE7FD;
+      border-radius: 50%;
     }
   }
 
@@ -246,7 +241,10 @@ $base-class: 'date-picker';
   }
 
   &:not(.#{$base-class}--interaction-disabled) &__day:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--selected):not(.#{$base-class}__day--outside):hover {
-    background-color: #f0f8ff;
+    .#{$base-class}__day-content {
+      background-color: #f0f8ff;
+      border-radius: 50%;
+    }
   }
 
   &--range {

@@ -1,17 +1,11 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { format, subDays } from 'date-fns';
+import { format, subDays, isFuture, isAfter, isSameDay } from 'date-fns';
 import { DateUtils } from 'react-day-picker';
 import SelectField from '../SelectField/SelectField';
 import { Input } from '../InputField';
-// import classNames from 'classnames/bind';
 import styles from './style.scss';
 import DatePicker from './DatePicker';
-
-// import getMergedClassNames from '../../utils/getMergedClassNames';
-
-// const baseClass = 'date-picker';
-// const cx = classNames.bind(styles);
 
 const initialState = {
   selectedItem: null,
@@ -81,6 +75,10 @@ class SelectDatePicker extends React.Component {
   handleDayClick = day => {
     const { from, to } = this.state;
 
+    if (isAfter(day, new Date())) {
+      return;
+    }
+
     if (this.isSelectingFirstDay(from, to, day)) {
       this.setState({
         from: day,
@@ -88,7 +86,10 @@ class SelectDatePicker extends React.Component {
         fromInputValue: format(day, 'YYYY-MM-DD'),
         enteredTo: null
       });
-    } else {
+    } else if (
+      isSameDay(day, this.state.from) ||
+      isAfter(day, this.state.from)
+    ) {
       this.setState(
         {
           to: day,
@@ -210,13 +211,9 @@ class SelectDatePicker extends React.Component {
     }
   };
 
-  handlePrevYearClick = () => {
-    this.datePickerRef.current.showPreviousYear();
-  };
-
   handleDayMouseEnter = day => {
     const { from, to } = this.state;
-    if (!this.isSelectingFirstDay(from, to, day)) {
+    if (!this.isSelectingFirstDay(from, to, day) && !isFuture(day)) {
       this.setState({
         enteredTo: day
       });
@@ -283,7 +280,6 @@ class SelectDatePicker extends React.Component {
                 this.state.from,
                 { from: this.state.from, to: this.state.enteredTo }
               ]}
-              // month={this.state.from}
               modifiers={modifiers}
               toMonth={new Date()}
               disabledDays={{ after: new Date() }}

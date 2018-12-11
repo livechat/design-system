@@ -10,7 +10,7 @@ const baseClass = 'date-picker';
 const cx = classNames.bind(styles);
 
 const DatePicker = React.forwardRef((props, ref) => {
-  const { className, range, ...restProps } = props;
+  const { className, range, onDayClick, toMonth, ...restProps } = props;
 
   const datePickerClassNames = {
     container: cx({
@@ -52,12 +52,8 @@ const DatePicker = React.forwardRef((props, ref) => {
 
   const datePickerRef = ref || React.createRef();
 
-  const handlePrevYearClick = () => {
-    datePickerRef.current.showPreviousYear();
-  };
-
-  const handleNextYearClick = () => {
-    datePickerRef.current.showNextYear();
+  const handleDayClick = day => {
+    onDayClick(day);
   };
 
   const renderDay = day => {
@@ -76,10 +72,12 @@ const DatePicker = React.forwardRef((props, ref) => {
       navbarElement={
         <DatePickerNavbar
           classNames={datePickerClassNames}
-          onPrevYearClick={handlePrevYearClick}
-          onNexYearClick={handleNextYearClick}
+          datePickerRef={datePickerRef}
+          toMonth={toMonth}
         />
       }
+      onDayClick={handleDayClick}
+      toMonth={toMonth}
       firstDayOfWeek={1}
       renderDay={renderDay}
       ref={datePickerRef}
