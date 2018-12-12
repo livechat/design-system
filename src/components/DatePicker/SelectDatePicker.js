@@ -115,7 +115,8 @@ class SelectDatePicker extends React.Component {
         from: day,
         to: null,
         fromInputValue: this.mapDateToInputValue(day),
-        enteredTo: null
+        enteredTo: null,
+        error: null
       });
     } else if (
       isSameDay(day, this.state.from) ||
@@ -125,7 +126,8 @@ class SelectDatePicker extends React.Component {
         {
           to: day,
           toInputValue: this.mapDateToInputValue(day),
-          enteredTo: day
+          enteredTo: day,
+          error: null
         },
         () => {
           const selectedOption = this.getSelectedOption(
@@ -195,14 +197,14 @@ class SelectDatePicker extends React.Component {
     if (!isValidDateFormat(value)) {
       return this.setState({
         ...newState,
-        error: 'Not valid date'
+        error: 'Invalid date'
       });
     }
 
     if (!isDateWithinRange(new Date(value), { to: new Date() })) {
       return this.setState({
         ...newState,
-        error: 'Date outside'
+        error: 'Invalid date'
       });
     }
 
@@ -210,7 +212,7 @@ class SelectDatePicker extends React.Component {
       return this.setState(
         {
           ...newState,
-          error: 'Select second date',
+          error: 'Please choose to date',
           from: new Date(value)
         },
         () => {
@@ -226,9 +228,16 @@ class SelectDatePicker extends React.Component {
       },
       () => {
         this.datePickerFromRef.current.showMonth(this.state.from);
+        const selectedOption = this.getSelectedOption(
+          this.props.options,
+          this.state.selectedItem
+        );
         this.props.onChange({
-          from: this.state.from,
-          to: this.state.to
+          ...selectedOption,
+          value: {
+            from: this.state.from,
+            to: this.state.to
+          }
         });
       }
     );
@@ -247,14 +256,19 @@ class SelectDatePicker extends React.Component {
     if (!isValidDateFormat(value)) {
       return this.setState({
         ...newState,
-        error: 'Not valid date'
+        error: 'Invalid date'
       });
     }
 
-    if (!isDateWithinRange(new Date(value), { to: new Date() })) {
+    if (
+      !isDateWithinRange(new Date(value), {
+        to: new Date(),
+        from: this.state.from
+      })
+    ) {
       return this.setState({
         ...newState,
-        error: 'Date outside'
+        error: 'Invalid date'
       });
     }
 
@@ -262,7 +276,7 @@ class SelectDatePicker extends React.Component {
       return this.setState(
         {
           ...newState,
-          error: 'Select second date',
+          error: 'Please choose from date',
           to: new Date(value),
           enteredTo: new Date(value)
         },
@@ -280,9 +294,16 @@ class SelectDatePicker extends React.Component {
       },
       () => {
         this.datePickerToRef.current.showMonth(this.state.to);
+        const selectedOption = this.getSelectedOption(
+          this.props.options,
+          this.state.selectedItem
+        );
         this.props.onChange({
-          from: this.state.from,
-          to: this.state.to
+          ...selectedOption,
+          value: {
+            from: this.state.from,
+            to: this.state.to
+          }
         });
       }
     );

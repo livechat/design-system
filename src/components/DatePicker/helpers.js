@@ -20,9 +20,12 @@ export const isValidDateFormat = value => {
 /* eslint-enable no-useless-escape */
 
 export const isDateWithinRange = (date, range) => {
-  const { to } = range;
-  if (to && (!isSameDay(date, to) && isAfter(date, to))) {
-    console.log('wrong');
+  const { from, to } = range;
+  if (to && !isSameDay(date, to) && isAfter(date, to)) {
+    return false;
+  }
+  if (from && !isSameDay(date, from) && !isAfter(date, from)) {
+    console.log('tu', !isSameDay(date, from), !isAfter(date, from));
     return false;
   }
   return true;
