@@ -10,9 +10,9 @@ export interface ISelectDatePickerOption {
 
 export interface ISelectDatePickerProps {
   options: ISelectDatePickerOption[];
-  initialSelectedItemKey: string;
-  initialFromDate: Date;
-  initialToDate: Date;
+  initialSelectedItemKey?: string;
+  initialFromDate?: Date;
+  initialToDate?: Date;
   onChange(selected: ISelectDatePickerOption): void;
 }
 
