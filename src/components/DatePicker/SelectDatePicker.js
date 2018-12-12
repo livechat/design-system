@@ -1,11 +1,14 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { format, subDays, isFuture, isAfter, isSameDay } from 'date-fns';
+import { format, isFuture, isAfter, isSameDay, subMonths } from 'date-fns';
 import { DateUtils } from 'react-day-picker';
+import memoizeOne from 'memoize-one';
 import SelectField from '../SelectField/SelectField';
-import { Input } from '../InputField';
 import styles from './style.scss';
 import DatePicker from './DatePicker';
+import DatePickerRangeSelectItem from './DatePickerRangeSelectItem';
+import DatePickerRangeCalendarsWrapper from './DatePickerRangeCalendarsWrapper';
+import { isValidDateFormat, isDateWithinRange } from './helpers';
 
 const initialState = {
   selectedItem: null,
@@ -20,62 +23,90 @@ const initialState = {
 class SelectDatePicker extends React.Component {
   constructor(props) {
     super(props);
-    this.items = [
-      {
-        key: 'today',
-        props: { name: 'Today', value: new Date() }
-      },
-      {
-        key: 'yesterday',
-        props: { name: 'Yesterday', value: subDays(new Date(), 1) }
-      },
-      {
-        key: 'custom_date',
-        props: { name: 'Custom date', value: 'custom_date' }
-      }
-    ];
-    this.state = initialState;
+
+    const initialStateFromProps = this.getStateFromInitialPropsValues(props);
+
+    this.state = {
+      ...initialState,
+      ...initialStateFromProps
+    };
   }
 
-  getItemBody = props => <div id={props.value}>{props.name}</div>;
+  getStateFromInitialPropsValues = props => {
+    const state = {};
+    if (props.initialSelectedItemKey) {
+      const selectedItem = this.getSelectedOption(
+        props.options,
+        props.initialSelectedItemKey
+      );
+
+      if (!selectedItem) {
+        return {};
+      }
+
+      state.selectedItem = props.initialSelectedItemKey;
+
+      if (!selectedItem.isManual) {
+        return state;
+      }
+
+      if (props.initialFromDate) {
+        state.from = props.initialFromDate;
+        state.fromInputValue = this.mapDateToInputValue(props.initialFromDate);
+      }
+      if (props.initialToDate) {
+        state.to = props.initialToDate;
+        state.enteredTo = props.initialToDate;
+        state.toInputValue = this.mapDateToInputValue(props.initialToDate);
+      }
+    }
+    return state;
+  };
+
+  getSelectOptions = memoizeOne(options =>
+    options.map(option => ({
+      key: option.id,
+      props: {
+        label: option.label,
+        value: option.id,
+        isManual: option.isManual || false
+      }
+    }))
+  );
+
+  getSelectedOption = memoizeOne((options, itemId) =>
+    options.find(item => item.id === itemId)
+  );
+
+  getTodayDate = () => new Date(new Date().setHours(0, 0, 0, 0));
+
+  getItemBody = props => <div id={props.value}>{props.label}</div>;
 
   getSelectedItemBody = props => {
-    if (props.value === 'custom_date') {
+    if (props.isManual) {
       return (
-        <div>
-          <Input
-            onClick={e => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
-            style={{ padding: '0 5px' }}
-            size={10}
-            placeholder="YYYY-MM-DD"
-            onChange={this.handleFromDateChange}
-            value={this.state.fromInputValue}
-          />
-          <span> - </span>
-          <Input
-            onClick={e => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
-            style={{ padding: '0 5px' }}
-            size={10}
-            placeholder="YYYY-MM-DD"
-            onChange={this.handleToDateChange}
-            value={this.state.toInputValue}
-          />
-        </div>
+        <DatePickerRangeSelectItem
+          from={{
+            onChange: this.handleDateFromChange,
+            value: this.state.fromInputValue,
+            ref: this.fromInputRef
+          }}
+          to={{
+            onChange: this.handleDateToChange,
+            value: this.state.toInputValue,
+            onFocus: this.handleDateToInputFocus
+          }}
+        />
       );
     }
-    return <div id={props.value}>{props.name}</div>;
+    return <div id={props.value}>{props.label}</div>;
   };
+
+  mapDateToInputValue = date => format(date, 'YYYY-MM-DD');
 
   handleDayClick = day => {
     const { from, to } = this.state;
-
-    if (isAfter(day, new Date())) {
+    if (!isDateWithinRange(day, { to: this.getTodayDate() })) {
       return;
     }
 
@@ -83,7 +114,7 @@ class SelectDatePicker extends React.Component {
       this.setState({
         from: day,
         to: null,
-        fromInputValue: format(day, 'YYYY-MM-DD'),
+        fromInputValue: this.mapDateToInputValue(day),
         enteredTo: null
       });
     } else if (
@@ -93,22 +124,20 @@ class SelectDatePicker extends React.Component {
       this.setState(
         {
           to: day,
-          toInputValue: format(day, 'YYYY-MM-DD'),
+          toInputValue: this.mapDateToInputValue(day),
           enteredTo: day
         },
         () => {
-          const optionsHash = this.items.reduce(
-            (acc, option) => ({ ...acc, [option.key]: option }),
-            {}
+          const selectedOption = this.getSelectedOption(
+            this.props.options,
+            this.state.selectedItem
           );
+
           this.props.onChange({
-            ...optionsHash.custom_date,
-            props: {
-              ...optionsHash.custom_date.props,
-              value: {
-                from: this.state.from,
-                to: this.state.to
-              }
+            ...selectedOption,
+            value: {
+              from: this.state.from,
+              to: this.state.to
             }
           });
         }
@@ -116,98 +145,152 @@ class SelectDatePicker extends React.Component {
     }
   };
 
-  handleItemSelect = item => {
-    if (item === null) {
+  handleItemSelect = itemKey => {
+    if (itemKey === null) {
       this.setState({ ...initialState }, () => {
         this.props.onChange(null);
       });
     } else {
-      this.setState(
-        { selectedItem: item },
-        () => {
-          if (item !== 'custom_date') {
-            const optionsHash = this.items.reduce(
-              (acc, option) => ({ ...acc, [option.key]: option }),
-              {}
-            );
-            this.props.onChange(optionsHash[item]);
-          }
-        },
-        () => {
-          const optionsHash = this.items.reduce(
-            (acc, option) => ({ ...acc, [option.key]: option }),
+      const selectedOption = this.getSelectedOption(
+        this.props.options,
+        itemKey
+      );
+
+      if (selectedOption === undefined) {
+        return;
+      }
+
+      this.setState({ selectedItem: itemKey }, () => {
+        if (!selectedOption.isManual) {
+          const optionsHash = this.props.options.reduce(
+            (acc, option) => ({ ...acc, [option.id]: option }),
             {}
           );
+          this.props.onChange(optionsHash[itemKey]);
+        } else {
           this.props.onChange({
-            ...optionsHash.custom_date,
-            props: {
-              ...optionsHash.custom_date.props,
-              value: {
-                from: this.state.from,
-                to: this.state.to
-              }
+            ...selectedOption,
+            value: {
+              from: this.state.from,
+              to: this.state.to
             }
           });
         }
-      );
+      });
     }
   };
 
-  handleFromDateChange = e => {
+  handleDateFromChange = e => {
     const { value } = e.target;
-    const error =
-      this.isValidDateInInput(value) && this.state.to !== undefined
-        ? null
-        : 'not valid';
-    if (DateUtils.isDate(new Date(value))) {
-      this.setState(
+
+    const newState = {
+      fromInputValue: value,
+      error: null,
+      from: undefined,
+      to: undefined,
+      toInputValue: '',
+      enteredTo: null
+    };
+
+    if (!isValidDateFormat(value)) {
+      return this.setState({
+        ...newState,
+        error: 'Not valid date'
+      });
+    }
+
+    if (!isDateWithinRange(new Date(value), { to: new Date() })) {
+      return this.setState({
+        ...newState,
+        error: 'Date outside'
+      });
+    }
+
+    if (this.state.to === undefined) {
+      return this.setState(
         {
-          fromInputValue: error ? undefined : value,
-          from: new Date(value),
-          enteredTo: null,
-          error
+          ...newState,
+          error: 'Select second date',
+          from: new Date(value)
         },
         () => {
-          if (!error) {
-            this.datePickerRef.current.showMonth(this.state.from);
-            this.props.onChange({
-              from: this.state.from,
-              to: this.state.to
-            });
-          }
+          this.datePickerFromRef.current.showMonth(this.state.from);
         }
       );
-    } else {
-      this.setState({ fromInputValue: value });
     }
+
+    return this.setState(
+      {
+        ...newState,
+        from: new Date(value)
+      },
+      () => {
+        this.datePickerFromRef.current.showMonth(this.state.from);
+        this.props.onChange({
+          from: this.state.from,
+          to: this.state.to
+        });
+      }
+    );
   };
 
-  handleToDateChange = e => {
+  handleDateToChange = e => {
     const { value } = e.target;
-    const error =
-      this.isValidDateInInput(value) && this.state.from !== undefined
-        ? null
-        : 'not valid';
-    if (DateUtils.isDate(new Date(value))) {
-      this.setState(
+
+    const newState = {
+      error: null,
+      to: undefined,
+      toInputValue: value,
+      enteredTo: null
+    };
+
+    if (!isValidDateFormat(value)) {
+      return this.setState({
+        ...newState,
+        error: 'Not valid date'
+      });
+    }
+
+    if (!isDateWithinRange(new Date(value), { to: new Date() })) {
+      return this.setState({
+        ...newState,
+        error: 'Date outside'
+      });
+    }
+
+    if (this.state.from === undefined) {
+      return this.setState(
         {
-          toInputValue: error ? undefined : value,
+          ...newState,
+          error: 'Select second date',
           to: new Date(value),
-          enteredTo: new Date(value),
-          error
+          enteredTo: new Date(value)
         },
         () => {
-          if (!error) {
-            this.datePickerRef.current.showMonth(this.state.to);
-            this.props.onChange({
-              from: this.state.from,
-              to: this.state.to
-            });
-          }
+          this.datePickerToRef.current.showMonth(this.state.to);
         }
       );
-    } else {
-      this.setState({ toInputValue: value });
+    }
+
+    return this.setState(
+      {
+        ...newState,
+        to: new Date(value),
+        enteredTo: new Date(value)
+      },
+      () => {
+        this.datePickerToRef.current.showMonth(this.state.to);
+        this.props.onChange({
+          from: this.state.from,
+          to: this.state.to
+        });
+      }
+    );
+  };
+
+  handleDateToInputFocus = () => {
+    if (this.state.from === undefined && this.fromInputRef.current) {
+      this.fromInputRef.current.focus();
     }
   };
 
@@ -226,18 +309,10 @@ class SelectDatePicker extends React.Component {
     return !from || isBeforeFirstDay || isRangeSelected;
   };
 
-  isValidDateInInput = inputValue => {
-    if (
-      inputValue.match(
-        /^(?:(19|20)[0-9]{2})[\- \/.](0[1-9]|1[012])[\- \/.](0[1-9]|[12][0-9]|3[01])$/
-      )
-    ) {
-      return true;
-    }
-    return false;
-  };
-
-  datePickerRef = React.createRef();
+  datePickerFromRef = React.createRef();
+  datePickerToRef = React.createRef();
+  toInputRef = React.createRef();
+  fromInputRef = React.createRef();
 
   render() {
     const modifiers = {
@@ -247,12 +322,17 @@ class SelectDatePicker extends React.Component {
       [styles['date-picker__day--sunday']]: { daysOfWeek: [0] }
     };
 
+    const selectedOption = this.getSelectedOption(
+      this.props.options,
+      this.state.selectedItem
+    );
+
     return (
-      <div style={{ width: '340px' }}>
+      <div>
         <SelectField
           id="date-select"
-          items={this.items}
-          searchProperty="name"
+          items={this.getSelectOptions(this.props.options)}
+          searchProperty="label"
           onItemSelect={this.handleItemSelect}
           getItemBody={this.getItemBody}
           search
@@ -265,35 +345,60 @@ class SelectDatePicker extends React.Component {
           selected={this.state.selectedItem}
           searchPlaceholder="Search..."
         />
-        {this.state.selectedItem === 'custom_date' && (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              padding: '20px 0'
-            }}
-          >
-            <DatePicker
-              ref={this.datePickerRef}
-              onDayClick={this.handleDayClick}
-              selectedDays={[
-                this.state.from,
-                { from: this.state.from, to: this.state.enteredTo }
-              ]}
-              modifiers={modifiers}
-              toMonth={new Date()}
-              disabledDays={{ after: new Date() }}
-              onDayMouseEnter={this.handleDayMouseEnter}
-            />
-          </div>
-        )}
+        {selectedOption &&
+          selectedOption.isManual && (
+            <DatePickerRangeCalendarsWrapper>
+              <DatePicker
+                ref={this.datePickerFromRef}
+                onDayClick={this.handleDayClick}
+                selectedDays={[
+                  this.state.from,
+                  { from: this.state.from, to: this.state.enteredTo }
+                ]}
+                modifiers={modifiers}
+                initialMonth={
+                  this.state.from || subMonths(this.getTodayDate(), 1)
+                }
+                toMonth={this.getTodayDate()}
+                disabledDays={{ after: this.getTodayDate() }}
+                onDayMouseEnter={this.handleDayMouseEnter}
+              />
+              <DatePicker
+                ref={this.datePickerToRef}
+                onDayClick={this.handleDayClick}
+                selectedDays={[
+                  this.state.from,
+                  { from: this.state.from, to: this.state.enteredTo }
+                ]}
+                initialMonth={this.state.to}
+                modifiers={modifiers}
+                toMonth={this.getTodayDate()}
+                disabledDays={{ after: this.getTodayDate() }}
+                onDayMouseEnter={this.handleDayMouseEnter}
+              />
+            </DatePickerRangeCalendarsWrapper>
+          )}
       </div>
     );
   }
 }
 
 SelectDatePicker.propTypes = {
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+      isManual: PropTypes.bool,
+      value: PropTypes.shape({
+        from: PropTypes.instanceOf(Date),
+        to: PropTypes.instanceOf(Date)
+      })
+    })
+  ).isRequired,
+  initialSelectedItemKey: PropTypes.string,
+  initialFromDate: PropTypes.instanceOf(Date),
+  initialToDate: PropTypes.instanceOf(Date)
 };
 
 export default SelectDatePicker;

@@ -4,12 +4,11 @@ $base-class: 'date-picker';
 
 .#{$base-class} {
   display: inline-block;
-  font-size: 1rem;
 
   &__wrapper {
     position: relative;
     flex-direction: row;
-    padding-bottom: 1em;
+    padding-bottom: 10px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -34,8 +33,9 @@ $base-class: 'date-picker';
   &__nav-bar {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 18px);
     display: flex;
     justify-content: space-between;
   }
@@ -46,17 +46,10 @@ $base-class: 'date-picker';
     background-color: transparent;
     border: none;
     padding: 0;
+    cursor: pointer;
 
     &:hover {
-      opacity: 0.8;
-    }
-
-    &--prev {
-      color: #000;
-    }
-
-    &--next {
-      color: #000;
+      color: $hover-primary-color;
     }
 
     &--interaction-disabled {
@@ -68,7 +61,7 @@ $base-class: 'date-picker';
     display: table-caption;
     margin-bottom: 20px;
     padding: 0 50px;
-    text-align: left;
+    text-align: center;
 
     & > div {
       font-weight: 700;
@@ -79,7 +72,6 @@ $base-class: 'date-picker';
 
   &__weekdays {
     display: table-header-group;
-    margin-top: 1em;
   }
 
   &__weekdays-row {
@@ -88,7 +80,7 @@ $base-class: 'date-picker';
 
   &__weekday {
     display: table-cell;
-    padding: 0.5em;
+    padding: 4px;
     color: #8b9898;
     text-align: center;
     font-size: 12px;
@@ -101,13 +93,13 @@ $base-class: 'date-picker';
 
   &__week-number {
     display: table-cell;
-    padding: 0.5em;
-    min-width: 1em;
+    padding: 5px;
+    min-width: 5px;
     border-right: 1px solid #eaecec;
     color: #8b9898;
     vertical-align: middle;
     text-align: right;
-    font-size: 0.75em;
+    font-size: 14px;
     cursor: pointer;
   }
 
@@ -126,10 +118,6 @@ $base-class: 'date-picker';
     width: 18px;
     height: 18px;
 
-    &--extreme {
-      background: red;
-    }
-
     &-wrapper {
       margin: 1px 0;
       padding: 0 9px;
@@ -145,8 +133,10 @@ $base-class: 'date-picker';
     }
 
     &--today {
-      color: #d0021b;
-      font-weight: 700;
+      .#{$base-class}__day-content {
+        box-shadow: 0 0 0 1px #a0a6ab;
+        border-radius: 50%;
+      }
     }
 
     &--outside {
@@ -162,25 +152,25 @@ $base-class: 'date-picker';
     &--selected {
       &:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--outside):not(.#{$base-class}__day--start):not(.#{$base-class}__day--end):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday) {
         .#{$base-class}__day-wrapper {
-          background-color: #DAE7FD;
+          background-color: #dae7fd;
         }
       }
 
       &:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--outside):not(.#{$base-class}__day--start):not(.#{$base-class}__day--end):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday):hover {
         .#{$base-class}__day-wrapper {
-          background-color: #DAE7FD;
+          background-color: #dae7fd;
         }
       }
     }
 
     &--start:not(.#{$base-class}__day--end):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday) .#{$base-class}__day-wrapper,
     &--monday.#{$base-class}__day--selected:not(.#{$base-class}__day--end) .#{$base-class}__day-wrapper {
-      background: linear-gradient(to left, #DAE7FD 0%, #DAE7FD 50%, #fff 50%, #fff 100%);
+      background: linear-gradient(to left, #dae7fd 0%, #dae7fd 50%, #fff 50%, #fff 100%);
     }
 
     &--end:not(.#{$base-class}__day--start):not(.#{$base-class}__day--monday):not(.#{$base-class}__day--sunday) .#{$base-class}__day-wrapper,
     &--sunday.#{$base-class}__day--selected:not(.#{$base-class}__day--start) .#{$base-class}__day-wrapper {
-      background: linear-gradient(to right, #DAE7FD 0%, #DAE7FD 50%, #fff 50%, #fff 100%);
+      background: linear-gradient(to right, #dae7fd 0%, #dae7fd 50%, #fff 50%, #fff 100%);
     }
 
     &--start,
@@ -193,12 +183,12 @@ $base-class: 'date-picker';
     }
 
     &--monday.#{$base-class}__day--selected:not(.#{$base-class}__day--start):not(.#{$base-class}__day--end) .#{$base-class}__day-content {
-      background-color: #DAE7FD;
+      background-color: #dae7fd;
       border-radius: 50%;
     }
 
     &--sunday.#{$base-class}__day--selected:not(.#{$base-class}__day--start):not(.#{$base-class}__day--end) .#{$base-class}__day-content {
-      background-color: #DAE7FD;
+      background-color: #dae7fd;
       border-radius: 50%;
     }
   }
@@ -210,7 +200,7 @@ $base-class: 'date-picker';
   }
 
   &__footer {
-    padding-top: 0.5em;
+    padding-top: 5px;
   }
 
   &__today-button {
@@ -219,7 +209,7 @@ $base-class: 'date-picker';
     background-image: none;
     box-shadow: none;
     color: #4a90e2;
-    font-size: 0.875em;
+    font-size: 14px;
     cursor: pointer;
   }
 
@@ -232,26 +222,27 @@ $base-class: 'date-picker';
 
     &-overlay {
       display: block;
-      // position: absolute;
-      // left: 0;
-      // z-index: 1;
-      // background: white;
-      // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
     }
   }
 
   &:not(.#{$base-class}--interaction-disabled) &__day:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--selected):not(.#{$base-class}__day--outside):hover {
     .#{$base-class}__day-content {
-      background-color: #f0f8ff;
+      background-color: #dae7fd;
       border-radius: 50%;
     }
   }
 
   &--range {
-    .#{$base-class}__day--selected:not(.start):not(.#{$base-class}__day--end):not(.#{$base-class}__day--outside) {
-      background-color: #f0f8ff !important;
-      color: #4a90e2;
-      border-radius: none;
+    &__select-input {
+      padding: 0 5px;
+    }
+
+    &__calendars-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 0;
     }
   }
 }
