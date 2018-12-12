@@ -1,7 +1,9 @@
 export { default as DatePicker } from './DatePicker';
-export { SelectDatePicker } from './SelectDatePicker';
+export { default as SelectDatePicker } from './SelectDatePicker';
 export { DateUtils as ReactDayPickerDateUtils } from 'react-day-picker';
-export { DatePickerRangeSelectItem } from './DatePickerRangeSelectItem';
 export {
-  DatePickerRangeCalendarsWrapper
+  default as DatePickerRangeSelectItem
+} from './DatePickerRangeSelectItem';
+export {
+  default as DatePickerRangeCalendarsWrapper
 } from './DatePickerRangeCalendarsWrapper';
