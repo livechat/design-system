@@ -197,14 +197,14 @@ class SelectDatePicker extends React.Component {
     if (!isValidDateFormat(value)) {
       return this.setState({
         ...newState,
-        error: 'Invalid date'
+        error: 'Invalid date format'
       });
     }
 
     if (!isDateWithinRange(new Date(value), { to: new Date() })) {
       return this.setState({
         ...newState,
-        error: 'Invalid date'
+        error: "The start date can't be later than today"
       });
     }
 
@@ -212,7 +212,7 @@ class SelectDatePicker extends React.Component {
       return this.setState(
         {
           ...newState,
-          error: 'Please choose to date',
+          error: 'Please choose the end date',
           from: new Date(value)
         },
         () => {
@@ -256,7 +256,7 @@ class SelectDatePicker extends React.Component {
     if (!isValidDateFormat(value)) {
       return this.setState({
         ...newState,
-        error: 'Invalid date'
+        error: 'Invalid date format'
       });
     }
 
@@ -268,7 +268,7 @@ class SelectDatePicker extends React.Component {
     ) {
       return this.setState({
         ...newState,
-        error: 'Invalid date'
+        error: "The end date can't be before the start date"
       });
     }
 
@@ -276,7 +276,7 @@ class SelectDatePicker extends React.Component {
       return this.setState(
         {
           ...newState,
-          error: 'Please choose from date',
+          error: 'Please choose the start date',
           to: new Date(value),
           enteredTo: new Date(value)
         },
