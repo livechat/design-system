@@ -15,16 +15,9 @@ const InAppHeader = props => {
 
   return (
     <div className={mergedClassNames}>
-      {props.avatar && (
-        <InAppAvatar src={props.avatar} alt={props.who} />
-      )}
-      {(props.who || props.text) && (
-        <div className={styles[`${baseClass}__heading`]}>
-          {props.who && (
-            <strong>{props.who} </strong>
-          )}
-          {props.text}
-        </div>
+      {props.avatar && <InAppAvatar src={props.avatar} alt="" />}
+      {props.from && (
+        <div className={styles[`${baseClass}__heading`]}>{props.from}</div>
       )}
       <InAppCloseButton onClick={props.onCloseButtonClick} />
     </div>
@@ -34,9 +27,7 @@ const InAppHeader = props => {
 InAppHeader.propTypes = {
   className: PropTypes.string,
   avatar: PropTypes.string,
-  // TODO accept DOM node instead who and text
-  who: PropTypes.string,
-  text: PropTypes.string,
+  from: PropTypes.node,
   onCloseButtonClick: PropTypes.func.isRequired
 };
 

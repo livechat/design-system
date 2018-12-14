@@ -13,9 +13,8 @@ const cx = classNames.bind(styles);
 class InAppBase extends React.Component {
   static defaultProps = {
     closeOnEscPress: true,
-    headerWho: null,
-    headerText: null,
     headerAvatar: null,
+    headerFrom: null
   };
 
   componentDidMount() {
@@ -70,8 +69,7 @@ class InAppBase extends React.Component {
       className,
       children,
       headerAvatar,
-      headerWho,
-      headerText,
+      headerFrom,
       title,
       onClose,
       closeOnEscPress,
@@ -93,8 +91,7 @@ class InAppBase extends React.Component {
         <div className={cx('inapp-container')} ref={this.inAppRef}>
           <InAppHeader
             avatar={headerAvatar}
-            who={headerWho}
-            text={headerText}
+            from={headerFrom}
             onCloseButtonClick={this.onCloseButtonClick}
           />
           <div className={mergedClassNames} {...restProps}>
@@ -109,9 +106,8 @@ class InAppBase extends React.Component {
 InAppBase.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
-  headerWho: PropTypes.string,
-  headerText: PropTypes.string,
   headerAvatar: PropTypes.string,
+  headerFrom: PropTypes.node,
   onClose: PropTypes.func.isRequired,
   closeOnEscPress: PropTypes.bool
 };
