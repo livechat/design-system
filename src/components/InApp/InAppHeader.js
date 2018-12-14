@@ -34,6 +34,7 @@ const InAppHeader = props => {
 InAppHeader.propTypes = {
   className: PropTypes.string,
   avatar: PropTypes.string,
+  // TODO accept DOM node instead who and text
   who: PropTypes.string,
   text: PropTypes.string,
   onCloseButtonClick: PropTypes.func.isRequired
