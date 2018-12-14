@@ -6,17 +6,20 @@ initialState = {
 const toggleInApp = () => setState({isOpen: !state.isOpen});
 
 <div>
+  <div id="inAppContainer" style={{color: 'red!important'}}>
+    I see a red door and I want it painted...
+  </div>
   {state.isOpen && (
-    <InAppPortal>
+    <InAppPortal parentElementName="#inAppContainer">
       <InAppBase
         onClose={toggleInApp}
-        style={{width: "600px", height: "400px"}}
       >
-        <div style={{margin: 'auto'}}>content</div>
+        <div style={{margin: 'auto'}}>And here it is!</div>
       </InAppBase>
     </InAppPortal>
   )}
-  <Button onClick={toggleInApp}>Open inApp</Button>
+  <br />
+  <Button onClick={toggleInApp}>Black...</Button>
 </div>
 ```
 ```js noeditor

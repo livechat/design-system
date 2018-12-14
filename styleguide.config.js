@@ -59,8 +59,7 @@ module.exports = {
           components: [
             './src/components/InApp/InAppBase.js',
             './src/components/InApp/InAppPortal.js',
-            './src/components/InApp/InApp.js',
-            './src/components/InApp/ActionInApp.js'
+            './src/components/InApp/InApp.js'
           ]
         },
         {

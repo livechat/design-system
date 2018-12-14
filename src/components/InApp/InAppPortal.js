@@ -17,15 +17,13 @@ class InAppPortal extends React.Component {
   }
 
   componentDidMount() {
-    document
-      .querySelector(this.props.parentElementName)
-      .appendChild(this.inAppContainer);
+    const element = document.querySelector(this.props.parentElementName);
+    if (element) element.appendChild(this.inAppContainer);
   }
 
   componentWillUnmount() {
-    document
-      .querySelector(this.props.parentElementName)
-      .removeChild(this.inAppContainer);
+    const element = document.querySelector(this.props.parentElementName);
+    if (element) element.removeChild(this.inAppContainer);
   }
 
   render() {
