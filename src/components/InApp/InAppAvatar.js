@@ -4,9 +4,17 @@ import styles from './style.scss';
 
 const baseClass = 'inapp__header__avatar';
 
-const InAppAvatar = props => (
-  <img className={styles[`${baseClass}`]} src={props.src} alt={props.alt} />
-);
+const InAppAvatar = props => {
+  const { src, alt, ...restProps } = props;
+  return (
+    <img
+      className={styles[`${baseClass}`]}
+      src={src}
+      alt={alt}
+      {...restProps}
+    />
+  );
+};
 
 InAppAvatar.propTypes = {
   src: PropTypes.string.isRequired,

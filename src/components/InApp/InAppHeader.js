@@ -15,7 +15,7 @@ const InAppHeader = props => {
 
   return (
     <div className={mergedClassNames}>
-      {props.avatar && <InAppAvatar src={props.avatar} alt="" />}
+      {props.avatar && <InAppAvatar src={props.avatar} alt="Avatar" />}
       {props.from && (
         <div className={styles[`${baseClass}__heading`]}>{props.from}</div>
       )}
