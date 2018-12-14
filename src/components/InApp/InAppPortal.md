@@ -3,22 +3,20 @@ initialState = {
   isOpen: false
 };
 
-const handleInAppOpen = () => setState({isOpen: true});
-
-const handleInAppClose = () => setState({isOpen: false});
+const toggleInApp = () => setState({isOpen: !state.isOpen});
 
 <div>
   {state.isOpen && (
     <InAppPortal>
       <InAppBase
-        onClose={handleInAppClose}
+        onClose={toggleInApp}
         style={{width: "600px", height: "400px"}}
       >
         <div style={{margin: 'auto'}}>content</div>
       </InAppBase>
     </InAppPortal>
   )}
-  <Button onClick={handleInAppOpen}>Open inApp</Button>
+  <Button onClick={toggleInApp}>Open inApp</Button>
 </div>
 ```
 ```js noeditor
