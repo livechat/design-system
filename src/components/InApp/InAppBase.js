@@ -12,7 +12,10 @@ const cx = classNames.bind(styles);
 
 class InAppBase extends React.Component {
   static defaultProps = {
-    closeOnEscPress: true
+    closeOnEscPress: true,
+    headerWho: null,
+    headerText: null,
+    headerAvatar: null,
   };
 
   componentDidMount() {

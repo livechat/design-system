@@ -16,8 +16,6 @@ const buttonStyle = {
   {state.isOpen && (
     <InApp
       onClose={handleInAppClose}
-      style={{width: "600px", height: "400px"}}
-      heading="Title"
       footer={
         <React.Fragment>
           <Button style={buttonStyle} size="large" onClick={handleInAppClose}>Secondary</Button>

@@ -10,7 +10,7 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 const baseClass = 'inapp';
 
 const InApp = props => {
-  const { heading, footer, children, className, ...restProps } = props;
+  const { footer, children, className, ...restProps } = props;
 
   const mergedClassNames = getMergedClassNames(
     styles[`${baseClass}`],
@@ -19,7 +19,6 @@ const InApp = props => {
 
   return (
     <InAppBase className={mergedClassNames} {...restProps}>
-      {heading && <InAppHeader>{heading}</InAppHeader>}
       <InAppBody>{children}</InAppBody>
       <InAppFooter>{footer}</InAppFooter>
     </InAppBase>
