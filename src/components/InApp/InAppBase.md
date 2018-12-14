@@ -9,12 +9,7 @@ const handleInAppClose = () => setState({isOpen: false});
 
 <div>
   {state.isOpen && (
-    <InAppBase
-      headerWho="Aleksandra"
-      headerText="from LiveChat"
-      headerAvatar="https://cdn.livechatinc.com/cloud/?uri=http://livechat.s3.amazonaws.com/default/avatars/male_20.jpg"
-      onClose={handleInAppClose}
-    >
+    <InAppBase onClose={handleInAppClose}>
       <div style={{margin: 'auto'}}>content</div>
     </InAppBase>
   )}

@@ -87,7 +87,7 @@ class InAppBase extends React.Component {
           `${baseClass}__overlay--visible`
         )}
       >
-        <div className={`${baseClass}__container`} ref={this.inAppRef}>
+        <div className={cx('inapp-container')} ref={this.inAppRef}>
           <InAppHeader
             avatar={headerAvatar}
             who={headerWho}
