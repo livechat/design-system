@@ -41,5 +41,8 @@ export { NumericInput, NumericInputField } from './NumericInputField';
 export {
   DatePicker,
   SelectDatePicker,
-  ReactDayPickerDateUtils
+  ReactDayPickerDateUtils,
+  RangeDatePicker,
+  DatePickerRangeSelectInputs,
+  DatePickerRangeCalendarsWrapper
 } from './DatePicker';

@@ -295,7 +295,7 @@ Select.propTypes = {
   error: PropTypes.string,
   id: PropTypes.string,
   getItemBody: PropTypes.func.isRequired,
-  getSelectedItemBody: PropTypes.func.isRequired,
+  getSelectedItemBody: PropTypes.func,
   onItemSelect: PropTypes.func.isRequired,
   items: PropTypes.arrayOf(
     PropTypes.shape({

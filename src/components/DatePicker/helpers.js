@@ -25,7 +25,6 @@ export const isDateWithinRange = (date, range) => {
     return false;
   }
   if (from && !isSameDay(date, from) && !isAfter(date, from)) {
-    console.log('tu', !isSameDay(date, from), !isAfter(date, from));
     return false;
   }
   return true;

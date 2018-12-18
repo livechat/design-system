@@ -18,6 +18,7 @@ const DatePickerNavbar = props => {
     classNames,
     datePickerRef,
     month,
+    fromMonth,
     toMonth
   } = props;
 
@@ -25,7 +26,8 @@ const DatePickerNavbar = props => {
   const handleNextClick = () => onNextClick();
 
   const handlePrevYearClick = () => {
-    const newMonth = subMonths(month, 12);
+    const diff = Math.abs(differenceInCalendarMonths(month, fromMonth));
+    const newMonth = subMonths(month, diff > 12 ? 12 : diff);
     datePickerRef.current.showMonth(newMonth);
   };
 
@@ -86,6 +88,7 @@ DatePickerNavbar.propTypes = {
   onPreviousClick: PropTypes.func,
   onNextClick: PropTypes.func,
   month: PropTypes.instanceOf(Date),
+  fromMonth: PropTypes.instanceOf(Date),
   toMonth: PropTypes.instanceOf(Date),
   showNextButton: PropTypes.bool,
   showPreviousButton: PropTypes.bool,

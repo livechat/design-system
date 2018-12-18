@@ -1,7 +1,7 @@
+import * as DateFns from 'date-fns';
 import AlertCircleIcon from 'react-material-icon-svg/dist/AlertCircleIcon';
 import * as Components from './src';
 import ComponentHtmlMarkup from './src/docs/ComponentHtmlMarkup';
-import * as DateFns from 'date-fns';
 
 // components
 global.Button = Components.Button;
@@ -43,6 +43,10 @@ global.NumericInputField = Components.NumericInputField;
 global.DatePicker = Components.DatePicker;
 global.SelectDatePicker = Components.SelectDatePicker;
 global.ReactDayPickerDateUtils = Components.ReactDayPickerDateUtils;
+global.RangeDatePicker = Components.RangeDatePicker;
+global.DatePickerRangeSelectInputs = Components.DatePickerRangeSelectInputs;
+global.DatePickerRangeCalendarsWrapper =
+  Components.DatePickerRangeCalendarsWrapper;
 
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;

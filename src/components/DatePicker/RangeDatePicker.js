@@ -3,11 +3,8 @@ import * as PropTypes from 'prop-types';
 import { format, isFuture, isAfter, isSameDay, subMonths } from 'date-fns';
 import { DateUtils } from 'react-day-picker';
 import memoizeOne from 'memoize-one';
-import SelectField from '../SelectField/SelectField';
 import styles from './style.scss';
-import DatePicker from './DatePicker';
 import DatePickerRangeSelectInputs from './DatePickerRangeSelectInputs';
-import DatePickerRangeCalendarsWrapper from './DatePickerRangeCalendarsWrapper';
 import { isValidDateFormat, isDateWithinRange } from './helpers';
 
 const initialState = {
@@ -20,7 +17,44 @@ const initialState = {
   enteredTo: null
 };
 
-class SelectDatePicker extends React.Component {
+const RangeDatePickerContext = React.createContext();
+
+const RangeDatePickerConsumer = props => (
+  <RangeDatePickerContext.Consumer {...props}>
+    {context => {
+      if (!context) {
+        throw new Error(
+          'RangeDatePicker compound components cannot be rendered outside the RangeDatePicker component'
+        );
+      }
+      return props.children(context);
+    }}
+  </RangeDatePickerContext.Consumer>
+);
+
+class RangeDatePicker extends React.PureComponent {
+  static Select = ({ children }) => (
+    <RangeDatePickerConsumer>
+      {({ select, inputs }) =>
+        children({
+          select,
+          inputs
+        })
+      }
+    </RangeDatePickerConsumer>
+  );
+
+  static DatePickers = ({ children }) => (
+    <RangeDatePickerConsumer>
+      {({ datepickers, selectedOption }) =>
+        children({
+          datepickers,
+          selectedOption
+        })
+      }
+    </RangeDatePickerConsumer>
+  );
+
   constructor(props) {
     super(props);
 
@@ -30,6 +64,20 @@ class SelectDatePicker extends React.Component {
       ...initialState,
       ...initialStateFromProps
     };
+  }
+
+  componentDidUpdate(_prevProps, prevState) {
+    if (prevState.selectedItem !== this.state.selectedItem) {
+      const currentSelectedOption = this.getSelectedOption(
+        this.props.options,
+        this.state.selectedItem
+      );
+
+      console.log('didUpdate', currentSelectedOption);
+      if (currentSelectedOption.isManual) {
+        setTimeout(() => this.fromInputRef.current.focus(), 100);
+      }
+    }
   }
 
   getStateFromInitialPropsValues = props => {
@@ -92,7 +140,8 @@ class SelectDatePicker extends React.Component {
           to={{
             onChange: this.handleDateToChange,
             value: this.state.toInputValue,
-            onFocus: this.handleDateToInputFocus
+            onFocus: this.handleDateToInputFocus,
+            fromDate: this.state.from
           }}
         />
       );
@@ -192,6 +241,10 @@ class SelectDatePicker extends React.Component {
       enteredTo: null
     };
 
+    if (!/^[0-9.-]*$/.test(value)) {
+      return false;
+    }
+
     if (!isValidDateFormat(value)) {
       return this.setState({
         ...newState,
@@ -250,6 +303,10 @@ class SelectDatePicker extends React.Component {
       toInputValue: value,
       enteredTo: null
     };
+
+    if (!/^[0-9.-]*$/.test(value)) {
+      return false;
+    }
 
     if (!isValidDateFormat(value)) {
       return this.setState({
@@ -348,60 +405,76 @@ class SelectDatePicker extends React.Component {
 
     return (
       <div>
-        <SelectField
-          id="date-select"
-          items={this.getSelectOptions(this.props.options)}
-          searchProperty="label"
-          onItemSelect={this.handleItemSelect}
-          getItemBody={this.getItemBody}
-          search
-          error={this.state.error}
-          selectedItemRenderer={selectedItemProps =>
-            this.getSelectedItemBody(selectedItemProps)
-          }
-          placeholder="Select option"
-          getSelectedItemBody={this.getSelectedItemBody}
-          selected={this.state.selectedItem}
-          searchPlaceholder="Search..."
-        />
-        {selectedOption &&
-          selectedOption.isManual && (
-            <DatePickerRangeCalendarsWrapper>
-              <DatePicker
-                ref={this.datePickerFromRef}
-                onDayClick={this.handleDayClick}
-                selectedDays={[
+        <RangeDatePickerContext.Provider
+          value={{
+            select: {
+              items: this.getSelectOptions(this.props.options),
+              searchProperty: 'label',
+              onItemSelect: this.handleItemSelect,
+              getItemBody: this.getItemBody,
+              error: this.state.error,
+              getSelectedItemBody: selectedItemProps =>
+                this.getSelectedItemBody(selectedItemProps),
+              selected: this.state.selectedItem
+            },
+            inputs: {
+              from: {
+                onChange: this.handleDateFromChange,
+                value: this.state.fromInputValue,
+                ref: this.fromInputRef,
+                fromDate: this.state.from,
+                toDate: this.state.to
+              },
+              to: {
+                onChange: this.handleDateToChangew,
+                value: this.state.toInputValue,
+                onFocus: this.handleDateToInputFocus,
+                fromDate: this.state.from,
+                toDate: this.state.to
+              }
+            },
+            datepickers: {
+              from: {
+                ref: this.datePickerFromRef,
+                onDayClick: this.handleDayClick,
+                selectedDays: [
                   this.state.from,
                   { from: this.state.from, to: this.state.enteredTo }
-                ]}
-                modifiers={modifiers}
-                initialMonth={this.state.from || subMonths(new Date(), 1)}
-                toMonth={this.props.toMonth}
-                disabledDays={{ after: this.props.toMonth }}
-                onDayMouseEnter={this.handleDayMouseEnter}
-              />
-              <DatePicker
-                ref={this.datePickerToRef}
-                onDayClick={this.handleDayClick}
-                selectedDays={[
+                ],
+                modifiers,
+                initialMonth: this.state.from || subMonths(new Date(), 1),
+                toMonth: this.state.to || this.props.toMonth,
+                disabledDays: { after: this.props.toMonth },
+                onDayMouseEnter: this.handleDayMouseEnter
+              },
+              to: {
+                ref: this.datePickerToRef,
+                onDayClick: this.handleDayClick,
+                selectedDays: [
                   this.state.from,
                   { from: this.state.from, to: this.state.enteredTo }
-                ]}
-                initialMonth={this.state.to}
-                modifiers={modifiers}
-                toMonth={this.props.toMonth}
-                disabledDays={{ after: this.props.toMonth }}
-                onDayMouseEnter={this.handleDayMouseEnter}
-              />
-            </DatePickerRangeCalendarsWrapper>
-          )}
+                ],
+                modifiers,
+                initialMonth: this.state.to,
+                fromMonth: this.state.from,
+                toMonth: this.props.toMonth,
+                disabledDays: { after: this.props.toMonth },
+                onDayMouseEnter: this.handleDayMouseEnter
+              }
+            },
+            selectedOption
+          }}
+        >
+          {this.props.children}
+        </RangeDatePickerContext.Provider>
       </div>
     );
   }
 }
 
-SelectDatePicker.propTypes = {
+RangeDatePicker.propTypes = {
   onChange: PropTypes.func,
+  children: PropTypes.node,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
@@ -419,8 +492,8 @@ SelectDatePicker.propTypes = {
   toMonth: PropTypes.instanceOf(Date)
 };
 
-SelectDatePicker.defaultProps = {
+RangeDatePicker.defaultProps = {
   toMonth: new Date()
 };
 
-export default SelectDatePicker;
+export default RangeDatePicker;

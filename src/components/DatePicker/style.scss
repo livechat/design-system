@@ -235,14 +235,23 @@ $base-class: 'date-picker';
   &--range {
     &__select-input {
       padding: 0 5px;
+      max-width: 90px;
+      border-color: transparent;
+
+      &--from {
+        text-align: right;
+      }
+
+      &--to {
+        text-align: left;
+      }
     }
 
     &__calendars-wrapper {
       display: flex;
-      flex-direction: column;
       justify-content: center;
-      align-items: center;
-      padding: 20px 0;
+      align-items: flex-start;
+      padding: 16px 0;
     }
   }
 }
