@@ -2,13 +2,9 @@
 
 export type ButtonSize = 'compact' | 'large';
 
-export interface IButtonProps {
-  id?: string;
-  children: React.ReactNode;
-  className?: string;
+export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{
   primary?: boolean;
   destructive?: boolean;
-  disabled?: boolean;
   loading?: boolean;
   size?: ButtonSize;
   outline?: boolean;
@@ -18,9 +14,6 @@ export interface IButtonProps {
   accessibilityLabel?: string;
   ariaControls?: string;
   ariaExpanded?: boolean;
-  onClick?(): void;
-  onFocus?(): void;
-  onBlur?(): void;
   renderIcon?: string | React.ReactNode;
 }
 
