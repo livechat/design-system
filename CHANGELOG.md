@@ -153,3 +153,10 @@ _Release: 2018-12-07_
 
 ##### New Features
 * TS typings for FieldGroup component
+
+----
+## v0.0.15
+_Release: 2018-12-18_
+
+##### Optimizations
+* Enhance TS typings for Button component with ButtonHTMLAttributes
