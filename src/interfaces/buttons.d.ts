@@ -3,6 +3,7 @@
 export type ButtonSize = 'compact' | 'large';
 
 export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{
+  children: React.ReactNode;
   primary?: boolean;
   destructive?: boolean;
   loading?: boolean;
