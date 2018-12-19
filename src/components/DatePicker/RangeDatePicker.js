@@ -17,44 +17,7 @@ const initialState = {
   enteredTo: null
 };
 
-const RangeDatePickerContext = React.createContext();
-
-const RangeDatePickerConsumer = props => (
-  <RangeDatePickerContext.Consumer {...props}>
-    {context => {
-      if (!context) {
-        throw new Error(
-          'RangeDatePicker compound components cannot be rendered outside the RangeDatePicker component'
-        );
-      }
-      return props.children(context);
-    }}
-  </RangeDatePickerContext.Consumer>
-);
-
-class RangeDatePicker extends React.PureComponent {
-  static Select = ({ children }) => (
-    <RangeDatePickerConsumer>
-      {({ select, inputs }) =>
-        children({
-          select,
-          inputs
-        })
-      }
-    </RangeDatePickerConsumer>
-  );
-
-  static DatePickers = ({ children }) => (
-    <RangeDatePickerConsumer>
-      {({ datepickers, selectedOption }) =>
-        children({
-          datepickers,
-          selectedOption
-        })
-      }
-    </RangeDatePickerConsumer>
-  );
-
+class RangeDatePicker extends React.Component {
   constructor(props) {
     super(props);
 
@@ -64,20 +27,6 @@ class RangeDatePicker extends React.PureComponent {
       ...initialState,
       ...initialStateFromProps
     };
-  }
-
-  componentDidUpdate(_prevProps, prevState) {
-    if (prevState.selectedItem !== this.state.selectedItem) {
-      const currentSelectedOption = this.getSelectedOption(
-        this.props.options,
-        this.state.selectedItem
-      );
-
-      console.log('didUpdate', currentSelectedOption);
-      if (currentSelectedOption.isManual) {
-        setTimeout(() => this.fromInputRef.current.focus(), 100);
-      }
-    }
   }
 
   getStateFromInitialPropsValues = props => {
@@ -148,6 +97,106 @@ class RangeDatePicker extends React.PureComponent {
     }
     return <div id={props.value}>{props.label}</div>;
   };
+
+  getRangePickerApi() {
+    const modifiers = {
+      [styles['date-picker__day--start']]: this.state.from,
+      [styles['date-picker__day--end']]: this.state.enteredTo,
+      [styles['date-picker__day--monday']]: { daysOfWeek: [1] },
+      [styles['date-picker__day--sunday']]: { daysOfWeek: [0] }
+    };
+
+    const selectedOption = this.getSelectedOption(
+      this.props.options,
+      this.state.selectedItem
+    );
+
+    return {
+      select: {
+        items: this.getSelectOptions(this.props.options),
+        searchProperty: 'label',
+        onItemSelect: this.handleItemSelect,
+        getItemBody: this.getItemBody,
+        error: this.state.error,
+        getSelectedItemBody: selectedItemProps =>
+          this.getSelectedItemBody(selectedItemProps),
+        selected: this.state.selectedItem
+      },
+      inputs: {
+        from: {
+          onChange: this.handleDateFromChange,
+          value: this.state.fromInputValue,
+          ref: this.fromInputRef,
+          fromDate: this.state.from,
+          toDate: this.state.to
+        },
+        to: {
+          onChange: this.handleDateToChangew,
+          value: this.state.toInputValue,
+          onFocus: this.handleDateToInputFocus,
+          fromDate: this.state.from,
+          toDate: this.state.to
+        }
+      },
+      datepickers: {
+        from: {
+          ref: this.datePickerFromRef,
+          onDayClick: this.handleDayClick,
+          selectedDays: [
+            this.state.from,
+            { from: this.state.from, to: this.state.enteredTo }
+          ],
+          modifiers,
+          initialMonth: this.state.from || subMonths(new Date(), 1),
+          toMonth: this.state.to || this.props.toMonth,
+          disabledDays: { after: this.props.toMonth },
+          onDayMouseEnter: this.handleDayMouseEnter
+        },
+        to: {
+          ref: this.datePickerToRef,
+          onDayClick: this.handleDayClick,
+          selectedDays: [
+            this.state.from,
+            { from: this.state.from, to: this.state.enteredTo }
+          ],
+          modifiers,
+          initialMonth: this.state.to,
+          fromMonth: this.state.from,
+          toMonth: this.props.toMonth,
+          disabledDays: { after: this.props.toMonth },
+          onDayMouseEnter: this.handleDayMouseEnter
+        }
+      },
+      fromDatePicker: {
+        ref: this.datePickerFromRef,
+        onDayClick: this.handleDayClick,
+        selectedDays: [
+          this.state.from,
+          { from: this.state.from, to: this.state.enteredTo }
+        ],
+        modifiers,
+        initialMonth: this.state.from || subMonths(new Date(), 1),
+        toMonth: this.state.to || this.props.toMonth,
+        disabledDays: { after: this.props.toMonth },
+        onDayMouseEnter: this.handleDayMouseEnter
+      },
+      toDatePicker: {
+        ref: this.datePickerToRef,
+        onDayClick: this.handleDayClick,
+        selectedDays: [
+          this.state.from,
+          { from: this.state.from, to: this.state.enteredTo }
+        ],
+        modifiers,
+        initialMonth: this.state.to,
+        fromMonth: this.state.from,
+        toMonth: this.props.toMonth,
+        disabledDays: { after: this.props.toMonth },
+        onDayMouseEnter: this.handleDayMouseEnter
+      },
+      selectedOption
+    };
+  }
 
   mapDateToInputValue = date => format(date, 'YYYY-MM-DD');
 
@@ -391,90 +440,13 @@ class RangeDatePicker extends React.PureComponent {
   fromInputRef = React.createRef();
 
   render() {
-    const modifiers = {
-      [styles['date-picker__day--start']]: this.state.from,
-      [styles['date-picker__day--end']]: this.state.enteredTo,
-      [styles['date-picker__day--monday']]: { daysOfWeek: [1] },
-      [styles['date-picker__day--sunday']]: { daysOfWeek: [0] }
-    };
-
-    const selectedOption = this.getSelectedOption(
-      this.props.options,
-      this.state.selectedItem
-    );
-
-    return (
-      <div>
-        <RangeDatePickerContext.Provider
-          value={{
-            select: {
-              items: this.getSelectOptions(this.props.options),
-              searchProperty: 'label',
-              onItemSelect: this.handleItemSelect,
-              getItemBody: this.getItemBody,
-              error: this.state.error,
-              getSelectedItemBody: selectedItemProps =>
-                this.getSelectedItemBody(selectedItemProps),
-              selected: this.state.selectedItem
-            },
-            inputs: {
-              from: {
-                onChange: this.handleDateFromChange,
-                value: this.state.fromInputValue,
-                ref: this.fromInputRef,
-                fromDate: this.state.from,
-                toDate: this.state.to
-              },
-              to: {
-                onChange: this.handleDateToChangew,
-                value: this.state.toInputValue,
-                onFocus: this.handleDateToInputFocus,
-                fromDate: this.state.from,
-                toDate: this.state.to
-              }
-            },
-            datepickers: {
-              from: {
-                ref: this.datePickerFromRef,
-                onDayClick: this.handleDayClick,
-                selectedDays: [
-                  this.state.from,
-                  { from: this.state.from, to: this.state.enteredTo }
-                ],
-                modifiers,
-                initialMonth: this.state.from || subMonths(new Date(), 1),
-                toMonth: this.state.to || this.props.toMonth,
-                disabledDays: { after: this.props.toMonth },
-                onDayMouseEnter: this.handleDayMouseEnter
-              },
-              to: {
-                ref: this.datePickerToRef,
-                onDayClick: this.handleDayClick,
-                selectedDays: [
-                  this.state.from,
-                  { from: this.state.from, to: this.state.enteredTo }
-                ],
-                modifiers,
-                initialMonth: this.state.to,
-                fromMonth: this.state.from,
-                toMonth: this.props.toMonth,
-                disabledDays: { after: this.props.toMonth },
-                onDayMouseEnter: this.handleDayMouseEnter
-              }
-            },
-            selectedOption
-          }}
-        >
-          {this.props.children}
-        </RangeDatePickerContext.Provider>
-      </div>
-    );
+    return this.props.children(this.getRangePickerApi());
   }
 }
 
 RangeDatePicker.propTypes = {
   onChange: PropTypes.func,
-  children: PropTypes.node,
+  children: PropTypes.func,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,

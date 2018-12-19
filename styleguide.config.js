@@ -84,8 +84,7 @@ module.exports = {
           name: 'DatePicker',
           components: [
             './src/components/DatePicker/DatePicker.js',
-            './src/components/DatePicker/RangeDatePicker.js',
-            './src/components/DatePicker/SelectDatePicker.js'
+            './src/components/DatePicker/RangeDatePicker.js'
           ]
         }
       ]

@@ -1,6 +1,6 @@
 import { DayPickerProps } from 'react-day-picker';
 
-export interface ISelectDatePickerOption {
+export interface IRangeDatePickerOption {
   id: string;
   label: string;
   isManual?: boolean;
@@ -10,30 +10,18 @@ export interface ISelectDatePickerOption {
   }
 }
 
-export interface ISelectDatePickerProps {
-  options: ISelectDatePickerOption[];
-  initialSelectedItemKey?: string;
-  initialFromDate?: Date;
-  initialToDate?: Date;
-  onChange(selected: ISelectDatePickerOption): void;
+export interface IRangeDatePickerChildrenPayload {
+  [k: string]: any;
 }
 
 export interface IRangeDatePickerProps {
-  options: ISelectDatePickerOption[];
+  options: IRangeDatePickerOption[];
   initialSelectedItemKey?: string;
   initialFromDate?: Date;
   initialToDate?: Date;
   toMonth?: Date;
-  onChange(selected: ISelectDatePickerOption): void;
-}
-
-export interface IDatePickerProps {
-  options: ISelectDatePickerOption[];
-  initialSelectedItemKey?: string;
-  initialFromDate?: Date;
-  initialToDate?: Date;
-  toMonth?: Date;
-  onChange(selected: ISelectDatePickerOption): void;
+  onChange(selected: IRangeDatePickerOption): void;
+  children(payload: IRangeDatePickerChildrenPayload): React.ReactNode;
 }
 
 interface RangeDatePickerClass<P> extends React.ComponentClass<P> {
@@ -45,5 +33,5 @@ type RangeDatePickerComponentType<P = {}> = RangeDatePickerClass<P>;
 
 export var DatePicker: React.ComponentType<DayPickerProps>;
 export var RangeDatePicker: RangeDatePickerComponentType<IRangeDatePickerProps>;
+export var RangeDatePickerConsumer: RangeDatePickerComponentType<{}>;
 export var DatePickerRangeCalendarsWrapper: React.ComponentType<{ children: JSX.Element[] }>;
-export var SelectDatePicker: React.ComponentType<ISelectDatePickerProps>;

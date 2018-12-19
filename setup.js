@@ -41,7 +41,6 @@ global.MultiSelect = Components.MultiSelect;
 global.NumericInput = Components.NumericInput;
 global.NumericInputField = Components.NumericInputField;
 global.DatePicker = Components.DatePicker;
-global.SelectDatePicker = Components.SelectDatePicker;
 global.ReactDayPickerDateUtils = Components.ReactDayPickerDateUtils;
 global.RangeDatePicker = Components.RangeDatePicker;
 global.DatePickerRangeSelectInputs = Components.DatePickerRangeSelectInputs;
