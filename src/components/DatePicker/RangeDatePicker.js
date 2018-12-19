@@ -14,7 +14,7 @@ const initialState = {
   from: undefined,
   to: undefined,
   error: null,
-  enteredTo: null
+  enteredTo: undefined
 };
 
 class RangeDatePicker extends React.Component {
@@ -60,17 +60,6 @@ class RangeDatePicker extends React.Component {
     return state;
   };
 
-  getSelectOptions = memoizeOne(options =>
-    options.map(option => ({
-      key: option.id,
-      props: {
-        label: option.label,
-        value: option.id,
-        isManual: option.isManual || false
-      }
-    }))
-  );
-
   getSelectedOption = memoizeOne((options, itemId) =>
     options.find(item => item.id === itemId)
   );
@@ -113,8 +102,6 @@ class RangeDatePicker extends React.Component {
 
     return {
       select: {
-        items: this.getSelectOptions(this.props.options),
-        searchProperty: 'label',
         onItemSelect: this.handleItemSelect,
         getItemBody: this.getItemBody,
         error: this.state.error,
@@ -131,7 +118,7 @@ class RangeDatePicker extends React.Component {
           toDate: this.state.to
         },
         to: {
-          onChange: this.handleDateToChangew,
+          onChange: this.handleDateToChange,
           value: this.state.toInputValue,
           onFocus: this.handleDateToInputFocus,
           fromDate: this.state.from,
@@ -140,7 +127,7 @@ class RangeDatePicker extends React.Component {
       },
       datepickers: {
         from: {
-          ref: this.datePickerFromRef,
+          innerRef: this.datePickerFromRef,
           onDayClick: this.handleDayClick,
           selectedDays: [
             this.state.from,
@@ -148,12 +135,17 @@ class RangeDatePicker extends React.Component {
           ],
           modifiers,
           initialMonth: this.state.from || subMonths(new Date(), 1),
-          toMonth: this.state.to || this.props.toMonth,
+          fromMonth: this.state.from
+            ? subMonths(this.state.from, 1)
+            : subMonths(new Date(), 1),
+          toMonth: this.state.to
+            ? subMonths(this.state.to, 1)
+            : subMonths(new Date(), 1),
           disabledDays: { after: this.props.toMonth },
           onDayMouseEnter: this.handleDayMouseEnter
         },
         to: {
-          ref: this.datePickerToRef,
+          innerRef: this.datePickerToRef,
           onDayClick: this.handleDayClick,
           selectedDays: [
             this.state.from,
@@ -209,9 +201,9 @@ class RangeDatePicker extends React.Component {
     if (this.isSelectingFirstDay(from, to, day)) {
       this.setState({
         from: day,
-        to: null,
+        to: undefined,
         fromInputValue: this.mapDateToInputValue(day),
-        enteredTo: null,
+        enteredTo: undefined,
         error: null
       });
     } else if (
@@ -254,27 +246,34 @@ class RangeDatePicker extends React.Component {
         itemKey
       );
 
-      if (selectedOption === undefined) {
+      if (!selectedOption) {
         return;
       }
 
-      this.setState({ selectedItem: itemKey }, () => {
-        if (!selectedOption.isManual) {
-          const optionsHash = this.props.options.reduce(
-            (acc, option) => ({ ...acc, [option.id]: option }),
-            {}
-          );
-          this.props.onChange(optionsHash[itemKey]);
-        } else {
-          this.props.onChange({
-            ...selectedOption,
-            value: {
-              from: this.state.from,
-              to: this.state.to
-            }
-          });
+      const optionsHash = this.props.options.reduce(
+        (acc, option) => ({ ...acc, [option.id]: option }),
+        {}
+      );
+
+      this.setState(
+        {
+          ...initialState,
+          selectedItem: itemKey
+        },
+        () => {
+          if (!selectedOption.isManual) {
+            this.props.onChange(optionsHash[itemKey]);
+          } else {
+            this.props.onChange({
+              ...selectedOption,
+              value: {
+                from: this.state.from,
+                to: this.state.to
+              }
+            });
+          }
         }
-      });
+      );
     }
   };
 
@@ -287,7 +286,7 @@ class RangeDatePicker extends React.Component {
       from: undefined,
       to: undefined,
       toInputValue: '',
-      enteredTo: null
+      enteredTo: undefined
     };
 
     if (!/^[0-9.-]*$/.test(value)) {
@@ -350,7 +349,7 @@ class RangeDatePicker extends React.Component {
       error: null,
       to: undefined,
       toInputValue: value,
-      enteredTo: null
+      enteredTo: undefined
     };
 
     if (!/^[0-9.-]*$/.test(value)) {

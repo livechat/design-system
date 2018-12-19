@@ -1,19 +1,15 @@
 import * as React from 'react';
 import ReactDayPicker from 'react-day-picker';
-import classNames from 'classnames/bind';
+import cssClassNames from 'classnames/bind';
 import styles from './style.scss';
 import DatePickerNavbar from './DatePickerNavbar';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const baseClass = 'date-picker';
-const cx = classNames.bind(styles);
+const cx = cssClassNames.bind(styles);
 
 class DatePicker extends React.PureComponent {
   datePickerRef = this.props.innerRef || React.createRef();
-
-  handleDayClick = day => {
-    this.props.onDayClick(day);
-  };
 
   renderDay = day => {
     const date = day.getDate();
@@ -29,9 +25,12 @@ class DatePicker extends React.PureComponent {
     const {
       className,
       range,
-      onDayClick,
       toMonth,
       fromMonth,
+      firstDayOfWeek,
+      navbarElement,
+      renderDay,
+      classNames,
       ...restProps
     } = this.props;
 
@@ -70,32 +69,32 @@ class DatePicker extends React.PureComponent {
       disabled: styles[`${baseClass}__day--disabled`],
       outside: styles[`${baseClass}__day--outside`],
       start: styles[`${baseClass}__day--start`],
-      end: styles[`${baseClass}__day--end`]
+      end: styles[`${baseClass}__day--end`],
+      ...classNames
     };
 
     return (
       <ReactDayPicker
-        classNames={datePickerClassNames}
         navbarElement={
-          <DatePickerNavbar
-            classNames={datePickerClassNames}
-            datePickerRef={this.datePickerRef}
-            toMonth={toMonth}
-            fromMonth={fromMonth}
-          />
+          navbarElement || (
+            <DatePickerNavbar
+              classNames={datePickerClassNames}
+              datePickerRef={this.datePickerRef}
+              toMonth={toMonth}
+              fromMonth={fromMonth}
+            />
+          )
         }
-        onDayClick={this.handleDayClick}
+        ref={this.datePickerRef}
+        classNames={datePickerClassNames}
         toMonth={toMonth}
         fromMonth={fromMonth}
-        firstDayOfWeek={1}
-        renderDay={this.renderDay}
-        ref={this.datePickerRef}
+        firstDayOfWeek={firstDayOfWeek || 1}
+        renderDay={renderDay || this.renderDay}
         {...restProps}
       />
     );
   }
 }
 
-export default React.forwardRef((props, ref) => (
-  <DatePicker innerRef={ref} {...props} />
-));
+export default DatePicker;
