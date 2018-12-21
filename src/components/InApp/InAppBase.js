@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import styles from './style.scss';
 import { KeyCodes, KeyNames } from '../../constants/keyCodes';
 import InAppHeader from './InAppHeader';
+import InAppFooter from './InAppFooter';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const baseClass = 'inapp-base';
@@ -73,6 +74,7 @@ class InAppBase extends React.Component {
       children,
       headerAvatar,
       headerFrom,
+      footer,
       title,
       onClose,
       closeOnEscPress,
@@ -100,11 +102,15 @@ class InAppBase extends React.Component {
               ref={this.inAppHeaderRef}
             />
             <div
-              className={mergedClassNames}
+              className={cx({
+                [mergedClassNames]: true,
+                'inapp-container__with_footer': footer
+              })}
               ref={this.inAppBodyRef}
               {...restProps}
             >
-              <div>{children}</div>
+              <div className={cx('inapp-content-container')}>{children}</div>
+              {footer && <InAppFooter>{footer}</InAppFooter>}
             </div>
           </div>
         </div>
@@ -119,7 +125,8 @@ InAppBase.propTypes = {
   headerAvatar: PropTypes.string,
   headerFrom: PropTypes.node,
   onClose: PropTypes.func.isRequired,
-  closeOnEscPress: PropTypes.bool
+  closeOnEscPress: PropTypes.bool,
+  footer: PropTypes.node
 };
 
 export default InAppBase;

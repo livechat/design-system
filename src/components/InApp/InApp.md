@@ -7,11 +7,6 @@ const handleInAppOpen = () => setState({isOpen: true});
 
 const handleInAppClose = () => setState({isOpen: false});
 
-const buttonStyle = {
-  width: '140px',
-  margin: '0 4px'
-};
-
 <div>
   {state.isOpen && (
     <InApp
@@ -19,13 +14,13 @@ const buttonStyle = {
       imageSrc="https://www.livechatinc.com/marketplace/static/livechat-marketplace-e86c9a03661959cd848fb49dde126435.png"
       footer={
         <React.Fragment>
-          <Button style={buttonStyle} size="large" onClick={handleInAppClose}>Secondary</Button>
-          <Button primary style={buttonStyle} size="large" onClick={handleInAppClose}>Primary</Button>
+          <Button fullWidth onClick={handleInAppClose} style={{marginRight: '24px'}}>Remind me later</Button>
+          <Button primary fullWidth onClick={handleInAppClose}>Check it out!</Button>
         </React.Fragment>  
       }
     >
       <h2>InApp Title</h2>
-      <p>InApp content</p>
+      <p>InApp Content</p>
     </InApp>
   )}
   <Button onClick={handleInAppOpen}>Open inApp</Button>

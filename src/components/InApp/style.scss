@@ -9,6 +9,16 @@
   flex-grow: 1;
   min-width: $inapp-min-width;
   max-width: $inapp-max-width;
+
+  &__with_footer {
+    padding-bottom: 94px;
+  }
+}
+
+.inapp-content-container {
+  display: flex;
+  flex-flow: column nowrap;
+  overflow-y: auto;
 }
 
 .inapp-base {
@@ -115,7 +125,6 @@
     flex-grow: 1;
     padding: 32px;
     box-sizing: border-box;
-    background-color: #f8f8fa;
     color: $font-primary-color;
 
     & > * {
@@ -134,9 +143,11 @@
   &__footer {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
-    padding: 16px 20px;
+    justify-content: center;
+    padding: 24px 32px 32px;
     box-sizing: border-box;
+    position: absolute;
+    bottom: 0;
   }
 }
 
