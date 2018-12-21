@@ -27,8 +27,10 @@ class InAppBase extends React.Component {
 
   onDocumentClick = event => {
     if (
-      this.inAppRef.current &&
-      !this.inAppRef.current.contains(event.target)
+      this.inAppHeaderRef.current &&
+      this.inAppBodyRef.current &&
+      !this.inAppHeaderRef.current.contains(event.target) &&
+      !this.inAppBodyRef.current.contains(event.target)
     ) {
       this.handleCloseInApp();
     }
@@ -62,7 +64,8 @@ class InAppBase extends React.Component {
     this.props.onClose();
   };
 
-  inAppRef = React.createRef();
+  inAppHeaderRef = React.createRef();
+  inAppBodyRef = React.createRef();
 
   render() {
     const {
@@ -88,14 +91,21 @@ class InAppBase extends React.Component {
           `${baseClass}__overlay--visible`
         )}
       >
-        <div className={cx('inapp-container')} ref={this.inAppRef}>
-          <InAppHeader
-            avatar={headerAvatar}
-            from={headerFrom}
-            onCloseButtonClick={this.onCloseButtonClick}
-          />
-          <div className={mergedClassNames} {...restProps}>
-            {children}
+        <div className={cx('inapp-container')}>
+          <div>
+            <InAppHeader
+              avatar={headerAvatar}
+              from={headerFrom}
+              onCloseButtonClick={this.onCloseButtonClick}
+              ref={this.inAppHeaderRef}
+            />
+            <div
+              className={mergedClassNames}
+              ref={this.inAppBodyRef}
+              {...restProps}
+            >
+              {children}
+            </div>
           </div>
         </div>
       </div>

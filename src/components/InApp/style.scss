@@ -1,26 +1,32 @@
 @import '../../scss/variables/colors';
+@import '../../scss/variables/inApp';
 
 .inapp-container {
   display: flex;
   flex-flow: column wrap;
-  justify-content: flex-end;
-  align-items: baseline;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  min-width: $inapp-min-width;
+  max-width: $inapp-max-width;
 }
 
 .inapp-base {
   position: relative;
   display: flex;
-  flex-direction: column;
-  margin: 10px;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
   border-radius: 4px;
   box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.3);
   overflow: auto;
   background-color: #fff;
   color: $font-primary-color;
-  max-width: 800px;
-  min-width: 320px;
-  max-height: 572px;
-  min-height: 400px;
+  min-height: $inapp-min-height;
+  max-height: $inapp-max-height;
+  min-width: $inapp-min-width;
+  max-width: $inapp-max-width;
 
   &__overlay {
     position: fixed;
@@ -73,10 +79,11 @@
     color: #fff;
     box-sizing: border-box;
     margin: 0;
-    padding: 0 6px 0 10px;
     display: flex;
     flex-flow: row wrap;
     align-items: center;
+    min-width: $inapp-min-width;
+    max-width: $inapp-max-width;
 
     &__avatar {
       width: 40px;
@@ -91,6 +98,14 @@
     font-size: 16px;
     text-align: left;
     flex-grow: 3;
+  }
+
+  &__image {
+    img {
+      max-width: $inapp-max-width;
+      max-height: $inapp-max-height / 2;
+      margin: 0 auto;
+    }
   }
 
   &__body {

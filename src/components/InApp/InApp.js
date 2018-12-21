@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import InAppBase from './InAppBase';
-import InAppHeader from './InAppHeader';
+import InAppImage from './InAppImage';
 import InAppBody from './InAppBody';
 import InAppFooter from './InAppFooter';
 import styles from './style.scss';
@@ -10,7 +10,14 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 const baseClass = 'inapp';
 
 const InApp = props => {
-  const { footer, children, className, ...restProps } = props;
+  const {
+    imageSrc,
+    imageAlt,
+    footer,
+    children,
+    className,
+    ...restProps
+  } = props;
 
   const mergedClassNames = getMergedClassNames(
     styles[`${baseClass}`],
@@ -19,6 +26,7 @@ const InApp = props => {
 
   return (
     <InAppBase className={mergedClassNames} {...restProps}>
+      {imageSrc && <InAppImage src={imageSrc} alt={imageAlt} />}
       <InAppBody>{children}</InAppBody>
       <InAppFooter>{footer}</InAppFooter>
     </InAppBase>
@@ -27,6 +35,8 @@ const InApp = props => {
 
 InApp.propTypes = {
   ...InAppBase.propTypes,
+  imageSrc: PropTypes.string,
+  imageAlt: PropTypes.string,
   heading: PropTypes.node,
   footer: PropTypes.node.isRequired
 };

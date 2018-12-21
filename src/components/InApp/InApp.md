@@ -16,6 +16,7 @@ const buttonStyle = {
   {state.isOpen && (
     <InApp
       onClose={handleInAppClose}
+      imageSrc="https://www.livechatinc.com/marketplace/static/livechat-marketplace-e86c9a03661959cd848fb49dde126435.png"
       footer={
         <React.Fragment>
           <Button style={buttonStyle} size="large" onClick={handleInAppClose}>Secondary</Button>
@@ -23,7 +24,8 @@ const buttonStyle = {
         </React.Fragment>  
       }
     >
-      InApp content
+      <h2>InApp Title</h2>
+      <p>InApp content</p>
     </InApp>
   )}
   <Button onClick={handleInAppOpen}>Open inApp</Button>
