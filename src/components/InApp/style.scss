@@ -19,6 +19,7 @@
   display: flex;
   flex-flow: column nowrap;
   overflow-y: auto;
+  align-items: center;
 }
 
 .inapp-base {
@@ -119,6 +120,7 @@
 
   &__body {
     width: 100%;
+    max-width: $inapp-content-max-width;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -126,6 +128,7 @@
     padding: 32px;
     box-sizing: border-box;
     color: $font-primary-color;
+    text-align: center;
 
     & > * {
       margin: 12px 0;
@@ -138,12 +141,18 @@
         margin: 12px 0 0 0;
       }
     }
+
+    & > p {
+      text-align: justify;
+    }
   }
 
   &__footer {
     width: 100%;
+    max-width: $inapp-content-max-width;
     display: flex;
     justify-content: center;
+    align-self: center;
     padding: 24px 32px 32px;
     box-sizing: border-box;
     position: absolute;
