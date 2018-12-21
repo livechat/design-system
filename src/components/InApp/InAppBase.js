@@ -104,7 +104,7 @@ class InAppBase extends React.Component {
               ref={this.inAppBodyRef}
               {...restProps}
             >
-              {children}
+              <div>{children}</div>
             </div>
           </div>
         </div>

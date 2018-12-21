@@ -15,8 +15,6 @@
   position: relative;
   display: flex;
   flex-flow: column wrap;
-  align-items: center;
-  justify-content: center;
   margin: 10px 0;
   border-radius: 4px;
   box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.3);
@@ -102,6 +100,7 @@
   }
 
   &__image {
+    text-align: center;
     img {
       max-width: $inapp-max-width;
       max-height: $inapp-max-height / 2;
@@ -114,10 +113,22 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    padding: 20px;
+    padding: 32px;
     box-sizing: border-box;
     background-color: #f8f8fa;
     color: $font-primary-color;
+
+    & > * {
+      margin: 12px 0;
+
+      &:first-child {
+        margin: 0 0 12px 0;
+      }
+
+      &:last-child {
+        margin: 12px 0 0 0;
+      }
+    }
   }
 
   &__footer {
