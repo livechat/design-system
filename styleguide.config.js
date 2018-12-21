@@ -125,6 +125,9 @@ module.exports = {
         <style>
           body {
             font-family: 'Source Sans Pro',-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif;
+            font-size: 15px;
+            line-height: 22px;
+            font-weight: 400;
           }
           *[class^="lc-"] {
             box-sizing: border-box;

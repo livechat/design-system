@@ -1,6 +1,6 @@
 ```js
 initialState = {
-  isOpen: true // TODO false
+  isOpen: false
 };
 
 const handleInAppOpen = () => setState({isOpen: true});
@@ -12,6 +12,12 @@ const handleInAppClose = () => setState({isOpen: false});
     <InApp
       onClose={handleInAppClose}
       imageSrc="https://cdn.livechat-static.com/api/file/v2/lc/att-old/8656216/fe28d6850106f65c9207f3dcea091099/product-cards-shopify-preview.gif"
+      headerAvatar={"https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"}
+      headerFrom={
+        <React.Fragment>
+            <strong>Michał</strong> from LiveChat
+        </React.Fragment>
+      }
       footer={
         <React.Fragment>
           <Button fullWidth onClick={handleInAppClose} style={{marginRight: '24px'}}>Remind me later</Button>
@@ -21,8 +27,6 @@ const handleInAppClose = () => setState({isOpen: false});
     >
       <h2>Product Cards for Shopify</h2>
       <p>Sync LiveChat with your Shopify products and send the Product Cards via chat. Save time on searching for links to products and see customers buy more at your store.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pulvinar ultricies mi at dapibus. In convallis, urna id aliquet iaculis, lectus tellus molestie lacus, quis fermentum risus enim tristique ligula. Ut dapibus magna nulla, molestie ultricies metus placerat a. Donec molestie neque nec sollicitudin porta. Donec sed pulvinar ante. Mauris nec leo quis diam vestibulum auctor sed at nunc. Donec in cursus orci. Suspendisse in dictum ipsum, eu fringilla ligula. Proin sollicitudin id risus in elementum. Sed magna diam, gravida eget suscipit quis, feugiat ut lectus. Nulla bibendum felis accumsan odio suscipit, nec venenatis libero tempor. Fusce a orci sed nulla convallis aliquet rhoncus in dolor. Nam congue augue at eleifend pellentesque.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pulvinar ultricies mi at dapibus. In convallis, urna id aliquet iaculis, lectus tellus molestie lacus, quis fermentum risus enim tristique ligula. Ut dapibus magna nulla, molestie ultricies metus placerat a. Donec molestie neque nec sollicitudin porta. Donec sed pulvinar ante. Mauris nec leo quis diam vestibulum auctor sed at nunc. Donec in cursus orci. Suspendisse in dictum ipsum, eu fringilla ligula. Proin sollicitudin id risus in elementum. Sed magna diam, gravida eget suscipit quis, feugiat ut lectus. Nulla bibendum felis accumsan odio suscipit, nec venenatis libero tempor. Fusce a orci sed nulla convallis aliquet rhoncus in dolor. Nam congue augue at eleifend pellentesque.</p>
     </InApp>
   )}
   <Button onClick={handleInAppOpen}>Open inApp</Button>
