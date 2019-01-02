@@ -28,6 +28,7 @@ class DatePicker extends React.PureComponent {
       toMonth,
       fromMonth,
       firstDayOfWeek,
+      numberOfMonths,
       navbarElement,
       renderDay,
       classNames,
@@ -80,6 +81,7 @@ class DatePicker extends React.PureComponent {
             <DatePickerNavbar
               classNames={datePickerClassNames}
               datePickerRef={this.datePickerRef}
+              numberOfMonths={numberOfMonths}
               toMonth={toMonth}
               fromMonth={fromMonth}
             />
@@ -87,6 +89,7 @@ class DatePicker extends React.PureComponent {
         }
         ref={this.datePickerRef}
         classNames={datePickerClassNames}
+        numberOfMonths={numberOfMonths}
         toMonth={toMonth}
         fromMonth={fromMonth}
         firstDayOfWeek={firstDayOfWeek || 1}

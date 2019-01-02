@@ -13,6 +13,15 @@ $base-class: 'date-picker';
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    border: 1px solid transparent;
+    transition: 0.2s border-color ease-in-out;
+
+    &:focus {
+      outline: none;
+      border: 1px solid $primary-color;
+      transition: 0.2s border-color ease-in-out;
+      border-radius: 4px;
+    }
   }
 
   &__months {
@@ -44,12 +53,20 @@ $base-class: 'date-picker';
     display: flex;
     align-content: center;
     background-color: transparent;
-    border: none;
     padding: 0;
     cursor: pointer;
+    border: 1px solid transparent;
+    transition: 0.2s border-color ease-in-out;
 
     &:hover {
       color: $hover-primary-color;
+    }
+
+    &:focus {
+      outline: none;
+      border: 1px solid $primary-color;
+      transition: 0.2s border-color ease-in-out;
+      border-radius: 4px;
     }
 
     &--interaction-disabled {
@@ -117,6 +134,15 @@ $base-class: 'date-picker';
     font-size: 14px;
     width: 18px;
     height: 18px;
+
+    &:focus {
+      outline: none;
+
+      .#{$base-class}__day-content {
+        box-shadow: 0 0 0 1px $primary-color;
+        border-radius: 50%;
+      }
+    }
 
     &-wrapper {
       margin: 1px 0;

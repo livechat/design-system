@@ -23,17 +23,7 @@ const getSelectedItemBody = (props, inputs) => {
   if (props.isManual) {
     return (
       <DatePickerRangeSelectInputs
-        from={{
-          onChange: inputs.from.onChange,
-          value: inputs.from.value,
-          ref: inputs.from.ref
-        }}
-        to={{
-          onChange: inputs.to.onChange,
-          value: inputs.to.value,
-          onFocus: inputs.to.onFocus,
-          fromDate: inputs.to.fromDate
-        }}
+        {...inputs}
       />
     );
   }
@@ -95,10 +85,7 @@ const getItemBody = props => (
         />
         {selectedOption && selectedOption.isManual ? (
           <DatePickerRangeCalendarsWrapper>
-            <div style={{ borderRight: '1px solid #e7e8e9', paddingRight: '14px' }}>
-              <DatePicker {...datepicker} />
-            </div>
-
+            <DatePicker {...datepicker} />
           </DatePickerRangeCalendarsWrapper>
         ) : null}
       </React.Fragment>

@@ -1,6 +1,13 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { format, isFuture, isAfter, isSameDay, subMonths } from 'date-fns';
+import {
+  format,
+  isFuture,
+  isAfter,
+  isSameDay,
+  subMonths,
+  isSameMonth
+} from 'date-fns';
 import { DateUtils } from 'react-day-picker';
 import memoizeOne from 'memoize-one';
 import styles from './style.scss';
@@ -30,6 +37,7 @@ class RangeDatePicker extends React.Component {
 
   getStateFromInitialPropsValues = props => {
     const state = {};
+
     if (props.initialSelectedItemKey) {
       const selectedItem = this.getSelectedOption(
         props.options,
@@ -83,19 +91,18 @@ class RangeDatePicker extends React.Component {
         selected: this.state.selectedItem
       },
       inputs: {
+        fromDate: state.from,
+        toDate: state.to,
         from: {
           onChange: this.handleDateFromChange,
           value: state.fromInputValue,
-          ref: this.fromInputRef,
-          fromDate: state.from,
-          toDate: state.to
+          ref: this.fromInputRef
         },
         to: {
           onChange: this.handleDateToChange,
           value: state.toInputValue,
           onFocus: this.handleDateToInputFocus,
-          fromDate: state.from,
-          toDate: state.to
+          ref: this.toInputRef
         }
       },
       datepicker: {
@@ -122,13 +129,21 @@ class RangeDatePicker extends React.Component {
     }
 
     if (this.isSelectingFirstDay(from, to, day)) {
-      this.setState({
-        from: day,
-        to: undefined,
-        fromInputValue: this.mapDateToInputValue(day),
-        enteredTo: undefined,
-        error: null
-      });
+      this.setState(
+        {
+          from: day,
+          to: undefined,
+          fromInputValue: this.mapDateToInputValue(day),
+          toInputValue: '',
+          enteredTo: undefined,
+          error: null
+        },
+        () => {
+          if (this.toInputRef.current) {
+            this.toInputRef.current.focus();
+          }
+        }
+      );
     } else if (
       isSameDay(day, this.state.from) ||
       isAfter(day, this.state.from)
@@ -238,7 +253,7 @@ class RangeDatePicker extends React.Component {
           from: new Date(value)
         },
         () => {
-          this.datePickerRef.current.showMonth(this.state.from);
+          this.showDatepickerMonth(this.state.from);
         }
       );
     }
@@ -249,7 +264,7 @@ class RangeDatePicker extends React.Component {
         from: new Date(value)
       },
       () => {
-        this.datePickerRef.current.showMonth(this.state.from);
+        this.showDatepickerMonth(this.state.from);
         const selectedOption = this.getSelectedOption(
           this.props.options,
           this.state.selectedItem
@@ -307,7 +322,7 @@ class RangeDatePicker extends React.Component {
           enteredTo: new Date(value)
         },
         () => {
-          this.datePickerRef.current.showMonth(this.state.to);
+          this.showDatepickerMonth(this.state.to);
         }
       );
     }
@@ -319,7 +334,7 @@ class RangeDatePicker extends React.Component {
         enteredTo: new Date(value)
       },
       () => {
-        this.datePickerRef.current.showMonth(this.state.to);
+        this.showDatepickerMonth(this.state.to);
         const selectedOption = this.getSelectedOption(
           this.props.options,
           this.state.selectedItem
@@ -354,6 +369,14 @@ class RangeDatePicker extends React.Component {
     const isBeforeFirstDay = from && DateUtils.isDayBefore(day, from);
     const isRangeSelected = from && to;
     return !from || isBeforeFirstDay || isRangeSelected;
+  };
+
+  showDatepickerMonth = date => {
+    if (this.props.toMonth && isSameMonth(date, this.props.toMonth)) {
+      this.datePickerRef.current.showMonth(subMonths(date, 1));
+    } else {
+      this.datePickerRef.current.showMonth(date);
+    }
   };
 
   datePickerRef = React.createRef();

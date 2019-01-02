@@ -1,6 +1,11 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { subMonths, addMonths, differenceInCalendarMonths } from 'date-fns';
+import {
+  subMonths,
+  addMonths,
+  differenceInCalendarMonths,
+  isSameMonth
+} from 'date-fns';
 import ChevronLeftIcon from 'react-material-icon-svg/dist/ChevronLeftIcon';
 import ChevronRightIcon from 'react-material-icon-svg/dist/ChevronRightIcon';
 import ChevronDoubleLeftIcon from 'react-material-icon-svg/dist/ChevronDoubleLeftIcon';
@@ -16,6 +21,7 @@ const DatePickerNavbar = props => {
     showPreviousButton,
     className,
     classNames,
+    numberOfMonths,
     datePickerRef,
     month,
     fromMonth,
@@ -48,6 +54,10 @@ const DatePickerNavbar = props => {
       month,
       !Number.isNaN(diff) && diff > 12 ? 12 : diff
     );
+
+    if (numberOfMonths === 2 && isSameMonth(newMonth, toMonth)) {
+      return datePickerRef.current.showMonth(subMonths(newMonth, 1));
+    }
     return datePickerRef.current.showMonth(newMonth);
   };
 
@@ -109,7 +119,8 @@ DatePickerNavbar.propTypes = {
   classNames: PropTypes.objectOf(PropTypes.string),
   datePickerRef: PropTypes.shape({
     current: PropTypes.instanceOf(DayPicker)
-  })
+  }),
+  numberOfMonths: PropTypes.number
 };
 
 export default DatePickerNavbar;

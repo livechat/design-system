@@ -9,42 +9,38 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 const baseClass = 'date-picker--range';
 
 const DatePickerRangeSelectInputs = props => {
-  const {
-    from: { fromDate: fromDate2, toDate: toDate2, ...fromInputProps },
-    to: { fromDate, toDate, ...toInputProps },
-    ...restProps
-  } = props;
+  const { fromDate, toDate, from, to, ...restProps } = props;
 
   return (
     <div {...restProps}>
       <Input
-        {...fromInputProps}
+        {...from}
         className={getMergedClassNames(
           cx(
             styles[`${baseClass}__select-input`],
             styles[`${baseClass}__select-input--from`]
           ),
-          fromInputProps.className
+          from.className
         )}
         tabIndex={0}
-        size={fromInputProps.size || 10}
-        placeholder={fromInputProps.placeholder || 'YYYY-MM-DD'}
-        onClick={callAll(e => e.stopPropagation(), fromInputProps.onClose)}
+        size={from.size || 10}
+        placeholder={from.placeholder || 'YYYY-MM-DD'}
+        onClick={callAll(e => e.stopPropagation(), from.onClose)}
       />
       <span> &mdash; </span>
       <Input
-        {...toInputProps}
+        {...to}
         className={getMergedClassNames(
           cx(
             styles[`${baseClass}__select-input`],
             styles[`${baseClass}__select-input--to`]
           ),
-          toInputProps.className
+          to.className
         )}
-        size={toInputProps.size || 10}
+        size={to.size || 10}
         tabIndex={fromDate === undefined ? -1 : 0}
-        placeholder={toInputProps.placeholder || 'YYYY-MM-DD'}
-        onClick={callAll(e => e.stopPropagation(), toInputProps.onClose)}
+        placeholder={to.placeholder || 'YYYY-MM-DD'}
+        onClick={callAll(e => e.stopPropagation(), to.onClose)}
       />
     </div>
   );

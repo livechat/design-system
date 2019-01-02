@@ -35,8 +35,6 @@ interface IRangeDatePickerChildrenPayloadInput {
     current: HTMLElement;
   };
   value: string;
-  fromDate: Date;
-  toDate: Date;
   onFocus?(e: React.FocusEvent<HTMLInputElement>): void;
   onChange(e: React.ChangeEvent<HTMLInputElement>): void;
 }
@@ -44,6 +42,8 @@ interface IRangeDatePickerChildrenPayloadInput {
 export interface IRangeDatePickerChildrenPayload {
   select: IRangeDatePickerChildrenPayloadSelect;
   inputs: {
+    fromDate: Date;
+    toDate: Date;
     from: IRangeDatePickerChildrenPayloadInput;
     to: IRangeDatePickerChildrenPayloadInput;
   };
