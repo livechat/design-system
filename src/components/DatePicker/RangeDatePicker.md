@@ -33,9 +33,7 @@ const selectItems = [
             <div style={{ borderRight: '1px solid #e7e8e9', paddingRight: '14px' }}>
               <DatePicker {...datepickers.from} />
             </div>
-            <div style={{ paddingLeft: '14px' }}>
-              <DatePicker {...datepickers.to} />
-            </div>
+
           </DatePickerRangeCalendarsWrapper>
         ) : null}
       </React.Fragment>

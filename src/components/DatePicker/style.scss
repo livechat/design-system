@@ -251,7 +251,25 @@ $base-class: 'date-picker';
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding: 16px 0;
+
+      .#{$base-class}__months {
+        margin: 0 -12px;
+        flex-wrap: nowrap;
+
+        &::before {
+          content: '';
+          width: 1px;
+          height: 100%;
+          top: 0;
+          left: 50%;
+          background-color: #e7e8e9;
+          position: absolute;
+        }
+      }
+
+      .#{$base-class}__month {
+        padding: 0 12px;
+      }
     }
   }
 }

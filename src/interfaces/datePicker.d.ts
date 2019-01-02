@@ -1,5 +1,4 @@
 import { DayPickerProps } from 'react-day-picker';
-import { ISelectProps } from './forms';
 
 export interface IDatePickerProps extends DayPickerProps {}
 
@@ -15,43 +14,38 @@ export interface IRangeDatePickerOption {
 
 interface IRangeDatePickerChildrenPayloadDatePicker {
   innerRef: React.Ref<Element>;
-  onDayClick(day: Date): void;
-  selectedDays?: DayPickerProps['selectedDays'];
   modifiers?: DayPickerProps['modifiers'];
   initialMonth?: Date;
   fromMonth?: Date;
   toMonth?: Date;
+  selectedDays?: DayPickerProps['selectedDays'];
   disabledDays?: DayPickerProps['disabledDays'];
   onDayMouseEnter: DayPickerProps['onDayMouseEnter'];
+  onDayClick(day: Date): void;
 }
 
 interface IRangeDatePickerChildrenPayloadSelect {
   selected: string | number;
   error?: string;
-  getItemBody(props: { [key: string]: any }): React.ReactNode;
-  getSelectedItemBody(props: { [key: string]: any }): React.ReactNode;
   onItemSelect(itemKey: string | number): void;
+}
+
+interface IRangeDatePickerChildrenPayloadInput {
+  ref?: {
+    current: HTMLElement;
+  };
+  value: string;
+  fromDate: Date;
+  toDate: Date;
+  onFocus?(e: React.FocusEvent<HTMLInputElement>): void;
+  onChange(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
 export interface IRangeDatePickerChildrenPayload {
   select: IRangeDatePickerChildrenPayloadSelect;
   inputs: {
-    from: {
-      onChange(e: React.ChangeEvent<HTMLInputElement>): void;
-      value: string;
-      ref: {
-        current: HTMLElement;
-      };
-      fromDate: Date;
-      toDate: Date;
-    };
-    to: {
-      onChange(e: React.ChangeEvent<HTMLInputElement>): void;
-      value: string;
-      onFocus(e: React.FocusEvent<HTMLInputElement>): void;
-      fromDate: Date;
-      toDate: Date;
-    };
+    from: IRangeDatePickerChildrenPayloadInput;
+    to: IRangeDatePickerChildrenPayloadInput;
   };
   datepickers: {
     from: IRangeDatePickerChildrenPayloadDatePicker;
@@ -90,4 +84,4 @@ interface IDatePickerRangeSelectInputsProps extends React.HTMLAttributes<HTMLDiv
 export var DatePicker: React.ComponentType<IDatePickerProps>;
 export var RangeDatePicker: RangeDatePickerComponentType<IRangeDatePickerProps>;
 export var DatePickerRangeSelectInputs: React.ComponentType<IDatePickerRangeSelectInputsProps>;
-export var DatePickerRangeCalendarsWrapper: React.ComponentType<{ children: JSX.Element[] }>;
+export var DatePickerRangeCalendarsWrapper: React.ComponentType<{ children: React.ReactNode }>;

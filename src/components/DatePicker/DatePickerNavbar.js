@@ -26,15 +26,29 @@ const DatePickerNavbar = props => {
   const handleNextClick = () => onNextClick();
 
   const handlePrevYearClick = () => {
+    if (!fromMonth) {
+      const newMonth = subMonths(month, 12);
+      return datePickerRef.current.showMonth(newMonth);
+    }
     const diff = Math.abs(differenceInCalendarMonths(month, fromMonth));
-    const newMonth = subMonths(month, diff > 12 ? 12 : diff);
-    datePickerRef.current.showMonth(newMonth);
+    const newMonth = subMonths(
+      month,
+      !Number.isNaN(diff) && diff > 12 ? 12 : diff
+    );
+    return datePickerRef.current.showMonth(newMonth);
   };
 
   const handleNextYearClick = () => {
+    if (!toMonth) {
+      const newMonth = addMonths(month, 12);
+      return datePickerRef.current.showMonth(newMonth);
+    }
     const diff = Math.abs(differenceInCalendarMonths(toMonth, month));
-    const newMonth = addMonths(month, diff > 12 ? 12 : diff);
-    datePickerRef.current.showMonth(newMonth);
+    const newMonth = addMonths(
+      month,
+      !Number.isNaN(diff) && diff > 12 ? 12 : diff
+    );
+    return datePickerRef.current.showMonth(newMonth);
   };
 
   return (
