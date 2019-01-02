@@ -47,10 +47,7 @@ export interface IRangeDatePickerChildrenPayload {
     from: IRangeDatePickerChildrenPayloadInput;
     to: IRangeDatePickerChildrenPayloadInput;
   };
-  datepickers: {
-    from: IRangeDatePickerChildrenPayloadDatePicker;
-    to: IRangeDatePickerChildrenPayloadDatePicker;
-  };
+  datepicker: IRangeDatePickerChildrenPayloadDatePicker;
   [k: string]: any;
 }
 

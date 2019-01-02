@@ -98,28 +98,16 @@ class RangeDatePicker extends React.Component {
           toDate: state.to
         }
       },
-      datepickers: {
-        from: {
-          innerRef: this.datePickerFromRef,
-          numberOfMonths: 2,
-          onDayClick: this.handleDayClick,
-          selectedDays: [state.from, { from: state.from, to: state.enteredTo }],
-          modifiers,
-          initialMonth: state.from || subMonths(new Date(), 1),
-          toMonth: props.toMonth,
-          disabledDays: { after: props.toMonth },
-          onDayMouseEnter: this.handleDayMouseEnter
-        },
-        to: {
-          innerRef: this.datePickerToRef,
-          onDayClick: this.handleDayClick,
-          selectedDays: [state.from, { from: state.from, to: state.enteredTo }],
-          modifiers,
-          initialMonth: state.to,
-          toMonth: props.toMonth,
-          disabledDays: { after: props.toMonth },
-          onDayMouseEnter: this.handleDayMouseEnter
-        }
+      datepicker: {
+        innerRef: this.datePickerRef,
+        numberOfMonths: 2,
+        onDayClick: this.handleDayClick,
+        selectedDays: [state.from, { from: state.from, to: state.enteredTo }],
+        modifiers,
+        initialMonth: state.from || subMonths(new Date(), 1),
+        toMonth: props.toMonth,
+        disabledDays: { after: props.toMonth },
+        onDayMouseEnter: this.handleDayMouseEnter
       },
       selectedOption
     };
@@ -250,7 +238,7 @@ class RangeDatePicker extends React.Component {
           from: new Date(value)
         },
         () => {
-          this.datePickerFromRef.current.showMonth(this.state.from);
+          this.datePickerRef.current.showMonth(this.state.from);
         }
       );
     }
@@ -261,7 +249,7 @@ class RangeDatePicker extends React.Component {
         from: new Date(value)
       },
       () => {
-        this.datePickerFromRef.current.showMonth(this.state.from);
+        this.datePickerRef.current.showMonth(this.state.from);
         const selectedOption = this.getSelectedOption(
           this.props.options,
           this.state.selectedItem
@@ -319,7 +307,7 @@ class RangeDatePicker extends React.Component {
           enteredTo: new Date(value)
         },
         () => {
-          this.datePickerToRef.current.showMonth(this.state.to);
+          this.datePickerRef.current.showMonth(this.state.to);
         }
       );
     }
@@ -331,7 +319,7 @@ class RangeDatePicker extends React.Component {
         enteredTo: new Date(value)
       },
       () => {
-        this.datePickerToRef.current.showMonth(this.state.to);
+        this.datePickerRef.current.showMonth(this.state.to);
         const selectedOption = this.getSelectedOption(
           this.props.options,
           this.state.selectedItem
@@ -368,8 +356,7 @@ class RangeDatePicker extends React.Component {
     return !from || isBeforeFirstDay || isRangeSelected;
   };
 
-  datePickerFromRef = React.createRef();
-  datePickerToRef = React.createRef();
+  datePickerRef = React.createRef();
   toInputRef = React.createRef();
   fromInputRef = React.createRef();
 
