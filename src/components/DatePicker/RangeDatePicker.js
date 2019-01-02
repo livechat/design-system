@@ -98,7 +98,7 @@ class RangeDatePicker extends React.Component {
           toDate: state.to
         }
       },
-      datepicker: {
+      datepickers: {
         from: {
           innerRef: this.datePickerFromRef,
           numberOfMonths: 2,
