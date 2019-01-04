@@ -19,6 +19,23 @@ const selectItems = options.map(option => ({
   }
 }));
 
+const SelectItem = props => (
+  <div 
+      style={{
+        width: '100%',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'nowrap',
+        display: 'inline-block',
+        fontSize: '14px',
+        lineHeight: 1.2
+      }}
+      id={props.id}
+    >
+      {props.children}
+    </div>
+)
+
 const getSelectedItemBody = (props, inputs) => {
   if (props.isManual) {
     return (
@@ -27,40 +44,10 @@ const getSelectedItemBody = (props, inputs) => {
       />
     );
   }
-  return (
-    <div 
-      style={{
-        width: '100%',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        display: 'inline-block',
-        fontSize: '14px',
-        lineHeight: 1.2
-      }}
-      id={props.value}
-    >
-      {props.label}
-    </div>
-  );
+  return <SelectItem id={props.value}>{props.label}</SelectItem>
 };
 
-const getItemBody = props => (
-    <div 
-      style={{
-        width: '100%',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        display: 'inline-block',
-        fontSize: '14px',
-        lineHeight: 1.2
-      }}
-      id={props.value}
-    >
-      {props.label}
-    </div>
-  );
+const getItemBody = props => <SelectItem id={props.value}>{props.label}</SelectItem>;
 
 <div style={{ width: '550px' }}>
   <RangeDatePicker

@@ -20,7 +20,7 @@ const handleDayClick = (day) => {
 initialState = {
   from: null,
   to: null,
-  enteredTo: null, // Keep track of the last day for mouseEnter.
+  enteredTo: null
 };
 
 function isSelectingFirstDay(from, to, day) {
@@ -31,7 +31,7 @@ function isSelectingFirstDay(from, to, day) {
 function handleDayClick(day) {
   const { from, to } = state;
   if (from && to && day >= from && day <= to) {
-    handleResetClick();
+    setState({...initialState});
     return;
   }
   if (isSelectingFirstDay(from, to, day)) {
@@ -55,18 +55,6 @@ function handleDayMouseEnter(day) {
     });
   }
 }
-function handleResetClick() {
-  setState({...initialState});
-}
-
-// const handleDayClick = (day, second) => {
-//   console.log(day, second)
-//   setState({
-//     selectedDate: day
-//   }, () => {
-//     console.log(state.selectedDate)
-//   })
-// };
 
 <div>
   <DatePicker

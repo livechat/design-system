@@ -15,8 +15,6 @@ const InputField = React.forwardRef((props, ref) => {
     ...restProps
   } = props;
 
-  console.log('render', props.value);
-
   return (
     <TextField
       inline={inline}
