@@ -6,9 +6,9 @@ import {
   isAfter,
   isSameDay,
   subMonths,
-  isSameMonth
+  isSameMonth,
+  differenceInCalendarDays
 } from 'date-fns';
-import { DateUtils } from 'react-day-picker';
 import memoizeOne from 'memoize-one';
 import styles from './style.scss';
 import { isValidDateFormat, isDateWithinRange } from './helpers';
@@ -366,7 +366,8 @@ class RangeDatePicker extends React.Component {
   };
 
   isSelectingFirstDay = (from, to, day) => {
-    const isBeforeFirstDay = from && DateUtils.isDayBefore(day, from);
+    const isBeforeFirstDay =
+      from && Math.abs(differenceInCalendarDays(day, from)) > 0;
     const isRangeSelected = from && to;
     return !from || isBeforeFirstDay || isRangeSelected;
   };

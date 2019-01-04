@@ -40,7 +40,6 @@ export { MultiSelect, MultiSelectField } from './MultiSelectField';
 export { NumericInput, NumericInputField } from './NumericInputField';
 export {
   DatePicker,
-  ReactDayPickerDateUtils,
   RangeDatePicker,
   DatePickerRangeSelectInputs,
   DatePickerRangeCalendarsWrapper

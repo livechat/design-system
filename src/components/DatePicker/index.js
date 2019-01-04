@@ -1,5 +1,4 @@
 export { default as DatePicker } from './DatePicker';
-export { DateUtils as ReactDayPickerDateUtils } from 'react-day-picker';
 export {
   default as DatePickerRangeSelectInputs
 } from './DatePickerRangeSelectInputs';

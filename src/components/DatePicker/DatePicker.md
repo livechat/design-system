@@ -24,7 +24,7 @@ initialState = {
 };
 
 function isSelectingFirstDay(from, to, day) {
-  const isBeforeFirstDay = from && ReactDayPickerDateUtils.isDayBefore(day, from);
+  const isBeforeFirstDay = from && Math.abs(DateFns.differenceInCalendarDays(day, from)) > 0;
   const isRangeSelected = from && to;
   return !from || isBeforeFirstDay || isRangeSelected;
 }
