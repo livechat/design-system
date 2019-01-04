@@ -1,3 +1,8 @@
+<h3>Range date picker</h3>
+
+RangeDatePicker uses renderer pattern. It's uncontrolled and manages state by itself. Developer can decide what children it should use.
+
+
 ```js
 const handleChange = value => {
   console.log(value);

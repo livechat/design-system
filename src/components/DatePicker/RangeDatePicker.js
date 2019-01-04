@@ -366,8 +366,7 @@ class RangeDatePicker extends React.Component {
   };
 
   isSelectingFirstDay = (from, to, day) => {
-    const isBeforeFirstDay =
-      from && Math.abs(differenceInCalendarDays(day, from)) > 0;
+    const isBeforeFirstDay = from && differenceInCalendarDays(day, from) < 0;
     const isRangeSelected = from && to;
     return !from || isBeforeFirstDay || isRangeSelected;
   };
