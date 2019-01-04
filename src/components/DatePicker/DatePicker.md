@@ -34,7 +34,6 @@ initialState = {
 };
 
 function isSelectingFirstDay(from, to, day) {
-  console.log(day, from, DateFns.differenceInCalendarDays(day, from));
   const isBeforeFirstDay = from && DateFns.differenceInCalendarDays(day, from) < 0;
   const isRangeSelected = from && to;
   return !from || isBeforeFirstDay || isRangeSelected;
