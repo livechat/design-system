@@ -8,6 +8,11 @@ initialState = {
   selectedDate: null
 };
 
+const modifiers = {
+  ['lc-date-picker__day--start']: state.selectedDate,
+  ['lc-date-picker__day--end']: state.selectedDate
+};
+
 const handleDayClick = (day) => {
   setState({
     selectedDate: day
@@ -17,7 +22,7 @@ const handleDayClick = (day) => {
 };
 
 <div>
-  <DatePicker onDayClick={handleDayClick} selectedDays={state.selectedDate}/>
+  <DatePicker onDayClick={handleDayClick} modifiers={modifiers} selectedDays={state.selectedDate}/>
 </div>
 ```
 
@@ -62,13 +67,20 @@ function handleDayMouseEnter(day) {
   }
 }
 
+const modifiers = {
+  ['lc-date-picker__day--start']: state.from,
+  ['lc-date-picker__day--end']: state.enteredTo,
+  ['lc-date-picker__day--monday']: { daysOfWeek: [1] },
+  ['lc-date-picker__day--sunday']: { daysOfWeek: [0] }
+};
+
 <DatePickerRangeCalendarsWrapper>
   <DatePicker
     numberOfMonths={2}
     fromMonth={state.from}
     selectedDays={[state.from, { from: state.from, to: state.enteredTo }]}
     disabledDays={{ before: state.from }}
-    modifiers={{ start: state.from, end: state.enteredTo }}
+    modifiers={modifiers}
     onDayClick={handleDayClick}
     onDayMouseEnter={handleDayMouseEnter}
     range
