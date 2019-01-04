@@ -9,8 +9,7 @@ initialState = {
 };
 
 const modifiers = {
-  ['lc-date-picker__day--start']: state.selectedDate,
-  ['lc-date-picker__day--end']: state.selectedDate
+  ['lc-date-picker__day--single']: state.selectedDate
 };
 
 const handleDayClick = (day) => {

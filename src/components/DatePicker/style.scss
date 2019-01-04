@@ -176,13 +176,7 @@ $base-class: 'date-picker';
     }
 
     &--selected {
-      &:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--outside):not(.#{$base-class}__day--start):not(.#{$base-class}__day--end):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday) {
-        .#{$base-class}__day-wrapper {
-          background-color: #dae7fd;
-        }
-      }
-
-      &:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--outside):not(.#{$base-class}__day--start):not(.#{$base-class}__day--end):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday):hover {
+      &:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--outside):not(.#{$base-class}__day--start):not(.#{$base-class}__day--end):not(.#{$base-class}__day--single):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday) {
         .#{$base-class}__day-wrapper {
           background-color: #dae7fd;
         }
@@ -200,7 +194,8 @@ $base-class: 'date-picker';
     }
 
     &--start,
-    &--end {
+    &--end,
+    &--single {
       .#{$base-class}__day-content {
         background-color: #3e7ce4;
         border-radius: 50%;
