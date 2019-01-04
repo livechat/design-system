@@ -9,10 +9,8 @@
   flex-grow: 1;
   min-width: $inapp-min-width;
   max-width: $inapp-max-width;
-
-  &__with_footer {
-    padding-bottom: 94px;
-  }
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
 .inapp-content-container {
@@ -38,6 +36,10 @@
   min-width: $inapp-min-width;
   max-width: $inapp-max-width;
 
+  @include inapp-media-text {
+    justify-content: flex-start;
+  }
+
   &__overlay {
     position: fixed;
     top: 0;
@@ -53,6 +55,10 @@
     &--visible {
       display: flex;
     }
+  }
+
+  &__with_footer {
+    padding-bottom: 94px;
   }
 
   &__close {
@@ -114,8 +120,12 @@
   &__image {
     text-align: center;
     img {
-      max-width: $inapp-max-width;
+      max-width: 100%;
       max-height: $inapp-max-height / 2;
+    }
+
+    @include inapp-media-text {
+      display: none;
     }
   }
 
@@ -158,6 +168,10 @@
     box-sizing: border-box;
     position: absolute;
     bottom: 0;
+
+    @include inapp-media-text {
+      flex-flow: column-reverse nowrap;
+    }
   }
 }
 

@@ -3,14 +3,12 @@ initialState = {
   isOpen: false
 };
 
-const handleInAppOpen = () => setState({isOpen: true});
-
-const handleInAppClose = () => setState({isOpen: false});
+const toggleInApp = () => setState({isOpen: !state.isOpen});
 
 <div>
   {state.isOpen && (
     <InApp
-      onClose={handleInAppClose}
+      onClose={toggleInApp}
       imageSrc="https://cdn.livechat-static.com/api/file/v2/lc/att-old/8656216/fe28d6850106f65c9207f3dcea091099/product-cards-shopify-preview.gif"
       headerAvatar={"https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"}
       headerFrom={
@@ -20,8 +18,8 @@ const handleInAppClose = () => setState({isOpen: false});
       }
       footer={
         <React.Fragment>
-          <Button fullWidth onClick={handleInAppClose} style={{marginRight: '24px'}}>Remind me later</Button>
-          <Button primary fullWidth onClick={handleInAppClose}>Check it out!</Button>
+          <Button fullWidth onClick={toggleInApp} style={{marginBottom: '12px', marginRight: '24px'}}>Remind me later</Button>
+          <Button primary fullWidth onClick={toggleInApp} style={{marginBottom: '12px'}}>Check it out!</Button>
         </React.Fragment>  
       }
     >
@@ -29,7 +27,7 @@ const handleInAppClose = () => setState({isOpen: false});
       <p>Sync LiveChat with your Shopify products and send the Product Cards via chat. Save time on searching for links to products and see customers buy more at your store.</p>
     </InApp>
   )}
-  <Button onClick={handleInAppOpen}>Open inApp</Button>
+  <Button onClick={toggleInApp}>Open inApp</Button>
 </div>
 ```
 ```js noeditor

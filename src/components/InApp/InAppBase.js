@@ -104,7 +104,7 @@ class InAppBase extends React.Component {
             <div
               className={cx({
                 [mergedClassNames]: true,
-                'inapp-container__with_footer': footer
+                [`${baseClass}__with_footer`]: footer
               })}
               ref={this.inAppBodyRef}
               {...restProps}
