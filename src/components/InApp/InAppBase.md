@@ -12,15 +12,15 @@ initialState = {
     isOpen: false
 };
 
-const toggleInapp = () => setState({isOpen: !state.isOpen});
+const toggleInApp = () => setState({isOpen: !state.isOpen});
 
 <div>
     {state.isOpen && (
-        <InAppBase onClose={toggleInapp}>
+        <InAppBase onClose={toggleInApp}>
             <div style={{margin: 'auto'}}>content</div>
         </InAppBase>
     )}
-    <Button onClick={toggleInapp}>Open inApp</Button>
+    <Button onClick={toggleInApp}>Open inApp</Button>
 </div>
 ```
 ```js noeditor

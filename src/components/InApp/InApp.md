@@ -38,17 +38,23 @@ const buttonStyle = {
 
 <ComponentHtmlMarkup>
   <InApp
-    onClose={() => {}}
-    style={{width: "600px", height: "400px"}}
-    heading="Title"
+    onClose={() => {}}   
+    imageSrc="https://cdn.livechat-static.com/api/file/v2/lc/att-old/8656216/fe28d6850106f65c9207f3dcea091099/product-cards-shopify-preview.gif"
+    headerAvatar={"https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"}
+    headerFrom={
+        <React.Fragment>
+            <strong>Michał</strong> from LiveChat
+        </React.Fragment>
+    }
     footer={
-      <React.Fragment>
-        <Button style={buttonStyle} size="large" onClick={() => {}}>Secondary</Button>
-        <Button primary style={buttonStyle} size="large" onClick={() => {}}>Primary</Button>
-      </React.Fragment>  
+        <React.Fragment>
+            <Button fullWidth onClick={() => {}} style={{marginBottom: '12px', marginRight: '24px'}}>Remind me later</Button>
+            <Button primary fullWidth onClick={() => {}} style={{marginBottom: '12px'}}>Check it out!</Button>
+        </React.Fragment>  
     }
   >
-    InApp content
+    <h2>Product Cards for Shopify</h2>
+    <p>Sync LiveChat with your Shopify products and send the Product Cards via chat. Save time on searching for links to products and see customers buy more at your store.</p>
   </InApp>
 </ComponentHtmlMarkup>
 ```
