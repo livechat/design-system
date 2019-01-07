@@ -4,6 +4,7 @@ $base-class: 'date-picker';
 
 .#{$base-class} {
   display: inline-block;
+  color: $font-primary-color;
 
   &__wrapper {
     position: relative;
@@ -76,9 +77,11 @@ $base-class: 'date-picker';
 
   &__caption {
     display: table-caption;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     padding: 0 50px;
+    line-height: 22px;
     text-align: center;
+    color: $font-primary-color;
 
     & > div {
       font-weight: 700;
@@ -98,7 +101,7 @@ $base-class: 'date-picker';
   &__weekday {
     display: table-cell;
     padding: 4px;
-    color: #8b9898;
+    color: #7a8289;
     text-align: center;
     font-size: 12px;
 
@@ -134,6 +137,7 @@ $base-class: 'date-picker';
     font-size: 14px;
     width: 18px;
     height: 18px;
+    color: $font-primary-color;
 
     &:focus {
       outline: none;
@@ -165,6 +169,14 @@ $base-class: 'date-picker';
       }
     }
 
+    &--selected {
+      .#{$base-class}__day-content {
+        background-color: #3e7ce4;
+        border-radius: 50%;
+        color: #f0f8ff;
+      }
+    }
+
     &--outside {
       color: #8b9898;
       cursor: default;
@@ -173,44 +185,6 @@ $base-class: 'date-picker';
     &--disabled {
       color: #dce0e0;
       cursor: default;
-    }
-
-    &--selected {
-      &:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--outside):not(.#{$base-class}__day--start):not(.#{$base-class}__day--end):not(.#{$base-class}__day--single):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday) {
-        .#{$base-class}__day-wrapper {
-          background-color: #dae7fd;
-        }
-      }
-    }
-
-    &--start:not(.#{$base-class}__day--end):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday) .#{$base-class}__day-wrapper,
-    &--monday.#{$base-class}__day--selected:not(.#{$base-class}__day--end) .#{$base-class}__day-wrapper {
-      background: linear-gradient(to left, #dae7fd 0%, #dae7fd 50%, #fff 50%, #fff 100%);
-    }
-
-    &--end:not(.#{$base-class}__day--start):not(.#{$base-class}__day--monday):not(.#{$base-class}__day--sunday) .#{$base-class}__day-wrapper,
-    &--sunday.#{$base-class}__day--selected:not(.#{$base-class}__day--start) .#{$base-class}__day-wrapper {
-      background: linear-gradient(to right, #dae7fd 0%, #dae7fd 50%, #fff 50%, #fff 100%);
-    }
-
-    &--start,
-    &--end,
-    &--single {
-      .#{$base-class}__day-content {
-        background-color: #3e7ce4;
-        border-radius: 50%;
-        color: #f0f8ff;
-      }
-    }
-
-    &--monday.#{$base-class}__day--selected:not(.#{$base-class}__day--start):not(.#{$base-class}__day--end) .#{$base-class}__day-content {
-      background-color: #dae7fd;
-      border-radius: 50%;
-    }
-
-    &--sunday.#{$base-class}__day--selected:not(.#{$base-class}__day--start):not(.#{$base-class}__day--end) .#{$base-class}__day-content {
-      background-color: #dae7fd;
-      border-radius: 50%;
     }
   }
 
@@ -254,6 +228,53 @@ $base-class: 'date-picker';
   }
 
   &--range {
+    .#{$base-class}__day {
+      &--selected {
+        .#{$base-class}__day-content {
+          background-color: transparent;
+          border-radius: 0;
+          color: $font-primary-color;
+        }
+
+        &:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--outside):not(.#{$base-class}__day--start):not(.#{$base-class}__day--end):not(.#{$base-class}__day--single):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday) {
+          .#{$base-class}__day-wrapper {
+            background-color: #dae7fd;
+          }
+        }
+      }
+
+      &--start:not(.#{$base-class}__day--end):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday),
+      &--monday.#{$base-class}__day--selected:not(.#{$base-class}__day--end) {
+        .#{$base-class}__day-wrapper {
+          background: linear-gradient(to left, #dae7fd 0%, #dae7fd 50%, #fff 50%, #fff 100%);
+        }
+      }
+
+      &--end:not(.#{$base-class}__day--start):not(.#{$base-class}__day--monday):not(.#{$base-class}__day--sunday),
+      &--sunday.#{$base-class}__day--selected:not(.#{$base-class}__day--start) {
+        .#{$base-class}__day-wrapper {
+          background: linear-gradient(to right, #dae7fd 0%, #dae7fd 50%, #fff 50%, #fff 100%);
+        }
+      }
+
+      &--monday.#{$base-class}__day--selected:not(.#{$base-class}__day--start):not(.#{$base-class}__day--end),
+      &--sunday.#{$base-class}__day--selected:not(.#{$base-class}__day--start):not(.#{$base-class}__day--end) {
+        .#{$base-class}__day-content {
+          background-color: #dae7fd;
+          border-radius: 50%;
+        }
+      }
+
+      &--start,
+      &--end {
+        .#{$base-class}__day-content {
+          background-color: #3e7ce4;
+          border-radius: 50%;
+          color: #f0f8ff;
+        }
+      }
+    }
+
     &__select-input {
       padding: 0 5px;
       max-width: 90px;

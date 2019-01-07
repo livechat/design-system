@@ -107,6 +107,7 @@ class RangeDatePicker extends React.Component {
       },
       datepicker: {
         innerRef: this.datePickerRef,
+        range: true,
         numberOfMonths: 2,
         onDayClick: this.handleDayClick,
         selectedDays: [state.from, { from: state.from, to: state.enteredTo }],

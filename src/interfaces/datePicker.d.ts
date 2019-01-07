@@ -1,6 +1,9 @@
 import { DayPickerProps } from 'react-day-picker';
 
-export interface IDatePickerProps extends DayPickerProps {}
+export interface IDatePickerProps extends DayPickerProps {
+  innerRef?: React.Ref<Element>;
+  range?: boolean;
+}
 
 export interface IRangeDatePickerOption {
   id: string;
@@ -13,9 +16,10 @@ export interface IRangeDatePickerOption {
 }
 
 interface IRangeDatePickerChildrenPayloadDatePicker {
-  innerRef: React.Ref<Element>;
+  innerRef?: React.Ref<Element>;
   modifiers?: DayPickerProps['modifiers'];
   initialMonth?: Date;
+  range?: boolean;
   fromMonth?: Date;
   toMonth?: Date;
   selectedDays?: DayPickerProps['selectedDays'];
