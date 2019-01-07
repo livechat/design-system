@@ -87,8 +87,8 @@ class RangeDatePicker extends React.Component {
     return {
       select: {
         onItemSelect: this.handleItemSelect,
-        error: this.state.error,
-        selected: this.state.selectedItem
+        error: state.error,
+        selected: state.selectedItem
       },
       inputs: {
         fromDate: state.from,
