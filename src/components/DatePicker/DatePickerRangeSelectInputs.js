@@ -16,10 +16,7 @@ const DatePickerRangeSelectInputs = props => {
       <Input
         {...from}
         className={getMergedClassNames(
-          cx(
-            styles[`${baseClass}__select-input`],
-            styles[`${baseClass}__select-input--from`]
-          ),
+          styles[`${baseClass}__select-input`],
           from.className
         )}
         tabIndex={0}
@@ -31,10 +28,7 @@ const DatePickerRangeSelectInputs = props => {
       <Input
         {...to}
         className={getMergedClassNames(
-          cx(
-            styles[`${baseClass}__select-input`],
-            styles[`${baseClass}__select-input--to`]
-          ),
+          styles[`${baseClass}__select-input`],
           to.className
         )}
         size={to.size || 10}

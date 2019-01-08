@@ -279,14 +279,7 @@ $base-class: 'date-picker';
       padding: 0 5px;
       max-width: 90px;
       border-color: transparent;
-
-      &--from {
-        text-align: right;
-      }
-
-      &--to {
-        text-align: left;
-      }
+      text-align: left;
     }
 
     &__calendars-wrapper {
