@@ -11,18 +11,17 @@ import ChevronRightIcon from 'react-material-icon-svg/dist/ChevronRightIcon';
 import ChevronDoubleLeftIcon from 'react-material-icon-svg/dist/ChevronDoubleLeftIcon';
 import ChevronDoubleRightIcon from 'react-material-icon-svg/dist/ChevronDoubleRightIcon';
 import cx from 'classnames';
-import DayPicker from 'react-day-picker';
 
 const DatePickerNavbar = props => {
   const {
     onPreviousClick,
+    onMonthChange,
     onNextClick,
     showNextButton,
     showPreviousButton,
     className,
     classNames,
     numberOfMonths,
-    datePickerRef,
     month,
     fromMonth,
     toMonth
@@ -34,20 +33,20 @@ const DatePickerNavbar = props => {
   const handlePrevYearClick = () => {
     if (!fromMonth) {
       const newMonth = subMonths(month, 12);
-      return datePickerRef.current.showMonth(newMonth);
+      return onMonthChange(newMonth);
     }
     const diff = Math.abs(differenceInCalendarMonths(month, fromMonth));
     const newMonth = subMonths(
       month,
       !Number.isNaN(diff) && diff > 12 ? 12 : diff
     );
-    return datePickerRef.current.showMonth(newMonth);
+    return onMonthChange(newMonth);
   };
 
   const handleNextYearClick = () => {
     if (!toMonth) {
       const newMonth = addMonths(month, 12);
-      return datePickerRef.current.showMonth(newMonth);
+      return onMonthChange(newMonth);
     }
     const diff = Math.abs(differenceInCalendarMonths(toMonth, month));
     const newMonth = addMonths(
@@ -56,9 +55,9 @@ const DatePickerNavbar = props => {
     );
 
     if (numberOfMonths === 2 && isSameMonth(newMonth, toMonth)) {
-      return datePickerRef.current.showMonth(subMonths(newMonth, 1));
+      return onMonthChange(subMonths(newMonth, 1));
     }
-    return datePickerRef.current.showMonth(newMonth);
+    return onMonthChange(newMonth);
   };
 
   return (
@@ -109,18 +108,16 @@ const DatePickerNavbar = props => {
 
 DatePickerNavbar.propTypes = {
   className: PropTypes.string,
-  onPreviousClick: PropTypes.func,
-  onNextClick: PropTypes.func,
   month: PropTypes.instanceOf(Date),
   fromMonth: PropTypes.instanceOf(Date),
   toMonth: PropTypes.instanceOf(Date),
   showNextButton: PropTypes.bool,
   showPreviousButton: PropTypes.bool,
   classNames: PropTypes.objectOf(PropTypes.string),
-  datePickerRef: PropTypes.shape({
-    current: PropTypes.instanceOf(DayPicker)
-  }),
-  numberOfMonths: PropTypes.number
+  numberOfMonths: PropTypes.number,
+  onPreviousClick: PropTypes.func,
+  onMonthChange: PropTypes.func,
+  onNextClick: PropTypes.func
 };
 
 export default DatePickerNavbar;

@@ -48,8 +48,6 @@ class DatePicker extends React.PureComponent {
     ...this.props.classNames
   });
 
-  datePickerRef = this.props.innerRef || React.createRef();
-
   renderDay = day => {
     const date = day.getDate();
 
@@ -82,14 +80,14 @@ class DatePicker extends React.PureComponent {
           navbarElement || (
             <DatePickerNavbar
               classNames={datePickerClassNames}
-              datePickerRef={this.datePickerRef}
               numberOfMonths={numberOfMonths}
+              onMonthChange={this.props.onMonthChange}
               toMonth={toMonth}
               fromMonth={fromMonth}
             />
           )
         }
-        ref={this.datePickerRef}
+        ref={this.props.innerRef}
         classNames={datePickerClassNames}
         numberOfMonths={numberOfMonths}
         toMonth={toMonth}
@@ -102,4 +100,6 @@ class DatePicker extends React.PureComponent {
   }
 }
 
-export default DatePicker;
+export default React.forwardRef((props, ref) => (
+  <DatePicker innerRef={ref} {...props} />
+));

@@ -19,6 +19,7 @@ interface IRangeDatePickerChildrenPayloadDatePicker {
   innerRef?: React.Ref<Element>;
   modifiers?: DayPickerProps['modifiers'];
   initialMonth?: Date;
+  month: Date;
   range?: boolean;
   fromMonth?: Date;
   toMonth?: Date;
@@ -26,6 +27,7 @@ interface IRangeDatePickerChildrenPayloadDatePicker {
   disabledDays?: DayPickerProps['disabledDays'];
   onDayMouseEnter: DayPickerProps['onDayMouseEnter'];
   onDayClick(day: Date): void;
+  onMonthChange(month: Date): void;
 }
 
 interface IRangeDatePickerChildrenPayloadSelect {
