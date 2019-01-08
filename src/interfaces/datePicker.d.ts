@@ -41,7 +41,6 @@ interface IRangeDatePickerChildrenPayloadInput extends React.InputHTMLAttributes
     current: HTMLElement;
   };
   value: string;
-  onFocus?(e: React.FocusEvent<HTMLInputElement>): void;
   onChange(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 

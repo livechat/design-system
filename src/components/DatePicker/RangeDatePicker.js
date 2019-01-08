@@ -26,7 +26,9 @@ class RangeDatePicker extends React.Component {
       to: undefined,
       error: null,
       enteredTo: undefined,
-      currentMonth: subMonths(props.toMonth, 1)
+      currentMonth: props.initialToDate
+        ? subMonths(props.initialToDate, 1)
+        : subMonths(props.toMonth, 1)
     };
 
     const initialStateFromProps = this.getStateFromInitialPropsValues(props);
@@ -102,9 +104,9 @@ class RangeDatePicker extends React.Component {
           ref: this.fromInputRef
         },
         to: {
+          onKeyDown: this.handleToInputKeyDown,
           onChange: this.handleDateToChange,
           value: this.state.toInputValue,
-          onFocus: this.handleDateToInputFocus,
           ref: this.toInputRef
         }
       },
@@ -372,12 +374,6 @@ class RangeDatePicker extends React.Component {
     );
   };
 
-  handleDateToInputFocus = () => {
-    if (this.state.from === undefined && this.fromInputRef.current) {
-      this.fromInputRef.current.focus();
-    }
-  };
-
   handleDayMouseEnter = day => {
     const { from, to } = this.state;
     if (!this.isSelectingFirstDay(from, to, day) && !isFuture(day)) {
@@ -402,6 +398,22 @@ class RangeDatePicker extends React.Component {
     }
   };
 
+  handleToInputKeyDown = e => {
+    if (e.keyCode === KeyCodes.enter) {
+      e.stopPropagation();
+      const isValid =
+        this.state.to &&
+        isDateWithinRange(this.state.to, {
+          from: this.state.from,
+          to: this.props.toMonth
+        });
+
+      if (isValid) {
+        this.toInputRef.current.blur();
+      }
+    }
+  };
+
   isSelectingFirstDay = (from, to, day) => {
     const isBeforeFirstDay = from && differenceInCalendarDays(day, from) < 0;
     const isRangeSelected = from && to;
@@ -415,7 +427,6 @@ class RangeDatePicker extends React.Component {
     return date;
   };
 
-  datePickerRef = React.createRef();
   toInputRef = React.createRef();
   fromInputRef = React.createRef();
 

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import cx from 'classnames';
 import { Input } from '../InputField';
 import callAll from '../../utils/callAll';
 import styles from './style.scss';
@@ -33,6 +32,7 @@ const DatePickerRangeSelectInputs = props => {
         )}
         size={to.size || 10}
         tabIndex={fromDate === undefined ? -1 : 0}
+        disabled={to.disabled || fromDate === undefined}
         placeholder={to.placeholder || 'YYYY-MM-DD'}
         onClick={callAll(e => e.stopPropagation(), to.onClose)}
       />
