@@ -12,26 +12,27 @@ import {
 import memoizeOne from 'memoize-one';
 import styles from './style.scss';
 import { isValidDateFormat, isDateWithinRange } from './helpers';
-
-const initialState = {
-  selectedItem: null,
-  fromInputValue: '',
-  toInputValue: '',
-  from: undefined,
-  to: undefined,
-  error: null,
-  enteredTo: undefined,
-  currentMonth: subMonths(new Date(), 1)
-};
+import { KeyCodes } from '../../constants/keyCodes';
 
 class RangeDatePicker extends React.Component {
   constructor(props) {
     super(props);
 
+    this.initialState = {
+      selectedItem: null,
+      fromInputValue: '',
+      toInputValue: '',
+      from: undefined,
+      to: undefined,
+      error: null,
+      enteredTo: undefined,
+      currentMonth: subMonths(props.toMonth, 1)
+    };
+
     const initialStateFromProps = this.getStateFromInitialPropsValues(props);
 
     this.state = {
-      ...initialState,
+      ...this.initialState,
       ...initialStateFromProps
     };
   }
@@ -95,6 +96,7 @@ class RangeDatePicker extends React.Component {
         fromDate: this.state.from,
         toDate: this.state.to,
         from: {
+          onKeyDown: this.handleFromInputKeyDown,
           onChange: this.handleDateFromChange,
           value: this.state.fromInputValue,
           ref: this.fromInputRef
@@ -116,7 +118,7 @@ class RangeDatePicker extends React.Component {
           { from: this.state.from, to: this.state.enteredTo }
         ],
         modifiers,
-        initialMonth: this.state.from || subMonths(new Date(), 1),
+        initialMonth: this.state.from || subMonths(this.props.toMonth, 1),
         toMonth: this.props.toMonth,
         disabledDays: { after: this.props.toMonth },
         onDayMouseEnter: this.handleDayMouseEnter,
@@ -187,7 +189,7 @@ class RangeDatePicker extends React.Component {
 
   handleItemSelect = itemKey => {
     if (itemKey === null) {
-      this.setState({ ...initialState }, () => {
+      this.setState({ ...this.initialState }, () => {
         this.props.onChange(null);
       });
     } else {
@@ -202,7 +204,7 @@ class RangeDatePicker extends React.Component {
 
       this.setState(
         {
-          ...initialState,
+          ...this.initialState,
           selectedItem: itemKey
         },
         () => {
@@ -249,10 +251,13 @@ class RangeDatePicker extends React.Component {
       });
     }
 
-    if (!isDateWithinRange(new Date(value), { to: new Date() })) {
+    if (!isDateWithinRange(new Date(value), { to: this.props.toMonth })) {
       return this.setState({
         ...newState,
-        error: "The start date can't be later than today"
+        error: `The date can't be later than ${format(
+          this.props.toMonth,
+          'YYYY-MM-DD'
+        )}`
       });
     }
 
@@ -309,8 +314,22 @@ class RangeDatePicker extends React.Component {
     }
 
     if (
+      this.props.toMonth &&
       !isDateWithinRange(new Date(value), {
-        to: new Date(),
+        to: this.props.toMonth
+      })
+    ) {
+      return this.setState({
+        ...newState,
+        error: `The date can't be later than ${format(
+          this.props.toMonth,
+          'YYYY-MM-DD'
+        )}`
+      });
+    }
+
+    if (
+      !isDateWithinRange(new Date(value), {
         from: this.state.from
       })
     ) {
@@ -365,6 +384,21 @@ class RangeDatePicker extends React.Component {
       this.setState({
         enteredTo: day
       });
+    }
+  };
+
+  handleFromInputKeyDown = e => {
+    if (e.keyCode === KeyCodes.enter) {
+      e.stopPropagation();
+      const isValid =
+        this.state.from &&
+        isDateWithinRange(this.state.from, {
+          to: this.props.toMonth
+        });
+
+      if (isValid) {
+        this.toInputRef.current.focus();
+      }
     }
   };
 

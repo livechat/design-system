@@ -36,7 +36,7 @@ interface IRangeDatePickerChildrenPayloadSelect {
   onItemSelect(itemKey: string | number): void;
 }
 
-interface IRangeDatePickerChildrenPayloadInput {
+interface IRangeDatePickerChildrenPayloadInput extends React.InputHTMLAttributes<HTMLInputElement> {
   ref?: {
     current: HTMLElement;
   };
@@ -76,12 +76,8 @@ type RangeDatePickerComponentType<P = {}> = RangeDatePickerClass<P>;
 
 
 interface IDatePickerRangeSelectInputsProps extends React.HTMLAttributes<HTMLDivElement>{
-  from: {
-    [key: string]: any;
-  };
-  to: {
-    [key: string]: any;
-  }
+  from: IRangeDatePickerChildrenPayloadInput;
+  to: IRangeDatePickerChildrenPayloadInput;
 }
 
 export var DatePicker: React.ComponentType<IDatePickerProps>;
