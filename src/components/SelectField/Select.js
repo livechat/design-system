@@ -216,7 +216,6 @@ class Select extends React.PureComponent {
       searchPlaceholder,
       placeholder,
       selected,
-      selectedItemRenderer,
       className,
       id,
       error
@@ -246,7 +245,6 @@ class Select extends React.PureComponent {
             selectedItem={selectedItemModel}
             isVisible={!(isOpen && search)}
             placeholder={placeholder}
-            selectedItemRenderer={selectedItemRenderer}
           />
           <Search
             isVisible={!search ? false : isOpen}
@@ -311,8 +309,7 @@ Select.propTypes = {
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   openedOnInit: PropTypes.bool,
-  onDropdownToggle: PropTypes.func,
-  selectedItemRenderer: PropTypes.func
+  onDropdownToggle: PropTypes.func
 };
 
 Select.defaultProps = {

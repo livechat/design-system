@@ -166,4 +166,4 @@ _Release: 2018-12-18_
 _Release: 2019-01-09_
 
 ##### New Features
-* Adding first type of date picker component - RangeDatePicker
+* Adding first type of date picker component - RangeDatePicker.
