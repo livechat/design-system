@@ -7,7 +7,9 @@ import {
   isSameDay,
   subMonths,
   isSameMonth,
-  differenceInCalendarDays
+  differenceInCalendarDays,
+  isPast,
+  differenceInDays
 } from 'date-fns';
 import memoizeOne from 'memoize-one';
 import styles from './style.scss';
@@ -27,7 +29,11 @@ class RangeDatePicker extends React.Component {
       error: null,
       enteredTo: undefined,
       currentMonth: props.initialToDate
-        ? subMonths(props.initialToDate, 1)
+        ? this.calculateDatepickerMonth(
+            props.initialToDate,
+            props.initialFromDate &&
+              !isSameMonth(props.initialFromDate, props.initialToDate)
+          )
         : subMonths(props.toMonth, 1)
     };
 
@@ -347,7 +353,10 @@ class RangeDatePicker extends React.Component {
         error: 'Please choose the start date',
         to: new Date(value),
         enteredTo: new Date(value),
-        currentMonth: this.calculateDatepickerMonth(new Date(value))
+        currentMonth: this.calculateDatepickerMonth(
+          new Date(value),
+          !isSameMonth(new Date(value), this.state.from)
+        )
       });
     }
 
@@ -356,7 +365,10 @@ class RangeDatePicker extends React.Component {
         ...newState,
         to: new Date(value),
         enteredTo: new Date(value),
-        currentMonth: this.calculateDatepickerMonth(new Date(value))
+        currentMonth: this.calculateDatepickerMonth(
+          new Date(value),
+          !isSameMonth(new Date(value), this.state.from)
+        )
       },
       () => {
         const selectedOption = this.getSelectedOption(
@@ -376,7 +388,12 @@ class RangeDatePicker extends React.Component {
 
   handleDayMouseEnter = day => {
     const { from, to } = this.state;
-    if (!this.isSelectingFirstDay(from, to, day) && !isFuture(day)) {
+
+    const isInRange = this.props.toMonth
+      ? differenceInDays(this.props.toMonth, day) >= 0
+      : true;
+
+    if (!this.isSelectingFirstDay(from, to, day) && isInRange) {
       this.setState({
         enteredTo: day
       });
@@ -420,8 +437,11 @@ class RangeDatePicker extends React.Component {
     return !from || isBeforeFirstDay || isRangeSelected;
   };
 
-  calculateDatepickerMonth = date => {
-    if (this.props.toMonth && isSameMonth(date, this.props.toMonth)) {
+  calculateDatepickerMonth = (date, forcePreviousMonth = false) => {
+    if (
+      forcePreviousMonth ||
+      (this.props.toMonth && isSameMonth(date, this.props.toMonth))
+    ) {
       return subMonths(date, 1);
     }
     return date;
