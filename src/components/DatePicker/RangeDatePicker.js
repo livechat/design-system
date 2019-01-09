@@ -2,13 +2,11 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import {
   format,
-  isFuture,
   isAfter,
   isSameDay,
   subMonths,
   isSameMonth,
   differenceInCalendarDays,
-  isPast,
   differenceInDays
 } from 'date-fns';
 import memoizeOne from 'memoize-one';

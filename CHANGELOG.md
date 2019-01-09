@@ -160,3 +160,10 @@ _Release: 2018-12-18_
 
 ##### Optimizations
 * Enhance TS typings for Button component with ButtonHTMLAttributes
+
+----
+## v0.0.16
+_Release: 2019-01-09_
+
+##### New Features
+* Adding first type of date picker component - RangeDatePicker
