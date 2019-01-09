@@ -1,6 +1,6 @@
 {
   "name": "@livechat/design-system",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "publishConfig": {
     "access": "restricted"
   },
@@ -118,9 +118,12 @@
   "dependencies": {
     "@livechat/data-utils": "^0.2.3",
     "classnames": "^2.2.6",
+    "date-fns": "^1.29.0",
+    "memoize-one": "^4.1.0",
     "prop-types": "^15.6.2",
-    "react-transition-group": "^2.4.0",
-    "react-material-icon-svg": "1.7.0"
+    "react-day-picker": "^7.2.4",
+    "react-material-icon-svg": "1.7.0",
+    "react-transition-group": "^2.4.0"
   },
   "postcss": {},
   "jest": {
