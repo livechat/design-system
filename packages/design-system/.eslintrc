@@ -61,7 +61,8 @@
     "react/forbid-prop-types": "warn",
     "react/require-default-props": "off",
     "react/no-unused-prop-types": "warn",
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "react/prefer-stateless-function": [true, { "ignorePureComponents": true }]
   },
   "settings": {
     "ecmascript": 6,

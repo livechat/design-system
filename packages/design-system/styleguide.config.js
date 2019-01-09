@@ -79,6 +79,13 @@ module.exports = {
             './src/components/MultiSelectField/MultiSelectField.js'
           ],
           sectionDepth: 0
+        },
+        {
+          name: 'DatePicker',
+          components: [
+            './src/components/DatePicker/DatePicker.js',
+            './src/components/DatePicker/RangeDatePicker.js'
+          ]
         }
       ]
     },
