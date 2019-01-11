@@ -14,7 +14,7 @@ const InAppCloseButton = props => (
 );
 
 InAppCloseButton.propTypes = {
-  onClick: PropTypes.func
+  onClick: PropTypes.func.isRequired
 };
 
 export default InAppCloseButton;
