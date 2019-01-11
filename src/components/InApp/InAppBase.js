@@ -11,7 +11,7 @@ const baseClass = 'inapp-base';
 
 const cx = classNames.bind(styles);
 
-class InAppBase extends React.Component {
+class InAppBase extends React.PureComponent {
   static defaultProps = {
     closeOnEscPress: true,
     headerAvatar: null,
