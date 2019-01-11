@@ -1,25 +1,6 @@
 @import '../../scss/variables/colors';
 @import '../../scss/variables/inApp';
 
-.inapp-container {
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  justify-content: center;
-  flex-grow: 1;
-  min-width: $inapp-min-width;
-  max-width: $inapp-max-width;
-  padding: 0 10px;
-  box-sizing: border-box;
-}
-
-.inapp-content-container {
-  display: flex;
-  flex-flow: column nowrap;
-  overflow-y: auto;
-  align-items: center;
-}
-
 .inapp-base {
   position: relative;
   display: flex;
@@ -57,8 +38,27 @@
     }
   }
 
+  &__container {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    min-width: $inapp-min-width;
+    max-width: $inapp-max-width;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+
   &__with_footer {
     padding-bottom: 94px;
+  }
+
+  &__content-container {
+    display: flex;
+    flex-flow: column nowrap;
+    overflow-y: auto;
+    align-items: center;
   }
 
   &__close {

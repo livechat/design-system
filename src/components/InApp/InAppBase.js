@@ -91,7 +91,7 @@ class InAppBase extends React.PureComponent {
           `${baseClass}__overlay--visible`
         )}
       >
-        <div className={cx('inapp-container')}>
+        <div className={cx(`${baseClass}__container`)}>
           <div>
             <InAppHeader
               avatar={headerAvatar}
@@ -107,7 +107,9 @@ class InAppBase extends React.PureComponent {
               ref={this.inAppBodyRef}
               {...restProps}
             >
-              <div className={cx('inapp-content-container')}>{children}</div>
+              <div className={cx(`${baseClass}__content-container`)}>
+                {children}
+              </div>
               {footer && <InAppFooter>{footer}</InAppFooter>}
             </div>
           </div>
