@@ -13,9 +13,7 @@ const cx = classNames.bind(styles);
 
 class InAppBase extends React.PureComponent {
   static defaultProps = {
-    closeOnEscPress: true,
-    headerAvatar: null,
-    headerFrom: null
+    closeOnEscPress: true
   };
 
   componentDidMount() {
