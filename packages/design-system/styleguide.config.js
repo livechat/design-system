@@ -116,7 +116,7 @@ module.exports = {
         <script src="https://unpkg.com/prettier@1.13.0/parser-babylon.js"></script>
         <style>
           body {
-            font-family: 'Source Sans Pro';
+            font-family: 'Source Sans Pro',-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif;
           }
           *[class^="lc-"] {
             box-sizing: border-box;
@@ -179,7 +179,7 @@ module.exports = {
             bottom: auto;
             box-shadow: none;
             padding: 8px 0;
-            font-family: "Source Sans Pro";
+            font-family: "Source Sans Pro",-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif;
             font-size: 15px;
             color: #767676;
             background: transparent;
@@ -224,7 +224,7 @@ module.exports = {
   },
   theme: {
     fontFamily: {
-      base: '"Source Sans Pro"',
+      base: '"Source Sans Pro",-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif;',
       monospace: 'monospace'
     },
     color: {
