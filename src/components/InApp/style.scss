@@ -17,10 +17,6 @@
   min-width: $inapp-min-width;
   max-width: $inapp-max-width;
 
-  @include inapp-media-text {
-    justify-content: flex-start;
-  }
-
   &__overlay {
     position: fixed;
     top: 0;
@@ -87,6 +83,21 @@
       }
     }
   }
+
+  @include inapp-media-text {
+    justify-content: flex-start;
+    max-width: calc(100vw - 10px);
+    max-height: calc(100vh - 200px);
+    min-width: unset;
+    min-height: unset;
+
+    &__container {
+      max-width: calc(100vw - 10px);
+      max-height: calc(100vh - 200px);
+      min-width: unset;
+      min-height: unset;
+    }
+  }
 }
 
 .inapp {
@@ -106,6 +117,13 @@
       height: 40px;
       border-radius: 100%;
       margin: 0 10px 0 0;
+    }
+
+    @include inapp-media-text {
+      max-width: calc(100vw - 10px);
+      max-height: calc(100vh - 200px);
+      min-width: unset;
+      min-height: unset;
     }
   }
 
@@ -168,6 +186,7 @@
     box-sizing: border-box;
     position: absolute;
     bottom: 0;
+    background: #fff;
 
     & button {
       &:first-of-type {
