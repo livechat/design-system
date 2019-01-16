@@ -162,53 +162,35 @@
     width: 100%;
     max-width: $inapp-content-max-width;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-self: center;
     padding: 24px 32px 32px;
     box-sizing: border-box;
     position: absolute;
     bottom: 0;
 
+    & button {
+      &:first-of-type {
+        margin: 0 5px 0 0;
+      }
+
+      &:last-of-type {
+        margin: 0 0 0 5px
+      }
+    }
+
     @include inapp-media-text {
       flex-flow: column-reverse nowrap;
+
+      & button {
+        &:first-of-type{
+          margin: 5px auto 0;
+        }
+
+        &:last-of-type {
+          margin: 0 auto 5px;
+        }
+      }
     }
-  }
-}
-
-.action-inapp {
-  padding: 52px 20px;
-  box-sizing: border-box;
-  justify-content: center;
-  align-items: center;
-
-  &__heading {
-    width: 100%;
-    font-size: 24px;
-    line-height: 1.33;
-    color: $font-primary-color;
-    text-align: center;
-    font-weight: 600;
-    margin: 0;
-    margin-bottom: 20px;
-  }
-
-  &__content {
-    width: 100%;
-    font-size: 15px;
-    line-height: 1.33;
-    text-align: center;
-    color: $font-primary-color;
-  }
-
-  &__actions {
-    width: 100%;
-    margin-top: 32px;
-    display: flex;
-    justify-content: center;
-    box-sizing: border-box;
-  }
-
-  &__icon {
-    margin-bottom: 20px;
   }
 }

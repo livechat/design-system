@@ -23,15 +23,18 @@ export interface IInAppProps extends IInAppBaseProps {
 export interface IInAppHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
     className?: string;
     avatar?: string;
-    from?: React.ReactNode;
+    text?: React.ReactNode;
     onCloseButtonClick: void;
+}
+
+export interface IInAppFooterProps extends React.HTMLAttributes<HTMLDivElement> {
+    className?: string;
+    buttons?: object;
 }
 
 export var InAppBase: React.ComponentType<IInAppBaseProps>;
 export var InAppPortal: React.ComponentType<IInAppPortalProps>;
 export var InApp: React.ComponentType<IInAppProps>;
 export var InAppHeader: React.ComponentType<IInAppHeaderProps>;
-export var InAppFooter: React.ComponentType<React.HTMLAttributes<HTMLDivElement>>;
+export var InAppFooter: React.ComponentType<IInAppFooterProps>;
 export var InAppBody: React.ComponentType<React.HTMLAttributes<HTMLDivElement>>;
-export var IInAppAvatarProps: React.ComponentType<React.HTMLAttributes<HTMLImageElement>>;
-export var IInAppImageProps: React.ComponentType<React.HTMLAttributes<HTMLImageElement>>;

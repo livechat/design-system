@@ -27,8 +27,7 @@ const InApp = props => {
 InApp.propTypes = {
   ...InAppBase.propTypes,
   imageSrc: PropTypes.string,
-  imageAlt: PropTypes.string,
-  heading: PropTypes.node
+  imageAlt: PropTypes.string
 };
 
 export default InApp;

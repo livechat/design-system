@@ -54,15 +54,18 @@ const reset = () => {
     {state.isOpen && (
         <InAppBase 
             onClose={reset}
-            headerAvatar={state.withAvatar
+            header={{
+              avatar: state.withAvatar
                 ? "https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
+                : null,
+              text: state.withFrom
+                ? (
+                    <>
+                      <strong>Michał</strong> from LiveChat
+                    </>
+                  )
                 : null
-            }
-            headerFrom={state.withFrom && (
-                <>
-                    <strong>Michał</strong> from LiveChat
-                </>
-            )}
+            }}
         >
             <div style={{margin: 'auto'}}>content</div>
         </InAppBase>
@@ -107,12 +110,14 @@ const reset = () => {
 <ComponentHtmlMarkup>
     <InAppBase 
         onClose={() => {}}
-        headerAvatar="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
-        headerFrom={(
-            <>
-            <strong>Michał</strong> from LiveChat
-            </>
-        )}
+        header={{
+            avatar: "https://avatars2.githubusercontent.com/u/29309941?s=88&v=4",
+            text: (
+                <>
+                    <strong>Michał</strong> from LiveChat
+                </>
+            )
+        }}
     >
         <div style={{margin: 'auto'}}>content</div>
     </InAppBase>

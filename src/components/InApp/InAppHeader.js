@@ -8,7 +8,7 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 const baseClass = 'inapp';
 
 const InAppHeader = React.forwardRef((props, ref) => {
-  const { className, avatar, from, onCloseButtonClick } = props;
+  const { className, avatar, text, onCloseButtonClick } = props;
 
   const mergedClassNames = getMergedClassNames(
     styles[`${baseClass}__header`],
@@ -18,7 +18,7 @@ const InAppHeader = React.forwardRef((props, ref) => {
   return (
     <div className={mergedClassNames} ref={ref}>
       {avatar && <InAppAvatar src={avatar} alt="Avatar" />}
-      {from && <div className={styles[`${baseClass}__heading`]}>{from}</div>}
+      {text && <div className={styles[`${baseClass}__heading`]}>{text}</div>}
       <InAppCloseButton onClick={onCloseButtonClick} />
     </div>
   );
@@ -27,7 +27,7 @@ const InAppHeader = React.forwardRef((props, ref) => {
 InAppHeader.propTypes = {
   className: PropTypes.string,
   avatar: PropTypes.string,
-  from: PropTypes.node,
+  text: PropTypes.node,
   onCloseButtonClick: PropTypes.func.isRequired
 };
 

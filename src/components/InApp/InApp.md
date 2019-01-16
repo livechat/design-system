@@ -3,6 +3,7 @@ initialState = {
   isOpen: false
 };
 
+
 const toggleInApp = () => setState({isOpen: !state.isOpen});
 
 <div>
@@ -10,18 +11,24 @@ const toggleInApp = () => setState({isOpen: !state.isOpen});
     <InApp
       onClose={toggleInApp}
       imageSrc="https://cdn.livechat-static.com/api/file/v2/lc/att-old/8656216/fe28d6850106f65c9207f3dcea091099/product-cards-shopify-preview.gif"
-      headerAvatar={"https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"}
-      headerFrom={
-        <React.Fragment>
-            <strong>Michał</strong> from LiveChat
-        </React.Fragment>
-      }
-      footer={
-        <React.Fragment>
-          <Button fullWidth onClick={toggleInApp} style={{marginBottom: '12px', marginRight: '24px'}}>Remind me later</Button>
-          <Button primary fullWidth onClick={toggleInApp} style={{marginBottom: '12px'}}>Check it out!</Button>
-        </React.Fragment>  
-      }
+      header={{
+        avatar: "https://avatars2.githubusercontent.com/u/29309941?s=88&v=4",
+        text: 
+          <React.Fragment>
+             <strong>Michał</strong> from LiveChat
+          </React.Fragment>       
+      }}
+      footerButtons={{
+        cta: {
+          label: 'Check it out!',
+          type: 'primary',
+          action: toggleInApp
+        },
+        remind: {
+          label: 'Remind me later!',
+          action: toggleInApp
+        }
+      }}
     >
       <h2>Product Cards for Shopify</h2>
       <p>Sync LiveChat with your Shopify products and send the Product Cards via chat. Save time on searching for links to products and see customers buy more at your store.</p>
@@ -30,32 +37,34 @@ const toggleInApp = () => setState({isOpen: !state.isOpen});
   <Button onClick={toggleInApp}>Open inApp</Button>
 </div>
 ```
-```js noeditor
-const buttonStyle = {
-  width: '140px',
-  margin: '0 4px'
-};
 
+```js 
 <ComponentHtmlMarkup>
   <InApp
-    onClose={() => {}}   
-    imageSrc="https://cdn.livechat-static.com/api/file/v2/lc/att-old/8656216/fe28d6850106f65c9207f3dcea091099/product-cards-shopify-preview.gif"
-    headerAvatar={"https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"}
-    headerFrom={
-        <React.Fragment>
-            <strong>Michał</strong> from LiveChat
-        </React.Fragment>
-    }
-    footer={
-        <React.Fragment>
-            <Button fullWidth onClick={() => {}} style={{marginBottom: '12px', marginRight: '24px'}}>Remind me later</Button>
-            <Button primary fullWidth onClick={() => {}} style={{marginBottom: '12px'}}>Check it out!</Button>
-        </React.Fragment>  
-    }
-  >
-    <h2>Product Cards for Shopify</h2>
-    <p>Sync LiveChat with your Shopify products and send the Product Cards via chat. Save time on searching for links to products and see customers buy more at your store.</p>
-  </InApp>
+        onClose={() => {}}
+        imageSrc="https://cdn.livechat-static.com/api/file/v2/lc/att-old/8656216/fe28d6850106f65c9207f3dcea091099/product-cards-shopify-preview.gif"
+        header={{
+          avatar: "https://avatars2.githubusercontent.com/u/29309941?s=88&v=4",
+          text: 
+            <React.Fragment>
+               <strong>Michał</strong> from LiveChat
+            </React.Fragment>       
+        }}
+        footerButtons={{
+          cta: {
+            label: 'Check it out!',
+            type: 'primary',
+            action: () => {}
+          },
+          remind: {
+            label: 'Remind me later!',
+            action: () => {}
+          }
+        }}
+      >
+        <h2>Product Cards for Shopify</h2>
+        <p>Sync LiveChat with your Shopify products and send the Product Cards via chat. Save time on searching for links to products and see customers buy more at your store.</p>
+      </InApp>
 </ComponentHtmlMarkup>
 ```
 

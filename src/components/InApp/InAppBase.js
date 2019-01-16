@@ -70,9 +70,8 @@ class InAppBase extends React.PureComponent {
     const {
       className,
       children,
-      headerAvatar,
-      headerFrom,
-      footer,
+      header,
+      footerButtons,
       title,
       onClose,
       closeOnEscPress,
@@ -94,15 +93,23 @@ class InAppBase extends React.PureComponent {
         <div className={cx(`${baseClass}__container`)}>
           <div>
             <InAppHeader
-              avatar={headerAvatar}
-              from={headerFrom}
+              avatar={
+                header && Object.prototype.hasOwnProperty.call(header, 'avatar')
+                  ? header.avatar
+                  : ''
+              }
+              text={
+                header && Object.prototype.hasOwnProperty.call(header, 'text')
+                  ? header.text
+                  : null
+              }
               onCloseButtonClick={this.onCloseButtonClick}
               ref={this.inAppHeaderRef}
             />
             <div
               className={cx({
                 [mergedClassNames]: true,
-                [`${baseClass}__with_footer`]: footer
+                [`${baseClass}__with_footer`]: footerButtons
               })}
               ref={this.inAppBodyRef}
               {...restProps}
@@ -110,7 +117,7 @@ class InAppBase extends React.PureComponent {
               <div className={cx(`${baseClass}__content-container`)}>
                 {children}
               </div>
-              {footer && <InAppFooter>{footer}</InAppFooter>}
+              {footerButtons && <InAppFooter buttons={footerButtons}/>}
             </div>
           </div>
         </div>
@@ -122,11 +129,13 @@ class InAppBase extends React.PureComponent {
 InAppBase.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
-  headerAvatar: PropTypes.string,
-  headerFrom: PropTypes.node,
-  onClose: PropTypes.func.isRequired,
+  header: PropTypes.shape({
+    avatar: InAppHeader.propTypes.avatar,
+    text: InAppHeader.propTypes.text
+  }),
+  onClose: InAppHeader.propTypes.onCloseButtonClick,
   closeOnEscPress: PropTypes.bool,
-  footer: PropTypes.node
+  footerButtons: InAppFooter.propTypes.buttons
 };
 
 export default InAppBase;
