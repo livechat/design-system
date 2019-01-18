@@ -6,8 +6,7 @@ import {
   isSameDay,
   subMonths,
   isSameMonth,
-  differenceInCalendarDays,
-  differenceInDays
+  differenceInCalendarDays
 } from 'date-fns';
 import memoizeOne from 'memoize-one';
 import styles from './style.scss';
@@ -388,7 +387,7 @@ class RangeDatePicker extends React.Component {
     const { from, to } = this.state;
 
     const isInRange = this.props.toMonth
-      ? differenceInDays(this.props.toMonth, day) >= 0
+      ? differenceInCalendarDays(this.props.toMonth, day) >= 0
       : true;
 
     if (!this.isSelectingFirstDay(from, to, day) && isInRange) {
