@@ -6,8 +6,7 @@ import {
   isSameDay,
   subMonths,
   isSameMonth,
-  differenceInCalendarDays,
-  differenceInDays
+  differenceInCalendarDays
 } from 'date-fns';
 import memoizeOne from 'memoize-one';
 import styles from './style.scss';
@@ -79,13 +78,39 @@ class RangeDatePicker extends React.Component {
     options.find(item => item.id === itemId)
   );
 
-  getRangeDatePickerApi = () => {
-    const modifiers = {
-      [styles['date-picker__day--start']]: this.state.from,
-      [styles['date-picker__day--end']]: this.state.enteredTo,
+  getModifiers = memoizeOne((from, enteredTo) => {
+    const base = {
       [styles['date-picker__day--monday']]: { daysOfWeek: [1] },
-      [styles['date-picker__day--sunday']]: { daysOfWeek: [0] }
+      [styles['date-picker__day--sunday']]: { daysOfWeek: [0] },
+      [styles['date-picker__day--start']]: from,
+      [styles['date-picker__day--end']]: from
     };
+
+    if (enteredTo) {
+      const diff = differenceInCalendarDays(enteredTo, from);
+      if (diff > 0) {
+        return {
+          ...base,
+          [styles['date-picker__day--end']]: enteredTo
+        };
+      } else if (diff < 0) {
+        return {
+          ...base,
+          [styles['date-picker__day--start']]: enteredTo
+        };
+      }
+      return {
+        ...base,
+        [styles['date-picker__day--start']]: [from, enteredTo],
+        [styles['date-picker__day--end']]: [from, enteredTo]
+      };
+    }
+
+    return base;
+  });
+
+  getRangeDatePickerApi = () => {
+    const modifiers = this.getModifiers(this.state.from, this.state.enteredTo);
 
     const selectedOption = this.getSelectedOption(
       this.props.options,
@@ -149,48 +174,85 @@ class RangeDatePicker extends React.Component {
     }
 
     if (this.isSelectingFirstDay(from, to, day)) {
-      this.setState(
-        {
-          from: day,
-          to: undefined,
-          fromInputValue: this.mapDateToInputValue(day),
-          toInputValue: '',
-          enteredTo: undefined,
-          error: null
-        },
-        () => {
-          if (this.toInputRef.current) {
-            this.toInputRef.current.focus();
-          }
-        }
-      );
+      this.handleSelectFirstDay(day);
     } else if (
       isSameDay(day, this.state.from) ||
       isAfter(day, this.state.from)
     ) {
-      this.setState(
-        {
-          to: day,
-          toInputValue: this.mapDateToInputValue(day),
-          enteredTo: day,
-          error: null
-        },
-        () => {
-          const selectedOption = this.getSelectedOption(
-            this.props.options,
-            this.state.selectedItem
-          );
-
-          this.props.onChange({
-            ...selectedOption,
-            value: {
-              from: this.state.from,
-              to: this.state.to
-            }
-          });
-        }
-      );
+      this.handleSelectSecondDayAsFrom(day);
+    } else {
+      this.handleSelectSecondDayAsTo(day);
     }
+  };
+
+  handleSelectFirstDay = day => {
+    this.setState(
+      {
+        from: day,
+        to: undefined,
+        fromInputValue: this.mapDateToInputValue(day),
+        toInputValue: '',
+        enteredTo: undefined,
+        error: null
+      },
+      () => {
+        if (this.toInputRef.current) {
+          this.toInputRef.current.focus();
+        }
+      }
+    );
+  };
+
+  handleSelectSecondDayAsFrom = day => {
+    this.setState(
+      {
+        to: day,
+        toInputValue: this.mapDateToInputValue(day),
+        enteredTo: day,
+        error: null
+      },
+      () => {
+        const selectedOption = this.getSelectedOption(
+          this.props.options,
+          this.state.selectedItem
+        );
+
+        this.props.onChange({
+          ...selectedOption,
+          value: {
+            from: this.state.from,
+            to: this.state.to
+          }
+        });
+      }
+    );
+  };
+
+  handleSelectSecondDayAsTo = day => {
+    this.setState(
+      {
+        from: day,
+        to: this.state.from,
+        fromInputValue: this.mapDateToInputValue(day),
+        toInputValue: this.state.fromInputValue,
+        enteredTo: this.state.from,
+        error: null
+      },
+      () => {
+        const selectedOption = this.getSelectedOption(
+          this.props.options,
+          this.state.selectedItem
+        );
+
+        this.props.onChange({
+          ...selectedOption,
+          value: {
+            from: this.state.from,
+            to: this.state.to
+          }
+        });
+      }
+    );
   };
 
   handleItemSelect = itemKey => {
@@ -388,7 +450,7 @@ class RangeDatePicker extends React.Component {
     const { from, to } = this.state;
 
     const isInRange = this.props.toMonth
-      ? differenceInDays(this.props.toMonth, day) >= 0
+      ? differenceInCalendarDays(this.props.toMonth, day) >= 0
       : true;
 
     if (!this.isSelectingFirstDay(from, to, day) && isInRange) {
@@ -429,10 +491,9 @@ class RangeDatePicker extends React.Component {
     }
   };
 
-  isSelectingFirstDay = (from, to, day) => {
-    const isBeforeFirstDay = from && differenceInCalendarDays(day, from) < 0;
+  isSelectingFirstDay = (from, to) => {
     const isRangeSelected = from && to;
-    return !from || isBeforeFirstDay || isRangeSelected;
+    return !from || isRangeSelected;
   };
 
   calculateDatepickerMonth = (date, forcePreviousMonth = false) => {
