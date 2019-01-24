@@ -167,3 +167,14 @@ _Release: 2019-01-09_
 
 ##### New Features
 * Adding first type of date picker component - RangeDatePicker.
+
+----
+## v0.0.17
+_Release: 2019-01-24_
+
+##### New Features
+* RangeDatePicker - adding support for picking the end date first and going backwards
+
+##### Bug Fixes
+* Adding fallbacks for default Source Sans Pro font-family
+* Fixing datepicker miscalculation in day mouse entering handler
