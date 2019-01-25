@@ -26,10 +26,8 @@ class InAppBase extends React.PureComponent {
 
   onDocumentClick = event => {
     if (
-      this.inAppHeaderRef.current &&
-      this.inAppBodyRef.current &&
-      !this.inAppHeaderRef.current.contains(event.target) &&
-      !this.inAppBodyRef.current.contains(event.target)
+      this.inAppContainerRef.current &&
+      !this.inAppContainerRef.current.contains(event.target)
     ) {
       this.handleCloseInApp();
     }
@@ -63,8 +61,7 @@ class InAppBase extends React.PureComponent {
     this.props.onClose();
   };
 
-  inAppHeaderRef = React.createRef();
-  inAppBodyRef = React.createRef();
+  inAppContainerRef = React.createRef();
 
   render() {
     const {
@@ -90,7 +87,10 @@ class InAppBase extends React.PureComponent {
           `${baseClass}__overlay--visible`
         )}
       >
-        <div className={cx(`${baseClass}__container`)}>
+        <div
+          className={cx(`${baseClass}__container`)}
+          ref={this.inAppContainerRef}
+        >
           <div>
             <InAppHeader
               avatar={
@@ -104,20 +104,18 @@ class InAppBase extends React.PureComponent {
                   : null
               }
               onCloseButtonClick={this.onCloseButtonClick}
-              ref={this.inAppHeaderRef}
             />
             <div
               className={cx({
                 [mergedClassNames]: true,
                 [`${baseClass}__with_footer`]: footerButtons
               })}
-              ref={this.inAppBodyRef}
               {...restProps}
             >
               <div className={cx(`${baseClass}__content-container`)}>
                 {children}
               </div>
-              {footerButtons && <InAppFooter buttons={footerButtons}/>}
+              {footerButtons && <InAppFooter buttons={footerButtons} />}
             </div>
           </div>
         </div>
