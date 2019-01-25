@@ -16,15 +16,17 @@ const InAppFooter = props => {
 
   return (
     <div className={mergedClassNames}>
-      <Button
-        fullWidth
-        primary={remindButton.type === 'primary'}
-        destructive={remindButton.type === 'destructive'}
-        size={remindButton.size || 'regular'}
-        onClick={remindButton.action}
-      >
-        {remindButton.label}
-      </Button>
+      {remindButton && (
+        <Button
+          fullWidth
+          primary={remindButton.type === 'primary'}
+          destructive={remindButton.type === 'destructive'}
+          size={remindButton.size || 'regular'}
+          onClick={remindButton.action}
+        >
+          {remindButton.label}
+        </Button>
+      )}
       <Button
         fullWidth
         primary={ctaButton.type === 'primary'}
