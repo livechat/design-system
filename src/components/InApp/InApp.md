@@ -10,7 +10,9 @@ const toggleInApp = () => setState({isOpen: !state.isOpen});
   {state.isOpen && (
     <InApp
       onClose={toggleInApp}
-      imageSrc="https://cdn.livechat-static.com/api/file/v2/lc/att-old/8656216/fe28d6850106f65c9207f3dcea091099/product-cards-shopify-preview.gif"
+      image={{
+        src: "https://cdn.livechat-static.com/api/file/v2/lc/att-old/8656216/fe28d6850106f65c9207f3dcea091099/product-cards-shopify-preview.gif"
+      }}
       header={{
         avatarSrc: "https://avatars2.githubusercontent.com/u/29309941?s=88&v=4",
         text: 
@@ -41,7 +43,9 @@ const toggleInApp = () => setState({isOpen: !state.isOpen});
 <ComponentHtmlMarkup>
   <InApp
         onClose={() => {}}
-        imageSrc="https://cdn.livechat-static.com/api/file/v2/lc/att-old/8656216/fe28d6850106f65c9207f3dcea091099/product-cards-shopify-preview.gif"
+        image={{
+          src: "https://cdn.livechat-static.com/api/file/v2/lc/att-old/8656216/fe28d6850106f65c9207f3dcea091099/product-cards-shopify-preview.gif"
+        }}
         header={{
           avatar: "https://avatars2.githubusercontent.com/u/29309941?s=88&v=4",
           text: 

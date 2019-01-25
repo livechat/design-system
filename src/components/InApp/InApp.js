@@ -9,7 +9,7 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 const baseClass = 'inapp';
 
 const InApp = props => {
-  const { imageSrc, imageAlt, children, className, ...restProps } = props;
+  const { image: imageProps, children, className, ...restProps } = props;
 
   const mergedClassNames = getMergedClassNames(
     styles[`${baseClass}`],
@@ -18,7 +18,7 @@ const InApp = props => {
 
   return (
     <InAppBase className={mergedClassNames} {...restProps}>
-      {imageSrc && <InAppImage src={imageSrc} alt={imageAlt} />}
+      {imageProps && <InAppImage {...imageProps} />}
       <InAppBody>{children}</InAppBody>
     </InAppBase>
   );
@@ -26,8 +26,7 @@ const InApp = props => {
 
 InApp.propTypes = {
   ...InAppBase.propTypes,
-  imageSrc: PropTypes.string,
-  imageAlt: PropTypes.string
+  image: PropTypes.shape({ ...InAppImage.propTypes })
 };
 
 export default InApp;
