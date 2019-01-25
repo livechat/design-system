@@ -1,9 +1,14 @@
 // <reference types="react" />
 
+import { IButtonProps } from './buttons';
+
 export interface IInAppBaseProps extends React.HTMLAttributes<HTMLDivElement> {
     className?: string;
-    headerAvatar?: string;
-    headerFrom?: React.ReactNode;
+    header?: {
+        avatarSrc?: IInAppHeaderProps['avatarSrc'],
+        avatarAlt?: IInAppHeaderProps['avatarAlt'],
+        text?: IInAppHeaderProps['text']
+    };
     onClose(): void;
     closeOnEscPress?: boolean;
     footer?: React.ReactNode;
@@ -30,7 +35,7 @@ export interface IInAppHeaderProps extends React.HTMLAttributes<HTMLDivElement> 
 
 export interface IInAppFooterProps extends React.HTMLAttributes<HTMLDivElement> {
     className?: string;
-    buttons?: object;
+    buttons?: IButtonProps;
 }
 
 export var InAppBase: React.ComponentType<IInAppBaseProps>;
