@@ -79,7 +79,7 @@ Button.propTypes = {
   /**
    * Size of button
    */
-  size: PropTypes.oneOf(['compact', 'regular', 'large']),
+  size: PropTypes.oneOf(['compact', 'large']),
   /**
    * Sets button width to max-width=320px
    */

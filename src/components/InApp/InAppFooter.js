@@ -7,8 +7,6 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 const baseClass = 'inapp__footer';
 
 const InAppFooter = props => {
-  const ctaButton = props.buttons.cta;
-  const remindButton = props.buttons.remind;
   const mergedClassNames = getMergedClassNames(
     styles[`${baseClass}`],
     props.className
@@ -16,26 +14,8 @@ const InAppFooter = props => {
 
   return (
     <div className={mergedClassNames}>
-      {remindButton && (
-        <Button
-          fullWidth
-          primary={remindButton.type === 'primary'}
-          destructive={remindButton.type === 'destructive'}
-          size={remindButton.size || 'regular'}
-          onClick={remindButton.action}
-        >
-          {remindButton.label}
-        </Button>
-      )}
-      <Button
-        fullWidth
-        primary={ctaButton.type === 'primary'}
-        destructive={ctaButton.type === 'destructive'}
-        size={ctaButton.size || 'regular'}
-        onClick={ctaButton.action}
-      >
-        {ctaButton.label}
-      </Button>
+      {props.buttons.remind && (<Button fullWidth {...props.buttons.remind} />)}
+      <Button fullWidth primary {...props.buttons.cta} />
     </div>
   );
 };
@@ -43,18 +23,8 @@ const InAppFooter = props => {
 InAppFooter.propTypes = {
   className: PropTypes.string,
   buttons: PropTypes.shape({
-    cta: PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      action: PropTypes.func.isRequired,
-      type: PropTypes.string,
-      size: PropTypes.string
-    }).isRequired,
-    remind: PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      action: PropTypes.func.isRequired,
-      type: PropTypes.string,
-      size: PropTypes.string
-    })
+    cta: Button.propTypes.isRequired,
+    remind: Button.propTypes
   })
 };
 

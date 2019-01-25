@@ -41,10 +41,8 @@ class InAppBase extends React.PureComponent {
 
   onKeyUp = event => {
     if (
-      (Object.prototype.hasOwnProperty.call(event, 'key') &&
-        event.key === KeyNames.esc) ||
-      (Object.prototype.hasOwnProperty.call(event, 'keyCode') &&
-        event.keyCode === KeyCodes.esc)
+      (event.key && event.key === KeyNames.esc) ||
+      (event.keyCode && event.keyCode === KeyCodes.esc)
     ) {
       this.handleCloseInApp();
     }
