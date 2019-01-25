@@ -93,9 +93,16 @@ class InAppBase extends React.PureComponent {
         >
           <div>
             <InAppHeader
-              avatar={
-                header && Object.prototype.hasOwnProperty.call(header, 'avatar')
-                  ? header.avatar
+              avatarSrc={
+                header &&
+                Object.prototype.hasOwnProperty.call(header, 'avatarSrc')
+                  ? header.avatarSrc
+                  : ''
+              }
+              avatarAlt={
+                header &&
+                Object.prototype.hasOwnProperty.call(header, 'avatarAlt')
+                  ? header.avatarAlt
                   : ''
               }
               text={
@@ -128,7 +135,8 @@ InAppBase.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   header: PropTypes.shape({
-    avatar: InAppHeader.propTypes.avatar,
+    avatarSrc: InAppHeader.propTypes.avatarSrc,
+    avatarAlt: InAppHeader.propTypes.avatarAlt,
     text: InAppHeader.propTypes.text
   }),
   onClose: InAppHeader.propTypes.onCloseButtonClick,

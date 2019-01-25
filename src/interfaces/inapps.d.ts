@@ -22,7 +22,8 @@ export interface IInAppProps extends IInAppBaseProps {
 
 export interface IInAppHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
     className?: string;
-    avatar?: string;
+    avatarSrc?: string;
+    avatarAlt?: string;
     text?: React.ReactNode;
     onCloseButtonClick: void;
 }

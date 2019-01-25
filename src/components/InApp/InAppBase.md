@@ -55,9 +55,10 @@ const reset = () => {
         <InAppBase 
             onClose={reset}
             header={{
-              avatar: state.withAvatar
+              avatarSrc: state.withAvatar
                 ? "https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
                 : null,
+              avatarAlt: state.withAvatar ? "Jane" : null,
               text: state.withFrom
                 ? (
                     <>
