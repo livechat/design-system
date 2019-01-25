@@ -14,7 +14,10 @@ const toggleInApp = () => setState({isOpen: !state.isOpen});
         src: "https://cdn.livechat-static.com/api/file/v2/lc/att-old/8656216/fe28d6850106f65c9207f3dcea091099/product-cards-shopify-preview.gif"
       }}
       header={{
-        avatarSrc: "https://avatars2.githubusercontent.com/u/29309941?s=88&v=4",
+        avatar: {
+          src: "https://avatars2.githubusercontent.com/u/29309941?s=88&v=4",
+          alt: "Jane"
+        },
         text: 
           <React.Fragment>
              <strong>Michał</strong> from LiveChat
@@ -47,7 +50,10 @@ const toggleInApp = () => setState({isOpen: !state.isOpen});
           src: "https://cdn.livechat-static.com/api/file/v2/lc/att-old/8656216/fe28d6850106f65c9207f3dcea091099/product-cards-shopify-preview.gif"
         }}
         header={{
-          avatar: "https://avatars2.githubusercontent.com/u/29309941?s=88&v=4",
+          avatar: {
+            src: "https://avatars2.githubusercontent.com/u/29309941?s=88&v=4",
+            alt: "Jane"
+          },
           text: 
             <React.Fragment>
                <strong>Michał</strong> from LiveChat

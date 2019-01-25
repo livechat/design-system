@@ -93,23 +93,8 @@ class InAppBase extends React.PureComponent {
         <div className={cx(`${baseClass}__container`)}>
           <div ref={this.inAppContentRef}>
             <InAppHeader
-              avatarSrc={
-                header &&
-                Object.prototype.hasOwnProperty.call(header, 'avatarSrc')
-                  ? header.avatarSrc
-                  : ''
-              }
-              avatarAlt={
-                header &&
-                Object.prototype.hasOwnProperty.call(header, 'avatarAlt')
-                  ? header.avatarAlt
-                  : ''
-              }
-              text={
-                header && Object.prototype.hasOwnProperty.call(header, 'text')
-                  ? header.text
-                  : null
-              }
+              avatar={header && header.avatar ? header.avatar : undefined}
+              text={header && header.text ? header.text : undefined}
               onCloseButtonClick={this.onCloseButtonClick}
             />
             <div
@@ -135,8 +120,7 @@ InAppBase.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   header: PropTypes.shape({
-    avatarSrc: InAppHeader.propTypes.avatarSrc,
-    avatarAlt: InAppHeader.propTypes.avatarAlt,
+    avatar: InAppHeader.propTypes.avatar,
     text: InAppHeader.propTypes.text
   }),
   onClose: InAppHeader.propTypes.onCloseButtonClick,

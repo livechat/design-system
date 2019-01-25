@@ -55,17 +55,18 @@ const reset = () => {
         <InAppBase 
             onClose={reset}
             header={{
-              avatarSrc: state.withAvatar
-                ? "https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
-                : null,
-              avatarAlt: state.withAvatar ? "Jane" : null,
-              text: state.withFrom
-                ? (
-                    <>
-                      <strong>Michał</strong> from LiveChat
-                    </>
-                  )
-                : null
+              avatar: 
+                state.withAvatar
+                ? {
+                  src: "https://avatars2.githubusercontent.com/u/29309941?s=88&v=4",
+                  alt: "Jane"
+                }
+                : undefined,
+              text: state.withFrom ? (
+                  <>
+                    <strong>Michał</strong> from LiveChat
+                  </>
+                ): undefined
             }}
         >
             <div style={{margin: 'auto'}}>content</div>
@@ -112,7 +113,10 @@ const reset = () => {
     <InAppBase 
         onClose={() => {}}
         header={{
-            avatar: "https://avatars2.githubusercontent.com/u/29309941?s=88&v=4",
+            avatar: {
+                src: "https://avatars2.githubusercontent.com/u/29309941?s=88&v=4",
+                alt: "Jane"
+            },
             text: (
                 <>
                     <strong>Michał</strong> from LiveChat
