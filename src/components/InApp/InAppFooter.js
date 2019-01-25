@@ -23,8 +23,8 @@ const InAppFooter = props => {
 InAppFooter.propTypes = {
   className: PropTypes.string,
   buttons: PropTypes.shape({
-    cta: Button.propTypes.isRequired,
-    remind: Button.propTypes
+    cta: PropTypes.shape({ ...Button.propTypes.isRequired }).isRequired,
+    remind: PropTypes.shape({ ...Button.propTypes })
   })
 };
 

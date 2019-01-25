@@ -51,13 +51,12 @@ const toggleInApp = () => setState({isOpen: !state.isOpen});
         }}
         footerButtons={{
           cta: {
-            label: 'Check it out!',
-            type: 'primary',
-            action: () => {}
+            children: 'Check it out!',
+            onClick: () => {}
           },
           remind: {
-            label: 'Remind me later!',
-            action: () => {}
+            children: 'Remind me later!',
+            onClick: () => {}
           }
         }}
       >

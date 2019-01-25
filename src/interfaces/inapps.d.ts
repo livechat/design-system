@@ -35,7 +35,10 @@ export interface IInAppHeaderProps extends React.HTMLAttributes<HTMLDivElement> 
 
 export interface IInAppFooterProps extends React.HTMLAttributes<HTMLDivElement> {
     className?: string;
-    buttons?: IButtonProps;
+    buttons: {
+        cta: IButtonProps,
+        remind?: IButtonProps
+    };
 }
 
 export var InAppBase: React.ComponentType<IInAppBaseProps>;
