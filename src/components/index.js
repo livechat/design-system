@@ -44,3 +44,12 @@ export {
   DatePickerRangeSelectInputs,
   DatePickerRangeCalendarsWrapper
 } from './DatePicker';
+
+export {
+  InAppBase,
+  InAppPortal,
+  InApp,
+  InAppFooter,
+  InAppHeader,
+  InAppBody
+} from './InApp';
