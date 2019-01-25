@@ -26,8 +26,8 @@ class InAppBase extends React.PureComponent {
 
   onDocumentClick = event => {
     if (
-      this.inAppContainerRef.current &&
-      !this.inAppContainerRef.current.contains(event.target)
+      this.inAppContentRef.current &&
+      !this.inAppContentRef.current.contains(event.target)
     ) {
       this.handleCloseInApp();
     }
@@ -64,7 +64,7 @@ class InAppBase extends React.PureComponent {
     this.props.onClose();
   };
 
-  inAppContainerRef = React.createRef();
+  inAppContentRef = React.createRef();
 
   render() {
     const {
@@ -90,11 +90,8 @@ class InAppBase extends React.PureComponent {
           `${baseClass}__overlay--visible`
         )}
       >
-        <div
-          className={cx(`${baseClass}__container`)}
-          ref={this.inAppContainerRef}
-        >
-          <div>
+        <div className={cx(`${baseClass}__container`)}>
+          <div ref={this.inAppContentRef}>
             <InAppHeader
               avatarSrc={
                 header &&
