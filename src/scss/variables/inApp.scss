@@ -7,6 +7,12 @@ $inapp-content-max-width: 522px;
 $inapp-breakpoint-text-only: 400px;
 $inapp-breakpoint-single-column: 640px;
 
+@mixin inapp-media-mobile-horizontal {
+  @media screen and (max-height: #{$inapp-max-height - 1px}) {
+    @content;
+  }
+}
+
 @mixin inapp-media-text {
   @media screen and (max-width: #{$inapp-breakpoint-text-only - 1px}) {
     @content;

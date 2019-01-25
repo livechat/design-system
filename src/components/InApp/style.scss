@@ -97,6 +97,26 @@
       min-width: unset;
       min-height: unset;
     }
+
+    &__overlay {
+      max-height: 100vh;
+      min-height: unset;
+    }
+  }
+
+  @include inapp-media-mobile-horizontal {
+    max-height: calc(100vh - 170px);
+    min-height: unset;
+
+    &__container {
+      max-height: calc(100vh - 20px);
+      min-height: unset;
+    }
+
+    &__overlay {
+      max-height: 100vh;
+      min-height: unset;
+    }
   }
 }
 
@@ -125,6 +145,11 @@
       min-width: unset;
       min-height: unset;
     }
+
+    @include inapp-media-mobile-horizontal {
+      max-height: calc(100vh - 20px);
+      min-height: unset;
+    }
   }
 
   &__heading {
@@ -143,6 +168,10 @@
     }
 
     @include inapp-media-text {
+      display: none;
+    }
+
+    @include inapp-media-mobile-horizontal {
       display: none;
     }
   }
@@ -217,6 +246,13 @@
   @include inapp-media-text {
     &__body, &__footer {
       max-width: calc(100vw - 10px);
+    }
+  }
+
+  @include inapp-media-mobile-horizontal {
+    &__body, &__footer {
+      max-height: calc(100vh - 20px);
+      min-height: unset;
     }
   }
 }
