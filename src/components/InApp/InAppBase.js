@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './style.scss';
-import { KeyNames } from '../../constants/keyCodes';
+import { KeyNames, KeyCodes } from '../../constants/keyCodes';
 import InAppHeader from './InAppHeader';
 import InAppFooter from './InAppFooter';
 import getMergedClassNames from '../../utils/getMergedClassNames';
@@ -40,7 +40,12 @@ class InAppBase extends React.PureComponent {
   };
 
   onKeyUp = event => {
-    if (event.key === KeyNames.esc) {
+    if (
+      (Object.prototype.hasOwnProperty.call(event, 'key') &&
+        event.key === KeyNames.esc) ||
+      (Object.prototype.hasOwnProperty.call(event, 'keyCode') &&
+        event.keyCode === KeyCodes.esc)
+    ) {
       this.handleCloseInApp();
     }
   };
