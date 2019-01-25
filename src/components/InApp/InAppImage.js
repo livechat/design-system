@@ -5,16 +5,16 @@ import styles from './style.scss';
 const baseClass = 'inapp__image';
 
 const InAppImage = props => {
-  const { src, alt, ...restProps } = props;
+  const { alt, ...restProps } = props;
   return (
     <div className={styles[`${baseClass}`]}>
-      <img src={src} alt={alt || 'InApp Image'} {...restProps} />
+      <img alt={alt || 'InApp Image'} {...restProps} />
     </div>
   );
 };
 
 InAppImage.propTypes = {
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
   alt: PropTypes.string
 };
 
