@@ -56,7 +56,8 @@ class MultiSelect extends React.PureComponent {
 
   componentWillUnmount() {
     this.onBodyClose();
-    document.removeEventListener('keydown', this.onArrowPress);
+    document.removeEventListener('keydown', this.onArrowKeydown);
+    document.removeEventListener('keydown', this.onBackspaceKeydown);
     this.timeouts.forEach(timerId => {
       clearTimeout(timerId);
     });
@@ -94,11 +95,15 @@ class MultiSelect extends React.PureComponent {
 
   onBodyOpen = () => {
     document.addEventListener('click', this.onDocumentClick);
+    document.addEventListener('keydown', this.onBackspaceKeydown);
     this.asyncInputFocus();
   };
 
   onBodyClose = () => {
     document.removeEventListener('click', this.onDocumentClick);
+    if (!this.state.isFocused) {
+      document.removeEventListener('keydown', this.onBackspaceKeydown);
+    }
   };
 
   onSelectHeadClick = event => {
@@ -115,8 +120,9 @@ class MultiSelect extends React.PureComponent {
     this.setState({
       isFocused: true
     });
+    document.addEventListener('keydown', this.onBackspaceKeydown);
     if (!this.state.isOpen) {
-      document.addEventListener('keydown', this.onArrowPress);
+      document.addEventListener('keydown', this.onArrowKeydown);
     }
   };
 
@@ -124,15 +130,30 @@ class MultiSelect extends React.PureComponent {
     this.setState({
       isFocused: false
     });
-    document.removeEventListener('keydown', this.onArrowPress);
+    document.removeEventListener('keydown', this.onArrowKeydown);
+    if (!this.state.isOpen) {
+      document.removeEventListener('keydown', this.onBackspaceKeydown);
+    }
   };
 
-  onArrowPress = e => {
+  onArrowKeydown = e => {
     if (e.keyCode === KeyCodes.arrowDown || e.keyCode === KeyCodes.arrowUp) {
       e.preventDefault();
       if (!this.state.isOpen) {
         this.showSelectBody();
       }
+    }
+  };
+
+  onBackspaceKeydown = e => {
+    const isCorrectKeyCode = e.keyCode === KeyCodes.backspace;
+    const isSearchPhraseEmpty = this.state.searchPhrase === '';
+    const isAnyItemsToRemove =
+      this.props.selected && this.props.selected.length > 0;
+    if (isCorrectKeyCode && isSearchPhraseEmpty && isAnyItemsToRemove) {
+      e.preventDefault();
+      const lastItemKey = this.props.selected[this.props.selected.length - 1];
+      this.asyncItemRemove(lastItemKey);
     }
   };
 
@@ -232,10 +253,7 @@ class MultiSelect extends React.PureComponent {
   handleItemRemove = (e, itemKey) => {
     e.preventDefault();
     e.stopPropagation();
-    const timerId = setTimeout(() => {
-      this.props.onItemRemove(itemKey);
-    }, 0);
-    this.timeouts = [...this.timeouts, timerId];
+    this.asyncItemRemove(itemKey);
   };
 
   showSelectBody = () => {
@@ -268,6 +286,13 @@ class MultiSelect extends React.PureComponent {
       }, 0);
       this.timeouts = [...this.timeouts, timerId];
     }
+  };
+
+  asyncItemRemove = itemKey => {
+    const timerId = setTimeout(() => {
+      this.props.onItemRemove(itemKey);
+    }, 0);
+    this.timeouts = [...this.timeouts, timerId];
   };
 
   changeFocusedItem = itemKey => {
