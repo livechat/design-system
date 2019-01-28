@@ -222,6 +222,10 @@
     bottom: 0;
     background: #fff;
 
+    &__single_button {
+      justify-content: center;
+    }
+
     & button {
       &:first-of-type {
         margin: 0 5px 0 0;

@@ -9,6 +9,7 @@ const baseClass = 'inapp__footer';
 const InAppFooter = props => {
   const mergedClassNames = getMergedClassNames(
     styles[`${baseClass}`],
+    !props.buttons.remind ? styles[`${baseClass}__single_button`] : null,
     props.className
   );
 
