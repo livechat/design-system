@@ -75,6 +75,7 @@ class MultiSelect extends React.PureComponent {
   onSearchChange = event => {
     this.setState(
       {
+        isOpen: true,
         searchPhrase: event.target.value
       },
       () => {
@@ -129,13 +130,15 @@ class MultiSelect extends React.PureComponent {
   onArrowPress = e => {
     if (e.keyCode === KeyCodes.arrowDown || e.keyCode === KeyCodes.arrowUp) {
       e.preventDefault();
-      this.showSelectBody();
+      if (!this.state.isOpen) {
+        this.showSelectBody();
+      }
     }
   };
 
   getItemSelectedHandler = itemKey => event => {
     event.preventDefault();
-    this.props.onItemSelect(itemKey);
+    this.handleItemSelect(itemKey);
     this.asyncInputFocus();
   };
 
@@ -217,9 +220,14 @@ class MultiSelect extends React.PureComponent {
     );
   };
 
-  handleEnterKeyUse = itemKey => {
+  handleItemSelect = itemKey => {
+    this.setState({
+      searchPhrase: ''
+    });
     this.props.onItemSelect(itemKey);
   };
+
+  handleEnterKeyUse = itemKey => this.handleItemSelect(itemKey);
 
   handleItemRemove = (e, itemKey) => {
     e.preventDefault();
