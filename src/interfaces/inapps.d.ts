@@ -1,6 +1,7 @@
 // <reference types="react" />
 
 import { IButtonProps } from './buttons';
+import {ImgHTMLAttributes} from "react";
 
 export interface IInAppBaseProps extends React.HTMLAttributes<HTMLDivElement> {
     className?: string;
@@ -37,9 +38,9 @@ export interface IInAppFooterProps extends React.HTMLAttributes<HTMLDivElement> 
     };
 }
 
-export interface IInAppAvatar extends React.HTMLAttributes<HTMLImageElement> {}
+export interface IInAppAvatar extends React.ImgHTMLAttributes<HTMLImageElement> {}
 
-export interface IInAppImage extends React.HTMLAttributes<HTMLImageElement> {}
+export interface IInAppImage extends React.ImgHTMLAttributes<HTMLImageElement> {}
 
 export var InAppBase: React.ComponentType<IInAppBaseProps>;
 export var InAppPortal: React.ComponentType<IInAppPortalProps>;
