@@ -182,7 +182,7 @@
 
   &__body {
     width: 100%;
-    max-width: $inapp-content-max-width;
+    max-width: $inapp-max-width;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -195,6 +195,7 @@
     & > * {
       box-sizing: border-box;
       margin: 12px 0;
+      max-width: $inapp-content-max-width;
 
       &:first-child {
         margin: 0 0 12px 0;
@@ -207,6 +208,10 @@
 
     & > p {
       text-align: justify;
+    }
+
+    & > h1, & > h2, & > h3, & > h4, & > h5, & > h6 {
+      max-width: $inapp-max-width;
     }
   }
 
