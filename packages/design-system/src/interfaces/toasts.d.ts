@@ -6,7 +6,7 @@ export type HorizontalPosition = 'left' | 'center' | 'right';
 
 export type VerticalPosition = 'top' | 'bottom';
 
-export interface IToastConsumerProps {
+export interface IToastConsumerProps extends React.HTMLAttributes<HTMLDivElement> {
   verticalPosition: VerticalPosition;
   horizontalPosition: HorizontalPosition;
   fixed?: boolean;
@@ -25,7 +25,7 @@ export interface IToastProps {
   }
 }
 
-export interface IToastWrapperProps {
+export interface IToastWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
   toasts: Array<{
     id?: string | number;
     content: React.ReactNode;
