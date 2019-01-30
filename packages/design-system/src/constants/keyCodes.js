@@ -3,5 +3,6 @@ export const KeyCodes = {
   arrowUp: 38,
   arrowDown: 40,
   esc: 27,
-  space: 32
+  space: 32,
+  backspace: 8
 };
