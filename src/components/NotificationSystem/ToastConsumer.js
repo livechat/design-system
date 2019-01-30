@@ -68,10 +68,6 @@ class ToastConsumer extends React.Component {
 
 ToastConsumer.propTypes = {
   /**
-   * limit of visible toasts
-   */
-  itemsLimit: PropTypes.number,
-  /**
    * fixed position of toasts
    */
   name: PropTypes.string,
@@ -82,7 +78,6 @@ ToastConsumer.propTypes = {
 };
 
 ToastConsumer.defaultProps = {
-  itemsLimit: 1,
   animationType: 'slide',
   fixed: true
 };

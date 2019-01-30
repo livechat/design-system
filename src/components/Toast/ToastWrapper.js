@@ -19,7 +19,10 @@ const ToastWrapper = props => {
     horizontalPosition,
     fixed,
     block,
-    animationType
+    toasts,
+    animationType,
+    className,
+    ...restProps
   } = props;
 
   const baseClass = 'toast-wrapper';
@@ -34,44 +37,45 @@ const ToastWrapper = props => {
       ),
       [`${baseClass}--vertical-${verticalPosition}`]: VERTICAL_POSITION.some(
         s => s === verticalPosition
-      )
+      ),
+      [className]: className
     });
+
     return wrapperClassNames;
   };
 
   return (
-    <div className={getWrapperClassNames()}>
+    <div {...restProps} className={getWrapperClassNames()}>
       <TransitionGroup component={null}>
-        {props.toasts.map(
-          ({ id, variant, content, onClose, removable, action }) => (
-            <CSSTransition
-              key={id}
-              classNames={{
-                enter: `lc-toast-appear--${animationType}`,
-                enterActive: `lc-toast-appear-active--${animationType}`,
-                exit: `lc-toast-exit--${animationType}`,
-                exitActive: `lc-toast-exit-active--${animationType}`
-              }}
-              timeout={ANIMATION_TIME}
+        {toasts.map(({ id, variant, content, onClose, removable, action }) => (
+          <CSSTransition
+            key={id}
+            classNames={{
+              enter: `lc-toast-appear--${animationType}`,
+              enterActive: `lc-toast-appear-active--${animationType}`,
+              exit: `lc-toast-exit--${animationType}`,
+              exitActive: `lc-toast-exit-active--${animationType}`
+            }}
+            timeout={ANIMATION_TIME}
+          >
+            <Toast
+              variant={variant}
+              onClose={onClose}
+              removable={removable}
+              action={action}
+              className={styles.toast__single}
             >
-              <Toast
-                variant={variant}
-                onClose={onClose}
-                removable={removable}
-                action={action}
-                className={styles.toast__single}
-              >
-                {content}
-              </Toast>
-            </CSSTransition>
-          )
-        )}
+              {content}
+            </Toast>
+          </CSSTransition>
+        ))}
       </TransitionGroup>
     </div>
   );
 };
 
 ToastWrapper.propTypes = {
+  className: PropTypes.string,
   toasts: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
