@@ -56,7 +56,8 @@ class MultiSelect extends React.PureComponent {
 
   componentWillUnmount() {
     this.onBodyClose();
-    document.removeEventListener('keydown', this.onArrowPress);
+    document.removeEventListener('keydown', this.onArrowKeydown);
+    document.removeEventListener('keydown', this.onBackspaceKeydown);
     this.timeouts.forEach(timerId => {
       clearTimeout(timerId);
     });
@@ -75,6 +76,7 @@ class MultiSelect extends React.PureComponent {
   onSearchChange = event => {
     this.setState(
       {
+        isOpen: true,
         searchPhrase: event.target.value
       },
       () => {
@@ -93,17 +95,21 @@ class MultiSelect extends React.PureComponent {
 
   onBodyOpen = () => {
     document.addEventListener('click', this.onDocumentClick);
-    this.asyncInputFocus();
+    document.addEventListener('keydown', this.onBackspaceKeydown);
+    this.delayedInputFocus();
   };
 
   onBodyClose = () => {
     document.removeEventListener('click', this.onDocumentClick);
+    if (!this.state.isFocused) {
+      document.removeEventListener('keydown', this.onBackspaceKeydown);
+    }
   };
 
   onSelectHeadClick = event => {
     event.preventDefault();
     if (!this.state.isOpen) {
-      this.asyncInputFocus();
+      this.delayedInputFocus();
       this.showSelectBody();
     } else {
       this.hideSelectBody();
@@ -114,8 +120,9 @@ class MultiSelect extends React.PureComponent {
     this.setState({
       isFocused: true
     });
+    document.addEventListener('keydown', this.onBackspaceKeydown);
     if (!this.state.isOpen) {
-      document.addEventListener('keydown', this.onArrowPress);
+      document.addEventListener('keydown', this.onArrowKeydown);
     }
   };
 
@@ -123,20 +130,37 @@ class MultiSelect extends React.PureComponent {
     this.setState({
       isFocused: false
     });
-    document.removeEventListener('keydown', this.onArrowPress);
+    document.removeEventListener('keydown', this.onArrowKeydown);
+    if (!this.state.isOpen) {
+      document.removeEventListener('keydown', this.onBackspaceKeydown);
+    }
   };
 
-  onArrowPress = e => {
+  onArrowKeydown = e => {
     if (e.keyCode === KeyCodes.arrowDown || e.keyCode === KeyCodes.arrowUp) {
       e.preventDefault();
-      this.showSelectBody();
+      if (!this.state.isOpen) {
+        this.showSelectBody();
+      }
+    }
+  };
+
+  onBackspaceKeydown = e => {
+    const isCorrectKeyCode = e.keyCode === KeyCodes.backspace;
+    const isSearchPhraseEmpty = this.state.searchPhrase === '';
+    const isAnyItemsToRemove =
+      this.props.selected && this.props.selected.length > 0;
+    if (isCorrectKeyCode && isSearchPhraseEmpty && isAnyItemsToRemove) {
+      e.preventDefault();
+      const lastItemKey = this.props.selected[this.props.selected.length - 1];
+      this.delayedItemRemove(lastItemKey);
     }
   };
 
   getItemSelectedHandler = itemKey => event => {
     event.preventDefault();
-    this.props.onItemSelect(itemKey);
-    this.asyncInputFocus();
+    this.handleItemSelect(itemKey);
+    this.delayedInputFocus();
   };
 
   getSelectedItems = () => {
@@ -217,17 +241,19 @@ class MultiSelect extends React.PureComponent {
     );
   };
 
-  handleEnterKeyUse = itemKey => {
+  handleItemSelect = itemKey => {
+    this.setState({
+      searchPhrase: ''
+    });
     this.props.onItemSelect(itemKey);
   };
+
+  handleEnterKeyUse = itemKey => this.handleItemSelect(itemKey);
 
   handleItemRemove = (e, itemKey) => {
     e.preventDefault();
     e.stopPropagation();
-    const timerId = setTimeout(() => {
-      this.props.onItemRemove(itemKey);
-    }, 0);
-    this.timeouts = [...this.timeouts, timerId];
+    this.delayedItemRemove(itemKey);
   };
 
   showSelectBody = () => {
@@ -253,13 +279,20 @@ class MultiSelect extends React.PureComponent {
     );
   };
 
-  asyncInputFocus = () => {
+  delayedInputFocus = () => {
     if (this.props.search && this.searchInputRef.current) {
       const timerId = setTimeout(() => {
         this.searchInputRef.current.focus();
       }, 0);
       this.timeouts = [...this.timeouts, timerId];
     }
+  };
+
+  delayedItemRemove = itemKey => {
+    const timerId = setTimeout(() => {
+      this.props.onItemRemove(itemKey);
+    }, 0);
+    this.timeouts = [...this.timeouts, timerId];
   };
 
   changeFocusedItem = itemKey => {
