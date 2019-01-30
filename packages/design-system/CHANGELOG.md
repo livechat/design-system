@@ -178,3 +178,15 @@ _Release: 2019-01-24_
 ##### Bug Fixes
 * Adding fallbacks for default Source Sans Pro font-family
 * Fixing datepicker miscalculation in day mouse entering handler
+
+----
+## v0.0.18
+_Release: 2019-01-30_
+
+##### New Features
+* Adding support for removing items with backspace keydown in Multiselect
+* Clearing search phrase on item select and on list close
+
+##### Refactors
+* extending ToastWrapper props with HTMLAttributes to support outside className property
+* removing leftover prop itemsLimit from ToastConsumer
