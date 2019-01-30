@@ -96,7 +96,7 @@ class MultiSelect extends React.PureComponent {
   onBodyOpen = () => {
     document.addEventListener('click', this.onDocumentClick);
     document.addEventListener('keydown', this.onBackspaceKeydown);
-    this.asyncInputFocus();
+    this.delayedInputFocus();
   };
 
   onBodyClose = () => {
@@ -109,7 +109,7 @@ class MultiSelect extends React.PureComponent {
   onSelectHeadClick = event => {
     event.preventDefault();
     if (!this.state.isOpen) {
-      this.asyncInputFocus();
+      this.delayedInputFocus();
       this.showSelectBody();
     } else {
       this.hideSelectBody();
@@ -153,14 +153,14 @@ class MultiSelect extends React.PureComponent {
     if (isCorrectKeyCode && isSearchPhraseEmpty && isAnyItemsToRemove) {
       e.preventDefault();
       const lastItemKey = this.props.selected[this.props.selected.length - 1];
-      this.asyncItemRemove(lastItemKey);
+      this.delayedItemRemove(lastItemKey);
     }
   };
 
   getItemSelectedHandler = itemKey => event => {
     event.preventDefault();
     this.handleItemSelect(itemKey);
-    this.asyncInputFocus();
+    this.delayedInputFocus();
   };
 
   getSelectedItems = () => {
@@ -253,7 +253,7 @@ class MultiSelect extends React.PureComponent {
   handleItemRemove = (e, itemKey) => {
     e.preventDefault();
     e.stopPropagation();
-    this.asyncItemRemove(itemKey);
+    this.delayedItemRemove(itemKey);
   };
 
   showSelectBody = () => {
@@ -279,7 +279,7 @@ class MultiSelect extends React.PureComponent {
     );
   };
 
-  asyncInputFocus = () => {
+  delayedInputFocus = () => {
     if (this.props.search && this.searchInputRef.current) {
       const timerId = setTimeout(() => {
         this.searchInputRef.current.focus();
@@ -288,7 +288,7 @@ class MultiSelect extends React.PureComponent {
     }
   };
 
-  asyncItemRemove = itemKey => {
+  delayedItemRemove = itemKey => {
     const timerId = setTimeout(() => {
       this.props.onItemRemove(itemKey);
     }, 0);
