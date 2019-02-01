@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 import Button from './Button';
-import ButtonWithLoader from './ButtonWithLoader';
 
 const clickFn = jest.fn();
 const focusFn = jest.fn();
@@ -13,16 +12,6 @@ describe('Button', () => {
       <Button destructive primary>
         Click me
       </Button>
-    );
-
-    expect(component).toMatchSnapshot();
-  });
-
-  it('should render primary button with loader', () => {
-    const component = shallow(
-      <ButtonWithLoader primary loading>
-        Click me
-      </ButtonWithLoader>
     );
 
     expect(component).toMatchSnapshot();

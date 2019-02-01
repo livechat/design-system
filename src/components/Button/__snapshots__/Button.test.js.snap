@@ -8,39 +8,3 @@ exports[`Button should render primary button 1`] = `
   Click me
 </button>
 `;
-
-exports[`Button should render primary button with loader 1`] = `
-<Button
-  className="btn-with-loader btn-with-loader--loading"
-  loading={true}
-  primary={true}
->
-  <TransitionGroup
-    childFactory={[Function]}
-    component={null}
-  >
-    <CSSTransition
-      classNames={
-        Object {
-          "enter": "btn__loader-enter",
-          "enterActive": "btn__loader-enter-active",
-          "exit": "btn__loader-exit",
-          "exitActive": "btn__loader-exit-active",
-        }
-      }
-      timeout={200}
-    >
-      <div
-        className="btn__loader"
-      >
-        <Loader />
-      </div>
-    </CSSTransition>
-  </TransitionGroup>
-  <span
-    className="btn-with-loader__content btn-with-loader__content--hidden"
-  >
-    Click me
-  </span>
-</Button>
-`;

@@ -89,17 +89,17 @@ Button expanded to the full width to fill the parent container (max-width: 320px
       <Button primary onClick={toggleLoading}>Turn {state.loading ? 'off' : 'on'} loading</Button>
     </div>
     <div style={{display: 'flex', justifyContent: 'space-between'}}>
-      <ButtonWithLoader loading={state.loading}>Loading Button</ButtonWithLoader>
-      <ButtonWithLoader loading={state.loading} destructive>Loading Button</ButtonWithLoader>
-      <ButtonWithLoader loading={state.loading} primary>Loading Button</ButtonWithLoader>
+      <Button loading={state.loading}>Loading Button</Button>
+      <Button loading={state.loading} destructive>Loading Button</Button>
+      <Button loading={state.loading} primary>Loading Button</Button>
     </div>
   </div>
 ```
 ```js noeditor
   <ComponentHtmlMarkup>
-    <ButtonWithLoader loading>Loading Button</ButtonWithLoader>
-    <ButtonWithLoader loading destructive>Loading Button</ButtonWithLoader>
-    <ButtonWithLoader loading primary>Loading Button</ButtonWithLoader>
+    <Button loading>Loading Button</Button>
+    <Button loading destructive>Loading Button</Button>
+    <Button loading primary>Loading Button</Button>
   </ComponentHtmlMarkup>
 ```
 

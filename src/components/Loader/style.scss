@@ -1,7 +1,7 @@
 @import '../../scss/variables/colors';
 
 @keyframes rotate {
-  0% {
+  from {
     transform: rotate(0deg);
   }
 
