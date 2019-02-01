@@ -162,7 +162,8 @@ class Select extends React.PureComponent {
     this.setState(
       {
         isOpen: false,
-        focusedItemKey: this.props.items[0] ? this.props.items[0].key : null
+        focusedItemKey: this.props.items[0] ? this.props.items[0].key : null,
+        searchPhrase: ''
       },
       () => {
         this.headRef.current.focus();

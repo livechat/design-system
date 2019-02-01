@@ -181,6 +181,18 @@ _Release: 2019-01-24_
 
 ----
 ## v0.0.18
+_Release: 2019-01-30_
+
+##### New Features
+* Adding support for removing items with backspace keydown in Multiselect
+* Clearing search phrase on item select and on list close
+
+##### Refactors
+* extending ToastWrapper props with HTMLAttributes to support outside className property
+* removing leftover prop itemsLimit from ToastConsumer
+
+----
+## v0.0.19
 _Release: 2019-02-01_
 
 ##### New Features
