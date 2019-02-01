@@ -1,0 +1,25 @@
+@import '../../scss/variables/colors';
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+$base-class: 'loader';
+
+.#{$base-class} {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 50%;
+  animation: rotate 1s infinite linear;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #deeefd;
+  border-top-color: $primary-color;
+}

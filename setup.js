@@ -5,6 +5,7 @@ import ComponentHtmlMarkup from './src/docs/ComponentHtmlMarkup';
 
 // components
 global.Button = Components.Button;
+global.ButtonWithLoader = Components.ButtonWithLoader;
 global.Tab = Components.Tab;
 global.TabsWrapper = Components.TabsWrapper;
 global.TabsList = Components.TabsList;

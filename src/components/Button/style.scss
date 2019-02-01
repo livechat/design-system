@@ -37,7 +37,7 @@
   }
 
   &:focus {
-    box-shadow: 0 0 1px 2px rgba($primary-color, .7);
+    box-shadow: 0 0 1px 2px rgba($primary-color, 0.7);
   }
 
   &:active {
@@ -102,5 +102,71 @@
   .icon {
     color: $primary-color;
     margin-right: 7px;
+  }
+
+  &-with-loader {
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 1;
+    }
+
+    &--disabled {
+      opacity: 0.65;
+    }
+
+    &--loading {
+      background-color: $loading-btn-basic-color;
+      border-color: #d0d2d5;
+
+      &.btn--destructive {
+        background-color: $loading-btn-error-color;
+        border-color: transparent;
+      }
+
+      &.btn--primary {
+        background-color: $loading-btn-primary-color;
+        border-color: transparent;
+      }
+    }
+
+    &__content {
+      visibility: visible;
+      opacity: 1;
+      transition: all 0.2s ease-in-out;
+
+      &--hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  }
+
+  &__loader {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+
+    &-enter {
+      opacity: 0;
+      transition: all 0.2s ease-in-out;
+
+      &.btn__loader-enter-active {
+        opacity: 1;
+        transition: all 0.2s ease-in-out;
+      }
+    }
+
+    &-exit {
+      opacity: 1;
+      transition: all 0.2s ease-in-out;
+
+      &.btn__loader-exit-active {
+        opacity: 0;
+        transition: all 0.2s ease-in-out;
+      }
+    }
   }
 }

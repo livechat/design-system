@@ -1,6 +1,6 @@
 export { Tab, TabsWrapper, TabsList } from './Tab';
 export { Tooltip, TooltipContent } from './Tooltip';
-export { default as Button } from './Button';
+export { Button, ButtonWithLoader } from './Button';
 
 export { Toast, ToastWrapper } from './Toast';
 
