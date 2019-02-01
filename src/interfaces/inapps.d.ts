@@ -35,9 +35,9 @@ export interface IInAppFooterProps extends React.HTMLAttributes<HTMLDivElement> 
     };
 }
 
-export interface IInAppAvatar extends React.ImgHTMLAttributes<HTMLImageElement> {}
+export interface IInAppAvatar extends React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> {}
 
-export interface IInAppImage extends React.ImgHTMLAttributes<HTMLImageElement> {}
+export interface IInAppImage extends React.DetailedHTMLProps<React.ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> {}
 
 export var InAppBase: React.ComponentType<IInAppBaseProps>;
 export var InAppPortal: React.ComponentType<IInAppPortalProps>;
