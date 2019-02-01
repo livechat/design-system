@@ -178,3 +178,10 @@ _Release: 2019-01-24_
 ##### Bug Fixes
 * Adding fallbacks for default Source Sans Pro font-family
 * Fixing datepicker miscalculation in day mouse entering handler
+
+----
+## v0.0.18
+_Release: 2019-02-01_
+
+##### New Features
+* InApp - new component used for communication with customers.
