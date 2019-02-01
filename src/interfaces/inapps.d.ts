@@ -4,7 +4,6 @@ import { IButtonProps } from './buttons';
 import {ImgHTMLAttributes} from "react";
 
 export interface IInAppBaseProps extends React.HTMLAttributes<HTMLDivElement> {
-    className?: string;
     header?: {
         avatar?: IInAppHeaderProps['avatar'],
         text?: IInAppHeaderProps['text']
@@ -24,14 +23,12 @@ export interface IInAppProps extends IInAppBaseProps {
 }
 
 export interface IInAppHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
-    className?: string;
     avatar?: IInAppAvatar;
     text?: React.ReactNode;
     onCloseButtonClick: void;
 }
 
 export interface IInAppFooterProps extends React.HTMLAttributes<HTMLDivElement> {
-    className?: string;
     buttons: {
         cta: IButtonProps,
         remind?: IButtonProps
