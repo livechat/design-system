@@ -14,12 +14,6 @@ $inapp-breakpoint-single-column: 640px;
   }
 }
 
-@mixin inapp-media-general-max-height {
-  @include inapp-media-mobile-horizontal {
-    @content
-  }
-}
-
 @mixin inapp-media-text {
   @media screen and (max-width: #{$inapp-breakpoint-text-only - 1px}) {
     @content;
