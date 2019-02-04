@@ -19,7 +19,7 @@ class MultiSelect extends React.PureComponent {
     super(props);
 
     this.state = {
-      isOpen: props.openedOnInit || false,
+      isOpen: props.openedOnInit || props.isOpen || false,
       searchPhrase: '',
       focusedItemKey: null,
       isFocused: false
@@ -34,18 +34,19 @@ class MultiSelect extends React.PureComponent {
   }
 
   componentDidMount() {
-    if (this.props.openedOnInit) {
+    if (this.state.isOpen) {
       this.props.onDropdownToggle(true);
       this.onBodyOpen();
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.state.isOpen && prevState.isOpen !== this.state.isOpen) {
-      this.props.onDropdownToggle(true);
+    const hasIsOpenChanged =
+      this.getIsOpen(prevProps, prevState) !== this.getIsOpen();
+
+    if (this.getIsOpen() && hasIsOpenChanged) {
       this.onBodyOpen();
-    } else if (!this.state.isOpen && prevState.isOpen !== this.state.isOpen) {
-      this.props.onDropdownToggle(false);
+    } else if (!this.getIsOpen() && hasIsOpenChanged) {
       this.onBodyClose();
     }
 
@@ -64,10 +65,7 @@ class MultiSelect extends React.PureComponent {
   }
 
   onDocumentClick = event => {
-    if (
-      this.state.isOpen &&
-      !this.containerRef.current.contains(event.target)
-    ) {
+    if (this.getIsOpen() && !this.containerRef.current.contains(event.target)) {
       this.listRef.current.scrollTop = 0;
       this.hideSelectBody();
     }
@@ -80,6 +78,7 @@ class MultiSelect extends React.PureComponent {
         searchPhrase: event.target.value
       },
       () => {
+        this.props.onDropdownToggle(true);
         const filteredItems = this.props.items.filter(
           v => this.filterItem(v) && this.props.selected !== v.key
         );
@@ -108,7 +107,7 @@ class MultiSelect extends React.PureComponent {
 
   onSelectHeadClick = event => {
     event.preventDefault();
-    if (!this.state.isOpen) {
+    if (!this.getIsOpen()) {
       this.delayedInputFocus();
       this.showSelectBody();
     } else {
@@ -228,6 +227,9 @@ class MultiSelect extends React.PureComponent {
     return null;
   };
 
+  getIsOpen = (props = this.props, state = this.state) =>
+    this.isIsOpenControlled() ? props.isOpen : state.isOpen;
+
   shouldScrollItemsContainer = prevProps => {
     if (
       this.props.selected === null ||
@@ -257,10 +259,15 @@ class MultiSelect extends React.PureComponent {
   };
 
   showSelectBody = () => {
-    this.setState({
-      isOpen: true,
-      searchPhrase: ''
-    });
+    this.setState(
+      {
+        isOpen: true,
+        searchPhrase: ''
+      },
+      () => {
+        this.props.onDropdownToggle(true);
+      }
+    );
   };
 
   hideSelectBody = () => {
@@ -274,6 +281,7 @@ class MultiSelect extends React.PureComponent {
             : this.props.items[0].key
       },
       () => {
+        this.props.onDropdownToggle(false);
         this.headRef.current.focus();
       }
     );
@@ -311,6 +319,8 @@ class MultiSelect extends React.PureComponent {
     });
   };
 
+  isIsOpenControlled = () => this.props.isOpen !== undefined;
+
   filterItem = item => {
     const { searchProperty } = this.props;
     const { searchPhrase } = this.state;
@@ -334,7 +344,6 @@ class MultiSelect extends React.PureComponent {
       className,
       error,
       items,
-      searchProperty,
       getItemBody,
       getSelectedItemBody,
       search,
@@ -343,7 +352,8 @@ class MultiSelect extends React.PureComponent {
       maxItemsContainerHeight
     } = this.props;
     const selectedItems = this.getSelectedItems();
-    const { isOpen, searchPhrase, focusedItemKey, isFocused } = this.state;
+    const { searchPhrase, focusedItemKey, isFocused } = this.state;
+    const isOpen = this.getIsOpen();
     const selectedItemsModels = this.getSelectedItemsModels();
     const filteredItems = items.filter(this.filterItem);
 
@@ -415,8 +425,6 @@ class MultiSelect extends React.PureComponent {
             getSelectedItemBody={getSelectedItemBody}
             selectedItems={selectedItems}
             getItemSelectedHandler={this.getItemSelectedHandler}
-            searchPhrase={searchPhrase}
-            searchProperty={searchProperty}
             onEnterKey={this.handleEnterKeyUse}
             onFocusedItemChange={this.changeFocusedItem}
             focusedItemKey={focusedItemKey}
@@ -441,8 +449,12 @@ MultiSelect.propTypes = {
       props: PropTypes.object
     })
   ),
+  isOpen: PropTypes.bool,
   placeholder: PropTypes.string,
-  searchProperty: PropTypes.string,
+  searchProperty: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]),
   selected: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   ),

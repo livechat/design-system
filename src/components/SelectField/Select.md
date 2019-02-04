@@ -97,3 +97,64 @@ The selected item replaces the input placeholder.
     Sort the list in a logical order. E.g. put the most selected option at the top, or alphabetically.
   </li>
 </ul>
+
+
+```js
+const items = [
+  {key: '1', props: {name: 'option 1', value: '1'}},
+  {key: '2', props: {name: 'option 2', value: '2'}},
+  {key: '3', props: {name: 'option 3', value: '3'}},
+  {key: '4', props: {name: 'option 4', value: '4'}},
+  {key: '5', props: {name: 'option 5', value: '5'}},
+  {key: '6', props: {name: 'option 6', value: '6'}},
+  {key: '7', props: {name: 'option 7', value: '7'}},
+  {key: '8', props: {name: 'option 8', value: '8'}},
+];
+initialState = {
+  selectedItem: null,
+  isOpen: false
+};
+
+const handleItemSelect = item => setState({selectedItem: item});
+
+const handleDropdownToggle = isOpen => {
+  console.log(isOpen);
+  setState({
+    isOpen
+  })
+}
+
+const toggleDropdown = () => setState({
+  isOpen: !state.isOpen
+})
+
+const getItemBody = props => {
+  if (!props) {
+    return null;
+  }
+  return <div id={props.value}>{props.name}</div>;
+};
+
+const getSelectedItemBody = props => {
+  return <div id={props.value}>{props.name}</div>;
+};
+
+<div style={{width: '340px'}}>
+  <Button onClick={toggleDropdown}>{state.isOpen ? 'Hide' : 'Show'}</Button>
+  <Select
+    id='select-example'
+    items={items}
+    searchProperty='name'
+    onItemSelect={handleItemSelect}
+    getItemBody={getItemBody}
+    search
+    isOpen={state.isOpen}
+    openedOnInit
+    placeholder='Select option'
+    getSelectedItemBody={getSelectedItemBody}
+    selected={state.selectedItem}
+    searchPlaceholder='Search...'
+    onDropdownToggle={handleDropdownToggle}
+  />
+</div>
+```
