@@ -190,3 +190,10 @@ _Release: 2019-01-30_
 ##### Refactors
 * extending ToastWrapper props with HTMLAttributes to support outside className property
 * removing leftover prop itemsLimit from ToastConsumer
+
+----
+## v0.0.19
+_Release: 2019-02-04_
+
+##### New Features
+* InApp - new component used for communication with customers.
