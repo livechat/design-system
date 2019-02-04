@@ -1,0 +1,33 @@
+$inapp-min-width: 320px;
+$inapp-max-width: 800px;
+$inapp-max-height: 572px;
+$inapp-min-height: 400px;
+$inapp-content-max-width: 522px;
+$inapp-image-max-height: 400px;
+
+$inapp-breakpoint-text-only: 400px;
+$inapp-breakpoint-single-column: 640px;
+
+@mixin inapp-media-mobile-horizontal {
+  @media screen and (max-height: #{$inapp-max-height - 1px}) {
+    @content;
+  }
+}
+
+@mixin inapp-media-text {
+  @media screen and (max-width: #{$inapp-breakpoint-text-only - 1px}) {
+    @content;
+  }
+}
+
+@mixin inapp-media-single-column {
+  @media screen and (min-width: #{$inapp-breakpoint-text-only}) and (max-width: #{$inapp-breakpoint-single-column - 1px}) {
+    @content;
+  }
+}
+
+@mixin inapp-media-two-columns {
+  @media screen and (min-width: #{$inapp-breakpoint-single-column}) {
+    @content;
+  }
+}
