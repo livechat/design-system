@@ -4,13 +4,14 @@ export interface ISelectProps {
   className?: string;
   id?: string;
   error?: string;
+  isOpen?: boolean;
   items: {
     key: string;
     props: {
       [key: string]: any;
     }
   }[];
-  searchProperty?: string;
+  searchProperty?: string | string[];
   search?: boolean;
   placeholder?: React.ReactNode;
   searchPlaceholder?: string;
@@ -37,13 +38,14 @@ export interface IMultiSelectProps {
   className?: string;
   id?: string;
   error?: string;
+  isOpen?: boolean;
   items: {
     key: string;
     props: {
       [key: string]: any;
     }
   }[];
-  searchProperty?: string;
+  searchProperty?: string | string[];
   placeholder?: string;
   search?: boolean;
   disabled?: boolean;

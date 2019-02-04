@@ -46,7 +46,6 @@ class Select extends React.PureComponent {
       this.getIsOpen(prevProps, prevState) !== this.getIsOpen();
 
     if (this.getIsOpen() && hasIsOpenChanged) {
-      console.log(hasIsOpenChanged, this.getIsOpen());
       this.onBodyOpen();
     } else if (!this.getIsOpen() && hasIsOpenChanged) {
       this.onBodyClose();
@@ -201,13 +200,26 @@ class Select extends React.PureComponent {
     const { searchPhrase } = this.state;
 
     if (searchPhrase) {
-      if (!(searchProperty in item.props)) {
-        return false;
-      }
+      if (typeof searchProperty === 'string') {
+        if (!(searchProperty in item.props)) {
+          return false;
+        }
 
-      return item.props[searchProperty]
-        .toLocaleLowerCase()
-        .includes(searchPhrase.toLocaleLowerCase());
+        return item.props[searchProperty]
+          .toLocaleLowerCase()
+          .includes(searchPhrase.toLocaleLowerCase());
+      } else if (Array.isArray(searchProperty) && searchProperty.length > 0) {
+        const validSearchProperties = searchProperty.filter(p => item.props[p]);
+
+        if (validSearchProperties.length === 0) {
+          return false;
+        }
+        return validSearchProperties.some(p =>
+          item.props[p]
+            .toLocaleLowerCase()
+            .includes(searchPhrase.toLocaleLowerCase())
+        );
+      }
     }
 
     return true;

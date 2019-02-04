@@ -110,12 +110,7 @@ const getSelectedItemBody = props => {
 </ComponentHtmlMarkup>
 ```
 
-Multi-selects let users search and choose multiple options from a list. Multiselect doesn’t close after choosing an item.
-
-When an item is selected, it appears as a tag in the input field. Selected items are also marked on the selection menu. Users can deselect items either from the menu list, or from the input field. When an item is deselected it disappears from the text input field.
-
-Selected items don’t change order on the list to to increase findability.
-
+<h3>MultiSelect with controlled visibility and multi searchProperty</h3>
 
 ```js
 const items = [
@@ -136,7 +131,6 @@ initialState = {
 };
 
 const handleDropdownToggle = isOpen => {
-  console.log(isOpen);
   setState({
     isOpen
   })
@@ -205,3 +199,9 @@ const toggleAll = items => {
   />
 </div>
 ```
+
+Multi-selects let users search and choose multiple options from a list. Multiselect doesn’t close after choosing an item.
+
+When an item is selected, it appears as a tag in the input field. Selected items are also marked on the selection menu. Users can deselect items either from the menu list, or from the input field. When an item is deselected it disappears from the text input field.
+
+Selected items don’t change order on the list to to increase findability.

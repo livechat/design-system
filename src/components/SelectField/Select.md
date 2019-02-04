@@ -82,22 +82,7 @@ const getSelectedItemBody = props => {
 </ComponentHtmlMarkup>
 ```
 
-A select allows users to choose one option from a list of items. Use it when you have &gt;4 options.
-A select can allow users to search through a list of choices. When the user types in the input, suggestions are provided.
-When an item is selected, it appears highlighted, has a check mark and the primary color.
-The selected item replaces the input placeholder.
-
-<h3>Best practices</h3>
-<ul>
-  <li>
-    Have a default selected whenever possible
-	•	Sort the list in a logical order. E.g. put the most selected option at the top, or alphabetically.
-  </li>
-  <li>
-    Sort the list in a logical order. E.g. put the most selected option at the top, or alphabetically.
-  </li>
-</ul>
-
+<h3>Select with controlled visibility and multi searchProperty</h3>
 
 ```js
 const items = [
@@ -118,7 +103,6 @@ initialState = {
 const handleItemSelect = item => setState({selectedItem: item});
 
 const handleDropdownToggle = isOpen => {
-  console.log(isOpen);
   setState({
     isOpen
   })
@@ -144,12 +128,11 @@ const getSelectedItemBody = props => {
   <Select
     id='select-example'
     items={items}
-    searchProperty='name'
+    searchProperty="name"
     onItemSelect={handleItemSelect}
     getItemBody={getItemBody}
     search
     isOpen={state.isOpen}
-    openedOnInit
     placeholder='Select option'
     getSelectedItemBody={getSelectedItemBody}
     selected={state.selectedItem}
@@ -158,3 +141,19 @@ const getSelectedItemBody = props => {
   />
 </div>
 ```
+
+A select allows users to choose one option from a list of items. Use it when you have &gt;4 options.
+A select can allow users to search through a list of choices. When the user types in the input, suggestions are provided.
+When an item is selected, it appears highlighted, has a check mark and the primary color.
+The selected item replaces the input placeholder.
+
+<h3>Best practices</h3>
+<ul>
+  <li>
+    Have a default selected whenever possible
+	•	Sort the list in a logical order. E.g. put the most selected option at the top, or alphabetically.
+  </li>
+  <li>
+    Sort the list in a logical order. E.g. put the most selected option at the top, or alphabetically.
+  </li>
+</ul>
