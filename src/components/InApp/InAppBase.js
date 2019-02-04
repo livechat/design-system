@@ -91,7 +91,10 @@ class InAppBase extends React.PureComponent {
         )}
       >
         <div className={cx(`${baseClass}__container`)}>
-          <div ref={this.inAppContentRef}>
+          <div
+            ref={this.inAppContentRef}
+            className={cx(`${baseClass}__wrapper`)}
+          >
             <InAppHeader
               avatar={header && header.avatar ? header.avatar : undefined}
               text={header && header.text ? header.text : undefined}

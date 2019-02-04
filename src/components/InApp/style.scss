@@ -32,6 +32,8 @@
     &--visible {
       display: flex;
     }
+
+    & div { box-sizing: border-box }
   }
 
   &__container {
@@ -42,8 +44,15 @@
     flex-grow: 1;
     min-width: $inapp-min-width;
     max-width: $inapp-max-width;
+    min-height: $inapp-min-height;
+    max-height: $inapp-max-height;
     padding: 0 10px;
     box-sizing: border-box;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-flow: column nowrap;
   }
 
   &__with_footer {
@@ -166,6 +175,7 @@
 
   &__image {
     text-align: center;
+
     img {
       max-width: 100%;
       max-height: $inapp-image-max-height;
