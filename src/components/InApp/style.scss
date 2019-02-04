@@ -168,7 +168,7 @@
     text-align: center;
     img {
       max-width: 100%;
-      max-height: $inapp-max-height / 2;
+      max-height: $inapp-image-max-height;
     }
 
     @include inapp-media-text {
