@@ -198,7 +198,7 @@ $base-class: 'multiselect';
     align-items: center;
 
     &-content {
-      max-width: calc(100% - 22px);
+      width: calc(100% - 22px);
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
