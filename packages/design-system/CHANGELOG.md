@@ -1,6 +1,17 @@
 ## Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.0.20
+_Release: 2019-02-06_
+
+##### New Features
+* Adding loading state to Button component
+
+##### Bug Fixes
+* Fixing Multiselect selected item display issue on IE11 and Safari
+
+----
+
 ## v0.0.19
 _Release: 2019-02-04_
 
@@ -17,8 +28,8 @@ _Release: 2019-01-30_
 * Clearing search phrase on item select and on list close
 
 ##### Refactors
-* extending ToastWrapper props with HTMLAttributes to support outside className property
-* removing leftover prop itemsLimit from ToastConsumer
+* Extending ToastWrapper props with HTMLAttributes to support outside className property
+* Removing leftover prop itemsLimit from ToastConsumer
 
 ----
 
