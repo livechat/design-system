@@ -1,6 +1,14 @@
 ## Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.0.19
+_Release: 2019-02-04_
+
+##### New Features
+* InApp - new component used for communication with customers.
+
+----
+
 ## v0.0.18
 _Release: 2019-01-30_
 

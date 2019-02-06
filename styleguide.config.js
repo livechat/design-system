@@ -55,6 +55,14 @@ module.exports = {
           ]
         },
         {
+          name: 'InApps',
+          components: [
+            './src/components/InApp/InAppBase.js',
+            './src/components/InApp/InAppPortal.js',
+            './src/components/InApp/InApp.js'
+          ]
+        },
+        {
           name: 'Tooltip',
           components: [
             './src/components/Tooltip/TooltipContent.js',
@@ -117,6 +125,9 @@ module.exports = {
         <style>
           body {
             font-family: 'Source Sans Pro',-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif;
+            font-size: 15px;
+            line-height: 22px;
+            font-weight: 400;
           }
           *[class^="lc-"] {
             box-sizing: border-box;
