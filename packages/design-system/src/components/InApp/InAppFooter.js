@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import styles from './style.scss';
-import Button from '../Button';
+import { Button } from '../Button';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const baseClass = 'inapp__footer';
@@ -15,7 +15,7 @@ const InAppFooter = props => {
 
   return (
     <div className={mergedClassNames}>
-      {props.buttons.remind && (<Button fullWidth {...props.buttons.remind} />)}
+      {props.buttons.remind && <Button fullWidth {...props.buttons.remind} />}
       <Button fullWidth primary {...props.buttons.cta} />
     </div>
   );
