@@ -235,7 +235,8 @@ module.exports = {
   },
   theme: {
     fontFamily: {
-      base: '"Source Sans Pro",-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif;',
+      base:
+        '"Source Sans Pro",-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif;',
       monospace: 'monospace'
     },
     color: {
