@@ -199,6 +199,7 @@ $base-class: 'multiselect';
 
     &-content {
       width: calc(100% - 22px);
+      flex-grow: 1;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
