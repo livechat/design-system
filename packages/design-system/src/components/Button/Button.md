@@ -97,9 +97,11 @@ Button expanded to the full width to fill the parent container (max-width: 320px
 ```
 ```js noeditor
   <ComponentHtmlMarkup>
-    <Button loading>Loading Button</Button>
-    <Button loading destructive>Loading Button</Button>
-    <Button loading primary>Loading Button</Button>
+    <div>
+      <Button loading>Loading Button</Button>
+      <Button loading destructive>Loading Button</Button>
+      <Button loading primary>Loading Button</Button>
+    </div>
   </ComponentHtmlMarkup>
 ```
 
