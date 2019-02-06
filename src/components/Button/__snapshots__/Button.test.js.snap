@@ -1,15 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Button should render primary button 1`] = `
-<Button
-  destructive={true}
-  primary={true}
+<button
+  className="btn btn--primary"
+  type="button"
 >
-  <button
-    className="btn btn--primary"
-    type="button"
-  >
-    Click me
-  </button>
-</Button>
+  Click me
+</button>
 `;
