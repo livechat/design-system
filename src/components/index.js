@@ -53,3 +53,5 @@ export {
   InAppHeader,
   InAppBody
 } from './InApp';
+
+export { Dropdown, DropdownList } from './Dropdown';

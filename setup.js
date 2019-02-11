@@ -46,6 +46,9 @@ global.DatePickerRangeSelectInputs = Components.DatePickerRangeSelectInputs;
 global.DatePickerRangeCalendarsWrapper =
   Components.DatePickerRangeCalendarsWrapper;
 
+global.Dropdown = Components.Dropdown;
+global.DropdownList = Components.DropdownList;
+
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;
 global.AlertCircleIcon = AlertCircleIcon;

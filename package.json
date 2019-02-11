@@ -120,6 +120,7 @@
     "classnames": "^2.2.6",
     "date-fns": "^1.29.0",
     "memoize-one": "^4.1.0",
+    "popper.js": "^1.14.7",
     "prop-types": "^15.6.2",
     "react-day-picker": "^7.2.4",
     "react-material-icon-svg": "1.7.0",

@@ -1,0 +1,62 @@
+@import '../../scss/variables/colors';
+
+.popper {
+  z-index: 2100;
+
+  &__popup {
+    z-index: 2000;
+    display: none;
+
+    &--visible {
+      display: block;
+    }
+  }
+}
+
+.dropdown {
+  background-color: #fff;
+  box-shadow: 0 5px 10px 0 rgba(66, 77, 87, 0.3);
+  border-radius: 4px;
+  min-width: 168px;
+  max-width: 336px;
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  &__list-item {
+    list-style: none;
+    padding: 10px 10px 10px 16px;
+    cursor: pointer;
+    line-height: 1.3;
+    font-size: 14px;
+    color: $font-primary-color;
+    display: flex;
+
+    &:hover {
+      background-color: $hover-background-color;
+    }
+
+    &__checkmark {
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.15s ease-in-out;
+      fill: $primary-color;
+      margin-left: auto;
+      padding-left: 5px;
+    }
+
+    &--selected {
+      color: $primary-color;
+
+      .dropdown__list-item__checkmark {
+        opacity: 1;
+        visibility: visible;
+        transition: all 0.15s ease-in-out;
+      }
+    }
+  }
+}
