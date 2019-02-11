@@ -13,7 +13,7 @@
   background-color: #fff;
   color: $font-primary-color;
   min-height: $inapp-min-height;
-  max-height: 100%;
+  max-height: $inapp-max-height;
   min-width: $inapp-min-width;
   max-width: $inapp-max-width;
 
@@ -45,7 +45,7 @@
     min-width: $inapp-min-width;
     max-width: $inapp-max-width;
     min-height: $inapp-min-height;
-    max-height: 100%;
+    max-height: $inapp-max-height;
     padding: 0 10px;
     box-sizing: border-box;
   }
@@ -96,13 +96,13 @@
   @include inapp-media-text {
     justify-content: flex-start;
     max-width: calc(100vw - 10px);
-    max-height: calc(100vh - 200px);
+    max-height: calc(100vh - 80px);
     min-width: unset;
     min-height: unset;
 
     &__container {
       max-width: calc(100vw - 10px);
-      max-height: calc(100vh - 200px);
+      max-height: calc(100vh - 80px);
       min-width: unset;
       min-height: unset;
     }
@@ -118,7 +118,7 @@
   }
 
   @include inapp-media-mobile-horizontal {
-    max-height: calc(100vh - 170px);
+    max-height: calc(100vh - 80px);
     min-height: unset;
 
     &__container {
@@ -154,7 +154,7 @@
 
     @include inapp-media-text {
       max-width: calc(100vw - 10px);
-      max-height: calc(100vh - 200px);
+      max-height: calc(100vh - 80px);
       min-width: unset;
       min-height: unset;
     }
