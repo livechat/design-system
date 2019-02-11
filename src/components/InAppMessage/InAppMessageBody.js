@@ -5,23 +5,23 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const baseClass = 'inapp__body';
 
-const InAppBody = props => {
+const InAppMessageBody = props => {
   const { className, children, ...restProps } = props;
   const mergedClassNames = getMergedClassNames(
     styles[`${baseClass}`],
-    props.className
+    className
   );
 
   return (
     <div {...restProps} className={mergedClassNames}>
-      {props.children}
+      {children}
     </div>
   );
 };
 
-InAppBody.propTypes = {
+InAppMessageBody.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node
 };
 
-export default InAppBody;
+export default InAppMessageBody;

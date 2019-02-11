@@ -1,10 +1,10 @@
-InApps are pop-up that communicate information allowing the user to maintain the context of a particular task. They should be used sparingly as they disable the rest of the application until a required action has been taken.
+InAppMessages are pop-up that communicate information allowing the user to maintain the context of a particular task. They should be used sparingly as they disable the rest of the application until a required action has been taken.
 
-InApps may be dismissed in 3 ways:
+InAppMessages may be dismissed in 3 ways:
 <ul>
-  <li>Using the “x” in the upper right corner of the InApp</li>
+  <li>Using the “x” in the upper right corner of the InAppMessage</li>
   <li>Pressing the ESC key</li>
-  <li>Clicking / touching outside of the InApp area</li>
+  <li>Clicking / touching outside of the InAppMessage area</li>
 </ul>
 
 ```js
@@ -12,22 +12,22 @@ initialState = {
     isOpen: false
 };
 
-const toggleInApp = () => setState({isOpen: !state.isOpen});
+const toggleInAppMessage = () => setState({isOpen: !state.isOpen});
 
 <div>
     {state.isOpen && (
-        <InAppBase onClose={toggleInApp}>
+        <InAppMessageBase onClose={toggleInAppMessage}>
             <div style={{margin: 'auto'}}>content</div>
-        </InAppBase>
+        </InAppMessageBase>
     )}
-    <Button onClick={toggleInApp}>Open inApp</Button>
+    <Button onClick={toggleInAppMessage}>Open InApp</Button>
 </div>
 ```
 ```js noeditor
 <ComponentHtmlMarkup>
-    <InAppBase onClose={() => {}}>
+    <InAppMessageBase onClose={() => {}}>
         <div style={{margin: 'auto'}}>content</div>
-    </InAppBase>
+    </InAppMessageBase>
 </ComponentHtmlMarkup>
 ```
 
@@ -40,8 +40,8 @@ initialState = {
     withFrom: false
 };
 
-const toggleInApp = () => setState({isOpen: !state.isOpen});
-const toggleInAppType  = type => setState({[type]: !state[type]});
+const toggleInAppMessage = () => setState({isOpen: !state.isOpen});
+const toggleInAppMessageType  = type => setState({[type]: !state[type]});
 const reset = () => {
     setState({
         isOpen: false,
@@ -52,7 +52,7 @@ const reset = () => {
 
 <div>
     {state.isOpen && (
-        <InAppBase 
+        <InAppMessageBase 
             onClose={reset}
             header={{
               avatar: 
@@ -70,7 +70,7 @@ const reset = () => {
             }}
         >
             <div style={{margin: 'auto'}}>content</div>
-        </InAppBase>
+        </InAppMessageBase>
     )}
         <div
             style={{
@@ -81,17 +81,17 @@ const reset = () => {
         >
         <Button
             onClick={() => {
-                toggleInAppType('withAvatar');
-                toggleInApp();
+                toggleInAppMessageType('withAvatar');
+                toggleInAppMessage();
             }}
         >
             Only avatar
         </Button>
         <Button
             onClick={() => {
-                toggleInAppType('withAvatar');
-                toggleInAppType('withFrom');
-                toggleInApp();
+                toggleInAppMessageType('withAvatar');
+                toggleInAppMessageType('withFrom');
+                toggleInAppMessage();
             }}
             primary
         >
@@ -99,8 +99,8 @@ const reset = () => {
         </Button>  
         <Button
             onClick={() => {
-                toggleInAppType('withFrom');
-                toggleInApp();
+                toggleInAppMessageType('withFrom');
+                toggleInAppMessage();
             }}
         >
             Only text
@@ -110,7 +110,7 @@ const reset = () => {
 ```
 ```js noeditor
 <ComponentHtmlMarkup>
-    <InAppBase 
+    <InAppMessageBase 
         onClose={() => {}}
         header={{
             avatar: {
@@ -125,6 +125,6 @@ const reset = () => {
         }}
     >
         <div style={{margin: 'auto'}}>content</div>
-    </InAppBase>
+    </InAppMessageBase>
 </ComponentHtmlMarkup>
 ```
