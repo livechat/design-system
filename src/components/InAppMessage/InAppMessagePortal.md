@@ -1,3 +1,5 @@
+Use InAppMessagePortal when you need InAppMessage to be, i.e., directly in the body HTML tag.
+
 ```js
 initialState = {
   isOpen: false
@@ -38,5 +40,3 @@ const toggleInAppMessage = () => setState({isOpen: !state.isOpen});
   </InAppMessagePortal>
 </ComponentHtmlMarkup>
 ```
-
-Use InAppMessagePortal when you need InAppMessage to be i.e directly in the body html tag.
