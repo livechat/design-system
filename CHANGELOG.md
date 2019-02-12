@@ -9,7 +9,9 @@ _Release: 2019-02-11_
 
 ##### Bug Fixes
 * Fixing max-height for InAppMessage components
-* Fixing IE11 bugs for InAppMessage components
+
+##### Refactors
+* Refactored documentation for `InAppMessages`
 
 ## v0.0.20
 _Release: 2019-02-06_
