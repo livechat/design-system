@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as PropTypes from 'prop-types';
 
-class InAppPortal extends React.Component {
+class InAppMessagePortal extends React.Component {
   static defaultProps = {
     parentElementName: 'body'
   };
@@ -10,31 +10,34 @@ class InAppPortal extends React.Component {
   constructor(props) {
     super(props);
 
-    this.inAppContainer = document.createElement('div');
+    this.inAppMessageContainer = document.createElement('div');
     if (this.props.className) {
-      this.inAppContainer.className = this.props.className;
+      this.inAppMessageContainer.className = this.props.className;
     }
   }
 
   componentDidMount() {
     const element = document.querySelector(this.props.parentElementName);
-    if (element) element.appendChild(this.inAppContainer);
+    if (element) element.appendChild(this.inAppMessageContainer);
   }
 
   componentWillUnmount() {
     const element = document.querySelector(this.props.parentElementName);
-    if (element) element.removeChild(this.inAppContainer);
+    if (element) element.removeChild(this.inAppMessageContainer);
   }
 
   render() {
-    return ReactDOM.createPortal(this.props.children, this.inAppContainer);
+    return ReactDOM.createPortal(
+      this.props.children,
+      this.inAppMessageContainer
+    );
   }
 }
 
-InAppPortal.propTypes = {
+InAppMessagePortal.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   parentElementName: PropTypes.string
 };
 
-export default InAppPortal;
+export default InAppMessagePortal;
