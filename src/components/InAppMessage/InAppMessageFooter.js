@@ -14,7 +14,7 @@ const InAppMessageFooter = props => {
   );
 
   const { children: remindChildren, ...remindProps } = props.buttons.remind;
-  const { children: ctaChildren, ...ctaProps } = props.buttons.remind;
+  const { children: ctaChildren, ...ctaProps } = props.buttons.cta;
 
   return (
     <div className={mergedClassNames}>
