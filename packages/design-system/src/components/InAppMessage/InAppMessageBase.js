@@ -3,15 +3,15 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './style.scss';
 import { KeyNames, KeyCodes } from '../../constants/keyCodes';
-import InAppHeader from './InAppHeader';
-import InAppFooter from './InAppFooter';
+import InAppMessageHeader from './InAppMessageHeader';
+import InAppMessageFooter from './InAppMessageFooter';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const baseClass = 'inapp-base';
 
 const cx = classNames.bind(styles);
 
-class InAppBase extends React.PureComponent {
+class InAppMessageBase extends React.PureComponent {
   static defaultProps = {
     closeOnEscPress: true
   };
@@ -26,17 +26,17 @@ class InAppBase extends React.PureComponent {
 
   onDocumentClick = event => {
     if (
-      this.inAppContentRef.current &&
-      !this.inAppContentRef.current.contains(event.target)
+      this.inAppMessageContentRef.current &&
+      !this.inAppMessageContentRef.current.contains(event.target)
     ) {
-      this.handleCloseInApp();
+      this.handleCloseInAppMessage();
     }
   };
 
   onCloseButtonClick = event => {
     event.preventDefault();
     event.stopPropagation();
-    this.handleCloseInApp();
+    this.handleCloseInAppMessage();
   };
 
   onKeyUp = event => {
@@ -44,7 +44,7 @@ class InAppBase extends React.PureComponent {
       (event.key && event.key === KeyNames.esc) ||
       (event.keyCode && event.keyCode === KeyCodes.esc)
     ) {
-      this.handleCloseInApp();
+      this.handleCloseInAppMessage();
     }
   };
 
@@ -60,11 +60,11 @@ class InAppBase extends React.PureComponent {
     document.removeEventListener('click', this.onDocumentClick);
   };
 
-  handleCloseInApp = () => {
+  handleCloseInAppMessage = () => {
     this.props.onClose();
   };
 
-  inAppContentRef = React.createRef();
+  inAppMessageContentRef = React.createRef();
 
   render() {
     const {
@@ -92,10 +92,10 @@ class InAppBase extends React.PureComponent {
       >
         <div className={cx(`${baseClass}__container`)}>
           <div
-            ref={this.inAppContentRef}
+            ref={this.inAppMessageContentRef}
             className={cx(`${baseClass}__wrapper`)}
           >
-            <InAppHeader
+            <InAppMessageHeader
               avatar={header && header.avatar ? header.avatar : undefined}
               text={header && header.text ? header.text : undefined}
               onCloseButtonClick={this.onCloseButtonClick}
@@ -110,7 +110,7 @@ class InAppBase extends React.PureComponent {
               <div className={cx(`${baseClass}__content-container`)}>
                 {children}
               </div>
-              {footerButtons && <InAppFooter buttons={footerButtons} />}
+              {footerButtons && <InAppMessageFooter buttons={footerButtons} />}
             </div>
           </div>
         </div>
@@ -119,16 +119,16 @@ class InAppBase extends React.PureComponent {
   }
 }
 
-InAppBase.propTypes = {
+InAppMessageBase.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   header: PropTypes.shape({
-    avatar: InAppHeader.propTypes.avatar,
-    text: InAppHeader.propTypes.text
+    avatar: InAppMessageHeader.propTypes.avatar,
+    text: InAppMessageHeader.propTypes.text
   }),
-  onClose: InAppHeader.propTypes.onCloseButtonClick,
+  onClose: InAppMessageHeader.propTypes.onCloseButtonClick,
   closeOnEscPress: PropTypes.bool,
-  footerButtons: InAppFooter.propTypes.buttons
+  footerButtons: InAppMessageFooter.propTypes.buttons
 };
 
-export default InAppBase;
+export default InAppMessageBase;

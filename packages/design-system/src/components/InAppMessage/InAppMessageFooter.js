@@ -6,22 +6,36 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const baseClass = 'inapp__footer';
 
-const InAppFooter = props => {
+const InAppMessageFooter = props => {
   const mergedClassNames = getMergedClassNames(
     styles[`${baseClass}`],
     !props.buttons.remind ? styles[`${baseClass}__single_button`] : null,
     props.className
   );
 
+  let RemindButton = () => null;
+
+  if (props.buttons.remind) {
+    const { children: remindChildren, ...remindProps } = props.buttons.remind;
+    RemindButton = () => (
+      <Button fullWidth {...remindProps}>
+        {remindChildren}
+      </Button>
+    );
+  }
+  const { children: ctaChildren, ...ctaProps } = props.buttons.cta;
+
   return (
     <div className={mergedClassNames}>
-      {props.buttons.remind && <Button fullWidth {...props.buttons.remind} />}
-      <Button fullWidth primary {...props.buttons.cta} />
+      <RemindButton />
+      <Button fullWidth primary {...ctaProps}>
+        {ctaChildren}
+      </Button>
     </div>
   );
 };
 
-InAppFooter.propTypes = {
+InAppMessageFooter.propTypes = {
   className: PropTypes.string,
   buttons: PropTypes.shape({
     cta: PropTypes.shape({ ...Button.propTypes.isRequired }).isRequired,
@@ -29,4 +43,4 @@ InAppFooter.propTypes = {
   })
 };
 
-export default InAppFooter;
+export default InAppMessageFooter;
