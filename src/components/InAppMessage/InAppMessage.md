@@ -1,3 +1,12 @@
+Additional specification for InAppMessage:
+
+1. Avatar: used to personalize the message.
+2. Image: relates to the InAppMessage copy and makes the idea more accessible.
+3. Title (H2 Heading): use the title to communicate the main benefit in an active and personalized way. Personalize where you can (e.g., “Your”). Make it short and meaningful.
+4. Message: don’t overwhelm with too much info. Keep message length to the minimum. Tell why the new feature or update is important to the user. Be considerate of the viewers time and patience.
+5. Actions: contains a maximum of 2 buttons. A primary action and some sort of "dismiss" button. The main action should be a primary button that uses self-describing action verbs ('Get started' instead of 'OK').
+
+
 ```js
 initialState = {
   isOpen: false
@@ -75,20 +84,3 @@ const toggleInAppMessage = () => setState({isOpen: !state.isOpen});
       </InAppMessage>
 </ComponentHtmlMarkup>
 ```
-
-InAppMessages include input areas that the user may interact with, such as Forms, Dropdowns, Selectors, and Links. 
-InAppMessage basic sections:
-<ul>
-  <li>
-    <b>Title (optional)</b><br />
-    Provides concise overview of the contents of the inAppMessage. The title mirrors the action or button that was clicked by the user.
-  </li>
-  <li>
-    <b>Body</b><br />
-    The body content within a InAppMessage should be as minimal as possible. Components that may be used in InAppMessages include: Form fields, Text Area, Select, and Radio Buttons.
-  </li>
-  <li>
-    <b>Footer</b><br />
-    The footer area of a InAppMessage contains a set of buttons - primary action and secondary action.
-  </li>
-</ul>

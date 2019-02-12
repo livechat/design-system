@@ -2,7 +2,7 @@ Use InAppMessages to update users of new functionality or inform about system-le
 
 
 InAppMessage may be dismissed in 3 ways:
-  * Using the “x” in the upper right corner of the InAppMessage,
+  * Using the `X` in the upper right corner of the InAppMessage,
   * Pressing the `ESC` key,
   * Clicking/touching outside of the InAppMessage area.
 
@@ -137,20 +137,12 @@ Currently, InAppMessageBase renders two types of InAppMessages:
 In future releases, there will be 2-columns layout available.
 
 Below you can find default values for min/max height/width:
- * `min-height: 400px` (unset for mobile ),
- * `max-height: calc(100vh - 80px)` ,
- * `min-width: 320px` (unset for mobile),
- * `max-width: 800px`.
+ * *min-height: 400px* (unset for mobile ),
+ * *max-height: calc(100vh - 80px)* ,
+ * *min-width: 320px* (unset for mobile),
+ * *max-width: 800px*.
 
 InAppMessageBase breakpoints:
- * 2-columns: `min-width: 640px` (not implemented yet),
- * single-column: `(min-width: 400px) and (max-width: 639px)`,
- * text-only: `max-width: 399px`.
- 
- 
-Additional specification:
-  1. Avatar: used to personalize the message.
-  2. Image: relates to the InAppMessage copy and makes the idea more accessible.
-  3. Title (H2 Heading): use the title to communicate the main benefit in an active and personalized way. Personalize where you can (e.g., “Your”). Make it short and meaningful.
-  4. Message: don’t overwhelm with too much info. Keep message length to the minimum. Tell why the new feature or update is important to the user. Be considerate of the viewers time and patience.
-  5. Actions: contains a maximum of 2 buttons. A primary action and some sort of "dismiss" button. The main action should be a primary button that uses self-describing action verbs ('Get started' instead of 'OK').
+ * 2-columns: *min-width: 640px* (not implemented yet),
+ * single-column: *(min-width: 400px) and (max-width: 639px)*,
+ * text-only: *max-width: 399px*.
