@@ -44,5 +44,3 @@ export var InAppMessage: React.ComponentType<IInAppMessageProps>;
 export var InAppMessageHeader: React.ComponentType<IInAppMessageHeaderProps>;
 export var InAppMessageFooter: React.ComponentType<IInAppMessageFooterProps>;
 export var InAppMessageBody: React.ComponentType<React.HTMLAttributes<HTMLDivElement>>;
-export var InAppMessageAvatar: React.ComponentType<IInAppMessageAvatar>;
-export var InAppMessageImage: React.ComponentType<IInAppMessageImage>;
