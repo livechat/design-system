@@ -4,6 +4,8 @@ $inapp-min-height: 400px;
 $inapp-max-height: calc(100vh - 80px);
 $inapp-content-max-width: 522px;
 $inapp-image-max-height: 400px;
+$inapp-avatar-size: 40px;
+$inapp-header-max-height: $inapp-avatar-size;
 
 $inapp-breakpoint-mobile-horizontal: 572px;
 $inapp-breakpoint-text-only: 400px;

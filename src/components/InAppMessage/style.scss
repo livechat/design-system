@@ -100,13 +100,13 @@
   @include inapp-media-text {
     justify-content: flex-start;
     max-width: calc(100vw - 10px);
-    max-height: calc(100vh - 80px);
+    max-height: calc(100vh - #{2 * $inapp-header-max-height});
     min-width: unset;
     min-height: unset;
 
     &__container {
       max-width: calc(100vw - 10px);
-      max-height: calc(100vh - 80px);
+      max-height: calc(100vh - #{2 * $inapp-header-max-height});
       min-width: unset;
       min-height: unset;
     }
@@ -122,7 +122,7 @@
   }
 
   @include inapp-media-mobile-horizontal {
-    max-height: calc(100vh - 80px);
+    max-height: calc(100vh - #{2 * $inapp-header-max-height});
     min-height: unset;
 
     &__container {
@@ -148,24 +148,17 @@
     align-items: center;
     min-width: $inapp-min-width;
     max-width: $inapp-max-width;
+    max-height: $inapp-header-max-height;
 
     &__avatar {
-      width: 40px;
-      height: 40px;
+      width: $inapp-avatar-size;
+      height: $inapp-avatar-size;
       border-radius: 100%;
       margin: 0 10px 0 0;
     }
 
     @include inapp-media-text {
       max-width: calc(100vw - 10px);
-      max-height: calc(100vh - 80px);
-      min-width: unset;
-      min-height: unset;
-    }
-
-    @include inapp-media-mobile-horizontal {
-      max-height: calc(100vh - 20px);
-      min-height: unset;
     }
   }
 
