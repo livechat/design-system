@@ -13,16 +13,21 @@ const InAppMessageFooter = props => {
     props.className
   );
 
-  const { children: remindChildren, ...remindProps } = props.buttons.remind;
+  let RemindButton = () => null;
+
+  if (props.buttons.remind) {
+    const { children: remindChildren, ...remindProps } = props.buttons.remind;
+    RemindButton = () => (
+      <Button fullWidth {...remindProps}>
+        {remindChildren}
+      </Button>
+    );
+  }
   const { children: ctaChildren, ...ctaProps } = props.buttons.cta;
 
   return (
     <div className={mergedClassNames}>
-      {props.buttons.remind && (
-        <Button fullWidth {...remindProps}>
-          {remindChildren}
-        </Button>
-      )}
+      <RemindButton />
       <Button fullWidth primary {...ctaProps}>
         {ctaChildren}
       </Button>
