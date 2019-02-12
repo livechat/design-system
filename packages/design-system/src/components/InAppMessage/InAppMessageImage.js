@@ -4,18 +4,18 @@ import styles from './style.scss';
 
 const baseClass = 'inapp__image';
 
-const InAppImage = props => {
+const InAppMessageImage = props => {
   const { alt, ...restProps } = props;
   return (
     <div className={styles[`${baseClass}`]}>
-      <img alt={alt || 'InApp Image'} {...restProps} />
+      <img alt={alt || 'InAppMessage Image'} {...restProps} />
     </div>
   );
 };
 
-InAppImage.propTypes = {
+InAppMessageImage.propTypes = {
   src: PropTypes.string,
   alt: PropTypes.string
 };
 
-export default InAppImage;
+export default InAppMessageImage;

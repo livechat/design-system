@@ -5,7 +5,7 @@ import styles from './style.scss';
 
 const baseClass = 'inapp-base__close';
 
-const InAppCloseButton = props => (
+const InAppMessageCloseButton = props => (
   <div className={styles[`${baseClass}`]}>
     <button title="Close" onClick={props.onClick}>
       <CloseIcon width="24px" height="24px" fill="#424D57" />
@@ -13,8 +13,8 @@ const InAppCloseButton = props => (
   </div>
 );
 
-InAppCloseButton.propTypes = {
+InAppMessageCloseButton.propTypes = {
   onClick: PropTypes.func.isRequired
 };
 
-export default InAppCloseButton;
+export default InAppMessageCloseButton;
