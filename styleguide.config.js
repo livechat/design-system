@@ -71,8 +71,8 @@ module.exports = {
           sectionDepth: 0
         },
         {
-          name: 'Dropdown',
-          components: './src/components/Dropdown/Dropdown.js'
+          name: 'DropdownList',
+          components: './src/components/Dropdown/DropdownList.js'
         },
         {
           name: 'Forms',

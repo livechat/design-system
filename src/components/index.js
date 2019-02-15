@@ -54,4 +54,6 @@ export {
   InAppBody
 } from './InApp';
 
-export { Dropdown, DropdownList } from './Dropdown';
+export { DropdownList } from './Dropdown';
+
+export { PopperContainer } from './PopperContainer';

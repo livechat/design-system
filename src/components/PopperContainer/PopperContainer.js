@@ -182,7 +182,9 @@ PopperContainer.propTypes = {
   isVisible: PropTypes.bool,
   preventOverflow: PropTypes.bool,
   onClose: PropTypes.func,
-  onOpen: PropTypes.func
+  onOpen: PropTypes.func,
+  offset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  placement: PropTypes.oneOf(['auto', 'top', 'right', 'bottom', 'left'])
 };
 
 export default PopperContainer;

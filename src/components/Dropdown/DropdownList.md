@@ -23,10 +23,16 @@ const handleSelect = (id) => {
 const listItems = [
   {id: 1, content: 'Item 1', selectable: true},
   {id: 2, content: 'Item 2', selectable: true},
-  {id: 3, content: 'Item 3', onClick: () => console.log('item 3')}
+  {id: 3, content: 'Item 3', onClick: () => console.log('item 3')},
+  {id: 4, content: 'Item 4', selectable: true},
+  {id: 5, content: 'Item 5', selectable: true},
+  {id: 6, content: 'Item 6', onClick: () => console.log('item 3')},
+  {id: 7, content: 'Item 7', selectable: true},
+  {id: 8, content: 'Item 8', selectable: true},
+  {id: 9, content: 'Item 9', onClick: () => console.log('item 3')}
 ];
 
-<Dropdown
+<PopperContainer
   isVisible={state.isVisible}
   placement="bottom-start"
   onOpen={handleOpen}
@@ -36,5 +42,5 @@ const listItems = [
   }
 >
   <DropdownList items={listItems} onSelect={handleSelect} selected={state.selected} />
-</Dropdown>
+</PopperContainer>
 ```

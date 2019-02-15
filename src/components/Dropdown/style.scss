@@ -1,19 +1,8 @@
 @import '../../scss/variables/colors';
 
-.popper {
-  z-index: 2100;
+$base-class: 'dropdown';
 
-  &__popup {
-    z-index: 2000;
-    display: none;
-
-    &--visible {
-      display: block;
-    }
-  }
-}
-
-.dropdown {
+.#{$base-class} {
   background-color: #fff;
   box-shadow: 0 5px 10px 0 rgba(66, 77, 87, 0.3);
   border-radius: 4px;
@@ -52,7 +41,7 @@
     &--selected {
       color: $primary-color;
 
-      .dropdown__list-item__checkmark {
+      .#{$base-class}__list-item__checkmark {
         opacity: 1;
         visibility: visible;
         transition: all 0.15s ease-in-out;

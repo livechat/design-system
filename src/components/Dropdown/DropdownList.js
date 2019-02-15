@@ -7,7 +7,7 @@ import DropdownListItem from './DropdownListItem';
 
 const cx = cssClassNames.bind(styles);
 
-const baseClass = 'dropdown__list';
+const baseClass = 'dropdown';
 
 class DropdownList extends React.PureComponent {
   isItemSelected = (id, selectable) =>
@@ -19,7 +19,7 @@ class DropdownList extends React.PureComponent {
     const { className, items, ...restProps } = this.props;
 
     const mergedClassNames = getMergedClassNames(
-      styles[`${baseClass}`],
+      cx(styles[`${baseClass}`], styles[`${baseClass}__list`]),
       className
     );
 
