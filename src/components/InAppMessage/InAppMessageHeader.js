@@ -1,13 +1,13 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import styles from './style.scss';
-import InAppAvatar from './InAppAvatar';
-import InAppCloseButton from './InAppCloseButton';
+import InAppMessageAvatar from './InAppMessageAvatar';
+import InAppMessageCloseButton from './InAppMessageCloseButton';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const baseClass = 'inapp';
 
-const InAppHeader = React.forwardRef((props, ref) => {
+const InAppMessageHeader = React.forwardRef((props, ref) => {
   const { className, avatar: avatarProps, text, onCloseButtonClick } = props;
 
   const mergedClassNames = getMergedClassNames(
@@ -17,18 +17,18 @@ const InAppHeader = React.forwardRef((props, ref) => {
 
   return (
     <div className={mergedClassNames} ref={ref}>
-      {avatarProps && <InAppAvatar {...avatarProps} />}
+      {avatarProps && <InAppMessageAvatar {...avatarProps} />}
       {text && <div className={styles[`${baseClass}__heading`]}>{text}</div>}
-      <InAppCloseButton onClick={onCloseButtonClick} />
+      <InAppMessageCloseButton onClick={onCloseButtonClick} />
     </div>
   );
 });
 
-InAppHeader.propTypes = {
+InAppMessageHeader.propTypes = {
   className: PropTypes.string,
-  avatar: PropTypes.shape({ ...InAppAvatar.propTypes }),
+  avatar: PropTypes.shape({ ...InAppMessageAvatar.propTypes }),
   text: PropTypes.node,
   onCloseButtonClick: PropTypes.func.isRequired
 };
 
-export default InAppHeader;
+export default InAppMessageHeader;

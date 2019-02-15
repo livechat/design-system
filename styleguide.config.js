@@ -55,11 +55,11 @@ module.exports = {
           ]
         },
         {
-          name: 'InApps',
+          name: 'InAppMessages',
           components: [
-            './src/components/InApp/InAppBase.js',
-            './src/components/InApp/InAppPortal.js',
-            './src/components/InApp/InApp.js'
+            './src/components/InAppMessage/InAppMessageBase.js',
+            './src/components/InAppMessage/InAppMessagePortal.js',
+            './src/components/InAppMessage/InAppMessage.js'
           ]
         },
         {
@@ -216,7 +216,7 @@ module.exports = {
           
           pre.prettyprint { display: block; background-color: #0a001f; font-size: 13px; font-family: monospace; margin: 0; padding: 8px 16px;}
           pre .tag { color: #99b2ff; }
-          pre .nocode { background-color: none; color: #000 }
+          pre .nocode { background-color: transparent; color: #000 }
           pre .atv, pre .str, pre .kwd { color: #37f14a }
           pre .pln { color: #f8f8f8 }
           pre .atn { color: #ffd500 }

@@ -1,6 +1,18 @@
 ## Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.0.21
+_Release: 2019-02-11_
+
+##### Deprecations
+* `InApp` components renamed to `InAppMessage` (i.e. `InAppBase -> InAppMessageBase`)
+
+##### Bug Fixes
+* Fixing max-height for InAppMessage components
+
+##### Refactors
+* Refactored documentation for `InAppMessages`
+
 ## v0.0.20
 _Release: 2019-02-06_
 

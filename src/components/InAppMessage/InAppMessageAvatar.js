@@ -4,7 +4,7 @@ import styles from './style.scss';
 
 const baseClass = 'inapp__header__avatar';
 
-const InAppAvatar = props => {
+const InAppMessageAvatar = props => {
   const { alt, ...restProps } = props;
   return (
     <img
@@ -15,9 +15,9 @@ const InAppAvatar = props => {
   );
 };
 
-InAppAvatar.propTypes = {
+InAppMessageAvatar.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired
 };
 
-export default InAppAvatar;
+export default InAppMessageAvatar;

@@ -46,13 +46,13 @@ export {
 } from './DatePicker';
 
 export {
-  InAppBase,
-  InAppPortal,
-  InApp,
-  InAppFooter,
-  InAppHeader,
-  InAppBody
-} from './InApp';
+  InAppMessageBase,
+  InAppMessagePortal,
+  InAppMessage,
+  InAppMessageFooter,
+  InAppMessageHeader,
+  InAppMessageBody
+} from './InAppMessage';
 
 export { DropdownList } from './Dropdown';
 
