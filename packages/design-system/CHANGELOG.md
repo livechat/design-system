@@ -1,6 +1,14 @@
 ## Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.0.22
+_Release: 2019-02-18_
+
+##### Bug Fixes
+* Blocking select dropdown click events when its not visible
+
+----
+
 ## v0.0.21
 _Release: 2019-02-11_
 
@@ -12,6 +20,8 @@ _Release: 2019-02-11_
 
 ##### Refactors
 * Refactored documentation for `InAppMessages`
+
+----
 
 ## v0.0.20
 _Release: 2019-02-06_
