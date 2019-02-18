@@ -115,6 +115,7 @@ $base-class: 'select';
     box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.2);
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transform: translateY(-10%);
     transform-origin: top center;
     transition: all 0.15s ease-in-out;
@@ -123,6 +124,7 @@ $base-class: 'select';
     padding: 14px 0;
 
     &--visible {
+      pointer-events: auto;
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
