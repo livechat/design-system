@@ -8,6 +8,11 @@ $base-class: 'dropdown';
   border-radius: 4px;
   min-width: 168px;
   max-width: 336px;
+  display: none;
+
+  &--visible {
+    display: block;
+  }
 
   &__list {
     margin: 0;
@@ -24,6 +29,10 @@ $base-class: 'dropdown';
     font-size: 14px;
     color: $font-primary-color;
     display: flex;
+
+    &--focused {
+      background-color: $hover-background-color;
+    }
 
     &:hover {
       background-color: $hover-background-color;

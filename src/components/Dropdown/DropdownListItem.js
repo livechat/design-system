@@ -27,6 +27,7 @@ class DropdownListItem extends React.PureComponent {
       icon,
       itemId,
       children,
+      isFocused,
       isSelected,
       selectable,
       onSelect,
@@ -37,7 +38,8 @@ class DropdownListItem extends React.PureComponent {
     const mergedClassNames = getMergedClassNames(
       cx({
         [`${baseClass}`]: true,
-        [`${baseClass}--selected`]: isSelected
+        [`${baseClass}--selected`]: isSelected,
+        [`${baseClass}--focused`]: isFocused
       }),
       className
     );
@@ -67,6 +69,7 @@ DropdownListItem.propTypes = {
   className: PropTypes.string,
   icon: PropTypes.node,
   itemId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  isFocused: PropTypes.bool,
   isSelected: PropTypes.bool,
   divider: PropTypes.bool,
   dragable: PropTypes.bool,

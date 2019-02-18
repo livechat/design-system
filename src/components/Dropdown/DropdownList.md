@@ -32,7 +32,7 @@ const listItems = [
   {id: 9, content: 'Item 9', onClick: () => console.log('item 3')}
 ];
 
-<PopperContainer
+<Dropdown
   isVisible={state.isVisible}
   placement="bottom-start"
   onOpen={handleOpen}
@@ -42,5 +42,5 @@ const listItems = [
   }
 >
   <DropdownList items={listItems} onSelect={handleSelect} selected={state.selected} />
-</PopperContainer>
+</Dropdown>
 ```

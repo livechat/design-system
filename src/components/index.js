@@ -54,6 +54,4 @@ export {
   InAppMessageBody
 } from './InAppMessage';
 
-export { DropdownList } from './Dropdown';
-
-export { PopperContainer } from './PopperContainer';
+export { Dropdown, DropdownList } from './Dropdown';

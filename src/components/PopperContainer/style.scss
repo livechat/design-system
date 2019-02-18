@@ -1,8 +1,6 @@
 @import '../../scss/variables/colors';
 
 .popper {
-  z-index: 2100;
-
   &__popup {
     z-index: 2000;
     display: none;
