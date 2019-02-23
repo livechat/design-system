@@ -19,6 +19,11 @@ $base-class: 'dropdown';
     padding: 0;
     overflow-x: hidden;
     overflow-y: auto;
+    max-height: 504px;
+
+    &:focus {
+      outline: none;
+    }
   }
 
   &__list-item {

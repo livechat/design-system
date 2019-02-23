@@ -14,6 +14,11 @@ class DropdownList extends React.PureComponent {
 
   componentDidMount() {
     document.addEventListener('keydown', this.onKeydown);
+    this.listRef.current.focus();
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.onKeydown);
   }
 
   onKeydown = event => {
@@ -31,8 +36,13 @@ class DropdownList extends React.PureComponent {
   handleEnterKeyUse = () => {
     const { focusedElement } = this.state;
 
+    const item = this.props.items.find(item => item.id === focusedElement);
+
     if (focusedElement !== null) {
       this.props.onSelect(focusedElement);
+      if (item && item.onSelect) {
+        item.onSelect();
+      }
     }
   };
 
@@ -47,14 +57,20 @@ class DropdownList extends React.PureComponent {
     if (keyCode === KeyCodes.arrowUp) {
       if (currentItemIndex > 0) {
         this.changeFocusedElement(items[currentItemIndex - 1].id);
+      } else {
+        this.changeFocusedElement(items[items.length - 1].id);
       }
     }
 
-    if (keyCode === KeyCodes.arrowDown && currentItemIndex + 1 < items.length) {
-      this.changeFocusedElement(items[currentItemIndex + 1].id);
+    if (keyCode === KeyCodes.arrowDown) {
+      if (currentItemIndex === items.length - 1) {
+        this.changeFocusedElement(items[0].id);
+      } else if (currentItemIndex + 1 < items.length) {
+        this.changeFocusedElement(items[currentItemIndex + 1].id);
+      }
     }
 
-    // this.scrollItems();
+    this.scrollItems();
   };
 
   getFocusedItemIndex = itemKey =>
@@ -76,12 +92,45 @@ class DropdownList extends React.PureComponent {
     });
   };
 
+  scrollItems = () => {
+    const focusedElement = this.listRef.current.querySelector(
+      `.lc-${baseClass}__list-item--focused`
+    );
+
+    if (focusedElement) {
+      this.listRef.current.classList.add('disable-hover');
+      const {
+        height: ulHeight,
+        top: ulTop
+      } = this.listRef.current.getBoundingClientRect();
+      const {
+        height: itemHeigth,
+        top: itemTop
+      } = focusedElement.getBoundingClientRect();
+      const relativeTop = itemTop + itemHeigth - ulTop;
+      const itemOfsetTop = focusedElement.offsetTop;
+
+      if (relativeTop > ulHeight) {
+        this.listRef.current.scrollTop = itemOfsetTop - ulHeight + itemHeigth;
+      } else if (itemTop < ulTop) {
+        this.listRef.current.scrollTop =
+          itemOfsetTop - (itemOfsetTop % itemHeigth);
+      }
+      this.timerId = setTimeout(
+        () => this.listRef.current.classList.remove('disable-hover'),
+        100
+      );
+    }
+  };
+
   isItemSelected = (id, selectable) =>
     selectable &&
     this.props.selected &&
     this.props.selected.some(itemId => itemId === id);
 
   hoverCallbacks = [];
+
+  listRef = React.createRef();
 
   render() {
     const { className, items, ...restProps } = this.props;
@@ -92,14 +141,20 @@ class DropdownList extends React.PureComponent {
     );
 
     return (
-      <ul className={mergedClassNames} {...restProps}>
-        {items.map(({ content, id, ...itemProps }) => (
+      <ul
+        className={mergedClassNames}
+        tabIndex={0}
+        ref={this.listRef}
+        {...restProps}
+      >
+        {items.map(({ content, id, onSelect, ...itemProps }) => (
           <DropdownListItem
             {...itemProps}
             key={id}
             id={String(id)}
             itemId={id}
             onSelect={this.props.onSelect}
+            onCustomSelect={onSelect}
             isFocused={this.state.focusedElement === id}
             onMouseEnter={this.getHoveredItemCallback(id)}
             isSelected={this.isItemSelected(id, itemProps.selectable)}
@@ -122,7 +177,7 @@ DropdownList.propTypes = {
       dragable: PropTypes.bool,
       icon: PropTypes.node,
       selectable: PropTypes.bool,
-      onClick: PropTypes.func
+      onSelect: PropTypes.func
     })
   ).isRequired,
   selected: PropTypes.arrayOf(

@@ -11,7 +11,8 @@ const cx = cssClassNames.bind(styles);
 
 class Dropdown extends React.PureComponent {
   static defaultProps = {
-    modifiers: {}
+    modifiers: {},
+    closeOnEscPress: true
   };
 
   static buildPopperModifiers(modifiers) {
@@ -42,6 +43,9 @@ class Dropdown extends React.PureComponent {
 
     if (isHidden) {
       this.removeEventHandlers();
+      if (this.triggerRef) {
+        this.triggerRef.focus();
+      }
     }
   }
 
@@ -53,6 +57,10 @@ class Dropdown extends React.PureComponent {
 
   setPopupRef = ref => {
     this.popupRef = ref;
+  };
+
+  setTriggerRef = ref => {
+    this.triggerRef = ref;
   };
 
   handleDocumentClick = event => {
@@ -87,7 +95,7 @@ class Dropdown extends React.PureComponent {
     const {
       children,
       className,
-      trigger,
+      triggerRenderer,
       isVisible,
       triggerContainerProps
     } = this.props;
@@ -102,34 +110,31 @@ class Dropdown extends React.PureComponent {
 
     return (
       <Manager>
-        <Reference>
-          {({ ref }) => (
-            <div {...triggerContainerProps} ref={ref}>
-              {trigger}
-            </div>
-          )}
-        </Reference>
-        <Popper
-          innerRef={this.setPopupRef}
-          placement={this.props.placement}
-          modifiers={this.getModifiers(this.props.modifiers)}
-          eventsEnabled={this.props.popperEventsEnabled}
-          positionFixed={this.props.positionFixed}
-        >
-          {({ ref, style, placement, arrowProps }) => (
-            <div
-              ref={ref}
-              style={style}
-              data-placement={placement}
-              className={mergedClassNames}
-            >
-              {children}
-              {arrowProps.enabled && (
-                <div ref={arrowProps.ref} style={arrowProps.style} />
-              )}
-            </div>
-          )}
-        </Popper>
+        <Reference innerRef={this.setTriggerRef}>{triggerRenderer}</Reference>
+        {this.props.isVisible && (
+          <Popper
+            innerRef={this.setPopupRef}
+            placement={this.props.placement}
+            modifiers={this.getModifiers(this.props.modifiers)}
+            eventsEnabled={this.props.popperEventsEnabled}
+            positionFixed={this.props.positionFixed}
+          >
+            {({ ref, style, placement, arrowProps }) => (
+              <div
+                ref={ref}
+                style={style}
+                data-placement={placement}
+                className={mergedClassNames}
+                onFocus={() => console.log('focus')}
+              >
+                {children}
+                {arrowProps.enabled && (
+                  <div ref={arrowProps.ref} style={arrowProps.style} />
+                )}
+              </div>
+            )}
+          </Popper>
+        )}
       </Manager>
     );
   }
@@ -137,10 +142,9 @@ class Dropdown extends React.PureComponent {
 
 Dropdown.propTypes = {
   children: PropTypes.node,
-  triggerRenderer: PropTypes.func,
   className: PropTypes.string,
   closeOnEscPress: PropTypes.bool,
-  trigger: PropTypes.node.isRequired,
+  triggerRenderer: PropTypes.func.isRequired,
   flipBehavior: PropTypes.string,
   isVisible: PropTypes.bool,
   triggerContainerProps: PropTypes.object,

@@ -16,8 +16,8 @@ class DropdownListItem extends React.PureComponent {
     if (this.props.selectable) {
       this.props.onSelect(this.props.itemId);
     }
-    if (this.props.onClick) {
-      this.props.onClick(e);
+    if (this.props.onCustomSelect) {
+      this.props.onCustomSelect();
     }
   };
 
@@ -31,7 +31,7 @@ class DropdownListItem extends React.PureComponent {
       isSelected,
       selectable,
       onSelect,
-      onClick,
+      onCustomSelect,
       ...restProps
     } = this.props;
 
@@ -74,12 +74,12 @@ DropdownListItem.propTypes = {
   divider: PropTypes.bool,
   dragable: PropTypes.bool,
   selectable: PropTypes.bool,
-  onClick: PropTypes.func,
+  onCustomSelect: PropTypes.func,
   onSelect: PropTypes.func
 };
 
 DropdownListItem.defaultProps = {
-  onClick: noop
+  onCustomSelect: noop
 };
 
 export default DropdownListItem;
