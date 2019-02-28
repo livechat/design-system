@@ -1,6 +1,6 @@
 {
   "name": "@livechat/design-system",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "publishConfig": {
     "access": "restricted"
   },
@@ -23,6 +23,7 @@
     "start": "rollup -c --watch",
     "build": "rollup -c",
     "prebuild": "rimraf dist",
+    "build:cdn": "npm run build && mkdir -p dist/cdn && cp dist/design-system.css dist/cdn/styles.css && cp dist/cdn/styles.css dist/cdn/styles-v$npm_package_version.css",
     "prepare": "npm run build",
     "styleguide": "cross-env NODE_ENV=development styleguidist server",
     "styleguide:build": "cross-env NODE_ENV=production styleguidist build",
