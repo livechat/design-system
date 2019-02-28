@@ -14,6 +14,7 @@ class DropdownList extends React.PureComponent {
 
   componentDidMount() {
     document.addEventListener('keydown', this.onKeydown);
+    console.log('mount');
     this.listRef.current.focus();
   }
 
@@ -33,15 +34,30 @@ class DropdownList extends React.PureComponent {
     }
   };
 
+  getFocusedItemIndex = itemKey =>
+    this.props.items.map(item => item.id).indexOf(itemKey);
+
+  getHoveredItemCallback = itemKey => {
+    if (!this.hoverCallbacks[itemKey]) {
+      this.hoverCallbacks[itemKey] = () => {
+        this.changeFocusedElement(itemKey);
+      };
+    }
+
+    return this.hoverCallbacks[itemKey];
+  };
+
   handleEnterKeyUse = () => {
     const { focusedElement } = this.state;
 
-    const item = this.props.items.find(item => item.id === focusedElement);
+    const selectedItem = this.props.items.find(
+      item => item.id === focusedElement
+    );
 
     if (focusedElement !== null) {
-      this.props.onSelect(focusedElement);
-      if (item && item.onSelect) {
-        item.onSelect();
+      this.props.onItemSelect(focusedElement);
+      if (selectedItem && selectedItem.onSelect) {
+        selectedItem.onSelect();
       }
     }
   };
@@ -71,19 +87,6 @@ class DropdownList extends React.PureComponent {
     }
 
     this.scrollItems();
-  };
-
-  getFocusedItemIndex = itemKey =>
-    this.props.items.map(item => item.id).indexOf(itemKey);
-
-  getHoveredItemCallback = itemKey => {
-    if (!this.hoverCallbacks[itemKey]) {
-      this.hoverCallbacks[itemKey] = () => {
-        this.changeFocusedElement(itemKey);
-      };
-    }
-
-    return this.hoverCallbacks[itemKey];
   };
 
   changeFocusedElement = id => {
@@ -153,7 +156,7 @@ class DropdownList extends React.PureComponent {
             key={id}
             id={String(id)}
             itemId={id}
-            onSelect={this.props.onSelect}
+            onSelect={this.props.onItemSelect}
             onCustomSelect={onSelect}
             isFocused={this.state.focusedElement === id}
             onMouseEnter={this.getHoveredItemCallback(id)}
@@ -177,13 +180,14 @@ DropdownList.propTypes = {
       dragable: PropTypes.bool,
       icon: PropTypes.node,
       selectable: PropTypes.bool,
-      onSelect: PropTypes.func
+      onSelect: PropTypes.func,
+      closeOnSelect: PropTypes.bool
     })
   ).isRequired,
   selected: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   ),
-  onSelect: PropTypes.func
+  onItemSelect: PropTypes.func
 };
 
 export default DropdownList;

@@ -92,13 +92,7 @@ class Dropdown extends React.PureComponent {
   };
 
   render() {
-    const {
-      children,
-      className,
-      triggerRenderer,
-      isVisible,
-      triggerContainerProps
-    } = this.props;
+    const { children, className, triggerRenderer, isVisible } = this.props;
 
     const mergedClassNames = getMergedClassNames(
       cx({
@@ -125,7 +119,6 @@ class Dropdown extends React.PureComponent {
                 style={style}
                 data-placement={placement}
                 className={mergedClassNames}
-                onFocus={() => console.log('focus')}
               >
                 {children}
                 {arrowProps.enabled && (
@@ -141,21 +134,32 @@ class Dropdown extends React.PureComponent {
 }
 
 Dropdown.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   className: PropTypes.string,
   closeOnEscPress: PropTypes.bool,
   triggerRenderer: PropTypes.func.isRequired,
-  flipBehavior: PropTypes.string,
-  isVisible: PropTypes.bool,
-  triggerContainerProps: PropTypes.object,
+  isVisible: PropTypes.bool.isRequired,
   popperEventsEnabled: PropTypes.bool,
   positionFixed: PropTypes.bool,
-  preventOverflow: PropTypes.bool,
   modifiers: PropTypes.object,
   onClose: PropTypes.func,
-  onOpen: PropTypes.func,
-  offset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  placement: PropTypes.oneOf(['auto', 'top', 'right', 'bottom', 'left'])
+  placement: PropTypes.oneOf([
+    'auto',
+    'auto-end',
+    'auto-start',
+    'bottom',
+    'bottom-end',
+    'bottom-start',
+    'left',
+    'left-end',
+    'left-start',
+    'right',
+    'right-end',
+    'right-start',
+    'top',
+    'top-end',
+    'top-start'
+  ])
 };
 
 export default Dropdown;

@@ -12,7 +12,7 @@ const baseClass = 'dropdown__list-item';
 const noop = () => {};
 
 class DropdownListItem extends React.PureComponent {
-  handleClick = e => {
+  handleClick = () => {
     if (this.props.selectable) {
       this.props.onSelect(this.props.itemId);
     }
@@ -75,7 +75,8 @@ DropdownListItem.propTypes = {
   dragable: PropTypes.bool,
   selectable: PropTypes.bool,
   onCustomSelect: PropTypes.func,
-  onSelect: PropTypes.func
+  onSelect: PropTypes.func,
+  closeOnSelect: PropTypes.bool
 };
 
 DropdownListItem.defaultProps = {
