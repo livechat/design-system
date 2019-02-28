@@ -22,14 +22,13 @@ export interface IDropdownListProps extends React.HTMLAttributes<HTMLUListElemen
   items: {
     id: number | string;
     content: React.ReactNode;
-    divider: boolean;
-    icon: React.ReactNode;
-    selectable: boolean;
-    closeOnSelect: boolean;
-    onSelect: () => void;
+    divider?: boolean;
+    icon?: React.ReactNode;
+    selectable?: boolean;
+    onSelect?: () => void;
 
   }[],
-  selected: SelectedItem[];
+  selected?: SelectedItem[];
   onItemSelect: (id: string | number) => void;
 }
 

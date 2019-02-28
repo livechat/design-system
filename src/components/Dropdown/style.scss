@@ -28,12 +28,13 @@ $base-class: 'dropdown';
 
   &__list-item {
     list-style: none;
-    padding: 10px 10px 10px 16px;
+    padding: 10px;
     cursor: pointer;
     line-height: 1.3;
     font-size: 14px;
     color: $font-primary-color;
     display: flex;
+    align-items: center;
 
     &--focused {
       background-color: $hover-background-color;
