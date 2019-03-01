@@ -5,7 +5,7 @@ export interface IDropdownProps {
   children: React.ReactNode;
   className?: string,
   closeOnEscPress?: boolean,
-  triggerRenderer: (props: {ref: HTMLElement}) => void;
+  triggerRenderer: (props: {ref: React.Ref<{}>}) => void;
   isVisible: boolean;
   popperEventsEnabled?: boolean;
   onClose: () => void;
@@ -29,7 +29,7 @@ export interface IDropdownListProps extends React.HTMLAttributes<HTMLUListElemen
 
   }[],
   selected?: SelectedItem[];
-  onItemSelect: (id: string | number) => void;
+  onItemSelect?: (id: string | number) => void;
 }
 
 export var Dropdown: React.ComponentType<IDropdownProps>;

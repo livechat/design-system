@@ -30,7 +30,7 @@ class DropdownList extends React.PureComponent {
     }
 
     if (keyCode === KeyCodes.enter) {
-      this.handleEnterKeyUse(event);
+      this.handleEnterKeyUse();
     }
   };
 
@@ -55,7 +55,9 @@ class DropdownList extends React.PureComponent {
     );
 
     if (focusedElement !== null) {
-      this.props.onItemSelect(focusedElement);
+      if (this.props.onItemSelect) {
+        this.props.onItemSelect(focusedElement);
+      }
       if (selectedItem && selectedItem.onSelect) {
         selectedItem.onSelect();
       }
