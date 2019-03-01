@@ -9,16 +9,9 @@ const cx = cssClassNames.bind(styles);
 
 const baseClass = 'dropdown__list-item';
 
-const noop = () => {};
-
 class DropdownListItem extends React.PureComponent {
   handleClick = () => {
-    if (this.props.selectable) {
-      this.props.onSelect(this.props.itemId);
-    }
-    if (this.props.onCustomSelect) {
-      this.props.onCustomSelect();
-    }
+    this.props.onSelect(this.props.itemId);
   };
 
   render() {
@@ -29,9 +22,7 @@ class DropdownListItem extends React.PureComponent {
       children,
       isFocused,
       isSelected,
-      selectable,
       onSelect,
-      onCustomSelect,
       ...restProps
     } = this.props;
 
@@ -46,13 +37,13 @@ class DropdownListItem extends React.PureComponent {
 
     return (
       <li
-        className={mergedClassNames}
         {...restProps}
+        className={mergedClassNames}
         onClick={this.handleClick}
       >
         {icon}
         <div>{children}</div>
-        {selectable && (
+        {isSelected && (
           <CheckIcon
             width="15px"
             height="15px"
@@ -73,14 +64,7 @@ DropdownListItem.propTypes = {
   isSelected: PropTypes.bool,
   divider: PropTypes.bool,
   dragable: PropTypes.bool,
-  selectable: PropTypes.bool,
-  onCustomSelect: PropTypes.func,
-  onSelect: PropTypes.func,
-  closeOnSelect: PropTypes.bool
-};
-
-DropdownListItem.defaultProps = {
-  onCustomSelect: noop
+  onSelect: PropTypes.func.isRequired
 };
 
 export default DropdownListItem;

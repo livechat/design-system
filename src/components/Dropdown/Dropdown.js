@@ -43,9 +43,6 @@ class Dropdown extends React.PureComponent {
 
     if (isHidden) {
       this.removeEventHandlers();
-      if (this.triggerRef) {
-        this.triggerRef.focus();
-      }
     }
   }
 
@@ -76,6 +73,9 @@ class Dropdown extends React.PureComponent {
   handleEscKeyUp = event => {
     if (this.props.onClose && event.keyCode === KeyCodes.esc) {
       this.props.onClose();
+      if (this.triggerRef) {
+        this.triggerRef.focus();
+      }
     }
   };
 

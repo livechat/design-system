@@ -8,13 +8,16 @@ import { KeyCodes } from '../../constants/keyCodes';
 const baseClass = 'dropdown';
 
 class DropdownList extends React.PureComponent {
+  static defaultProps = {
+    selected: []
+  };
+
   state = {
     focusedElement: null
   };
 
   componentDidMount() {
     document.addEventListener('keydown', this.onKeydown);
-    console.log('mount');
     this.listRef.current.focus();
   }
 
@@ -50,15 +53,12 @@ class DropdownList extends React.PureComponent {
   handleEnterKeyUse = () => {
     const { focusedElement } = this.state;
 
-    const selectedItem = this.props.items.find(
-      item => item.id === focusedElement
-    );
-
     if (focusedElement !== null) {
-      if (this.props.onItemSelect) {
-        this.props.onItemSelect(focusedElement);
-      }
-      if (selectedItem && selectedItem.onSelect) {
+      const selectedItem = this.props.items.find(
+        item => item.id === focusedElement
+      );
+
+      if (selectedItem) {
         selectedItem.onSelect();
       }
     }
@@ -128,10 +128,7 @@ class DropdownList extends React.PureComponent {
     }
   };
 
-  isItemSelected = (id, selectable) =>
-    selectable &&
-    this.props.selected &&
-    this.props.selected.some(itemId => itemId === id);
+  isItemSelected = id => this.props.selected.some(itemId => itemId === id);
 
   hoverCallbacks = [];
 
@@ -158,11 +155,10 @@ class DropdownList extends React.PureComponent {
             key={id}
             id={String(id)}
             itemId={id}
-            onSelect={this.props.onItemSelect}
-            onCustomSelect={onSelect}
+            onSelect={onSelect}
             isFocused={this.state.focusedElement === id}
             onMouseEnter={this.getHoveredItemCallback(id)}
-            isSelected={this.isItemSelected(id, itemProps.selectable)}
+            isSelected={this.isItemSelected(id)}
           >
             {content}
           </DropdownListItem>
@@ -181,15 +177,12 @@ DropdownList.propTypes = {
       divider: PropTypes.bool,
       dragable: PropTypes.bool,
       icon: PropTypes.node,
-      selectable: PropTypes.bool,
-      onSelect: PropTypes.func,
-      closeOnSelect: PropTypes.bool
+      onSelect: PropTypes.func.isRequired
     })
   ).isRequired,
   selected: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-  ),
-  onItemSelect: PropTypes.func
+  )
 };
 
 export default DropdownList;

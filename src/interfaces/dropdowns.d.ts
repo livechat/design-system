@@ -24,12 +24,10 @@ export interface IDropdownListProps extends React.HTMLAttributes<HTMLUListElemen
     content: React.ReactNode;
     divider?: boolean;
     icon?: React.ReactNode;
-    selectable?: boolean;
     onSelect?: () => void;
 
   }[],
   selected?: SelectedItem[];
-  onItemSelect?: (id: string | number) => void;
 }
 
 export var Dropdown: React.ComponentType<IDropdownProps>;
