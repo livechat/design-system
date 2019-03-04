@@ -11,7 +11,9 @@ const baseClass = 'dropdown__list-item';
 
 class DropdownListItem extends React.PureComponent {
   handleClick = () => {
-    this.props.onSelect(this.props.itemId);
+    if (!this.props.disabled) {
+      this.props.onSelect(this.props.itemId);
+    }
   };
 
   render() {
@@ -23,6 +25,8 @@ class DropdownListItem extends React.PureComponent {
       isFocused,
       isSelected,
       onSelect,
+      disabled,
+      divider,
       ...restProps
     } = this.props;
 
@@ -30,7 +34,9 @@ class DropdownListItem extends React.PureComponent {
       cx({
         [`${baseClass}`]: true,
         [`${baseClass}--selected`]: isSelected,
-        [`${baseClass}--focused`]: isFocused
+        [`${baseClass}--focused`]: isFocused && !disabled,
+        [`${baseClass}--disabled`]: disabled,
+        [`${baseClass}--with-divider`]: divider
       }),
       className
     );
@@ -41,8 +47,8 @@ class DropdownListItem extends React.PureComponent {
         className={mergedClassNames}
         onClick={this.handleClick}
       >
-        {icon}
-        <div>{children}</div>
+        {icon && <div className={styles[`${baseClass}__icon`]}>{icon}</div>}
+        <div className={styles[`${baseClass}__content`]}>{children}</div>
         {isSelected && (
           <CheckIcon
             width="15px"
@@ -56,14 +62,14 @@ class DropdownListItem extends React.PureComponent {
 }
 
 DropdownListItem.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   className: PropTypes.string,
   icon: PropTypes.node,
   itemId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   isFocused: PropTypes.bool,
   isSelected: PropTypes.bool,
   divider: PropTypes.bool,
-  dragable: PropTypes.bool,
+  disabled: PropTypes.bool,
   onSelect: PropTypes.func.isRequired
 };
 

@@ -17,16 +17,18 @@ export interface IDropdownProps {
 
 type SelectedItem = string | number;
 
+interface IDropdownItem {
+  id: string;
+  className?: string;
+  content: React.ReactNode;
+  divider?: boolean;
+  icon?: React.ReactNode;
+  onSelect?: () => void;
+}
+
 export interface IDropdownListProps extends React.HTMLAttributes<HTMLUListElement> {
   className?: string,
-  items: {
-    id: number | string;
-    content: React.ReactNode;
-    divider?: boolean;
-    icon?: React.ReactNode;
-    onSelect?: () => void;
-
-  }[],
+  items: IDropdownItem[],
   selected?: SelectedItem[];
 }
 

@@ -68,27 +68,39 @@ class DropdownList extends React.PureComponent {
     event.preventDefault();
     const { keyCode } = event;
     const { items } = this.props;
-    const currentItemIndex = this.getFocusedItemIndex(
-      this.state.focusedElement
+
+    const nextItem = this.findNextFocusableItem(
+      items,
+      this.state.focusedElement,
+      keyCode
+    );
+
+    if (nextItem) {
+      this.changeFocusedElement(nextItem.id);
+      this.scrollItems();
+    }
+  };
+
+  findNextFocusableItem = (items, focusedItemId, keyCode) => {
+    const currentItemIndex = this.getFocusedItemIndex(focusedItemId);
+
+    const reorderedItems =
+      currentItemIndex === -1
+        ? items
+        : [
+            ...items.slice(currentItemIndex, items.lenght),
+            ...items.slice(0, currentItemIndex)
+          ];
+
+    let activeItems = reorderedItems.filter(
+      item => !item.disabled && item.id !== focusedItemId
     );
 
     if (keyCode === KeyCodes.arrowUp) {
-      if (currentItemIndex > 0) {
-        this.changeFocusedElement(items[currentItemIndex - 1].id);
-      } else {
-        this.changeFocusedElement(items[items.length - 1].id);
-      }
+      activeItems = activeItems.reverse();
     }
 
-    if (keyCode === KeyCodes.arrowDown) {
-      if (currentItemIndex === items.length - 1) {
-        this.changeFocusedElement(items[0].id);
-      } else if (currentItemIndex + 1 < items.length) {
-        this.changeFocusedElement(items[currentItemIndex + 1].id);
-      }
-    }
-
-    this.scrollItems();
+    return activeItems[0];
   };
 
   changeFocusedElement = id => {
@@ -149,13 +161,12 @@ class DropdownList extends React.PureComponent {
         ref={this.listRef}
         {...restProps}
       >
-        {items.map(({ content, id, onSelect, ...itemProps }) => (
+        {items.map(({ content, id, ...itemProps }) => (
           <DropdownListItem
             {...itemProps}
             key={id}
             id={String(id)}
             itemId={id}
-            onSelect={onSelect}
             isFocused={this.state.focusedElement === id}
             onMouseEnter={this.getHoveredItemCallback(id)}
             isSelected={this.isItemSelected(id)}
@@ -175,9 +186,9 @@ DropdownList.propTypes = {
       id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       content: PropTypes.node.isRequired,
       divider: PropTypes.bool,
-      dragable: PropTypes.bool,
       icon: PropTypes.node,
-      onSelect: PropTypes.func.isRequired
+      onSelect: PropTypes.func.isRequired,
+      disabled: PropTypes.bool
     })
   ).isRequired,
   selected: PropTypes.arrayOf(
