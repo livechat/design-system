@@ -8,10 +8,6 @@ import { KeyCodes } from '../../constants/keyCodes';
 const baseClass = 'dropdown';
 
 class DropdownList extends React.PureComponent {
-  static defaultProps = {
-    selected: []
-  };
-
   state = {
     focusedElement: null
   };
@@ -140,8 +136,6 @@ class DropdownList extends React.PureComponent {
     }
   };
 
-  isItemSelected = id => this.props.selected.some(itemId => itemId === id);
-
   hoverCallbacks = [];
 
   listRef = React.createRef();
@@ -169,7 +163,6 @@ class DropdownList extends React.PureComponent {
             itemId={id}
             isFocused={this.state.focusedElement === id}
             onMouseEnter={this.getHoveredItemCallback(id)}
-            isSelected={this.isItemSelected(id)}
           >
             {content}
           </DropdownListItem>
@@ -188,12 +181,10 @@ DropdownList.propTypes = {
       divider: PropTypes.bool,
       icon: PropTypes.node,
       onSelect: PropTypes.func.isRequired,
-      disabled: PropTypes.bool
+      disabled: PropTypes.bool,
+      isSelected: PropTypes.bool
     })
-  ).isRequired,
-  selected: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-  )
+  ).isRequired
 };
 
 export default DropdownList;

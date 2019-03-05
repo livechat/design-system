@@ -29,6 +29,20 @@ class Menu extends React.PureComponent {
     this.isAllSelected = this.isAllSelected.bind(this);
   }
 
+  getListItems() {
+    return [
+      {id: 1, content: <div>{this.isAllSelected() ? 'Deselect all' : 'Select all'}</div>, onSelect: () => this.handleSelectAll(), divider: true},
+      {id: 2, content: 'Item 2', onSelect: () => this.handleSelect(2)},
+      {id: 3, content: 'Item 3', onSelect: () => this.handleClose()},
+      {id: 4, icon: <AlertCircleIcon height={16} width={16} fill="#4384f5" />, content: 'Item 4', onSelect: () => this.handleSelect(4)},
+      {id: 5, icon: <AlertCircleIcon height={16} width={16} fill="#4384f5" />, content: <div>Item 5</div>, onSelect: () => this.handleSelect(5), disabled: true},
+      {id: 6, content: 'Item 6', onSelect: () => console.log('item 3')},
+      {id: 7, content: 'Item 7', onSelect: () => this.handleSelect(7)},
+      {id: 8, content: 'Item 8', onSelect: () => this.handleSelect(8)},
+      {id: 9, content: 'Item 9', onSelect: () => this.handleClose(), disabled: true}
+    ];
+  }
+
   handleOpen() {
     this.setState({isVisible: true});
   }
@@ -54,10 +68,9 @@ class Menu extends React.PureComponent {
   }
 
   handleSelectAll() {
-    console.log(this.isAllSelected())
     if (!this.isAllSelected()) {
       this.setState({
-        selected: this.listItems.reduce((acc, item) => {
+        selected: this.getListItems().reduce((acc, item) => {
           if (!item.disabled) {
             acc.push(item.id);
           }
@@ -84,7 +97,7 @@ class Menu extends React.PureComponent {
         onClose={this.handleClose}
         triggerRenderer={({ ref }) => <Button onClick={this.handleTriggerClick} ref={ref}>Toggle dropdown</Button>}
       >
-        <DropdownList items={[...this.listItems]} selected={this.state.selected} />
+        <DropdownList items={this.getListItems()} selected={this.state.selected} />
       </Dropdown>
     )
   }
