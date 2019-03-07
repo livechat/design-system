@@ -11,6 +11,8 @@ By default menu opens below the trigger, along the left side. If there’s not e
 
 Using Esc key closes the drop menu and moves focus back to the menu trigger.
 
+It's available only for React application.
+
 ```js
 const dropdownPositions = [
   'auto',

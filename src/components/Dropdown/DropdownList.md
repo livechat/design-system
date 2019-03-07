@@ -118,7 +118,7 @@ class SelectableDropdownListExample extends React.PureComponent {
         onClose={this.handleClose}
         triggerRenderer={({ ref }) => <Button onClick={this.handleTriggerClick} ref={ref}>Toggle dropdown</Button>}
       >
-        <DropdownList items={this.getListItems()} selected={this.state.selected} />
+        <DropdownList items={this.getListItems()} />
       </Dropdown>
     )
   }
@@ -184,7 +184,7 @@ class NonSelectableDropdownListExample extends React.PureComponent {
         onClose={this.handleClose}
         triggerRenderer={({ ref }) => <Button onClick={this.handleTriggerClick} ref={ref}>Menu</Button>}
       >
-        <DropdownList items={this.getListItems()} selected={this.state.selected} />
+        <DropdownList items={this.getListItems()} />
       </Dropdown>
     )
   }
@@ -255,11 +255,50 @@ class CustomItemsDropdownListExample extends React.PureComponent {
         onClose={this.handleClose}
         triggerRenderer={({ ref }) => <Button onClick={this.handleTriggerClick} ref={ref}>Menu</Button>}
       >
-        <DropdownList items={this.getListItems()} selected={this.state.selected} getItemBody={this.getItemBody}/>
+        <DropdownList items={this.getListItems()} getItemBody={this.getItemBody}/>
       </Dropdown>
     )
   }
 }
 
 <CustomItemsDropdownListExample />
+```
+
+- list component - without positioning and trigger (html & css example)
+```js
+const generateItems = (length = 10) => Array.from(new Array(length), (value, index)=> ({
+  itemId: index + 1,
+  divider: index === 2,
+  content: `Item ${index + 1}`,
+  icon: <AlertCircleIcon height={16} width={16} fill="#4384f5" />,
+  isSelected: index === 2,
+  isDisabled: index === 0,
+  onItemSelect: () => {}
+}));
+
+const items = generateItems(4);
+
+<div style={{maxWidth: '340px'}}>
+  <DropdownList items={items} />
+</div>
+```
+
+```js noeditor
+const generateItems = (length = 10) => Array.from(new Array(length), (value, index)=> ({
+  itemId: index + 1,
+  divider: index === 2,
+  content: `Item ${index + 1}`,
+  icon: <AlertCircleIcon height={16} width={16} fill="#4384f5" />,
+  isSelected: index === 2,
+  isDisabled: index === 0,
+  onItemSelect: () => {}
+}));
+
+const items = generateItems(4);
+
+<ComponentHtmlMarkup>
+  <div style={{maxWidth: '340px'}}>
+    <DropdownList items={items} />
+  </div>
+</ComponentHtmlMarkup>
 ```
