@@ -111,7 +111,7 @@ class Dropdown extends React.PureComponent {
             innerRef={this.setPopupRef}
             placement={this.props.placement}
             modifiers={this.getModifiers(this.props.modifiers)}
-            eventsEnabled={this.props.popperEventsEnabled}
+            eventsEnabled={this.props.eventsEnabled}
             positionFixed={this.props.positionFixed}
           >
             {({ ref, style, placement, arrowProps }) => (
@@ -137,14 +137,10 @@ class Dropdown extends React.PureComponent {
 Dropdown.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  zIndex: PropTypes.number,
   closeOnEscPress: PropTypes.bool,
-  triggerRenderer: PropTypes.func.isRequired,
+  eventsEnabled: PropTypes.bool,
   isVisible: PropTypes.bool.isRequired,
-  popperEventsEnabled: PropTypes.bool,
-  positionFixed: PropTypes.bool,
   modifiers: PropTypes.object,
-  onClose: PropTypes.func,
   placement: PropTypes.oneOf([
     'auto',
     'auto-end',
@@ -161,7 +157,11 @@ Dropdown.propTypes = {
     'top',
     'top-end',
     'top-start'
-  ])
+  ]),
+  positionFixed: PropTypes.bool,
+  triggerRenderer: PropTypes.func.isRequired,
+  zIndex: PropTypes.number,
+  onClose: PropTypes.func
 };
 
 export default Dropdown;
