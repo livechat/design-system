@@ -72,7 +72,10 @@ module.exports = {
         },
         {
           name: 'Dropdown',
-          components: ['./src/components/Dropdown/DropdownList.js']
+          components: [
+            './src/components/Dropdown/Dropdown.js',
+            './src/components/Dropdown/DropdownList.js'
+          ]
         },
         {
           name: 'Forms',

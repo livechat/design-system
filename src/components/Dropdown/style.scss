@@ -19,7 +19,7 @@ $base-class: 'dropdown';
     padding: 0;
     overflow-x: hidden;
     overflow-y: auto;
-    max-height: 504px;
+    max-height: 500px;
 
     &:focus {
       outline: none;
@@ -89,7 +89,7 @@ $base-class: 'dropdown';
   }
 }
 
-@media screen and (max-height: 494px) {
+@media screen and (max-height: 490px) {
   .#{$base-class}__list {
     max-height: calc(100vh - 10px);
   }

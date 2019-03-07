@@ -1,11 +1,25 @@
-<h3>Dropdown list with selectable items</h3>
+<h3>Dropdown list</h3>
+
+Dropdown list is a compact way of displaying a list of options. It appears when a user clicks a button, icon or keyboard shortcut.
+
+- Behavior
+
+The drop menu grows to the width of the longest list item. Long list item names will truncate (…) at max width of the drop menu - padding.
+The drop menu can be dismissed by clicking outside, clicking on the trigger, or with the ESC key.
+
+- Keyboard navigation: 
+  - Arrows cycle focus through menu items.
+  - Esc key closes the drop menu and moves focus back to the menu trigger.
+  - Tab key closes the drop menu and moves focus to the next focusable element on the page.
+
+Examples:
+- with selectable items:
 
 ```js
 const generateItemsConfig = (length = 10) => Array.from(new Array(length), (value, index)=> ({
   id: index + 1,
   isDisabled: (index + 1)%3 === 1
 }));
-
 
 class SelectableDropdownListExample extends React.PureComponent {
   constructor(props) {
@@ -113,7 +127,7 @@ class SelectableDropdownListExample extends React.PureComponent {
 <SelectableDropdownListExample />
 ```
 
-<h3>Dropdown list with non-selectable items</h3>
+- non-selectable items
 
 ```js
 const generateItemsConfig = (length = 10) => Array.from(new Array(length), (value, index)=> ({
@@ -180,7 +194,7 @@ class NonSelectableDropdownListExample extends React.PureComponent {
 ```
 
 
-<h3>Dropdown list with getItemBody items</h3>
+- items rendered by getItemBody prop
 
 ```js
 const generateItemsConfig = (length = 10) => Array.from(new Array(length), (value, index)=> ({
@@ -188,7 +202,7 @@ const generateItemsConfig = (length = 10) => Array.from(new Array(length), (valu
 }));
 
 
-class NonSelectableDropdownListExample extends React.PureComponent {
+class CustomItemsDropdownListExample extends React.PureComponent {
   constructor(props) {
     super(props);
     this.itemsConfig = generateItemsConfig(4);
@@ -247,5 +261,5 @@ class NonSelectableDropdownListExample extends React.PureComponent {
   }
 }
 
-<NonSelectableDropdownListExample />
+<CustomItemsDropdownListExample />
 ```

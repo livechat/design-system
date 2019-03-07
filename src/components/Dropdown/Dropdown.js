@@ -109,10 +109,11 @@ class Dropdown extends React.PureComponent {
         {this.props.isVisible && (
           <Popper
             innerRef={this.setPopupRef}
-            placement={this.props.placement}
+            placement={this.props.placement || 'bottom-start'}
             modifiers={this.getModifiers(this.props.modifiers)}
             eventsEnabled={this.props.eventsEnabled}
             positionFixed={this.props.positionFixed}
+            referenceElement={this.props.referenceElement}
           >
             {({ ref, style, placement, arrowProps }) => (
               <div
@@ -159,6 +160,7 @@ Dropdown.propTypes = {
     'top-start'
   ]),
   positionFixed: PropTypes.bool,
+  referenceElement: Element,
   triggerRenderer: PropTypes.func.isRequired,
   zIndex: PropTypes.number,
   onClose: PropTypes.func
