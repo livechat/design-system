@@ -4,12 +4,10 @@ import { any } from "prop-types";
 
 type ItemId = string | number;
 
-interface IGetItemBodyPayload {
+interface IGetItemBodyPayload extends React.HTMLAttributes<HTMLLIElement> {
   itemId: ItemId,
   isFocused: boolean;
-  onMouseOver(itemId: ItemId): any;
   content: React.ReactNode;
-  className?: string;
   isDisabled?: boolean;
   isSelected?: boolean;
   divider?: boolean;
@@ -17,15 +15,14 @@ interface IGetItemBodyPayload {
   props: {
     [key: string]: any
   };
-  onSelect?: (itemId: ItemId) => void;
-  
+  onItemSelect?: (itemId: ItemId) => void;
+  onMouseOverItem?: (itemId: ItemId) => void;
 } 
 
 export interface IDropdownProps {
   children: React.ReactNode;
   className?: string,
   closeOnEscPress?: boolean,
-  triggerRenderer: (props: {ref: React.Ref<{}>}) => void;
   isVisible: boolean;
   popperEventsEnabled?: boolean;
   modifiers?: PopperJS.Modifiers;
@@ -33,19 +30,19 @@ export interface IDropdownProps {
   positionFixed?: boolean;
   referenceElement?: PopperJS.ReferenceObject;
   zIndex?: number;
+  triggerRenderer: (props: {ref: React.Ref<{}>}) => void;
   getItemBody?(payload: IGetItemBodyPayload): React.ReactNode;
   onClose: () => void;
 }
 
-interface IDropdownItem {
+interface IDropdownItem extends React.HTMLAttributes<HTMLLIElement> {
   itemId: ItemId;
-  className?: string;
   isDisabled?: boolean;
   isSelected?: boolean;
   content: React.ReactNode;
   divider?: boolean;
   icon?: React.ReactNode;
-  onSelect?: (itemId: ItemId) => void;
+  onItemSelect?: (itemId: ItemId) => void;
   props?: {
     [key: string]: any
   };
@@ -56,16 +53,16 @@ export interface IDropdownListProps extends React.HTMLAttributes<HTMLUListElemen
   items: IDropdownItem[];
 }
 
-export interface IDropdownListItemProps {
+export interface IDropdownListItemProps extends React.HTMLAttributes<HTMLLIElement> {
   children: React.ReactNode;
-  className?: string;
   icon?: React.ReactNode;
   itemId: ItemId;
   isFocused?: boolean;
   isDisabled?: boolean;
   isSelected?: boolean;
   divider?: boolean;
-  onSelect?: (itemId: ItemId) => void;
+  onMouseOverItem?: (itemId: ItemId) => void;
+  onItemSelect?: (itemId: ItemId) => void;
 }
 
 export var Dropdown: React.ComponentType<IDropdownProps>;

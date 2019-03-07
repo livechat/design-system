@@ -11,11 +11,20 @@ const baseClass = 'dropdown__list-item';
 
 class DropdownListItem extends React.PureComponent {
   handleClick = e => {
-    if (!this.props.isDisabled && this.props.onSelect) {
-      this.props.onSelect(this.props.itemId);
+    if (!this.props.isDisabled && this.props.onItemSelect) {
+      this.props.onItemSelect(this.props.itemId);
     }
     if (this.props.onClick) {
       this.props.onClick(e);
+    }
+  };
+
+  handleMouseOver = e => {
+    if (!this.props.isDisabled && this.props.onMouseOverItem) {
+      this.props.onMouseOverItem(this.props.itemId);
+    }
+    if (this.props.onClick) {
+      this.props.onMouseOver(e);
     }
   };
 
@@ -27,8 +36,9 @@ class DropdownListItem extends React.PureComponent {
       children,
       isFocused,
       isSelected,
-      onSelect,
+      onItemSelect,
       isDisabled,
+      onMouseOverItem,
       divider,
       ...restProps
     } = this.props;
@@ -49,6 +59,7 @@ class DropdownListItem extends React.PureComponent {
         {...restProps}
         className={mergedClassNames}
         onClick={this.handleClick}
+        onMouseOver={this.handleMouseOver}
       >
         {icon && <div className={styles[`${baseClass}__icon`]}>{icon}</div>}
         <div className={styles[`${baseClass}__content`]}>{children}</div>
@@ -73,8 +84,10 @@ DropdownListItem.propTypes = {
   isSelected: PropTypes.bool,
   divider: PropTypes.bool,
   isDisabled: PropTypes.bool,
-  onSelect: PropTypes.func,
-  onClick: PropTypes.func
+  onItemSelect: PropTypes.func,
+  onClick: PropTypes.func,
+  onMouseOver: PropTypes.func,
+  onMouseOverItem: PropTypes.func
 };
 
 export default DropdownListItem;

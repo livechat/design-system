@@ -29,7 +29,7 @@ class SelectableDropdownListExample extends React.PureComponent {
     const batchItem = {
       itemId: 0,
       content: <div>{this.isAllSelected() ? 'Deselect all' : 'Select all'}</div>,
-      onSelect: () => this.handleSelectAll(),
+      onItemSelect: () => this.handleSelectAll(),
       isSelected: this.isAllSelected(),
       divider: true
     }
@@ -38,7 +38,7 @@ class SelectableDropdownListExample extends React.PureComponent {
         itemId: id,
         content: `Item ${id}`,
         icon: <AlertCircleIcon height={16} width={16} fill="#4384f5" />,
-        onSelect: () => this.handleSelect(id),
+        onItemSelect: () => this.handleSelect(id),
         isSelected: this.isItemSelected(id),
         isDisabled
       });
@@ -104,7 +104,7 @@ class SelectableDropdownListExample extends React.PureComponent {
         onClose={this.handleClose}
         triggerRenderer={({ ref }) => <Button onClick={this.handleTriggerClick} ref={ref}>Toggle dropdown</Button>}
       >
-        <DropdownList items={this.getListItems()} selected={this.state.selected} style={{zIndex: 20}} />
+        <DropdownList items={this.getListItems()} selected={this.state.selected} />
       </Dropdown>
     )
   }
@@ -122,7 +122,7 @@ const generateItemsConfig = (length = 10) => Array.from(new Array(length), (valu
 }));
 
 
-class SelectableDropdownListExample extends React.PureComponent {
+class NonSelectableDropdownListExample extends React.PureComponent {
   constructor(props) {
     super(props);
     this.itemsConfig = generateItemsConfig(4);
@@ -142,7 +142,7 @@ class SelectableDropdownListExample extends React.PureComponent {
       acc.push({
         itemId: id,
         content: `Item ${id}`,
-        onSelect: () => this.handleClose(),
+        onItemSelect: () => this.handleClose(),
         divider
       });
       return acc;
@@ -170,11 +170,82 @@ class SelectableDropdownListExample extends React.PureComponent {
         onClose={this.handleClose}
         triggerRenderer={({ ref }) => <Button onClick={this.handleTriggerClick} ref={ref}>Menu</Button>}
       >
-        <DropdownList items={this.getListItems()} selected={this.state.selected} style={{zIndex: 20}} />
+        <DropdownList items={this.getListItems()} selected={this.state.selected} />
       </Dropdown>
     )
   }
 }
 
-<SelectableDropdownListExample />
+<NonSelectableDropdownListExample />
+```
+
+
+<h3>Dropdown list with getItemBody items</h3>
+
+```js
+const generateItemsConfig = (length = 10) => Array.from(new Array(length), (value, index)=> ({
+  id: index + 1
+}));
+
+
+class NonSelectableDropdownListExample extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.itemsConfig = generateItemsConfig(4);
+
+    this.state = {
+      isVisible: false,
+      selected: []
+    };
+
+    this.handleTriggerClick = this.handleTriggerClick.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
+  }
+
+  getListItems() {
+    return this.itemsConfig.reduce((acc, {id, divider}) => {
+      acc.push({
+        itemId: id
+      });
+      return acc;
+    }, []);
+  }
+
+  getItemBody(itemProps) {
+    return (
+      <DropdownListItem {...itemProps} key={itemProps.itemId} onItemSelect={() => console.log(`Custom item selected: ${itemProps.itemId}`)}>
+        Custom Item - {itemProps.itemId}
+      </DropdownListItem>
+    )
+  }
+
+  handleOpen() {
+    this.setState({isVisible: true});
+  }
+
+  handleClose() {
+    this.setState({isVisible: false});
+  }
+
+  handleTriggerClick() {
+    this.setState({isVisible: !state.isVisible})
+  }
+
+  render() {
+    return (
+      <Dropdown
+        isVisible={this.state.isVisible}
+        placement="bottom-start"
+        onOpen={this.handleOpen}
+        onClose={this.handleClose}
+        triggerRenderer={({ ref }) => <Button onClick={this.handleTriggerClick} ref={ref}>Menu</Button>}
+      >
+        <DropdownList items={this.getListItems()} selected={this.state.selected} getItemBody={this.getItemBody}/>
+      </Dropdown>
+    )
+  }
+}
+
+<NonSelectableDropdownListExample />
 ```

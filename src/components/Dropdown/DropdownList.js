@@ -59,8 +59,8 @@ class DropdownList extends React.PureComponent {
         item => item.itemId === focusedElement
       );
 
-      if (selectedItem) {
-        selectedItem.onSelect();
+      if (selectedItem && selectedItem.onItemSelect) {
+        selectedItem.onItemSelect();
       }
     }
   };
@@ -154,7 +154,7 @@ class DropdownList extends React.PureComponent {
   listRef = React.createRef();
 
   render() {
-    const { className, items, ...restProps } = this.props;
+    const { className, items, getItemBody, ...restProps } = this.props;
 
     const mergedClassNames = getMergedClassNames(
       styles[`${baseClass}__list`],
@@ -174,7 +174,7 @@ class DropdownList extends React.PureComponent {
             ...itemRestProps,
             itemId,
             isFocused: this.state.focusedElement === itemId,
-            onMouseOver: this.getHoveredItemCallback(itemId)
+            onMouseOverItem: this.getHoveredItemCallback(itemId)
           };
 
           if (this.props.getItemBody) {
@@ -203,10 +203,10 @@ DropdownList.propTypes = {
       className: PropTypes.string,
       itemId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
         .isRequired,
-      content: PropTypes.node.isRequired,
+      content: PropTypes.node,
       divider: PropTypes.bool,
       icon: PropTypes.node,
-      onSelect: PropTypes.func.isRequired,
+      onItemSelect: PropTypes.func,
       isDisabled: PropTypes.bool,
       isSelected: PropTypes.bool,
       props: PropTypes.object

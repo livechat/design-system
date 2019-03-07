@@ -89,7 +89,7 @@ $base-class: 'dropdown';
   }
 }
 
-@media screen and (max-height: 504px) {
+@media screen and (max-height: 494px) {
   .#{$base-class}__list {
     max-height: calc(100vh - 10px);
   }
