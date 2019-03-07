@@ -53,10 +53,6 @@ $base-class: 'dropdown';
       background-color: $hover-background-color;
     }
 
-    &:hover {
-      background-color: $hover-background-color;
-    }
-
     &__checkmark {
       opacity: 0;
       visibility: hidden;
@@ -90,5 +86,11 @@ $base-class: 'dropdown';
     &--with-divider {
       border-bottom: 1px solid $divider-color;
     }
+  }
+}
+
+@media screen and (max-height: 504px) {
+  .#{$base-class}__list {
+    max-height: calc(100vh - 10px);
   }
 }

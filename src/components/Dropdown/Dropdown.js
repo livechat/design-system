@@ -12,6 +12,7 @@ const cx = cssClassNames.bind(styles);
 class Dropdown extends React.PureComponent {
   static defaultProps = {
     modifiers: {},
+    zIndex: 20,
     closeOnEscPress: true
   };
 
@@ -116,7 +117,7 @@ class Dropdown extends React.PureComponent {
             {({ ref, style, placement, arrowProps }) => (
               <div
                 ref={ref}
-                style={style}
+                style={{ ...style, zIndex: this.props.zIndex }}
                 data-placement={placement}
                 className={mergedClassNames}
               >
@@ -136,6 +137,7 @@ class Dropdown extends React.PureComponent {
 Dropdown.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  zIndex: PropTypes.number,
   closeOnEscPress: PropTypes.bool,
   triggerRenderer: PropTypes.func.isRequired,
   isVisible: PropTypes.bool.isRequired,

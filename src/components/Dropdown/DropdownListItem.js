@@ -10,9 +10,12 @@ const cx = cssClassNames.bind(styles);
 const baseClass = 'dropdown__list-item';
 
 class DropdownListItem extends React.PureComponent {
-  handleClick = () => {
-    if (!this.props.disabled) {
+  handleClick = e => {
+    if (!this.props.isDisabled && this.props.onSelect) {
       this.props.onSelect(this.props.itemId);
+    }
+    if (this.props.onClick) {
+      this.props.onClick(e);
     }
   };
 
@@ -25,7 +28,7 @@ class DropdownListItem extends React.PureComponent {
       isFocused,
       isSelected,
       onSelect,
-      disabled,
+      isDisabled,
       divider,
       ...restProps
     } = this.props;
@@ -34,8 +37,8 @@ class DropdownListItem extends React.PureComponent {
       cx({
         [`${baseClass}`]: true,
         [`${baseClass}--selected`]: isSelected,
-        [`${baseClass}--focused`]: isFocused && !disabled,
-        [`${baseClass}--disabled`]: disabled,
+        [`${baseClass}--focused`]: isFocused && !isDisabled,
+        [`${baseClass}--disabled`]: isDisabled,
         [`${baseClass}--with-divider`]: divider
       }),
       className
@@ -69,8 +72,9 @@ DropdownListItem.propTypes = {
   isFocused: PropTypes.bool,
   isSelected: PropTypes.bool,
   divider: PropTypes.bool,
-  disabled: PropTypes.bool,
-  onSelect: PropTypes.func.isRequired
+  isDisabled: PropTypes.bool,
+  onSelect: PropTypes.func,
+  onClick: PropTypes.func
 };
 
 export default DropdownListItem;

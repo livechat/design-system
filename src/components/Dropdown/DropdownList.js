@@ -18,6 +18,9 @@ class DropdownList extends React.PureComponent {
   }
 
   componentWillUnmount() {
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
     document.removeEventListener('keydown', this.onKeydown);
   }
 
@@ -34,12 +37,14 @@ class DropdownList extends React.PureComponent {
   };
 
   getFocusedItemIndex = itemKey =>
-    this.props.items.map(item => item.id).indexOf(itemKey);
+    this.props.items.map(item => item.itemId).indexOf(itemKey);
 
   getHoveredItemCallback = itemKey => {
     if (!this.hoverCallbacks[itemKey]) {
       this.hoverCallbacks[itemKey] = () => {
-        this.changeFocusedElement(itemKey);
+        if (!this.isHoverDisabled) {
+          this.changeFocusedElement(itemKey);
+        }
       };
     }
 
@@ -51,7 +56,7 @@ class DropdownList extends React.PureComponent {
 
     if (focusedElement !== null) {
       const selectedItem = this.props.items.find(
-        item => item.id === focusedElement
+        item => item.itemId === focusedElement
       );
 
       if (selectedItem) {
@@ -72,9 +77,18 @@ class DropdownList extends React.PureComponent {
     );
 
     if (nextItem) {
-      this.changeFocusedElement(nextItem.id);
+      this.changeFocusedElement(nextItem.itemId);
       this.scrollItems();
     }
+  };
+
+  handleListScroll = event => {
+    if (this.props.onScroll) {
+      this.props.onScroll(event);
+    }
+    this.timeout = setTimeout(() => {
+      this.isHoverDisabled = false;
+    }, 150);
   };
 
   findNextFocusableItem = (items, focusedItemId, keyCode) => {
@@ -89,7 +103,7 @@ class DropdownList extends React.PureComponent {
           ];
 
     let activeItems = reorderedItems.filter(
-      item => !item.disabled && item.id !== focusedItemId
+      item => !item.isDisabled && item.itemId !== focusedItemId
     );
 
     if (keyCode === KeyCodes.arrowUp) {
@@ -111,7 +125,7 @@ class DropdownList extends React.PureComponent {
     );
 
     if (focusedElement) {
-      this.listRef.current.classList.add('disable-hover');
+      this.isHoverDisabled = true;
       const {
         height: ulHeight,
         top: ulTop
@@ -129,12 +143,11 @@ class DropdownList extends React.PureComponent {
         this.listRef.current.scrollTop =
           itemOfsetTop - (itemOfsetTop % itemHeigth);
       }
-      this.timerId = setTimeout(
-        () => this.listRef.current.classList.remove('disable-hover'),
-        100
-      );
     }
   };
+
+  isHoverDisabled = false;
+  timeout = null;
 
   hoverCallbacks = [];
 
@@ -152,21 +165,32 @@ class DropdownList extends React.PureComponent {
       <ul
         className={mergedClassNames}
         tabIndex={0}
+        onScroll={this.handleListScroll}
         ref={this.listRef}
         {...restProps}
       >
-        {items.map(({ content, id, ...itemProps }) => (
-          <DropdownListItem
-            {...itemProps}
-            key={id}
-            id={String(id)}
-            itemId={id}
-            isFocused={this.state.focusedElement === id}
-            onMouseEnter={this.getHoveredItemCallback(id)}
-          >
-            {content}
-          </DropdownListItem>
-        ))}
+        {items.map(({ content, itemId, props, ...itemRestProps }) => {
+          const itemProps = {
+            ...itemRestProps,
+            itemId,
+            isFocused: this.state.focusedElement === itemId,
+            onMouseOver: this.getHoveredItemCallback(itemId)
+          };
+
+          if (this.props.getItemBody) {
+            return this.props.getItemBody({
+              ...itemProps,
+              props: props || {},
+              content
+            });
+          }
+
+          return (
+            <DropdownListItem key={itemId} {...itemProps}>
+              {content}
+            </DropdownListItem>
+          );
+        })}
       </ul>
     );
   }
@@ -176,15 +200,20 @@ DropdownList.propTypes = {
   className: PropTypes.string,
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      className: PropTypes.string,
+      itemId: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+        .isRequired,
       content: PropTypes.node.isRequired,
       divider: PropTypes.bool,
       icon: PropTypes.node,
       onSelect: PropTypes.func.isRequired,
-      disabled: PropTypes.bool,
-      isSelected: PropTypes.bool
+      isDisabled: PropTypes.bool,
+      isSelected: PropTypes.bool,
+      props: PropTypes.object
     })
-  ).isRequired
+  ).isRequired,
+  getItemBody: PropTypes.func,
+  onScroll: PropTypes.func
 };
 
 export default DropdownList;
