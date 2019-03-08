@@ -92,6 +92,7 @@
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-styleguidist": "7.0.20",
+    "react-test-renderer": "^16.8.4",
     "rimraf": "^2.6.1",
     "rollup": "^0.67.3",
     "rollup-plugin-babel": "^3.0.7",

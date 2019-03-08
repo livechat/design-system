@@ -4,17 +4,21 @@ import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 import DropdownListItem from './DropdownListItem';
 import { KeyCodes } from '../../constants/keyCodes';
+import { findNextFocusableItem } from '../../helpers/keyboardEvents';
 
 const baseClass = 'dropdown';
 
 class DropdownList extends React.PureComponent {
   state = {
-    focusedElement: null
+    focusedElement: null,
+    isFocused: false
   };
 
   componentDidMount() {
     document.addEventListener('keydown', this.onKeydown);
-    this.listRef.current.focus();
+    if (this.listRef.current) {
+      this.listRef.current.focus({ preventScroll: true });
+    }
   }
 
   componentWillUnmount() {
@@ -24,15 +28,30 @@ class DropdownList extends React.PureComponent {
     document.removeEventListener('keydown', this.onKeydown);
   }
 
+  onFocus = e => {
+    e.preventDefault();
+    this.setState({
+      isFocused: true
+    });
+  };
+
+  onBlur = () => {
+    this.setState({
+      isFocused: false
+    });
+  };
+
   onKeydown = event => {
-    const { keyCode } = event;
+    if (this.state.isFocused) {
+      const { keyCode } = event;
 
-    if (keyCode === KeyCodes.arrowDown || keyCode === KeyCodes.arrowUp) {
-      this.handleArrowKeyUse(event);
-    }
+      if (keyCode === KeyCodes.arrowDown || keyCode === KeyCodes.arrowUp) {
+        this.handleArrowKeyUse(event);
+      }
 
-    if (keyCode === KeyCodes.enter) {
-      this.handleEnterKeyUse();
+      if (keyCode === KeyCodes.enter) {
+        this.handleEnterKeyUse();
+      }
     }
   };
 
@@ -70,7 +89,7 @@ class DropdownList extends React.PureComponent {
     const { keyCode } = event;
     const { items } = this.props;
 
-    const nextItem = this.findNextFocusableItem(
+    const nextItem = findNextFocusableItem(
       items,
       this.state.focusedElement,
       keyCode
@@ -91,28 +110,6 @@ class DropdownList extends React.PureComponent {
     }, 150);
   };
 
-  findNextFocusableItem = (items, focusedItemId, keyCode) => {
-    const currentItemIndex = this.getFocusedItemIndex(focusedItemId);
-
-    const reorderedItems =
-      currentItemIndex === -1
-        ? items
-        : [
-            ...items.slice(currentItemIndex, items.lenght),
-            ...items.slice(0, currentItemIndex)
-          ];
-
-    let activeItems = reorderedItems.filter(
-      item => !item.isDisabled && item.itemId !== focusedItemId
-    );
-
-    if (keyCode === KeyCodes.arrowUp) {
-      activeItems = activeItems.reverse();
-    }
-
-    return activeItems[0];
-  };
-
   changeFocusedElement = id => {
     this.setState({
       focusedElement: id
@@ -120,6 +117,9 @@ class DropdownList extends React.PureComponent {
   };
 
   scrollItems = () => {
+    if (!this.listRef.current) {
+      return;
+    }
     const focusedElement = this.listRef.current.querySelector(
       `.lc-${baseClass}__list-item--focused`
     );
@@ -167,6 +167,8 @@ class DropdownList extends React.PureComponent {
         tabIndex={0}
         onScroll={this.handleListScroll}
         ref={this.listRef}
+        onFocus={this.onFocus}
+        onBlur={this.onBlur}
         {...restProps}
       >
         {items.map(({ content, itemId, props, ...itemRestProps }) => {

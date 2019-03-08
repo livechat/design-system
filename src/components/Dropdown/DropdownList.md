@@ -12,6 +12,9 @@ The drop menu can be dismissed by clicking outside, clicking on the trigger, or 
   - Esc key closes the drop menu and moves focus back to the menu trigger.
   - Tab key closes the drop menu and moves focus to the next focusable element on the page.
 
+
+<img style="width: 100%;" src="./dropdown_anatomy.png" alt="Dropdown_anatomy" />
+
 Examples:
 - with selectable items:
 
@@ -42,7 +45,7 @@ class SelectableDropdownListExample extends React.PureComponent {
   getListItems(shouldIncludeBatchItem = true) {
     const batchItem = {
       itemId: 0,
-      content: <div>{this.isAllSelected() ? 'Deselect all' : 'Select all'}</div>,
+      content: <div>{this.isAllSelected() ? 'Clear all' : 'Select all'}</div>,
       onItemSelect: () => this.handleSelectAll(),
       isSelected: this.isAllSelected(),
       divider: true
@@ -266,6 +269,10 @@ class CustomItemsDropdownListExample extends React.PureComponent {
 
 - list component - without positioning and trigger (html & css example)
 ```js
+initialState = {
+  isOpen: false
+};
+
 const generateItems = (length = 10) => Array.from(new Array(length), (value, index)=> ({
   itemId: index + 1,
   divider: index === 2,
@@ -278,8 +285,15 @@ const generateItems = (length = 10) => Array.from(new Array(length), (value, ind
 
 const items = generateItems(4);
 
+const toggleDropdownList = () => {
+  setState({
+    isOpen: !state.isOpen
+  })
+}
+
 <div style={{maxWidth: '340px'}}>
-  <DropdownList items={items} />
+  <Button onClick={toggleDropdownList}>Toggle</Button>
+  {state.isOpen && <DropdownList items={items} />}
 </div>
 ```
 
@@ -297,8 +311,6 @@ const generateItems = (length = 10) => Array.from(new Array(length), (value, ind
 const items = generateItems(4);
 
 <ComponentHtmlMarkup>
-  <div style={{maxWidth: '340px'}}>
-    <DropdownList items={items} />
-  </div>
+  <DropdownList items={items} />
 </ComponentHtmlMarkup>
 ```
