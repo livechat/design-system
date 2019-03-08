@@ -40,6 +40,9 @@ class Dropdown extends React.PureComponent {
 
     if (isShown) {
       this.addEventHandlers();
+      if (this.popupRef) {
+        this.popupRef.focus({ preventScroll: true });
+      }
     }
 
     if (isHidden) {
@@ -77,6 +80,12 @@ class Dropdown extends React.PureComponent {
       if (this.triggerRef) {
         this.triggerRef.focus();
       }
+    }
+  };
+
+  handlePopupBlur = () => {
+    if (this.props.onClose) {
+      this.props.onClose();
     }
   };
 
@@ -118,9 +127,11 @@ class Dropdown extends React.PureComponent {
             {({ ref, style, placement, arrowProps }) => (
               <div
                 ref={ref}
+                tabIndex={0}
                 style={{ ...style, zIndex: this.props.zIndex }}
                 data-placement={placement}
                 className={mergedClassNames}
+                onBlur={this.handlePopupBlur}
               >
                 {children}
                 {arrowProps.enabled && (

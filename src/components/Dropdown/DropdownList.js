@@ -10,15 +10,11 @@ const baseClass = 'dropdown';
 
 class DropdownList extends React.PureComponent {
   state = {
-    focusedElement: null,
-    isFocused: false
+    focusedElement: null
   };
 
   componentDidMount() {
     document.addEventListener('keydown', this.onKeydown);
-    if (this.listRef.current) {
-      this.listRef.current.focus({ preventScroll: true });
-    }
   }
 
   componentWillUnmount() {
@@ -28,30 +24,15 @@ class DropdownList extends React.PureComponent {
     document.removeEventListener('keydown', this.onKeydown);
   }
 
-  onFocus = e => {
-    e.preventDefault();
-    this.setState({
-      isFocused: true
-    });
-  };
-
-  onBlur = () => {
-    this.setState({
-      isFocused: false
-    });
-  };
-
   onKeydown = event => {
-    if (this.state.isFocused) {
-      const { keyCode } = event;
+    const { keyCode } = event;
 
-      if (keyCode === KeyCodes.arrowDown || keyCode === KeyCodes.arrowUp) {
-        this.handleArrowKeyUse(event);
-      }
+    if (keyCode === KeyCodes.arrowDown || keyCode === KeyCodes.arrowUp) {
+      this.handleArrowKeyUse(event);
+    }
 
-      if (keyCode === KeyCodes.enter) {
-        this.handleEnterKeyUse();
-      }
+    if (keyCode === KeyCodes.enter) {
+      this.handleEnterKeyUse();
     }
   };
 
@@ -102,6 +83,7 @@ class DropdownList extends React.PureComponent {
   };
 
   handleListScroll = event => {
+    event.preventDefault();
     if (this.props.onScroll) {
       this.props.onScroll(event);
     }
@@ -167,8 +149,6 @@ class DropdownList extends React.PureComponent {
         tabIndex={0}
         onScroll={this.handleListScroll}
         ref={this.listRef}
-        onFocus={this.onFocus}
-        onBlur={this.onBlur}
         {...restProps}
       >
         {items.map(({ content, itemId, props, ...itemRestProps }) => {

@@ -10,6 +10,11 @@ $base-class: 'dropdown';
   max-width: 336px;
   display: none;
 
+  &:focus {
+    box-shadow: 0 0 1px 2px rgba(67, 132, 245, 0.7);
+    outline: none;
+  }
+
   &--visible {
     display: block;
   }
