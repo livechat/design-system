@@ -171,7 +171,7 @@ Dropdown.propTypes = {
     'top-start'
   ]),
   positionFixed: PropTypes.bool,
-  referenceElement: Element,
+  referenceElement: PropTypes.instanceOf(Element),
   triggerRenderer: PropTypes.func.isRequired,
   zIndex: PropTypes.number,
   onClose: PropTypes.func
