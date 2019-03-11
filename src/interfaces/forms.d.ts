@@ -80,6 +80,19 @@ export interface IInputFieldProps extends IInputProps {
   id: string;
   inline?: boolean;
   description?: React.ReactNode;
+  fieldClassName?: string;
+}
+
+export interface ITextAreaProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  error?: string;
+}
+
+export interface ITextAreaFieldProps extends ITextAreaProps {
+  labelText?: string;
+  id: string;
+  inline?: boolean;
+  description?: React.ReactNode;
+  fieldClassName?: string;
 }
 
 export interface INumericInputProps {
@@ -124,6 +137,8 @@ export var MultiSelect: React.ComponentType<IMultiSelectProps>;
 export var MultiSelectField: React.ComponentType<IMultiSelectFieldProps>;
 export var Input: React.ComponentType<IInputProps>;
 export var InputField: React.ComponentType<IInputFieldProps>;
+export var TextArea: React.ComponentType<ITextAreaProps>;
+export var TextAreaField: React.ComponentType<ITextAreaFieldProps>;
 export var NumericInput: React.ComponentType<INumericInputProps>;
 export var NumericInputField: React.ComponentType<INumericInputFieldProps>;
 export var CheckboxField: React.ComponentType<ICheckboxFieldProps>;
