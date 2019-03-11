@@ -24,43 +24,46 @@ const generateItemsConfig = (length = 10) => Array.from(new Array(length), (valu
   isDisabled: (index + 1)%3 === 1
 }));
 
+const itemsConfig = generateItemsConfig(20);
+
+const getListItems = (onItemSelect, onToggleAll) => {
+  const batchItem = {
+    itemId: TOGGLE_ALL_ITEM_ID,
+    content: <div>Select all</div>,
+    onItemSelect: onToggleAll,
+    isSelected: false,
+    divider: true
+  }
+  return itemsConfig.reduce((acc, {id, isDisabled}) => {
+    acc.push({
+      itemId: id,
+      content: `Item ${id}`,
+      icon: <AlertCircleIcon height={16} width={16} fill="#4384f5" />,
+      onItemSelect: onItemSelect,
+      isSelected: false,
+      isDisabled
+    });
+    return acc;
+  }, [batchItem]);
+};
+
+const TOGGLE_ALL_ITEM_ID = 0;
+
 class SelectableDropdownListExample extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.itemsConfig = generateItemsConfig(16);
-
-    this.state = {
-      isVisible: false,
-      selected: []
-    };
 
     this.handleTriggerClick = this.handleTriggerClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
-    this.handleSelect = this.handleSelect.bind(this);
-    this.handleSelectAll = this.handleSelectAll.bind(this);
+    this.handleToggleAll = this.handleToggleAll.bind(this);
+    this.handleItemSelect = this.handleItemSelect.bind(this);
     this.isAllSelected = this.isAllSelected.bind(this);
-  }
 
-  getListItems(shouldIncludeBatchItem = true) {
-    const batchItem = {
-      itemId: 0,
-      content: <div>{this.isAllSelected() ? 'Clear all' : 'Select all'}</div>,
-      onItemSelect: () => this.handleSelectAll(),
-      isSelected: this.isAllSelected(),
-      divider: true
-    }
-    return this.itemsConfig.reduce((acc, {id, isDisabled}) => {
-      acc.push({
-        itemId: id,
-        content: `Item ${id}`,
-        icon: <AlertCircleIcon height={16} width={16} fill="#4384f5" />,
-        onItemSelect: () => this.handleSelect(id),
-        isSelected: this.isItemSelected(id),
-        isDisabled
-      });
-      return acc;
-    }, shouldIncludeBatchItem ? [batchItem] : []);
+    this.state = {
+      isVisible: false,
+      listItems: getListItems(this.handleItemSelect, this.handleToggleAll)
+    };
   }
 
   handleOpen() {
@@ -75,41 +78,42 @@ class SelectableDropdownListExample extends React.PureComponent {
     this.setState({isVisible: !state.isVisible})
   }
 
-  handleSelect(id) {
-    if (this.state.selected.some(itemId => id === itemId)) {
-      this.setState({
-        selected: this.state.selected.filter(itemId => id !== itemId)
-      });
-    } else {
-      this.setState({
-        selected: [...this.state.selected, id]
-      });
-    }
+  handleItemSelect(id) {
+    const listItems = this.state.listItems.map(v => {
+      return v.itemId === id ? {...v, ...{
+        isSelected: !v.isSelected
+      }} : v
+    });
+
+    const isAllItemsSelected = this.isAllSelected(listItems);
+
+    listItems[0].content = isAllItemsSelected ? <div>Clear all</div> : <div>Select all</div>;
+
+    this.setState({ listItems })
   }
 
-  handleSelectAll() {
-    if (!this.isAllSelected()) {
-      this.setState({
-        selected: this.getListItems(false).reduce((acc, item) => {
-          if (!item.isDisabled) {
-            acc.push(item.itemId);
-          }
-          return acc;
-        }, [])
-      });
-    } else {
-      this.setState({
-        selected: []
-      });
-    }
+  handleToggleAll() {
+    const isAllItemsSelected = this.isAllSelected(this.state.listItems);
+    const listItems = this.state.listItems.map(v => {
+      if (v.itemId === TOGGLE_ALL_ITEM_ID) {
+        return {
+          ...v,
+          content: !isAllItemsSelected ? <div>Clear all</div> : <div>Select all</div>,
+        };
+      }
+
+      return !v.isDisabled ? {...v, ...{
+        isSelected: !isAllItemsSelected
+      }} : v
+    })
+
+    this.setState({ listItems })
   }
 
-  isAllSelected() {
-    return this.itemsConfig.filter(item => !item.isDisabled).length === this.state.selected.length;
-  }
-
-  isItemSelected(id) {
-    return this.state.selected.includes(id);
+  isAllSelected(items) {
+    return !items.some(v => {
+      return v.itemId !== TOGGLE_ALL_ITEM_ID && !v.isDisabled && !v.isSelected
+    });
   }
 
   render() {
@@ -121,7 +125,7 @@ class SelectableDropdownListExample extends React.PureComponent {
         onClose={this.handleClose}
         triggerRenderer={({ ref }) => <Button onClick={this.handleTriggerClick} ref={ref}>Toggle dropdown</Button>}
       >
-        <DropdownList items={this.getListItems()} />
+        <DropdownList items={this.state.listItems} />
       </Dropdown>
     )
   }

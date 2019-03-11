@@ -1,6 +1,6 @@
 import { KeyCodes } from '../constants/keyCodes';
 
-export const findNextFocusableItem = (items, focusedItemId, keyCode) => {
+const findNextFocusableItem = (items, focusedItemId, keyCode) => {
   if (keyCode !== KeyCodes.arrowUp && keyCode !== KeyCodes.arrowDown) {
     return undefined;
   }
@@ -27,3 +27,5 @@ export const findNextFocusableItem = (items, focusedItemId, keyCode) => {
 
   return activeItems[0];
 };
+
+export default findNextFocusableItem;

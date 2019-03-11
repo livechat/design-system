@@ -4,7 +4,7 @@ import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 import DropdownListItem from './DropdownListItem';
 import { KeyCodes } from '../../constants/keyCodes';
-import { findNextFocusableItem } from '../../helpers/keyboardEvents';
+import findNextFocusableItem from '../../helpers/find-next-focusable-item';
 
 const baseClass = 'dropdown';
 
@@ -36,10 +36,7 @@ class DropdownList extends React.PureComponent {
     }
   };
 
-  getFocusedItemIndex = itemKey =>
-    this.props.items.map(item => item.itemId).indexOf(itemKey);
-
-  getHoveredItemCallback = itemKey => {
+  getFocusedItemCallback = itemKey => {
     if (!this.hoverCallbacks[itemKey]) {
       this.hoverCallbacks[itemKey] = () => {
         if (!this.isHoverDisabled) {
@@ -156,7 +153,7 @@ class DropdownList extends React.PureComponent {
             ...itemRestProps,
             itemId,
             isFocused: this.state.focusedElement === itemId,
-            onMouseOverItem: this.getHoveredItemCallback(itemId)
+            onMouseOverItem: this.getFocusedItemCallback(itemId)
           };
 
           if (this.props.getItemBody) {

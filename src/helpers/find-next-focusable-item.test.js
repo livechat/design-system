@@ -1,4 +1,4 @@
-import { findNextFocusableItem } from './keyboardEvents';
+import findNextFocusableItem from './find-next-focusable-item';
 import { KeyCodes } from '../constants/keyCodes';
 
 describe('Archives | Components | FiltersMenu', () => {
