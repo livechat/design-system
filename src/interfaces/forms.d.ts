@@ -83,7 +83,7 @@ export interface IInputFieldProps extends IInputProps {
   fieldClassName?: string;
 }
 
-export interface ITextAreaProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface ITextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   error?: string;
 }
 
