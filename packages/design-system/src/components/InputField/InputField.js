@@ -40,6 +40,7 @@ InputField.propTypes = {
   id: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   className: PropTypes.string,
+  fieldClassName: PropTypes.string,
   inline: PropTypes.bool,
   error: PropTypes.string,
   description: PropTypes.node

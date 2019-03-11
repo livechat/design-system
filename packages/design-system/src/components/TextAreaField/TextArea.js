@@ -6,7 +6,7 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const cx = classNames.bind(styles);
 
-const Input = props => {
+const TextArea = props => {
   const { error, className, ...restProps } = props;
 
   const baseClass = 'textarea';
@@ -21,8 +21,9 @@ const Input = props => {
   return <textarea className={mergedClassNames} {...restProps} />;
 };
 
-Input.propTypes = {
-  error: PropTypes.string
+TextArea.propTypes = {
+  error: PropTypes.string,
+  className: PropTypes.string
 };
 
-export default Input;
+export default TextArea;
