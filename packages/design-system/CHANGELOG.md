@@ -1,6 +1,15 @@
 ## Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.0.23
+_Release: 2019-03-11_
+
+##### Refactors
+* Adding typescript typings for TextArea component
+* Removing max-width from Button component styles
+
+----
+
 ## v0.0.22
 _Release: 2019-02-18_
 
