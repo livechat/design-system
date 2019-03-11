@@ -29,22 +29,4 @@ describe('Archives | Components | FiltersMenu', () => {
 
     expect(component).toMatchSnapshot();
   });
-
-  it('should add/remove document event listeners on mount, update and unmount', () => {
-    const addEventListenerSpy = jest.spyOn(document, 'addEventListener');
-    const removeEventListenerSpy = jest.spyOn(document, 'removeEventListener');
-
-    const component = shallow(<DropdownList items={items} />);
-
-    expect(addEventListenerSpy).toHaveBeenCalledTimes(1);
-
-    const arrowUpEvent = new KeyboardEvent('keydown', {
-      keyCode: KeyCodes.arrowUp
-    });
-    document.dispatchEvent(arrowUpEvent);
-
-    component.unmount();
-
-    expect(removeEventListenerSpy).toHaveBeenCalledTimes(1);
-  });
 });

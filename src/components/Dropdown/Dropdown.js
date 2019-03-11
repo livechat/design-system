@@ -13,7 +13,8 @@ class Dropdown extends React.PureComponent {
   static defaultProps = {
     modifiers: {},
     zIndex: 20,
-    closeOnEscPress: true
+    closeOnEscPress: true,
+    closeOnEnterPress: false
   };
 
   static buildPopperModifiers(modifiers) {
@@ -74,30 +75,30 @@ class Dropdown extends React.PureComponent {
     }
   };
 
-  handleEscKeyUp = event => {
-    if (this.props.onClose && event.keyCode === KeyCodes.esc) {
-      this.props.onClose();
-      if (this.triggerRef) {
-        this.triggerRef.focus();
+  handleKeyDown = event => {
+    if (this.props.onClose) {
+      const isEscKeyPressed = event.keyCode === KeyCodes.esc;
+      const isEnterKeyPressed = event.keyCode === KeyCodes.enter;
+
+      if (
+        (this.props.closeOnEscPress && isEscKeyPressed) ||
+        (this.props.closeOnEnterPress && isEnterKeyPressed)
+      ) {
+        this.props.onClose();
+        if (this.triggerRef) {
+          this.triggerRef.focus();
+        }
       }
     }
   };
 
-  handlePopupBlur = () => {
-    if (this.props.onClose) {
-      this.props.onClose();
-    }
-  };
-
   addEventHandlers = () => {
-    if (this.props.closeOnEscPress) {
-      document.addEventListener('keyup', this.handleEscKeyUp, true);
-    }
+    document.addEventListener('keydown', this.handleKeyDown, true);
     document.addEventListener('click', this.handleDocumentClick);
   };
 
   removeEventHandlers = () => {
-    document.removeEventListener('keyup', this.handleEscKeyUp, true);
+    document.removeEventListener('keydown', this.handleKeyDown, true);
     document.removeEventListener('click', this.handleDocumentClick);
   };
 
@@ -131,7 +132,6 @@ class Dropdown extends React.PureComponent {
                 style={{ ...style, zIndex: this.props.zIndex }}
                 data-placement={placement}
                 className={mergedClassNames}
-                onBlur={this.handlePopupBlur}
               >
                 {children}
                 {arrowProps.enabled && (
@@ -150,6 +150,7 @@ Dropdown.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   closeOnEscPress: PropTypes.bool,
+  closeOnEnterPress: PropTypes.bool,
   eventsEnabled: PropTypes.bool,
   isVisible: PropTypes.bool.isRequired,
   modifiers: PropTypes.object,

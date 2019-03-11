@@ -26,6 +26,7 @@ export interface IDropdownProps {
   children: React.ReactNode;
   className?: string;
   closeOnEscPress?: boolean;
+  closeOnEnterPress?: boolean;
   eventsEnabled?: boolean;
   isVisible: boolean;
   modifiers?: PopperJS.Modifiers;
@@ -33,7 +34,7 @@ export interface IDropdownProps {
   positionFixed?: boolean;
   referenceElement?: PopperJS.ReferenceObject;
   zIndex?: number;
-  triggerRenderer: (props: {ref: React.Ref<{}>}) => void;
+  triggerRenderer: (props: {ref: React.Ref<any>}) => void;
   onClose: () => void;
 }
 

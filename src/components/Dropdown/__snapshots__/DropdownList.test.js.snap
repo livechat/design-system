@@ -3,8 +3,6 @@
 exports[`Archives | Components | FiltersMenu renders correctly 1`] = `
 <ul
   className="dropdown__list"
-  onBlur={[Function]}
-  onFocus={[Function]}
   onScroll={[Function]}
   tabIndex={0}
 >
