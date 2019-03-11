@@ -37,11 +37,10 @@ const TextAreaField = props => {
 TextAreaField.propTypes = {
   labelText: PropTypes.string,
   id: PropTypes.string.isRequired,
-  onChange: PropTypes.func,
   className: PropTypes.string,
   inline: PropTypes.bool,
   error: PropTypes.string,
-  description: PropTypes.string,
+  description: PropTypes.node,
   fieldClassName: PropTypes.string
 };
 

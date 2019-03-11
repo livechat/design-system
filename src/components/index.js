@@ -26,7 +26,7 @@ export {
 } from './Modal';
 
 export { Input, InputField } from './InputField';
-export { default as TextAreaField } from './TextAreaField';
+export { TextArea, TextAreaField } from './TextAreaField';
 export { default as RadioButton } from './RadioButton';
 export { default as CheckboxField } from './CheckboxField';
 export { default as Form } from './Form';
