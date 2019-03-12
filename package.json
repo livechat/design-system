@@ -121,6 +121,7 @@
     "@livechat/data-utils": "^0.2.3",
     "classnames": "^2.2.6",
     "date-fns": "^1.29.0",
+    "gud": "^1.0.0",
     "memoize-one": "^4.1.0",
     "popper.js": "^1.14.7",
     "prop-types": "^15.6.2",
