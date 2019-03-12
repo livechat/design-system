@@ -53,3 +53,5 @@ export {
   InAppMessageHeader,
   InAppMessageBody
 } from './InAppMessage';
+
+export { Dropdown, DropdownList, DropdownListItem } from './Dropdown';
