@@ -12,19 +12,20 @@ The drop menu can be dismissed by clicking outside, clicking on the trigger, or 
   - Esc key closes the drop menu and moves focus back to the menu trigger.
   - Tab key closes the drop menu and moves focus to the next focusable element on the page.
 
-
 <img style="width: 100%;" src="./dropdown_anatomy.png" alt="Dropdown_anatomy" />
 
 Examples:
 - with selectable items:
 
+Remember to take care of your app performance. You should avoid rerenders. The most common mistate is always returning new array with new items (objects) in maps/filters. Take a look at example:
+
 ```js
-const generateItemsConfig = (length = 10) => Array.from(new Array(length), (value, index)=> ({
+const generateItemsConfig = () => Array.from(new Array(20), (value, index)=> ({
   id: index + 1,
   isDisabled: (index + 1)%3 === 1
 }));
 
-const itemsConfig = generateItemsConfig(20);
+const itemsConfig = generateItemsConfig();
 
 const getListItems = (onItemSelect, onToggleAll) => {
   const batchItem = {
@@ -137,37 +138,39 @@ class SelectableDropdownListExample extends React.PureComponent {
 - non-selectable items
 
 ```js
-const generateItemsConfig = (length = 10) => Array.from(new Array(length), (value, index)=> ({
+const generateItemsConfig = () => Array.from(new Array(4), (value, index)=> ({
   id: index + 1,
   divider: index === 2
 }));
 
+const itemsConfig = generateItemsConfig();
+
+const getListItems = (onItemSelect) => {
+  return itemsConfig.reduce((acc, {id, divider}) => {
+    acc.push({
+      itemId: id,
+      content: `Item ${id}`,
+      onItemSelect: onItemSelect,
+      divider
+    });
+    return acc;
+  }, []);
+};
 
 class NonSelectableDropdownListExample extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.itemsConfig = generateItemsConfig(4);
-
-    this.state = {
-      isVisible: false,
-      selected: []
-    };
+    this.itemsConfig = generateItemsConfig();
 
     this.handleTriggerClick = this.handleTriggerClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
-  }
 
-  getListItems() {
-    return this.itemsConfig.reduce((acc, {id, divider}) => {
-      acc.push({
-        itemId: id,
-        content: `Item ${id}`,
-        onItemSelect: () => this.handleClose(),
-        divider
-      });
-      return acc;
-    }, []);
+    this.listItems = getListItems(this.handleClose)
+
+    this.state = {
+      isVisible: false
+    };
   }
 
   handleOpen() {
@@ -191,7 +194,7 @@ class NonSelectableDropdownListExample extends React.PureComponent {
         onClose={this.handleClose}
         triggerRenderer={({ ref }) => <Button onClick={this.handleTriggerClick} ref={ref}>Menu</Button>}
       >
-        <DropdownList items={this.getListItems()} />
+        <DropdownList items={this.listItems} />
       </Dropdown>
     )
   }
@@ -204,33 +207,34 @@ class NonSelectableDropdownListExample extends React.PureComponent {
 - items rendered by getItemBody prop
 
 ```js
-const generateItemsConfig = (length = 10) => Array.from(new Array(length), (value, index)=> ({
+const generateItemsConfig = () => Array.from(new Array(4), (value, index)=> ({
   id: index + 1
 }));
 
+const itemsConfig = generateItemsConfig();
 
-class CustomItemsDropdownListExample extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.itemsConfig = generateItemsConfig(4);
-
-    this.state = {
-      isVisible: false,
-      selected: []
-    };
-
-    this.handleTriggerClick = this.handleTriggerClick.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-    this.handleOpen = this.handleOpen.bind(this);
-  }
-
-  getListItems() {
-    return this.itemsConfig.reduce((acc, {id, divider}) => {
+const getListItems = () => {
+    return itemsConfig.reduce((acc, {id, divider}) => {
       acc.push({
         itemId: id
       });
       return acc;
     }, []);
+  }
+
+
+class CustomItemsDropdownListExample extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.itemsConfig = generateItemsConfig();
+
+    this.state = {
+      isVisible: false
+    };
+
+    this.handleTriggerClick = this.handleTriggerClick.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
   }
 
   getItemBody(itemProps) {
@@ -262,7 +266,7 @@ class CustomItemsDropdownListExample extends React.PureComponent {
         onClose={this.handleClose}
         triggerRenderer={({ ref }) => <Button onClick={this.handleTriggerClick} ref={ref}>Menu</Button>}
       >
-        <DropdownList items={this.getListItems()} getItemBody={this.getItemBody}/>
+        <DropdownList items={getListItems()} getItemBody={this.getItemBody}/>
       </Dropdown>
     )
   }
@@ -287,7 +291,7 @@ const generateItems = (length = 10) => Array.from(new Array(length), (value, ind
   onItemSelect: () => {}
 }));
 
-const items = generateItems(4);
+const listItems = generateItems(4);
 
 const toggleDropdownList = () => {
   setState({
@@ -297,7 +301,7 @@ const toggleDropdownList = () => {
 
 <div style={{maxWidth: '340px'}}>
   <Button onClick={toggleDropdownList}>Toggle</Button>
-  {state.isOpen && <DropdownList items={items} />}
+  {state.isOpen && <DropdownList items={listItems} />}
 </div>
 ```
 
@@ -312,9 +316,9 @@ const generateItems = (length = 10) => Array.from(new Array(length), (value, ind
   onItemSelect: () => {}
 }));
 
-const items = generateItems(4);
+const listItems = generateItems(4);
 
 <ComponentHtmlMarkup>
-  <DropdownList items={items} />
+  <DropdownList items={listItems} />
 </ComponentHtmlMarkup>
 ```
