@@ -3,11 +3,12 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
+import Loader from '../Loader';
 
 const cx = classNames.bind(styles);
 const acceptedSizes = ['large', 'compact'];
 
-const Button = props => {
+const Button = React.forwardRef((props, ref) => {
   const {
     children,
     primary,
@@ -38,6 +39,8 @@ const Button = props => {
   const mergedClassNames = getMergedClassNames(
     cx({
       [baseClass]: true,
+      [`${baseClass}--disabled`]: disabled,
+      [`${baseClass}--loading`]: loading,
       [`${baseClass}--full-width`]: fullWidth,
       [`${baseClass}--primary`]: buttonType === 'primary',
       [`${baseClass}--destructive`]: buttonType === 'destructive',
@@ -49,6 +52,7 @@ const Button = props => {
   return (
     <button
       {...buttonProps}
+      ref={ref}
       className={mergedClassNames}
       type={type}
       disabled={isDisabled}
@@ -58,10 +62,15 @@ const Button = props => {
       aria-controls={ariaControls}
       aria-expanded={ariaExpanded}
     >
+      {loading && (
+        <div className={styles[`${baseClass}__loader`]}>
+          <Loader />
+        </div>
+      )}
       {children}
     </button>
   );
-};
+});
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,

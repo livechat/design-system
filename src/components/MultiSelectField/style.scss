@@ -96,6 +96,7 @@ $base-class: 'multiselect';
     box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.2);
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transform: translateY(-10%);
     transform-origin: top center;
     transition: all 0.15s ease-in-out;
@@ -106,6 +107,7 @@ $base-class: 'multiselect';
     &--visible {
       opacity: 1;
       visibility: visible;
+      pointer-events: auto;
       transform: translateY(0);
       transition: all 0.15s ease-in-out;
     }
@@ -198,7 +200,8 @@ $base-class: 'multiselect';
     align-items: center;
 
     &-content {
-      max-width: calc(100% - 22px);
+      width: calc(100% - 22px);
+      flex-grow: 1;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;

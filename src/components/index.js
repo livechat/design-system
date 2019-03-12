@@ -1,6 +1,6 @@
 export { Tab, TabsWrapper, TabsList } from './Tab';
 export { Tooltip, TooltipContent } from './Tooltip';
-export { default as Button } from './Button';
+export { Button } from './Button';
 
 export { Toast, ToastWrapper } from './Toast';
 
@@ -26,7 +26,7 @@ export {
 } from './Modal';
 
 export { Input, InputField } from './InputField';
-export { default as TextAreaField } from './TextAreaField';
+export { TextArea, TextAreaField } from './TextAreaField';
 export { default as RadioButton } from './RadioButton';
 export { default as CheckboxField } from './CheckboxField';
 export { default as Form } from './Form';
@@ -44,3 +44,14 @@ export {
   DatePickerRangeSelectInputs,
   DatePickerRangeCalendarsWrapper
 } from './DatePicker';
+
+export {
+  InAppMessageBase,
+  InAppMessagePortal,
+  InAppMessage,
+  InAppMessageFooter,
+  InAppMessageHeader,
+  InAppMessageBody
+} from './InAppMessage';
+
+export { Dropdown, DropdownList, DropdownListItem } from './Dropdown';
