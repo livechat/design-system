@@ -57,7 +57,7 @@ class DropdownList extends React.PureComponent {
       );
 
       if (selectedItem && selectedItem.onItemSelect) {
-        selectedItem.onItemSelect();
+        selectedItem.onItemSelect(selectedItem.itemId);
       }
     }
   };
