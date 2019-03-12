@@ -8,7 +8,7 @@ import Loader from '../Loader';
 const cx = classNames.bind(styles);
 const acceptedSizes = ['large', 'compact'];
 
-const Button = props => {
+const Button = React.forwardRef((props, ref) => {
   const {
     children,
     primary,
@@ -52,6 +52,7 @@ const Button = props => {
   return (
     <button
       {...buttonProps}
+      ref={ref}
       className={mergedClassNames}
       type={type}
       disabled={isDisabled}
@@ -69,7 +70,7 @@ const Button = props => {
       {children}
     </button>
   );
-};
+});
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
