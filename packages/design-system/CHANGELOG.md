@@ -1,6 +1,17 @@
 ## Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.0.24
+_Release: 2019-03-12_
+
+##### New Features
+* Adding new Dropdown (with popper.js as positioning engine) and DropdownList components
+
+##### Refactors
+* Forwarding ref to button component
+
+----
+
 ## v0.0.23
 _Release: 2019-03-11_
 
