@@ -18,7 +18,7 @@ const SelectHead = React.forwardRef((props, ref) => {
         [`${baseClass}--focused`]: isFocused,
         [`${baseClass}--disabled`]: disabled
       })}
-      disabled
+      disabled={disabled}
       {...restProps}
       tabIndex={disabled ? -1 : 0}
     >
