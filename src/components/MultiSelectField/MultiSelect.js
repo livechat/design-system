@@ -262,6 +262,9 @@ class MultiSelect extends React.PureComponent {
       searchPhrase: ''
     });
     this.props.onItemSelect(itemKey);
+    if (this.props.shouldCloseOnSelect) {
+      this.hideSelectBody();
+    }
   };
 
   handleEnterKeyUse = itemKey => this.handleItemSelect(itemKey);
@@ -479,6 +482,11 @@ MultiSelect.propTypes = {
       props: PropTypes.object
     })
   ),
+  /**
+   * Use when you need to control multiselect dropdown visibility in its parent component
+   * Remember to pass `onDropdownToggle` method as props, thanks to that you will be able to
+   * update your state
+   */
   isOpen: PropTypes.bool,
   placeholder: PropTypes.string,
   searchProperty: PropTypes.oneOfType([
@@ -489,6 +497,10 @@ MultiSelect.propTypes = {
     PropTypes.oneOfType([PropTypes.string, PropTypes.number])
   ),
   search: PropTypes.bool,
+  /**
+   * If `true` multiselect dropdown will be closed after option select/deselect
+   */
+  shouldCloseOnSelect: PropTypes.bool,
   disabled: PropTypes.bool,
   openedOnInit: PropTypes.bool,
   toggleAllOptions: PropTypes.shape({
@@ -503,6 +515,7 @@ MultiSelect.propTypes = {
 MultiSelect.defaultProps = {
   items: [],
   selected: null,
+  shouldCloseOnSelect: false,
   onDropdownToggle: () => {}
 };
 

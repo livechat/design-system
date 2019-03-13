@@ -102,7 +102,7 @@ const getSelectedItemBody = props => {
       onToggleAll: () => {}
     }}
     search
-    maxItemsContainerHeight={64}
+    maxItemsContainerHeight={72}
     getSelectedItemBody={getSelectedItemBody}
     selected={['1']}
     placeholder='Search...'
@@ -115,15 +115,7 @@ const getSelectedItemBody = props => {
 ```js
 const items = [
   {key: '1', props: {name: 'option 1', value: '1'}},
-  {key: '2', props: {name: 'option 2', value: '2'}},
-  {key: '3', props: {name: 'option 3', value: '3'}},
-  {key: '4', props: {name: 'option 4', value: '4'}},
-  {key: '5', props: {name: 'option 5', value: '5'}},
-  {key: '6', props: {name: 'option 6', value: '6'}},
-  {key: '7', props: {name: 'option 7', value: '7'}},
-  {key: '8', props: {name: 'option 8', value: '8'}},
-  {key: '9', props: {name: 'option 9', value: '9'}},
-  {key: '10', props: {name: 'option 10', value: '10'}}
+  {key: '2', props: {name: 'option 2', value: '2'}}
 ];
 initialState = {
   selectedItems: null
@@ -187,7 +179,44 @@ const toggleAll = items => {
 </div>
 ```
 
-<h3>MultiSelect with controlled visibility and multi searchProperty</h3>
+```js noeditor
+const items = [
+  {key: '1', props: {name: 'option 1', value: '1'}},
+  {key: '2', props: {name: 'option 2', value: '2'}}
+];
+
+const getItemBody = props => {
+  if (!props) {
+    return null;
+  }
+  return <div id={props.value}>{props.name}</div>;
+};
+
+const getSelectedItemBody = props => {
+  return <div id={props.value}>{props.name}</div>;
+};
+
+<ComponentHtmlMarkup>
+  <MultiSelect
+    items={items}
+    searchProperty='name'
+    onItemSelect={() => {}}
+    onItemRemove={() => {}}
+    getItemBody={getItemBody}
+    toggleAllOptions={{
+      onToggleAll: () => {}
+    }}
+    search
+    disabled
+    maxItemsContainerHeight={72}
+    getSelectedItemBody={getSelectedItemBody}
+    selected={['1']}
+    placeholder='Search...'
+  />
+</ComponentHtmlMarkup>
+```
+
+<h3>MultiSelect with controlled dropdown visibility</h3>
 
 ```js
 const items = [

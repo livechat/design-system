@@ -33,6 +33,7 @@ SelectField.propTypes = {
   labelText: PropTypes.string,
   id: PropTypes.string.isRequired,
   className: PropTypes.string,
+  fieldClassName: PropTypes.string,
   inline: PropTypes.bool,
   error: PropTypes.string,
   description: PropTypes.node

@@ -28,8 +28,9 @@ export interface ISelectProps {
 export interface ISelectFieldProps extends ISelectProps {
   labelText?: string;
   id: string;
-  className?: string,
+  className?: string;
   inline?: boolean;
+  fieldClassName?: string;
   error?: string;
   description?: React.ReactNode;
 }
@@ -67,7 +68,8 @@ export interface IMultiSelectProps {
 export interface IMultiSelectFieldProps extends IMultiSelectProps {
   labelText?: string;
   id: string;
-  className?: string,
+  className?: string;
+  fieldClassName?: string;
   inline?: boolean;
   error?: string;
   description?: React.ReactNode;

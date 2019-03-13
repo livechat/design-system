@@ -328,6 +328,11 @@ Select.propTypes = {
   className: PropTypes.string,
   error: PropTypes.string,
   id: PropTypes.string,
+  /**
+   * Use when you need to control multiselect dropdown visibility in its parent component
+   * Remember to pass `onDropdownToggle` method as props, thanks to that you will be able to
+   * update your state
+   */
   isOpen: PropTypes.bool,
   getItemBody: PropTypes.func.isRequired,
   getSelectedItemBody: PropTypes.func,
