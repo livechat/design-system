@@ -33,6 +33,11 @@ $base-class: 'multiselect';
         transition: border 0.15s ease-in-out;
       }
     }
+
+    &--disabled {
+      opacity: 0.3;
+      pointer-events: none;
+    }
   }
 
   &-head__clear {

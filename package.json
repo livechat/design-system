@@ -1,6 +1,6 @@
 {
   "name": "@livechat/design-system",
-  "version": "0.0.24",
+  "version": "0.1.0",
   "publishConfig": {
     "access": "restricted"
   },

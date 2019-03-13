@@ -58,7 +58,11 @@ class Select extends React.PureComponent {
   }
 
   onDocumentClick = event => {
-    if (this.getIsOpen() && !this.containerRef.current.contains(event.target)) {
+    if (
+      this.getIsOpen() &&
+      this.containerRef.current &&
+      !this.containerRef.current.contains(event.target)
+    ) {
       this.listRef.current.scrollTop = 0;
       this.hideSelectBody();
     }
@@ -85,7 +89,7 @@ class Select extends React.PureComponent {
 
   onBodyOpen = () => {
     document.addEventListener('click', this.onDocumentClick);
-    if (this.props.search) {
+    if (this.props.search && this.searchInputRef.current) {
       this.timerId = setTimeout(() => {
         this.searchInputRef.current.focus();
       }, 150);
@@ -101,6 +105,9 @@ class Select extends React.PureComponent {
 
   onSelectHeadClick = event => {
     event.preventDefault();
+    if (this.props.disabled) {
+      return;
+    }
     if (
       this.clearButtonRef.current &&
       this.clearButtonRef.current.contains(event.target)
@@ -144,8 +151,12 @@ class Select extends React.PureComponent {
     this.hideSelectBody();
   };
 
-  getIsOpen = (props = this.props, state = this.state) =>
-    this.isIsOpenControlled() ? props.isOpen : state.isOpen;
+  getIsOpen = (props = this.props, state = this.state) => {
+    if (props.disabled) {
+      return false;
+    }
+    return this.isIsOpenControlled() ? props.isOpen : state.isOpen;
+  };
 
   handleEnterKeyUse = itemKey => {
     this.props.onItemSelect(itemKey);
@@ -173,7 +184,9 @@ class Select extends React.PureComponent {
       },
       () => {
         this.props.onDropdownToggle(false);
-        this.headRef.current.focus();
+        if (this.headRef.current) {
+          this.headRef.current.focus();
+        }
       }
     );
   };
@@ -259,6 +272,7 @@ class Select extends React.PureComponent {
       <div ref={this.containerRef} className={mergedClassNames} id={id}>
         <SelectHead
           isFocused={isOpen || isFocused}
+          disabled={disabled}
           ref={this.headRef}
           onClick={this.onSelectHeadClick}
           onFocus={this.onSelectHeadFocus}

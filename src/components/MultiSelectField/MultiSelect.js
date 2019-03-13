@@ -50,7 +50,10 @@ class MultiSelect extends React.PureComponent {
       this.onBodyClose();
     }
 
-    if (this.shouldScrollItemsContainer(prevProps)) {
+    if (
+      this.shouldScrollItemsContainer(prevProps) &&
+      this.selectedItemsContainerRef.current
+    ) {
       this.selectedItemsContainerRef.current.scrollTop = this.selectedItemsContainerRef.current.scrollHeight;
     }
   }
@@ -65,7 +68,11 @@ class MultiSelect extends React.PureComponent {
   }
 
   onDocumentClick = event => {
-    if (this.getIsOpen() && !this.containerRef.current.contains(event.target)) {
+    if (
+      this.getIsOpen() &&
+      this.containerRef.current &&
+      !this.containerRef.current.contains(event.target)
+    ) {
       this.listRef.current.scrollTop = 0;
       this.hideSelectBody();
     }
@@ -107,6 +114,9 @@ class MultiSelect extends React.PureComponent {
 
   onSelectHeadClick = event => {
     event.preventDefault();
+    if (this.props.disabled) {
+      return;
+    }
     if (!this.getIsOpen()) {
       this.delayedInputFocus();
       this.showSelectBody();
@@ -227,8 +237,12 @@ class MultiSelect extends React.PureComponent {
     return null;
   };
 
-  getIsOpen = (props = this.props, state = this.state) =>
-    this.isIsOpenControlled() ? props.isOpen : state.isOpen;
+  getIsOpen = (props = this.props, state = this.state) => {
+    if (props.disabled) {
+      return false;
+    }
+    return this.isIsOpenControlled() ? props.isOpen : state.isOpen;
+  };
 
   shouldScrollItemsContainer = prevProps => {
     if (
@@ -282,7 +296,9 @@ class MultiSelect extends React.PureComponent {
       },
       () => {
         this.props.onDropdownToggle(false);
-        this.headRef.current.focus();
+        if (this.headRef.current) {
+          this.headRef.current.focus();
+        }
       }
     );
   };
@@ -386,6 +402,7 @@ class MultiSelect extends React.PureComponent {
           onClick={this.onSelectHeadClick}
           onFocus={this.onSelectHeadFocus}
           onBlur={this.onSelectHeadBlur}
+          disabled={disabled}
         >
           <div
             className={styles[`${baseClass}-head__items`]}
