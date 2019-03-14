@@ -70,8 +70,10 @@ class DropdownListItem extends React.PureComponent {
         onMouseOver={this.handleMouseOver}
         onMouseDown={this.handleMouseDown}
       >
-        {icon && <div className={styles[`${baseClass}__icon`]}>{icon}</div>}
-        <div className={styles[`${baseClass}__content`]}>{children}</div>
+        <div className={styles[`${baseClass}__content`]}>
+          {icon && <div className={styles[`${baseClass}__icon`]}>{icon}</div>}
+          <div className={styles[`${baseClass}__title`]}>{children}</div>
+        </div>
         {isSelected && (
           <CheckIcon
             width="15px"
