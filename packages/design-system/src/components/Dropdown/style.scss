@@ -43,13 +43,18 @@ $base-class: 'dropdown';
 
     &__icon {
       margin-right: 10px;
-      width: 16px;
       height: 16px;
     }
 
     &__content {
-      box-sizing: border-box;
+      max-width: calc(100% - 20px);
+      display: flex;
+    }
+
+    &__title {
       overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
       flex: 1 1 auto;
     }
 
@@ -73,11 +78,6 @@ $base-class: 'dropdown';
         opacity: 1;
         visibility: visible;
         transition: all 0.15s ease-in-out;
-      }
-
-      .#{$base-class}__list-item__content {
-        max-width: calc(100% - 15px);
-        width: 100%;
       }
     }
 
