@@ -1,6 +1,14 @@
 ## Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.0.25
+_Release: 2019-03-14_
+
+##### Refactors
+* IE11 fix for Dropdown item content
+
+----
+
 ## v0.0.24
 _Release: 2019-03-12_
 
