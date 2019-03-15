@@ -222,7 +222,7 @@ MultiSelectList.propTypes = {
   onEnterKey: PropTypes.func,
   focusedItemKey: PropTypes.string,
   onFocusedItemChange: PropTypes.func,
-  listRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  listRef: PropTypes.shape({ current: PropTypes.instanceOf(typeof Element === "undefined" ? function () { } : Element) }),
   toggleAllOptions: PropTypes.shape({
     onToggleAll: PropTypes.func.isRequired,
     selectLabel: PropTypes.string,
