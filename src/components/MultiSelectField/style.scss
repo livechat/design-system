@@ -35,8 +35,9 @@ $base-class: 'multiselect';
     }
 
     &--disabled {
-      opacity: 0.3;
+      opacity: 0.4;
       pointer-events: none;
+      cursor: not-allowed;
     }
   }
 
