@@ -7,27 +7,30 @@ const cx = classNames.bind(styles);
 
 const baseClass = 'multiselect-head';
 
-const SelectHead = React.forwardRef((props, ref) => {
-  const { isFocused, children, ...restProps } = props;
+const MultiSelectHead = React.forwardRef((props, ref) => {
+  const { isFocused, disabled, children, ...restProps } = props;
 
   return (
     <div
       ref={ref}
       className={cx({
         [`${baseClass}`]: true,
-        [`${baseClass}--focused`]: isFocused
+        [`${baseClass}--focused`]: isFocused,
+        [`${baseClass}--disabled`]: disabled
       })}
       {...restProps}
-      tabIndex={0}
+      disabled={disabled}
+      tabIndex={disabled ? -1 : 0}
     >
       {children}
     </div>
   );
 });
 
-SelectHead.propTypes = {
+MultiSelectHead.propTypes = {
   children: PropTypes.node,
+  disabled: PropTypes.bool,
   isFocused: PropTypes.bool
 };
 
-export default SelectHead;
+export default MultiSelectHead;
