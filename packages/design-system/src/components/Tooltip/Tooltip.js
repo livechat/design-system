@@ -37,7 +37,7 @@ class Tooltip extends React.Component {
       this.removeEventHandlers();
     }
 
-    if (this.state.isVisible) {
+    if (this.state.isVisible && this.tooltipRef.current) {
       const tooltipRefRect = this.tooltipRef.current.getBoundingClientRect();
 
       if (
@@ -121,6 +121,9 @@ class Tooltip extends React.Component {
   }
 
   calculatePosition = direction => {
+    if (!this.tooltipRef.current) {
+      return true;
+    }
     const tooltipRefRect = this.tooltipRef.current.getBoundingClientRect();
     const tooltipBoxRefRect = this.tooltipBoxRef.current.getBoundingClientRect();
 

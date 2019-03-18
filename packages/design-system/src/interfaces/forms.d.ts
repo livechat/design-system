@@ -4,13 +4,14 @@ export interface ISelectProps {
   className?: string;
   id?: string;
   error?: string;
+  isOpen?: boolean;
   items: {
     key: string;
     props: {
       [key: string]: any;
     }
   }[];
-  searchProperty?: string;
+  searchProperty?: string | string[];
   search?: boolean;
   placeholder?: React.ReactNode;
   searchPlaceholder?: string;
@@ -27,8 +28,9 @@ export interface ISelectProps {
 export interface ISelectFieldProps extends ISelectProps {
   labelText?: string;
   id: string;
-  className?: string,
+  className?: string;
   inline?: boolean;
+  fieldClassName?: string;
   error?: string;
   description?: React.ReactNode;
 }
@@ -37,13 +39,14 @@ export interface IMultiSelectProps {
   className?: string;
   id?: string;
   error?: string;
+  isOpen?: boolean;
   items: {
     key: string;
     props: {
       [key: string]: any;
     }
   }[];
-  searchProperty?: string;
+  searchProperty?: string | string[];
   placeholder?: string;
   search?: boolean;
   disabled?: boolean;
@@ -65,7 +68,8 @@ export interface IMultiSelectProps {
 export interface IMultiSelectFieldProps extends IMultiSelectProps {
   labelText?: string;
   id: string;
-  className?: string,
+  className?: string;
+  fieldClassName?: string;
   inline?: boolean;
   error?: string;
   description?: React.ReactNode;

@@ -20,7 +20,7 @@ class Select extends React.PureComponent {
     super(props);
 
     this.state = {
-      isOpen: props.openedOnInit || false,
+      isOpen: props.openedOnInit || props.isOpen || false,
       searchPhrase: '',
       focusedItemKey: this.props.items[0] ? this.props.items[0].key : null,
       isFocused: false
@@ -35,18 +35,19 @@ class Select extends React.PureComponent {
   }
 
   componentDidMount() {
-    if (this.props.openedOnInit) {
+    if (this.state.isOpen) {
       this.props.onDropdownToggle(true);
       this.onBodyOpen();
     }
   }
 
-  componentDidUpdate(_prevProps, prevState) {
-    if (this.state.isOpen && prevState.isOpen !== this.state.isOpen) {
-      this.props.onDropdownToggle(true);
+  componentDidUpdate(prevProps, prevState) {
+    const hasIsOpenChanged =
+      this.getIsOpen(prevProps, prevState) !== this.getIsOpen();
+
+    if (this.getIsOpen() && hasIsOpenChanged) {
       this.onBodyOpen();
-    } else if (!this.state.isOpen && prevState.isOpen !== this.state.isOpen) {
-      this.props.onDropdownToggle(false);
+    } else if (!this.getIsOpen() && hasIsOpenChanged) {
       this.onBodyClose();
     }
   }
@@ -58,7 +59,8 @@ class Select extends React.PureComponent {
 
   onDocumentClick = event => {
     if (
-      this.state.isOpen &&
+      this.getIsOpen() &&
+      this.containerRef.current &&
       !this.containerRef.current.contains(event.target)
     ) {
       this.listRef.current.scrollTop = 0;
@@ -87,7 +89,7 @@ class Select extends React.PureComponent {
 
   onBodyOpen = () => {
     document.addEventListener('click', this.onDocumentClick);
-    if (this.props.search) {
+    if (this.props.search && this.searchInputRef.current) {
       this.timerId = setTimeout(() => {
         this.searchInputRef.current.focus();
       }, 150);
@@ -103,13 +105,16 @@ class Select extends React.PureComponent {
 
   onSelectHeadClick = event => {
     event.preventDefault();
+    if (this.props.disabled) {
+      return;
+    }
     if (
       this.clearButtonRef.current &&
       this.clearButtonRef.current.contains(event.target)
     ) {
       return;
     }
-    if (!this.state.isOpen) {
+    if (!this.getIsOpen()) {
       this.showSelectBody();
     } else {
       this.hideSelectBody();
@@ -146,16 +151,28 @@ class Select extends React.PureComponent {
     this.hideSelectBody();
   };
 
+  getIsOpen = (props = this.props, state = this.state) => {
+    if (props.disabled) {
+      return false;
+    }
+    return this.isIsOpenControlled() ? props.isOpen : state.isOpen;
+  };
+
   handleEnterKeyUse = itemKey => {
     this.props.onItemSelect(itemKey);
     this.hideSelectBody();
   };
 
   showSelectBody = () => {
-    this.setState({
-      isOpen: true,
-      searchPhrase: ''
-    });
+    this.setState(
+      {
+        isOpen: true,
+        searchPhrase: ''
+      },
+      () => {
+        this.props.onDropdownToggle(true);
+      }
+    );
   };
 
   hideSelectBody = () => {
@@ -166,7 +183,10 @@ class Select extends React.PureComponent {
         searchPhrase: ''
       },
       () => {
-        this.headRef.current.focus();
+        this.props.onDropdownToggle(false);
+        if (this.headRef.current) {
+          this.headRef.current.focus();
+        }
       }
     );
   };
@@ -193,22 +213,36 @@ class Select extends React.PureComponent {
     const { searchPhrase } = this.state;
 
     if (searchPhrase) {
-      if (!(searchProperty in item.props)) {
-        return false;
-      }
+      if (typeof searchProperty === 'string') {
+        if (!(searchProperty in item.props)) {
+          return false;
+        }
 
-      return item.props[searchProperty]
-        .toLocaleLowerCase()
-        .includes(searchPhrase.toLocaleLowerCase());
+        return item.props[searchProperty]
+          .toLocaleLowerCase()
+          .includes(searchPhrase.toLocaleLowerCase());
+      } else if (Array.isArray(searchProperty) && searchProperty.length > 0) {
+        const validSearchProperties = searchProperty.filter(p => item.props[p]);
+
+        if (validSearchProperties.length === 0) {
+          return false;
+        }
+        return validSearchProperties.some(p =>
+          item.props[p]
+            .toLocaleLowerCase()
+            .includes(searchPhrase.toLocaleLowerCase())
+        );
+      }
     }
 
     return true;
   };
 
+  isIsOpenControlled = () => this.props.isOpen !== undefined;
+
   render() {
     const {
       items,
-      searchProperty,
       getItemBody,
       getSelectedItemBody,
       search,
@@ -221,7 +255,7 @@ class Select extends React.PureComponent {
       id,
       error
     } = this.props;
-    const { isOpen, searchPhrase, focusedItemKey, isFocused } = this.state;
+    const { searchPhrase, focusedItemKey, isFocused } = this.state;
     const selectedItemModel = items.find(item => item.key === selected);
     const filteredItems = items.filter(this.filterItem);
     const mergedClassNames = getMergedClassNames(
@@ -232,10 +266,13 @@ class Select extends React.PureComponent {
       className
     );
 
+    const isOpen = this.getIsOpen();
+
     return (
       <div ref={this.containerRef} className={mergedClassNames} id={id}>
         <SelectHead
           isFocused={isOpen || isFocused}
+          disabled={disabled}
           ref={this.headRef}
           onClick={this.onSelectHeadClick}
           onFocus={this.onSelectHeadFocus}
@@ -277,8 +314,6 @@ class Select extends React.PureComponent {
             getSelectedItemBody={getSelectedItemBody}
             selectedItem={selected}
             getItemSelectedHandler={this.getItemSelectedHandler}
-            searchPhrase={searchPhrase}
-            searchProperty={searchProperty}
             onEnterKey={this.handleEnterKeyUse}
             onFocusedItemChange={this.changeFocusedItem}
             focusedItemKey={focusedItemKey}
@@ -293,6 +328,12 @@ Select.propTypes = {
   className: PropTypes.string,
   error: PropTypes.string,
   id: PropTypes.string,
+  /**
+   * Use when you need to control multiselect dropdown visibility in its parent component
+   * Remember to pass `onDropdownToggle` method as props, thanks to that you will be able to
+   * update your state
+   */
+  isOpen: PropTypes.bool,
   getItemBody: PropTypes.func.isRequired,
   getSelectedItemBody: PropTypes.func,
   onItemSelect: PropTypes.func.isRequired,
@@ -303,7 +344,10 @@ Select.propTypes = {
     })
   ),
   searchPlaceholder: PropTypes.string,
-  searchProperty: PropTypes.string,
+  searchProperty: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]),
   selected: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   search: PropTypes.bool,
   required: PropTypes.bool,
