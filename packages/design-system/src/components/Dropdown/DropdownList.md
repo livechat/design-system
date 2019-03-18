@@ -56,7 +56,6 @@ class SelectableDropdownListExample extends React.PureComponent {
 
     this.handleTriggerClick = this.handleTriggerClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    this.handleOpen = this.handleOpen.bind(this);
     this.handleToggleAll = this.handleToggleAll.bind(this);
     this.handleItemSelect = this.handleItemSelect.bind(this);
     this.isAllSelected = this.isAllSelected.bind(this);
@@ -65,10 +64,6 @@ class SelectableDropdownListExample extends React.PureComponent {
       isVisible: false,
       listItems: getListItems(this.handleItemSelect, this.handleToggleAll)
     };
-  }
-
-  handleOpen() {
-    this.setState({isVisible: true});
   }
 
   handleClose() {
@@ -122,7 +117,6 @@ class SelectableDropdownListExample extends React.PureComponent {
       <Dropdown
         isVisible={this.state.isVisible}
         placement="bottom-start"
-        onOpen={this.handleOpen}
         onClose={this.handleClose}
         triggerRenderer={({ ref }) => <Button onClick={this.handleTriggerClick} ref={ref}>Toggle dropdown</Button>}
       >
@@ -164,17 +158,12 @@ class NonSelectableDropdownListExample extends React.PureComponent {
 
     this.handleTriggerClick = this.handleTriggerClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    this.handleOpen = this.handleOpen.bind(this);
 
     this.listItems = getListItems(this.handleClose)
 
     this.state = {
       isVisible: false
     };
-  }
-
-  handleOpen() {
-    this.setState({isVisible: true});
   }
 
   handleClose() {
@@ -190,7 +179,6 @@ class NonSelectableDropdownListExample extends React.PureComponent {
       <Dropdown
         isVisible={this.state.isVisible}
         placement="bottom-start"
-        onOpen={this.handleOpen}
         onClose={this.handleClose}
         triggerRenderer={({ ref }) => <Button onClick={this.handleTriggerClick} ref={ref}>Menu</Button>}
       >
@@ -234,7 +222,6 @@ class CustomItemsDropdownListExample extends React.PureComponent {
 
     this.handleTriggerClick = this.handleTriggerClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    this.handleOpen = this.handleOpen.bind(this);
   }
 
   getItemBody(itemProps) {
@@ -243,10 +230,6 @@ class CustomItemsDropdownListExample extends React.PureComponent {
         Custom Item - {itemProps.itemId}
       </DropdownListItem>
     )
-  }
-
-  handleOpen() {
-    this.setState({isVisible: true});
   }
 
   handleClose() {
@@ -262,7 +245,6 @@ class CustomItemsDropdownListExample extends React.PureComponent {
       <Dropdown
         isVisible={this.state.isVisible}
         placement="bottom-start"
-        onOpen={this.handleOpen}
         onClose={this.handleClose}
         triggerRenderer={({ ref }) => <Button onClick={this.handleTriggerClick} ref={ref}>Menu</Button>}
       >

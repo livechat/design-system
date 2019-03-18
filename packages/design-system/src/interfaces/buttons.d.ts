@@ -16,7 +16,7 @@ export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
   ariaControls?: string;
   ariaExpanded?: boolean;
   renderIcon?: string | React.ReactNode;
-  ref?: React.RefObject<HTMLButtonElement> | React.RefObject<React.Component<IButtonProps>>;
+  ref?: React.Ref<HTMLButtonElement> | React.Ref<React.Component<IButtonProps>>;
 }
 
 export var Button: React.ComponentType<IButtonProps>;

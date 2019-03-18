@@ -8,17 +8,19 @@ const cx = classNames.bind(styles);
 const baseClass = 'select-head';
 
 const SelectHead = React.forwardRef((props, ref) => {
-  const { isFocused, children, ...restProps } = props;
+  const { isFocused, disabled, children, ...restProps } = props;
 
   return (
     <div
       ref={ref}
       className={cx({
         [`${baseClass}`]: true,
-        [`${baseClass}--focused`]: isFocused
+        [`${baseClass}--focused`]: isFocused,
+        [`${baseClass}--disabled`]: disabled
       })}
+      disabled={disabled}
       {...restProps}
-      tabIndex={0}
+      tabIndex={disabled ? -1 : 0}
     >
       {children}
     </div>
@@ -27,6 +29,7 @@ const SelectHead = React.forwardRef((props, ref) => {
 
 SelectHead.propTypes = {
   children: PropTypes.node,
+  disabled: PropTypes.bool,
   isFocused: PropTypes.bool
 };
 

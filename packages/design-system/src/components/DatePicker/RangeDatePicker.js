@@ -469,7 +469,7 @@ class RangeDatePicker extends React.Component {
           to: this.props.toMonth
         });
 
-      if (isValid) {
+      if (isValid && this.toInputRef.current) {
         this.toInputRef.current.focus();
       }
     }
@@ -485,7 +485,7 @@ class RangeDatePicker extends React.Component {
           to: this.props.toMonth
         });
 
-      if (isValid) {
+      if (isValid && this.toInputRef.current) {
         this.toInputRef.current.blur();
       }
     }

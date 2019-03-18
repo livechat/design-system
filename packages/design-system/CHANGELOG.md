@@ -1,6 +1,20 @@
 ## Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.1.0
+_Release: 2019-03-18_
+
+##### New Features
+* Handling select and multiselect disabled props
+* Introducing two modes of dropdown visibility handling for select/multiselect
+* Adding new `shouldCloseOnSelect` prop on multiselect
+
+##### Refactors
+* Adding null refs null checks
+* Adding proper ref type for button component
+
+----
+
 ## v0.0.25
 _Release: 2019-03-14_
 

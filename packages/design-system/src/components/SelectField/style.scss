@@ -33,6 +33,12 @@ $base-class: 'select';
         transition: border 0.15s ease-in-out;
       }
     }
+
+    &--disabled {
+      opacity: 0.4;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
   }
 
   &-head__clear {
