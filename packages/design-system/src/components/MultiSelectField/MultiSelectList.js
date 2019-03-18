@@ -15,7 +15,9 @@ class MultiSelectList extends React.PureComponent {
 
   componentDidUpdate(prevProps) {
     if (!prevProps.isOpen && this.props.isOpen) {
-      this.props.listRef.current.scrollTop = 0;
+      if (this.props.listRef.current) {
+        this.props.listRef.current.scrollTop = 0;
+      }
       document.addEventListener('keydown', this.onKeydown);
     } else if (prevProps.isOpen && !this.props.isOpen) {
       document.removeEventListener('keydown', this.onKeydown);
@@ -37,7 +39,9 @@ class MultiSelectList extends React.PureComponent {
     const { keyCode } = event;
 
     if (keyCode === 9 || keyCode === 27) {
-      this.props.listRef.current.scrollTop = 0;
+      if (this.props.listRef.current) {
+        this.props.listRef.current.scrollTop = 0;
+      }
       this.props.onListClose();
     }
 
@@ -57,7 +61,10 @@ class MultiSelectList extends React.PureComponent {
   getHoveredItemCallback = itemKey => {
     if (!this.hoverCallbacks[itemKey]) {
       this.hoverCallbacks[itemKey] = () => {
-        if (!this.props.listRef.current.classList.contains('disable-hover')) {
+        if (
+          this.props.listRef.current &&
+          !this.props.listRef.current.classList.contains('disable-hover')
+        ) {
           this.props.onFocusedItemChange(itemKey);
         }
       };
@@ -70,6 +77,9 @@ class MultiSelectList extends React.PureComponent {
     this.props.items.map(item => item.key).indexOf(itemKey);
 
   scrollItems = () => {
+    if (!this.props.listRef.current) {
+      return;
+    }
     const focusedElement = this.props.listRef.current.querySelector(
       `.lc-${baseClass}__item--focused`
     );

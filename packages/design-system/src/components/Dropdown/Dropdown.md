@@ -66,7 +66,6 @@ class DropdownExample extends React.PureComponent {
 
     this.handleTriggerClick = this.handleTriggerClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    this.handleOpen = this.handleOpen.bind(this);
     this.handleItemSelect = this.handleItemSelect.bind(this);
   }
 
@@ -79,10 +78,6 @@ class DropdownExample extends React.PureComponent {
 
   handleItemSelect(position) {
     this.setState({position, isVisible: true});
-  }
-
-  handleOpen() {
-    this.setState({isVisible: true});
   }
 
   handleClose() {
@@ -111,7 +106,6 @@ class DropdownExample extends React.PureComponent {
         <Dropdown
           isVisible={this.state.isVisible}
           placement={this.state.position}
-          onOpen={this.handleOpen}
           modifiers={{
             flip: {
               behavior: 'flip'
