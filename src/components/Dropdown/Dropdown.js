@@ -20,7 +20,10 @@ class Dropdown extends React.PureComponent {
   static buildPopperModifiers(modifiers) {
     const { offset, flip, hide, preventOverflow, arrow, ...rest } = modifiers;
     return {
-      offset: { offset: '0px, 4px', ...(offset || {}) },
+      offset: {
+        offset: (arrow || {}).enabled ? '0, 16' : '0, 4',
+        ...(offset || {})
+      },
       flip: { enabled: true, behavior: 'flip', ...(flip || {}) },
       arrow: { enabled: false, ...(arrow || {}) },
       hide: { enabled: false, ...(hide || {}) },
@@ -59,6 +62,10 @@ class Dropdown extends React.PureComponent {
 
   setPopupRef = ref => {
     this.popupRef = ref;
+  };
+
+  setTriggerRef = ref => {
+    this.triggerRef = ref;
   };
 
   setTriggerRef = ref => {
@@ -113,6 +120,8 @@ class Dropdown extends React.PureComponent {
       className
     );
 
+    const modifiers = this.getModifiers(this.props.modifiers);
+
     return (
       <Manager>
         <Reference innerRef={this.setTriggerRef}>{triggerRenderer}</Reference>
@@ -120,7 +129,7 @@ class Dropdown extends React.PureComponent {
           <Popper
             innerRef={this.setPopupRef}
             placement={this.props.placement || 'bottom-start'}
-            modifiers={this.getModifiers(this.props.modifiers)}
+            modifiers={modifiers}
             eventsEnabled={this.props.eventsEnabled}
             positionFixed={this.props.positionFixed}
             referenceElement={this.props.referenceElement}
@@ -134,8 +143,13 @@ class Dropdown extends React.PureComponent {
                 className={mergedClassNames}
               >
                 {children}
-                {arrowProps.enabled && (
-                  <div ref={arrowProps.ref} style={arrowProps.style} />
+                {modifiers.arrow.enabled && (
+                  <div
+                    ref={arrowProps.ref}
+                    className={styles.dropdown__arrow}
+                    data-placement={placement}
+                    style={arrowProps.style}
+                  />
                 )}
               </div>
             )}
