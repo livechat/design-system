@@ -21,7 +21,7 @@ class Dropdown extends React.PureComponent {
     const { offset, flip, hide, preventOverflow, arrow, ...rest } = modifiers;
     return {
       offset: {
-        offset: (arrow || {}).enabled ? '0, 16' : '0, 4',
+        offset: (arrow || {}).enabled ? '0, 12' : '0, 4',
         ...(offset || {})
       },
       flip: { enabled: true, behavior: 'flip', ...(flip || {}) },

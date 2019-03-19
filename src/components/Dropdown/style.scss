@@ -32,15 +32,15 @@ $base-class: 'dropdown';
 
   &__arrow {
     position: absolute;
-    height: 8px;
-    margin: -8px 0;
-    width: 16px;
+    height: 6px;
+    margin: -6px 0;
+    width: 12px;
 
     &::after {
       content: '';
       position: absolute;
       z-index: 1;
-      border: 8px solid transparent;
+      border: 6px solid transparent;
       border-color: #fff #fff transparent transparent;
       transform: rotate(-45deg);
       box-shadow: -5px 5px 10px -2px rgba(66, 77, 87, 0.3);
@@ -66,9 +66,9 @@ $base-class: 'dropdown';
 
     &[data-placement*='right'] {
       left: 0;
-      height: 16px;
-      margin: 0 -8px;
-      width: 8px;
+      height: 12px;
+      margin: 0 -6px;
+      width: 6px;
 
       &::after {
         border-color: #fff transparent transparent #fff;
@@ -78,9 +78,9 @@ $base-class: 'dropdown';
 
     &[data-placement*='left'] {
       left: 100%;
-      height: 16px;
-      margin: 0 -8px;
-      width: 8px;
+      height: 12px;
+      margin: 0 -6px;
+      width: 6px;
 
       &::after {
         border-color: transparent #fff #fff transparent;
