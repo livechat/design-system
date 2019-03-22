@@ -1,0 +1,45 @@
+@import '../../scss/variables/colors';
+
+
+$base-class: 'toggleSwitch';
+
+.#{$base-class} {
+  border-radius: 34px;
+  position: relative;
+  &:before {
+    position: absolute;
+    content: "";
+    bottom: 1px;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+  &--disabled {
+    background-color: #DDE2E5;
+    &:before {
+      left: 1px;
+    }
+  }
+  &--enabled {
+    background-color: $success-color;
+    &:before {
+      right: 1px;
+    }
+  }
+  &--regular {
+    width: 44px;
+    height: 20px;
+    &:before {
+      height: 19px;
+      width: 19px;
+    }
+  }
+
+  &--compact {
+    width: 26px;
+    height: 17px;
+    &:before {
+      height: 15px;
+      width: 15px;
+    }
+  }
+}
