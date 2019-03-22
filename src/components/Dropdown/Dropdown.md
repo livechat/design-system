@@ -61,7 +61,7 @@ class DropdownExample extends React.PureComponent {
 
     this.state = {
       isVisible: true,
-      position: 'right-start'
+      position: 'auto'
     };
 
     this.handleTriggerClick = this.handleTriggerClick.bind(this);
@@ -109,6 +109,9 @@ class DropdownExample extends React.PureComponent {
           modifiers={{
             flip: {
               behavior: 'flip'
+            },
+            arrow: {
+              enabled: true
             }
           }}
           onClose={this.handleClose}
