@@ -37,8 +37,9 @@ export interface ISelectFieldProps extends ISelectProps {
 
 export interface IMultiSelectProps {
   className?: string;
-  id?: string;
+  disabled?: boolean;
   error?: string;
+  id?: string;
   isOpen?: boolean;
   items: {
     key: string;
@@ -46,20 +47,20 @@ export interface IMultiSelectProps {
       [key: string]: any;
     }
   }[];
-  searchProperty?: string | string[];
+  maxItemsContainerHeight: number;
+  openedOnInit?: boolean;
   placeholder?: string;
   search?: boolean;
-  disabled?: boolean;
-  openedOnInit?: boolean;
-  maxItemsContainerHeight: number;
+  searchProperty?: string | string[];
   selected: string[] | number[];
-  getItemBody(props: { [key: string]: any }): React.ReactNode;
-  getSelectedItemBody(props: { [key: string]: any }): React.ReactNode;
+  shouldCloseOnSelect?: boolean;
   toggleAllOptions?: {
     selectLabel: string;
     clearLabel: string;
     onToggleAll(values?: string[] | number[]): any;
   };
+  getItemBody(props: { [key: string]: any }): React.ReactNode;
+  getSelectedItemBody(props: { [key: string]: any }): React.ReactNode;
   onDropdownToggle?(isOpen: boolean): any;
   onItemSelect(itemKey: string | number): any;
   onItemRemove(itemKey: string | number): any;
