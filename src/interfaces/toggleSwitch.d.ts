@@ -1,4 +1,4 @@
-export type IToggleSwitchSizes = 'regular' | 'compact'
+export type IToggleSwitchSizes = 'large' | 'compact'
 export interface IToggleSwitch {
   on: boolean,
   defaultOn: boolean,

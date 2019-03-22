@@ -5,7 +5,7 @@ import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const cx = classNames.bind(styles);
-const acceptedSizes = ['regular', 'compact'];
+const acceptedSizes = ['large', 'compact'];
 const noop = () => {};
 
 class ToggleSwitch extends React.PureComponent {
@@ -17,7 +17,7 @@ class ToggleSwitch extends React.PureComponent {
   };
 
   static defaultProps = {
-    size: 'regular',
+    size: 'large',
     onToggle: noop,
     defaultOn: false
   };
