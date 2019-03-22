@@ -1,6 +1,17 @@
 ## Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.1.1
+_Release: 2019-03-22_
+
+##### New Features
+* Adding arrows to dropdown, visible when enabled in modifiers property
+
+##### Bug Fixes
+* Adding missing shouldCloseOnSelect property in MultiSelect typescript definition
+
+----
+
 ## v0.1.0
 _Release: 2019-03-18_
 
