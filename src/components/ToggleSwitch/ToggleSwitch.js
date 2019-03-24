@@ -23,8 +23,19 @@ class ToggleSwitch extends React.PureComponent {
   };
 
   state = {
-    on: this.isControlledByProps() ? this.props.on : this.props.defaultOn
+    on: this.isControlledByProps() ? this.props.on : this.props.defaultOn,
+    prevPropsOn: this.props.on
   };
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.on !== state.prevPropsOn) {
+      return {
+        on: props.on,
+        prevPropsOn: props.on
+      };
+    }
+    return null;
+  }
 
   toggleState = e => {
     const hasCb = this.props.onToggle !== noop;

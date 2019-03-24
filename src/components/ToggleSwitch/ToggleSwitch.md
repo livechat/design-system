@@ -7,6 +7,18 @@ Use toggles to immediately switch between two states (e.g. ON / OFF)
 </div>
 ```
 
+```js
+initialState = {
+  isOn: true
+};
+const onToggle = (e) => setState({isOn: !state.isOn});
+
+<div style={{display: 'flex'}}>
+  <span style={{marginRight: '10px', alignItems: 'center'}}> Enable sound notifications for customers </span>
+  <ToggleSwitch size="compact" onToggle={onToggle} on={state.isOn}/>
+</div>
+```
+
 <h3>Best practices</h3>
 <ul>
   <li>Don’t require users to press a button to confirm the change. </li>
