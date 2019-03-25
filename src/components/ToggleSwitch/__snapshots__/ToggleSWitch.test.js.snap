@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ToggleSwitch should render basic ToggleSwitch 1`] = `
+<div
+  className="toggleSwitch toggleSwitch--disabled toggleSwitch--basic"
+  onClick={[Function]}
+/>
+`;
