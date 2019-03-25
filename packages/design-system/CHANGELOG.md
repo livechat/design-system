@@ -1,6 +1,14 @@
 ## Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.1.2
+_Release: 2019-03-25_
+
+##### Bug Fixes
+* Fixing ModalFooter height issue - shrinking when dropdown had lots of content
+
+----
+
 ## v0.1.1
 _Release: 2019-03-22_
 
