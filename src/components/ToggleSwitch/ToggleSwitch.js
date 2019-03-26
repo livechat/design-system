@@ -59,8 +59,8 @@ class ToggleSwitch extends React.PureComponent {
     const mergedClassNames = getMergedClassNames(
       cx({
         [baseClass]: true,
-        [`${baseClass}--disabled`]: !on,
-        [`${baseClass}--enabled`]: on,
+        [`${baseClass}--${size}--disabled`]: !on,
+        [`${baseClass}--${size}--enabled`]: on,
         [`${baseClass}--${size}`]: acceptedSizes.some(s => s === size)
       }),
       className

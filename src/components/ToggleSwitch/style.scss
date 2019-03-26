@@ -1,36 +1,45 @@
 @import '../../scss/variables/colors';
+@import '../../scss/variables/transitions';
 
 
 $base-class: 'toggleSwitch';
+$basicSize: 18px;
+$compactSize: 15px;
 
 .#{$base-class} {
   border-radius: 34px;
   position: relative;
+  transition: all 1000ms;
   &:before {
     position: absolute;
     content: "";
-    bottom: 1px;
+    margin: 1px;
     background-color: #fff;
     border-radius: 50%;
-  }
-  &--disabled {
-    background-color: #DDE2E5;
-    &:before {
-      left: 1px;
-    }
-  }
-  &--enabled {
-    background-color: $success-color;
-    &:before {
-      right: 1px;
-    }
+    transition-property: left, right;
+    transition-duration: $transition-duration;
+    transition-timing-function: $transition-timing-function;
   }
   &--basic {
     width: 44px;
     height: 20px;
     &:before {
-      height: 18px;
-      width: 18px;
+      height: $basicSize;
+      width: $basicSize;
+    }
+    &--disabled {
+      background-color: #DDE2E5;
+      &:before {
+        left: 0;
+        right: calc(100% - #{$basicSize});
+      }
+    }
+    &--enabled {
+      background-color: $success-color;
+      &:before {
+        right: 0;
+        left: calc(100% - calc(#{$basicSize} + 2px));
+      }
     }
   }
 
@@ -38,8 +47,22 @@ $base-class: 'toggleSwitch';
     width: 26px;
     height: 17px;
     &:before {
-      height: 15px;
-      width: 15px;
+      height: $compactSize;
+      width: $compactSize;
+    }
+    &--disabled {
+      background-color: #DDE2E5;
+      &:before {
+        left: 0;
+        right: calc(100% - #{$compactSize});
+      }
+    }
+    &--enabled {
+      background-color: $success-color;
+      &:before {
+        right: 0;
+        left: calc(100% - calc(#{$compactSize} + 2px));
+      }
     }
   }
 }
