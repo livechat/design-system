@@ -7,5 +7,5 @@ export * from './inappmessages';
 export * from './modals';
 export * from './notificationsSystem';
 export * from './toasts';
-export * from './toggleSwitch';
+export * from './switch';
 export * from './tooltip';

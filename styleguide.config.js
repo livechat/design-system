@@ -46,8 +46,8 @@ module.exports = {
           components: './src/components/Tab/Tab.js'
         },
         {
-          name: 'ToggleSwitch',
-          components: './src/components/ToggleSwitch/ToggleSwitch.js'
+          name: 'Switch',
+          components: './src/components/Switch/Switch.js'
         },
         {
           name: 'Modals',

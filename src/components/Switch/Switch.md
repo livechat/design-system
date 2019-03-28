@@ -3,7 +3,7 @@ Use toggles to immediately switch between two states (e.g. ON / OFF)
 ```js
 <div style={{display: 'flex'}}>
   <span style={{marginRight: '10px', alignItems: 'center'}}> Enable sound notifications for customers </span>
-  <ToggleSwitch />
+  <Switch />
 </div>
 ```
 
@@ -15,7 +15,7 @@ const onToggle = (e) => setState({isOn: !state.isOn});
 
 <div style={{display: 'flex'}}>
   <span style={{marginRight: '10px', alignItems: 'center'}}> Enable sound notifications for customers </span>
-  <ToggleSwitch size="compact" onToggle={onToggle} on={state.isOn}/>
+  <Switch size="compact" onToggle={onToggle} on={state.isOn}/>
 </div>
 ```
 

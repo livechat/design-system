@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 const acceptedSizes = ['basic', 'compact'];
 const noop = () => {};
 
-class ToggleSwitch extends React.PureComponent {
+class Switch extends React.PureComponent {
   static propTypes = {
     on: PropTypes.bool,
     defaultOn: PropTypes.bool,
@@ -54,7 +54,7 @@ class ToggleSwitch extends React.PureComponent {
   render() {
     const { className, size } = this.props;
     const { on } = this.state;
-    const baseClass = 'toggleSwitch';
+    const baseClass = 'switch';
 
     const mergedClassNames = getMergedClassNames(
       cx({
@@ -72,4 +72,4 @@ class ToggleSwitch extends React.PureComponent {
   }
 }
 
-export default ToggleSwitch;
+export default Switch;
