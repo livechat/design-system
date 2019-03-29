@@ -3,8 +3,13 @@
 
 
 $base-class: 'switch';
-$basicSize: 18px;
-$compactSize: 15px;
+$basicHeight: 28px;
+$basicWidth: 44px;
+$basicSize: calc(#{$basicHeight} - 2px);
+
+$compactHeight: 16px;
+$compactWidth: 25px;
+$compactSize: calc(#{$compactHeight} - 2px);
 
 .#{$base-class} {
   border-radius: 34px;
@@ -21,8 +26,8 @@ $compactSize: 15px;
     transition-timing-function: $transition-timing-function;
   }
   &--basic {
-    width: 44px;
-    height: 20px;
+    width: $basicWidth;
+    height: $basicHeight;
     &:before {
       height: $basicSize;
       width: $basicSize;
@@ -31,21 +36,21 @@ $compactSize: 15px;
       background-color: #DDE2E5;
       &:before {
         left: 0;
-        right: calc(100% - #{$basicSize});
+        right: calc(#{$basicWidth} - #{$basicSize});
       }
     }
     &--enabled {
       background-color: $success-color;
       &:before {
         right: 0;
-        left: calc(100% - calc(#{$basicSize} + 2px));
+        left: calc(calc(#{$basicWidth} - #{$basicSize}) - 2px);
       }
     }
   }
 
   &--compact {
-    width: 26px;
-    height: 17px;
+    width: $compactWidth;
+    height: $compactHeight;
     &:before {
       height: $compactSize;
       width: $compactSize;
@@ -61,7 +66,7 @@ $compactSize: 15px;
       background-color: $success-color;
       &:before {
         right: 0;
-        left: calc(100% - calc(#{$compactSize} + 2px));
+        left: calc(calc(#{$compactWidth} - #{$compactSize}) - 2px);
       }
     }
   }
