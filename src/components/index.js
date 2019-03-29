@@ -1,6 +1,8 @@
+export { Button } from './Button';
+export { Card } from './Card';
+
 export { Tab, TabsWrapper, TabsList } from './Tab';
 export { Tooltip, TooltipContent } from './Tooltip';
-export { Button } from './Button';
 
 export { Toast, ToastWrapper } from './Toast';
 
