@@ -1,8 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Switch should render basic Switch 1`] = `
-<div
-  className="switch switch--basic--disabled switch--basic"
-  onClick={[Function]}
+<Switch
+  defaultOn={false}
+  innerRef={null}
+  onToggle={[Function]}
+  size="basic"
 />
 `;

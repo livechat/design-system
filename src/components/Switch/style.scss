@@ -14,6 +14,7 @@ $compactSize: calc(#{$compactHeight} - 2px);
 .#{$base-class} {
   border-radius: 34px;
   position: relative;
+  cursor: pointer;
   transition: all 1000ms;
   &:before {
     position: absolute;
@@ -21,8 +22,8 @@ $compactSize: calc(#{$compactHeight} - 2px);
     background-color: #fff;
     border-radius: 50%;
     transition-property: left, right;
-    transition-duration: $transition-duration;
-    transition-timing-function: $transition-timing-function;
+    transition-duration: $switch-transition-duration;
+    transition-timing-function: $switch-transition-timing-function;
   }
   &--basic {
     width: $basicWidth;
@@ -35,7 +36,7 @@ $compactSize: calc(#{$compactHeight} - 2px);
 
     }
     &--disabled {
-      background-color: #DDE2E5;
+      background-color: $field-background-color;
       &:before {
         left: 0;
         right: calc(#{$basicWidth} - #{$basicSize});

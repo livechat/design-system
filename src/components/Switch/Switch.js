@@ -7,6 +7,7 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 const cx = classNames.bind(styles);
 const acceptedSizes = ['basic', 'compact'];
 const noop = () => {};
+const baseClass = 'switch';
 
 class Switch extends React.PureComponent {
   static propTypes = {
@@ -54,7 +55,6 @@ class Switch extends React.PureComponent {
   render() {
     const { className, size } = this.props;
     const { on } = this.state;
-    const baseClass = 'switch';
 
     const mergedClassNames = getMergedClassNames(
       cx({
@@ -72,4 +72,6 @@ class Switch extends React.PureComponent {
   }
 }
 
-export default Switch;
+export default React.forwardRef((props, ref) => (
+  <Switch innerRef={ref} {...props} />
+));

@@ -6,6 +6,14 @@ Use toggles to immediately switch between two states (e.g. ON / OFF)
   <Switch />
 </div>
 ```
+```js noeditor
+  <ComponentHtmlMarkup>
+    <div style={{display: 'flex'}}>
+      <span style={{marginRight: '10px', alignItems: 'center'}}> Enable sound notifications for customers </span>
+      <Switch />
+    </div>
+  </ComponentHtmlMarkup>
+```
 
 ```js
 initialState = {
