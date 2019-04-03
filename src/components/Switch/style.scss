@@ -12,66 +12,114 @@ $compactWidth: 25px;
 $compactSize: calc(#{$compactHeight} - 2px);
 
 .#{$base-class} {
-  border-radius: 34px;
   position: relative;
-  cursor: pointer;
-  transition: all 1000ms;
-  &:before {
-    position: absolute;
-    content: "";
-    background-color: #fff;
-    border-radius: 50%;
-    transition-property: left, right;
-    transition-duration: $switch-transition-duration;
-    transition-timing-function: $switch-transition-timing-function;
+  display: inline-block;
+
+  &__input {
+    width: 100%;
+    height: 100%;
+    margin: 0; 
+    opacity: 0;
   }
+
+  &__container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  &__track {
+    &--enabled {
+      flex: 1;
+      height: 100%;
+      border-radius: 24px;
+      background-color: $success-color;
+    }
+    &--disabled {
+      flex: 1;
+      height: 100%;
+      border-radius: 24px;
+      background-color: $field-background-color;
+    }
+  }
+
   &--basic {
     width: $basicWidth;
     height: $basicHeight;
 
-    &:before {
-      height: $basicSize;
+    &__slider {
+      position: absolute;
       width: $basicSize;
-      margin: 2px;
-
-    }
-    &--disabled {
-      background-color: $field-background-color;
-      &:before {
-        left: 0;
-        right: calc(#{$basicWidth} - #{$basicSize});
+      height: $basicSize;
+      border-radius: 50%;
+      background: white;
+      &--enabled {
+        position: absolute;
+        width: $basicSize;
+        height: $basicSize;
+        border-radius: 50%;
+        background: white;
+        left: 2px;
+        right: calc(calc(#{$basicWidth} - #{$basicSize}) - 2px);
+        transition-property: left, right;
+        transition-duration: $switch-transition-duration;
+        transition-timing-function: $switch-transition-timing-function; 
+      }
+      &--disabled {
+        transition-property: left, right;
+        transition-duration: $switch-transition-duration;
+        transition-timing-function: $switch-transition-timing-function;
+        position: absolute;
+        width: $basicSize;
+        height: $basicSize;
+        border-radius: 50%;
+        background: white;
+        left: calc(calc(#{$basicWidth} - #{$basicSize}) - 2px);
+        right: 2px;
       }
     }
-    &--enabled {
-      background-color: $success-color;
-      &:before {
-        right: 0;
-        left: calc(calc(#{$basicWidth} - #{$basicSize}) - 3px);
-      }
-    }
+    
   }
-
   &--compact {
     width: $compactWidth;
     height: $compactHeight;
-    &:before {
-      height: $compactSize;
+
+    &__slider {
+      position: absolute;
       width: $compactSize;
-      margin: 1px;
-    }
-    &--disabled {
-      background-color: #DDE2E5;
-      &:before {
-        left: 0;
-        right: calc(100% - #{$compactSize});
+      height: $compactSize;
+      border-radius: 50%;
+      background: white;
+      &--enabled {
+        transition-property: left, right;
+        transition-duration: $switch-transition-duration;
+        transition-timing-function: $switch-transition-timing-function;
+        position: absolute;
+        width: $compactSize;
+        height: $compactSize;
+        border-radius: 50%;
+        background: white;
+        right: calc(calc(#{$compactWidth} - #{$compactSize}) - 2px);
+        left: 2px;
       }
-    }
-    &--enabled {
-      background-color: $success-color;
-      &:before {
+      &--disabled {
+        transition-property: left, right;
+        transition-duration: $switch-transition-duration;
+        transition-timing-function: $switch-transition-timing-function;  
+        position: absolute;
+        width: $compactSize;
+        height: $compactSize;
+        border-radius: 50%;
+        background: white;
         right: 0;
         left: calc(calc(#{$compactWidth} - #{$compactSize}) - 2px);
       }
     }
+    
   }
 }

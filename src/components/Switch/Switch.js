@@ -44,8 +44,11 @@ class Switch extends React.PureComponent {
       this.props.onToggle(e, this.state.on);
       return;
     }
+    console.log('click');;
     e.preventDefault();
-    this.setState({ on: !this.state.on });
+    this.setState(prevState => ({
+      on: !prevState.on
+    }));
   };
 
   isControlledByProps() {
@@ -53,21 +56,36 @@ class Switch extends React.PureComponent {
   }
 
   render() {
-    const { className, size } = this.props;
+    const { className, size, ...restProps } = this.props;
     const { on } = this.state;
 
     const mergedClassNames = getMergedClassNames(
       cx({
         [baseClass]: true,
-        [`${baseClass}--${size}--disabled`]: !on,
-        [`${baseClass}--${size}--enabled`]: on,
         [`${baseClass}--${size}`]: acceptedSizes.some(s => s === size)
       }),
       className
     );
 
+    const slider = `${baseClass}--${size}__slider`;
+    const track = `${baseClass}__track`;
+    const sliderWithState = on ? `${slider}--disabled` : `${slider}--enabled`;
+    const trackWithState = on ? `${track}--disabled` : `${track}--enabled`;
+
     return (
-      <div onClick={e => this.toggleState(e)} className={mergedClassNames} />
+      <span className={mergedClassNames}>
+        <input
+          type="checkbox"
+          className={styles[`${baseClass}__input`]}
+          onChange={this.toggleState}
+          checked={on}
+          tabIndex={1}
+        />
+        <span className={styles[`${baseClass}__container`]}>
+          <span className={styles[trackWithState]} />
+          <span className={styles[sliderWithState]} />
+        </span>
+      </span>
     );
   }
 }
