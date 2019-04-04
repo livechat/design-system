@@ -44,7 +44,6 @@ class Switch extends React.PureComponent {
       this.props.onToggle(e, this.state.on);
       return;
     }
-    console.log('click');;
     e.preventDefault();
     this.setState(prevState => ({
       on: !prevState.on
@@ -66,14 +65,9 @@ class Switch extends React.PureComponent {
       }),
       className
     );
-
-    const slider = `${baseClass}--${size}__slider`;
-    const track = `${baseClass}__track`;
-    const sliderWithState = on ? `${slider}--disabled` : `${slider}--enabled`;
-    const trackWithState = on ? `${track}--disabled` : `${track}--enabled`;
-
+    const valueStyles = on ? 'enabled' : 'disabled';
     return (
-      <span className={mergedClassNames}>
+      <span className={mergedClassNames} {...restProps}>
         <input
           type="checkbox"
           className={styles[`${baseClass}__input`]}
@@ -82,8 +76,19 @@ class Switch extends React.PureComponent {
           tabIndex={1}
         />
         <span className={styles[`${baseClass}__container`]}>
-          <span className={styles[trackWithState]} />
-          <span className={styles[sliderWithState]} />
+          <span
+            className={classNames(
+              styles[`${baseClass}__track`],
+              styles[`${baseClass}__track--${valueStyles}`]
+            )}
+          />
+          <span
+            className={classNames(
+              styles[`${baseClass}__slider`],
+              styles[`${baseClass}__slider--${size}`],
+              styles[`${baseClass}__slider--${size}--${valueStyles}`]
+            )}
+          />
         </span>
       </span>
     );

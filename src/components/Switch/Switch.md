@@ -1,14 +1,14 @@
 Use toggles to immediately switch between two states (e.g. ON / OFF)
 
 ```js
-<div style={{display: 'flex'}}>
+<div style={{display: 'flex', alignItems: 'center'}}>
   <span style={{marginRight: '10px', alignItems: 'center'}}> Enable sound notifications for customers </span>
   <Switch />
 </div>
 ```
 ```js noeditor
   <ComponentHtmlMarkup>
-    <div style={{display: 'flex'}}>
+    <div style={{display: 'flex', alignItems: 'center'}}>
       <span style={{marginRight: '10px', alignItems: 'center'}}> Enable sound notifications for customers </span>
       <Switch />
     </div>
@@ -21,7 +21,7 @@ initialState = {
 };
 const onToggle = (e) => setState({isOn: !state.isOn});
 
-<div style={{display: 'flex'}}>
+<div style={{display: 'flex', alignItems: 'center'}}>
   <span style={{marginRight: '10px', alignItems: 'center'}}> Enable sound notifications for customers </span>
   <Switch size="compact" onToggle={onToggle} on={state.isOn}/>
 </div>
