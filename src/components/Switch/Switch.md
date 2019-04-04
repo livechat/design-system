@@ -1,16 +1,27 @@
 Use toggles to immediately switch between two states (e.g. ON / OFF)
 
 ```js
+initialState = {
+  isOn: false
+};
+const onChange = (e) => setState({isOn: !state.isOn});
+
 <div style={{display: 'flex', alignItems: 'center'}}>
   <span style={{marginRight: '10px', alignItems: 'center'}}> Enable sound notifications for customers </span>
-  <Switch />
+  <Switch onChange={onChange} on={state.isOn} />
 </div>
 ```
+
 ```js noeditor
+initialState = {
+  isOn: true
+};
+const onChange = (e) => setState({isOn: !state.isOn});
+
   <ComponentHtmlMarkup>
     <div style={{display: 'flex', alignItems: 'center'}}>
       <span style={{marginRight: '10px', alignItems: 'center'}}> Enable sound notifications for customers </span>
-      <Switch />
+      // <Switch onChange={onChange}/>
     </div>
   </ComponentHtmlMarkup>
 ```
@@ -19,11 +30,11 @@ Use toggles to immediately switch between two states (e.g. ON / OFF)
 initialState = {
   isOn: true
 };
-const onToggle = (e) => setState({isOn: !state.isOn});
+const onChange = (e) => setState({isOn: !state.isOn});
 
 <div style={{display: 'flex', alignItems: 'center'}}>
   <span style={{marginRight: '10px', alignItems: 'center'}}> Enable sound notifications for customers </span>
-  <Switch size="compact" onToggle={onToggle} on={state.isOn}/>
+  <Switch size="compact" onChange={onChange} on={state.isOn}/>
 </div>
 ```
 
