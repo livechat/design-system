@@ -44,12 +44,14 @@ $compactMove: calc(#{$compactWidth} - #{$compactSize});
     height: 100%;
     margin: 0; 
     opacity: 0;
-    &:focus {
-      .#{$base-class}__track {
-        box-shadow: 0 0 1px 2px rgba($hover-primary-color, 0.5)!important;
+  }
+
+
+  &__input:focus + .#{$base-class}__container {
+    .#{$base-class}__track{
+      box-shadow: 0 0 1px 2px rgba($hover-primary-color, 0.5)
     }
   }
-}
 
   &__container {
     position: absolute;
