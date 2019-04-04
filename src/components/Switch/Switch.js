@@ -80,7 +80,6 @@ class Switch extends React.PureComponent {
           className={styles[`${baseClass}__input`]}
           onChange={this.toggleState}
           checked={enabled}
-          tabIndex={1}
         />
         <span className={styles[`${baseClass}__container`]}>
           <span

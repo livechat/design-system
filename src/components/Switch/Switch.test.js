@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Switch from './Switch';
 
 describe('Switch', () => {
@@ -11,8 +11,9 @@ describe('Switch', () => {
 
   it('should call on toggle when clicked', () => {
     const toggleFn = jest.fn();
-    const component = shallow(<Switch onToggle={toggleFn} />);
-    component.simulate('click');
+    const component = mount(<Switch onToggle={toggleFn} />);
+    const checkbox = component.find('input[type="checkbox"]');
+    checkbox.simulate('change');
     expect(toggleFn).toHaveBeenCalled();
   });
 });
