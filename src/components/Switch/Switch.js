@@ -44,7 +44,7 @@ class Switch extends React.PureComponent {
       this.props.onToggle(e, this.state.on);
       return;
     }
-    e.preventDefault();
+    e.stopPropagation();
     this.setState(prevState => ({
       on: !prevState.on
     }));
