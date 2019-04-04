@@ -24,14 +24,14 @@ class Switch extends React.PureComponent {
   };
 
   state = {
-    on: this.isControlledByProps() ? this.props.on : this.props.defaultOn,
+    enabled: this.isControlledByProps() ? this.props.on : this.props.defaultOn,
     prevPropsOn: this.props.on
   };
 
   static getDerivedStateFromProps(props, state) {
     if (props.on !== state.prevPropsOn) {
       return {
-        on: props.on,
+        enabled: props.on,
         prevPropsOn: props.on
       };
     }
@@ -41,12 +41,12 @@ class Switch extends React.PureComponent {
   toggleState = e => {
     const hasCb = this.props.onToggle !== noop;
     if (hasCb) {
-      this.props.onToggle(e, this.state.on);
+      this.props.onToggle(e, this.state.enabled);
       return;
     }
     e.stopPropagation();
     this.setState(prevState => ({
-      on: !prevState.on
+      enabled: !prevState.enabled
     }));
   };
 
@@ -55,8 +55,15 @@ class Switch extends React.PureComponent {
   }
 
   render() {
-    const { className, size, ...restProps } = this.props;
-    const { on } = this.state;
+    const {
+      className,
+      size,
+      innerRef,
+      defaultOn,
+      on,
+      ...restProps
+    } = this.props;
+    const { enabled } = this.state;
 
     const mergedClassNames = getMergedClassNames(
       cx({
@@ -65,14 +72,14 @@ class Switch extends React.PureComponent {
       }),
       className
     );
-    const valueStyles = on ? 'enabled' : 'disabled';
+    const valueStyles = enabled ? 'enabled' : 'disabled';
     return (
-      <span className={mergedClassNames} {...restProps}>
+      <span className={mergedClassNames} ref={innerRef} {...restProps}>
         <input
           type="checkbox"
           className={styles[`${baseClass}__input`]}
           onChange={this.toggleState}
-          checked={on}
+          checked={enabled}
           tabIndex={1}
         />
         <span className={styles[`${baseClass}__container`]}>
