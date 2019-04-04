@@ -17,6 +17,18 @@ $compactMove: calc(#{$compactWidth} - #{$compactSize});
 .#{$base-class} {
   position: relative;
   display: inline-block;
+  outline: none;
+
+  &:hover {
+    .#{$base-class}__track {
+      &--enabled {
+        background-color: darken($success-color, 10);
+      }
+      &--disabled {
+        background-color: darken($field-background-color, 10);
+      }
+    }
+  }
 
   &--basic {
     width: $basicWidth;
@@ -32,7 +44,12 @@ $compactMove: calc(#{$compactWidth} - #{$compactSize});
     height: 100%;
     margin: 0; 
     opacity: 0;
+    &:focus {
+      .#{$base-class}__track {
+        box-shadow: 0 0 1px 2px rgba($hover-primary-color, 0.5)!important;
+    }
   }
+}
 
   &__container {
     position: absolute;
@@ -52,6 +69,7 @@ $compactMove: calc(#{$compactWidth} - #{$compactSize});
     transition-property: background-color;
     transition-duration: $switch-transition-duration;
     transition-timing-function: $switch-transition-timing-function; 
+
     &--enabled {
       background-color: $success-color;
     }
