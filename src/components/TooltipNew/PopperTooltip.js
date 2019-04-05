@@ -3,7 +3,6 @@ import * as PropTypes from 'prop-types';
 import memoizeOne from 'memoize-one';
 import { Manager, Reference, Popper } from 'react-popper';
 import cx from 'classnames';
-import { KeyCodes } from '../../constants/keyCodes';
 import styles from './style.scss';
 
 const baseClass = 'popper-tooltip';
@@ -41,35 +40,16 @@ class PopperTooltip extends React.PureComponent {
     };
   }
 
-  componentDidMount() {
-    if (this.props.isVisible) {
-      this.addEventHandlers();
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    const isShown = !prevProps.isVisible && this.props.isVisible;
-    const isHidden = prevProps.isVisible && !this.props.isVisible;
-
-    if (isShown) {
-      this.addEventHandlers();
-      if (this.popupRef) {
-        this.popupRef.focus({ preventScroll: true });
-      }
-    }
-
-    if (isHidden) {
-      this.removeEventHandlers();
-    }
-  }
-
-  componentWillUnmount() {
-    this.removeEventHandlers();
-  }
+  state = {
+    isVisible: false
+  };
 
   getModifiers = memoizeOne(PopperTooltip.buildPopperModifiers);
 
   getTooltipStyle = memoizeOne(PopperTooltip.buildTooltipStyle);
+
+  getIsVisible = (props = this.props, state = this.state) =>
+    this.isIsVisibleControlled() ? props.isVisible : state.isVisible;
 
   setPopupRef = ref => {
     this.popupRef = ref;
@@ -83,51 +63,45 @@ class PopperTooltip extends React.PureComponent {
     this.triggerRef = ref;
   };
 
-  handleDocumentClick = event => {
-    if (
-      this.props.onClose &&
-      this.popupRef &&
-      !this.popupRef.contains(event.target)
-    ) {
-      this.props.onClose();
-    }
+  isIsVisibleControlled = () => this.props.triggerActionType === 'custom';
+
+  handleTriggerMouseEnter = () => {
+    this.setState({
+      isVisible: true
+    });
   };
 
-  handleKeyDown = event => {
-    if (this.props.onClose) {
-      const isEscKeyPressed = event.keyCode === KeyCodes.esc;
-      const isEnterKeyPressed = event.keyCode === KeyCodes.enter;
-
-      if (
-        (this.props.closeOnEscPress && isEscKeyPressed) ||
-        (this.props.closeOnEnterPress && isEnterKeyPressed)
-      ) {
-        this.props.onClose();
-        if (this.triggerRef) {
-          this.triggerRef.focus();
-        }
-      }
-    }
+  handleTriggerMouseLeave = () => {
+    this.setState({
+      isVisible: false
+    });
   };
 
-  addEventHandlers = () => {
-    document.addEventListener('keydown', this.handleKeyDown, true);
-    document.addEventListener('click', this.handleDocumentClick);
-  };
-
-  removeEventHandlers = () => {
-    document.removeEventListener('keydown', this.handleKeyDown, true);
-    document.removeEventListener('click', this.handleDocumentClick);
+  handleTriggerClick = () => {
+    this.setState(prevState => ({
+      isVisible: !prevState.isVisible
+    }));
   };
 
   renderTriggerElement = ({ ref }) => {
-    const { trigger } = this.props;
+    const { trigger, triggerActionType } = this.props;
 
-    if (typeof trigger === 'function') {
-      return trigger({ ref });
+    const triggerProps = { ref };
+
+    if (triggerActionType === 'click') {
+      triggerProps.onClick = this.handleTriggerClick;
     }
 
-    return React.cloneElement(trigger, { ref });
+    if (triggerActionType === 'hover') {
+      triggerProps.onMouseEnter = this.handleTriggerMouseEnter;
+      triggerProps.onMouseLeave = this.handleTriggerMouseLeave;
+    }
+
+    if (typeof trigger === 'function') {
+      return trigger(triggerProps);
+    }
+
+    return React.cloneElement(trigger, triggerProps);
   };
 
   renderPopperContent = ({
@@ -190,13 +164,16 @@ class PopperTooltip extends React.PureComponent {
 
   render() {
     const modifiers = this.getModifiers(this.props.modifiers);
+    const isVisible = this.getIsVisible();
+
+    console.log(this.isIsVisibleControlled(), this.getIsVisible());
 
     return (
       <Manager>
         <Reference innerRef={this.setTriggerRef}>
           {this.renderTriggerElement}
         </Reference>
-        {this.props.isVisible && (
+        {isVisible && (
           <Popper
             innerRef={this.setPopupRef}
             placement={this.props.placement || 'bottom-start'}

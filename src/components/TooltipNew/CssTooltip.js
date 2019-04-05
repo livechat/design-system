@@ -57,8 +57,6 @@ class CssTooltip extends React.PureComponent {
       ...restProps
     } = this.props;
 
-    // const { corePlacement, subPlacement } = this.getPlacementParts(placement);
-
     const arrowStyle = this.getArrowStyle(
       arrowOffsetTop,
       arrowOffsetBottom,
