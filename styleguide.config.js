@@ -71,6 +71,14 @@ module.exports = {
           sectionDepth: 0
         },
         {
+          name: 'TooltipNew',
+          components: [
+            './src/components/TooltipNew/PopperTooltip.js',
+            './src/components/TooltipNew/CssTooltip.js'
+          ],
+          sectionDepth: 0
+        },
+        {
           name: 'Dropdown',
           components: [
             './src/components/Dropdown/Dropdown.js',

@@ -55,3 +55,5 @@ export {
 } from './InAppMessage';
 
 export { Dropdown, DropdownList, DropdownListItem } from './Dropdown';
+
+export { PopperTooltip, CssTooltip } from './TooltipNew';

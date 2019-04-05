@@ -50,6 +50,9 @@ global.Dropdown = Components.Dropdown;
 global.DropdownList = Components.DropdownList;
 global.DropdownListItem = Components.DropdownListItem;
 
+global.PopperTooltip = Components.PopperTooltip;
+global.CssTooltip = Components.CssTooltip;
+
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;
 global.AlertCircleIcon = AlertCircleIcon;

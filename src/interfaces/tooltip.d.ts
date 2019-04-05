@@ -17,6 +17,10 @@ export interface ITooltipProps {
   content: React.ReactNode;
 }
 
+/**
+ * @deprecated 0.2.3, use PopperTooltip instead; will stop working in '@livechat/design-system 1.0.0'
+ * @see https://livechat.github.io/design-system/#!/PopperTooltip
+ */
 export var Tooltip: React.ComponentType<ITooltipProps>;
 
 export interface ITooltipContentProps {
@@ -29,4 +33,8 @@ export interface ITooltipContentProps {
   fontColor?: string;
 }
 
+/**
+ * @deprecated 0.2.3, use CssTooltip instead; will stop working in '@livechat/design-system 1.0.0' 
+ * @see https://livechat.github.io/design-system/#!/CssTooltip
+ */
 export var TooltipContent: React.ComponentType<ITooltipContentProps>;
