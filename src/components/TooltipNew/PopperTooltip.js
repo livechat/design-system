@@ -1,42 +1,57 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import memoizeOne from 'memoize-one';
+import { CSSTransition } from 'react-transition-group';
 import { Manager, Reference, Popper } from 'react-popper';
 import cx from 'classnames';
 import styles from './style.scss';
 
 const baseClass = 'popper-tooltip';
 
+const DEFAULT_TRANSITION_DURATION = 200;
+const DEFAULT_TRANSITION_DELAY = 0;
+
 class PopperTooltip extends React.PureComponent {
   static defaultProps = {
     modifiers: {},
     style: {},
     zIndex: 30,
-    closeOnEscPress: true,
-    closeOnEnterPress: false,
+    withFadeAnimation: true,
+    transitionDuration: DEFAULT_TRANSITION_DURATION,
+    transitionDelay: DEFAULT_TRANSITION_DELAY,
     triggerActionType: 'custom'
   };
 
   static buildPopperModifiers(modifiers) {
     const { offset, flip, hide, preventOverflow, arrow, ...rest } = modifiers;
+    const arrowProps = { enabled: true, ...(arrow || {}) };
+
     return {
       offset: {
-        offset: (arrow || {}).enabled ? '0, 12' : '0, 4',
+        offset: arrowProps.enabled ? '0, 8' : '0, 4',
         ...(offset || {})
       },
       flip: { enabled: true, behavior: 'flip', ...(flip || {}) },
-      arrow: { enabled: true, ...(arrow || {}) },
+      arrow: arrowProps,
       hide: { enabled: false, ...(hide || {}) },
       preventOverflow: { enabled: true, ...(preventOverflow || {}) },
       ...rest
     };
   }
 
-  static buildTooltipStyle(popperCalculatedStyle, propsStyle, zIndex) {
+  static buildTooltipStyle(
+    popperCalculatedStyle,
+    propsStyle,
+    zIndex,
+    transitionDuration,
+    transitionDelay
+  ) {
     return {
       ...popperCalculatedStyle,
       ...propsStyle,
-      zIndex
+      zIndex,
+      transitionDuration: `${transitionDuration}ms`,
+      transitionDelay: `${transitionDelay}ms`
     };
   }
 
@@ -51,12 +66,8 @@ class PopperTooltip extends React.PureComponent {
   getIsVisible = (props = this.props, state = this.state) =>
     this.isIsVisibleControlled() ? props.isVisible : state.isVisible;
 
-  setPopupRef = ref => {
-    this.popupRef = ref;
-  };
-
-  setTriggerRef = ref => {
-    this.triggerRef = ref;
+  setTooltipRef = ref => {
+    this.tooltipRef = ref;
   };
 
   setTriggerRef = ref => {
@@ -114,8 +125,6 @@ class PopperTooltip extends React.PureComponent {
       children,
       className,
       zIndex,
-      closeOnEscPress,
-      closeOnEnterPress,
       eventsEnabled,
       modifiers,
       style: propsStyle,
@@ -124,7 +133,9 @@ class PopperTooltip extends React.PureComponent {
       referenceElement,
       trigger,
       triggerActionType,
-      onClose,
+      withFadeAnimation,
+      transitionDuration,
+      transitionDelay,
       ...restProps
     } = this.props;
 
@@ -132,7 +143,9 @@ class PopperTooltip extends React.PureComponent {
     const style = this.getTooltipStyle(
       popperCalculatedStyle,
       propsStyle,
-      zIndex
+      zIndex,
+      transitionDuration,
+      transitionDelay
     );
 
     return (
@@ -162,29 +175,47 @@ class PopperTooltip extends React.PureComponent {
     );
   };
 
-  render() {
+  renderPopper = () => {
     const modifiers = this.getModifiers(this.props.modifiers);
     const isVisible = this.getIsVisible();
 
-    console.log(this.isIsVisibleControlled(), this.getIsVisible());
+    const popperComponent = (
+      <Popper
+        placement={this.props.placement || 'bottom-start'}
+        modifiers={modifiers}
+        innerRef={this.props.tooltipRef || this.setTooltipRef}
+        eventsEnabled={this.props.eventsEnabled}
+        positionFixed={this.props.positionFixed}
+        referenceElement={this.props.referenceElement}
+      >
+        {this.renderPopperContent}
+      </Popper>
+    );
 
+    if (this.props.withFadeAnimation) {
+      return (
+        <CSSTransition
+          timeout={this.props.transitionDuration}
+          mountOnEnter
+          unmountOnExit
+          in={isVisible}
+          classNames={styles[baseClass]}
+        >
+          {popperComponent}
+        </CSSTransition>
+      );
+    }
+
+    return isVisible && popperComponent;
+  };
+
+  render() {
     return (
       <Manager>
-        <Reference innerRef={this.setTriggerRef}>
+        <Reference innerRef={this.props.triggerRef || this.setTriggerRef}>
           {this.renderTriggerElement}
         </Reference>
-        {isVisible && (
-          <Popper
-            innerRef={this.setPopupRef}
-            placement={this.props.placement || 'bottom-start'}
-            modifiers={modifiers}
-            eventsEnabled={this.props.eventsEnabled}
-            positionFixed={this.props.positionFixed}
-            referenceElement={this.props.referenceElement}
-          >
-            {this.renderPopperContent}
-          </Popper>
-        )}
+        {this.renderPopper()}
       </Manager>
     );
   }
@@ -193,10 +224,12 @@ class PopperTooltip extends React.PureComponent {
 PopperTooltip.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  closeOnEscPress: PropTypes.bool,
-  closeOnEnterPress: PropTypes.bool,
   eventsEnabled: PropTypes.bool,
   isVisible: PropTypes.bool,
+  /**
+   * Set to `false` to turn off fade-in/fade-out animations.
+   */
+  withFadeAnimation: PropTypes.bool,
   style: PropTypes.object,
   modifiers: PropTypes.object,
   placement: PropTypes.oneOf([
@@ -217,11 +250,33 @@ PopperTooltip.propTypes = {
     'top-start'
   ]),
   positionFixed: PropTypes.bool,
+  tooltipRef: PropTypes.func,
+  triggerRef: PropTypes.func,
   referenceElement: PropTypes.instanceOf(Element),
+  /**
+   * Use this props to change default value of opacity transition duration (number of miliseconds).
+   */
+  transitionDuration: PropTypes.number,
+  /**
+   * Use this props to delay tooltip visibilty change (number of miliseconds).
+   */
+  transitionDelay: PropTypes.number,
+  /**
+   * You can pass as tooltip trigger element a renderer or a component. A couple of props will passed to your
+   * component, depending on the chosen `triggerActionType`:
+   * - `custom` - `ref`
+   * - `click` - `onClick`
+   * - `hover` - `onMouseEnter`, `onMouseLeave`
+   */
   trigger: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
+  /**
+   * - Using `custom` will switch component visiblity to controlled state - you will need to provide isVisible props to show/hide tooltip.
+   *   It's pretty usefull to handle custom use cases, for instance new feature info tooltips which will be shown to user only once.
+   * - Using `click` and `hover` will make component visiblity uncontrolled (`isVisible` state handled by component itself). `isVisible` props won't affect
+   *   component visibility.
+   */
   triggerActionType: PropTypes.oneOf(['custom', 'click', 'hover']),
-  zIndex: PropTypes.number,
-  onClose: PropTypes.func
+  zIndex: PropTypes.number
 };
 
 export default PopperTooltip;

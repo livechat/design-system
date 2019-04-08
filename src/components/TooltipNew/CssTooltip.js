@@ -14,89 +14,96 @@ function handleTooltipFocus(event) {
   event.stopPropagation();
 }
 
-class CssTooltip extends React.PureComponent {
-  static buildArrowStyle = (
+function buildArrowStyle(
+  arrowOffsetTop,
+  arrowOffsetBottom,
+  arrowOffsetLeft,
+  arrowOffsetRight
+) {
+  const style = {};
+
+  if (arrowOffsetTop) {
+    style.top = arrowOffsetTop;
+  }
+
+  if (arrowOffsetBottom) {
+    style.bottom = arrowOffsetBottom;
+  }
+  if (arrowOffsetLeft) {
+    style.left = arrowOffsetLeft;
+  }
+  if (arrowOffsetRight) {
+    style.right = arrowOffsetRight;
+  }
+  return style;
+}
+
+const getArrowStyle = memoizeOne(buildArrowStyle);
+
+const CssTooltip = props => {
+  const {
+    children,
+    className,
+    isVisible,
+    placement,
+    arrowOffsetTop,
+    arrowOffsetBottom,
+    arrowOffsetLeft,
+    arrowOffsetRight,
+    arrowClassName,
+    ...restProps
+  } = props;
+
+  const arrowStyle = getArrowStyle(
     arrowOffsetTop,
     arrowOffsetBottom,
     arrowOffsetLeft,
     arrowOffsetRight
-  ) => {
-    const style = {};
+  );
 
-    if (arrowOffsetTop) {
-      style.top = arrowOffsetTop;
-    }
-
-    if (arrowOffsetBottom) {
-      style.bottom = arrowOffsetBottom;
-    }
-    if (arrowOffsetLeft) {
-      style.left = arrowOffsetLeft;
-    }
-    if (arrowOffsetRight) {
-      style.right = arrowOffsetRight;
-    }
-    return style;
-  };
-
-  getArrowStyle = memoizeOne(CssTooltip.buildArrowStyle);
-
-  render() {
-    const {
-      children,
-      className,
-      isArrowDisabled,
-      isVisible,
-      placement,
-      arrowOffsetTop,
-      arrowOffsetBottom,
-      arrowOffsetLeft,
-      arrowOffsetRight,
-      arrowClassName,
-      onClick,
-      ...restProps
-    } = this.props;
-
-    const arrowStyle = this.getArrowStyle(
-      arrowOffsetTop,
-      arrowOffsetBottom,
-      arrowOffsetLeft,
-      arrowOffsetRight
-    );
-
-    return (
+  return (
+    <div
+      {...restProps}
+      data-placement={placement}
+      className={cx({
+        [styles[baseClass]]: true,
+        [styles[`${baseClass}--visible`]]: isVisible,
+        [className]: className
+      })}
+    >
+      {children}
       <div
-        {...restProps}
-        data-placement={placement}
         className={cx({
-          [styles[baseClass]]: true,
-          [styles[`${baseClass}--visible`]]: isVisible,
-          [className]: className
+          [styles[`${baseClass}__arrow`]]: true,
+          [arrowClassName]: arrowClassName
         })}
-        onFocus={handleTooltipFocus}
-        onClick={onClick || handleTooltipOnClick}
-      >
-        {children}
-        <div
-          className={cx({
-            [styles[`${baseClass}__arrow`]]: true,
-            [arrowClassName]: arrowClassName
-          })}
-          style={arrowStyle}
-          data-placement={placement}
-        />
-      </div>
-    );
-  }
-}
+        style={arrowStyle}
+        data-placement={placement}
+      />
+    </div>
+  );
+};
+
+CssTooltip.defaultProps = {
+  onClick: handleTooltipOnClick,
+  onFocus: handleTooltipFocus,
+  placement: 'bottom'
+};
 
 CssTooltip.propTypes = {
+  /**
+   * Css class name of tooltip arrow.
+   * Use this property to extend styles of tooltip arrow, it's a different way to, for instance control position of arrow
+   */
   arrowClassName: PropTypes.string,
-  isArrowDisabled: PropTypes.bool,
   children: PropTypes.node.isRequired,
+  /**
+   * Css class name of tooltip.
+   */
   className: PropTypes.string,
   isVisible: PropTypes.bool,
   onClick: PropTypes.func,
+  onFocus: PropTypes.func,
   placement: PropTypes.oneOf([
     'bottom',
     'bottom-end',
@@ -111,6 +118,10 @@ CssTooltip.propTypes = {
     'top-end',
     'top-start'
   ]),
+  /**
+   * Use `arrowOffsetTop`, `arrowOffsetBottom`, `arrowOffsetLeft` or `arrowOffsetRight`
+   * to control offset of arrow from one of the edges of tooltip
+   */
   arrowOffsetTop: PropTypes.string,
   arrowOffsetBottom: PropTypes.string,
   arrowOffsetLeft: PropTypes.string,

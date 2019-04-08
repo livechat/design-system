@@ -65,14 +65,6 @@ module.exports = {
         {
           name: 'Tooltip',
           components: [
-            './src/components/Tooltip/TooltipContent.js',
-            './src/components/Tooltip/Tooltip.js'
-          ],
-          sectionDepth: 0
-        },
-        {
-          name: 'TooltipNew',
-          components: [
             './src/components/TooltipNew/PopperTooltip.js',
             './src/components/TooltipNew/CssTooltip.js'
           ],

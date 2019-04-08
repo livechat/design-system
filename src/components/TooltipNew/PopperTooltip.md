@@ -1,12 +1,14 @@
 <h3>PopperTooltip</h3>
 
-PopperTooltip component is a base component which menages positioning and keyboard events of its content. Under the hood it uses 2 libraries: 
+PopperTooltip component is a component which menages positioning and keyboard events of its content. Under the hood it uses 2 main libraries:
 - [Popper.js](https://popper.js.org) - a positioning engine which calculate the position of an element to make it possible to position it near a given reference element,
 - [React Popper](https://github.com/FezVrasta/react-popper) - React wrapper around Popper.js
 
 Usage of popper props (`eventsEnabled, modifiers, placement, positionFixed, referenceElement`) is described in [Popper.js docs](https://popper.js.org/popper-documentation.html).
 
-Component visibility state can be controlled or uncontrolled - it depends on value of `triggerActionType` prop.
+Component visibility state can be controlled or uncontrolled - it depends on value of `triggerActionType` property.
+
+PopperTooltip component should be used in the React applications.
 
 ```js
 const tooltipPlacements = [
