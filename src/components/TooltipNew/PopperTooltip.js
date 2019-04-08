@@ -19,7 +19,8 @@ class PopperTooltip extends React.PureComponent {
     withFadeAnimation: true,
     transitionDuration: DEFAULT_TRANSITION_DURATION,
     transitionDelay: DEFAULT_TRANSITION_DELAY,
-    triggerActionType: 'custom'
+    triggerActionType: 'custom',
+    placement: 'bottom'
   };
 
   static buildPopperModifiers(modifiers) {
@@ -181,7 +182,7 @@ class PopperTooltip extends React.PureComponent {
 
     const popperComponent = (
       <Popper
-        placement={this.props.placement || 'bottom-start'}
+        placement={this.props.placement}
         modifiers={modifiers}
         innerRef={this.props.tooltipRef || this.setTooltipRef}
         eventsEnabled={this.props.eventsEnabled}

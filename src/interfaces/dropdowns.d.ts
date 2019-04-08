@@ -1,6 +1,5 @@
 // <reference types="react" />
 import * as PopperJS from "popper.js";
-import { any } from "prop-types";
 
 type ItemId = string | number;
 
