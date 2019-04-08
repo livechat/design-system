@@ -4,58 +4,105 @@ import classNames from 'classnames/bind';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
-const cx = classNames.bind(styles);
 const acceptedSizes = ['basic', 'compact'];
 const baseClass = 'switch';
+const cx = classNames.bind(styles);
+const noop = () => {};
 
-const Switch = props => {
-  const { className, size, innerRef, on, onChange, ...restProps } = props;
+class Switch extends React.PureComponent {
+  static propTypes = {
+    className: PropTypes.string,
+    defaultOn: PropTypes.bool,
+    handleChange: PropTypes.func,
+    on: PropTypes.bool,
+    size: PropTypes.oneOf(acceptedSizes)
+  };
 
-  const mergedClassNames = getMergedClassNames(
-    cx({
-      [baseClass]: true,
-      [`${baseClass}--${size}`]: acceptedSizes.some(s => s === size)
-    }),
-    className
-  );
-  const valueStyles = on ? 'enabled' : 'disabled';
+  static defaultProps = {
+    defaultOn: false,
+    handleChange: noop,
+    size: 'basic'
+  };
 
-  return (
-    <span className={mergedClassNames} ref={innerRef} {...restProps}>
-      <input
-        type="checkbox"
-        className={styles[`${baseClass}__input`]}
-        onChange={onChange}
-        checked={on}
-      />
-      <span className={styles[`${baseClass}__container`]}>
-        <span
-          className={classNames(
-            styles[`${baseClass}__track`],
-            styles[`${baseClass}__track--${valueStyles}`]
-          )}
+  state = {
+    enabled: this.isControlledByProps() ? this.props.on : this.props.defaultOn,
+    prevPropsOn: this.props.on
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.on !== state.prevPropsOn) {
+      return {
+        enabled: props.on,
+        prevPropsOn: props.on
+      };
+    }
+    return null;
+  }
+
+  handleOnClick = e => {
+    const hasCb = this.props.handleChange !== noop;
+    if (hasCb) {
+      this.props.handleChange(e, this.state.enabled);
+      return;
+    }
+    e.stopPropagation();
+    this.setState(prevState => ({
+      enabled: !prevState.enabled
+    }));
+  };
+
+  isControlledByProps() {
+    return this.props.on !== undefined;
+  }
+
+  render() {
+    const {
+      className,
+      defaultOn,
+      handleChange,
+      innerRef,
+      on,
+      size,
+      ...restProps
+    } = this.props;
+
+    const { enabled } = this.state;
+    const mergedClassNames = getMergedClassNames(
+      cx({
+        [baseClass]: true,
+        [`${baseClass}--${size}`]: acceptedSizes.some(s => s === size)
+      }),
+      className
+    );
+    const valueStyles = enabled ? 'enabled' : 'disabled';
+
+    return (
+      <span className={mergedClassNames} ref={innerRef} {...restProps}>
+        <input
+          type="checkbox"
+          className={styles[`${baseClass}__input`]}
+          onChange={this.handleOnClick}
+          checked={enabled}
         />
-        <span
-          className={classNames(
-            styles[`${baseClass}__slider`],
-            styles[`${baseClass}__slider--${size}`],
-            styles[`${baseClass}__slider--${size}--${valueStyles}`]
-          )}
-        />
+        <span className={styles[`${baseClass}__container`]}>
+          <span
+            className={classNames(
+              styles[`${baseClass}__track`],
+              styles[`${baseClass}__track--${valueStyles}`]
+            )}
+          />
+          <span
+            className={classNames(
+              styles[`${baseClass}__slider`],
+              styles[`${baseClass}__slider--${size}`],
+              styles[`${baseClass}__slider--${size}--${valueStyles}`]
+            )}
+          />
+        </span>
       </span>
-    </span>
-  );
-};
-
-Switch.propTypes = {
-  on: PropTypes.bool,
-  size: PropTypes.oneOf(acceptedSizes),
-  onChange: PropTypes.func.isRequired
-};
-
-Switch.defaultProps = {
-  size: 'basic'
-};
+    );
+  }
+}
 
 export default React.forwardRef((props, ref) => (
   <Switch innerRef={ref} {...props} />
