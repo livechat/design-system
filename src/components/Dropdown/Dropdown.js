@@ -124,7 +124,9 @@ class Dropdown extends React.PureComponent {
 
     return (
       <Manager>
-        <Reference innerRef={this.setTriggerRef}>{triggerRenderer}</Reference>
+        {triggerRenderer && (
+          <Reference innerRef={this.setTriggerRef}>{triggerRenderer}</Reference>
+        )}
         {this.props.isVisible && (
           <Popper
             innerRef={this.setPopupRef}
@@ -186,8 +188,11 @@ Dropdown.propTypes = {
     'top-start'
   ]),
   positionFixed: PropTypes.bool,
-  referenceElement: PropTypes.instanceOf(Element),
-  triggerRenderer: PropTypes.func.isRequired,
+  referenceElement: PropTypes.shape({
+    clientWidth: PropTypes.number.isRequired,
+    clientHeight: PropTypes.number.isRequired
+  }),
+  triggerRenderer: PropTypes.func,
   zIndex: PropTypes.number,
   onClose: PropTypes.func
 };

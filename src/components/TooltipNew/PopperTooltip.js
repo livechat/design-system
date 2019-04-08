@@ -213,9 +213,11 @@ class PopperTooltip extends React.PureComponent {
   render() {
     return (
       <Manager>
-        <Reference innerRef={this.props.triggerRef || this.setTriggerRef}>
-          {this.renderTriggerElement}
-        </Reference>
+        {this.props.trigger && (
+          <Reference innerRef={this.props.triggerRef || this.setTriggerRef}>
+            {this.renderTriggerElement}
+          </Reference>
+        )}
         {this.renderPopper()}
       </Manager>
     );
@@ -253,7 +255,10 @@ PopperTooltip.propTypes = {
   positionFixed: PropTypes.bool,
   tooltipRef: PropTypes.func,
   triggerRef: PropTypes.func,
-  referenceElement: PropTypes.instanceOf(Element),
+  referenceElement: PropTypes.shape({
+    clientWidth: PropTypes.number.isRequired,
+    clientHeight: PropTypes.number.isRequired
+  }),
   /**
    * Use this props to change default value of opacity transition duration (number of miliseconds).
    */
@@ -269,7 +274,7 @@ PopperTooltip.propTypes = {
    * - `click` - `onClick`
    * - `hover` - `onMouseEnter`, `onMouseLeave`
    */
-  trigger: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
+  trigger: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   /**
    * - Using `custom` will switch component visiblity to controlled state - you will need to provide isVisible props to show/hide tooltip.
    *   It's pretty usefull to handle custom use cases, for instance new feature info tooltips which will be shown to user only once.

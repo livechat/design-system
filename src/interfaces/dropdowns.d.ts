@@ -33,7 +33,7 @@ export interface IDropdownProps {
   positionFixed?: boolean;
   referenceElement?: PopperJS.ReferenceObject;
   zIndex?: number;
-  triggerRenderer: (props: {ref: React.Ref<any>}) => void;
+  triggerRenderer?: (props: {ref: React.Ref<any>}) => void;
   onClose: () => void;
 }
 

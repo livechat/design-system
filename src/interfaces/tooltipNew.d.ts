@@ -18,7 +18,7 @@ export interface IPopperTooltipProps extends React.HTMLAttributes<HTMLDivElement
   referenceElement?: PopperJS.ReferenceObject;
   transitionDuration?: number;
   transitionDelay?: number;
-  trigger: (props: {ref: React.Ref<any>}) => React.ReactNode | React.ReactNode;
+  trigger?: (props: {ref: React.Ref<any>}) => React.ReactNode | React.ReactNode;
   triggerActionType?: TooltipTriggerAction;
   zIndex?: number;
 }
