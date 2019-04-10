@@ -3,7 +3,7 @@ export interface ISwitchProps extends React.HTMLAttributes<HTMLDivElement>{
   defaultOn?: boolean,
   on?: boolean,
   onToggle?: () => void,
-  ref?: React.Ref<HTMLDivElement> | React.Ref<React.Component<ISwitchProps>>
+  ref?: React.Ref<HTMLInputElement> | React.Ref<React.Component<ISwitchProps>>
   size?: ISwitchSizes,
 }
 
