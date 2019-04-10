@@ -4,48 +4,53 @@ import classNames from 'classnames/bind';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
-const cx = classNames.bind(styles);
 const acceptedSizes = ['basic', 'compact'];
-const noop = () => {};
 const baseClass = 'switch';
+const cx = classNames.bind(styles);
+const noop = () => {};
 
 class Switch extends React.PureComponent {
   static propTypes = {
-    on: PropTypes.bool,
+    className: PropTypes.string,
     defaultOn: PropTypes.bool,
+    onChange: PropTypes.func,
+    on: PropTypes.bool,
     size: PropTypes.oneOf(acceptedSizes),
-    onToggle: PropTypes.func
+    name: PropTypes.string
   };
 
   static defaultProps = {
+    defaultOn: false,
+    onChange: noop,
     size: 'basic',
-    onToggle: noop,
-    defaultOn: false
+    name: baseClass
   };
 
   state = {
-    on: this.isControlledByProps() ? this.props.on : this.props.defaultOn,
+    enabled: this.isControlledByProps() ? this.props.on : this.props.defaultOn,
     prevPropsOn: this.props.on
   };
 
   static getDerivedStateFromProps(props, state) {
     if (props.on !== state.prevPropsOn) {
       return {
-        on: props.on,
+        enabled: props.on,
         prevPropsOn: props.on
       };
     }
     return null;
   }
 
-  toggleState = e => {
-    const hasCb = this.props.onToggle !== noop;
+  handleChange = e => {
+    const hasCb = this.props.onChange !== noop;
     if (hasCb) {
-      this.props.onToggle(e, this.state.on);
+      this.props.onChange(e, this.state.enabled);
       return;
     }
-    e.preventDefault();
-    this.setState({ on: !this.state.on });
+    e.stopPropagation();
+    this.setState(prevState => ({
+      enabled: !prevState.enabled
+    }));
   };
 
   isControlledByProps() {
@@ -53,21 +58,54 @@ class Switch extends React.PureComponent {
   }
 
   render() {
-    const { className, size } = this.props;
-    const { on } = this.state;
+    const {
+      className,
+      defaultOn,
+      onChange,
+      innerRef,
+      on,
+      size,
+      name,
+      ...restProps
+    } = this.props;
 
+    const { enabled } = this.state;
     const mergedClassNames = getMergedClassNames(
       cx({
         [baseClass]: true,
-        [`${baseClass}--${size}--disabled`]: !on,
-        [`${baseClass}--${size}--enabled`]: on,
         [`${baseClass}--${size}`]: acceptedSizes.some(s => s === size)
       }),
       className
     );
+    const valueStyles = enabled ? 'enabled' : 'disabled';
 
     return (
-      <div onClick={e => this.toggleState(e)} className={mergedClassNames} />
+      <span className={mergedClassNames}>
+        <input
+          type="checkbox"
+          className={styles[`${baseClass}__input`]}
+          onChange={this.handleChange}
+          checked={enabled}
+          name={name}
+          ref={innerRef}
+          {...restProps}
+        />
+        <span className={styles[`${baseClass}__container`]}>
+          <span
+            className={classNames(
+              styles[`${baseClass}__track`],
+              styles[`${baseClass}__track--${valueStyles}`]
+            )}
+          />
+          <span
+            className={classNames(
+              styles[`${baseClass}__slider`],
+              styles[`${baseClass}__slider--${size}`],
+              styles[`${baseClass}__slider--${size}--${valueStyles}`]
+            )}
+          />
+        </span>
+      </span>
     );
   }
 }
