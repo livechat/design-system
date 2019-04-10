@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import Switch from './Switch';
 
 describe('Switch', () => {
@@ -12,8 +12,8 @@ describe('Switch', () => {
   });
 
   it('should call on toggle when clicked', () => {
-    const component = mount(<Switch onChange={toggleFn} />);
-    const checkbox = component.find('input[type="checkbox"]');
+    const wrapper = shallow(<Switch onChange={toggleFn} />).dive();
+    const checkbox = wrapper.find('input[type="checkbox"]');
     checkbox.simulate('change');
     expect(toggleFn).toHaveBeenCalled();
   });
