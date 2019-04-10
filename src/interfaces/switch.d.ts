@@ -1,5 +1,5 @@
 export type ISwitchSizes = 'basic' | 'compact'
-export interface ISwitchProps extends React.HTMLAttributes<HTMLSpanElement>{
+export interface ISwitchProps extends React.HTMLAttributes<HTMLInputElement>{
   defaultOn?: boolean,
   onChange?: () => void,
   on?: boolean,
