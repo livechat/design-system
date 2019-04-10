@@ -80,13 +80,15 @@ class Switch extends React.PureComponent {
     const valueStyles = enabled ? 'enabled' : 'disabled';
 
     return (
-      <span className={mergedClassNames} ref={innerRef} {...restProps}>
+      <span className={mergedClassNames} {...restProps}>
         <input
           type="checkbox"
           className={styles[`${baseClass}__input`]}
           onChange={this.handleChange}
           checked={enabled}
           name={name}
+          ref={innerRef}
+          {...restProps}
         />
         <span className={styles[`${baseClass}__container`]}>
           <span
