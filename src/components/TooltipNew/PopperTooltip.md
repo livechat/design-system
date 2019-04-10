@@ -30,7 +30,7 @@ const tooltipPlacements = [
 ];
 
 const tooltipTriggerActionTypes = [
-  'custom',
+  'managed',
   'hover',
   'click'
 ];
@@ -85,7 +85,7 @@ class PopperTooltipExample extends React.PureComponent {
   }
 
   renderTrigger() {
-    if (this.state.action !== 'custom') {
+    if (this.state.action !== 'managed') {
       return <Button>Toggle tooltip</Button>
     }
     return <Button onClick={this.handleTriggerClick}>Toggle tooltip</Button>
@@ -126,6 +126,7 @@ class PopperTooltipExample extends React.PureComponent {
             onClose={this.handleClose}
             triggerActionType={this.state.action}
             trigger={this.renderTrigger()}
+            zIndex={2}
           >
             <div>You can decide which columns should appear on the customer’s list. This setup will be visible only to you. </div>
           </PopperTooltip>

@@ -5,21 +5,21 @@ import { CSSTransition } from 'react-transition-group';
 import { Manager, Reference, Popper } from 'react-popper';
 import cx from 'classnames';
 import styles from './style.scss';
+import {
+  DEFAULT_TRANSITION_DURATION,
+  DEFAULT_TRANSITION_DELAY
+} from './constants';
 
 const baseClass = 'popper-tooltip';
-
-const DEFAULT_TRANSITION_DURATION = 200;
-const DEFAULT_TRANSITION_DELAY = 0;
 
 class PopperTooltip extends React.PureComponent {
   static defaultProps = {
     modifiers: {},
     style: {},
-    zIndex: 30,
     withFadeAnimation: true,
     transitionDuration: DEFAULT_TRANSITION_DURATION,
     transitionDelay: DEFAULT_TRANSITION_DELAY,
-    triggerActionType: 'custom',
+    triggerActionType: 'hover',
     placement: 'bottom'
   };
 
@@ -75,7 +75,7 @@ class PopperTooltip extends React.PureComponent {
     this.triggerRef = ref;
   };
 
-  isIsVisibleControlled = () => this.props.triggerActionType === 'custom';
+  isIsVisibleControlled = () => this.props.triggerActionType === 'managed';
 
   handleTriggerMouseEnter = () => {
     this.setState({
@@ -270,19 +270,19 @@ PopperTooltip.propTypes = {
   /**
    * You can pass as tooltip trigger element a renderer or a component. A couple of props will passed to your
    * component, depending on the chosen `triggerActionType`:
-   * - `custom` - `ref`
+   * - `managed` - `ref`
    * - `click` - `onClick`
    * - `hover` - `onMouseEnter`, `onMouseLeave`
    */
   trigger: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   /**
-   * - Using `custom` will switch component visiblity to controlled state - you will need to provide isVisible props to show/hide tooltip.
+   * - Using `managed` will switch component visiblity to controlled state - you will need to provide isVisible props to show/hide tooltip.
    *   It's pretty usefull to handle custom use cases, for instance new feature info tooltips which will be shown to user only once.
    * - Using `click` and `hover` will make component visiblity uncontrolled (`isVisible` state handled by component itself). `isVisible` props won't affect
    *   component visibility.
    */
-  triggerActionType: PropTypes.oneOf(['custom', 'click', 'hover']),
-  zIndex: PropTypes.number
+  triggerActionType: PropTypes.oneOf(['managed', 'click', 'hover']),
+  zIndex: PropTypes.number.isRequired
 };
 
 export default PopperTooltip;
