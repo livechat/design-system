@@ -13,15 +13,17 @@ class Switch extends React.PureComponent {
   static propTypes = {
     className: PropTypes.string,
     defaultOn: PropTypes.bool,
-    handleChange: PropTypes.func,
+    onChange: PropTypes.func,
     on: PropTypes.bool,
-    size: PropTypes.oneOf(acceptedSizes)
+    size: PropTypes.oneOf(acceptedSizes),
+    name: PropTypes.string
   };
 
   static defaultProps = {
     defaultOn: false,
-    handleChange: noop,
-    size: 'basic'
+    onChange: noop,
+    size: 'basic',
+    name: baseClass
   };
 
   state = {
@@ -39,10 +41,10 @@ class Switch extends React.PureComponent {
     return null;
   }
 
-  handleOnClick = e => {
-    const hasCb = this.props.handleChange !== noop;
+  handleChange = e => {
+    const hasCb = this.props.onChange !== noop;
     if (hasCb) {
-      this.props.handleChange(e, this.state.enabled);
+      this.props.onChange(e, this.state.enabled);
       return;
     }
     e.stopPropagation();
@@ -59,10 +61,11 @@ class Switch extends React.PureComponent {
     const {
       className,
       defaultOn,
-      handleChange,
+      onChange,
       innerRef,
       on,
       size,
+      name,
       ...restProps
     } = this.props;
 
@@ -81,8 +84,9 @@ class Switch extends React.PureComponent {
         <input
           type="checkbox"
           className={styles[`${baseClass}__input`]}
-          onChange={this.handleOnClick}
+          onChange={this.handleChange}
           checked={enabled}
+          name={name}
         />
         <span className={styles[`${baseClass}__container`]}>
           <span
