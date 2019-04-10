@@ -3,7 +3,7 @@ export interface ISwitchProps extends React.HTMLAttributes<HTMLSpanElement>{
   defaultOn?: boolean,
   onChange?: () => void,
   on?: boolean,
-  ref?: React.Ref<HTMLSpanElement> | React.Ref<React.Component<ISwitchProps>>
+  ref?: React.Ref<HTMLInputElement> | React.Ref<React.Component<ISwitchProps>>
   size?: ISwitchSizes,
   name?: string
 }
