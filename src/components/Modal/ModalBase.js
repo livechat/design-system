@@ -56,7 +56,6 @@ class ModalBase extends React.Component {
   };
 
   modalRef = React.createRef();
-  overlayRef = React.createRef();
 
   render() {
     const {
@@ -74,7 +73,6 @@ class ModalBase extends React.Component {
 
     return (
       <div
-        ref={this.overlayRef}
         onClick={this.onOverlayClick}
         className={cx(
           `${baseClass}__overlay`,
