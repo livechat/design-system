@@ -83,6 +83,10 @@ class Select extends React.PureComponent {
         this.setState({
           focusedItemKey
         });
+
+        if (this.props.onSearchPhraseChange) {
+          this.props.onSearchPhraseChange(this.state.searchPhrase);
+        }
       }
     );
   };
@@ -242,6 +246,7 @@ class Select extends React.PureComponent {
 
   render() {
     const {
+      noSearchResult,
       items,
       getItemBody,
       getSelectedItemBody,
@@ -302,9 +307,10 @@ class Select extends React.PureComponent {
         <div
           className={cx({
             [`${baseClass}-body`]: true,
-            [`${baseClass}-body--visible`]: isOpen && filteredItems.length > 0
+            [`${baseClass}-body--visible`]: isOpen
           })}
         >
+          {filteredItems.length === 0 && noSearchResult}
           <SelectList
             listRef={this.listRef}
             getItemBody={getItemBody}
@@ -337,6 +343,8 @@ Select.propTypes = {
   getItemBody: PropTypes.func.isRequired,
   getSelectedItemBody: PropTypes.func,
   onItemSelect: PropTypes.func.isRequired,
+  noSearchResult: PropTypes.node,
+  onSearchPhraseChange: PropTypes.func,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       key: PropTypes.string,

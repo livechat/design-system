@@ -5,6 +5,7 @@ export interface ISelectProps {
   id?: string;
   error?: string;
   isOpen?: boolean;
+  noSearchResult?: React.ReactNode;
   items: {
     key: string;
     props: {
@@ -23,6 +24,7 @@ export interface ISelectProps {
   getSelectedItemBody(props: { [key: string]: any }): React.ReactNode;
   onItemSelect(itemKey: string | number): void;
   onDropdownToggle?(isOpen: boolean): any;
+  onSearchPhraseChange?: (searchPhrase: string) => void;
 }
 
 export interface ISelectFieldProps extends ISelectProps {
