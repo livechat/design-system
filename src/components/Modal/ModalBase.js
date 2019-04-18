@@ -23,11 +23,8 @@ class ModalBase extends React.Component {
     this.removeEventListeners();
   }
 
-  onDocumentClick = event => {
-    if (
-      this.modalRef.current &&
-      !this.modalRef.current.contains(event.target)
-    ) {
+  onOverlayClick = event => {
+    if (event.target === event.currentTarget) {
       this.handleCloseModal();
     }
   };
@@ -48,12 +45,10 @@ class ModalBase extends React.Component {
     if (this.props.closeOnEscPress) {
       document.addEventListener('keyup', this.onKeyUp, true);
     }
-    document.addEventListener('click', this.onDocumentClick);
   };
 
   removeEventListeners = () => {
     document.removeEventListener('keyup', this.onKeyUp, true);
-    document.removeEventListener('click', this.onDocumentClick);
   };
 
   handleCloseModal = () => {
@@ -66,7 +61,6 @@ class ModalBase extends React.Component {
     const {
       className,
       children,
-      title,
       onClose,
       closeOnEscPress,
       ...restProps
@@ -79,6 +73,7 @@ class ModalBase extends React.Component {
 
     return (
       <div
+        onClick={this.onOverlayClick}
         className={cx(
           `${baseClass}__overlay`,
           `${baseClass}__overlay--visible`
