@@ -5,7 +5,7 @@ export interface ISelectProps {
   id?: string;
   error?: string;
   isOpen?: boolean;
-  noSearchResult?: React.ReactNode;
+  searchEmptyState?: React.ReactNode;
   items: {
     key: string;
     props: {

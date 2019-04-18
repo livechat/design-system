@@ -179,6 +179,15 @@ class Select extends React.PureComponent {
     );
   };
 
+  shouldShowSelectList = (
+    isOpen,
+    filteredItems,
+    searchEmptyState,
+    searchPhrase
+  ) =>
+    (isOpen && filteredItems.length > 0) ||
+    (searchEmptyState && searchPhrase.length > 0 && filteredItems.length === 0);
+
   hideSelectBody = () => {
     this.setState(
       {
@@ -246,7 +255,7 @@ class Select extends React.PureComponent {
 
   render() {
     const {
-      noSearchResult,
+      searchEmptyState,
       items,
       getItemBody,
       getSelectedItemBody,
@@ -307,10 +316,15 @@ class Select extends React.PureComponent {
         <div
           className={cx({
             [`${baseClass}-body`]: true,
-            [`${baseClass}-body--visible`]: isOpen
+            [`${baseClass}-body--visible`]: this.shouldShowSelectList(
+              isOpen,
+              filteredItems,
+              searchEmptyState,
+              searchPhrase
+            )
           })}
         >
-          {filteredItems.length === 0 && noSearchResult}
+          {filteredItems.length === 0 && searchEmptyState}
           <SelectList
             listRef={this.listRef}
             getItemBody={getItemBody}
@@ -343,7 +357,7 @@ Select.propTypes = {
   getItemBody: PropTypes.func.isRequired,
   getSelectedItemBody: PropTypes.func,
   onItemSelect: PropTypes.func.isRequired,
-  noSearchResult: PropTypes.node,
+  searchEmptyState: PropTypes.node,
   onSearchPhraseChange: PropTypes.func,
   items: PropTypes.arrayOf(
     PropTypes.shape({
