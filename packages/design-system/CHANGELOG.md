@@ -1,6 +1,12 @@
 ## Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.1.3
+_Release: 2019-04-18_
+
+##### Bug Fixes
+* Fixing click outside of modal Modal - removed listener attached to document, handling click on overlay instead
+
 ## v0.1.2
 _Release: 2019-03-25_
 
