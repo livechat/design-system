@@ -179,14 +179,18 @@ class Select extends React.PureComponent {
     );
   };
 
-  shouldShowSelectList = (
-    isOpen,
-    filteredItems,
-    searchEmptyState,
-    searchPhrase
-  ) =>
-    (isOpen && filteredItems.length > 0) ||
-    (searchEmptyState && searchPhrase.length > 0 && filteredItems.length === 0);
+  shouldShowSelectList = () => {
+    const { isOpen, searchEmptyState, items } = this.props;
+    const filteredItems = items.filter(this.filterItem);
+    const { searchPhrase } = this.state;
+
+    return (
+      (isOpen && filteredItems.length > 0) ||
+      (searchEmptyState &&
+        searchPhrase.length > 0 &&
+        filteredItems.length === 0)
+    );
+  };
 
   hideSelectBody = () => {
     this.setState(
@@ -316,12 +320,7 @@ class Select extends React.PureComponent {
         <div
           className={cx({
             [`${baseClass}-body`]: true,
-            [`${baseClass}-body--visible`]: this.shouldShowSelectList(
-              isOpen,
-              filteredItems,
-              searchEmptyState,
-              searchPhrase
-            )
+            [`${baseClass}-body--visible`]: this.shouldShowSelectList()
           })}
         >
           {filteredItems.length === 0 && searchEmptyState}
