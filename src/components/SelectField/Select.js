@@ -180,8 +180,9 @@ class Select extends React.PureComponent {
   };
 
   shouldShowSelectBody = filteredItems => {
-    const { isOpen, searchEmptyState } = this.props;
+    const { searchEmptyState } = this.props;
     const { searchPhrase } = this.state;
+    const isOpen = this.getIsOpen();
 
     return (
       (isOpen && filteredItems.length > 0) ||
