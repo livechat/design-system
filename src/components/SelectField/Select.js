@@ -358,8 +358,11 @@ Select.propTypes = {
   getItemBody: PropTypes.func.isRequired,
   getSelectedItemBody: PropTypes.func,
   onItemSelect: PropTypes.func.isRequired,
+  /**
+   * Pass a ReactNode to specify SelectList placeholder
+   * (visible when items list is empty and typed search phrase is not empty)
+   */
   searchEmptyState: PropTypes.node,
-  onSearchPhraseChange: PropTypes.func,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       key: PropTypes.string,
@@ -377,7 +380,13 @@ Select.propTypes = {
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   openedOnInit: PropTypes.bool,
-  onDropdownToggle: PropTypes.func
+  onDropdownToggle: PropTypes.func,
+  /**
+   * Searching is controlled by Select component itself. Use this props to get current value of search phrase.
+   * It would be useful, for instance, if you need to save searchPhrase as new item.
+   * (searchPhrase) => {}
+   */
+  onSearchPhraseChange: PropTypes.func
 };
 
 Select.defaultProps = {
