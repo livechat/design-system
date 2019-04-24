@@ -1,6 +1,15 @@
 ## Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.1.4
+_Release: 2019-04-24_
+
+##### New Features
+* Optional searchEmptyState props - Select search results empty state
+* Optional onSearchPhraseChange props for getting search phrase value in a Select's parent component
+
+----
+
 ## v0.1.3
 _Release: 2019-04-18_
 
