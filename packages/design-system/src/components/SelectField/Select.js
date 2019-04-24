@@ -83,6 +83,10 @@ class Select extends React.PureComponent {
         this.setState({
           focusedItemKey
         });
+
+        if (this.props.onSearchPhraseChange) {
+          this.props.onSearchPhraseChange(this.state.searchPhrase);
+        }
       }
     );
   };
@@ -175,6 +179,19 @@ class Select extends React.PureComponent {
     );
   };
 
+  shouldShowSelectBody = filteredItems => {
+    const { searchEmptyState } = this.props;
+    const { searchPhrase } = this.state;
+    const isOpen = this.getIsOpen();
+
+    return (
+      (isOpen && filteredItems.length > 0) ||
+      (searchEmptyState &&
+        searchPhrase.length > 0 &&
+        filteredItems.length === 0)
+    );
+  };
+
   hideSelectBody = () => {
     this.setState(
       {
@@ -242,6 +259,7 @@ class Select extends React.PureComponent {
 
   render() {
     const {
+      searchEmptyState,
       items,
       getItemBody,
       getSelectedItemBody,
@@ -302,9 +320,12 @@ class Select extends React.PureComponent {
         <div
           className={cx({
             [`${baseClass}-body`]: true,
-            [`${baseClass}-body--visible`]: isOpen && filteredItems.length > 0
+            [`${baseClass}-body--visible`]: this.shouldShowSelectBody(
+              filteredItems
+            )
           })}
         >
+          {filteredItems.length === 0 && searchEmptyState}
           <SelectList
             listRef={this.listRef}
             getItemBody={getItemBody}
@@ -337,6 +358,11 @@ Select.propTypes = {
   getItemBody: PropTypes.func.isRequired,
   getSelectedItemBody: PropTypes.func,
   onItemSelect: PropTypes.func.isRequired,
+  /**
+   * Pass a ReactNode to specify SelectList placeholder
+   * (visible when items list is empty and typed search phrase is not empty)
+   */
+  searchEmptyState: PropTypes.node,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       key: PropTypes.string,
@@ -354,7 +380,13 @@ Select.propTypes = {
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   openedOnInit: PropTypes.bool,
-  onDropdownToggle: PropTypes.func
+  onDropdownToggle: PropTypes.func,
+  /**
+   * Searching is controlled by Select component itself. Use this props to get current value of search phrase.
+   * It would be useful, for instance, if you need to save searchPhrase as new item.
+   * (searchPhrase) => {}
+   */
+  onSearchPhraseChange: PropTypes.func
 };
 
 Select.defaultProps = {
