@@ -13,10 +13,11 @@ class Switch extends React.PureComponent {
   static propTypes = {
     className: PropTypes.string,
     defaultOn: PropTypes.bool,
-    onChange: PropTypes.func,
+    innerRef: PropTypes.string,
+    name: PropTypes.string,
     on: PropTypes.bool,
-    size: PropTypes.oneOf(acceptedSizes),
-    name: PropTypes.string
+    onChange: PropTypes.func,
+    size: PropTypes.oneOf(acceptedSizes)
   };
 
   static defaultProps = {
