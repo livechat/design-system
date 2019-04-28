@@ -13,7 +13,7 @@ class Switch extends React.PureComponent {
   static propTypes = {
     className: PropTypes.string,
     defaultOn: PropTypes.bool,
-    innerRef: PropTypes.string,
+    innerRef: PropTypes.instanceOf(Element),
     name: PropTypes.string,
     on: PropTypes.bool,
     onChange: PropTypes.func,
