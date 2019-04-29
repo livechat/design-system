@@ -10,6 +10,7 @@ global.TabsWrapper = Components.TabsWrapper;
 global.TabsList = Components.TabsList;
 global.Tooltip = Components.Tooltip;
 global.TooltipContent = Components.TooltipContent;
+global.Switch = Components.Switch;
 
 global.Toast = Components.Toast;
 global.ToastWrapper = Components.ToastWrapper;
