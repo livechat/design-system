@@ -27,6 +27,8 @@ global.ModalHeader = Components.ModalHeader;
 global.ModalFooter = Components.ModalFooter;
 global.ModalBody = Components.ModalBody;
 
+global.InAppMessageBase = Components.InAppMessageBase;
+
 global.InputField = Components.InputField;
 global.RadioButton = Components.RadioButton;
 global.Form = Components.Form;
