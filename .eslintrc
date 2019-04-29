@@ -61,7 +61,6 @@
     "react/forbid-prop-types": "warn",
     "react/require-default-props": "off",
     "react/no-unused-prop-types": "warn",
-    "react/no-multi-comp": "off",
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
     "react/prefer-stateless-function": [true, { "ignorePureComponents": true }]
   },
