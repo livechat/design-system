@@ -46,6 +46,10 @@ module.exports = {
           components: './src/components/Tab/Tab.js'
         },
         {
+          name: 'Switch',
+          components: './src/components/Switch/Switch.js'
+        },
+        {
           name: 'Modals',
           components: [
             './src/components/Modal/ModalBase.js',
