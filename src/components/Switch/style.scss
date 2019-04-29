@@ -1,18 +1,16 @@
-@import '../../scss/variables/colors';
-@import '../../scss/variables/transitions';
+@import "../../scss/variables/colors";
+@import "../../scss/variables/transitions";
 
-
-$base-class: 'switch';
+$base-class: "switch";
 $basicHeight: 28px;
 $basicWidth: 44px;
-$basicSize: calc(#{$basicHeight} - 4px);
-$basicMove: calc(#{$basicWidth} - #{$basicSize});
+$basicSize: $basicHeight - 4px;
+$basicMove: $basicWidth - $basicSize;
 
 $compactHeight: 16px;
 $compactWidth: 25px;
-$compactSize: calc(#{$compactHeight} - 2px);
-$compactMove: calc(#{$compactWidth} - #{$compactSize});
-
+$compactSize: $compactHeight - 2px;
+$compactMove: $compactWidth - $compactSize;
 
 .#{$base-class} {
   position: relative;
@@ -24,6 +22,7 @@ $compactMove: calc(#{$compactWidth} - #{$compactSize});
       &--enabled {
         background-color: darken($success-color, 10);
       }
+
       &--disabled {
         background-color: darken($field-background-color, 10);
       }
@@ -34,6 +33,7 @@ $compactMove: calc(#{$compactWidth} - #{$compactSize});
     width: $basicWidth;
     height: $basicHeight;
   }
+
   &--compact {
     width: $compactWidth;
     height: $compactHeight;
@@ -42,15 +42,14 @@ $compactMove: calc(#{$compactWidth} - #{$compactSize});
   &__input {
     width: 100%;
     height: 100%;
-    margin: 0; 
+    margin: 0;
     opacity: 0;
     cursor: pointer;
   }
 
-
   &__input:focus + .#{$base-class}__container {
-    .#{$base-class}__track{
-      box-shadow: 0 0 1px 2px rgba($hover-primary-color, 0.5)
+    .#{$base-class}__track {
+      box-shadow: 0 0 1px 2px rgba($hover-primary-color, 0.5);
     }
   }
 
@@ -71,11 +70,12 @@ $compactMove: calc(#{$compactWidth} - #{$compactSize});
     border-radius: 24px;
     transition-property: background-color;
     transition-duration: $switch-transition-duration;
-    transition-timing-function: $switch-transition-timing-function; 
+    transition-timing-function: $switch-transition-timing-function;
 
     &--enabled {
       background-color: $success-color;
     }
+
     &--disabled {
       background-color: $field-background-color;
     }
@@ -83,31 +83,38 @@ $compactMove: calc(#{$compactWidth} - #{$compactSize});
 
   &__slider {
     position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
     border-radius: 50%;
     background: white;
     transition-property: left, right;
     transition-duration: $switch-transition-duration;
-    transition-timing-function: $switch-transition-timing-function; 
-    
+    transition-timing-function: $switch-transition-timing-function;
+
     &--basic {
-      width: $basicSize;
-      height: $basicSize;
+      width: calc(#{$basicSize});
+      height: calc(#{$basicSize});
+
       &--enabled {
         left: calc(#{$basicMove} - 2px);
         right: 2px;
       }
+
       &--disabled {
         left: 2px;
         right: calc(#{$basicMove} - 2px);
       }
     }
+
     &--compact {
-      width: $compactSize;
-      height: $compactSize;
+      width: calc(#{$compactSize});
+      height: calc(#{$compactSize});
+
       &--enabled {
         left: calc(#{$compactMove} - 2px);
         right: 2px;
       }
+
       &--disabled {
         left: 2px;
         right: calc(#{$compactMove} - 2px);
