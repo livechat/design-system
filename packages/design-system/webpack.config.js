@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const postCssFlexbugsfixes = require('postcss-flexbugs-fixes');
 
 const { NODE_ENV } = process.env;
@@ -22,7 +22,7 @@ const config = {
             loader: 'babel-loader'
           }
         ],
-        exclude: /node_modules\/(?!buble)/
+        exclude: /node_modules\/(?!(ansi-styles|strip-ansi|ansi-regex|debug|react-dev-utils|chalk|buble)\/).*/
       },
       {
         test: /\.css$/,
@@ -74,7 +74,9 @@ const config = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin('styles.css'),
+    new MiniCssExtractPlugin({
+      filename: 'styles.css'
+    }),
     NODE_ENV === 'production' &&
       new webpack.optimize.ModuleConcatenationPlugin()
   ].filter(Boolean),
