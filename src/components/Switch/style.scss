@@ -1,0 +1,124 @@
+@import "../../scss/variables/colors";
+@import "../../scss/variables/transitions";
+
+$base-class: "switch";
+$basicHeight: 28px;
+$basicWidth: 44px;
+$basicSize: $basicHeight - 4px;
+$basicMove: $basicWidth - $basicSize;
+
+$compactHeight: 16px;
+$compactWidth: 25px;
+$compactSize: $compactHeight - 2px;
+$compactMove: $compactWidth - $compactSize;
+
+.#{$base-class} {
+  position: relative;
+  display: inline-block;
+  outline: none;
+
+  &:hover {
+    .#{$base-class}__track {
+      &--enabled {
+        background-color: darken($success-color, 10);
+      }
+
+      &--disabled {
+        background-color: darken($field-background-color, 10);
+      }
+    }
+  }
+
+  &--basic {
+    width: $basicWidth;
+    height: $basicHeight;
+  }
+
+  &--compact {
+    width: $compactWidth;
+    height: $compactHeight;
+  }
+
+  &__input {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  &__input:focus + .#{$base-class}__container {
+    .#{$base-class}__track {
+      box-shadow: 0 0 1px 2px rgba($hover-primary-color, 0.5);
+    }
+  }
+
+  &__container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  &__track {
+    flex: 1;
+    height: 100%;
+    border-radius: 24px;
+    transition-property: background-color;
+    transition-duration: $switch-transition-duration;
+    transition-timing-function: $switch-transition-timing-function;
+
+    &--enabled {
+      background-color: $success-color;
+    }
+
+    &--disabled {
+      background-color: $field-background-color;
+    }
+  }
+
+  &__slider {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: white;
+    transition-property: left, right;
+    transition-duration: $switch-transition-duration;
+    transition-timing-function: $switch-transition-timing-function;
+
+    &--basic {
+      width: calc(#{$basicSize});
+      height: calc(#{$basicSize});
+
+      &--enabled {
+        left: calc(#{$basicMove} - 2px);
+        right: 2px;
+      }
+
+      &--disabled {
+        left: 2px;
+        right: calc(#{$basicMove} - 2px);
+      }
+    }
+
+    &--compact {
+      width: calc(#{$compactSize});
+      height: calc(#{$compactSize});
+
+      &--enabled {
+        left: calc(#{$compactMove} - 2px);
+        right: 2px;
+      }
+
+      &--disabled {
+        left: 2px;
+        right: calc(#{$compactMove} - 2px);
+      }
+    }
+  }
+}
