@@ -1,6 +1,33 @@
 ## Change Log
 All notable changes to this project will be documented in this file.
 
+## v0.2.0
+_Release: 2019-04-29_
+
+##### New Features
+* Adding Switch component
+
+##### Optimizations
+* Migrating docs to new version of webpack (^3.6.0 -> ^4.28.4) and react-styleguidist (7.0.20 -> ^8.0.6)
+* Adding partial support for docs on IE11 browser
+
+----
+
+## v0.1.4
+_Release: 2019-04-24_
+
+##### New Features
+* Optional searchEmptyState props - Select search results empty state
+* Optional onSearchPhraseChange props for getting search phrase value in a Select's parent component
+
+----
+
+## v0.1.3
+_Release: 2019-04-18_
+
+##### Bug Fixes
+* Fixing click outside of modal Modal - removed listener attached to document, handling click on overlay instead
+
 ## v0.1.2
 _Release: 2019-03-25_
 

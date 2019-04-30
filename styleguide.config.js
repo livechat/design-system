@@ -20,11 +20,11 @@ module.exports = {
           name: 'Typography',
           content: './src/foundations/Typography/Typography.md'
         }
-      ],
-      sectionDepth: 2
+      ]
     },
     {
       name: 'Components',
+      sectionDepth: 1,
       sections: [
         {
           name: 'Alerts',
@@ -44,6 +44,10 @@ module.exports = {
         {
           name: 'Tab',
           components: './src/components/Tab/Tab.js'
+        },
+        {
+          name: 'Switch',
+          components: './src/components/Switch/Switch.js'
         },
         {
           name: 'Modals',
@@ -68,8 +72,7 @@ module.exports = {
           components: [
             './src/components/TooltipNew/PopperTooltip.js',
             './src/components/TooltipNew/CssTooltip.js'
-          ],
-          sectionDepth: 0
+          ]
         },
         {
           name: 'Dropdown',
@@ -93,8 +96,7 @@ module.exports = {
             './src/components/SelectField/SelectField.js',
             './src/components/MultiSelectField/MultiSelect.js',
             './src/components/MultiSelectField/MultiSelectField.js'
-          ],
-          sectionDepth: 0
+          ]
         },
         {
           name: 'DatePicker',

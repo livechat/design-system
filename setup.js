@@ -10,6 +10,7 @@ global.TabsWrapper = Components.TabsWrapper;
 global.TabsList = Components.TabsList;
 global.Tooltip = Components.Tooltip;
 global.TooltipContent = Components.TooltipContent;
+global.Switch = Components.Switch;
 
 global.Toast = Components.Toast;
 global.ToastWrapper = Components.ToastWrapper;
@@ -26,6 +27,8 @@ global.ActionModal = Components.ActionModal;
 global.ModalHeader = Components.ModalHeader;
 global.ModalFooter = Components.ModalFooter;
 global.ModalBody = Components.ModalBody;
+
+global.InAppMessageBase = Components.InAppMessageBase;
 
 global.InputField = Components.InputField;
 global.RadioButton = Components.RadioButton;
