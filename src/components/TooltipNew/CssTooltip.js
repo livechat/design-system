@@ -14,26 +14,21 @@ function handleTooltipFocus(event) {
   event.stopPropagation();
 }
 
-function buildArrowStyle(
-  arrowOffsetTop,
-  arrowOffsetBottom,
-  arrowOffsetLeft,
-  arrowOffsetRight
-) {
+function buildArrowStyle(offsetTop, offsetBottom, offsetLeft, offsetRight) {
   const style = {};
 
-  if (arrowOffsetTop) {
-    style.top = arrowOffsetTop;
+  if (offsetTop) {
+    style.top = offsetTop;
   }
 
-  if (arrowOffsetBottom) {
-    style.bottom = arrowOffsetBottom;
+  if (offsetBottom) {
+    style.bottom = offsetBottom;
   }
-  if (arrowOffsetLeft) {
-    style.left = arrowOffsetLeft;
+  if (offsetLeft) {
+    style.left = offsetLeft;
   }
-  if (arrowOffsetRight) {
-    style.right = arrowOffsetRight;
+  if (offsetRight) {
+    style.right = offsetRight;
   }
   return style;
 }
