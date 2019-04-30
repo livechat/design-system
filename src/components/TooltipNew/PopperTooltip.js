@@ -34,12 +34,13 @@ class PopperTooltip extends React.PureComponent {
       },
       flip: { enabled: true, behavior: 'flip', ...(flip || {}) },
       arrow: arrowProps,
-      hide: { enabled: false, ...(hide || {}) },
       preventOverflow: {
         enabled: true,
         escapeWithReference: true,
+        boundariesElement: 'viewport',
         ...(preventOverflow || {})
       },
+      hide: { enabled: true, ...(hide || {}) },
       ...rest
     };
   }
