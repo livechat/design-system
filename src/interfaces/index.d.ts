@@ -8,4 +8,5 @@ export * from './modals';
 export * from './notificationsSystem';
 export * from './toasts';
 export * from './switch';
+export * from './tooltip';
 export * from './tooltipNew';
