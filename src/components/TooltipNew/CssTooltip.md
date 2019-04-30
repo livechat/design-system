@@ -4,14 +4,19 @@ Almost pure css implementation of tooltip component. You will be able to control
 Also you can use state to change isVisible property. 
 
 The component is designed for simple use cases where you will not need auto-positioning feature of `PopperTooltip` component.
-We suggest using it for instance in a large lists of components, which all items should have tooltips, because it should be better solution
-is case of the performance of your application.
+We suggest using it for instance in a large lists of components, which all items should have tooltips, because it should be a better solution
+in case of the performance of your application.
+
+Remember to add `position: relative` to component which is the parent of tooltip. CssTooltip uses simple `position: absolute` css property.
+Property `width` could be useful when you are displaying tooltip on a small element (for instance icon). By default it will inherit max-width from its parent. 
 
 Check out 'PROPS & METHODS' tabs. In addition to those listed props you can use any html div element attributes.
 
 Css tooltip visibilty controlling example:
 ```css
   .your-component {
+    position: relative;
+
     &:hover .lc-tooltip {
       opacity: 1;
       visibility: visible;
@@ -83,7 +88,7 @@ Css tooltip visibilty controlling example:
     </div>
     <div style={{margin: ' 200px auto', textAlign: 'center'}}>
       <div style={{display: 'inline-block', position: 'relative'}}>
-        <CssTooltip placement={state.selectedPosition} isVisible={state.isVisible} style={{width: '200px'}}>
+        <CssTooltip placement={state.selectedPosition} isVisible={state.isVisible} width="200px">
           You can decide which columns should appear on the customer’s list. This setup will be visible only to you. 
           <Button
             size="compact"

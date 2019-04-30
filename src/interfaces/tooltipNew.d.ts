@@ -33,7 +33,12 @@ export interface ICssTooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   arrowOffsetBottom?: string;
   arrowOffsetLeft?: string;
   arrowOffsetRight?: string;
+  offsetTop?: string;
+  offsetBottom?: string;
+  offsetLeft?: string;
+  offsetRight?: string;
   placement?: CssTooltipPlacement;
+  width?: string;
 }
 
 export var PopperTooltip: React.ComponentType<IPopperTooltipProps>;

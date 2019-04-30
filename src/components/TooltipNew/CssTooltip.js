@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import cx from 'classnames';
-import memoizeOne from 'memoize-one';
 import styles from './style.scss';
 
 const baseClass = 'css-tooltip';
@@ -14,47 +13,25 @@ function handleTooltipFocus(event) {
   event.stopPropagation();
 }
 
-function buildArrowStyle(offsetTop, offsetBottom, offsetLeft, offsetRight) {
-  const style = {};
-
-  if (offsetTop) {
-    style.top = offsetTop;
-  }
-
-  if (offsetBottom) {
-    style.bottom = offsetBottom;
-  }
-  if (offsetLeft) {
-    style.left = offsetLeft;
-  }
-  if (offsetRight) {
-    style.right = offsetRight;
-  }
-  return style;
-}
-
-const getArrowStyle = memoizeOne(buildArrowStyle);
-
 const CssTooltip = props => {
   const {
     children,
     className,
     isVisible,
     placement,
+    width,
+    style,
     arrowOffsetTop,
     arrowOffsetBottom,
     arrowOffsetLeft,
     arrowOffsetRight,
     arrowClassName,
+    offsetTop,
+    offsetBottom,
+    offsetLeft,
+    offsetRight,
     ...restProps
   } = props;
-
-  const arrowStyle = getArrowStyle(
-    arrowOffsetTop,
-    arrowOffsetBottom,
-    arrowOffsetLeft,
-    arrowOffsetRight
-  );
 
   return (
     <div
@@ -65,6 +42,14 @@ const CssTooltip = props => {
         [styles[`${baseClass}--visible`]]: isVisible,
         [className]: className
       })}
+      style={{
+        top: offsetTop,
+        bottom: offsetBottom,
+        left: offsetLeft,
+        right: offsetRight,
+        width,
+        ...(style || {})
+      }}
     >
       {children}
       <div
@@ -72,7 +57,12 @@ const CssTooltip = props => {
           [styles[`${baseClass}__arrow`]]: true,
           [arrowClassName]: arrowClassName
         })}
-        style={arrowStyle}
+        style={{
+          top: arrowOffsetTop,
+          bottom: arrowOffsetBottom,
+          left: arrowOffsetLeft,
+          right: arrowOffsetRight
+        }}
         data-placement={placement}
       />
     </div>
@@ -96,9 +86,11 @@ CssTooltip.propTypes = {
    * Css class name of tooltip.
    */
   className: PropTypes.string,
+  style: PropTypes.object,
   isVisible: PropTypes.bool,
   onClick: PropTypes.func,
   onFocus: PropTypes.func,
+  width: PropTypes.string,
   placement: PropTypes.oneOf([
     'bottom',
     'bottom-end',
@@ -120,7 +112,15 @@ CssTooltip.propTypes = {
   arrowOffsetTop: PropTypes.string,
   arrowOffsetBottom: PropTypes.string,
   arrowOffsetLeft: PropTypes.string,
-  arrowOffsetRight: PropTypes.string
+  arrowOffsetRight: PropTypes.string,
+  /**
+   * Use `offsetTop`, `offsetBottom`, `offsetLeft` or `offsetRight`
+   * to control offset of tooltip from one of the edges of reference element
+   */
+  offsetTop: PropTypes.string,
+  offsetBottom: PropTypes.string,
+  offsetLeft: PropTypes.string,
+  offsetRight: PropTypes.string
 };
 
 export default CssTooltip;
