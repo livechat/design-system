@@ -1,9 +1,7 @@
 import * as React from 'react';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import { shallow } from 'enzyme';
 import AlertCircleIcon from 'react-material-icon-svg/dist/AlertCircleIcon';
 import DropdownList from './DropdownList';
-import { KeyCodes } from '../../constants/keyCodes';
 
 const generateItems = (length = 10) =>
   Array.from(new Array(length), (_value, index) => ({
