@@ -29,7 +29,7 @@ class Switch extends React.PureComponent {
 
   state = {
     enabled: this.isControlledByProps() ? this.props.on : this.props.defaultOn,
-    prevPropsOn: this.props.on
+    prevPropsOn: this.props.on // eslint-disable-line react/no-unused-state
   };
 
   static getDerivedStateFromProps(props, state) {
