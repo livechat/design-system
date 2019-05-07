@@ -39,7 +39,7 @@ const Search = props => {
 };
 
 Search.propTypes = {
-  inputRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  inputRef: PropTypes.shape({ current: PropTypes.instanceOf(typeof Element === "undefined" ? function () { } : Element) }),
   isVisible: PropTypes.bool,
   placeholder: PropTypes.string,
   value: PropTypes.string,
