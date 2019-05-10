@@ -47,7 +47,7 @@ const CssTooltip = props => {
         bottom: offsetBottom,
         left: offsetLeft,
         right: offsetRight,
-        width,
+        ...(width && { width }),
         ...(style || {})
       }}
     >
