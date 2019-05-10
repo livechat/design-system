@@ -185,7 +185,11 @@ SelectList.propTypes = {
   onEnterKey: PropTypes.func,
   focusedItemKey: PropTypes.string,
   onFocusedItemChange: PropTypes.func,
-  listRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) })
+  listRef: PropTypes.shape({
+    current: PropTypes.instanceOf(
+      typeof Element === 'undefined' ? () => {} : Element
+    )
+  })
 };
 
 export default SelectList;

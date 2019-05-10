@@ -22,11 +22,12 @@ const Button = React.forwardRef((props, ref) => {
     ariaControls,
     ariaExpanded,
     className,
+    type: htmlType,
     ...buttonProps
   } = props;
 
   const isDisabled = disabled || loading;
-  const type = submit ? 'submit' : 'button';
+  const type = submit ? 'submit' : htmlType || 'button';
   let buttonType = null;
 
   if (primary) {
@@ -92,6 +93,7 @@ Button.propTypes = {
   /**
    * Sets button width to max-width=320px
    */
+  type: PropTypes.string,
   fullWidth: PropTypes.bool,
   onClick: PropTypes.func,
   onFocus: PropTypes.func,

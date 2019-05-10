@@ -1,6 +1,6 @@
 {
   "name": "@livechat/design-system",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "publishConfig": {
     "access": "restricted"
   },
@@ -31,7 +31,15 @@
     "deploy": "gh-pages -d styleguide",
     "test": "jest",
     "test:watch": "jest --watchAll",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "eslint": "eslint --ext .js,.ts src/ ",
+    "eslint:fix": "eslint --ext .js,.ts src/ --fix "
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test"
+    }
   },
   "author": "",
   "license": "ISC",
@@ -74,8 +82,10 @@
     "eslint-plugin-typescript": "^0.12.0",
     "extract-text-webpack-plugin": "^3.0.2",
     "gh-pages": "^1.2.0",
+    "husky": "^1.3.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.4.2",
+    "lint-staged": "^8.1.5",
     "mini-css-extract-plugin": "^0.5.0",
     "node-eval": "^2.0.0",
     "node-sass": "^4.9.3",
