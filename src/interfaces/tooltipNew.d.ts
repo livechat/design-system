@@ -3,9 +3,10 @@ import * as PopperJS from "popper.js";
 
 type RefHandler = (ref: HTMLElement | null) => void;
 
-export type TooltipTriggerAction = 'managed' | 'click' | 'hover';
+export type TooltipTriggerAction = "managed" | "click" | "hover";
 
-export interface IPopperTooltipProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface IPopperTooltipProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   eventsEnabled?: boolean;
   isVisible?: boolean;
@@ -18,12 +19,26 @@ export interface IPopperTooltipProps extends React.HTMLAttributes<HTMLDivElement
   referenceElement?: PopperJS.ReferenceObject;
   transitionDuration?: number;
   transitionDelay?: number;
-  trigger?: ((props: {ref: React.Ref<any>}) => React.ReactNode) | React.ReactNode;
+  trigger?:
+    | ((props: { ref: React.Ref<any> }) => React.ReactNode)
+    | React.ReactNode;
   triggerActionType?: TooltipTriggerAction;
   zIndex: number;
 }
 
-type CssTooltipPlacement = 'bottom' | 'bottom-end' | 'bottom-start' | 'left' | 'left-end' | 'left-start' | 'right' | 'right-end' | 'right-start' | 'top' | 'top-end' | 'top-start';
+type CssTooltipPlacement =
+  | "bottom"
+  | "bottom-end"
+  | "bottom-start"
+  | "left"
+  | "left-end"
+  | "left-start"
+  | "right"
+  | "right-end"
+  | "right-start"
+  | "top"
+  | "top-end"
+  | "top-start";
 
 export interface ICssTooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   arrowClassName?: string;
@@ -39,6 +54,7 @@ export interface ICssTooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   offsetRight?: string;
   placement?: CssTooltipPlacement;
   width?: string;
+  zIndex?: number;
 }
 
 export var PopperTooltip: React.ComponentType<IPopperTooltipProps>;

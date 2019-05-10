@@ -21,6 +21,7 @@ const CssTooltip = props => {
     placement,
     width,
     style,
+    zIndex,
     arrowOffsetTop,
     arrowOffsetBottom,
     arrowOffsetLeft,
@@ -47,7 +48,8 @@ const CssTooltip = props => {
         bottom: offsetBottom,
         left: offsetLeft,
         right: offsetRight,
-        ...(width && { width }),
+        zIndex,
+        width,
         ...(style || {})
       }}
     >
@@ -120,7 +122,8 @@ CssTooltip.propTypes = {
   offsetTop: PropTypes.string,
   offsetBottom: PropTypes.string,
   offsetLeft: PropTypes.string,
-  offsetRight: PropTypes.string
+  offsetRight: PropTypes.string,
+  zIndex: PropTypes.number
 };
 
 export default CssTooltip;
