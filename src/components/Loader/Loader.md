@@ -4,6 +4,16 @@ Loaders help reduce the use of awkward blank screens. They’re CSS animated SVG
 
 <img style="width: 100%;" src="./loader_use_cases.png" alt="Loader use cases" />
 
+```js
+<Loader size="large" timeout={2000} />
+```
+
+```js noeditor
+<ComponentHtmlMarkup>
+  <Loader size="large" />
+</ComponentHtmlMarkup>
+```
+
 ### Loader Sizes
 
 #### Small

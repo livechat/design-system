@@ -11,35 +11,10 @@ const cx = classNames.bind(styles);
 const baseClass = 'loader';
 
 export class Loader extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isVisible: !props.timeout
-    };
-  }
-
-  componentDidMount() {
-    if (this.props.timeout) {
-      this.timerId = setTimeout(
-        () => this.setState({ isVisible: true }),
-        this.props.timeout
-      );
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.timerId) {
-      clearTimeout(this.timerId);
-    }
-  }
-
-  timerId = null;
-
   render() {
     const {
       className,
-      timeout,
+      isVisible,
       size,
       primaryColor,
       secondaryColor,
@@ -50,7 +25,7 @@ export class Loader extends React.Component {
       cx({
         [baseClass]: true,
         [`${baseClass}--${size || SIZE.medium}`]: true,
-        [`${baseClass}--hidden`]: !this.state.isVisible
+        [`${baseClass}--hidden`]: isVisible !== undefined && !isVisible
       }),
       className
     );
@@ -72,11 +47,11 @@ Loader.propTypes = {
   /**
    * Changing primary color of spinner
    */
-  primaryColor: PropTypes.string,
   /**
-   * Use this props to delay loader visibilty change (number of miliseconds).
+   * You can unmount Loader when it's not necessary or use `isVisible` prop to control its visibility without unmounting
    */
-  timeout: PropTypes.number,
+  isVisible: PropTypes.bool,
+  primaryColor: PropTypes.string,
   /**
    * Changing secondary color of spinner
    */

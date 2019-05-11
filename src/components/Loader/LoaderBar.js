@@ -11,35 +11,10 @@ const cx = classNames.bind(styles);
 const baseClass = 'loader-bar';
 
 export class LoaderBar extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isVisible: !props.timeout
-    };
-  }
-
-  componentDidMount() {
-    if (this.props.timeout) {
-      this.timerId = setTimeout(
-        () => this.setState({ isVisible: true }),
-        this.props.timeout
-      );
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.timerId) {
-      clearTimeout(this.timerId);
-    }
-  }
-
-  timerId = null;
-
   render() {
     const {
       className,
-      timeout,
+      isVisible,
       size,
       children,
       direction,
@@ -52,7 +27,7 @@ export class LoaderBar extends React.Component {
     const mergedClassNames = getMergedClassNames(
       cx({
         [baseClass]: true,
-        [`${baseClass}--hidden`]: !this.state.isVisible,
+        [`${baseClass}--hidden`]: isVisible !== undefined && !isVisible,
         [`${baseClass}--${direction}`]: direction && !reverse,
         [`${baseClass}--${direction ||
           BAR_DIRECTIONS.horizontal}-reverse`]: reverse
@@ -85,7 +60,10 @@ LoaderBar.propTypes = {
    * Direction prop defines the placement of loader label.
    */
   direction: PropTypes.oneOf(['vertical', 'horizontal']),
-  timeout: PropTypes.number,
+  /**
+   * You can unmount Loader when it's not necessary or use `isVisible` prop to control its visibility without unmounting
+   */
+  isVisible: PropTypes.bool,
   secondaryColor: PropTypes.string,
   size: PropTypes.oneOf(['small', 'medium', 'large'])
 };
