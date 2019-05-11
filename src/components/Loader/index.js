@@ -1,3 +1,3 @@
-import Loader from './Loader';
-
-export default Loader;
+export { Loader } from './Loader';
+export { LoaderBar } from './LoaderBar';
+export { LoaderSpinner } from './LoaderSpinner';

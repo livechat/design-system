@@ -53,6 +53,10 @@ global.Dropdown = Components.Dropdown;
 global.DropdownList = Components.DropdownList;
 global.DropdownListItem = Components.DropdownListItem;
 
+global.Loader = Components.Loader;
+global.LoaderBar = Components.LoaderBar;
+global.LoaderSpinner = Components.LoaderSpinner;
+
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;
 global.AlertCircleIcon = AlertCircleIcon;

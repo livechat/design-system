@@ -3,14 +3,14 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
-import { LoaderSpinner } from './LoaderSpinner';
-import { SIZE, THICKNESS_FROM_SIZE, THICKNESS } from './constants';
+import { Loader } from './Loader';
+import { SIZE, BAR_DIRECTIONS } from './constants';
 
 const cx = classNames.bind(styles);
 
-const baseClass = 'loader';
+const baseClass = 'loader-bar';
 
-export class Loader extends React.Component {
+export class LoaderBar extends React.Component {
   constructor(props) {
     super(props);
 
@@ -41,6 +41,9 @@ export class Loader extends React.Component {
       className,
       timeout,
       size,
+      children,
+      direction,
+      reverse,
       primaryColor,
       secondaryColor,
       ...restProps
@@ -49,37 +52,40 @@ export class Loader extends React.Component {
     const mergedClassNames = getMergedClassNames(
       cx({
         [baseClass]: true,
-        [`${baseClass}--${size || SIZE.medium}`]: true,
-        [`${baseClass}--hidden`]: !this.state.isVisible
+        [`${baseClass}--hidden`]: !this.state.isVisible,
+        [`${baseClass}--${direction}`]: direction && !reverse,
+        [`${baseClass}--${direction ||
+          BAR_DIRECTIONS.horizontal}-reverse`]: reverse
       }),
       className
     );
 
     return (
       <div className={mergedClassNames} {...restProps}>
-        <LoaderSpinner
+        <Loader
           primaryColor={primaryColor}
           secondaryColor={secondaryColor}
-          thickness={THICKNESS_FROM_SIZE[size] || THICKNESS.medium}
+          size={size || SIZE.medium}
         />
+        <div className={cx(`${baseClass}__description`)}>{children}</div>
       </div>
     );
   }
 }
 
-Loader.propTypes = {
+LoaderBar.propTypes = {
+  children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  /**
-   * Changing primary color of spinner
-   */
   primaryColor: PropTypes.string,
   /**
-   * Use this props to delay loader visibilty change (number of miliseconds).
+   * Direction prop defines the placement of loader label. When it `true` label will appear before spinner.
    */
-  timeout: PropTypes.number,
+  reverse: PropTypes.bool,
   /**
-   * Changing secondary color of spinner
+   * Direction prop defines the placement of loader label.
    */
+  direction: PropTypes.oneOf(['vertical', 'horizontal']),
+  timeout: PropTypes.number,
   secondaryColor: PropTypes.string,
   size: PropTypes.oneOf(['small', 'medium', 'large'])
 };
