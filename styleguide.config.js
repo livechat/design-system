@@ -106,11 +106,7 @@ module.exports = {
         },
         {
           name: 'Loader',
-          components: [
-            './src/components/Loader/Loader.js',
-            './src/components/Loader/LoaderBar.js',
-            './src/components/Loader/LoaderSpinner.js'
-          ]
+          components: ['./src/components/Loader/Loader.js']
         }
       ]
     },

@@ -10,11 +10,6 @@ export const SIZE = {
   large: 'large'
 };
 
-export const BAR_DIRECTIONS = {
-  vertical: 'vertical',
-  horizontal: 'horizontal'
-};
-
 export const THICKNESS_FROM_SIZE = {
   [SIZE.small]: THICKNESS.thin,
   [SIZE.medium]: THICKNESS.medium,

@@ -3,53 +3,63 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
-import { THICKNESS } from './constants';
+import { THICKNESS_FROM_SIZE } from './constants';
 
 const cx = classNames.bind(styles);
 
-const baseClass = 'loader__spinner';
+const baseClass = 'loader-spinner';
 
 export const LoaderSpinner = props => {
   const {
     className,
-    thickness,
+    isLoading,
+    size,
     primaryColor,
     secondaryColor,
-    style,
+    thickness,
+    spinnerClassName,
     ...restProps
   } = props;
 
-  const mergedClassNames = getMergedClassNames(
-    cx(baseClass, `${baseClass}--${thickness || THICKNESS.medium}`),
+  const mergedWrapperClassNames = getMergedClassNames(
+    cx({
+      [`${baseClass}-wrapper`]: true,
+      [`${baseClass}-wrapper--${size}`]: size,
+      [`${baseClass}-wrapper--hidden`]: isLoading !== undefined && !isLoading
+    }),
     className
   );
 
+  const mergedSpinnerClassNames = getMergedClassNames(
+    cx({
+      [baseClass]: true,
+      [`${baseClass}--${thickness || THICKNESS_FROM_SIZE[size]}`]:
+        thickness || THICKNESS_FROM_SIZE[size]
+    }),
+    spinnerClassName
+  );
+
   return (
-    <div
-      className={mergedClassNames}
-      style={{
-        borderColor: secondaryColor,
-        borderTopColor: primaryColor,
-        ...(style || {})
-      }}
-      {...restProps}
-    />
+    <div className={mergedWrapperClassNames} {...restProps}>
+      <div
+        className={mergedSpinnerClassNames}
+        style={
+          (primaryColor || secondaryColor) && {
+            borderColor: secondaryColor,
+            borderTopColor: primaryColor
+          }
+        }
+      />
+    </div>
   );
 };
 
 LoaderSpinner.propTypes = {
   className: PropTypes.string,
-  /**
-   * Changing primary color of spinner
-   */
+  spinnerClassName: PropTypes.string,
+  isLoading: PropTypes.bool,
   primaryColor: PropTypes.string,
-  /**
-   * Changing secondary color of spinner
-   */
   secondaryColor: PropTypes.string,
-  style: PropTypes.object,
-  /**
-   * Thickness prop defines width of spinner stroke (border-width). To define you custom thickness use css and className property
-   */
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
   thickness: PropTypes.oneOf(['thin', 'medium', 'thick'])
 };
