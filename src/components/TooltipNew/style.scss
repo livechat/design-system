@@ -53,6 +53,10 @@
     }
   }
 
+  &__wrapper {
+    display: inline-block;
+  }
+
   &__arrow {
     position: absolute;
     border-width: 8px;

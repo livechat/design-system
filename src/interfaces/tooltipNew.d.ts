@@ -8,10 +8,12 @@ export type TooltipTriggerAction = "managed" | "click" | "hover";
 export interface IPopperTooltipProps
   extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
+  closeOnOutsideClick?: boolean;
   eventsEnabled?: boolean;
   isVisible?: boolean;
   withFadeAnimation?: boolean;
   modifiers?: PopperJS.Modifiers;
+  onClose?: () => void;
   placement?: PopperJS.Placement;
   positionFixed?: boolean;
   tooltipRef?: RefHandler;
@@ -23,6 +25,9 @@ export interface IPopperTooltipProps
     | ((props: { ref: React.Ref<any> }) => React.ReactNode)
     | React.ReactNode;
   triggerActionType?: TooltipTriggerAction;
+  withWrapper?: boolean;
+  wrapperClassName?: string;
+  wrapperProps?: React.HTMLAttributes<HTMLDivElement>;
   zIndex: number;
 }
 

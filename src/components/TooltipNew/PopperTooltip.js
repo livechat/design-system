@@ -5,69 +5,44 @@ import { CSSTransition } from 'react-transition-group';
 import { Manager, Reference, Popper } from 'react-popper';
 import cx from 'classnames';
 import styles from './style.scss';
-import {
-  DEFAULT_TRANSITION_DURATION,
-  DEFAULT_TRANSITION_DELAY
-} from './constants';
+import { buildPopperModifiers, buildPopperTooltipStyle } from './helpers';
 
 const baseClass = 'popper-tooltip';
 
+const noop = () => {};
+
 class PopperTooltip extends React.PureComponent {
-  static defaultProps = {
-    modifiers: {},
-    style: {},
-    withFadeAnimation: true,
-    transitionDuration: DEFAULT_TRANSITION_DURATION,
-    transitionDelay: DEFAULT_TRANSITION_DELAY,
-    triggerActionType: 'hover',
-    placement: 'bottom'
-  };
-
-  static buildPopperModifiers(modifiers) {
-    const { offset, flip, hide, preventOverflow, arrow, ...rest } = modifiers;
-    const arrowProps = { enabled: true, ...(arrow || {}) };
-
-    return {
-      offset: {
-        offset: arrowProps.enabled ? '0, 8' : '0, 4',
-        ...(offset || {})
-      },
-      flip: { enabled: true, behavior: 'flip', ...(flip || {}) },
-      arrow: arrowProps,
-      preventOverflow: {
-        enabled: true,
-        escapeWithReference: true,
-        boundariesElement: 'viewport',
-        ...(preventOverflow || {})
-      },
-      hide: { enabled: true, ...(hide || {}) },
-      ...rest
-    };
-  }
-
-  static buildTooltipStyle(
-    popperCalculatedStyle,
-    propsStyle,
-    zIndex,
-    transitionDuration,
-    transitionDelay
-  ) {
-    return {
-      ...popperCalculatedStyle,
-      ...propsStyle,
-      zIndex,
-      transitionDuration: `${transitionDuration}ms`,
-      transitionDelay: `${transitionDelay}ms`
-    };
-  }
-
   state = {
     isVisible: false
   };
 
-  getModifiers = memoizeOne(PopperTooltip.buildPopperModifiers);
+  componentDidMount() {
+    if (this.props.closeOnOutsideClick && this.getIsVisible()) {
+      document.addEventListener('click', this.handleDocumentClick);
+    }
+  }
 
-  getTooltipStyle = memoizeOne(PopperTooltip.buildTooltipStyle);
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      this.props.closeOnOutsideClick &&
+      !this.getIsVisible(prevProps, prevState) &&
+      this.getIsVisible()
+    ) {
+      document.addEventListener('click', this.handleDocumentClick);
+    }
+
+    if (this.getIsVisible(prevProps, prevState) && !this.getIsVisible()) {
+      document.removeEventListener('click', this.handleDocumentClick);
+    }
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('click', this.handleDocumentClick);
+  }
+
+  getModifiers = memoizeOne(buildPopperModifiers);
+
+  getTooltipStyle = memoizeOne(buildPopperTooltipStyle);
 
   getIsVisible = (props = this.props, state = this.state) =>
     this.isIsVisibleControlled() ? props.isVisible : state.isVisible;
@@ -79,6 +54,10 @@ class PopperTooltip extends React.PureComponent {
   setTriggerRef = ref => {
     this.triggerRef = ref;
   };
+
+  getTriggerRef = () => this.props.triggerRef || this.triggerRef;
+
+  getTooltipRef = () => this.props.tooltipRef || this.tooltipRef;
 
   isIsVisibleControlled = () => this.props.triggerActionType === 'managed';
 
@@ -100,8 +79,28 @@ class PopperTooltip extends React.PureComponent {
     }));
   };
 
+  handleDocumentClick = event => {
+    const triggerRef = this.getTriggerRef();
+    const tooltipRef = this.getTooltipRef();
+
+    if (
+      triggerRef &&
+      !triggerRef.contains(event.target) &&
+      tooltipRef &&
+      !tooltipRef.contains(event.target)
+    ) {
+      if (this.isIsVisibleControlled()) {
+        this.props.onClose();
+      } else {
+        this.setState({
+          isVisible: false
+        });
+      }
+    }
+  };
+
   renderTriggerElement = ({ ref }) => {
-    const { trigger, triggerActionType } = this.props;
+    const { trigger, triggerActionType, withWrapper } = this.props;
 
     const triggerProps = { ref };
 
@@ -109,7 +108,7 @@ class PopperTooltip extends React.PureComponent {
       triggerProps.onClick = this.handleTriggerClick;
     }
 
-    if (triggerActionType === 'hover') {
+    if (triggerActionType === 'hover' && !withWrapper) {
       triggerProps.onMouseEnter = this.handleTriggerMouseEnter;
       triggerProps.onMouseLeave = this.handleTriggerMouseLeave;
     }
@@ -121,6 +120,29 @@ class PopperTooltip extends React.PureComponent {
     return React.cloneElement(trigger, triggerProps);
   };
 
+  renderPopperWithWrapper = () => {
+    const { triggerActionType, wrapperClassName, wrapperProps } = this.props;
+
+    const computedWrapperProps = {
+      ...wrapperProps,
+      className: cx(styles[`${baseClass}__wrapper`])
+    };
+
+    if (wrapperClassName) {
+      computedWrapperProps.className = cx({
+        [styles[`${baseClass}__wrapper`]]: true,
+        [wrapperClassName]: wrapperClassName
+      });
+    }
+
+    if (triggerActionType === 'hover') {
+      computedWrapperProps.onMouseEnter = this.handleTriggerMouseEnter;
+      computedWrapperProps.onMouseLeave = this.handleTriggerMouseLeave;
+    }
+
+    return <div {...computedWrapperProps}>{this.renderPopperManager()}</div>;
+  };
+
   renderPopperContent = ({
     ref,
     style: popperCalculatedStyle,
@@ -130,6 +152,7 @@ class PopperTooltip extends React.PureComponent {
     const {
       children,
       className,
+      closeOnOutsideClick,
       zIndex,
       eventsEnabled,
       modifiers,
@@ -142,6 +165,9 @@ class PopperTooltip extends React.PureComponent {
       withFadeAnimation,
       transitionDuration,
       transitionDelay,
+      withWrapper,
+      wrapperClassName,
+      wrapperProps,
       ...restProps
     } = this.props;
 
@@ -215,23 +241,33 @@ class PopperTooltip extends React.PureComponent {
     return isVisible && popperComponent;
   };
 
+  renderPopperManager = () => (
+    <Manager>
+      {this.props.trigger && (
+        <Reference innerRef={this.props.triggerRef || this.setTriggerRef}>
+          {this.renderTriggerElement}
+        </Reference>
+      )}
+      {this.renderPopper()}
+    </Manager>
+  );
+
   render() {
-    return (
-      <Manager>
-        {this.props.trigger && (
-          <Reference innerRef={this.props.triggerRef || this.setTriggerRef}>
-            {this.renderTriggerElement}
-          </Reference>
-        )}
-        {this.renderPopper()}
-      </Manager>
-    );
+    if (this.props.withWrapper) {
+      return this.renderPopperWithWrapper();
+    }
+    return this.renderPopperManager();
   }
 }
 
 PopperTooltip.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  /**
+   * Use `closeOnOutsideClick=true` when you want tooltip to be closed on click outside it.
+   * If you are using `triggerActionType='managed'` event handler will call provided onClose prop.
+   */
+  closeOnOutsideClick: PropTypes.bool,
   eventsEnabled: PropTypes.bool,
   isVisible: PropTypes.bool,
   /**
@@ -240,6 +276,7 @@ PopperTooltip.propTypes = {
   withFadeAnimation: PropTypes.bool,
   style: PropTypes.object,
   modifiers: PropTypes.object,
+  onClose: PropTypes.func,
   placement: PropTypes.oneOf([
     'auto',
     'auto-end',
@@ -287,7 +324,33 @@ PopperTooltip.propTypes = {
    *   component visibility.
    */
   triggerActionType: PropTypes.oneOf(['managed', 'click', 'hover']),
+  /**
+   * It will render additional wrapper around tooltip and trigger.
+   * It could be useful for tooltips with `triggerActionType='hover`.
+   * Set it to `true` for tooltips with interactive content, when user should be able to, for instance click some button inside tooltip.
+
+   */
+  withWrapper: PropTypes.bool,
+  /**
+   * You can use `wrapperClassName` to style tooltip wrapper (when `withWrapper` is `true`)
+   */
+  wrapperClassName: PropTypes.string,
+  /**
+   * Other html div attributes for tooltip wrapper
+   */
+  wrapperProps: PropTypes.object,
   zIndex: PropTypes.number.isRequired
+};
+
+PopperTooltip.defaultProps = {
+  modifiers: {},
+  onClose: noop,
+  style: {},
+  withFadeAnimation: true,
+  transitionDuration: 200,
+  transitionDelay: 0,
+  triggerActionType: 'hover',
+  placement: 'bottom'
 };
 
 export default PopperTooltip;
