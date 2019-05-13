@@ -50,44 +50,6 @@ Use for loading a page or UI sections. Place the spinner vertically and horizont
 </ComponentHtmlMarkup>
 ```
 
-### Loader Spinner thickness
-
-#### Thin
-
-```js
-<Loader thickness="thin" />
-```
-
-```js noeditor
-<ComponentHtmlMarkup>
-  <Loader thickness="thin" />
-</ComponentHtmlMarkup>
-```
-
-#### Medium
-
-```js
-<Loader thickness="medium" />
-```
-
-```js noeditor
-<ComponentHtmlMarkup>
-  <Loader thickness="medium" />
-</ComponentHtmlMarkup>
-```
-
-#### Thick
-
-```js
-<Loader thickness="thick" />
-```
-
-```js noeditor
-<ComponentHtmlMarkup>
-  <Loader thickness="thick" />
-</ComponentHtmlMarkup>
-```
-
 ### Custom colors
 
 The default color of the progress indicators is LiveChat’s action blue. You can change the color using the props primaryColor and secondaryColor.
