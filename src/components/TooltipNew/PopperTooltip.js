@@ -105,9 +105,6 @@ class PopperTooltip extends React.PureComponent {
   handleTriggerMouseLeave = () => {
     this.isTriggerHovered = false;
     this.handleDelayedTooltipHide();
-    this.setState({
-      isVisible: false
-    });
   };
 
   handleTooltipMouseEnter = () => {
