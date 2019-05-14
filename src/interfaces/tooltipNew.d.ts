@@ -12,6 +12,7 @@ export interface IPopperTooltipProps
   eventsEnabled?: boolean;
   isVisible?: boolean;
   withFadeAnimation?: boolean;
+  hoverOutDelayTimeout?: number;
   modifiers?: PopperJS.Modifiers;
   onClose?: () => void;
   placement?: PopperJS.Placement;
@@ -25,9 +26,6 @@ export interface IPopperTooltipProps
     | ((props: { ref: React.Ref<any> }) => React.ReactNode)
     | React.ReactNode;
   triggerActionType?: TooltipTriggerAction;
-  withWrapper?: boolean;
-  wrapperClassName?: string;
-  wrapperProps?: React.HTMLAttributes<HTMLDivElement>;
   zIndex: number;
 }
 
