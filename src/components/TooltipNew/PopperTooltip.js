@@ -34,9 +34,42 @@ class PopperTooltip extends React.PureComponent {
     if (this.getIsVisible(prevProps, prevState) && !this.getIsVisible()) {
       document.removeEventListener('click', this.handleDocumentClick);
     }
+
+    if (this.props.triggerActionType === 'hover') {
+      const tooltipRef = this.getTooltipRef();
+      if (!tooltipRef) {
+        return;
+      }
+
+      if (this.getIsVisible(prevProps, prevState) && !this.getIsVisible()) {
+        tooltipRef.removeEventListener(
+          'mouseenter',
+          this.handleTooltipMouseEnter
+        );
+        tooltipRef.removeEventListener(
+          'mouseleave',
+          this.handleTooltipMouseLeave
+        );
+      }
+
+      if (!this.getIsVisible(prevProps, prevState) && this.getIsVisible()) {
+        tooltipRef.addEventListener('mouseenter', this.handleTooltipMouseEnter);
+      }
+    }
   }
 
   componentWillUnmount() {
+    const tooltipRef = this.getTooltipRef();
+    if (tooltipRef) {
+      tooltipRef.removeEventListener(
+        'mouseenter',
+        this.handleTooltipMouseEnter
+      );
+      tooltipRef.removeEventListener(
+        'mouseleave',
+        this.handleTooltipMouseLeave
+      );
+    }
     document.removeEventListener('click', this.handleDocumentClick);
   }
 
@@ -62,21 +95,58 @@ class PopperTooltip extends React.PureComponent {
   isIsVisibleControlled = () => this.props.triggerActionType === 'managed';
 
   handleTriggerMouseEnter = () => {
+    this.isTriggerHovered = true;
+    this.clearTooltipHideTimeout();
     this.setState({
       isVisible: true
     });
   };
 
   handleTriggerMouseLeave = () => {
+    this.isTriggerHovered = false;
+    this.handleDelayedTooltipHide();
     this.setState({
       isVisible: false
     });
+  };
+
+  handleTooltipMouseEnter = () => {
+    this.clearTooltipHideTimeout();
+    const tooltipRef = this.getTooltipRef();
+    if (tooltipRef) {
+      tooltipRef.addEventListener('mouseleave', this.handleTooltipMouseLeave);
+    }
+
+    this.setState({
+      isVisible: true
+    });
+  };
+
+  handleTooltipMouseLeave = () => {
+    if (!this.isTriggerHovered) {
+      this.clearTooltipHideTimeout();
+      this.handleDelayedTooltipHide();
+    }
   };
 
   handleTriggerClick = () => {
     this.setState(prevState => ({
       isVisible: !prevState.isVisible
     }));
+  };
+
+  handleDelayedTooltipHide = () => {
+    this.hideTimerId = setTimeout(() => {
+      this.setState({
+        isVisible: false
+      });
+    }, this.props.hoverOutDelayTimeout);
+  };
+
+  clearTooltipHideTimeout = () => {
+    if (this.hideTimerId) {
+      clearTimeout(this.hideTimerId);
+    }
   };
 
   handleDocumentClick = event => {
@@ -100,7 +170,7 @@ class PopperTooltip extends React.PureComponent {
   };
 
   renderTriggerElement = ({ ref }) => {
-    const { trigger, triggerActionType, withWrapper } = this.props;
+    const { trigger, triggerActionType } = this.props;
 
     const triggerProps = { ref };
 
@@ -108,7 +178,7 @@ class PopperTooltip extends React.PureComponent {
       triggerProps.onClick = this.handleTriggerClick;
     }
 
-    if (triggerActionType === 'hover' && !withWrapper) {
+    if (triggerActionType === 'hover') {
       triggerProps.onMouseEnter = this.handleTriggerMouseEnter;
       triggerProps.onMouseLeave = this.handleTriggerMouseLeave;
     }
@@ -118,29 +188,6 @@ class PopperTooltip extends React.PureComponent {
     }
 
     return React.cloneElement(trigger, triggerProps);
-  };
-
-  renderPopperWithWrapper = () => {
-    const { triggerActionType, wrapperClassName, wrapperProps } = this.props;
-
-    const computedWrapperProps = {
-      ...wrapperProps,
-      className: cx(styles[`${baseClass}__wrapper`])
-    };
-
-    if (wrapperClassName) {
-      computedWrapperProps.className = cx({
-        [styles[`${baseClass}__wrapper`]]: true,
-        [wrapperClassName]: wrapperClassName
-      });
-    }
-
-    if (triggerActionType === 'hover') {
-      computedWrapperProps.onMouseEnter = this.handleTriggerMouseEnter;
-      computedWrapperProps.onMouseLeave = this.handleTriggerMouseLeave;
-    }
-
-    return <div {...computedWrapperProps}>{this.renderPopperManager()}</div>;
   };
 
   renderPopperContent = ({
@@ -153,6 +200,7 @@ class PopperTooltip extends React.PureComponent {
       children,
       className,
       closeOnOutsideClick,
+      hoverOutDelayTimeout,
       zIndex,
       eventsEnabled,
       modifiers,
@@ -165,9 +213,6 @@ class PopperTooltip extends React.PureComponent {
       withFadeAnimation,
       transitionDuration,
       transitionDelay,
-      withWrapper,
-      wrapperClassName,
-      wrapperProps,
       ...restProps
     } = this.props;
 
@@ -253,9 +298,6 @@ class PopperTooltip extends React.PureComponent {
   );
 
   render() {
-    if (this.props.withWrapper) {
-      return this.renderPopperWithWrapper();
-    }
     return this.renderPopperManager();
   }
 }
@@ -269,6 +311,12 @@ PopperTooltip.propTypes = {
    */
   closeOnOutsideClick: PropTypes.bool,
   eventsEnabled: PropTypes.bool,
+  /**
+   * Number of miliseconds until tooltip close.
+   * `hoverOutDelayTimeout` prop is important when you are using `triggerActionType='hover'`.
+   * Thanks to this tooltip won't close when user moves mouse cursor from `trigger` to `tooltip`.
+   */
+  hoverOutDelayTimeout: PropTypes.number,
   isVisible: PropTypes.bool,
   /**
    * Set to `false` to turn off fade-in/fade-out animations.
@@ -324,25 +372,11 @@ PopperTooltip.propTypes = {
    *   component visibility.
    */
   triggerActionType: PropTypes.oneOf(['managed', 'click', 'hover']),
-  /**
-   * It will render additional wrapper around tooltip and trigger.
-   * It could be useful for tooltips with `triggerActionType='hover`.
-   * Set it to `true` for tooltips with interactive content, when user should be able to, for instance click some button inside tooltip.
-
-   */
-  withWrapper: PropTypes.bool,
-  /**
-   * You can use `wrapperClassName` to style tooltip wrapper (when `withWrapper` is `true`)
-   */
-  wrapperClassName: PropTypes.string,
-  /**
-   * Other html div attributes for tooltip wrapper
-   */
-  wrapperProps: PropTypes.object,
   zIndex: PropTypes.number.isRequired
 };
 
 PopperTooltip.defaultProps = {
+  hoverOutDelayTimeout: 100,
   modifiers: {},
   onClose: noop,
   style: {},

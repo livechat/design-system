@@ -10,6 +10,7 @@ export interface IPopperTooltipProps
   children: React.ReactNode;
   closeOnOutsideClick?: boolean;
   eventsEnabled?: boolean;
+  hoverOutDelayTimeout?: number;
   isVisible?: boolean;
   withFadeAnimation?: boolean;
   modifiers?: PopperJS.Modifiers;
