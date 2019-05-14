@@ -41,18 +41,6 @@
     transition-property: opacity, visibility;
   }
 
-  &__list {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    max-height: 500px;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
   &__arrow {
     position: absolute;
     height: 6px;
@@ -63,7 +51,6 @@
     &::after {
       content: '';
       position: absolute;
-      z-index: 1;
       border: 6px solid transparent;
       transform: rotate(-45deg);
     }
@@ -210,60 +197,101 @@
 
   &__arrow {
     position: absolute;
-    border-width: 8px;
-    border-style: solid;
-    border-color: transparent;
+    height: 6px;
+    margin: -6px 0;
+    width: 12px;
+    border-color: inherit;
+
+    &::after {
+      content: '';
+      position: absolute;
+      border: 6px solid transparent;
+      transform: rotate(-45deg);
+    }
 
     &[data-placement*='top'] {
-      border-top-color: inherit;
       top: 100%;
-      left: calc(50% - 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      margin: -6px 0;
+
+      &::after {
+        border-bottom-color: inherit;
+        border-left-color: inherit;
+      }
     }
 
     &[data-placement*='top-start'] {
+      transform: translateX(0);
       left: 8px;
     }
 
     &[data-placement*='top-end'] {
+      transform: translateX(0);
       left: initial;
       right: 8px;
     }
 
     &[data-placement*='bottom'] {
-      border-bottom-color: inherit;
-      top: -16px;
-      left: calc(50% - 8px);
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: -6px 0;
+
+      &::after {
+        border-top-color: inherit;
+        border-right-color: inherit;
+      }
     }
 
     &[data-placement*='bottom-start'] {
+      transform: translateX(0);
       left: 8px;
     }
 
     &[data-placement*='bottom-end'] {
+      transform: translateX(0);
       left: initial;
       right: 8px;
     }
 
     &[data-placement*='right'] {
-      border-right-color: inherit;
-      top: calc(50% - 8px);
       right: 100%;
+      transform: translateY(-50%);
+      top: 50%;
+      height: 12px;
+      margin: 0 0;
+      width: 6px;
+
+      &::after {
+        border-top-color: inherit;
+        border-left-color: inherit;
+      }
     }
 
     &[data-placement*='right-start'] {
+      transform: translateY(0);
       top: 8px;
     }
 
     &[data-placement*='right-end'] {
+      transform: translateY(0);
       top: initial;
       bottom: 8px;
     }
 
     &[data-placement*='left'] {
-      border-left-color: inherit;
-      top: 50%;
+      right: 0;
       transform: translateY(-50%);
-      left: 100%;
+      top: 50%;
+      height: 12px;
+      margin: 0 0;
+      width: 6px;
+
+      &::after {
+        border-bottom-color: inherit;
+        border-right-color: inherit;
+      }
     }
 
     &[data-placement*='left-start'] {
