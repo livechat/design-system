@@ -1,3 +1,14 @@
+## Contributing
+
+1. [Getting started](#getting-started)
+2. [NPM Scripts](#npm-scripts)
+3. [Developing a Component](#developing-a-component)
+4. [NPM Link](#npm-link)
+5. [Document a Component](#document-a-component-with-styleguidist)
+6. [Tests with Jest](#running-tests)
+7. [Check tests coverage](#check-tests-coverage)
+8. [Try the bundle](#try-the-bundle)
+
 ### Getting started
 
 - Install [Node6 or Node8](https://nodejs.org/en/), preferably using [nvm](https://github.com/creationix/nvm)
