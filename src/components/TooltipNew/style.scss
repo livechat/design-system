@@ -55,28 +55,61 @@
 
   &__arrow {
     position: absolute;
-    border-width: 8px;
-    border-style: solid;
-    border-color: transparent;
+    height: 6px;
+    margin: -6px 0;
+    width: 12px;
+    border-color: inherit;
+
+    &::after {
+      content: '';
+      position: absolute;
+      z-index: 1;
+      border: 6px solid transparent;
+      transform: rotate(-45deg);
+    }
 
     &[data-placement*='top'] {
-      border-top-color: inherit;
       top: 100%;
+      margin: -6px 0;
+
+      &::after {
+        border-bottom-color: inherit;
+        border-left-color: inherit;
+      }
     }
 
     &[data-placement*='bottom'] {
-      border-bottom-color: inherit;
-      top: -16px;
+      bottom: 100%;
+      margin: 0 0;
+
+      &::after {
+        border-top-color: inherit;
+        border-right-color: inherit;
+      }
     }
 
     &[data-placement*='right'] {
-      border-right-color: inherit;
       right: 100%;
+      height: 12px;
+      margin: -6px 0;
+      width: 6px;
+
+      &::after {
+        border-top-color: inherit;
+        border-left-color: inherit;
+      }
     }
 
     &[data-placement*='left'] {
-      border-left-color: inherit;
       left: 100%;
+      height: 12px;
+      margin: -6px -6px;
+      width: 6px;
+
+      &::after {
+        border-bottom-color: inherit;
+        border-right-color: inherit;
+      }
     }
   }
 }
