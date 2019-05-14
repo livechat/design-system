@@ -23,38 +23,22 @@ class PopperTooltip extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (
-      this.props.closeOnOutsideClick &&
-      !this.getIsVisible(prevProps, prevState) &&
-      this.getIsVisible()
-    ) {
+    const prevIsVisible = this.getIsVisible(prevProps, prevState);
+    const isVisible = this.getIsVisible();
+
+    const didShow = !prevIsVisible && isVisible;
+    const didHide = prevIsVisible && !isVisible;
+
+    if (this.props.closeOnOutsideClick && didShow) {
       document.addEventListener('click', this.handleDocumentClick);
     }
 
-    if (this.getIsVisible(prevProps, prevState) && !this.getIsVisible()) {
+    if (didHide) {
       document.removeEventListener('click', this.handleDocumentClick);
     }
 
     if (this.props.triggerActionType === 'hover') {
-      const tooltipRef = this.getTooltipRef();
-      if (!tooltipRef) {
-        return;
-      }
-
-      if (this.getIsVisible(prevProps, prevState) && !this.getIsVisible()) {
-        tooltipRef.removeEventListener(
-          'mouseenter',
-          this.handleTooltipMouseEnter
-        );
-        tooltipRef.removeEventListener(
-          'mouseleave',
-          this.handleTooltipMouseLeave
-        );
-      }
-
-      if (!this.getIsVisible(prevProps, prevState) && this.getIsVisible()) {
-        tooltipRef.addEventListener('mouseenter', this.handleTooltipMouseEnter);
-      }
+      this.manageTooltipListeners(didShow, didHide);
     }
   }
 
@@ -143,6 +127,28 @@ class PopperTooltip extends React.PureComponent {
   clearTooltipHideTimeout = () => {
     if (this.hideTimerId) {
       clearTimeout(this.hideTimerId);
+    }
+  };
+
+  manageTooltipListeners = (didShow, didHide) => {
+    const tooltipRef = this.getTooltipRef();
+    if (!tooltipRef) {
+      return;
+    }
+
+    if (didShow) {
+      tooltipRef.addEventListener('mouseenter', this.handleTooltipMouseEnter);
+    }
+
+    if (didHide) {
+      tooltipRef.removeEventListener(
+        'mouseenter',
+        this.handleTooltipMouseEnter
+      );
+      tooltipRef.removeEventListener(
+        'mouseleave',
+        this.handleTooltipMouseLeave
+      );
     }
   };
 
