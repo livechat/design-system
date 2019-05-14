@@ -26,9 +26,6 @@ export interface IPopperTooltipProps
     | ((props: { ref: React.Ref<any> }) => React.ReactNode)
     | React.ReactNode;
   triggerActionType?: TooltipTriggerAction;
-  withWrapper?: boolean;
-  wrapperClassName?: string;
-  wrapperProps?: React.HTMLAttributes<HTMLDivElement>;
   zIndex: number;
 }
 
