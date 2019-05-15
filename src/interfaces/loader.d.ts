@@ -1,5 +1,4 @@
 export type LoaderSize = "small" | "medium" | "large";
-export type LoaderSpinnerThickness = "thin" | "medium" | "thick";
 export type LoaderDisplayDirection = "vertical" | "horizontal";
 
 export interface ILoaderLabelProps
@@ -22,7 +21,6 @@ export interface ILoaderWrapperProps
 interface ILoaderSpinnerBaseProps {
   primaryColor?: string;
   secondaryColor?: string;
-  thickness?: LoaderSpinnerThickness;
   size?: LoaderSize;
   isLoading?: boolean;
   spinnerClassName?: string;

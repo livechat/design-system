@@ -17,7 +17,6 @@ export const Loader = props => {
     primaryColor,
     secondaryColor,
     size,
-    thickness,
     ...restProps
   } = props;
 
@@ -35,7 +34,6 @@ export const Loader = props => {
         primaryColor={primaryColor}
         secondaryColor={secondaryColor}
         size={size}
-        thickness={thickness}
       />
       {label && <LoaderLabel className={labelClassName}>{label}</LoaderLabel>}
     </LoaderWrapper>
@@ -90,11 +88,5 @@ Loader.propTypes = {
    * To define your custom size use css and `spinnerWrapperClassName` property.
    * It passes provided `size` as `size` to `LoaderSpinner`.
    */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  /**
-   * Thickness prop defines width of spinner stroke (border-width).
-   * To define your custom thickness use css and `spinnerClassName` property.
-   * It passes provided `thickness` as `thickness` to `LoaderSpinner`.
-   */
-  thickness: PropTypes.oneOf(['thin', 'medium', 'thick'])
+  size: PropTypes.oneOf(['small', 'medium', 'large'])
 };

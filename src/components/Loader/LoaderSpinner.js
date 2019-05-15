@@ -16,7 +16,6 @@ export const LoaderSpinner = props => {
     size,
     primaryColor,
     secondaryColor,
-    thickness,
     spinnerClassName,
     ...restProps
   } = props;
@@ -33,8 +32,8 @@ export const LoaderSpinner = props => {
   const mergedSpinnerClassNames = getMergedClassNames(
     cx({
       [baseClass]: true,
-      [`${baseClass}--${thickness || THICKNESS_FROM_SIZE[size]}`]:
-        thickness || THICKNESS_FROM_SIZE[size]
+      [`${baseClass}--${THICKNESS_FROM_SIZE[size]}`]:
+        size && THICKNESS_FROM_SIZE[size]
     }),
     spinnerClassName
   );
@@ -60,6 +59,5 @@ LoaderSpinner.propTypes = {
   isLoading: PropTypes.bool,
   primaryColor: PropTypes.string,
   secondaryColor: PropTypes.string,
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  thickness: PropTypes.oneOf(['thin', 'medium', 'thick'])
+  size: PropTypes.oneOf(['small', 'medium', 'large'])
 };
