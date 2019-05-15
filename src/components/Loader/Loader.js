@@ -33,6 +33,9 @@ export const Loader = props => {
 };
 
 Loader.propTypes = {
+  /**
+   * It passes provided class name as `className` to `LoaderWrapper`.
+   */
   className: PropTypes.string,
   /**
    * It passes provided node as `children` to `LoaderLabel`.
