@@ -125,7 +125,6 @@ class PopperTooltipExample extends React.PureComponent {
             onClose={this.handleClose}
             triggerActionType={this.state.action}
             trigger={this.renderTrigger()}
-            withWrapper
             closeOnOutsideClick
             zIndex={2}
           >

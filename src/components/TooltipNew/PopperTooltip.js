@@ -23,20 +23,37 @@ class PopperTooltip extends React.PureComponent {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (
-      this.props.closeOnOutsideClick &&
-      !this.getIsVisible(prevProps, prevState) &&
-      this.getIsVisible()
-    ) {
+    const prevIsVisible = this.getIsVisible(prevProps, prevState);
+    const isVisible = this.getIsVisible();
+
+    const didShow = !prevIsVisible && isVisible;
+    const didHide = prevIsVisible && !isVisible;
+
+    if (this.props.closeOnOutsideClick && didShow) {
       document.addEventListener('click', this.handleDocumentClick);
     }
 
-    if (this.getIsVisible(prevProps, prevState) && !this.getIsVisible()) {
+    if (didHide) {
       document.removeEventListener('click', this.handleDocumentClick);
+    }
+
+    if (this.props.triggerActionType === 'hover') {
+      this.manageTooltipListeners(didShow, didHide);
     }
   }
 
   componentWillUnmount() {
+    const tooltipRef = this.getTooltipRef();
+    if (tooltipRef) {
+      tooltipRef.removeEventListener(
+        'mouseenter',
+        this.handleTooltipMouseEnter
+      );
+      tooltipRef.removeEventListener(
+        'mouseleave',
+        this.handleTooltipMouseLeave
+      );
+    }
     document.removeEventListener('click', this.handleDocumentClick);
   }
 
@@ -62,21 +79,86 @@ class PopperTooltip extends React.PureComponent {
   isIsVisibleControlled = () => this.props.triggerActionType === 'managed';
 
   handleTriggerMouseEnter = () => {
+    this.isTriggerHovered = true;
+    this.clearTooltipHideTimeout();
     this.setState({
       isVisible: true
     });
   };
 
   handleTriggerMouseLeave = () => {
+    this.isTriggerHovered = false;
+    this.handleDelayedTooltipHide();
+  };
+
+  handleTooltipMouseEnter = () => {
+    this.clearTooltipHideTimeout();
+    const tooltipRef = this.getTooltipRef();
+    if (tooltipRef) {
+      tooltipRef.addEventListener('mouseleave', this.handleTooltipMouseLeave);
+    }
+
     this.setState({
-      isVisible: false
+      isVisible: true
     });
+  };
+
+  handleTooltipMouseLeave = () => {
+    /**
+     * We need to check `isTriggerHovered` condition to cover the following scenario.
+     * Using custom offset can cause tooltip and trigger overlaping,
+     * Then mouse events can be triggered in specific order:
+     * - trigger mouse enter (mouse moves to trigger, tooltip shows),
+     * - tooltip mouse leave (mouse still moves over trigger, but leaves tooltip),
+     * - no second trigger mouse enter event (mouse still over trigger, so it was not entering trigger boudaries)
+     * This will close tooltip component despite the fact that mouse cursor is over trigger.
+     */
+    if (!this.isTriggerHovered) {
+      this.clearTooltipHideTimeout();
+      this.handleDelayedTooltipHide();
+    }
   };
 
   handleTriggerClick = () => {
     this.setState(prevState => ({
       isVisible: !prevState.isVisible
     }));
+  };
+
+  handleDelayedTooltipHide = () => {
+    this.hideTimerId = setTimeout(() => {
+      this.setState({
+        isVisible: false
+      });
+    }, this.props.hoverOutDelayTimeout);
+  };
+
+  clearTooltipHideTimeout = () => {
+    if (this.hideTimerId) {
+      clearTimeout(this.hideTimerId);
+    }
+  };
+
+  manageTooltipListeners = (didShow, didHide) => {
+    const tooltipRef = this.getTooltipRef();
+    if (!tooltipRef) {
+      return;
+    }
+
+    if (didShow) {
+      tooltipRef.addEventListener('mouseenter', this.handleTooltipMouseEnter);
+    }
+
+    if (didHide) {
+      tooltipRef.removeEventListener(
+        'mouseenter',
+        this.handleTooltipMouseEnter
+      );
+      tooltipRef.removeEventListener(
+        'mouseleave',
+        this.handleTooltipMouseLeave
+      );
+    }
   };
 
   handleDocumentClick = event => {
@@ -100,7 +182,7 @@ class PopperTooltip extends React.PureComponent {
   };
 
   renderTriggerElement = ({ ref }) => {
-    const { trigger, triggerActionType, withWrapper } = this.props;
+    const { trigger, triggerActionType } = this.props;
 
     const triggerProps = { ref };
 
@@ -108,7 +190,7 @@ class PopperTooltip extends React.PureComponent {
       triggerProps.onClick = this.handleTriggerClick;
     }
 
-    if (triggerActionType === 'hover' && !withWrapper) {
+    if (triggerActionType === 'hover') {
       triggerProps.onMouseEnter = this.handleTriggerMouseEnter;
       triggerProps.onMouseLeave = this.handleTriggerMouseLeave;
     }
@@ -118,29 +200,6 @@ class PopperTooltip extends React.PureComponent {
     }
 
     return React.cloneElement(trigger, triggerProps);
-  };
-
-  renderPopperWithWrapper = () => {
-    const { triggerActionType, wrapperClassName, wrapperProps } = this.props;
-
-    const computedWrapperProps = {
-      ...wrapperProps,
-      className: cx(styles[`${baseClass}__wrapper`])
-    };
-
-    if (wrapperClassName) {
-      computedWrapperProps.className = cx({
-        [styles[`${baseClass}__wrapper`]]: true,
-        [wrapperClassName]: wrapperClassName
-      });
-    }
-
-    if (triggerActionType === 'hover') {
-      computedWrapperProps.onMouseEnter = this.handleTriggerMouseEnter;
-      computedWrapperProps.onMouseLeave = this.handleTriggerMouseLeave;
-    }
-
-    return <div {...computedWrapperProps}>{this.renderPopperManager()}</div>;
   };
 
   renderPopperContent = ({
@@ -153,6 +212,7 @@ class PopperTooltip extends React.PureComponent {
       children,
       className,
       closeOnOutsideClick,
+      hoverOutDelayTimeout,
       zIndex,
       eventsEnabled,
       modifiers,
@@ -165,9 +225,6 @@ class PopperTooltip extends React.PureComponent {
       withFadeAnimation,
       transitionDuration,
       transitionDelay,
-      withWrapper,
-      wrapperClassName,
-      wrapperProps,
       ...restProps
     } = this.props;
 
@@ -253,9 +310,6 @@ class PopperTooltip extends React.PureComponent {
   );
 
   render() {
-    if (this.props.withWrapper) {
-      return this.renderPopperWithWrapper();
-    }
     return this.renderPopperManager();
   }
 }
@@ -269,6 +323,12 @@ PopperTooltip.propTypes = {
    */
   closeOnOutsideClick: PropTypes.bool,
   eventsEnabled: PropTypes.bool,
+  /**
+   * Number of miliseconds until tooltip close.
+   * `hoverOutDelayTimeout` prop is important when you are using `triggerActionType='hover'`.
+   * Thanks to this tooltip won't close when user moves mouse cursor from `trigger` to `tooltip`.
+   */
+  hoverOutDelayTimeout: PropTypes.number,
   isVisible: PropTypes.bool,
   /**
    * Set to `false` to turn off fade-in/fade-out animations.
@@ -324,25 +384,11 @@ PopperTooltip.propTypes = {
    *   component visibility.
    */
   triggerActionType: PropTypes.oneOf(['managed', 'click', 'hover']),
-  /**
-   * It will render additional wrapper around tooltip and trigger.
-   * It could be useful for tooltips with `triggerActionType='hover`.
-   * Set it to `true` for tooltips with interactive content, when user should be able to, for instance click some button inside tooltip.
-
-   */
-  withWrapper: PropTypes.bool,
-  /**
-   * You can use `wrapperClassName` to style tooltip wrapper (when `withWrapper` is `true`)
-   */
-  wrapperClassName: PropTypes.string,
-  /**
-   * Other html div attributes for tooltip wrapper
-   */
-  wrapperProps: PropTypes.object,
   zIndex: PropTypes.number.isRequired
 };
 
 PopperTooltip.defaultProps = {
+  hoverOutDelayTimeout: 100,
   modifiers: {},
   onClose: noop,
   style: {},
