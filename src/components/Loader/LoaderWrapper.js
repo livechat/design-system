@@ -9,21 +9,12 @@ const cx = classNames.bind(styles);
 const baseClass = 'loader-wrapper';
 
 export const LoaderWrapper = props => {
-  const {
-    className,
-    isLoading,
-    displayDirection,
-    reverse,
-    children,
-    ...restProps
-  } = props;
+  const { className, isLoading, children, ...restProps } = props;
 
   const mergedClassNames = getMergedClassNames(
     cx({
       [baseClass]: true,
-      [`${baseClass}--hidden`]: isLoading !== undefined && !isLoading,
-      [`${baseClass}--${displayDirection}`]: displayDirection && !reverse,
-      [`${baseClass}--${displayDirection || 'horizontal'}-reverse`]: reverse
+      [`${baseClass}--hidden`]: isLoading !== undefined && !isLoading
     }),
     className
   );
@@ -41,7 +32,5 @@ LoaderWrapper.propTypes = {
     PropTypes.arrayOf(PropTypes.node)
   ]),
   className: PropTypes.string,
-  reverse: PropTypes.bool,
-  displayDirection: PropTypes.oneOf(['vertical', 'horizontal']),
   isLoading: PropTypes.bool
 };

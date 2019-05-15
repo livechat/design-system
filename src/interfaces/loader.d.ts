@@ -1,5 +1,4 @@
 export type LoaderSize = "small" | "medium" | "large";
-export type LoaderDisplayDirection = "vertical" | "horizontal";
 
 export interface ILoaderLabelProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -7,8 +6,6 @@ export interface ILoaderLabelProps
 }
 
 interface ILoaderWrapperBaseProps {
-  displayDirection?: LoaderDisplayDirection;
-  reverse?: boolean;
   isLoading?: boolean;
 }
 

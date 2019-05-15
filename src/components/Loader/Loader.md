@@ -67,15 +67,14 @@ The default color of the progress indicators is LiveChat’s action blue. You ca
 ### Label
 
 You can provide a brief description of the process, like “Loading …”.
-With props `direction` and `reverse` you will be able to control position of label and spinner.
 
 ```js
-<Loader size="small" direction="horizontal" label="Loading…" />
+<Loader size="small" label="Loading…" />
 ```
 
 ```js noeditor
 <ComponentHtmlMarkup>
-  <Loader size="small" direction="horizontal" label="Loading…" />
+  <Loader size="small" label="Loading…" />
 </ComponentHtmlMarkup>
 ```
 
@@ -85,16 +84,16 @@ Loader component uses three components under the hood: `LoaderSpinner`, `LoaderW
 You can use those component to build your own custom implementation of Loader.
 
 ```js
-<LoaderWrapper direction="horizontal" reverse>
-  <LoaderSpinner size="medium" thickness="thin" />
+<LoaderWrapper>
+  <LoaderSpinner size="medium" />
   <LoaderLabel>Loading...</LoaderLabel>
 </LoaderWrapper>
 ```
 
 ```js noeditor
 <ComponentHtmlMarkup>
-  <LoaderWrapper direction="horizontal" reverse>
-    <LoaderSpinner size="medium" thickness="thin" />
+  <LoaderWrapper>
+    <LoaderSpinner size="medium" />
     <LoaderLabel>Loading...</LoaderLabel>
   </LoaderWrapper>
 </ComponentHtmlMarkup>

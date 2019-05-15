@@ -8,9 +8,7 @@ export const Loader = props => {
   const {
     className,
     isLoading,
-    reverse,
     label,
-    displayDirection,
     spinnerClassName,
     spinnerWrapperClassName,
     labelClassName,
@@ -21,13 +19,7 @@ export const Loader = props => {
   } = props;
 
   return (
-    <LoaderWrapper
-      {...restProps}
-      isLoading={isLoading}
-      reverse={reverse}
-      displayDirection={displayDirection}
-      className={className}
-    >
+    <LoaderWrapper {...restProps} isLoading={isLoading} className={className}>
       <LoaderSpinner
         className={spinnerWrapperClassName}
         spinnerClassName={spinnerClassName}
@@ -58,16 +50,6 @@ Loader.propTypes = {
    * It passes provided class name as `className` to `LoaderSpinner`.
    */
   spinnerWrapperClassName: PropTypes.string,
-  /**
-   * You can use this property to change the order of spinner and label.
-   * It passes provided boolean as `reverse` to `LoaderWrapper`.
-   */
-  reverse: PropTypes.bool,
-  /**
-   * Prop defines the display direction Loader's elements.
-   * It passes provided direction as `displayDirection` to `LoaderWrapper`.
-   */
-  displayDirection: PropTypes.oneOf(['vertical', 'horizontal']),
   /**
    * You can unmount Loader when it's not necessary or use `isLoading` prop to control its visibility without unmounting.
    * It passes provided boolean as `isLoading` to `LoaderWrapper`.

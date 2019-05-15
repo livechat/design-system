@@ -77,30 +77,7 @@ $base-class: 'loader';
     display: inline-flex;
     flex-wrap: nowrap;
     align-items: center;
-
-    &--horizontal {
-      flex-direction: row;
-    }
-
-    &--horizontal-reverse {
-      flex-direction: row-reverse;
-    }
-
-    &--vertical {
-      .#{$base-class}-label {
-        margin: 10px 0;
-      }
-
-      flex-direction: column;
-    }
-
-    &--vertical-reverse {
-      .#{$base-class}-label {
-        margin: 10px 0;
-      }
-
-      flex-direction: column-reverse;
-    }
+    flex-direction: row;
 
     &--hidden {
       opacity: 0;
