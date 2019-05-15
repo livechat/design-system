@@ -104,6 +104,15 @@ class PopperTooltip extends React.PureComponent {
   };
 
   handleTooltipMouseLeave = () => {
+    /**
+     * We need to check `isTriggerHovered` condition to cover the following scenario.
+     * Using custom offset can cause tooltip and trigger overlaping,
+     * Then mouse events can be triggered in specific order:
+     * - trigger mouse enter (mouse moves to trigger, tooltip shows),
+     * - tooltip mouse leave (mouse still moves over trigger, but leaves tooltip),
+     * - no second trigger mouse enter event (mouse still over trigger, so it was not entering trigger boudaries)
+     * This will close tooltip component despite the fact that mouse cursor is over trigger.
+     */
     if (!this.isTriggerHovered) {
       this.clearTooltipHideTimeout();
       this.handleDelayedTooltipHide();
