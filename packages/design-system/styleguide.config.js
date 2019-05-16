@@ -103,6 +103,10 @@ module.exports = {
             './src/components/DatePicker/DatePicker.js',
             './src/components/DatePicker/RangeDatePicker.js'
           ]
+        },
+        {
+          name: 'Loader',
+          components: ['./src/components/Loader/Loader.js']
         }
       ]
     },
