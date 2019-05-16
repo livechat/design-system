@@ -44,6 +44,7 @@ export {
   DatePickerRangeSelectInputs,
   DatePickerRangeCalendarsWrapper
 } from './DatePicker';
+export { Switch } from './Switch';
 
 export {
   InAppMessageBase,
@@ -58,4 +59,4 @@ export { Dropdown, DropdownList, DropdownListItem } from './Dropdown';
 
 export { PopperTooltip, CssTooltip } from './TooltipNew';
 
-export { Switch } from './Switch';
+export { Loader } from './Loader';
