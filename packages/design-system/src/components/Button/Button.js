@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
-import Loader from '../Loader';
+import { Loader } from '../Loader';
 
 const cx = classNames.bind(styles);
 const acceptedSizes = ['large', 'compact'];
@@ -64,9 +64,7 @@ const Button = React.forwardRef((props, ref) => {
       aria-expanded={ariaExpanded}
     >
       {loading && (
-        <div className={styles[`${baseClass}__loader`]}>
-          <Loader />
-        </div>
+        <Loader size="small" className={styles[`${baseClass}__loader`]} />
       )}
       {children}
     </button>

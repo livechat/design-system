@@ -123,9 +123,7 @@
     }
   }
 
-  &__loader {
-    width: 20px;
-    height: 20px;
+  .btn__loader {
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
