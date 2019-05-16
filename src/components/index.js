@@ -57,4 +57,4 @@ export {
 
 export { Dropdown, DropdownList, DropdownListItem } from './Dropdown';
 
-export { Loader, LoaderSpinner, LoaderLabel, LoaderWrapper } from './Loader';
+export { Loader } from './Loader';

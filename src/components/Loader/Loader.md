@@ -77,24 +77,3 @@ You can provide a brief description of the process, like “Loading …”.
   <Loader size="small" label="Loading…" />
 </ComponentHtmlMarkup>
 ```
-
-### Custom Loader
-
-Loader component uses three components under the hood: `LoaderSpinner`, `LoaderWrapper`, `LoaderWrapper`.
-You can use those component to build your own custom implementation of Loader.
-
-```js
-<LoaderWrapper>
-  <LoaderSpinner size="medium" />
-  <LoaderLabel>Loading...</LoaderLabel>
-</LoaderWrapper>
-```
-
-```js noeditor
-<ComponentHtmlMarkup>
-  <LoaderWrapper>
-    <LoaderSpinner size="medium" />
-    <LoaderLabel>Loading...</LoaderLabel>
-  </LoaderWrapper>
-</ComponentHtmlMarkup>
-```

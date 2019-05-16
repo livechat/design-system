@@ -34,44 +34,40 @@ export const Loader = props => {
 
 Loader.propTypes = {
   /**
-   * It passes provided class name as `className` to `LoaderWrapper`.
+   * Classname for the wrapper of the loader atoms (label and spinner).
    */
   className: PropTypes.string,
   /**
-   * It passes provided node as `children` to `LoaderLabel`.
+   * A brief description of the process.
    */
   label: PropTypes.string,
   /**
-   * It passes provided class name as `className` to `LoaderLabel`.
+   * Label element classname.
    */
   labelClassName: PropTypes.string,
   /**
-   * It passes provided class name as `spinnerClassName` to `LoaderSpinner`.
+   * Spinner element classname.
    */
   spinnerClassName: PropTypes.string,
   /**
-   * It passes provided class name as `className` to `LoaderSpinner`.
+   * Spinner wrapper classname.
    */
   spinnerWrapperClassName: PropTypes.string,
   /**
    * You can unmount Loader when it's not necessary or use `isLoading` prop to control its visibility without unmounting.
-   * It passes provided boolean as `isLoading` to `LoaderWrapper`.
    */
   isLoading: PropTypes.bool,
   /**
    * Changing primary color of spinner.
-   * It passes provided color as `primaryColor` to `LoaderSpinner`.
    */
   primaryColor: PropTypes.string,
   /**
    * Changing secondary color of spinner.
-   * It passes provided color as `secondaryColor` to `LoaderSpinner`.
    */
   secondaryColor: PropTypes.string,
   /**
    * `Size` prop defines width and height of the wrapper and spinner thickness if it is not provided.
-   * To define your custom size use css and `spinnerWrapperClassName` property.
-   * It passes provided `size` as `size` to `LoaderSpinner`.
+   * To define your custom size use css and `spinnerWrapperClassName` property (however, we recommend using defined size).
    */
   size: PropTypes.oneOf(['small', 'medium', 'large'])
 };

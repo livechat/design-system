@@ -54,9 +54,6 @@ global.DropdownList = Components.DropdownList;
 global.DropdownListItem = Components.DropdownListItem;
 
 global.Loader = Components.Loader;
-global.LoaderWrapper = Components.LoaderWrapper;
-global.LoaderSpinner = Components.LoaderSpinner;
-global.LoaderLabel = Components.LoaderLabel;
 
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;
