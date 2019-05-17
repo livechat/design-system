@@ -3,13 +3,16 @@ import { mount } from 'enzyme';
 import Card from './Card';
 
 describe('Card', () => {
-  it('should render selected Card', () => {
+  it('should render Card', () => {
     const component = mount(
-      <Card isSelected description="1">
-        Agents
+      <Card title="Title goes here" img="https://via.placeholder.com/100">
+        test
       </Card>
     );
-
+    expect(component).toMatchSnapshot();
+  });
+  it('should render empty Card', () => {
+    const component = mount(<Card />);
     expect(component).toMatchSnapshot();
   });
 });

@@ -30,6 +30,4 @@ Card.propTypes = {
   img: PropTypes.string
 };
 
-Card.defaultProps = {};
-
 export default Card;

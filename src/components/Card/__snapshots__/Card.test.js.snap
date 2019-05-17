@@ -1,5 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Card should render Card 1`] = `
+<Card
+  img="https://via.placeholder.com/100"
+  title="Title goes here"
+>
+  <div
+    className="card"
+  >
+    <div
+      className="card__title"
+    >
+      <img
+        className="card__img"
+        src="https://via.placeholder.com/100"
+      />
+      <div
+        className="card__text"
+      >
+        Title goes here
+      </div>
+    </div>
+    test
+  </div>
+</Card>
+`;
+
+exports[`Card should render empty Card 1`] = `
+<Card>
+  <div
+    className="card"
+  >
+    <div
+      className="card__empty"
+    >
+      <div
+        className="card__text"
+      />
+    </div>
+  </div>
+</Card>
+`;
+
 exports[`Card should render selected Card 1`] = `
 <Card
   description="1"
