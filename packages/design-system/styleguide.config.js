@@ -68,9 +68,10 @@ module.exports = {
         },
         {
           name: 'Tooltip',
+          content: './src/components/TooltipNew/design-guide.md',
           components: [
-            './src/components/Tooltip/TooltipContent.js',
-            './src/components/Tooltip/Tooltip.js'
+            './src/components/TooltipNew/PopperTooltip.js',
+            './src/components/TooltipNew/CssTooltip.js'
           ]
         },
         {
