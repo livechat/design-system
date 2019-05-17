@@ -26,8 +26,13 @@ class Dropdown extends React.PureComponent {
       },
       flip: { enabled: true, behavior: 'flip', ...(flip || {}) },
       arrow: { enabled: false, ...(arrow || {}) },
-      hide: { enabled: false, ...(hide || {}) },
-      preventOverflow: { enabled: true, ...(preventOverflow || {}) },
+      hide: { enabled: true, ...(hide || {}) },
+      preventOverflow: {
+        enabled: true,
+        escapeWithReference: true,
+        boundariesElement: 'viewport',
+        ...(preventOverflow || {})
+      },
       ...rest
     };
   }
