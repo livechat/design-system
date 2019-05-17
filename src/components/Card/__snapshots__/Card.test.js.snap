@@ -41,23 +41,3 @@ exports[`Card should render empty Card 1`] = `
   </div>
 </Card>
 `;
-
-exports[`Card should render selected Card 1`] = `
-<Card
-  description="1"
-  isSelected={true}
->
-  <div
-    className="card"
-  >
-    <div
-      className="card__title"
-    >
-      <div
-        className="card__text"
-      />
-    </div>
-    Agents
-  </div>
-</Card>
-`;
