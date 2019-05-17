@@ -1,37 +1,54 @@
-```js
-initialState = {
-  selectedDate: null
-};
+### Cards
 
-const handleDayClick = (day) => {
-  setState({
-    selectedDate: day
-  }, () => {
-    console.log(state.selectedDate)
-  })
-};
-<div style={{display: 'flex'}}>
-  <Card
-    title="Example card"
-  >
-    <DatePicker onDayClick={handleDayClick} selectedDays={state.selectedDate}/>
+Cards are used to group related content together to make LiveChat easier to scan and comprehend.
+
+```js
+<div style={{ width: "300px" }}>
+  <Card title="Title goes here" img="https://via.placeholder.com/100">
+    <div>
+      <p>
+        {" "}
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore{" "}
+      </p>
+      <Divider />
+      <div style={{ paddingRight: "10px", display: "inline-block" }}>
+        <Button>Action 1</Button>
+      </div>
+      <Button>Action 2</Button>
+    </div>
   </Card>
 </div>
 ```
 
+### Loading
+
+When a card is loading, provide feedback to the user by display a spinner. Once the data has loaded, the spinner disappears from the card component.
+
 ```js
-  <Card
-    title="Example card with icon"
-    img="https://via.placeholder.com/100"
-  >
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+<div style={{ width: "300px" }}>
+  <Card title="Title goes here" img="https://via.placeholder.com/100">
+    <div style={{ height: "200px", display: "flex", justifyContent: "center" }}>
+      <Loader size="medium" />
+    </div>
   </Card>
-```
-```js
-<div style={{display: 'flex'}}>
-  <Card
-    title="Example empty card"
-    img="https://via.placeholder.com/100"
-  />
 </div>
 ```
+
+### Content guidelines
+
+#### TITLE
+
+Card title should be:
+
+- Descriptive: Label the type of content grouped in the card
+- Concise and scannable:
+  - Use simple, clear language that can be read at a glance
+  - Keep titles to single sentence
+  - Written in sentence case
+
+#### BUTTON
+
+Buttons should be:
+
+- Clear and predictable: Users should be able to anticipate what will happen when they click a button.

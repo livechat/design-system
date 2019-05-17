@@ -4,6 +4,7 @@ $base-class: 'card';
 
 .#{$base-class} {
   background-color: #fff;
+  color: $font-primary-color;
   border: solid 1px $divider-color;
   border-radius: 8px;
   margin-top: 8px;

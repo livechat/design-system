@@ -1,0 +1,8 @@
+@import '../../scss/variables/colors';
+
+.divider {
+  height: 1px;
+  background-color: $divider-color;
+  width: 100%;
+  margin: 8px 0;
+}

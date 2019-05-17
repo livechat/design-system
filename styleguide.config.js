@@ -35,7 +35,12 @@ module.exports = {
         },
         {
           name: 'Card',
-          components: ['./src/components/Card/Card.js']
+          components: [
+            './src/components/Card/Card.js',
+            './src/components/Loader/Loader.js',
+            './src/components/Button/Button.js',
+            './src/components/Divider/Divider.js'
+          ]
         },
         {
           name: 'Notification System',

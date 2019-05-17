@@ -58,7 +58,7 @@ global.PopperTooltip = Components.PopperTooltip;
 global.CssTooltip = Components.CssTooltip;
 
 global.Loader = Components.Loader;
-
+global.Divider = Components.Divider;
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;
 global.AlertCircleIcon = AlertCircleIcon;
