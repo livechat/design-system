@@ -8,8 +8,8 @@ _Release: 2019-05-17_
 
 ##### New Features
 
-- Loader component
-- PopperTooltip and CssTooltip - refactored tooltip components
+- `Loader` component
+- `PopperTooltip` and `CssTooltip` - refactored tooltip components
 
 ##### Deprecations
 
