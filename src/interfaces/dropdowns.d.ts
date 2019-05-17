@@ -1,6 +1,5 @@
 // <reference types="react" />
 import * as PopperJS from "popper.js";
-import { any } from "prop-types";
 
 type ItemId = string | number;
 
@@ -34,7 +33,7 @@ export interface IDropdownProps {
   positionFixed?: boolean;
   referenceElement?: PopperJS.ReferenceObject;
   zIndex?: number;
-  triggerRenderer: (props: {ref: React.Ref<any>}) => void;
+  triggerRenderer?: (props: {ref: React.Ref<any>}) => void;
   onClose: () => void;
 }
 
