@@ -57,4 +57,6 @@ export {
 
 export { Dropdown, DropdownList, DropdownListItem } from './Dropdown';
 
+export { PopperTooltip, CssTooltip } from './TooltipNew';
+
 export { Loader } from './Loader';
