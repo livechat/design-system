@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## v0.3.0
+
+_Release: 2019-05-17_
+
+##### New Features
+
+- Loader component
+- PopperTooltip and CssTooltip - refactored tooltip components
+
+##### Deprecations
+
+- `Tooltip` and `TooltipContent` components are now deprecatedand will stop working in '@livechat/design-system 0.5.0',
+  `PopperTooltip` and `CssTooltip` should be used instead of these
+
+##### Bug Fixes
+
+- Dropdown's `referenceElement` property is handled properly, `triggerRenderer` is not required
+
+---
+
 ## v0.2.1
 
 _Release: 2019-05-07_

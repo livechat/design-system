@@ -11,7 +11,7 @@
 
 ### Getting started
 
-- Install [Node6 or Node8](https://nodejs.org/en/), preferably using [nvm](https://github.com/creationix/nvm)
+- Install [Node10](https://nodejs.org/en/), preferably using [nvm](https://github.com/creationix/nvm)
 - Clone this repository: `git clone https://github.com/livechat/design-system` (or download zip)
 - CD to project directory: `cd design-system`
 - Install dependencies: `npm install`
