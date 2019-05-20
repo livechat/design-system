@@ -5,21 +5,22 @@ type ItemId = string | number;
 
 interface IDropdownItemBase extends React.HTMLAttributes<HTMLLIElement> {
   icon?: React.ReactNode;
-  itemId: ItemId,
+  itemId: ItemId;
   isDisabled?: boolean;
   isSelected?: boolean;
   divider?: boolean;
+  onItemFocus?: (itemId: ItemId) => void;
   onItemSelect?: (itemId: ItemId) => void;
-} 
+}
 
 export interface IGetItemBodyPayload extends IDropdownItemBase {
   content: React.ReactNode;
   isFocused?: boolean;
   props: {
-    [key: string]: any
+    [key: string]: any;
   };
   onMouseOverItem?: (itemId: ItemId) => void;
-} 
+}
 
 export interface IDropdownProps {
   children: React.ReactNode;
@@ -33,7 +34,7 @@ export interface IDropdownProps {
   positionFixed?: boolean;
   referenceElement?: PopperJS.ReferenceObject;
   zIndex?: number;
-  triggerRenderer?: (props: {ref: React.Ref<any>}) => void;
+  triggerRenderer?: (props: { ref: React.Ref<any> }) => void;
   onClose: () => void;
 }
 
@@ -45,7 +46,8 @@ export interface IDropdownItem extends IDropdownItemBase {
   };
 }
 
-export interface IDropdownListProps extends React.HTMLAttributes<HTMLUListElement> {
+export interface IDropdownListProps
+  extends React.HTMLAttributes<HTMLUListElement> {
   className?: string;
   items: IDropdownItem[];
   getItemBody?(payload: IGetItemBodyPayload): React.ReactNode;
