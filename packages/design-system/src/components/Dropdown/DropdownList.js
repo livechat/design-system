@@ -90,9 +90,18 @@ class DropdownList extends React.PureComponent {
   };
 
   changeFocusedElement = id => {
-    this.setState({
-      focusedElement: id
-    });
+    this.setState(
+      {
+        focusedElement: id
+      },
+      () => {
+        const focusedItem = this.props.items.find(item => item.itemId === id);
+
+        if (focusedItem && focusedItem.onItemFocus) {
+          focusedItem.onItemFocus(focusedItem.itemdId);
+        }
+      }
+    );
   };
 
   scrollItems = () => {
@@ -186,6 +195,7 @@ DropdownList.propTypes = {
       divider: PropTypes.bool,
       icon: PropTypes.node,
       onItemSelect: PropTypes.func,
+      onItemFocus: PropTypes.func,
       isDisabled: PropTypes.bool,
       isSelected: PropTypes.bool,
       props: PropTypes.object
