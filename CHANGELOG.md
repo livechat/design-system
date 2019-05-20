@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## v0.3.1
+
+_Release: 2019-05-20_
+
+##### New Features
+
+- Adding new prop to DropdownList component - `onItemFocus`. Now it's possible to get information which item is focused.
+
+---
+
 ## v0.3.0
 
 _Release: 2019-05-17_
