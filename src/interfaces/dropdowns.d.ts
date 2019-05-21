@@ -31,14 +31,13 @@ export interface IDropdownProps {
   className?: string;
   closeOnEscPress?: boolean;
   closeOnEnterPress?: boolean;
-  contentRenderer?: (payload: IContentRendererPayload) => void;
   eventsEnabled?: boolean;
   isVisible: boolean;
   modifiers?: PopperJS.Modifiers;
   placement?: PopperJS.Placement;
-  dropdownItemsCount?: number;
   positionFixed?: boolean;
   referenceElement?: PopperJS.ReferenceObject;
+  shouldUpdateOnResize?: boolean;
   zIndex?: number;
   triggerRenderer?: (props: { ref: React.Ref<any> }) => void;
   onClose: () => void;

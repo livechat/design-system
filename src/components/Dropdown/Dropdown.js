@@ -15,7 +15,8 @@ class Dropdown extends React.PureComponent {
     modifiers: {},
     zIndex: 20,
     closeOnEscPress: true,
-    closeOnEnterPress: false
+    closeOnEnterPress: false,
+    shouldUpdateOnResize: false
   };
 
   static buildPopperModifiers(modifiers) {
