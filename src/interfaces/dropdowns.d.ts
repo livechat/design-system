@@ -22,12 +22,8 @@ export interface IGetItemBodyPayload extends IDropdownItemBase {
   onMouseOverItem?: (itemId: ItemId) => void;
 }
 
-export interface IContentRendererPayload {
-  forceUpdate: () => void;
-}
-
 export interface IDropdownProps {
-  children?: React.ReactNode;
+  children: React.ReactNode;
   className?: string;
   closeOnEscPress?: boolean;
   closeOnEnterPress?: boolean;
