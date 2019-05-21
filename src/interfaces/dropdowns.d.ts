@@ -9,7 +9,6 @@ interface IDropdownItemBase extends React.HTMLAttributes<HTMLLIElement> {
   isDisabled?: boolean;
   isSelected?: boolean;
   divider?: boolean;
-  onItemFocus?: (itemId: ItemId) => void;
   onItemSelect?: (itemId: ItemId) => void;
 }
 
@@ -19,6 +18,7 @@ export interface IGetItemBodyPayload extends IDropdownItemBase {
   props: {
     [key: string]: any;
   };
+  onItemFocus?: (itemId: ItemId) => void;
   onMouseOverItem?: (itemId: ItemId) => void;
 }
 
@@ -44,6 +44,7 @@ export interface IDropdownItem extends IDropdownItemBase {
   props?: {
     [key: string]: any;
   };
+  onItemFocus?: (itemId: ItemId) => void;
 }
 
 export interface IDropdownListProps
