@@ -3,6 +3,7 @@ import * as PropTypes from 'prop-types';
 import memoizeOne from 'memoize-one';
 import cssClassNames from 'classnames/bind';
 import { Manager, Reference, Popper } from 'react-popper';
+import ResizeObserver from 'resize-observer-polyfill';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 import { KeyCodes } from '../../constants/keyCodes';
@@ -40,6 +41,7 @@ class Dropdown extends React.PureComponent {
   componentDidMount() {
     if (this.props.isVisible) {
       this.addEventHandlers();
+      this.attachResizeObserver();
     }
   }
 
@@ -49,6 +51,7 @@ class Dropdown extends React.PureComponent {
 
     if (isShown) {
       this.addEventHandlers();
+      this.attachResizeObserver();
       if (this.popupRef) {
         this.popupRef.focus({ preventScroll: true });
       }
@@ -56,11 +59,13 @@ class Dropdown extends React.PureComponent {
 
     if (isHidden) {
       this.removeEventHandlers();
+      this.detachResizeObserver();
     }
   }
 
   componentWillUnmount() {
     this.removeEventHandlers();
+    this.detachResizeObserver();
   }
 
   getModifiers = memoizeOne(Dropdown.buildPopperModifiers);
@@ -104,9 +109,23 @@ class Dropdown extends React.PureComponent {
     }
   };
 
-  handleComponentForcedUpdate() {
-    this.forceUpdate();
-  }
+  attachResizeObserver = () => {
+    // to boost component performance resize observer should be optional
+    if (this.props.shouldUpdateOnResize && this.popupRef) {
+      this.observer = new ResizeObserver(() => {
+        if (this.popperScheduleUpdate) {
+          this.popperScheduleUpdate();
+        }
+      });
+      this.observer.observe(this.popupRef);
+    }
+  };
+
+  detachResizeObserver = () => {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  };
 
   addEventHandlers = () => {
     document.addEventListener('keydown', this.handleKeyDown, true);
@@ -118,15 +137,14 @@ class Dropdown extends React.PureComponent {
     document.removeEventListener('click', this.handleDocumentClick);
   };
 
-  render() {
-    const {
-      children,
-      className,
-      triggerRenderer,
-      isVisible,
-      contentRenderer
-    } = this.props;
-
+  renderDropdownContent = ({
+    ref,
+    style,
+    placement,
+    arrowProps,
+    scheduleUpdate
+  }) => {
+    const { className, isVisible, zIndex, children, modifiers } = this.props;
     const mergedClassNames = getMergedClassNames(
       cx({
         dropdown: true,
@@ -135,44 +153,59 @@ class Dropdown extends React.PureComponent {
       className
     );
 
-    const modifiers = this.getModifiers(this.props.modifiers);
+    const computedModifiers = this.getModifiers(modifiers);
+
+    // updating `popperScheduleUpdate` reference used in resize observer
+    this.popperScheduleUpdate = scheduleUpdate;
+
+    return (
+      <div
+        ref={ref}
+        tabIndex={0}
+        style={{ ...style, zIndex }}
+        data-placement={placement}
+        className={mergedClassNames}
+      >
+        {children}
+        {computedModifiers.arrow.enabled && (
+          <div
+            ref={arrowProps.ref}
+            className={styles.dropdown__arrow}
+            data-placement={placement}
+            style={arrowProps.style}
+          />
+        )}
+      </div>
+    );
+  };
+
+  render() {
+    const {
+      placement,
+      triggerRenderer,
+      eventsEnabled,
+      positionFixed,
+      referenceElement,
+      isVisible
+    } = this.props;
+
+    const computedModifiers = this.getModifiers(this.props.modifiers);
 
     return (
       <Manager>
         {triggerRenderer && (
           <Reference innerRef={this.setTriggerRef}>{triggerRenderer}</Reference>
         )}
-        {this.props.isVisible && (
+        {isVisible && (
           <Popper
             innerRef={this.setPopupRef}
-            placement={this.props.placement || 'bottom-start'}
-            modifiers={modifiers}
-            eventsEnabled={this.props.eventsEnabled}
-            positionFixed={this.props.positionFixed}
-            referenceElement={this.props.referenceElement}
+            placement={placement || 'bottom-start'}
+            modifiers={computedModifiers}
+            eventsEnabled={eventsEnabled}
+            positionFixed={positionFixed}
+            referenceElement={referenceElement}
           >
-            {({ ref, style, placement, arrowProps }) => (
-              <div
-                ref={ref}
-                tabIndex={0}
-                style={{ ...style, zIndex: this.props.zIndex }}
-                data-placement={placement}
-                className={mergedClassNames}
-              >
-                {children ||
-                  contentRenderer({
-                    forceUpdate: this.handleComponentForcedUpdate
-                  })}
-                {modifiers.arrow.enabled && (
-                  <div
-                    ref={arrowProps.ref}
-                    className={styles.dropdown__arrow}
-                    data-placement={placement}
-                    style={arrowProps.style}
-                  />
-                )}
-              </div>
-            )}
+            {this.renderDropdownContent}
           </Popper>
         )}
       </Manager>
@@ -182,14 +215,12 @@ class Dropdown extends React.PureComponent {
 
 Dropdown.propTypes = {
   children: PropTypes.node,
-  contentRenderer: PropTypes.func,
   className: PropTypes.string,
   closeOnEscPress: PropTypes.bool,
   closeOnEnterPress: PropTypes.bool,
   eventsEnabled: PropTypes.bool,
   isVisible: PropTypes.bool.isRequired,
   modifiers: PropTypes.object,
-  dropdownItemsCount: PropTypes.number,
   placement: PropTypes.oneOf([
     'auto',
     'auto-end',
@@ -212,6 +243,11 @@ Dropdown.propTypes = {
     clientWidth: PropTypes.number.isRequired,
     clientHeight: PropTypes.number.isRequired
   }),
+  /**
+   * Set `true` when it's possible that dropdown content will resize
+   * (e.g removing list items on select)
+   */
+  shouldUpdateOnResize: PropTypes.bool,
   triggerRenderer: PropTypes.func,
   zIndex: PropTypes.number,
   onClose: PropTypes.func

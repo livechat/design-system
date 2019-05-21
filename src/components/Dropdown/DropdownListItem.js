@@ -12,6 +12,7 @@ const baseClass = 'dropdown__list-item';
 class DropdownListItem extends React.PureComponent {
   handleClick = e => {
     if (!this.props.isDisabled && this.props.onItemSelect) {
+      e.nativeEvent.stopImmediatePropagation();
       this.props.onItemSelect(this.props.itemId);
     }
     if (this.props.onClick) {
