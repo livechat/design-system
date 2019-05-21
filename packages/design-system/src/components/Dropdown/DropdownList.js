@@ -157,28 +157,31 @@ class DropdownList extends React.PureComponent {
         ref={this.listRef}
         {...restProps}
       >
-        {items.map(({ content, itemId, props, ...itemRestProps }) => {
-          const itemProps = {
-            ...itemRestProps,
-            itemId,
-            isFocused: this.state.focusedElement === itemId,
-            onMouseOverItem: this.getFocusedItemCallback(itemId)
-          };
+        {items.map(
+          ({ content, itemId, props, onItemFocus, ...itemRestProps }) => {
+            const itemProps = {
+              ...itemRestProps,
+              itemId,
+              isFocused: this.state.focusedElement === itemId,
+              onMouseOverItem: this.getFocusedItemCallback(itemId)
+            };
 
-          if (this.props.getItemBody) {
-            return this.props.getItemBody({
-              ...itemProps,
-              props: props || {},
-              content
-            });
+            if (this.props.getItemBody) {
+              return this.props.getItemBody({
+                ...itemProps,
+                props: props || {},
+                onItemFocus,
+                content
+              });
+            }
+
+            return (
+              <DropdownListItem key={itemId} {...itemProps}>
+                {content}
+              </DropdownListItem>
+            );
           }
-
-          return (
-            <DropdownListItem key={itemId} {...itemProps}>
-              {content}
-            </DropdownListItem>
-          );
-        })}
+        )}
       </ul>
     );
   }
