@@ -22,15 +22,21 @@ export interface IGetItemBodyPayload extends IDropdownItemBase {
   onMouseOverItem?: (itemId: ItemId) => void;
 }
 
+export interface IContentRendererPayload {
+  forceUpdate: () => void;
+}
+
 export interface IDropdownProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
   closeOnEscPress?: boolean;
   closeOnEnterPress?: boolean;
+  contentRenderer?: (payload: IContentRendererPayload) => void;
   eventsEnabled?: boolean;
   isVisible: boolean;
   modifiers?: PopperJS.Modifiers;
   placement?: PopperJS.Placement;
+  dropdownItemsCount?: number;
   positionFixed?: boolean;
   referenceElement?: PopperJS.ReferenceObject;
   zIndex?: number;

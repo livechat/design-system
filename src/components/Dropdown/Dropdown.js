@@ -104,6 +104,10 @@ class Dropdown extends React.PureComponent {
     }
   };
 
+  handleComponentForcedUpdate() {
+    this.forceUpdate();
+  }
+
   addEventHandlers = () => {
     document.addEventListener('keydown', this.handleKeyDown, true);
     document.addEventListener('click', this.handleDocumentClick);
@@ -115,7 +119,13 @@ class Dropdown extends React.PureComponent {
   };
 
   render() {
-    const { children, className, triggerRenderer, isVisible } = this.props;
+    const {
+      children,
+      className,
+      triggerRenderer,
+      isVisible,
+      contentRenderer
+    } = this.props;
 
     const mergedClassNames = getMergedClassNames(
       cx({
@@ -149,7 +159,10 @@ class Dropdown extends React.PureComponent {
                 data-placement={placement}
                 className={mergedClassNames}
               >
-                {children}
+                {children ||
+                  contentRenderer({
+                    forceUpdate: this.handleComponentForcedUpdate
+                  })}
                 {modifiers.arrow.enabled && (
                   <div
                     ref={arrowProps.ref}
@@ -168,13 +181,15 @@ class Dropdown extends React.PureComponent {
 }
 
 Dropdown.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
+  contentRenderer: PropTypes.func,
   className: PropTypes.string,
   closeOnEscPress: PropTypes.bool,
   closeOnEnterPress: PropTypes.bool,
   eventsEnabled: PropTypes.bool,
   isVisible: PropTypes.bool.isRequired,
   modifiers: PropTypes.object,
+  dropdownItemsCount: PropTypes.number,
   placement: PropTypes.oneOf([
     'auto',
     'auto-end',
