@@ -11,14 +11,6 @@ import { KeyCodes } from '../../constants/keyCodes';
 const cx = cssClassNames.bind(styles);
 
 class Dropdown extends React.PureComponent {
-  static defaultProps = {
-    modifiers: {},
-    zIndex: 20,
-    closeOnEscPress: true,
-    closeOnEnterPress: false,
-    shouldUpdateOnResize: false
-  };
-
   static buildPopperModifiers(modifiers) {
     const { offset, flip, hide, preventOverflow, arrow, ...rest } = modifiers;
     return {
@@ -245,13 +237,21 @@ Dropdown.propTypes = {
     clientHeight: PropTypes.number.isRequired
   }),
   /**
-   * Set `true` when it's possible that dropdown content will resize
+   * Pass `true` when it's possible that content of your dropdown will resize
    * (e.g removing list items on select)
    */
   shouldUpdateOnResize: PropTypes.bool,
   triggerRenderer: PropTypes.func,
   zIndex: PropTypes.number,
   onClose: PropTypes.func
+};
+
+Dropdown.defaultProps = {
+  modifiers: {},
+  zIndex: 20,
+  closeOnEscPress: true,
+  closeOnEnterPress: false,
+  shouldUpdateOnResize: false
 };
 
 export default Dropdown;
