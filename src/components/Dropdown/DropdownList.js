@@ -13,8 +13,22 @@ class DropdownList extends React.PureComponent {
     super(props);
 
     this.state = {
-      focusedElement: props.defaultFocusedItemId
+      focusedElement: (props.items[0] && props.items[0].itemId) || null,
+      itemsCount: props.items.length
     };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (
+      props.autoFocusOnItemsCountChange &&
+      props.items.length !== state.itemsCount
+    ) {
+      return {
+        focusedElement: (props.items[0] && props.items[0].itemId) || null,
+        itemsCount: props.items.length
+      };
+    }
+    return null;
   }
 
   componentDidMount() {
@@ -162,6 +176,7 @@ class DropdownList extends React.PureComponent {
       items,
       getItemBody,
       itemSelectKeyCodes,
+      autoFocusOnItemsCountChange,
       ...restProps
     } = this.props;
 
@@ -209,6 +224,7 @@ class DropdownList extends React.PureComponent {
 }
 
 DropdownList.propTypes = {
+  autoFocusOnItemsCountChange: PropTypes.bool,
   className: PropTypes.string,
   defaultFocusedItemId: PropTypes.oneOfType([
     PropTypes.string,

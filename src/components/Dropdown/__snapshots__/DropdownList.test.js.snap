@@ -3,11 +3,6 @@
 exports[`Archives | Components | FiltersMenu renders correctly 1`] = `
 <ul
   className="dropdown__list"
-  itemSelectKeyCodes={
-    Array [
-      13,
-    ]
-  }
   onScroll={[Function]}
   tabIndex={0}
 >
@@ -21,7 +16,7 @@ exports[`Archives | Components | FiltersMenu renders correctly 1`] = `
       />
     }
     isDisabled={true}
-    isFocused={false}
+    isFocused={true}
     isSelected={false}
     itemId={1}
     onItemSelect={[MockFunction]}
