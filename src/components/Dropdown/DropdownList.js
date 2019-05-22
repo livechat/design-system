@@ -36,6 +36,7 @@ class DropdownList extends React.PureComponent {
     }
 
     if (this.isItemSelectKeyCode(keyCode)) {
+      event.preventDefault();
       this.handleSelectKeyUse();
     }
   };
@@ -156,7 +157,13 @@ class DropdownList extends React.PureComponent {
   listRef = React.createRef();
 
   render() {
-    const { className, items, getItemBody, ...restProps } = this.props;
+    const {
+      className,
+      items,
+      getItemBody,
+      itemSelectKeyCodes,
+      ...restProps
+    } = this.props;
 
     const mergedClassNames = getMergedClassNames(
       styles[`${baseClass}__list`],
