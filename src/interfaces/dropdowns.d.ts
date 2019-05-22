@@ -27,6 +27,7 @@ export interface IDropdownProps {
   className?: string;
   closeOnEscPress?: boolean;
   closeOnEnterPress?: boolean;
+  closeKeyCodes?: number[];
   eventsEnabled?: boolean;
   isVisible: boolean;
   modifiers?: PopperJS.Modifiers;
@@ -52,6 +53,8 @@ export interface IDropdownListProps
   extends React.HTMLAttributes<HTMLUListElement> {
   className?: string;
   items: IDropdownItem[];
+  defaultFocusedItemId?: ItemId;
+  itemSelectKeyCodes?: number[];
   getItemBody?(payload: IGetItemBodyPayload): React.ReactNode;
 }
 

@@ -86,15 +86,26 @@ class Dropdown extends React.PureComponent {
   };
 
   handleKeyDown = event => {
-    if (this.props.onClose) {
-      const isEscKeyPressed = event.keyCode === KeyCodes.esc;
-      const isEnterKeyPressed = event.keyCode === KeyCodes.enter;
+    const { keyCode } = event;
+    const {
+      closeKeyCodes,
+      closeOnEnterPress,
+      closeOnEscPress,
+      onClose
+    } = this.props;
+
+    if (onClose) {
+      const isEscKeyPressed = keyCode === KeyCodes.esc;
+      const isEnterKeyPressed = keyCode === KeyCodes.enter;
+      const isCustomCloseKeyPressed =
+        closeKeyCodes && closeKeyCodes.includes(keyCode);
 
       if (
-        (this.props.closeOnEscPress && isEscKeyPressed) ||
-        (this.props.closeOnEnterPress && isEnterKeyPressed)
+        (closeOnEscPress && isEscKeyPressed) ||
+        (closeOnEnterPress && isEnterKeyPressed) ||
+        isCustomCloseKeyPressed
       ) {
-        this.props.onClose();
+        onClose();
         if (this.triggerRef) {
           this.triggerRef.focus();
         }
@@ -211,6 +222,10 @@ Dropdown.propTypes = {
   className: PropTypes.string,
   closeOnEscPress: PropTypes.bool,
   closeOnEnterPress: PropTypes.bool,
+  /**
+   * you can specify which key press should trigger Dropdown close
+   */
+  closeKeyCodes: PropTypes.arrayOf(PropTypes.number),
   eventsEnabled: PropTypes.bool,
   isVisible: PropTypes.bool.isRequired,
   modifiers: PropTypes.object,

@@ -3,6 +3,11 @@
 exports[`Archives | Components | FiltersMenu renders correctly 1`] = `
 <ul
   className="dropdown__list"
+  itemSelectKeyCodes={
+    Array [
+      13,
+    ]
+  }
   onScroll={[Function]}
   tabIndex={0}
 >

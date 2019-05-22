@@ -9,9 +9,13 @@ import findNextFocusableItem from '../../helpers/find-next-focusable-item';
 const baseClass = 'dropdown';
 
 class DropdownList extends React.PureComponent {
-  state = {
-    focusedElement: null
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      focusedElement: props.defaultFocusedItemId
+    };
+  }
 
   componentDidMount() {
     document.addEventListener('keydown', this.onKeydown);
@@ -31,8 +35,8 @@ class DropdownList extends React.PureComponent {
       this.handleArrowKeyUse(event);
     }
 
-    if (keyCode === KeyCodes.enter) {
-      this.handleEnterKeyUse();
+    if (this.isItemSelectKeyCode(keyCode)) {
+      this.handleSelectKeyUse();
     }
   };
 
@@ -48,7 +52,7 @@ class DropdownList extends React.PureComponent {
     return this.hoverCallbacks[itemKey];
   };
 
-  handleEnterKeyUse = () => {
+  handleSelectKeyUse = () => {
     const { focusedElement } = this.state;
 
     if (focusedElement !== null) {
@@ -102,6 +106,16 @@ class DropdownList extends React.PureComponent {
         }
       }
     );
+  };
+
+  isItemSelectKeyCode = keyCode => {
+    const { itemSelectKeyCodes } = this.props;
+
+    if (itemSelectKeyCodes && itemSelectKeyCodes.includes(keyCode)) {
+      return true;
+    }
+
+    return false;
   };
 
   scrollItems = () => {
@@ -189,6 +203,10 @@ class DropdownList extends React.PureComponent {
 
 DropdownList.propTypes = {
   className: PropTypes.string,
+  defaultFocusedItemId: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
   items: PropTypes.arrayOf(
     PropTypes.shape({
       className: PropTypes.string,
@@ -205,7 +223,15 @@ DropdownList.propTypes = {
     })
   ).isRequired,
   getItemBody: PropTypes.func,
-  onScroll: PropTypes.func
+  onScroll: PropTypes.func,
+  /**
+   * you can specify which key press should trigger list item select
+   */
+  itemSelectKeyCodes: PropTypes.arrayOf(PropTypes.number)
+};
+
+DropdownList.defaultProps = {
+  itemSelectKeyCodes: [KeyCodes.enter]
 };
 
 export default DropdownList;
