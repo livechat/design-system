@@ -235,10 +235,6 @@ class DropdownList extends React.PureComponent {
 DropdownList.propTypes = {
   autoFocusOnItemsCountChange: PropTypes.bool,
   className: PropTypes.string,
-  defaultFocusedItemId: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number
-  ]),
   items: PropTypes.arrayOf(
     PropTypes.shape({
       className: PropTypes.string,

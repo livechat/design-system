@@ -203,7 +203,7 @@ class Dropdown extends React.PureComponent {
         {isVisible && (
           <Popper
             innerRef={this.setPopupRef}
-            placement={placement || 'bottom-start'}
+            placement={placement}
             modifiers={computedModifiers}
             eventsEnabled={eventsEnabled}
             positionFixed={positionFixed}
@@ -266,6 +266,7 @@ Dropdown.defaultProps = {
   zIndex: 20,
   closeOnEscPress: true,
   closeOnEnterPress: false,
+  placement: 'bottom-start',
   shouldUpdateOnResize: false
 };
 

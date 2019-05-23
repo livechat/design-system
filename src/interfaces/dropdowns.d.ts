@@ -54,7 +54,6 @@ export interface IDropdownListProps
   autoFocusOnItemsCountChange?: boolean;
   className?: string;
   items: IDropdownItem[];
-  defaultFocusedItemId?: ItemId;
   itemSelectKeyCodes?: number[];
   getItemBody?(payload: IGetItemBodyPayload): React.ReactNode;
 }
