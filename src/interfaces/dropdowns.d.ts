@@ -27,12 +27,14 @@ export interface IDropdownProps {
   className?: string;
   closeOnEscPress?: boolean;
   closeOnEnterPress?: boolean;
+  closeKeyCodes?: number[];
   eventsEnabled?: boolean;
   isVisible: boolean;
   modifiers?: PopperJS.Modifiers;
   placement?: PopperJS.Placement;
   positionFixed?: boolean;
   referenceElement?: PopperJS.ReferenceObject;
+  shouldUpdateOnResize?: boolean;
   zIndex?: number;
   triggerRenderer?: (props: { ref: React.Ref<any> }) => void;
   onClose: () => void;
@@ -49,8 +51,10 @@ export interface IDropdownItem extends IDropdownItemBase {
 
 export interface IDropdownListProps
   extends React.HTMLAttributes<HTMLUListElement> {
+  autoFocusOnItemsCountChange?: boolean;
   className?: string;
   items: IDropdownItem[];
+  itemSelectKeyCodes?: number[];
   getItemBody?(payload: IGetItemBodyPayload): React.ReactNode;
 }
 

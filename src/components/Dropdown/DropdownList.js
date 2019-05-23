@@ -9,9 +9,27 @@ import findNextFocusableItem from '../../helpers/find-next-focusable-item';
 const baseClass = 'dropdown';
 
 class DropdownList extends React.PureComponent {
-  state = {
-    focusedElement: null
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      focusedElement: this.getFirstFocusableItemId(),
+      itemsCount: props.items.length
+    };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (
+      props.autoFocusOnItemsCountChange &&
+      props.items.length !== state.itemsCount
+    ) {
+      return {
+        focusedElement: this.getFirstFocusableItemId(),
+        itemsCount: props.items.length
+      };
+    }
+    return null;
+  }
 
   componentDidMount() {
     document.addEventListener('keydown', this.onKeydown);
@@ -31,8 +49,9 @@ class DropdownList extends React.PureComponent {
       this.handleArrowKeyUse(event);
     }
 
-    if (keyCode === KeyCodes.enter) {
-      this.handleEnterKeyUse();
+    if (this.isItemSelectKeyCode(keyCode)) {
+      event.preventDefault();
+      this.handleSelectKeyUse();
     }
   };
 
@@ -48,7 +67,16 @@ class DropdownList extends React.PureComponent {
     return this.hoverCallbacks[itemKey];
   };
 
-  handleEnterKeyUse = () => {
+  getFirstFocusableItemId = () => {
+    const focusableItem = this.props.items.find(item => !item.isDisabled);
+
+    if (!focusableItem) {
+      return null;
+    }
+    return focusableItem.itemId;
+  };
+
+  handleSelectKeyUse = () => {
     const { focusedElement } = this.state;
 
     if (focusedElement !== null) {
@@ -104,6 +132,16 @@ class DropdownList extends React.PureComponent {
     );
   };
 
+  isItemSelectKeyCode = keyCode => {
+    const { itemSelectKeyCodes } = this.props;
+
+    if (itemSelectKeyCodes && itemSelectKeyCodes.includes(keyCode)) {
+      return true;
+    }
+
+    return false;
+  };
+
   scrollItems = () => {
     if (!this.listRef.current) {
       return;
@@ -142,7 +180,14 @@ class DropdownList extends React.PureComponent {
   listRef = React.createRef();
 
   render() {
-    const { className, items, getItemBody, ...restProps } = this.props;
+    const {
+      className,
+      items,
+      getItemBody,
+      itemSelectKeyCodes,
+      autoFocusOnItemsCountChange,
+      ...restProps
+    } = this.props;
 
     const mergedClassNames = getMergedClassNames(
       styles[`${baseClass}__list`],
@@ -188,6 +233,7 @@ class DropdownList extends React.PureComponent {
 }
 
 DropdownList.propTypes = {
+  autoFocusOnItemsCountChange: PropTypes.bool,
   className: PropTypes.string,
   items: PropTypes.arrayOf(
     PropTypes.shape({
@@ -205,7 +251,15 @@ DropdownList.propTypes = {
     })
   ).isRequired,
   getItemBody: PropTypes.func,
-  onScroll: PropTypes.func
+  onScroll: PropTypes.func,
+  /**
+   * you can specify which key press should trigger list item select
+   */
+  itemSelectKeyCodes: PropTypes.arrayOf(PropTypes.number)
+};
+
+DropdownList.defaultProps = {
+  itemSelectKeyCodes: [KeyCodes.enter]
 };
 
 export default DropdownList;

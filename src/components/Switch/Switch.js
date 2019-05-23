@@ -9,24 +9,7 @@ const baseClass = 'switch';
 const cx = classNames.bind(styles);
 const noop = () => {};
 
-class Switch extends React.PureComponent {
-  static propTypes = {
-    className: PropTypes.string,
-    defaultOn: PropTypes.bool,
-    innerRef: PropTypes.instanceOf(Element),
-    name: PropTypes.string,
-    on: PropTypes.bool,
-    onChange: PropTypes.func,
-    size: PropTypes.oneOf(acceptedSizes)
-  };
-
-  static defaultProps = {
-    defaultOn: false,
-    onChange: noop,
-    size: 'basic',
-    name: baseClass
-  };
-
+class SwitchComponent extends React.PureComponent {
   state = {
     enabled: this.isControlledByProps() ? this.props.on : this.props.defaultOn,
     prevPropsOn: this.props.on // eslint-disable-line react/no-unused-state
@@ -111,6 +94,38 @@ class Switch extends React.PureComponent {
   }
 }
 
-export default React.forwardRef((props, ref) => (
-  <Switch innerRef={ref} {...props} />
+const basePropTypes = {
+  className: PropTypes.string,
+  defaultOn: PropTypes.bool,
+  name: PropTypes.string,
+  on: PropTypes.bool,
+  onChange: PropTypes.func,
+  size: PropTypes.oneOf(acceptedSizes)
+};
+
+/* eslint-disable react/default-props-match-prop-types */
+const baseDefaultProps = {
+  defaultOn: false,
+  onChange: noop,
+  size: 'basic',
+  name: baseClass
+};
+
+SwitchComponent.propTypes = {
+  ...basePropTypes,
+  innerRef: PropTypes.instanceOf(
+    typeof Element === 'undefined' ? () => {} : Element
+  )
+};
+
+SwitchComponent.defaultProps = baseDefaultProps;
+
+const Switch = React.forwardRef((props, ref) => (
+  <SwitchComponent innerRef={ref} {...props} />
 ));
+
+Switch.propTypes = basePropTypes;
+
+Switch.defaultProps = baseDefaultProps;
+
+export default Switch;
