@@ -6,7 +6,8 @@ import styles from './style.scss';
 
 const baseClass = 'card';
 
-const Card = ({ img, title, children }) => {
+const Card = props => {
+  const { img, title, children, ...restProps } = props;
   const hasComponents = React.Children.count(children) >= 1;
   const mergedClassNames = getMergedClassNames(styles[baseClass]);
   const titleClass = classNames({
@@ -14,7 +15,7 @@ const Card = ({ img, title, children }) => {
     [`${baseClass}__empty`]: !hasComponents
   });
   return (
-    <div className={mergedClassNames}>
+    <div {...restProps} className={mergedClassNames}>
       <div className={styles[titleClass]}>
         {img && <img src={img} className={styles[`${baseClass}__img`]} />}
         <div className={styles[`${baseClass}__text`]}>{title}</div>

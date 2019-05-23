@@ -7,9 +7,8 @@ Cards are used to group related content together to make LiveChat easier to scan
   <Card title="Title goes here" img="https://via.placeholder.com/100">
     <div>
       <p>
-        {" "}
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore{" "}
+        tempor incididunt ut labore
       </p>
       <Divider />
       <div style={{ paddingRight: "10px", display: "inline-block" }}>
@@ -19,6 +18,26 @@ Cards are used to group related content together to make LiveChat easier to scan
     </div>
   </Card>
 </div>
+```
+
+```js noeditor
+<ComponentHtmlMarkup>
+  <div style={{ width: "300px" }}>
+    <Card title="Title goes here" img="https://via.placeholder.com/100">
+      <div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore
+        </p>
+        <Divider />
+        <div style={{ paddingRight: "10px", display: "inline-block" }}>
+          <Button>Action 1</Button>
+        </div>
+        <Button>Action 2</Button>
+      </div>
+    </Card>
+  </div>
+</ComponentHtmlMarkup>
 ```
 
 ### Loading
@@ -33,6 +52,20 @@ When a card is loading, provide feedback to the user by display a spinner. Once 
     </div>
   </Card>
 </div>
+```
+
+```js noeditor
+<ComponentHtmlMarkup>
+  <div style={{ width: "300px" }}>
+    <Card title="Title goes here" img="https://via.placeholder.com/100">
+      <div
+        style={{ height: "200px", display: "flex", justifyContent: "center" }}
+      >
+        <Loader size="medium" />
+      </div>
+    </Card>
+  </div>
+</ComponentHtmlMarkup>
 ```
 
 ### Content guidelines
