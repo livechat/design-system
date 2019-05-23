@@ -13,7 +13,7 @@ class DropdownList extends React.PureComponent {
     super(props);
 
     this.state = {
-      focusedElement: (props.items[0] && props.items[0].itemId) || null,
+      focusedElement: this.getFirstFocusableItemId(),
       itemsCount: props.items.length
     };
   }
@@ -24,7 +24,7 @@ class DropdownList extends React.PureComponent {
       props.items.length !== state.itemsCount
     ) {
       return {
-        focusedElement: (props.items[0] && props.items[0].itemId) || null,
+        focusedElement: this.getFirstFocusableItemId(),
         itemsCount: props.items.length
       };
     }
@@ -65,6 +65,15 @@ class DropdownList extends React.PureComponent {
     }
 
     return this.hoverCallbacks[itemKey];
+  };
+
+  getFirstFocusableItemId = () => {
+    const focusableItem = this.props.items.find(item => !item.isDisabled);
+
+    if (!focusableItem) {
+      return null;
+    }
+    return focusableItem.itemId;
   };
 
   handleSelectKeyUse = () => {

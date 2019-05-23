@@ -16,7 +16,7 @@ exports[`Archives | Components | FiltersMenu renders correctly 1`] = `
       />
     }
     isDisabled={true}
-    isFocused={true}
+    isFocused={false}
     isSelected={false}
     itemId={1}
     onItemSelect={[MockFunction]}
@@ -34,7 +34,7 @@ exports[`Archives | Components | FiltersMenu renders correctly 1`] = `
       />
     }
     isDisabled={false}
-    isFocused={false}
+    isFocused={true}
     isSelected={false}
     itemId={2}
     onItemSelect={[MockFunction]}
