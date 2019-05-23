@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Archives | Components | FiltersMenu renders correctly 1`] = `
+exports[`Components | DropdownList renders correctly four items with autofocused second item 1`] = `
 <ul
   className="dropdown__list"
   onScroll={[Function]}
