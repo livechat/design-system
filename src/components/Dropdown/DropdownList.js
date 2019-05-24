@@ -5,6 +5,7 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 import DropdownListItem from './DropdownListItem';
 import { KeyCodes } from '../../constants/keyCodes';
 import findNextFocusableItem from '../../helpers/find-next-focusable-item';
+import { getFirstFocusableItemId } from './helpers';
 
 const baseClass = 'dropdown';
 
@@ -13,7 +14,7 @@ class DropdownList extends React.PureComponent {
     super(props);
 
     this.state = {
-      focusedElement: this.getFirstFocusableItemId(),
+      focusedElement: getFirstFocusableItemId(props.items),
       itemsCount: props.items.length
     };
   }
@@ -24,7 +25,7 @@ class DropdownList extends React.PureComponent {
       props.items.length !== state.itemsCount
     ) {
       return {
-        focusedElement: this.getFirstFocusableItemId(),
+        focusedElement: getFirstFocusableItemId(props.items),
         itemsCount: props.items.length
       };
     }
@@ -65,15 +66,6 @@ class DropdownList extends React.PureComponent {
     }
 
     return this.hoverCallbacks[itemKey];
-  };
-
-  getFirstFocusableItemId = () => {
-    const focusableItem = this.props.items.find(item => !item.isDisabled);
-
-    if (!focusableItem) {
-      return null;
-    }
-    return focusableItem.itemId;
   };
 
   handleSelectKeyUse = () => {
