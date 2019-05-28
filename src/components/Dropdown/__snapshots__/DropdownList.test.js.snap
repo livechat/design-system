@@ -3,6 +3,7 @@
 exports[`Components | DropdownList renders correctly four items with autofocused second item 1`] = `
 <ul
   className="dropdown__list"
+  keyboardEventsEnabled={true}
   onScroll={[Function]}
   tabIndex={0}
 >
