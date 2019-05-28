@@ -193,6 +193,7 @@ class DropdownList extends React.PureComponent {
       getItemBody,
       itemSelectKeyCodes,
       autoFocusOnItemsCountChange,
+      keyboardEventsEnabled,
       ...restProps
     } = this.props;
 
