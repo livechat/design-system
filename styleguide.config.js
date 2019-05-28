@@ -269,7 +269,7 @@ module.exports = {
       linkHover: '#4379D6',
       border: '#C6C9CC',
       error: '#D64646',
-      sidebarBackground: '#f3f7f9'
+      sidebarBackground: '#F3F7F9'
     },
     fontSize: {
       base: 15,
