@@ -120,7 +120,8 @@ module.exports = {
     ComponentsListRenderer: path.join(
       __dirname,
       'docs/customized-components/MenuList'
-    )
+    ),
+    HeadingRenderer: path.join(__dirname, 'docs/customized-components/Heading')
   },
   template: {
     favicon: './fav.ico',
