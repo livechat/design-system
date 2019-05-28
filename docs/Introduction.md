@@ -1,15 +1,25 @@
-Welcome to the **LC Design System** docs.
+Welcome to the LiveChat **Design System** – an open-source library of React components for building LiveChat products and applications. It was originally created to help our teams work faster together, but it can be easily adapted to create applications with the look and feel of LiveChat experience.
 
-By creating a uniform system, we want to deliver a harmonious experience to our customers.
-For someone who’s already used one of our products, the transition to another one would be smooth and intuitive.
+We created this **Design System** with several goals in mind:
 
-Private repository is available on github: [livechat/design-system](https://github.com/livechat/design-system).
+- to document components, patterns, and design guidelines, all in one place,
+- to ensure consistency in our code and design,
+- to standardize the visual language and experience of LiveChat products and apps,
+- to provide guidance on correct usage of the patterns,
+- to streamline our design and development.
 
-Static css file is hosted on CDN: 
-* latest version: [cdn.livechat-static.com/design-system/styles.css](https://cdn.livechat-static.com/design-system/styles.css)
-* specific version: [cdn.livechat-static.com/design-system/styles-v0.0.12.css](https://cdn.livechat-static.com/design-system/styles-v.0.0.12.css)
+### How to use this?
 
+We recommend that while building a new app, you begin by following the system as closely as possible to suit LiveChat brand and experience.
 
-<img src="./design_flow.png" style="width: 100%;" alt="Design flow"/>
+#### _Designers_
 
+Every component in LiveChat **Design System** includes a documentation, code, and working examples (you can play with the component examples and see what happens). By downloading the _UI Kit_ (for Sketch) you have access to all of the components in addition to the code provided on the site.
 
+#### _Developers_
+
+You'll find React components with separate styles.css file that can be used in apps written with vanilla JS or any modern frontend library.
+
+### Who can use this?
+
+LiveChat **Design System** is open for anyone who wants to use it! It's very much a living and evolving document — Check back often as we continue to iterate and evolve it.

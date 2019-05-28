@@ -5,7 +5,7 @@ module.exports = {
   pagePerSection: true,
   assetsDir: './assets',
   webpackConfig: config,
-  title: 'LC Design System',
+  title: 'Design System - LiveChat API Developers Docs and Guides',
   skipComponentsWithoutExample: true,
   require: [path.resolve(__dirname, 'setup.js')],
   sections: [
@@ -14,13 +14,8 @@ module.exports = {
       content: './docs/Introduction.md'
     },
     {
-      name: 'Foundations',
-      sections: [
-        {
-          name: 'Typography',
-          content: './src/foundations/Typography/Typography.md'
-        }
-      ]
+      name: 'Typography',
+      content: './src/foundations/Typography/Typography.md'
     },
     {
       name: 'Components',
@@ -116,8 +111,20 @@ module.exports = {
       content: './Changelog.md'
     }
   ],
+  styleguideComponents: {
+    LogoRenderer: path.join(__dirname, 'docs/customized-components/Logo'),
+    TableOfContentsRenderer: path.join(
+      __dirname,
+      'docs/customized-components/Menu'
+    ),
+    ComponentsListRenderer: path.join(
+      __dirname,
+      'docs/customized-components/MenuList'
+    )
+  },
   template: {
-    title: 'LC Design System',
+    favicon: './fav.ico',
+    title: 'Design System - LiveChat API Developers Docs and Guides',
     head: {
       links: [
         {
@@ -254,7 +261,14 @@ module.exports = {
       monospace: 'monospace'
     },
     color: {
-      base: '#424d57'
+      base: '#424D57',
+      light: '#7A8289',
+      lightest: '#A0A6AB',
+      link: '#4384F5',
+      linkHover: '#4379D6',
+      border: '#C6C9CC',
+      error: '#D64646',
+      sidebarBackground: '#f3f7f9'
     },
     fontSize: {
       base: 15,
