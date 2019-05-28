@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { renderToStaticMarkup } from 'react-dom/server';
-import cx from 'classnames';
+import { Button } from '../../src/index';
 
 class ComponentHtmlMarkup extends React.Component {
   state = {
@@ -12,8 +12,8 @@ class ComponentHtmlMarkup extends React.Component {
     const { isCodeVisible } = this.state;
     if (
       isCodeVisible &&
-      prevState.isCodeVisible !== isCodeVisible &&
-      window.PR
+      window.PR &&
+      prevState.isCodeVisible !== isCodeVisible
     ) {
       window.PR.prettyPrint();
     }
@@ -43,19 +43,13 @@ class ComponentHtmlMarkup extends React.Component {
   };
 
   render() {
+    const { isCodeVisible } = this.state;
     return (
       <React.Fragment>
-        <button
-          type="button"
-          className={cx({
-            'view-html-btn': true,
-            'view-html-btn--active': this.state.isCodeVisible
-          })}
-          onClick={this.toggleCodeVisibility}
-        >
-          View html code
-        </button>
-        {this.state.isCodeVisible && (
+        <Button onClick={this.toggleCodeVisibility} primary={isCodeVisible}>
+          View HTML
+        </Button>
+        {isCodeVisible && (
           <pre className="prettyprint lang-html">
             {this.getPrettifiedMarkup(this.props.children)}
           </pre>

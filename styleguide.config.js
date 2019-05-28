@@ -121,7 +121,15 @@ module.exports = {
       __dirname,
       'docs/customized-components/MenuList'
     ),
-    HeadingRenderer: path.join(__dirname, 'docs/customized-components/Heading')
+    HeadingRenderer: path.join(__dirname, 'docs/customized-components/Heading'),
+    TabButtonRenderer: path.join(
+      __dirname,
+      'docs/customized-components/Button'
+    ),
+    'slots/CodeTabButton': path.join(
+      __dirname,
+      'docs/customized-components/ViewReactButton'
+    )
   },
   template: {
     favicon: './fav.ico',
@@ -256,6 +264,8 @@ module.exports = {
     }
   },
   theme: {
+    sidebarWidth: '230px',
+    borderRadius: '4px',
     fontFamily: {
       base:
         '"Source Sans Pro",-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif;',
