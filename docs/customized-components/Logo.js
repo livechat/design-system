@@ -10,8 +10,8 @@ const styles = ({ color }) => ({
   logoImg: {
     display: 'block',
     margin: '0 0 10px',
-    width: '45px',
-    height: '45px'
+    width: '36px',
+    height: '36px'
   },
   titleWrapper: {
     display: 'flex',
