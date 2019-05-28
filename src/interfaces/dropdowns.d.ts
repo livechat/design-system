@@ -55,6 +55,7 @@ export interface IDropdownListProps
   className?: string;
   items: IDropdownItem[];
   itemSelectKeyCodes?: number[];
+  keyboardEventsEnabled?: boolean;
   getItemBody?(payload: IGetItemBodyPayload): React.ReactNode;
 }
 

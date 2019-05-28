@@ -33,7 +33,22 @@ class DropdownList extends React.PureComponent {
   }
 
   componentDidMount() {
-    document.addEventListener('keydown', this.onKeydown);
+    if (this.props.keyboardEventsEnabled) {
+      document.addEventListener('keydown', this.onKeydown);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const eventsEnabled =
+      !prevProps.keyboardEventsEnabled && this.props.keyboardEventsEnabled;
+    const eventsDisabled =
+      prevProps.keyboardEventsEnabled && !this.props.keyboardEventsEnabled;
+
+    if (eventsEnabled) {
+      document.addEventListener('keydown', this.onKeydown);
+    } else if (eventsDisabled) {
+      document.removeEventListener('keydown', this.onKeydown);
+    }
   }
 
   componentWillUnmount() {
@@ -178,6 +193,7 @@ class DropdownList extends React.PureComponent {
       getItemBody,
       itemSelectKeyCodes,
       autoFocusOnItemsCountChange,
+      keyboardEventsEnabled,
       ...restProps
     } = this.props;
 
@@ -227,6 +243,10 @@ class DropdownList extends React.PureComponent {
 DropdownList.propTypes = {
   autoFocusOnItemsCountChange: PropTypes.bool,
   className: PropTypes.string,
+  /**
+   * use this property to enable/disable keyboard events of DropdownList
+   */
+  keyboardEventsEnabled: PropTypes.bool,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       className: PropTypes.string,
@@ -251,6 +271,7 @@ DropdownList.propTypes = {
 };
 
 DropdownList.defaultProps = {
+  keyboardEventsEnabled: true,
   itemSelectKeyCodes: [KeyCodes.enter]
 };
 
