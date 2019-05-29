@@ -10,7 +10,8 @@ function Button({ name, className, onClick, active, children }) {
       name={name}
       primary={active}
       style={{
-        margin: '10px 0 0'
+        margin: '10px 0 0',
+        marginBottom: active ? '5px' : '0'
       }}
     >
       {children}
