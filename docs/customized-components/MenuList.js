@@ -55,15 +55,10 @@ export function MenuList({ classes, items }) {
     window.location.hash
   )}`;
 
-  console.log(items);
-
   return (
     <ul className={classes.list}>
       {items.map(
-        (
-          { heading, visibleName, href, content, shouldOpenInNewTab },
-          index
-        ) => {
+        ({ heading, visibleName, href, content, shouldOpenInNewTab }) => {
           const isItemSelected = windowHash === href;
           return (
             <li
@@ -71,8 +66,7 @@ export function MenuList({ classes, items }) {
                 [classes.isChild]:
                   (!content || !content.props.items.length) &&
                   !shouldOpenInNewTab,
-                [classes.isSelected]:
-                  isItemSelected || (!window.location.hash && index === 0)
+                [classes.isSelected]: isItemSelected
               })}
               key={href}
             >
