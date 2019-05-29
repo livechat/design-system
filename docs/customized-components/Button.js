@@ -9,6 +9,7 @@ function Button({ name, className, onClick, active, children }) {
       onClick={onClick}
       name={name}
       primary={active}
+      size="compact"
       style={{
         margin: '10px 0 0',
         marginBottom: active ? '5px' : '0'
