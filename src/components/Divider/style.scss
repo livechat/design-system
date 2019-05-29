@@ -1,6 +1,8 @@
 @import '../../scss/variables/colors';
 
-.divider {
+$base-class: 'divider';
+
+.#{$base-class} {
   height: 1px;
   background-color: $divider-color;
   width: 100%;
