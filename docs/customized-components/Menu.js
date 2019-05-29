@@ -13,8 +13,10 @@ const styles = ({ fontFamily }) => ({
     justifyContent: 'center',
     alignContent: 'center',
     margin: '15px auto',
+    padding: '0 16px',
     '& .lc-text-field': {
-      marginBottom: 0
+      marginBottom: 0,
+      width: '100%'
     }
   }
 });
@@ -31,6 +33,9 @@ export function Menu({ classes, children, searchTerm, onSearchTermChange }) {
               placeholder="Filter menu items..."
               aria-label="Filter menu items"
               onChange={event => onSearchTermChange(event.target.value)}
+              style={{
+                width: '100%'
+              }}
             />
           </div>
           {children}
