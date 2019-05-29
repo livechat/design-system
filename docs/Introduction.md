@@ -18,7 +18,7 @@ Every component in LiveChat **Design System** includes a documentation, code, an
 
 #### _Developers_
 
-You'll find React components with separate styles.css file that can be used in apps written with vanilla JS or any modern frontend library.
+Our **Design System** was created for React development, and it's available in the [npm registry](https://www.npmjs.com/package/@livechat/design-system). If you are not working with React, then you can use our hosted [styles.css](https://cdn.livechatinc.com/design-system/styles.css) file to get look and feel of LiveChat app in your vanilla JS project.
 
 ### Who can use this?
 
