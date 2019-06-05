@@ -5,7 +5,6 @@ exports[`Tab should render selected tab 1`] = `
   description="1"
   href={null}
   isSelected={true}
-  onSelect={[Function]}
 >
   <Component
     className="tab tab--selected"
