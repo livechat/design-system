@@ -6,6 +6,8 @@ export * from "./helpers";
 export * from "./inappmessages";
 export * from "./modals";
 export * from "./notificationsSystem";
+export * from "./tooltipNew";
+export * from "./tabs";
 export * from "./toasts";
 export * from "./switch";
 export * from "./tooltip";

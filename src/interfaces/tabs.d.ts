@@ -1,6 +1,6 @@
 export interface ITabBaseProps {
-  description: React.ReactNode;
-  isSelected: boolean;
+  description?: React.ReactNode;
+  isSelected?: boolean;
 }
 
 export interface IAnchorTabProps
