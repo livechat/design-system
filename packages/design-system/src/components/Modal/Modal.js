@@ -21,7 +21,7 @@ const Modal = props => {
     <ModalBase className={mergedClassNames} {...restProps}>
       {heading && <ModalHeader>{heading}</ModalHeader>}
       <ModalBody>{children}</ModalBody>
-      <ModalFooter>{footer}</ModalFooter>
+      {footer && <ModalFooter>{footer}</ModalFooter>}
     </ModalBase>
   );
 };
@@ -29,7 +29,7 @@ const Modal = props => {
 Modal.propTypes = {
   ...ModalBase.propTypes,
   heading: PropTypes.node,
-  footer: PropTypes.node.isRequired
+  footer: PropTypes.node
 };
 
 export default Modal;
