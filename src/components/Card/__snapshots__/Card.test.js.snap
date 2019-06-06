@@ -25,19 +25,3 @@ exports[`Card should render Card 1`] = `
   </div>
 </Card>
 `;
-
-exports[`Card should render empty Card 1`] = `
-<Card>
-  <div
-    className="card"
-  >
-    <div
-      className="card__empty"
-    >
-      <div
-        className="card__text"
-      />
-    </div>
-  </div>
-</Card>
-`;
