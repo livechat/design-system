@@ -27,7 +27,8 @@ const Card = props => {
 
 Card.propTypes = {
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+    .isRequired,
   img: PropTypes.string
 };
 
