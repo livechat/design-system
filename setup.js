@@ -5,6 +5,7 @@ import ComponentHtmlMarkup from './src/docs/ComponentHtmlMarkup';
 
 // components
 global.Button = Components.Button;
+global.Card = Components.Card;
 global.Tab = Components.Tab;
 global.TabsWrapper = Components.TabsWrapper;
 global.TabsList = Components.TabsList;
@@ -57,7 +58,7 @@ global.PopperTooltip = Components.PopperTooltip;
 global.CssTooltip = Components.CssTooltip;
 
 global.Loader = Components.Loader;
-
+global.Divider = Components.Divider;
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;
 global.AlertCircleIcon = AlertCircleIcon;
