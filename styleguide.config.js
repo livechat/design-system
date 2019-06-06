@@ -5,7 +5,7 @@ module.exports = {
   pagePerSection: true,
   assetsDir: './assets',
   webpackConfig: config,
-  title: 'LC Design System',
+  title: 'Design System - LiveChat API Developers Docs and Guides',
   skipComponentsWithoutExample: true,
   require: [path.resolve(__dirname, 'setup.js')],
   sections: [
@@ -14,13 +14,8 @@ module.exports = {
       content: './docs/Introduction.md'
     },
     {
-      name: 'Foundations',
-      sections: [
-        {
-          name: 'Typography',
-          content: './src/foundations/Typography/Typography.md'
-        }
-      ]
+      name: 'Typography',
+      content: './src/foundations/Typography/Typography.md'
     },
     {
       name: 'Components',
@@ -32,6 +27,10 @@ module.exports = {
             './src/components/Toast/Toast.js',
             './src/components/Toast/ToastWrapper.js'
           ]
+        },
+        {
+          name: 'Card',
+          components: ['./src/components/Card/Card.js']
         },
         {
           name: 'Notification System',
@@ -116,8 +115,29 @@ module.exports = {
       content: './Changelog.md'
     }
   ],
+  styleguideComponents: {
+    LogoRenderer: path.join(__dirname, 'docs/customized-components/Logo'),
+    TableOfContentsRenderer: path.join(
+      __dirname,
+      'docs/customized-components/Menu'
+    ),
+    ComponentsListRenderer: path.join(
+      __dirname,
+      'docs/customized-components/MenuList'
+    ),
+    HeadingRenderer: path.join(__dirname, 'docs/customized-components/Heading'),
+    TabButtonRenderer: path.join(
+      __dirname,
+      'docs/customized-components/Button'
+    ),
+    'slots/CodeTabButton': path.join(
+      __dirname,
+      'docs/customized-components/ViewReactButton'
+    )
+  },
   template: {
-    title: 'LC Design System',
+    favicon: './fav.ico',
+    title: 'Design System - LiveChat API Developers Docs and Guides',
     head: {
       links: [
         {
@@ -248,13 +268,22 @@ module.exports = {
     }
   },
   theme: {
+    sidebarWidth: '230px',
+    borderRadius: '4px',
     fontFamily: {
       base:
         '"Source Sans Pro",-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif;',
       monospace: 'monospace'
     },
     color: {
-      base: '#424d57'
+      base: '#424D57',
+      light: '#7A8289',
+      lightest: '#A0A6AB',
+      link: '#4384F5',
+      linkHover: '#4379D6',
+      border: '#C6C9CC',
+      error: '#D64646',
+      sidebarBackground: '#F3F7F9'
     },
     fontSize: {
       base: 15,
