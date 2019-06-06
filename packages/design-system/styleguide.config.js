@@ -29,6 +29,10 @@ module.exports = {
           ]
         },
         {
+          name: 'Card',
+          components: ['./src/components/Card/Card.js']
+        },
+        {
           name: 'Notification System',
           content: './src/components/NotificationSystem/NotificationSystem.md'
         },
