@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import classNames from 'classnames';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 import styles from './style.scss';
 
@@ -8,15 +7,11 @@ const baseClass = 'card';
 
 const Card = props => {
   const { img, title, children, ...restProps } = props;
-  const hasComponents = React.Children.count(children) >= 1;
   const mergedClassNames = getMergedClassNames(styles[baseClass]);
-  const titleClass = classNames({
-    [`${baseClass}__title`]: hasComponents,
-    [`${baseClass}__empty`]: !hasComponents
-  });
+
   return (
     <div {...restProps} className={mergedClassNames}>
-      <div className={styles[titleClass]}>
+      <div className={styles[`${baseClass}__title`]}>
         {img && <img src={img} className={styles[`${baseClass}__img`]} />}
         <div className={styles[`${baseClass}__text`]}>{title}</div>
       </div>
@@ -27,8 +22,7 @@ const Card = props => {
 
 Card.propTypes = {
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
-    .isRequired,
+  children: PropTypes.node.isRequired,
   img: PropTypes.string
 };
 

@@ -13,12 +13,6 @@ $base-class: 'card';
   font-size: 15px;
   line-height: 16px;
   overflow: hidden;
-  
-  &__empty {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
 
   &__title {
     display: flex;
