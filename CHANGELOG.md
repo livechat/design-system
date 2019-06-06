@@ -1,5 +1,25 @@
 All notable changes to this project will be documented in this file.
 
+## v0.4.0
+
+_Release: 2019-05-20_
+
+##### New Features
+
+- `Card` and `Divider` components
+
+##### Refactors
+
+- documentation styles updated
+- adding typescript types and support for other html properties to `Tabs`, `TabsWrapper` and `TabsList` components
+- `footer` props of `Modal` component is now optional
+
+##### Deprecations
+
+- `Tabs` main handler `onSelect` changed to `onClick`. Right now `onSelect` property is handling HTML `onselect` event
+
+---
+
 ## v0.3.1
 
 _Release: 2019-05-20_
