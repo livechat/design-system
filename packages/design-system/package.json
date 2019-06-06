@@ -30,6 +30,7 @@
     "predeploy": "npm run-script styleguide:build",
     "deploy": "gh-pages -d styleguide",
     "test": "jest",
+    "test:update": "jest -u",
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage",
     "eslint": "eslint --ext .js,.ts src/ ",
