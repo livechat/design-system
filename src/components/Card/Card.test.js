@@ -11,8 +11,4 @@ describe('Card', () => {
     );
     expect(component).toMatchSnapshot();
   });
-  it('should render empty Card', () => {
-    const component = mount(<Card />);
-    expect(component).toMatchSnapshot();
-  });
 });
