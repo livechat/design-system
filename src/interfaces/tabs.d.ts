@@ -4,10 +4,10 @@ export interface ITabBaseProps {
 }
 
 export interface IAnchorTabProps
-  extends React.HTMLAttributes<HTMLAnchorElement>,
+  extends React.AnchorHTMLAttributes<HTMLAnchorElement>,
     ITabBaseProps {}
 export interface IButtonTabProps
-  extends React.HTMLAttributes<HTMLButtonElement>,
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     ITabBaseProps {}
 export interface ITabListProps extends React.HTMLAttributes<HTMLDivElement> {}
 export interface ITabWrapperProps
