@@ -12,11 +12,11 @@ _Release: 2019-05-20_
 
 - documentation styles updated
 - adding typescript types and support for other html properties to `Tabs`, `TabsWrapper` and `TabsList` components
-- `footer` props of `Modal` component is now optional
+- `footer` prop of `Modal` component is now optional
 
 ##### Deprecations
 
-- `Tabs` main handler `onSelect` changed to `onClick`. Right now `onSelect` property is handling HTML `onselect` event
+- `Tabs` main handler `onSelect` changed to `onClick`. `onSelect` property will handling HTML `onselect` event
 
 ---
 
