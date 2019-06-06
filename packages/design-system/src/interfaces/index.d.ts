@@ -10,6 +10,7 @@ export * from "./loader";
 export * from "./modals";
 export * from "./notificationsSystem";
 export * from "./switch";
+export * from "./tabs";
 export * from "./toasts";
 export * from "./tooltip";
 export * from "./tooltipNew";
