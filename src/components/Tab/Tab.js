@@ -4,7 +4,6 @@ import classNames from 'classnames/bind';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 
-const noop = () => {};
 const cx = classNames.bind(styles);
 
 const Tab = ({
@@ -13,8 +12,6 @@ const Tab = ({
   description,
   href,
   isSelected,
-  onClick,
-  onSelect,
   ...restProps
 }) => {
   const Component = props => (href ? <a {...props} /> : <button {...props} />);
@@ -28,12 +25,7 @@ const Tab = ({
   );
 
   return (
-    <Component
-      {...restProps}
-      href={href}
-      onClick={onSelect || onClick || noop}
-      className={mergedClassNames}
-    >
+    <Component {...restProps} href={href} className={mergedClassNames}>
       {children}
       {description && (
         <span className={styles.tab__description}>({description})</span>
@@ -45,8 +37,6 @@ const Tab = ({
 Tab.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
-  onSelect: PropTypes.func,
-  onClick: PropTypes.func,
   description: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,

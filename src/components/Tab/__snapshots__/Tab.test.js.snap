@@ -9,12 +9,10 @@ exports[`Tab should render selected tab 1`] = `
   <Component
     className="tab tab--selected"
     href={null}
-    onClick={[Function]}
   >
     <button
       className="tab tab--selected"
       href={null}
-      onClick={[Function]}
     >
       Agents
       <span
