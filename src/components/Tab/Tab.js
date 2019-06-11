@@ -24,10 +24,12 @@ const Tab = ({
     className
   );
 
+  const isDescriptionProvided = description !== null;
+
   return (
     <Component {...restProps} href={href} className={mergedClassNames}>
       {children}
-      {description && (
+      {isDescriptionProvided && (
         <span className={styles.tab__description}>({description})</span>
       )}
     </Component>
