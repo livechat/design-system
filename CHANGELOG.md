@@ -1,8 +1,19 @@
 All notable changes to this project will be documented in this file.
 
+## v0.4.1
+
+_Release: 2019-06-11_
+
+##### Bug Fixes
+
+- `Tab` component documentation update - main handler changed from `onSelect` to `onClick` in the previous release
+- passing number `0` as `Tab` description caused wrong render of the component
+
+---
+
 ## v0.4.0
 
-_Release: 2019-05-20_
+_Release: 2019-06-06_
 
 ##### New Features
 
