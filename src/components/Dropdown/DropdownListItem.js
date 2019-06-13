@@ -10,29 +10,29 @@ const cx = cssClassNames.bind(styles);
 const baseClass = 'dropdown__list-item';
 
 class DropdownListItem extends React.PureComponent {
-  handleClick = e => {
+  handleClick = event => {
     if (!this.props.isDisabled && this.props.onItemSelect) {
-      e.nativeEvent.stopImmediatePropagation();
-      this.props.onItemSelect(this.props.itemId);
+      event.nativeEvent.stopImmediatePropagation();
+      this.props.onItemSelect(this.props.itemId, event);
     }
     if (this.props.onClick) {
-      this.props.onClick(e);
+      this.props.onClick(event);
     }
   };
 
-  handleMouseOver = e => {
+  handleMouseOver = event => {
     if (!this.props.isDisabled && this.props.onMouseOverItem) {
       this.props.onMouseOverItem(this.props.itemId);
     }
     if (this.props.onMouseOver) {
-      this.props.onMouseOver(e);
+      this.props.onMouseOver(event);
     }
   };
 
-  handleMouseDown = e => {
-    e.preventDefault();
+  handleMouseDown = event => {
+    event.preventDefault();
     if (this.props.onMouseDown) {
-      this.props.onMouseDown(e);
+      this.props.onMouseDown(event);
     }
     return false;
   };

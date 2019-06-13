@@ -9,7 +9,10 @@ interface IDropdownItemBase extends React.HTMLAttributes<HTMLLIElement> {
   isDisabled?: boolean;
   isSelected?: boolean;
   divider?: boolean;
-  onItemSelect?: (itemId: ItemId) => void;
+  onItemSelect?: (
+    itemId: ItemId,
+    event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>
+  ) => void;
 }
 
 export interface IGetItemBodyPayload extends IDropdownItemBase {
