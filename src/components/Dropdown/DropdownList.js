@@ -67,7 +67,7 @@ class DropdownList extends React.PureComponent {
 
     if (this.isItemSelectKeyCode(keyCode)) {
       event.preventDefault();
-      this.handleSelectKeyUse();
+      this.handleSelectKeyUse(event);
     }
   };
 
@@ -83,7 +83,7 @@ class DropdownList extends React.PureComponent {
     return this.hoverCallbacks[itemKey];
   };
 
-  handleSelectKeyUse = () => {
+  handleSelectKeyUse = event => {
     const { focusedElement } = this.state;
 
     if (focusedElement !== null) {
@@ -92,7 +92,7 @@ class DropdownList extends React.PureComponent {
       );
 
       if (selectedItem && selectedItem.onItemSelect) {
-        selectedItem.onItemSelect(selectedItem.itemId);
+        selectedItem.onItemSelect(selectedItem.itemId, event);
       }
     }
   };

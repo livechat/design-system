@@ -13,7 +13,7 @@ class DropdownListItem extends React.PureComponent {
   handleClick = e => {
     if (!this.props.isDisabled && this.props.onItemSelect) {
       e.nativeEvent.stopImmediatePropagation();
-      this.props.onItemSelect(this.props.itemId);
+      this.props.onItemSelect(this.props.itemId, e);
     }
     if (this.props.onClick) {
       this.props.onClick(e);
