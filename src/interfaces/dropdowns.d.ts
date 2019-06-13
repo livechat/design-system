@@ -11,7 +11,7 @@ interface IDropdownItemBase extends React.HTMLAttributes<HTMLLIElement> {
   divider?: boolean;
   onItemSelect?: (
     itemId: ItemId,
-    event: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>
+    event?: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>
   ) => void;
 }
 
