@@ -26,6 +26,7 @@ $base-class: 'toast';
 
   &__content {
     color: $font-primary-color;
+    width: 100%;
   }
 
   &__icon,
@@ -45,9 +46,10 @@ $base-class: 'toast';
   &__actions {
     margin-left: auto;
     height: 20px;
-    display: flex;
+    display: inline-flex;
+    align-self: flex-start;
     align-items: center;
-    flex: 0 1 auto;
+    flex: 1 0 auto;
     flex-wrap: nowrap;
     margin-bottom: auto;
 
@@ -57,6 +59,7 @@ $base-class: 'toast';
       align-items: center;
       flex: 0 1 auto;
       height: 100%;
+      width: 100%;    
 
       svg {
         display: flex;
