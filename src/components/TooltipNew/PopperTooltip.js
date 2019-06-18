@@ -81,8 +81,18 @@ class PopperTooltip extends React.PureComponent {
   handleTriggerMouseEnter = () => {
     this.isTriggerHovered = true;
     this.clearTooltipHideTimeout();
-    this.setState({
-      isVisible: true
+    this.setState(prevState => {
+      if (
+        !this.isIsVisibleControlled() &&
+        !prevState.isVisible &&
+        this.props.onOpen
+      ) {
+        this.props.onOpen();
+      }
+
+      return {
+        isVisible: true
+      };
     });
   };
 
@@ -120,9 +130,17 @@ class PopperTooltip extends React.PureComponent {
   };
 
   handleTriggerClick = () => {
-    this.setState(prevState => ({
-      isVisible: !prevState.isVisible
-    }));
+    this.setState(prevState => {
+      const isVisible = !prevState.isVisible;
+
+      if (!this.isIsVisibleControlled() && isVisible && this.props.onOpen) {
+        this.props.onOpen();
+      }
+
+      return {
+        isVisible
+      };
+    });
   };
 
   handleDelayedTooltipHide = () => {
@@ -225,6 +243,7 @@ class PopperTooltip extends React.PureComponent {
       withFadeAnimation,
       transitionDuration,
       transitionDelay,
+      onOpen,
       ...restProps
     } = this.props;
 
@@ -384,7 +403,8 @@ PopperTooltip.propTypes = {
    *   component visibility.
    */
   triggerActionType: PropTypes.oneOf(['managed', 'click', 'hover']),
-  zIndex: PropTypes.number.isRequired
+  zIndex: PropTypes.number.isRequired,
+  onOpen: PropTypes.func
 };
 
 PopperTooltip.defaultProps = {
