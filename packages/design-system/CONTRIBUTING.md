@@ -51,6 +51,18 @@ You can view and test your component in two ways:
 - use styleguidist as development enviroment for your component
 - use npm link feature to see it in your app
 
+Step by step:
+
+- create component directory in src/components
+- styleguide.config.js - add your component to styleguide setup.
+- don't forget to write some docs:
+  src/components/ComponentName/ComponentName.md
+- If you want to export your component from bundled library:
+  - add interface for projects which use TypeScript:
+    src/interfaces/componentName.d.ts
+    And don't forget to export it in src/interfaces/index.d.ts
+  - add your component to setup.js file
+
 ### NPM Link
 
 You should start with executing these two commands:
