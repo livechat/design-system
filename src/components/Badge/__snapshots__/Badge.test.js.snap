@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button should render light badge 1`] = `
+<span
+  className="badge badge--light"
+>
+  !
+</span>
+`;
+
+exports[`Button should render primary badge 1`] = `
+<span
+  className="badge badge--primary"
+>
+  !
+</span>
+`;
