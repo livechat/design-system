@@ -1,40 +1,73 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
 import styles from './style.scss';
-import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const baseClass = 'btn-group';
-const cx = classNames.bind(styles);
 
-const ButtonGroup = props => {
-  const { className, segment, currentIndex, onClick, children } = props;
+class ButtonGroup extends React.Component {
+  state = {
+    currentIndex: this.props.currentIndex || -1
+  };
 
-  const mergedClassNames = getMergedClassNames(
-    cx({
-      [baseClass]: true,
-      [`${baseClass}--segment`]: segment
-    }),
-    className
-  );
+  makeClickHandler = index => event => {
+    this.props.onChange(event, index);
+    this.setState({ currentIndex: index });
+  };
 
-  const mappedChildren = segment
-    ? React.Children.map(children, (child, index) =>
-        React.cloneElement(child, {
-          onClick: event => onClick && onClick(index, event),
-          selected: index === currentIndex
-        })
-      )
-    : children;
+  render() {
+    const { size, fullWidth, children, ...restProps } = this.props;
+    const currentIndex =
+      typeof this.props.currentIndex === 'number'
+        ? this.props.currentIndex
+        : this.state.currentIndex;
 
-  return <div className={mergedClassNames}>{mappedChildren}</div>;
+    const mappedChildren = React.Children.map(children, (child, index) =>
+      React.cloneElement(child, {
+        size,
+        fullWidth,
+        primary: false,
+        destructive: false,
+        onClick: this.makeClickHandler(index),
+        className: index === currentIndex ? styles.active : null
+      })
+    );
+
+    return (
+      <div role="group" className={styles[baseClass]} {...restProps}>
+        {mappedChildren}
+      </div>
+    );
+  }
+}
+
+ButtonGroup.defaultProps = {
+  onChange: () => {}
 };
 
 ButtonGroup.propTypes = {
-  segment: PropTypes.bool,
+  /**
+   * If `true`, the buttons in group will take up the full width of its container
+   */
+  fullWidth: PropTypes.bool,
+
+  /**
+   * Callback fired when the value of `currentIndex` changes
+   */
+  onChange: PropTypes.func,
+
+  /**
+   * The index of button in group which is currently active
+   */
   currentIndex: PropTypes.number,
-  onClick: PropTypes.func,
-  className: PropTypes.string,
+
+  /**
+   * Size of buttons in group
+   */
+  size: PropTypes.string,
+
+  /**
+   * One or more `Button` components
+   */
   children: PropTypes.arrayOf(PropTypes.element)
 };
 

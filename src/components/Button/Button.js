@@ -23,7 +23,6 @@ const Button = React.forwardRef((props, ref) => {
     ariaExpanded,
     className,
     type: htmlType,
-    selected,
     ...buttonProps
   } = props;
 
@@ -46,8 +45,7 @@ const Button = React.forwardRef((props, ref) => {
       [`${baseClass}--full-width`]: fullWidth,
       [`${baseClass}--primary`]: buttonType === 'primary',
       [`${baseClass}--destructive`]: buttonType === 'destructive',
-      [`${baseClass}--${size}`]: acceptedSizes.some(s => s === size),
-      [`${baseClass}--selected`]: selected
+      [`${baseClass}--${size}`]: acceptedSizes.some(s => s === size)
     }),
     className
   );
@@ -102,8 +100,7 @@ Button.propTypes = {
   className: PropTypes.string,
   accessibilityLabel: PropTypes.string,
   ariaControls: PropTypes.string,
-  ariaExpanded: PropTypes.string,
-  selected: PropTypes.bool
+  ariaExpanded: PropTypes.string
 };
 
 export default Button;
