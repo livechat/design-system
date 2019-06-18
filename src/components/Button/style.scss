@@ -123,6 +123,10 @@
     }
   }
 
+  &--selected {
+    background-color: grey;
+  }
+
   .btn__loader {
     position: absolute;
     top: 50%;
