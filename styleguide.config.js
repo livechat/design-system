@@ -29,6 +29,10 @@ module.exports = {
           ]
         },
         {
+          name: 'Avatar',
+          components: ['./src/components/Avatar/Avatar.js']
+        },
+        {
           name: 'Card',
           components: ['./src/components/Card/Card.js']
         },
