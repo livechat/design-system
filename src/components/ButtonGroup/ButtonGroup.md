@@ -1,9 +1,43 @@
-### ButtonGroup
+### Basic ButtonGroup
+
+By default ButtonGroup use internal state to track currently selected button. It fires `onChange`callback each time when one of buttons was clicked supling its indexc and triggered event object.
 
 ```js
-<ButtonGroup segment onClick={console.log} currentIndex={1}>
-  <Button primary>Primary Button</Button>
-  <Button>Button</Button>
+<ButtonGroup>
+  <Button>First Button</Button>
   <Button>Second Button</Button>
+  <Button>Third Button</Button>
 </ButtonGroup>
+```
+
+```js noeditor
+<ComponentHtmlMarkup>
+  <ButtonGroup>
+    <Button>First Button</Button>
+    <Button>Second Button</Button>
+    <Button>Third Button</Button>
+  </ButtonGroup>
+</ComponentHtmlMarkup>
+```
+
+### Controlled ButtonGroup
+
+If you want to use ButtonGroups as controlled component you can set `currentIndex` props to set which button is active.
+
+```js
+<ButtonGroup currentIndex={1}>
+  <Button>First Button</Button>
+  <Button>Second Button</Button>
+  <Button>Third Button</Button>
+</ButtonGroup>
+```
+
+```js noeditor
+<ComponentHtmlMarkup>
+  <ButtonGroup currentIndex={1}>
+    <Button>First Button</Button>
+    <Button>Second Button</Button>
+    <Button>Third Button</Button>
+  </ButtonGroup>
+</ComponentHtmlMarkup>
 ```
