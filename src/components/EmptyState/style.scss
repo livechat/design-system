@@ -1,0 +1,31 @@
+@import '../../scss/variables/colors';
+
+$base-class: 'empty-state';
+
+.#{$base-class} {
+	font-family: SourceSansPro;
+	color: $font-primary-color;
+
+	&__header {
+		font-size: 24px;
+		font-weight: 600;
+		line-height: 1.33;
+		text-align: center;
+	}
+	&__description {
+		font-size: 18px;
+		line-height: 1.5;
+		text-align: center;
+	}
+	&__img {
+		display: block;
+		max-width: 400px;
+		max-height: 400px;
+		margin-bottom: 40px;
+	}
+	&__center {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}

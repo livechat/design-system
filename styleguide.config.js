@@ -33,6 +33,10 @@ module.exports = {
           components: ['./src/components/Card/Card.js']
         },
         {
+          name: 'EmptyState',
+          components: ['./src/components/EmptyState/EmptyState.js']
+        },
+        {
           name: 'Notification System',
           content: './src/components/NotificationSystem/NotificationSystem.md'
         },
@@ -243,7 +247,7 @@ module.exports = {
           .view-html-btn--active {
             border-bottom: 2px #f28a25 solid;
           }
-          
+
           pre.prettyprint { display: block; background-color: #0a001f; font-size: 13px; font-family: monospace; margin: 0; padding: 8px 16px;}
           pre .tag { color: #99b2ff; }
           pre .nocode { background-color: transparent; color: #000 }
