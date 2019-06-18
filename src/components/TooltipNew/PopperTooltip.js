@@ -404,6 +404,9 @@ PopperTooltip.propTypes = {
    */
   triggerActionType: PropTypes.oneOf(['managed', 'click', 'hover']),
   zIndex: PropTypes.number.isRequired,
+  /**
+   * Use this props to trigger the function if the tooltip content is going to be visible. It works for `click` and `hover` trigger action types.
+   */
   onOpen: PropTypes.func
 };
 
