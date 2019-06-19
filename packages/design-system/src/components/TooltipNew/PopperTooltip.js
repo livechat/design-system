@@ -81,8 +81,19 @@ class PopperTooltip extends React.PureComponent {
   handleTriggerMouseEnter = () => {
     this.isTriggerHovered = true;
     this.clearTooltipHideTimeout();
-    this.setState({
-      isVisible: true
+    this.setState(prevState => {
+      const shouldTriggerOpenCallback =
+        !this.isIsVisibleControlled() &&
+        !prevState.isVisible &&
+        this.props.onOpen;
+
+      if (shouldTriggerOpenCallback) {
+        this.props.onOpen();
+      }
+
+      return {
+        isVisible: true
+      };
     });
   };
 
@@ -120,9 +131,20 @@ class PopperTooltip extends React.PureComponent {
   };
 
   handleTriggerClick = () => {
-    this.setState(prevState => ({
-      isVisible: !prevState.isVisible
-    }));
+    this.setState(prevState => {
+      const isVisible = !prevState.isVisible;
+
+      const shouldTriggerOpenCallback =
+        !this.isIsVisibleControlled() && isVisible && this.props.onOpen;
+
+      if (shouldTriggerOpenCallback) {
+        this.props.onOpen();
+      }
+
+      return {
+        isVisible
+      };
+    });
   };
 
   handleDelayedTooltipHide = () => {
@@ -225,6 +247,7 @@ class PopperTooltip extends React.PureComponent {
       withFadeAnimation,
       transitionDuration,
       transitionDelay,
+      onOpen,
       ...restProps
     } = this.props;
 
@@ -384,7 +407,11 @@ PopperTooltip.propTypes = {
    *   component visibility.
    */
   triggerActionType: PropTypes.oneOf(['managed', 'click', 'hover']),
-  zIndex: PropTypes.number.isRequired
+  zIndex: PropTypes.number.isRequired,
+  /**
+   * Use this props to trigger the function if the tooltip content is going to be visible. It works for `click` and `hover` trigger action types.
+   */
+  onOpen: PropTypes.func
 };
 
 PopperTooltip.defaultProps = {
