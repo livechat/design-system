@@ -2,24 +2,34 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './style.scss';
+import getMergedClassNames from '../../utils/getMergedClassNames';
 
-const noop = () => {};
 const cx = classNames.bind(styles);
 
-const Tab = ({ onSelect, href, isSelected, children, description }) => {
+const Tab = ({
+  children,
+  className,
+  description,
+  href,
+  isSelected,
+  ...restProps
+}) => {
   const Component = props => (href ? <a {...props} /> : <button {...props} />);
 
+  const mergedClassNames = getMergedClassNames(
+    cx({
+      tab: true,
+      'tab--selected': isSelected
+    }),
+    className
+  );
+
+  const isDescriptionProvided = description !== null;
+
   return (
-    <Component
-      href={href}
-      onClick={onSelect}
-      className={cx({
-        tab: true,
-        'tab--selected': isSelected
-      })}
-    >
+    <Component {...restProps} href={href} className={mergedClassNames}>
       {children}
-      {description && (
+      {isDescriptionProvided && (
         <span className={styles.tab__description}>({description})</span>
       )}
     </Component>
@@ -28,14 +38,17 @@ const Tab = ({ onSelect, href, isSelected, children, description }) => {
 
 Tab.propTypes = {
   children: PropTypes.node.isRequired,
-  onSelect: PropTypes.func,
-  description: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  className: PropTypes.string,
+  description: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.node
+  ]),
   href: PropTypes.string,
   isSelected: PropTypes.bool
 };
 
 Tab.defaultProps = {
-  onSelect: noop,
   description: null,
   href: null,
   isSelected: false

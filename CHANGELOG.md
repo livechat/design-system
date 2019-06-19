@@ -1,6 +1,35 @@
-## Change Log
-
 All notable changes to this project will be documented in this file.
+
+## v0.4.1
+
+_Release: 2019-06-11_
+
+##### Bug Fixes
+
+- `Tab` component documentation update - main handler changed from `onSelect` to `onClick` in the previous release
+- passing number `0` as `Tab` description caused wrong render of the component
+
+---
+
+## v0.4.0
+
+_Release: 2019-06-06_
+
+##### New Features
+
+- `Card` and `Divider` components
+
+##### Refactors
+
+- documentation styles updated
+- adding typescript types and support for other html properties to `Tabs`, `TabsWrapper` and `TabsList` components
+- `footer` prop of `Modal` component is now optional
+
+##### Deprecations
+
+- `Tabs` main handler `onSelect` changed to `onClick`. `onSelect` property will handling HTML `onselect` event
+
+---
 
 ## v0.3.1
 
