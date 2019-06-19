@@ -2,14 +2,15 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import styles from './style.scss';
 
+const defaultIndex = -1;
 const baseClass = 'btn-group';
 
 class ButtonGroup extends React.Component {
   state = {
-    currentIndex: this.props.currentIndex || -1
+    currentIndex: this.props.currentIndex || defaultIndex
   };
 
-  makeClickHandler = index => event => {
+  handleClick = index => event => {
     this.props.onChange(event, index);
     this.setState({ currentIndex: index });
   };
@@ -27,7 +28,7 @@ class ButtonGroup extends React.Component {
         fullWidth,
         primary: false,
         destructive: false,
-        onClick: this.makeClickHandler(index),
+        onClick: this.handleClick(index),
         className: index === currentIndex ? styles.active : null
       })
     );
