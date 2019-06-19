@@ -27,6 +27,7 @@ export interface IPopperTooltipProps
     | React.ReactNode;
   triggerActionType?: TooltipTriggerAction;
   zIndex: number;
+  onOpen?: () => void;
 }
 
 type CssTooltipPlacement =
