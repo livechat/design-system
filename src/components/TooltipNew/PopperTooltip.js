@@ -82,11 +82,12 @@ class PopperTooltip extends React.PureComponent {
     this.isTriggerHovered = true;
     this.clearTooltipHideTimeout();
     this.setState(prevState => {
-      if (
+      const shouldTriggerOpenCallback =
         !this.isIsVisibleControlled() &&
         !prevState.isVisible &&
-        this.props.onOpen
-      ) {
+        this.props.onOpen;
+
+      if (shouldTriggerOpenCallback) {
         this.props.onOpen();
       }
 
@@ -133,7 +134,10 @@ class PopperTooltip extends React.PureComponent {
     this.setState(prevState => {
       const isVisible = !prevState.isVisible;
 
-      if (!this.isIsVisibleControlled() && isVisible && this.props.onOpen) {
+      const shouldTriggerOpenCallback =
+        !this.isIsVisibleControlled() && isVisible && this.props.onOpen;
+
+      if (shouldTriggerOpenCallback) {
         this.props.onOpen();
       }
 
