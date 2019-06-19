@@ -5,16 +5,50 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 import DropdownListItem from './DropdownListItem';
 import { KeyCodes } from '../../constants/keyCodes';
 import findNextFocusableItem from '../../helpers/find-next-focusable-item';
+import { getFirstFocusableItemId } from './helpers';
 
 const baseClass = 'dropdown';
 
 class DropdownList extends React.PureComponent {
-  state = {
-    focusedElement: null
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      focusedElement: getFirstFocusableItemId(props.items),
+      itemsCount: props.items.length
+    };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (
+      props.autoFocusOnItemsCountChange &&
+      props.items.length !== state.itemsCount
+    ) {
+      return {
+        focusedElement: getFirstFocusableItemId(props.items),
+        itemsCount: props.items.length
+      };
+    }
+    return null;
+  }
 
   componentDidMount() {
-    document.addEventListener('keydown', this.onKeydown);
+    if (this.props.keyboardEventsEnabled) {
+      document.addEventListener('keydown', this.onKeydown);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const eventsEnabled =
+      !prevProps.keyboardEventsEnabled && this.props.keyboardEventsEnabled;
+    const eventsDisabled =
+      prevProps.keyboardEventsEnabled && !this.props.keyboardEventsEnabled;
+
+    if (eventsEnabled) {
+      document.addEventListener('keydown', this.onKeydown);
+    } else if (eventsDisabled) {
+      document.removeEventListener('keydown', this.onKeydown);
+    }
   }
 
   componentWillUnmount() {
@@ -31,8 +65,9 @@ class DropdownList extends React.PureComponent {
       this.handleArrowKeyUse(event);
     }
 
-    if (keyCode === KeyCodes.enter) {
-      this.handleEnterKeyUse();
+    if (this.isItemSelectKeyCode(keyCode)) {
+      event.preventDefault();
+      this.handleSelectKeyUse(event);
     }
   };
 
@@ -48,7 +83,7 @@ class DropdownList extends React.PureComponent {
     return this.hoverCallbacks[itemKey];
   };
 
-  handleEnterKeyUse = () => {
+  handleSelectKeyUse = event => {
     const { focusedElement } = this.state;
 
     if (focusedElement !== null) {
@@ -57,7 +92,7 @@ class DropdownList extends React.PureComponent {
       );
 
       if (selectedItem && selectedItem.onItemSelect) {
-        selectedItem.onItemSelect(selectedItem.itemId);
+        selectedItem.onItemSelect(selectedItem.itemId, event);
       }
     }
   };
@@ -104,6 +139,16 @@ class DropdownList extends React.PureComponent {
     );
   };
 
+  isItemSelectKeyCode = keyCode => {
+    const { itemSelectKeyCodes } = this.props;
+
+    if (itemSelectKeyCodes && itemSelectKeyCodes.includes(keyCode)) {
+      return true;
+    }
+
+    return false;
+  };
+
   scrollItems = () => {
     if (!this.listRef.current) {
       return;
@@ -142,7 +187,15 @@ class DropdownList extends React.PureComponent {
   listRef = React.createRef();
 
   render() {
-    const { className, items, getItemBody, ...restProps } = this.props;
+    const {
+      className,
+      items,
+      getItemBody,
+      itemSelectKeyCodes,
+      autoFocusOnItemsCountChange,
+      keyboardEventsEnabled,
+      ...restProps
+    } = this.props;
 
     const mergedClassNames = getMergedClassNames(
       styles[`${baseClass}__list`],
@@ -188,7 +241,12 @@ class DropdownList extends React.PureComponent {
 }
 
 DropdownList.propTypes = {
+  autoFocusOnItemsCountChange: PropTypes.bool,
   className: PropTypes.string,
+  /**
+   * use this property to enable/disable keyboard events of DropdownList
+   */
+  keyboardEventsEnabled: PropTypes.bool,
   items: PropTypes.arrayOf(
     PropTypes.shape({
       className: PropTypes.string,
@@ -205,7 +263,16 @@ DropdownList.propTypes = {
     })
   ).isRequired,
   getItemBody: PropTypes.func,
-  onScroll: PropTypes.func
+  onScroll: PropTypes.func,
+  /**
+   * you can specify which key press should trigger list item select
+   */
+  itemSelectKeyCodes: PropTypes.arrayOf(PropTypes.number)
+};
+
+DropdownList.defaultProps = {
+  keyboardEventsEnabled: true,
+  itemSelectKeyCodes: [KeyCodes.enter]
 };
 
 export default DropdownList;

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Switch should render basic Switch 1`] = `
-<Switch
+<SwitchComponent
   defaultOn={false}
   innerRef={null}
   name="switch"

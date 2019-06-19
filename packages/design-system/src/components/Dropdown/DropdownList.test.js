@@ -14,14 +14,14 @@ const generateItems = (length = 10) =>
     onItemSelect: jest.fn()
   }));
 
-describe('Archives | Components | FiltersMenu', () => {
+describe('Components | DropdownList', () => {
   let items;
 
   beforeEach(() => {
     items = generateItems(4);
   });
 
-  it('renders correctly', () => {
+  it('renders correctly four items with autofocused second item', () => {
     const renderer = new ShallowRenderer();
     const component = renderer.render(<DropdownList items={items} />);
 
