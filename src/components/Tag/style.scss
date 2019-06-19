@@ -1,0 +1,63 @@
+.tag {
+  background-color: #59699e;
+  display: inline-block;
+  min-width: auto;
+  width: auto;
+  color: #fff;
+  position: relative;
+  margin: 2px 3px;
+  border-radius: 5px;
+  padding: 6px 10px;
+  cursor: default;
+  overflow: hidden;
+  font-size: 14px;
+  align-items: center;
+  max-width: 180px;
+
+  &-content {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 22px;
+  }
+
+  &-remove-icon {
+    position: absolute;
+    opacity: 0.5;
+    margin-right: 8px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    display: flex;
+    padding: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &-icon {
+    position: absolute;
+    opacity: 0.5;
+    margin-right: 8px;
+    background: transparent;
+    display: flex;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &--removable-with-icon {
+    .tag-remove-icon {
+      opacity: 0;
+    }
+
+    &:hover {
+      .tag-icon {
+        opacity: 0;
+      }
+
+      .tag-remove-icon {
+        opacity: 0.5;
+      }
+    }
+  }
+}

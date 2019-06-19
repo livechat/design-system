@@ -107,6 +107,10 @@ module.exports = {
         {
           name: 'Loader',
           components: ['./src/components/Loader/Loader.js']
+        },
+        {
+          name: 'Tag',
+          components: ['./src/components/Tag/Tag.js']
         }
       ]
     },

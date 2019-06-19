@@ -64,3 +64,5 @@ export { PopperTooltip, CssTooltip } from './TooltipNew';
 export { Loader } from './Loader';
 
 export { Divider } from './Divider';
+
+export { Tag } from './Tag';
