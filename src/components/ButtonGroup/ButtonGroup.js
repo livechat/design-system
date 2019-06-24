@@ -7,20 +7,26 @@ const baseClass = 'btn-group';
 
 class ButtonGroup extends React.Component {
   state = {
-    currentIndex: this.props.currentIndex || defaultIndex
+    currentIndex: defaultIndex
   };
 
-  handleClick = index => event => {
-    this.props.onChange(event, index);
+  static getDerivedStateFromProps(props, state) {
+    return {
+      currentIndex:
+        typeof props.currentIndex === 'number'
+          ? props.currentIndex
+          : state.currentIndex
+    };
+  }
+
+  handleClick = index => () => {
+    this.props.onChange(index);
     this.setState({ currentIndex: index });
   };
 
   render() {
+    const { currentIndex } = this.state;
     const { size, fullWidth, children, ...restProps } = this.props;
-    const currentIndex =
-      typeof this.props.currentIndex === 'number'
-        ? this.props.currentIndex
-        : this.state.currentIndex;
 
     const mappedChildren = React.Children.map(children, (child, index) =>
       React.cloneElement(child, {
@@ -69,7 +75,10 @@ ButtonGroup.propTypes = {
   /**
    * One or more `Button` components
    */
-  children: PropTypes.arrayOf(PropTypes.element)
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node)
+  ])
 };
 
 export default ButtonGroup;
