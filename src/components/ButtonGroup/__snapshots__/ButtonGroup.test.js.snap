@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonGroup should render button group with button 1`] = `
+<div
+  className="btn-group"
+  onChange={[Function]}
+  role="group"
+>
+  <Component
+    className={null}
+    destructive={false}
+    key=".0"
+    onClick={[Function]}
+    primary={false}
+  />
+</div>
+`;
+
+exports[`ButtonGroup should render empty button group 1`] = `
+<div
+  className="btn-group"
+  onChange={[Function]}
+  role="group"
+/>
+`;
