@@ -1,6 +1,6 @@
 ### Basic ButtonGroup
 
-By default ButtonGroup use internal state to track currently selected button. It fires `onChange`callback each time when one of buttons was clicked supling its indexc and triggered event object.
+By default ButtonGroup use internal state to track currently selected button. It fires `onChange`callback each time when one of buttons was clicked supling its index.
 
 ```js
 <ButtonGroup>
