@@ -6,16 +6,22 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const cx = classNames.bind(styles);
 
+const Component = React.forwardRef((props, ref) => {
+  if (props.href) {
+    return <a ref={ref} {...props} />;;
+  }
+  return <button ref={ref} {...props} />;;
+});;
+
 const Tab = ({
   children,
   className,
   description,
   href,
   isSelected,
+  innerRef,
   ...restProps
 }) => {
-  const Component = props => (href ? <a {...props} /> : <button {...props} />);
-
   const mergedClassNames = getMergedClassNames(
     cx({
       tab: true,
@@ -27,7 +33,12 @@ const Tab = ({
   const isDescriptionProvided = description !== null;
 
   return (
-    <Component {...restProps} href={href} className={mergedClassNames}>
+    <Component
+      {...restProps}
+      ref={innerRef}
+      href={href}
+      className={mergedClassNames}
+    >
       {children}
       {isDescriptionProvided && (
         <span className={styles.tab__description}>({description})</span>
@@ -54,4 +65,6 @@ Tab.defaultProps = {
   isSelected: false
 };
 
-export default Tab;
+export default React.forwardRef((props, ref) => (
+  <Tab innerRef={ref} {...props} />
+));

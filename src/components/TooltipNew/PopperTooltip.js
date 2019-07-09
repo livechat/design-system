@@ -13,13 +13,18 @@ const noop = () => {};
 
 class PopperTooltip extends React.PureComponent {
   state = {
-    isVisible: false
+    isVisible: false,
+    highlightedElementCoords: null
   };
 
   componentDidMount() {
     if (this.props.closeOnOutsideClick && this.getIsVisible()) {
       document.addEventListener('click', this.handleDocumentClick);
     }
+
+    window.addEventListener('scroll', this.handleDocumentScroll);
+
+    this.calculateHightlightArea();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -40,6 +45,18 @@ class PopperTooltip extends React.PureComponent {
     if (this.props.triggerActionType === 'hover') {
       this.manageTooltipListeners(didShow, didHide);
     }
+
+    if (
+      (didShow &&
+        this.props.highlightedElement &&
+        this.props.highlightedElement.current) ||
+      (prevProps.highlightedElement &&
+        !prevProps.highlightedElement.current &&
+        this.props.highlightedElement &&
+        this.props.highlightedElement.current)
+    ) {
+      this.calculateHightlightArea();
+    }
   }
 
   componentWillUnmount() {
@@ -55,6 +72,7 @@ class PopperTooltip extends React.PureComponent {
       );
     }
     document.removeEventListener('click', this.handleDocumentClick);
+    window.removeEventListener('scroll', this.handleDocumentScroll);
   }
 
   getModifiers = memoizeOne(buildPopperModifiers);
@@ -77,6 +95,39 @@ class PopperTooltip extends React.PureComponent {
   getTooltipRef = () => this.props.tooltipRef || this.tooltipRef;
 
   isIsVisibleControlled = () => this.props.triggerActionType === 'managed';
+
+  calculateHightlightArea = () => {
+    if (!this.getIsVisible()) {
+      return false;
+    }
+    if (
+      this.props.highlightedElement &&
+      this.props.highlightedElement.current
+    ) {
+      const {
+        left,
+        top,
+        right,
+        bottom,
+        width,
+        height
+      } = this.props.highlightedElement.current.getBoundingClientRect();
+      this.setState({
+        highlightedElementCoords: {
+          left,
+          right,
+          top,
+          bottom,
+          width,
+          height
+        }
+      });
+    }
+  };
+
+  handleDocumentScroll = () => {
+    this.calculateHightlightArea();
+  };
 
   handleTriggerMouseEnter = () => {
     this.isTriggerHovered = true;
@@ -248,6 +299,7 @@ class PopperTooltip extends React.PureComponent {
       transitionDuration,
       transitionDelay,
       onOpen,
+      highlightedElement,
       ...restProps
     } = this.props;
 
@@ -333,7 +385,54 @@ class PopperTooltip extends React.PureComponent {
   );
 
   render() {
-    return this.renderPopperManager();
+    const { highlightedElementCoords } = this.state;
+    const isVisible = this.getIsVisible();
+    return (
+      <React.Fragment>
+        {this.renderPopperManager()}
+        {highlightedElementCoords &&
+          isVisible && (
+            <React.Fragment>
+              <div
+                className={styles[`${baseClass}__overlay`]}
+                style={{
+                  top: 0,
+                  left: 0,
+                  height: highlightedElementCoords.top,
+                  right: 0
+                }}
+              />
+              <div
+                className={styles[`${baseClass}__overlay`]}
+                style={{
+                  bottom: 0,
+                  top: highlightedElementCoords.bottom,
+                  left: 0,
+                  right: 0
+                }}
+              />
+              <div
+                className={styles[`${baseClass}__overlay`]}
+                style={{
+                  top: highlightedElementCoords.top,
+                  left: 0,
+                  width: highlightedElementCoords.left,
+                  height: highlightedElementCoords.height
+                }}
+              />
+              <div
+                className={styles[`${baseClass}__overlay`]}
+                style={{
+                  top: highlightedElementCoords.top,
+                  left: highlightedElementCoords.right,
+                  right: 0,
+                  height: highlightedElementCoords.height
+                }}
+              />
+            </React.Fragment>
+          )}
+      </React.Fragment>
+    );
   }
 }
 
@@ -411,7 +510,8 @@ PopperTooltip.propTypes = {
   /**
    * Use this props to trigger the function if the tooltip content is going to be visible. It works for `click` and `hover` trigger action types.
    */
-  onOpen: PropTypes.func
+  onOpen: PropTypes.func,
+  highlightedElement: PropTypes.object
 };
 
 PopperTooltip.defaultProps = {

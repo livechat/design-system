@@ -3,8 +3,12 @@ import * as PropTypes from 'prop-types';
 import cx from 'classnames';
 import styles from './style.scss';
 
-const TabsWrapper = ({ children, className, ...restProps }) => (
-  <div {...restProps} className={cx(styles.tabs, { [className]: className })}>
+const TabsWrapper = ({ children, className, innerRef, ...restProps }) => (
+  <div
+    {...restProps}
+    ref={innerRef}
+    className={cx(styles.tabs, { [className]: className })}
+  >
     {children}
   </div>
 );
@@ -14,4 +18,6 @@ TabsWrapper.propTypes = {
   className: PropTypes.string
 };
 
-export default TabsWrapper;
+export default React.forwardRef((props, ref) => (
+  <TabsWrapper innerRef={ref} {...props} />
+));

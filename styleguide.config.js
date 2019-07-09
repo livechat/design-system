@@ -74,6 +74,10 @@ module.exports = {
           ]
         },
         {
+          name: 'Tooltip with hightlight',
+          content: './src/components/TooltipNew/TooltipWithHighlight.md'
+        },
+        {
           name: 'Dropdown',
           components: [
             './src/components/Dropdown/Dropdown.js',

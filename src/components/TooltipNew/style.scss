@@ -19,6 +19,12 @@
     outline: none;
   }
 
+  &__overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    z-index: 1000;
+  }
+
   &-enter {
     opacity: 0;
     visibility: hidden;
