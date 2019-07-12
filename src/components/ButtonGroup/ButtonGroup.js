@@ -37,7 +37,7 @@ class ButtonGroup extends React.Component {
         destructive: false,
         onClick: this.handleClick(index),
         className: cx({
-          className: true,
+          [className]: !!className,
           [styles.active]: index === currentIndex
         })
       })

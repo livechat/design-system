@@ -7,7 +7,7 @@ exports[`ButtonGroup should render button group with button 1`] = `
   role="group"
 >
   <Component
-    className={null}
+    className=""
     destructive={false}
     key=".0"
     onClick={[Function]}
