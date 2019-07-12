@@ -10,6 +10,7 @@
       color: $font-primary-color;
       border-color: $border-primary-color;
       background-color: $ui-background-color;
+      z-index: 1;
 
       &:hover {
         background-color: $ui-background-color-hover;

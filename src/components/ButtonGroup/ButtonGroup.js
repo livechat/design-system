@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import cx from 'classnames';
 import styles from './style.scss';
 
 const defaultIndex = -1;
@@ -26,7 +27,7 @@ class ButtonGroup extends React.Component {
 
   render() {
     const { currentIndex } = this.state;
-    const { size, fullWidth, children, ...restProps } = this.props;
+    const { size, fullWidth, children, className, ...restProps } = this.props;
 
     const mappedChildren = React.Children.map(children, (child, index) =>
       React.cloneElement(child, {
@@ -35,7 +36,10 @@ class ButtonGroup extends React.Component {
         primary: false,
         destructive: false,
         onClick: this.handleClick(index),
-        className: index === currentIndex ? styles.active : null
+        className: cx({
+          className: true,
+          [styles.active]: index === currentIndex
+        })
       })
     );
 
@@ -56,6 +60,11 @@ ButtonGroup.propTypes = {
    * If `true`, the buttons in group will take up the full width of its container
    */
   fullWidth: PropTypes.bool,
+
+  /**
+   * Additionall class name for buttons components
+   */
+  className: PropTypes.string,
 
   /**
    * Callback fired when the value of `currentIndex` changes
