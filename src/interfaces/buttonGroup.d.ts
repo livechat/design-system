@@ -3,6 +3,7 @@ import { ButtonSize } from "./buttons";
 
 export interface IButtonGroupProps {
   fullWidth?: boolean;
+  className?: string;
   currentIndex?: number;
   size: ButtonSize;
   children: React.ReactNode;
