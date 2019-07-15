@@ -71,6 +71,7 @@ $base-class: 'toast';
     }
 
     &-custom {
+      white-space: nowrap;
       background-color: transparent;
       outline: 0;
       border: 0;
