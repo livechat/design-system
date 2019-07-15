@@ -1,5 +1,16 @@
 All notable changes to this project will be documented in this file.
 
+## v0.4.3
+
+_Release: 2019-07-15_
+
+##### Bug Fixes
+
+- `Toast` component styles fix for long action names
+- `Switch` interface change - removing redundant onChange property
+
+---
+
 ## v0.4.2
 
 _Release: 2019-06-19_
