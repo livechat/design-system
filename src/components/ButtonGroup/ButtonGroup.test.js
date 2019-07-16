@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import ButtonGroup from './ButtonGroup';
 import Button from '../Button';
 
-const onChangeFn = jest.fn();
+const onIndexChangeFn = jest.fn();
 
 describe('ButtonGroup', () => {
   it('should render empty button group', () => {
@@ -24,7 +24,7 @@ describe('ButtonGroup', () => {
 
   it('should handle current index change', () => {
     const component = shallow(
-      <ButtonGroup onChange={onChangeFn}>
+      <ButtonGroup onIndexChange={onIndexChangeFn}>
         <Button id="button1" />
         <Button id="button2" />
         <Button id="button3" />
@@ -32,13 +32,13 @@ describe('ButtonGroup', () => {
     );
 
     component.find('#button1').simulate('click');
-    expect(onChangeFn).toBeCalledWith(0);
+    expect(onIndexChangeFn).toBeCalledWith(0);
 
     component.find('#button2').simulate('click');
-    expect(onChangeFn).toBeCalledWith(1);
+    expect(onIndexChangeFn).toBeCalledWith(1);
 
     component.find('#button3').simulate('click');
-    expect(onChangeFn).toBeCalledWith(2);
+    expect(onIndexChangeFn).toBeCalledWith(2);
   });
 
   it('should use current index from porps', () => {

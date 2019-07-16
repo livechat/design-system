@@ -3,7 +3,7 @@
 exports[`ButtonGroup should render button group with button 1`] = `
 <div
   className="btn-group"
-  onChange={[Function]}
+  onIndexChange={[Function]}
   role="group"
 >
   <Component
@@ -19,7 +19,7 @@ exports[`ButtonGroup should render button group with button 1`] = `
 exports[`ButtonGroup should render empty button group 1`] = `
 <div
   className="btn-group"
-  onChange={[Function]}
+  onIndexChange={[Function]}
   role="group"
 />
 `;

@@ -20,8 +20,8 @@ class ButtonGroup extends React.Component {
     };
   }
 
-  handleClick = index => () => {
-    this.props.onChange(index);
+  handleClick = index => {
+    this.props.onIndexChange(index);
     this.setState({ currentIndex: index });
   };
 
@@ -35,7 +35,12 @@ class ButtonGroup extends React.Component {
         fullWidth,
         primary: false,
         destructive: false,
-        onClick: this.handleClick(index),
+        onClick: (...args) => {
+          this.handleClick(index);
+          if (child.props.onClick) {
+            child.props.onClick(...args);
+          }
+        },
         className: cx({
           [className]: !!className,
           [styles.active]: index === currentIndex
@@ -52,7 +57,7 @@ class ButtonGroup extends React.Component {
 }
 
 ButtonGroup.defaultProps = {
-  onChange: () => {}
+  onIndexChange: () => {}
 };
 
 ButtonGroup.propTypes = {
@@ -69,7 +74,7 @@ ButtonGroup.propTypes = {
   /**
    * Callback fired when the value of `currentIndex` changes
    */
-  onChange: PropTypes.func,
+  onIndexChange: PropTypes.func,
 
   /**
    * The index of button in group which is currently active
