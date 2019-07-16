@@ -38,7 +38,10 @@ module.exports = {
         },
         {
           name: 'Button',
-          components: './src/components/Button/Button.js'
+          components: [
+            './src/components/Button/Button.js',
+            './src/components/ButtonGroup/ButtonGroup.js'
+          ]
         },
         {
           name: 'Tab',
@@ -243,7 +246,7 @@ module.exports = {
           .view-html-btn--active {
             border-bottom: 2px #f28a25 solid;
           }
-          
+
           pre.prettyprint { display: block; background-color: #0a001f; font-size: 13px; font-family: monospace; margin: 0; padding: 8px 16px;}
           pre .tag { color: #99b2ff; }
           pre .nocode { background-color: transparent; color: #000 }
