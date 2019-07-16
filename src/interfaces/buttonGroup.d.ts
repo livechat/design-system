@@ -9,8 +9,8 @@ export interface IButtonGroupProps
   size: ButtonSize;
   children: React.ReactNode;
   onIndexChange?: (
-    event: React.MouseEvent<HTMLDivElement>,
-    index: number
+    index: number,
+    event: React.MouseEvent<HTMLDivElement>
   ) => void;
 }
 

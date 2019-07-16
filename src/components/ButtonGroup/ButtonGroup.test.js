@@ -31,14 +31,16 @@ describe('ButtonGroup', () => {
       </ButtonGroup>
     );
 
-    component.find('#button1').simulate('click');
-    expect(onIndexChangeFn).toBeCalledWith(0);
+    const fakeEvent = new Event('fake');
 
-    component.find('#button2').simulate('click');
-    expect(onIndexChangeFn).toBeCalledWith(1);
+    component.find('#button1').simulate('click', fakeEvent);
+    expect(onIndexChangeFn).toBeCalledWith(0, fakeEvent);
 
-    component.find('#button3').simulate('click');
-    expect(onIndexChangeFn).toBeCalledWith(2);
+    component.find('#button2').simulate('click', fakeEvent);
+    expect(onIndexChangeFn).toBeCalledWith(1, fakeEvent);
+
+    component.find('#button3').simulate('click', fakeEvent);
+    expect(onIndexChangeFn).toBeCalledWith(2, fakeEvent);
   });
 
   it('should use current index from porps', () => {

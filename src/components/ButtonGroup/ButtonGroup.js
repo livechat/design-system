@@ -20,8 +20,8 @@ class ButtonGroup extends React.Component {
     };
   }
 
-  handleClick = index => {
-    this.props.onIndexChange(index);
+  handleClick = (index, event) => {
+    this.props.onIndexChange(index, event);
     this.setState({ currentIndex: index });
   };
 
@@ -35,10 +35,10 @@ class ButtonGroup extends React.Component {
         fullWidth,
         primary: false,
         destructive: false,
-        onClick: (...args) => {
-          this.handleClick(index);
+        onClick: event => {
+          this.handleClick(index, event);
           if (child.props.onClick) {
-            child.props.onClick(...args);
+            child.props.onClick(event);
           }
         },
         className: cx({
