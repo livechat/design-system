@@ -191,13 +191,14 @@ class NumericInput extends React.PureComponent {
 NumericInput.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
-  error: PropTypes.string,
+  error: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   value: PropTypes.string,
   max: PropTypes.number,
   min: PropTypes.number,
   disabled: PropTypes.bool,
   noControls: PropTypes.bool,
   width: PropTypes.string,
+  style: PropTypes.instanceOf(Object),
   /**
    * It's called with string value: '', '-' or '{number}'
    */

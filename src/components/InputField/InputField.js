@@ -42,7 +42,7 @@ InputField.propTypes = {
   className: PropTypes.string,
   fieldClassName: PropTypes.string,
   inline: PropTypes.bool,
-  error: PropTypes.string,
+  error: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   description: PropTypes.node
 };
 

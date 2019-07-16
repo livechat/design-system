@@ -39,7 +39,7 @@ TextAreaField.propTypes = {
   id: PropTypes.string.isRequired,
   className: PropTypes.string,
   inline: PropTypes.bool,
-  error: PropTypes.string,
+  error: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   description: PropTypes.node,
   fieldClassName: PropTypes.string
 };
