@@ -8,6 +8,7 @@ $base-class: 'checkbox';
   &__label {
     cursor: pointer;
     display: inline-flex;
+    flex: 0 1 auto;
     align-items: flex-start;
     width: 100%;
   }
@@ -51,7 +52,7 @@ $base-class: 'checkbox';
   &__text {
     font-size: 15px;
     line-height: 20px;
-    flex: 1;
+    flex: 1 0 auto;
     color: $font-primary-color;
   }
 
