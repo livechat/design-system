@@ -54,7 +54,7 @@ TextField.propTypes = {
   htmlFor: PropTypes.string.isRequired,
   className: PropTypes.string,
   inline: PropTypes.bool,
-  error: PropTypes.string,
+  error: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   description: PropTypes.node,
   children: PropTypes.node
 };

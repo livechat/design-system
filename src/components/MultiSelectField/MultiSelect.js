@@ -471,7 +471,7 @@ class MultiSelect extends React.PureComponent {
 MultiSelect.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
-  error: PropTypes.string,
+  error: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   getItemBody: PropTypes.func.isRequired,
   getSelectedItemBody: PropTypes.func.isRequired,
   onItemSelect: PropTypes.func.isRequired,

@@ -21,7 +21,7 @@ const Input = React.forwardRef((props, ref) => {
 });
 
 Input.propTypes = {
-  error: PropTypes.string,
+  error: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   className: PropTypes.string,
   type: PropTypes.string
 };

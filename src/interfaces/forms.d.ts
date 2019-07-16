@@ -3,14 +3,14 @@
 export interface ISelectProps {
   className?: string;
   id?: string;
-  error?: string;
+  error?: string | React.ReactNode;
   isOpen?: boolean;
   searchEmptyState?: React.ReactNode;
   items: {
     key: string;
     props: {
       [key: string]: any;
-    }
+    };
   }[];
   searchProperty?: string | string[];
   search?: boolean;
@@ -33,21 +33,21 @@ export interface ISelectFieldProps extends ISelectProps {
   className?: string;
   inline?: boolean;
   fieldClassName?: string;
-  error?: string;
+  error?: string | React.ReactNode;
   description?: React.ReactNode;
 }
 
 export interface IMultiSelectProps {
   className?: string;
   disabled?: boolean;
-  error?: string;
+  error?: string | React.ReactNode;
   id?: string;
   isOpen?: boolean;
   items: {
     key: string;
     props: {
       [key: string]: any;
-    }
+    };
   }[];
   maxItemsContainerHeight: number;
   openedOnInit?: boolean;
@@ -74,12 +74,13 @@ export interface IMultiSelectFieldProps extends IMultiSelectProps {
   className?: string;
   fieldClassName?: string;
   inline?: boolean;
-  error?: string;
+  error?: string | React.ReactNode;
   description?: React.ReactNode;
 }
 
-export interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  error?: string;
+export interface IInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  error?: string | React.ReactNode;
 }
 
 export interface IInputFieldProps extends IInputProps {
@@ -90,8 +91,9 @@ export interface IInputFieldProps extends IInputProps {
   fieldClassName?: string;
 }
 
-export interface ITextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
-  error?: string;
+export interface ITextAreaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  error?: string | React.ReactNode;
 }
 
 export interface ITextAreaFieldProps extends ITextAreaProps {
@@ -107,7 +109,7 @@ export interface INumericInputProps {
   id?: string;
   className?: string;
   style?: React.CSSProperties;
-  error?: string;
+  error?: string | React.ReactNode;
   max?: number;
   min?: number;
   noControls?: boolean;
@@ -122,12 +124,14 @@ export interface INumericInputFieldProps extends INumericInputProps {
   description?: React.ReactNode;
 }
 
-export interface ICheckboxFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface ICheckboxFieldProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   checked: boolean;
   description?: React.ReactNode;
 }
 
-export interface IRadioButtonProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface IRadioButtonProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   checked?: boolean;
   description?: React.ReactNode;
 }

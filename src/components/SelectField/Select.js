@@ -347,7 +347,7 @@ class Select extends React.PureComponent {
 
 Select.propTypes = {
   className: PropTypes.string,
-  error: PropTypes.string,
+  error: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   id: PropTypes.string,
   /**
    * Use when you need to control multiselect dropdown visibility in its parent component
