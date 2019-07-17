@@ -66,7 +66,7 @@ const Button = React.forwardRef((props, ref) => {
       {loading && (
         <Loader size="small" className={styles[`${baseClass}__loader`]} />
       )}
-      {children}
+      <div className={styles[`${baseClass}__content`]}>{children}</div>
     </button>
   );
 });
