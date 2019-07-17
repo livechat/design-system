@@ -3,11 +3,14 @@ import * as PopperJS from "popper.js";
 
 type RefHandler = (ref: HTMLElement | null) => void;
 
+export type TooltipTheme = "normal" | "invert" | "important";
+
 export type TooltipTriggerAction = "managed" | "click" | "hover";
 
 export interface IPopperTooltipProps
   extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
+  theme?: TooltipTheme;
   closeOnOutsideClick?: boolean;
   eventsEnabled?: boolean;
   hoverOutDelayTimeout?: number;

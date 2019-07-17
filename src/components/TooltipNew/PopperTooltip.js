@@ -233,6 +233,7 @@ class PopperTooltip extends React.PureComponent {
     const {
       children,
       className,
+      theme,
       closeOnOutsideClick,
       hoverOutDelayTimeout,
       zIndex,
@@ -269,6 +270,7 @@ class PopperTooltip extends React.PureComponent {
         data-placement={placement}
         className={cx({
           [styles[baseClass]]: true,
+          [styles[`${baseClass}--${theme}`]]: theme,
           [className]: className
         })}
       >
@@ -340,6 +342,7 @@ class PopperTooltip extends React.PureComponent {
 PopperTooltip.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  theme: PropTypes.oneOf(['normal', 'invert', 'important']),
   /**
    * Use `closeOnOutsideClick=true` when you want tooltip to be closed on click outside it.
    * If you are using `triggerActionType='managed'` event handler will call provided onClose prop.
@@ -415,6 +418,7 @@ PopperTooltip.propTypes = {
 };
 
 PopperTooltip.defaultProps = {
+  theme: 'normal',
   hoverOutDelayTimeout: 100,
   modifiers: {},
   onClose: noop,
