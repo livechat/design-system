@@ -1,0 +1,12 @@
+@import '../mixins/typography';
+
+$primary-font-color: #4e5665;
+$secodnary-font-color: rgba(78,86,101, 0.8);
+
+@mixin heading-large-primary{
+    @include heading-large($primary-font-color);
+};
+
+@mixin button-label-primary{
+    @include button-text($primary-font-color);
+};

@@ -1,6 +1,8 @@
 @import '../../scss/variables/colors';
+@import '../../scss/variables/typography';
 
 .btn {
+  @include button-label-primary;
   position: relative;
   align-items: center;
   justify-content: center;
@@ -14,12 +16,9 @@
   text-align: center;
   cursor: pointer;
   border-radius: 4px;
-  font-weight: 600;
   display: inline-flex;
   background-color: #fff;
-  color: $font-primary-color;
   border-color: $border-primary-color;
-  font-size: 15px;
   padding: 0 16px;
   min-width: 36px;
   min-height: 36px;
@@ -86,7 +85,6 @@
   }
 
   &--large {
-    font-size: 15px;
     padding: 0 24px;
     min-width: 42px;
     min-height: 42px;
@@ -94,7 +92,6 @@
   }
 
   &--compact {
-    font-size: 14px;
     padding: 0 16px;
     min-width: 32px;
     min-height: 32px;
