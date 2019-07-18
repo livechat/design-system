@@ -117,7 +117,7 @@ const handleTooltipActionButton = () => {
     <div style={{ display: "inline-block", position: "relative" }}>
       <CssTooltip
         placement={state.selectedPosition}
-        theme={state.theme}
+        theme={state.theme === "default" ? undefined : state.theme}
         isVisible={state.isVisible}
         width="200px"
       >

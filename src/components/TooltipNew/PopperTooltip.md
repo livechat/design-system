@@ -148,7 +148,9 @@ class PopperTooltipExample extends React.PureComponent {
             isVisible={this.state.isVisible}
             placement={this.state.position}
             onClose={this.handleClose}
-            theme={this.state.theme}
+            theme={
+              this.state.theme === "default" ? undefined : this.state.theme
+            }
             triggerActionType={this.state.action}
             trigger={this.renderTrigger()}
             closeOnOutsideClick
