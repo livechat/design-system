@@ -50,6 +50,7 @@ type CssTooltipPlacement =
 export interface ICssTooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   arrowClassName?: string;
   children: React.ReactNode;
+  theme?: TooltipTheme;
   isVisible?: boolean;
   arrowOffsetTop?: string;
   arrowOffsetBottom?: string;
