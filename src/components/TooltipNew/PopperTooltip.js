@@ -343,6 +343,9 @@ class PopperTooltip extends React.PureComponent {
 PopperTooltip.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
+  /**
+   * The theme changes the look of the tooltip.
+   */
   theme: PropTypes.oneOf(['normal', 'invert', 'important']),
   /**
    * Use `closeOnOutsideClick=true` when you want tooltip to be closed on click outside it.
