@@ -32,12 +32,19 @@ const tooltipPlacements = [
 
 const tooltipTriggerActionTypes = ["managed", "hover", "click"];
 
+const tooltipThemeTypes = ["default", "invert", "important"];
+
 const placementsItems = tooltipPlacements.map(position => ({
   key: position,
   props: { name: position }
 }));
 
 const actionsItems = tooltipTriggerActionTypes.map(position => ({
+  key: position,
+  props: { name: position }
+}));
+
+const themeItems = tooltipThemeTypes.map(position => ({
   key: position,
   props: { name: position }
 }));
@@ -49,13 +56,15 @@ class PopperTooltipExample extends React.PureComponent {
     this.state = {
       isVisible: true,
       position: "auto",
-      action: "hover"
+      action: "hover",
+      theme: "default"
     };
 
     this.handleTriggerClick = this.handleTriggerClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.handlePlacementSelect = this.handlePlacementSelect.bind(this);
     this.handleActionSelect = this.handleActionSelect.bind(this);
+    this.handleThemeSelect = this.handleThemeSelect.bind(this);
   }
 
   getItemBody(props) {
@@ -71,6 +80,10 @@ class PopperTooltipExample extends React.PureComponent {
 
   handleActionSelect(action) {
     this.setState({ action, isVisible: false });
+  }
+
+  handleThemeSelect(theme) {
+    this.setState({ theme, isVisible: false });
   }
 
   handleClose() {
@@ -117,12 +130,25 @@ class PopperTooltipExample extends React.PureComponent {
             selected={this.state.action}
           />
         </div>
+        <div style={{ width: "200px" }}>
+          <SelectField
+            id="tooltip-example-theme-select"
+            labelText="Select tooltip theme"
+            items={themeItems}
+            onItemSelect={this.handleThemeSelect}
+            getItemBody={this.getItemBody}
+            required
+            getSelectedItemBody={this.getItemBody}
+            selected={this.state.theme}
+          />
+        </div>
         <div style={{ margin: " 200px auto", textAlign: "center" }}>
           <PopperTooltip
             style={{ textAlign: "left" }}
             isVisible={this.state.isVisible}
             placement={this.state.position}
             onClose={this.handleClose}
+            theme={this.state.theme}
             triggerActionType={this.state.action}
             trigger={this.renderTrigger()}
             closeOnOutsideClick
