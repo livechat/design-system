@@ -18,3 +18,8 @@
 
   <img style="max-width: 500px; width: 100%;" src="./interactive_tooltip.jpg" alt="Interactive tooltip example" />
 </ul>
+
+<h3>Themes</h3>
+<p>You can choose one of the themes to modify the look of the Tooltip.</p>
+
+<img style="max-width: 700px; width: 100%;" src="./tooltip_themes.png" alt="Themes example" />
