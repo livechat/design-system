@@ -239,6 +239,7 @@ class PopperTooltip extends React.PureComponent {
       eventsEnabled,
       modifiers,
       style: propsStyle,
+      theme,
       positionFixed,
       isVisible,
       referenceElement,
@@ -269,6 +270,7 @@ class PopperTooltip extends React.PureComponent {
         data-placement={placement}
         className={cx({
           [styles[baseClass]]: true,
+          [styles[`${baseClass}--${theme}`]]: theme,
           [className]: className
         })}
       >
@@ -358,6 +360,10 @@ PopperTooltip.propTypes = {
    */
   withFadeAnimation: PropTypes.bool,
   style: PropTypes.object,
+  /**
+   * The theme changes the look of the tooltip.
+   */
+  theme: PropTypes.oneOf(['invert', 'important']),
   modifiers: PropTypes.object,
   onClose: PropTypes.func,
   placement: PropTypes.oneOf([
