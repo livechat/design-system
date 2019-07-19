@@ -2,6 +2,7 @@
 
 .btn {
   position: relative;
+  box-sizing: border-box;
   user-select: none;
   text-decoration: none;
   transition-property: opacity, border, color, background-color, box-shadow;
