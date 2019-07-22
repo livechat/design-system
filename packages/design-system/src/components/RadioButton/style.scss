@@ -10,6 +10,7 @@ $base-class: 'radio';
     display: inline-flex;
     align-items: flex-start;
     width: 100%;
+    flex: 0 1 auto;
   }
 
   &__circle {
@@ -51,7 +52,7 @@ $base-class: 'radio';
     font-size: 15px;
     color: $font-primary-color;
     line-height: 20px;
-    flex: 1;
+    flex: 1 0 auto;
   }
 
   &__input {
