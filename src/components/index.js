@@ -59,7 +59,7 @@ export {
 
 export { Dropdown, DropdownList, DropdownListItem } from './Dropdown';
 
-export { PopperTooltip, CssTooltip } from './TooltipNew';
+export { PopperTooltip, CssTooltip, GuideTooltip } from './TooltipNew';
 
 export { Loader } from './Loader';
 
