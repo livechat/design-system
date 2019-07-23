@@ -341,9 +341,13 @@
     top: 0;
     left: 0;
     display: none;
-    width: 100%;
-    height: 100%;
     background-color: $overlay-background-color;
+
+    &--slide {
+      transition-duration: 0.2s;
+      transition-timing-function: ease-in-out;
+      transition-property: top, left, width, height;
+    }
   }
 
   &__overlay--visible {

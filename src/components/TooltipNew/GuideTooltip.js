@@ -9,13 +9,35 @@ const baseClass = 'guide-tooltip';
 
 const cx = classNames.bind(styles);
 
+const addPadding = (rect, padding) => {
+  const x = rect.x - padding;
+  const y = rect.y - padding;
+  const width = rect.width + 2 * padding;
+  const height = rect.height + 2 * padding;
+  const top = y;
+  const left = x;
+  const bottom = top + height;
+  const right = left + width;
+
+  return {
+    x,
+    y,
+    width,
+    height,
+    top,
+    left,
+    bottom,
+    right
+  };
+};
+
 class VirtualReference {
   constructor(element) {
     this.element = element;
   }
 
   getBoundingClientRect() {
-    return this.element.getBoundingClientRect();
+    return addPadding(this.element.getBoundingClientRect(), 8);
   }
 
   get clientWidth() {
@@ -26,6 +48,83 @@ class VirtualReference {
     return this.getBoundingClientRect().height;
   }
 }
+
+const GapOverlay = ({ gap, isVisible, slide }) => {
+  const overlayLeft = gap && {
+    top: '0',
+    left: '0',
+    width: `${gap.left}px`,
+    height: '100%'
+  };
+  const overlayRight = gap && {
+    top: '0',
+    left: `${gap.right}px`,
+    width: `calc(100% - ${gap.right}px)`,
+    height: '100%'
+  };
+  const overlayTop = gap && {
+    top: '0',
+    left: `${gap.left}px`,
+    width: `${gap.width}px`,
+    height: `${gap.top}px`
+  };
+  const overlayBottom = gap && {
+    top: `${gap.bottom}px`,
+    left: `${gap.left}px`,
+    width: `${gap.width}px`,
+    height: `calc(100% - ${gap.bottom}px)`
+  };
+
+  return (
+    <React.Fragment>
+      <div
+        className={cx({
+          [styles[`${baseClass}__overlay`]]: true,
+          [styles[`${baseClass}__overlay--visible`]]: isVisible,
+          [styles[`${baseClass}__overlay--slide`]]: slide
+        })}
+        style={overlayLeft}
+      />
+      <div
+        className={cx({
+          [styles[`${baseClass}__overlay`]]: true,
+          [styles[`${baseClass}__overlay--visible`]]: isVisible,
+          [styles[`${baseClass}__overlay--slide`]]: slide
+        })}
+        style={overlayTop}
+      />
+      <div
+        className={cx({
+          [styles[`${baseClass}__overlay`]]: true,
+          [styles[`${baseClass}__overlay--visible`]]: isVisible,
+          [styles[`${baseClass}__overlay--slide`]]: slide
+        })}
+        style={overlayRight}
+      />
+      <div
+        className={cx({
+          [styles[`${baseClass}__overlay`]]: true,
+          [styles[`${baseClass}__overlay--visible`]]: isVisible,
+          [styles[`${baseClass}__overlay--slide`]]: slide
+        })}
+        style={overlayBottom}
+      />
+    </React.Fragment>
+  );
+};
+
+GapOverlay.propTypes = {
+  gap: PropTypes.exact({
+    top: PropTypes.number,
+    left: PropTypes.number,
+    bottom: PropTypes.number,
+    right: PropTypes.number,
+    width: PropTypes.number,
+    height: PropTypes.number
+  }),
+  isVisible: PropTypes.bool,
+  slide: PropTypes.bool
+};
 
 class GuideTooltip extends React.PureComponent {
   constructor(props) {
@@ -74,34 +173,36 @@ class GuideTooltip extends React.PureComponent {
     const {
       children,
       className,
+      placement,
       zIndex,
       element,
       isVisible,
-      slide
+      slide,
+      theme
     } = this.props;
     const referenceElement = element && new VirtualReference(element);
+    const rect = referenceElement && referenceElement.getBoundingClientRect();
 
     return (
       <TooltipPortal>
-        {isVisible && (
-          <div
-            onClick={this.onOverlayClick}
-            className={cx({
-              [styles[`${baseClass}__overlay`]]: true,
-              [styles[`${baseClass}__overlay--visible`]]: isVisible
-            })}
-          />
-        )}
+        <GapOverlay gap={rect} isVisible={isVisible} slide={slide} />
         <PopperTooltip
+          theme={theme || 'invert'}
           className={cx({
             [styles[baseClass]]: true,
             [styles[`${baseClass}--slide`]]: slide,
             [className]: className
           })}
+          placement={placement}
           triggerActionType="managed"
           isVisible={isVisible}
           referenceElement={referenceElement}
           zIndex={zIndex}
+          modifiers={{
+            offset: {
+              offset: '0, 20'
+            }
+          }}
         >
           {children}
         </PopperTooltip>
@@ -116,7 +217,25 @@ GuideTooltip.propTypes = {
   zIndex: PropTypes.number.isRequired,
   element: PropTypes.node.isRequired,
   isVisible: PropTypes.bool,
-  slide: PropTypes.bool
+  slide: PropTypes.bool,
+  theme: PropTypes.oneOf(['invert', 'important']),
+  placement: PropTypes.oneOf([
+    'auto',
+    'auto-end',
+    'auto-start',
+    'bottom',
+    'bottom-end',
+    'bottom-start',
+    'left',
+    'left-end',
+    'left-start',
+    'right',
+    'right-end',
+    'right-start',
+    'top',
+    'top-end',
+    'top-start'
+  ])
 };
 
 export default GuideTooltip;
