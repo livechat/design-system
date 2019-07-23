@@ -86,23 +86,27 @@ class GuideTooltipExample extends React.PureComponent {
 
   render() {
     const { isVisible, step } = this.state;
+    const element = this.steps[step].current;
+
     return (
       <div>
         <div>
           <Button onClick={this.handleTriggerClick} primary>
             Start guide
           </Button>
-          <GuideTooltip
-            zIndex={2}
-            element={this.steps[step].current}
-            isVisible={isVisible}
-            slide={step > 0}
-            placement={step === 0 ? "right" : step === 1 ? "top" : "left"}
-          >
-            {step === 0 && <GuideStep1 onNext={this.handleNextStep} />}
-            {step === 1 && <GuideStep2 onNext={this.handleNextStep} />}
-            {step === 2 && <GuideStep3 onNext={this.handleNextStep} />}
-          </GuideTooltip>
+          {element && (
+            <GuideTooltip
+              slide
+              zIndex={2}
+              element={element}
+              isVisible={isVisible}
+              placement={step === 0 ? "right" : step === 1 ? "top" : "left"}
+            >
+              {step === 0 && <GuideStep1 onNext={this.handleNextStep} />}
+              {step === 1 && <GuideStep2 onNext={this.handleNextStep} />}
+              {step === 2 && <GuideStep3 onNext={this.handleNextStep} />}
+            </GuideTooltip>
+          )}
         </div>
         <div style={{ marginTop: "50px" }}>
           <img

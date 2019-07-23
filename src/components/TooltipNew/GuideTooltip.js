@@ -10,10 +10,10 @@ const baseClass = 'guide-tooltip';
 const cx = classNames.bind(styles);
 
 const addPadding = (rect, padding) => {
-  const x = rect.x - padding;
-  const y = rect.y - padding;
-  const width = rect.width + 2 * padding;
-  const height = rect.height + 2 * padding;
+  const x = Math.round(rect.x) - padding;
+  const y = Math.round(rect.y) - padding;
+  const width = Math.round(rect.width) + 2 * padding;
+  const height = Math.round(rect.height) + 2 * padding;
   const top = y;
   const left = x;
   const bottom = top + height;
@@ -50,28 +50,28 @@ class VirtualReference {
 }
 
 const GapOverlay = ({ gap, isVisible, slide }) => {
-  const overlayLeft = gap && {
-    top: '0',
+  const overlayLeft = {
+    top: `${gap.top}px`,
     left: '0',
     width: `${gap.left}px`,
-    height: '100%'
+    height: `${gap.height}px`
   };
-  const overlayRight = gap && {
-    top: '0',
+  const overlayRight = {
+    top: `${gap.top}px`,
     left: `${gap.right}px`,
     width: `calc(100% - ${gap.right}px)`,
-    height: '100%'
+    height: `${gap.height}px`
   };
-  const overlayTop = gap && {
+  const overlayTop = {
     top: '0',
-    left: `${gap.left}px`,
-    width: `${gap.width}px`,
+    left: '0',
+    width: '100%',
     height: `${gap.top}px`
   };
-  const overlayBottom = gap && {
+  const overlayBottom = {
     top: `${gap.bottom}px`,
-    left: `${gap.left}px`,
-    width: `${gap.width}px`,
+    left: '0',
+    width: '100%',
     height: `calc(100% - ${gap.bottom}px)`
   };
 
@@ -114,7 +114,7 @@ const GapOverlay = ({ gap, isVisible, slide }) => {
 };
 
 GapOverlay.propTypes = {
-  gap: PropTypes.exact({
+  gap: PropTypes.shape({
     top: PropTypes.number,
     left: PropTypes.number,
     bottom: PropTypes.number,
@@ -127,10 +127,40 @@ GapOverlay.propTypes = {
 };
 
 class GuideTooltip extends React.PureComponent {
+  static getDerivedStateFromProps(props, state) {
+    if (props.isVisible) {
+      if (!state.lastElement) {
+        // this is the first time the tooltip is shown - don't slide from the (0, 0) origin
+        return {
+          shouldSlide: false,
+          lastElement: props.element
+        };
+      }
+
+      if (props.element !== state.lastElement) {
+        // the element has changed - slide to the next one
+        return {
+          shouldSlide: true,
+          lastElement: props.element
+        };
+      }
+
+      // window was scrolled or any other change has happened - don't slide
+      return {
+        shouldSlide: false
+      };
+    }
+
+    // reset the element when the tooltip hides
+    return {
+      lastElement: null
+    };
+  }
+
   constructor(props) {
     super(props);
 
-    // we don't use the following state params but we need to re-render when the window changes
+    // we don't use the following state params but we still need to re-render when the window changes
     /* eslint-disable react/no-unused-state */
     this.state = {
       windowWidth: 0,
@@ -180,17 +210,18 @@ class GuideTooltip extends React.PureComponent {
       slide,
       theme
     } = this.props;
-    const referenceElement = element && new VirtualReference(element);
-    const rect = referenceElement && referenceElement.getBoundingClientRect();
+    const referenceElement = new VirtualReference(element);
+    const rect = referenceElement.getBoundingClientRect();
+    const shouldSlide = slide && this.state.shouldSlide;
 
     return (
       <TooltipPortal>
-        <GapOverlay gap={rect} isVisible={isVisible} slide={slide} />
+        <GapOverlay gap={rect} isVisible={isVisible} slide={shouldSlide} />
         <PopperTooltip
           theme={theme || 'invert'}
           className={cx({
             [styles[baseClass]]: true,
-            [styles[`${baseClass}--slide`]]: slide,
+            [styles[`${baseClass}--slide`]]: shouldSlide,
             [className]: className
           })}
           placement={placement}
@@ -215,7 +246,7 @@ GuideTooltip.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   zIndex: PropTypes.number.isRequired,
-  element: PropTypes.node.isRequired,
+  element: PropTypes.oneOfType([PropTypes.node, PropTypes.instanceOf(Element)]),
   isVisible: PropTypes.bool,
   slide: PropTypes.bool,
   theme: PropTypes.oneOf(['invert', 'important']),
