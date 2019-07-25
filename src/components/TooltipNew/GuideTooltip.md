@@ -22,7 +22,7 @@ const GuideStep = ({ title, text, step, total, onNext }) => (
 const GuideStep1 = ({ onNext }) => (
   <GuideStep
     title="Let's begin"
-    text="This is the logo of our company"
+    text="This is the image we provided"
     step={1}
     total={3}
     onNext={onNext}
@@ -112,8 +112,8 @@ class GuideTooltipExample extends React.PureComponent {
           <img
             ref={this.step1Ref}
             style={{ width: "100px" }}
-            src="./livechat-logo.svg"
-            alt="LiveChat logo"
+            src="./sylvester.jpg"
+            alt="Sylvester the Cat"
           />
           <p ref={this.step2Ref} id="guide-step-2">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

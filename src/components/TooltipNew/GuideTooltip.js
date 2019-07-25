@@ -4,50 +4,11 @@ import classNames from 'classnames/bind';
 import styles from './style.scss';
 import PopperTooltip from './PopperTooltip';
 import TooltipPortal from './TooltipPortal';
+import { VirtualReference } from '../../helpers/virtual-element-reference';
 
 const baseClass = 'guide-tooltip';
 
 const cx = classNames.bind(styles);
-
-const addPadding = (rect, padding) => {
-  const x = Math.round(rect.x) - padding;
-  const y = Math.round(rect.y) - padding;
-  const width = Math.round(rect.width) + 2 * padding;
-  const height = Math.round(rect.height) + 2 * padding;
-  const top = y;
-  const left = x;
-  const bottom = top + height;
-  const right = left + width;
-
-  return {
-    x,
-    y,
-    width,
-    height,
-    top,
-    left,
-    bottom,
-    right
-  };
-};
-
-class VirtualReference {
-  constructor(element) {
-    this.element = element;
-  }
-
-  getBoundingClientRect() {
-    return addPadding(this.element.getBoundingClientRect(), 8);
-  }
-
-  get clientWidth() {
-    return this.getBoundingClientRect().width;
-  }
-
-  get clientHeight() {
-    return this.getBoundingClientRect().height;
-  }
-}
 
 const GapOverlay = ({ gap, isVisible, slide }) => {
   const overlayLeft = {
@@ -210,7 +171,7 @@ class GuideTooltip extends React.PureComponent {
       slide,
       theme
     } = this.props;
-    const referenceElement = new VirtualReference(element);
+    const referenceElement = new VirtualReference(element, 8);
     const rect = referenceElement.getBoundingClientRect();
     const shouldSlide = slide && this.state.shouldSlide;
 
