@@ -1,91 +1,20 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import memoizeOne from 'memoize-one';
 import styles from './style.scss';
 import PopperTooltip from './PopperTooltip';
 import TooltipPortal from './TooltipPortal';
-import { VirtualReference } from '../../helpers/virtual-element-reference';
+import SpotlightOverlay from './SpotlightOverlay';
+import VirtualReference from '../../helpers/virtual-element-reference';
 
 const baseClass = 'guide-tooltip';
 
 const cx = classNames.bind(styles);
 
-const GapOverlay = ({ gap, isVisible, slide }) => {
-  const overlayLeft = {
-    top: `${gap.top}px`,
-    left: '0',
-    width: `${gap.left}px`,
-    height: `${gap.height}px`
-  };
-  const overlayRight = {
-    top: `${gap.top}px`,
-    left: `${gap.right}px`,
-    width: `calc(100% - ${gap.right}px)`,
-    height: `${gap.height}px`
-  };
-  const overlayTop = {
-    top: '0',
-    left: '0',
-    width: '100%',
-    height: `${gap.top}px`
-  };
-  const overlayBottom = {
-    top: `${gap.bottom}px`,
-    left: '0',
-    width: '100%',
-    height: `calc(100% - ${gap.bottom}px)`
-  };
-
-  return (
-    <React.Fragment>
-      <div
-        className={cx({
-          [styles[`${baseClass}__overlay`]]: true,
-          [styles[`${baseClass}__overlay--visible`]]: isVisible,
-          [styles[`${baseClass}__overlay--slide`]]: slide
-        })}
-        style={overlayLeft}
-      />
-      <div
-        className={cx({
-          [styles[`${baseClass}__overlay`]]: true,
-          [styles[`${baseClass}__overlay--visible`]]: isVisible,
-          [styles[`${baseClass}__overlay--slide`]]: slide
-        })}
-        style={overlayTop}
-      />
-      <div
-        className={cx({
-          [styles[`${baseClass}__overlay`]]: true,
-          [styles[`${baseClass}__overlay--visible`]]: isVisible,
-          [styles[`${baseClass}__overlay--slide`]]: slide
-        })}
-        style={overlayRight}
-      />
-      <div
-        className={cx({
-          [styles[`${baseClass}__overlay`]]: true,
-          [styles[`${baseClass}__overlay--visible`]]: isVisible,
-          [styles[`${baseClass}__overlay--slide`]]: slide
-        })}
-        style={overlayBottom}
-      />
-    </React.Fragment>
-  );
-};
-
-GapOverlay.propTypes = {
-  gap: PropTypes.shape({
-    top: PropTypes.number,
-    left: PropTypes.number,
-    bottom: PropTypes.number,
-    right: PropTypes.number,
-    width: PropTypes.number,
-    height: PropTypes.number
-  }),
-  isVisible: PropTypes.bool,
-  slide: PropTypes.bool
-};
+const memoizedReference = memoizeOne(
+  (element, padding) => new VirtualReference(element, padding)
+);
 
 class GuideTooltip extends React.PureComponent {
   static getDerivedStateFromProps(props, state) {
@@ -171,13 +100,17 @@ class GuideTooltip extends React.PureComponent {
       slide,
       theme
     } = this.props;
-    const referenceElement = new VirtualReference(element, 8);
+    const referenceElement = memoizedReference(element, 8);
     const rect = referenceElement.getBoundingClientRect();
     const shouldSlide = slide && this.state.shouldSlide;
 
     return (
       <TooltipPortal>
-        <GapOverlay gap={rect} isVisible={isVisible} slide={shouldSlide} />
+        <SpotlightOverlay
+          gap={rect}
+          isVisible={isVisible}
+          slide={shouldSlide}
+        />
         <PopperTooltip
           theme={theme || 'invert'}
           className={cx({

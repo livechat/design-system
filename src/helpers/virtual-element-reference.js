@@ -1,4 +1,4 @@
-export class VirtualReference {
+export default class VirtualReference {
   constructor(element, padding) {
     this.element = element;
     this.padding = padding;
