@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import memoizeOne from 'memoize-one';
 import styles from './style.scss';
 import PopperTooltip from './PopperTooltip';
-import TooltipPortal from './TooltipPortal';
+import ModalPortal from '../Modal/ModalPortal';
 import SpotlightOverlay from './SpotlightOverlay';
 import VirtualReference from '../../helpers/virtual-element-reference';
 
@@ -98,14 +98,15 @@ class GuideTooltip extends React.PureComponent {
       element,
       isVisible,
       slide,
-      theme
+      theme,
+      containerName
     } = this.props;
     const referenceElement = memoizedReference(element, 8);
     const rect = referenceElement.getBoundingClientRect();
     const shouldSlide = slide && this.state.shouldSlide;
 
     return (
-      <TooltipPortal>
+      <ModalPortal parentElementName={containerName}>
         <SpotlightOverlay
           gap={rect}
           isVisible={isVisible}
@@ -131,7 +132,7 @@ class GuideTooltip extends React.PureComponent {
         >
           {children}
         </PopperTooltip>
-      </TooltipPortal>
+      </ModalPortal>
     );
   }
 }
@@ -140,7 +141,8 @@ GuideTooltip.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   zIndex: PropTypes.number.isRequired,
-  element: PropTypes.oneOfType([PropTypes.node, PropTypes.instanceOf(Element)]),
+  element: PropTypes.oneOfType([PropTypes.node, PropTypes.instanceOf(Element)])
+    .isRequired,
   isVisible: PropTypes.bool,
   slide: PropTypes.bool,
   theme: PropTypes.oneOf(['invert', 'important']),
@@ -160,7 +162,8 @@ GuideTooltip.propTypes = {
     'top',
     'top-end',
     'top-start'
-  ])
+  ]),
+  containerName: PropTypes.string
 };
 
 export default GuideTooltip;

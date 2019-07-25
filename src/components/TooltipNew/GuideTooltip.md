@@ -1,5 +1,35 @@
 <h3>GuideTooltip</h3>
 
+<b>Guide Tooltips are used for:</b>
+
+<ul>
+  <li>Product tours</li>
+  <li>Spotlight key features</li>
+  <li>New feature announcement</li>
+  <li>Label icons or buttons</li>
+  <li>Info tooltips providing explanation for UI elements</li>
+</ul>
+
+<b>Best practices:</b>
+
+<ul>
+  <li>
+    Copy should be max 140 characters (2 lines).
+    If your message needs to be longer, break it up across multiple tooltips, or use in-app.
+  </li>
+  <li>Focus on benefits, not functionality.</li>
+</ul>
+
+<b>Design guides:</b>
+
+<ul>
+  <li>Tooltips can contain a header and body text, or just body text.</li>
+  <li>Use consistent headers for new feature announcement (“New!”; "Introducing:").</li>
+  <li>Exits — Let users "x" out or dismiss the tooltip with a confirmation CTA (“Got it”).</li>
+  <li>Single tooltips can get away with not having any exit and close when the user clicks elsewhere on the screen.</li>
+  <li>Progress bars — use for multi-step product tours.</li>
+</ul>
+
 ```js
 const GuideStep = ({ title, text, step, total, onNext }) => (
   <>
