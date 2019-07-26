@@ -17,6 +17,16 @@ const memoizedReference = memoizeOne(
   (element, padding) => new VirtualReference(element, padding)
 );
 
+const memoizedBoundRect = memoizeOne((
+  referenceElement,
+  /* eslint-disable no-unused-vars */
+  windowWidth,
+  windowHeight,
+  windowScrollX,
+  windowScrollY
+  /* eslint-enable no-unused-vars */
+) => referenceElement.getBoundingClientRect());
+
 class UserGuideTooltip extends React.PureComponent {
   static getDerivedStateFromProps(props, state) {
     if (props.isVisible) {
@@ -105,8 +115,21 @@ class UserGuideTooltip extends React.PureComponent {
       theme,
       containerName
     } = this.props;
+    const {
+      windowWidth,
+      windowHeight,
+      windowScrollX,
+      windowScrollY
+    } = this.state;
+
     const referenceElement = memoizedReference(element, 8);
-    const rect = referenceElement.getBoundingClientRect();
+    const rect = memoizedBoundRect(
+      referenceElement,
+      windowWidth,
+      windowHeight,
+      windowScrollX,
+      windowScrollY
+    );
     const shouldSlide = slide && this.state.shouldSlide;
 
     return (
