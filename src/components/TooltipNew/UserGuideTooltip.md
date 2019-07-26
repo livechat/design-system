@@ -1,4 +1,4 @@
-<h3>GuideTooltip</h3>
+<h3>UserGuideTooltip</h3>
 
 <b>Guide Tooltips are used for:</b>
 
@@ -79,7 +79,7 @@ const GuideStep3 = ({ onNext }) => (
   />
 );
 
-class GuideTooltipExample extends React.PureComponent {
+class UserGuideTooltipExample extends React.PureComponent {
   constructor(props) {
     super(props);
     this.step1Ref = React.createRef();
@@ -125,7 +125,7 @@ class GuideTooltipExample extends React.PureComponent {
             Start guide
           </Button>
           {element && (
-            <GuideTooltip
+            <UserGuideTooltip
               slide
               zIndex={2}
               element={element}
@@ -135,7 +135,7 @@ class GuideTooltipExample extends React.PureComponent {
               {step === 0 && <GuideStep1 onNext={this.handleNextStep} />}
               {step === 1 && <GuideStep2 onNext={this.handleNextStep} />}
               {step === 2 && <GuideStep3 onNext={this.handleNextStep} />}
-            </GuideTooltip>
+            </UserGuideTooltip>
           )}
         </div>
         <div style={{ marginTop: "50px" }}>
@@ -165,5 +165,5 @@ class GuideTooltipExample extends React.PureComponent {
   }
 }
 
-<GuideTooltipExample />;
+<UserGuideTooltipExample />;
 ```

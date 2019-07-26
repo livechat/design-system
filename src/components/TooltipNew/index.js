@@ -1,3 +1,3 @@
 export { default as PopperTooltip } from './PopperTooltip';
 export { default as CssTooltip } from './CssTooltip';
-export { default as GuideTooltip } from './GuideTooltip';
+export { default as UserGuideTooltip } from './UserGuideTooltip';

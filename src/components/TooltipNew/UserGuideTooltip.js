@@ -16,7 +16,7 @@ const memoizedReference = memoizeOne(
   (element, padding) => new VirtualReference(element, padding)
 );
 
-class GuideTooltip extends React.PureComponent {
+class UserGuideTooltip extends React.PureComponent {
   static getDerivedStateFromProps(props, state) {
     if (props.isVisible) {
       if (!state.lastElement) {
@@ -137,7 +137,7 @@ class GuideTooltip extends React.PureComponent {
   }
 }
 
-GuideTooltip.propTypes = {
+UserGuideTooltip.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   zIndex: PropTypes.number.isRequired,
@@ -166,4 +166,4 @@ GuideTooltip.propTypes = {
   containerName: PropTypes.string
 };
 
-export default GuideTooltip;
+export default UserGuideTooltip;

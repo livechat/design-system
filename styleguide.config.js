@@ -74,7 +74,7 @@ module.exports = {
           components: [
             './src/components/TooltipNew/PopperTooltip.js',
             './src/components/TooltipNew/CssTooltip.js',
-            './src/components/TooltipNew/GuideTooltip.js'
+            './src/components/TooltipNew/UserGuideTooltip.js'
           ]
         },
         {
