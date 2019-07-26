@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import memoizeOne from 'memoize-one';
+import { throttle } from '@livechat/data-utils';
 import styles from './style.scss';
 import PopperTooltip from './PopperTooltip';
 import ModalPortal from '../Modal/ModalPortal';
@@ -60,7 +61,10 @@ class UserGuideTooltip extends React.PureComponent {
     };
     /* eslint-enable react/no-unused-state */
 
-    this.handleDocumentChange = this.handleDocumentChange.bind(this);
+    this.handleDocumentChange = throttle(
+      16,
+      this.handleDocumentChange.bind(this)
+    );
   }
 
   componentDidMount() {
