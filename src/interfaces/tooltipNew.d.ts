@@ -65,5 +65,18 @@ export interface ICssTooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   zIndex?: number;
 }
 
+export interface IUserGuideTooltipProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
+  zIndex: number;
+  element: React.ReactNode | Element;
+  isVisible?: boolean;
+  slide?: boolean;
+  theme?: TooltipTheme;
+  placement?: PopperJS.Placement;
+  containerName?: string;
+}
+
 export var PopperTooltip: React.ComponentType<IPopperTooltipProps>;
 export var CssTooltip: React.ComponentType<ICssTooltipProps>;
+export var UserGuideTooltip: React.ComponentType<IUserGuideTooltipProps>;
