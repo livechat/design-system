@@ -5,8 +5,8 @@ export default class VirtualReference {
   }
 
   addPadding(rect) {
-    const x = Math.round(rect.x) - this.padding;
-    const y = Math.round(rect.y) - this.padding;
+    const x = Math.round(rect.left) - this.padding;
+    const y = Math.round(rect.top) - this.padding;
     const width = Math.round(rect.width) + 2 * this.padding;
     const height = Math.round(rect.height) + 2 * this.padding;
     const top = y;
