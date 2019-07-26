@@ -1,5 +1,20 @@
 // <reference types="react" />
 
+export interface IFormProps extends React.InputHTMLAttributes<HTMLFormElement> {
+  className?: string;
+  children: React.ReactNode;
+  labelText?: string;
+  helperText?: string;
+  formFooter?: React.ReactNode;
+}
+
+export interface IFormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+  className?: string;
+  labelText?: string;
+  helperText?: string;
+  stretch?: boolean;
+}
+
 export interface ISelectProps {
   className?: string;
   id?: string;
@@ -10,7 +25,7 @@ export interface ISelectProps {
     key: string;
     props: {
       [key: string]: any;
-    }
+    };
   }[];
   searchProperty?: string | string[];
   search?: boolean;
@@ -47,7 +62,7 @@ export interface IMultiSelectProps {
     key: string;
     props: {
       [key: string]: any;
-    }
+    };
   }[];
   maxItemsContainerHeight: number;
   openedOnInit?: boolean;
@@ -78,7 +93,8 @@ export interface IMultiSelectFieldProps extends IMultiSelectProps {
   description?: React.ReactNode;
 }
 
-export interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface IInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
 }
 
@@ -90,7 +106,8 @@ export interface IInputFieldProps extends IInputProps {
   fieldClassName?: string;
 }
 
-export interface ITextAreaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface ITextAreaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   error?: string;
 }
 
@@ -122,12 +139,14 @@ export interface INumericInputFieldProps extends INumericInputProps {
   description?: React.ReactNode;
 }
 
-export interface ICheckboxFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface ICheckboxFieldProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   checked: boolean;
   description?: React.ReactNode;
 }
 
-export interface IRadioButtonProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface IRadioButtonProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   checked?: boolean;
   description?: React.ReactNode;
 }
@@ -138,16 +157,18 @@ export interface IFieldGroupProps extends React.HTMLAttributes<HTMLElement> {
   stretch?: boolean;
 }
 
-export var Select: React.ComponentType<ISelectProps>;
-export var SelectField: React.ComponentType<ISelectFieldProps>;
-export var MultiSelect: React.ComponentType<IMultiSelectProps>;
-export var MultiSelectField: React.ComponentType<IMultiSelectFieldProps>;
+export var CheckboxField: React.ComponentType<ICheckboxFieldProps>;
+export var FieldGroup: React.ComponentType<IFieldGroupProps>;
+export var Form: React.ComponentType<IFormProps>;
+export var FormGroup: React.ComponentType<IFormGroupProps>;
 export var Input: React.ComponentType<IInputProps>;
 export var InputField: React.ComponentType<IInputFieldProps>;
-export var TextArea: React.ComponentType<ITextAreaProps>;
-export var TextAreaField: React.ComponentType<ITextAreaFieldProps>;
+export var MultiSelect: React.ComponentType<IMultiSelectProps>;
+export var MultiSelectField: React.ComponentType<IMultiSelectFieldProps>;
 export var NumericInput: React.ComponentType<INumericInputProps>;
 export var NumericInputField: React.ComponentType<INumericInputFieldProps>;
-export var CheckboxField: React.ComponentType<ICheckboxFieldProps>;
 export var RadioButton: React.ComponentType<IRadioButtonProps>;
-export var FieldGroup: React.ComponentType<IFieldGroupProps>;
+export var Select: React.ComponentType<ISelectProps>;
+export var SelectField: React.ComponentType<ISelectFieldProps>;
+export var TextArea: React.ComponentType<ITextAreaProps>;
+export var TextAreaField: React.ComponentType<ITextAreaFieldProps>;
