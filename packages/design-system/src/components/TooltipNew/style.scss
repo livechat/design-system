@@ -330,3 +330,26 @@
     }
   }
 }
+
+.guide-tooltip {
+  &--slide {
+    transition-property: opacity, visibility, transform;
+  }
+
+  &__overlay {
+    position: fixed;
+    display: none;
+    background-color: $overlay-background-color;
+
+    &--slide {
+      transition-duration: 0.2s;
+      transition-timing-function: ease-in-out;
+      transition-property: top, left, width, height;
+    }
+  }
+
+  &__overlay--visible {
+    display: block;
+  }
+}
+
