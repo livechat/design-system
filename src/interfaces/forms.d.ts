@@ -12,7 +12,7 @@ export interface IFormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   labelText?: string;
   helperText?: string;
-  stretch?: boolean;
+  children: React.ReactNode;
 }
 
 export interface ISelectProps {
