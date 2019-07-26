@@ -17,15 +17,13 @@ const memoizedReference = memoizeOne(
   (element, padding) => new VirtualReference(element, padding)
 );
 
-const memoizedBoundRect = memoizeOne((
-  referenceElement,
-  /* eslint-disable no-unused-vars */
-  windowWidth,
-  windowHeight,
-  windowScrollX,
-  windowScrollY
-  /* eslint-enable no-unused-vars */
-) => referenceElement.getBoundingClientRect());
+const offsetModifiers = {
+  offset: {
+    offset: '0, 20'
+  }
+};
+
+const spotlightPadding = 8;
 
 class UserGuideTooltip extends React.PureComponent {
   static getDerivedStateFromProps(props, state) {
@@ -34,7 +32,11 @@ class UserGuideTooltip extends React.PureComponent {
         // this is the first time the tooltip is shown - don't slide from the (0, 0) origin
         return {
           shouldSlide: false,
-          lastElement: props.element
+          lastElement: props.element,
+          rect: memoizedReference(
+            props.element,
+            spotlightPadding
+          ).getBoundingClientRect()
         };
       }
 
@@ -42,7 +44,11 @@ class UserGuideTooltip extends React.PureComponent {
         // the element has changed - slide to the next one
         return {
           shouldSlide: true,
-          lastElement: props.element
+          lastElement: props.element,
+          rect: memoizedReference(
+            props.element,
+            spotlightPadding
+          ).getBoundingClientRect()
         };
       }
 
@@ -61,46 +67,36 @@ class UserGuideTooltip extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    // we don't use the following state params but we still need to re-render when the window changes
-    /* eslint-disable react/no-unused-state */
     this.state = {
-      windowWidth: 0,
-      windowHeight: 0,
-      windowScrollX: 0,
-      windowScrollY: 0
+      rect: memoizedReference(
+        props.element,
+        spotlightPadding
+      ).getBoundingClientRect()
     };
-    /* eslint-enable react/no-unused-state */
 
-    this.handleDocumentChange = throttle(
+    this.handleViewPortChange = throttle(
       16,
       this.handleDocumentChange.bind(this)
     );
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.handleDocumentChange);
-    document.addEventListener('scroll', this.handleDocumentChange);
+    window.addEventListener('resize', this.handleViewPortChange);
+    document.addEventListener('scroll', this.handleViewPortChange);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.handleDocumentChange);
-    document.removeEventListener('scroll', this.handleDocumentChange);
+    window.removeEventListener('resize', this.handleViewPortChange);
+    document.removeEventListener('scroll', this.handleViewPortChange);
   }
 
   handleDocumentChange() {
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
-    const windowScrollX = document.documentElement.scrollLeft;
-    const windowScrollY = document.documentElement.scrollTop;
-
-    /* eslint-disable react/no-unused-state */
     this.setState({
-      windowWidth,
-      windowHeight,
-      windowScrollX,
-      windowScrollY
+      rect: memoizedReference(
+        this.props.element,
+        spotlightPadding
+      ).getBoundingClientRect()
     });
-    /* eslint-enable react/no-unused-state */
   }
 
   render() {
@@ -115,21 +111,9 @@ class UserGuideTooltip extends React.PureComponent {
       theme,
       containerName
     } = this.props;
-    const {
-      windowWidth,
-      windowHeight,
-      windowScrollX,
-      windowScrollY
-    } = this.state;
+    const { rect } = this.state;
 
-    const referenceElement = memoizedReference(element, 8);
-    const rect = memoizedBoundRect(
-      referenceElement,
-      windowWidth,
-      windowHeight,
-      windowScrollX,
-      windowScrollY
-    );
+    const referenceElement = memoizedReference(element, spotlightPadding);
     const shouldSlide = slide && this.state.shouldSlide;
 
     return (
@@ -151,11 +135,7 @@ class UserGuideTooltip extends React.PureComponent {
           isVisible={isVisible}
           referenceElement={referenceElement}
           zIndex={zIndex}
-          modifiers={{
-            offset: {
-              offset: '0, 20'
-            }
-          }}
+          modifiers={offsetModifiers}
         >
           {children}
         </PopperTooltip>
