@@ -5,10 +5,6 @@ exports[`Button should render primary button 1`] = `
   className="btn btn--primary"
   type="button"
 >
-  <span
-    className="btn__content"
-  >
-    Click me
-  </span>
+  Click me
 </button>
 `;
