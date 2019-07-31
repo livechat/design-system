@@ -1,5 +1,20 @@
 All notable changes to this project will be documented in this file.
 
+## v0.4.4
+
+_Release: 2019-07-31_
+
+##### New Features
+
+- new `ButtonGroup` and `UserGuideTooltip` components
+- adding themes to `PopperTooltip` and `CssTooltip` - 'invert' and 'important'
+
+##### Bug Fixes
+
+- fixing `RadioButton` and `CheckboxField` - IE11 styles issue
+
+---
+
 ## v0.4.3
 
 _Release: 2019-07-15_
