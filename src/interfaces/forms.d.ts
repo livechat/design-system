@@ -1,6 +1,6 @@
 // <reference types="react" />
 
-export interface IFormProps extends React.InputHTMLAttributes<HTMLFormElement> {
+export interface IFormProps extends React.HTMLAttributes<HTMLFormElement> {
   className?: string;
   children: React.ReactNode;
   labelText?: string;
@@ -96,6 +96,7 @@ export interface IMultiSelectFieldProps extends IMultiSelectProps {
 export interface IInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
+  ref?: React.Ref<HTMLButtonElement> | React.Ref<React.Component<IInputProps>>;
 }
 
 export interface IInputFieldProps extends IInputProps {
@@ -104,6 +105,9 @@ export interface IInputFieldProps extends IInputProps {
   inline?: boolean;
   description?: React.ReactNode;
   fieldClassName?: string;
+  ref?:
+    | React.Ref<HTMLButtonElement>
+    | React.Ref<React.Component<IInputFieldProps>>;
 }
 
 export interface ITextAreaProps
