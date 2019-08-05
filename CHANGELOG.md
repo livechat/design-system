@@ -2,7 +2,7 @@ All notable changes to this project will be documented in this file.
 
 ## v0.4.4
 
-_Release: 2019-07-31_
+_Release: 2019-08-05_
 
 ##### New Features
 
@@ -12,6 +12,7 @@ _Release: 2019-07-31_
 ##### Bug Fixes
 
 - fixing `RadioButton` and `CheckboxField` - IE11 styles issue
+- adding missing form components interfaces
 
 ---
 
