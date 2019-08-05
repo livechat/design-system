@@ -154,6 +154,7 @@ export interface IRadioButtonProps
 
 export interface IFieldGroupProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
+  description?: React.ReactNode;
   error?: string;
   inline?: boolean;
   stretch?: boolean;
