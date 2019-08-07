@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import memoizeOne from 'memoize-one';
 import { throttle } from '@livechat/data-utils';
 import styles from './style.scss';
 import PopperTooltip from './PopperTooltip';
@@ -13,9 +12,8 @@ const baseClass = 'guide-tooltip';
 
 const cx = classNames.bind(styles);
 
-const memoizedReference = memoizeOne(
-  (element, padding) => new VirtualReference(element, padding)
-);
+const virtualReference = (element, padding) =>
+  new VirtualReference(element, padding);
 
 const offsetModifiers = {
   offset: {
@@ -33,7 +31,7 @@ class UserGuideTooltip extends React.PureComponent {
         return {
           shouldSlide: false,
           lastElement: props.element,
-          rect: memoizedReference(
+          rect: virtualReference(
             props.element,
             spotlightPadding
           ).getBoundingClientRect()
@@ -45,7 +43,7 @@ class UserGuideTooltip extends React.PureComponent {
         return {
           shouldSlide: true,
           lastElement: props.element,
-          rect: memoizedReference(
+          rect: virtualReference(
             props.element,
             spotlightPadding
           ).getBoundingClientRect()
@@ -68,7 +66,8 @@ class UserGuideTooltip extends React.PureComponent {
     super(props);
 
     this.state = {
-      rect: memoizedReference(
+      shouldSlide: false,
+      rect: virtualReference(
         props.element,
         spotlightPadding
       ).getBoundingClientRect()
@@ -82,17 +81,23 @@ class UserGuideTooltip extends React.PureComponent {
 
   componentDidMount() {
     window.addEventListener('resize', this.handleViewPortChange);
-    document.addEventListener('scroll', this.handleViewPortChange);
+    (this.props.scrollableWrapper || document).addEventListener(
+      'scroll',
+      this.handleViewPortChange
+    );
   }
 
   componentWillUnmount() {
     window.removeEventListener('resize', this.handleViewPortChange);
-    document.removeEventListener('scroll', this.handleViewPortChange);
+    (this.props.scrollableWrapper || document).removeEventListener(
+      'scroll',
+      this.handleViewPortChange
+    );
   }
 
   handleDocumentChange() {
     this.setState({
-      rect: memoizedReference(
+      rect: virtualReference(
         this.props.element,
         spotlightPadding
       ).getBoundingClientRect()
@@ -113,8 +118,8 @@ class UserGuideTooltip extends React.PureComponent {
     } = this.props;
     const { rect } = this.state;
 
-    const referenceElement = memoizedReference(element, spotlightPadding);
-    const shouldSlide = slide && this.state.shouldSlide;
+    const referenceElement = virtualReference(element, spotlightPadding);
+    const shouldSlide = !!(slide && this.state.shouldSlide);
 
     return (
       <ModalPortal parentElementName={containerName}>
@@ -150,7 +155,8 @@ UserGuideTooltip.propTypes = {
   zIndex: PropTypes.number.isRequired,
   element: PropTypes.oneOfType([PropTypes.node, PropTypes.instanceOf(Element)])
     .isRequired,
-  isVisible: PropTypes.bool,
+  scrollableWrapper: PropTypes.instanceOf(Element),
+  isVisible: PropTypes.bool.isRequired,
   slide: PropTypes.bool,
   theme: PropTypes.oneOf(['invert', 'important']),
   placement: PropTypes.oneOf([
