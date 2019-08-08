@@ -12,13 +12,15 @@ const Checkbox = props => {
     className
   );
   return (
-    <div className={mergedClassNames}>
-      <CheckIcon className={styles[`${baseClass}__checkmark`]} />
+    <div>
       <input
         className={styles[`${baseClass}__input`]}
         {...restProps}
         type="checkbox"
       />
+      <div className={mergedClassNames}>
+        <CheckIcon className={styles[`${baseClass}__checkmark`]} />
+      </div>
     </div>
   );
 };
