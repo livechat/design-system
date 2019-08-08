@@ -169,6 +169,7 @@ class NumericInput extends React.PureComponent {
               onClick={this.handleIncrementClick}
               aria-label="Increment value"
               className={styles[`${baseClass}__increment`]}
+              type="button"
             />
             <button
               tabIndex="-1"
@@ -180,6 +181,7 @@ class NumericInput extends React.PureComponent {
               aria-label="Decrement value"
               className={styles[`${baseClass}__decrement`]}
               onClick={this.handleDecrementClick}
+              type="button"
             />
           </React.Fragment>
         )}
