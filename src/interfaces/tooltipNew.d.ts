@@ -70,6 +70,7 @@ export interface IUserGuideTooltipProps
   children: React.ReactNode;
   zIndex: number;
   element: React.ReactNode | Element;
+  scrollableWrapper?: Element;
   isVisible?: boolean;
   slide?: boolean;
   theme?: TooltipTheme;
