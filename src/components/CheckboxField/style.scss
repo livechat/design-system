@@ -59,8 +59,16 @@ $base-class: 'checkbox';
   &__input {
     width: 100%;
     height: 100%;
-    opacity: 0;
-    cursor: pointer;
+    display: none;
+
+    &:checked + .#{$base-class}__square {
+      background-color: $primary-color;
+      border-color: $primary-color;
+
+      .#{$base-class}__checkmark {
+        opacity: 1;
+      }
+    }
   }
 
   &--disabled {
