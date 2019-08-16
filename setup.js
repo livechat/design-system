@@ -59,6 +59,9 @@ global.CssTooltip = Components.CssTooltip;
 
 global.Loader = Components.Loader;
 global.Divider = Components.Divider;
+
+global.Tag = Components.Tag;
+
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;
 global.AlertCircleIcon = AlertCircleIcon;
