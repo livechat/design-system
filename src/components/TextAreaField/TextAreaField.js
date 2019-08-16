@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import TextArea from './TextArea';
 import TextField from '../TextField';
 
-const TextAreaField = props => {
+const TextAreaField = React.forwardRef((props, ref) => {
   const {
     inline,
     error,
@@ -26,13 +26,14 @@ const TextAreaField = props => {
     >
       <TextArea
         id={id}
+        ref={ref}
         {...restProps}
         className={fieldClassName}
         error={error}
       />
     </TextField>
   );
-};
+});
 
 TextAreaField.propTypes = {
   labelText: PropTypes.string,
