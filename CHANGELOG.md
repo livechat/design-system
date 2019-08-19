@@ -1,5 +1,19 @@
 All notable changes to this project will be documented in this file.
 
+## v0.4.5
+
+_Release: 2019-08-19_
+
+##### New Features
+
+- handling error in field group (#105)
+- Change checkbox structure to allow good work for alone HTML/CSS (#106)
+- Numeric input - adding type attribute to buttons (#107)
+- `UserGuideTooltip` - allow custom scrollable wrapper (#108)
+- `forwardRef` enabled for `TextArea` and `TextAreaField` (#109)
+
+---
+
 ## v0.4.4
 
 _Release: 2019-08-05_
