@@ -112,7 +112,7 @@ export interface ITextAreaProps
   error?: string;
   ref?:
     | React.Ref<HTMLTextAreaElement>
-    | React.Ref<React.Component<HTMLTextAreaElement>>;
+    | React.Ref<React.Component<ITextAreaProps>>;
 }
 
 export interface ITextAreaFieldProps extends ITextAreaProps {
