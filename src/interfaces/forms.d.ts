@@ -110,7 +110,9 @@ export interface IInputFieldProps extends IInputProps {
 export interface ITextAreaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   error?: string;
-  ref?: React.Ref<HTMLTextAreaElement>;
+  ref?:
+    | React.Ref<HTMLTextAreaElement>
+    | React.Ref<React.Component<HTMLTextAreaElement>>;
 }
 
 export interface ITextAreaFieldProps extends ITextAreaProps {
