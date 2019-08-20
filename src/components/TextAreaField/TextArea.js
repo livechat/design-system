@@ -6,7 +6,7 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 
 const cx = classNames.bind(styles);
 
-const TextArea = props => {
+const TextArea = React.forwardRef((props, ref) => {
   const { error, className, ...restProps } = props;
 
   const baseClass = 'textarea';
@@ -18,8 +18,8 @@ const TextArea = props => {
     className
   );
 
-  return <textarea className={mergedClassNames} {...restProps} />;
-};
+  return <textarea ref={ref} className={mergedClassNames} {...restProps} />;
+});
 
 TextArea.propTypes = {
   error: PropTypes.string,

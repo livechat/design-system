@@ -1,5 +1,78 @@
 All notable changes to this project will be documented in this file.
 
+## v0.4.5
+
+_Release: 2019-08-20_
+
+##### New Features
+
+- handling error in field group (#105)
+- `UserGuideTooltip` - allow custom scrollable wrapper (#108)
+- `forwardRef` enabled for `TextArea` and `TextAreaField` (#109)
+
+##### Refactors
+
+- change checkbox structure to allow good work for alone HTML/CSS (#106)
+
+##### Bug Fixes
+
+- `NumericInput` - adding missing type attribute to buttons (#107)
+- fixing `InAppMessage` footer styles issue on mobile devices (#111)
+
+---
+
+## v0.4.4
+
+_Release: 2019-08-05_
+
+##### New Features
+
+- new `ButtonGroup` and `UserGuideTooltip` components
+- adding themes to `PopperTooltip` and `CssTooltip` - 'invert' and 'important'
+
+##### Bug Fixes
+
+- fixing `RadioButton` and `CheckboxField` - IE11 styles issue
+- adding missing form components interfaces
+
+---
+
+## v0.4.3
+
+_Release: 2019-07-15_
+
+##### Bug Fixes
+
+- `Toast` component styles fix for long action names
+- `Switch` interface change - removing redundant onChange property
+
+---
+
+## v0.4.2
+
+_Release: 2019-06-19_
+
+##### New Features
+
+- adding optional `onOpen` property to `PopperTooltip` - for tooltips with `click` and `hover` trigger action types
+- extending `Dropdown` and `DropdownList` components:
+  - adding dropdown content resize observer
+  - custom key codes for Dropdown close and DropdownList select events
+  - prevent default on item select with the keydown event
+  - adding autofocus first item to DropdownList component
+  - adding a new property to control dropdown keyboard events
+  - passing event as argument of `onItemSelect` property (optional)
+
+##### Refactors
+
+- refactoring Dropdown and Switch prop types and default props - it was not visible in the docs
+
+##### Bug Fixes
+
+- `Toast` component styles fix - elements inside of `Toast` were positioned incorectly (ie11, firefox, safari)
+
+---
+
 ## v0.4.1
 
 _Release: 2019-06-11_

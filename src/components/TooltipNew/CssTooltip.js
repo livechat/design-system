@@ -21,6 +21,7 @@ const CssTooltip = props => {
     placement,
     width,
     style,
+    theme,
     zIndex,
     arrowOffsetTop,
     arrowOffsetBottom,
@@ -41,6 +42,7 @@ const CssTooltip = props => {
       className={cx({
         [styles[baseClass]]: true,
         [styles[`${baseClass}--visible`]]: isVisible,
+        [styles[`${baseClass}--${theme}`]]: theme,
         [className]: className
       })}
       style={{
@@ -89,6 +91,10 @@ CssTooltip.propTypes = {
    */
   className: PropTypes.string,
   style: PropTypes.object,
+  /**
+   * The theme changes the look of the tooltip.
+   */
+  theme: PropTypes.oneOf(['invert', 'important']),
   isVisible: PropTypes.bool,
   onClick: PropTypes.func,
   onFocus: PropTypes.func,
