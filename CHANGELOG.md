@@ -17,7 +17,7 @@ _Release: 2019-08-20_
 ##### Bug Fixes
 
 - `NumericInput` - adding missing type attribute to buttons (#107)
-- fixing `InAppMessage` footer styles issue on mobile devices
+- fixing `InAppMessage` footer styles issue on mobile devices (#111)
 
 ---
 
