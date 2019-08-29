@@ -16,6 +16,13 @@ We recommend that while building a new app, you begin by following the system as
 
 Every component in LiveChat **Design System** includes a documentation, code, and working examples (you can play with the component examples and see what happens). By downloading the _UI Kit_ (for Sketch) you have access to all of the components in addition to the code provided on the site.
 
+<a href="sketch://add-library/cloud/zb2DM">
+    <button class="lc-btn" type="button" style="margin-bottom: 10px">
+      Get Sketch library
+    </button>
+</a>
+<br />
+
 #### _Developers_
 
 Our **Design System** was created for React development, and it's available in the [npm registry](https://www.npmjs.com/package/@livechat/design-system). If you are not working with React, then you can use our hosted [styles.css](https://cdn.livechat-static.com/design-system/styles.css) file to get look and feel of LiveChat app in your vanilla JS project.
