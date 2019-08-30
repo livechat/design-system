@@ -17,13 +17,14 @@
   font-weight: 600;
   display: inline-flex;
   background-color: #fff;
-  color: $font-primary-color;
-  border-color: $border-primary-color;
+  color: $primary-color;
+  border-color: $primary-color;
   font-size: 15px;
   padding: 0 16px;
   min-width: 36px;
   min-height: 36px;
   line-height: 36px;
+  box-sizing: border-box;
 
   &:focus,
   &:hover,
@@ -71,6 +72,11 @@
     }
   }
 
+  &--secondary {
+    color: $font-primary-color;
+    border-color: $border-primary-color;
+  }
+
   &--destructive {
     background-color: $error-color;
     color: #fff;
@@ -108,9 +114,12 @@
 
   &--loading {
     background-color: $loading-btn-basic-color;
-    border-color: #d0d2d5;
     color: transparent;
     transition: all 0.2s cubic-bezier(0.64, 0, 0.35, 1);
+
+    &.btn--secondary {
+      border-color: #d0d2d5;
+    }
 
     &.btn--destructive {
       background-color: $loading-btn-error-color;
