@@ -114,7 +114,8 @@ class UserGuideTooltip extends React.PureComponent {
       isVisible,
       slide,
       theme,
-      containerName
+      containerName,
+      disableSpotlightClicks
     } = this.props;
     const { rect } = this.state;
 
@@ -127,6 +128,7 @@ class UserGuideTooltip extends React.PureComponent {
           gap={rect}
           isVisible={isVisible}
           slide={shouldSlide}
+          disableClicks={disableSpotlightClicks}
         />
         <PopperTooltip
           theme={theme || 'invert'}
@@ -176,7 +178,8 @@ UserGuideTooltip.propTypes = {
     'top-end',
     'top-start'
   ]),
-  containerName: PropTypes.string
+  containerName: PropTypes.string,
+  disableSpotlightClicks: PropTypes.bool
 };
 
 export default UserGuideTooltip;
