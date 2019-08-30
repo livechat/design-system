@@ -14,7 +14,7 @@ Use when there is an action that is more important than any other actions and yo
 
 ### Secondary Button
 
-...TODO...
+Secondary buttons provide a lighter weight button style. They can be used in isolation, for less prominent actions, or paired with a Primary button, e.g for the ‘Cancel’ action.
 
 ```js
 <Button secondary>Secondary Button</Button>
@@ -28,7 +28,7 @@ Use when there is an action that is more important than any other actions and yo
 
 ### Basic Button
 
-The standard button for most use cases. Only use another style if a button requires more or less visual attention.
+The standard button for most use cases. Can be used for primary actions when the Primary button style is "too much" (e.g. "Edit" vs "Save").
 
 ```js
 <Button>Basic Button</Button>
