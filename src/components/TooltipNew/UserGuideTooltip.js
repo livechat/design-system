@@ -122,7 +122,7 @@ class UserGuideTooltip extends React.PureComponent {
     const shouldSlide = !!(slide && this.state.shouldSlide);
 
     return (
-      <ModalPortal parentElementName={containerName}>
+      <ModalPortal parentElementName={containerName} zIndex={zIndex}>
         <SpotlightOverlay
           gap={rect}
           isVisible={isVisible}
