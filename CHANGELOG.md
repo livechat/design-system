@@ -10,11 +10,11 @@ _Release: 2019-09-02_
 
 ##### Refactors
 
-- changing compact `Button` font-size to `15px`
+- changing compact `Button` font-size to `15px` (#114)
 
 ##### Bug Fixes
 
-- fixing wrong `Card` component styles - `18px` padding in all directions
+- fixing wrong `Card` component styles - `18px` padding in all directions (#113)
 - closing `Modal` on mousedown outside instead of click (#115)
 
 ---
