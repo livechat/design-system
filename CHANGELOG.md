@@ -1,5 +1,24 @@
 All notable changes to this project will be documented in this file.
 
+## v0.4.6
+
+_Release: 2019-09-02_
+
+##### New Features
+
+- `UserGuideTooltip` - adding possibility to make spotlight non-clickable by adding `disableSpotlightPointerEvents` property (#117)
+
+##### Refactors
+
+- changing compact `Button` font-size to `15px`
+
+##### Bug Fixes
+
+- fixing wrong `Card` component styles - `18px` padding in all directions
+- closing `Modal` on mousedown outside instead of click (#115)
+
+---
+
 ## v0.4.5
 
 _Release: 2019-08-20_
