@@ -73,7 +73,7 @@ class ModalBase extends React.Component {
 
     return (
       <div
-        onClick={this.onOverlayClick}
+        onMouseDown={this.onOverlayClick}
         className={cx(
           `${baseClass}__overlay`,
           `${baseClass}__overlay--visible`
