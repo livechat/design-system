@@ -38,7 +38,7 @@ const SpotlightOverlay = ({ gap, isVisible, slide, disableClicks }) => {
     left: `${gap.left}px`,
     width: `${gap.width}px`,
     height: `${gap.height}px`,
-    opacity: 0
+    backgroundColor: 'transparent'
   };
 
   return (

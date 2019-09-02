@@ -76,7 +76,7 @@ export interface IUserGuideTooltipProps
   theme?: TooltipTheme;
   placement?: PopperJS.Placement;
   containerName?: string;
-  disableSpotlightClicks?: boolean;
+  disableSpotlightPointerEvents?: boolean;
 }
 
 export var PopperTooltip: React.ComponentType<IPopperTooltipProps>;
