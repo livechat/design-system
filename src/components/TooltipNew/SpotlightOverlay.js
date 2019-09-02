@@ -7,7 +7,7 @@ const baseClass = 'guide-tooltip';
 
 const cx = classNames.bind(styles);
 
-const SpotlightOverlay = ({ gap, isVisible, slide, disableClicks }) => {
+const SpotlightOverlay = ({ gap, isVisible, slide, disablePointerEvents }) => {
   const overlayLeft = {
     top: `${gap.top}px`,
     left: '0',
@@ -75,7 +75,7 @@ const SpotlightOverlay = ({ gap, isVisible, slide, disableClicks }) => {
         })}
         style={overlayBottom}
       />
-      {disableClicks && (
+      {disablePointerEvents && (
         <div
           className={cx({
             [styles[`${baseClass}__overlay`]]: true,
@@ -100,7 +100,7 @@ SpotlightOverlay.propTypes = {
   }).isRequired,
   isVisible: PropTypes.bool.isRequired,
   slide: PropTypes.bool.isRequired,
-  disableClicks: PropTypes.bool.isRequired
+  disablePointerEvents: PropTypes.bool
 };
 
 export default SpotlightOverlay;

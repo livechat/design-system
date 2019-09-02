@@ -128,7 +128,7 @@ class UserGuideTooltip extends React.PureComponent {
           gap={rect}
           isVisible={isVisible}
           slide={shouldSlide}
-          disableClicks={disableSpotlightPointerEvents}
+          disablePointerEvents={disableSpotlightPointerEvents}
         />
         <PopperTooltip
           theme={theme || 'invert'}
