@@ -7,7 +7,7 @@ const baseClass = 'guide-tooltip';
 
 const cx = classNames.bind(styles);
 
-const SpotlightOverlay = ({ gap, isVisible, slide }) => {
+const SpotlightOverlay = ({ gap, isVisible, slide, disablePointerEvents }) => {
   const overlayLeft = {
     top: `${gap.top}px`,
     left: '0',
@@ -31,6 +31,14 @@ const SpotlightOverlay = ({ gap, isVisible, slide }) => {
     left: '0',
     width: '100%',
     height: `calc(100% - ${gap.bottom}px)`
+  };
+
+  const spotlight = {
+    top: `${gap.top}px`,
+    left: `${gap.left}px`,
+    width: `${gap.width}px`,
+    height: `${gap.height}px`,
+    backgroundColor: 'transparent'
   };
 
   return (
@@ -67,6 +75,16 @@ const SpotlightOverlay = ({ gap, isVisible, slide }) => {
         })}
         style={overlayBottom}
       />
+      {disablePointerEvents && (
+        <div
+          className={cx({
+            [styles[`${baseClass}__overlay`]]: true,
+            [styles[`${baseClass}__overlay--visible`]]: isVisible,
+            [styles[`${baseClass}__overlay--slide`]]: slide
+          })}
+          style={spotlight}
+        />
+      )}
     </React.Fragment>
   );
 };
@@ -81,7 +99,8 @@ SpotlightOverlay.propTypes = {
     height: PropTypes.number.isRequired
   }).isRequired,
   isVisible: PropTypes.bool.isRequired,
-  slide: PropTypes.bool.isRequired
+  slide: PropTypes.bool.isRequired,
+  disablePointerEvents: PropTypes.bool
 };
 
 export default SpotlightOverlay;
