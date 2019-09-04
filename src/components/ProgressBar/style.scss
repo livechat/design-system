@@ -5,16 +5,35 @@ $base-class: 'progress';
 
 .#{$base-class} {
   width: 100%;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+
+  &__icon {
+    height: 20px;
+    margin-right: 8px;
+  }
+
+  &__wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+  }
 
   &__line {
     position: relative;
     display: inline-block;
     width: 100%;
     overflow: hidden;
-    vertical-align: middle;
+    justify-self: flex-end;
     background-color: #deeefd;
     border-radius: 100px;
+  }
+
+  &__title {
+    font-size: 14px;
+    line-height: 1.3;
+    color: $font-primary-color;
   }
 
   &__indicator {
@@ -22,5 +41,41 @@ $base-class: 'progress';
     background-color: $primary-color;
     border-radius: 2px;
     transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
+  }
+
+  &__close {
+    padding: 0;
+    margin: 0;
+    border: none;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+    flex: 0 1 auto;
+
+    svg {
+      display: flex;
+      fill: $font-tertiary-color;
+      height: 18px;
+      width: 18px;
+      cursor: pointer;
+    }
+  }
+
+  &__retry {
+    padding: 0;
+    margin: 0;
+    border: none;
+    margin-left: 8px;
+    display: flex;
+    align-items: center;
+    flex: 0 1 auto;
+
+    svg {
+      display: flex;
+      fill: $font-tertiary-color;
+      height: 18px;
+      width: 18px;
+      cursor: pointer;
+    }
   }
 }
