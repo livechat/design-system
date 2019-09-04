@@ -52,6 +52,10 @@ module.exports = {
           components: './src/components/Switch/Switch.js'
         },
         {
+          name: 'Progress',
+          components: './src/components/ProgressBar/ProgressBar.js'
+        },
+        {
           name: 'Modals',
           components: [
             './src/components/Modal/ModalBase.js',

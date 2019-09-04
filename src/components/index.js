@@ -64,3 +64,5 @@ export { PopperTooltip, CssTooltip, UserGuideTooltip } from './TooltipNew';
 export { Loader } from './Loader';
 
 export { Divider } from './Divider';
+
+export { ProgressBar } from './ProgressBar';
