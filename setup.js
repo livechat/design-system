@@ -62,6 +62,8 @@ global.Loader = Components.Loader;
 global.Divider = Components.Divider;
 
 global.ProgressBar = Components.ProgressBar;
+global.UploadBar = Components.UploadBar;
+global.FileUploadProgress = Components.FileUploadProgress;
 
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;

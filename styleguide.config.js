@@ -53,7 +53,10 @@ module.exports = {
         },
         {
           name: 'Progress',
-          components: './src/components/ProgressBar/ProgressBar.js'
+          components: [
+            './src/components/ProgressBar/ProgressBar.js',
+            './src/components/UploadBar/UploadBar.js'
+          ]
         },
         {
           name: 'Modals',
