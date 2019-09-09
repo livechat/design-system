@@ -65,5 +65,5 @@ export { Loader } from './Loader';
 
 export { Divider } from './Divider';
 
-export { ProgressBar } from './ProgressBar';
+export { ProgressBar, ProgressCircle } from './Progress';
 export { UploadBar, FileUploadProgress } from './UploadBar';

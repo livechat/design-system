@@ -14,7 +14,7 @@ initialState = {
     { id: 5, name: 'file5.jpg', iconSrc: './filetype-pdf.svg', percent: 0, status: 'normal'},
     { id: 6, name: 'file6.jpg', iconSrc: './filetype-pdf.svg', percent: 0, status: 'normal'},
     { id: 7, name: 'file7.jpg', iconSrc: './filetype-pdf.svg', percent: 0, status: 'normal'},
-    { id: 8, name: 'file8.jpg', iconSrc: './filetype-pdf.svg', percent: 0, status: 'success'},
+    { id: 8, name: 'file8.jpg', iconSrc: './filetype-pdf.svg', percent: 0, status: 'normal'},
   ]
 };
 
@@ -78,26 +78,111 @@ const removeFile = id => {
   setState({files: state.files.filter(file => file.id !== id)});
 }
 
+const getFilesInProgress = () => {
+  return state.files.filter(file => file.status === 'success').length;
+}
+
+const getTotalProgress = () => {
+  const totalProgress = state.files.reduce((acc, file) => {
+    if (file.status === 'success') {
+      return acc += 100;
+    }
+
+    if (file.status === 'error') {
+      return acc;
+    }
+
+    return acc += file.percent;
+  }, 0)
+
+  const nonErrorFilesCount = state.files.filter(file => file.status !== 'error').length;
+
+  return totalProgress/nonErrorFilesCount;
+}
+
+const getTotalStatus = () => {
+  const isInProgress = state.files.filter(file => file.status === 'normal').length > 0;
+
+  if (isInProgress) {
+    return 'normal';
+  }
+
+  const hasAnyError = state.files.filter(file => file.status === 'error').length > 0;
+
+  if (hasAnyError) {
+    return 'error';
+  }
+
+  return 'success';
+}
+
+const getFailedFilesCount = () => {
+  return state.files.filter(file => file.status === 'error').length;
+}
+
+const onSuccessTriggerClick = () => {
+  setState(prevState => ({
+    files: prevState.files.map(file => ({ ...file, percent: 100, status: 'success' }))
+  }))
+}
+
+const onErrorTriggerClick = () => {
+  setState(prevState => ({
+    files: prevState.files.map(file => ({ ...file, percent: 0, status: 'error' }))
+  }))
+}
+
+const onResetTriggerClick = () => {
+  setState(prevState => ({
+    files: prevState.files.map(file => ({ ...file, percent: 0, status: 'normal' }))
+  }))
+}
 
 <div>
-  <div style={{display: 'flex', marginBottom: '10px'}}>
+  <div style={{display: 'flex', marginBottom: '10px', justifyContent: 'space-between'}}>
     <Button size="compact" onClick={addRandomProgress}>Increase progress</Button>
     <Button size="compact" onClick={removeRandomProgress}>Decrease progress</Button>
+    <Button primary size="compact" onClick={onSuccessTriggerClick}>Trigger success</Button>
+    <Button destructive size="compact" onClick={onErrorTriggerClick}>Trigger error</Button>
+    <Button size="compact" onClick={onResetTriggerClick}>Reset</Button>
   </div>
 
   <div style={{ display: "flex", alignItems: "center" }}>
-    <UploadBar title="file.jpg" iconSrc="./filetype-pdf.svg" percent={state.percent} onCloseButtonClick={() => {}} onRetryButtonClick={() => {}}>
+    <UploadBar
+      errorMessage={getTotalStatus() === 'error' ? `${getFailedFilesCount()} files failed` : null}
+      percent={getTotalProgress()}
+      status={getTotalStatus()}
+      title={`${getFilesInProgress()}/${state.files.length} files uploaded`}
+      onCloseButtonClick={() => {}}
+      onRetryButtonClick={() => {}}
+      shouldExpandOnEndWithErrors
+      shouldCollapseOnEndWithSuccess
+    >
       {state.files.map(file => (
         <FileUploadProgress
+          key={file.id}
           title={file.name}
           percent={file.percent}
           status={file.status}
           iconSrc={file.iconSrc}
-          onCloseButtonClick={() => removeFile(file.id)}
-          onRetryButtonClick={() => resetFile(file.id)}
+          onCloseButtonClick={getTotalStatus() !== 'error' ? () => removeFile(file.id) : null}
+          onRetryButtonClick={getTotalStatus() !== 'error' ? () => resetFile(file.id) : null}
         />
       ))}
     </UploadBar>
+  </div>
+
+  <div style={{ display: "flex", alignItems: "center", marginTop: '30px' }}>
+    <UploadBar
+      mode='single'
+      iconSrc={state.files[0].iconSrc}
+      errorMessage={getTotalStatus() === 'error' ? `${state.files[0].title} file failed` : null}
+      percent={state.files[0].percent}
+      status={state.files[0].status}
+      title={state.files[0].name}
+      onCloseButtonClick={() => {}}
+      onRetryButtonClick={() => {}}
+    />
   </div>
 </div>
 ```

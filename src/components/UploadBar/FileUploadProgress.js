@@ -7,165 +7,129 @@ import classNames from 'classnames/bind';
 
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
+import { ProgressBar } from '../Progress';
+import { getProgressStatus, getPercentNumber } from '../Progress/helpers';
+import {
+  PROGRESS_SIZES,
+  PROGRESS_STATUS,
+  PROGRESS_STATUSES
+} from '../Progress/constants';
 
 const cx = classNames.bind(styles);
 
-const ProgressStatuses = ['normal', 'error', 'active', 'success'];
-
 const baseClass = 'file-upload-progress';
 
-class FileUploadProgressComponent extends React.PureComponent {
-  state = {
-    isExpanded: false
-  };
+const FileUploadProgress = React.forwardRef((props, ref) => {
+  const {
+    className,
+    iconSrc,
+    percent,
+    status,
+    title,
+    size,
+    onCloseButtonClick,
+    onRetryButtonClick,
+    ...restProps
+  } = props;
 
-  getPercentNumber() {
-    const { percent = 0 } = this.props;
+  const progressStatus = getProgressStatus(status, percent);
+  const percentNumber = getPercentNumber(progressStatus, percent);
 
-    if (this.getProgressStatus() === 'error') {
-      return 0;
-    }
-    return parseInt(percent.toString(), 10);
-  }
+  const mergedClassNames = getMergedClassNames(
+    cx({
+      [baseClass]: true,
+      [`${baseClass}--with-icon`]: iconSrc,
+      [`${baseClass}--error`]: progressStatus === PROGRESS_STATUS.error,
+      [`${baseClass}--success`]: progressStatus === PROGRESS_STATUS.success
+    }),
+    className
+  );
 
-  getProgressStatus() {
-    const { status, percent } = this.props;
-
-    if (!ProgressStatuses.includes(status) && percent >= 100) {
-      return 'success';
-    }
-
-    return status || 'normal';
-  }
-
-  handleCollapseButtonClick = e => {
-    e.stopPropagation();
-    this.setState(prevState => ({ isExpanded: !prevState.isExpanded }));
-  };
-
-  render() {
-    const {
-      className,
-      iconSrc,
-      children,
-      percent,
-      strokeWidth,
-      strokeColor,
-      status,
-      title,
-      innerRef,
-      onCloseButtonClick,
-      onRetryButtonClick,
-      ...restProps
-    } = this.props;
-
-    const mergedClassNames = getMergedClassNames(
-      cx({
-        [baseClass]: true,
-        [`${baseClass}--with-icon`]: iconSrc,
-        [`${baseClass}--error`]: this.getProgressStatus() === 'error',
-        [`${baseClass}--success`]: this.getProgressStatus() === 'success'
-      }),
-      className
-    );
-
-    const percentStyle = {
-      width: `${this.getPercentNumber()}%`,
-      height: strokeWidth,
-      borderRadius: '',
-      backgroundColor: strokeColor || '#4384f5'
-    };
-
-    return (
-      <div {...restProps} className={mergedClassNames} {...restProps}>
-        {iconSrc &&
-          this.getProgressStatus() !== 'success' && (
-            <img src={iconSrc} className={styles[`${baseClass}__icon`]} />
-          )}
-        {this.getProgressStatus() === 'success' && (
-          <div className={styles[`${baseClass}__success-icon`]}>
-            <CheckIcon />
-          </div>
+  return (
+    <div {...restProps} className={mergedClassNames} ref={ref}>
+      {iconSrc &&
+        progressStatus !== PROGRESS_STATUS.success && (
+          <img src={iconSrc} className={styles[`${baseClass}__icon`]} />
         )}
-        <div className={styles[`${baseClass}__wrapper`]}>
-          <div className={styles[`${baseClass}__header`]}>
-            {title && (
-              <div className={styles[`${baseClass}__title`]}>{title}</div>
-            )}
-            {(onRetryButtonClick || onCloseButtonClick) && (
-              <div className={styles[`${baseClass}__actions`]}>
-                {onRetryButtonClick &&
-                  this.getProgressStatus() === 'error' && (
-                    <button
-                      type="button"
-                      className={styles[`${baseClass}__retry`]}
-                      aria-label="Retry"
-                      onClick={onRetryButtonClick}
-                    >
-                      <RefreshIcon />
-                    </button>
-                  )}
-                {onCloseButtonClick &&
-                  this.getProgressStatus() !== 'success' && (
-                    <button
-                      type="button"
-                      className={styles[`${baseClass}__close`]}
-                      aria-label="Close"
-                      onClick={onCloseButtonClick}
-                    >
-                      <CloseIcon />
-                    </button>
-                  )}
-              </div>
-            )}
-          </div>
-          {this.getProgressStatus() !== 'success' && (
-            <div
-              className={styles[`${baseClass}__line`]}
-              style={{ height: strokeWidth }}
-            >
-              <div
-                className={styles[`${baseClass}__indicator`]}
-                style={percentStyle}
-              />
+      {progressStatus === PROGRESS_STATUS.success && (
+        <div className={styles[`${baseClass}__success-icon`]}>
+          <CheckIcon />
+        </div>
+      )}
+      <div className={styles[`${baseClass}__wrapper`]}>
+        <div className={styles[`${baseClass}__header`]}>
+          {title && (
+            <div className={styles[`${baseClass}__title`]}>{title}</div>
+          )}
+          {(onRetryButtonClick || onCloseButtonClick) && (
+            <div className={styles[`${baseClass}__actions`]}>
+              {onRetryButtonClick &&
+                progressStatus === 'error' && (
+                  <button
+                    type="button"
+                    className={styles[`${baseClass}__retry`]}
+                    aria-label="Retry"
+                    onClick={onRetryButtonClick}
+                  >
+                    <RefreshIcon />
+                  </button>
+                )}
+              {onCloseButtonClick &&
+                progressStatus !== PROGRESS_STATUS.success && (
+                  <button
+                    type="button"
+                    className={styles[`${baseClass}__close`]}
+                    aria-label="Close"
+                    onClick={onCloseButtonClick}
+                  >
+                    <CloseIcon />
+                  </button>
+                )}
             </div>
           )}
         </div>
+        {progressStatus !== PROGRESS_STATUS.success && (
+          <ProgressBar
+            size={size}
+            percent={percentNumber}
+            status={progressStatus}
+          />
+        )}
       </div>
-    );
-  }
-}
+    </div>
+  );
+});
 
-const basePropTypes = {
+FileUploadProgress.propTypes = {
   className: PropTypes.string,
+  /**
+   * Usually a url to the icon of the uploaded file
+   */
   iconSrc: PropTypes.string,
+  /**
+   * Usually a name of the uploaded file
+   */
   title: PropTypes.string,
+  /**
+   * Progress of upload presented on the `ProgressBar`
+   */
   percent: PropTypes.number,
-  strokeWidth: PropTypes.string,
-  strokeColor: PropTypes.string,
-  status: PropTypes.oneOf(ProgressStatuses),
+  /**
+   * The size of the `ProgressBar`
+   */
+  size: PropTypes.oneOf(PROGRESS_SIZES),
+  /**
+   * Upload status of the file
+   */
+  status: PropTypes.oneOf(PROGRESS_STATUSES),
+  /**
+   * Useful to cancel the file upload or to remove the file when it's upload resulted in an error
+   */
   onCloseButtonClick: PropTypes.func,
+  /**
+   * Useful to retry the file upload
+   */
   onRetryButtonClick: PropTypes.func
 };
-
-const baseDefaultProps = {
-  strokeWidth: '4px' // eslint-disable-line react/default-props-match-prop-types
-};
-
-FileUploadProgressComponent.propTypes = {
-  ...basePropTypes,
-  innerRef: PropTypes.instanceOf(
-    typeof Element === 'undefined' ? () => {} : Element
-  )
-};
-
-FileUploadProgressComponent.defaultProps = baseDefaultProps;
-
-const FileUploadProgress = React.forwardRef((props, ref) => (
-  <FileUploadProgressComponent innerRef={ref} {...props} />
-));
-
-FileUploadProgress.propTypes = basePropTypes;
-FileUploadProgress.defaultProps = baseDefaultProps;
 
 export default FileUploadProgress;
