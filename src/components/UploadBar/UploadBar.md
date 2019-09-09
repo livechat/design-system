@@ -176,7 +176,7 @@ const onResetTriggerClick = () => {
     <UploadBar
       mode='single'
       iconSrc={state.files[0].iconSrc}
-      errorMessage={getTotalStatus() === 'error' ? `${state.files[0].title} file failed` : null}
+      errorMessage={getTotalStatus() === 'error' ? `${state.files[0].name} file failed` : null}
       percent={state.files[0].percent}
       status={state.files[0].status}
       title={state.files[0].name}

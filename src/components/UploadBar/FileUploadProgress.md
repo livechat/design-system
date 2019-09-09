@@ -50,7 +50,7 @@ const onResetTriggerClick = () => {
 
   <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
     <FileUploadProgress
-      title='very_large_namevery_large_namevery_large_namevery_large_namevery_large_namevery_large_namevery_large_namevery_large_namevery_large_namevery_large_namevery_large_namevery_large_namevery_large_namevery_large_name.jpg'
+      title='file.pdf'
       percent={state.percent}
       status={state.hasError ? 'error' : 'normal'}
       iconSrc='./filetype-pdf.svg'
