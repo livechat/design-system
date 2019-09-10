@@ -124,7 +124,7 @@ Button expanded to the full width to fill the parent container (max-width: 320px
 </ComponentHtmlMarkup>
 ```
 
-#### Loading
+### Loading
 
 ```js
   initialState = { loading: true };
