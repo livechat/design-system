@@ -15,6 +15,7 @@ const Button = React.forwardRef((props, ref) => {
     destructive,
     disabled,
     loading,
+    icon,
     size,
     fullWidth,
     submit,
@@ -66,6 +67,7 @@ const Button = React.forwardRef((props, ref) => {
       {loading && (
         <Loader size="small" className={styles[`${baseClass}__loader`]} />
       )}
+      {icon && <i className={styles[`${baseClass}__icon`]}>{icon}</i>}
       {children}
     </button>
   );
@@ -83,6 +85,7 @@ Button.propTypes = {
    */
   destructive: PropTypes.bool,
   disabled: PropTypes.bool,
+  icon: PropTypes.node,
   loading: PropTypes.bool,
   /**
    * Size of button
