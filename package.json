@@ -1,6 +1,6 @@
 {
   "name": "@livechat/design-system",
-  "version": "0.4.7",
+  "version": "0.4.71",
   "publishConfig": {
     "access": "public"
   },
