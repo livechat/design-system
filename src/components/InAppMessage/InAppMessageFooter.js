@@ -18,7 +18,7 @@ const InAppMessageFooter = props => {
   if (props.buttons.remind) {
     const { children: remindChildren, ...remindProps } = props.buttons.remind;
     RemindButton = () => (
-      <Button fullWidth {...remindProps}>
+      <Button secondary fullWidth {...remindProps}>
         {remindChildren}
       </Button>
     );

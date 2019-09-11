@@ -34,6 +34,7 @@ class ButtonGroup extends React.Component {
         size,
         fullWidth,
         primary: false,
+        secondary: true,
         destructive: false,
         onClick: event => {
           this.handleClick(index, event);

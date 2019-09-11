@@ -18,6 +18,7 @@ export interface IButtonProps
   ariaExpanded?: boolean;
   renderIcon?: string | React.ReactNode;
   ref?: React.Ref<HTMLButtonElement> | React.Ref<React.Component<IButtonProps>>;
+  secondary?: boolean;
 }
 
 export var Button: React.ComponentType<IButtonProps>;

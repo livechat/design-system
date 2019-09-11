@@ -14,7 +14,7 @@ Use when there is an action that is more important than any other actions and yo
 
 ### Basic Button
 
-The standard button for most use cases. Only use another style if a button requires more or less visual attention.
+The standard button for most use cases. Can be used for primary actions when the Primary button style is "too much" (e.g. "Edit" vs "Save").
 
 ```js
 <Button>Basic Button</Button>
@@ -23,6 +23,20 @@ The standard button for most use cases. Only use another style if a button requi
 ```js noeditor
 <ComponentHtmlMarkup>
   <Button>Basic Button</Button>
+</ComponentHtmlMarkup>
+```
+
+### Secondary Button
+
+Secondary buttons provide a lighter weight button style. They can be used in isolation, for less prominent actions, or paired with a Primary button, e.g for the ‘Cancel’ action.
+
+```js
+<Button secondary>Secondary Button</Button>
+```
+
+```js noeditor
+<ComponentHtmlMarkup>
+  <Button secondary>Secondary Button</Button>
 </ComponentHtmlMarkup>
 ```
 
@@ -141,6 +155,7 @@ Button expanded to the full width to fill the parent container (max-width: 320px
     </div>
     <div style={{display: 'flex', justifyContent: 'space-between'}}>
       <Button loading={state.loading}>Loading Button</Button>
+      <Button loading={state.loading} secondary>Loading Button</Button>
       <Button loading={state.loading} destructive>Loading Button</Button>
       <Button loading={state.loading} primary>Loading Button</Button>
     </div>
@@ -151,6 +166,9 @@ Button expanded to the full width to fill the parent container (max-width: 320px
 <ComponentHtmlMarkup>
   <div>
     <Button loading>Loading Button</Button>
+    <Button loading secondary>
+      Loading Button
+    </Button>
     <Button loading destructive>
       Loading Button
     </Button>

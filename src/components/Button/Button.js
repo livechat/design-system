@@ -19,6 +19,7 @@ const Button = React.forwardRef((props, ref) => {
     size,
     fullWidth,
     submit,
+    secondary,
     accessibilityLabel,
     ariaControls,
     ariaExpanded,
@@ -35,6 +36,8 @@ const Button = React.forwardRef((props, ref) => {
     buttonType = 'primary';
   } else if (destructive) {
     buttonType = 'destructive';
+  } else if (secondary) {
+    buttonType = 'secondary';
   }
 
   const baseClass = 'btn';
@@ -46,6 +49,7 @@ const Button = React.forwardRef((props, ref) => {
       [`${baseClass}--full-width`]: fullWidth,
       [`${baseClass}--primary`]: buttonType === 'primary',
       [`${baseClass}--destructive`]: buttonType === 'destructive',
+      [`${baseClass}--secondary`]: buttonType === 'secondary',
       [`${baseClass}--${size}`]: acceptedSizes.some(s => s === size)
     }),
     className
@@ -74,7 +78,11 @@ const Button = React.forwardRef((props, ref) => {
 });
 
 Button.propTypes = {
+  accessibilityLabel: PropTypes.string,
+  ariaControls: PropTypes.string,
+  ariaExpanded: PropTypes.string,
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
   id: PropTypes.string,
   /**
    * Type of button
@@ -85,25 +93,25 @@ Button.propTypes = {
    */
   destructive: PropTypes.bool,
   disabled: PropTypes.bool,
+  /**
+   * Sets button width to max-width=320px
+   */
+  fullWidth: PropTypes.bool,
   icon: PropTypes.node,
   loading: PropTypes.bool,
+  onClick: PropTypes.func,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
+  /**
+   * Type of button
+   */
+  secondary: PropTypes.bool,
   /**
    * Size of button
    */
   size: PropTypes.oneOf(['compact', 'large']),
-  /**
-   * Sets button width to max-width=320px
-   */
-  type: PropTypes.string,
-  fullWidth: PropTypes.bool,
-  onClick: PropTypes.func,
-  onFocus: PropTypes.func,
-  onBlur: PropTypes.func,
   submit: PropTypes.bool,
-  className: PropTypes.string,
-  accessibilityLabel: PropTypes.string,
-  ariaControls: PropTypes.string,
-  ariaExpanded: PropTypes.string
+  type: PropTypes.string
 };
 
 export default Button;
