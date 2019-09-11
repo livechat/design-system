@@ -11,6 +11,7 @@ $base-class: "upload-bar";
   background-color: #fff;
   padding: 10px;
   overflow: hidden;
+  box-sizing: border-box;
 
   &__main {
     display: flex;
@@ -301,20 +302,20 @@ $base-class: "upload-bar";
   }
 
   &__bottom-arrow {
-    transform: rotate(-180deg);
+    transform: rotate(0);
   }
 
   &__top-arrow {
-    transform: rotate(180deg);
+    transform: rotate(0);
   }
 
   &--expanded {
     .collapse-icon__bottom-arrow {
-      transform: rotate(0);
+      transform: rotate(-180deg);
     }
 
     .collapse-icon__top-arrow {
-      transform: rotate(0);
+      transform: rotate(180deg);
     }
   }
 }

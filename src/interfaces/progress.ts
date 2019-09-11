@@ -41,11 +41,16 @@ export interface IUploadBarProps extends React.HTMLAttributes<HTMLDivElement> {
   isExpanded?: boolean;
   mode?: ProgressMode;
   percent: number;
+  size?: ProgressSize;
   status?: ProgressStatus;
   shouldExpandOnEndWithErrors?: boolean;
   shouldCollapseOnEndWithSuccess?: boolean;
   title: string;
-  onCollapseButtonClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onCloseButtonClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onCollapseButtonClick?: (
+    e: React.MouseEvent<HTMLButtonElement | HTMLDivElement>
+  ) => void;
+  onRetryButtonClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export var ProgressBar: React.ComponentType<IProgressBarProps>;
