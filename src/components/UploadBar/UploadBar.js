@@ -9,7 +9,7 @@ import classNames from 'classnames/bind';
 
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
-import CollapseIcon from './CollapseIcon';
+import { CollapseIcon } from '../CollapseIcon';
 import { ProgressCircle } from '../Progress';
 import {
   PROGRESS_SIZE,
