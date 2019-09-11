@@ -1,8 +1,9 @@
 // <reference types="react" />
 
-export type ButtonSize = 'compact' | 'large';
+export type ButtonSize = "compact" | "large";
 
-export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{
+export interface IButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   primary?: boolean;
   destructive?: boolean;
@@ -17,6 +18,7 @@ export interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
   ariaExpanded?: boolean;
   renderIcon?: string | React.ReactNode;
   ref?: React.Ref<HTMLButtonElement> | React.Ref<React.Component<IButtonProps>>;
+  secondary?: boolean;
 }
 
 export var Button: React.ComponentType<IButtonProps>;
