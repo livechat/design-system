@@ -82,10 +82,34 @@ $base-class: "upload-bar";
     justify-self: flex-end;
     align-items: center;
     flex: 0 1 auto;
+    color: $font-tertiary-color;
+    transition-property: opacity, border, color, background-color, box-shadow;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.64, 0, 0.35, 1);
+    border-radius: 4px;
+
+    &:focus,
+    &:hover,
+    &:active {
+      outline: 0;
+    }
+
+    &:hover {
+      color: rgba(66, 77, 89, 1);
+    }
+
+    &:focus {
+      box-shadow: 0 0 1px 2px rgba($primary-color, 0.7);
+    }
+
+    &:active {
+      box-shadow: 0 0 0 1px $border-primary-color;
+      transition-duration: 100ms;
+    }
 
     svg {
       display: flex;
-      fill: $font-tertiary-color;
+      fill: currentColor;
       height: 18px;
       width: 18px;
       cursor: pointer;
@@ -101,10 +125,34 @@ $base-class: "upload-bar";
     align-items: center;
     justify-self: flex-end;
     flex: 0 1 auto;
+    color: $font-tertiary-color;
+    transition-property: opacity, border, color, background-color, box-shadow;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.64, 0, 0.35, 1);
+    border-radius: 4px;
+
+    &:focus,
+    &:hover,
+    &:active {
+      outline: 0;
+    }
+
+    &:hover {
+      color: rgba(66, 77, 89, 1);
+    }
+
+    &:focus {
+      box-shadow: 0 0 1px 2px rgba($primary-color, 0.7);
+    }
+
+    &:active {
+      box-shadow: 0 0 0 1px $border-primary-color;
+      transition-duration: 100ms;
+    }
 
     svg {
       display: flex;
-      fill: $font-tertiary-color;
+      fill: currentColor;
       height: 18px;
       width: 18px;
       cursor: pointer;
@@ -150,6 +198,7 @@ $base-class: "upload-bar";
 
     .file-upload-progress:not(:last-child) {
       margin-bottom: 14px;
+      margin-top: 5px;
     }
   }
 
@@ -162,6 +211,30 @@ $base-class: "upload-bar";
     align-items: center;
     flex: 0 1 auto;
     cursor: pointer;
+    color: $font-secondary-color;
+    transition-property: opacity, border, color, background-color, box-shadow;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.64, 0, 0.35, 1);
+    border-radius: 4px;
+
+    &:focus,
+    &:hover,
+    &:active {
+      outline: 0;
+    }
+
+    &:hover {
+      color: rgba(66, 77, 89, 1);
+    }
+
+    &:focus {
+      box-shadow: 0 0 1px 2px rgba($primary-color, 0.7);
+    }
+
+    &:active {
+      box-shadow: 0 0 0 1px $border-primary-color;
+      transition-duration: 100ms;
+    }
   }
 
   &--error {
@@ -259,13 +332,37 @@ $base-class: "upload-bar";
     justify-self: flex-end;
     align-items: center;
     flex: 0 1 auto;
+    color: $font-tertiary-color;
+    transition-property: opacity, border, color, background-color, box-shadow;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.64, 0, 0.35, 1);
+    border-radius: 4px;
+
+    &:focus,
+    &:hover,
+    &:active {
+      outline: 0;
+    }
+
+    &:hover {
+      color: rgba(66, 77, 89, 1);
+    }
+
+    &:focus {
+      box-shadow: 0 0 1px 2px rgba($primary-color, 0.7);
+    }
+
+    &:active {
+      box-shadow: 0 0 0 1px $border-primary-color;
+      transition-duration: 100ms;
+    }
 
     svg {
       display: flex;
-      fill: $font-tertiary-color;
       height: 18px;
       width: 18px;
       cursor: pointer;
+      fill: currentColor;
     }
   }
 
@@ -278,10 +375,34 @@ $base-class: "upload-bar";
     align-items: center;
     justify-self: flex-end;
     flex: 0 1 auto;
+    color: $font-tertiary-color;
+    transition-property: opacity, border, color, background-color, box-shadow;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.64, 0, 0.35, 1);
+    border-radius: 4px;
+
+    &:focus,
+    &:hover,
+    &:active {
+      outline: 0;
+    }
+
+    &:hover {
+      color: rgba(66, 77, 89, 1);
+    }
+
+    &:focus {
+      box-shadow: 0 0 1px 2px rgba($primary-color, 0.7);
+    }
+
+    &:active {
+      box-shadow: 0 0 0 1px $border-primary-color;
+      transition-duration: 100ms;
+    }
 
     svg {
       display: flex;
-      fill: $font-tertiary-color;
+      fill: currentColor;
       height: 18px;
       width: 18px;
       cursor: pointer;
@@ -293,7 +414,7 @@ $base-class: "upload-bar";
   display: inline-block;
   flex-shrink: 0;
   user-select: none;
-  fill: $font-secondary-color;
+  fill: currentColor;
 
   path {
     transform-box: fill-box;
