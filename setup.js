@@ -2,6 +2,7 @@ import * as DateFns from 'date-fns';
 import AlertCircleIcon from 'react-material-icon-svg/dist/AlertCircleIcon';
 import * as Components from './src';
 import ComponentHtmlMarkup from './src/docs/ComponentHtmlMarkup';
+import PdfIcon from './src/docs/PdfIcon';
 
 // components
 global.Button = Components.Button;
@@ -68,5 +69,6 @@ global.FileUploadProgress = Components.FileUploadProgress;
 
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;
+global.PdfIcon = PdfIcon;
 global.AlertCircleIcon = AlertCircleIcon;
 global.DateFns = DateFns;

@@ -1,20 +1,20 @@
 ```js
 initialState = {
   files: [
-    { id: 1, name: 'file1.jpg', iconSrc: './filetype-pdf.svg', percent: 0, status: 'normal'},
-    { id: 2, name: 'file2.jpg', iconSrc: './filetype-pdf.svg', percent: 0, status: 'normal'},
+    { id: 1, name: 'file1.jpg', icon: <PdfIcon />, percent: 0, status: 'normal'},
+    { id: 2, name: 'file2.jpg', icon: <PdfIcon />, percent: 0, status: 'normal'},
     {
       id: 3,
       name: 'very_large_namevery_large_namevery_large_namevery_large_namevery_large_namevery_large_namevery_large_namevery_large_namevery_large_namevery_large_namevery_large_namevery_large_namevery_large_namevery_large_name.jpg',
-      iconSrc: './filetype-pdf.svg',
+      icon: <PdfIcon />,
       percent: 0,
       status: 'normal'
     },
-    { id: 4, name: 'file4.jpg', iconSrc: './filetype-pdf.svg', percent: 0, status: 'normal'},
-    { id: 5, name: 'file5.jpg', iconSrc: './filetype-pdf.svg', percent: 0, status: 'normal'},
-    { id: 6, name: 'file6.jpg', iconSrc: './filetype-pdf.svg', percent: 0, status: 'normal'},
-    { id: 7, name: 'file7.jpg', iconSrc: './filetype-pdf.svg', percent: 0, status: 'normal'},
-    { id: 8, name: 'file8.jpg', iconSrc: './filetype-pdf.svg', percent: 0, status: 'normal'},
+    { id: 4, name: 'file4.jpg', icon: <PdfIcon />, percent: 0, status: 'normal'},
+    { id: 5, name: 'file5.jpg', icon: <PdfIcon />, percent: 0, status: 'normal'},
+    { id: 6, name: 'file6.jpg', icon: <PdfIcon />, percent: 0, status: 'normal'},
+    { id: 7, name: 'file7.jpg', icon: <PdfIcon />, percent: 0, status: 'normal'},
+    { id: 8, name: 'file8.jpg', icon: <PdfIcon />, percent: 0, status: 'normal'},
   ]
 };
 
@@ -164,7 +164,7 @@ const onResetTriggerClick = () => {
           title={file.name}
           percent={file.percent}
           status={file.status}
-          iconSrc={file.iconSrc}
+          icon={file.icon}
           onCloseButtonClick={getTotalStatus() !== 'error' ? () => removeFile(file.id) : null}
           onRetryButtonClick={getTotalStatus() !== 'error' ? () => resetFile(file.id) : null}
         />
@@ -175,7 +175,7 @@ const onResetTriggerClick = () => {
   <div style={{ display: "flex", alignItems: "center", marginTop: '30px' }}>
     <UploadBar
       mode='single'
-      iconSrc={state.files[0].iconSrc}
+      icon={state.files[0].icon}
       errorMessage={getTotalStatus() === 'error' ? `${state.files[0].name} file failed` : null}
       percent={state.files[0].percent}
       status={state.files[0].status}

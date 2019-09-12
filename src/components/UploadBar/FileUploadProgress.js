@@ -22,7 +22,7 @@ const baseClass = 'file-upload-progress';
 const FileUploadProgress = React.forwardRef((props, ref) => {
   const {
     className,
-    iconSrc,
+    icon,
     percent,
     status,
     title,
@@ -38,7 +38,7 @@ const FileUploadProgress = React.forwardRef((props, ref) => {
   const mergedClassNames = getMergedClassNames(
     cx({
       [baseClass]: true,
-      [`${baseClass}--with-icon`]: iconSrc,
+      [`${baseClass}--with-icon`]: icon,
       [`${baseClass}--error`]: progressStatus === PROGRESS_STATUS.error,
       [`${baseClass}--success`]: progressStatus === PROGRESS_STATUS.success
     }),
@@ -47,9 +47,9 @@ const FileUploadProgress = React.forwardRef((props, ref) => {
 
   return (
     <div {...restProps} className={mergedClassNames} ref={ref}>
-      {iconSrc &&
+      {icon &&
         progressStatus !== PROGRESS_STATUS.success && (
-          <img src={iconSrc} className={styles[`${baseClass}__icon`]} />
+          <div className={styles[`${baseClass}__icon`]}>{icon}</div>
         )}
       {progressStatus === PROGRESS_STATUS.success && (
         <div className={styles[`${baseClass}__success-icon`]}>
@@ -103,9 +103,9 @@ const FileUploadProgress = React.forwardRef((props, ref) => {
 FileUploadProgress.propTypes = {
   className: PropTypes.string,
   /**
-   * Usually a url to the icon of the uploaded file
+   * Usually an icon of the uploaded file
    */
-  iconSrc: PropTypes.string,
+  icon: PropTypes.node,
   /**
    * Usually a name of the uploaded file
    */

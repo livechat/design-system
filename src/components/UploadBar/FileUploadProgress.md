@@ -53,7 +53,7 @@ const onResetTriggerClick = () => {
       title='file.pdf'
       percent={state.percent}
       status={state.hasError ? 'error' : 'normal'}
-      iconSrc='./filetype-pdf.svg'
+      icon={<PdfIcon />}
       onCloseButtonClick={state.hasError ? onResetTriggerClick : null}
       onRetryButtonClick={state.hasError ? onResetTriggerClick : null}
     />

@@ -24,7 +24,7 @@ export interface IProgressCircleProps
 
 export interface IFileUploadProgressProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  iconSrc?: string;
+  icon?: React.ReactNode;
   title: string;
   percent: number;
   status?: ProgressStatus;
@@ -37,7 +37,7 @@ export interface IFileUploadProgressProps
 
 export interface IUploadBarProps extends React.HTMLAttributes<HTMLDivElement> {
   errorMessage?: string;
-  iconSrc?: string;
+  icon?: React.ReactNode;
   isExpanded?: boolean;
   mode?: ProgressMode;
   percent: number;

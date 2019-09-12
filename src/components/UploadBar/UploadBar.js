@@ -84,7 +84,7 @@ class UploadBarComponent extends React.PureComponent {
     const {
       className,
       children,
-      iconSrc,
+      icon,
       size,
       status,
       title,
@@ -187,7 +187,7 @@ class UploadBarComponent extends React.PureComponent {
   renderUploadBarSingleMode = () => {
     const {
       className,
-      iconSrc,
+      icon,
       status,
       title,
       innerRef,
@@ -218,7 +218,7 @@ class UploadBarComponent extends React.PureComponent {
               title={withError ? errorMessage || title : title}
               percent={percent}
               status={status}
-              iconSrc={iconSrc}
+              icon={icon}
               size={size}
             />
           </div>
@@ -303,9 +303,9 @@ const basePropTypes = {
    */
   errorMessage: PropTypes.string,
   /**
-   * Available in single mode, url to ie. file icon
+   * Available in single mode, ie. svg file icon
    */
-  iconSrc: PropTypes.string,
+  icon: PropTypes.node,
   /**
    * `UploadBar`'s details visibility can be a controlled by `isExpanded` property. Any inside change (ie. click on the bar head) will trigger `onCollapseButtonClick` method
    * You can also use `UploadBar` without providing `isExpanded` property and it's state will be resolved with component's state

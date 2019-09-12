@@ -149,6 +149,11 @@ $file-upload-progress: "file-upload-progress";
   &__icon {
     height: 18px;
     margin-right: 8px;
+
+    svg {
+      width: 18px;
+      max-height: 18px;
+    }
   }
 
   &__wrapper {
