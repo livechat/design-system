@@ -4,6 +4,7 @@ import memoizeOne from 'memoize-one';
 import { CSSTransition } from 'react-transition-group';
 import { Manager, Reference, Popper } from 'react-popper';
 import cx from 'classnames';
+import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 import styles from './style.scss';
 import { buildPopperModifiers, buildPopperTooltipStyle } from './helpers';
 
@@ -193,13 +194,17 @@ class PopperTooltip extends React.PureComponent {
       tooltipRef &&
       !tooltipRef.contains(event.target)
     ) {
-      if (this.isIsVisibleControlled()) {
-        this.props.onClose();
-      } else {
-        this.setState({
-          isVisible: false
-        });
-      }
+      this.handleClose();
+    }
+  };
+
+  handleClose = () => {
+    if (this.isIsVisibleControlled()) {
+      this.props.onClose();
+    } else {
+      this.setState({
+        isVisible: false
+      });
     }
   };
 
@@ -234,6 +239,7 @@ class PopperTooltip extends React.PureComponent {
       children,
       className,
       closeOnOutsideClick,
+      closeWithX,
       hoverOutDelayTimeout,
       zIndex,
       eventsEnabled,
@@ -274,6 +280,14 @@ class PopperTooltip extends React.PureComponent {
           [className]: className
         })}
       >
+        {closeWithX && (
+          <div
+            onClick={this.handleClose}
+            className={styles[`${baseClass}__close`]}
+          >
+            <CloseIcon width="16px" height="16px" />
+          </div>
+        )}
         {children}
         {computedModifiers.arrow.enabled && (
           <div
@@ -347,6 +361,7 @@ PopperTooltip.propTypes = {
    * If you are using `triggerActionType='managed'` event handler will call provided onClose prop.
    */
   closeOnOutsideClick: PropTypes.bool,
+  closeWithX: PropTypes.bool,
   eventsEnabled: PropTypes.bool,
   /**
    * Number of miliseconds until tooltip close.

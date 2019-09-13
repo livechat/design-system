@@ -15,16 +15,38 @@
   text-align: left;
   transition-property: opacity, visibility;
 
+  &__close {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 8px;
+    cursor: pointer;
+    line-height: 0;
+
+    svg {
+      fill: #fff;
+    }
+  }
+
   &--invert {
     background-color: #fff;
     border-color: #fff;
     color: $font-primary-color;
+
+    .popper-tooltip__close svg {
+      fill: $font-primary-color;
+    }
   }
 
   &--important {
     background-color: $ui-tooltip-important-color;
     border-color: $ui-tooltip-important-color;
     color: $font-primary-color;
+
+    .popper-tooltip__close svg {
+      fill: $font-primary-color;
+    }
   }
 
   &:focus {

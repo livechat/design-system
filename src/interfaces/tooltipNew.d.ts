@@ -12,6 +12,7 @@ export interface IPopperTooltipProps
   children: React.ReactNode;
   theme?: TooltipTheme;
   closeOnOutsideClick?: boolean;
+  closeWithX?: boolean;
   eventsEnabled?: boolean;
   hoverOutDelayTimeout?: number;
   isVisible?: boolean;
