@@ -15,6 +15,7 @@ const Button = React.forwardRef((props, ref) => {
     destructive,
     disabled,
     loading,
+    icon,
     size,
     fullWidth,
     submit,
@@ -70,6 +71,7 @@ const Button = React.forwardRef((props, ref) => {
       {loading && (
         <Loader size="small" className={styles[`${baseClass}__loader`]} />
       )}
+      {icon && <i className={styles[`${baseClass}__icon`]}>{icon}</i>}
       {children}
     </button>
   );
@@ -95,6 +97,7 @@ Button.propTypes = {
    * Sets button width to max-width=320px
    */
   fullWidth: PropTypes.bool,
+  icon: PropTypes.node,
   loading: PropTypes.bool,
   onClick: PropTypes.func,
   onFocus: PropTypes.func,

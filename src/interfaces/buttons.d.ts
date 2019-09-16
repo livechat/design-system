@@ -11,7 +11,7 @@ export interface IButtonProps
   size?: ButtonSize;
   outline?: boolean;
   fullWidth?: boolean;
-  icon?: any;
+  icon?: React.ReactNode;
   submit?: boolean;
   accessibilityLabel?: string;
   ariaControls?: string;

@@ -12,20 +12,6 @@ Use when there is an action that is more important than any other actions and yo
 </ComponentHtmlMarkup>
 ```
 
-### Secondary Button
-
-Secondary buttons provide a lighter weight button style. They can be used in isolation, for less prominent actions, or paired with a Primary button, e.g for the ‘Cancel’ action.
-
-```js
-<Button secondary>Secondary Button</Button>
-```
-
-```js noeditor
-<ComponentHtmlMarkup>
-  <Button secondary>Secondary Button</Button>
-</ComponentHtmlMarkup>
-```
-
 ### Basic Button
 
 The standard button for most use cases. Can be used for primary actions when the Primary button style is "too much" (e.g. "Edit" vs "Save").
@@ -37,6 +23,20 @@ The standard button for most use cases. Can be used for primary actions when the
 ```js noeditor
 <ComponentHtmlMarkup>
   <Button>Basic Button</Button>
+</ComponentHtmlMarkup>
+```
+
+### Secondary Button
+
+Secondary buttons provide a lighter weight button style. They can be used in isolation, for less prominent actions, or paired with a Primary button, e.g for the ‘Cancel’ action.
+
+```js
+<Button secondary>Secondary Button</Button>
+```
+
+```js noeditor
+<ComponentHtmlMarkup>
+  <Button secondary>Secondary Button</Button>
 </ComponentHtmlMarkup>
 ```
 
@@ -122,7 +122,23 @@ Button expanded to the full width to fill the parent container (max-width: 320px
 </ComponentHtmlMarkup>
 ```
 
-#### Loading
+### Button with icon
+
+```js
+<Button icon={<AlertCircleIcon />} primary>
+  Primary Button
+</Button>
+```
+
+```js noeditor
+<ComponentHtmlMarkup>
+  <Button icon={<AlertCircleIcon />} primary>
+    Primary Button
+  </Button>
+</ComponentHtmlMarkup>
+```
+
+### Loading
 
 ```js
   initialState = { loading: true };
