@@ -151,6 +151,18 @@ $file-upload-progress: "file-upload-progress";
     align-self: flex-start;
   }
 
+  &--with-actions-on-hover {
+    .#{$file-upload-progress}__actions {
+      display: none;
+    }
+
+    &:hover {
+      .#{$file-upload-progress}__actions {
+        display: inline-flex;
+      }
+    }
+  }
+
   &__header {
     display: flex;
     justify-content: space-between;

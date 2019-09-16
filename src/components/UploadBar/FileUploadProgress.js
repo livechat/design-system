@@ -14,10 +14,64 @@ import {
   PROGRESS_STATUS,
   PROGRESS_STATUSES
 } from '../Progress/constants';
+import {
+  UPLOAD_PROGRESS_ACTIONS_STATES,
+  UPLOAD_PROGRESS_ACTIONS_STATE
+} from './constants';
 
 const cx = classNames.bind(styles);
 
 const baseClass = 'file-upload-progress';
+
+const FileUploadProgressActions = props => {
+  if (
+    (!props.onRetryButtonClick && !props.onCloseButtonClick) ||
+    !props.isVisible
+  ) {
+    return null;
+  }
+
+  return (
+    <div className={styles[`${baseClass}__actions`]}>
+      {props.onRetryButtonClick &&
+        props.progressStatus === 'error' && (
+          <button
+            type="button"
+            className={styles[`${baseClass}__retry`]}
+            aria-label="Retry"
+            onClick={props.onRetryButtonClick}
+          >
+            <RefreshIcon />
+          </button>
+        )}
+      {props.onCloseButtonClick &&
+        props.progressStatus !== PROGRESS_STATUS.success && (
+          <button
+            type="button"
+            className={styles[`${baseClass}__close`]}
+            aria-label="Close"
+            onClick={props.onCloseButtonClick}
+          >
+            <CloseIcon />
+          </button>
+        )}
+    </div>
+  );
+};
+
+FileUploadProgressActions.propTypes = {
+  /**
+   * Useful to cancel the file upload or to remove the file when it's upload resulted in an error
+   */
+  onCloseButtonClick: PropTypes.func,
+  /**
+   * Useful to retry the file upload
+   */
+  onRetryButtonClick: PropTypes.func,
+  progressStatus: PropTypes.oneOf(PROGRESS_STATUSES),
+  isVisible: PropTypes.bool,
+  className: PropTypes.string
+};
 
 const FileUploadProgress = React.forwardRef((props, ref) => {
   const {
@@ -27,6 +81,7 @@ const FileUploadProgress = React.forwardRef((props, ref) => {
     status,
     title,
     size,
+    actionsVisibilityState,
     onCloseButtonClick,
     onRetryButtonClick,
     ...restProps
@@ -40,7 +95,9 @@ const FileUploadProgress = React.forwardRef((props, ref) => {
       [baseClass]: true,
       [`${baseClass}--with-icon`]: icon,
       [`${baseClass}--error`]: progressStatus === PROGRESS_STATUS.error,
-      [`${baseClass}--success`]: progressStatus === PROGRESS_STATUS.success
+      [`${baseClass}--success`]: progressStatus === PROGRESS_STATUS.success,
+      [`${baseClass}--with-actions-on-hover`]:
+        actionsVisibilityState === UPLOAD_PROGRESS_ACTIONS_STATE.hover
     }),
     className
   );
@@ -61,32 +118,13 @@ const FileUploadProgress = React.forwardRef((props, ref) => {
           {title && (
             <div className={styles[`${baseClass}__title`]}>{title}</div>
           )}
-          {(onRetryButtonClick || onCloseButtonClick) && (
-            <div className={styles[`${baseClass}__actions`]}>
-              {onRetryButtonClick &&
-                progressStatus === 'error' && (
-                  <button
-                    type="button"
-                    className={styles[`${baseClass}__retry`]}
-                    aria-label="Retry"
-                    onClick={onRetryButtonClick}
-                  >
-                    <RefreshIcon />
-                  </button>
-                )}
-              {onCloseButtonClick &&
-                progressStatus !== PROGRESS_STATUS.success && (
-                  <button
-                    type="button"
-                    className={styles[`${baseClass}__close`]}
-                    aria-label="Close"
-                    onClick={onCloseButtonClick}
-                  >
-                    <CloseIcon />
-                  </button>
-                )}
-            </div>
-          )}
+
+          <FileUploadProgressActions
+            onRetryButtonClick={onRetryButtonClick}
+            onCloseButtonClick={onCloseButtonClick}
+            isVisible={props.actionsVisibilityState !== 'hidden'}
+            progressStatus={progressStatus}
+          />
         </div>
         {progressStatus !== PROGRESS_STATUS.success && (
           <ProgressBar
@@ -101,6 +139,10 @@ const FileUploadProgress = React.forwardRef((props, ref) => {
 });
 
 FileUploadProgress.propTypes = {
+  /**
+   * Use `actionsVisibilityState` to control visibility of file upload actions (refresh and remove)
+   */
+  actionsVisibilityState: PropTypes.oneOf(UPLOAD_PROGRESS_ACTIONS_STATES),
   className: PropTypes.string,
   /**
    * Usually an icon of the uploaded file

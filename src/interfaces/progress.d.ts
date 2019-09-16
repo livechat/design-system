@@ -1,6 +1,10 @@
 export type ProgressSize = "small" | "medium" | "large";
 export type ProgressStatus = "normal" | "error" | "success";
 export type ProgressMode = "single" | "multiple";
+export type FileUploadProgressActionsVisibilityState =
+  | "visible"
+  | "hover"
+  | "hidden";
 
 export interface IProgressBarProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -24,6 +28,7 @@ export interface IProgressCircleProps
 
 export interface IFileUploadProgressProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  actionsVisibilityState?: FileUploadProgressActionsVisibilityState;
   icon?: React.ReactNode;
   title: string;
   percent: number;
