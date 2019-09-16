@@ -199,10 +199,12 @@ class UploadBarComponent extends React.PureComponent {
     const htmlProps = this.getHtmlProps();
 
     const withError = status === PROGRESS_STATUS.error;
+    const withSuccess = status === PROGRESS_STATUS.success;
 
     const mergedClassNames = getMergedClassNames(
       cx(baseClass, `${baseClass}--single`, {
-        [`${baseClass}--error`]: withError
+        [`${baseClass}--error`]: withError,
+        [`${baseClass}--success`]: withSuccess
       }),
       className
     );
@@ -266,7 +268,7 @@ class UploadBarComponent extends React.PureComponent {
         <TransitionGroup component={null}>
           {this.getIsExpanded() && (
             <CSSTransition
-              timeout={600}
+              timeout={300}
               classNames={{
                 enter: styles[`${baseClass}__files--enter`],
                 enterActive: styles[`${baseClass}__files--enter-active`],

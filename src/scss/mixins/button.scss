@@ -1,3 +1,5 @@
+@import "../variables/colors";
+
 @mixin button-transition {
   transition-property: opacity, border, color, background-color, box-shadow;
   transition-duration: 200ms;
@@ -12,7 +14,7 @@
   }
 
   &:hover {
-    color: rgba(66, 77, 89, 1);
+    color: $font-secondary-color;
   }
 
   &:focus {
