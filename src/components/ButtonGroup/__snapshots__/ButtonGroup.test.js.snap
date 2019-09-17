@@ -12,6 +12,7 @@ exports[`ButtonGroup should render button group with button 1`] = `
     key=".0"
     onClick={[Function]}
     primary={false}
+    secondary={true}
   />
 </div>
 `;

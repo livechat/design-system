@@ -1,11 +1,14 @@
 @import '../../scss/variables/colors';
 
 .btn {
-  position: relative;
-  align-items: center;
-  justify-content: center;
+  background-color: #fff;
   user-select: none;
   text-decoration: none;
+  color: $primary-color;
+  border-color: $primary-color;
+  font-size: 15px;
+  min-width: 36px;
+  min-height: 36px;
   transition-property: opacity, border, color, background-color, box-shadow;
   transition-duration: 200ms;
   transition-timing-function: cubic-bezier(0.64, 0, 0.35, 1);
@@ -16,14 +19,12 @@
   border-radius: 4px;
   font-weight: 600;
   display: inline-flex;
-  background-color: #fff;
-  color: $font-primary-color;
-  border-color: $border-primary-color;
-  font-size: 15px;
-  padding: 0 16px;
-  min-width: 36px;
-  min-height: 36px;
-  line-height: 36px;
+  line-height: 1.5;
+  position: relative;
+  padding: 6px 16px;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
 
   &:focus,
   &:hover,
@@ -53,7 +54,6 @@
   }
 
   &--full-width {
-    display: flex;
     width: 100%;
   }
 
@@ -69,6 +69,11 @@
     &:active {
       box-shadow: 0 0 0 1px $primary-color;
     }
+  }
+
+  &--secondary {
+    color: $font-primary-color;
+    border-color: $border-primary-color;
   }
 
   &--destructive {
@@ -87,18 +92,16 @@
 
   &--large {
     font-size: 15px;
-    padding: 0 24px;
+    padding: 9px 24px;
     min-width: 42px;
     min-height: 42px;
-    line-height: 42px;
   }
 
   &--compact {
     font-size: 15px;
-    padding: 0 16px;
+    padding: 4px 16px;
     min-width: 32px;
     min-height: 32px;
-    line-height: 32px;
   }
 
   .icon {
@@ -108,9 +111,12 @@
 
   &--loading {
     background-color: $loading-btn-basic-color;
-    border-color: #d0d2d5;
     color: transparent;
     transition: all 0.2s cubic-bezier(0.64, 0, 0.35, 1);
+
+    &.btn--secondary {
+      border-color: #d0d2d5;
+    }
 
     &.btn--destructive {
       background-color: $loading-btn-error-color;
@@ -128,5 +134,27 @@
     top: 50%;
     transform: translate(-50%, -50%);
     left: 50%;
+  }
+
+  &__icon {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    line-height: 1;
+    margin-right: 5px;
+
+    svg {
+      box-sizing: border-box;
+      height: inherit;
+      width: inherit;
+      fill: currentColor;
+      font-style: normal;
+      line-height: 0;
+      text-align: center;
+      text-transform: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      display: inline-block;
+    }
   }
 }
