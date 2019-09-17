@@ -25,7 +25,7 @@
     line-height: 0;
 
     svg {
-      fill: #fff;
+      fill: currentColor;
     }
   }
 
@@ -33,20 +33,12 @@
     background-color: #fff;
     border-color: #fff;
     color: $font-primary-color;
-
-    .popper-tooltip__close svg {
-      fill: $font-primary-color;
-    }
   }
 
   &--important {
     background-color: $ui-tooltip-important-color;
     border-color: $ui-tooltip-important-color;
     color: $font-primary-color;
-
-    .popper-tooltip__close svg {
-      fill: $font-primary-color;
-    }
   }
 
   &:focus {
@@ -153,6 +145,20 @@
   opacity: 0;
   visibility: hidden;
   transition: visibility 0.2s linear, 0.2s ease-in-out opacity, 0.2s z-index ease-in-out;
+
+  &__close {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 8px;
+    cursor: pointer;
+    line-height: 0;
+
+    svg {
+      fill: currentColor;
+    }
+  }
 
   &--visible {
     z-index: initial;
