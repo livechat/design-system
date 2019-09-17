@@ -18,7 +18,7 @@ export interface ITooltipProps {
 }
 
 /**
- * @deprecated 0.3.0, use PopperTooltip instead; will stop working in '@livechat/design-system 0.5.0'
+ * @deprecated 0.3.0, use PopperTooltip instead; will stop working in '@livechat/design-system 0.6.0'
  * @see https://livechat.github.io/design-system/#!/PopperTooltip
  */
 export var Tooltip: React.ComponentType<ITooltipProps>;
@@ -34,7 +34,7 @@ export interface ITooltipContentProps {
 }
 
 /**
- * @deprecated 0.3.0, use CssTooltip instead; will stop working in '@livechat/design-system 0.5.0'
+ * @deprecated 0.3.0, use CssTooltip instead; will stop working in '@livechat/design-system 0.6.0'
  * @see https://livechat.github.io/design-system/#!/CssTooltip
  */
 export var TooltipContent: React.ComponentType<ITooltipContentProps>;
