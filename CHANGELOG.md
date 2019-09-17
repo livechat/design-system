@@ -1,9 +1,5 @@
 All notable changes to this project will be documented in this file.
 
-Buttons - UI changes
-changing border of basic button (#116)
-adding secondary button (#116)
-
 ## v0.5.0
 
 _Release: 2019-09-17_
