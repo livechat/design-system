@@ -61,6 +61,7 @@ export interface ICssTooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   offsetBottom?: string;
   offsetLeft?: string;
   offsetRight?: string;
+  onClose?: () => void;
   placement?: CssTooltipPlacement;
   width?: string;
   zIndex?: number;
