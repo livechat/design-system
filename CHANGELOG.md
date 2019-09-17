@@ -1,5 +1,26 @@
 All notable changes to this project will be documented in this file.
 
+Buttons - UI changes
+changing border of basic button (#116)
+adding secondary button (#116)
+
+## v0.5.0
+
+_Release: 2019-09-17_
+
+##### New Features
+
+- Buttons - UI changes
+  - changing color and border color css properties of basic button (#116)
+  - adding secondary button (#116)
+  - adding SVG icon support (#122)
+
+##### Bug Fixes
+
+- fixing issue with line-height in multiline buttons (#122)
+
+---
+
 ## v0.4.6
 
 _Release: 2019-09-02_
