@@ -4,6 +4,7 @@ import memoizeOne from 'memoize-one';
 import { CSSTransition } from 'react-transition-group';
 import { Manager, Reference, Popper } from 'react-popper';
 import cx from 'classnames';
+import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 import styles from './style.scss';
 import { buildPopperModifiers, buildPopperTooltipStyle } from './helpers';
 
@@ -20,6 +21,9 @@ class PopperTooltip extends React.PureComponent {
     if (this.props.closeOnOutsideClick && this.getIsVisible()) {
       document.addEventListener('click', this.handleDocumentClick);
     }
+    if (this.props.closeWithEsc && this.getIsVisible()) {
+      document.addEventListener('keydown', this.handleDocumentKeyDown);
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -33,8 +37,13 @@ class PopperTooltip extends React.PureComponent {
       document.addEventListener('click', this.handleDocumentClick);
     }
 
+    if (this.props.closeWithEsc && this.getIsVisible()) {
+      document.addEventListener('keydown', this.handleDocumentKeyDown);
+    }
+
     if (didHide) {
       document.removeEventListener('click', this.handleDocumentClick);
+      document.removeEventListener('keydown', this.handleDocumentKeyDown);
     }
 
     if (this.props.triggerActionType === 'hover') {
@@ -55,6 +64,7 @@ class PopperTooltip extends React.PureComponent {
       );
     }
     document.removeEventListener('click', this.handleDocumentClick);
+    document.removeEventListener('keydown', this.handleDocumentKeyDown);
   }
 
   getModifiers = memoizeOne(buildPopperModifiers);
@@ -193,13 +203,23 @@ class PopperTooltip extends React.PureComponent {
       tooltipRef &&
       !tooltipRef.contains(event.target)
     ) {
-      if (this.isIsVisibleControlled()) {
-        this.props.onClose();
-      } else {
-        this.setState({
-          isVisible: false
-        });
-      }
+      this.handleClose();
+    }
+  };
+
+  handleDocumentKeyDown = event => {
+    if (event.key === 'Escape') {
+      this.handleClose();
+    }
+  };
+
+  handleClose = () => {
+    if (this.isIsVisibleControlled()) {
+      this.props.onClose();
+    } else {
+      this.setState({
+        isVisible: false
+      });
     }
   };
 
@@ -234,6 +254,8 @@ class PopperTooltip extends React.PureComponent {
       children,
       className,
       closeOnOutsideClick,
+      closeWithX,
+      closeWithEsc,
       hoverOutDelayTimeout,
       zIndex,
       eventsEnabled,
@@ -274,6 +296,14 @@ class PopperTooltip extends React.PureComponent {
           [className]: className
         })}
       >
+        {closeWithX && (
+          <button
+            onClick={this.handleClose}
+            className={styles[`${baseClass}__close`]}
+          >
+            <CloseIcon width="16px" height="16px" />
+          </button>
+        )}
         {children}
         {computedModifiers.arrow.enabled && (
           <div
@@ -347,6 +377,14 @@ PopperTooltip.propTypes = {
    * If you are using `triggerActionType='managed'` event handler will call provided onClose prop.
    */
   closeOnOutsideClick: PropTypes.bool,
+  /**
+   * Set to `true` to add an X button that will close the tooltip.
+   */
+  closeWithX: PropTypes.bool,
+  /**
+   * Set to `true` to close tooltip when ESC key is pressed.
+   */
+  closeWithEsc: PropTypes.bool,
   eventsEnabled: PropTypes.bool,
   /**
    * Number of miliseconds until tooltip close.
