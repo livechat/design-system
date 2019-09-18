@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import cx from 'classnames';
+import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 import styles from './style.scss';
 
 const baseClass = 'css-tooltip';
@@ -32,6 +33,7 @@ const CssTooltip = props => {
     offsetBottom,
     offsetLeft,
     offsetRight,
+    onClose,
     ...restProps
   } = props;
 
@@ -55,6 +57,11 @@ const CssTooltip = props => {
         ...(style || {})
       }}
     >
+      {onClose && (
+        <button onClick={onClose} className={styles[`${baseClass}__close`]}>
+          <CloseIcon width="16px" height="16px" />
+        </button>
+      )}
       {children}
       <div
         className={cx({
@@ -98,6 +105,10 @@ CssTooltip.propTypes = {
   isVisible: PropTypes.bool,
   onClick: PropTypes.func,
   onFocus: PropTypes.func,
+  /**
+   * If provided, there will be an X button added to the tooltip that will invoke this callback when clicked.
+   */
+  onClose: PropTypes.func,
   width: PropTypes.string,
   placement: PropTypes.oneOf([
     'bottom',
