@@ -1,5 +1,20 @@
 All notable changes to this project will be documented in this file.
 
+## v0.5.1
+
+_Release: 2019-09-18_
+
+##### New Features
+
+- adding optional X close button to PopperTooltip and CssTooltip (#124)
+- adding optional 'close on Esc press' feature to PopperTooltip (#124)
+
+##### Bug Fixes
+
+- fixing z-index issue in GuideTooltip component Overlay (#119)
+
+---
+
 ## v0.5.0
 
 _Release: 2019-09-17_

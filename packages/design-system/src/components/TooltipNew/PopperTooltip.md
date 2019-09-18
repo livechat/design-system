@@ -142,7 +142,7 @@ class PopperTooltipExample extends React.PureComponent {
             selected={this.state.theme}
           />
         </div>
-        <div style={{ margin: " 200px auto", textAlign: "center" }}>
+        <div style={{ margin: "200px auto", textAlign: "center" }}>
           <PopperTooltip
             style={{ textAlign: "left" }}
             isVisible={this.state.isVisible}
@@ -154,11 +154,13 @@ class PopperTooltipExample extends React.PureComponent {
             triggerActionType={this.state.action}
             trigger={this.renderTrigger()}
             closeOnOutsideClick
+            closeWithX
+            closeWithEsc
             zIndex={2}
           >
             <div>
               You can decide which columns should appear on the customer’s list.
-              This setup will be visible only to you.{" "}
+              This setup will be visible only to you.
             </div>
           </PopperTooltip>
         </div>
