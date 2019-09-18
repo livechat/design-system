@@ -64,6 +64,7 @@ class PopperTooltip extends React.PureComponent {
       );
     }
     document.removeEventListener('click', this.handleDocumentClick);
+    document.removeEventListener('keydown', this.handleDocumentKeyDown);
   }
 
   getModifiers = memoizeOne(buildPopperModifiers);
