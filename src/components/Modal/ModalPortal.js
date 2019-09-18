@@ -14,7 +14,9 @@ class ModalPortal extends React.Component {
     if (props.className) {
       this.modalContainer.className = props.className;
     }
-    this.modalContainer.style.zIndex = props.zIndex;
+    if (props.zIndex != null) {
+      this.modalContainer.style.zIndex = props.zIndex;
+    }
   }
 
   componentDidMount() {
