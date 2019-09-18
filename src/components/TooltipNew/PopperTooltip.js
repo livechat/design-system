@@ -297,12 +297,12 @@ class PopperTooltip extends React.PureComponent {
         })}
       >
         {closeWithX && (
-          <div
+          <button
             onClick={this.handleClose}
             className={styles[`${baseClass}__close`]}
           >
             <CloseIcon width="16px" height="16px" />
-          </div>
+          </button>
         )}
         {children}
         {computedModifiers.arrow.enabled && (

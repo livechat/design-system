@@ -58,9 +58,9 @@ const CssTooltip = props => {
       }}
     >
       {onClose && (
-        <div onClick={onClose} className={styles[`${baseClass}__close`]}>
+        <button onClick={onClose} className={styles[`${baseClass}__close`]}>
           <CloseIcon width="16px" height="16px" />
-        </div>
+        </button>
       )}
       {children}
       <div

@@ -340,6 +340,10 @@
     padding: 4px;
     cursor: pointer;
     line-height: 0;
+    background: none;
+    border: none;
+    color: inherit;
+    outline: none;
 
     svg {
       fill: currentColor;
