@@ -142,7 +142,7 @@ class PopperTooltipExample extends React.PureComponent {
             selected={this.state.theme}
           />
         </div>
-        <div style={{ margin: " 200px auto", textAlign: "center" }}>
+        <div style={{ margin: "200px auto", textAlign: "center" }}>
           <PopperTooltip
             style={{ textAlign: "left" }}
             isVisible={this.state.isVisible}

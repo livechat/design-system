@@ -105,6 +105,9 @@ CssTooltip.propTypes = {
   isVisible: PropTypes.bool,
   onClick: PropTypes.func,
   onFocus: PropTypes.func,
+  /**
+   * If provided, there will be an X button added to the tooltip that will invoke this callback when clicked.
+   */
   onClose: PropTypes.func,
   width: PropTypes.string,
   placement: PropTypes.oneOf([

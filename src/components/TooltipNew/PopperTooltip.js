@@ -361,6 +361,9 @@ PopperTooltip.propTypes = {
    * If you are using `triggerActionType='managed'` event handler will call provided onClose prop.
    */
   closeOnOutsideClick: PropTypes.bool,
+  /**
+   * Set to `true` to add an X button that will close the tooltip.
+   */
   closeWithX: PropTypes.bool,
   eventsEnabled: PropTypes.bool,
   /**
