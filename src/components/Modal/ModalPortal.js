@@ -11,8 +11,11 @@ class ModalPortal extends React.Component {
     super(props);
 
     this.modalContainer = document.createElement('div');
-    if (this.props.className) {
-      this.modalContainer.className = this.props.className;
+    if (props.className) {
+      this.modalContainer.className = props.className;
+    }
+    if (props.zIndex != null) {
+      this.modalContainer.style.zIndex = props.zIndex;
     }
   }
 
@@ -36,6 +39,7 @@ class ModalPortal extends React.Component {
 ModalPortal.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
+  zIndex: PropTypes.number,
   parentElementName: PropTypes.string
 };
 
