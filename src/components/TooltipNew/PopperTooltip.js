@@ -21,6 +21,9 @@ class PopperTooltip extends React.PureComponent {
     if (this.props.closeOnOutsideClick && this.getIsVisible()) {
       document.addEventListener('click', this.handleDocumentClick);
     }
+    if (this.props.closeWithEsc && this.getIsVisible()) {
+      document.addEventListener('keydown', this.handleDocumentKeyDown);
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -34,8 +37,13 @@ class PopperTooltip extends React.PureComponent {
       document.addEventListener('click', this.handleDocumentClick);
     }
 
+    if (this.props.closeWithEsc && this.getIsVisible()) {
+      document.addEventListener('keydown', this.handleDocumentKeyDown);
+    }
+
     if (didHide) {
       document.removeEventListener('click', this.handleDocumentClick);
+      document.removeEventListener('keydown', this.handleDocumentKeyDown);
     }
 
     if (this.props.triggerActionType === 'hover') {
@@ -198,6 +206,12 @@ class PopperTooltip extends React.PureComponent {
     }
   };
 
+  handleDocumentKeyDown = event => {
+    if (event.key === 'Escape') {
+      this.handleClose();
+    }
+  };
+
   handleClose = () => {
     if (this.isIsVisibleControlled()) {
       this.props.onClose();
@@ -240,6 +254,7 @@ class PopperTooltip extends React.PureComponent {
       className,
       closeOnOutsideClick,
       closeWithX,
+      closeWithEsc,
       hoverOutDelayTimeout,
       zIndex,
       eventsEnabled,
@@ -365,6 +380,10 @@ PopperTooltip.propTypes = {
    * Set to `true` to add an X button that will close the tooltip.
    */
   closeWithX: PropTypes.bool,
+  /**
+   * Set to `true` to close tooltip when ESC key is pressed.
+   */
+  closeWithEsc: PropTypes.bool,
   eventsEnabled: PropTypes.bool,
   /**
    * Number of miliseconds until tooltip close.

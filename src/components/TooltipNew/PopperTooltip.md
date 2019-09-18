@@ -155,11 +155,12 @@ class PopperTooltipExample extends React.PureComponent {
             trigger={this.renderTrigger()}
             closeOnOutsideClick
             closeWithX
+            closeWithEsc
             zIndex={2}
           >
             <div>
               You can decide which columns should appear on the customer’s list.
-              This setup will be visible only to you.{" "}
+              This setup will be visible only to you.
             </div>
           </PopperTooltip>
         </div>

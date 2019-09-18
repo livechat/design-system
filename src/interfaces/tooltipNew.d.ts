@@ -13,6 +13,7 @@ export interface IPopperTooltipProps
   theme?: TooltipTheme;
   closeOnOutsideClick?: boolean;
   closeWithX?: boolean;
+  closeWithEsc?: boolean;
   eventsEnabled?: boolean;
   hoverOutDelayTimeout?: number;
   isVisible?: boolean;
