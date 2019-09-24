@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Components | DropdownList renders correctly four items with autofocused second item 1`] = `
+<ul
+  className="dropdown__list"
+  onScroll={[Function]}
+  tabIndex={0}
+>
+  <DropdownListItem
+    divider={false}
+    icon={
+      <AlertCircleIcon
+        fill="#4384f5"
+        height={16}
+        width={16}
+      />
+    }
+    isDisabled={true}
+    isFocused={false}
+    isSelected={false}
+    itemId={1}
+    onItemSelect={[MockFunction]}
+    onMouseOverItem={[Function]}
+  >
+    Item 1
+  </DropdownListItem>
+  <DropdownListItem
+    divider={false}
+    icon={
+      <AlertCircleIcon
+        fill="#4384f5"
+        height={16}
+        width={16}
+      />
+    }
+    isDisabled={false}
+    isFocused={true}
+    isSelected={false}
+    itemId={2}
+    onItemSelect={[MockFunction]}
+    onMouseOverItem={[Function]}
+  >
+    Item 2
+  </DropdownListItem>
+  <DropdownListItem
+    divider={true}
+    icon={
+      <AlertCircleIcon
+        fill="#4384f5"
+        height={16}
+        width={16}
+      />
+    }
+    isDisabled={false}
+    isFocused={false}
+    isSelected={true}
+    itemId={3}
+    onItemSelect={[MockFunction]}
+    onMouseOverItem={[Function]}
+  >
+    Item 3
+  </DropdownListItem>
+  <DropdownListItem
+    divider={false}
+    icon={
+      <AlertCircleIcon
+        fill="#4384f5"
+        height={16}
+        width={16}
+      />
+    }
+    isDisabled={false}
+    isFocused={false}
+    isSelected={false}
+    itemId={4}
+    onItemSelect={[MockFunction]}
+    onMouseOverItem={[Function]}
+  >
+    Item 4
+  </DropdownListItem>
+</ul>
+`;
