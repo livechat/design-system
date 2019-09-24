@@ -1,55 +1,11 @@
 {
-  "name": "@livechat/design-system",
-  "version": "0.5.1",
-  "publishConfig": {
-    "access": "public"
-  },
-  "description": "LiveChat Design System React components with css styles",
-  "homepage": "https://livechat.github.io/design-system/",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/livechat/design-system"
-  },
-  "typings": "src/interfaces/index.d.ts",
-  "main": "dist/design-system.cjs.js",
-  "module": "dist/design-system.es.js",
-  "jsnext:main": "dist/design-system.es.js",
-  "style": "dist/design-system.css",
-  "files": [
-    "dist",
-    "src"
-  ],
-  "scripts": {
-    "start": "rollup -c --watch",
-    "build": "rollup -c",
-    "prebuild": "rimraf dist",
-    "build:cdn": "npm run build && mkdir -p dist/cdn && cp dist/design-system.css dist/cdn/styles.css && cp dist/cdn/styles.css dist/cdn/styles-v$npm_package_version.css",
-    "prepare": "npm run build",
-    "styleguide": "cross-env NODE_ENV=development styleguidist server",
-    "styleguide:build": "cross-env NODE_ENV=production styleguidist build",
-    "predeploy": "npm run-script styleguide:build",
-    "deploy": "gh-pages -d styleguide",
-    "test": "jest",
-    "test:update": "jest -u",
-    "test:watch": "jest --watchAll",
-    "test:coverage": "jest --coverage",
-    "eslint": "eslint --ext .js,.ts src/ ",
-    "eslint:fix": "eslint --ext .js,.ts src/ --fix "
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run test"
-    }
-  },
-  "author": "",
-  "license": "ISC",
+  "name": "root",
+  "private": true,
   "devDependencies": {
     "@types/prop-types": "^15.5.6",
     "@types/react": "^16.4.15",
     "@types/react-dom": "^16.0.8",
     "autoprefixer": "^9.0.1",
-    "caniuse-lite": "1.0.30000974",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.6",
     "babel-jest": "^23.4.2",
@@ -66,6 +22,7 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2015-rollup": "^3.0.0",
     "babel-preset-react": "^6.3.13",
+    "caniuse-lite": "1.0.30000974",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.1",
     "cssnano": "^4.0.5",
@@ -87,6 +44,7 @@
     "husky": "^1.3.1",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.4.2",
+    "lerna": "^3.16.4",
     "lint-staged": "^8.1.5",
     "mini-css-extract-plugin": "^0.5.0",
     "node-eval": "^2.0.0",
@@ -128,37 +86,7 @@
     "webpack": "^4.28.4",
     "webpack-combine-loaders": "^2.0.3"
   },
-  "peerDependencies": {
-    "react": "16",
-    "react-dom": "16"
-  },
   "dependencies": {
-    "@livechat/data-utils": "^0.2.3",
-    "classnames": "^2.2.6",
-    "date-fns": "^1.29.0",
-    "gud": "^1.0.0",
-    "memoize-one": "^4.1.0",
-    "popper.js": "^1.14.7",
-    "prop-types": "^15.6.2",
-    "react-day-picker": "^7.2.4",
-    "react-material-icon-svg": "1.7.0",
-    "react-popper": "^1.3.3",
-    "react-transition-group": "^2.4.0",
-    "resize-observer-polyfill": "^1.5.1"
-  },
-  "postcss": {},
-  "jest": {
-    "snapshotSerializers": [
-      "enzyme-to-json/serializer"
-    ],
-    "setupFiles": [
-      "./tests/setupTests.js"
-    ],
-    "moduleNameMapper": {
-      "^.+\\.(css|scss)$": "identity-obj-proxy",
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tests/fileMock.js"
-    },
-    "verbose": true,
-    "testURL": "http://localhost/"
+    "@livechat/design-system": "file:packages/design-system"
   }
 }
