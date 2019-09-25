@@ -130,6 +130,7 @@ $file-upload-progress: "file-upload-progress";
     cursor: pointer;
     color: $font-primary-color;
     border-radius: 4px;
+    background-color: transparent;
 
     @include button-transition;
     @include icon-button-interactive-styles;
@@ -256,6 +257,7 @@ $file-upload-progress: "file-upload-progress";
     flex: 0 1 auto;
     color: $font-primary-color;
     border-radius: 4px;
+    background-color: transparent;
 
     @include button-transition;
     @include icon-button-interactive-styles;
