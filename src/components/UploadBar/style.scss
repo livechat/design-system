@@ -109,8 +109,8 @@ $file-upload-progress: "file-upload-progress";
   }
 
   &__list {
-    overflow-y: auto;
     height: 100%;
+    overflow: visible;
     padding-right: 20px;
 
     .#{$file-upload-progress}:not(:last-child) {
