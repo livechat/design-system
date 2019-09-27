@@ -103,8 +103,8 @@ $file-upload-progress: "file-upload-progress";
     &-wrapper {
       box-sizing: border-box;
       padding-top: 16px;
-      overflow-y: visible;
       width: 100%;
+      max-height: inherit;
     }
   }
 
