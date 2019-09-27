@@ -1,0 +1,98 @@
+{
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": false,
+    "codeFrame": false
+  },
+  "root": true,
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["prettier", "babel"],
+  "rules": {
+    "jsx-a11y/accessible-emoji": "off",
+    "jsx-a11y/alt-text": "off",
+    "jsx-a11y/anchor-has-content": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/aria-activedescendant-has-tabindex": "off",
+    "jsx-a11y/aria-props": "off",
+    "jsx-a11y/aria-proptypes": "off",
+    "jsx-a11y/aria-role": "off",
+    "jsx-a11y/aria-unsupported-elements": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/heading-has-content": "off",
+    "jsx-a11y/html-has-lang": "off",
+    "jsx-a11y/iframe-has-title": "off",
+    "jsx-a11y/img-redundant-alt": "off",
+    "jsx-a11y/interactive-supports-focus": "off",
+    "jsx-a11y/label-has-for": "off",
+    "jsx-a11y/media-has-caption": "off",
+    "jsx-a11y/mouse-events-have-key-events": "off",
+    "jsx-a11y/no-access-key": "off",
+    "jsx-a11y/no-autofocus": "off",
+    "jsx-a11y/no-distracting-elements": "off",
+    "jsx-a11y/no-interactive-element-to-noninteractive-role": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/no-noninteractive-element-to-interactive-role": "off",
+    "jsx-a11y/no-noninteractive-tabindex": "off",
+    "jsx-a11y/no-onchange": "off",
+    "jsx-a11y/no-redundant-roles": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "jsx-a11y/role-has-required-aria-props": "off",
+    "jsx-a11y/role-supports-aria-props": "off",
+    "jsx-a11y/scope": "off",
+    "jsx-a11y/tabindex-no-positive": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".tsx"] }],
+    "react/jsx-indent": "off",
+    "prettier/prettier": ["error", { "singleQuote": true }],
+    "import/extensions": ["error", { "ignore": ["ts", "tsx"] }],
+    "no-multi-str": "off",
+    "import/prefer-default-export": "off",
+    "babel/no-invalid-this": 1,
+    "babel/object-curly-spacing": ["error", "always"],
+    "babel/quotes": ["error", "single", { "avoidEscape": true }],
+    "babel/semi": 1,
+    "babel/no-unused-expressions": 1,
+    "no-restricted-globals": "warn",
+    "react/forbid-prop-types": "warn",
+    "react/require-default-props": "off",
+    "react/no-unused-prop-types": "warn",
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "react/prefer-stateless-function": [true, { "ignorePureComponents": true }]
+  },
+  "settings": {
+    "ecmascript": 6,
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".tsx", ".ts"]
+      },
+      "webpack": {
+        "config": "./webpack.config.js"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.{ts,tsx}"],
+      "parser": "typescript-eslint-parser",
+      "rules": {
+        "no-undef": "off",
+        "no-unused-vars": "off",
+        "react/prop-types": "off",
+        "no-use-before-define": "off"
+      }
+    },
+    {
+      "files": ["**/*.ts"],
+      "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": false
+        }
+      }
+    }
+  ]
+}
