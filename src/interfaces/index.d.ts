@@ -9,6 +9,7 @@ export * from "./inappmessages";
 export * from "./loader";
 export * from "./modals";
 export * from "./notificationsSystem";
+export * from "./progress";
 export * from "./switch";
 export * from "./tabs";
 export * from "./toasts";
