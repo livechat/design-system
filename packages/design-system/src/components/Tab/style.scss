@@ -6,19 +6,19 @@
   flex-direction: row;
   align-items: center;
   padding: 0 24px;
-  height: 49px;
   border: none;
   background: none;
   outline: none;
   color: $font-primary-color;
   cursor: pointer;
   transition: color 0.25s;
-  margin: 0 8px;
-  font-size: 15px;
+  margin: 0 8px 11px 8px;
+  font-size: 14px;
+  overflow: visible;
 
   &__description {
     display: inline-block;
-    color: #000;
+    color: #8e949a;
     opacity: 0.6;
     padding-left: 3px;
     transition: color 0.25s;
@@ -40,11 +40,12 @@
     font-weight: 700;
 
     .tab__description {
-      color: $font-primary-color;
+      color: #8e949a;
     }
 
     &::before {
-      height: 5px;
+      height: 4px;
+      bottom: -12px;
     }
   }
 
@@ -60,6 +61,7 @@
 
 .tabs {
   position: relative;
+  border-bottom: 1px solid $divider-color;
 
   &__list {
     position: relative;
