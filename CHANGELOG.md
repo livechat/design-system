@@ -11,6 +11,7 @@ _Release: 2019-09-30_
   - ProgressCircle
   - FileUploadProgress (ProgressBar with title, icon, etc.)
   - UploadBar - complete component for upload of single or multiple files
+- adjust Tabs styles (#127)
 
 ---
 
