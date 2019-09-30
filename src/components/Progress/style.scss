@@ -1,0 +1,79 @@
+@import "../../scss/variables/colors";
+@import "../../scss/variables/transitions";
+
+$base-class: "progress";
+
+.#{$base-class} {
+  &-bar {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    background-color: #deeefd;
+    border-radius: 100px;
+    height: 4px;
+
+    &--small {
+      height: 3px;
+    }
+
+    &--medium {
+      height: 4px;
+    }
+
+    &--large {
+      height: 6px;
+    }
+
+    &--error {
+      background-color: #f7e4e4;
+    }
+
+    &__indicator {
+      height: 100%;
+      position: relative;
+      background-color: $primary-color;
+      border-radius: 100px;
+      transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
+    }
+  }
+
+  &-circle {
+    transform: rotate(-90deg);
+    width: 36px;
+    height: 36px;
+
+    &--small {
+      width: 15px;
+      height: 15px;
+    }
+
+    &--medium {
+      width: 36px;
+      height: 36px;
+    }
+
+    &--large {
+      width: 56px;
+      height: 56px;
+    }
+
+    &__bg-line {
+      stroke: #deeefd;
+    }
+
+    &__indicator {
+      stroke: $primary-color;
+      transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
+    }
+
+    &--error {
+      .#{$base-class}-circle__bg-line {
+        stroke: #f7e4e4;
+      }
+
+      .#{$base-class}-circle__indicator {
+        stroke: transparent;
+      }
+    }
+  }
+}

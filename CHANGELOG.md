@@ -1,5 +1,20 @@
 All notable changes to this project will be documented in this file.
 
+## v0.5.2
+
+_Release: 2019-09-30_
+
+##### New Features
+
+- new upload components (#120)
+  - ProgressBar
+  - ProgressCircle
+  - FileUploadProgress (ProgressBar with title, icon, etc.)
+  - UploadBar - complete component for upload of single or multiple files
+- adjust Tabs styles (#127)
+
+---
+
 ## v0.5.1
 
 _Release: 2019-09-18_
