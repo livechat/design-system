@@ -1,5 +1,15 @@
 All notable changes to this project will be documented in this file.
 
+## v0.5.4
+
+_Release: 2019-10-09_
+
+##### Bug Fixes
+
+- Adding `Omit` type to support typescript in version 3.1 (#138)
+
+---
+
 ## v0.5.3
 
 _Release: 2019-10-09_
