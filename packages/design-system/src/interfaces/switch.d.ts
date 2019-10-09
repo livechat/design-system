@@ -1,5 +1,8 @@
 export type SwitchSize = "basic" | "compact";
-export interface ISwitchProps extends React.HTMLAttributes<HTMLInputElement> {
+
+type HTMLInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">;
+
+export interface ISwitchProps extends HTMLInputProps {
   defaultOn?: boolean;
   on?: boolean;
   innerRef?:

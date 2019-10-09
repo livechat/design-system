@@ -97,6 +97,10 @@ class SwitchComponent extends React.PureComponent {
 const basePropTypes = {
   className: PropTypes.string,
   defaultOn: PropTypes.bool,
+  /**
+   * HTML disabled property
+   */
+  disabled: PropTypes.bool,
   name: PropTypes.string,
   on: PropTypes.bool,
   onChange: PropTypes.func,
