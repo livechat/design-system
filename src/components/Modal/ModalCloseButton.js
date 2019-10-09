@@ -10,6 +10,7 @@ const ModalCloseButton = props => (
     title="Close modal"
     className={styles[`${baseClass}`]}
     onClick={props.onClick}
+    type="button"
   >
     <CloseIcon width="24px" height="24px" fill="#424D57" />
   </button>
