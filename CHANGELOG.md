@@ -1,5 +1,16 @@
 All notable changes to this project will be documented in this file.
 
+## v0.5.3
+
+_Release: 2019-10-09_
+
+##### Bug Fixes
+
+- `Switch` ts types fix (#133) - it was not possible to use ie. disabled attribute in ts projects
+- fixing `Modal` close button type (#135)
+
+---
+
 ## v0.5.2
 
 _Release: 2019-09-30_
