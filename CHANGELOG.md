@@ -1,5 +1,15 @@
 All notable changes to this project will be documented in this file.
 
+## v0.5.5
+
+_Release: 2019-10-10_
+
+##### Bug Fixes
+
+- UploadBar - fixing scroll issue on old browsers (#134)
+
+---
+
 ## v0.5.4
 
 _Release: 2019-10-09_
