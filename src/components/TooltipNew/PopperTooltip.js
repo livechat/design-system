@@ -223,6 +223,13 @@ class PopperTooltip extends React.PureComponent {
     }
   };
 
+  handleCloseButtonClick = e => {
+    // prevents from calling click event of the tooltip trigger
+    e.stopPropagation();
+
+    this.handleClose();
+  };
+
   renderTriggerElement = ({ ref }) => {
     const { trigger, triggerActionType } = this.props;
 
@@ -298,8 +305,9 @@ class PopperTooltip extends React.PureComponent {
       >
         {closeWithX && (
           <button
-            onClick={this.handleClose}
+            onClick={this.handleCloseButtonClick}
             className={styles[`${baseClass}__close`]}
+            type="button"
           >
             <CloseIcon width="16px" height="16px" />
           </button>

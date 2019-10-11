@@ -62,10 +62,11 @@ export interface ICssTooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   offsetBottom?: string;
   offsetLeft?: string;
   offsetRight?: string;
-  onClose?: () => void;
+  onClose?: React.MouseEventHandler<HTMLButtonElement>;
   placement?: CssTooltipPlacement;
   width?: string;
   zIndex?: number;
+  x: React.MouseEventHandler;
 }
 
 export interface IUserGuideTooltipProps
