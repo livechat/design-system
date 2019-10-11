@@ -66,7 +66,6 @@ export interface ICssTooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   placement?: CssTooltipPlacement;
   width?: string;
   zIndex?: number;
-  x: React.MouseEventHandler;
 }
 
 export interface IUserGuideTooltipProps
