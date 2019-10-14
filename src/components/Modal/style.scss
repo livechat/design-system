@@ -7,6 +7,7 @@
   margin: 10px;
   max-width: 800px;
   min-width: 400px;
+  max-height: 90%;
   border-radius: 4px;
   box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.3);
   overflow: hidden;
@@ -84,6 +85,7 @@
     box-sizing: border-box;
     background-color: #f8f8fa;
     color: $font-primary-color;
+    overflow: auto;
   }
 
   &__footer {
