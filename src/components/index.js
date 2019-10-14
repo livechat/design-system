@@ -27,6 +27,7 @@ export {
   ModalBody
 } from './Modal';
 
+export { default as TextField } from './TextField';
 export { Input, InputField } from './InputField';
 export { TextArea, TextAreaField } from './TextAreaField';
 export { default as RadioButton } from './RadioButton';

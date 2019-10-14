@@ -107,6 +107,16 @@ export interface IInputFieldProps extends IInputProps {
   fieldClassName?: string;
 }
 
+export interface ITextFieldProps {
+  labelText?: string;
+  htmlFor: string;
+  className?: string;
+  inline?: boolean;
+  error?: string;
+  description?: React.ReactNode;
+  children?: React.ReactNode;
+}
+
 export interface ITextAreaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   error?: string;
@@ -176,5 +186,6 @@ export var NumericInputField: React.ComponentType<INumericInputFieldProps>;
 export var RadioButton: React.ComponentType<IRadioButtonProps>;
 export var Select: React.ComponentType<ISelectProps>;
 export var SelectField: React.ComponentType<ISelectFieldProps>;
+export var TextField: React.ComponentType<ITextFieldProps>;
 export var TextArea: React.ComponentType<ITextAreaProps>;
 export var TextAreaField: React.ComponentType<ITextAreaFieldProps>;
