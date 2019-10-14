@@ -97,6 +97,7 @@ module.exports = {
           name: 'Forms',
           components: [
             './src/components/Form/Form.js',
+            './src/components/TextField/TextField.js',
             './src/components/InputField/InputField.js',
             './src/components/NumericInputField/NumericInput.js',
             './src/components/TextAreaField/TextAreaField.js',
