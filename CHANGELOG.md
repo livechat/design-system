@@ -1,8 +1,18 @@
 All notable changes to this project will be documented in this file.
 
+## v0.5.6
+
+_Release: 2019-10-14_
+
+##### New Features
+
+- Exporting TextField component (#142)
+
+---
+
 ## v0.5.5
 
-_Release: 2019-10-10_
+_Release: 2019-10-14_
 
 ##### Bug Fixes
 
