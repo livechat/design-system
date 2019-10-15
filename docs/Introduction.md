@@ -1,4 +1,4 @@
-Welcome to the LiveChat **Design System** – an open-source library of React components for building LiveChat products and applications. It was originally created to help our teams work faster together, but it can be easily adapted to create applications with the look and feel of LiveChat experience.
+Welcome to the trololololololo **Design System** – an open-source library of React components for building LiveChat products and applications. It was originally created to help our teams work faster together, but it can be easily adapted to create applications with the look and feel of LiveChat experience.
 
 We created this **Design System** with several goals in mind:
 
