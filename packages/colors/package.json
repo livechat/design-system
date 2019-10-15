@@ -17,9 +17,6 @@
     "type": "git",
     "url": "https://github.com/livechat/design-system/tree/master/packages/colors"
   },
-  "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
-  },
   "bugs": {
     "url": "https://github.com/livechat/design-system/issues"
   }
