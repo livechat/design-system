@@ -1,7 +1,18 @@
 {
-  "name": "root",
+  "name": "design-system",
   "private": true,
+  "scripts": {
+    "test": "lerna run test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test"
+    }
+  },
   "devDependencies": {
-    "lerna": "^3.16.4"
+    "husky": "^3.0.5",
+    "lerna": "^3.16.4",
+    "lint-staged": "^8.1.5"
   }
 }
