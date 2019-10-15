@@ -1,0 +1,26 @@
+{
+  "name": "@livechat/design-system-colors",
+  "version": "0.0.1",
+  "description": "Design system colors",
+  "author": "Dobrochna <d.przybylek@livechatinc.com>",
+  "homepage": "https://github.com/livechat/design-system",
+  "license": "ISC",
+  "main": "lib/colors.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/livechat/design-system/tree/master/packages/colors"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/livechat/design-system/issues"
+  }
+}
