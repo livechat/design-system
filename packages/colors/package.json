@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Design system colors",
   "author": "Dobrochna <d.przybylek@livechatinc.com>",
-  "homepage": "https://github.com/livechat/design-system",
+  "homepage": "https://github.com/livechat/design-system/tree/master/packages/colors",
   "license": "ISC",
   "main": "lib/colors.js",
   "directories": {

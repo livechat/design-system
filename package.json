@@ -2,7 +2,8 @@
   "name": "design-system",
   "private": true,
   "scripts": {
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "docs": "lerna run styleguide"
   },
   "husky": {
     "hooks": {
