@@ -1,4 +1,4 @@
-# `colors`
+# `@livechat/design-system-colors`
 
 > TODO: description
 

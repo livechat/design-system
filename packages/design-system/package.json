@@ -32,12 +32,6 @@
     "eslint": "eslint --ext .js,.ts src/ ",
     "eslint:fix": "eslint --ext .js,.ts src/ --fix "
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm run test"
-    }
-  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
