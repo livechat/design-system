@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled'; // eslint-disable-line import/no-unresolved
-import { InputField } from '../../src/index';
+import { InputField } from '../../packages/design-system/src/index'
 
 const styles = ({ fontFamily }) => ({
   root: {

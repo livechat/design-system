@@ -2,8 +2,12 @@
   "name": "design-system",
   "private": true,
   "scripts": {
-    "test": "lerna run test",
-    "docs": "lerna run styleguide"
+    "deploy": "gh-pages -d styleguide",
+    "docs": "lerna run styleguide",
+    "predeploy": "npm run-script styleguide:build",
+    "styleguide:build": "cross-env NODE_ENV=production styleguidist build",
+    "styleguide": "cross-env NODE_ENV=development styleguidist server",
+    "test": "lerna run test"
   },
   "husky": {
     "hooks": {
@@ -12,8 +16,39 @@
     }
   },
   "devDependencies": {
+    "autoprefixer": "^9.0.1",
+    "babel-core": "^6.26.3",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.6",
+    "babel-jest": "^23.4.2",
+    "babel-loader": "^7.1.1",
+    "babel-plugin-css-modules-transform": "^1.6.1",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-react-svg": "^2.1.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-imports": "^1.5.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.15",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "babel-preset-react": "^6.3.13",
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.1.1",
     "husky": "^3.0.5",
     "lerna": "^3.16.4",
-    "lint-staged": "^8.1.5"
+    "lint-staged": "^8.1.5",
+    "mini-css-extract-plugin": "^0.5.0",
+    "node-sass": "^4.9.3",
+    "postcss-flexbugs-fixes": "^4.0.0",
+    "postcss-loader": "^2.1.6",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-material-icon-svg": "1.7.0",
+    "react-styleguidist": "^8.0.6",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.28.4"
   }
 }

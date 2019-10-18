@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button as DSButton } from '../../src/index';
+import { Button as DSButton } from '../../packages/design-system/src/index'
 
 function Button({ name, className, onClick, active, children }) {
   return (
