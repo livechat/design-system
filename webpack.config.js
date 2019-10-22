@@ -85,10 +85,6 @@ const config = {
     setImmediate: false
   },
   resolve: {
-    alias: {
-      components: path.resolve(__dirname, 'packages/design-system/src/components'),
-      interfaces: path.resolve(__dirname, 'packages/design-system/src/interfaces')
-    },
     extensions: ['.ts', '.tsx', '.d.ts', '.js', '.json']
   }
 };
