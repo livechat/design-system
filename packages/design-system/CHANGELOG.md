@@ -1,5 +1,21 @@
 All notable changes to this project will be documented in this file.
 
+## v0.6.0
+
+_Release: 2019-10-14_
+
+##### Refactors
+
+- Introducing `Lerna` to LiveChat design system repository.
+  The `livechat/design-system` repository was converted to monorepo. All new packages related to our design system ecosystem will be added here. This approach gives as a couple of advantages:
+  - more maintainable packages structure
+  - all dependencies in a single folder, simple releases with Lerna
+  - faster development across dependencies
+  - consistent linting and configuration across all packages
+  - reusable code (ie. common `helpers` can be moved to standalone package)
+
+---
+
 ## v0.5.6
 
 _Release: 2019-10-14_
