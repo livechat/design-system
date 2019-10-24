@@ -7,7 +7,7 @@ module.exports = {
   webpackConfig: config,
   title: 'Design System - LiveChat API Developers Docs and Guides',
   skipComponentsWithoutExample: true,
-  require: [path.resolve(__dirname, 'setup.js')],
+  require: [path.resolve(__dirname, './setup.js')],
   sections: [
     {
       name: 'Introduction',
@@ -15,7 +15,7 @@ module.exports = {
     },
     {
       name: 'Typography',
-      content: './src/foundations/Typography/Typography.md'
+      content: './packages/design-system/src/foundations/Typography/Typography.md'
     },
     {
       name: 'Components',
@@ -24,109 +24,109 @@ module.exports = {
         {
           name: 'Alerts',
           components: [
-            './src/components/Toast/Toast.js',
-            './src/components/Toast/ToastWrapper.js'
+            './packages/design-system/src/components/Toast/Toast.js',
+            './packages/design-system/src/components/Toast/ToastWrapper.js'
           ]
         },
         {
           name: 'Card',
-          components: ['./src/components/Card/Card.js']
+          components: ['./packages/design-system/src/components/Card/Card.js']
         },
         {
           name: 'Notification System',
-          content: './src/components/NotificationSystem/NotificationSystem.md'
+          content: './packages/design-system/src/components/NotificationSystem/NotificationSystem.md'
         },
         {
           name: 'Button',
           components: [
-            './src/components/Button/Button.js',
-            './src/components/ButtonGroup/ButtonGroup.js'
+            './packages/design-system/src/components/Button/Button.js',
+            './packages/design-system/src/components/ButtonGroup/ButtonGroup.js'
           ]
         },
         {
           name: 'Tab',
-          components: './src/components/Tab/Tab.js'
+          components: './packages/design-system/src/components/Tab/Tab.js'
         },
         {
           name: 'Switch',
-          components: './src/components/Switch/Switch.js'
+          components: './packages/design-system/src/components/Switch/Switch.js'
         },
         {
           name: 'Progress',
           components: [
-            './src/components/Progress/ProgressBar.js',
-            './src/components/Progress/ProgressCircle.js',
-            './src/components/UploadBar/FileUploadProgress.js',
-            './src/components/UploadBar/UploadBar.js'
+            './packages/design-system/src/components/Progress/ProgressBar.js',
+            './packages/design-system/src/components/Progress/ProgressCircle.js',
+            './packages/design-system/src/components/UploadBar/FileUploadProgress.js',
+            './packages/design-system/src/components/UploadBar/UploadBar.js'
           ]
         },
         {
           name: 'Modals',
           components: [
-            './src/components/Modal/ModalBase.js',
-            './src/components/Modal/ModalPortal.js',
-            './src/components/Modal/Modal.js',
-            './src/components/Modal/ActionModal.js'
+            './packages/design-system/src/components/Modal/ModalBase.js',
+            './packages/design-system/src/components/Modal/ModalPortal.js',
+            './packages/design-system/src/components/Modal/Modal.js',
+            './packages/design-system/src/components/Modal/ActionModal.js'
           ]
         },
         {
           name: 'InAppMessages',
           components: [
-            './src/components/InAppMessage/InAppMessageBase.js',
-            './src/components/InAppMessage/InAppMessagePortal.js',
-            './src/components/InAppMessage/InAppMessage.js'
+            './packages/design-system/src/components/InAppMessage/InAppMessageBase.js',
+            './packages/design-system/src/components/InAppMessage/InAppMessagePortal.js',
+            './packages/design-system/src/components/InAppMessage/InAppMessage.js'
           ]
         },
         {
           name: 'Tooltip',
-          content: './src/components/TooltipNew/design-guide.md',
+          content: './packages/design-system/src/components/TooltipNew/design-guide.md',
           components: [
-            './src/components/TooltipNew/PopperTooltip.js',
-            './src/components/TooltipNew/CssTooltip.js',
-            './src/components/TooltipNew/UserGuideTooltip.js'
+            './packages/design-system/src/components/TooltipNew/PopperTooltip.js',
+            './packages/design-system/src/components/TooltipNew/CssTooltip.js',
+            './packages/design-system/src/components/TooltipNew/UserGuideTooltip.js'
           ]
         },
         {
           name: 'Dropdown',
           components: [
-            './src/components/Dropdown/Dropdown.js',
-            './src/components/Dropdown/DropdownList.js'
+            './packages/design-system/src/components/Dropdown/Dropdown.js',
+            './packages/design-system/src/components/Dropdown/DropdownList.js'
           ]
         },
         {
           name: 'Forms',
           components: [
-            './src/components/Form/Form.js',
-            './src/components/TextField/TextField.js',
-            './src/components/InputField/InputField.js',
-            './src/components/NumericInputField/NumericInput.js',
-            './src/components/TextAreaField/TextAreaField.js',
-            './src/components/RadioButton/RadioButton.js',
-            './src/components/CheckboxField/CheckboxField.js',
-            './src/components/FieldGroup/FieldGroup.js',
-            './src/components/FormGroup/FormGroup.js',
-            './src/components/SelectField/Select.js',
-            './src/components/SelectField/SelectField.js',
-            './src/components/MultiSelectField/MultiSelect.js',
-            './src/components/MultiSelectField/MultiSelectField.js'
+            './packages/design-system/src/components/Form/Form.js',
+            './packages/design-system/src/components/TextField/TextField.js',
+            './packages/design-system/src/components/InputField/InputField.js',
+            './packages/design-system/src/components/NumericInputField/NumericInput.js',
+            './packages/design-system/src/components/TextAreaField/TextAreaField.js',
+            './packages/design-system/src/components/RadioButton/RadioButton.js',
+            './packages/design-system/src/components/CheckboxField/CheckboxField.js',
+            './packages/design-system/src/components/FieldGroup/FieldGroup.js',
+            './packages/design-system/src/components/FormGroup/FormGroup.js',
+            './packages/design-system/src/components/SelectField/Select.js',
+            './packages/design-system/src/components/SelectField/SelectField.js',
+            './packages/design-system/src/components/MultiSelectField/MultiSelect.js',
+            './packages/design-system/src/components/MultiSelectField/MultiSelectField.js'
           ]
         },
         {
           name: 'DatePicker',
           components: [
-            './src/components/DatePicker/DatePicker.js',
-            './src/components/DatePicker/RangeDatePicker.js'
+            './packages/design-system/src/components/DatePicker/DatePicker.js',
+            './packages/design-system/src/components/DatePicker/RangeDatePicker.js'
           ]
         },
         {
           name: 'Loader',
-          components: ['./src/components/Loader/Loader.js']
+          components: ['./packages/design-system/src/components/Loader/Loader.js']
         }
       ]
     },
     {
       name: 'Changelog',
-      content: './Changelog.md'
+      content: './packages/design-system/Changelog.md'
     }
   ],
   styleguideComponents: {
@@ -150,7 +150,7 @@ module.exports = {
     )
   },
   template: {
-    favicon: './fav.ico',
+    favicon: './assets/fav.ico',
     title: 'Design System - LiveChat API Developers Docs and Guides',
     head: {
       links: [

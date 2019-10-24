@@ -1,8 +1,8 @@
 import * as DateFns from 'date-fns';
 import AlertCircleIcon from 'react-material-icon-svg/dist/AlertCircleIcon';
-import * as Components from './src';
-import ComponentHtmlMarkup from './src/docs/ComponentHtmlMarkup';
-import PdfIcon from './src/docs/PdfIcon';
+import * as Components from './packages/design-system/src';
+import ComponentHtmlMarkup from './docs/ComponentHtmlMarkup';
+import PdfIcon from './docs/PdfIcon';
 
 // components
 global.Button = Components.Button;
