@@ -2,7 +2,7 @@ All notable changes to this project will be documented in this file.
 
 ## v0.6.0
 
-_Release: 2019-10-14_
+_Release: 2019-10-24_
 
 ##### Refactors
 
