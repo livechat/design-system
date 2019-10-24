@@ -69,9 +69,6 @@
     "import/resolver": {
       "node": {
         "extensions": [".js", ".jsx", ".tsx", ".ts"]
-      },
-      "webpack": {
-        "config": "./webpack.config.js"
       }
     }
   },

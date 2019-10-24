@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { Button } from '../../src/index';
+import { Button } from '@livechat/design-system';
 
 class ComponentHtmlMarkup extends React.Component {
   state = {

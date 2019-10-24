@@ -1,8 +1,8 @@
 const webpack = require('webpack');
-const path = require('path');
 const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const postCssFlexbugsfixes = require('postcss-flexbugs-fixes');
+const { webpack: lernaAliases } = require('lerna-alias')
 
 const { NODE_ENV } = process.env;
 
@@ -85,10 +85,7 @@ const config = {
     setImmediate: false
   },
   resolve: {
-    alias: {
-      components: path.resolve(__dirname, 'src/components'),
-      interfaces: path.resolve(__dirname, 'src/interfaces')
-    },
+    alias: lernaAliases(),
     extensions: ['.ts', '.tsx', '.d.ts', '.js', '.json']
   }
 };
