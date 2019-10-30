@@ -92,7 +92,7 @@ const umdConfig = mergeAll([
   configBase,
   {
     output: {
-      file: `../../dist/core/${pkg.name.replace(/@.*\//, '')}.js`,
+      file: `dist/${pkg.name.replace(/@.*\//, '')}.js`,
       format: 'umd',
       name: 'DesignSystem',
       globals: {
