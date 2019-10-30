@@ -23,7 +23,7 @@
     "start": "rollup -c --watch",
     "build": "rollup -c",
     "prebuild": "rimraf dist",
-    "build:cdn": "npm run build && mkdir -p dist/cdn && cp dist/design-system.css dist/cdn/styles.css && cp dist/cdn/styles.css dist/cdn/styles-v$npm_package_version.css",
+    "build:cdn": "npm run build && mkdir -p ../../dist/cdn && cp dist/design-system.css ../../dist/cdn/styles.css && cp ../../dist/cdn/styles.css ../../dist/cdn/styles-v$npm_package_version.css",
     "prepare": "npm run build",
     "test": "jest",
     "test:update": "jest -u",
