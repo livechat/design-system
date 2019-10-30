@@ -1,4 +1,4 @@
-# LiveChat Design System
+# LiveChat Design System Core
 
 React components and css styles library for use in Livechat products.
 By creating a uniform system, we want to deliver a harmonious experience to our customers.
