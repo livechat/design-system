@@ -11,19 +11,19 @@
     "url": "https://github.com/livechat/design-system"
   },
   "typings": "src/interfaces/index.d.ts",
-  "main": "dist/design-system.cjs.js",
-  "module": "dist/design-system.es.js",
-  "jsnext:main": "dist/design-system.es.js",
-  "style": "dist/design-system.css",
+  "main": "../../dist/core/design-system.cjs.js",
+  "module": "../../dist/core/design-system.es.js",
+  "jsnext:main": "../../dist/core/design-system.es.js",
+  "style": "../../dist/core/design-system.css",
   "files": [
-    "dist",
+    "../../dist/core",
     "src"
   ],
   "scripts": {
     "start": "rollup -c --watch",
     "build": "rollup -c",
     "prebuild": "rimraf dist",
-    "build:cdn": "npm run build && mkdir -p dist/cdn && cp dist/design-system.css dist/cdn/styles.css && cp dist/cdn/styles.css dist/cdn/styles-v$npm_package_version.css",
+    "build:cdn": "npm run build && mkdir -p ../../dist/cdn && cp ../../dist/core/design-system.css ../../dist/cdn/styles.css && cp ../../dist/cdn/styles.css ../../dist/cdn/styles-v$npm_package_version.css",
     "prepare": "npm run build",
     "test": "jest",
     "test:update": "jest -u",
