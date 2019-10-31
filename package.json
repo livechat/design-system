@@ -2,6 +2,8 @@
   "name": "design-system",
   "private": true,
   "scripts": {
+    "postinstall": "lerna bootstrap",
+    "build:cdn": "lerna run --scope @livechat/design-system build:cdn",
     "deploy": "gh-pages -d styleguide",
     "predeploy": "npm run-script styleguide:build",
     "styleguide:build": "cross-env NODE_ENV=production styleguidist build",
