@@ -8,26 +8,26 @@ const baseClass = 'btn-group';
 
 class ButtonGroup extends React.Component {
   state = {
-    currentIndex: defaultIndex
+    currentindex: defaultIndex
   };
 
   static getDerivedStateFromProps(props, state) {
     return {
-      currentIndex:
-        typeof props.currentIndex === 'number'
-          ? props.currentIndex
-          : state.currentIndex
+      currentindex:
+        typeof props.currentindex === 'number'
+          ? props.currentindex
+          : state.currentindex
     };
   }
 
   handleClick = (index, event) => {
     this.props.onIndexChange(index, event);
-    this.setState({ currentIndex: index });
+    this.setState({ currentindex: index });
   };
 
   render() {
-    const { currentIndex } = this.state;
-    const { size, fullWidth, children, className, ...restProps } = this.props;
+    const { currentindex } = this.state;
+    const { size, fullWidth, children, className, onIndexChange, ...restProps } = this.props;
 
     const mappedChildren = React.Children.map(children, (child, index) =>
       React.cloneElement(child, {
@@ -44,7 +44,7 @@ class ButtonGroup extends React.Component {
         },
         className: cx({
           [className]: !!className,
-          [styles.active]: index === currentIndex
+          [styles.active]: index === currentindex
         })
       })
     );
@@ -58,7 +58,7 @@ class ButtonGroup extends React.Component {
 }
 
 ButtonGroup.defaultProps = {
-  onIndexChange: () => {}
+  onIndexChange: (index, event) => {}
 };
 
 ButtonGroup.propTypes = {
@@ -73,14 +73,14 @@ ButtonGroup.propTypes = {
   className: PropTypes.string,
 
   /**
-   * Callback fired when the value of `currentIndex` changes
+   * Callback fired when the value of `currentindex` changes
    */
   onIndexChange: PropTypes.func,
 
   /**
    * The index of button in group which is currently active
    */
-  currentIndex: PropTypes.number,
+  currentindex: PropTypes.number,
 
   /**
    * Size of buttons in group
