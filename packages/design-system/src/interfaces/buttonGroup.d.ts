@@ -5,7 +5,7 @@ export interface IButtonGroupProps
   extends React.HTMLAttributes<HTMLDivElement> {
   fullWidth?: boolean;
   className?: string;
-  currentindex?: number;
+  currentIndex?: number;
   size: ButtonSize;
   children: React.ReactNode;
   onIndexChange?: (

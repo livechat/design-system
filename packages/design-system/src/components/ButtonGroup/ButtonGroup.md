@@ -22,19 +22,18 @@ By default ButtonGroup use internal state to track currently selected button. It
 
 ### Controlled ButtonGroup
 
-If you want to use ButtonGroups as controlled component you can set `currentindex` props to set which button is active.
+If you want to use ButtonGroups as controlled component you can set `currentIndex` props to set which button is active.
 
 ```js
-initialState = { currentindex: 0 };
+initialState = { currentIndex: 0 };
 
 handleClick = (index, e) => {
-  console.log('index', index)
   setState({
-    currentindex: index
+    currentIndex: index
   })
 }
 
-<ButtonGroup currentindex={state.currentindex} onIndexChange={handleClick}>
+<ButtonGroup currentIndex={state.currentIndex} onIndexChange={handleClick}>
   <Button>First Button</Button>
   <Button>Second Button <span style={{
     height: '8px',

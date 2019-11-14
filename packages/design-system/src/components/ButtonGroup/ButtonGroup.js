@@ -8,28 +8,28 @@ const baseClass = 'btn-group';
 
 class ButtonGroup extends React.Component {
   state = {
-    currentindex: defaultIndex
+    index: defaultIndex
   };
 
   static getDerivedStateFromProps(props, state) {
     return {
-      currentindex:
-        typeof props.currentindex === 'number'
-          ? props.currentindex
-          : state.currentindex
+      index:
+        typeof props.currentIndex === 'number'
+          ? props.currentIndex
+          : state.currentIndex
     };
   }
 
   handleClick = (index, event) => {
-    this.props.onIndexChange(index, event);
-    this.setState({ currentindex: index });
+    this.props.onIndexChange && this.props.onIndexChange(index, event);
+    this.setState({ currentIndex: index });
   };
 
   render() {
-    const { currentindex } = this.state;
-    const { size, fullWidth, children, className, onIndexChange, ...restProps } = this.props;
+    const { index } = this.state;
+    const { size, fullWidth, children, className, onIndexChange, currentIndex, ...restProps } = this.props;
 
-    const mappedChildren = React.Children.map(children, (child, index) =>
+    const mappedChildren = React.Children.map(children, (child, i) =>
       React.cloneElement(child, {
         size,
         fullWidth,
@@ -37,14 +37,14 @@ class ButtonGroup extends React.Component {
         secondary: true,
         destructive: false,
         onClick: event => {
-          this.handleClick(index, event);
+          this.handleClick(i, event);
           if (child.props.onClick) {
             child.props.onClick(event);
           }
         },
         className: cx({
           [className]: !!className,
-          [styles.active]: index === currentindex
+          [styles.active]: i === index
         })
       })
     );
@@ -56,10 +56,6 @@ class ButtonGroup extends React.Component {
     );
   }
 }
-
-ButtonGroup.defaultProps = {
-  onIndexChange: (index, event) => {}
-};
 
 ButtonGroup.propTypes = {
   /**
@@ -73,14 +69,14 @@ ButtonGroup.propTypes = {
   className: PropTypes.string,
 
   /**
-   * Callback fired when the value of `currentindex` changes
+   * Callback fired when the value of `currentIndex` changes
    */
   onIndexChange: PropTypes.func,
 
   /**
    * The index of button in group which is currently active
    */
-  currentindex: PropTypes.number,
+  currentIndex: PropTypes.number,
 
   /**
    * Size of buttons in group

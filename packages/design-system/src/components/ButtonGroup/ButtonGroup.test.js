@@ -45,11 +45,11 @@ describe('ButtonGroup', () => {
 
   it('should use current index from porps', () => {
     const component = shallow(
-      <ButtonGroup currentindex={1}>
+      <ButtonGroup currentIndex={1}>
         <Button />
       </ButtonGroup>
     );
 
-    expect(component.state('currentindex')).toBe(1);
+    expect(component.state('currentIndex')).toBe(1);
   });
 });
