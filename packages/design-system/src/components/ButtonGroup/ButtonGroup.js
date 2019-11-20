@@ -36,6 +36,7 @@ class ButtonGroup extends React.Component {
         primary: false,
         secondary: true,
         destructive: false,
+        type: 'button',
         onClick: event => {
           this.handleClick(i, event);
           if (child.props.onClick) {
