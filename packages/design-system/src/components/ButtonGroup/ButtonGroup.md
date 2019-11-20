@@ -35,15 +35,17 @@ handleClick = (index, e) => {
 
 <ButtonGroup currentIndex={state.currentIndex} onIndexChange={handleClick}>
   <Button>First Button</Button>
-  <Button>Second Button <span style={{
-    height: '8px',
-    width: '8px',
-    backgroundColor: 'red',
-    borderRadius: '50%',
-    display: 'inline-block',
-    position: 'relative',
-    bottom: '5px'
-  }}></span></Button>
+  <Button>Second Button</Button>
   <Button>Third Button</Button>
 </ButtonGroup>
+```
+
+```js noeditor
+<ComponentHtmlMarkup>
+  <ButtonGroup currentIndex={1}>
+    <Button>First Button</Button>
+    <Button>Second Button</Button>
+    <Button>Third Button</Button>
+  </ButtonGroup>
+</ComponentHtmlMarkup>
 ```
