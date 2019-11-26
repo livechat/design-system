@@ -1,5 +1,19 @@
 All notable changes to this project will be documented in this file.
 
+## v0.6.2
+
+_Release: 2019-11-26_
+
+##### Bug Fixes
+
+- Fixing `Card` title wrapper offset (#151)
+- Controlled button styles improvement (#150)
+- Changing wrong `Button` type in the `Modal` component docs (#152)
+
+##### Refactors
+
+- package `Node` version bump
+
 ## v0.6.1
 
 _Release: 2019-10-30_
