@@ -25,7 +25,15 @@ By default ButtonGroup use internal state to track currently selected button. It
 If you want to use ButtonGroups as controlled component you can set `currentIndex` props to set which button is active.
 
 ```js
-<ButtonGroup currentIndex={1}>
+initialState = { currentIndex: 0 };
+
+handleClick = (index, e) => {
+  setState({
+    currentIndex: index
+  })
+}
+
+<ButtonGroup currentIndex={state.currentIndex} onIndexChange={handleClick}>
   <Button>First Button</Button>
   <Button>Second Button</Button>
   <Button>Third Button</Button>

@@ -8,12 +8,12 @@ const baseClass = 'btn-group';
 
 class ButtonGroup extends React.Component {
   state = {
-    currentIndex: defaultIndex
+    index: defaultIndex
   };
 
   static getDerivedStateFromProps(props, state) {
     return {
-      currentIndex:
+      index:
         typeof props.currentIndex === 'number'
           ? props.currentIndex
           : state.currentIndex
@@ -21,30 +21,31 @@ class ButtonGroup extends React.Component {
   }
 
   handleClick = (index, event) => {
-    this.props.onIndexChange(index, event);
+    this.props.onIndexChange && this.props.onIndexChange(index, event);
     this.setState({ currentIndex: index });
   };
 
   render() {
-    const { currentIndex } = this.state;
-    const { size, fullWidth, children, className, ...restProps } = this.props;
+    const { index } = this.state;
+    const { size, fullWidth, children, className, onIndexChange, currentIndex, ...restProps } = this.props;
 
-    const mappedChildren = React.Children.map(children, (child, index) =>
+    const mappedChildren = React.Children.map(children, (child, i) =>
       React.cloneElement(child, {
         size,
         fullWidth,
         primary: false,
         secondary: true,
         destructive: false,
+        type: 'button',
         onClick: event => {
-          this.handleClick(index, event);
+          this.handleClick(i, event);
           if (child.props.onClick) {
             child.props.onClick(event);
           }
         },
         className: cx({
           [className]: !!className,
-          [styles.active]: index === currentIndex
+          [styles.active]: i === index
         })
       })
     );
@@ -56,10 +57,6 @@ class ButtonGroup extends React.Component {
     );
   }
 }
-
-ButtonGroup.defaultProps = {
-  onIndexChange: () => {}
-};
 
 ButtonGroup.propTypes = {
   /**
