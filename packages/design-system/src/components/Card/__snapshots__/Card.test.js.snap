@@ -25,3 +25,13 @@ exports[`Card should render Card 1`] = `
   </div>
 </Card>
 `;
+
+exports[`Card should render Card without a title 1`] = `
+<Card>
+  <div
+    className="card"
+  >
+    test
+  </div>
+</Card>
+`;

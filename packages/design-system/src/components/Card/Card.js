@@ -11,10 +11,12 @@ const Card = props => {
 
   return (
     <div {...restProps} className={mergedClassNames}>
-      <div className={styles[`${baseClass}__title`]}>
-        {img && <img src={img} className={styles[`${baseClass}__img`]} />}
-        <div className={styles[`${baseClass}__text`]}>{title}</div>
-      </div>
+      {(img || title) && (
+        <div className={styles[`${baseClass}__title`]}>
+          {img && <img src={img} className={styles[`${baseClass}__img`]} />}
+          {title && <div className={styles[`${baseClass}__text`]}>{title}</div>}
+        </div>
+      )}
       {children}
     </div>
   );

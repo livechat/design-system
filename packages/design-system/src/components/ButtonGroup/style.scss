@@ -6,15 +6,23 @@
   vertical-align: middle;
 
   .btn {
+    color: $ui-tooltip-color;
+    font-weight: 400;
+    box-shadow: none;
+    
     &.active {
-      color: $font-primary-color;
       border-color: $border-primary-color;
-      background-color: $ui-background-color;
+      background-color: $ui-background-color-hover;
       z-index: 1;
+      text-shadow: 0 0 0.5px black;
 
       &:hover {
         background-color: $ui-background-color-hover;
       }
+    }
+
+    &:hover {
+      background-color: $ui-background-color;
     }
 
     &:not(:first-child) {

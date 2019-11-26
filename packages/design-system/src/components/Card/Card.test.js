@@ -11,4 +11,9 @@ describe('Card', () => {
     );
     expect(component).toMatchSnapshot();
   });
+
+  it('should render Card without a title', () => {
+    const component = mount(<Card>test</Card>);
+    expect(component).toMatchSnapshot();
+  });
 });
