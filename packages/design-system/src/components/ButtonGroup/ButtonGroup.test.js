@@ -50,6 +50,6 @@ describe('ButtonGroup', () => {
       </ButtonGroup>
     );
 
-    expect(component.state('currentIndex')).toBe(1);
+    expect(component.state('index')).toBe(1);
   });
 });
