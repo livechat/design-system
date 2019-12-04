@@ -255,6 +255,9 @@ class DropdownList extends React.PureComponent {
 }
 
 DropdownList.propTypes = {
+  /**
+   * Specify which item should be focused after dropdown open
+   */
   autoFocusedItemId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   autoFocusOnItemsCountChange: PropTypes.bool,
   className: PropTypes.string,
