@@ -1,5 +1,13 @@
 All notable changes to this project will be documented in this file.
 
+## v0.6.3
+
+_Release: 2019-12-05_
+
+##### Bug Fixes
+
+- Adding missing ButtonGroup typescript types definition
+
 ## v0.6.2
 
 _Release: 2019-11-26_
