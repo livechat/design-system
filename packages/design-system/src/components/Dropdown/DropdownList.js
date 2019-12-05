@@ -75,7 +75,6 @@ class DropdownList extends React.PureComponent {
   getFocusedItemCallback = itemKey => {
     if (!this.hoverCallbacks[itemKey]) {
       this.hoverCallbacks[itemKey] = () => {
-        debugger; // eslint-disable-line
         if (!this.isHoverDisabled) {
           this.changeFocusedElement(itemKey);
         }
@@ -182,7 +181,9 @@ class DropdownList extends React.PureComponent {
   };
 
   enableHoverOnItems(delayInMs) {
-    if (this.hoverEnablerTimeout) clearTimeout(this.hoverEnablerTimeout);
+    if (this.hoverEnablerTimeout) {
+      clearTimeout(this.hoverEnablerTimeout);
+    }
 
     if (delayInMs) {
       this.hoverEnablerTimeout = setTimeout(() => {
