@@ -7,10 +7,10 @@ import json from 'rollup-plugin-json'
 
 const pkg = require('./package.json')
 
-const libraryName = 'design-system-colors'
+const libraryName = '@livechat/design-system-colors';
 
 export default {
-  input: `src/${libraryName}.ts`,
+  input: 'src/index.ts',
   output: [
     {
       file: pkg.main,

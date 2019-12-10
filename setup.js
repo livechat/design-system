@@ -1,7 +1,7 @@
 import * as DateFns from 'date-fns';
 import AlertCircleIcon from 'react-material-icon-svg/dist/AlertCircleIcon';
-import Colors from './packages/colors';
-import * as Components from './packages/design-system';
+import * as Components from '@livechat/design-system'; // eslint-disable-line
+import Colors from '@livechat/design-system-colors'; // eslint-disable-line
 import ComponentHtmlMarkup from './docs/ComponentHtmlMarkup';
 import { SingleColor } from './docs/colors/single-color';
 import PdfIcon from './docs/PdfIcon';
