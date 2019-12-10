@@ -1,6 +1,6 @@
 import * as DateFns from 'date-fns';
 import AlertCircleIcon from 'react-material-icon-svg/dist/AlertCircleIcon';
-import Colors from './packages/colors';
+import Colors from './packages/colors/src/design-system-colors';
 import * as Components from './packages/design-system/src';
 import ComponentHtmlMarkup from './docs/ComponentHtmlMarkup';
 import { SingleColor } from './docs/colors/single-color';
