@@ -85,5 +85,17 @@ Click on the color box to copy its hex value.
     <SingleColor hex={Colors.Yellow100} name="Yellow100" fontColors={[state.selectedFontColor, '#ffffff']} />
     <SingleColor hex={Colors.Yellow50} name="Yellow50" fontColors={[state.selectedFontColor, '#ffffff']} />
   </div>
+  <h2>Gray</h2>
+  <div style={{ display: 'flex', margin: '0 -10px', flexWrap: 'wrap' }}>
+    <SingleColor hex={Colors.Gray900} name="Gray900" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Gray800} name="Gray800" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Gray700} name="Gray700" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Gray600} name="Gray600" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Gray400} name="Gray400" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Gray300} name="Gray300" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Gray200} name="Gray200" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Gray100} name="Gray100" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Gray50} name="Gray50" fontColors={[state.selectedFontColor, '#ffffff']} />
+  </div>
 </div>
 ```

@@ -37,6 +37,18 @@ const Yellow = {
   Yellow50: '#fffcf0'
 }
 
+const Gray = {
+  Gray900: '#222',
+  Gray800: '#454545',
+  Gray700: '#5a5a5a',
+  Gray600: '#696969',
+  Gray400: '#c5c5c5',
+  Gray300: '#d2d2d2',
+  Gray200: '#dedede',
+  Gray100: '#ebebeb',
+  Gray50: '#f8f8f8'
+}
+
 const Text = {
   DarkTextPrimary: '#1B1B1D',
   DarkTextSecondary: '#595959',
@@ -47,5 +59,6 @@ export default {
   ...Blue,
   ...Yellow,
   ...Orange,
+  ...Gray,
   ...Text
 }
