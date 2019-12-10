@@ -135,7 +135,7 @@ module.exports = {
     },
     {
       name: 'Changelog',
-      content: './packages/design-system/Changelog.md'
+      content: './packages/design-system/CHANGELOG.md'
     }
   ],
   styleguideComponents: {
