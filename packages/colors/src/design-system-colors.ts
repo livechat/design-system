@@ -37,8 +37,15 @@ const Yellow = {
   Yellow50: '#fffcf0'
 }
 
+const Text = {
+  DarkTextPrimary: '#1B1B1D',
+  DarkTextSecondary: '#595959',
+  DarkTextTertiary: '#757575'
+}
+
 export default {
   ...Blue,
   ...Yellow,
-  ...Orange
+  ...Orange,
+  ...Text
 }

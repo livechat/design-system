@@ -7,10 +7,10 @@ import json from 'rollup-plugin-json'
 
 const pkg = require('./package.json')
 
-const libraryName = '@livechat/design-system-colors';
+const libraryName = '@livechat/design-system-colors'
 
 export default {
-  input: 'src/index.ts',
+  input: 'src/index.js',
   output: [
     {
       file: pkg.main,
@@ -35,7 +35,9 @@ export default {
     // Allow node_modules resolution, so you can use 'external' to control
     // which external modules to include in the bundle
     // https://github.com/rollup/rollup-plugin-node-resolve#usage
-    resolve(),
+    resolve({
+      extensions: ['.js', '.ts', '.json']
+    }),
 
     // Resolve source maps to the original source
     sourceMaps()

@@ -41,7 +41,7 @@ export function calculateContrast(fontColor, backgroundColor) {
 
   const contrast = fontColorLuminanace / backgroundColorLuminanace;
 
-  return (contrast > 1 ? contrast : 1 / contrast).toFixed(2);
+  return parseFloat((contrast > 1 ? contrast : 1 / contrast).toFixed(2));
 }
 
 export function copyToClipboard(value) {
