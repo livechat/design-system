@@ -85,6 +85,42 @@ Click on the color box to copy its hex value.
     <SingleColor hex={Colors.Yellow100} name="Yellow100" fontColors={[state.selectedFontColor, '#ffffff']} />
     <SingleColor hex={Colors.Yellow50} name="Yellow50" fontColors={[state.selectedFontColor, '#ffffff']} />
   </div>
+  <h2>Green</h2>
+  <div style={{ display: 'flex', margin: '0 -10px', flexWrap: 'wrap' }}>
+    <SingleColor hex={Colors.Green900} name="Green900" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Green800} name="Green800" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Green700} name="Green700" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Green600} name="Green600" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Green400} name="Green400" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Green300} name="Green300" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Green200} name="Green200" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Green100} name="Green100" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Green50} name="Green50" fontColors={[state.selectedFontColor, '#ffffff']} />
+  </div>
+  <h2>Red</h2>
+  <div style={{ display: 'flex', margin: '0 -10px', flexWrap: 'wrap' }}>
+    <SingleColor hex={Colors.Red900} name="Red900" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Red800} name="Red800" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Red700} name="Red700" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Red600} name="Red600" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Red400} name="Red400" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Red300} name="Red300" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Red200} name="Red200" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Red100} name="Red100" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Red50} name="Red50" fontColors={[state.selectedFontColor, '#ffffff']} />
+  </div>
+  <h2>Ruby</h2>
+  <div style={{ display: 'flex', margin: '0 -10px', flexWrap: 'wrap' }}>
+    <SingleColor hex={Colors.Ruby900} name="Ruby900" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Ruby800} name="Ruby800" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Ruby700} name="Ruby700" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Ruby600} name="Ruby600" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Ruby400} name="Ruby400" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Ruby300} name="Ruby300" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Ruby200} name="Ruby200" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Ruby100} name="Ruby100" fontColors={[state.selectedFontColor, '#ffffff']} />
+    <SingleColor hex={Colors.Ruby50} name="Ruby50" fontColors={[state.selectedFontColor, '#ffffff']} />
+  </div>
   <h2>Gray</h2>
   <div style={{ display: 'flex', margin: '0 -10px', flexWrap: 'wrap' }}>
     <SingleColor hex={Colors.Gray900} name="Gray900" fontColors={[state.selectedFontColor, '#ffffff']} />

@@ -1,3 +1,7 @@
-import Colors from './design-system-colors'
+/**
+ * lerna-alias package needs index.js file in package root to work correctly
+ */
 
-export default Colors
+import Colors from './design-system-colors';
+
+export default Colors;
