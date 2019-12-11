@@ -1,3 +1,17 @@
+Installation:
+```js static
+npm install @livechat/design-system-colors --save
+```
+
+There are three ways to use LiveChat design colors palette:
+- use JavaScript implementation of colors
+```js static
+import Colors from '@livechat/design-system-colors'
+```
+- import `design-system-colos.css` file and style UI elements with classes
+- import `scss/variables.scss` or `scss/styles.scss` - use variables or css classes if you are using `scss` in your project
+
+
 Click on the color box to copy its hex value.
 
 ```jsx noeditor
@@ -32,7 +46,7 @@ Click on the color box to copy its hex value.
   </div>
 
   <div style={{width: '340px'}}>
-    <p>Select text color to use in color palettes</p>
+    <p>Select text color to use in colors palette</p>
     <Select
       id='colors-select'
       items={items}
