@@ -1,3 +1,5 @@
+@import '../../packages//colors/dist/scss/variables.scss';
+
 .colors {
   &__container {
     padding: 10px;
@@ -63,7 +65,7 @@
         content: 'COPIED!';
         position: absolute;
         font-weight: 700;
-        color: #17882c;
+        color: $green700;
         font-size: 15px;
         left: 50%;
         top: 0;
