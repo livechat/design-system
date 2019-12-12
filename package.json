@@ -19,7 +19,9 @@
     }
   },
   "dependencies": {
-    "date-fns": "^1.29.0"
+    "classnames": "^2.2.6",
+    "date-fns": "^1.29.0",
+    "polished": "^3.4.2"
   },
   "devDependencies": {
     "autoprefixer": "^9.0.1",

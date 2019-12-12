@@ -3,14 +3,25 @@ import * as path from 'path';
 import colors from '../src/design-system-colors';
 
 // creating template string with color styles - css classes with color property
-const colorStyles = Object.keys(colors).map(colorName => {
-  const className = `.lcds-colors-${colorName
+const colorTextStyles = Object.keys(colors).map(colorName => {
+  const className = `.lcds-text-${colorName
     .replace(/([a-z])([A-Z])/g, '$1-$2')
     .toLowerCase()}`;
   const cssProperties = `{ color: ${(colors as any)[colorName]}; }`;
 
   return `${className} ${cssProperties}`;
 });
+
+const colorBgStyles = Object.keys(colors).map(colorName => {
+  const className = `.lcds-bg-${colorName
+    .replace(/([a-z])([A-Z])/g, '$1-$2')
+    .toLowerCase()}`;
+  const cssProperties = `{ background-color: ${(colors as any)[colorName]}; }`;
+
+  return `${className} ${cssProperties}`;
+});
+
+const colorStyles = [...colorBgStyles, ...colorTextStyles];
 
 // creating template string with color variables
 const colorVariables = Object.keys(colors).map(colorName => {
@@ -19,7 +30,7 @@ const colorVariables = Object.keys(colors).map(colorName => {
     .toLowerCase();
   const variableValue = (colors as any)[colorName];
 
-  return `$${variableName}: ${variableValue};`;
+  return `$lcds-${variableName}: ${variableValue};`;
 });
 
 const stylesData = colorStyles.join('\n');

@@ -4,6 +4,7 @@ import * as Components from '@livechat/design-system'; // eslint-disable-line
 import Colors from '@livechat/design-system-colors'; // eslint-disable-line
 import ComponentHtmlMarkup from './docs/ComponentHtmlMarkup';
 import { SingleColor } from './docs/colors/single-color';
+import { ColorPalette } from './docs/colors/color-palette';
 import PdfIcon from './docs/PdfIcon';
 
 // components
@@ -77,4 +78,5 @@ global.DateFns = DateFns;
 
 // docs colors
 global.SingleColor = SingleColor;
+global.ColorPalette = ColorPalette;
 global.Colors = Colors;

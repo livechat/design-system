@@ -1,38 +1,32 @@
 import React from 'react';
-import * as PropTypes from 'prop-types';
 import cx from 'classnames';
+import * as PropTypes from 'prop-types';
+import { getContrast } from 'polished';
 import styles from './style.scss';
-import { calculateContrast, copyToClipboard } from './helpers';
-
-function handleElementClick(e) {
-  const { color } = e.target.dataset;
-  copyToClipboard(color);
-
-  e.target.classList.add('lc-colors__clickable--copied');
-
-  setTimeout(() => {
-    const element = document.querySelector(
-      `.lc-colors__clickable--copied[data-color="${color}"]`
-    );
-
-    if (element) {
-      element.classList.remove('lc-colors__clickable--copied');
-    }
-  }, 1000);
-}
 
 const MIN_CONTRAST_RATIO = 4;
 
 export function SingleColor(props) {
-  const { hex, name, fontColors, main } = props;
-  const firstFontColor = fontColors[0];
-  const secondFontColor = fontColors[1] || firstFontColor;
+  const {
+    title,
+    subtitle,
+    color1,
+    color2,
+    backupDotColor,
+    selected,
+    inversed,
+    feedbackText,
+    onClick
+  } = props;
 
-  const contrast1 = calculateContrast(hex, firstFontColor);
-  const contrast2 = calculateContrast(hex, secondFontColor);
+  const mainColor = inversed ? color2 : color1;
+  const subColor = inversed ? color1 : color2;
+
+  const contrast1 = getContrast(mainColor, subColor);
+  const contrast2 = getContrast(mainColor, backupDotColor);
 
   const contrastRatio = contrast1 > contrast2 ? contrast1 : contrast2;
-  const fontColor = contrast1 > contrast2 ? firstFontColor : secondFontColor;
+  const dotColor = contrast1 > contrast2 ? subColor : backupDotColor;
 
   if (contrastRatio < MIN_CONTRAST_RATIO) {
     return null;
@@ -40,41 +34,40 @@ export function SingleColor(props) {
 
   return (
     <div className={styles.colors__container}>
-      <h4 className={styles.colors__name}>{name}</h4>
-      <p className={styles.colors__hex}>
-        {String(main === 'box' ? hex : fontColor).toLowerCase()}
-      </p>
+      <h4 className={styles.colors__name}>{title}</h4>
+      <p className={styles.colors__hex}>{subtitle}</p>
       <p className={styles.colors__ratio}>{contrastRatio}</p>
-      <div className={styles.colors__wrapper}>
+      <div
+        className={cx(styles.colors__box, {
+          [styles['colors__box--selected']]: selected
+        })}
+        style={{ backgroundColor: mainColor }}
+        data-color={mainColor}
+        onClick={onClick}
+      >
         <div
-          className={cx(styles.colors__box, {
-            [styles.colors__clickable]: main === 'box'
-          })}
-          style={{ backgroundColor: hex }}
-          data-color={hex}
-          onClick={main === 'box' ? handleElementClick : null}
+          className={cx(styles.colors__dot)}
+          style={{ backgroundColor: dotColor }}
         />
-        <div
-          className={cx(styles.colors__dot, {
-            [styles.colors__clickable]: main === 'dot'
-          })}
-          style={{ backgroundColor: fontColor }}
-          data-color={fontColor}
-          onClick={main === 'dot' ? handleElementClick : null}
-        />
-        <div className={styles.colors__feedback} />
+        <div className={styles.colors__feedback}>{feedbackText}</div>
       </div>
     </div>
   );
 }
 
 SingleColor.defaultProps = {
-  main: 'box'
+  onClick: () => {},
+  backupDotColor: '#fff'
 };
 
 SingleColor.propTypes = {
-  hex: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  fontColors: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-  main: PropTypes.oneOf(['box', 'dot'])
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+  color1: PropTypes.string.isRequired,
+  color2: PropTypes.string.isRequired,
+  backupDotColor: PropTypes.string,
+  selected: PropTypes.bool,
+  feedbackText: PropTypes.string,
+  inversed: PropTypes.bool,
+  onClick: PropTypes.func
 };
