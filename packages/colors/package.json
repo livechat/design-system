@@ -30,6 +30,7 @@
     "start:css": "ts-node-dev --respawn -O \"{\\\"module\\\":\\\"commonjs\\\"}\" tools/create-css ",
     "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts'",
     "prebuild": "rimraf dist",
+    "prepare": "npm run build",
     "build": "tsc --module commonjs && rollup -c rollup.config.ts && npm run build:css",
     "build:css": "ts-node-dev -O \"{\\\"module\\\":\\\"commonjs\\\"}\" tools/create-css ",
     "precommit": "lint-staged"
