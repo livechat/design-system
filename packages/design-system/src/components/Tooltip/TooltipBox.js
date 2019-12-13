@@ -14,7 +14,10 @@ const TooltipBox = ({
   onContentMouseEnter,
   onContentMouseLeave,
   children
-}) => (
+}) => {
+  console.warn('[Design System] deprecated component - TooltipBox, please use CSSTooltip or PopperTooltip')
+
+  return  (
   <div
     className={cx({
       tooltip__box: true,
@@ -27,7 +30,7 @@ const TooltipBox = ({
   >
     <div className={styles['tooltip__box-content']}>{children}</div>
   </div>
-);
+);}
 
 TooltipBox.propTypes = {
   children: PropTypes.node.isRequired,

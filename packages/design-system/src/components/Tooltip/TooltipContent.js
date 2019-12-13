@@ -23,6 +23,7 @@ const TooltipContent = ({
     }),
     className
   );
+  console.warn('[Design System] deprecated component - TooltipContent, please use CSSTooltip or PopperTooltip')
 
   return (
     <div
