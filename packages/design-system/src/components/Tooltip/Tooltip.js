@@ -9,6 +9,7 @@ import { DIRECTION, ALIGMENT } from '../../constants/tooltip';
 
 class Tooltip extends React.Component {
   constructor(props) {
+    console.warn('[Design System] deprecated tooltip, please use CSSTooltip or PopperTooltip')
     super(props);
 
     this.state = {
