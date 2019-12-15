@@ -9,9 +9,10 @@ npm install @livechat/design-system-colors --save
 There are three ways to use LiveChat design colors palette:
 - use JavaScript implementation of colors
 ```js static
-import Colors from '@livechat/design-system-colors'
+import colors from '@livechat/design-system-colors'
 ```
 - import `design-system-colos.css` file and style UI elements with classes
+- import `css/variables.css` (css classes) or `css/styles.css` (css vars) to style UI elements
 - import `scss/variables.scss` or `scss/styles.scss` if you are using `scss` in your project
 
 ### JavaScript
@@ -19,9 +20,9 @@ import Colors from '@livechat/design-system-colors'
 In your JavaScript files just import the library:
 
 ```js static
-import Colors from '@livechat/design-system-colors'
+import colors from '@livechat/design-system-colors'
 // or just selected colors
-import { Blue900 } from '@livechat/design-system-colors'
+import { blue900 } from '@livechat/design-system-colors'
 ```
 
 ### Scss
@@ -32,24 +33,41 @@ You can import the variables file directly in your scss:
 @import '~@livechat/design-system-colors/dist/scss/variables';
 ```
 
-These color variables follow the naming convention: `$lcds-<swatch>-<grade>`.
+These color variables follow the naming convention: `$lcds-<color><tone>`.
 For example:
 
 ```scss
 $lcds-blue-900;
 ```
 
-There is also a file named `styles.scss`. This is a group of classes following the naming convention: `.lcds-text-<swatch>-<grade>` and `.lcds-bg-<swatch>-<grade>`. You can use those classes directly in your html/js files. Importing it is possible in several ways, ie. you can import it in your scss file (as above) or JavaScript file (e.g. styling React app with css-modules and scss).
+There is also a file named `styles.scss`. This is a group of classes following the naming convention: `.lcds-text-<color>-<tone>` and `.lcds-bg-<color>-<tone>`. You can use those classes directly in your html/js files. Importing it is possible in several ways, ie. you can import it in your scss file (as above) or JavaScript file (e.g. styling React app with css-modules and scss).
+
+### Css
+
+Almost idendital to Scss files you can import css variables directyly in your css file:
+
+```scss
+@import '~@livechat/design-system-colors/dist/css/variables';
+```
+
+These color variables follow the naming convention: `--lcds-<color>-<tone>`.
+For example:
+
+```css
+color: var(--lcds-blue-900);
+```
+
+There is also a file named `styles.css`. This is a group of classes following the naming convention: `.lcds-text-<color>-<tone>` and `.lcds-bg-<color>-<tone>`.
 
 ```jsx noeditor
 const items = [
-  {key: Colors.Gray900, props: {name: 'Gray900', value: Colors.Gray900}},
-  {key: Colors.Gray700, props: {name: 'Gray700', value: Colors.Gray700}},
-  {key: Colors.Gray600, props: {name: 'Gray600', value: Colors.Gray600}}
+  {key: Colors.gray900, props: {name: 'gray900', value: Colors.gray900}},
+  {key: Colors.gray700, props: {name: 'gray700', value: Colors.gray700}},
+  {key: Colors.gray600, props: {name: 'gray600', value: Colors.gray600}}
 ];
 
 initialState = {
-  selectedFontColor: Colors.Gray900
+  selectedFontColor: Colors.gray900
 };
 
 const handleItemSelect = item => setState({selectedFontColor: item});
@@ -59,39 +77,39 @@ const handleItemSelect = item => setState({selectedFontColor: item});
   <div style={{ display: 'flex', margin: '0 -10px', flexWrap: 'wrap' }}>
     <SingleColor
       inversed
-      title="Gray900"
-      subtitle={Colors.Gray900}
-      color1={Colors.Gray900}
+      title="gray900"
+      subtitle={Colors.gray900}
+      color1={Colors.gray900}
       color2="#f8f8f8"
-      selected={state.selectedFontColor === Colors.Gray900}
-      onClick={() => handleItemSelect(Colors.Gray900)}
+      selected={state.selectedFontColor === Colors.gray900}
+      onClick={() => handleItemSelect(Colors.gray900)}
     />
     <SingleColor
       inversed
-      title="Gray700"
-      subtitle={Colors.Gray700}
-      color1={Colors.Gray700}
+      title="gray700"
+      subtitle={Colors.gray700}
+      color1={Colors.gray700}
       color2="#f8f8f8"
-      selected={state.selectedFontColor === Colors.Gray700}
-      onClick={() => handleItemSelect(Colors.Gray700)}
+      selected={state.selectedFontColor === Colors.gray700}
+      onClick={() => handleItemSelect(Colors.gray700)}
     />
     <SingleColor
       inversed
-      title="Gray600"
-      subtitle={Colors.Gray600}
-      color1={Colors.Gray600}
+      title="gray600"
+      subtitle={Colors.gray600}
+      color1={Colors.gray600}
       color2="#f8f8f8"
-      selected={state.selectedFontColor === Colors.Gray600}
-      onClick={() => handleItemSelect(Colors.Gray600)}
+      selected={state.selectedFontColor === Colors.gray600}
+      onClick={() => handleItemSelect(Colors.gray600)}
     />
   </div>
 
-  <ColorPalette paletteName="Blue" darkFontColor={state.selectedFontColor} />
-  <ColorPalette paletteName="Orange" darkFontColor={state.selectedFontColor} />
-  <ColorPalette paletteName="Yellow" darkFontColor={state.selectedFontColor} />
-  <ColorPalette paletteName="Green" darkFontColor={state.selectedFontColor} />
-  <ColorPalette paletteName="Red" darkFontColor={state.selectedFontColor} />
-  <ColorPalette paletteName="Ruby" darkFontColor={state.selectedFontColor} />
-  <ColorPalette paletteName="Gray" darkFontColor={state.selectedFontColor} />
+  <ColorPalette paletteName="blue" darkFontColor={state.selectedFontColor} />
+  <ColorPalette paletteName="orange" darkFontColor={state.selectedFontColor} />
+  <ColorPalette paletteName="yellow" darkFontColor={state.selectedFontColor} />
+  <ColorPalette paletteName="green" darkFontColor={state.selectedFontColor} />
+  <ColorPalette paletteName="red" darkFontColor={state.selectedFontColor} />
+  <ColorPalette paletteName="ruby" darkFontColor={state.selectedFontColor} />
+  <ColorPalette paletteName="gray" darkFontColor={state.selectedFontColor} />
 </div>
 ```

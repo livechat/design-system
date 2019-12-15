@@ -2,55 +2,56 @@ import * as fs from 'fs';
 import * as path from 'path';
 import colors from '../src/design-system-colors';
 
-// creating template string with color styles - css classes with color property
-const colorTextStyles = Object.keys(colors).map(colorName => {
-  const className = `.lcds-text-${colorName
-    .replace(/([a-z])([A-Z])/g, '$1-$2')
-    .toLowerCase()}`;
-  const cssProperties = `{ color: ${(colors as any)[colorName]}; }`;
-
-  return `${className} ${cssProperties}`;
-});
-
-const colorBgStyles = Object.keys(colors).map(colorName => {
-  const className = `.lcds-bg-${colorName
-    .replace(/([a-z])([A-Z])/g, '$1-$2')
-    .toLowerCase()}`;
-  const cssProperties = `{ background-color: ${(colors as any)[colorName]}; }`;
-
-  return `${className} ${cssProperties}`;
-});
-
-const colorStyles = [...colorBgStyles, ...colorTextStyles];
-
-// creating template string with color variables
-const colorVariables = Object.keys(colors).map(colorName => {
-  const variableName = colorName
-    .replace(/([a-z])([A-Z])/g, '$1-$2')
-    .toLowerCase();
-  const variableValue = (colors as any)[colorName];
-
-  return `$lcds-${variableName}: ${variableValue};`;
-});
-
-const stylesData = colorStyles.join('\n');
-const variablesData = colorVariables.join('\n');
-
-// saving css file
-const dirPath = path.join(__dirname, '..', 'dist');
-
-if (!fs.existsSync(dirPath)) {
-  fs.mkdirSync(dirPath, { recursive: true });
+function getNormalizedColorName(colorName: string) {
+  return colorName.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
-fs.writeFileSync(path.join(dirPath, 'design-system-colors.css'), stylesData);
+function createStyles(styleName: string, cssProperty: string): string[] {
+  return Object.keys(colors).map(colorName => {
+    const className = `.lcds-${styleName}-${getNormalizedColorName(colorName)}`;
+    const cssProperties = `{ ${cssProperty}: ${(colors as any)[colorName]}; }`;
 
-// saving scss files
-const scssDirPath = path.join(dirPath, 'scss');
-
-if (!fs.existsSync(scssDirPath)) {
-  fs.mkdirSync(scssDirPath, { recursive: true });
+    return `${className} ${cssProperties}`;
+  });
 }
 
-fs.writeFileSync(path.join(scssDirPath, 'styles.scss'), stylesData);
-fs.writeFileSync(path.join(scssDirPath, 'variables.scss'), variablesData);
+function createVariables(variableSurfix: string): string[] {
+  return Object.keys(colors).map(colorName => {
+    const variableName = getNormalizedColorName(colorName);
+    const variableValue = (colors as any)[colorName];
+
+    return `${variableSurfix}lcds-${variableName}: ${variableValue};`;
+  });
+}
+
+function createDirectory(dirPath: string): void {
+  if (!fs.existsSync(dirPath)) {
+    fs.mkdirSync(dirPath, { recursive: true });
+  }
+}
+
+function getWritePath(subDirectory: string, fileName: string): string {
+  const dirPath = path.join(__dirname, '..', 'dist');
+
+  createDirectory(dirPath);
+
+  const subDirPath = path.join(dirPath, subDirectory);
+
+  createDirectory(subDirPath);
+
+  return path.join(subDirPath, fileName);
+}
+
+const colorTextStyles = createStyles('text', 'color');
+const colorBgStyles = createStyles('bg', 'background-color');
+const colorCssVariables = createVariables('--');
+const colorScssVariables = createVariables('$');
+
+const stylesData = [...colorBgStyles, ...colorTextStyles].join('\n');
+const scssVariablesData = colorScssVariables.join('\n');
+const cssVariablesData = [':root {', ...colorCssVariables, '}'].join('\n');
+
+fs.writeFileSync(getWritePath('css', 'styles.css'), stylesData);
+fs.writeFileSync(getWritePath('css', 'variables.css'), cssVariablesData);
+fs.writeFileSync(getWritePath('scss', 'styles.scss'), stylesData);
+fs.writeFileSync(getWritePath('scss', 'variables.scss'), scssVariablesData);

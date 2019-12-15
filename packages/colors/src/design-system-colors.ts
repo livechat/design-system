@@ -1,99 +1,99 @@
-const Blue = {
-  Blue900: '#001638',
-  Blue800: '#00378a',
-  Blue700: '#0047b3',
-  Blue600: '#0054d1',
-  Blue500: '#0066ff',
-  Blue400: '#4d94ff',
-  Blue300: '#8ab9ff',
-  Blue200: '#bdd7ff',
-  Blue100: '#d6e7ff',
-  Blue50: '#f0f6ff'
+const blue = {
+  blue900: '#001638',
+  blue800: '#00378a',
+  blue700: '#0047b3',
+  blue600: '#0054d1',
+  blue500: '#0066ff',
+  blue400: '#4d94ff',
+  blue300: '#8ab9ff',
+  blue200: '#bdd7ff',
+  blue100: '#d6e7ff',
+  blue50: '#f0f6ff'
 };
 
-const Orange = {
-  Orange900: '#381200',
-  Orange800: '#8a2c00',
-  Orange700: '#b33900',
-  Orange600: '#d14200',
-  Orange500: '#FF5100',
-  Orange400: '#ff854d',
-  Orange300: '#ffaf8a',
-  Orange200: '#ffd2bd',
-  Orange100: '#ffe3d6',
-  Orange50: '#fff5f0'
+const orange = {
+  orange900: '#381200',
+  orange800: '#8a2c00',
+  orange700: '#b33900',
+  orange600: '#d14200',
+  orange500: '#FF5100',
+  orange400: '#ff854d',
+  orange300: '#ffaf8a',
+  orange200: '#ffd2bd',
+  orange100: '#ffe3d6',
+  orange50: '#fff5f0'
 };
 
-const Yellow = {
-  Yellow900: '#382e00',
-  Yellow800: '#8a7000',
-  Yellow700: '#b39200',
-  Yellow600: '#d1ab00',
-  Yellow500: '#ffd000',
-  Yellow400: '#ffde4d',
-  Yellow300: '#ffaf8a',
-  Yellow200: '#ffd2bd',
-  Yellow100: '#ffe3d6',
-  Yellow50: '#fff5f0'
+const yellow = {
+  yellow900: '#382e00',
+  yellow800: '#8a7000',
+  yellow700: '#b39200',
+  yellow600: '#d1ab00',
+  yellow500: '#ffd000',
+  yellow400: '#ffde4d',
+  yellow300: '#ffaf8a',
+  yellow200: '#ffd2bd',
+  yellow100: '#ffe3d6',
+  yellow50: '#fff5f0'
 };
 
-const Gray = {
-  Gray900: '#1d1d1d',
-  Gray800: '#454545',
-  Gray700: '#5a5a5a',
-  Gray600: '#696969',
-  Gray400: '#a6a6a6',
-  Gray300: '#c5c5c5',
-  Gray200: '#dedede',
-  Gray100: '#ebebeb',
-  Gray50: '#f8f8f8'
+const gray = {
+  gray900: '#1d1d1d',
+  gray800: '#454545',
+  gray700: '#5a5a5a',
+  gray600: '#696969',
+  gray400: '#a6a6a6',
+  gray300: '#c5c5c5',
+  gray200: '#dedede',
+  gray100: '#ebebeb',
+  gray50: '#f8f8f8'
 };
 
-const Green = {
-  Green900: '#051f0a',
-  Green800: '#116521',
-  Green700: '#17882c',
-  Green600: '#1ba234',
-  Green500: '#22c941',
-  Green400: '#55e26f',
-  Green300: '#8aeb9c',
-  Green200: '#b5f3c1',
-  Green100: '#cbf6d3',
-  Green50: '#e1fae5'
+const green = {
+  green900: '#051f0a',
+  green800: '#116521',
+  green700: '#17882c',
+  green600: '#1ba234',
+  green500: '#22c941',
+  green400: '#55e26f',
+  green300: '#8aeb9c',
+  green200: '#b5f3c1',
+  green100: '#cbf6d3',
+  green50: '#e1fae5'
 };
 
-const Red = {
-  Red900: '#210803',
-  Red800: '#6d1a09',
-  Red700: '#92220c',
-  Red600: '#af290e',
-  Red500: '#d93312',
-  Red400: '#f06448',
-  Red300: '#f49380',
-  Red200: '#f8bbaf',
-  Red100: '#facfc7',
-  Red50: '#fce3de'
+const red = {
+  red900: '#210803',
+  red800: '#6d1a09',
+  red700: '#92220c',
+  red600: '#af290e',
+  red500: '#d93312',
+  red400: '#f06448',
+  red300: '#f49380',
+  red200: '#f8bbaf',
+  red100: '#facfc7',
+  red50: '#fce3de'
 };
 
-const Ruby = {
-  Ruby900: '#270209',
-  Ruby800: '#74071b',
-  Ruby700: '#9b0923',
-  Ruby600: '#b80b2a',
-  Ruby500: '#e30d34',
-  Ruby400: '#f54867',
-  Ruby300: '#f88297',
-  Ruby200: '#fbb2bf',
-  Ruby100: '#fccad3',
-  Ruby50: '#fde2e7'
+const ruby = {
+  ruby900: '#270209',
+  ruby800: '#74071b',
+  ruby700: '#9b0923',
+  ruby600: '#b80b2a',
+  ruby500: '#e30d34',
+  ruby400: '#f54867',
+  ruby300: '#f88297',
+  ruby200: '#fbb2bf',
+  ruby100: '#fccad3',
+  ruby50: '#fde2e7'
 };
 
 export default {
-  ...Blue,
-  ...Yellow,
-  ...Orange,
-  ...Green,
-  ...Red,
-  ...Ruby,
-  ...Gray
+  ...blue,
+  ...yellow,
+  ...orange,
+  ...green,
+  ...red,
+  ...ruby,
+  ...gray
 };
