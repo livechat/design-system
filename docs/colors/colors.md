@@ -62,7 +62,7 @@ There is also a file named `styles.css`. This is a group of classes following th
 ```jsx noeditor
 const items = [
   {key: Colors.gray900, props: {name: 'gray900', value: Colors.gray900}},
-  {key: Colors.gray700, props: {name: 'gray700', value: Colors.gray700}},
+  {key: Colors.gray800, props: {name: 'gray800', value: Colors.gray800}},
   {key: Colors.gray600, props: {name: 'gray600', value: Colors.gray600}}
 ];
 
@@ -86,12 +86,12 @@ const handleItemSelect = item => setState({selectedFontColor: item});
     />
     <SingleColor
       inversed
-      title="gray700"
-      subtitle={Colors.gray700}
-      color1={Colors.gray700}
+      title="gray800"
+      subtitle={Colors.gray800}
+      color1={Colors.gray800}
       color2="#f8f8f8"
-      selected={state.selectedFontColor === Colors.gray700}
-      onClick={() => handleItemSelect(Colors.gray700)}
+      selected={state.selectedFontColor === Colors.gray800}
+      onClick={() => handleItemSelect(Colors.gray800)}
     />
     <SingleColor
       inversed
