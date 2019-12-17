@@ -6,6 +6,7 @@ import PdfIcon from './docs/PdfIcon';
 
 // components
 global.Button = Components.Button;
+global.ButtonsWrapper = Components.ButtonsWrapper;
 global.Card = Components.Card;
 global.Tab = Components.Tab;
 global.TabsWrapper = Components.TabsWrapper;

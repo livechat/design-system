@@ -1,0 +1,11 @@
+.btns-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: -8px;
+
+  & > * {
+    margin-right: 8px;
+    margin-top: 8px;
+  }
+}
