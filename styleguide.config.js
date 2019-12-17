@@ -40,6 +40,7 @@ module.exports = {
           name: 'Button',
           components: [
             './packages/design-system/src/components/Button/Button.js',
+            './packages/design-system/src/components/ButtonsWrapper/ButtonsWrapper.js',
             './packages/design-system/src/components/ButtonGroup/ButtonGroup.js'
           ]
         },

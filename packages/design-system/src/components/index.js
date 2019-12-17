@@ -1,4 +1,5 @@
 export { Button } from './Button';
+export { ButtonsWrapper } from './ButtonsWrapper';
 export { ButtonGroup } from './ButtonGroup';
 
 export { Card } from './Card';
