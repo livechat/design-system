@@ -25,6 +25,11 @@ import colors from '@livechat/design-system-colors'
 import { blue900 } from '@livechat/design-system-colors'
 ```
 
+The library also provides JSON file with colors definitions
+```js static
+import colors from '@livechat/design-system-colors/dist/design-system-colors.json'
+```
+
 ### Scss
 
 You can import the variables file directly in your scss:
@@ -80,7 +85,7 @@ const handleItemSelect = item => setState({selectedFontColor: item});
       title="gray900"
       subtitle={Colors.gray900}
       color1={Colors.gray900}
-      color2="#f8f8f8"
+      color2={Colors.gray50}
       selected={state.selectedFontColor === Colors.gray900}
       onClick={() => handleItemSelect(Colors.gray900)}
     />
@@ -89,7 +94,7 @@ const handleItemSelect = item => setState({selectedFontColor: item});
       title="gray800"
       subtitle={Colors.gray800}
       color1={Colors.gray800}
-      color2="#f8f8f8"
+      color2={Colors.gray50}
       selected={state.selectedFontColor === Colors.gray800}
       onClick={() => handleItemSelect(Colors.gray800)}
     />
@@ -98,7 +103,7 @@ const handleItemSelect = item => setState({selectedFontColor: item});
       title="gray600"
       subtitle={Colors.gray600}
       color1={Colors.gray600}
-      color2="#f8f8f8"
+      color2={Colors.gray50}
       selected={state.selectedFontColor === Colors.gray600}
       onClick={() => handleItemSelect(Colors.gray600)}
     />

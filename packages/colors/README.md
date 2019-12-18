@@ -31,6 +31,11 @@ import colors from '@livechat/design-system-colors'
 import { blue900 } from '@livechat/design-system-colors'
 ```
 
+The library also provides JSON file with colors definitions
+```js
+import colors from '@livechat/design-system-colors/dist/design-system-colors.json'
+```
+
 ### Scss
 
 You can import the variables file directly in your scss:

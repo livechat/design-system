@@ -50,8 +50,10 @@ const colorScssVariables = createVariables('$');
 const stylesData = [...colorBgStyles, ...colorTextStyles].join('\n');
 const scssVariablesData = colorScssVariables.join('\n');
 const cssVariablesData = [':root {', ...colorCssVariables, '}'].join('\n');
+const colorsJSONData = JSON.stringify(colors);
 
 fs.writeFileSync(getWritePath('css', 'styles.css'), stylesData);
 fs.writeFileSync(getWritePath('css', 'variables.css'), cssVariablesData);
 fs.writeFileSync(getWritePath('scss', 'styles.scss'), stylesData);
 fs.writeFileSync(getWritePath('scss', 'variables.scss'), scssVariablesData);
+fs.writeFileSync(getWritePath('', 'design-system-colors.json'), colorsJSONData);

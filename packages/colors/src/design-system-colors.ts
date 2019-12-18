@@ -38,28 +38,31 @@ const yellow = {
 };
 
 const gray = {
-  gray900: '#1d1d1d',
-  gray800: '#454545',
-  gray700: '#5a5a5a',
-  gray600: '#696969',
-  gray400: '#a6a6a6',
-  gray300: '#c5c5c5',
-  gray200: '#dedede',
-  gray100: '#ebebeb',
-  gray50: '#f8f8f8'
+  gray900: '#141414',
+  gray800: '#3C3C3C',
+  gray700: '#505053',
+  gray600: '#5F5F63',
+  gray500: '#75767A',
+  gray400: '#9C9DA0',
+  gray300: '#BBBCBE',
+  gray200: '#D5D5D7',
+  gray100: '#E2E2E3',
+  gray50: '#EFEFF0',
+  gray40: '#F7F7F7',
+  gray30: '#FCFCFC'
 };
 
 const green = {
-  green900: '#051f0a',
-  green800: '#116521',
-  green700: '#17882c',
-  green600: '#1ba234',
-  green500: '#22c941',
-  green400: '#55e26f',
-  green300: '#8aeb9c',
-  green200: '#b5f3c1',
-  green100: '#cbf6d3',
-  green50: '#e1fae5'
+  green900: '#0A1905',
+  green800: '#255C14',
+  green700: '#327E1B',
+  green600: '#3C9720',
+  green500: '#4BBD28',
+  green400: '#75DB56',
+  green300: '#9FE689',
+  green200: '#C1EFB3',
+  green100: '#D2F3C8',
+  green50: '#E3F8DD'
 };
 
 const red = {
