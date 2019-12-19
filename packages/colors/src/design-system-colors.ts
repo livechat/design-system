@@ -53,16 +53,16 @@ const gray = {
 };
 
 const green = {
-  green900: '#0A1905',
-  green800: '#255C14',
-  green700: '#327E1B',
-  green600: '#3C9720',
-  green500: '#4BBD28',
-  green400: '#75DB56',
-  green300: '#9FE689',
-  green200: '#C1EFB3',
-  green100: '#D2F3C8',
-  green50: '#E3F8DD'
+  green900: '#0C2C1A',
+  green800: '#1E6B40',
+  green700: '#278B53',
+  green600: '#2EA361',
+  green500: '#38C776',
+  green400: '#74D89F',
+  green300: '#A3E5C0',
+  green200: '#CBF0DB',
+  green100: '#DFF6E9',
+  green50: '#F3FCF7'
 };
 
 const red = {
