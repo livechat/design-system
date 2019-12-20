@@ -18,7 +18,7 @@ Css tooltip visibilty controlling example:
 .your-component {
   position: relative;
 
-  &:hover .lc-tooltip {
+  &:hover .lc-css-tooltip {
     opacity: 1;
     visibility: visible;
   }
