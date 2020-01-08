@@ -14,7 +14,8 @@ class DropdownList extends React.PureComponent {
     super(props);
 
     this.state = {
-      focusedElement: getFirstFocusableItemId(props.items),
+      focusedElement:
+        this.props.autoFocusedItemId || getFirstFocusableItemId(props.items),
       itemsCount: props.items.length
     };
   }
@@ -36,6 +37,10 @@ class DropdownList extends React.PureComponent {
     if (this.props.keyboardEventsEnabled) {
       document.addEventListener('keydown', this.onKeydown);
     }
+
+    if (this.props.autoFocusedItemId) {
+      this.scrollItems();
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -52,8 +57,8 @@ class DropdownList extends React.PureComponent {
   }
 
   componentWillUnmount() {
-    if (this.timeout) {
-      clearTimeout(this.timeout);
+    if (this.hoverEnablerTimeout) {
+      clearTimeout(this.hoverEnablerTimeout);
     }
     document.removeEventListener('keydown', this.onKeydown);
   }
@@ -119,9 +124,7 @@ class DropdownList extends React.PureComponent {
     if (this.props.onScroll) {
       this.props.onScroll(event);
     }
-    this.timeout = setTimeout(() => {
-      this.isHoverDisabled = false;
-    }, 150);
+    this.enableHoverOnItems(150);
   };
 
   changeFocusedElement = id => {
@@ -177,10 +180,26 @@ class DropdownList extends React.PureComponent {
           itemOfsetTop - (itemOfsetTop % itemHeigth);
       }
     }
+
+    this.enableHoverOnItems(150);
   };
 
+  enableHoverOnItems(delayInMs) {
+    if (this.hoverEnablerTimeout) {
+      clearTimeout(this.hoverEnablerTimeout);
+    }
+
+    if (delayInMs) {
+      this.hoverEnablerTimeout = setTimeout(() => {
+        this.isHoverDisabled = false;
+      }, delayInMs);
+    } else {
+      this.isHoverDisabled = false;
+    }
+  }
+
   isHoverDisabled = false;
-  timeout = null;
+  hoverEnablerTimeout = null;
 
   hoverCallbacks = [];
 
@@ -241,6 +260,10 @@ class DropdownList extends React.PureComponent {
 }
 
 DropdownList.propTypes = {
+  /**
+   * Specify which item should be focused after dropdown open
+   */
+  autoFocusedItemId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   autoFocusOnItemsCountChange: PropTypes.bool,
   className: PropTypes.string,
   /**

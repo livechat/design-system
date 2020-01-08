@@ -54,6 +54,7 @@ export interface IDropdownItem extends IDropdownItemBase {
 
 export interface IDropdownListProps
   extends React.HTMLAttributes<HTMLUListElement> {
+  autoFocusedItemId?: string;
   autoFocusOnItemsCountChange?: boolean;
   className?: string;
   items: IDropdownItem[];
