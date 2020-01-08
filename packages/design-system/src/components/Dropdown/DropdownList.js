@@ -37,6 +37,10 @@ class DropdownList extends React.PureComponent {
     if (this.props.keyboardEventsEnabled) {
       document.addEventListener('keydown', this.onKeydown);
     }
+
+    if (this.props.autoFocusedItemId) {
+      this.scrollItems();
+    }
   }
 
   componentDidUpdate(prevProps) {
