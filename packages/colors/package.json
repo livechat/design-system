@@ -38,12 +38,13 @@
   "lint-staged": {
     "{src,test}/**/*.ts": [
       "prettier --write",
+      "npm run test",
       "git add"
     ]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run test && lint-staged"
+      "pre-commit": "lint-staged"
     }
   },
   "prettier": {
