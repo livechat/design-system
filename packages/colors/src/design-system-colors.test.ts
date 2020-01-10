@@ -4,6 +4,7 @@ import Colors, { baseColors } from './design-system-colors';
 
 type KeyMap<T> = { [key: string]: T };
 
+// That way colors our designers choose colors for palette
 const colorTintCreators = {
   30: pipe(tint(0.98)),
   40: pipe(tint(0.94)),
