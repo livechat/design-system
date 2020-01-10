@@ -1,5 +1,18 @@
 All notable changes to this project will be documented in this file.
 
+## v0.6.4
+
+_Release: 2019-01-10_
+
+##### New Features
+
+- Allow `autofocusedItemId` property to DropdownList component (#154)
+
+##### Bug Fixes
+
+- fixing classname in CssTollip docs (#160)
+- fixing keydown and hover handlers issue in DropdownList - arrow down/up handler stopped working after hovering items (#154)
+
 ## v0.6.3
 
 _Release: 2019-12-05_
