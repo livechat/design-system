@@ -1,23 +1,80 @@
 {
   "name": "@livechat/design-system-colors",
-  "version": "0.0.1",
-  "description": "Design system colors",
-  "author": "Dobrochna <d.przybylek@livechatinc.com>",
-  "homepage": "https://github.com/livechat/design-system/tree/master/packages/colors",
-  "license": "ISC",
-  "main": "lib/colors.js",
-  "directories": {
-    "lib": "lib",
-    "test": "__tests__"
-  },
-  "files": [
-    "lib"
+  "version": "1.0.0",
+  "description": "LiveChat colors palette",
+  "keywords": [
+    "colors",
+    "design system",
+    "color palette"
   ],
+  "main": "dist/design-system-colors.umd.js",
+  "module": "dist/design-system-colors.es5.js",
+  "typings": "dist/types/design-system-colors.d.ts",
+  "style": "dist/design-system-colors.css",
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://livechat.github.io/design-system",
+  "author": "kamilmateusiak <k.mateusiak@livechatinc.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/livechat/design-system/tree/master/packages/colors"
+    "url": "https://github.com/livechat/design-system"
   },
-  "bugs": {
-    "url": "https://github.com/livechat/design-system/issues"
+  "license": "MIT",
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "scripts": {
+    "start": "concurrently \"npm:start:ts\" \"npm:start:css\" --kill-others-on-fail",
+    "start:ts": "rollup -c rollup.config.ts -w",
+    "start:css": "ts-node-dev --respawn -O \"{\\\"module\\\":\\\"commonjs\\\"}\" tools/create-css ",
+    "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts'",
+    "prebuild": "rimraf dist",
+    "prepare": "npm run build",
+    "build": "tsc --module commonjs --project tsconfig.build.json && rollup -c rollup.config.ts && npm run build:css",
+    "build:css": "ts-node-dev -O \"{\\\"module\\\":\\\"commonjs\\\"}\" tools/create-css ",
+    "test": "jest"
+  },
+  "lint-staged": {
+    "{src,test}/**/*.ts": [
+      "prettier --write",
+      "npm run test",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.25",
+    "@types/node": "^10.11.0",
+    "@types/ramda": "^0.26.39",
+    "concurrently": "^5.0.1",
+    "husky": "^3.1.0",
+    "jest": "^24.9.0",
+    "lint-staged": "^8.0.0",
+    "lodash.camelcase": "^4.3.0",
+    "prettier": "^1.14.3",
+    "polished": "^3.4.2",
+    "ramda": "^0.26.1",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.67.0",
+    "rollup-plugin-commonjs": "^9.1.8",
+    "rollup-plugin-json": "^3.1.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-sourcemaps": "^0.4.2",
+    "rollup-plugin-typescript2": "^0.25.3",
+    "ts-jest": "^24.3.0",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.0.3"
   }
 }

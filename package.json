@@ -18,6 +18,11 @@
       "pre-push": "npm run test"
     }
   },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "date-fns": "^1.29.0",
+    "polished": "^3.4.2"
+  },
   "devDependencies": {
     "autoprefixer": "^9.0.1",
     "babel-cli": "^6.26.0",
@@ -61,12 +66,15 @@
     "prettier": "1.14.2",
     "prettier-eslint-cli": "^4.7.0",
     "prettier-stylelint": "^0.4.2",
+    "prop-types": "^15.6.2",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-material-icon-svg": "1.7.0",
     "react-styleguidist": "^8.0.6",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "ts-loader": "^4.3.1",
+    "typescript": "^3.7.4",
     "typescript-eslint-parser": "^19.0.2",
     "webpack": "^4.28.4"
   }

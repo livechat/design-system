@@ -1,7 +1,10 @@
 import * as DateFns from 'date-fns';
 import AlertCircleIcon from 'react-material-icon-svg/dist/AlertCircleIcon';
-import * as Components from './packages/design-system/src';
+import * as Components from '@livechat/design-system'; // eslint-disable-line
+import Colors from '@livechat/design-system-colors'; // eslint-disable-line
 import ComponentHtmlMarkup from './docs/ComponentHtmlMarkup';
+import { SingleColor } from './docs/colors/single-color';
+import { ColorPalette } from './docs/colors/color-palette';
 import PdfIcon from './docs/PdfIcon';
 
 // components
@@ -72,3 +75,8 @@ global.ComponentHtmlMarkup = ComponentHtmlMarkup;
 global.PdfIcon = PdfIcon;
 global.AlertCircleIcon = AlertCircleIcon;
 global.DateFns = DateFns;
+
+// docs colors
+global.SingleColor = SingleColor;
+global.ColorPalette = ColorPalette;
+global.Colors = Colors;

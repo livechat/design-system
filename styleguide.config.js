@@ -15,7 +15,12 @@ module.exports = {
     },
     {
       name: 'Typography',
-      content: './packages/design-system/src/foundations/Typography/Typography.md'
+      content:
+        './packages/design-system/src/foundations/Typography/Typography.md'
+    },
+    {
+      name: 'Colors',
+      content: './docs/colors/colors.md'
     },
     {
       name: 'Components',
@@ -34,7 +39,8 @@ module.exports = {
         },
         {
           name: 'Notification System',
-          content: './packages/design-system/src/components/NotificationSystem/NotificationSystem.md'
+          content:
+            './packages/design-system/src/components/NotificationSystem/NotificationSystem.md'
         },
         {
           name: 'Button',
@@ -79,7 +85,8 @@ module.exports = {
         },
         {
           name: 'Tooltip',
-          content: './packages/design-system/src/components/TooltipNew/design-guide.md',
+          content:
+            './packages/design-system/src/components/TooltipNew/design-guide.md',
           components: [
             './packages/design-system/src/components/TooltipNew/PopperTooltip.js',
             './packages/design-system/src/components/TooltipNew/CssTooltip.js',
@@ -120,13 +127,15 @@ module.exports = {
         },
         {
           name: 'Loader',
-          components: ['./packages/design-system/src/components/Loader/Loader.js']
+          components: [
+            './packages/design-system/src/components/Loader/Loader.js'
+          ]
         }
       ]
     },
     {
       name: 'Changelog',
-      content: './packages/design-system/Changelog.md'
+      content: './packages/design-system/CHANGELOG.md'
     }
   ],
   styleguideComponents: {

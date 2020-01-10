@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const postCssFlexbugsfixes = require('postcss-flexbugs-fixes');
-const { webpack: lernaAliases } = require('lerna-alias')
+const { webpack: lernaAliases } = require('lerna-alias');
 
 const { NODE_ENV } = process.env;
 
