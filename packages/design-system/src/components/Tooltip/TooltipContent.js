@@ -6,6 +6,8 @@ import { ARROW_POSITION, ALIGMENT } from '../../constants/tooltip';
 import { getArrowOffsetStyle } from './helpers';
 import styles from './style.scss';
 
+import { noticeAboutDeprecation } from '../../helpers/notice-about-deprecation'
+
 const cx = classNames.bind(styles);
 
 const TooltipContent = ({
@@ -23,7 +25,8 @@ const TooltipContent = ({
     }),
     className
   );
-  console.warn('[Design System] deprecated component - TooltipContent, please use CSSTooltip or PopperTooltip')
+  
+  noticeAboutDeprecation('[Design System] deprecated component - Tooltip, please use CSSTooltip or PopperTooltip instead');
 
   return (
     <div

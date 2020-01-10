@@ -1,6 +1,8 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+
+import { noticeAboutDeprecation } from '../../helpers/notice-about-deprecation'
 import styles from './style.scss';
 
 const noop = () => {};
@@ -15,7 +17,7 @@ const TooltipBox = ({
   onContentMouseLeave,
   children
 }) => {
-  console.warn('[Design System] deprecated component - TooltipBox, please use CSSTooltip or PopperTooltip')
+  noticeAboutDeprecation('[Design System] deprecated component - Tooltip, please use CSSTooltip or PopperTooltip instead');
 
   return  (
   <div
