@@ -17,7 +17,7 @@ const TooltipBox = ({
   onContentMouseLeave,
   children
 }) => {
-  noticeAboutDeprecation('[Design System] deprecated component - Tooltip, please use CSSTooltip or PopperTooltip instead');
+  noticeAboutDeprecation('deprecated component - Tooltip, please use CSSTooltip or PopperTooltip instead');
 
   return  (
   <div

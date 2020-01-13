@@ -10,7 +10,7 @@ import { noticeAboutDeprecation } from '../../helpers/notice-about-deprecation'
 
 class Tooltip extends React.Component {
   constructor(props) {
-    noticeAboutDeprecation('[Design System] deprecated component - Tooltip, please use CSSTooltip or PopperTooltip instead');
+    noticeAboutDeprecation('deprecated component - Tooltip, please use CSSTooltip or PopperTooltip instead');
     super(props);
 
     this.state = {
