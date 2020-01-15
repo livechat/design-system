@@ -6,9 +6,11 @@ import styles from './style.scss';
 import TooltipBox from './TooltipBox';
 import { getTooltipPosition } from './helpers';
 import { DIRECTION, ALIGMENT } from '../../constants/tooltip';
+import { noticeAboutDeprecation } from '../../helpers/notice-about-deprecation'
 
 class Tooltip extends React.Component {
   constructor(props) {
+    noticeAboutDeprecation('deprecated component - Tooltip, please use CSSTooltip or PopperTooltip instead');
     super(props);
 
     this.state = {
