@@ -1,5 +1,13 @@
 All notable changes to this project will be documented in this file.
 
+## v0.6.5
+
+_Release: 2019-01-15_
+
+##### Refactors
+
+- adding Notification error about old tooltip components deprecation
+
 ## v0.6.4
 
 _Release: 2019-01-10_
