@@ -1,4 +1,14 @@
 import { themes } from "../src/themes";
+import { tokens, formatTokenName } from "../src/tokens";
+const prettier = require("prettier");
+
+const prettierOptions = {
+  parser: 'scss',
+  printWidth: 80,
+  singleQuote: true,
+  trailingComma: 'es5',
+  proseWrap: 'always',
+};
 
 // $lcds-theme--light: (
 //   interactive-01: #0f62fe,
@@ -33,17 +43,30 @@ import { themes } from "../src/themes";
 //     )
 // );
 
-export function themesBuilder(): string[] {
-  return Object.keys(themes).map(themeName => {
+export function themesBuilder(): string {
+  const themesObjects = Object.keys(themes).map(themeName => {
     const name = `$lcds-theme--${themeName}`;
-    const tokensWithValues = Object.keys(themes[themeName]).map(token => `${token}: ${themes[themeName][token]};`)
-    const tokens = tokensWithValues.reduce((acc, t) => {
-      acc += `${t}`;
-      return acc;
-    }, '');
 
-    return `${name}: (
-      ${tokens}
-    );`;
-  });
+    return tokens.colors.reduce((acc, tokenName) => {
+      const token = formatTokenName(tokenName);
+      acc += `${token}: ${themes[themeName][tokenName]},`;
+      return acc;
+    }, `${name}: (`) + ');';
+  })
+
+  const defaultThemeName = 'lcds-theme--legacy';
+  const defaultTheme = tokens.colors.reduce((acc, tokenName) => {
+    const token = formatTokenName(tokenName);
+    acc += `
+    ${token}:
+      if(
+        global-variable-exists('${token}'),
+        $${token},
+        map-get($${defaultThemeName}, '${token}')
+      ),
+    `;
+    return acc;
+  }, '$lcds-theme: (') + ');'
+
+  return prettier.format([...themesObjects, defaultTheme].join(''), prettierOptions)
 }

@@ -5,4 +5,5 @@ import { tokens, formatTokenName } from './tokens';
 import { themes } from './themes';
 
 export { tokens, formatTokenName };
+
 export default themes;
