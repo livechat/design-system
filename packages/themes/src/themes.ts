@@ -1,7 +1,8 @@
-import * as light from './light';
-import * as legacy from './legacy';
+import light from './light';
+import legacy from './legacy';
+import { Themes } from './types';
 
-export const themes = {
+export const themes: Themes = {
   light,
   legacy
 };

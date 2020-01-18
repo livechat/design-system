@@ -10,6 +10,7 @@
   "main": "dist/design-system-colors.umd.js",
   "module": "dist/design-system-colors.es5.js",
   "typings": "dist/types/design-system-colors.d.ts",
+  "types": "dist/types/design-system-colors.d.ts",
   "style": "dist/design-system-colors.css",
   "files": [
     "dist"

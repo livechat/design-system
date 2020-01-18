@@ -5,9 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import Colors from '../../colors/src/design-system-colors';
+import Colors from '@livechat/design-system-colors';
+import { Theme } from './types';
 
-export const interactive01 = Colors.blue500;
-export const interactive02 = Colors.blue600;
+const lightTheme: Theme = {
+  interactive01: Colors.blue700,
+  interactive02: Colors.blue600,
+  uiBackground: '#fff'
+};
 
-export const uiBackground = '#fff';
+export default lightTheme;

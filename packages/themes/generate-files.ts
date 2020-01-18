@@ -1,10 +1,11 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { themesBuilder } from './themes-builder';
-import { tokensBuilder } from './tokens-builder';
-import { mixinsBuilder } from './mixins-builder';
-import { jsonBuilder } from './json-builder';
-import { indexScssBuilder } from './index-scss-builder';
+import { themesBuilder } from './tools/themes-builder';
+import { tokensBuilder } from './tools/tokens-builder';
+import { mixinsBuilder } from './tools/mixins-builder';
+import { jsonBuilder } from './tools/json-builder';
+import { indexScssBuilder } from './tools/index-scss-builder';
+
 
 
 function createDirectory(dirPath: string): void {
@@ -14,7 +15,7 @@ function createDirectory(dirPath: string): void {
 }
 
 function getWritePath(subDirectory: string, fileName: string): string {
-  const dirPath = path.join(__dirname, '..', 'dist');
+  const dirPath = path.join(__dirname, 'dist');
 
   createDirectory(dirPath);
 

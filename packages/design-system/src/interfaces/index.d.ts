@@ -16,3 +16,4 @@ export * from "./tabs";
 export * from "./toasts";
 export * from "./tooltip";
 export * from "./tooltipNew";
+export * from "./theme";

@@ -9,7 +9,7 @@
   ],
   "main": "dist/design-system-themes.umd.js",
   "module": "dist/design-system-themes.es5.js",
-  "typings": "dist/types/design-system-themes.d.ts",
+  "typings": "dist/types/types.d.ts",
   "style": "dist/design-system-themes.css",
   "files": [
     "dist"
@@ -27,18 +27,17 @@
   "scripts": {
     "start": "concurrently \"npm:start:ts\" \"npm:start:generate\" --kill-others-on-fail",
     "start:ts": "rollup -c rollup.config.ts -w",
-    "start:generate": "ts-node-dev --respawn -O \"{\\\"module\\\":\\\"commonjs\\\"}\" tools/generate-files ",
+    "start:generate": "ts-node-dev --respawn -O \"{\\\"module\\\":\\\"commonjs\\\"}\" --project tsconfig.generate.json generate-files ",
     "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts'",
     "prebuild": "rimraf dist",
     "prepare": "npm run build",
     "build": "tsc --module commonjs --project tsconfig.build.json && rollup -c rollup.config.ts && npm run build:generate",
-    "build:generate": "ts-node-dev -O \"{\\\"module\\\":\\\"commonjs\\\"}\" tools/generate-files ",
+    "build:generate": "ts-node-dev --project tsconfig.generate.json -O \"{\\\"module\\\":\\\"commonjs\\\"}\" generate-files ",
     "test": "jest"
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
       "prettier --write",
-      "npm run test",
       "git add"
     ]
   },
@@ -76,5 +75,8 @@
     "tslint-config-prettier": "^1.15.0",
     "tslint-config-standard": "^8.0.1",
     "typescript": "^3.0.3"
+  },
+  "dependencies": {
+    "@livechat/design-system-colors": "^1.0.0"
   }
 }
