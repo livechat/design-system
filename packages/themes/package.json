@@ -1,6 +1,6 @@
 {
   "name": "@livechat/design-system-themes",
-  "version": "1.0.0",
+  "version": "0.0.1-beta.0",
   "description": "Theming for apps using LiveChat design system components",
   "keywords": [
     "theme",
