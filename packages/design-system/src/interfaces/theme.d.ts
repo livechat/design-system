@@ -1,12 +1,19 @@
 /// <reference types="react" />
 import { Theme, ThemeName } from "@livechat/design-system-themes";
+import { Omit } from "./switch";
 
 export interface IThemeContext {
   theme: Theme;
+  themeName: ThemeName;
 }
 
+export type IOptionalThemeContext = Partial<IThemeContext>;
+
+export type Theme = Theme;
+export type ThemeName = ThemeName;
+
 export interface IThemeConsumerProps {
-  children(theme: Theme): React.ReactNode;
+  children(context: IThemeContext): React.ReactNode;
 }
 
 export interface IThemeProviderProps {
@@ -16,4 +23,4 @@ export interface IThemeProviderProps {
 export var ThemeContext: React.Context<IThemeContext>;
 export var ThemeProvider: React.ComponentType<IThemeProviderProps>;
 export var ThemeConsumer: React.ComponentType<IThemeConsumerProps>;
-export var withTheme: <P extends IThemeContext>(Component: React.ComponentType<P>) => React.ComponentType<P>;
+export function withTheme<P extends IThemeContext>(Component: React.ComponentType<P>): React.ComponentType<Pick<P, Exclude<keyof P, keyof IThemeContext>> & Partial<IThemeContext>>;

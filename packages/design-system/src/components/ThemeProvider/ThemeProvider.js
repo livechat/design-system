@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import themes from '../../../../themes/src';
+import themes from '@livechat/design-system-themes';
 import ThemeContext from './ThemeContext';
 import { DEFAULT_THEME_NAME } from './constants';
 
@@ -18,10 +18,11 @@ function ThemeProvider(props) {
   return (
     <ThemeContext.Provider
       value={{
-        theme: themes[themeName]
+        theme: themes[themeName],
+        themeName
       }}
     >
-      {this.props.children}
+      {props.children}
     </ThemeContext.Provider>
   );
 }

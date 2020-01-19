@@ -7,8 +7,9 @@ const withTheme = Component =>
       <ThemeContext.Consumer>
         {({ theme }) => (
           <Component
-            {...props}
             theme={theme}
+            themeName={themeName}
+            {...props}
           />
         )}
       </ThemeContext.Consumer>
