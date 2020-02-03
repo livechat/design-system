@@ -6,7 +6,7 @@ _Release: 2020-02-04_
 
 ##### Bug Fixes
 
-- numeric input improvements, added type number as default value, fix input type
+- numeric input improvements, fix min max value
 
 ## v0.6.5
 

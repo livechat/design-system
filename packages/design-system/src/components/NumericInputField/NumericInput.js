@@ -122,14 +122,6 @@ class NumericInput extends React.PureComponent {
     this.removeKeyboardEventListeners();
   };
 
-  parseValue = () => {
-    const { value } = this.props;
-    if(isNaN(value)) {
-      return 0; 
-    }
-    return parseInt(value, 10);
-  }
-
   render() {
     const {
       error,
@@ -154,18 +146,19 @@ class NumericInput extends React.PureComponent {
       className
     );
 
-    const inputValue = this.parseValue();
 
     return (
       <div className={mergedClassNames} style={this.getComponentStyles()}>
         <input
           type="number"
           {...restProps}
-          value={inputValue}
+          value={value}
           disabled={disabled}
           onChange={this.handleChange}
           onFocus={this.handleFocus}
           onBlur={this.handleBlur}
+          min={min}
+          max={max}
         />
         {!noControls && (
           <React.Fragment>
@@ -180,8 +173,6 @@ class NumericInput extends React.PureComponent {
               aria-label="Increment value"
               className={styles[`${baseClass}__increment`]}
               type="button"
-              min={min}
-              max={max}
             />
             <button
               tabIndex="-1"
@@ -206,7 +197,7 @@ NumericInput.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
   error: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.string,
   max: PropTypes.number,
   min: PropTypes.number,
   disabled: PropTypes.bool,
