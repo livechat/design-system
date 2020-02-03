@@ -146,12 +146,14 @@ class NumericInput extends React.PureComponent {
       className
     );
 
+    const inputValue = typeof value === 'string' ? parseInt(value, 10) : value;
+
     return (
       <div className={mergedClassNames} style={this.getComponentStyles()}>
         <input
-          type="text"
+          type="number"
           {...restProps}
-          value={value}
+          value={inputValue}
           disabled={disabled}
           onChange={this.handleChange}
           onFocus={this.handleFocus}
@@ -184,7 +186,7 @@ class NumericInput extends React.PureComponent {
               type="button"
             />
           </React.Fragment>
-        )}
+      )
       </div>
     );
   }
@@ -194,7 +196,7 @@ NumericInput.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
   error: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   max: PropTypes.number,
   min: PropTypes.number,
   disabled: PropTypes.bool,

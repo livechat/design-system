@@ -1,5 +1,13 @@
 All notable changes to this project will be documented in this file.
 
+## v0.6.6
+
+_Release: 2020-02-04_
+
+##### Bug Fixes
+
+- numeric input improvements, added type number as default value, fix input type
+
 ## v0.6.5
 
 _Release: 2019-01-15_
