@@ -32,17 +32,6 @@ handleInputChange = (value) => {
 </ComponentHtmlMarkup>
 ```
 
-```js noeditor
-<ComponentHtmlMarkup>
-  <NumericInput
-    width="60px"
-    value={2}
-    error="Field required"
-    onChange={() => {}}
-  />
-</ComponentHtmlMarkup>
-```
-
 <h3>Numeric Input Field</h3>
 
 You can pass min and max prop to component. In this example value should be within range [-10, 1000]
