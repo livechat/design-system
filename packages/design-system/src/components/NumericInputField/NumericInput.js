@@ -122,6 +122,14 @@ class NumericInput extends React.PureComponent {
     this.removeKeyboardEventListeners();
   };
 
+  parseValue = () => {
+    const { value } = this.props;
+    if(isNaN(value)) {
+      return 0; 
+    }
+    return parseInt(value, 10);
+  }
+
   render() {
     const {
       error,
@@ -146,7 +154,7 @@ class NumericInput extends React.PureComponent {
       className
     );
 
-    const inputValue = typeof value === 'string' ? parseInt(value, 10) : value;
+    const inputValue = this.parseValue();
 
     return (
       <div className={mergedClassNames} style={this.getComponentStyles()}>
@@ -186,7 +194,7 @@ class NumericInput extends React.PureComponent {
               type="button"
             />
           </React.Fragment>
-      )
+          )}
       </div>
     );
   }
