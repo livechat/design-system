@@ -173,20 +173,22 @@ class NumericInput extends React.PureComponent {
               tabIndex="-1"
               disabled={
                 disabled ||
-                (this.props.max &&
-                  parseInt(this.props.value, 10) === this.props.max)
+                (max &&
+                  parseInt(value, 10) === max)
               }
               onClick={this.handleIncrementClick}
               aria-label="Increment value"
               className={styles[`${baseClass}__increment`]}
               type="button"
+              min={min}
+              max={max}
             />
             <button
               tabIndex="-1"
               disabled={
                 disabled ||
-                (this.props.min &&
-                  parseInt(this.props.value, 10) === this.props.min)
+                (min &&
+                  parseInt(value, 10) === min)
               }
               aria-label="Decrement value"
               className={styles[`${baseClass}__decrement`]}
