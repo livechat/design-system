@@ -109,7 +109,7 @@ class NumericInput extends React.PureComponent {
     return val;
   };
 
-  isMarginValue = (value, margin) => (
+  hasReachedTheLimit = (value, margin) => (
     margin !== undefined && parseInt(value, 10) === margin
   ) 
 
@@ -157,7 +157,7 @@ class NumericInput extends React.PureComponent {
     return (
       <div className={mergedClassNames} style={this.getComponentStyles()}>
         <input
-          type="number"
+          type="text"
           {...restProps}
           value={value}
           disabled={disabled}
@@ -172,7 +172,7 @@ class NumericInput extends React.PureComponent {
             <button
               tabIndex="-1"
               disabled={
-                disabled || this.isMarginValue(value, max)
+                disabled || this.hasReachedTheLimit(value, max)
               }
               onClick={this.handleIncrementClick}
               aria-label="Increment value"
@@ -182,7 +182,7 @@ class NumericInput extends React.PureComponent {
             <button
               tabIndex="-1"
               disabled={
-                disabled || this.isMarginValue(value, min)
+                disabled || this.hasReachedTheLimit(value, min)
               }
               aria-label="Decrement value"
               className={styles[`${baseClass}__decrement`]}
