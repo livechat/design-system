@@ -9,12 +9,15 @@ const cx = classNames.bind(styles);
 const baseClass = 'numeric-input';
 
 class NumericInput extends React.PureComponent {
+  hasMin = () => this.props.min !== undefined;
+  hasMax = () => this.props.max !== undefined;
+  
   componentDidMount() {
-    if (this.props.max && parseInt(this.props.value, 10) > this.props.max) {
+    if (this.hasMax() && parseInt(this.props.value, 10) > this.props.max) {
       this.callOnChange(this.props.max);
     }
 
-    if (this.props.min && parseInt(this.props.value, 10) < this.props.min) {
+    if (this.hasMin() && parseInt(this.props.value, 10) < this.props.min) {
       this.callOnChange(this.props.min);
     }
   }
@@ -56,9 +59,9 @@ class NumericInput extends React.PureComponent {
   changeValue = val => {
     if (this.props.value !== '' && this.props.value !== '-') {
       this.callOnChange(this.calcValue(parseInt(this.props.value, 10) + val));
-    } else if (this.props.min && val < this.props.min) {
+    } else if (this.hasMin() && val < this.props.min) {
       this.callOnChange(this.props.min);
-    } else if (this.props.max && val > this.props.max) {
+    } else if (this.hasMax() && val > this.props.max) {
       this.callOnChange(this.props.max);
     } else {
       this.callOnChange(val);
@@ -96,15 +99,19 @@ class NumericInput extends React.PureComponent {
   calcValue = val => {
     const { max, min } = this.props;
 
-    if (max && val > max) {
+    if (this.hasMax() && val > max) {
       return max;
     }
 
-    if (min && val < min) {
+    if (this.hasMin() && val < min) {
       return min;
     }
     return val;
   };
+
+  isMarginValue = (value, margin) => (
+    margin !== undefined && parseInt(value, 10) === margin
+  ) 
 
   handleIncrementClick = () => {
     this.changeValue(1);
@@ -165,9 +172,7 @@ class NumericInput extends React.PureComponent {
             <button
               tabIndex="-1"
               disabled={
-                disabled ||
-                (max &&
-                  parseInt(value, 10) === max)
+                disabled || this.isMarginValue(value, max)
               }
               onClick={this.handleIncrementClick}
               aria-label="Increment value"
@@ -177,9 +182,7 @@ class NumericInput extends React.PureComponent {
             <button
               tabIndex="-1"
               disabled={
-                disabled ||
-                (min &&
-                  parseInt(value, 10) === min)
+                disabled || this.isMarginValue(value, min)
               }
               aria-label="Decrement value"
               className={styles[`${baseClass}__decrement`]}
