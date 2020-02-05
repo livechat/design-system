@@ -31,6 +31,7 @@ $base-class: 'numeric-input';
     width: 100%;
     box-sizing: border-box;
     -moz-appearance: textfield;
+    background-clip: padding-box;
 
     &:hover {
       border-color: $field-hover-border-color;
