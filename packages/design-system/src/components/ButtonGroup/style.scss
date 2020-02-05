@@ -8,8 +8,7 @@
   .btn {
     color: $ui-tooltip-color;
     font-weight: 400;
-    box-shadow: none;
-    
+
     &.active {
       border-color: $border-primary-color;
       background-color: $ui-background-color-hover;
@@ -23,6 +22,10 @@
 
     &:hover {
       background-color: $ui-background-color;
+    }
+
+    &:focus, &:active {
+      box-shadow: none;
     }
 
     &:not(:first-child) {
