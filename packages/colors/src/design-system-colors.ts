@@ -2,7 +2,7 @@ export const baseColors = {
   blue: '#0066FF',
   orange: '#FF5100',
   yellow: '#ffd000',
-  gray: '#71758A',
+  gray: '#808189',
   green: '#38C776',
   red: '#D93312',
   ruby: '#E30D34'
@@ -17,7 +17,7 @@ const blue = {
   blue400: '#3f8cff',
   blue300: '#72aaff',
   blue200: '#99c1ff',
-  blue100: '#cce0ff',
+  blue100: '#d6e6ff',
   blue50: '#e5efff'
 };
 
@@ -30,7 +30,7 @@ const orange = {
   orange400: '#ff7c3f',
   orange300: '#ff9f72',
   orange200: '#ffb999',
-  orange100: '#ffdccc',
+  orange100: '#ffe3d6',
   orange50: '#ffede5'
 };
 
@@ -43,22 +43,22 @@ const yellow = {
   yellow400: '#ffdb3f',
   yellow300: '#ffe572',
   yellow200: '#ffec99',
-  yellow100: '#fff5cc',
+  yellow100: '#fff7d6',
   yellow50: '#fffae5'
 };
 
 const gray = {
-  gray900: '#0d0e10',
-  gray800: '#2d2e37',
-  gray700: '#3e404b',
-  gray600: '#545767',
+  gray900: '#0f0f10',
+  gray800: '#333336',
+  gray700: '#46464b',
+  gray600: '#606066',
   gray500: baseColors.gray,
-  gray400: '#9497a7',
-  gray300: '#b0b3be',
-  gray200: '#c6c7d0',
-  gray100: '#e2e3e7',
-  gray50: '#f0f1f3',
-  gray40: '#f6f6f7',
+  gray400: '#9fa0a6',
+  gray300: '#b9b9be',
+  gray200: '#cccccf',
+  gray100: '#eaeaec',
+  gray50: '#f2f2f3',
+  gray40: '#f7f7f7',
   gray30: '#fcfcfc'
 };
 
@@ -71,7 +71,7 @@ const green = {
   green400: '#69d598',
   green300: '#91e0b3',
   green200: '#afe8c8',
-  green100: '#d7f3e3',
+  green100: '#dff6e9',
   green50: '#ebf9f1'
 };
 
@@ -84,7 +84,7 @@ const red = {
   red400: '#e2664d',
   red300: '#ea8e7c',
   red200: '#efada0',
-  red100: '#f7d6cf',
+  red100: '#f8ded9',
   red50: '#fbeae7'
 };
 
@@ -97,7 +97,7 @@ const ruby = {
   ruby400: '#ea4966',
   ruby300: '#ef798f',
   ruby200: '#f39ead',
-  ruby100: '#f9ced6',
+  ruby100: '#fad8de',
   ruby50: '#fce6ea'
 };
 
