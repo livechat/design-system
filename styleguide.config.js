@@ -44,7 +44,7 @@ module.exports = {
         },
         {
           name: 'Badge',
-          components: './src/components/Badge/Badge.js'
+          components: './packages/design-system/src/components/Badge/Badge.js'
         },
         {
           name: 'Button',

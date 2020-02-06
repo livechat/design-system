@@ -1,5 +1,6 @@
 export * from "./card";
 export * from "./divider";
+export * from "./badge";
 export * from "./buttons";
 export * from "./buttonGroup";
 export * from "./datePicker";
