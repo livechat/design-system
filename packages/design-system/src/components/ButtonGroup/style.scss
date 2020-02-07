@@ -12,7 +12,6 @@
     &.active {
       border-color: $border-primary-color;
       background-color: $ui-background-color-hover;
-      z-index: 1;
       text-shadow: 0 0 0.5px black;
 
       &:hover {
@@ -25,7 +24,7 @@
     }
 
     &:focus, &:active {
-      box-shadow: none;
+      z-index: 1;
     }
 
     &:not(:first-child) {
