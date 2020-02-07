@@ -10,7 +10,8 @@
   box-sizing: border-box;
   transition: border 0.25s ease-in-out;
   will-change: border-color;
-
+  background-clip: padding-box;
+ 
   &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: $font-primary-color;
     opacity: 0.4; /* Firefox */
