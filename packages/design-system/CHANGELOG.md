@@ -2,11 +2,16 @@ All notable changes to this project will be documented in this file.
 
 ## v0.6.6
 
-_Release: 2020-02-04_
+_Release: 2020-02-07_
+
+##### New Features
+
+-Updating gray base color and [color]100 switch values in @livechat/design-system-colors (#165)
 
 ##### Bug Fixes
 
-- numeric input improvements, fix min max value
+- fixing inner-shadow appearing on Safari mobile (#167)
+- numeric input improvements, fix min max value (#164)
 
 ## v0.6.5
 
