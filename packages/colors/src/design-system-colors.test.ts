@@ -9,7 +9,7 @@ const colorTintCreators = {
   30: pipe(tint(0.98)),
   40: pipe(tint(0.94)),
   50: pipe(tint(0.9)),
-  100: pipe(tint(0.8)),
+  100: pipe(tint(0.84)),
   200: pipe(tint(0.6)),
   300: pipe(tint(0.45)),
   400: pipe(tint(0.25)),

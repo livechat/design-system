@@ -7,6 +7,8 @@ exports[`NumericInput should render NumericInput with all available props 1`] = 
 >
   <input
     disabled={true}
+    max={100}
+    min={1}
     onBlur={[Function]}
     onChange={[Function]}
     onFocus={[Function]}
@@ -47,6 +49,7 @@ exports[`NumericInput should render NumericInput with required props 1`] = `
   <button
     aria-label="Increment value"
     className="numeric-input__increment"
+    disabled={false}
     onClick={[Function]}
     tabIndex="-1"
     type="button"
@@ -54,6 +57,7 @@ exports[`NumericInput should render NumericInput with required props 1`] = `
   <button
     aria-label="Decrement value"
     className="numeric-input__decrement"
+    disabled={false}
     onClick={[Function]}
     tabIndex="-1"
     type="button"
