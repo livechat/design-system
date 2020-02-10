@@ -1,5 +1,13 @@
 All notable changes to this project will be documented in this file.
 
+## v0.6.7
+
+_Release: 2020-02-10_
+
+##### Bug Fixes
+
+- ButtonGroup - improving cropped box-shadow for :focus and :active states (#166)
+
 ## v0.6.6
 
 _Release: 2020-02-07_
