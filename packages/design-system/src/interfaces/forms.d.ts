@@ -40,6 +40,7 @@ export interface ISelectProps {
   onItemSelect(itemKey: string | number): void;
   onDropdownToggle?(isOpen: boolean): any;
   onSearchPhraseChange?: (searchPhrase: string) => void;
+  selectHeader?: string;
 }
 
 export interface ISelectFieldProps extends ISelectProps {
