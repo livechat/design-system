@@ -8,12 +8,10 @@
   .btn {
     color: $ui-tooltip-color;
     font-weight: 400;
-    box-shadow: none;
-    
+
     &.active {
       border-color: $border-primary-color;
       background-color: $ui-background-color-hover;
-      z-index: 1;
       text-shadow: 0 0 0.5px black;
 
       &:hover {
@@ -23,6 +21,10 @@
 
     &:hover {
       background-color: $ui-background-color;
+    }
+
+    &:focus, &:active {
+      z-index: 1;
     }
 
     &:not(:first-child) {
