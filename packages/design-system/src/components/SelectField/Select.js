@@ -286,6 +286,7 @@ class Select extends React.PureComponent {
     );
 
     const isOpen = this.getIsOpen();
+    const shouldRenderClearButton = !!selectedItemModel && !isOpen && !required;
 
     return (
       <div ref={this.containerRef} className={mergedClassNames} id={id}>
@@ -311,12 +312,17 @@ class Select extends React.PureComponent {
             onChange={this.onSearchChange}
             disabled={disabled}
           />
-          <ClearButton
-            isVisible={!!selectedItemModel && !isOpen && !required}
-            ref={this.clearButtonRef}
-            clearSelectedOption={this.clearSelectedOption}
-          />
-          <MenuDownIcon width="24px" height="24px" fill="#424d57" />
+          { shouldRenderClearButton && 
+            <ClearButton
+              isVisible={!!selectedItemModel && !isOpen && !required}
+              ref={this.clearButtonRef}
+              clearSelectedOption={this.clearSelectedOption}
+            />
+          }
+          <div className={styles[`${baseClass}-head__icon`]}>
+            <MenuDownIcon width="24px" height="24px" fill="#424d57" />
+          </div>
+          
         </SelectHead>
         <div
           className={cx({

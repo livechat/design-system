@@ -1,21 +1,16 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
-import classNames from 'classnames/bind';
 import styles from './style.scss';
 
 const baseClass = 'select-head';
-const cx = classNames.bind(styles);
 
 const ClearButton = React.forwardRef((props, ref) => {
-  const { isVisible, clearSelectedOption } = props;
+  const { clearSelectedOption } = props;
   return (
     <div
       ref={ref}
-      className={cx({
-        [`${baseClass}__clear`]: true,
-        [`${baseClass}__clear--visible`]: isVisible
-      })}
+      className={styles[`${baseClass}__clear`]}
     >
       <CloseIcon
         width="20px"
@@ -28,7 +23,6 @@ const ClearButton = React.forwardRef((props, ref) => {
 });
 
 ClearButton.propTypes = {
-  isVisible: PropTypes.bool,
   clearSelectedOption: PropTypes.func
 };
 

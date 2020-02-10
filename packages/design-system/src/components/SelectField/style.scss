@@ -42,16 +42,7 @@ $base-class: 'select';
   }
 
   &-head__clear {
-    opacity: 0;
-    visibility: hidden;
     display: flex;
-    transition: all 0.15s ease-in-out;
-
-    &--visible {
-      opacity: 1;
-      visibility: visible;
-      transition: all 0.15s ease-in-out;
-    }
   }
 
   &-head__search {
@@ -74,6 +65,13 @@ $base-class: 'select';
       visibility: visible;
       transition: all 0.15s ease-in-out;
     }
+  }
+
+  &-head__icon {
+    position: absolute;
+    right: 10px;
+    height: 24px;
+    width: 24px;
   }
 
   &-head__input {
