@@ -5,7 +5,8 @@ import styles from './style.scss';
 
 function Badge({ children, className: extraClassName, secondary, ...props }) {
   const className = cx(styles.badge, {
-    [styles['badge--secondary']]: secondary
+    [styles['badge--secondary']]: secondary,
+    ...(extraClassName ? {[extraClassName]: true} : {})
   });
 
   return (

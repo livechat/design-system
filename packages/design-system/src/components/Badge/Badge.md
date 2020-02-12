@@ -42,15 +42,15 @@ Badges are small enough to fit next to an UI object. They have a bold, and fille
 Errors and important content, like unread messages, new tickets.
 
 ```js
-<Badge type="primary">1</Badge>
-<Badge type="primary">11</Badge>
-<Badge type="primary">99+</Badge>
+<Badge>1</Badge>
+<Badge>11</Badge>
+<Badge>99+</Badge>
 ```
 
 Non-essential content like new features or updates.
 
 ```js
-<Badge type="light">1</Badge>
-<Badge type="light">11</Badge>
-<Badge type="light">99+</Badge>
+<Badge secondary>1</Badge>
+<Badge secondary>11</Badge>
+<Badge secondary>99+</Badge>
 ```
