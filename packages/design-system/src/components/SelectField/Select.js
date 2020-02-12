@@ -314,7 +314,6 @@ class Select extends React.PureComponent {
           />
           { shouldRenderClearButton && 
             <ClearButton
-              isVisible={!!selectedItemModel && !isOpen && !required}
               ref={this.clearButtonRef}
               clearSelectedOption={this.clearSelectedOption}
             />
