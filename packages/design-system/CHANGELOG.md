@@ -1,5 +1,13 @@
 All notable changes to this project will be documented in this file.
 
+## v0.6.8
+
+_Release: 2020-02-13_
+
+##### New Features
+
+- Badge - new badge component (#85)
+
 ## v0.6.7
 
 _Release: 2020-02-10_
