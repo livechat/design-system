@@ -317,10 +317,7 @@ class Select extends React.PureComponent {
             ref={this.clearButtonRef}
             clearSelectedOption={this.clearSelectedOption}
           />
-          <div className={styles[`${baseClass}-head__icon`]}>
-            <MenuDownIcon width="24px" height="24px" fill="#424d57" />
-          </div>
-          
+          <MenuDownIcon width="24px" height="24px" fill="#424d57" />          
         </SelectHead>
         <div
           className={cx({
