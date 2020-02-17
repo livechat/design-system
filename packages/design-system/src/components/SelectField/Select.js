@@ -312,12 +312,11 @@ class Select extends React.PureComponent {
             onChange={this.onSearchChange}
             disabled={disabled}
           />
-          { shouldRenderClearButton && 
-            <ClearButton
-              ref={this.clearButtonRef}
-              clearSelectedOption={this.clearSelectedOption}
-            />
-          }
+           <ClearButton
+            isVisible={shouldRenderClearButton}
+            ref={this.clearButtonRef}
+            clearSelectedOption={this.clearSelectedOption}
+          />
           <div className={styles[`${baseClass}-head__icon`]}>
             <MenuDownIcon width="24px" height="24px" fill="#424d57" />
           </div>
