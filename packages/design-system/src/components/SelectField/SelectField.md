@@ -49,6 +49,7 @@ const getSelectedItemBody = props => {
     getSelectedItemBody={getSelectedItemBody}
     selected={state.selectedItem}
     searchPlaceholder='Search...'
+    selectHeader="Select from items below"
   />
 </div>
 ```
@@ -90,6 +91,7 @@ const getSelectedItemBody = props => {
     getSelectedItemBody={getSelectedItemBody}
     selected="1"
     searchPlaceholder='Search...'
+    selectHeader="Select from items below"
   />
 </ComponentHtmlMarkup>
 ```

@@ -1,5 +1,18 @@
 All notable changes to this project will be documented in this file.
 
+## v0.7.0
+
+_Release: 2020-02-19_
+
+##### Bug Fixes
+
+- Inputs - adjust height
+- Numeric Input - fix handling min & max values
+
+##### New Features
+
+- SelectField - possibility to add header in the items list
+
 ## v0.6.8
 
 _Release: 2020-02-13_
