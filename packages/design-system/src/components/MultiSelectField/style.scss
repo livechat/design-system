@@ -6,6 +6,8 @@ $base-class: 'multiselect';
   position: relative;
   width: inherit;
   color: $font-primary-color;
+  font-size: 15px;
+  line-height: 1.2;
 
   &-head {
     position: relative;
@@ -15,7 +17,6 @@ $base-class: 'multiselect';
     cursor: pointer;
     display: flex;
     align-items: center;
-    padding: 4px 3px;
     outline: 0;
     transition: border 0.15s ease-in-out;
 
@@ -56,15 +57,13 @@ $base-class: 'multiselect';
 
   &-head__search {
     display: block;
-    width: 5px;
     margin: 2px 3px;
-    font-size: 16px;
-    line-height: 28px;
     color: $font-primary-color;
     border: none;
     background-color: transparent;
     box-sizing: border-box;
     outline: none;
+    line-height: 1.2;
 
     ::placeholder,
     ::-webkit-input-placeholder,
@@ -95,7 +94,7 @@ $base-class: 'multiselect';
     position: absolute;
     top: 100%;
     width: 100%;
-    margin-top: 2px;
+    margin-top: 4px;
     background-color: #fff;
     box-sizing: border-box;
     border-radius: 4px;
@@ -108,7 +107,7 @@ $base-class: 'multiselect';
     transition: all 0.15s ease-in-out;
     overflow: hidden;
     z-index: 100000;
-    padding: 14px 0;
+    padding: 4px 0 8px 0;
 
     &--visible {
       opacity: 1;
@@ -131,7 +130,7 @@ $base-class: 'multiselect';
       list-style: none;
       cursor: pointer;
       display: flex;
-      padding: 8px 10px;
+      padding: 9px 16px;
       align-items: center;
 
       &-content {
@@ -177,16 +176,26 @@ $base-class: 'multiselect';
     flex-wrap: wrap;
     align-items: center;
     overflow-y: auto;
-    margin: 0;
+    padding: 2px 2px;
+    flex: 1;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &-head__items-empty {
+    padding: 5px 12px;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow-y: auto;
     flex: 1;
     opacity: 1;
     visibility: visible;
   }
 
   &__placeholder {
-    margin: 2px 3px;
-    font-size: 15px;
-    line-height: 28px;
+    margin: 3px 3px;
     opacity: 0.4;
     color: $font-primary-color;
   }
@@ -198,10 +207,11 @@ $base-class: 'multiselect';
     position: relative;
     margin: 2px 3px;
     border-radius: 5px;
-    padding: 6px 10px;
+    padding: 2px 6px 4px 6px;
+    line-height: normal;
+    margin: 3px 3px 2px 3px;
     cursor: default;
     overflow: hidden;
-    font-size: 14px;
     display: flex;
     align-items: center;
 
@@ -222,7 +232,7 @@ $base-class: 'multiselect';
 
   &__dropdown-icon {
     align-self: flex-start;
-    margin-top: 5px;
+    margin-top: 4px;
   }
 
   &--error {
