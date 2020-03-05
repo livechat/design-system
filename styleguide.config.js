@@ -43,6 +43,10 @@ module.exports = {
             './packages/design-system/src/components/NotificationSystem/NotificationSystem.md'
         },
         {
+          name: 'Badge',
+          components: './packages/design-system/src/components/Badge/Badge.js'
+        },
+        {
           name: 'Button',
           components: [
             './packages/design-system/src/components/Button/Button.js',
