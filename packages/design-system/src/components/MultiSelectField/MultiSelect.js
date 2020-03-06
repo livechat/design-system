@@ -396,7 +396,7 @@ class MultiSelect extends React.PureComponent {
       }),
       className
     );
-
+    const headItemsStyles = selectedItems && selectedItems.length > 0 ? `${baseClass}-head__items` : `${baseClass}-head__items-empty`;
     return (
       <div ref={this.containerRef} className={mergedClassNames} id={id}>
         <MultiSelectHead
@@ -408,7 +408,7 @@ class MultiSelect extends React.PureComponent {
           disabled={disabled}
         >
           <div
-            className={styles[`${baseClass}-head__items`]}
+            className={styles[headItemsStyles]}
             style={{ maxHeight: maxItemsContainerHeight }}
             ref={this.selectedItemsContainerRef}
           >

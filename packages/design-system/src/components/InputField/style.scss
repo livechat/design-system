@@ -3,14 +3,15 @@
 .input {
   border: 1px solid $border-primary-color;
   border-radius: 4px;
-  line-height: 20px;
+  line-height: 1.2;
   padding: 8px 10px;
   font-size: 15px;
   color: $font-primary-color;
   box-sizing: border-box;
   transition: border 0.25s ease-in-out;
   will-change: border-color;
-
+  background-clip: padding-box;
+ 
   &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: $font-primary-color;
     opacity: 0.4; /* Firefox */

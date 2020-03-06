@@ -6,6 +6,8 @@ $base-class: 'select';
   position: relative;
   width: inherit;
   color: $font-primary-color;
+  font-size: 15px;
+  line-height: 1.2;
 
   &-head {
     position: relative;
@@ -15,7 +17,7 @@ $base-class: 'select';
     cursor: pointer;
     display: flex;
     align-items: center;
-    padding: 8px 10px;
+    padding: 7px 10px;
     outline: 0;
     transition: border 0.15s ease-in-out;
 
@@ -81,8 +83,6 @@ $base-class: 'select';
     margin: 0;
     height: 100%;
     width: 100%;
-    font-size: 15px;
-    line-height: 18px;
     color: $font-primary-color;
     border: none;
     background-color: transparent;
@@ -127,7 +127,7 @@ $base-class: 'select';
     transition: all 0.15s ease-in-out;
     overflow: hidden;
     z-index: 100000;
-    padding: 14px 0;
+    padding: 4px 0 8px 0;
 
     &--visible {
       pointer-events: auto;
@@ -142,6 +142,15 @@ $base-class: 'select';
       margin: 0;
       padding: 0;
       overflow-y: auto;
+
+      &__header {
+        cursor: default;
+        font-size: 13px;
+        font-weight: 600;
+        display: flex;
+        padding: 8px 10px;
+        align-items: center;
+      }
     }
 
     &__item {
@@ -149,7 +158,7 @@ $base-class: 'select';
       list-style: none;
       cursor: pointer;
       display: flex;
-      padding: 8px 10px;
+      padding: 9px 10px;
       align-items: center;
 
       &-content {
@@ -210,7 +219,6 @@ $base-class: 'select';
     }
 
     &-placeholder {
-      font-size: 15px;
       opacity: 0.4;
       color: $font-primary-color;
     }

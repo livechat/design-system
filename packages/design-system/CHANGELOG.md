@@ -1,5 +1,55 @@
 All notable changes to this project will be documented in this file.
 
+## v0.7.0
+
+_Release: 2020-02-19_
+
+##### Bug Fixes
+
+- Inputs - adjust height
+- Numeric Input - fix handling min & max values
+
+##### New Features
+
+- SelectField - possibility to add header in the items list
+
+## v0.6.8
+
+_Release: 2020-02-13_
+
+##### New Features
+
+- Badge - new badge component (#85)
+
+## v0.6.7
+
+_Release: 2020-02-10_
+
+##### Bug Fixes
+
+- ButtonGroup - improving cropped box-shadow for :focus and :active states (#166)
+
+## v0.6.6
+
+_Release: 2020-02-07_
+
+##### New Features
+
+-Updating gray base color and [color]100 switch values in @livechat/design-system-colors (#165)
+
+##### Bug Fixes
+
+- fixing inner-shadow appearing on Safari mobile (#167)
+- numeric input improvements, fix min max value (#164)
+
+## v0.6.5
+
+_Release: 2019-01-15_
+
+##### Refactors
+
+- adding Notification error about old tooltip components deprecation
+
 ## v0.6.4
 
 _Release: 2019-01-10_

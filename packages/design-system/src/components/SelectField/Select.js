@@ -259,19 +259,20 @@ class Select extends React.PureComponent {
 
   render() {
     const {
-      searchEmptyState,
-      items,
+      className,
+      disabled,
+      error,
       getItemBody,
       getSelectedItemBody,
-      search,
-      required,
-      disabled,
-      searchPlaceholder,
-      placeholder,
-      selected,
-      className,
       id,
-      error
+      items,
+      placeholder,
+      required,
+      search,
+      searchEmptyState,
+      searchPlaceholder,
+      selected,
+      selectHeader
     } = this.props;
     const { searchPhrase, focusedItemKey, isFocused } = this.state;
     const selectedItemModel = items.find(item => item.key === selected);
@@ -285,6 +286,7 @@ class Select extends React.PureComponent {
     );
 
     const isOpen = this.getIsOpen();
+    const shouldRenderClearButton = !!selectedItemModel && !isOpen && !required;
 
     return (
       <div ref={this.containerRef} className={mergedClassNames} id={id}>
@@ -310,12 +312,12 @@ class Select extends React.PureComponent {
             onChange={this.onSearchChange}
             disabled={disabled}
           />
-          <ClearButton
-            isVisible={!!selectedItemModel && !isOpen && !required}
+           <ClearButton
+            isVisible={shouldRenderClearButton}
             ref={this.clearButtonRef}
             clearSelectedOption={this.clearSelectedOption}
           />
-          <MenuDownIcon width="24px" height="24px" fill="#424d57" />
+          <MenuDownIcon width="24px" height="24px" fill="#424d57" />          
         </SelectHead>
         <div
           className={cx({
@@ -338,6 +340,7 @@ class Select extends React.PureComponent {
             onEnterKey={this.handleEnterKeyUse}
             onFocusedItemChange={this.changeFocusedItem}
             focusedItemKey={focusedItemKey}
+            selectHeader={selectHeader}
           />
         </div>
       </div>
@@ -386,7 +389,11 @@ Select.propTypes = {
    * It would be useful, for instance, if you need to save searchPhrase as new item.
    * (searchPhrase) => {}
    */
-  onSearchPhraseChange: PropTypes.func
+  onSearchPhraseChange: PropTypes.func,
+  /**
+   * Pass a string to display a tip in items list
+   */
+  selectHeader: PropTypes.string,
 };
 
 Select.defaultProps = {

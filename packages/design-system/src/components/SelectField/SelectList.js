@@ -150,10 +150,15 @@ class SelectList extends React.PureComponent {
   hoverCallbacks = [];
 
   render() {
-    const { items, getItemBody, getItemSelectedHandler } = this.props;
+    const { items, getItemBody, getItemSelectedHandler, selectHeader } = this.props;
 
     return (
       <ul ref={this.props.listRef} className={styles[`${baseClass}__list`]}>
+        {
+          selectHeader && (
+            <SelectItem className={styles[`${baseClass}__list__header`]}>{selectHeader}</SelectItem>
+          )
+        }
         {items.filter(v => !v.props.hidden).map(item => (
           <SelectItem
             isSelected={this.isItemSelected(item.key)}
@@ -189,7 +194,8 @@ SelectList.propTypes = {
     current: PropTypes.instanceOf(
       typeof Element === 'undefined' ? () => {} : Element
     )
-  })
+  }),
+  selectHeader: PropTypes.string
 };
 
 export default SelectList;

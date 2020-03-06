@@ -67,6 +67,8 @@ export {
   InAppMessageBody
 } from './InAppMessage';
 
+export { Badge } from './Badge';
+
 export { Dropdown, DropdownList, DropdownListItem } from './Dropdown';
 
 export { PopperTooltip, CssTooltip, UserGuideTooltip } from './TooltipNew';

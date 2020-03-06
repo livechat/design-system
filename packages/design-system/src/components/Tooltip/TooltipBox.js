@@ -1,6 +1,8 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+
+import { noticeAboutDeprecation } from '../../helpers/notice-about-deprecation'
 import styles from './style.scss';
 
 const noop = () => {};
@@ -14,7 +16,10 @@ const TooltipBox = ({
   onContentMouseEnter,
   onContentMouseLeave,
   children
-}) => (
+}) => {
+  noticeAboutDeprecation('deprecated component - Tooltip, please use CSSTooltip or PopperTooltip instead');
+
+  return  (
   <div
     className={cx({
       tooltip__box: true,
@@ -27,7 +32,7 @@ const TooltipBox = ({
   >
     <div className={styles['tooltip__box-content']}>{children}</div>
   </div>
-);
+);}
 
 TooltipBox.propTypes = {
   children: PropTypes.node.isRequired,

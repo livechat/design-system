@@ -1,14 +1,15 @@
 SelectField:
+
 ```js
 const items = [
-  {key: '1', props: {name: 'option 1', value: '1'}},
-  {key: '2', props: {name: 'option 2', value: '2'}},
-  {key: '3', props: {name: 'option 3', value: '3'}},
-  {key: '4', props: {name: 'option 4', value: '4'}},
-  {key: '5', props: {name: 'option 5', value: '5'}},
-  {key: '6', props: {name: 'option 6', value: '6'}},
-  {key: '7', props: {name: 'option 7', value: '7'}},
-  {key: '8', props: {name: 'option 8', value: '8'}},
+  { key: "1", props: { name: "option 1", value: "1" } },
+  { key: "2", props: { name: "option 2", value: "2" } },
+  { key: "3", props: { name: "option 3", value: "3" } },
+  { key: "4", props: { name: "option 4", value: "4" } },
+  { key: "5", props: { name: "option 5", value: "5" } },
+  { key: "6", props: { name: "option 6", value: "6" } },
+  { key: "7", props: { name: "option 7", value: "7" } },
+  { key: "8", props: { name: "option 8", value: "8" } }
 ];
 initialState = {
   selectedItem: null,
@@ -17,11 +18,11 @@ initialState = {
 
 const handleItemSelect = item => {
   if (item === null) {
-    setState({selectedItem: item, error: 'Please select one option'});
+    setState({ selectedItem: item, error: "Please select one option" });
   } else {
-    setState({selectedItem: item, error: null});
+    setState({ selectedItem: item, error: null });
   }
-}
+};
 
 const getItemBody = props => {
   if (!props) {
@@ -34,34 +35,36 @@ const getSelectedItemBody = props => {
   return <div id={props.value}>{props.name}</div>;
 };
 
-<div style={{width: '340px'}}>
+<div style={{ width: "340px" }}>
   <SelectField
-    id='select-example'
+    id="select-example"
     items={items}
-    searchProperty='name'
+    searchProperty="name"
     onItemSelect={handleItemSelect}
     getItemBody={getItemBody}
     description="Helper text"
     labelText="Select example"
     error={state.error}
     search
-    placeholder='Select option'
+    placeholder="Select option"
     getSelectedItemBody={getSelectedItemBody}
     selected={state.selectedItem}
-    searchPlaceholder='Search...'
+    searchPlaceholder="Search..."
+    selectHeader="Select from items below"
   />
-</div>
+</div>;
 ```
+
 ```js noeditor
 const items = [
-  {key: '1', props: {name: 'option 1', value: '1'}},
-  {key: '2', props: {name: 'option 2', value: '2'}},
-  {key: '3', props: {name: 'option 3', value: '3'}},
-  {key: '4', props: {name: 'option 4', value: '4'}},
-  {key: '5', props: {name: 'option 5', value: '5'}},
-  {key: '6', props: {name: 'option 6', value: '6'}},
-  {key: '7', props: {name: 'option 7', value: '7'}},
-  {key: '8', props: {name: 'option 8', value: '8'}},
+  { key: "1", props: { name: "option 1", value: "1" } },
+  { key: "2", props: { name: "option 2", value: "2" } },
+  { key: "3", props: { name: "option 3", value: "3" } },
+  { key: "4", props: { name: "option 4", value: "4" } },
+  { key: "5", props: { name: "option 5", value: "5" } },
+  { key: "6", props: { name: "option 6", value: "6" } },
+  { key: "7", props: { name: "option 7", value: "7" } },
+  { key: "8", props: { name: "option 8", value: "8" } }
 ];
 
 const getItemBody = props => {
@@ -77,21 +80,22 @@ const getSelectedItemBody = props => {
 
 <ComponentHtmlMarkup>
   <SelectField
-    id='select-example'
+    id="select-example"
     items={items}
-    searchProperty='name'
+    searchProperty="name"
     onItemSelect={item => {}}
     getItemBody={getItemBody}
     description="Helper text"
     labelText="Select example"
     error="Error"
     search
-    placeholder='Select option'
+    placeholder="Select option"
     getSelectedItemBody={getSelectedItemBody}
     selected="1"
-    searchPlaceholder='Search...'
+    searchPlaceholder="Search..."
+    selectHeader="Select from items below"
   />
-</ComponentHtmlMarkup>
+</ComponentHtmlMarkup>;
 ```
 
 The SelectField component should be used especially in forms, when you need to validate field or add additional informations to field. It's provides additional props to Select, like: labelText, error and description.
