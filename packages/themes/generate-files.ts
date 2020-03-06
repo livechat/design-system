@@ -6,8 +6,6 @@ import { mixinsBuilder } from './tools/mixins-builder';
 import { jsonBuilder } from './tools/json-builder';
 import { indexScssBuilder } from './tools/index-scss-builder';
 
-
-
 function createDirectory(dirPath: string): void {
   if (!fs.existsSync(dirPath)) {
     fs.mkdirSync(dirPath, { recursive: true });

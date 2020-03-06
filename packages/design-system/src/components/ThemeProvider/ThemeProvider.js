@@ -8,12 +8,12 @@ function getThemeName(themeName) {
   if (!themeName || !themes[themeName]) {
     return DEFAULT_THEME_NAME;
   }
-  
+
   return themeName;
-} 
+}
 
 function ThemeProvider(props) {
-  const themeName = getThemeName(props.themeName)
+  const themeName = getThemeName(props.themeName);
 
   return (
     <ThemeContext.Provider
@@ -28,7 +28,8 @@ function ThemeProvider(props) {
 }
 
 ThemeProvider.propTypes = {
-  themeName: PropTypes.string
+  themeName: PropTypes.string,
+  children: PropTypes.node
 };
 
 export default ThemeProvider;

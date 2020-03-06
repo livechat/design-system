@@ -43,10 +43,6 @@ module.exports = {
             './packages/design-system/src/components/NotificationSystem/NotificationSystem.md'
         },
         {
-          name: 'Badge',
-          components: './packages/design-system/src/components/Badge/Badge.js'
-        },
-        {
           name: 'Button',
           components: [
             './packages/design-system/src/components/Button/Button.js',
@@ -143,6 +139,7 @@ module.exports = {
     }
   ],
   styleguideComponents: {
+    Wrapper: path.join(__dirname, 'docs/customized-components/ThemeWrapper'),
     LogoRenderer: path.join(__dirname, 'docs/customized-components/Logo'),
     TableOfContentsRenderer: path.join(
       __dirname,

@@ -9,9 +9,33 @@
 // exported as in JavaScript
 const colors = [
   // Core
-  'interactive01',
-  'interactive02',
-  'uiBackground'
+  'primary',
+  'primaryHover',
+  'primaryDisabled',
+  'basic',
+  'basicHover',
+  'basicDisabled',
+  'danger',
+  'dangerHover',
+  'dangerDisabled',
+  'success',
+  'warning',
+  'info',
+  'tip',
+  'tipInversed',
+  'tipImportant',
+  'textPrimary',
+  'textSecondary',
+  'textTertiary',
+  'textPlaceholder',
+  'uiBackground',
+  'ui',
+  'uiHover',
+  'overlay',
+  'uiFilter',
+  'divider',
+  'border',
+  'borderHover'
 ];
 
 const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -24,11 +48,12 @@ const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 export function formatTokenName(token: any) {
   let string = '';
 
-  for (let i = 0; i < token.length; i++) {
+  /* eslint-disable no-continue */
+  for (let i = 0; i < token.length; i += 1) {
     // If we run into a number, we hit the scale step at the end of a token name
     // and can safely truncate the rest of the token
     if (numbers.indexOf(token[i]) !== -1) {
-      string += '-' + token.slice(i);
+      string += `-${token.slice(i)}`;
       break;
     }
 
@@ -43,7 +68,7 @@ export function formatTokenName(token: any) {
       }
 
       // Otherwise, just concatenate this new part on to the existing string
-      string += '-' + token[i].toLowerCase();
+      string += `-${token[i].toLowerCase()}`;
       continue;
     }
 

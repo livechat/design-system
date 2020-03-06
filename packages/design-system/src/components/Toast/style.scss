@@ -1,3 +1,4 @@
+@import '~@livechat/design-system-themes/dist/scss';
 @import '../../scss/variables/colors';
 
 $toast-appear-animation-timeout: 200ms;
@@ -5,7 +6,7 @@ $toast-exit-animation-timeout: 200ms;
 
 $base-class: 'toast';
 
-.#{$base-class} {
+@mixin shared() {
   display: inline-flex;
   flex: 0 1 auto;
   justify-content: flex-start;
@@ -25,7 +26,6 @@ $base-class: 'toast';
   border-radius: 4px;
 
   &__content {
-    color: $font-primary-color;
     width: 100%;
   }
 
@@ -38,7 +38,6 @@ $base-class: 'toast';
 
   &__icon svg {
     display: flex;
-    fill: $primary-color;
     height: 20px;
     width: 20px;
   }
@@ -59,11 +58,10 @@ $base-class: 'toast';
       align-items: center;
       flex: 0 1 auto;
       height: 100%;
-      width: 100%;    
+      width: 100%;  
 
       svg {
         display: flex;
-        fill: $font-tertiary-color;
         height: 16px;
         width: 16px;
         cursor: pointer;
@@ -76,42 +74,11 @@ $base-class: 'toast';
       outline: 0;
       border: 0;
       margin-left: 16px;
-      color: $font-primary-color;
       cursor: pointer;
       font-weight: 600;
       padding: 0;
       line-height: 20px;
       text-decoration: underline;
-    }
-  }
-
-  &--success {
-    background: $success-color;
-  }
-
-  &--warning {
-    background: $warning-color;
-  }
-
-  &--error {
-    background: $error-color;
-  }
-
-  &--info {
-    background: $info-color;
-  }
-
-  &--success,
-  &--warning,
-  &--error,
-  &--info {
-    .#{$base-class}__content,
-    .#{$base-class}__actions-custom {
-      color: #fff;
-    }
-
-    svg {
-      fill: #fff;
     }
   }
 
@@ -214,6 +181,74 @@ $base-class: 'toast';
           opacity: 0;
         }
       }
+    }
+  }
+}
+
+@mixin themable() {
+  &__content {
+    color: $text-primary;
+  }
+
+  &__icon svg {
+    fill: $primary;
+  }
+
+  &__actions {
+    &-close {
+      svg {
+        fill: $text-tertiary;
+      }
+    }
+
+    &-custom {
+      color: $text-primary;
+    }
+  }
+
+  &--success {
+    background: $success;
+  }
+
+  &--warning {
+    background: $warning;
+  }
+
+  &--error {
+    background: $danger;
+  }
+
+  &--info {
+    background: $info;
+  }
+
+  &--success,
+  &--warning,
+  &--error,
+  &--info {
+    .#{$base-class}__content,
+    .#{$base-class}__actions-custom {
+      color: $basic;
+    }
+
+    svg {
+      fill: $basic;
+    }
+  }
+}
+
+.#{$base-class} {
+  @include shared();
+
+  @include lcds-theme() {
+    @include themable();
+  }
+}
+
+.#{$base-class}--theme-light {
+  &.#{$base-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include themable();
     }
   }
 }

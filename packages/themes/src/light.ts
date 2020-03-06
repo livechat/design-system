@@ -9,9 +9,33 @@ import Colors from '@livechat/design-system-colors';
 import { Theme } from './types';
 
 const lightTheme: Theme = {
-  interactive01: Colors.blue700,
-  interactive02: Colors.blue600,
-  uiBackground: '#fff'
+  primary: Colors.blue500,
+  primaryHover: Colors.blue600,
+  primaryDisabled: Colors.blue100,
+  basic: '#ffffff',
+  basicHover: '#f9fbfb',
+  basicDisabled: '#fbfcfe',
+  danger: Colors.red500,
+  dangerHover: Colors.red600,
+  dangerDisabled: Colors.red100,
+  success: Colors.green500,
+  warning: Colors.yellow500,
+  info: Colors.blue300,
+  tip: Colors.gray800,
+  tipInversed: '#ffffff',
+  tipImportant: '#facf50',
+  textPrimary: Colors.gray900,
+  textSecondary: Colors.gray700,
+  textTertiary: Colors.gray600,
+  textPlaceholder: Colors.gray500,
+  uiBackground: '#ffffff',
+  ui: Colors.gray40,
+  uiHover: Colors.gray50,
+  overlay: 'rgba(0, 0, 0, 0.5)',
+  uiFilter: Colors.blue800,
+  divider: Colors.gray100,
+  border: Colors.gray200,
+  borderHover: Colors.gray400
 };
 
 export default lightTheme;

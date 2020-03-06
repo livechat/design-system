@@ -4,11 +4,12 @@ import classNames from 'classnames/bind';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 import { Loader } from '../Loader';
+import { withTheme } from '../ThemeProvider';
 
 const cx = classNames.bind(styles);
 const acceptedSizes = ['large', 'compact'];
 
-const Button = React.forwardRef((props, ref) => {
+const Button = withTheme(props => {
   const {
     children,
     primary,
@@ -23,8 +24,11 @@ const Button = React.forwardRef((props, ref) => {
     accessibilityLabel,
     ariaControls,
     ariaExpanded,
+    theme,
+    themeName,
     className,
     type: htmlType,
+    forwardedRef,
     ...buttonProps
   } = props;
 
@@ -44,6 +48,7 @@ const Button = React.forwardRef((props, ref) => {
   const mergedClassNames = getMergedClassNames(
     cx({
       [baseClass]: true,
+      [`lc-${baseClass}--theme-${themeName}`]: true,
       [`${baseClass}--disabled`]: disabled,
       [`${baseClass}--loading`]: loading,
       [`${baseClass}--full-width`]: fullWidth,
@@ -58,7 +63,7 @@ const Button = React.forwardRef((props, ref) => {
   return (
     <button
       {...buttonProps}
-      ref={ref}
+      ref={forwardedRef}
       className={mergedClassNames}
       type={type}
       disabled={isDisabled}
@@ -111,7 +116,16 @@ Button.propTypes = {
    */
   size: PropTypes.oneOf(['compact', 'large']),
   submit: PropTypes.bool,
+  theme: PropTypes.object,
+  themeName: PropTypes.string,
   type: PropTypes.string
 };
 
-export default Button;
+const ButtonWithRef = React.forwardRef((props, ref) => (
+  <Button {...props} forwardedRef={ref} />
+));
+
+ButtonWithRef.propTypes = Button.propTypes;
+ButtonWithRef.displayName = 'Button';
+
+export default ButtonWithRef;
