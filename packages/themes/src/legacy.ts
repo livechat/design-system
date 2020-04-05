@@ -79,3 +79,5 @@ const legacyTheme: Theme = {
 // }
 
 export default legacyTheme;
+
+// "#4a90e2", datepicker-range-bg: "#dae7fd",  datepicker-selected-day-bg: "#3e7ce4"  progress-bar-background: "deeefd"   

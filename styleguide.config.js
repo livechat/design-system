@@ -143,7 +143,7 @@ module.exports = {
     }
   ],
   styleguideComponents: {
-    Wrapper: path.join(__dirname, 'docs/customized-components/ThemeWrapper'),
+    StyleGuideRenderer: path.join(__dirname, 'docs/customized-components/StyleGuideRenderer'),
     LogoRenderer: path.join(__dirname, 'docs/customized-components/Logo'),
     TableOfContentsRenderer: path.join(
       __dirname,

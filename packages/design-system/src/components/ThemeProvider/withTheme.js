@@ -7,8 +7,8 @@ const withTheme = Component => {
   function ComponentWithTheme(props) {
     return (
       <ThemeContext.Consumer>
-        {({ theme, themeName }) => (
-          <Component theme={theme} themeName={themeName} {...props} />
+        {({ theme, themeName, onThemeChange }) => (
+          <Component theme={theme} themeName={themeName} onThemeChange={onThemeChange} {...props} />
         )}
       </ThemeContext.Consumer>
     );

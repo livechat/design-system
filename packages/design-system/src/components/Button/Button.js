@@ -4,12 +4,11 @@ import classNames from 'classnames/bind';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 import { Loader } from '../Loader';
-import { withTheme } from '../ThemeProvider';
 
 const cx = classNames.bind(styles);
 const acceptedSizes = ['large', 'compact'];
 
-const Button = withTheme(props => {
+const Button = props => {
   const {
     children,
     primary,
@@ -24,8 +23,6 @@ const Button = withTheme(props => {
     accessibilityLabel,
     ariaControls,
     ariaExpanded,
-    theme,
-    themeName,
     className,
     type: htmlType,
     forwardedRef,
@@ -48,7 +45,6 @@ const Button = withTheme(props => {
   const mergedClassNames = getMergedClassNames(
     cx({
       [baseClass]: true,
-      [`lc-${baseClass}--theme-${themeName}`]: true,
       [`${baseClass}--disabled`]: disabled,
       [`${baseClass}--loading`]: loading,
       [`${baseClass}--full-width`]: fullWidth,
@@ -80,7 +76,7 @@ const Button = withTheme(props => {
       {children}
     </button>
   );
-});
+};
 
 Button.propTypes = {
   accessibilityLabel: PropTypes.string,
@@ -116,8 +112,6 @@ Button.propTypes = {
    */
   size: PropTypes.oneOf(['compact', 'large']),
   submit: PropTypes.bool,
-  theme: PropTypes.object,
-  themeName: PropTypes.string,
   type: PropTypes.string
 };
 

@@ -7,7 +7,6 @@ import { VARIANTS } from '../../constants/toast';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 import callAll from '../../utils/callAll';
-import { withTheme } from '../ThemeProvider';
 
 const cx = classNames.bind(styles);
 
@@ -19,8 +18,6 @@ const Toast = props => {
     onClose,
     action,
     removable,
-    themeName,
-    theme,
     id,
     ...restProps
   } = props;
@@ -28,7 +25,6 @@ const Toast = props => {
   const mergedClassNames = getMergedClassNames(
     cx({
       toast: true,
-      [`lc-toast--theme-${themeName}`]: true,
       [`toast--${variant}`]: VARIANTS.some(option => option === variant)
     }),
     className
@@ -76,8 +72,6 @@ const Toast = props => {
 
 Toast.propTypes = {
   id: PropTypes.string,
-  themeName: PropTypes.string,
-  theme: PropTypes.object,
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
   variant: PropTypes.oneOf(VARIANTS),
@@ -90,4 +84,4 @@ Toast.propTypes = {
   })
 };
 
-export default withTheme(Toast);
+export default Toast;

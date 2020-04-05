@@ -58,7 +58,7 @@ $base-class: 'toast';
       align-items: center;
       flex: 0 1 auto;
       height: 100%;
-      width: 100%;  
+      width: 100%;
 
       svg {
         display: flex;
@@ -245,8 +245,8 @@ $base-class: 'toast';
   }
 }
 
-.#{$base-class}--theme-light {
-  &.#{$base-class} {
+.theme--light {
+  .#{$base-class} {
     @include lcds-theme($lcds-theme--light) {
       @include themable();
     }

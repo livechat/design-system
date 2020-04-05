@@ -173,8 +173,8 @@ $base-class: "btn";
   }
 }
 
-.#{$base-class}--theme-light {
-  &.#{$base-class} {
+.theme--light {
+  .#{$base-class} {
     @include lcds-theme($lcds-theme--light) {
       @include themable();
     }

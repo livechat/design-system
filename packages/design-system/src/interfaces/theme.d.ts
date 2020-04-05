@@ -17,6 +17,9 @@ export interface IThemeConsumerProps {
 }
 
 export interface IThemeProviderProps {
+  themes?: {
+    [themeName: string]: Theme
+  };
   themeName: ThemeName;
 }
 
