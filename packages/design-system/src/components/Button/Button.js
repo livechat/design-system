@@ -8,7 +8,7 @@ import { Loader } from '../Loader';
 const cx = classNames.bind(styles);
 const acceptedSizes = ['large', 'compact'];
 
-const Button = props => {
+export const Button = props => {
   const {
     children,
     primary,
