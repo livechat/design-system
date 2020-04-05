@@ -32,8 +32,7 @@
     "prebuild": "rimraf dist",
     "prepare": "npm run build",
     "build": "tsc --module commonjs --project tsconfig.build.json && rollup -c rollup.config.ts && npm run build:generate",
-    "build:generate": "ts-node-dev --project tsconfig.generate.json -O \"{\\\"module\\\":\\\"commonjs\\\"}\" generate-files ",
-    "test": "jest"
+    "build:generate": "ts-node-dev --project tsconfig.generate.json -O \"{\\\"module\\\":\\\"commonjs\\\"}\" generate-files "
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
