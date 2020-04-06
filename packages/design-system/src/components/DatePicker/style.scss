@@ -1,10 +1,9 @@
-@import '../../scss/variables/colors';
+@import '~@livechat/design-system-themes/dist/scss';
 
 $base-class: 'date-picker';
 
-.#{$base-class} {
+@mixin shared() {
   display: inline-block;
-  color: $font-primary-color;
 
   &__wrapper {
     position: relative;
@@ -14,12 +13,12 @@ $base-class: 'date-picker';
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    border: 1px solid transparent;
+    border-width: 1px;
+    border-style: solid;
     transition: 0.2s border-color ease-in-out;
 
     &:focus {
       outline: none;
-      border: 1px solid $primary-color;
       transition: 0.2s border-color ease-in-out;
       border-radius: 4px;
     }
@@ -53,25 +52,16 @@ $base-class: 'date-picker';
   &__nav-button {
     display: flex;
     align-content: center;
-    background-color: transparent;
     padding: 0;
     cursor: pointer;
-    border: 1px solid transparent;
+    border-width: 1px;
+    border-style: solid;
     transition: 0.2s border-color ease-in-out;
-
-    &:hover {
-      color: $hover-primary-color;
-    }
 
     &:focus {
       outline: none;
-      border: 1px solid $primary-color;
       transition: 0.2s border-color ease-in-out;
       border-radius: 4px;
-    }
-
-    &--interaction-disabled {
-      display: none;
     }
   }
 
@@ -81,7 +71,7 @@ $base-class: 'date-picker';
     padding: 0 50px;
     line-height: 22px;
     text-align: center;
-    color: $font-primary-color;
+    color: $text-primary;
 
     & > div {
       font-weight: 700;
@@ -101,7 +91,6 @@ $base-class: 'date-picker';
   &__weekday {
     display: table-cell;
     padding: 4px;
-    color: #7a8289;
     text-align: center;
     font-size: 12px;
 
@@ -115,8 +104,8 @@ $base-class: 'date-picker';
     display: table-cell;
     padding: 5px;
     min-width: 5px;
-    border-right: 1px solid #eaecec;
-    color: #8b9898;
+    border-right-width: 1px;
+    border-right-style: solid;
     vertical-align: middle;
     text-align: right;
     font-size: 14px;
@@ -137,13 +126,11 @@ $base-class: 'date-picker';
     font-size: 14px;
     width: 18px;
     height: 18px;
-    color: $font-primary-color;
 
     &:focus {
       outline: none;
 
       .#{$base-class}__day-content {
-        box-shadow: 0 0 0 1px $primary-color;
         border-radius: 50%;
       }
     }
@@ -164,26 +151,21 @@ $base-class: 'date-picker';
 
     &--today {
       .#{$base-class}__day-content {
-        box-shadow: 0 0 0 1px #a0a6ab;
         border-radius: 50%;
       }
     }
 
     &--selected {
       .#{$base-class}__day-content {
-        background-color: #3e7ce4;
         border-radius: 50%;
-        color: #f0f8ff;
       }
     }
 
     &--outside {
-      color: #8b9898;
       cursor: default;
     }
 
     &--disabled {
-      color: #dce0e0;
       cursor: default;
     }
   }
@@ -200,10 +182,8 @@ $base-class: 'date-picker';
 
   &__today-button {
     border: none;
-    background-color: transparent;
     background-image: none;
     box-shadow: none;
-    color: #4a90e2;
     font-size: 14px;
     cursor: pointer;
   }
@@ -222,7 +202,6 @@ $base-class: 'date-picker';
 
   &:not(.#{$base-class}--interaction-disabled) &__day:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--selected):not(.#{$base-class}__day--outside):hover {
     .#{$base-class}__day-content {
-      background-color: #dae7fd;
       border-radius: 50%;
     }
   }
@@ -231,36 +210,13 @@ $base-class: 'date-picker';
     .#{$base-class}__day {
       &--selected {
         .#{$base-class}__day-content {
-          background-color: transparent;
           border-radius: 0;
-          color: $font-primary-color;
-        }
-
-        &:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--outside):not(.#{$base-class}__day--start):not(.#{$base-class}__day--end):not(.#{$base-class}__day--single):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday) {
-          .#{$base-class}__day-wrapper {
-            background-color: #dae7fd;
-          }
-        }
-      }
-
-      &--start:not(.#{$base-class}__day--end):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday),
-      &--monday.#{$base-class}__day--selected:not(.#{$base-class}__day--end) {
-        .#{$base-class}__day-wrapper {
-          background: linear-gradient(to left, #dae7fd 0%, #dae7fd 50%, #fff 50%, #fff 100%);
-        }
-      }
-
-      &--end:not(.#{$base-class}__day--start):not(.#{$base-class}__day--monday):not(.#{$base-class}__day--sunday),
-      &--sunday.#{$base-class}__day--selected:not(.#{$base-class}__day--start) {
-        .#{$base-class}__day-wrapper {
-          background: linear-gradient(to right, #dae7fd 0%, #dae7fd 50%, #fff 50%, #fff 100%);
         }
       }
 
       &--monday.#{$base-class}__day--selected:not(.#{$base-class}__day--start):not(.#{$base-class}__day--end),
       &--sunday.#{$base-class}__day--selected:not(.#{$base-class}__day--start):not(.#{$base-class}__day--end) {
         .#{$base-class}__day-content {
-          background-color: #dae7fd;
           border-radius: 50%;
         }
       }
@@ -268,9 +224,7 @@ $base-class: 'date-picker';
       &--start,
       &--end {
         .#{$base-class}__day-content {
-          background-color: #3e7ce4;
           border-radius: 50%;
-          color: #f0f8ff;
         }
       }
     }
@@ -278,7 +232,6 @@ $base-class: 'date-picker';
     &__select-input {
       padding: 0 5px;
       max-width: 90px;
-      border-color: transparent;
       text-align: left;
     }
 
@@ -297,7 +250,6 @@ $base-class: 'date-picker';
           height: 100%;
           top: 0;
           left: 50%;
-          background-color: #e7e8e9;
           position: absolute;
         }
       }
@@ -305,6 +257,160 @@ $base-class: 'date-picker';
       .#{$base-class}__month {
         padding: 0 12px;
       }
+    }
+  }
+}
+
+@mixin themable() {
+  color: $text-primary;
+
+  &__wrapper {
+    border-color: transparent;
+
+    &:focus {
+      border-color: $primary;
+    }
+  }
+
+  &__nav-button {
+    border-color: transparent;
+    background-color: transparent;
+
+    &:hover {
+      color: $primary-hover;
+    }
+
+    &:focus {
+      border-color: $primary;
+    }
+  }
+
+  &__caption {
+    color: $text-primary;
+  }
+
+  &__weekday {
+    color: $text-tertiary;
+  }
+
+  &__week-number {
+    border-right-color: $divider;
+    color: $text-tertiary;
+  }
+
+  &__day {
+    color: $text-primary;
+
+    &:focus {
+      .#{$base-class}__day-content {
+        box-shadow: 0 0 0 1px $primary;
+      }
+    }
+
+    &--today {
+      .#{$base-class}__day-content {
+        box-shadow: 0 0 0 1px $border;
+      }
+    }
+
+    &--selected {
+      .#{$base-class}__day-content {
+        background-color: $selected;
+        color: $text-on-primary;
+      }
+    }
+
+    &--outside {
+      color: $text-tertiary;
+    }
+
+    &--disabled {
+      color: $basic-disabled;
+    }
+  }
+
+  &__today-button {
+    background-color: transparent;
+    color: $primary;
+  }
+
+  &:not(.#{$base-class}--interaction-disabled) &__day:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--selected):not(.#{$base-class}__day--outside):hover {
+    .#{$base-class}__day-content {
+      background-color: $highlight;
+    }
+  }
+
+  &--range {
+    .#{$base-class}__day {
+      &--selected {
+        .#{$base-class}__day-content {
+          background-color: transparent;
+          color: $text-primary;
+        }
+
+        &:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--outside):not(.#{$base-class}__day--start):not(.#{$base-class}__day--end):not(.#{$base-class}__day--single):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday) {
+          .#{$base-class}__day-wrapper {
+            background-color: $highlight;
+          }
+        }
+      }
+
+      &--start:not(.#{$base-class}__day--end):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday),
+      &--monday.#{$base-class}__day--selected:not(.#{$base-class}__day--end) {
+        .#{$base-class}__day-wrapper {
+          background: linear-gradient(to left, $highlight 0%, $highlight 50%, $ui-background 50%, $ui-background 100%);
+        }
+      }
+
+      &--end:not(.#{$base-class}__day--start):not(.#{$base-class}__day--monday):not(.#{$base-class}__day--sunday),
+      &--sunday.#{$base-class}__day--selected:not(.#{$base-class}__day--start) {
+        .#{$base-class}__day-wrapper {
+          background: linear-gradient(to right, $highlight 0%, $highlight 50%, $ui-background 50%, $ui-background 100%);
+        }
+      }
+
+      &--monday.#{$base-class}__day--selected:not(.#{$base-class}__day--start):not(.#{$base-class}__day--end),
+      &--sunday.#{$base-class}__day--selected:not(.#{$base-class}__day--start):not(.#{$base-class}__day--end) {
+        .#{$base-class}__day-content {
+          background-color: $highlight;
+        }
+      }
+
+      &--start,
+      &--end {
+        .#{$base-class}__day-content {
+          background-color: $selected;
+          color: $highlight;
+        }
+      }
+    }
+
+    &__select-input {
+      border-color: transparent;
+    }
+
+    &__calendars-wrapper {
+      .#{$base-class}__months {
+        &::before {
+          background-color: $divider;
+        }
+      }
+    }
+  }
+}
+
+.#{$base-class} {
+  @include shared();
+
+  @include lcds-theme() {
+    @include themable();
+  }
+}
+
+.theme--light {
+  .#{$base-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include themable();
     }
   }
 }

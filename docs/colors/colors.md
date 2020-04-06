@@ -165,15 +165,15 @@ const colors = {
   unamed_by_context: {
     btn: ["#d0d2d5"], // merged with border-primary-color
     "date-picker": [
-      "#7a8289",
-      "#eaecec",
-      "#8b9898",
-      "#a0a6ab",
-      "#3e7ce4",
+      "#7a8289", // merged with text-tertiary
+      "#eaecec", // merged with divider
+      "#8b9898", // merged with text-tertiary
+      "#a0a6ab", // merged with border
+      "#3e7ce4", // new - selected
       "#dce0e0",
-      "#4a90e2",
+      "#4a90e2", // merged with primary
       "#dae7fd",
-      "#e7e8e9"
+      "#e7e8e9" // divider
     ],
     loader: ["#deeefd", "#4e5665"],
     "modal body background": ["#f8f8fa"],

@@ -20,6 +20,7 @@ export interface Theme {
   textSecondary: string;
   textTertiary: string;
   textPlaceholder: string;
+  textOnPrimary: string;
   uiBackground: string;
   ui: string;
   uiHover: string;
@@ -28,6 +29,8 @@ export interface Theme {
   divider: string;
   border: string;
   borderHover: string;
+  selected: string;
+  highlight: string;
 }
 
 export type Themes = Record<ThemeName, Theme>;

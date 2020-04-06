@@ -27,6 +27,7 @@ const legacyTheme: Theme = {
   textSecondary: 'rgba(66, 77, 89, 0.7)',
   textTertiary: 'rgba(66, 77, 89, 0.5)',
   textPlaceholder: 'rgba(66, 77, 89, 0.4)',
+  textOnPrimary: '#ffffff',
   uiBackground: '#ffffff',
   ui: '#f3f7f9',
   uiHover: '#e1e9ec',
@@ -34,7 +35,9 @@ const legacyTheme: Theme = {
   uiFilter: '#59699e',
   divider: '#dde2e6',
   border: '#bcc6d0',
-  borderHover: '#a0a6ab'
+  borderHover: '#a0a6ab',
+  selected: '#3e7ce4',
+  highlight: '#dae7fd'
 };
 
 // const x = {

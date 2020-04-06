@@ -14,7 +14,7 @@ const lightTheme: Theme = {
   primaryDisabled: Colors.blue100,
   basic: '#ffffff',
   basicHover: '#f9fbfb',
-  basicDisabled: '#fbfcfe',
+  basicDisabled: Colors.gray50,
   danger: Colors.red500,
   dangerHover: Colors.red600,
   dangerDisabled: Colors.red100,
@@ -28,6 +28,7 @@ const lightTheme: Theme = {
   textSecondary: Colors.gray700,
   textTertiary: Colors.gray600,
   textPlaceholder: Colors.gray500,
+  textOnPrimary: '#ffffff',
   uiBackground: '#ffffff',
   ui: Colors.gray40,
   uiHover: Colors.gray50,
@@ -35,7 +36,9 @@ const lightTheme: Theme = {
   uiFilter: Colors.blue800,
   divider: Colors.gray100,
   border: Colors.gray200,
-  borderHover: Colors.gray400
+  borderHover: Colors.gray400,
+  selected: Colors.blue400,
+  highlight: Colors.blue100
 };
 
 export default lightTheme;
