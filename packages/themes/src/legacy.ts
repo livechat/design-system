@@ -14,6 +14,7 @@ const legacyTheme: Theme = {
   basic: '#ffffff',
   basicHover: '#f9fbfb',
   basicDisabled: '#fbfcfe',
+  inactive: '#dde2e5',
   danger: '#d64646',
   dangerHover: '#b9484a',
   dangerDisabled: '#eec4c5',

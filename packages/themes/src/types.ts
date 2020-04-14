@@ -7,6 +7,7 @@ export interface Theme {
   basic: string;
   basicHover: string;
   basicDisabled: string;
+  inactive: string;
   danger: string;
   dangerHover: string;
   dangerDisabled: string;

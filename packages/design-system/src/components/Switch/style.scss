@@ -1,5 +1,6 @@
 @import "../../scss/variables/colors";
 @import "../../scss/variables/transitions";
+@import '~@livechat/design-system-themes/dist/scss';
 
 $base-class: "switch";
 $basicHeight: 28px;
@@ -12,22 +13,10 @@ $compactWidth: 25px;
 $compactSize: $compactHeight - 2px;
 $compactMove: $compactWidth - $compactSize;
 
-.#{$base-class} {
+@mixin shared() {
   position: relative;
   display: inline-block;
   outline: none;
-
-  &:hover {
-    .#{$base-class}__track {
-      &--enabled {
-        background-color: darken($success-color, 10);
-      }
-
-      &--disabled {
-        background-color: darken($field-background-color, 10);
-      }
-    }
-  }
 
   &--basic {
     width: $basicWidth;
@@ -45,12 +34,6 @@ $compactMove: $compactWidth - $compactSize;
     margin: 0;
     opacity: 0;
     cursor: pointer;
-  }
-
-  &__input:focus + .#{$base-class}__container {
-    .#{$base-class}__track {
-      box-shadow: 0 0 1px 2px rgba($hover-primary-color, 0.5);
-    }
   }
 
   &__container {
@@ -71,14 +54,6 @@ $compactMove: $compactWidth - $compactSize;
     transition-property: background-color;
     transition-duration: $switch-transition-duration;
     transition-timing-function: $switch-transition-timing-function;
-
-    &--enabled {
-      background-color: $success-color;
-    }
-
-    &--disabled {
-      background-color: $field-background-color;
-    }
   }
 
   &__slider {
@@ -86,7 +61,6 @@ $compactMove: $compactWidth - $compactSize;
     top: 50%;
     transform: translateY(-50%);
     border-radius: 50%;
-    background: white;
     transition-property: left, right;
     transition-duration: $switch-transition-duration;
     transition-timing-function: $switch-transition-timing-function;
@@ -119,6 +93,56 @@ $compactMove: $compactWidth - $compactSize;
         left: 2px;
         right: calc(#{$compactMove} - 2px);
       }
+    }
+  }
+}
+
+@mixin themable() {
+  &:hover {
+    .#{$base-class}__track {
+      &--enabled {
+        background-color: darken($success, 10);
+      }
+
+      &--disabled {
+        background-color: darken($inactive, 10);
+      }
+    }
+  }
+
+  &__input:focus + .#{$base-class}__container {
+    .#{$base-class}__track {
+      box-shadow: 0 0 1px 2px rgba($primary-hover, 0.5);
+    }
+  }
+
+  &__track {
+    &--enabled {
+      background-color: $success;
+    }
+
+    &--disabled {
+      background-color: $inactive;
+    }
+  }
+
+  &__slider {
+    background: $ui-background;
+  }
+}
+
+.#{$base-class} {
+  @include shared();
+
+  @include lcds-theme() {
+    @include themable();
+  }
+}
+
+.theme--light {
+  .#{$base-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include themable();
     }
   }
 }

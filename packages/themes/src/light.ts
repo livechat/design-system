@@ -15,6 +15,7 @@ const lightTheme: Theme = {
   basic: '#ffffff',
   basicHover: '#f9fbfb',
   basicDisabled: Colors.gray50,
+  inactive: Colors.gray200,
   danger: Colors.red500,
   dangerHover: Colors.red600,
   dangerDisabled: Colors.red100,

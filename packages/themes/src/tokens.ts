@@ -15,6 +15,7 @@ const colors = [
   'basic',
   'basicHover',
   'basicDisabled',
+  'inactive',
   'danger',
   'dangerHover',
   'dangerDisabled',
