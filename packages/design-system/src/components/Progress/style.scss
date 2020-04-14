@@ -1,14 +1,13 @@
-@import "../../scss/variables/colors";
+@import "~@livechat/design-system-themes/dist/scss";
 @import "../../scss/variables/transitions";
 
 $base-class: "progress";
 
-.#{$base-class} {
+@mixin shared() {
   &-bar {
     position: relative;
     display: inline-block;
     width: 100%;
-    background-color: #deeefd;
     border-radius: 100px;
     height: 4px;
 
@@ -24,14 +23,9 @@ $base-class: "progress";
       height: 6px;
     }
 
-    &--error {
-      background-color: #f7e4e4;
-    }
-
     &__indicator {
       height: 100%;
       position: relative;
-      background-color: $primary-color;
       border-radius: 100px;
       transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
     }
@@ -57,23 +51,58 @@ $base-class: "progress";
       height: 56px;
     }
 
-    &__bg-line {
-      stroke: #deeefd;
+    &__indicator {
+      transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
+    }
+  }
+}
+
+@mixin themable() {
+  &-bar {
+    background-color: $primary-disabled;
+
+    &--error {
+      background-color: $danger-disabled;
     }
 
     &__indicator {
-      stroke: $primary-color;
-      transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
+      background-color: $primary;
+    }
+  }
+
+  &-circle {
+    &__bg-line {
+      stroke: $primary-disabled;
+    }
+
+    &__indicator {
+      stroke: $primary;
     }
 
     &--error {
       .#{$base-class}-circle__bg-line {
-        stroke: #f7e4e4;
+        stroke: $danger-disabled;
       }
 
       .#{$base-class}-circle__indicator {
         stroke: transparent;
       }
+    }
+  }
+}
+
+.#{$base-class} {
+  @include shared();
+
+  @include lcds-theme() {
+    @include themable();
+  }
+}
+
+.theme--light {
+  .#{$base-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include themable();
     }
   }
 }

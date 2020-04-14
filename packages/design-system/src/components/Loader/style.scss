@@ -1,4 +1,4 @@
-@import '../../scss/variables/colors';
+@import "~@livechat/design-system-themes/dist/scss";
 
 @keyframes rotate {
   from {
@@ -10,9 +10,9 @@
   }
 }
 
-$base-class: 'loader';
+$base-class: "loader";
 
-.#{$base-class} {
+@mixin shared() {
   &-spinner {
     width: 100%;
     height: 100%;
@@ -21,8 +21,6 @@ $base-class: 'loader';
     animation: rotate 1s infinite linear;
     border-width: 3px;
     border-style: solid;
-    border-color: #deeefd;
-    border-top-color: $primary-color;
 
     &--thin {
       border-width: 2px;
@@ -68,7 +66,6 @@ $base-class: 'loader';
     margin: 0 10px;
     opacity: 0.8;
     font-size: 15px;
-    color: #4e5665;
   }
 
   &-wrapper {
@@ -82,6 +79,33 @@ $base-class: 'loader';
     &--hidden {
       opacity: 0;
       visibility: hidden;
+    }
+  }
+}
+
+@mixin themable() {
+  &-spinner {
+    border-color: $primary-disabled;
+    border-top-color: $primary;
+  }
+
+  &-label {
+    color: $text-secondary;
+  }
+}
+
+.#{$base-class} {
+  @include shared();
+
+  @include lcds-theme() {
+    @include themable();
+  }
+}
+
+.theme--light {
+  .#{$base-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include themable();
     }
   }
 }
