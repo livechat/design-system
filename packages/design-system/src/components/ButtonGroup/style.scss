@@ -1,27 +1,14 @@
-@import "../../scss/variables/colors";
+@import "~@livechat/design-system-themes/dist/scss";
 
-.btn-group {
+$base-class: "btn-group";
+
+@mixin shared() {
   display: inline-flex;
   flex-direction: row;
   vertical-align: middle;
 
   .btn {
-    color: $ui-tooltip-color;
     font-weight: 400;
-
-    &.active {
-      border-color: $border-primary-color;
-      background-color: $ui-background-color-hover;
-      text-shadow: 0 0 0.5px black;
-
-      &:hover {
-        background-color: $ui-background-color-hover;
-      }
-    }
-
-    &:hover {
-      background-color: $ui-background-color;
-    }
 
     &:focus,
     &:active {
@@ -37,6 +24,48 @@
       border-right: 0;
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
+    }
+  }
+}
+
+@mixin themable() {
+  .btn {
+    &.active {
+      border-color: $border;
+      background-color: $ui-hover;
+      text-shadow: 0 0 0.5px $text-primary;
+
+      &:hover {
+        background-color: $ui-hover;
+      }
+    }
+
+    &:hover {
+      background-color: $ui;
+    }
+  }
+}
+
+.#{$base-class} {
+  @include shared();
+
+  @include lcds-theme() {
+    .btn {
+      color: $text-primary; // TODO: Move to themable mixin when legacy theme is removed
+    }
+
+    @include themable();
+  }
+}
+
+.theme--light {
+  .#{$base-class} {
+    @include lcds-theme($lcds-theme--light) {
+      .btn {
+        color: $text-secondary;
+      }
+
+      @include themable();
     }
   }
 }
