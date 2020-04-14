@@ -14,8 +14,11 @@ export interface Theme {
   warning: string;
   info: string;
   tip: string;
-  tipInversed: string;
+  tipText: string;
+  tipInverted: string;
+  tipInvertedText: string;
   tipImportant: string;
+  tipImportantText: string;
   textPrimary: string;
   textSecondary: string;
   textTertiary: string;
