@@ -38,7 +38,9 @@ const lightTheme: Theme = {
   border: Colors.gray200,
   borderHover: Colors.gray400,
   selected: Colors.blue400,
-  highlight: Colors.blue100
+  highlight: Colors.blue100,
+  badgePrimary: Colors.red500,
+  badgeSecondary: Colors.gray200
 };
 
 export default lightTheme;

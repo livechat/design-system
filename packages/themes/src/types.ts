@@ -31,6 +31,8 @@ export interface Theme {
   borderHover: string;
   selected: string;
   highlight: string;
+  badgePrimary: string;
+  badgeSecondary: string;
 }
 
 export type Themes = Record<ThemeName, Theme>;

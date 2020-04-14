@@ -37,7 +37,9 @@ const legacyTheme: Theme = {
   border: '#bcc6d0',
   borderHover: '#a0a6ab',
   selected: '#3e7ce4',
-  highlight: '#dae7fd'
+  highlight: '#dae7fd',
+  badgePrimary: '#d64646',
+  badgeSecondary: '#cbd4de'
 };
 
 // const x = {
@@ -83,4 +85,4 @@ const legacyTheme: Theme = {
 
 export default legacyTheme;
 
-// "#4a90e2", datepicker-range-bg: "#dae7fd",  datepicker-selected-day-bg: "#3e7ce4"  progress-bar-background: "deeefd"   
+// "#4a90e2", datepicker-range-bg: "#dae7fd",  datepicker-selected-day-bg: "#3e7ce4"  progress-bar-background: "deeefd"

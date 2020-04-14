@@ -1,12 +1,13 @@
-@import '../../scss/variables/colors';
+@import "~@livechat/design-system-themes/dist/scss";
 
-.badge {
+$base-class: "badge";
+
+@mixin shared() {
   display: inline-block;
   box-sizing: border-box;
   padding: 0 3px;
   height: 18px;
   min-width: 18px;
-
   font-size: 10px;
   font-weight: 600;
   line-height: 18px;
@@ -16,12 +17,30 @@
   & + & {
     margin-left: 4px;
   }
-
-  color: $badge-primary-color;
-  background-color: $badge-primary-bg;
 }
 
-.badge--secondary {
-  color: $badge-secondary-color;
-  background-color: $badge-secondary-bg;
+@mixin themable() {
+  color: $text-on-primary;
+  background-color: $badge-primary;
+
+  &--secondary {
+    color: $text-primary;
+    background-color: $badge-secondary;
+  }
+}
+
+.#{$base-class} {
+  @include shared();
+
+  @include lcds-theme() {
+    @include themable();
+  }
+}
+
+.theme--light {
+  .#{$base-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include themable();
+    }
+  }
 }

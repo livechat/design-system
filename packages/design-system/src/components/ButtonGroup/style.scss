@@ -23,7 +23,8 @@
       background-color: $ui-background-color;
     }
 
-    &:focus, &:active {
+    &:focus,
+    &:active {
       z-index: 1;
     }
 
