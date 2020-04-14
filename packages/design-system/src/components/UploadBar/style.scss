@@ -1,16 +1,49 @@
-@import "../../scss/variables/colors";
+@import '~@livechat/design-system-themes/dist/scss';
 @import "../../scss/variables/transitions";
 @import "../../scss/mixins/button";
 
 $upload-bar: "upload-bar";
 $file-upload-progress: "file-upload-progress";
 
+@mixin upload-bar-themable() {
+  border: solid 1px $divider;
+  background-color: $ui-background;
+
+  &__success-icon {
+    svg {
+      fill: $success;
+    }
+  }
+
+  &__error-icon {
+    svg {
+      fill: $danger;
+    }
+  }
+
+  &__header {
+    color: $text-primary;
+  }
+
+  &__collapse-btn {
+    color: $text-primary;
+    background-color: transparent;
+
+    @include button-transition;
+    @include icon-button-interactive-styles;
+  }
+
+  &--error {
+    .#{$upload-bar}__title {
+      color: $danger;
+    }
+  }
+}
+
 .#{$upload-bar} {
   width: 100%;
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
-  border: solid 1px #dde2e6;
-  background-color: #fff;
   padding: 10px;
   overflow: hidden;
   box-sizing: border-box;
@@ -52,22 +85,9 @@ $file-upload-progress: "file-upload-progress";
     }
   }
 
-  &__success-icon {
-    svg {
-      fill: #21a961;
-    }
-  }
-
-  &__error-icon {
-    svg {
-      fill: $error-color;
-    }
-  }
-
   &__header {
     display: flex;
     width: 100%;
-    color: #424d57;
     font-size: 15px;
     align-items: center;
 
@@ -130,17 +150,28 @@ $file-upload-progress: "file-upload-progress";
     align-items: center;
     flex: 0 1 auto;
     cursor: pointer;
-    color: $font-primary-color;
     border-radius: 4px;
-    background-color: transparent;
+  }
 
-    @include button-transition;
-    @include icon-button-interactive-styles;
+  @include lcds-theme() {
+    @include upload-bar-themable();
+  }
+}
+
+@mixin file-upload-progress-themable() {
+  &__title {
+    color: $text-primary;
   }
 
   &--error {
-    .#{$upload-bar}__title {
-      color: $error-color;
+    .#{$file-upload-progress}__title {
+      color: $danger;
+    }
+  }
+
+  &__success-icon {
+    svg {
+      fill: $success;
     }
   }
 }
@@ -194,7 +225,6 @@ $file-upload-progress: "file-upload-progress";
     font-size: 14px;
     margin-bottom: 2px;
     line-height: 1.3;
-    color: $font-primary-color;
     justify-self: flex-start;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -204,12 +234,6 @@ $file-upload-progress: "file-upload-progress";
   &--with-icon {
     .#{$file-upload-progress}__wrapper {
       width: calc(100% - 26px);
-    }
-  }
-
-  &--error {
-    .#{$file-upload-progress}__title {
-      color: #f4574c;
     }
   }
 
@@ -230,10 +254,24 @@ $file-upload-progress: "file-upload-progress";
     flex: 0 1 auto;
 
     svg {
-      fill: #21a961;
       width: 18px;
       height: 18px;
     }
+  }
+
+  @include lcds-theme() {
+    @include file-upload-progress-themable();
+  }
+}
+
+@mixin common-themable() {
+  &__close,
+  &__retry {
+    color: $text-primary;
+    background-color: transparent;
+
+    @include button-transition;
+    @include icon-button-interactive-styles;
   }
 }
 
@@ -257,12 +295,7 @@ $file-upload-progress: "file-upload-progress";
     justify-self: flex-end;
     align-items: center;
     flex: 0 1 auto;
-    color: $font-primary-color;
     border-radius: 4px;
-    background-color: transparent;
-
-    @include button-transition;
-    @include icon-button-interactive-styles;
 
     svg {
       display: flex;
@@ -270,6 +303,31 @@ $file-upload-progress: "file-upload-progress";
       height: 18px;
       width: 18px;
       cursor: pointer;
+    }
+  }
+
+  @include lcds-theme() {
+    @include common-themable();
+  }
+}
+
+.theme--light {
+  .#{$file-upload-progress} {
+    @include lcds-theme($lcds-theme--light) {
+      @include file-upload-progress-themable();
+    }
+  }
+
+  .#{$upload-bar} {
+    @include lcds-theme($lcds-theme--light) {
+      @include upload-bar-themable();
+    }
+  }
+
+  .#{$file-upload-progress},
+  .#{$upload-bar} {
+    @include lcds-theme($lcds-theme--light) {
+      @include common-themable();
     }
   }
 }
