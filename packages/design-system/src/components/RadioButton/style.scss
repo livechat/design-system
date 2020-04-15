@@ -1,8 +1,8 @@
-@import '../../scss/variables/colors';
+@import '~@livechat/design-system-themes/dist/scss';
 
 $base-class: 'radio';
 
-.#{$base-class} {
+@mixin shared() {
   display: inline-block;
 
   &__label {
@@ -19,8 +19,8 @@ $base-class: 'radio';
     width: 16px;
     height: 16px;
     border-radius: 16px;
-    background-color: #f3f7f9;
-    border: 1px solid #bcc6d0;
+    border-width: 1px;
+    border-style: solid;
     margin-right: 8px;
     transition: all 0.2s ease;
     box-sizing: border-box;
@@ -34,15 +34,10 @@ $base-class: 'radio';
     width: 8px;
     height: 8px;
     border-radius: 8px;
-    background-color: $primary-color;
     transition: all 0.2s ease;
   }
 
   &--selected {
-    .#{$base-class}__circle {
-      border-color: $primary-color;
-    }
-
     .#{$base-class}__inner-circle {
       opacity: 1;
     }
@@ -50,7 +45,6 @@ $base-class: 'radio';
 
   &__text {
     font-size: 15px;
-    color: $font-primary-color;
     line-height: 20px;
     flex: 1 0 auto;
   }
@@ -65,18 +59,12 @@ $base-class: 'radio';
   &--disabled {
     .#{$base-class} {
       &__circle {
-        border-color: $font-tertiary-color;
         opacity: 0.4;
-      }
-
-      &__inner-circle {
-        background-color: $font-tertiary-color;
       }
 
       &__label,
       &__input,
       &__text {
-        color: $font-tertiary-color;
         cursor: not-allowed;
       }
     }
@@ -85,5 +73,60 @@ $base-class: 'radio';
   &__helper {
     cursor: default;
     margin-left: 24px;
+  }
+}
+
+@mixin themable() {
+  &__circle {
+    background-color: $ui;
+    border-color: $border;
+  }
+
+  &__inner-circle {
+    background-color: $primary;
+  }
+
+  &--selected {
+    .#{$base-class}__circle {
+      border-color: $primary;
+    }
+  }
+
+  &__text {
+    color: $text-primary;
+  }
+
+  &--disabled {
+    .#{$base-class} {
+      &__circle {
+        border-color: $text-tertiary;
+      }
+
+      &__inner-circle {
+        background-color: $text-tertiary;
+      }
+
+      &__label,
+      &__input,
+      &__text {
+        color: $text-tertiary;
+      }
+    }
+  }
+}
+
+.#{$base-class} {
+  @include shared();
+
+  @include lcds-theme() {
+    @include themable();
+  }
+}
+
+.theme--light {
+  .#{$base-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include themable();
+    }
   }
 }

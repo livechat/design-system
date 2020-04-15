@@ -1,7 +1,26 @@
-@import '../../scss/variables/colors';
 @import '../../scss/variables/inAppMessage';
+@import '~@livechat/design-system-themes/dist/scss';
 
-.inapp-base {
+$inapp-base-class: 'inapp-base';
+$inapp-class: 'inapp';
+
+@mixin inapp-base-themable() {
+  background-color: $ui-background;
+  color: $text-primary;
+
+  &__overlay {
+    background-color: $overlay;
+  }
+
+  &__close {
+    button {
+      background-color: transparent;
+      color: #fff;
+    }
+  }
+}
+
+.#{$inapp-base-class} {
   position: relative;
   display: flex;
   flex-flow: column wrap;
@@ -10,8 +29,6 @@
   border-radius: 4px;
   box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.3);
   overflow: auto;
-  background-color: #fff;
-  color: $font-primary-color;
   min-height: $inapp-min-height;
   max-height: $inapp-max-height;
   min-width: $inapp-min-width;
@@ -26,14 +43,13 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    background-color: $overlay-background-color;
     z-index: 13000;
 
     &--visible {
       display: flex;
     }
 
-    & div { box-sizing: border-box }
+    & div { box-sizing: border-box; }
   }
 
   &__container {
@@ -81,11 +97,9 @@
       height: 24px;
       padding: 0;
       border: none;
-      background-color: transparent;
       box-shadow: none;
       outline: none;
       cursor: pointer;
-      color: #ffffff;
 
       &:hover {
         opacity: 1;
@@ -135,12 +149,29 @@
       min-height: unset;
     }
   }
+
+  @include lcds-theme() {
+    @include inapp-base-themable();
+  }
 }
 
-.inapp {
+@mixin inapp-themable() {
+  &__header {
+    color: #fff;
+  }
+
+  &__body {
+    color: $text-primary;
+  }
+
+  &__footer {
+    background: $ui-background;
+  }
+}
+
+.#{$inapp-class} {
   &__header {
     width: 100%;
-    color: #fff;
     box-sizing: border-box;
     margin: 0;
     display: flex;
@@ -197,7 +228,6 @@
     flex-grow: 1;
     padding: 32px;
     box-sizing: border-box !important;
-    color: $font-primary-color;
     text-align: center;
 
     & > * {
@@ -218,7 +248,12 @@
       text-align: justify;
     }
 
-    & > h1, & > h2, & > h3, & > h4, & > h5, & > h6 {
+    & > h1,
+    & > h2,
+    & > h3,
+    & > h4,
+    & > h5,
+    & > h6 {
       max-width: $inapp-max-width;
     }
   }
@@ -233,7 +268,6 @@
     box-sizing: border-box !important;
     position: absolute;
     bottom: 0;
-    background: #fff;
 
     &__single_button {
       justify-content: center;
@@ -245,7 +279,7 @@
       }
 
       &:last-of-type {
-        margin: 0 0 0 5px
+        margin: 0 0 0 5px;
       }
     }
 
@@ -253,7 +287,7 @@
       flex-flow: column-reverse nowrap;
 
       & button {
-        &:first-of-type{
+        &:first-of-type {
           margin: 6px auto 0;
         }
 
@@ -265,15 +299,35 @@
   }
 
   @include inapp-media-text {
-    &__body, &__footer {
+    &__body,
+    &__footer {
       max-width: calc(100vw - 10px);
     }
   }
 
   @include inapp-media-mobile-horizontal {
-    &__body, &__footer {
+    &__body,
+    &__footer {
       max-height: calc(100vh - 20px);
       min-height: unset;
+    }
+  }
+
+  @include lcds-theme() {
+    @include inapp-themable();
+  }
+}
+
+.theme--light {
+  .#{$inapp-base-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include inapp-base-themable();
+    }
+  }
+
+  .#{$inapp-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include inapp-themable();
     }
   }
 }

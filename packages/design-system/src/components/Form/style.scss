@@ -1,21 +1,43 @@
-@import '../../scss/variables/colors';
+@import '~@livechat/design-system-themes/dist/scss';
 
-.form {
+$base-class: 'form';
+
+@mixin themable() {
+  &__label {
+    color: $text-primary;
+  }
+
+  &__helper {
+    color: $text-secondary;
+  }
+}
+
+.#{$base-class} {
   &__header,
   &__footer {
     margin-bottom: 32px;
   }
 
   &__label {
-    color: $font-primary-color;
     margin: 0;
   }
 
   &__helper {
-    color: $font-secondary-color;
     margin: 0;
     margin-top: 16px;
     font-size: 15px;
     line-height: 24px;
+  }
+
+  @include lcds-theme() {
+    @include themable();
+  }
+}
+
+.theme--light {
+  .#{$base-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include themable();
+    }
   }
 }

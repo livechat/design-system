@@ -1,19 +1,18 @@
-@import '../../scss/variables/colors';
+@import '~@livechat/design-system-themes/dist/scss';
 
 $base-class: 'multiselect';
 
-.#{$base-class} {
+@mixin shared() {
   position: relative;
   width: inherit;
-  color: $font-primary-color;
   font-size: 15px;
   line-height: 1.2;
 
   &-head {
     position: relative;
-    border: 1px solid $border-primary-color;
+    border-width: 1px;
+    border-style: solid;
     border-radius: 4px;
-    background-color: #fff;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -21,16 +20,13 @@ $base-class: 'multiselect';
     transition: border 0.15s ease-in-out;
 
     &:hover {
-      border-color: $field-hover-border-color;
       transition: border 0.15s ease-in-out;
     }
 
     &--focused {
-      border-color: $primary-color;
       transition: border 0.15s ease-in-out;
 
       &:hover {
-        border-color: $primary-color;
         transition: border 0.15s ease-in-out;
       }
     }
@@ -58,9 +54,7 @@ $base-class: 'multiselect';
   &-head__search {
     display: block;
     margin: 2px 3px;
-    color: $font-primary-color;
     border: none;
-    background-color: transparent;
     box-sizing: border-box;
     outline: none;
     line-height: 1.2;
@@ -68,11 +62,10 @@ $base-class: 'multiselect';
     ::placeholder,
     ::-webkit-input-placeholder,
     ::-moz-placeholder,
+    ::-ms-input-placeholder,
     :-moz-placeholder,
-    :-ms-input-placeholder,
-    ::-ms-input-placeholder {
+    :-ms-input-placeholder {
       opacity: 0.4;
-      color: $font-primary-color;
     }
 
     &:focus,
@@ -81,7 +74,8 @@ $base-class: 'multiselect';
       outline: none;
 
       .#{$base-class}-head {
-        border: 1px solid $primary-color;
+        border-width: 1px;
+        border-style: solid;
       }
     }
 
@@ -95,7 +89,6 @@ $base-class: 'multiselect';
     top: 100%;
     width: 100%;
     margin-top: 4px;
-    background-color: #fff;
     box-sizing: border-box;
     border-radius: 4px;
     box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.2);
@@ -142,8 +135,6 @@ $base-class: 'multiselect';
       }
 
       &--selected {
-        color: $primary-color;
-
         .#{$base-class}-body__checkmark {
           opacity: 1;
           visibility: visible;
@@ -151,12 +142,9 @@ $base-class: 'multiselect';
         }
       }
 
-      &--focused {
-        background-color: $hover-background-color;
-      }
-
       &--toggle {
-        border-bottom: 1px solid $divider-color;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
       }
     }
   }
@@ -165,7 +153,6 @@ $base-class: 'multiselect';
     opacity: 0;
     visibility: hidden;
     transition: all 0.15s ease-in-out;
-    fill: $primary-color;
     margin-left: auto;
     padding-left: 5px;
   }
@@ -197,15 +184,11 @@ $base-class: 'multiselect';
   &__placeholder {
     margin: 3px 3px;
     opacity: 0.4;
-    color: $font-primary-color;
   }
 
   &-head__item {
-    background-color: #59699e;
     min-width: auto;
-    color: #fff;
     position: relative;
-    margin: 2px 3px;
     border-radius: 5px;
     padding: 2px 6px 4px 6px;
     line-height: normal;
@@ -234,10 +217,100 @@ $base-class: 'multiselect';
     align-self: flex-start;
     margin-top: 4px;
   }
+}
+
+@mixin themable() {
+  color: $text-primary;
+
+  &-head {
+    border-color: $border;
+    background-color: $ui-background;
+
+    &:hover {
+      border-color: $border-hover;
+    }
+
+    &--focused {
+      border-color: $primary;
+
+      &:hover {
+        border-color: $primary;
+      }
+    }
+  }
+
+  &-head__search {
+    color: $text-primary;
+    background-color: transparent;
+
+    ::placeholder,
+    ::-webkit-input-placeholder,
+    ::-moz-placeholder,
+    ::-ms-input-placeholder,
+    :-moz-placeholder,
+    :-ms-input-placeholder {
+      color: $text-primary;
+    }
+
+    &:focus,
+    &:active,
+    &:hover {
+      .#{$base-class}-head {
+        border-color: $primary;
+      }
+    }
+  }
+
+  &-body {
+    background-color: $ui-background;
+
+    &__item {
+      &--selected {
+        color: $primary;
+      }
+
+      &--focused {
+        background-color: $ui-hover;
+      }
+
+      &--toggle {
+        border-bottom-color: $divider;
+      }
+    }
+  }
+
+  &-body__checkmark {
+    fill: $primary;
+  }
+
+  &__placeholder {
+    color: $text-primary;
+  }
+
+  &-head__item {
+    background-color: $ui-filter;
+    color: $ui-background;
+  }
 
   &--error {
     .#{$base-class}-head {
-      border-color: $error-color;
+      border-color: $danger;
+    }
+  }
+}
+
+.#{$base-class} {
+  @include shared();
+
+  @include lcds-theme() {
+    @include themable();
+  }
+}
+
+.theme--light {
+  .#{$base-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include themable();
     }
   }
 }

@@ -1,19 +1,18 @@
-@import '../../scss/variables/colors';
+@import '~@livechat/design-system-themes/dist/scss';
 
 $base-class: 'select';
 
-.#{$base-class} {
+@mixin shared() {
   position: relative;
   width: inherit;
-  color: $font-primary-color;
   font-size: 15px;
   line-height: 1.2;
 
   &-head {
+    border-width: 1px;
+    border-style: solid;
     position: relative;
-    border: 1px solid $border-primary-color;
     border-radius: 4px;
-    background-color: #fff;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -22,16 +21,13 @@ $base-class: 'select';
     transition: border 0.15s ease-in-out;
 
     &:hover {
-      border-color: $field-hover-border-color;
       transition: border 0.15s ease-in-out;
     }
 
     &--focused {
-      border-color: $primary-color;
       transition: border 0.15s ease-in-out;
 
       &:hover {
-        border-color: $primary-color;
         transition: border 0.15s ease-in-out;
       }
     }
@@ -63,7 +59,6 @@ $base-class: 'select';
     top: 50%;
     transform: translateY(-50%);
     right: 50px;
-    background-color: #fff;
     opacity: 0;
     visibility: hidden;
     transition: all 0.15s ease-in-out;
@@ -83,20 +78,17 @@ $base-class: 'select';
     margin: 0;
     height: 100%;
     width: 100%;
-    color: $font-primary-color;
     border: none;
-    background-color: transparent;
     box-sizing: border-box;
     outline: none;
 
     ::placeholder,
     ::-webkit-input-placeholder,
     ::-moz-placeholder,
+    ::-ms-input-placeholder,
     :-moz-placeholder,
-    :-ms-input-placeholder,
-    ::-ms-input-placeholder {
+    :-ms-input-placeholder {
       opacity: 0.4;
-      color: $font-primary-color;
     }
 
     &:focus,
@@ -105,7 +97,8 @@ $base-class: 'select';
       outline: none;
 
       .#{$base-class}-head {
-        border: 1px solid $primary-color;
+        border-width: 1px;
+        border-style: solid;
       }
     }
   }
@@ -115,7 +108,6 @@ $base-class: 'select';
     top: 100%;
     width: 100%;
     margin-top: 2px;
-    background-color: #fff;
     box-sizing: border-box;
     border-radius: 4px;
     box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.2);
@@ -170,17 +162,11 @@ $base-class: 'select';
       }
 
       &--selected {
-        color: $primary-color;
-
         .#{$base-class}-body__checkmark {
           opacity: 1;
           visibility: visible;
           transition: all 0.15s ease-in-out;
         }
-      }
-
-      &--focused {
-        background-color: $hover-background-color;
       }
     }
   }
@@ -189,7 +175,6 @@ $base-class: 'select';
     opacity: 0;
     visibility: hidden;
     transition: all 0.15s ease-in-out;
-    fill: $primary-color;
     margin-left: auto;
     padding-left: 5px;
   }
@@ -220,13 +205,99 @@ $base-class: 'select';
 
     &-placeholder {
       opacity: 0.4;
-      color: $font-primary-color;
+    }
+  }
+}
+
+@mixin themable() {
+  color: $text-primary;
+
+  &-head {
+    border-color: $border;
+    background-color: $ui-background;
+
+    &:hover {
+      border-color: $border-hover;
+    }
+
+    &--focused {
+      border-color: $primary;
+
+      &:hover {
+        border-color: $primary;
+      }
+    }
+  }
+
+  &-head__search {
+    background-color: $ui-background;
+  }
+
+  &-head__input {
+    color: $text-primary;
+    background-color: transparent;
+
+    ::placeholder,
+    ::-webkit-input-placeholder,
+    ::-moz-placeholder,
+    ::-ms-input-placeholder,
+    :-moz-placeholder,
+    :-ms-input-placeholder {
+      color: $text-primary;
+    }
+
+    &:focus,
+    &:active,
+    &:hover {
+      .#{$base-class}-head {
+        border-color: $primary;
+      }
+    }
+  }
+
+  &-body {
+    background-color: $ui-background;
+
+    &__item {
+      &--selected {
+        color: $primary;
+      }
+
+      &--focused {
+        background-color: $ui-hover;
+      }
+    }
+  }
+
+  &-body__checkmark {
+    fill: $primary;
+  }
+
+  &-head__item {
+    &-placeholder {
+      color: $text-primary;
     }
   }
 
   &--error {
     .#{$base-class}-head {
-      border-color: $error-color;
+      border-color: $danger;
+    }
+  }
+}
+
+.#{$base-class} {
+  @include shared();
+
+  @include lcds-theme() {
+    @include themable();
+  }
+}
+
+.theme--light {
+  .#{$base-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include themable();
     }
   }
 }

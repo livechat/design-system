@@ -1,50 +1,87 @@
-@import '../../scss/variables/colors';
+@import '~@livechat/design-system-themes/dist/scss';
 
-.input {
-  border: 1px solid $border-primary-color;
-  border-radius: 4px;
-  line-height: 1.2;
-  padding: 8px 10px;
-  font-size: 15px;
-  color: $font-primary-color;
-  box-sizing: border-box;
-  transition: border 0.25s ease-in-out;
-  will-change: border-color;
-  background-clip: padding-box;
- 
+$base-class: 'input';
+
+@mixin themable() {
+  border-color: $border;
+  color: $text-primary;
+
   &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: $font-primary-color;
-    opacity: 0.4; /* Firefox */
+    color: $text-primary;
   }
 
   &::-ms-input-placeholder { /* Microsoft Edge */
-    color: $font-primary-color;
-    opacity: 0.4;
+    color: $text-primary;
   }
 
   &:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: $font-primary-color;
-    opacity: 0.4;
+    color: $text-primary;
   }
 
   &:hover {
-    border-color: $field-hover-border-color;
-    outline: 0;
+    border-color: $border-hover;
   }
 
   &:focus {
-    border-color: $primary-color;
-    outline: 0;
+    border-color: $primary;
   }
 
   &--error,
   &--error:focus {
-    border-color: $error-color;
+    border-color: $danger;
   }
 
   &:disabled {
-    color: $font-primary-color;
+    color: $text-primary;
+  }
+}
+
+.#{$base-class} {
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  line-height: 1.2;
+  padding: 8px 10px;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition: border 0.25s ease-in-out;
+  will-change: border-color;
+  background-clip: padding-box;
+
+  &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    opacity: 0.4; /* Firefox */
+  }
+
+  &::-ms-input-placeholder { /* Microsoft Edge */
+    opacity: 0.4;
+  }
+
+  &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    opacity: 0.4;
+  }
+
+  &:hover {
+    outline: 0;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &:disabled {
     opacity: 0.4;
     cursor: not-allowed;
+  }
+
+  @include lcds-theme() {
+    @include themable();
+  }
+}
+
+.theme--light {
+  .#{$base-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include themable();
+    }
   }
 }

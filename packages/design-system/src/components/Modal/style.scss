@@ -1,6 +1,23 @@
-@import '../../scss/variables/colors';
+@import '~@livechat/design-system-themes/dist/scss';
 
-.modal-base {
+$modal-base-class: 'modal-base';
+$modal-class: 'modal';
+$action-modal-class: 'action-modal';
+
+@mixin modal-base-themable() {
+  background-color: $ui-background;
+  color: $text-primary;
+
+  &__overlay {
+    background-color: $overlay;
+  }
+
+  &__close {
+    background-color: transparent;
+  }
+}
+
+.#{$modal-base-class} {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -10,8 +27,6 @@
   border-radius: 4px;
   box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  background-color: #fff;
-  color: $font-primary-color;
 
   &__overlay {
     position: fixed;
@@ -22,7 +37,6 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    background-color: $overlay-background-color;
     z-index: 13000;
 
     &--visible {
@@ -42,7 +56,6 @@
     height: 24px;
     padding: 0;
     border: none;
-    background-color: transparent;
     box-shadow: none;
     opacity: 0.5;
     outline: none;
@@ -52,14 +65,32 @@
       opacity: 1;
     }
   }
+
+  @include lcds-theme() {
+    @include modal-base-themable();
+  }
 }
 
-.modal {
+@mixin modal-themable() {
+  &__header {
+    color: $text-primary;
+    background-color: $ui-background;
+  }
+
+  &__heading {
+    color: $text-primary;
+  }
+
+  &__body {
+    background-color: $ui;
+    color: $text-primary;
+  }
+}
+
+.#{$modal-class} {
   &__header {
     width: 100%;
     padding: 20px;
-    color: $font-primary-color;
-    background-color: #fff;
     box-sizing: border-box;
   }
 
@@ -67,7 +98,6 @@
     margin: 0;
     padding: 0;
     font-size: 20px;
-    color: $font-primary-color;
     line-height: 1.2;
     font-weight: 600;
     text-align: left;
@@ -82,8 +112,6 @@
     flex-grow: 1;
     padding: 20px;
     box-sizing: border-box;
-    background-color: #f8f8fa;
-    color: $font-primary-color;
   }
 
   &__footer {
@@ -94,9 +122,23 @@
     box-sizing: border-box;
     flex-shrink: 0;
   }
+
+  @include lcds-theme() {
+    @include modal-themable();
+  }
 }
 
-.action-modal {
+@mixin action-modal-themable() {
+  &__heading {
+    color: $text-primary;
+  }
+
+  &__content {
+    color: $text-primary;
+  }
+}
+
+.#{$action-modal-class} {
   padding: 52px 20px;
   box-sizing: border-box;
   justify-content: center;
@@ -106,7 +148,6 @@
     width: 100%;
     font-size: 24px;
     line-height: 1.33;
-    color: $font-primary-color;
     text-align: center;
     font-weight: 600;
     margin: 0;
@@ -118,7 +159,6 @@
     font-size: 15px;
     line-height: 1.33;
     text-align: center;
-    color: $font-primary-color;
   }
 
   &__actions {
@@ -131,5 +171,29 @@
 
   &__icon {
     margin-bottom: 20px;
+  }
+
+  @include lcds-theme() {
+    @include action-modal-themable();
+  }
+}
+
+.theme--light {
+  .#{$modal-base-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include modal-base-themable();
+    }
+  }
+
+  .#{$modal-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include modal-themable();
+    }
+  }
+
+  .#{$action-modal-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include action-modal-themable();
+    }
   }
 }

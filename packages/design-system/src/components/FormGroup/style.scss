@@ -1,6 +1,16 @@
-@import '../../scss/variables/colors';
+@import '~@livechat/design-system-themes/dist/scss';
 
 $base-class: 'form-group';
+
+@mixin themable() {
+  &__helper {
+    color: $text-secondary;
+  }
+
+  &__label {
+    color: $text-primary;
+  }
+}
 
 .#{$base-class} {
   border: none;
@@ -15,7 +25,6 @@ $base-class: 'form-group';
 
   &__helper {
     font-size: 15px;
-    color: $font-secondary-color;
     line-height: 20px;
   }
 
@@ -24,7 +33,18 @@ $base-class: 'form-group';
     font-size: 16px;
     margin-bottom: 4px;
     font-weight: 600;
-    color: $font-primary-color;
     line-height: 20px;
+  }
+
+  @include lcds-theme() {
+    @include themable();
+  }
+}
+
+.theme--light {
+  .#{$base-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include themable();
+    }
   }
 }
