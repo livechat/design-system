@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { ThemeProvider } from '@livechat/design-system'
 import ReactExample from 'react-styleguidist/lib/rsg-components/ReactExample/ReactExample';
-import { clearInterval } from 'timers';
 
 export default class CustomReactExample extends Component {
   state = {
-    themeName: 'legacy'
+    themeName: document.querySelector('html').classList.contains('lc-theme--legacy') ? 'legacy' : 'light'
   }
 
   componentDidMount() {
