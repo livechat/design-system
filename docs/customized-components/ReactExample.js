@@ -9,7 +9,9 @@ export default class CustomReactExample extends Component {
 
   componentDidMount() {
     this.element = document.querySelector('html');
-    this.interval = setInterval(this.checkHtmlElementClassList, 1000);
+    this.interval = setInterval(() => {
+      this.checkHtmlElementClassList();
+    }, 1000);
   }
 
   componentWillUnmount() {
