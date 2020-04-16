@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ThemeProvider } from '@livechat/design-system'
 import ReactExample from 'react-styleguidist/lib/rsg-components/ReactExample/ReactExample';
+import { clearInterval } from 'timers';
 
 export default class CustomReactExample extends Component {
   state = {
@@ -9,14 +10,12 @@ export default class CustomReactExample extends Component {
 
   componentDidMount() {
     this.element = document.querySelector('html');
-    this.interval = setInterval(() => {
-      this.checkHtmlElementClassList();
-    }, 1000);
+    this.interval = setInterval(this.checkHtmlElementClassList, 1000);
   }
 
   componentWillUnmount() {
     if (this.interval) {
-      this.interval.clear();
+      window.clearInterval(this.interval);
     }
   }
 

@@ -26,12 +26,7 @@ function handleColorClick(e) {
 }
 
 export const ColorTokensList = withTheme((props) => {
-
   const theme = props.theme;
-
-  console.log(props.themeName, props.theme)
-
-  console.log('xD')
 
   return <div>
     {Object.keys(theme).map((token) => {
