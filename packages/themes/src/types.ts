@@ -29,6 +29,7 @@ export interface Theme {
   ui: string;
   uiHover: string;
   overlay: string;
+  overlayText: string;
   uiFilter: string;
   divider: string;
   border: string;
@@ -37,6 +38,7 @@ export interface Theme {
   highlight: string;
   badgePrimary: string;
   badgeSecondary: string;
+  shadow: string;
 }
 
 export type Themes = Record<ThemeName, Theme>;

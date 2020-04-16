@@ -7,6 +7,7 @@ $action-modal-class: 'action-modal';
 @mixin modal-base-themable() {
   background-color: $ui-background;
   color: $text-primary;
+  box-shadow: 0 20px 60px 0 rgba($shadow, 0.3);
 
   &__overlay {
     background-color: $overlay;
@@ -25,7 +26,6 @@ $action-modal-class: 'action-modal';
   max-width: 800px;
   min-width: 400px;
   border-radius: 4px;
-  box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.3);
   overflow: hidden;
 
   &__overlay {

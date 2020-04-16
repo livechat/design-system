@@ -91,7 +91,6 @@ $base-class: 'multiselect';
     margin-top: 4px;
     box-sizing: border-box;
     border-radius: 4px;
-    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.2);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -263,6 +262,7 @@ $base-class: 'multiselect';
 
   &-body {
     background-color: $ui-background;
+    box-shadow: 0 2px 20px 0 rgba($shadow, 0.2);
 
     &__item {
       &--selected {

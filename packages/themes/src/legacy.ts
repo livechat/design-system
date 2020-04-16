@@ -36,6 +36,7 @@ const legacyTheme: Theme = {
   ui: '#f3f7f9',
   uiHover: '#e1e9ec',
   overlay: 'rgba(0, 0, 0, 0.5)',
+  overlayText: '#ffffff',
   uiFilter: '#59699e',
   divider: '#dde2e6',
   border: '#bcc6d0',
@@ -43,7 +44,8 @@ const legacyTheme: Theme = {
   selected: '#3e7ce4',
   highlight: '#dae7fd',
   badgePrimary: '#d64646',
-  badgeSecondary: '#cbd4de'
+  badgeSecondary: '#cbd4de',
+  shadow: '#424d57'
 };
 
 // const x = {

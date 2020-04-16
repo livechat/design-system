@@ -3,7 +3,6 @@
 $base-class: 'dropdown';
 
 @mixin shared() {
-  box-shadow: 0 1px 10px 0 rgba(66, 77, 87, 0.3);
   border-radius: 4px;
   min-width: 168px;
   max-width: 336px;
@@ -42,23 +41,14 @@ $base-class: 'dropdown';
       border-width: 6px;
       border-style: solid;
       transform: rotate(-45deg);
-      box-shadow: -5px 5px 10px -2px rgba(66, 77, 87, 0.3);
     }
 
     &[data-placement*='bottom'] {
       top: 0;
-
-      &::after {
-        box-shadow: 3px -3px 10px -2px rgba(66, 77, 87, 0.3);
-      }
     }
 
     &[data-placement*='top'] {
       top: 100%;
-
-      &::after {
-        box-shadow: -3px 3px 10px -2px rgba(66, 77, 87, 0.3);
-      }
     }
 
     &[data-placement*='right'] {
@@ -66,10 +56,6 @@ $base-class: 'dropdown';
       height: 12px;
       margin: 0 -6px;
       width: 6px;
-
-      &::after {
-        box-shadow: -3px -3px 10px -2px rgba(66, 77, 87, 0.3);
-      }
     }
 
     &[data-placement*='left'] {
@@ -77,10 +63,6 @@ $base-class: 'dropdown';
       height: 12px;
       margin: 0 -6px;
       width: 6px;
-
-      &::after {
-        box-shadow: 3px 3px 10px -2px rgba(66, 77, 87, 0.3);
-      }
     }
   }
 
@@ -142,33 +124,39 @@ $base-class: 'dropdown';
 
 @mixin themable() {
   background-color: $ui-background;
+  box-shadow: 0 1px 10px 0 rgba($shadow, 0.3);
 
   &__arrow {
     &::after {
       border-color: $ui-background $ui-background transparent transparent;
+      box-shadow: -5px 5px 10px -2px rgba($shadow, 0.3);
     }
 
     &[data-placement*='bottom'] {
       &::after {
         border-color: $ui-background $ui-background transparent transparent;
+        box-shadow: 3px -3px 10px -2px rgba($shadow, 0.3);
       }
     }
 
     &[data-placement*='top'] {
       &::after {
         border-color: transparent transparent $ui-background $ui-background;
+        box-shadow: -3px 3px 10px -2px rgba($shadow, 0.3);
       }
     }
 
     &[data-placement*='right'] {
       &::after {
         border-color: $ui-background transparent transparent $ui-background;
+        box-shadow: -3px -3px 10px -2px rgba($shadow, 0.3);
       }
     }
 
     &[data-placement*='left'] {
       &::after {
         border-color: transparent $ui-background $ui-background transparent;
+        box-shadow: 3px 3px 10px -2px rgba($shadow, 0.3);
       }
     }
   }

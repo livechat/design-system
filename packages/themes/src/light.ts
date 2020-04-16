@@ -37,6 +37,7 @@ const lightTheme: Theme = {
   ui: Colors.gray40,
   uiHover: Colors.gray50,
   overlay: 'rgba(0, 0, 0, 0.5)',
+  overlayText: '#ffffff',
   uiFilter: Colors.blue800,
   divider: Colors.gray100,
   border: Colors.gray200,
@@ -44,7 +45,8 @@ const lightTheme: Theme = {
   selected: Colors.blue400,
   highlight: Colors.blue100,
   badgePrimary: Colors.red500,
-  badgeSecondary: Colors.gray200
+  badgeSecondary: Colors.gray200,
+  shadow: Colors.gray800
 };
 
 export default lightTheme;

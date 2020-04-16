@@ -5,7 +5,6 @@ $css-base-class: "css-tooltip";
 $guide-base-class: "guide-tooltip";
 
 .#{$popper-base-class} {
-  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2);
   font-size: 14px;
   border-radius: 4px;
   padding: 12px 16px;
@@ -103,7 +102,6 @@ $guide-base-class: "guide-tooltip";
 }
 
 .#{$css-base-class} {
-  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2);
   font-size: 14px;
   font-weight: normal;
   box-sizing: border-box;
@@ -315,6 +313,7 @@ $guide-base-class: "guide-tooltip";
   background-color: $tip;
   border-color: $tip;
   color: $tip-text;
+  box-shadow: 0 4px 15px 0 rgba($shadow, 0.2);
 
   &--invert {
     background-color: $tip-inverted;

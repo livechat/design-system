@@ -8,6 +8,7 @@ $file-upload-progress: "file-upload-progress";
 @mixin upload-bar-themable() {
   border: solid 1px $divider;
   background-color: $ui-background;
+  box-shadow: 0 2px 6px 0 rgba($shadow, 0.2);
 
   &__success-icon {
     svg {
@@ -43,7 +44,6 @@ $file-upload-progress: "file-upload-progress";
 .#{$upload-bar} {
   width: 100%;
   border-radius: 8px;
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
   padding: 10px;
   overflow: hidden;
   box-sizing: border-box;

@@ -7,6 +7,7 @@ $inapp-class: 'inapp';
 @mixin inapp-base-themable() {
   background-color: $ui-background;
   color: $text-primary;
+  box-shadow: 0 20px 60px 0 rgba($shadow, 0.3);
 
   &__overlay {
     background-color: $overlay;
@@ -15,7 +16,7 @@ $inapp-class: 'inapp';
   &__close {
     button {
       background-color: transparent;
-      color: #fff;
+      color: $overlay-text;
     }
   }
 }
@@ -27,7 +28,6 @@ $inapp-class: 'inapp';
   justify-content: center;
   margin: 10px 0;
   border-radius: 4px;
-  box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.3);
   overflow: auto;
   min-height: $inapp-min-height;
   max-height: $inapp-max-height;
@@ -157,7 +157,7 @@ $inapp-class: 'inapp';
 
 @mixin inapp-themable() {
   &__header {
-    color: #fff;
+    color: $overlay-text;
   }
 
   &__body {

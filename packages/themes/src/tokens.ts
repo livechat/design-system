@@ -37,6 +37,7 @@ const colors = [
   'ui',
   'uiHover',
   'overlay',
+  'overlayText',
   'uiFilter',
   'divider',
   'border',
@@ -44,7 +45,8 @@ const colors = [
   'selected',
   'highlight',
   'badgePrimary',
-  'badgeSecondary'
+  'badgeSecondary',
+  'shadow'
 ];
 
 const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
