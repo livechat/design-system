@@ -6,6 +6,7 @@ import ComponentHtmlMarkup from './docs/ComponentHtmlMarkup';
 import { SingleColor } from './docs/colors/single-color';
 import { ColorPalette } from './docs/colors/color-palette';
 import PdfIcon from './docs/PdfIcon';
+import { ColorTokensList } from './docs/themes/color-tokens-list';
 
 // components
 global.Button = Components.Button;
@@ -80,3 +81,6 @@ global.DateFns = DateFns;
 global.SingleColor = SingleColor;
 global.ColorPalette = ColorPalette;
 global.Colors = Colors;
+
+// docs themes
+global.ColorTokensList = ColorTokensList;

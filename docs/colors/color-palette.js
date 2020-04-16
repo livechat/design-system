@@ -2,7 +2,7 @@ import React from 'react';
 import * as PropTypes from 'prop-types';
 import Colors from '@livechat/design-system-colors'; // eslint-disable-line import/no-unresolved
 import styles from './style.scss';
-import { copyToClipboard } from './helpers';
+import { copyToClipboard } from '../helpers';
 import { SingleColor } from './single-color';
 
 function handleColorClick(e) {

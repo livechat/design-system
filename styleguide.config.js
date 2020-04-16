@@ -23,6 +23,10 @@ module.exports = {
       content: './docs/colors/colors.md'
     },
     {
+      name: 'Themes',
+      content: './docs/themes/themes.md'
+    },
+    {
       name: 'Components',
       sectionDepth: 1,
       sections: [
@@ -144,6 +148,7 @@ module.exports = {
   ],
   styleguideComponents: {
     StyleGuideRenderer: path.join(__dirname, 'docs/customized-components/StyleGuideRenderer'),
+    ReactExample: path.join(__dirname, 'docs/customized-components/ReactExample'),
     LogoRenderer: path.join(__dirname, 'docs/customized-components/Logo'),
     TableOfContentsRenderer: path.join(
       __dirname,

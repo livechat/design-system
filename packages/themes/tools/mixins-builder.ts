@@ -9,21 +9,6 @@ const prettierOptions = {
   proseWrap: 'always',
 };
 
-// @mixin lcds-theme(
-//   $theme: $lcds-theme
-// ) {
-//   $interactive-01: map-get($theme, 'interactive-01') !global;
-//   $interactive-02: map-get($theme, 'interactive-02') !global;
-//   $ui-background: map-get($theme, 'ui-background') !global;
-
-//   @content;
-
-//   // Reset to default theme after apply in content
-//   @if $theme != $lcds-theme {
-//     @include lcds-theme();
-//   }
-// }
-
 export function mixinsBuilder(): string {
   const mixinName = 'lcds-theme';
   const defaultThemeName = 'lcds-theme';

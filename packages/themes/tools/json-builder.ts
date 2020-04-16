@@ -9,13 +9,6 @@ const prettierOptions = {
   proseWrap: 'always',
 };
 
-// {
-//   "light": {
-//     "interactive01": "..."
-//   },
-//   ...
-// }
-
 export function jsonBuilder(): string {
   return prettier.format(JSON.stringify(themes), prettierOptions)
 }

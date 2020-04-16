@@ -10,27 +10,6 @@ const prettierOptions = {
   proseWrap: 'always',
 };
 
-// $interactive-01: if(
-//   global-variable-exists('lscs-theme') and
-//     map-has-key($lcds-theme, 'interactive-01'),
-//   map-get($lcds-theme, 'interactive-01'),
-//   #0f62fe
-// );
-
-// $interactive-02: if(
-//   global-variable-exists('lscs-theme') and
-//     map-has-key($lcds-theme, 'interactive-02'),
-//   map-get($lcds-theme, 'interactive-02'),
-//   #393939
-// );
-
-// $ui-background: if(
-//   global-variable-exists('lscs-theme') and
-//     map-has-key($lcds-theme, 'ui-background'),
-//   map-get($lcds-theme, 'ui-background'),
-//   #ffffff
-// );
-
 export function tokensBuilder(): string {
   const defaultTheme = 'legacy';
   const defaultThemeName = 'lcds-theme';
