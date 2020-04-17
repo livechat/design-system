@@ -1,5 +1,13 @@
 All notable changes to this project will be documented in this file.
 
+## v0.7.1
+
+_Release: 2020-04-17_
+
+##### Bug Fixes
+
+- Tabs - fix hover and selected colors
+
 ## v0.7.0
 
 _Release: 2020-02-19_
