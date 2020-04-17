@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0 24px;
+  padding: 0 12px;
   border: none;
   background: none;
   outline: none;
@@ -38,9 +38,10 @@
 
   &--selected {
     font-weight: 700;
+    color: $primary-color;
 
     .tab__description {
-      color: #8e949a;
+      color: $primary-color;
     }
 
     &::before {
@@ -50,11 +51,11 @@
   }
 
   &:hover {
-    color: #000;
+    color: $primary-color;
     text-decoration: none;
 
     .tab__description {
-      color: #000;
+      color: $primary-color;
     }
   }
 }
