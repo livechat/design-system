@@ -1,4 +1,4 @@
-@import '../../scss/variables/colors';
+@import "../../scss/variables/colors";
 
 .btn {
   background-color: #fff;
@@ -111,8 +111,11 @@
 
   &--loading {
     background-color: $loading-btn-basic-color;
-    color: transparent;
     transition: all 0.2s cubic-bezier(0.64, 0, 0.35, 1);
+
+    > * {
+      opacity: 0;
+    }
 
     &.btn--secondary {
       border-color: #d0d2d5;
@@ -130,10 +133,26 @@
   }
 
   .btn__loader {
+    opacity: 1;
     position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    left: 50%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .btn__loader-label {
+    max-width: calc(100% - 25px);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-left: 5px;
+    margin-bottom: 1px;
   }
 
   &__icon {
