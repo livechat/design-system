@@ -179,6 +179,47 @@ Button expanded to the full width to fill the parent container (max-width: 320px
 </ComponentHtmlMarkup>
 ```
 
+### Loading with label
+
+```js
+  initialState = { loading: true };
+
+  toggleLoading = () => {
+    setState({
+      loading: !state.loading
+    });
+  }
+
+  <div>
+    <div style={{marginBottom: '10px'}}>
+      <Button primary onClick={toggleLoading}>Turn {state.loading ? 'off' : 'on'} loading</Button>
+    </div>
+    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+      <Button loading={state.loading} loaderLabel="Processing">Loading Button</Button>
+      <Button loading={state.loading} loaderLabel="Processing" secondary>Loading Button</Button>
+      <Button loading={state.loading} loaderLabel="Processing" destructive>Loading Button</Button>
+      <Button loading={state.loading} loaderLabel="Processing" primary>Loading Button</Button>
+    </div>
+  </div>
+```
+
+```js noeditor
+<ComponentHtmlMarkup>
+  <div>
+    <Button loading>Loading Button</Button>
+    <Button loading secondary>
+      Loading Button
+    </Button>
+    <Button loading destructive>
+      Loading Button
+    </Button>
+    <Button loading primary>
+      Loading Button
+    </Button>
+  </div>
+</ComponentHtmlMarkup>
+```
+
 ### Best practices
 
 - Prioritize most important action; don’t use more than 1 primary button per screen.
