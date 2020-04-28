@@ -73,9 +73,9 @@ const Button = React.forwardRef((props, ref) => {
         <div className={styles[`${baseClass}__loader`]}>
           <Loader size="small" />
           {loaderLabel && (
-            <span className={styles[`${baseClass}__loader-label`]}>
+            <div className={styles[`${baseClass}__loader-label`]}>
               {loaderLabel}
-            </span>
+            </div>
           )}
         </div>
       )}
