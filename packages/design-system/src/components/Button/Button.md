@@ -158,6 +158,7 @@ Button expanded to the full width to fill the parent container (max-width: 320px
       <Button loading={state.loading} secondary>Loading Button</Button>
       <Button loading={state.loading} destructive>Loading Button</Button>
       <Button loading={state.loading} primary>Loading Button</Button>
+      <Button loading={state.loading} loaderLabel="Processing">Loading Button</Button>
     </div>
   </div>
 ```
@@ -173,47 +174,6 @@ Button expanded to the full width to fill the parent container (max-width: 320px
       Loading Button
     </Button>
     <Button loading primary>
-      Loading Button
-    </Button>
-  </div>
-</ComponentHtmlMarkup>
-```
-
-### Loading with label
-
-```js
-  initialState = { loading: true };
-
-  toggleLoading = () => {
-    setState({
-      loading: !state.loading
-    });
-  }
-
-  <div>
-    <div style={{marginBottom: '10px'}}>
-      <Button primary onClick={toggleLoading}>Turn {state.loading ? 'off' : 'on'} loading</Button>
-    </div>
-    <div style={{display: 'flex', justifyContent: 'space-between'}}>
-      <Button loading={state.loading} loaderLabel="Processing">Loading Button</Button>
-      <Button loading={state.loading} loaderLabel="Processing" secondary>Loading Button</Button>
-      <Button loading={state.loading} loaderLabel="Processing" destructive>Loading Button</Button>
-      <Button loading={state.loading} loaderLabel="Processing" primary>Loading Button</Button>
-    </div>
-  </div>
-```
-
-```js noeditor
-<ComponentHtmlMarkup>
-  <div>
-    <Button loading loaderLabel="Processing">Loading Button</Button>
-    <Button loading loaderLabel="Processing" secondary>
-      Loading Button
-    </Button>
-    <Button loading loaderLabel="Processing" destructive>
-      Loading Button
-    </Button>
-    <Button loading loaderLabel="Processing" primary>
       Loading Button
     </Button>
   </div>
