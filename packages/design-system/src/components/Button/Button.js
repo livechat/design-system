@@ -75,7 +75,6 @@ const Button = React.forwardRef((props, ref) => {
           label={loaderLabel}
           className={styles[`${baseClass}__loader`]}
           labelClassName={styles[`${baseClass}__loader-label`]}
-          spinnerWrapperClassName={styles[`${baseClass}__loader-spinner`]}
         />
       )}
       {icon && <i className={styles[`${baseClass}__icon`]}>{icon}</i>}
