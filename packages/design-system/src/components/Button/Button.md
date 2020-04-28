@@ -176,6 +176,9 @@ Button expanded to the full width to fill the parent container (max-width: 320px
     <Button loading primary>
       Loading Button
     </Button>
+    <Button loading loaderLabel="Processing">
+      Loading Button
+    </Button>
   </div>
 </ComponentHtmlMarkup>
 ```
