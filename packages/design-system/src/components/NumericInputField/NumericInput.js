@@ -138,6 +138,7 @@ class NumericInput extends React.PureComponent {
       onChange,
       noControls,
       value,
+      width,
       disabled,
       style,
       ...restProps
