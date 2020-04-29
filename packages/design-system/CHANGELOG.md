@@ -1,5 +1,13 @@
 All notable changes to this project will be documented in this file.
 
+## v0.8.0
+
+_Release: 2020-04-29_
+
+##### New Features
+
+- Button - adding optional loaderLabel property (#179)
+
 ## v0.7.2
 
 _Release: 2020-04-29_
