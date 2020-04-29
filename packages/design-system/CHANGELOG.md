@@ -1,5 +1,13 @@
 All notable changes to this project will be documented in this file.
 
+## v0.7.2
+
+_Release: 2020-04-29_
+
+##### Bug Fixes
+
+- CssTooltip - fixing `onClose` property type (#178)
+
 ## v0.7.1
 
 _Release: 2020-04-17_
