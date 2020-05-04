@@ -15,6 +15,7 @@ export const Button = props => {
     destructive,
     disabled,
     loading,
+    loaderLabel,
     icon,
     size,
     fullWidth,
@@ -70,10 +71,15 @@ export const Button = props => {
       aria-expanded={ariaExpanded}
     >
       {loading && (
-        <Loader size="small" className={styles[`${baseClass}__loader`]} />
+        <Loader
+          size="small"
+          label={loaderLabel}
+          className={styles[`${baseClass}__loader`]}
+          labelClassName={styles[`${baseClass}__loader-label`]}
+        />
       )}
       {icon && <i className={styles[`${baseClass}__icon`]}>{icon}</i>}
-      {children}
+      {children && <div>{children}</div>}
     </button>
   );
 };
@@ -100,6 +106,7 @@ Button.propTypes = {
   fullWidth: PropTypes.bool,
   icon: PropTypes.node,
   loading: PropTypes.bool,
+  loaderLabel: PropTypes.node,
   onClick: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,

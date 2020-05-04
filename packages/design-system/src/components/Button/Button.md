@@ -158,6 +158,7 @@ Button expanded to the full width to fill the parent container (max-width: 320px
       <Button loading={state.loading} secondary>Loading Button</Button>
       <Button loading={state.loading} destructive>Loading Button</Button>
       <Button loading={state.loading} primary>Loading Button</Button>
+      <Button loading={state.loading} loaderLabel="Processing">Loading Button</Button>
     </div>
   </div>
 ```
@@ -173,6 +174,9 @@ Button expanded to the full width to fill the parent container (max-width: 320px
       Loading Button
     </Button>
     <Button loading primary>
+      Loading Button
+    </Button>
+    <Button loading loaderLabel="Processing">
       Loading Button
     </Button>
   </div>

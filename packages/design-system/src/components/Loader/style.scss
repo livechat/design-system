@@ -37,6 +37,7 @@ $base-class: "loader";
     &-wrapper {
       opacity: 1;
       visibility: visible;
+      flex-shrink: 0;
       width: 36px;
       height: 36px;
 
