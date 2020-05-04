@@ -61,8 +61,9 @@ $base-class: "btn";
     transition: all 0.2s cubic-bezier(0.64, 0, 0.35, 1);
 
     > * {
+      transition: all 0.2s cubic-bezier(0.64, 0, 0.35, 1);
       opacity: 0;
-    } 
+    }
   }
 
   &__loader {
@@ -163,7 +164,7 @@ $base-class: "btn";
   }
 
   &--loading {
-    background-color: $basic-disabled;
+    background-color: $basic;
     color: transparent;
 
     &.btn--secondary {
