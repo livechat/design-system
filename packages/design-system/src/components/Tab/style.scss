@@ -74,12 +74,7 @@ $base-class-multiple: 'tabs';
   }
 
   &:hover {
-    color: $primary-color;
     text-decoration: none;
-
-    .tab__description {
-      color: $primary-color;
-    }
   }
 
   @include lcds-theme() {
