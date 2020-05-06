@@ -8,6 +8,7 @@ export interface IButtonProps
   primary?: boolean;
   destructive?: boolean;
   loading?: boolean;
+  loaderLabel?: boolean;
   size?: ButtonSize;
   outline?: boolean;
   fullWidth?: boolean;
