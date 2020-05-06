@@ -2,7 +2,7 @@ All notable changes to this project will be documented in this file.
 
 ## v0.8.1
 
-_Release: 2020-04-29_
+_Release: 2020-05-06_
 
 ##### Bug Fixes
 
