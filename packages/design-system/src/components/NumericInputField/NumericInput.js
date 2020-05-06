@@ -38,14 +38,14 @@ class NumericInput extends React.PureComponent {
   };
 
   getComponentStyles = () => {
-    const componentStyles = {
-      ...(this.props.style || {})
-    };
     if (this.props.width) {
-      componentStyles.width = this.props.width;
+      return {
+        ...(this.props.style || {}),
+        width: this.props.width
+      }
     }
 
-    return componentStyles;
+    return this.props.style;
   };
 
   addKeyboardEventListeners = () => {
@@ -138,6 +138,7 @@ class NumericInput extends React.PureComponent {
       onChange,
       noControls,
       value,
+      width,
       disabled,
       style,
       ...restProps
@@ -204,7 +205,14 @@ NumericInput.propTypes = {
   max: PropTypes.number,
   min: PropTypes.number,
   disabled: PropTypes.bool,
+  /**
+   * When equal `true` the up and down arrows won't be displayed
+   */
   noControls: PropTypes.bool,
+  style: PropTypes.object,
+  /**
+   * Static value of input width i.e. "120px" or "100%"  
+   */
   width: PropTypes.string,
   /**
    * It's called with string value: '', '-' or '{number}'

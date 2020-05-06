@@ -143,7 +143,7 @@ export interface INumericInputProps {
   max?: number;
   min?: number;
   noControls?: boolean;
-  width?: boolean;
+  width?: string;
   onChange(value: string): void;
 }
 
