@@ -16,6 +16,7 @@ const buttonStyle = {
   {state.isOpen && (
     <ActionModal
       onClose={handleModalClose}
+      style={{ width: "410px" }}
       heading="Danger! Danger!"
       actions={
         <React.Fragment>
@@ -39,10 +40,8 @@ const buttonStyle = {
       }
       icon={<AlertCircleIcon height={54} width={54} fill="#424d57" />}
     >
-      <div style={{ maxWidth: "300px" }}>
-        You’re about to do something that cannot be undone. Are you sure you
-        want to continue?
-      </div>
+      You’re about to do something that cannot be undone. Are you sure you want
+      to continue?
     </ActionModal>
   )}
   <Button onClick={handleModalOpen}>Open modal</Button>
@@ -58,7 +57,7 @@ const buttonStyle = {
 <ComponentHtmlMarkup>
   <ActionModal
     onClose={() => {}}
-    style={{ width: "500px", height: "350px" }}
+    style={{ width: "410px" }}
     heading="Danger! Danger!"
     actions={
       <React.Fragment>
