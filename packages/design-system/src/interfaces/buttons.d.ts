@@ -8,7 +8,7 @@ export interface IButtonProps
   primary?: boolean;
   destructive?: boolean;
   loading?: boolean;
-  loaderLabel?: boolean;
+  loaderLabel?: React.ReactNode;
   size?: ButtonSize;
   outline?: boolean;
   fullWidth?: boolean;
