@@ -1,5 +1,14 @@
 All notable changes to this project will be documented in this file.
 
+## v0.8.1
+
+_Release: 2020-04-29_
+
+##### Bug Fixes
+
+- Fixing NumericInput width property type (#182)
+- Correct text primary color (#183)
+
 ## v0.8.0
 
 _Release: 2020-04-29_
