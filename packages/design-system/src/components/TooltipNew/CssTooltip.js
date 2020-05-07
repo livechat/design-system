@@ -72,7 +72,7 @@ const CssTooltip = props => {
           top: arrowOffsetTop,
           bottom: arrowOffsetBottom,
           left: arrowOffsetLeft,
-          right: arrowOffsetRight
+          right: arrowOffsetRight,
         }}
         data-placement={placement}
       />

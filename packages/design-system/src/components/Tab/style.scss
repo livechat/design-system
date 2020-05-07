@@ -1,6 +1,37 @@
-@import '../../scss/variables/colors';
+@import '~@livechat/design-system-themes/dist/scss';
 
-.tab {
+$base-class-single: 'tab';
+$base-class-multiple: 'tabs';
+
+@mixin single-themable() {
+  color: $text-primary;
+
+  &__description {
+    color: $text-tertiary;
+  }
+
+  &::before {
+    background-color: $primary;
+  }
+
+  &--selected {
+    color: $primary;
+
+    .tab__description {
+      color: $primary;
+    }
+  }
+
+  &:hover {
+    color: $primary;
+
+    .tab__description {
+      color: $primary;
+    }
+  }
+}
+
+.#{$base-class-single} {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -9,7 +40,6 @@
   border: none;
   background: none;
   outline: none;
-  color: $font-primary-color;
   cursor: pointer;
   transition: color 0.25s;
   margin: 0 8px 11px 8px;
@@ -18,7 +48,6 @@
 
   &__description {
     display: inline-block;
-    color: #8e949a;
     opacity: 0.6;
     padding-left: 3px;
     transition: color 0.25s;
@@ -32,17 +61,11 @@
     z-index: 1;
     display: block;
     content: '';
-    background-color: $primary-color;
     height: 0;
   }
 
   &--selected {
     font-weight: 700;
-    color: $primary-color;
-
-    .tab__description {
-      color: $primary-color;
-    }
 
     &::before {
       height: 4px;
@@ -51,18 +74,20 @@
   }
 
   &:hover {
-    color: $primary-color;
     text-decoration: none;
+  }
 
-    .tab__description {
-      color: $primary-color;
-    }
+  @include lcds-theme() {
+    @include single-themable();
   }
 }
 
-.tabs {
+@mixin multiple-themable() {
+  border-bottom: 1px solid $divider;
+}
+
+.#{$base-class-multiple} {
   position: relative;
-  border-bottom: 1px solid $divider-color;
 
   &__list {
     position: relative;
@@ -70,5 +95,23 @@
     flex-direction: row;
     font-size: 14px;
     margin: 0 -8px;
+  }
+
+  @include lcds-theme() {
+    @include multiple-themable();
+  }
+}
+
+.theme--light {
+  .#{$base-class-single} {
+    @include lcds-theme($lcds-theme--light) {
+      @include single-themable();
+    }
+  }
+
+  .#{$base-class-multiple} {
+    @include lcds-theme($lcds-theme--light) {
+      @include multiple-themable();
+    }
   }
 }

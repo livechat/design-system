@@ -1,11 +1,10 @@
-@import '../../scss/variables/colors';
+@import "~@livechat/design-system-themes/dist/scss";
 
-$base-class: 'card';
+$base-class: "card";
 
-.#{$base-class} {
-  background-color: #fff;
-  color: $font-primary-color;
-  border: solid 1px $divider-color;
+@mixin shared() {
+  border-style: solid;
+  border-width: 1px;
   border-radius: 8px;
   margin-top: 8px;
   padding: 18px;
@@ -22,7 +21,6 @@ $base-class: 'card';
   &__text {
     font-size: 18px;
     line-height: 24px;
-    color: $ui-tooltip-color;
     font-weight: 600;
     white-space: nowrap;
     overflow: hidden;
@@ -37,4 +35,30 @@ $base-class: 'card';
     border-radius: 4px;
     display: inline-block;
   }
-};
+}
+
+@mixin themable() {
+  background-color: $ui-background;
+  color: $text-primary;
+  border-color: $divider;
+
+  &__text {
+    color: $text-primary;
+  }
+}
+
+.#{$base-class} {
+  @include shared();
+
+  @include lcds-theme() {
+    @include themable();
+  }
+}
+
+.theme--light {
+  .#{$base-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include themable();
+    }
+  }
+}

@@ -86,7 +86,7 @@ const config = {
   },
   resolve: {
     alias: lernaAliases(),
-    extensions: ['.ts', '.tsx', '.d.ts', '.js', '.json']
+    extensions: ['.ts', '.tsx', '.d.ts', '.js', '.json', '.scss']
   }
 };
 

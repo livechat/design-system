@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled'; // eslint-disable-line import/no-unresolved
-import { InputField } from '@livechat/design-system';
+import { InputField, withTheme } from '@livechat/design-system';
 
 const styles = ({ fontFamily }) => ({
   root: {
@@ -21,11 +21,41 @@ const styles = ({ fontFamily }) => ({
   }
 });
 
-export function Menu({ classes, children, searchTerm, onSearchTermChange }) {
+const themes = [
+  {key: 'light', props: {name: 'light', value: 'light'}},
+  {key: 'legacy', props: {name: 'legacy', value: 'legacy'}}
+];
+
+const getItemBody = props => {
+  if (!props) {
+    return null;
+  }
+  return <div id={props.value}>{props.name}</div>;
+};
+
+const getSelectedItemBody = props => {
+  return <div id={props.value}>{props.name}</div>;
+};
+
+export function Menu({ classes, children, searchTerm, onSearchTermChange, themeName, onThemeChange }) {
   return (
     <div>
       <div className={classes.root}>
         <nav>
+          <div style={{ width: '100%', padding: '5px 5px 0', boxSizing: 'border-box' }}>
+            <Select
+              id='theme-select'
+              items={themes}
+              className="theme-select"
+              onItemSelect={theme => onThemeChange(theme)}
+              getItemBody={getItemBody}
+              search={false}
+              required={true}
+              placeholder='Select theme'
+              getSelectedItemBody={getSelectedItemBody}
+              selected={themeName}
+            />
+          </div>
           <div className={classes.search}>
             <InputField
               id="menu-filter"
@@ -52,4 +82,4 @@ Menu.propTypes = {
   onSearchTermChange: PropTypes.func.isRequired
 };
 
-export default Styled(styles)(Menu);
+export default Styled(styles)(withTheme(Menu));

@@ -16,6 +16,13 @@ export {
 } from './NotificationSystem';
 
 export {
+  ThemeProvider,
+  ThemeConsumer,
+  ThemeContext,
+  withTheme
+} from './ThemeProvider';
+
+export {
   ModalBase,
   ModalPortal,
   ActionModal,

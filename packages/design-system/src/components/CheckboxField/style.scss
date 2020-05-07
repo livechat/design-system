@@ -1,8 +1,8 @@
-@import '../../scss/variables/colors';
+@import '~@livechat/design-system-themes/dist/scss';
 
 $base-class: 'checkbox';
 
-.#{$base-class} {
+@mixin shared() {
   display: inline-block;
 
   &__label {
@@ -19,8 +19,8 @@ $base-class: 'checkbox';
     height: 16px;
     margin-top: 2px;
     border-radius: 4px;
-    background-color: #f3f7f9;
-    border: 1px solid #bcc6d0;
+    border-width: 1px;
+    border-style: solid;
     margin-right: 8px;
     transition: all 0.2s ease;
     box-sizing: border-box;
@@ -33,17 +33,11 @@ $base-class: 'checkbox';
     left: 2px;
     width: 10px;
     height: 10px;
-    fill: #fff;
     transition: all 0.2s ease;
     pointer-events: none;
   }
 
   &--selected {
-    .#{$base-class}__square {
-      background-color: $primary-color;
-      border-color: $primary-color;
-    }
-
     .#{$base-class}__checkmark {
       opacity: 1;
     }
@@ -53,7 +47,6 @@ $base-class: 'checkbox';
     font-size: 15px;
     line-height: 20px;
     flex: 1 0 auto;
-    color: $font-primary-color;
   }
 
   &__input {
@@ -62,9 +55,6 @@ $base-class: 'checkbox';
     display: none;
 
     &:checked + .#{$base-class}__square {
-      background-color: $primary-color;
-      border-color: $primary-color;
-
       .#{$base-class}__checkmark {
         opacity: 1;
       }
@@ -75,14 +65,11 @@ $base-class: 'checkbox';
     .#{$base-class} {
       &__square {
         opacity: 0.4;
-        border-color: $font-tertiary-color;
-        background-color: $font-tertiary-color;
       }
 
       &__label,
       &__input,
       &__text {
-        color: $font-tertiary-color;
         cursor: not-allowed;
       }
     }
@@ -91,5 +78,65 @@ $base-class: 'checkbox';
   &__helper {
     cursor: default;
     margin-left: 24px;
+  }
+}
+
+@mixin themable() {
+  &__square {
+    background-color: $ui;
+    border-color: $border;
+  }
+
+  &__checkmark {
+    fill: #fff;
+  }
+
+  &--selected {
+    .#{$base-class}__square {
+      background-color: $primary;
+      border-color: $primary;
+    }
+  }
+
+  &__text {
+    color: $text-primary;
+  }
+
+  &__input {
+    &:checked + .#{$base-class}__square {
+      background-color: $primary;
+      border-color: $primary;
+    }
+  }
+
+  &--disabled {
+    .#{$base-class} {
+      &__square {
+        border-color: $text-tertiary;
+        background-color: $text-tertiary;
+      }
+
+      &__label,
+      &__input,
+      &__text {
+        color: $text-tertiary;
+      }
+    }
+  }
+}
+
+.#{$base-class} {
+  @include shared();
+
+  @include lcds-theme() {
+    @include themable();
+  }
+}
+
+.theme--light {
+  .#{$base-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include themable();
+    }
   }
 }

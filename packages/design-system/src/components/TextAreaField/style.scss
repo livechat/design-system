@@ -1,51 +1,90 @@
-@import '../../scss/variables/colors';
+@import '~@livechat/design-system-themes/dist/scss';
 
-.textarea {
+$base-class: 'textarea';
+
+@mixin shared() {
   resize: none;
-  border: 1px solid $border-primary-color;
   border-radius: 4px;
   line-height: 20px;
   padding: 8px 10px;
   font-size: 15px;
-  color: $font-primary-color;
   box-sizing: border-box;
   transition: border 0.25s ease-in-out;
   will-change: border-color;
   background-clip: padding-box;
 
   &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: $font-primary-color;
     opacity: 0.4; /* Firefox */
   }
 
   &::-ms-input-placeholder { /* Microsoft Edge */
-    color: $font-primary-color;
     opacity: 0.4;
   }
 
   &:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: $font-primary-color;
     opacity: 0.4;
   }
 
   &:focus {
-    border-color: $primary-color;
     outline: 0;
   }
 
   &:hover {
-    border-color: $field-hover-border-color;
     outline: 0;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+}
+
+@mixin themable() {
+  border: 1px solid $border;
+  color: $text-primary;
+
+  &::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: $text-primary;
+  }
+
+  &::-ms-input-placeholder { /* Microsoft Edge */
+    color: $text-primary;
+  }
+
+  &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: $text-primary;
+  }
+
+  &:focus {
+    border-color: $primary;
+  }
+
+  &:hover {
+    border-color: $border-hover;
   }
 
   &--error,
   &--error:focus {
-    border-color: $error-color;
+    border-color: $danger;
   }
 
   &:disabled {
-    color: $font-primary-color;
-    opacity: 0.4;
-    cursor: not-allowed;
+    color: $text-primary;
+  }
+}
+
+.#{$base-class} {
+  @include shared();
+
+  @include lcds-theme() {
+    @include themable();
+  }
+}
+
+.theme--light {
+  .#{$base-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include themable();
+    }
   }
 }

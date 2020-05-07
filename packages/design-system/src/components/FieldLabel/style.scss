@@ -1,9 +1,26 @@
-@import '../../scss/variables/colors';
+@import '~@livechat/design-system-themes/dist/scss';
 
-.field-label {
+$base-class: 'field-label';
+
+@mixin themable() {
+  color: $text-primary;
+}
+
+.#{$base-class} {
   font-size: 14px;
-  color: $font-primary-color;
   display: block;
   line-height: 20px;
   margin-bottom: 4px;
+
+  @include lcds-theme() {
+    @include themable();
+  }
+}
+
+.theme--light {
+  .#{$base-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include themable();
+    }
+  }
 }

@@ -1,11 +1,28 @@
-@import '../../scss/variables/colors';
+@import '~@livechat/design-system-themes/dist/scss';
 
-.field-description {
+$base-class: 'field-description';
+
+@mixin themable() {
+  color: $text-secondary;
+}
+
+.#{$base-class} {
   font-size: 13px;
   font-weight: 400;
   line-height: 16px;
-  color: $font-secondary-color;
   display: block;
   margin: 0;
   margin-top: 4px;
+
+  @include lcds-theme() {
+    @include themable();
+  }
+}
+
+.theme--light {
+  .#{$base-class} {
+    @include lcds-theme($lcds-theme--light) {
+      @include themable();
+    }
+  }
 }

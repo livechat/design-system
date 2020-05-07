@@ -71,6 +71,8 @@ const Toast = props => {
 };
 
 Toast.propTypes = {
+  id: PropTypes.string,
+  className: PropTypes.string,
   children: PropTypes.node.isRequired,
   variant: PropTypes.oneOf(VARIANTS),
   onClose: PropTypes.func,

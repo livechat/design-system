@@ -38,8 +38,8 @@ const InAppMessageFooter = props => {
 InAppMessageFooter.propTypes = {
   className: PropTypes.string,
   buttons: PropTypes.shape({
-    cta: PropTypes.shape({ ...Button.propTypes.isRequired }).isRequired,
-    remind: PropTypes.shape({ ...Button.propTypes })
+    cta: PropTypes.shape(Button.propTypes).isRequired,
+    remind: PropTypes.shape(Button.propTypes)
   })
 };
 

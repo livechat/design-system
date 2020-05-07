@@ -8,7 +8,7 @@ import { Loader } from '../Loader';
 const cx = classNames.bind(styles);
 const acceptedSizes = ['large', 'compact'];
 
-const Button = React.forwardRef((props, ref) => {
+export const Button = props => {
   const {
     children,
     primary,
@@ -26,6 +26,7 @@ const Button = React.forwardRef((props, ref) => {
     ariaExpanded,
     className,
     type: htmlType,
+    forwardedRef,
     ...buttonProps
   } = props;
 
@@ -59,7 +60,7 @@ const Button = React.forwardRef((props, ref) => {
   return (
     <button
       {...buttonProps}
-      ref={ref}
+      ref={forwardedRef}
       className={mergedClassNames}
       type={type}
       disabled={isDisabled}
@@ -81,7 +82,7 @@ const Button = React.forwardRef((props, ref) => {
       {children && <div>{children}</div>}
     </button>
   );
-});
+};
 
 Button.propTypes = {
   accessibilityLabel: PropTypes.string,
@@ -121,4 +122,11 @@ Button.propTypes = {
   type: PropTypes.string
 };
 
-export default Button;
+const ButtonWithRef = React.forwardRef((props, ref) => (
+  <Button {...props} forwardedRef={ref} />
+));
+
+ButtonWithRef.propTypes = Button.propTypes;
+ButtonWithRef.displayName = 'Button';
+
+export default ButtonWithRef;
