@@ -1,0 +1,182 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Banner should render Banner with close button 1`] = `
+<div
+  className="banner--close banner--content--small banner--content banner--text--small banner--wrapper--info banner--wrapper banner"
+>
+  <CloseIcon
+    className="banner--icon-close"
+    data-test="banner-close"
+    fill="#424d57"
+  />
+  <div
+    className="banner--content--small"
+  >
+    <InformationOutlineIcon
+      className="banner-icon"
+      fill="#4384f5"
+      height="20px"
+      width="20px"
+    />
+    <p
+      className="banner--text--small"
+    >
+      Example text
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Banner should render error small Banner 1`] = `
+<div
+  className="banner--close banner--content--small banner--content banner--text--small banner--wrapper--error banner--wrapper banner"
+>
+  <div
+    className="banner--content--small"
+  >
+    <BlockHelperIcon
+      className="banner-icon"
+      fill="#d64646"
+      height="20px"
+      width="20px"
+    />
+    <p
+      className="banner--text--small"
+    >
+      Example text
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Banner should render info medium Banner 1`] = `
+<div
+  className="banner--close banner--content--medium banner--content banner--text--medium banner--wrapper--info banner--wrapper banner"
+>
+  <div
+    className="banner--content--medium"
+  >
+    <InformationOutlineIcon
+      className="banner-icon"
+      fill="#4384f5"
+      height="20px"
+      width="20px"
+    />
+    <p
+      className="banner--text--medium"
+    >
+      Example text
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Banner should render large Banner 1`] = `
+<div
+  className="banner--close banner--content--large banner--content banner--text--large banner--wrapper--info banner--wrapper banner"
+>
+  <div
+    className="banner--content--large"
+  >
+    <InformationOutlineIcon
+      className="banner-icon"
+      fill="#4384f5"
+      height="20px"
+      width="20px"
+    />
+    <p
+      className="banner--text--large"
+    >
+      Example text
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Banner should render medium Banner 1`] = `
+<div
+  className="banner--close banner--content--medium banner--content banner--text--medium banner--wrapper--info banner--wrapper banner"
+>
+  <div
+    className="banner--content--medium"
+  >
+    <InformationOutlineIcon
+      className="banner-icon"
+      fill="#4384f5"
+      height="20px"
+      width="20px"
+    />
+    <p
+      className="banner--text--medium"
+    >
+      Example text
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Banner should render small info Banner 1`] = `
+<div
+  className="banner--close banner--content--small banner--content banner--text--small banner--wrapper--info banner--wrapper banner"
+>
+  <div
+    className="banner--content--small"
+  >
+    <InformationOutlineIcon
+      className="banner-icon"
+      fill="#4384f5"
+      height="20px"
+      width="20px"
+    />
+    <p
+      className="banner--text--small"
+    >
+      Example text
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Banner should render success large Banner 1`] = `
+<div
+  className="banner--close banner--content--large banner--content banner--text--large banner--wrapper--success banner--wrapper banner"
+>
+  <div
+    className="banner--content--large"
+  >
+    <CheckCircleIcon
+      className="banner-icon"
+      fill="#38c776"
+      height="20px"
+      width="20px"
+    />
+    <p
+      className="banner--text--large"
+    >
+      Example text
+    </p>
+  </div>
+</div>
+`;
+
+exports[`Banner should render warning large Banner 1`] = `
+<div
+  className="banner--close banner--content--large banner--content banner--text--large banner--wrapper--warning banner--wrapper banner"
+>
+  <div
+    className="banner--content--large"
+  >
+    <AlertIcon
+      className="banner-icon"
+      fill="#fb9d01"
+      height="20px"
+      width="20px"
+    />
+    <p
+      className="banner--text--large"
+    >
+      Example text
+    </p>
+  </div>
+</div>
+`;

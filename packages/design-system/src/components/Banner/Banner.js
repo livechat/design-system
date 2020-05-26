@@ -17,22 +17,23 @@ const baseClass = 'banner';
 export const Banner = props => {
   const {
     className,
+    closeIcon,
+    onClose,
     size,
     text,
     type,
-    closeIcon,
     ...restProps
   } = props;
 
   const mergedWrapperClassNames = getMergedClassNames(
     cx({
-      [`${baseClass}`]: true,
-      [`${baseClass}--wrapper`]: true,
-      [`${baseClass}--wrapper--${type}`]: true,
       [`${baseClass}--close`]: true,
+      [`${baseClass}--content--${size}`]: size,
       [`${baseClass}--content`]: true,
       [`${baseClass}--text--${size}`]: size,
-      [`${baseClass}--content--${size}`]: size
+      [`${baseClass}--wrapper--${type}`]: true,
+      [`${baseClass}--wrapper`]: true,
+      [`${baseClass}`]: true,
     }),
     className
   );
@@ -55,7 +56,7 @@ export const Banner = props => {
   return (
     <div className={mergedWrapperClassNames} {...restProps}>
       {
-        closeIcon && <CloseIcon fill="#424d57" className={styles['banner--icon-close']}/>
+        closeIcon && <CloseIcon onClick={onClose} fill="#424d57" className={styles['banner--icon-close']} data-test="banner-close"/>
       }
       <div className={styles[`banner--content--${size}`]}>
         {getIconByType(type)}
@@ -66,16 +67,17 @@ export const Banner = props => {
 }
 
 Banner.propTypes = {
-  children: PropTypes.node.isRequired,
-  type: PropTypes.oneOf(['info', 'warning', 'success', 'error']),
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  text: PropTypes.string,
   closeIcon: PropTypes.bool,
+  onClose: PropTypes.func,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  text: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['info', 'warning', 'success', 'error']),
 };
 
 Banner.defaultProps = {
   closeIcon: false,
-  type: 'info'
+  size: 'small',
+  type: 'info',
 };
 
 export default Banner;
