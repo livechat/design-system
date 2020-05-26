@@ -139,7 +139,10 @@ Button expanded to the full width to fill the parent container (max-width: 320px
 ### Button with icon
 
 ```js
-<Button icon={<AlertCircleIcon />} primary>
+<Button icon={<AlertCircleIcon />} primary iconPosition="left">
+  Primary Button
+</Button>
+<Button icon={<AlertCircleIcon />} primary iconPosition="le">
   Primary Button
 </Button>
 ```

@@ -7,7 +7,6 @@ import { Loader } from '../Loader';
 
 const cx = classNames.bind(styles);
 const acceptedSizes = ['large', 'compact'];
-const acceptedIconPositions = ['left', 'right'];
 
 const Button = React.forwardRef((props, ref) => {
   const {
@@ -132,7 +131,7 @@ Button.propTypes = {
   /**
    * Size of button
    */
-  size: PropTypes.oneOf(acceptedSizes),
+  size: PropTypes.oneOf(['large', 'compact']),
   submit: PropTypes.bool,
   type: PropTypes.string,
   /**
@@ -142,7 +141,7 @@ Button.propTypes = {
   /**
    * Position of provided icon
    */
-  iconPosition: PropTypes.oneOf(acceptedIconPositions)
+  iconPosition: PropTypes.oneOf(['left', 'right'])
 };
 
 export default Button;
