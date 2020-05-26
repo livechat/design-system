@@ -56,7 +56,7 @@ Use as a final confirmation for a destructive action such as deleting. These are
 
 ### Text Button
 
-TEXT
+Used for less important or less commonly used actions. Can have an icon on the left or right. The icon takes the font line height and color.
 
 ```js
 <Button text>Text Button</Button>
