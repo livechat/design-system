@@ -131,7 +131,7 @@ Button.propTypes = {
   /**
    * Size of button
    */
-  size: PropTypes.oneOf(['large', 'compact']),
+  size: PropTypes.oneOf(['compact', 'large']),
   submit: PropTypes.bool,
   type: PropTypes.string,
   /**
