@@ -2,7 +2,7 @@
 
 ## Usage
 
-# Small
+### Small
 
 This is appropriate for components from 180px to 400px width. Use it in sidebars, mobile and any other contextual use, where space is the limitation.
 
@@ -25,7 +25,7 @@ Success
 <Banner type="success" text="A description with a maximum of 100 characters. That usually means only one or two sentences." closeIcon onClose={()=>window.alert('close')} />
 ```
 
-# Medium
+### Medium
 This is appropriate for components from 400px to around 800px width.
 
 Max text colum width is 520px
@@ -48,7 +48,7 @@ Success
 ```js
 <Banner size="medium" type="success" text="A description with a maximum of 100 characters. That usually means only one or two sentences." closeIcon onClose={()=>window.alert('close')} />
 ```
-# Large
+### Large
 
 When there is enough space to fit the button on the side, then this component is transforming to Large form.
 

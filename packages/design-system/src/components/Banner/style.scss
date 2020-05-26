@@ -3,12 +3,6 @@
 $base-class: 'banner';
 
 .#{$base-class} {
-  &--wrapper {
-    position: relative;
-    top: 0;
-    left: 0;
-  }
-
   &--icon-close {
     height: 24px;
     width: 24px;
