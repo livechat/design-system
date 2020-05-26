@@ -7,6 +7,7 @@ import { Loader } from '../Loader';
 
 const cx = classNames.bind(styles);
 const acceptedSizes = ['large', 'compact'];
+const acceptedIconPositions = ['left', 'right'];
 
 const Button = React.forwardRef((props, ref) => {
   const {
@@ -26,20 +27,19 @@ const Button = React.forwardRef((props, ref) => {
     ariaExpanded,
     className,
     type: htmlType,
+    text,
+    iconPosition,
     ...buttonProps
   } = props;
 
   const isDisabled = disabled || loading;
   const type = submit ? 'submit' : htmlType || 'button';
-  let buttonType = null;
-
-  if (primary) {
-    buttonType = 'primary';
-  } else if (destructive) {
-    buttonType = 'destructive';
-  } else if (secondary) {
-    buttonType = 'secondary';
-  }
+  const buttonType =
+    (primary && 'primary') ||
+    (destructive && 'destructive') ||
+    (secondary && 'secondary') ||
+    (text && 'text') ||
+    null;
 
   const baseClass = 'btn';
   const mergedClassNames = getMergedClassNames(
@@ -48,12 +48,24 @@ const Button = React.forwardRef((props, ref) => {
       [`${baseClass}--disabled`]: disabled,
       [`${baseClass}--loading`]: loading,
       [`${baseClass}--full-width`]: fullWidth,
-      [`${baseClass}--primary`]: buttonType === 'primary',
-      [`${baseClass}--destructive`]: buttonType === 'destructive',
-      [`${baseClass}--secondary`]: buttonType === 'secondary',
+      [`${baseClass}--${buttonType}`]: !!buttonType,
       [`${baseClass}--${size}`]: acceptedSizes.some(s => s === size)
     }),
     className
+  );
+
+  const positionedIcon = (
+    <i
+      className={getMergedClassNames(
+        cx({
+          [`${baseClass}__icon`]: true,
+          [`${baseClass}__icon-left`]: iconPosition === 'left',
+          [`${baseClass}__icon-right`]: iconPosition === 'right'
+        })
+      )}
+    >
+      {icon}
+    </i>
   );
 
   return (
@@ -77,11 +89,15 @@ const Button = React.forwardRef((props, ref) => {
           labelClassName={styles[`${baseClass}__loader-label`]}
         />
       )}
-      {icon && <i className={styles[`${baseClass}__icon`]}>{icon}</i>}
+      {icon && positionedIcon}
       {children && <div>{children}</div>}
     </button>
   );
 });
+
+Button.defaultProps = {
+  iconPosition: 'left'
+};
 
 Button.propTypes = {
   accessibilityLabel: PropTypes.string,
@@ -116,9 +132,17 @@ Button.propTypes = {
   /**
    * Size of button
    */
-  size: PropTypes.oneOf(['compact', 'large']),
+  size: PropTypes.oneOf(acceptedSizes),
   submit: PropTypes.bool,
-  type: PropTypes.string
+  type: PropTypes.string,
+  /**
+   * Type of button
+   */
+  text: PropTypes.bool,
+  /**
+   * Position of provided icon
+   */
+  iconPosition: PropTypes.oneOf(acceptedIconPositions)
 };
 
 export default Button;

@@ -54,6 +54,20 @@ Use as a final confirmation for a destructive action such as deleting. These are
 </ComponentHtmlMarkup>
 ```
 
+### Text Button
+
+TEXT
+
+```js
+<Button text>Text Button</Button>
+```
+
+```js noeditor
+<ComponentHtmlMarkup>
+  <Button text>Text Button</Button>
+</ComponentHtmlMarkup>
+```
+
 ### Button Sizes
 
 #### Compact
@@ -153,12 +167,13 @@ Button expanded to the full width to fill the parent container (max-width: 320px
     <div style={{marginBottom: '10px'}}>
       <Button primary onClick={toggleLoading}>Turn {state.loading ? 'off' : 'on'} loading</Button>
     </div>
-    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+    <div style={{display: 'flex', flexFlow: 'row wrap', justifyContent: 'space-between'}}>
       <Button loading={state.loading}>Loading Button</Button>
       <Button loading={state.loading} secondary>Loading Button</Button>
       <Button loading={state.loading} destructive>Loading Button</Button>
       <Button loading={state.loading} primary>Loading Button</Button>
       <Button loading={state.loading} loaderLabel="Processing">Loading Button</Button>
+      <Button loading={state.loading} text loaderLabel="Loading">Another Text Button</Button>
     </div>
   </div>
 ```
