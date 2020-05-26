@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Badge should render secondary badge 1`] = `
+<span
+  className="badge badge--secondary"
+>
+  !
+</span>
+`;
+
+exports[`Badge should render primary badge 1`] = `
+<span
+  className="badge"
+>
+  !
+</span>
+`;

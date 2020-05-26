@@ -1,3 +1,7 @@
+```js noeditor
+<Banner size="large" text="This component could be used only in React application" type="warning"/>
+```
+
 SelectField:
 ```js
 const items = [
