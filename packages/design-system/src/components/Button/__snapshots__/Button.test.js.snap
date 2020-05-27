@@ -1,10 +1,151 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button should render primary button 1`] = `
+exports[`Button should render any size of button 1`] = `
+<button
+  className="btn btn--compact"
+  type="button"
+>
+  <div>
+    Click me
+  </div>
+</button>
+`;
+
+exports[`Button should render any size of button 2`] = `
+<button
+  className="btn btn--large"
+  type="button"
+>
+  <div>
+    Click me
+  </div>
+</button>
+`;
+
+exports[`Button should render any type of button 1`] = `
 <button
   className="btn btn--primary"
   type="button"
 >
+  <div>
+    Click me
+  </div>
+</button>
+`;
+
+exports[`Button should render any type of button 2`] = `
+<button
+  className="btn btn--destructive"
+  type="button"
+>
+  <div>
+    Click me
+  </div>
+</button>
+`;
+
+exports[`Button should render any type of button 3`] = `
+<button
+  className="btn btn--secondary"
+  type="button"
+>
+  <div>
+    Click me
+  </div>
+</button>
+`;
+
+exports[`Button should render any type of button 4`] = `
+<button
+  className="btn btn--text"
+  type="button"
+>
+  <div>
+    Click me
+  </div>
+</button>
+`;
+
+exports[`Button should render any type of button 5`] = `
+<button
+  className="btn"
+  type="button"
+>
+  <div>
+    Click me
+  </div>
+</button>
+`;
+
+exports[`Button should render button with positioned icon 1`] = `
+<button
+  className="btn"
+  type="button"
+>
+  <i
+    className="btn__icon btn__icon-left"
+  >
+    <IconMock />
+  </i>
+  <div>
+    Click me
+  </div>
+</button>
+`;
+
+exports[`Button should render button with positioned icon 2`] = `
+<button
+  className="btn"
+  type="button"
+>
+  <i
+    className="btn__icon btn__icon-right"
+  >
+    <IconMock />
+  </i>
+  <div>
+    Click me
+  </div>
+</button>
+`;
+
+exports[`Button should render disabled button 1`] = `
+<button
+  className="btn btn--disabled"
+  disabled={true}
+  type="button"
+>
+  <div>
+    Click me
+  </div>
+</button>
+`;
+
+exports[`Button should render full-width button 1`] = `
+<button
+  className="btn btn--full-width"
+  type="button"
+>
+  <div>
+    Click me
+  </div>
+</button>
+`;
+
+exports[`Button should render loading button 1`] = `
+<button
+  aria-busy={true}
+  className="btn btn--loading"
+  disabled={true}
+  role="alert"
+  type="button"
+>
+  <Loader
+    className="btn__loader"
+    label="Processing"
+    labelClassName="btn__loader-label"
+    size="small"
+  />
   <div>
     Click me
   </div>
