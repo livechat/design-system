@@ -14,10 +14,24 @@ const cx = classNames.bind(styles);
 
 const baseClass = 'banner';
 
+const getIconByType = (type) => {
+  switch(type) {
+    case 'info':
+      return <InformationOutlineIcon fill="#4384f5" width="20px" height="20px"/>;
+    case 'warning':
+      return <AlertIcon fill="#fb9d01" width="20px" height="20px"/>;
+    case 'success':
+      return <CheckCircleIcon fill="#38c776" width="20px" height="20px"/>;
+    case 'error':
+      return <BlockHelperIcon fill="#d64646" width="20px" height="20px"/>;
+    default:
+      return <AlertIcon fill="#fb9d01" width="20px" height="20px"/>;
+  }
+}
+
 export const Banner = props => {
   const {
     className,
-    closeIcon,
     onClose,
     size,
     text,
@@ -27,47 +41,30 @@ export const Banner = props => {
 
   const mergedWrapperClassNames = getMergedClassNames(
     cx({
-      [`${baseClass}--close`]: true,
-      [`${baseClass}--content--${size}`]: size,
-      [`${baseClass}--content`]: true,
-      [`${baseClass}--text--${size}`]: size,
-      [`${baseClass}--wrapper--${type}`]: true,
+      [`${baseClass}__close`]: true,
+      [`${baseClass}__content--${size}`]: size,
+      [`${baseClass}__content--${size}--text`]: size,
+      [`${baseClass}--wrapper--${type}`]: type,
       [`${baseClass}--wrapper`]: true,
       [`${baseClass}`]: true,
     }),
     className
   );
 
-  const getIconByType = (type) => {
-    switch(type) {
-      case 'info':
-        return <InformationOutlineIcon fill="#4384f5" className={styles['banner-icon']} width="20px" height="20px"/>;
-      case 'warning':
-        return <AlertIcon fill="#fb9d01" className={styles['banner-icon']} width="20px" height="20px"/>;
-      case 'success':
-        return <CheckCircleIcon fill="#38c776" className={styles['banner-icon']} width="20px" height="20px"/>;
-      case 'error':
-        return <BlockHelperIcon fill="#d64646" className={styles['banner-icon']} width="20px" height="20px"/>;
-      default:
-        return <AlertIcon fill="#fb9d01" className={styles['banner-icon']} width="20px" height="20px"/>;
-    }
-  }
-
   return (
     <div className={mergedWrapperClassNames} {...restProps}>
       {
-        closeIcon && <CloseIcon onClick={onClose} fill="#424d57" className={styles['banner--icon-close']} data-test="banner-close"/>
+        onClose && <CloseIcon onClick={onClose} fill="#424d57" className={styles['banner--icon__close']} data-test="banner-close"/>
       }
-      <div className={styles[`banner--content--${size}`]}>
+      <div className={styles[`banner__content--${size}`]}>
         {getIconByType(type)}
-        <p className={styles[`banner--text--${size}`]}>{text}</p>
+        <p>{text}</p>
       </div>      
     </div>
   );
 }
 
 Banner.propTypes = {
-  closeIcon: PropTypes.bool,
   onClose: PropTypes.func,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   text: PropTypes.string.isRequired,
@@ -75,7 +72,6 @@ Banner.propTypes = {
 };
 
 Banner.defaultProps = {
-  closeIcon: false,
   size: 'small',
   type: 'info',
 };

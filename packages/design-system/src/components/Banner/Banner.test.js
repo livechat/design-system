@@ -6,50 +6,27 @@ import Banner from './Banner';
 
 describe('Banner', () => {
   it('should render small info Banner', () => {
-    const component = shallow(<Banner text="Example text" />);
+    const sizes = ['small', 'large', 'medium'];
+    const types = ['info', 'warning', 'success', 'error'];
+    const onClose = jest.fn();
 
-    expect(component).toMatchSnapshot();
+    types.map(type => {
+      sizes.map(size => {
+        const component = shallow(<Banner text="Example text" type={type} size={size} onClose={onClose} />);
+
+        expect(component).toMatchSnapshot();
+      })
+    })
   });
 
-  it('should render large Banner', () => {
-    const component = shallow(<Banner text="Example text" size="large"/>);
-
-    expect(component).toMatchSnapshot();
-  });
-  it('should render medium Banner', () => {
-    const component = shallow(<Banner text="Example text" size="medium" />);
-
-    expect(component).toMatchSnapshot();
-  });
-  it('should render warning large Banner', () => {
-    const component = shallow(<Banner text="Example text" size="large" type="warning" />);
-
-    expect(component).toMatchSnapshot();
-  });
-  it('should render info medium Banner', () => {
-    const component = shallow(<Banner text="Example text" size="medium" />);
-
-    expect(component).toMatchSnapshot();
-  });
-  it('should render error small Banner', () => {
-    const component = shallow(<Banner text="Example text" type="error" />);
-
-    expect(component).toMatchSnapshot();
-  });
-  it('should render success large Banner', () => {
-    const component = shallow(<Banner text="Example text" type="success" size="large" />);
-
-    expect(component).toMatchSnapshot();
-  });
-  it('should render Banner with close button', () => {
-    const component = shallow(<Banner text="Example text" closeIcon />);
-
-    expect(component).toMatchSnapshot();
-  })
   it('should call on close on close button click', () => {
     const onClose = jest.fn();
-    const component = shallow(<Banner text="Example text" onClose={onClose} closeIcon />);
+    const component = shallow(<Banner text="Example text" onClose={onClose} />);
     component.find(CloseIcon).simulate('click')
     expect(onClose.mock.calls.length).toEqual(1);
+  })
+  it('should not render close icon when on close is not passed', () => {
+    const component = shallow(<Banner text="Example text" />);
+    expect(component.contains(<CloseIcon />)).toBe(false)
   })
 });

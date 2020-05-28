@@ -1,11 +1,11 @@
 ```js noeditor
-<Banner size="large" text="This component could be used only in React application" type="warning"/>
+<Banner size="large" text="This component can be used only in React applications." type="warning"/>
 ```
 
 <h3>Date picker</h3>
 
 DatePicker component under the hood uses react-day-picker library. It has some livechat custom styles.
-Props are exactly the same as in original library. You can check it out in official docs: http://react-day-picker.js.org/api/DayPicker. 
+Props are exactly the same as in the original library. You can check it out in official docs: http://react-day-picker.js.org/api/DayPicker. 
 
 ```js
 initialState = {

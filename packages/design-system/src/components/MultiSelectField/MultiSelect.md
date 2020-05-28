@@ -1,5 +1,5 @@
 ```js noeditor
-<Banner size="large" text="This component could be used only in React application" type="warning"/>
+<Banner size="large" text="This component can be used only in React applications." type="warning"/>
 ```
 
 <h3>MultiSelect</h3>
