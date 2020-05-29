@@ -3,13 +3,31 @@
 $base-class: 'banner';
 
 .#{$base-class} {
-  &--icon__close {
-    height: 24px;
-    width: 24px;
-    cursor: pointer;
-    position: absolute;
-    top: 17px;
-    right: 20px;
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  overflow: hidden;
+  word-break: break-word ;
+
+  &--info {
+    box-shadow: inset 0 3px 0 0 #4384f5;
+    background-color: #e4f2ff;
+  }
+
+  &--warning {
+    box-shadow: inset 0 3px 0 0 #fb9d01;
+    background-color: #fff8e1;
+  }
+
+  &--success {
+    box-shadow: inset 0 3px 0 0 #38c776;
+    background-color: #e5f4eb;
+  }
+
+  &--error {
+    box-shadow: inset 0 3px 0 0 #d64646;
+    background-color: #fbecef;
   }
 
   &__content--small {
@@ -49,33 +67,13 @@ $base-class: 'banner';
     }
   }
 
-  &__wrapper {
-    position: relative;
-    top: 0;
-    left: 0;
-    padding: 20px;
-    overflow: hidden;
-    word-break: break-word ;
-  }
-
-  &__wrapper--info {
-    box-shadow: inset 0 3px 0 0 #4384f5;
-    background-color: #e4f2ff;
-  }
-
-  &__wrapper--warning {
-    box-shadow: inset 0 3px 0 0 #fb9d01;
-    background-color: #fff8e1;
-  }
-
-  &__wrapper--success {
-    box-shadow: inset 0 3px 0 0 #38c776;
-    background-color: #e5f4eb;
-  }
-
-  &__wrapper--error {
-    box-shadow: inset 0 3px 0 0 #d64646;
-    background-color: #fbecef;
+  &--icon__close {
+    height: 24px;
+    width: 24px;
+    cursor: pointer;
+    position: absolute;
+    top: 17px;
+    right: 20px;
   }
 
 }

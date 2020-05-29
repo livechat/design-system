@@ -2,13 +2,8 @@
 
 exports[`Banner should render banner of anty type and size 1`] = `
 <div
-  className="banner__close banner__content--small banner__wrapper--info banner__wrapper banner"
+  className="banner--info banner"
 >
-  <CloseIcon
-    className="banner--icon__close"
-    fill="#424d57"
-    onClick={[MockFunction]}
-  />
   <div
     className="banner__content--small"
   >
@@ -19,18 +14,18 @@ exports[`Banner should render banner of anty type and size 1`] = `
       Example text
     </p>
   </div>
+  <CloseIcon
+    className="banner--icon__close"
+    fill="#424d57"
+    onClick={[MockFunction]}
+  />
 </div>
 `;
 
 exports[`Banner should render banner of anty type and size 2`] = `
 <div
-  className="banner__close banner__content--large banner__wrapper--info banner__wrapper banner"
+  className="banner--info banner"
 >
-  <CloseIcon
-    className="banner--icon__close"
-    fill="#424d57"
-    onClick={[MockFunction]}
-  />
   <div
     className="banner__content--large"
   >
@@ -41,18 +36,18 @@ exports[`Banner should render banner of anty type and size 2`] = `
       Example text
     </p>
   </div>
+  <CloseIcon
+    className="banner--icon__close"
+    fill="#424d57"
+    onClick={[MockFunction]}
+  />
 </div>
 `;
 
 exports[`Banner should render banner of anty type and size 3`] = `
 <div
-  className="banner__close banner__content--medium banner__wrapper--info banner__wrapper banner"
+  className="banner--info banner"
 >
-  <CloseIcon
-    className="banner--icon__close"
-    fill="#424d57"
-    onClick={[MockFunction]}
-  />
   <div
     className="banner__content--medium"
   >
@@ -63,18 +58,18 @@ exports[`Banner should render banner of anty type and size 3`] = `
       Example text
     </p>
   </div>
+  <CloseIcon
+    className="banner--icon__close"
+    fill="#424d57"
+    onClick={[MockFunction]}
+  />
 </div>
 `;
 
 exports[`Banner should render banner of anty type and size 4`] = `
 <div
-  className="banner__close banner__content--small banner__wrapper--warning banner__wrapper banner"
+  className="banner--warning banner"
 >
-  <CloseIcon
-    className="banner--icon__close"
-    fill="#424d57"
-    onClick={[MockFunction]}
-  />
   <div
     className="banner__content--small"
   >
@@ -85,18 +80,18 @@ exports[`Banner should render banner of anty type and size 4`] = `
       Example text
     </p>
   </div>
+  <CloseIcon
+    className="banner--icon__close"
+    fill="#424d57"
+    onClick={[MockFunction]}
+  />
 </div>
 `;
 
 exports[`Banner should render banner of anty type and size 5`] = `
 <div
-  className="banner__close banner__content--large banner__wrapper--warning banner__wrapper banner"
+  className="banner--warning banner"
 >
-  <CloseIcon
-    className="banner--icon__close"
-    fill="#424d57"
-    onClick={[MockFunction]}
-  />
   <div
     className="banner__content--large"
   >
@@ -107,18 +102,18 @@ exports[`Banner should render banner of anty type and size 5`] = `
       Example text
     </p>
   </div>
+  <CloseIcon
+    className="banner--icon__close"
+    fill="#424d57"
+    onClick={[MockFunction]}
+  />
 </div>
 `;
 
 exports[`Banner should render banner of anty type and size 6`] = `
 <div
-  className="banner__close banner__content--medium banner__wrapper--warning banner__wrapper banner"
+  className="banner--warning banner"
 >
-  <CloseIcon
-    className="banner--icon__close"
-    fill="#424d57"
-    onClick={[MockFunction]}
-  />
   <div
     className="banner__content--medium"
   >
@@ -129,18 +124,18 @@ exports[`Banner should render banner of anty type and size 6`] = `
       Example text
     </p>
   </div>
+  <CloseIcon
+    className="banner--icon__close"
+    fill="#424d57"
+    onClick={[MockFunction]}
+  />
 </div>
 `;
 
 exports[`Banner should render banner of anty type and size 7`] = `
 <div
-  className="banner__close banner__content--small banner__wrapper--success banner__wrapper banner"
+  className="banner--success banner"
 >
-  <CloseIcon
-    className="banner--icon__close"
-    fill="#424d57"
-    onClick={[MockFunction]}
-  />
   <div
     className="banner__content--small"
   >
@@ -151,18 +146,18 @@ exports[`Banner should render banner of anty type and size 7`] = `
       Example text
     </p>
   </div>
+  <CloseIcon
+    className="banner--icon__close"
+    fill="#424d57"
+    onClick={[MockFunction]}
+  />
 </div>
 `;
 
 exports[`Banner should render banner of anty type and size 8`] = `
 <div
-  className="banner__close banner__content--large banner__wrapper--success banner__wrapper banner"
+  className="banner--success banner"
 >
-  <CloseIcon
-    className="banner--icon__close"
-    fill="#424d57"
-    onClick={[MockFunction]}
-  />
   <div
     className="banner__content--large"
   >
@@ -173,18 +168,18 @@ exports[`Banner should render banner of anty type and size 8`] = `
       Example text
     </p>
   </div>
-</div>
-`;
-
-exports[`Banner should render banner of anty type and size 9`] = `
-<div
-  className="banner__close banner__content--medium banner__wrapper--success banner__wrapper banner"
->
   <CloseIcon
     className="banner--icon__close"
     fill="#424d57"
     onClick={[MockFunction]}
   />
+</div>
+`;
+
+exports[`Banner should render banner of anty type and size 9`] = `
+<div
+  className="banner--success banner"
+>
   <div
     className="banner__content--medium"
   >
@@ -195,18 +190,18 @@ exports[`Banner should render banner of anty type and size 9`] = `
       Example text
     </p>
   </div>
-</div>
-`;
-
-exports[`Banner should render banner of anty type and size 10`] = `
-<div
-  className="banner__close banner__content--small banner__wrapper--error banner__wrapper banner"
->
   <CloseIcon
     className="banner--icon__close"
     fill="#424d57"
     onClick={[MockFunction]}
   />
+</div>
+`;
+
+exports[`Banner should render banner of anty type and size 10`] = `
+<div
+  className="banner--error banner"
+>
   <div
     className="banner__content--small"
   >
@@ -217,18 +212,18 @@ exports[`Banner should render banner of anty type and size 10`] = `
       Example text
     </p>
   </div>
-</div>
-`;
-
-exports[`Banner should render banner of anty type and size 11`] = `
-<div
-  className="banner__close banner__content--large banner__wrapper--error banner__wrapper banner"
->
   <CloseIcon
     className="banner--icon__close"
     fill="#424d57"
     onClick={[MockFunction]}
   />
+</div>
+`;
+
+exports[`Banner should render banner of anty type and size 11`] = `
+<div
+  className="banner--error banner"
+>
   <div
     className="banner__content--large"
   >
@@ -239,18 +234,18 @@ exports[`Banner should render banner of anty type and size 11`] = `
       Example text
     </p>
   </div>
-</div>
-`;
-
-exports[`Banner should render banner of anty type and size 12`] = `
-<div
-  className="banner__close banner__content--medium banner__wrapper--error banner__wrapper banner"
->
   <CloseIcon
     className="banner--icon__close"
     fill="#424d57"
     onClick={[MockFunction]}
   />
+</div>
+`;
+
+exports[`Banner should render banner of anty type and size 12`] = `
+<div
+  className="banner--error banner"
+>
   <div
     className="banner__content--medium"
   >
@@ -261,5 +256,10 @@ exports[`Banner should render banner of anty type and size 12`] = `
       Example text
     </p>
   </div>
+  <CloseIcon
+    className="banner--icon__close"
+    fill="#424d57"
+    onClick={[MockFunction]}
+  />
 </div>
 `;
