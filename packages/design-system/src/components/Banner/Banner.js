@@ -32,13 +32,11 @@ export const Banner = props => {
 
   return (
     <div className={mergedWrapperClassNames} {...restProps}>
-      {
-        onClose && <CloseIcon onClick={onClose} fill="#424d57" className={styles[`${baseClass}__close-icon`]}/>
-      }
       <div className={styles[`${baseClass}__content`]}>
         <BannerIcon type={type} />
         <p>{text}</p>
-      </div>      
+      </div>
+      {onClose && <CloseIcon onClick={onClose} fill="#424d57" className={styles[`${baseClass}__close-icon`]}/>}
     </div>
   );
 }
