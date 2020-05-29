@@ -3,7 +3,60 @@
 $base-class: 'banner';
 
 .#{$base-class} {
-  &--icon__close {
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  overflow: hidden;
+  word-break: break-word;
+  width: 100%;
+  box-sizing: border-box;
+
+  &--small {
+    max-width: 400px;
+
+    .#{$base-class}__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      width: 100%;
+
+      p {
+        margin: 14px 0 0 0;
+        max-width: 246px;
+      }
+    }
+  }
+
+  &--medium {
+    max-width: 800px;
+
+    .#{$base-class}__content {
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
+
+      p {
+        margin: 0 30px 0 16px;
+        max-width: 520px;
+      }
+    }
+  }
+
+  &--large {
+    .#{$base-class}__content {
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
+
+      p {
+        margin: 0 30px 0 16px;
+        max-width: 720px;
+      }
+    }
+  }
+
+  &__close-icon {
     height: 24px;
     width: 24px;
     cursor: pointer;
@@ -12,70 +65,28 @@ $base-class: 'banner';
     right: 20px;
   }
 
-  &__content--small {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 100%;
-    max-width: 400px;
-    
-    p {
-      margin: 14px 0 0 0;
-      max-width: 246px;
-    }
 
-  }
-
-  &__content--medium {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;   
-    max-width: 800px;
-
-    p {
-      margin: 0 30px 0 16px;
-      max-width: 520px;
-    }
-  }
-  
-  &__content--large {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-
-    p {
-      margin: 0 30px 0 16px;
-      max-width: 720px;
-    }
-  }
-
-  &__wrapper {
-    position: relative;
-    top: 0;
-    left: 0;
-    padding: 20px;
-    overflow: hidden;
-    word-break: break-word ;
-  }
-
-  &__wrapper--info {
+  &--info {
     box-shadow: inset 0 3px 0 0 #4384f5;
     background-color: #e4f2ff;
   }
 
-  &__wrapper--warning {
+  &--warning {
     box-shadow: inset 0 3px 0 0 #fb9d01;
     background-color: #fff8e1;
   }
 
-  &__wrapper--success {
+  &--success {
     box-shadow: inset 0 3px 0 0 #38c776;
     background-color: #e5f4eb;
   }
 
-  &__wrapper--error {
+  &--error {
     box-shadow: inset 0 3px 0 0 #d64646;
     background-color: #fbecef;
   }
 
+  &__icon {
+    flex-shrink: 0;
+  }
 }
