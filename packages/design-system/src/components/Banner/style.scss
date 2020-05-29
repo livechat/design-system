@@ -49,7 +49,7 @@ $base-class: 'banner';
     }
   }
 
-  &--wrapper {
+  &__wrapper {
     position: relative;
     top: 0;
     left: 0;
@@ -57,20 +57,25 @@ $base-class: 'banner';
     overflow: hidden;
     word-break: break-word ;
   }
-  &--wrapper--info {
+
+  &__wrapper--info {
     box-shadow: inset 0 3px 0 0 #4384f5;
     background-color: #e4f2ff;
   }
-  &--wrapper--warning {
+
+  &__wrapper--warning {
     box-shadow: inset 0 3px 0 0 #fb9d01;
     background-color: #fff8e1;
   }
-  &--wrapper--success {
+
+  &__wrapper--success {
     box-shadow: inset 0 3px 0 0 #38c776;
     background-color: #e5f4eb;
   }
-  &--wrapper--error {
+
+  &__wrapper--error {
     box-shadow: inset 0 3px 0 0 #d64646;
     background-color: #fbecef;
   }
+
 }

@@ -3,31 +3,13 @@ import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
-import AlertIcon from 'react-material-icon-svg/dist/AlertIcon';
-import InformationOutlineIcon from 'react-material-icon-svg/dist/InformationOutlineIcon';
-import BlockHelperIcon from 'react-material-icon-svg/dist/BlockHelperIcon';
-import CheckCircleIcon from 'react-material-icon-svg/dist/CheckCircleIcon';
 
 import styles from './style.scss';
+import { BannerIcon } from './BannerIcon';
 
 const cx = classNames.bind(styles);
 
 const baseClass = 'banner';
-
-const getIconByType = (type) => {
-  switch(type) {
-    case 'info':
-      return <InformationOutlineIcon fill="#4384f5" width="20px" height="20px"/>;
-    case 'warning':
-      return <AlertIcon fill="#fb9d01" width="20px" height="20px"/>;
-    case 'success':
-      return <CheckCircleIcon fill="#38c776" width="20px" height="20px"/>;
-    case 'error':
-      return <BlockHelperIcon fill="#d64646" width="20px" height="20px"/>;
-    default:
-      return <AlertIcon fill="#fb9d01" width="20px" height="20px"/>;
-  }
-}
 
 export const Banner = props => {
   const {
@@ -43,9 +25,8 @@ export const Banner = props => {
     cx({
       [`${baseClass}__close`]: true,
       [`${baseClass}__content--${size}`]: size,
-      [`${baseClass}__content--${size}--text`]: size,
-      [`${baseClass}--wrapper--${type}`]: type,
-      [`${baseClass}--wrapper`]: true,
+      [`${baseClass}__wrapper--${type}`]: type,
+      [`${baseClass}__wrapper`]: true,
       [`${baseClass}`]: true,
     }),
     className
@@ -54,10 +35,10 @@ export const Banner = props => {
   return (
     <div className={mergedWrapperClassNames} {...restProps}>
       {
-        onClose && <CloseIcon onClick={onClose} fill="#424d57" className={styles['banner--icon__close']} data-test="banner-close"/>
+        onClose && <CloseIcon onClick={onClose} fill="#424d57" className={styles[`${baseClass}--icon__close`]}/>
       }
-      <div className={styles[`banner__content--${size}`]}>
-        {getIconByType(type)}
+      <div className={styles[`${baseClass}__content--${size}`]}>
+        <BannerIcon type={type} />
         <p>{text}</p>
       </div>      
     </div>
@@ -68,7 +49,7 @@ Banner.propTypes = {
   onClose: PropTypes.func,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
   text: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(['info', 'warning', 'success', 'error']),
+  type: PropTypes.oneOf(['info', 'warning', 'success', 'error']).isRequired,
 };
 
 Banner.defaultProps = {
