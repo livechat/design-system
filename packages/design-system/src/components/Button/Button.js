@@ -33,12 +33,17 @@ const Button = React.forwardRef((props, ref) => {
 
   const isDisabled = disabled || loading;
   const type = submit ? 'submit' : htmlType || 'button';
-  const buttonType =
-    (primary && 'primary') ||
-    (destructive && 'destructive') ||
-    (secondary && 'secondary') ||
-    (text && 'text') ||
-    null;
+  let buttonType = null;
+
+  if (primary) {
+    buttonType = 'primary';
+  } else if (destructive) {
+    buttonType = 'destructive';
+  } else if (secondary) {
+    buttonType = 'secondary';
+  } else if (text) {
+    buttonType = 'text';
+  }
 
   const baseClass = 'btn';
   const mergedClassNames = getMergedClassNames(

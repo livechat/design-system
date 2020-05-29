@@ -1,3 +1,22 @@
+### JO PACZ TUTAJ 👇
+
+```js
+<div style={{
+  display: 'flex',
+  flexFlow: 'row wrap',
+  justifyContent: 'space-between'
+}}>
+  <Button text>Text Regular</Button>
+  <Button text size="compact">Text Compact</Button>
+  <Button text size="large">Text Large</Button>
+  <Button text disabled>Text disabled</Button>
+  <Button text loading loaderLabel="Loading..."><AlertCircleIcon /> Loading...</Button>
+  <Button text icon={<AlertCircleIcon />}>Text Icon Left</Button>
+  <Button text icon={<AlertCircleIcon />} iconPosition="right">Text Icon Right</Button>
+  <Button text fullWidth>Text Full-width</Button>
+</div>
+```
+
 ### Primary Button
 
 Use when there is an action that is more important than any other actions and you need to draw attention to it. Don’t use more than one primary button per screen to avoid confusing users. Not every screen needs a primary button.
