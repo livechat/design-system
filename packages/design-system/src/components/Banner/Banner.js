@@ -24,6 +24,7 @@ export const Banner = props => {
   const mergedWrapperClassNames = getMergedClassNames(
     cx({
       [`${baseClass}--${type}`]: type,
+      [`${baseClass}--${size}`]: size,
       [`${baseClass}`]: true,
     }),
     className
@@ -31,11 +32,11 @@ export const Banner = props => {
 
   return (
     <div className={mergedWrapperClassNames} {...restProps}>
-      <div className={styles[`${baseClass}__content--${size}`]}>
+      <div className={styles[`${baseClass}__content`]}>
         <BannerIcon type={type} />
         <p>{text}</p>
-      </div>    
-      { onClose && <CloseIcon onClick={onClose} fill="#424d57" className={styles[`${baseClass}--icon__close`]}/> }  
+      </div>
+      {onClose && <CloseIcon onClick={onClose} fill="#424d57" className={styles[`${baseClass}__close-icon`]}/>}
     </div>
   );
 }
