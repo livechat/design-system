@@ -134,3 +134,29 @@ Success
 <Banner size="large" type="success" text="A description with a maximum of 100 characters. That usually means only one or two sentences." onClose={()=>window.alert('close')} />
 </ComponentHtmlMarkup>
 ```
+
+### RWD support
+
+This component is not fully responsive. If you need an RWD support, you can use [Resize Observer](https://web.dev/en/resize-observer/) and apply appropriate styles. Here is an example of a large banner styled as a small one.
+
+```css
+.component {
+  position: relative;
+
+  .lc-banner--large {
+    max-width: 400px;
+
+    .lc-banner__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      width: 100%;
+
+      p {
+        margin: 14px 0 0 0;
+        max-width: 246px;
+      }
+    }
+  }
+}
+```
