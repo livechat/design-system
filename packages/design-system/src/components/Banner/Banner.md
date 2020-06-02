@@ -1,4 +1,4 @@
-### Banner - Notifications
+### Banner
 
 ## Usage
 
@@ -140,7 +140,7 @@ Success
 
 ### RWD support
 
-This component is not fully responsive. If you need an RWD support, you can use [Resize Observer](https://web.dev/en/resize-observer/) and apply appropriate styles. Here is an example of a large banner styled as a small one.
+The component styles don't include RWD media queries. If you need an RWD support, you can use [Resize Observer](https://web.dev/en/resize-observer/) and change the size property of the component to the appropriate one. Also, you can write simple media queries with appropriate styles but remember that our styles can change in upcoming releases. Here is an example of a large banner styled as a small one.
 
 ```css
 .component {
@@ -155,7 +155,7 @@ This component is not fully responsive. If you need an RWD support, you can use 
       justify-content: flex-start;
       width: 100%;
 
-      p {
+      .lc-banner__content-text {
         margin: 14px 0 0 0;
         max-width: 246px;
       }

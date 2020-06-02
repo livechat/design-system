@@ -17,7 +17,6 @@ export const Banner = props => {
     className,
     onClose,
     size,
-    text,
     type,
     ...restProps
   } = props;
