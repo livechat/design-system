@@ -13,6 +13,7 @@ const baseClass = 'banner';
 
 export const Banner = props => {
   const {
+    children,
     className,
     onClose,
     size,
@@ -34,7 +35,7 @@ export const Banner = props => {
     <div className={mergedWrapperClassNames} {...restProps}>
       <div className={styles[`${baseClass}__content`]}>
         <BannerIcon type={type} />
-        <p>{text}</p>
+        <div className={styles[`${baseClass}__content-text`]}>{children}</div>
       </div>
       {onClose && <CloseIcon onClick={onClose} fill="#424d57" className={styles[`${baseClass}__close-icon`]}/>}
     </div>
@@ -42,9 +43,9 @@ export const Banner = props => {
 }
 
 Banner.propTypes = {
+  children: PropTypes.node.isRequired,
   onClose: PropTypes.func,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
-  text: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['info', 'warning', 'success', 'error']).isRequired,
 };
 

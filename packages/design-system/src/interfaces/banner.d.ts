@@ -6,7 +6,7 @@ export type BannerType = 'info' | 'warning' | 'success' | 'error'
 export interface IBannerProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose?: MouseEventHandler<HTMLButtonElement>;
   size?: BannerSize;
-  text: string;
+  children: React.ReactNode;
   type?: BannerType;
 }
 
