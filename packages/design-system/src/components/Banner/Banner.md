@@ -143,21 +143,23 @@ Success
 The component styles don't include RWD media queries. If you need an RWD support, you can use [Resize Observer](https://web.dev/en/resize-observer/) and change the size property of the component to the appropriate one. Also, you can write simple media queries with appropriate styles but remember that our styles can change in upcoming releases. Here is an example of a large banner styled as a small one.
 
 ```css
-.component {
-  position: relative;
+@media screen and (max-width: 400px) {
+  .component {
+    position: relative;
 
-  .lc-banner--large {
-    max-width: 400px;
+    .lc-banner--large {
+      max-width: 400px;
 
-    .lc-banner__content {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      width: 100%;
+      .lc-banner__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100%;
 
-      .lc-banner__content-text {
-        margin: 14px 0 0 0;
-        max-width: 246px;
+        .lc-banner__content-text {
+          margin: 14px 0 0 0;
+          max-width: 246px;
+        }
       }
     }
   }
