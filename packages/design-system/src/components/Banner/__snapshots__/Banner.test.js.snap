@@ -10,9 +10,11 @@ exports[`Banner should render banner of anty type and size 1`] = `
     <BannerIcon
       type="info"
     />
-    <p>
+    <div
+      className="banner__content-text"
+    >
       Example text
-    </p>
+    </div>
   </div>
   <CloseIcon
     className="banner__close-icon"
@@ -32,9 +34,11 @@ exports[`Banner should render banner of anty type and size 2`] = `
     <BannerIcon
       type="info"
     />
-    <p>
+    <div
+      className="banner__content-text"
+    >
       Example text
-    </p>
+    </div>
   </div>
   <CloseIcon
     className="banner__close-icon"
@@ -54,9 +58,11 @@ exports[`Banner should render banner of anty type and size 3`] = `
     <BannerIcon
       type="info"
     />
-    <p>
+    <div
+      className="banner__content-text"
+    >
       Example text
-    </p>
+    </div>
   </div>
   <CloseIcon
     className="banner__close-icon"
@@ -76,9 +82,11 @@ exports[`Banner should render banner of anty type and size 4`] = `
     <BannerIcon
       type="warning"
     />
-    <p>
+    <div
+      className="banner__content-text"
+    >
       Example text
-    </p>
+    </div>
   </div>
   <CloseIcon
     className="banner__close-icon"
@@ -98,9 +106,11 @@ exports[`Banner should render banner of anty type and size 5`] = `
     <BannerIcon
       type="warning"
     />
-    <p>
+    <div
+      className="banner__content-text"
+    >
       Example text
-    </p>
+    </div>
   </div>
   <CloseIcon
     className="banner__close-icon"
@@ -120,9 +130,11 @@ exports[`Banner should render banner of anty type and size 6`] = `
     <BannerIcon
       type="warning"
     />
-    <p>
+    <div
+      className="banner__content-text"
+    >
       Example text
-    </p>
+    </div>
   </div>
   <CloseIcon
     className="banner__close-icon"
@@ -142,9 +154,11 @@ exports[`Banner should render banner of anty type and size 7`] = `
     <BannerIcon
       type="success"
     />
-    <p>
+    <div
+      className="banner__content-text"
+    >
       Example text
-    </p>
+    </div>
   </div>
   <CloseIcon
     className="banner__close-icon"
@@ -164,9 +178,11 @@ exports[`Banner should render banner of anty type and size 8`] = `
     <BannerIcon
       type="success"
     />
-    <p>
+    <div
+      className="banner__content-text"
+    >
       Example text
-    </p>
+    </div>
   </div>
   <CloseIcon
     className="banner__close-icon"
@@ -186,9 +202,11 @@ exports[`Banner should render banner of anty type and size 9`] = `
     <BannerIcon
       type="success"
     />
-    <p>
+    <div
+      className="banner__content-text"
+    >
       Example text
-    </p>
+    </div>
   </div>
   <CloseIcon
     className="banner__close-icon"
@@ -208,9 +226,11 @@ exports[`Banner should render banner of anty type and size 10`] = `
     <BannerIcon
       type="error"
     />
-    <p>
+    <div
+      className="banner__content-text"
+    >
       Example text
-    </p>
+    </div>
   </div>
   <CloseIcon
     className="banner__close-icon"
@@ -230,9 +250,11 @@ exports[`Banner should render banner of anty type and size 11`] = `
     <BannerIcon
       type="error"
     />
-    <p>
+    <div
+      className="banner__content-text"
+    >
       Example text
-    </p>
+    </div>
   </div>
   <CloseIcon
     className="banner__close-icon"
@@ -252,9 +274,11 @@ exports[`Banner should render banner of anty type and size 12`] = `
     <BannerIcon
       type="error"
     />
-    <p>
+    <div
+      className="banner__content-text"
+    >
       Example text
-    </p>
+    </div>
   </div>
   <CloseIcon
     className="banner__close-icon"

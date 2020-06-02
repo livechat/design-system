@@ -12,7 +12,7 @@ describe('Banner', () => {
 
     types.map(type => {
       sizes.map(size => {
-        const component = shallow(<Banner text="Example text" type={type} size={size} onClose={onClose} />);
+        const component = shallow(<Banner type={type} size={size} onClose={onClose}>Example text</Banner>);
 
         expect(component).toMatchSnapshot();
       })
@@ -21,13 +21,13 @@ describe('Banner', () => {
 
   it('should call on close on close button click', () => {
     const onClose = jest.fn();
-    const component = shallow(<Banner text="Example text" onClose={onClose} />);
+    const component = shallow(<Banner onClose={onClose}>Example text</Banner>);
     component.find(CloseIcon).simulate('click')
     expect(onClose).toHaveBeenCalledTimes(1)
   })
 
   it('should not render close icon when on close is not passed', () => {
-    const component = shallow(<Banner text="Example text" />);
+    const component = shallow(<Banner>Example text</Banner>);
     expect(component.contains(<CloseIcon />)).toBe(false)
   })
 });
