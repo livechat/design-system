@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Promo should render promo of any size 1`] = `
+<div
+  className="promo--small promo"
+>
+  <div
+    className="promo__content"
+  >
+    <img
+      className="promo__content-img"
+      src="img"
+    />
+    <div
+      className="promo__content-wrapper"
+    >
+      <div
+        className="promo__content-header"
+      >
+        This example headline has 40 characters
+      </div>
+      <div>
+        Example text
+      </div>
+    </div>
+  </div>
+  <div
+    className="promo__content-footer"
+  >
+    <ForwardRef
+      className="promo__content-footer-button"
+      onClick={[MockFunction]}
+      primary={true}
+    >
+      Primary button
+    </ForwardRef>
+    <ForwardRef
+      onClick={[MockFunction]}
+      primary={true}
+    >
+      Link
+    </ForwardRef>
+  </div>
+  <CloseIcon
+    className="promo__close-icon"
+    fill="#424d57"
+    onClick={[MockFunction]}
+  />
+</div>
+`;
+
+exports[`Promo should render promo of any size 2`] = `
+<div
+  className="promo--large promo"
+>
+  <div
+    className="promo__content"
+  >
+    <img
+      className="promo__content-img"
+      src="img"
+    />
+    <div
+      className="promo__content-wrapper"
+    >
+      <div
+        className="promo__content-header"
+      >
+        This example headline has 40 characters
+      </div>
+      <div>
+        Example text
+      </div>
+    </div>
+  </div>
+  <div
+    className="promo__content-footer"
+  >
+    <ForwardRef
+      className="promo__content-footer-button"
+      onClick={[MockFunction]}
+      primary={true}
+    >
+      Primary button
+    </ForwardRef>
+    <ForwardRef
+      onClick={[MockFunction]}
+      primary={true}
+    >
+      Link
+    </ForwardRef>
+  </div>
+  <CloseIcon
+    className="promo__close-icon"
+    fill="#424d57"
+    onClick={[MockFunction]}
+  />
+</div>
+`;
+
+exports[`Promo should render promo of any size 3`] = `
+<div
+  className="promo--medium promo"
+>
+  <div
+    className="promo__content"
+  >
+    <img
+      className="promo__content-img"
+      src="img"
+    />
+    <div
+      className="promo__content-wrapper"
+    >
+      <div
+        className="promo__content-header"
+      >
+        This example headline has 40 characters
+      </div>
+      <div>
+        Example text
+      </div>
+    </div>
+  </div>
+  <div
+    className="promo__content-footer"
+  >
+    <ForwardRef
+      className="promo__content-footer-button"
+      onClick={[MockFunction]}
+      primary={true}
+    >
+      Primary button
+    </ForwardRef>
+    <ForwardRef
+      onClick={[MockFunction]}
+      primary={true}
+    >
+      Link
+    </ForwardRef>
+  </div>
+  <CloseIcon
+    className="promo__close-icon"
+    fill="#424d57"
+    onClick={[MockFunction]}
+  />
+</div>
+`;

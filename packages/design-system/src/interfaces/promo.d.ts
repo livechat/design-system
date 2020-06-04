@@ -6,7 +6,6 @@ export interface IProgressBarProps {
     buttonText?: string;
     children: React.ReactNode;
     header: string;
-    image?: React.ReactNode;
     img?: string;
     light?:boolean;
     linkText?: string;

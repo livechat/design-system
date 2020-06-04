@@ -1,33 +1,51 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
+
 import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 
+import {Button} from '../Button';
 import Promo from './Promo';
 
 describe('Promo', () => {
-  // it('should render banner of anty type and size', () => {
-  //   const sizes = ['small', 'large', 'medium'];
-  //   const types = ['info', 'warning', 'success', 'error'];
-  //   const onClose = jest.fn();
+  const buttonText = "Primary button";
+  const header = "This example headline has 40 characters";
+  const img = "img";
+  const linkText = "Link";
+  const onButtonClick = jest.fn();
+  const onClose = jest.fn();
+  const onLinkClick = jest.fn();
+  const props = {
+    onClose,
+    buttonText,
+    header,
+    img,
+    linkText,
+    onButtonClick,
+    onClose,
+    onLinkClick,
+  }
+  it('should render promo of any size', () => {
+    const sizes = ['small', 'large', 'medium'];
+      sizes.map(size => {
+        const component = shallow(<Promo size={size} {...props}>Example text</Promo>);
 
-  //   types.map(type => {
-  //     sizes.map(size => {
-  //       const component = shallow(<Banner type={type} size={size} onClose={onClose}>Example text</Banner>);
+        expect(component).toMatchSnapshot();
+      })
+  });
 
-  //       expect(component).toMatchSnapshot();
-  //     })
-  //   })
-  // });
+  it('should call on close on close button click', () => {
+    const component = shallow(<Promo {...props}>Example text</Promo>);
+    component.find(CloseIcon).simulate('click')
+    
+    expect(onClose).toHaveBeenCalledTimes(1)
+  })
 
-  // it('should call on close on close button click', () => {
-  //   const onClose = jest.fn();
-  //   const component = shallow(<Banner onClose={onClose}>Example text</Banner>);
-  //   component.find(CloseIcon).simulate('click')
-  //   expect(onClose).toHaveBeenCalledTimes(1)
-  // })
-
-  // it('should not render close icon when on close is not passed', () => {
-  //   const component = shallow(<Banner>Example text</Banner>);
-  //   expect(component.contains(<CloseIcon />)).toBe(false)
-  // })
+  it('should call buttons actions on buttons click', () => {
+    const component = shallow(<Promo {...props}>Example text</Promo>);
+    component.find(Button).first().simulate('click')
+    component.find(Button).last().simulate('click')
+    
+    expect(onButtonClick).toHaveBeenCalledTimes(1)
+    expect(onLinkClick).toHaveBeenCalledTimes(1)
+  })
 });
