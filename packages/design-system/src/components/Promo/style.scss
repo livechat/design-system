@@ -104,7 +104,7 @@ $base-class: 'promo';
       &-wrapper {
         display: flex;
         flex-direction: column;
-        max-width: 320px;
+        max-width: 520px;
       }
       &-header {
         font-weight: 600;
@@ -112,6 +112,7 @@ $base-class: 'promo';
       &-footer {
         margin: 0 56px 0 56px;
         display: inline-flex;
+        flex-shrink: 0;
         
         &-button {
           margin-right: 24px;

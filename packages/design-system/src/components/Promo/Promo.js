@@ -46,7 +46,7 @@ export const Promo = props => {
         <img src={img} className={styles[`${baseClass}__content-img`]} />
         <div className={styles[`${baseClass}__content-wrapper`]}>
           <div className={styles[`${baseClass}__content-header`]}>{header}</div>
-          {children}
+          <div>{children}</div>
         </div>
       </div>
       {shouldRenderFooter && (
