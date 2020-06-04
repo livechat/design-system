@@ -16,6 +16,11 @@ $base-class: 'promo';
   justify-content: space-between;
   min-width: 180px;
 
+  &--light {
+    border: solid 1px #dde2e6;
+    background-color: #ffffff;
+  }
+
   &--small {
     max-width: 400px;
     flex-wrap: wrap;

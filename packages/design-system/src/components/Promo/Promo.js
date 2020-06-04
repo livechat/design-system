@@ -32,7 +32,7 @@ export const Promo = props => {
 
   const mergedWrapperClassNames = getMergedClassNames(
     cx({
-      [`${baseClass}--${light}`]: light,
+      [`${baseClass}--light`]: light,
       [`${baseClass}--${size}`]: size,
       [`${baseClass}`]: true,
     }),

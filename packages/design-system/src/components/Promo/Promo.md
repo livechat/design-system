@@ -8,7 +8,7 @@ This is appropriate for components from 180px to 400px width. Use it in sidebars
 
 Small
 ```js
-<Promo size="small" header="This example headline has 40 characters" onClose={()=>window.alert('close')}> A description with a <b>maximum of 100</b> characters. That usually means only one or two sentences. </Promo>
+<Promo light size="small" header="This example headline has 40 characters" onClose={()=>window.alert('close')}> A description with a <b>maximum of 100</b> characters. That usually means only one or two sentences. </Promo>
 ```
 ```js
 <Promo size="small" header="This example headline has 40 characters" onClose={()=>window.alert('close')} linkText="link button" buttonText="button text"> A description with a <b>maximum of 100</b> characters. That usually means only one or two sentences. </Promo>
