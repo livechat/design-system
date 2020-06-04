@@ -50,7 +50,7 @@ class ComponentHtmlMarkup extends React.Component {
           onClick={this.toggleCodeVisibility}
           primary={isCodeVisible}
           size="compact"
-          secondary
+          kind="secondary"
           style={{
             marginBottom: isCodeVisible ? '5px' : '0'
           }}
