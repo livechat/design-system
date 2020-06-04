@@ -8,18 +8,17 @@ describe('Button', () => {
 
   it('should render any type of button', () => {
     const primaryButton = shallowButton({
-      destructive: true,
-      primary: true
+      kind: 'primary'
     });
     const destructiveButton = shallowButton({
-      secondary: true,
-      destructive: true
+      kind: 'destructive'
     });
     const secondaryButton = shallowButton({
-      text: true,
-      secondary: true
+      kind: 'secondary'
     });
-    const textButton = shallowButton({ text: true });
+    const textButton = shallowButton({
+      kind: 'text'
+    });
     const basicButton = shallowButton();
 
     expect(primaryButton).toMatchSnapshot();
