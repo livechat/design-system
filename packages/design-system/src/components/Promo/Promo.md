@@ -6,29 +6,53 @@
 
 This is appropriate for components from 180px to 400px width. Use it in sidebars, mobile and any other contextual use, where space is the limitation.
 
-Small
 ```js
-<Promo light size="small" header="This example headline has 40 characters" onClose={()=>window.alert('close')}> A description with a <b>maximum of 100</b> characters. That usually means only one or two sentences. </Promo>
-```
-```js
-<Promo size="small" header="This example headline has 40 characters" onClose={()=>window.alert('close')} linkText="link button" buttonText="button text"> A description with a <b>maximum of 100</b> characters. That usually means only one or two sentences. </Promo>
+<Promo size="small" header="This example headline has 40 characters" onClose={()=>window.alert('close')} linkText="Link button" buttonText="Primary action"> A description with a <b>maximum of 100</b> characters. That usually means only one or two sentences. </Promo>
 ```
 
-Medium
+```js noeditor
+<ComponentHtmlMarkup>
+<Promo size="small" header="This example headline has 40 characters" onClose={()=>window.alert('close')}> A description with a <b>maximum of 100</b> characters. That usually means only one or two sentences. </Promo>
+</ComponentHtmlMarkup>
+```
+
+### Medium
+
+This is appropriate for components from 400px to around 800px width.
+
+Max text colum width is 520px
+
 ```js
+<Promo size="medium" linkText="Link button" buttonText="Primary action" header="This example headline has 40 characters" onClose={()=>window.alert('close')}> A description with a <b>maximum of 100</b> characters. That usually means only one or two sentences. </Promo>
+```
+
+```js noeditor
+<ComponentHtmlMarkup>
 <Promo size="medium" header="This example headline has 40 characters" onClose={()=>window.alert('close')}> A description with a <b>maximum of 100</b> characters. That usually means only one or two sentences. </Promo>
+</ComponentHtmlMarkup>
 ```
 
+### Large
+
+Max text colum width is 520px
+
 ```js
-<Promo size="medium" linkText="link button" buttonText="button text" header="This example headline has 40 characters" onClose={()=>window.alert('close')}> A description with a <b>maximum of 100</b> characters. That usually means only one or two sentences. </Promo>
+<Promo size="large" header="This example headline has 40 characters"  linkText="Link button" buttonText="Primary action" onClose={()=>window.alert('close')}> A description with a <b>maximum of 100</b> characters. That usually means only one or two sentences. </Promo>
 ```
 
-Large
-```js
+```js noeditor
+<ComponentHtmlMarkup>
 <Promo size="large" header="This example headline has 40 characters" onClose={()=>window.alert('close')}> A description with a <b>maximum of 100</b> characters. That usually means only one or two sentences. </Promo>
+</ComponentHtmlMarkup>
 ```
 
-Large
+### Background
+
+#### On white
 ```js
-<Promo size="large" header="This example headline has 40 characters"  linkText="link button" buttonText="button text" onClose={()=>window.alert('close')}> A description with a <b>maximum of 100</b> characters. That usually means only one or two sentences. </Promo>
+<Promo size="small" header="This example headline has 40 characters" onClose={()=>window.alert('close')} linkText="Link button" buttonText="Primary action"> A description with a <b>maximum of 100</b> characters. That usually means only one or two sentences. </Promo>
+```
+#### On greys
+```js
+<Promo light size="small" header="This example headline has 40 characters" onClose={()=>window.alert('close')} linkText="Link button" buttonText="Primary action"> A description with a <b>maximum of 100</b> characters. That usually means only one or two sentences. </Promo>
 ```

@@ -15,10 +15,10 @@ const baseClass = 'promo';
 
 export const Promo = props => {
   const {
-    className,
-    header,
     buttonText,
     children,
+    className,
+    header,
     image,
     light,
     linkText,
@@ -62,15 +62,15 @@ export const Promo = props => {
 
 Promo.propTypes = {
   buttonText: PropTypes.string,
-  header: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  header: PropTypes.string.isRequired,
   image: PropTypes.node,
+  img: PropTypes.string,
   light: PropTypes.bool,
   linkText: PropTypes.string,
   onButtonClick: PropTypes.func,
   onClose: PropTypes.func,
   onLinkClick: PropTypes.func,
-  img: PropTypes.string,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
 };
 
