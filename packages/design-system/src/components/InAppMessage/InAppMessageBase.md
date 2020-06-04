@@ -94,7 +94,7 @@ const reset = () => {
                 toggleInAppMessageType('withFrom');
                 toggleInAppMessage();
             }}
-            primary
+            kind="primary"
         >
             All
         </Button>  

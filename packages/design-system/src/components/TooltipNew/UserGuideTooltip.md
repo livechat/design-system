@@ -38,7 +38,7 @@ const GuideStep = ({ title, text, step, total, onNext }) => (
     <div style={{ display: "flex", alignItems: "flex-end", marginTop: "12px" }}>
       Step {step} of {total}
       <Button
-        primary
+        kind="primary"
         size="compact"
         onClick={onNext}
         style={{ marginLeft: "auto" }}
@@ -121,7 +121,7 @@ class UserGuideTooltipExample extends React.PureComponent {
     return (
       <div>
         <div>
-          <Button onClick={this.handleTriggerClick} primary>
+          <Button onClick={this.handleTriggerClick} kind="primary">
             Start guide
           </Button>
           {element && (
