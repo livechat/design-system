@@ -77,38 +77,6 @@ exports[`Button should render any type of button 5`] = `
 </button>
 `;
 
-exports[`Button should render button with positioned icon 1`] = `
-<button
-  className="btn"
-  type="button"
->
-  <i
-    className="btn__icon btn__icon-left"
-  >
-    <IconMock />
-  </i>
-  <div>
-    Click me
-  </div>
-</button>
-`;
-
-exports[`Button should render button with positioned icon 2`] = `
-<button
-  className="btn"
-  type="button"
->
-  <i
-    className="btn__icon btn__icon-right"
-  >
-    <IconMock />
-  </i>
-  <div>
-    Click me
-  </div>
-</button>
-`;
-
 exports[`Button should render disabled button 1`] = `
 <button
   className="btn btn--disabled"

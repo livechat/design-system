@@ -5,6 +5,7 @@ import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 import { Loader } from '../Loader';
 import { noticeAboutDeprecation } from '../../helpers/notice-about-deprecation';
+import { ButtonIcon } from './ButtonIcon';
 
 const cx = classNames.bind(styles);
 const acceptedSizes = ['large', 'compact'];
@@ -57,7 +58,7 @@ const Button = React.forwardRef((props, ref) => {
 
   if (deprecatedKind) {
     noticeAboutDeprecation(
-      `deprecated prop '${deprecatedKind}' - please use 'kind' prop instead`
+      `deprecated prop '${deprecatedKind}' in Button component - please use 'kind' prop instead`
     );
   }
 
@@ -72,20 +73,6 @@ const Button = React.forwardRef((props, ref) => {
       [`${baseClass}--${size}`]: acceptedSizes.some(s => s === size)
     }),
     className
-  );
-
-  const positionedIcon = (
-    <i
-      className={getMergedClassNames(
-        cx({
-          [`${baseClass}__icon`]: true,
-          [`${baseClass}__icon-left`]: iconPosition === 'left',
-          [`${baseClass}__icon-right`]: iconPosition === 'right'
-        })
-      )}
-    >
-      {icon}
-    </i>
   );
 
   return (
@@ -109,7 +96,7 @@ const Button = React.forwardRef((props, ref) => {
           labelClassName={styles[`${baseClass}__loader-label`]}
         />
       )}
-      {icon && positionedIcon}
+      {icon && <ButtonIcon position={iconPosition}>{icon}</ButtonIcon>}
       {children && <div>{children}</div>}
     </button>
   );

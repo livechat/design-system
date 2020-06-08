@@ -36,21 +36,6 @@ describe('Button', () => {
     expect(largeButton).toMatchSnapshot();
   });
 
-  it('should render button with positioned icon', () => {
-    const IconMock = () => <div />;
-    const leftIconButton = shallow(
-      <Button icon={<IconMock />}>Click me</Button>
-    );
-    const rightIconButton = shallow(
-      <Button icon={<IconMock />} iconPosition="right">
-        Click me
-      </Button>
-    );
-
-    expect(leftIconButton).toMatchSnapshot();
-    expect(rightIconButton).toMatchSnapshot();
-  });
-
   it('should render loading button', () => {
     const loadingButton = shallowButton({
       loading: true,
