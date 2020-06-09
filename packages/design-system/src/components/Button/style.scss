@@ -95,20 +95,10 @@
     color: $primary-color;
     border-color: transparent;
     font-weight: 400;
-    padding: 6px 3px;
 
     &:hover {
       color: $hover-primary-color;
       background-color: transparent;
-    }
-
-    &.btn .btn__loader {
-      justify-content: flex-start;
-    }
-
-    &.btn--large, &.btn--compact {
-      padding-left: 3px;
-      padding-right: 3px;
     }
   }
 
