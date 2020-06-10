@@ -24,7 +24,7 @@ const buttonStyle = {
             style={buttonStyle}
             size="large"
             onClick={handleModalClose}
-            secondary
+            kind="secondary"
           >
             Wait, go back
           </Button>
@@ -32,7 +32,7 @@ const buttonStyle = {
             style={buttonStyle}
             size="large"
             onClick={handleModalClose}
-            destructive
+            kind="destructive"
           >
             Yes, delete
           </Button>
@@ -61,10 +61,10 @@ const buttonStyle = {
     heading="Danger! Danger!"
     actions={
       <React.Fragment>
-        <Button style={buttonStyle} size="large" onClick={() => {}} secondary>
+        <Button style={buttonStyle} size="large" onClick={() => {}} kind="secondary">
           Wait, go back
         </Button>
-        <Button style={buttonStyle} size="large" onClick={() => {}} destructive>
+        <Button style={buttonStyle} size="large" onClick={() => {}} kind="destructive">
           Yes, delete
         </Button>
       </React.Fragment>

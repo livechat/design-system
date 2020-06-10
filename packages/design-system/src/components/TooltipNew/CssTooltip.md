@@ -124,7 +124,7 @@ const handleTooltipActionButton = () => {
         You can decide which columns should appear on the customer’s list. This
         setup will be visible only to you.
         <Button
-          primary={state.theme === "invert"}
+          kind={state.theme === 'invert' ? 'primary' : null}
           size="compact"
           style={{
             position: "relative",

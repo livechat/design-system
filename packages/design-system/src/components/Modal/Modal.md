@@ -24,12 +24,12 @@ const buttonStyle = {
             style={buttonStyle}
             size="large"
             onClick={handleModalClose}
-            secondary
+            kind="secondary"
           >
             Secondary
           </Button>
           <Button
-            primary
+            kind="primary"
             style={buttonStyle}
             size="large"
             onClick={handleModalClose}
@@ -62,7 +62,7 @@ const buttonStyle = {
         <Button style={buttonStyle} size="large" onClick={() => {}}>
           Secondary
         </Button>
-        <Button primary style={buttonStyle} size="large" onClick={() => {}}>
+        <Button kind="primary" style={buttonStyle} size="large" onClick={() => {}}>
           Primary
         </Button>
       </React.Fragment>

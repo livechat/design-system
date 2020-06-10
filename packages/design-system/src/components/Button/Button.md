@@ -3,12 +3,12 @@
 Use when there is an action that is more important than any other actions and you need to draw attention to it. Don’t use more than one primary button per screen to avoid confusing users. Not every screen needs a primary button.
 
 ```js
-<Button primary>Primary Button</Button>
+<Button kind="primary">Primary Button</Button>
 ```
 
 ```js noeditor
 <ComponentHtmlMarkup>
-  <Button primary>Primary Button</Button>
+  <Button kind="primary">Primary Button</Button>
 </ComponentHtmlMarkup>
 ```
 
@@ -31,12 +31,12 @@ The standard button for most use cases. Can be used for primary actions when the
 Secondary buttons provide a lighter weight button style. They can be used in isolation, for less prominent actions, or paired with a Primary button, e.g for the ‘Cancel’ action.
 
 ```js
-<Button secondary>Secondary Button</Button>
+<Button kind="secondary">Secondary Button</Button>
 ```
 
 ```js noeditor
 <ComponentHtmlMarkup>
-  <Button secondary>Secondary Button</Button>
+  <Button kind="secondary">Secondary Button</Button>
 </ComponentHtmlMarkup>
 ```
 
@@ -45,12 +45,26 @@ Secondary buttons provide a lighter weight button style. They can be used in iso
 Use as a final confirmation for a destructive action such as deleting. These are found mostly in confirmation modals.
 
 ```js
-<Button destructive>Destructive Button</Button>
+<Button kind="destructive">Destructive Button</Button>
 ```
 
 ```js noeditor
 <ComponentHtmlMarkup>
-  <Button destructive>Destructive Button</Button>
+  <Button kind="destructive">Destructive Button</Button>
+</ComponentHtmlMarkup>
+```
+
+### Text Button
+
+Used for less important or less commonly used actions. Can have an icon on the left or right. The icon takes the font line height and color.
+
+```js
+<Button kind="text">Text Button</Button>
+```
+
+```js noeditor
+<ComponentHtmlMarkup>
+  <Button kind="text">Text Button</Button>
 </ComponentHtmlMarkup>
 ```
 
@@ -61,14 +75,14 @@ Use as a final confirmation for a destructive action such as deleting. These are
 Use in a table or list where space is tight.
 
 ```js
-<Button size="compact" primary>
+<Button size="compact" kind="primary">
   Compact Button
 </Button>
 ```
 
 ```js noeditor
 <ComponentHtmlMarkup>
-  <Button size="compact" primary>
+  <Button size="compact" kind="primary">
     Compact Button
   </Button>
 </ComponentHtmlMarkup>
@@ -77,12 +91,12 @@ Use in a table or list where space is tight.
 #### Regular
 
 ```js
-<Button primary>Regular Button</Button>
+<Button kind="primary">Regular Button</Button>
 ```
 
 ```js noeditor
 <ComponentHtmlMarkup>
-  <Button primary>Regular Button</Button>
+  <Button kind="primary">Regular Button</Button>
 </ComponentHtmlMarkup>
 ```
 
@@ -91,14 +105,14 @@ Use in a table or list where space is tight.
 Use for the main call to action in empty states or for calls to action shown with large illustrations.
 
 ```js
-<Button size="large" primary>
+<Button size="large" kind="primary">
   Large Button
 </Button>
 ```
 
 ```js noeditor
 <ComponentHtmlMarkup>
-  <Button size="large" primary>
+  <Button size="large" kind="primary">
     Large Button
   </Button>
 </ComponentHtmlMarkup>
@@ -109,14 +123,14 @@ Use for the main call to action in empty states or for calls to action shown wit
 Button expanded to the full width to fill the parent container (max-width: 320px)
 
 ```js
-<Button fullWidth primary>
+<Button fullWidth kind="primary">
   Full-width Button
 </Button>
 ```
 
 ```js noeditor
 <ComponentHtmlMarkup>
-  <Button fullWidth primary>
+  <Button fullWidth kind="primary">
     Full-width Button
   </Button>
 </ComponentHtmlMarkup>
@@ -125,16 +139,26 @@ Button expanded to the full width to fill the parent container (max-width: 320px
 ### Button with icon
 
 ```js
-<Button icon={<AlertCircleIcon />} primary>
-  Primary Button
-</Button>
+<div style={{ width: 260, display: 'flex', flexFlow: 'row no-wrap', justifyContent: 'space-between'}}>
+  <Button icon={<AlertCircleIcon />} kind="primary" iconPosition="left">
+    Icon left
+  </Button>
+  <Button icon={<AlertCircleIcon />} kind="destructive" iconPosition="right">
+    Icon right
+  </Button>
+</div>
 ```
 
 ```js noeditor
 <ComponentHtmlMarkup>
-  <Button icon={<AlertCircleIcon />} primary>
-    Primary Button
-  </Button>
+  <div>
+    <Button icon={<AlertCircleIcon />} kind="primary" iconPosition="left">
+      Icon left
+    </Button>
+    <Button icon={<AlertCircleIcon />} kind="destructive" iconPosition="right">
+      Icon right
+    </Button>
+  </div>
 </ComponentHtmlMarkup>
 ```
 
@@ -151,14 +175,15 @@ Button expanded to the full width to fill the parent container (max-width: 320px
 
   <div>
     <div style={{marginBottom: '10px'}}>
-      <Button primary onClick={toggleLoading}>Turn {state.loading ? 'off' : 'on'} loading</Button>
+      <Button kind="primary" onClick={toggleLoading}>Turn {state.loading ? 'off' : 'on'} loading</Button>
     </div>
-    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+    <div style={{display: 'flex', flexFlow: 'row wrap', justifyContent: 'space-between'}}>
       <Button loading={state.loading}>Loading Button</Button>
-      <Button loading={state.loading} secondary>Loading Button</Button>
-      <Button loading={state.loading} destructive>Loading Button</Button>
-      <Button loading={state.loading} primary>Loading Button</Button>
+      <Button loading={state.loading} kind="secondary">Loading Button</Button>
+      <Button loading={state.loading} kind="destructive">Loading Button</Button>
+      <Button loading={state.loading} kind="primary">Loading Button</Button>
       <Button loading={state.loading} loaderLabel="Processing">Loading Button</Button>
+      <Button loading={state.loading} kind="text" loaderLabel="Loading">Another Text Button</Button>
     </div>
   </div>
 ```
@@ -167,16 +192,19 @@ Button expanded to the full width to fill the parent container (max-width: 320px
 <ComponentHtmlMarkup>
   <div>
     <Button loading>Loading Button</Button>
-    <Button loading secondary>
+    <Button loading kind="secondary">
       Loading Button
     </Button>
-    <Button loading destructive>
+    <Button loading kind="destructive">
       Loading Button
     </Button>
-    <Button loading primary>
+    <Button loading kind="primary">
       Loading Button
     </Button>
     <Button loading loaderLabel="Processing">
+      Loading Button
+    </Button>
+    <Button loading kind="text" loaderLabel="Processing">
       Loading Button
     </Button>
   </div>

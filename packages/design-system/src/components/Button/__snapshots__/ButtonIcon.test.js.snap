@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonIcon should render button with positioned icon 1`] = `
+<i
+  className="btn__icon btn__icon-left"
+>
+  <IconMock />
+</i>
+`;
+
+exports[`ButtonIcon should render button with positioned icon 2`] = `
+<i
+  className="btn__icon btn__icon-right"
+>
+  <IconMock />
+</i>
+`;

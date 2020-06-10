@@ -50,7 +50,7 @@
   }
 
   &--disabled {
-    opacity: 0.65;
+    opacity: 0.5;
   }
 
   &--full-width {
@@ -87,6 +87,18 @@
 
     &:active {
       box-shadow: 0 0 0 1px $error-color;
+    }
+  }
+
+  &--text {
+    background-color: transparent;
+    color: $primary-color;
+    border-color: transparent;
+    font-weight: 400;
+
+    &:hover {
+      color: $hover-primary-color;
+      background-color: transparent;
     }
   }
 
@@ -130,6 +142,11 @@
       background-color: $loading-btn-primary-color;
       border-color: transparent;
     }
+
+    &.btn--text {
+      background-color: transparent;
+      border-color: transparent;
+    }
   }
 
   .btn__loader {
@@ -160,7 +177,16 @@
     width: 20px;
     display: inline-block;
     line-height: 1;
-    margin-right: 5px;
+
+    &-left {
+      margin-right: 5px;
+      order: -1;
+    }
+
+    &-right {
+      margin-left: 5px;
+      order: 1;
+    }
 
     svg {
       box-sizing: border-box;
