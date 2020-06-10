@@ -7,11 +7,9 @@ exports[`ButtonGroup should render button group with button 1`] = `
 >
   <Component
     className=""
-    destructive={false}
     key=".0"
+    kind="secondary"
     onClick={[Function]}
-    primary={false}
-    secondary={true}
     type="button"
   />
 </div>

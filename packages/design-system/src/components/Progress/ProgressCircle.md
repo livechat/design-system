@@ -47,8 +47,8 @@ const onResetTriggerClick = () => {
   <div style={{display: 'flex', marginBottom: '10px', justifyContent: 'space-between'}}>
     <Button size="compact" onClick={addRandomProgress}>Increase progress</Button>
     <Button size="compact" onClick={removeRandomProgress}>Decrease progress</Button>
-    <Button primary size="compact" onClick={onSuccessTriggerClick}>Trigger success</Button>
-    <Button destructive size="compact" onClick={onErrorTriggerClick}>Trigger error</Button>
+    <Button kind="primary" size="compact" onClick={onSuccessTriggerClick}>Trigger success</Button>
+    <Button kind="destructive" size="compact" onClick={onErrorTriggerClick}>Trigger error</Button>
     <Button size="compact" onClick={onResetTriggerClick}>Reset</Button>
   </div>
 

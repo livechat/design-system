@@ -4,9 +4,28 @@ import classNames from 'classnames/bind';
 import styles from './style.scss';
 import getMergedClassNames from '../../utils/getMergedClassNames';
 import { Loader } from '../Loader';
+import { noticeAboutDeprecation } from '../../helpers/notice-about-deprecation';
+import { ButtonIcon } from './ButtonIcon';
 
 const cx = classNames.bind(styles);
 const acceptedSizes = ['large', 'compact'];
+const acceptedKinds = ['primary', 'secondary', 'destructive', 'text'];
+
+const getDeprecatedKind = (primary, destructive, secondary) => {
+  if (primary) {
+    return 'primary';
+  }
+
+  if (destructive) {
+    return 'destructive';
+  }
+
+  if (secondary) {
+    return 'secondary';
+  }
+
+  return null;
+};
 
 const Button = React.forwardRef((props, ref) => {
   const {
@@ -26,19 +45,21 @@ const Button = React.forwardRef((props, ref) => {
     ariaExpanded,
     className,
     type: htmlType,
+    kind,
+    iconPosition,
     ...buttonProps
   } = props;
 
   const isDisabled = disabled || loading;
   const type = submit ? 'submit' : htmlType || 'button';
-  let buttonType = null;
+  const isValidKind = kind && acceptedKinds.includes(kind);
+  const deprecatedKind = getDeprecatedKind(primary, destructive, secondary);
+  const buttonKind = (isValidKind && kind) || deprecatedKind || null;
 
-  if (primary) {
-    buttonType = 'primary';
-  } else if (destructive) {
-    buttonType = 'destructive';
-  } else if (secondary) {
-    buttonType = 'secondary';
+  if (deprecatedKind) {
+    noticeAboutDeprecation(
+      `deprecated prop '${deprecatedKind}' in Button component - please use 'kind' prop instead`
+    );
   }
 
   const baseClass = 'btn';
@@ -48,9 +69,7 @@ const Button = React.forwardRef((props, ref) => {
       [`${baseClass}--disabled`]: disabled,
       [`${baseClass}--loading`]: loading,
       [`${baseClass}--full-width`]: fullWidth,
-      [`${baseClass}--primary`]: buttonType === 'primary',
-      [`${baseClass}--destructive`]: buttonType === 'destructive',
-      [`${baseClass}--secondary`]: buttonType === 'secondary',
+      [`${baseClass}--${buttonKind}`]: !!buttonKind,
       [`${baseClass}--${size}`]: acceptedSizes.some(s => s === size)
     }),
     className
@@ -77,11 +96,15 @@ const Button = React.forwardRef((props, ref) => {
           labelClassName={styles[`${baseClass}__loader-label`]}
         />
       )}
-      {icon && <i className={styles[`${baseClass}__icon`]}>{icon}</i>}
+      {icon && <ButtonIcon position={iconPosition}>{icon}</ButtonIcon>}
       {children && <div>{children}</div>}
     </button>
   );
 });
+
+Button.defaultProps = {
+  iconPosition: 'left'
+};
 
 Button.propTypes = {
   accessibilityLabel: PropTypes.string,
@@ -90,14 +113,6 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   id: PropTypes.string,
-  /**
-   * Type of button
-   */
-  primary: PropTypes.bool,
-  /**
-   * Type of button
-   */
-  destructive: PropTypes.bool,
   disabled: PropTypes.bool,
   /**
    * Sets button width to max-width=320px
@@ -110,15 +125,31 @@ Button.propTypes = {
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
   /**
-   * Type of button
-   */
-  secondary: PropTypes.bool,
-  /**
    * Size of button
    */
   size: PropTypes.oneOf(['compact', 'large']),
   submit: PropTypes.bool,
-  type: PropTypes.string
+  type: PropTypes.string,
+  /**
+   * Type of button
+   */
+  kind: PropTypes.oneOf(['primary', 'secondary', 'destructive', 'text']),
+  /**
+   * Position of provided icon
+   */
+  iconPosition: PropTypes.oneOf(['left', 'right']),
+  /**
+   * DEPRECATED - use 'kind' instead
+   */
+  primary: PropTypes.bool,
+  /**
+   * DEPRECATED - use 'kind' instead
+   */
+  destructive: PropTypes.bool,
+  /**
+   * DEPRECATED - use 'kind' instead
+   */
+  secondary: PropTypes.bool
 };
 
 export default Button;

@@ -9,4 +9,4 @@ For someone who’s already used one of our products, the transition to another 
 ## Changelog
 
 This project adheres to Semantic Versioning.
-Every release, along with the migration instructions, is documented in the [Changelog](CHANGELOG.md) inside each package.
+Every release, along with the migration instructions, is documented in the CHANGELOG.md file inside each package.
