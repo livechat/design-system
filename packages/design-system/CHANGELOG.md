@@ -1,5 +1,22 @@
 All notable changes to this project will be documented in this file.
 
+## v0.9.0
+
+_Release: 2020-06-10_
+
+##### New Features
+
+- adding a new type (kind) of Button component - `text` (#188)
+- adding new Button component props: `kind` and `iconPosition` (#188)
+
+##### Deprecations
+
+- `primary`, `secondary` and `destructive` Button properties will be removed in the release `1.0.0` - a new `kind` property was introduced. For now, the library will show error in console when the deprecated is used. (#188)
+
+##### Bug Fixes
+
+- Adding missing property to `Button` component typings - `loaderLabel`
+
 ## v0.8.2
 
 _Release: 2020-05-06_
