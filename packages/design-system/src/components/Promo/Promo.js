@@ -1,12 +1,11 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-
-import { Button } from '../Button';
-
-import getMergedClassNames from '../../utils/getMergedClassNames';
 import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 
+import getMergedClassNames from '../../utils/getMergedClassNames';
+
+import { Button } from '../Button';
 import styles from './style.scss';
 
 const cx = classNames.bind(styles);

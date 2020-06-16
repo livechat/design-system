@@ -2,7 +2,7 @@ import { MouseEventHandler } from "react";
 
 export type PromoSize = "small" | "medium" | "large";
 
-export interface IProgressBarProps {
+export interface IProgressBarProps extends React.HTMLAttributes<HTMLDivElement> {
     buttonText?: string;
     children: React.ReactNode;
     header: string;

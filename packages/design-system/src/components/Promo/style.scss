@@ -5,7 +5,6 @@ $base-class: 'promo';
 .#{$base-class} {
   position: relative;
   padding: 20px;
-  overflow: hidden;
   word-break: break-word;
   width: 100%;
   box-sizing: border-box;
@@ -128,29 +127,5 @@ $base-class: 'promo';
     position: absolute;
     top: 17px;
     right: 20px;
-  }
-
-  &--info {
-    box-shadow: inset 0 3px 0 0 #4384f5;
-    background-color: #e4f2ff;
-  }
-
-  &--warning {
-    box-shadow: inset 0 3px 0 0 #fb9d01;
-    background-color: #fff8e1;
-  }
-
-  &--success {
-    box-shadow: inset 0 3px 0 0 #38c776;
-    background-color: #e5f4eb;
-  }
-
-  &--error {
-    box-shadow: inset 0 3px 0 0 #d64646;
-    background-color: #fbecef;
-  }
-
-  &__icon {
-    flex-shrink: 0;
   }
 }
