@@ -57,7 +57,7 @@ export const Promo = props => {
         </div>
         { shouldRenderLargeFooter && footer }
       </div>
-      <button className={styles[`${baseClass}__close-icon`]} onClick={onClose}>
+      <button type="button" className={styles[`${baseClass}__close-icon`]} onClick={onClose}>
         <CloseIcon fill="#424d57"/>
       </button>
     </div>
