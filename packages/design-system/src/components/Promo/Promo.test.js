@@ -50,7 +50,7 @@ describe('Promo', () => {
 
   it('should call on close on close button click', () => {
     const component = shallow(<Promo {...props}>Example text</Promo>);
-    component.find(CloseIcon).simulate('click')
+    component.find('button').simulate('click')
     
     expect(onClose).toHaveBeenCalledTimes(1)
   })

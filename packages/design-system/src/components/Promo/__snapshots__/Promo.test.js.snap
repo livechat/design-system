@@ -41,11 +41,14 @@ exports[`Promo should render promo of any size 1`] = `
       </div>
     </div>
   </div>
-  <CloseIcon
+  <button
     className="promo__close-icon"
-    fill="#424d57"
     onClick={[MockFunction]}
-  />
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
 </div>
 `;
 
@@ -90,11 +93,14 @@ exports[`Promo should render promo of any size 2`] = `
       </ForwardRef>
     </div>
   </div>
-  <CloseIcon
+  <button
     className="promo__close-icon"
-    fill="#424d57"
     onClick={[MockFunction]}
-  />
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
 </div>
 `;
 
@@ -139,11 +145,14 @@ exports[`Promo should render promo of any size 3`] = `
       </div>
     </div>
   </div>
-  <CloseIcon
+  <button
     className="promo__close-icon"
-    fill="#424d57"
     onClick={[MockFunction]}
-  />
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
 </div>
 `;
 
@@ -171,11 +180,14 @@ exports[`Promo should render promo of any size without footer 1`] = `
       </div>
     </div>
   </div>
-  <CloseIcon
+  <button
     className="promo__close-icon"
-    fill="#424d57"
     onClick={[MockFunction]}
-  />
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
 </div>
 `;
 
@@ -203,11 +215,14 @@ exports[`Promo should render promo of any size without footer 2`] = `
       </div>
     </div>
   </div>
-  <CloseIcon
+  <button
     className="promo__close-icon"
-    fill="#424d57"
     onClick={[MockFunction]}
-  />
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
 </div>
 `;
 
@@ -235,10 +250,13 @@ exports[`Promo should render promo of any size without footer 3`] = `
       </div>
     </div>
   </div>
-  <CloseIcon
+  <button
     className="promo__close-icon"
-    fill="#424d57"
     onClick={[MockFunction]}
-  />
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
 </div>
 `;
