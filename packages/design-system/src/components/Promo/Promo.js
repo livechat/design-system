@@ -40,6 +40,12 @@ export const Promo = props => {
   const shouldRenderLargeFooter = (buttonText || linkText)  && size === 'large'; 
   const shouldRenderSmallOrMediumFooter = (buttonText || linkText)  && size !== 'large'; 
 
+  const footer = (
+    <div className={styles[`${baseClass}__footer`]}>
+      {buttonText && <Button primary onClick={onButtonClick} className={styles[`${baseClass}__button-text`]}>{buttonText}</Button>}
+      {linkText && <Button primary onClick={onLinkClick}>{linkText}</Button>}
+    </div>)
+
   return (
     <div className={mergedWrapperClassNames} {...restProps}>
       <div className={styles[`${baseClass}__content`]}>
@@ -47,19 +53,9 @@ export const Promo = props => {
         <div className={styles[`${baseClass}__wrapper`]}>
           <div className={styles[`${baseClass}__header`]}>{header}</div>
           <div>{children}</div>
-            { shouldRenderSmallOrMediumFooter && (
-              <div className={styles[`${baseClass}__footer`]}>
-                {buttonText && <Button primary onClick={onButtonClick} className={styles[`${baseClass}__button-text`]}>{buttonText}</Button>}
-                {linkText && <Button primary onClick={onLinkClick}>{linkText}</Button>}
-              </div>)
-            }
+            { shouldRenderSmallOrMediumFooter && footer }
         </div>
-        {shouldRenderLargeFooter && (
-        <div className={styles[`${baseClass}__footer`]}>
-            {buttonText && <Button primary onClick={onButtonClick} className={styles[`${baseClass}__button-text`]}>{buttonText}</Button>}
-            {linkText && <Button primary onClick={onLinkClick}>{linkText}</Button>}
-        </div>)
-      }
+        { shouldRenderLargeFooter && footer }
       </div>
       <CloseIcon onClick={onClose} fill="#424d57" className={styles[`${baseClass}__close-icon`]}/>
     </div>
