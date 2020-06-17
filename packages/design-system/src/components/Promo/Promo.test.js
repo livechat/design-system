@@ -33,6 +33,21 @@ describe('Promo', () => {
       })
   });
 
+  it('should render promo of any size without footer', () => {
+    const sizes = ['small', 'large', 'medium'];
+    const props = {
+      onClose,
+      header,
+      img,
+      onClose,
+    }
+      sizes.map(size => {
+        const component = shallow(<Promo size={size} {...props}>Example text</Promo>);
+
+        expect(component).toMatchSnapshot();
+      })
+  });
+
   it('should call on close on close button click', () => {
     const component = shallow(<Promo {...props}>Example text</Promo>);
     component.find(CloseIcon).simulate('click')

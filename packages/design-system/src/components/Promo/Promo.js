@@ -37,23 +37,30 @@ export const Promo = props => {
     }),
     className
   );
-  const shouldRenderFooter = buttonText || linkText;
+  const shouldRenderLargeFooter = (buttonText || linkText)  && size === 'large'; 
+  const shouldRenderSmallOrMediumFooter = (buttonText || linkText)  && size !== 'large'; 
 
   return (
     <div className={mergedWrapperClassNames} {...restProps}>
       <div className={styles[`${baseClass}__content`]}>
-        <img src={img} className={styles[`${baseClass}__content-img`]} />
-        <div className={styles[`${baseClass}__content-wrapper`]}>
-          <div className={styles[`${baseClass}__content-header`]}>{header}</div>
+        {img && <img src={img} className={styles[`${baseClass}__img`]} />}
+        <div className={styles[`${baseClass}__wrapper`]}>
+          <div className={styles[`${baseClass}__header`]}>{header}</div>
           <div>{children}</div>
+            { shouldRenderSmallOrMediumFooter && (
+              <div className={styles[`${baseClass}__footer`]}>
+                {buttonText && <Button primary onClick={onButtonClick} className={styles[`${baseClass}__button-text`]}>{buttonText}</Button>}
+                {linkText && <Button primary onClick={onLinkClick}>{linkText}</Button>}
+              </div>)
+            }
         </div>
-      </div>
-      {shouldRenderFooter && (
-        <div className={styles[`${baseClass}__content-footer`]}>
-            {buttonText && <Button primary onClick={onButtonClick} className={styles[`${baseClass}__content-footer-button`]}>{buttonText}</Button>}
+        {shouldRenderLargeFooter && (
+        <div className={styles[`${baseClass}__footer`]}>
+            {buttonText && <Button primary onClick={onButtonClick} className={styles[`${baseClass}__button-text`]}>{buttonText}</Button>}
             {linkText && <Button primary onClick={onLinkClick}>{linkText}</Button>}
         </div>)
       }
+      </div>
       <CloseIcon onClick={onClose} fill="#424d57" className={styles[`${baseClass}__close-icon`]}/>
     </div>
   );
@@ -75,7 +82,6 @@ Promo.propTypes = {
 
 Promo.defaultProps = {
   size: 'small',
-  img: "https://via.placeholder.com/100"
 };
 
 export default Promo;

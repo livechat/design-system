@@ -8,38 +8,38 @@ exports[`Promo should render promo of any size 1`] = `
     className="promo__content"
   >
     <img
-      className="promo__content-img"
+      className="promo__img"
       src="img"
     />
     <div
-      className="promo__content-wrapper"
+      className="promo__wrapper"
     >
       <div
-        className="promo__content-header"
+        className="promo__header"
       >
         This example headline has 40 characters
       </div>
       <div>
         Example text
       </div>
+      <div
+        className="promo__footer"
+      >
+        <ForwardRef
+          className="promo__button-text"
+          onClick={[MockFunction]}
+          primary={true}
+        >
+          Primary button
+        </ForwardRef>
+        <ForwardRef
+          onClick={[MockFunction]}
+          primary={true}
+        >
+          Link
+        </ForwardRef>
+      </div>
     </div>
-  </div>
-  <div
-    className="promo__content-footer"
-  >
-    <ForwardRef
-      className="promo__content-footer-button"
-      onClick={[MockFunction]}
-      primary={true}
-    >
-      Primary button
-    </ForwardRef>
-    <ForwardRef
-      onClick={[MockFunction]}
-      primary={true}
-    >
-      Link
-    </ForwardRef>
   </div>
   <CloseIcon
     className="promo__close-icon"
@@ -57,14 +57,14 @@ exports[`Promo should render promo of any size 2`] = `
     className="promo__content"
   >
     <img
-      className="promo__content-img"
+      className="promo__img"
       src="img"
     />
     <div
-      className="promo__content-wrapper"
+      className="promo__wrapper"
     >
       <div
-        className="promo__content-header"
+        className="promo__header"
       >
         This example headline has 40 characters
       </div>
@@ -72,23 +72,23 @@ exports[`Promo should render promo of any size 2`] = `
         Example text
       </div>
     </div>
-  </div>
-  <div
-    className="promo__content-footer"
-  >
-    <ForwardRef
-      className="promo__content-footer-button"
-      onClick={[MockFunction]}
-      primary={true}
+    <div
+      className="promo__footer"
     >
-      Primary button
-    </ForwardRef>
-    <ForwardRef
-      onClick={[MockFunction]}
-      primary={true}
-    >
-      Link
-    </ForwardRef>
+      <ForwardRef
+        className="promo__button-text"
+        onClick={[MockFunction]}
+        primary={true}
+      >
+        Primary button
+      </ForwardRef>
+      <ForwardRef
+        onClick={[MockFunction]}
+        primary={true}
+      >
+        Link
+      </ForwardRef>
+    </div>
   </div>
   <CloseIcon
     className="promo__close-icon"
@@ -106,14 +106,63 @@ exports[`Promo should render promo of any size 3`] = `
     className="promo__content"
   >
     <img
-      className="promo__content-img"
+      className="promo__img"
       src="img"
     />
     <div
-      className="promo__content-wrapper"
+      className="promo__wrapper"
     >
       <div
-        className="promo__content-header"
+        className="promo__header"
+      >
+        This example headline has 40 characters
+      </div>
+      <div>
+        Example text
+      </div>
+      <div
+        className="promo__footer"
+      >
+        <ForwardRef
+          className="promo__button-text"
+          onClick={[MockFunction]}
+          primary={true}
+        >
+          Primary button
+        </ForwardRef>
+        <ForwardRef
+          onClick={[MockFunction]}
+          primary={true}
+        >
+          Link
+        </ForwardRef>
+      </div>
+    </div>
+  </div>
+  <CloseIcon
+    className="promo__close-icon"
+    fill="#424d57"
+    onClick={[MockFunction]}
+  />
+</div>
+`;
+
+exports[`Promo should render promo of any size without footer 1`] = `
+<div
+  className="promo--small promo"
+>
+  <div
+    className="promo__content"
+  >
+    <img
+      className="promo__img"
+      src="img"
+    />
+    <div
+      className="promo__wrapper"
+    >
+      <div
+        className="promo__header"
       >
         This example headline has 40 characters
       </div>
@@ -122,22 +171,69 @@ exports[`Promo should render promo of any size 3`] = `
       </div>
     </div>
   </div>
+  <CloseIcon
+    className="promo__close-icon"
+    fill="#424d57"
+    onClick={[MockFunction]}
+  />
+</div>
+`;
+
+exports[`Promo should render promo of any size without footer 2`] = `
+<div
+  className="promo--large promo"
+>
   <div
-    className="promo__content-footer"
+    className="promo__content"
   >
-    <ForwardRef
-      className="promo__content-footer-button"
-      onClick={[MockFunction]}
-      primary={true}
+    <img
+      className="promo__img"
+      src="img"
+    />
+    <div
+      className="promo__wrapper"
     >
-      Primary button
-    </ForwardRef>
-    <ForwardRef
-      onClick={[MockFunction]}
-      primary={true}
+      <div
+        className="promo__header"
+      >
+        This example headline has 40 characters
+      </div>
+      <div>
+        Example text
+      </div>
+    </div>
+  </div>
+  <CloseIcon
+    className="promo__close-icon"
+    fill="#424d57"
+    onClick={[MockFunction]}
+  />
+</div>
+`;
+
+exports[`Promo should render promo of any size without footer 3`] = `
+<div
+  className="promo--medium promo"
+>
+  <div
+    className="promo__content"
+  >
+    <img
+      className="promo__img"
+      src="img"
+    />
+    <div
+      className="promo__wrapper"
     >
-      Link
-    </ForwardRef>
+      <div
+        className="promo__header"
+      >
+        This example headline has 40 characters
+      </div>
+      <div>
+        Example text
+      </div>
+    </div>
   </div>
   <CloseIcon
     className="promo__close-icon"
