@@ -1,4 +1,4 @@
-import { MouseEventHandler } from "react";
+// <reference types="react" />
 
 export type PromoSize = "small" | "medium" | "large";
 
@@ -9,8 +9,8 @@ export interface IPromoProps extends React.HTMLAttributes<HTMLDivElement> {
     img?: string;
     light?:boolean;
     linkText?: string;
-    onButtonClick?: MouseEventHandler<HTMLButtonElement>;
-    onClose?: MouseEventHandler<HTMLButtonElement>;
-    onLinkClick?: MouseEventHandler<HTMLButtonElement>;
+    onButtonClick?: React.MouseEventHandler<HTMLButtonElement>;
+    onClose?: React.MouseEventHandler<HTMLButtonElement>;
+    onLinkClick?: React.MouseEventHandler<HTMLButtonElement>;
     size?: PromoSize;
 }
