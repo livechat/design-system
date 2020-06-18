@@ -27,12 +27,15 @@ exports[`Promo should render promo of any size 1`] = `
       >
         <ForwardRef
           className="promo__button-text"
+          iconPosition="left"
           onClick={[MockFunction]}
           primary={true}
         >
           Primary button
         </ForwardRef>
         <ForwardRef
+          iconPosition="left"
+          kind="text"
           onClick={[MockFunction]}
           primary={true}
         >
@@ -81,12 +84,15 @@ exports[`Promo should render promo of any size 2`] = `
     >
       <ForwardRef
         className="promo__button-text"
+        iconPosition="left"
         onClick={[MockFunction]}
         primary={true}
       >
         Primary button
       </ForwardRef>
       <ForwardRef
+        iconPosition="left"
+        kind="text"
         onClick={[MockFunction]}
         primary={true}
       >
@@ -133,12 +139,15 @@ exports[`Promo should render promo of any size 3`] = `
       >
         <ForwardRef
           className="promo__button-text"
+          iconPosition="left"
           onClick={[MockFunction]}
           primary={true}
         >
           Primary button
         </ForwardRef>
         <ForwardRef
+          iconPosition="left"
+          kind="text"
           onClick={[MockFunction]}
           primary={true}
         >

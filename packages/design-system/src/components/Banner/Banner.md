@@ -2,6 +2,8 @@
 
 ## Usage
 
+Alert banners are used to let users know about important informations that require immediate action or attention.
+
 ### Small
 
 This is appropriate for components from 180px to 400px width. Use it in sidebars, mobile and any other contextual use, where space is the limitation.

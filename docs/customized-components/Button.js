@@ -8,8 +8,7 @@ function Button({ name, className, onClick, active, children }) {
       className={className}
       onClick={onClick}
       name={name}
-      primary={active}
-      secondary
+      kind={active ? 'primary' : 'secondary'}
       size="compact"
       style={{
         margin: '10px 0 0',

@@ -57,7 +57,11 @@ $base-class: 'banner';
   &__close-icon {
     height: 24px;
     width: 24px;
-    cursor: pointer;
+    overflow: hidden;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
     position: absolute;
     top: 17px;
     right: 20px;

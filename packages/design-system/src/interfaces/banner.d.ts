@@ -7,7 +7,7 @@ export interface IBannerProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose?: MouseEventHandler<HTMLButtonElement>;
   size?: BannerSize;
   children: React.ReactNode;
-  type?: BannerType;
+  type: BannerType;
 }
 
 export var Banner: React.ComponentType<IBannerProps>;

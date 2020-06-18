@@ -21,21 +21,29 @@ class ButtonGroup extends React.Component {
   }
 
   handleClick = (index, event) => {
-    this.props.onIndexChange && this.props.onIndexChange(index, event);
+    if (this.props.onIndexChange) {
+      this.props.onIndexChange(index, event);
+    }
     this.setState({ currentIndex: index });
   };
 
   render() {
     const { index } = this.state;
-    const { size, fullWidth, children, className, onIndexChange, currentIndex, ...restProps } = this.props;
+    const {
+      size,
+      fullWidth,
+      children,
+      className,
+      onIndexChange,
+      currentIndex,
+      ...restProps
+    } = this.props;
 
     const mappedChildren = React.Children.map(children, (child, i) =>
       React.cloneElement(child, {
         size,
         fullWidth,
-        primary: false,
-        secondary: true,
-        destructive: false,
+        kind: 'secondary',
         type: 'button',
         onClick: event => {
           this.handleClick(i, event);

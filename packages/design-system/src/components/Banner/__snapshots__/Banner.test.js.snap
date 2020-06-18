@@ -16,11 +16,15 @@ exports[`Banner should render banner of anty type and size 1`] = `
       Example text
     </div>
   </div>
-  <CloseIcon
+  <button
     className="banner__close-icon"
-    fill="#424d57"
     onClick={[MockFunction]}
-  />
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
 </div>
 `;
 
@@ -40,11 +44,15 @@ exports[`Banner should render banner of anty type and size 2`] = `
       Example text
     </div>
   </div>
-  <CloseIcon
+  <button
     className="banner__close-icon"
-    fill="#424d57"
     onClick={[MockFunction]}
-  />
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
 </div>
 `;
 
@@ -64,11 +72,15 @@ exports[`Banner should render banner of anty type and size 3`] = `
       Example text
     </div>
   </div>
-  <CloseIcon
+  <button
     className="banner__close-icon"
-    fill="#424d57"
     onClick={[MockFunction]}
-  />
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
 </div>
 `;
 
@@ -88,11 +100,15 @@ exports[`Banner should render banner of anty type and size 4`] = `
       Example text
     </div>
   </div>
-  <CloseIcon
+  <button
     className="banner__close-icon"
-    fill="#424d57"
     onClick={[MockFunction]}
-  />
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
 </div>
 `;
 
@@ -112,11 +128,15 @@ exports[`Banner should render banner of anty type and size 5`] = `
       Example text
     </div>
   </div>
-  <CloseIcon
+  <button
     className="banner__close-icon"
-    fill="#424d57"
     onClick={[MockFunction]}
-  />
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
 </div>
 `;
 
@@ -136,11 +156,15 @@ exports[`Banner should render banner of anty type and size 6`] = `
       Example text
     </div>
   </div>
-  <CloseIcon
+  <button
     className="banner__close-icon"
-    fill="#424d57"
     onClick={[MockFunction]}
-  />
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
 </div>
 `;
 
@@ -160,11 +184,15 @@ exports[`Banner should render banner of anty type and size 7`] = `
       Example text
     </div>
   </div>
-  <CloseIcon
+  <button
     className="banner__close-icon"
-    fill="#424d57"
     onClick={[MockFunction]}
-  />
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
 </div>
 `;
 
@@ -184,11 +212,15 @@ exports[`Banner should render banner of anty type and size 8`] = `
       Example text
     </div>
   </div>
-  <CloseIcon
+  <button
     className="banner__close-icon"
-    fill="#424d57"
     onClick={[MockFunction]}
-  />
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
 </div>
 `;
 
@@ -208,11 +240,15 @@ exports[`Banner should render banner of anty type and size 9`] = `
       Example text
     </div>
   </div>
-  <CloseIcon
+  <button
     className="banner__close-icon"
-    fill="#424d57"
     onClick={[MockFunction]}
-  />
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
 </div>
 `;
 
@@ -232,11 +268,15 @@ exports[`Banner should render banner of anty type and size 10`] = `
       Example text
     </div>
   </div>
-  <CloseIcon
+  <button
     className="banner__close-icon"
-    fill="#424d57"
     onClick={[MockFunction]}
-  />
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
 </div>
 `;
 
@@ -256,11 +296,15 @@ exports[`Banner should render banner of anty type and size 11`] = `
       Example text
     </div>
   </div>
-  <CloseIcon
+  <button
     className="banner__close-icon"
-    fill="#424d57"
     onClick={[MockFunction]}
-  />
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
 </div>
 `;
 
@@ -280,10 +324,14 @@ exports[`Banner should render banner of anty type and size 12`] = `
       Example text
     </div>
   </div>
-  <CloseIcon
+  <button
     className="banner__close-icon"
-    fill="#424d57"
     onClick={[MockFunction]}
-  />
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
 </div>
 `;

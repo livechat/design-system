@@ -1,5 +1,5 @@
 ```js noeditor
-<Banner size="large" text="This component can be used only in React applications." type="warning"/>
+<Banner size="large" type="warning">This component can be used only in React applications.</Banner>
 ```
 
 <h3>Date picker</h3>
