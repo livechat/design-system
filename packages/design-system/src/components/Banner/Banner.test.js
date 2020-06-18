@@ -22,7 +22,7 @@ describe('Banner', () => {
   it('should call on close on close button click', () => {
     const onClose = jest.fn();
     const component = shallow(<Banner onClose={onClose}>Example text</Banner>);
-    component.find(CloseIcon).simulate('click')
+    component.find('button').simulate('click')
     expect(onClose).toHaveBeenCalledTimes(1)
   })
 

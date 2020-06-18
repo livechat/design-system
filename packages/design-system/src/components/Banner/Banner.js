@@ -36,7 +36,11 @@ export const Banner = props => {
         <BannerIcon type={type} />
         <div className={styles[`${baseClass}__content-text`]}>{children}</div>
       </div>
-      {onClose && <CloseIcon onClick={onClose} fill="#424d57" className={styles[`${baseClass}__close-icon`]}/>}
+      { onClose && (
+        <button type="button" onClick={onClose}  className={styles[`${baseClass}__close-icon`]}>
+          <CloseIcon fill="#424d57"/>
+        </button>)
+      }
     </div>
   );
 }
