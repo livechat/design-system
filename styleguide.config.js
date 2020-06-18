@@ -29,8 +29,9 @@ module.exports = {
         {
           name: 'Alerts',
           components: [
+            './packages/design-system/src/components/Banner/Banner.js',
             './packages/design-system/src/components/Toast/Toast.js',
-            './packages/design-system/src/components/Toast/ToastWrapper.js'
+            './packages/design-system/src/components/Toast/ToastWrapper.js',
           ]
         },
         {
