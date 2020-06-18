@@ -33,6 +33,7 @@ $base-class: 'promo';
       flex-direction: column;
     }
     .#{$base-class}__img {
+      object-fit: contain;
       width: 48px;
       height:48px;
       margin-bottom: 12px;
@@ -67,6 +68,7 @@ $base-class: 'promo';
     }
     
     .#{$base-class}__img {
+      object-fit: contain;
       width: 48px;
       height:48px;
       margin-right: 16px;
@@ -104,6 +106,7 @@ $base-class: 'promo';
     }
 
     .#{$base-class}__img {
+      object-fit: contain;
       width: 48px;
       height:48px;
       margin-right: 20px;
