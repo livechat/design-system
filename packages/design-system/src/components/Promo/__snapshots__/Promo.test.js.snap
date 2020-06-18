@@ -1,0 +1,277 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Promo should render promo of any size 1`] = `
+<div
+  className="promo--small promo"
+>
+  <div
+    className="promo__content"
+  >
+    <img
+      className="promo__img"
+      src="img"
+    />
+    <div
+      className="promo__wrapper"
+    >
+      <div
+        className="promo__header"
+      >
+        This example headline has 40 characters
+      </div>
+      <div>
+        Example text
+      </div>
+      <div
+        className="promo__footer"
+      >
+        <ForwardRef
+          className="promo__button-text"
+          iconPosition="left"
+          onClick={[MockFunction]}
+          primary={true}
+        >
+          Primary button
+        </ForwardRef>
+        <ForwardRef
+          iconPosition="left"
+          kind="text"
+          onClick={[MockFunction]}
+          primary={true}
+        >
+          Link
+        </ForwardRef>
+      </div>
+    </div>
+  </div>
+  <button
+    className="promo__close-icon"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
+</div>
+`;
+
+exports[`Promo should render promo of any size 2`] = `
+<div
+  className="promo--large promo"
+>
+  <div
+    className="promo__content"
+  >
+    <img
+      className="promo__img"
+      src="img"
+    />
+    <div
+      className="promo__wrapper"
+    >
+      <div
+        className="promo__header"
+      >
+        This example headline has 40 characters
+      </div>
+      <div>
+        Example text
+      </div>
+    </div>
+    <div
+      className="promo__footer"
+    >
+      <ForwardRef
+        className="promo__button-text"
+        iconPosition="left"
+        onClick={[MockFunction]}
+        primary={true}
+      >
+        Primary button
+      </ForwardRef>
+      <ForwardRef
+        iconPosition="left"
+        kind="text"
+        onClick={[MockFunction]}
+        primary={true}
+      >
+        Link
+      </ForwardRef>
+    </div>
+  </div>
+  <button
+    className="promo__close-icon"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
+</div>
+`;
+
+exports[`Promo should render promo of any size 3`] = `
+<div
+  className="promo--medium promo"
+>
+  <div
+    className="promo__content"
+  >
+    <img
+      className="promo__img"
+      src="img"
+    />
+    <div
+      className="promo__wrapper"
+    >
+      <div
+        className="promo__header"
+      >
+        This example headline has 40 characters
+      </div>
+      <div>
+        Example text
+      </div>
+      <div
+        className="promo__footer"
+      >
+        <ForwardRef
+          className="promo__button-text"
+          iconPosition="left"
+          onClick={[MockFunction]}
+          primary={true}
+        >
+          Primary button
+        </ForwardRef>
+        <ForwardRef
+          iconPosition="left"
+          kind="text"
+          onClick={[MockFunction]}
+          primary={true}
+        >
+          Link
+        </ForwardRef>
+      </div>
+    </div>
+  </div>
+  <button
+    className="promo__close-icon"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
+</div>
+`;
+
+exports[`Promo should render promo of any size without footer 1`] = `
+<div
+  className="promo--small promo"
+>
+  <div
+    className="promo__content"
+  >
+    <img
+      className="promo__img"
+      src="img"
+    />
+    <div
+      className="promo__wrapper"
+    >
+      <div
+        className="promo__header"
+      >
+        This example headline has 40 characters
+      </div>
+      <div>
+        Example text
+      </div>
+    </div>
+  </div>
+  <button
+    className="promo__close-icon"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
+</div>
+`;
+
+exports[`Promo should render promo of any size without footer 2`] = `
+<div
+  className="promo--large promo"
+>
+  <div
+    className="promo__content"
+  >
+    <img
+      className="promo__img"
+      src="img"
+    />
+    <div
+      className="promo__wrapper"
+    >
+      <div
+        className="promo__header"
+      >
+        This example headline has 40 characters
+      </div>
+      <div>
+        Example text
+      </div>
+    </div>
+  </div>
+  <button
+    className="promo__close-icon"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
+</div>
+`;
+
+exports[`Promo should render promo of any size without footer 3`] = `
+<div
+  className="promo--medium promo"
+>
+  <div
+    className="promo__content"
+  >
+    <img
+      className="promo__img"
+      src="img"
+    />
+    <div
+      className="promo__wrapper"
+    >
+      <div
+        className="promo__header"
+      >
+        This example headline has 40 characters
+      </div>
+      <div>
+        Example text
+      </div>
+    </div>
+  </div>
+  <button
+    className="promo__close-icon"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
+</div>
+`;
