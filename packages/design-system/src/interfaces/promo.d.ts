@@ -14,3 +14,5 @@ export interface IPromoProps extends React.HTMLAttributes<HTMLDivElement> {
     onLinkClick?: React.MouseEventHandler<HTMLButtonElement>;
     size?: PromoSize;
 }
+
+export var Promo: React.ComponentType<IPromoProps>;
