@@ -26,7 +26,6 @@ $base-class: 'promo';
     flex-wrap: wrap;
 
     .#{$base-class}__content {
-      margin-bottom: 12px;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -43,6 +42,8 @@ $base-class: 'promo';
       flex-direction: column;
     }
     .#{$base-class}__header {
+      font-size: 16px;
+      margin-bottom: 8px;
       font-weight: 600;
     }
 
@@ -61,7 +62,6 @@ $base-class: 'promo';
     flex-wrap: wrap;
 
     .#{$base-class}__content {
-      margin-bottom: 12px;
       display: flex;
       justify-content: flex-start;
       flex-direction: row;
@@ -81,6 +81,8 @@ $base-class: 'promo';
     }
     
     .#{$base-class}__header {
+      font-size: 16px;
+      margin-bottom: 8px;
       font-weight: 600;
     }
     
@@ -99,7 +101,6 @@ $base-class: 'promo';
     min-width: 600px;
 
     .#{$base-class}__content {
-      margin-bottom: 12px;
       display: flex;
       justify-content: flex-start;
       flex-direction: row;
@@ -119,6 +120,8 @@ $base-class: 'promo';
     }
 
     .#{$base-class}__header {
+      font-size: 16px;
+      margin-bottom: 8px;
       font-weight: 600;
     }
 
