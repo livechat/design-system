@@ -70,11 +70,11 @@ $base-class: 'promo';
     flex-wrap: wrap;
 
     .#{$base-class}__img {
-      margin-right: 16px;
+      margin-right: 20px;
     }
 
     .#{$base-class}__wrapper {
-      max-width: 520px;
+      max-width: 680px;
     }
 
     .#{$base-class}__footer {
@@ -92,7 +92,7 @@ $base-class: 'promo';
     }
 
     .#{$base-class}__wrapper {
-      max-width: 520px;
+      max-width: 680px;
       min-width: 180px;
     }
 
