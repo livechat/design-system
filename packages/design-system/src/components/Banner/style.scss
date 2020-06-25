@@ -36,7 +36,7 @@ $base-class: 'banner';
 
       &-text {
         margin: 0 30px 0 16px;
-        max-width: 520px;
+        max-width: 640px;
       }
     }
   }
@@ -63,8 +63,8 @@ $base-class: 'banner';
     background-color: transparent;
     box-shadow: none;
     position: absolute;
-    top: 17px;
-    right: 20px;
+    top: 12px;
+    right: 12px;
   }
 
   &--info {
