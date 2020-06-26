@@ -30,6 +30,7 @@ exports[`Promo should render promo of any size 1`] = `
           iconPosition="left"
           onClick={[MockFunction]}
           primary={true}
+          size="compact"
         >
           Primary button
         </ForwardRef>
@@ -38,6 +39,7 @@ exports[`Promo should render promo of any size 1`] = `
           kind="text"
           onClick={[MockFunction]}
           primary={true}
+          size="compact"
         >
           Link
         </ForwardRef>
@@ -87,6 +89,7 @@ exports[`Promo should render promo of any size 2`] = `
         iconPosition="left"
         onClick={[MockFunction]}
         primary={true}
+        size="compact"
       >
         Primary button
       </ForwardRef>
@@ -95,6 +98,7 @@ exports[`Promo should render promo of any size 2`] = `
         kind="text"
         onClick={[MockFunction]}
         primary={true}
+        size="compact"
       >
         Link
       </ForwardRef>
@@ -142,6 +146,7 @@ exports[`Promo should render promo of any size 3`] = `
           iconPosition="left"
           onClick={[MockFunction]}
           primary={true}
+          size="compact"
         >
           Primary button
         </ForwardRef>
@@ -150,6 +155,7 @@ exports[`Promo should render promo of any size 3`] = `
           kind="text"
           onClick={[MockFunction]}
           primary={true}
+          size="compact"
         >
           Link
         </ForwardRef>

@@ -54,7 +54,7 @@ Success
 ### Medium
 This is appropriate for components from 400px to around 800px width.
 
-Max text colum width is 520px
+Max text colum width is 640px
 
 Info
 ```js

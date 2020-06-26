@@ -28,7 +28,7 @@ This is appropriate for components from 180px to 400px width. Use it in sidebars
 
 This is appropriate for components from 400px to around 800px width.
 
-Max text colum width is 520px
+Max text colum width is 680px
 
 ```js
 <Promo size="medium" linkText="Link button" buttonText="Primary action" header="This example headline has 40 characters" onClose={()=>window.alert('close')} img="https://via.placeholder.com/100"> A description with a <b>maximum of 100</b> characters. That usually means only one or two sentences. </Promo>
@@ -46,7 +46,7 @@ Max text colum width is 520px
 
 ### Large
 
-Max text colum width is 520px
+Max text colum width is 680px
 
 ```js
 <Promo size="large" header="This example headline has 40 characters"  linkText="Link button" buttonText="Primary action" onClose={()=>window.alert('close')} img="https://via.placeholder.com/100"> A description with a <b>maximum of 100</b> characters. That usually means only one or two sentences. </Promo>

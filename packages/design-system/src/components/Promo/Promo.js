@@ -42,8 +42,8 @@ export const Promo = props => {
 
   const footer = (
     <div className={styles[`${baseClass}__footer`]}>
-      {buttonText && <Button primary onClick={onButtonClick} className={styles[`${baseClass}__button-text`]}>{buttonText}</Button>}
-      {linkText && <Button primary kind='text' onClick={onLinkClick}>{linkText}</Button>}
+      {buttonText && <Button primary size='compact' onClick={onButtonClick} className={styles[`${baseClass}__button-text`]}>{buttonText}</Button>}
+      {linkText && <Button primary size='compact' kind='text' onClick={onLinkClick}>{linkText}</Button>}
     </div>)
 
   return (
