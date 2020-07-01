@@ -1,5 +1,14 @@
 All notable changes to this project will be documented in this file.
 
+## v0.9.1
+
+_Release: 2020-07-01_
+
+##### New Features
+
+- Promo - new alert component, used to let users know about information that doesn't require immediate action (#190)
+- Banner - new alert type component, used to let users know about important information that require immediate action or attention (#187)
+
 ## v0.9.0
 
 _Release: 2020-06-10_

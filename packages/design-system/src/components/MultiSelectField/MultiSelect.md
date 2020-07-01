@@ -1,3 +1,7 @@
+```js noeditor
+<Banner size="large" type="warning">This component can be used only in React applications.</Banner>
+```
+
 <h3>MultiSelect</h3>
 
 ```js

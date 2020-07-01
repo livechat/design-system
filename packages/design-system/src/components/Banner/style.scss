@@ -1,0 +1,93 @@
+@import '../../scss/variables/colors';
+
+$base-class: 'banner';
+
+.#{$base-class} {
+  position: relative;
+  padding: 20px;
+  overflow: hidden;
+  word-break: break-word;
+  width: 100%;
+  box-sizing: border-box;
+
+  &--small {
+    max-width: 400px;
+
+    .#{$base-class}__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      width: 100%;
+
+      &-text {
+        margin: 14px 0 0 0;
+        max-width: 246px;
+      }
+    }
+  }
+
+  &--medium {
+    max-width: 800px;
+
+    .#{$base-class}__content {
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
+
+      &-text {
+        margin: 0 30px 0 16px;
+        max-width: 640px;
+      }
+    }
+  }
+
+  &--large {
+    .#{$base-class}__content {
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
+
+      &-text {
+        margin: 0 30px 0 16px;
+        max-width: 720px;
+      }
+    }
+  }
+
+  &__close-icon {
+    height: 24px;
+    width: 24px;
+    overflow: hidden;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+
+  &--info {
+    box-shadow: inset 0 3px 0 0 #4384f5;
+    background-color: #e4f2ff;
+  }
+
+  &--warning {
+    box-shadow: inset 0 3px 0 0 #fb9d01;
+    background-color: #fff8e1;
+  }
+
+  &--success {
+    box-shadow: inset 0 3px 0 0 #38c776;
+    background-color: #e5f4eb;
+  }
+
+  &--error {
+    box-shadow: inset 0 3px 0 0 #d64646;
+    background-color: #fbecef;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+  }
+}

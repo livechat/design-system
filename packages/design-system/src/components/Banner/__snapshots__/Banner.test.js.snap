@@ -1,0 +1,337 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Banner should render banner of anty type and size 1`] = `
+<div
+  className="banner--info banner--small banner"
+>
+  <div
+    className="banner__content"
+  >
+    <BannerIcon
+      type="info"
+    />
+    <div
+      className="banner__content-text"
+    >
+      Example text
+    </div>
+  </div>
+  <button
+    className="banner__close-icon"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
+</div>
+`;
+
+exports[`Banner should render banner of anty type and size 2`] = `
+<div
+  className="banner--info banner--large banner"
+>
+  <div
+    className="banner__content"
+  >
+    <BannerIcon
+      type="info"
+    />
+    <div
+      className="banner__content-text"
+    >
+      Example text
+    </div>
+  </div>
+  <button
+    className="banner__close-icon"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
+</div>
+`;
+
+exports[`Banner should render banner of anty type and size 3`] = `
+<div
+  className="banner--info banner--medium banner"
+>
+  <div
+    className="banner__content"
+  >
+    <BannerIcon
+      type="info"
+    />
+    <div
+      className="banner__content-text"
+    >
+      Example text
+    </div>
+  </div>
+  <button
+    className="banner__close-icon"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
+</div>
+`;
+
+exports[`Banner should render banner of anty type and size 4`] = `
+<div
+  className="banner--warning banner--small banner"
+>
+  <div
+    className="banner__content"
+  >
+    <BannerIcon
+      type="warning"
+    />
+    <div
+      className="banner__content-text"
+    >
+      Example text
+    </div>
+  </div>
+  <button
+    className="banner__close-icon"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
+</div>
+`;
+
+exports[`Banner should render banner of anty type and size 5`] = `
+<div
+  className="banner--warning banner--large banner"
+>
+  <div
+    className="banner__content"
+  >
+    <BannerIcon
+      type="warning"
+    />
+    <div
+      className="banner__content-text"
+    >
+      Example text
+    </div>
+  </div>
+  <button
+    className="banner__close-icon"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
+</div>
+`;
+
+exports[`Banner should render banner of anty type and size 6`] = `
+<div
+  className="banner--warning banner--medium banner"
+>
+  <div
+    className="banner__content"
+  >
+    <BannerIcon
+      type="warning"
+    />
+    <div
+      className="banner__content-text"
+    >
+      Example text
+    </div>
+  </div>
+  <button
+    className="banner__close-icon"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
+</div>
+`;
+
+exports[`Banner should render banner of anty type and size 7`] = `
+<div
+  className="banner--success banner--small banner"
+>
+  <div
+    className="banner__content"
+  >
+    <BannerIcon
+      type="success"
+    />
+    <div
+      className="banner__content-text"
+    >
+      Example text
+    </div>
+  </div>
+  <button
+    className="banner__close-icon"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
+</div>
+`;
+
+exports[`Banner should render banner of anty type and size 8`] = `
+<div
+  className="banner--success banner--large banner"
+>
+  <div
+    className="banner__content"
+  >
+    <BannerIcon
+      type="success"
+    />
+    <div
+      className="banner__content-text"
+    >
+      Example text
+    </div>
+  </div>
+  <button
+    className="banner__close-icon"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
+</div>
+`;
+
+exports[`Banner should render banner of anty type and size 9`] = `
+<div
+  className="banner--success banner--medium banner"
+>
+  <div
+    className="banner__content"
+  >
+    <BannerIcon
+      type="success"
+    />
+    <div
+      className="banner__content-text"
+    >
+      Example text
+    </div>
+  </div>
+  <button
+    className="banner__close-icon"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
+</div>
+`;
+
+exports[`Banner should render banner of anty type and size 10`] = `
+<div
+  className="banner--error banner--small banner"
+>
+  <div
+    className="banner__content"
+  >
+    <BannerIcon
+      type="error"
+    />
+    <div
+      className="banner__content-text"
+    >
+      Example text
+    </div>
+  </div>
+  <button
+    className="banner__close-icon"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
+</div>
+`;
+
+exports[`Banner should render banner of anty type and size 11`] = `
+<div
+  className="banner--error banner--large banner"
+>
+  <div
+    className="banner__content"
+  >
+    <BannerIcon
+      type="error"
+    />
+    <div
+      className="banner__content-text"
+    >
+      Example text
+    </div>
+  </div>
+  <button
+    className="banner__close-icon"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
+</div>
+`;
+
+exports[`Banner should render banner of anty type and size 12`] = `
+<div
+  className="banner--error banner--medium banner"
+>
+  <div
+    className="banner__content"
+  >
+    <BannerIcon
+      type="error"
+    />
+    <div
+      className="banner__content-text"
+    >
+      Example text
+    </div>
+  </div>
+  <button
+    className="banner__close-icon"
+    onClick={[MockFunction]}
+    type="button"
+  >
+    <CloseIcon
+      fill="#424d57"
+    />
+  </button>
+</div>
+`;

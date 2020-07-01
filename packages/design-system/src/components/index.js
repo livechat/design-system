@@ -1,6 +1,8 @@
 export { Button } from './Button';
 export { ButtonGroup } from './ButtonGroup';
 
+export { Banner } from './Banner';
+
 export { Card } from './Card';
 
 export { Tab, TabsWrapper, TabsList } from './Tab';
@@ -71,4 +73,7 @@ export { Loader } from './Loader';
 export { Divider } from './Divider';
 
 export { ProgressBar, ProgressCircle } from './Progress';
+
+export { Promo } from './Promo';
+
 export { UploadBar, FileUploadProgress } from './UploadBar';
