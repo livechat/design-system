@@ -4,6 +4,7 @@ import SearchIcon from 'react-material-icon-svg/dist/MagnifyIcon';
 import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 
 import styles from './style.scss';
+import { Loader } from '../Loader';
 
 const baseClass = 'search-bar';
 const noop = () => {};
@@ -27,10 +28,20 @@ class SearchBarComponent extends React.PureComponent {
   };
 
   render() {
-    const { className, innerRef, placeholder, ...restProps } = this.props;
+    const {
+      className,
+      innerRef,
+      placeholder,
+      loading,
+      compact,
+      error,
+      onChange,
+      onSubmit,
+      ...restProps
+    } = this.props;
 
     // TODO: Condition to display "x" button
-    const shouldDisplayCloseButton = this.state.searchTerm;
+    const shouldDisplayCloseButton = this.state.searchTerm && !loading;
 
     return (
       <span>
@@ -39,7 +50,7 @@ class SearchBarComponent extends React.PureComponent {
             fill="#424d57"
             width="18px"
             height="18px"
-            className={styles[`${baseClass}__icon`]}
+            className={styles[`${baseClass}__icon--search`]}
           />
           {shouldDisplayCloseButton && (
             <CloseIcon
@@ -48,6 +59,12 @@ class SearchBarComponent extends React.PureComponent {
               height="18px"
               onClick={this.handleClear}
               className={styles[`${baseClass}__icon--close`]}
+            />
+          )}
+          {loading && (
+            <Loader
+              size="small"
+              className={styles[`${baseClass}__icon--loader`]}
             />
           )}
           <input
@@ -69,13 +86,21 @@ class SearchBarComponent extends React.PureComponent {
 const basePropTypes = {
   className: PropTypes.string,
   onChange: PropTypes.func,
-  placeholder: PropTypes.string
+  onSubmit: PropTypes.func,
+  placeholder: PropTypes.string,
+  loading: PropTypes.bool,
+  compact: PropTypes.bool,
+  error: PropTypes.string
 };
 
 /* eslint-disable react/default-props-match-prop-types */
 const baseDefaultProps = {
   placeholder: 'Search...',
-  onChange: noop
+  loading: false,
+  compact: false,
+  error: null,
+  onChange: noop,
+  onSubmit: noop
 };
 
 SearchBarComponent.propTypes = {

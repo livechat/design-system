@@ -11,15 +11,24 @@ $base-class: "search-bar";
 
 .#{$base-class}__icon {
   position: absolute;
-  left: 13px;
   align-self: center;
-}
 
-.#{$base-class}__icon--close {
-  position: absolute;
-  right: 13px;
-  align-self: center;
-  cursor: pointer;
+  &--search {
+    @extend .#{$base-class}__icon;
+    left: 13px;
+  }
+
+  &--close {
+    @extend .#{$base-class}__icon;
+    right: 13px;
+    cursor: pointer;
+  }
+
+  &--loader {
+    @extend .#{$base-class}__icon;
+    right: 13px;
+  }
+
 }
 
 .#{$base-class}__input {
