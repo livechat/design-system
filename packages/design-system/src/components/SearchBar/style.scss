@@ -1,8 +1,35 @@
+@import '../../scss/variables/colors';
+
 $base-class: "search-bar";
 
-.#{$base-class} {
+.#{$base-class}__container {
+  display: inline-flex;
+  position: relative;
   height: 32px;
   width: 290px;
-  border: 1px solid #cfd3d5;
+}
+
+.#{$base-class}__icon {
+  position: absolute;
+  left: 13px;
+  align-self: center;
+}
+
+.#{$base-class}__icon--close {
+  position: absolute;
+  right: 13px;
+  align-self: center;
+  cursor: pointer;
+}
+
+.#{$base-class}__input {
+  width: 100%;
+  padding-left: 40px;
   border-radius: 4px;
+  border: 1px solid #cfd3d5;
+
+  &:focus, &:active {
+    outline: none;
+    border-color: $primary-color
+  }
 }
