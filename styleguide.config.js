@@ -136,6 +136,12 @@ module.exports = {
           components: [
             './packages/design-system/src/components/Loader/Loader.js'
           ]
+        },
+        {
+          name: 'SearchBar',
+          components: [
+            './packages/design-system/src/components/SearchBar/SearchBar.js'
+          ]
         }
       ]
     },
