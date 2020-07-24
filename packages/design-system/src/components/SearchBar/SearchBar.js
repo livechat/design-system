@@ -5,6 +5,7 @@ import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 
 import styles from './style.scss';
 import { Loader } from '../Loader';
+import { KeyCodes } from '../../constants/keyCodes';
 
 const baseClass = 'search-bar';
 const noop = () => {};
@@ -14,10 +15,23 @@ class SearchBarComponent extends React.PureComponent {
     searchTerm: ''
   };
 
+  // TODO: depends on mode use onChange provided from props or onSubmit
+  // better yet - make 2 functions, which will load proper mode or func
   handleChange = e => {
     this.setState({
       searchTerm: e.target.value
     });
+
+    // If onSubmit wasn't passed then call onChange
+    if (!this.props.onSubmit) {
+      this.props.onChange(e.target.value);
+    }
+  };
+
+  handleKeyPress = key => {
+    if (key.keyCode === KeyCodes.enter) {
+      this.props.onSubmit(this.state.searchTerm);
+    }
   };
 
   handleClear = () => {
@@ -25,6 +39,7 @@ class SearchBarComponent extends React.PureComponent {
       searchTerm: ''
     });
     // TODO: what if we had two searchbars in code? Selecting by ID won't be good
+    // it should be done by ref
     document.getElementById('search-bar-input').focus();
   };
 
@@ -45,7 +60,7 @@ class SearchBarComponent extends React.PureComponent {
     const shouldDisplayCloseButton = this.state.searchTerm && !loading;
 
     return (
-      <span>
+      <span className={className}>
         <div className={styles[`${baseClass}__container`]}>
           <SearchIcon
             fill="#424d57"
@@ -75,6 +90,7 @@ class SearchBarComponent extends React.PureComponent {
             ref={innerRef}
             value={this.state.searchTerm}
             onInput={this.handleChange}
+            onKeyDown={this.handleKeyPress}
             className={styles[`${baseClass}__input`]}
             {...restProps}
           />
@@ -102,7 +118,7 @@ const baseDefaultProps = {
   compact: false,
   error: null,
   onChange: noop,
-  onSubmit: noop
+  onSubmit: null
 };
 
 SearchBarComponent.propTypes = {
