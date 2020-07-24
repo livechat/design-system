@@ -2,9 +2,12 @@
 
 $base-class: "search-bar";
 
+// TODO: should container have fixed width and height?
 .#{$base-class}__container {
   display: inline-flex;
   position: relative;
+  flex-direction: column;
+  justify-content: center;
   height: 32px;
   width: 290px;
 }
@@ -33,6 +36,8 @@ $base-class: "search-bar";
 
 .#{$base-class}__input {
   width: 100%;
+  height: 100%;
+  box-sizing: border-box;
   padding-left: 40px;
   border-radius: 4px;
   border: 1px solid #cfd3d5;
@@ -41,4 +46,13 @@ $base-class: "search-bar";
     outline: none;
     border-color: $primary-color
   }
+}
+
+.#{$base-class}__error {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #d64646;
+  display: block;
+  margin: 2px 0 0;
 }

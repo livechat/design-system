@@ -24,6 +24,7 @@ class SearchBarComponent extends React.PureComponent {
     this.setState({
       searchTerm: ''
     });
+    // TODO: what if we had two searchbars in code? Selecting by ID won't be good
     document.getElementById('search-bar-input').focus();
   };
 
@@ -78,6 +79,7 @@ class SearchBarComponent extends React.PureComponent {
             {...restProps}
           />
         </div>
+        <span className={styles[`${baseClass}__error`]}>{error}</span>
       </span>
     );
   }

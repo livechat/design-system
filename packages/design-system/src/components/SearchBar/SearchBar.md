@@ -13,3 +13,9 @@ This will be info about SearchBar component
 ```js
 <SearchBar loading />
 ```
+
+### Search bar with error
+
+```js
+<SearchBar error="Value is too long" />
+```
