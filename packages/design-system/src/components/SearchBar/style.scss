@@ -18,7 +18,12 @@ $base-class: "search-bar";
 
   &--search {
     @extend .#{$base-class}__icon;
-    left: 13px;
+    left: 0;
+    padding: 7px 13px;
+
+    &-compact {
+      cursor: pointer;
+    }
   }
 
   &--close {
@@ -41,11 +46,17 @@ $base-class: "search-bar";
   padding-left: 40px;
   border-radius: 4px;
   border: 1px solid #cfd3d5;
+  transition: width ease-in 0.3s;
 
   &:focus, &:active {
     outline: none;
     border-color: $primary-color
   }
+}
+
+.#{$base-class}__input-compact {
+  width: 0;
+  transition: width ease-in 0.3s;
 }
 
 .#{$base-class}__error {

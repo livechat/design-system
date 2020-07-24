@@ -37,3 +37,9 @@ const onSubmit = value => {
 }
 <SearchBar onSubmit={onSubmit} />
 ```
+
+### Compact search bar
+
+```js
+<SearchBar compact />
+```

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import cx from 'classnames';
 import SearchIcon from 'react-material-icon-svg/dist/MagnifyIcon';
 import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 
@@ -12,7 +13,8 @@ const noop = () => {};
 
 class SearchBarComponent extends React.PureComponent {
   state = {
-    searchTerm: ''
+    searchTerm: '',
+    isInCompactMode: this.props.compact
   };
 
   // TODO: depends on mode use onChange provided from props or onSubmit
@@ -43,6 +45,9 @@ class SearchBarComponent extends React.PureComponent {
     document.getElementById('search-bar-input').focus();
   };
 
+  toggleCompactMode = () =>
+    this.setState({ isInCompactMode: !this.state.isInCompactMode });
+
   render() {
     const {
       className,
@@ -56,8 +61,10 @@ class SearchBarComponent extends React.PureComponent {
       ...restProps
     } = this.props;
 
+    const { searchTerm, isInCompactMode } = this.state;
+
     // TODO: Condition to display "x" button
-    const shouldDisplayCloseButton = this.state.searchTerm && !loading;
+    const shouldDisplayCloseButton = searchTerm && !loading;
 
     return (
       <span className={className}>
@@ -66,7 +73,10 @@ class SearchBarComponent extends React.PureComponent {
             fill="#424d57"
             width="18px"
             height="18px"
-            className={styles[`${baseClass}__icon--search`]}
+            className={cx(`lc-${baseClass}__icon--search`, {
+              [`lc-${baseClass}__icon--search-compact`]: compact
+            })}
+            onClick={compact ? this.toggleCompactMode : null}
           />
           {shouldDisplayCloseButton && (
             <CloseIcon
@@ -90,8 +100,10 @@ class SearchBarComponent extends React.PureComponent {
             ref={innerRef}
             value={this.state.searchTerm}
             onInput={this.handleChange}
-            onKeyDown={this.handleKeyPress}
-            className={styles[`${baseClass}__input`]}
+            onKeyDown={onSubmit ? this.handleKeyPress : null}
+            className={cx(`lc-${baseClass}__input`, {
+              [`lc-${baseClass}__input-compact`]: isInCompactMode
+            })}
             {...restProps}
           />
         </div>
