@@ -17,7 +17,9 @@ class SearchBar extends React.PureComponent {
     super(props);
 
     this.inputRef = React.createRef();
-    this.onChangeDebounced = debounce(500, value => this.props.onChange(value));
+    this.onChangeDebounced = debounce(this.props.debounceInMs, value => {
+      this.props.onChange(value);
+    });
 
     this.state = {
       searchTerm: '',
@@ -37,13 +39,6 @@ class SearchBar extends React.PureComponent {
   };
 
   handleKeyPress = key => {
-    // TODO: should ESC key clear input
-    if (key.keyCode === KeyCodes.esc) {
-      this.setState({
-        searchTerm: ''
-      });
-    }
-
     if (this.props.onSubmit) {
       if (key.keyCode === KeyCodes.enter) {
         // TODO: if onSubmit is present is it supposed to be controlled/uncontrolled?
@@ -58,6 +53,12 @@ class SearchBar extends React.PureComponent {
     });
 
     this.inputRef.current.focus();
+  };
+
+  handleKeyDown = key => {
+    if (key.keyCode === KeyCodes.enter) {
+      this.handleClear();
+    }
   };
 
   toggleCompactMode = () => {
@@ -78,8 +79,7 @@ class SearchBar extends React.PureComponent {
 
     const { searchTerm, isInCompactMode } = this.state;
 
-    // TODO: Condition to display "x" button
-    const shouldDisplayCloseButton = searchTerm && !loading;
+    const shouldDisplayCloseButton = searchTerm && !loading && !isInCompactMode;
 
     return (
       <span className={className}>
@@ -93,15 +93,6 @@ class SearchBar extends React.PureComponent {
             })}
             onClick={compact ? this.toggleCompactMode : null}
           />
-          {shouldDisplayCloseButton && (
-            <CloseIcon
-              fill="#424d57"
-              width="18px"
-              height="18px"
-              onClick={this.handleClear}
-              className={styles[`${baseClass}__icon--close`]}
-            />
-          )}
           {loading && (
             <Loader
               size="small"
@@ -120,6 +111,17 @@ class SearchBar extends React.PureComponent {
             })}
             {...restProps}
           />
+          {shouldDisplayCloseButton && (
+            <CloseIcon
+              fill="#424d57"
+              width="18px"
+              height="18px"
+              onClick={this.handleClear}
+              onKeyDown={this.handleKeyDown}
+              className={styles[`${baseClass}__icon--close`]}
+              tabIndex="0"
+            />
+          )}
         </div>
         <span className={styles[`${baseClass}__error`]}>{error}</span>
       </span>
@@ -129,19 +131,23 @@ class SearchBar extends React.PureComponent {
 
 const basePropTypes = {
   className: PropTypes.string,
-  onChange: PropTypes.func,
-  onSubmit: PropTypes.func,
   placeholder: PropTypes.string,
+  // value: PropTypes.string,
   loading: PropTypes.bool,
   compact: PropTypes.bool,
-  error: PropTypes.string
+  debounceInMs: PropTypes.number,
+  error: PropTypes.string,
+  onChange: PropTypes.func,
+  onSubmit: PropTypes.func
 };
 
 /* eslint-disable react/default-props-match-prop-types */
 const baseDefaultProps = {
   placeholder: 'Search...',
+  // value: '',
   loading: false,
   compact: false,
+  debounceInMs: 300,
   error: null,
   onChange: noop,
   onSubmit: null

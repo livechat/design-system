@@ -24,7 +24,7 @@ This will be info about SearchBar component
 
 ```js
 const onChange = value => {
-  console.log('Returned search term: ', value);
+  console.log('Search term: ', value);
 }
 <SearchBar onChange={onChange} />
 ```
@@ -33,7 +33,7 @@ const onChange = value => {
 
 ```js
 const onSubmit = value => {
-  console.log('Returned search term: ', value);
+  console.log('Search term: ', value);
 }
 <SearchBar onSubmit={onSubmit} />
 ```
@@ -42,4 +42,13 @@ const onSubmit = value => {
 
 ```js
 <SearchBar compact />
+```
+
+### Search bar with increased debounce
+
+```js
+const onChange = value => {
+  console.log('Search term: ', value);
+}
+<SearchBar onChange={onChange} debounceInMs={1000} />
 ```
