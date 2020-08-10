@@ -3,6 +3,7 @@ import * as PropTypes from 'prop-types';
 import cx from 'classnames';
 import SearchIcon from 'react-material-icon-svg/dist/MagnifyIcon';
 import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
+import { debounce } from '@livechat/data-utils';
 
 import styles from './style.scss';
 import { Loader } from '../Loader';
@@ -11,11 +12,12 @@ import { KeyCodes } from '../../constants/keyCodes';
 const baseClass = 'search-bar';
 const noop = () => {};
 
-class SearchBarComponent extends React.PureComponent {
+class SearchBar extends React.PureComponent {
   constructor(props) {
     super(props);
 
     this.inputRef = React.createRef();
+    this.onChangeDebounced = debounce(500, value => this.props.onChange(value));
 
     this.state = {
       searchTerm: '',
@@ -30,7 +32,7 @@ class SearchBarComponent extends React.PureComponent {
 
     // If onSubmit wasn't passed then call onChange
     if (!this.props.onSubmit) {
-      this.props.onChange(e.target.value);
+      this.onChangeDebounced(e.target.value);
     }
   };
 
@@ -145,8 +147,8 @@ const baseDefaultProps = {
   onSubmit: null
 };
 
-SearchBarComponent.propTypes = basePropTypes;
+SearchBar.propTypes = basePropTypes;
 
-SearchBarComponent.defaultProps = baseDefaultProps;
+SearchBar.defaultProps = baseDefaultProps;
 
-export default SearchBarComponent;
+export default SearchBar;
