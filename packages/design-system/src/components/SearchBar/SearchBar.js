@@ -28,21 +28,26 @@ class SearchBar extends React.PureComponent {
   }
 
   handleChange = e => {
+    const { value } = e.target;
+    const { debounceInMs, onChange } = this.props;
+
     this.setState({
-      searchTerm: e.target.value
+      searchTerm: value
     });
 
-    // If onSubmit wasn't passed then call onChange
-    if (!this.props.onSubmit) {
-      this.onChangeDebounced(e.target.value);
+    if (debounceInMs) {
+      this.onChangeDebounced(value);
+    } else {
+      onChange(value);
     }
   };
 
   handleKeyPress = key => {
-    if (this.props.onSubmit) {
+    const { onSubmit } = this.props;
+
+    if (onSubmit) {
       if (key.keyCode === KeyCodes.enter) {
-        // TODO: if onSubmit is present is it supposed to be controlled/uncontrolled?
-        this.props.onSubmit(this.state.searchTerm);
+        onSubmit(this.state.searchTerm);
       }
     }
   };
@@ -62,13 +67,16 @@ class SearchBar extends React.PureComponent {
   };
 
   toggleCompactMode = () => {
-    this.setState({ isInCompactMode: !this.state.isInCompactMode });
+    this.setState(state => ({
+      isInCompactMode: !state.isInCompactMode
+    }));
   };
 
   render() {
     const {
       className,
       placeholder,
+      value,
       loading,
       compact,
       error,
@@ -103,7 +111,7 @@ class SearchBar extends React.PureComponent {
             type="input"
             placeholder={placeholder}
             ref={this.inputRef}
-            value={this.state.searchTerm}
+            value={value || this.state.searchTerm}
             onInput={this.handleChange}
             onKeyDown={this.handleKeyPress}
             className={cx(`lc-${baseClass}__input`, {
@@ -132,7 +140,7 @@ class SearchBar extends React.PureComponent {
 const basePropTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string,
-  // value: PropTypes.string,
+  value: PropTypes.string,
   loading: PropTypes.bool,
   compact: PropTypes.bool,
   debounceInMs: PropTypes.number,
@@ -144,10 +152,10 @@ const basePropTypes = {
 /* eslint-disable react/default-props-match-prop-types */
 const baseDefaultProps = {
   placeholder: 'Search...',
-  // value: '',
+  value: null,
   loading: false,
   compact: false,
-  debounceInMs: 300,
+  debounceInMs: 0,
   error: null,
   onChange: noop,
   onSubmit: null

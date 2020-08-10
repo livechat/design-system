@@ -52,3 +52,10 @@ const onChange = value => {
 }
 <SearchBar onChange={onChange} debounceInMs={1000} />
 ```
+
+```js
+const onChange = value => {
+  console.log('Search term: ', value);
+}
+<SearchBar onChange={onChange} value='testing' />
+```
