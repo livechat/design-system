@@ -12,13 +12,17 @@ const baseClass = 'search-bar';
 const noop = () => {};
 
 class SearchBarComponent extends React.PureComponent {
-  state = {
-    searchTerm: '',
-    isInCompactMode: this.props.compact
-  };
+  constructor(props) {
+    super(props);
 
-  // TODO: depends on mode use onChange provided from props or onSubmit
-  // better yet - make 2 functions, which will load proper mode or func
+    this.inputRef = React.createRef();
+
+    this.state = {
+      searchTerm: '',
+      isInCompactMode: this.props.compact
+    };
+  }
+
   handleChange = e => {
     this.setState({
       searchTerm: e.target.value
@@ -31,8 +35,18 @@ class SearchBarComponent extends React.PureComponent {
   };
 
   handleKeyPress = key => {
-    if (key.keyCode === KeyCodes.enter) {
-      this.props.onSubmit(this.state.searchTerm);
+    // TODO: should ESC key clear input
+    if (key.keyCode === KeyCodes.esc) {
+      this.setState({
+        searchTerm: ''
+      });
+    }
+
+    if (this.props.onSubmit) {
+      if (key.keyCode === KeyCodes.enter) {
+        // TODO: if onSubmit is present is it supposed to be controlled/uncontrolled?
+        this.props.onSubmit(this.state.searchTerm);
+      }
     }
   };
 
@@ -40,18 +54,17 @@ class SearchBarComponent extends React.PureComponent {
     this.setState({
       searchTerm: ''
     });
-    // TODO: what if we had two searchbars in code? Selecting by ID won't be good
-    // it should be done by ref
-    document.getElementById('search-bar-input').focus();
+
+    this.inputRef.current.focus();
   };
 
-  toggleCompactMode = () =>
+  toggleCompactMode = () => {
     this.setState({ isInCompactMode: !this.state.isInCompactMode });
+  };
 
   render() {
     const {
       className,
-      innerRef,
       placeholder,
       loading,
       compact,
@@ -94,13 +107,12 @@ class SearchBarComponent extends React.PureComponent {
             />
           )}
           <input
-            id="search-bar-input"
             type="input"
             placeholder={placeholder}
-            ref={innerRef}
+            ref={this.inputRef}
             value={this.state.searchTerm}
             onInput={this.handleChange}
-            onKeyDown={onSubmit ? this.handleKeyPress : null}
+            onKeyDown={this.handleKeyPress}
             className={cx(`lc-${baseClass}__input`, {
               [`lc-${baseClass}__input-compact`]: isInCompactMode
             })}
@@ -133,21 +145,8 @@ const baseDefaultProps = {
   onSubmit: null
 };
 
-SearchBarComponent.propTypes = {
-  ...basePropTypes,
-  innerRef: PropTypes.instanceOf(
-    typeof Element === 'undefined' ? () => {} : Element
-  )
-};
+SearchBarComponent.propTypes = basePropTypes;
 
 SearchBarComponent.defaultProps = baseDefaultProps;
 
-const SearchBar = React.forwardRef((props, ref) => (
-  <SearchBarComponent innerRef={ref} {...props} />
-));
-
-SearchBar.propTypes = basePropTypes;
-
-SearchBar.defaultProps = baseDefaultProps;
-
-export default SearchBar;
+export default SearchBarComponent;
