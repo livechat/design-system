@@ -9,6 +9,7 @@ const InputField = React.forwardRef((props, ref) => {
     error,
     description,
     labelText,
+    labelAdornment,
     className,
     id,
     fieldClassName,
@@ -21,6 +22,7 @@ const InputField = React.forwardRef((props, ref) => {
       error={error}
       description={description}
       labelText={labelText}
+      labelAdornment={labelAdornment}
       className={className}
       htmlFor={id}
     >
@@ -37,6 +39,7 @@ const InputField = React.forwardRef((props, ref) => {
 
 InputField.propTypes = {
   labelText: PropTypes.string,
+  labelAdornment: PropTypes.node,
   id: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   className: PropTypes.string,
