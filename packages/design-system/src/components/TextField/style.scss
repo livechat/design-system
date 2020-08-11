@@ -30,10 +30,12 @@ $base-class: 'text-field';
   &__label-adornment {
     width: 20px;
     height: 20px;
+    margin-left: 4px;
     line-height: 20px;
     overflow: hidden;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
   }
 }
