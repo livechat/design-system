@@ -1,26 +1,20 @@
 ### SearchBar
 
-This will be info about SearchBar component
 
-### No props
+### Compact search bar
 
-```js
-<SearchBar />
-```
-
-### Loading state
+Used for mobile devices or smaller resolution designs
 
 ```js
-<SearchBar loading />
+const onChange = value => {
+  console.log('Search term: ', value);
+}
+<SearchBar compact onChange={onChange} />
 ```
 
-### Search bar with error
+### Search bar with onChange handler (see console)
 
-```js
-<SearchBar error="Value is too long" />
-```
-
-### Search bar with onChange handler
+Most common use case for search bar is with onChange handler. It can be enhanced with debounce method to reduce many callbacks
 
 ```js
 const onChange = value => {
@@ -29,7 +23,9 @@ const onChange = value => {
 <SearchBar onChange={onChange} />
 ```
 
-### Search bar with onSubmit handler
+### Search bar with onSubmit handler (see console)
+
+The search is triggered after pressing "enter" key. It's the second way of using search bar and it's used only if we want to search by one condition
 
 ```js
 const onSubmit = value => {
@@ -38,24 +34,13 @@ const onSubmit = value => {
 <SearchBar onSubmit={onSubmit} />
 ```
 
-### Compact search bar
+### Search bar with debounced search
 
-```js
-<SearchBar compact />
-```
-
-### Search bar with increased debounce
+Search bar with debounce and onChange handler. Debounce let's you slow down the process of searching for a term. Useful if we know that this feature will be used for a longer period of time for example on archive section
 
 ```js
 const onChange = value => {
   console.log('Search term: ', value);
 }
-<SearchBar onChange={onChange} debounceInMs={1000} />
-```
-
-```js
-const onChange = value => {
-  console.log('Search term: ', value);
-}
-<SearchBar onChange={onChange} value='testing' />
+<SearchBar debounceInMs={1000} onChange={onChange} />
 ```
