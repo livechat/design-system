@@ -1,12 +1,12 @@
 // <reference types="react" />
-import { ButtonSize } from "./buttons";
+import { ButtonSize } from './buttons';
 
 export interface IButtonGroupProps
   extends React.HTMLAttributes<HTMLDivElement> {
   fullWidth?: boolean;
   className?: string;
   currentIndex?: number;
-  size: ButtonSize;
+  size?: ButtonSize;
   children: React.ReactNode;
   onIndexChange?: (
     index: number,
