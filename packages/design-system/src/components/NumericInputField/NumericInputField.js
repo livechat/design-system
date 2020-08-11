@@ -9,6 +9,7 @@ const NumericInputField = props => {
     error,
     description,
     labelText,
+    labelAdornment,
     className,
     id,
     fieldClassName,
@@ -21,6 +22,7 @@ const NumericInputField = props => {
       error={error}
       description={description}
       labelText={labelText}
+      labelAdornment={labelAdornment}
       className={className}
       htmlFor={id}
     >
@@ -36,8 +38,11 @@ const NumericInputField = props => {
 
 NumericInputField.propTypes = {
   labelText: PropTypes.string,
+  /**  specifies additional decorative element rendered at the end of the label */
+  labelAdornment: PropTypes.node,
   id: PropTypes.string.isRequired,
   className: PropTypes.string,
+  fieldClassName: PropTypes.string,
   inline: PropTypes.bool,
   error: PropTypes.string,
   description: PropTypes.node
