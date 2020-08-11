@@ -102,6 +102,7 @@ export interface IInputProps
 
 export interface IInputFieldProps extends IInputProps {
   labelText?: string;
+  labelAdornment?: React.ReactNode;
   id: string;
   inline?: boolean;
   description?: React.ReactNode;
@@ -110,6 +111,7 @@ export interface IInputFieldProps extends IInputProps {
 
 export interface ITextFieldProps {
   labelText?: string;
+  labelAdornment?: React.ReactNode;
   htmlFor: string;
   className?: string;
   inline?: boolean;
@@ -122,8 +124,8 @@ export interface ITextAreaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   error?: string;
   ref?:
-    | React.Ref<HTMLTextAreaElement>
-    | React.Ref<React.Component<ITextAreaProps>>;
+  | React.Ref<HTMLTextAreaElement>
+  | React.Ref<React.Component<ITextAreaProps>>;
 }
 
 export interface ITextAreaFieldProps extends ITextAreaProps {
