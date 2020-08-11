@@ -1,5 +1,17 @@
 All notable changes to this project will be documented in this file.
 
+## v0.10.0
+
+_Release: 2020-08-11_
+
+##### New Features
+
+- adding new property `labelAdornment` to `TextField` based components (#203)
+
+##### Bug Fixes
+
+- fixing `ButtonGroup` component typings - `size` as optional property (#203)
+
 ## v0.9.1
 
 _Release: 2020-07-01_

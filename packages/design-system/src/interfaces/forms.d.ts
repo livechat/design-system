@@ -8,6 +8,15 @@ export interface IFormProps extends React.HTMLAttributes<HTMLFormElement> {
   formFooter?: React.ReactNode;
 }
 
+export interface IWithTextFieldProps {
+  labelText?: string;
+  inline?: boolean;
+  description?: React.ReactNode;
+  error?: string;
+  labelAdornment?: React.ReactNode;
+  fieldClassName?: string;
+}
+
 export interface IFormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   labelText?: string;
@@ -43,14 +52,9 @@ export interface ISelectProps {
   selectHeader?: string;
 }
 
-export interface ISelectFieldProps extends ISelectProps {
-  labelText?: string;
+export interface ISelectFieldProps extends ISelectProps, IWithTextFieldProps {
   id: string;
   className?: string;
-  inline?: boolean;
-  fieldClassName?: string;
-  error?: string;
-  description?: React.ReactNode;
 }
 
 export interface IMultiSelectProps {
@@ -84,14 +88,11 @@ export interface IMultiSelectProps {
   onItemRemove(itemKey: string | number): any;
 }
 
-export interface IMultiSelectFieldProps extends IMultiSelectProps {
-  labelText?: string;
+export interface IMultiSelectFieldProps
+  extends IMultiSelectProps,
+  IWithTextFieldProps {
   id: string;
   className?: string;
-  fieldClassName?: string;
-  inline?: boolean;
-  error?: string;
-  description?: React.ReactNode;
 }
 
 export interface IInputProps
@@ -100,38 +101,26 @@ export interface IInputProps
   ref?: React.Ref<HTMLInputElement> | React.Ref<React.Component<IInputProps>>;
 }
 
-export interface IInputFieldProps extends IInputProps {
-  labelText?: string;
+export interface IInputFieldProps extends IInputProps, IWithTextFieldProps {
   id: string;
-  inline?: boolean;
-  description?: React.ReactNode;
-  fieldClassName?: string;
 }
 
-export interface ITextFieldProps {
-  labelText?: string;
-  htmlFor: string;
+export interface ITextFieldProps extends IWithTextFieldProps {
   className?: string;
-  inline?: boolean;
-  error?: string;
-  description?: React.ReactNode;
-  children?: React.ReactNode;
 }
 
 export interface ITextAreaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   error?: string;
   ref?:
-    | React.Ref<HTMLTextAreaElement>
-    | React.Ref<React.Component<ITextAreaProps>>;
+  | React.Ref<HTMLTextAreaElement>
+  | React.Ref<React.Component<ITextAreaProps>>;
 }
 
-export interface ITextAreaFieldProps extends ITextAreaProps {
-  labelText?: string;
+export interface ITextAreaFieldProps
+  extends ITextAreaProps,
+  IWithTextFieldProps {
   id: string;
-  inline?: boolean;
-  description?: React.ReactNode;
-  fieldClassName?: string;
 }
 
 export interface INumericInputProps {
@@ -147,11 +136,10 @@ export interface INumericInputProps {
   onChange(value: string): void;
 }
 
-export interface INumericInputFieldProps extends INumericInputProps {
+export interface INumericInputFieldProps
+  extends INumericInputProps,
+  IWithTextFieldProps {
   id: string;
-  labelText?: string;
-  inline?: boolean;
-  description?: React.ReactNode;
 }
 
 export interface ICheckboxFieldProps

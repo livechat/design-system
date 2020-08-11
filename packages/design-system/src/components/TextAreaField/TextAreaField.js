@@ -9,6 +9,7 @@ const TextAreaField = React.forwardRef((props, ref) => {
     error,
     description,
     labelText,
+    labelAdornment,
     className,
     id,
     fieldClassName,
@@ -21,6 +22,7 @@ const TextAreaField = React.forwardRef((props, ref) => {
       error={error}
       description={description}
       labelText={labelText}
+      labelAdornment={labelAdornment}
       className={className}
       htmlFor={id}
     >
@@ -37,6 +39,8 @@ const TextAreaField = React.forwardRef((props, ref) => {
 
 TextAreaField.propTypes = {
   labelText: PropTypes.string,
+  /**  specifies additional decorative element rendered at the end of the label */
+  labelAdornment: PropTypes.node,
   id: PropTypes.string.isRequired,
   className: PropTypes.string,
   inline: PropTypes.bool,

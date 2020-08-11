@@ -15,6 +15,7 @@ const TextField = props => {
     error,
     description,
     labelText,
+    labelAdornment,
     className,
     htmlFor,
     children
@@ -34,10 +35,16 @@ const TextField = props => {
       {labelText && (
         <div
           className={cx({
+            [`${baseClass}__label`]: true,
             [`${baseClass}__label--inline`]: inline
           })}
         >
           <FieldLabel htmlFor={htmlFor}>{labelText}</FieldLabel>
+          {labelAdornment && (
+            <div className={cx({ [`${baseClass}__label-adornment`]: true })}>
+              {labelAdornment}
+            </div>
+          )}
         </div>
       )}
       <div>
@@ -51,6 +58,8 @@ const TextField = props => {
 
 TextField.propTypes = {
   labelText: PropTypes.string,
+  /**  specifies additional decorative element rendered at the end of the label */
+  labelAdornment: PropTypes.node,
   htmlFor: PropTypes.string.isRequired,
   className: PropTypes.string,
   inline: PropTypes.bool,
