@@ -58,6 +58,7 @@ const TextField = props => {
 
 TextField.propTypes = {
   labelText: PropTypes.string,
+  /**  specifies additional decorative element rendered at the end of the label */
   labelAdornment: PropTypes.node,
   htmlFor: PropTypes.string.isRequired,
   className: PropTypes.string,
