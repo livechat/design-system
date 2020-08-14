@@ -70,6 +70,7 @@ class DropdownListItem extends React.PureComponent {
         onClick={this.handleClick}
         onMouseOver={this.handleMouseOver}
         onMouseDown={this.handleMouseDown}
+        tabIndex={0}
       >
         <div className={styles[`${baseClass}__content`]}>
           {icon && <div className={styles[`${baseClass}__icon`]}>{icon}</div>}
