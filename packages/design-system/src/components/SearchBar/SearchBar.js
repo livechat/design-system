@@ -9,6 +9,7 @@ import styles from './style.scss';
 import { Loader } from '../Loader';
 import { KeyCodes } from '../../constants/keyCodes';
 
+const acceptedSizes = ['basic', 'compact'];
 const baseClass = 'search-bar';
 const noop = () => {};
 
@@ -17,13 +18,13 @@ class SearchBar extends React.PureComponent {
     super(props);
 
     this.inputRef = React.createRef();
-    // this.debouncedOnChange = debounce(this.props.debounceInMs, value => {
-    //   this.props.onChange(value);
-    // });
+    this.debouncedOnChange = debounce(this.props.debounceInMs, value => {
+      this.props.onChange(value);
+    });
 
     this.state = {
       searchTerm: '',
-      isInCompactMode: this.props.compact
+      isInCompactMode: this.props.size === 'compact'
     };
   }
 
@@ -53,9 +54,14 @@ class SearchBar extends React.PureComponent {
   };
 
   handleClear = () => {
+    const { onChange, onSubmit } = this.props;
+    const searchFunction = onSubmit || onChange;
+
     this.setState({
       searchTerm: ''
     });
+
+    searchFunction('');
 
     if (this.inputRef.current) {
       this.inputRef.current.focus();
@@ -87,7 +93,7 @@ class SearchBar extends React.PureComponent {
       placeholder,
       value,
       loading,
-      compact,
+      size,
       error,
       onChange,
       onSubmit,
@@ -95,6 +101,8 @@ class SearchBar extends React.PureComponent {
     } = this.props;
 
     const { searchTerm, isInCompactMode } = this.state;
+
+    const isCompactSize = size === 'compact';
 
     const shouldDisplayCloseButton = searchTerm && !loading && !isInCompactMode;
 
@@ -106,9 +114,9 @@ class SearchBar extends React.PureComponent {
             width="18px"
             height="18px"
             className={cx(`lc-${baseClass}__icon--search`, {
-              [`lc-${baseClass}__icon--search-compact`]: compact
+              [`lc-${baseClass}__icon--search-compact`]: isCompactSize
             })}
-            onClick={compact ? this.toggleCompactMode : null}
+            onClick={isCompactSize ? this.toggleCompactMode : null}
           />
           {loading && (
             <Loader
@@ -149,9 +157,18 @@ class SearchBar extends React.PureComponent {
 const basePropTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string,
+  /**
+   * Pass this prop if you want to control searchbar term from parent component
+   */
   value: PropTypes.string,
   loading: PropTypes.bool,
-  compact: PropTypes.bool,
+  /**
+   * Pass size of `compact` if you want to display extendable searchbar (usually for smaller screens)
+   */
+  size: PropTypes.oneOf(acceptedSizes),
+  /**
+   * Pass value in `ms` along with `onChange` handler if you want to query by specific number of ms
+   */
   debounceInMs: PropTypes.number,
   error: PropTypes.string,
   onChange: PropTypes.func,
@@ -163,7 +180,7 @@ const baseDefaultProps = {
   placeholder: 'Search...',
   value: null,
   loading: false,
-  compact: false,
+  size: 'basic',
   debounceInMs: 0,
   error: null,
   onChange: noop,

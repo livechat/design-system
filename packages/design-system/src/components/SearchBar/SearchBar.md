@@ -9,7 +9,7 @@ Used for mobile devices or smaller resolution designs
 const onChange = value => {
   console.log('Search term: ', value);
 }
-<SearchBar compact onChange={onChange} />
+<SearchBar size="compact" onChange={onChange} />
 ```
 
 ### Search bar with onChange handler
