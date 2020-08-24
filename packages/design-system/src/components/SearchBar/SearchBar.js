@@ -7,6 +7,7 @@ import { debounce } from '@livechat/data-utils';
 
 import styles from './style.scss';
 import { Loader } from '../Loader';
+import FieldError from '../FieldError';
 import { KeyCodes } from '../../constants/keyCodes';
 
 const acceptedSizes = ['basic', 'compact'];
@@ -148,7 +149,7 @@ class SearchBar extends React.PureComponent {
             />
           )}
         </div>
-        <span className={styles[`${baseClass}__error`]}>{error}</span>
+        {error && <FieldError>{error}</FieldError>}
       </span>
     );
   }
