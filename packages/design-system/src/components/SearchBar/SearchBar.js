@@ -8,6 +8,7 @@ import { debounce } from '@livechat/data-utils';
 import styles from './style.scss';
 import { Loader } from '../Loader';
 import FieldError from '../FieldError';
+import { Input } from '../InputField';
 import { KeyCodes } from '../../constants/keyCodes';
 
 const acceptedSizes = ['basic', 'compact'];
@@ -125,8 +126,7 @@ class SearchBar extends React.PureComponent {
               className={styles[`${baseClass}__icon--loader`]}
             />
           )}
-          <input
-            type="input"
+          <Input
             placeholder={placeholder}
             ref={this.inputRef}
             value={value || this.state.searchTerm}
@@ -135,7 +135,6 @@ class SearchBar extends React.PureComponent {
             className={cx(`lc-${baseClass}__input`, {
               [`lc-${baseClass}__input-compact`]: isInCompactMode
             })}
-            {...restProps}
           />
           {shouldDisplayCloseButton && (
             <CloseIcon
