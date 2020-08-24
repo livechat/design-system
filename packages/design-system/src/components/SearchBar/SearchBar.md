@@ -12,10 +12,6 @@ const onChange = value => {
 <SearchBar size="compact" onChange={onChange} />
 ```
 
-```js
-<SearchBar size="basic" error="This is error" />
-```
-
 ### Search bar with onChange handler
 
 Most common use case for search bar is with onChange handler. It can be enhanced with debounce method to reduce many callbacks

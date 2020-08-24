@@ -63,6 +63,8 @@ class SearchBar extends React.PureComponent {
       searchTerm: ''
     });
 
+    // 1) Cancel debounced search
+    // 2) Use onClear instead of onSubmit | onChange function
     searchFunction('');
 
     if (this.inputRef.current) {
@@ -90,22 +92,10 @@ class SearchBar extends React.PureComponent {
   };
 
   render() {
-    const {
-      className,
-      placeholder,
-      value,
-      loading,
-      size,
-      error,
-      onChange,
-      onSubmit,
-      ...restProps
-    } = this.props;
-
+    const { className, placeholder, value, loading, size, error } = this.props;
     const { searchTerm, isInCompactMode } = this.state;
 
     const isCompactSize = size === 'compact';
-
     const shouldDisplayCloseButton = searchTerm && !loading && !isInCompactMode;
 
     return (
@@ -130,7 +120,7 @@ class SearchBar extends React.PureComponent {
             placeholder={placeholder}
             ref={this.inputRef}
             value={value || this.state.searchTerm}
-            onInput={this.handleChange}
+            onChange={this.handleChange}
             onKeyDown={this.handleKeyPress}
             className={cx(`lc-${baseClass}__input`, {
               [`lc-${baseClass}__input-compact`]: isInCompactMode

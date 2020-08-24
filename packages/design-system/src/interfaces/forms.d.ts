@@ -1,5 +1,9 @@
 // <reference types="react" />
 
+export type SearchBarSize = "basic" | "compact";
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+type OmitSearchBar = Omit<ISearchBarProps, "debounceInMs">;
+
 export interface IFormProps extends React.HTMLAttributes<HTMLFormElement> {
   className?: string;
   children: React.ReactNode;
@@ -174,6 +178,17 @@ export interface IFieldGroupProps extends React.HTMLAttributes<HTMLElement> {
   stretch?: boolean;
 }
 
+export interface ISearchBarProps extends OmitSearchBar {
+  size?: SearchBarSize;
+  value?: string;
+  error?: string;
+  loading?: boolean;
+  debounceInMs?: number;
+  placeholder?: string;
+  onChange?(value: string): void;
+  onSubmit?(value: string): void;
+}
+
 export var CheckboxField: React.ComponentType<ICheckboxFieldProps>;
 export var FieldGroup: React.ComponentType<IFieldGroupProps>;
 export var Form: React.ComponentType<IFormProps>;
@@ -190,3 +205,4 @@ export var SelectField: React.ComponentType<ISelectFieldProps>;
 export var TextField: React.ComponentType<ITextFieldProps>;
 export var TextArea: React.ComponentType<ITextAreaProps>;
 export var TextAreaField: React.ComponentType<ITextAreaFieldProps>;
+export var SearchBar: React.ComponentType<ISearchBarProps>;
