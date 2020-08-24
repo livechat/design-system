@@ -46,7 +46,8 @@ $base-class: "search-bar";
   padding: 0 40px;
   border-radius: 4px;
   border: 1px solid #cfd3d5;
-  transition: width ease-in 0.3s;
+  transition: all ease-in 0.3s;
+  transition-property: width, padding;
 
   &:focus, &:active {
     outline: none;
@@ -57,5 +58,4 @@ $base-class: "search-bar";
 .#{$base-class}__input-compact {
   width: 0;
   padding-right: 0;
-  transition: width ease-in 0.3s;
 }
