@@ -12,7 +12,7 @@ const onChange = value => {
 <SearchBar compact onChange={onChange} />
 ```
 
-### Search bar with onChange handler (see console)
+### Search bar with onChange handler
 
 Most common use case for search bar is with onChange handler. It can be enhanced with debounce method to reduce many callbacks
 
@@ -23,7 +23,7 @@ const onChange = value => {
 <SearchBar onChange={onChange} />
 ```
 
-### Search bar with onSubmit handler (see console)
+### Search bar with onSubmit handler
 
 The search is triggered after pressing "enter" key. It's the second way of using search bar and it's used only if we want to search by one condition
 

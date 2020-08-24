@@ -17,9 +17,9 @@ class SearchBar extends React.PureComponent {
     super(props);
 
     this.inputRef = React.createRef();
-    this.onChangeDebounced = debounce(this.props.debounceInMs, value => {
-      this.props.onChange(value);
-    });
+    // this.debouncedOnChange = debounce(this.props.debounceInMs, value => {
+    //   this.props.onChange(value);
+    // });
 
     this.state = {
       searchTerm: '',
@@ -36,7 +36,7 @@ class SearchBar extends React.PureComponent {
     });
 
     if (debounceInMs) {
-      this.onChangeDebounced(value);
+      this.debouncedOnChange(value);
     } else {
       onChange(value);
     }
@@ -57,19 +57,28 @@ class SearchBar extends React.PureComponent {
       searchTerm: ''
     });
 
-    this.inputRef.current.focus();
+    if (this.inputRef.current) {
+      this.inputRef.current.focus();
+    }
   };
 
-  handleKeyDown = key => {
+  handleCloseIconKeyDown = key => {
     if (key.keyCode === KeyCodes.enter) {
       this.handleClear();
     }
   };
 
   toggleCompactMode = () => {
-    this.setState(state => ({
-      isInCompactMode: !state.isInCompactMode
-    }));
+    this.setState(
+      prevState => ({
+        isInCompactMode: !prevState.isInCompactMode
+      }),
+      () => {
+        if (!this.state.isInCompactMode && this.inputRef.current) {
+          this.inputRef.current.focus();
+        }
+      }
+    );
   };
 
   render() {
@@ -125,7 +134,7 @@ class SearchBar extends React.PureComponent {
               width="18px"
               height="18px"
               onClick={this.handleClear}
-              onKeyDown={this.handleKeyDown}
+              onKeyDown={this.handleCloseIconKeyDown}
               className={styles[`${baseClass}__icon--close`]}
               tabIndex="0"
             />
