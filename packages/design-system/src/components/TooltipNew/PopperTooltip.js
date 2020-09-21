@@ -298,6 +298,7 @@ class PopperTooltip extends React.PureComponent {
       >
         {closeWithX && (
           <button
+            type="button"
             onClick={this.handleClose}
             className={styles[`${baseClass}__close`]}
           >
