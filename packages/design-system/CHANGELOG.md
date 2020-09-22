@@ -1,5 +1,13 @@
 All notable changes to this project will be documented in this file.
 
+## v0.10.1
+
+_Release: 2020-09-22_
+
+##### Bug Fixes
+
+- adding a type property to tooltip components close buttons #205
+
 ## v0.10.0
 
 _Release: 2020-08-11_
