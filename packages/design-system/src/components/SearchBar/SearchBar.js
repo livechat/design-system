@@ -55,15 +55,15 @@ export class SearchBar extends React.PureComponent {
   };
 
   handleClear = () => {
-    const { onChange, onSubmit } = this.props;
-    const searchFunction = onSubmit || onChange;
+    const { onChange, onSubmit, onClear } = this.props;
+    const searchFunction = onClear || onSubmit || onChange;
 
     this.setState({
       searchTerm: ''
     });
 
-    // 1) Cancel debounced search
-    // 2) Use onClear instead of onSubmit | onChange function
+    // TODO: Cancel debounced search
+    // Add debounce and throttle from lodash as dependecy and use it in our Design System (after talking with @kamilmateusiak )
     searchFunction('');
 
     if (this.inputRef.current) {
@@ -171,7 +171,8 @@ SearchBar.propTypes = {
   debounceInMs: PropTypes.number,
   error: PropTypes.string,
   onChange: PropTypes.func,
-  onSubmit: PropTypes.func
+  onSubmit: PropTypes.func,
+  onClear: PropTypes.func
 };
 
 SearchBar.defaultProps = {
@@ -182,7 +183,8 @@ SearchBar.defaultProps = {
   debounceInMs: 0,
   error: null,
   onChange: noop,
-  onSubmit: null
+  onSubmit: null,
+  onClear: null
 };
 
 export default SearchBar;
