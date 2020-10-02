@@ -45,7 +45,11 @@ export class SearchBar extends React.PureComponent {
   };
 
   handleKeyPress = event => {
-    const { onSubmit } = this.props;
+    const { onSubmit, onKeyDown } = this.props;
+
+    if (onKeyDown) {
+      onKeyDown(event);
+    }
 
     if (onSubmit) {
       if (event.keyCode === KeyCodes.enter) {
@@ -172,7 +176,11 @@ SearchBar.propTypes = {
   error: PropTypes.string,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
-  onClear: PropTypes.func
+  onClear: PropTypes.func,
+  /**
+   * Pass onKeyDown function if you want to use event props for example event.preventDefault()
+   */
+  onKeyDown: PropTypes.func
 };
 
 SearchBar.defaultProps = {
@@ -184,7 +192,8 @@ SearchBar.defaultProps = {
   error: null,
   onChange: noop,
   onSubmit: null,
-  onClear: null
+  onClear: null,
+  onKeyDown: null
 };
 
 export default SearchBar;
