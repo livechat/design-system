@@ -2,7 +2,6 @@
 
 $base-class: "search-bar";
 
-// TODO: should container have fixed width and height?
 .#{$base-class}__container {
   display: inline-flex;
   position: relative;
@@ -21,16 +20,18 @@ $base-class: "search-bar";
     @extend .#{$base-class}__icon;
     left: 0;
     padding: 7px 13px;
+    fill: $icon-primary-color;
 
     &-compact {
       cursor: pointer;
     }
   }
 
-  &--close {
+  &--clear {
     @extend .#{$base-class}__icon;
     right: 13px;
     cursor: pointer;
+    fill: $icon-primary-color;
   }
 
   &--loader {

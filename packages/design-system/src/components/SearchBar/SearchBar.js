@@ -72,23 +72,25 @@ class SearchBar extends React.PureComponent {
     }
   };
 
-  handleCloseIconKeyDown = event => {
+  handleClearButtonKeyDown = event => {
     if (event.keyCode === KeyCodes.enter) {
       this.handleClear();
     }
   };
 
   toggleCompactMode = () => {
-    this.setState(
-      prevState => ({
-        isInCompactMode: !prevState.isInCompactMode
-      }),
-      () => {
-        if (!this.state.isInCompactMode && this.inputRef.current) {
-          this.inputRef.current.focus();
+    if (this.props.size === 'compact') {
+      this.setState(
+        prevState => ({
+          isInCompactMode: !prevState.isInCompactMode
+        }),
+        () => {
+          if (!this.state.isInCompactMode && this.inputRef.current) {
+            this.inputRef.current.focus();
+          }
         }
-      }
-    );
+      );
+    }
   };
 
   render() {
@@ -96,19 +98,23 @@ class SearchBar extends React.PureComponent {
     const { searchTerm, isInCompactMode } = this.state;
 
     const isCompactSize = size === 'compact';
-    const shouldDisplayCloseButton = searchTerm && !loading && !isInCompactMode;
+    const shouldDisplayClearButton = searchTerm && !loading && !isInCompactMode;
+
+    const searchIconClassName = cx(`lc-${baseClass}__icon--search`, {
+      [`lc-${baseClass}__icon--search-compact`]: isCompactSize
+    });
+    const inputClassName = cx(`lc-${baseClass}__input`, {
+      [`lc-${baseClass}__input-compact`]: isInCompactMode
+    });
 
     return (
       <span className={className}>
         <div className={styles[`${baseClass}__container`]}>
           <SearchIcon
-            fill="#424d57"
             width="18px"
             height="18px"
-            className={cx(`lc-${baseClass}__icon--search`, {
-              [`lc-${baseClass}__icon--search-compact`]: isCompactSize
-            })}
-            onClick={isCompactSize ? this.toggleCompactMode : null}
+            className={searchIconClassName}
+            onClick={this.toggleCompactMode}
           />
           {loading && (
             <Loader
@@ -122,18 +128,15 @@ class SearchBar extends React.PureComponent {
             value={value || this.state.searchTerm}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyPress}
-            className={cx(`lc-${baseClass}__input`, {
-              [`lc-${baseClass}__input-compact`]: isInCompactMode
-            })}
+            className={inputClassName}
           />
-          {shouldDisplayCloseButton && (
+          {shouldDisplayClearButton && (
             <CloseIcon
-              fill="#424d57"
               width="18px"
               height="18px"
               onClick={this.handleClear}
-              onKeyDown={this.handleCloseIconKeyDown}
-              className={styles[`${baseClass}__icon--close`]}
+              onKeyDown={this.handleClearButtonKeyDown}
+              className={styles[`${baseClass}__icon--clear`]}
               tabIndex="0"
             />
           )}
@@ -144,7 +147,7 @@ class SearchBar extends React.PureComponent {
   }
 }
 
-const basePropTypes = {
+SearchBar.propTypes = {
   className: PropTypes.string,
   placeholder: PropTypes.string,
   /**
@@ -165,8 +168,7 @@ const basePropTypes = {
   onSubmit: PropTypes.func
 };
 
-/* eslint-disable react/default-props-match-prop-types */
-const baseDefaultProps = {
+SearchBar.defaultProps = {
   placeholder: 'Search...',
   value: null,
   loading: false,
@@ -176,9 +178,5 @@ const baseDefaultProps = {
   onChange: noop,
   onSubmit: null
 };
-
-SearchBar.propTypes = basePropTypes;
-
-SearchBar.defaultProps = baseDefaultProps;
 
 export default SearchBar;
