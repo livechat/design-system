@@ -45,11 +45,11 @@ class SearchBar extends React.PureComponent {
     }
   };
 
-  handleKeyPress = key => {
+  handleKeyPress = event => {
     const { onSubmit } = this.props;
 
     if (onSubmit) {
-      if (key.keyCode === KeyCodes.enter) {
+      if (event.keyCode === KeyCodes.enter) {
         onSubmit(this.state.searchTerm);
       }
     }
@@ -72,8 +72,8 @@ class SearchBar extends React.PureComponent {
     }
   };
 
-  handleCloseIconKeyDown = key => {
-    if (key.keyCode === KeyCodes.enter) {
+  handleCloseIconKeyDown = event => {
+    if (event.keyCode === KeyCodes.enter) {
       this.handleClear();
     }
   };

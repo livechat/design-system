@@ -9,7 +9,8 @@ $base-class: "search-bar";
   flex-direction: column;
   justify-content: center;
   height: 32px;
-  width: 290px;
+  width: 100%;
+  max-width: 290px;
 }
 
 .#{$base-class}__icon {
