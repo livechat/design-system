@@ -11,7 +11,6 @@ import FieldError from '../FieldError';
 import { Input } from '../InputField';
 import { KeyCodes } from '../../constants/keyCodes';
 
-const acceptedSizes = ['basic', 'compact'];
 const baseClass = 'search-bar';
 const noop = () => {};
 
@@ -26,7 +25,7 @@ class SearchBar extends React.PureComponent {
 
     this.state = {
       searchTerm: '',
-      isInCompactMode: this.props.size === 'compact'
+      isInCompactMode: props.collapsable
     };
   }
 
@@ -79,7 +78,7 @@ class SearchBar extends React.PureComponent {
   };
 
   toggleCompactMode = () => {
-    if (this.props.size === 'compact') {
+    if (this.props.collapsable) {
       this.setState(
         prevState => ({
           isInCompactMode: !prevState.isInCompactMode
@@ -94,21 +93,28 @@ class SearchBar extends React.PureComponent {
   };
 
   render() {
-    const { className, placeholder, value, loading, size, error } = this.props;
+    const {
+      className,
+      placeholder,
+      value,
+      loading,
+      collapsable,
+      error,
+      ...restProps
+    } = this.props;
     const { searchTerm, isInCompactMode } = this.state;
 
-    const isCompactSize = size === 'compact';
     const shouldDisplayClearButton = searchTerm && !loading && !isInCompactMode;
 
     const searchIconClassName = cx(`lc-${baseClass}__icon--search`, {
-      [`lc-${baseClass}__icon--search-compact`]: isCompactSize
+      [`lc-${baseClass}__icon--search-compact`]: collapsable
     });
     const inputClassName = cx(`lc-${baseClass}__input`, {
       [`lc-${baseClass}__input-compact`]: isInCompactMode
     });
 
     return (
-      <span className={className}>
+      <div className={className} {...restProps}>
         <div className={styles[`${baseClass}__container`]}>
           <SearchIcon
             width="18px"
@@ -142,7 +148,7 @@ class SearchBar extends React.PureComponent {
           )}
         </div>
         {error && <FieldError>{error}</FieldError>}
-      </span>
+      </div>
     );
   }
 }
@@ -156,9 +162,9 @@ SearchBar.propTypes = {
   value: PropTypes.string,
   loading: PropTypes.bool,
   /**
-   * Pass size of `compact` if you want to display extendable searchbar (usually for smaller screens)
+   * Pass collapsable if you want to display extendable searchbar (usually for smaller screens)
    */
-  size: PropTypes.oneOf(acceptedSizes),
+  collapsable: PropTypes.bool,
   /**
    * Pass value in `ms` along with `onChange` handler if you want to query by specific number of ms
    */
@@ -172,7 +178,7 @@ SearchBar.defaultProps = {
   placeholder: 'Search...',
   value: null,
   loading: false,
-  size: 'basic',
+  collapsable: false,
   debounceInMs: 0,
   error: null,
   onChange: noop,

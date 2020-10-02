@@ -1,9 +1,5 @@
 // <reference types="react" />
 
-export type SearchBarSize = "basic" | "compact";
-type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
-type OmitSearchBar = Omit<ISearchBarProps, "debounceInMs">;
-
 export interface IFormProps extends React.HTMLAttributes<HTMLFormElement> {
   className?: string;
   children: React.ReactNode;
@@ -178,8 +174,8 @@ export interface IFieldGroupProps extends React.HTMLAttributes<HTMLElement> {
   stretch?: boolean;
 }
 
-export interface ISearchBarProps extends OmitSearchBar {
-  size?: SearchBarSize;
+export interface ISearchBarProps {
+  collapsable?: boolean;
   value?: string;
   error?: string;
   loading?: boolean;
