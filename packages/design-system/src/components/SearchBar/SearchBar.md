@@ -17,10 +17,16 @@ const onChange = value => {
 Most common use case for search bar is with onChange handler. It can be enhanced with debounce method to reduce many callbacks
 
 ```js
+initialState = {
+  loading: false
+};
 const onChange = value => {
   console.log('Search term: ', value);
+    setTimeout(function() {
+    setState({loading: !state.loading})
+  }, 1000);
 }
-<SearchBar onChange={onChange} />
+<SearchBar onChange={onChange} loading={state.loading} />
 ```
 
 ### Search bar with onSubmit handler

@@ -14,7 +14,7 @@ import { KeyCodes } from '../../constants/keyCodes';
 const baseClass = 'search-bar';
 const noop = () => {};
 
-class SearchBar extends React.PureComponent {
+export class SearchBar extends React.PureComponent {
   constructor(props) {
     super(props);
 

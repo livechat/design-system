@@ -70,6 +70,8 @@ global.ProgressCircle = Components.ProgressCircle;
 global.UploadBar = Components.UploadBar;
 global.FileUploadProgress = Components.FileUploadProgress;
 
+global.SearchBar = Components.SearchBar;
+
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;
 global.PdfIcon = PdfIcon;
