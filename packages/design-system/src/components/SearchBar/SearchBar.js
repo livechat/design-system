@@ -82,18 +82,16 @@ export class SearchBar extends React.PureComponent {
   };
 
   toggleCompactMode = () => {
-    if (this.props.collapsable) {
-      this.setState(
-        prevState => ({
-          isInCompactMode: !prevState.isInCompactMode
-        }),
-        () => {
-          if (!this.state.isInCompactMode && this.inputRef.current) {
-            this.inputRef.current.focus();
-          }
+    this.setState(
+      prevState => ({
+        isInCompactMode: !!this.props.collapsable && !prevState.isInCompactMode
+      }),
+      () => {
+        if (!this.state.isInCompactMode && this.inputRef.current) {
+          this.inputRef.current.focus();
         }
-      );
-    }
+      }
+    );
   };
 
   render() {

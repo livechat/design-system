@@ -174,7 +174,9 @@ export interface IFieldGroupProps extends React.HTMLAttributes<HTMLElement> {
   stretch?: boolean;
 }
 
-export interface ISearchBarProps {
+type ISearchBarHtmlProps = Omit<Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>, 'onSubmit'>;
+
+export interface ISearchBarProps extends ISearchBarHtmlProps {
   collapsable?: boolean;
   value?: string;
   error?: string;
