@@ -177,14 +177,17 @@ export interface IFieldGroupProps extends React.HTMLAttributes<HTMLElement> {
 type ISearchBarHtmlProps = Omit<Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>, 'onSubmit'>;
 
 export interface ISearchBarProps extends ISearchBarHtmlProps {
-  collapsable?: boolean;
-  value?: string;
-  error?: string;
-  loading?: boolean;
-  debounceTime?: number;
   placeholder?: string;
+  value?: string;
+  loading?: boolean;
+  collapsable?: boolean;
+  debounceTime?: number;
+  error?: string;
   onChange?(value: string): void;
   onSubmit?(value: string): void;
+  onClear?(value: string): void;
+  onKeyDown?(event): void;
+  onCollapse?(value: string): void;
 }
 
 export var CheckboxField: React.ComponentType<ICheckboxFieldProps>;

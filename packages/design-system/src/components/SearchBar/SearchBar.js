@@ -36,8 +36,8 @@ export class SearchBar extends React.PureComponent {
     }
   }
 
-  handleChange = e => {
-    const { value } = e.target;
+  handleChange = event => {
+    const { value } = event.target;
     const { debounceTime, onChange } = this.props;
 
     this.setState({
@@ -95,6 +95,10 @@ export class SearchBar extends React.PureComponent {
         isInCompactMode: !!this.props.collapsable && !prevState.isInCompactMode
       }),
       () => {
+        if (this.state.isInCompactMode && this.props.onCollapse) {
+          this.props.onCollapse();
+        }
+
         if (!this.state.isInCompactMode && this.inputRef.current) {
           this.inputRef.current.focus();
         }
@@ -190,7 +194,8 @@ SearchBar.propTypes = {
   /**
    * Pass onKeyDown function if you want to use event props for example event.preventDefault()
    */
-  onKeyDown: PropTypes.func
+  onKeyDown: PropTypes.func,
+  onCollapse: PropTypes.func
 };
 
 SearchBar.defaultProps = {
@@ -203,7 +208,8 @@ SearchBar.defaultProps = {
   onChange: null,
   onSubmit: null,
   onClear: null,
-  onKeyDown: null
+  onKeyDown: null,
+  onCollapse: null
 };
 
 export default SearchBar;
