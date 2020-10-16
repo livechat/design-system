@@ -17,7 +17,6 @@ $base-class: "search-bar";
   align-self: center;
 
   &--search {
-    @extend .#{$base-class}__icon;
     left: 0;
     padding: 7px 13px;
     fill: $icon-primary-color;
@@ -28,7 +27,6 @@ $base-class: "search-bar";
   }
 
   &--clear {
-    @extend .#{$base-class}__icon;
     right: 13px;
     cursor: pointer;
     fill: $icon-primary-color;
@@ -36,7 +34,6 @@ $base-class: "search-bar";
   }
 
   &--loader {
-    @extend .#{$base-class}__icon;
     right: 13px;
   }
 

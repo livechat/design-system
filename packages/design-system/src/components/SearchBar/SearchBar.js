@@ -126,9 +126,13 @@ export class SearchBar extends React.PureComponent {
 
     const shouldDisplayClearButton = searchTerm && !loading && !isInCompactMode;
 
-    const searchIconClassName = cx(`lc-${baseClass}__icon--search`, {
-      [`lc-${baseClass}__icon--search-compact`]: collapsable
-    });
+    const searchIconClassName = cx(
+      [`lc-${baseClass}__icon`, `lc-${baseClass}__icon--search`],
+      {
+        [`lc-${baseClass}__icon--search-compact`]: collapsable
+      }
+    );
+
     const inputClassName = cx(`lc-${baseClass}__input`, {
       [`lc-${baseClass}__input-compact`]: isInCompactMode
     });
@@ -145,7 +149,10 @@ export class SearchBar extends React.PureComponent {
           {loading && (
             <Loader
               size="small"
-              className={styles[`${baseClass}__icon--loader`]}
+              className={cx([
+                `lc-${baseClass}__icon`,
+                `lc-${baseClass}__icon--loader`
+              ])}
             />
           )}
           <Input
@@ -162,7 +169,10 @@ export class SearchBar extends React.PureComponent {
               height="18px"
               onClick={this.handleClear}
               onKeyDown={this.handleClearButtonKeyDown}
-              className={styles[`${baseClass}__icon--clear`]}
+              className={cx([
+                `lc-${baseClass}__icon`,
+                `lc-${baseClass}__icon--clear`
+              ])}
               tabIndex="0"
             />
           )}
