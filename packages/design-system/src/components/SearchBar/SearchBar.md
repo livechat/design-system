@@ -51,5 +51,5 @@ Search bar with debounce and onChange handler. Debounce let's you slow down the 
 const onChange = value => {
   console.log('Search term: ', value);
 }
-<SearchBar debounceInMs={1000} onChange={onChange} />
+<SearchBar debounceTime={1000} onChange={onChange} />
 ```

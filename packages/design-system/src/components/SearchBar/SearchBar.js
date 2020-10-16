@@ -1,9 +1,9 @@
 import * as React from 'react';
+import debounce from 'lodash.debounce';
 import * as PropTypes from 'prop-types';
 import cx from 'classnames';
 import SearchIcon from 'react-material-icon-svg/dist/MagnifyIcon';
 import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
-import { debounce } from '@livechat/data-utils';
 
 import styles from './style.scss';
 import { Loader } from '../Loader';
@@ -12,16 +12,17 @@ import { Input } from '../InputField';
 import { KeyCodes } from '../../constants/keyCodes';
 
 const baseClass = 'search-bar';
-const noop = () => {};
 
 export class SearchBar extends React.PureComponent {
   constructor(props) {
     super(props);
 
     this.inputRef = React.createRef();
-    this.debouncedOnChange = debounce(this.props.debounceInMs, value => {
-      this.props.onChange(value);
-    });
+    if (this.props.debounceTime) {
+      this.debouncedOnChange = debounce(value => {
+        this.props.onChange(value);
+      }, this.props.debounceTime);
+    }
 
     this.state = {
       searchTerm: '',
@@ -29,17 +30,26 @@ export class SearchBar extends React.PureComponent {
     };
   }
 
+  componentWillUnmount() {
+    if (this.debouncedOnChange) {
+      this.debouncedOnChange.cancel();
+    }
+  }
+
   handleChange = e => {
     const { value } = e.target;
-    const { debounceInMs, onChange } = this.props;
+    const { debounceTime, onChange } = this.props;
 
     this.setState({
       searchTerm: value
     });
 
-    if (debounceInMs) {
+    if (debounceTime) {
       this.debouncedOnChange(value);
-    } else {
+      return;
+    }
+
+    if (onChange) {
       onChange(value);
     }
   };
@@ -66,8 +76,6 @@ export class SearchBar extends React.PureComponent {
       searchTerm: ''
     });
 
-    // TODO: Cancel debounced search
-    // Add debounce and throttle from lodash as dependecy and use it in our Design System (after talking with @kamilmateusiak )
     searchFunction('');
 
     if (this.inputRef.current) {
@@ -102,7 +110,7 @@ export class SearchBar extends React.PureComponent {
       loading,
       collapsable,
       error,
-      debounceInMs,
+      debounceTime,
       onClear,
       onSubmit,
       onChange,
@@ -174,7 +182,7 @@ SearchBar.propTypes = {
   /**
    * Pass value in `ms` along with `onChange` handler if you want to query by specific number of ms
    */
-  debounceInMs: PropTypes.number,
+  debounceTime: PropTypes.number,
   error: PropTypes.string,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
@@ -190,9 +198,9 @@ SearchBar.defaultProps = {
   value: null,
   loading: false,
   collapsable: false,
-  debounceInMs: 0,
+  debounceTime: 0,
   error: null,
-  onChange: noop,
+  onChange: null,
   onSubmit: null,
   onClear: null,
   onKeyDown: null

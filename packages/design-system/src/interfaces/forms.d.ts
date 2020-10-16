@@ -181,7 +181,7 @@ export interface ISearchBarProps extends ISearchBarHtmlProps {
   value?: string;
   error?: string;
   loading?: boolean;
-  debounceInMs?: number;
+  debounceTime?: number;
   placeholder?: string;
   onChange?(value: string): void;
   onSubmit?(value: string): void;
