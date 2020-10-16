@@ -102,6 +102,10 @@ export class SearchBar extends React.PureComponent {
       loading,
       collapsable,
       error,
+      debounceInMs,
+      onClear,
+      onSubmit,
+      onChange,
       ...restProps
     } = this.props;
     const { searchTerm, isInCompactMode } = this.state;
