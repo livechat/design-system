@@ -8,7 +8,7 @@ const baseClass = 'select-body';
 const cx = classNames.bind(styles);
 
 const SelectItem = props => {
-  const { isSelected, children, isFocused, ...restProps } = props;
+  const { isSelected, children, isFocused, itemTestId, ...restProps } = props;
   return (
     <li
       className={cx({
@@ -16,6 +16,7 @@ const SelectItem = props => {
         [`${baseClass}__item--selected`]: isSelected,
         [`${baseClass}__item--focused`]: isFocused
       })}
+      data-testid={itemTestId}
       {...restProps}
     >
       <div className={styles[`${baseClass}__item-content`]}>{children}</div>
@@ -31,7 +32,8 @@ const SelectItem = props => {
 SelectItem.propTypes = {
   isSelected: PropTypes.bool,
   isFocused: PropTypes.bool,
-  children: PropTypes.node
+  children: PropTypes.node,
+  itemTestId: PropTypes.string
 };
 
 export default SelectItem;

@@ -180,15 +180,18 @@ class MultiSelectList extends React.PureComponent {
   render() {
     const {
       items,
+      listTestId,
+      itemTestId,
       getItemBody,
       getItemSelectedHandler,
       toggleAllOptions
     } = this.props;
 
     return (
-      <ul ref={this.props.listRef} className={styles[`${baseClass}__list`]}>
+      <ul ref={this.props.listRef} className={styles[`${baseClass}__list`]} data-testid={listTestId}>
         {toggleAllOptions && (
           <MultiSelectItem
+            itemTestId={itemTestId}
             isFocused={this.isItemFocused(null)}
             onClick={this.handleToggleAll}
             isToggleItem
@@ -201,6 +204,7 @@ class MultiSelectList extends React.PureComponent {
         )}
         {items.filter(v => !v.props.hidden).map(item => (
           <MultiSelectItem
+            itemTestId={itemTestId}
             isSelected={this.isItemSelected(item.key)}
             isFocused={this.isItemFocused(item.key)}
             key={item.key}
@@ -224,6 +228,8 @@ MultiSelectList.propTypes = {
       props: PropTypes.object
     })
   ),
+  itemTestId: PropTypes.string,
+  listTestId: PropTypes.string,
   onListClose: PropTypes.func,
   selectedItems: PropTypes.arrayOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.number])

@@ -7,13 +7,14 @@ const baseClass = 'select-head__item';
 const cx = classNames.bind(styles);
 
 const SelectHeadItem = props => {
-  const { isVisible, selectedItem, placeholder, getSelectedItemBody } = props;
+  const { isVisible, selectedItem, placeholder, getSelectedItemBody, headTestId } = props;
   return (
     <div
       className={cx({
         [`${baseClass}`]: true,
         [`${baseClass}--visible`]: isVisible
       })}
+      data-testid={headTestId}
     >
       {selectedItem ? (
         <div className={styles[`${baseClass}-content`]}>
@@ -27,6 +28,7 @@ const SelectHeadItem = props => {
 };
 
 SelectHeadItem.propTypes = {
+  headTestId: PropTypes.string,
   isVisible: PropTypes.bool,
   selectedItem: PropTypes.shape({
     key: PropTypes.string,

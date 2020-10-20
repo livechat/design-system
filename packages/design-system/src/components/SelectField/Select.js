@@ -272,7 +272,14 @@ class Select extends React.PureComponent {
       searchEmptyState,
       searchPlaceholder,
       selected,
-      selectHeader
+      selectHeader,
+      clearIconTestId,
+      downIconTestId,
+      headTestId,
+      itemTestId,
+      listTestId,
+      bodyTestId,
+      testId
     } = this.props;
     const { searchPhrase, focusedItemKey, isFocused } = this.state;
     const selectedItemModel = items.find(item => item.key === selected);
@@ -289,11 +296,12 @@ class Select extends React.PureComponent {
     const shouldRenderClearButton = !!selectedItemModel && !isOpen && !required;
 
     return (
-      <div ref={this.containerRef} className={mergedClassNames} id={id}>
+      <div ref={this.containerRef} data-testid={testId} className={mergedClassNames} id={id}>
         <SelectHead
           isFocused={isOpen || isFocused}
           disabled={disabled}
           ref={this.headRef}
+          headTestId={headTestId}
           onClick={this.onSelectHeadClick}
           onFocus={this.onSelectHeadFocus}
           onBlur={this.onSelectHeadBlur}
@@ -313,13 +321,15 @@ class Select extends React.PureComponent {
             disabled={disabled}
           />
            <ClearButton
+            clearIconTestId={clearIconTestId}
             isVisible={shouldRenderClearButton}
             ref={this.clearButtonRef}
             clearSelectedOption={this.clearSelectedOption}
           />
-          <MenuDownIcon width="24px" height="24px" fill="#424d57" />          
+          <MenuDownIcon width="24px" height="24px" fill="#424d57" data-testid={downIconTestId} />
         </SelectHead>
         <div
+          data-testid={bodyTestId}
           className={cx({
             [`${baseClass}-body`]: true,
             [`${baseClass}-body--visible`]: this.shouldShowSelectBody(
@@ -332,6 +342,8 @@ class Select extends React.PureComponent {
             listRef={this.listRef}
             getItemBody={getItemBody}
             isOpen={isOpen}
+            itemTestId={itemTestId}
+            listTestId={listTestId}
             onListClose={this.hideSelectBody}
             items={filteredItems}
             getSelectedItemBody={getSelectedItemBody}
@@ -383,6 +395,34 @@ Select.propTypes = {
   placeholder: PropTypes.string,
   disabled: PropTypes.bool,
   openedOnInit: PropTypes.bool,
+  /**
+   * Use to pass you custom identifier for clear button, it will be converted to data-testid attribute
+   */
+  clearIconTestId: PropTypes.string,
+  /**
+   * Use to pass you custom identifier for down icon, it will be converted to data-testid attribute
+   */
+  downIconTestId: PropTypes.string,
+  /**
+   * Use to pass you custom identifier for select head element, it will be converted to data-testid attribute
+   */
+  headTestId: PropTypes.string,
+  /**
+   * Use to pass you custom identifier for select main wrapper, it will be converted to data-testid attribute
+   */
+  testId: PropTypes.string,
+  /**
+   * Use to pass you custom identifier for single list item, it will be converted to data-testid attribute
+   */
+  itemTestId: PropTypes.string,
+  /**
+   * Use to pass you custom identifier for select list wrapper, it will be converted to data-testid attribute
+   */
+  bodyTestId: PropTypes.string,
+  /**
+   * Use to pass you custom identifier for select list, it will be converted to data-testid attribute
+   */
+  listTestId: PropTypes.string,
   onDropdownToggle: PropTypes.func,
   /**
    * Searching is controlled by Select component itself. Use this props to get current value of search phrase.

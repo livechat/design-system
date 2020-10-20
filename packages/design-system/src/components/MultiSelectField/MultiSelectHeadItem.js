@@ -6,15 +6,16 @@ import styles from './style.scss';
 const baseClass = 'multiselect-head__item';
 
 const MultiSelectHeadItem = props => {
-  const { item, getSelectedItemBody } = props;
+  const { item, getSelectedItemBody, removeIconTestId, headTestId } = props;
   return (
-    <div className={styles[`${baseClass}`]}>
+    <div className={styles[`${baseClass}`]} data-testid={headTestId}>
       <CloseIcon
         width="14px"
         height="14px"
         fill="#fff"
         onClick={e => props.onRemove(e, item.key)}
         className={styles[`${baseClass}-remove-icon`]}
+        data-testid={removeIconTestId}
       />
       <div className={styles[`${baseClass}-content`]}>
         {getSelectedItemBody(item.props)}
@@ -28,6 +29,8 @@ MultiSelectHeadItem.propTypes = {
     key: PropTypes.string,
     props: PropTypes.object
   }),
+  headTestId: PropTypes.string,
+  removeIconTestId: PropTypes.string,
   getSelectedItemBody: PropTypes.func,
   onRemove: PropTypes.func
 };

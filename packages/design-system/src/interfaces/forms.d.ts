@@ -41,6 +41,13 @@ export interface ISelectProps {
   placeholder?: React.ReactNode;
   searchPlaceholder?: string;
   selected: string | number;
+  clearIconTestId?: string;
+  downIconTestId?: string;
+  headTestId?: string;
+  testId?: string;
+  itemTestId?: string;
+  bodyTestId?: string;
+  listTestId?: string;
   openedOnInit?: boolean;
   disabled?: boolean;
   required?: boolean;
@@ -72,6 +79,12 @@ export interface IMultiSelectProps {
   maxItemsContainerHeight: number;
   openedOnInit?: boolean;
   placeholder?: string;
+  removeIconTestId?: string;
+  downIconTestId?: string;
+  headTestId?: string;
+  itemTestId?: string;
+  listTestId?: string;
+  testId?: string;
   search?: boolean;
   searchProperty?: string | string[];
   selected: string[] | number[];

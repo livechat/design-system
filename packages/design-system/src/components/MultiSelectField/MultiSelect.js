@@ -381,7 +381,13 @@ class MultiSelect extends React.PureComponent {
       search,
       disabled,
       toggleAllOptions,
-      maxItemsContainerHeight
+      maxItemsContainerHeight,
+      removeIconTestId,
+      downIconTestId,
+      testId,
+      headTestId,
+      listTestId,
+      itemTestId
     } = this.props;
     const selectedItems = this.getSelectedItems();
     const { searchPhrase, focusedItemKey, isFocused } = this.state;
@@ -398,10 +404,11 @@ class MultiSelect extends React.PureComponent {
     );
     const headItemsStyles = selectedItems && selectedItems.length > 0 ? `${baseClass}-head__items` : `${baseClass}-head__items-empty`;
     return (
-      <div ref={this.containerRef} className={mergedClassNames} id={id}>
+      <div ref={this.containerRef} data-testid={testId} className={mergedClassNames} id={id}>
         <MultiSelectHead
           isFocused={isOpen || isFocused}
           ref={this.headRef}
+          headTestId={headTestId}
           onClick={this.onSelectHeadClick}
           onFocus={this.onSelectHeadFocus}
           onBlur={this.onSelectHeadBlur}
@@ -409,12 +416,13 @@ class MultiSelect extends React.PureComponent {
         >
           <div
             className={styles[headItemsStyles]}
-            style={{ maxHeight: maxItemsContainerHeight }}
+            style={{ maxHeight: maxItemsContainerHeight, }}
             ref={this.selectedItemsContainerRef}
           >
             {selectedItemsModels &&
               selectedItemsModels.map(item => (
                 <MultiSelectHeadItem
+                  removeIconTestId={removeIconTestId}
                   key={item.key}
                   getSelectedItemBody={getSelectedItemBody}
                   item={item}
@@ -437,6 +445,7 @@ class MultiSelect extends React.PureComponent {
           </div>
           <MenuDownIcon
             className={styles[`${baseClass}__dropdown-icon`]}
+            data-testid={downIconTestId}
             width="24px"
             height="24px"
             fill="#424d57"
@@ -449,6 +458,8 @@ class MultiSelect extends React.PureComponent {
           })}
         >
           <MultiSelectList
+            listTestId={listTestId}
+            itemTestId={itemTestId}
             listRef={this.listRef}
             getItemBody={getItemBody}
             isOpen={isOpen}
@@ -509,6 +520,30 @@ MultiSelect.propTypes = {
     clearLabel: PropTypes.string
   }),
   maxItemsContainerHeight: PropTypes.number.isRequired,
+  /**
+   * Use to pass you custom identifier for down icon, it will be converted to data-testid attribute
+   */
+  downIconTestId: PropTypes.string,
+  /**
+   * Use to pass you custom identifier for item remove icon, it will be converted to data-testid attribute on element
+   */
+  removeIconTestId: PropTypes.string,
+  /**
+   * Use to pass you custom identifier for multiselect head element, it will be converted to data-testid attribute on element
+   */
+  headTestId: PropTypes.string,
+  /**
+   * Use to pass you custom identifier for multiselect items, it will be converted to data-testid attribute
+   */
+  itemTestId: PropTypes.string,
+  /**
+   * Use to pass you custom identifier for multiselect items list container, it will be converted to data-testid attribute
+   */
+  listTestId: PropTypes.string,
+  /**
+   * Use to pass you custom identifier for multiselect main wrapper, it will be converted to data-testid attribute
+   */
+  testId: PropTypes.string,
   onDropdownToggle: PropTypes.func
 };
 

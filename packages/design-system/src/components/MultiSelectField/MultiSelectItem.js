@@ -8,7 +8,7 @@ const baseClass = 'multiselect-body';
 const cx = classNames.bind(styles);
 
 const SelectItem = props => {
-  const { isSelected, children, isFocused, isToggleItem, ...restProps } = props;
+  const { isSelected, children, isFocused, isToggleItem, itemTestId, ...restProps } = props;
   return (
     <li
       className={cx({
@@ -17,6 +17,7 @@ const SelectItem = props => {
         [`${baseClass}__item--focused`]: isFocused,
         [`${baseClass}__item--toggle`]: isToggleItem
       })}
+      data-testid={itemTestId}
       {...restProps}
     >
       <div className={styles[`${baseClass}__item-content`]}>{children}</div>
@@ -33,6 +34,7 @@ SelectItem.propTypes = {
   isSelected: PropTypes.bool,
   isFocused: PropTypes.bool,
   isToggleItem: PropTypes.bool,
+  itemTestId: PropTypes.string,
   children: PropTypes.node
 };
 

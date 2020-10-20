@@ -9,19 +9,21 @@ const baseClass = 'select-head';
 const cx = classNames.bind(styles);
 
 const ClearButton = React.forwardRef((props, ref) => {
-  const { isVisible, clearSelectedOption } = props;
+  const { isVisible, clearSelectedOption, clearIconTestId } = props;
   return (
     <div
       ref={ref}
       className={cx({
         [`${baseClass}__clear`]: true,
         [`${baseClass}__clear--visible`]: isVisible
-      })}    >
+      })}
+    >
       <CloseIcon
         width="20px"
         height="20px"
         fill="#4384f5"
-        onClick={clearSelectedOption}
+        onClick={clearSelectedOption} 
+        data-testid={clearIconTestId}
       />
     </div>
   );
@@ -29,6 +31,7 @@ const ClearButton = React.forwardRef((props, ref) => {
 
 ClearButton.propTypes = {
   clearSelectedOption: PropTypes.func,
+  clearIconTestId: PropTypes.string,
   isVisible: PropTypes.bool
 };
 
