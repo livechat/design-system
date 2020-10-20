@@ -19,6 +19,7 @@ exports[`Components | DropdownList renders correctly four items with autofocused
     isFocused={false}
     isSelected={false}
     itemId={1}
+    onFocus={[Function]}
     onItemSelect={[MockFunction]}
     onMouseOverItem={[Function]}
   >
@@ -37,6 +38,7 @@ exports[`Components | DropdownList renders correctly four items with autofocused
     isFocused={true}
     isSelected={false}
     itemId={2}
+    onFocus={[Function]}
     onItemSelect={[MockFunction]}
     onMouseOverItem={[Function]}
   >
@@ -55,6 +57,7 @@ exports[`Components | DropdownList renders correctly four items with autofocused
     isFocused={false}
     isSelected={true}
     itemId={3}
+    onFocus={[Function]}
     onItemSelect={[MockFunction]}
     onMouseOverItem={[Function]}
   >
@@ -73,6 +76,7 @@ exports[`Components | DropdownList renders correctly four items with autofocused
     isFocused={false}
     isSelected={false}
     itemId={4}
+    onFocus={[Function]}
     onItemSelect={[MockFunction]}
     onMouseOverItem={[Function]}
   >
