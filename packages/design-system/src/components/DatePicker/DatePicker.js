@@ -58,6 +58,25 @@ class DatePicker extends React.PureComponent {
     );
   };
 
+  onSetRef = datePicker => {
+    this.datePicker = datePicker
+    if (this.props.innerRef) {
+      this.props.innerRef(datePicker)
+    }
+  }
+
+  handleNextYear = () => {
+    if (this.datePicker) {
+      this.datePicker.showNextYear()
+    }
+  }
+
+  handlePrevYear = () => {
+    if (this.datePicker) {
+      this.datePicker.showPreviousYear()
+    }
+  }
+
   render() {
     const {
       className,
@@ -80,14 +99,12 @@ class DatePicker extends React.PureComponent {
           navbarElement || (
             <DatePickerNavbar
               classNames={datePickerClassNames}
-              numberOfMonths={numberOfMonths}
-              onMonthChange={this.props.onMonthChange}
-              toMonth={toMonth}
-              fromMonth={fromMonth}
+              onNextYearClick={this.handleNextYear}
+              onPreviousYearClick={this.handlePrevYear}
             />
           )
         }
-        ref={this.props.innerRef}
+        ref={this.onSetRef}
         classNames={datePickerClassNames}
         numberOfMonths={numberOfMonths}
         toMonth={toMonth}
