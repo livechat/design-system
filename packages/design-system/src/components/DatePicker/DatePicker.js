@@ -9,6 +9,24 @@ const baseClass = 'date-picker';
 const cx = cssClassNames.bind(styles);
 
 class DatePicker extends React.PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      month: props.month || new Date()
+    }
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.month && props.month !== state.month) {
+      return {
+        month: props.month
+      }
+    }
+
+    return null
+  }
+
   getDatePickerClassNames = () => ({
     container: cx({
       [baseClass]: true,
@@ -48,6 +66,17 @@ class DatePicker extends React.PureComponent {
     ...this.props.classNames
   });
 
+  handleMonthChange = (month) => {
+    if (this.props.onMonthChange && this.props.month) {
+      this.props.onMonthChange(month)
+      return;
+    }
+
+    this.setState({
+      month
+    })
+  }
+
   renderDay = day => {
     const date = day.getDate();
 
@@ -69,6 +98,7 @@ class DatePicker extends React.PureComponent {
       navbarElement,
       renderDay,
       classNames,
+      month,
       ...restProps
     } = this.props;
 
@@ -81,7 +111,7 @@ class DatePicker extends React.PureComponent {
             <DatePickerNavbar
               classNames={datePickerClassNames}
               numberOfMonths={numberOfMonths}
-              onMonthChange={this.props.onMonthChange}
+              onMonthChange={this.handleMonthChange}
               toMonth={toMonth}
               fromMonth={fromMonth}
             />
@@ -93,6 +123,7 @@ class DatePicker extends React.PureComponent {
         toMonth={toMonth}
         fromMonth={fromMonth}
         firstDayOfWeek={firstDayOfWeek || 1}
+        month={this.state.month}
         renderDay={renderDay || this.renderDay}
         {...restProps}
       />
