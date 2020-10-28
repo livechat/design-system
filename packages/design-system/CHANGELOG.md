@@ -1,5 +1,13 @@
 All notable changes to this project will be documented in this file.
 
+## v0.10.2
+
+_Release: 2020-10-28_
+
+##### Bug Fixes
+
+- adding missing month change handler to DatePicker component in order to handle year change inside the component #210
+
 ## v0.10.1
 
 _Release: 2020-09-22_
