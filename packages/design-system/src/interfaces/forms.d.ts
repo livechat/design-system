@@ -162,6 +162,25 @@ export interface IFieldGroupProps extends React.HTMLAttributes<HTMLElement> {
   stretch?: boolean;
 }
 
+type ISearchBarHtmlProps = Omit<Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>, 'onSubmit'>;
+
+export interface ISearchBarProps extends ISearchBarHtmlProps {
+  placeholder?: string;
+  value?: string;
+  loading?: boolean;
+  collapsable?: boolean;
+  expandOnFocus?: boolean;
+  collapseOnBlur?: boolean;
+  debounceTime?: number;
+  error?: string;
+  onChange?(value: string): void;
+  onSubmit?(value: string): void;
+  onClear?(value: string): void;
+  onKeyDown?(event): void;
+  onCollapse?(): void;
+  onExpand?(): void;
+}
+
 export var CheckboxField: React.ComponentType<ICheckboxFieldProps>;
 export var FieldGroup: React.ComponentType<IFieldGroupProps>;
 export var Form: React.ComponentType<IFormProps>;
@@ -178,3 +197,4 @@ export var SelectField: React.ComponentType<ISelectFieldProps>;
 export var TextField: React.ComponentType<ITextFieldProps>;
 export var TextArea: React.ComponentType<ITextAreaProps>;
 export var TextAreaField: React.ComponentType<ITextAreaFieldProps>;
+export var SearchBar: React.ComponentType<ISearchBarProps>;

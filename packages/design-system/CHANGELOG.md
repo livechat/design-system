@@ -1,5 +1,13 @@
 All notable changes to this project will be documented in this file.
 
+## v0.11.0
+
+_Release: 2020-11-03_
+
+##### New Features
+
+- SearchBar - new search input component in two different modes - collapsed and expanded #200
+
 ## v0.10.2
 
 _Release: 2020-10-28_
