@@ -77,3 +77,5 @@ export { ProgressBar, ProgressCircle } from './Progress';
 export { Promo } from './Promo';
 
 export { UploadBar, FileUploadProgress } from './UploadBar';
+
+export { SearchBar } from './SearchBar';

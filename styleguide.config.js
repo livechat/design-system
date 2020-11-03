@@ -109,6 +109,7 @@ module.exports = {
         {
           name: 'Forms',
           components: [
+            './packages/design-system/src/components/SearchBar/SearchBar.js',
             './packages/design-system/src/components/Form/Form.js',
             './packages/design-system/src/components/TextField/TextField.js',
             './packages/design-system/src/components/InputField/InputField.js',
