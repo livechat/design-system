@@ -26,7 +26,7 @@ export class SearchBar extends React.PureComponent {
 
     this.state = {
       searchTerm: '',
-      isInCompactMode: props.collapsable
+      isCollapsed: props.collapsable
     };
   }
 
@@ -89,18 +89,60 @@ export class SearchBar extends React.PureComponent {
     }
   };
 
-  toggleCompactMode = () => {
+  handleBlur = event => {
+    if (this.props.onBlur) {
+      this.props.onBlur(event);
+    }
+    
+    if (this.props.collapseOnBlur) {
+      this.setState({
+        isCollapsed: true
+      }, () => {
+        if (this.props.onCollapse) {
+          this.props.onCollapse();
+        }
+      })
+    }
+  }
+
+  handleFocus = event => {
+    if (this.props.onFocus) {
+      this.props.onFocus(event);
+    }
+    
+    if (this.props.expandOnFocus) {
+      this.setState({
+        isCollapsed: false
+      }, () => {
+        if (this.inputRef.current) {
+          this.inputRef.current.focus();
+        }
+
+        if (this.props.onExpand) {
+          this.props.onExpand();
+        }
+      })
+    }
+  }
+
+  toggleSearchBarMode = () => {
     this.setState(
       prevState => ({
-        isInCompactMode: !!this.props.collapsable && !prevState.isInCompactMode
+        isCollapsed: !!this.props.collapsable && !prevState.isCollapsed
       }),
       () => {
-        if (this.state.isInCompactMode && this.props.onCollapse) {
+        if (this.state.isCollapsed && this.props.onCollapse) {
           this.props.onCollapse();
         }
 
-        if (!this.state.isInCompactMode && this.inputRef.current) {
-          this.inputRef.current.focus();
+        if (!this.state.isCollapsed) {
+          if (this.inputRef.current) {
+            this.inputRef.current.focus();
+          }
+
+          if (this.props.onExpand) {
+            this.props.onExpand();
+          }
         }
       }
     );
@@ -115,43 +157,49 @@ export class SearchBar extends React.PureComponent {
       collapsable,
       error,
       debounceTime,
+      collapseOnBlur,
+      expandOnFocus,
       onClear,
       onSubmit,
       onChange,
       onKeyDown,
       onCollapse,
+      onExpand,
+      onBlur,
+      onFocus,
+      forwardedRef,
       ...restProps
     } = this.props;
-    const { searchTerm, isInCompactMode } = this.state;
+    const { searchTerm, isCollapsed } = this.state;
 
-    const shouldDisplayClearButton = searchTerm && !loading && !isInCompactMode;
+    const shouldDisplayClearButton = searchTerm && !loading && !isCollapsed;
 
     const searchIconClassName = cx(
-      [`lc-${baseClass}__icon`, `lc-${baseClass}__icon--search`],
+      [`lc-${baseClass}__icon`, `lc-${baseClass}__search-icon`],
       {
-        [`lc-${baseClass}__icon--search-compact`]: collapsable
+        [`lc-${baseClass}__search-icon--interactive`]: collapsable
       }
     );
 
     const inputClassName = cx(`lc-${baseClass}__input`, {
-      [`lc-${baseClass}__input-compact`]: isInCompactMode
+      [`lc-${baseClass}__input--collapsed`]: isCollapsed
     });
 
     return (
-      <div className={className} {...restProps}>
+      <div className={className} ref={forwardedRef} {...restProps}>
         <div className={styles[`${baseClass}__container`]}>
           <SearchIcon
             width="18px"
             height="18px"
             className={searchIconClassName}
-            onClick={this.toggleCompactMode}
+            onClick={this.toggleSearchBarMode}
           />
           {loading && (
             <Loader
               size="small"
               className={cx([
                 `lc-${baseClass}__icon`,
-                `lc-${baseClass}__icon--loader`
+                `lc-${baseClass}__loader`
               ])}
             />
           )}
@@ -160,6 +208,8 @@ export class SearchBar extends React.PureComponent {
             ref={this.inputRef}
             value={value || this.state.searchTerm}
             onChange={this.handleChange}
+            onFocus={this.handleFocus}
+            onBlur={this.handleBlur}
             onKeyDown={this.handleKeyPress}
             className={inputClassName}
           />
@@ -171,7 +221,7 @@ export class SearchBar extends React.PureComponent {
               onKeyDown={this.handleClearButtonKeyDown}
               className={cx([
                 `lc-${baseClass}__icon`,
-                `lc-${baseClass}__icon--clear`
+                `lc-${baseClass}__clear-icon`
               ])}
               tabIndex="0"
             />
@@ -196,6 +246,14 @@ SearchBar.propTypes = {
    */
   collapsable: PropTypes.bool,
   /**
+   * Use if you want to collapse the component on blur
+   */
+  collapseOnBlur: PropTypes.bool,
+  /**
+   * Use if you want to expand the component on focus
+   */
+  expandOnFocus: PropTypes.bool,
+  /**
    * Pass value in `ms` along with `onChange` handler if you want to query by specific number of ms
    */
   debounceTime: PropTypes.number,
@@ -207,7 +265,10 @@ SearchBar.propTypes = {
    * Pass onKeyDown function if you want to use event props for example event.preventDefault()
    */
   onKeyDown: PropTypes.func,
-  onCollapse: PropTypes.func
+  onCollapse: PropTypes.func,
+  onExpand: PropTypes.func,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func
 };
 
 SearchBar.defaultProps = {
@@ -215,6 +276,8 @@ SearchBar.defaultProps = {
   value: null,
   loading: false,
   collapsable: false,
+  collapseOnBlur: false,
+  expandOnFocus: false,
   debounceTime: 0,
   error: null,
   onChange: null,
@@ -224,4 +287,4 @@ SearchBar.defaultProps = {
   onCollapse: null
 };
 
-export default SearchBar;
+export default React.forwardRef((props, ref) => <SearchBar {...props} forwardedRef={ref} />);

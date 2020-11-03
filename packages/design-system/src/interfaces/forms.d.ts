@@ -181,13 +181,16 @@ export interface ISearchBarProps extends ISearchBarHtmlProps {
   value?: string;
   loading?: boolean;
   collapsable?: boolean;
+  expandOnFocus?: boolean;
+  collapseOnBlur?: boolean;
   debounceTime?: number;
   error?: string;
   onChange?(value: string): void;
   onSubmit?(value: string): void;
   onClear?(value: string): void;
   onKeyDown?(event): void;
-  onCollapse?(value: string): void;
+  onCollapse?(): void;
+  onExpand?(): void;
 }
 
 export var CheckboxField: React.ComponentType<ICheckboxFieldProps>;
