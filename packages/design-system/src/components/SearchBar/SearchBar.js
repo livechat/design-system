@@ -287,4 +287,6 @@ SearchBar.defaultProps = {
   onCollapse: null
 };
 
-export default React.forwardRef((props, ref) => <SearchBar {...props} forwardedRef={ref} />);
+export default React.forwardRef(function SearchBarWithRef(props, ref) {
+  return <SearchBar {...props} forwardedRef={ref} />;
+});
