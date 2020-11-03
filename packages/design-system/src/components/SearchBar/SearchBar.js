@@ -273,18 +273,7 @@ SearchBar.propTypes = {
 
 SearchBar.defaultProps = {
   placeholder: 'Search...',
-  value: null,
-  loading: false,
-  collapsable: false,
-  collapseOnBlur: false,
-  expandOnFocus: false,
-  debounceTime: 0,
-  error: null,
-  onChange: null,
-  onSubmit: null,
-  onClear: null,
-  onKeyDown: null,
-  onCollapse: null
+  debounceTime: 0
 };
 
 export default React.forwardRef(function SearchBarWithRef(props, ref) {
