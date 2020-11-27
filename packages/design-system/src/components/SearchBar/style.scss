@@ -29,7 +29,7 @@ $base-class: "search-bar";
   }
 
   &__clear-icon {
-    opacity: 1;
+    display: block;
     right: 13px;
     cursor: pointer;
     fill: $icon-primary-color;
@@ -53,7 +53,7 @@ $base-class: "search-bar";
     }
 
     &--disable {
-      opacity: 0;
+      display: none;
     }
   }
 
