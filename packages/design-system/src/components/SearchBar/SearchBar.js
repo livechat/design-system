@@ -93,37 +93,43 @@ export class SearchBar extends React.PureComponent {
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
-    
+
     if (this.props.collapseOnBlur) {
-      this.setState({
-        isCollapsed: true
-      }, () => {
-        if (this.props.onCollapse) {
-          this.props.onCollapse();
+      this.setState(
+        {
+          isCollapsed: true
+        },
+        () => {
+          if (this.props.onCollapse) {
+            this.props.onCollapse();
+          }
         }
-      })
+      );
     }
-  }
+  };
 
   handleFocus = event => {
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
-    
-    if (this.props.expandOnFocus) {
-      this.setState({
-        isCollapsed: false
-      }, () => {
-        if (this.inputRef.current) {
-          this.inputRef.current.focus();
-        }
 
-        if (this.props.onExpand) {
-          this.props.onExpand();
+    if (this.props.expandOnFocus) {
+      this.setState(
+        {
+          isCollapsed: false
+        },
+        () => {
+          if (this.inputRef.current) {
+            this.inputRef.current.focus();
+          }
+
+          if (this.props.onExpand) {
+            this.props.onExpand();
+          }
         }
-      })
+      );
     }
-  }
+  };
 
   toggleSearchBarMode = () => {
     this.setState(
@@ -185,6 +191,13 @@ export class SearchBar extends React.PureComponent {
       [`lc-${baseClass}__input--collapsed`]: isCollapsed
     });
 
+    const closeIconClassName = cx(
+      [`lc-${baseClass}__icon`, `lc-${baseClass}__clear-icon`],
+      {
+        [`lc-${baseClass}__clear-icon--disable`]: !shouldDisplayClearButton
+      }
+    );
+
     return (
       <div className={className} ref={forwardedRef} {...restProps}>
         <div className={styles[`${baseClass}__container`]}>
@@ -212,20 +225,19 @@ export class SearchBar extends React.PureComponent {
             onBlur={this.handleBlur}
             onKeyDown={this.handleKeyPress}
             className={inputClassName}
+            data-element="search-input"
           />
-          {shouldDisplayClearButton && (
-            <CloseIcon
-              width="18px"
-              height="18px"
-              onClick={this.handleClear}
-              onKeyDown={this.handleClearButtonKeyDown}
-              className={cx([
-                `lc-${baseClass}__icon`,
-                `lc-${baseClass}__clear-icon`
-              ])}
-              tabIndex="0"
-            />
-          )}
+          <CloseIcon
+            width="18px"
+            height="18px"
+            onClick={shouldDisplayClearButton ? this.handleClear : null}
+            onKeyDown={
+              shouldDisplayClearButton ? this.handleClearButtonKeyDown : null
+            }
+            className={closeIconClassName}
+            tabIndex="0"
+            data-element="close-icon"
+          />
         </div>
         {error && <FieldError>{error}</FieldError>}
       </div>
@@ -268,7 +280,8 @@ SearchBar.propTypes = {
   onCollapse: PropTypes.func,
   onExpand: PropTypes.func,
   onFocus: PropTypes.func,
-  onBlur: PropTypes.func
+  onBlur: PropTypes.func,
+  forwardedRef: PropTypes.func
 };
 
 SearchBar.defaultProps = {
@@ -276,6 +289,6 @@ SearchBar.defaultProps = {
   debounceTime: 0
 };
 
-export default React.forwardRef(function SearchBarWithRef(props, ref) {
-  return <SearchBar {...props} forwardedRef={ref} />;
-});
+export default React.forwardRef((props, ref) => (
+  <SearchBar {...props} forwardedRef={ref} />
+));
