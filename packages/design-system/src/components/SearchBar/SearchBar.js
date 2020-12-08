@@ -219,13 +219,13 @@ export class SearchBar extends React.PureComponent {
           <Input
             placeholder={placeholder}
             ref={this.inputRef}
-            value={value || value === '' ? value : this.state.searchTerm}
+            value={value != null ? value : this.state.searchTerm}
             onChange={this.handleChange}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
             onKeyDown={this.handleKeyPress}
             className={inputClassName}
-            data-testId="search-input"
+            data-testid="search-input"
           />
           <CloseIcon
             width="18px"
@@ -236,7 +236,7 @@ export class SearchBar extends React.PureComponent {
             }
             className={closeIconClassName}
             tabIndex="0"
-            data-testId="close-button"
+            data-testid="close-button"
           />
         </div>
         {error && <FieldError>{error}</FieldError>}
@@ -281,7 +281,10 @@ SearchBar.propTypes = {
   onExpand: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
-  forwardedRef: React.RefObject
+  forwardedRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.any })
+  ])
 };
 
 SearchBar.defaultProps = {
