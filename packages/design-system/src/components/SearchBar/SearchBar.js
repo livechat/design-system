@@ -25,7 +25,7 @@ export class SearchBar extends React.PureComponent {
     }
 
     this.state = {
-      searchTerm: '',
+      searchTerm: props.value || '',
       isCollapsed: props.collapsable
     };
   }
@@ -219,7 +219,7 @@ export class SearchBar extends React.PureComponent {
           <Input
             placeholder={placeholder}
             ref={this.inputRef}
-            value={value || this.state.searchTerm}
+            value={value || value === '' ? value : this.state.searchTerm}
             onChange={this.handleChange}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
