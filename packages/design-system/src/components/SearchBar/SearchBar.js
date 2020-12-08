@@ -194,7 +194,7 @@ export class SearchBar extends React.PureComponent {
     const closeIconClassName = cx(
       [`lc-${baseClass}__icon`, `lc-${baseClass}__clear-icon`],
       {
-        [`lc-${baseClass}__clear-icon--disable`]: !shouldDisplayClearButton
+        [`lc-${baseClass}__clear-icon--hidden`]: !shouldDisplayClearButton
       }
     );
 
@@ -225,7 +225,7 @@ export class SearchBar extends React.PureComponent {
             onBlur={this.handleBlur}
             onKeyDown={this.handleKeyPress}
             className={inputClassName}
-            data-element="search-input"
+            data-testId="search-input"
           />
           <CloseIcon
             width="18px"
@@ -236,7 +236,7 @@ export class SearchBar extends React.PureComponent {
             }
             className={closeIconClassName}
             tabIndex="0"
-            data-element="close-icon"
+            data-testId="close-button"
           />
         </div>
         {error && <FieldError>{error}</FieldError>}
@@ -281,7 +281,7 @@ SearchBar.propTypes = {
   onExpand: PropTypes.func,
   onFocus: PropTypes.func,
   onBlur: PropTypes.func,
-  forwardedRef: PropTypes.func
+  forwardedRef: React.RefObject
 };
 
 SearchBar.defaultProps = {
@@ -289,6 +289,7 @@ SearchBar.defaultProps = {
   debounceTime: 0
 };
 
-export default React.forwardRef((props, ref) => (
-  <SearchBar {...props} forwardedRef={ref} />
-));
+/* eslint prefer-arrow-callback: ["error", { "allowNamedFunctions": true }] */
+export default React.forwardRef(function SearchBarWithRef(props, ref) {
+  return <SearchBar {...props} forwardedRef={ref} />;
+});
