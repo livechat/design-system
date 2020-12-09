@@ -29,6 +29,7 @@ $base-class: "search-bar";
   }
 
   &__clear-icon {
+    display: block;
     right: 13px;
     cursor: pointer;
     fill: $icon-primary-color;
@@ -49,6 +50,10 @@ $base-class: "search-bar";
       border-radius: 3px;
       box-sizing: border-box;
       border: 1px solid #8db4ee;
+    }
+
+    &--hidden {
+      display: none;
     }
   }
 

@@ -25,7 +25,7 @@ export class SearchBar extends React.PureComponent {
     }
 
     this.state = {
-      searchTerm: '',
+      searchTerm: props.value || '',
       isCollapsed: props.collapsable
     };
   }
@@ -93,37 +93,43 @@ export class SearchBar extends React.PureComponent {
     if (this.props.onBlur) {
       this.props.onBlur(event);
     }
-    
+
     if (this.props.collapseOnBlur) {
-      this.setState({
-        isCollapsed: true
-      }, () => {
-        if (this.props.onCollapse) {
-          this.props.onCollapse();
+      this.setState(
+        {
+          isCollapsed: true
+        },
+        () => {
+          if (this.props.onCollapse) {
+            this.props.onCollapse();
+          }
         }
-      })
+      );
     }
-  }
+  };
 
   handleFocus = event => {
     if (this.props.onFocus) {
       this.props.onFocus(event);
     }
-    
-    if (this.props.expandOnFocus) {
-      this.setState({
-        isCollapsed: false
-      }, () => {
-        if (this.inputRef.current) {
-          this.inputRef.current.focus();
-        }
 
-        if (this.props.onExpand) {
-          this.props.onExpand();
+    if (this.props.expandOnFocus) {
+      this.setState(
+        {
+          isCollapsed: false
+        },
+        () => {
+          if (this.inputRef.current) {
+            this.inputRef.current.focus();
+          }
+
+          if (this.props.onExpand) {
+            this.props.onExpand();
+          }
         }
-      })
+      );
     }
-  }
+  };
 
   toggleSearchBarMode = () => {
     this.setState(
@@ -185,6 +191,13 @@ export class SearchBar extends React.PureComponent {
       [`lc-${baseClass}__input--collapsed`]: isCollapsed
     });
 
+    const closeIconClassName = cx(
+      [`lc-${baseClass}__icon`, `lc-${baseClass}__clear-icon`],
+      {
+        [`lc-${baseClass}__clear-icon--hidden`]: !shouldDisplayClearButton
+      }
+    );
+
     return (
       <div className={className} ref={forwardedRef} {...restProps}>
         <div className={styles[`${baseClass}__container`]}>
@@ -206,26 +219,25 @@ export class SearchBar extends React.PureComponent {
           <Input
             placeholder={placeholder}
             ref={this.inputRef}
-            value={value || this.state.searchTerm}
+            value={value != null ? value : this.state.searchTerm}
             onChange={this.handleChange}
             onFocus={this.handleFocus}
             onBlur={this.handleBlur}
             onKeyDown={this.handleKeyPress}
             className={inputClassName}
+            data-testid="search-input"
           />
-          {shouldDisplayClearButton && (
-            <CloseIcon
-              width="18px"
-              height="18px"
-              onClick={this.handleClear}
-              onKeyDown={this.handleClearButtonKeyDown}
-              className={cx([
-                `lc-${baseClass}__icon`,
-                `lc-${baseClass}__clear-icon`
-              ])}
-              tabIndex="0"
-            />
-          )}
+          <CloseIcon
+            width="18px"
+            height="18px"
+            onClick={shouldDisplayClearButton ? this.handleClear : null}
+            onKeyDown={
+              shouldDisplayClearButton ? this.handleClearButtonKeyDown : null
+            }
+            className={closeIconClassName}
+            tabIndex="0"
+            data-testid="close-button"
+          />
         </div>
         {error && <FieldError>{error}</FieldError>}
       </div>
@@ -268,7 +280,11 @@ SearchBar.propTypes = {
   onCollapse: PropTypes.func,
   onExpand: PropTypes.func,
   onFocus: PropTypes.func,
-  onBlur: PropTypes.func
+  onBlur: PropTypes.func,
+  forwardedRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.any })
+  ])
 };
 
 SearchBar.defaultProps = {
@@ -276,6 +292,7 @@ SearchBar.defaultProps = {
   debounceTime: 0
 };
 
+/* eslint prefer-arrow-callback: ["error", { "allowNamedFunctions": true }] */
 export default React.forwardRef(function SearchBarWithRef(props, ref) {
   return <SearchBar {...props} forwardedRef={ref} />;
 });
