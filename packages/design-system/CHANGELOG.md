@@ -1,5 +1,13 @@
 All notable changes to this project will be documented in this file.
 
+## v0.11.1
+
+_Release: 2020-12-09_
+
+##### Bug Fixes
+
+- fixing search bar close button visibility issues #214
+
 ## v0.11.0
 
 _Release: 2020-11-03_
