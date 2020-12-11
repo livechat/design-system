@@ -27,6 +27,10 @@ module.exports = {
       sectionDepth: 1,
       sections: [
         {
+          name: 'Icon',
+          components: ['./packages/design-system/src/components/Icon/Icon.js']
+        },
+        {
           name: 'Alerts',
           components: [
             './packages/design-system/src/components/Banner/Banner.js',

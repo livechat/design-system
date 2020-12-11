@@ -181,6 +181,11 @@ export interface ISearchBarProps extends ISearchBarHtmlProps {
   onExpand?(): void;
 }
 
+export interface IIconProps {
+  size?: string;
+  className?: string;
+}
+
 export var CheckboxField: React.ComponentType<ICheckboxFieldProps>;
 export var FieldGroup: React.ComponentType<IFieldGroupProps>;
 export var Form: React.ComponentType<IFormProps>;
@@ -198,3 +203,4 @@ export var TextField: React.ComponentType<ITextFieldProps>;
 export var TextArea: React.ComponentType<ITextAreaProps>;
 export var TextAreaField: React.ComponentType<ITextAreaFieldProps>;
 export var SearchBar: React.ComponentType<ISearchBarProps>;
+export var Icon: React.ComponentType<IIconProps>;

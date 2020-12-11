@@ -79,3 +79,5 @@ export { Promo } from './Promo';
 export { UploadBar, FileUploadProgress } from './UploadBar';
 
 export { SearchBar } from './SearchBar';
+
+export { Icon } from './Icon';

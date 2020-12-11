@@ -72,6 +72,8 @@ global.FileUploadProgress = Components.FileUploadProgress;
 
 global.SearchBar = Components.SearchBar;
 
+global.Icon = Components.Icon;
+
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;
 global.PdfIcon = PdfIcon;

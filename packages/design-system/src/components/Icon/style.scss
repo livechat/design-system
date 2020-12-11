@@ -1,0 +1,8 @@
+@import '../../scss/variables/colors';
+
+$base-class: 'icon';
+
+.#{$base-class} {
+  color: yellow;
+  background-color: black;
+}
