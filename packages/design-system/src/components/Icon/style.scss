@@ -3,6 +3,34 @@
 $base-class: 'icon';
 
 .#{$base-class} {
-  color: yellow;
-  background-color: black;
+  &__small {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    display: block;
+    align-items: center;
+
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+  }
+
+  &__medium {
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+  }
+
+  &__large {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+  }
+
+  &__xlarge {
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+  }
 }

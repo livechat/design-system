@@ -9,5 +9,5 @@ WIP
 SMALL WIP
 
 ```js
-<Loader size="small" />
+<Icon/>
 ```

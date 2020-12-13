@@ -57,6 +57,10 @@ const config = {
         ]
       },
       {
+        test: /\.svg$/,
+        use: ['@svgr/webpack']
+      },
+      {
         test: /\.scss$/,
         use: [
           require.resolve('style-loader'),
