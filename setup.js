@@ -6,6 +6,7 @@ import ComponentHtmlMarkup from './docs/ComponentHtmlMarkup';
 import { SingleColor } from './docs/colors/single-color';
 import { ColorPalette } from './docs/colors/color-palette';
 import PdfIcon from './docs/PdfIcon';
+import ChatsIcon from './docs/ChatsIcon';
 
 // components
 global.Button = Components.Button;
@@ -77,6 +78,7 @@ global.Icon = Components.Icon;
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;
 global.PdfIcon = PdfIcon;
+global.ChatsIcon = ChatsIcon;
 global.AlertCircleIcon = AlertCircleIcon;
 global.DateFns = DateFns;
 

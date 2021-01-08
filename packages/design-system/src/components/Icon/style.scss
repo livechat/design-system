@@ -3,34 +3,35 @@
 $base-class: 'icon';
 
 .#{$base-class} {
-  &__small {
+  display: block;
+  align-items: center;
+
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+
+  &__x-small {
     width: 15px;
     height: 15px;
     line-height: 15px;
-    display: block;
-    align-items: center;
-
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
   }
 
-  &__medium {
+  &__small {
     width: 20px;
     height: 20px;
     line-height: 20px;
   }
 
-  &__large {
+  &__medium {
     width: 24px;
     height: 24px;
     line-height: 24px;
   }
 
-  &__xlarge {
-    width: 48px;
-    height: 48px;
-    line-height: 48px;
+  &__large {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
   }
 }
