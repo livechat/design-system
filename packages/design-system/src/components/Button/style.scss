@@ -45,7 +45,7 @@
     transition-duration: 100ms;
   }
 
-  &:disabled {
+  &:disabled:not(.btn--loading) {
     cursor: not-allowed;
   }
 
@@ -124,6 +124,7 @@
   &--loading {
     background-color: $loading-btn-basic-color;
     transition: all 0.2s cubic-bezier(0.64, 0, 0.35, 1);
+    cursor: progress;
 
     > * {
       opacity: 0;
