@@ -1,7 +1,10 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
+import { generateIcon, generateIconFromRequire } from './helpers';
 import styles from './style.scss';
+
+const Tool = require('./tool.svg').default;
 
 const baseClass = 'icon';
 
@@ -12,9 +15,14 @@ export const Icon = props => {
     ? styles[`${baseClass}__${size}`]
     : styles[`${baseClass}__medium`];
 
+  const IconFromProps = generateIcon(icon);
+  const ToolIcon = generateIconFromRequire(Tool);
+
   return (
     <div {...restProps} className={className}>
-      <div className={sizeClassName}>{icon}</div>
+      <Tool width="24px" height="24px" fill="green" />
+      {IconFromProps}
+      {ToolIcon}
     </div>
   );
 };
@@ -28,7 +36,8 @@ Icon.propTypes = {
    * `Size` prop defines width and height of the wrapper icon
    */
   size: PropTypes.oneOf(['small', 'medium', 'large']),
-  icon: PropTypes.node.isRequired
+  // icon: PropTypes.node.isRequired
+  icon: PropTypes.any.isRequired
 };
 
 export default Icon;
