@@ -1,0 +1,81 @@
+{
+  "name": "@livechat/design-system-themes",
+  "version": "0.0.1-beta.1",
+  "description": "Theming for apps using LiveChat design system components",
+  "keywords": [
+    "theme",
+    "design system",
+    "colors"
+  ],
+  "main": "dist/design-system-themes.umd.js",
+  "module": "dist/design-system-themes.es5.js",
+  "typings": "dist/types/types.d.ts",
+  "style": "dist/design-system-themes.css",
+  "files": [
+    "dist"
+  ],
+  "homepage": "https://livechat.github.io/design-system",
+  "author": "kamilmateusiak <k.mateusiak@livechatinc.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/livechat/design-system"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.13.0"
+  },
+  "scripts": {
+    "start": "concurrently \"npm:start:ts\" \"npm:start:generate\" --kill-others-on-fail",
+    "start:ts": "rollup -c rollup.config.ts -w",
+    "start:generate": "ts-node-dev --respawn -O \"{\\\"module\\\":\\\"commonjs\\\"}\" --project tsconfig.generate.json generate-files ",
+    "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts'",
+    "prebuild": "rimraf dist",
+    "prepare": "npm run build",
+    "build": "tsc --module commonjs --project tsconfig.build.json && rollup -c rollup.config.ts && npm run build:generate",
+    "build:generate": "ts-node-dev --project tsconfig.generate.json -O \"{\\\"module\\\":\\\"commonjs\\\"}\" generate-files "
+  },
+  "lint-staged": {
+    "{src,test}/**/*.ts": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.25",
+    "@types/node": "^10.11.0",
+    "@types/ramda": "^0.26.39",
+    "concurrently": "^5.0.1",
+    "husky": "^3.1.0",
+    "jest": "^24.9.0",
+    "lint-staged": "^8.0.0",
+    "lodash.camelcase": "^4.3.0",
+    "polished": "^3.4.2",
+    "prettier": "^1.19.1",
+    "ramda": "^0.26.1",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.67.0",
+    "rollup-plugin-commonjs": "^9.1.8",
+    "rollup-plugin-json": "^3.1.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-sourcemaps": "^0.4.2",
+    "rollup-plugin-typescript2": "^0.25.3",
+    "ts-jest": "^24.3.0",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.0.3"
+  },
+  "dependencies": {
+    "@livechat/design-system-colors": "^1.0.0"
+  }
+}
