@@ -1,6 +1,6 @@
 {
   "name": "@livechat/design-system-colors",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "description": "LiveChat colors palette",
   "keywords": [
     "colors",
@@ -32,13 +32,11 @@
     "prebuild": "rimraf dist",
     "prepare": "npm run build",
     "build": "tsc --module commonjs --project tsconfig.build.json && rollup -c rollup.config.ts && npm run build:css",
-    "build:css": "ts-node-dev -O \"{\\\"module\\\":\\\"commonjs\\\"}\" tools/create-css ",
-    "test": "jest"
+    "build:css": "ts-node-dev -O \"{\\\"module\\\":\\\"commonjs\\\"}\" tools/create-css "
   },
   "lint-staged": {
     "{src,test}/**/*.ts": [
       "prettier --write",
-      "npm run test",
       "git add"
     ]
   },
@@ -52,17 +50,11 @@
     "singleQuote": true
   },
   "devDependencies": {
-    "@types/jest": "^24.0.25",
     "@types/node": "^10.11.0",
-    "@types/ramda": "^0.26.39",
     "concurrently": "^5.0.1",
     "husky": "^3.1.0",
-    "jest": "^24.9.0",
     "lint-staged": "^8.0.0",
-    "lodash.camelcase": "^4.3.0",
     "prettier": "^1.14.3",
-    "polished": "^3.4.2",
-    "ramda": "^0.26.1",
     "rimraf": "^2.6.2",
     "rollup": "^0.67.0",
     "rollup-plugin-commonjs": "^9.1.8",
@@ -70,7 +62,6 @@
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
     "rollup-plugin-typescript2": "^0.25.3",
-    "ts-jest": "^24.3.0",
     "ts-node-dev": "^1.0.0-pre.44",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",

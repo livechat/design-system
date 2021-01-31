@@ -109,12 +109,12 @@ const handleItemSelect = item => setState({selectedFontColor: item});
     />
   </div>
 
+  <ColorPalette paletteName="gray" darkFontColor={state.selectedFontColor} />
   <ColorPalette paletteName="blue" darkFontColor={state.selectedFontColor} />
-  <ColorPalette paletteName="orange" darkFontColor={state.selectedFontColor} />
-  <ColorPalette paletteName="yellow" darkFontColor={state.selectedFontColor} />
   <ColorPalette paletteName="green" darkFontColor={state.selectedFontColor} />
   <ColorPalette paletteName="red" darkFontColor={state.selectedFontColor} />
-  <ColorPalette paletteName="ruby" darkFontColor={state.selectedFontColor} />
-  <ColorPalette paletteName="gray" darkFontColor={state.selectedFontColor} />
+  <ColorPalette paletteName="orange" darkFontColor={state.selectedFontColor} />
+  <ColorPalette paletteName="yellow" darkFontColor={state.selectedFontColor} />
+  <ColorPalette paletteName="purple" darkFontColor={state.selectedFontColor} />
 </div>
 ```

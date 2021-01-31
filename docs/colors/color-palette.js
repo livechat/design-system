@@ -26,7 +26,7 @@ function handleColorClick(e) {
   }, 1000);
 }
 
-const COLOR_TONES = [900, 800, 700, 600, 500, 400, 300, 200, 100, 50, 40, 30];
+const COLOR_TONES = [950, 900, 800, 700, 600, 500, 400, 300, 200, 150, 100, 75, 50, 25];
 
 export function ColorPalette(props) {
   const { paletteName, darkFontColor } = props;
