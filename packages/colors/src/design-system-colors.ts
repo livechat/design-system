@@ -6,7 +6,7 @@ export const baseColors = {
   green: '#00C057',
   red: '#EE0007',
   purple: '#9146FF'
-};
+} as const;
 
 export const blue900 = '#003288';
 export const blue800 = '#003FA4';
