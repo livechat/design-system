@@ -26,17 +26,17 @@ export function SingleColor(props) {
   const contrast1 = getContrast(mainColor, subColor);
   const contrast2 = getContrast(mainColor, backupDotColor);
   let contrastRatio = 9999;
-  if(color2 === "#fff") {
-    console.log('x', contrast1 > MIN_CONTRAST_RATIO)
-  }
+  let dotColor;
+
+  console.log(subColor)
 
   if (ignoreContrast) {
     contrastRatio = contrast1 > contrast2 ? contrast1 : contrast2;
+    dotColor = contrast1 > contrast2 ? subColor : backupDotColor;
   } else {
     contrastRatio = contrast1
+    dotColor = subColor;
   }
-
-  const dotColor = contrast1 > contrast2 ? subColor : backupDotColor;
 
   if (!ignoreContrast && contrastRatio < MIN_CONTRAST_RATIO) {
     return null;
