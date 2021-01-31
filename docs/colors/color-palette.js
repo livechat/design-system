@@ -29,11 +29,11 @@ function handleColorClick(e) {
 const COLOR_TONES = [950, 900, 800, 700, 600, 500, 400, 300, 200, 150, 100, 75, 50, 25];
 
 export function ColorPalette(props) {
-  const { paletteName, darkFontColor } = props;
+  const { paletteName, darkFontColor, ignoreContrast } = props;
 
   return (
     <div>
-      <h2>{paletteName.toUpperCase()}</h2>
+      <h3>{paletteName.toUpperCase()}</h3>
       <div className={styles.colors__palette}>
         {COLOR_TONES.map(tone => {
           const colorName = `${paletteName}${tone}`;
@@ -44,6 +44,7 @@ export function ColorPalette(props) {
                 key={colorValue}
                 title={colorName}
                 subtitle={colorValue}
+                ignoreContrast={ignoreContrast}
                 color1={colorValue}
                 color2={darkFontColor}
                 onClick={handleColorClick}
@@ -60,5 +61,6 @@ export function ColorPalette(props) {
 
 ColorPalette.propTypes = {
   paletteName: PropTypes.string.isRequired,
-  darkFontColor: PropTypes.string.isRequired
+  darkFontColor: PropTypes.string.isRequired,
+  ignoreContrast: PropTypes.bool
 };
