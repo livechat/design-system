@@ -31,7 +31,7 @@ initialState = {
 };
 
 <div>
-  <p>Check if the color meets WCAG 2.1 contrast criteria (minimal required is 4.5). Select second color (ie. font color):</p>
+  <p>Check if the color meets WCAG 2.1 contrast criteria (minimal required is 4.5:1). Select second color (ie. font color):</p>
   <div style={{ margin: '0 0 30px', width: '340px' }}>
     <Select
       id='second-color-picker'
