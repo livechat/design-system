@@ -29,7 +29,29 @@ function handleColorClick(e) {
 const COLOR_TONES = [950, 900, 800, 700, 600, 500, 400, 300, 200, 150, 100, 75, 50, 25];
 
 export function ColorPalette(props) {
-  const { paletteName, darkFontColor, ignoreContrast } = props;
+  const { paletteName, fontColor, ignoreContrast } = props;
+
+  if (paletteName === "white") {
+    const colorName = "white";
+    const colorValue = Colors[colorName]
+    return (
+      <div>
+        <h3>{paletteName.toUpperCase()}</h3>
+        <div className={styles.colors__palette}>
+          <SingleColor
+            key={colorValue}
+            title={colorName}
+            subtitle={colorValue}
+            ignoreContrast={ignoreContrast}
+            color1={colorValue}
+            color2={fontColor}
+            onClick={handleColorClick}
+            feedbackText="COPIED!"
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -46,7 +68,7 @@ export function ColorPalette(props) {
                 subtitle={colorValue}
                 ignoreContrast={ignoreContrast}
                 color1={colorValue}
-                color2={darkFontColor}
+                color2={fontColor}
                 onClick={handleColorClick}
                 feedbackText="COPIED!"
               />
@@ -61,6 +83,6 @@ export function ColorPalette(props) {
 
 ColorPalette.propTypes = {
   paletteName: PropTypes.string.isRequired,
-  darkFontColor: PropTypes.string.isRequired,
+  fontColor: PropTypes.string.isRequired,
   ignoreContrast: PropTypes.bool
 };

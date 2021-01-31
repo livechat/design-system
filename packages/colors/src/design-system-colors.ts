@@ -89,6 +89,8 @@ export const purple200 = '#D1C0FF';
 export const purple100 = '#EEE8FF';
 export const purple50 = '#FAF8FF';
 
+export const white = '#FFFFFF';
+
 export default {
   blue900, blue800, blue700, blue600, blue500, blue400, blue300, blue200, blue100, blue50,
   gray950, gray900, gray800, gray700, gray600, gray500, gray400, gray300, gray200, gray150, gray100, gray75, gray50, gray25,
@@ -96,5 +98,6 @@ export default {
   orange900, orange800, orange700, orange600, orange500, orange400, orange300, orange200, orange100, orange50,
   yellow900, yellow800, yellow700, yellow600, yellow500, yellow400, yellow300, yellow200, yellow100, yellow50,
   purple900, purple800, purple700, purple600, purple500, purple400, purple300, purple200, purple100, purple50,
-  green900, green800, green700, green600, green500, green400, green300, green200, green100, green50
+  green900, green800, green700, green600, green500, green400, green300, green200, green100, green50,
+  white
 };

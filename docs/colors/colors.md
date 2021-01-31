@@ -2,14 +2,12 @@
 
 ```jsx noeditor
 const items = [
-  {key: 0, props: {title: 'Any color', value: Colors.gray900, ignoreContrast: true}}
+  {key: "0", props: {title: 'Any color', value: Colors.gray900, ignoreContrast: true}}
 ];
 
 Object.keys(Colors).forEach((key, i) => {
-  items.push({key: i + 1, props: { title: key, value: Colors[key] }})
+  items.push({key: String(i + 1), props: { title: key, value: Colors[key] }})
 })
-
-items.push({key: items.length, props: { title: "white", value: "#fff" }})
 
 const handleItemSelect = itemIndex => setState({selectedItemIndex: itemIndex});
 
@@ -25,34 +23,35 @@ const getSelectedItemBody = props => {
 };
 
 initialState = {
-  selectedItemIndex: 0
+  selectedItemIndex: "0"
 };
 
 <div>
-  <p>Check if the color meets WCAG 2.1 contrast criteria (minimal required is 4.5). Select font color:</p>
+  <p>Check if the color meets WCAG 2.1 contrast criteria (minimal required is 4.5). Select second color (ie. font color):</p>
   <div style={{ margin: '0 0 30px', width: '340px' }}>
     <Select
-      id='font-color-picker'
+      id='second-color-picker'
       items={items}
       searchProperty='title'
       onItemSelect={handleItemSelect}
       getItemBody={getItemBody}
       search
       required
-      placeholder='Select font color'
+      placeholder='Select second color'
       getSelectedItemBody={getSelectedItemBody}
       selected={state.selectedItemIndex}
       searchPlaceholder='Search...'
     />
   </div>
 
-  <ColorPalette paletteName="gray" darkFontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
-  <ColorPalette paletteName="blue" darkFontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
-  <ColorPalette paletteName="green" darkFontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
-  <ColorPalette paletteName="red" darkFontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
-  <ColorPalette paletteName="orange" darkFontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
-  <ColorPalette paletteName="yellow" darkFontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
-  <ColorPalette paletteName="purple" darkFontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
+  <ColorPalette paletteName="gray" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
+  <ColorPalette paletteName="blue" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
+  <ColorPalette paletteName="green" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
+  <ColorPalette paletteName="red" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
+  <ColorPalette paletteName="orange" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
+  <ColorPalette paletteName="yellow" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
+  <ColorPalette paletteName="purple" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
+  <ColorPalette paletteName="white" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
 </div>
 ```
 
