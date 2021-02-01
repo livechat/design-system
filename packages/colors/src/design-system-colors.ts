@@ -1,11 +1,11 @@
-export const baseColors = {
+const baseColors = {
   blue: '#0066FF',
   orange: '#FE5100',
   yellow: '#FFD000',
   gray: '#1B1B20',
   green: '#00C057',
   red: '#EE0007',
-  purple: '#9146FF'
+  purple: '#9146FF',
 } as const;
 
 export const blue900 = '#003288';
@@ -28,7 +28,7 @@ export const orange400 = baseColors.orange;
 export const orange300 = '#FF8A77';
 export const orange200 = '#FFB8AF';
 export const orange100 = '#FFE5E3';
-export const orange50 ='#FFF8F7';
+export const orange50 = '#FFF8F7';
 
 export const yellow900 = '#4F3400';
 export const yellow800 = '#5E4200';
@@ -92,14 +92,81 @@ export const purple50 = '#FAF8FF';
 export const white = '#FFFFFF';
 
 const colors = {
-  blue900, blue800, blue700, blue600, blue500, blue400, blue300, blue200, blue100, blue50,
-  gray950, gray900, gray800, gray700, gray600, gray500, gray400, gray300, gray200, gray150, gray100, gray75, gray50, gray25,
-  red900, red800, red700, red600, red500, red400, red300, red200, red100, red50,
-  orange900, orange800, orange700, orange600, orange500, orange400, orange300, orange200, orange100, orange50,
-  yellow900, yellow800, yellow700, yellow600, yellow500, yellow400, yellow300, yellow200, yellow100, yellow50,
-  purple900, purple800, purple700, purple600, purple500, purple400, purple300, purple200, purple100, purple50,
-  green900, green800, green700, green600, green500, green400, green300, green200, green100, green50,
-  white
+  blue900,
+  blue800,
+  blue700,
+  blue600,
+  blue500,
+  blue400,
+  blue300,
+  blue200,
+  blue100,
+  blue50,
+  gray950,
+  gray900,
+  gray800,
+  gray700,
+  gray600,
+  gray500,
+  gray400,
+  gray300,
+  gray200,
+  gray150,
+  gray100,
+  gray75,
+  gray50,
+  gray25,
+  red900,
+  red800,
+  red700,
+  red600,
+  red500,
+  red400,
+  red300,
+  red200,
+  red100,
+  red50,
+  orange900,
+  orange800,
+  orange700,
+  orange600,
+  orange500,
+  orange400,
+  orange300,
+  orange200,
+  orange100,
+  orange50,
+  yellow900,
+  yellow800,
+  yellow700,
+  yellow600,
+  yellow500,
+  yellow400,
+  yellow300,
+  yellow200,
+  yellow100,
+  yellow50,
+  purple900,
+  purple800,
+  purple700,
+  purple600,
+  purple500,
+  purple400,
+  purple300,
+  purple200,
+  purple100,
+  purple50,
+  green900,
+  green800,
+  green700,
+  green600,
+  green500,
+  green400,
+  green300,
+  green200,
+  green100,
+  green50,
+  white,
 } as const;
 
 export default colors;
