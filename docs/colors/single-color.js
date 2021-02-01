@@ -48,7 +48,7 @@ export function SingleColor(props) {
     <div className={styles.colors__container}>
       <h4 className={styles.colors__name}>{title}</h4>
       <p className={styles.colors__hex}>{subtitle}</p>
-      <p className={styles.colors__ratio}>{ignoreContrast ? '-' : contrastRatio}</p>
+      <p className={styles.colors__ratio}>{ignoreContrast ? '-' : `${contrastRatio}:1`}</p>
       <div
         className={cx(styles.colors__box, {
           [styles['colors__box--selected']]: selected
