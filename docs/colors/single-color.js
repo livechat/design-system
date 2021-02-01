@@ -36,10 +36,6 @@ export function SingleColor(props) {
     dotColor = subColor;
   }
 
-  if (mainColor === '#fff') {
-    console.log(mainColor)
-  }
-
   if (!ignoreContrast && contrastRatio < MIN_CONTRAST_RATIO) {
     return null;
   }
