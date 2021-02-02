@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types';
 import { getContrast } from 'polished';
 import styles from './style.scss';
 
-const MIN_CONTRAST_RATIO = 4;
+const MIN_CONTRAST_RATIO = 4.5;
 
 export function SingleColor(props) {
   const {
@@ -16,6 +16,7 @@ export function SingleColor(props) {
     selected,
     inversed,
     feedbackText,
+    ignoreContrast,
     onClick
   } = props;
 
@@ -24,11 +25,18 @@ export function SingleColor(props) {
 
   const contrast1 = getContrast(mainColor, subColor);
   const contrast2 = getContrast(mainColor, backupDotColor);
+  let contrastRatio;
+  let dotColor;
 
-  const contrastRatio = contrast1 > contrast2 ? contrast1 : contrast2;
-  const dotColor = contrast1 > contrast2 ? subColor : backupDotColor;
+  if (ignoreContrast) {
+    contrastRatio = contrast1 > contrast2 ? contrast1 : contrast2;
+    dotColor = contrast1 > contrast2 ? subColor : backupDotColor;
+  } else {
+    contrastRatio = contrast1
+    dotColor = subColor;
+  }
 
-  if (contrastRatio < MIN_CONTRAST_RATIO) {
+  if (!ignoreContrast && contrastRatio < MIN_CONTRAST_RATIO) {
     return null;
   }
 
@@ -36,7 +44,7 @@ export function SingleColor(props) {
     <div className={styles.colors__container}>
       <h4 className={styles.colors__name}>{title}</h4>
       <p className={styles.colors__hex}>{subtitle}</p>
-      <p className={styles.colors__ratio}>{contrastRatio}</p>
+      <p className={styles.colors__ratio}>{ignoreContrast ? '-' : `${contrastRatio}:1`}</p>
       <div
         className={cx(styles.colors__box, {
           [styles['colors__box--selected']]: selected
@@ -65,6 +73,7 @@ SingleColor.propTypes = {
   subtitle: PropTypes.string.isRequired,
   color1: PropTypes.string.isRequired,
   color2: PropTypes.string.isRequired,
+  ignoreContrast: PropTypes.bool,
   backupDotColor: PropTypes.string,
   selected: PropTypes.bool,
   feedbackText: PropTypes.string,
