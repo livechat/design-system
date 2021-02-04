@@ -1,5 +1,13 @@
 All notable changes to this project will be documented in this file.
 
+## v0.11.4
+
+_Release: 2020-02-15_
+
+##### Bug Fixes
+
+- fixing SSR - checking if Element exists in PropTypes of UserGuideTooltip (#224)
+
 ## v0.11.3
 
 _Release: 2020-02-08_
