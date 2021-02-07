@@ -1,5 +1,14 @@
 All notable changes to this project will be documented in this file.
 
+## v0.11.2
+
+_Release: 2020-02-02_
+
+##### Bug Fixes
+
+- fixing wrong cursor for button in loading state #216
+- fixing design-system logo url in the docs sidebar #217
+
 ## v0.11.1
 
 _Release: 2020-12-09_
