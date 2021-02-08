@@ -76,6 +76,6 @@
     "typescript": "^3.0.3"
   },
   "dependencies": {
-    "@livechat/design-system-colors": "^1.0.0"
+    "@livechat/design-system-colors": "^2.0.0"
   }
 }

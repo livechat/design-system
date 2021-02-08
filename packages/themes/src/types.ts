@@ -38,28 +38,31 @@ export interface Theme {
   destructiveButtonBackgroundColorLoading: string;
   destructiveButtonBackgroundColorDisabled: string;
   /**checkbox */
-  checkboxColorActive: string;
+  checkboxColorSelected: string;
   checkboxColorDisabled: string;
   checkboxBackgroundColorDefault: string;
-  checkboxBackgroundColorActive: string;
+  checkboxBackgroundColorSelected: string;
   checkboxBackgroundColorDisabled: string;
   checkboxBorderColorDefault: string;
-  checkboxBorderColorActive: string;
+  checkboxBorderColorSelected: string;
+  checkboxBorderColorSelectedDisabled: string;
   checkboxBorderColorDisabled: string;
   /**radio button */
-  radioButtonColorActive: string;
+  radioButtonColorSelected: string;
   radioButtonColorDisabled: string;
   radioButtonBackgroundColorDefault: string;
-  radioButtonBackgroundColorActive: string;
+  radioButtonBackgroundColorSelected: string;
   radioButtonBackgroundColorDisabled: string;
   radioButtonBorderColorDefault: string;
-  radioButtonBorderColorActive: string;
+  radioButtonBorderColorSelected: string;
+  radioButtonBorderColorSelectedDisabled: string;
   radioButtonBorderColorDisabled: string;
   /**switch */
   switchColorDefault: string;
   switchColorDisabled: string;
   switchBackgroundColorDefault: string;
-  switchBackgroundColorActive: string;
+  switchBackgroundColorSelected: string;
+  switchBackgroundColorSelectedDisabled: string;
   switchBackgroundColorDisabled: string;
   /**icon */
   iconColorPrimaryDefault: string;
@@ -74,14 +77,14 @@ export interface Theme {
   iconColorSuccessDefault: string;
   iconColorWarningDefault: string;
   /**ButtonGroup */
-  buttonGroupBackgroundColorDefault: string;
-  buttonGroupBackgroundColorHover: string;
-  buttonGroupBackgroundColorLoading: string;
-  buttonGroupBackgroundColorDisabled: string;
-  buttonGroupBorderColorDefault: string;
-  buttonGroupBorderColorHover: string;
-  buttonGroupBorderColorLoading: string;
-  buttonGroupBorderColorDisabled: string;
+  segmentedControlBackgroundColorDefault: string;
+  segmentedControlBackgroundColorHover: string;
+  segmentedControlBackgroundColorSelected: string;
+  segmentedControlBackgroundColorDisabled: string;
+  segmentedControlBorderColorDefault: string;
+  segmentedControlBorderColorHover: string;
+  segmentedControlBorderColorSelected: string;
+  segmentedControlBorderColorDisabled: string;
   /**Font */
   primaryFontColor: string;
   secondaryFontColor: string;
@@ -90,11 +93,11 @@ export interface Theme {
   inputTextColorDefault: string;
   inputBackgroundColorDefault: string;
   inputBackgroundColorHover: string;
-  inputBackgroundColorLoading: string;
+  inputBackgroundColorActive: string;
   inputBackgroundColorDisabled: string;
   inputBorderColorDefault: string;
   inputBorderColorHover: string;
-  inputBorderColorLoading: string;
+  inputBorderColorActive: string;
   inputBorderColorDisabled: string;
   /**Filter */
   filterTextColor: string;
@@ -109,13 +112,13 @@ export interface Theme {
   toastWarningBackgroundColor: string;
   toastInfoColor: string;
   toastInfoBackgroundColor: string;
+  toastSuccessColor: string;
+  toastSuccessBackgroundColor: string;
   /**Independent */
-  primarySurfaceBackgroundColorDefault: string;
-  primarySurfaceBackgroundColorHover: string;
-  secondarySurfaceBackgroundColorDefault: string;
-  secondarySurfaceBackgroundColorHover: string;
+  primarySurfaceBackgroundColor: string;
   dividerColor: string;
-  uiBackgroundColor: string;
+  uiBackgroundColorDefault: string;
+  uiBackgroundColorHover: string;
   overlayBackgroundColor: string;
   overlayTextColor: string;
 }
