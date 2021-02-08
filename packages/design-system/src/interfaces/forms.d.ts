@@ -26,6 +26,7 @@ export interface IFormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export interface ISelectProps {
   className?: string;
+  dataTestId?: string;
   id?: string;
   error?: string;
   isOpen?: boolean;
@@ -59,6 +60,7 @@ export interface ISelectFieldProps extends ISelectProps, IWithTextFieldProps {
 
 export interface IMultiSelectProps {
   className?: string;
+  dataTestId?: string;
   disabled?: boolean;
   error?: string;
   id?: string;

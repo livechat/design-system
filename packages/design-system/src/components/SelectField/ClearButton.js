@@ -16,11 +16,14 @@ const ClearButton = React.forwardRef((props, ref) => {
       className={cx({
         [`${baseClass}__clear`]: true,
         [`${baseClass}__clear--visible`]: isVisible
-      })}    >
+      })}
+      data-testid="select-clear-button"
+    >
       <CloseIcon
         width="20px"
         height="20px"
         fill="#4384f5"
+        data-testid="select-clear-icon"
         onClick={clearSelectedOption}
       />
     </div>

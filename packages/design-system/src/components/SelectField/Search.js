@@ -28,6 +28,7 @@ const Search = props => {
         type="text"
         placeholder={placeholder}
         name="select-box-input"
+        data-testid="select-search-input"
         value={value}
         onChange={onChange}
         onKeyDown={onKeyDown}
