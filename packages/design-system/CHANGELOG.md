@@ -1,5 +1,13 @@
 All notable changes to this project will be documented in this file.
 
+## v0.11.3
+
+_Release: 2020-02-08_
+
+##### New Features
+
+- adding data-testid attributes to Select and Multiselect #221
+
 ## v0.11.2
 
 _Release: 2020-02-02_
