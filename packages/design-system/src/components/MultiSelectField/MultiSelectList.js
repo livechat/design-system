@@ -186,7 +186,7 @@ class MultiSelectList extends React.PureComponent {
     } = this.props;
 
     return (
-      <ul ref={this.props.listRef} className={styles[`${baseClass}__list`]}>
+      <ul ref={this.props.listRef} className={styles[`${baseClass}__list`]} data-testid="multiselect-body-list">
         {toggleAllOptions && (
           <MultiSelectItem
             isFocused={this.isItemFocused(null)}

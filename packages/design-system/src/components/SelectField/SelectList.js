@@ -153,7 +153,7 @@ class SelectList extends React.PureComponent {
     const { items, getItemBody, getItemSelectedHandler, selectHeader } = this.props;
 
     return (
-      <ul ref={this.props.listRef} className={styles[`${baseClass}__list`]}>
+      <ul ref={this.props.listRef} className={styles[`${baseClass}__list`]} data-testid="select-list">
         {
           selectHeader && (
             <SelectItem className={styles[`${baseClass}__list__header`]}>{selectHeader}</SelectItem>
