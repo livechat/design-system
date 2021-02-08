@@ -18,6 +18,7 @@ const MultiSelectHead = React.forwardRef((props, ref) => {
         [`${baseClass}--focused`]: isFocused,
         [`${baseClass}--disabled`]: disabled
       })}
+      data-testid="multiselect-head"
       {...restProps}
       disabled={disabled}
       tabIndex={disabled ? -1 : 0}
