@@ -38,7 +38,7 @@ const styles = ({ color }) => ({
 
 export function LogoRenderer({ classes }) {
   return (
-    <a href="/" className={classes.wrapper}>
+    <a href="/design-system" className={classes.wrapper}>
       <img
         src="./logo.svg"
         alt="Design System logo"

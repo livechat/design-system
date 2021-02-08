@@ -1,7 +1,7 @@
 ## Color palette
 
 ```js noeditor
-<Banner size="large" type="warning">Please note that those colors are not used yet in the components our design system. The support for colors will be added gradually when themes are added to the library.</Banner>
+<Banner size="large" type="warning">Please note that those colors are not used yet in the components our design system. Colors support will be added gradually as we add themes to the library.</Banner>
 ```
 
 ```jsx noeditor
