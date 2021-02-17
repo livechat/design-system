@@ -16,7 +16,7 @@ We recommend that while building a new app, you begin by following the system as
 
 Every component in LiveChat **Design System** includes a documentation, code, and working examples (you can play with the component examples and see what happens). By downloading the _UI Kit_ (for Sketch) you have access to all of the components in addition to the code provided on the site.
 
-<a href="sketch://add-library/cloud/zb2DM">
+<a href="sketch://add-library/cloud/75e54498-85b7-45b5-a03f-d17292e48714">
     <button class="lc-btn" type="button" style="margin-bottom: 10px">
       Get Sketch library
     </button>
