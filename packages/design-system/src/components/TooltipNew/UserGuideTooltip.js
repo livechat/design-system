@@ -155,9 +155,13 @@ UserGuideTooltip.propTypes = {
   children: PropTypes.node.isRequired,
   className: PropTypes.string,
   zIndex: PropTypes.number.isRequired,
-  element: PropTypes.oneOfType([PropTypes.node, PropTypes.instanceOf(Element)])
-    .isRequired,
-  scrollableWrapper: PropTypes.instanceOf(Element),
+  element: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.instanceOf(typeof Element === 'undefined' ? () => {} : Element)
+  ]).isRequired,
+  scrollableWrapper: PropTypes.instanceOf(
+    typeof Element === 'undefined' ? () => {} : Element
+  ),
   isVisible: PropTypes.bool.isRequired,
   slide: PropTypes.bool,
   theme: PropTypes.oneOf(['invert', 'important']),

@@ -14,13 +14,14 @@ const SelectHeadItem = props => {
         [`${baseClass}`]: true,
         [`${baseClass}--visible`]: isVisible
       })}
+      data-testid="select-head-item"
     >
       {selectedItem ? (
         <div className={styles[`${baseClass}-content`]}>
           {getSelectedItemBody(selectedItem.props)}
         </div>
       ) : (
-        <div className={styles[`${baseClass}-placeholder`]}>{placeholder}</div>
+        <div className={styles[`${baseClass}-placeholder`]} data-testid="select-head-item-pladceholder">{placeholder}</div>
       )}
     </div>
   );

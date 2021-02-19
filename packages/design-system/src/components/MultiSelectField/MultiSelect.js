@@ -381,7 +381,8 @@ class MultiSelect extends React.PureComponent {
       search,
       disabled,
       toggleAllOptions,
-      maxItemsContainerHeight
+      maxItemsContainerHeight,
+      dataTestId
     } = this.props;
     const selectedItems = this.getSelectedItems();
     const { searchPhrase, focusedItemKey, isFocused } = this.state;
@@ -398,7 +399,7 @@ class MultiSelect extends React.PureComponent {
     );
     const headItemsStyles = selectedItems && selectedItems.length > 0 ? `${baseClass}-head__items` : `${baseClass}-head__items-empty`;
     return (
-      <div ref={this.containerRef} className={mergedClassNames} id={id}>
+      <div ref={this.containerRef} className={mergedClassNames} id={id} data-testid={dataTestId}>
         <MultiSelectHead
           isFocused={isOpen || isFocused}
           ref={this.headRef}
@@ -436,6 +437,7 @@ class MultiSelect extends React.PureComponent {
             )}
           </div>
           <MenuDownIcon
+            data-testid="multiselect-down-icon"
             className={styles[`${baseClass}__dropdown-icon`]}
             width="24px"
             height="24px"
@@ -471,6 +473,7 @@ class MultiSelect extends React.PureComponent {
 MultiSelect.propTypes = {
   id: PropTypes.string,
   className: PropTypes.string,
+  dataTestId: PropTypes.string,
   error: PropTypes.string,
   getItemBody: PropTypes.func.isRequired,
   getSelectedItemBody: PropTypes.func.isRequired,

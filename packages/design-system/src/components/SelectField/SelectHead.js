@@ -19,6 +19,7 @@ const SelectHead = React.forwardRef((props, ref) => {
         [`${baseClass}--disabled`]: disabled
       })}
       disabled={disabled}
+      data-testid="select-head"
       {...restProps}
       tabIndex={disabled ? -1 : 0}
     >
