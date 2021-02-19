@@ -67,8 +67,6 @@ export interface Theme {
   /**icon */
   iconColorPrimaryDefault: string;
   iconColorPrimaryDisabled: string;
-  iconColorSecondaryDefault: string;
-  iconColorSecondaryDisabled: string;
   iconColorInvertedDefault: string;
   iconColorInvertedDisabled: string;
   iconColorLinkDefault: string;
@@ -121,6 +119,13 @@ export interface Theme {
   uiBackgroundColorHover: string;
   overlayBackgroundColor: string;
   overlayTextColor: string;
+  /**Tooltip */
+  tooltipBackgroundColor: string;
+  tooltipTextColor: string;
+  tooltipInvertedBackgroundColor: string;
+  tooltipInvertedColor: string;
+  tooltipImportantBackgroundColor: string;
+  tooltipImportantColor: string;
 }
 
 export type Themes = Record<ThemeName, Theme>;

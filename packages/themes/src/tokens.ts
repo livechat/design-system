@@ -76,8 +76,6 @@ const colors: Array<keyof Theme> = [
   /**icon */
   'iconColorPrimaryDefault',
   'iconColorPrimaryDisabled',
-  'iconColorSecondaryDefault',
-  'iconColorSecondaryDisabled',
   'iconColorInvertedDefault',
   'iconColorInvertedDisabled',
   'iconColorLinkDefault',
@@ -129,7 +127,14 @@ const colors: Array<keyof Theme> = [
   'uiBackgroundColorDefault',
   'uiBackgroundColorHover',
   'overlayBackgroundColor',
-  'overlayTextColor'
+  'overlayTextColor',
+  /**Tooltip */
+  'tooltipBackgroundColor',
+  'tooltipTextColor',
+  'tooltipInvertedBackgroundColor',
+  'tooltipInvertedColor',
+  'tooltipImportantColor',
+  'tooltipImportantColor',
 ];
 
 const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -174,5 +179,5 @@ export function formatTokenName(token: any) {
 }
 
 export const tokens = {
-  colors
+  colors,
 };
