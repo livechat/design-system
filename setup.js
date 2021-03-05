@@ -5,6 +5,7 @@ import Colors from '@livechat/design-system-colors'; // eslint-disable-line
 import ComponentHtmlMarkup from './docs/ComponentHtmlMarkup';
 import { SingleColor } from './docs/colors/single-color';
 import { ColorPalette } from './docs/colors/color-palette';
+import { ThemeTokens } from './docs/themes/theme-tokens';
 import PdfIcon from './docs/PdfIcon';
 
 // components
@@ -82,3 +83,6 @@ global.DateFns = DateFns;
 global.SingleColor = SingleColor;
 global.ColorPalette = ColorPalette;
 global.Colors = Colors;
+
+// docs themes
+global.ThemeTokens = ThemeTokens;
