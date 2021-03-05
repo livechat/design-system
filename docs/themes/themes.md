@@ -75,6 +75,22 @@ import themes from '@livechat/design-system-themes'
 // or just selected colors
 import { light } from '@livechat/design-system-themes'
 ```
+You will be able to extend tokens provided by this library with your own and customize the themes. Simply create your themes object and use it accross your app:
+```js static
+import { light, legacy } from '@livechat/design-system-themes'
+import Colors from '@livechat/design-system-colors'
+
+export default myThemes = {
+  light: {
+    ...light,
+    myToken: Colors.red500
+  },
+  legacy: {
+    ...light,
+    myToken: "red"
+  },
+}
+```
 
 ### Scss
 
