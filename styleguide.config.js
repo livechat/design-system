@@ -23,6 +23,10 @@ module.exports = {
       content: './docs/colors/colors.md'
     },
     {
+      name: 'Themes',
+      content: './docs/themes/themes.md'
+    },
+    {
       name: 'Components',
       sectionDepth: 1,
       sections: [

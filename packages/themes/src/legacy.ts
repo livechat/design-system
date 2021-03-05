@@ -66,8 +66,8 @@ const legacyTheme: Theme = {
   radioButtonBorderColorDisabled: '#dae3ec',
   /**switch */
   switchColorDefault: '#fff',
-  switchColorDisabled: '##e5eaed',
-  switchBackgroundColorDefault: '##dde2e5',
+  switchColorDisabled: '#e5eaed',
+  switchBackgroundColorDefault: '#dde2e5',
   switchBackgroundColorSelected: '#4bb678',
   switchBackgroundColorSelectedDisabled: '#85d5a7',
   switchBackgroundColorDisabled: '#dae3ec',
