@@ -17,6 +17,8 @@ export function SingleColor(props) {
     inversed,
     feedbackText,
     ignoreContrast,
+    noDot,
+    noContrast,
     onClick
   } = props;
 
@@ -44,7 +46,7 @@ export function SingleColor(props) {
     <div className={styles.colors__container}>
       <h4 className={styles.colors__name}>{title}</h4>
       <p className={styles.colors__hex}>{subtitle}</p>
-      <p className={styles.colors__ratio}>{ignoreContrast ? '-' : `${contrastRatio}:1`}</p>
+      {!noContrast && <p className={styles.colors__ratio}>{ignoreContrast ? '-' : `${contrastRatio}:1`}</p>}
       <div
         className={cx(styles.colors__box, {
           [styles['colors__box--selected']]: selected
@@ -53,10 +55,10 @@ export function SingleColor(props) {
         data-color={mainColor}
         onClick={onClick}
       >
-        <div
+        {!noDot && <div
           className={cx(styles.colors__dot)}
           style={{ backgroundColor: dotColor }}
-        />
+        />}
         <div className={styles.colors__feedback}>{feedbackText}</div>
       </div>
     </div>
@@ -78,5 +80,7 @@ SingleColor.propTypes = {
   selected: PropTypes.bool,
   feedbackText: PropTypes.string,
   inversed: PropTypes.bool,
+  noDot: PropTypes.bool,
+  noContrast: PropTypes.bool,
   onClick: PropTypes.func
 };
