@@ -17,6 +17,6 @@ const icon = (
 
   <>
     <p>Test icon</p>
-    <Icon icon={icon} size="large" />
+    <Icon icon={icon} iconColor="#ffc200" />
   </>
 ```

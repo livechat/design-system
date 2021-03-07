@@ -1,17 +1,15 @@
 import React from 'react';
 
-export function generateIconFromRequire(icon) {
+export function generateIconFromRequire(icon, iconSize, iconColor) {
   return React.createElement(icon, {
-    width: 24,
-    height: 24,
-    fill: 'green'
+    ...iconSize,
+    fill: iconColor || 'inherit'
   });
 }
 
-export function generateIcon(icon) {
+export function generateIcon(icon, iconSize, iconColor) {
   return React.cloneElement(icon, {
-    width: 24,
-    height: 24,
-    fill: 'red'
+    ...iconSize,
+    fill: iconColor || 'inherit'
   });
 }
