@@ -1,60 +1,46 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
-import { IconSize, IconSizeName } from './constants';
-import { generateIcon, generateIconFromRequire } from './helpers';
-
-const ToolSvgIcon = require('./tool.svg').default;
+import { IconSize, IconColor } from './constants';
+import { generateIcon } from './helpers';
 
 export const Icon = props => {
-  const {
-    icon,
-    iconColor,
-    iconSize = IconSizeName.Large,
-    className,
-    ...restProps
-  } = props;
+  const { icon, iconSize, iconColor, className, ...restProps } = props;
 
-  const iconSizeDimensions = IconSize[IconSizeName.Small];
-  const iconSizeDimensions2 = IconSize[iconSize];
-
-  console.log(
-    '!!! Icon from props | require: ',
-    typeof icon,
-    typeof ToolSvgIcon
-  );
-
-  // How to handle different imports of svgs
-  // What if someone will pass require / icon / component as svg
-  const IconFromProps = generateIcon(icon, iconSizeDimensions, iconColor);
-  const IconFromRequire = generateIconFromRequire(
-    ToolSvgIcon,
-    iconSizeDimensions2,
-    'lightblue'
-  );
+  const size = IconSize[iconSize];
+  const color = IconColor[iconColor];
+  const GeneratedIcon = generateIcon(icon, size, color);
 
   return (
-    <div {...restProps} className={className}>
-      {IconFromProps}
-      {IconFromRequire}
-      <ToolSvgIcon width="48px" height="48px" fill="lightgreen" />
-    </div>
+    <span {...restProps} className={className}>
+      {GeneratedIcon}
+    </span>
   );
 };
 
 Icon.propTypes = {
   /**
-   * Class for the wrapper of the icon
+   * Icon passed in svg format
    */
-  className: PropTypes.string,
+  icon: PropTypes.func.isRequired,
   /**
-   * `Size` prop defines width and height of the wrapper icon
+   * Defines width and height of the icon
    */
-  iconSize: PropTypes.oneOf(['small', 'medium', 'large']),
-  iconColor: PropTypes.string,
-
-  // icon: PropTypes.node.isRequired,
-  icon: PropTypes.any.isRequired
+  iconSize: PropTypes.oneOf(['XSmall', 'Small', 'Medium', 'Large', 'XLarge'])
+    .isRequired,
+  // iconColor: PropTypes.oneOf(Object.keys(IconColorName)),
+  iconColor: PropTypes.oneOf([
+    'IconColorPrimaryDefault',
+    'IconColorPrimaryDisabled',
+    'IconColorInvertedDefault',
+    'IconColorInvertedDisabled',
+    'IconColorLinkDefault',
+    'IconColorLinkDisabled',
+    'IconColorSuccessDefault',
+    'IconColorWarningDefault',
+    'IconColorErrorDefault'
+  ]),
+  className: PropTypes.string
 };
 
 export default Icon;

@@ -7,6 +7,10 @@ import { SingleColor } from './docs/colors/single-color';
 import { ColorPalette } from './docs/colors/color-palette';
 import PdfIcon from './docs/PdfIcon';
 import ChatsIcon from './docs/ChatsIcon';
+import {
+  IconSizeName,
+  IconColorName
+} from './packages/design-system/src/components/Icon/constants';
 
 // components
 global.Button = Components.Button;
@@ -74,6 +78,8 @@ global.FileUploadProgress = Components.FileUploadProgress;
 global.SearchBar = Components.SearchBar;
 
 global.Icon = Components.Icon;
+global.IconSizeName = IconSizeName;
+global.IconColorName = IconColorName;
 
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;

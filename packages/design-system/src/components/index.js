@@ -80,4 +80,4 @@ export { UploadBar, FileUploadProgress } from './UploadBar';
 
 export { SearchBar } from './SearchBar';
 
-export { Icon } from './Icon';
+export { Icon, IconSizeName, IconColorName } from './Icon';
