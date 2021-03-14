@@ -182,7 +182,9 @@ export interface ISearchBarProps extends ISearchBarHtmlProps {
 }
 
 export interface IIconProps {
-  size?: string;
+  icon: React.ReactNode;
+  iconSize: string;
+  iconColor?: string;
   className?: string;
 }
 

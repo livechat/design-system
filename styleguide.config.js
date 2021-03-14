@@ -27,16 +27,12 @@ module.exports = {
       sectionDepth: 1,
       sections: [
         {
-          name: 'Icon',
-          components: ['./packages/design-system/src/components/Icon/Icon.js']
-        },
-        {
           name: 'Alerts',
           components: [
             './packages/design-system/src/components/Banner/Banner.js',
             './packages/design-system/src/components/Promo/Promo.js',
             './packages/design-system/src/components/Toast/Toast.js',
-            './packages/design-system/src/components/Toast/ToastWrapper.js',
+            './packages/design-system/src/components/Toast/ToastWrapper.js'
           ]
         },
         {
@@ -141,6 +137,10 @@ module.exports = {
           components: [
             './packages/design-system/src/components/Loader/Loader.js'
           ]
+        },
+        {
+          name: 'Icon',
+          components: ['./packages/design-system/src/components/Icon/Icon.js']
         }
       ]
     },
