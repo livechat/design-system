@@ -28,7 +28,6 @@ Icon.propTypes = {
    */
   iconSize: PropTypes.oneOf(['XSmall', 'Small', 'Medium', 'Large', 'XLarge'])
     .isRequired,
-  // iconColor: PropTypes.oneOf(Object.keys(IconColorName)),
   iconColor: PropTypes.oneOf([
     'IconColorPrimaryDefault',
     'IconColorPrimaryDisabled',

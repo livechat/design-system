@@ -1,59 +1,43 @@
 ### Icon
 
 Icon wrapper component. It lets you choose size and color from exported interface <br />
-<strong>Note</strong>: specyfing width or height in your svg file will be ignored
+<strong>Note:</strong> Specyfing width or height in your svg file will be ignored
 
-### Icon Sizes
-
-One way to show the icon sizes
-```js
-  <>
-    <p>Extra small icon (16x16)</p>
-    <Icon icon={ChatsIcon} iconSize={IconSizeName.XSmall} />
-
-    <p>Smal icon (20x20)</p>
-    <Icon icon={ChatsIcon} iconColor={IconColorName.IconColorLinkDefault} iconSize={IconSizeName.Small} />
-
-    <p>Mediun icon (24x24)</p>
-    <Icon icon={ChatsIcon} iconColor={IconColorName.IconColorPrimaryDefault} iconSize={IconSizeName.Medium} />
-
-    <p>Large icon (32x32)</p>
-    <Icon icon={ChatsIcon} iconColor={IconColorName.IconColorWarningDefault} iconSize={IconSizeName.Large} />
-  
-    <p>Extra large icon (48x48)</p>
-    <Icon icon={ChatsIcon} iconColor={IconColorName.IconColorSuccessDefault} iconSize={IconSizeName.XLarge} />
-  </>
-```
-
-### Icon Sizes
-
-And the other way to show icon sizes
-
-Extra small icon (16x16)
+### Extra small icon (12x12)
+These icons are often used inside of other components (like switch) or in places where space is limited and interaction with an icons is optional action (like info icons).<br />
+<i><strong>Note:</strong> When using this size consider changing the style of icon to filled instead of outline.</i>
 
 ```js
   <Icon icon={ChatsIcon} iconSize={IconSizeName.XSmall} />
 ```
 
-Small icon (20x20)
+### Small icon (16x16)
+Small icons are best used when space is limited. Don’t use this size of icon for actions.<br />
+<i><strong>Note:</strong> Recommended to be paired with smaller typography for example Caption.</i>
 
 ```js
   <Icon icon={ChatsIcon} iconColor={IconColorName.IconColorLinkDefault} iconSize={IconSizeName.Small} />
 ```
 
-Medium icon (24x24)
+### Medium icon (20x20)
+Medium icons are used in the majority of our interface.<br />
+<i><strong>Note:</strong> These are our standard size. Recommended for pairing icon with typography.</i>
 
 ```js
   <Icon icon={ChatsIcon} iconColor={IconColorName.IconColorPrimaryDefault} iconSize={IconSizeName.Medium} />
 ```
 
-Large icon (32x32)
+### Large icon (24x24)
+Large icons are used to navigate between different sections in the sidebar.<br />
+<i><strong>Note:</strong> Recommended for standalone icons.</i>
 
 ```js
   <Icon icon={ChatsIcon} iconColor={IconColorName.IconColorWarningDefault} iconSize={IconSizeName.Large} />
 ```
 
-Extra large icon (48x48)
+### Extra large icon (32x32)
+Extra large icons are used sparingly to emphasize a concept or when space is plentiful.
+
 
 ```js
   <Icon icon={ChatsIcon} iconColor={IconColorName.IconColorSuccessDefault} iconSize={IconSizeName.XLarge} />
