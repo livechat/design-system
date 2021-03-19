@@ -2,14 +2,14 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 
 import { IconSize, IconColor } from './constants';
-import { generateIcon } from './helpers';
 
 export const Icon = props => {
-  const { icon, iconSize, iconColor, className, ...restProps } = props;
+  const { source, size, color, className, ...restProps } = props;
 
-  const size = IconSize[iconSize];
-  const color = IconColor[iconColor];
-  const GeneratedIcon = generateIcon(icon, size, color);
+  const GeneratedIcon = React.createElement(source, {
+    ...IconSize[size],
+    fill: IconColor[color] || 'inherit'
+  });
 
   return (
     <span {...restProps} className={className}>
@@ -22,13 +22,13 @@ Icon.propTypes = {
   /**
    * Icon passed in svg format
    */
-  icon: PropTypes.func.isRequired,
+  source: PropTypes.func.isRequired,
   /**
    * Defines width and height of the icon
    */
-  iconSize: PropTypes.oneOf(['XSmall', 'Small', 'Medium', 'Large', 'XLarge'])
+  size: PropTypes.oneOf(['XSmall', 'Small', 'Medium', 'Large', 'XLarge'])
     .isRequired,
-  iconColor: PropTypes.oneOf([
+  color: PropTypes.oneOf([
     'IconColorPrimaryDefault',
     'IconColorPrimaryDisabled',
     'IconColorInvertedDefault',
