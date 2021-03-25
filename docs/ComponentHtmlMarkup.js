@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { renderToStaticMarkup } from 'react-dom/server';
+// eslint-disable-next-line import/no-unresolved
 import { Button } from '@livechat/design-system';
 
 class ComponentHtmlMarkup extends React.Component {
@@ -48,9 +49,8 @@ class ComponentHtmlMarkup extends React.Component {
       <React.Fragment>
         <Button
           onClick={this.toggleCodeVisibility}
-          primary={isCodeVisible}
           size="compact"
-          kind="secondary"
+          kind={isCodeVisible ? 'primary' : 'secondary'}
           style={{
             marginBottom: isCodeVisible ? '5px' : '0'
           }}
