@@ -76,7 +76,7 @@ class SelectableDropdownListExample extends React.PureComponent {
   }
 
   handleTriggerClick() {
-    this.setState({ isVisible: !state.isVisible });
+    this.setState(prevState => ({ isVisible: !prevState.isVisible }));
   }
 
   handleItemSelect(id) {
@@ -199,7 +199,7 @@ class NonSelectableDropdownListExample extends React.PureComponent {
   }
 
   handleTriggerClick() {
-    this.setState({ isVisible: !state.isVisible });
+    this.setState(prevState => ({ isVisible: !prevState.isVisible }));
   }
 
   render() {
@@ -274,7 +274,7 @@ class CustomItemsDropdownListExample extends React.PureComponent {
   }
 
   handleTriggerClick() {
-    this.setState({ isVisible: !state.isVisible });
+    this.setState(prevState => ({ isVisible: !prevState.isVisible }));
   }
 
   render() {

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { renderToStaticMarkup } from 'react-dom/server';
-// eslint-disable-next-line import/no-unresolved
 import { Button } from '@livechat/design-system';
 
 class ComponentHtmlMarkup extends React.Component {
