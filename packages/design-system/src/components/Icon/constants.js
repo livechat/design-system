@@ -29,26 +29,29 @@ export const IconSize = {
   }
 };
 
-export const IconColorName = {
-  IconColorPrimaryDefault: 'IconColorPrimaryDefault',
-  IconColorInvertedDefault: 'IconColorInvertedDefault',
-  IconColorLinkDefault: 'IconColorLinkDefault',
-  IconColorSuccessDefault: 'IconColorSuccessDefault',
-  IconColorWarningDefault: 'IconColorWarningDefault',
-  IconColorErrorDefault: 'IconColorErrorDefault'
+export const IconTypeName = {
+  Primary: 'primary',
+  Inverted: 'inverted',
+  Link: 'link',
+  Success: 'success',
+  Warning: 'warning',
+  Error: 'error'
+};
+
+export const IconColorMapper = {
+  [IconTypeName.Primary]: '#424d57',
+  [IconTypeName.Inverted]: '#fff',
+  [IconTypeName.Link]: '#4384f5',
+  [IconTypeName.Success]: '#4bb678',
+  [IconTypeName.Warning]: '#efa842',
+  [IconTypeName.Error]: '#d64646'
 };
 
 export const IconColorDisabledMapper = {
-  IconColorPrimaryDefault: '#686d72',
-  IconColorInvertedDefault: '#dbdbdb',
-  IconColorLinkDefault: '#c3d7fa'
-};
-
-export const IconColor = {
-  [IconColorName.IconColorPrimaryDefault]: '#424d57',
-  [IconColorName.IconColorInvertedDefault]: '#fff',
-  [IconColorName.IconColorLinkDefault]: '#4384f5',
-  [IconColorName.IconColorSuccessDefault]: '#4bb678',
-  [IconColorName.IconColorWarningDefault]: '#efa842',
-  [IconColorName.IconColorErrorDefault]: '#d64646'
+  [IconTypeName.Primary]: '#686d72',
+  [IconTypeName.Inverted]: '#dbdbdb',
+  [IconTypeName.Link]: '#c3d7fa',
+  [IconTypeName.Success]: '#4bb678',
+  [IconTypeName.Warning]: '#efa842',
+  [IconTypeName.Error]: '#d64646'
 };

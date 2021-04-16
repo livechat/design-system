@@ -182,9 +182,10 @@ export interface ISearchBarProps extends ISearchBarHtmlProps {
 }
 
 export interface IIconProps extends React.HTMLAttributes<HTMLSpanElement> {
-  source: React.ReactNode; // Pass different type to hanlde "require"
-  size: string;
-  color?: string;
+  source: string;
+  size?: string;
+  iconType?: string;
+  disabled?: boolean;
   className?: string;
 }
 

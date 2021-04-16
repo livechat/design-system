@@ -2,5 +2,5 @@ export { default as Icon } from './Icon';
 
 export {
   IconSizeName as IconSize,
-  IconColorName as IconColor
+  IconTypeName as IconType
 } from './constants';

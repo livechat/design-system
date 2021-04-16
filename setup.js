@@ -9,7 +9,7 @@ import PdfIcon from './docs/PdfIcon';
 import ChatsIcon from './docs/ChatsIcon';
 import {
   IconSizeName,
-  IconColorName
+  IconTypeName
 } from './packages/design-system/src/components/Icon/constants';
 
 // components
@@ -79,7 +79,7 @@ global.SearchBar = Components.SearchBar;
 
 global.Icon = Components.Icon;
 global.IconSizeName = IconSizeName;
-global.IconColorName = IconColorName;
+global.IconTypeName = IconTypeName;
 
 // docs components
 global.ComponentHtmlMarkup = ComponentHtmlMarkup;

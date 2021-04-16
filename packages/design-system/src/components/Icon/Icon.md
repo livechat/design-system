@@ -16,7 +16,7 @@ Small icons are best used when space is limited. Don’t use this size of icon f
 <i><strong>Note:</strong> Recommended to be paired with smaller typography for example Caption.</i>
 
 ```js
-  <Icon source={ChatsIcon} color={IconColorName.IconColorLinkDefault} size={IconSizeName.Small} />
+  <Icon source={ChatsIcon} iconType={IconTypeName.Link} size={IconSizeName.Small} />
 ```
 
 ### Medium icon (20x20)
@@ -24,7 +24,7 @@ Medium icons are used in the majority of our interface.<br />
 <i><strong>Note:</strong> These are our standard size. Recommended for pairing icon with typography.</i>
 
 ```js
-  <Icon source={ChatsIcon} color={IconColorName.IconColorPrimaryDefault} size={IconSizeName.Medium} />
+  <Icon source={ChatsIcon} />
 ```
 
 ### Large icon (24x24)
@@ -32,7 +32,7 @@ Large icons are used to navigate between different sections in the sidebar.<br /
 <i><strong>Note:</strong> Recommended for standalone icons.</i>
 
 ```js
-  <Icon source={ChatsIcon} color={IconColorName.IconColorWarningDefault} size={IconSizeName.Large} />
+  <Icon source={ChatsIcon} iconType={IconTypeName.Warning} size={IconSizeName.Large} />
 ```
 
 ### Extra large icon (32x32)
@@ -40,5 +40,5 @@ Extra large icons are used sparingly to emphasize a concept or when space is ple
 
 
 ```js
-  <Icon source={ChatsIcon} color={IconColorName.IconColorSuccessDefault} size={IconSizeName.XLarge} />
+  <Icon source={ChatsIcon} iconType={IconTypeName.Success} size={IconSizeName.XLarge} />
 ```
