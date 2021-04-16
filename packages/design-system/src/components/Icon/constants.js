@@ -31,29 +31,23 @@ export const IconSize = {
 
 export const IconColorName = {
   IconColorPrimaryDefault: 'IconColorPrimaryDefault',
-  IconColorPrimaryDisabled: 'IconColorPrimaryDisabled',
-
   IconColorInvertedDefault: 'IconColorInvertedDefault',
-  IconColorInvertedDisabled: 'IconColorInvertedDisabled',
-
   IconColorLinkDefault: 'IconColorLinkDefault',
-  IconColorLinkDisabled: 'IconColorLinkDisabled',
-
   IconColorSuccessDefault: 'IconColorSuccessDefault',
   IconColorWarningDefault: 'IconColorWarningDefault',
   IconColorErrorDefault: 'IconColorErrorDefault'
 };
 
+export const IconColorDisabledMapper = {
+  IconColorPrimaryDefault: '#686d72',
+  IconColorInvertedDefault: '#dbdbdb',
+  IconColorLinkDefault: '#c3d7fa'
+};
+
 export const IconColor = {
   [IconColorName.IconColorPrimaryDefault]: '#424d57',
-  [IconColorName.IconColorPrimaryDisabled]: '#686d72',
-
   [IconColorName.IconColorInvertedDefault]: '#fff',
-  [IconColorName.IconColorInvertedDisabled]: '#dbdbdb',
-
   [IconColorName.IconColorLinkDefault]: '#4384f5',
-  [IconColorName.IconColorLinkDisabled]: '#c3d7fa',
-
   [IconColorName.IconColorSuccessDefault]: '#4bb678',
   [IconColorName.IconColorWarningDefault]: '#efa842',
   [IconColorName.IconColorErrorDefault]: '#d64646'

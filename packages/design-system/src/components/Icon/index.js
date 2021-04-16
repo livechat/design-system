@@ -1,3 +1,6 @@
 export { default as Icon } from './Icon';
 
-export { IconSizeName, IconColorName } from './constants';
+export {
+  IconSizeName as IconSize,
+  IconColorName as IconColor
+} from './constants';
