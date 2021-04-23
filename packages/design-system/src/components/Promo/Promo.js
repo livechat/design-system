@@ -33,18 +33,33 @@ export const Promo = props => {
     cx({
       [`${baseClass}--light`]: light,
       [`${baseClass}--${size}`]: size,
-      [`${baseClass}`]: true,
+      [`${baseClass}`]: true
     }),
     className
   );
-  const shouldRenderLargeFooter = (buttonText || linkText)  && size === 'large'; 
-  const shouldRenderSmallOrMediumFooter = (buttonText || linkText)  && size !== 'large'; 
+  const shouldRenderLargeFooter = (buttonText || linkText) && size === 'large';
+  const shouldRenderSmallOrMediumFooter =
+    (buttonText || linkText) && size !== 'large';
 
   const footer = (
     <div className={styles[`${baseClass}__footer`]}>
-      {buttonText && <Button primary size='compact' onClick={onButtonClick} className={styles[`${baseClass}__button-text`]}>{buttonText}</Button>}
-      {linkText && <Button primary size='compact' kind='text' onClick={onLinkClick}>{linkText}</Button>}
-    </div>)
+      {buttonText && (
+        <Button
+          kind="primary"
+          size="compact"
+          onClick={onButtonClick}
+          className={styles[`${baseClass}__button-text`]}
+        >
+          {buttonText}
+        </Button>
+      )}
+      {linkText && (
+        <Button size="compact" kind="text" onClick={onLinkClick}>
+          {linkText}
+        </Button>
+      )}
+    </div>
+  );
 
   return (
     <div className={mergedWrapperClassNames} {...restProps}>
@@ -53,18 +68,23 @@ export const Promo = props => {
         <div className={styles[`${baseClass}__wrapper`]}>
           <div className={styles[`${baseClass}__header`]}>{header}</div>
           <div>{children}</div>
-            { shouldRenderSmallOrMediumFooter && footer }
+          {shouldRenderSmallOrMediumFooter && footer}
         </div>
-        { shouldRenderLargeFooter && footer }
+        {shouldRenderLargeFooter && footer}
       </div>
-      <button type="button" className={styles[`${baseClass}__close-icon`]} onClick={onClose}>
-        <CloseIcon fill="#424d57"/>
+      <button
+        type="button"
+        className={styles[`${baseClass}__close-icon`]}
+        onClick={onClose}
+      >
+        <CloseIcon fill="#424d57" />
       </button>
     </div>
   );
-}
+};
 
 Promo.propTypes = {
+  className: PropTypes.string,
   buttonText: PropTypes.string,
   children: PropTypes.node.isRequired,
   header: PropTypes.string.isRequired,
@@ -75,11 +95,11 @@ Promo.propTypes = {
   onButtonClick: PropTypes.func,
   onClose: PropTypes.func,
   onLinkClick: PropTypes.func,
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes.oneOf(['small', 'medium', 'large'])
 };
 
 Promo.defaultProps = {
-  size: 'small',
+  size: 'small'
 };
 
 export default Promo;

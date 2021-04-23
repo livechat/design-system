@@ -77,9 +77,12 @@ class Dropdown extends React.PureComponent {
 
   handleDocumentClick = event => {
     if (
+      this.props.isVisible &&
       this.props.onClose &&
       this.popupRef &&
-      !this.popupRef.contains(event.target)
+      this.triggerRef &&
+      !this.popupRef.contains(event.target) &&
+      !this.triggerRef.contains(event.target)
     ) {
       this.props.onClose();
     }
