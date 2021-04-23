@@ -1,3 +1,66 @@
+## Color palette
+
+```js noeditor
+<Banner size="large" type="warning">Please note that those colors are not used yet in the components our design system. Colors support will be added gradually as we add themes to the library.</Banner>
+```
+
+```jsx noeditor
+const items = [
+  {key: "0", props: {title: 'Any color', value: Colors.gray900, ignoreContrast: true}}
+];
+
+Object.keys(Colors).forEach((key, i) => {
+  items.push({key: String(i + 1), props: { title: key, value: Colors[key] }})
+})
+
+const handleItemSelect = itemIndex => setState({selectedItemIndex: itemIndex});
+
+const getItemBody = props => {
+  if (!props) {
+    return null;
+  }
+  return <div id={props.value}>{props.title}</div>;
+};
+
+const getSelectedItemBody = props => {
+  return <div id={props.value}>{props.title}</div>;
+};
+
+initialState = {
+  selectedItemIndex: "0"
+};
+
+<div>
+  <p>Check if the color meets WCAG 2.1 contrast criteria (minimal required is 4.5:1). Select second color (ie. font color):</p>
+  <div style={{ margin: '0 0 30px', width: '340px' }}>
+    <Select
+      id='second-color-picker'
+      items={items}
+      searchProperty='title'
+      onItemSelect={handleItemSelect}
+      getItemBody={getItemBody}
+      search
+      required
+      placeholder='Select second color'
+      getSelectedItemBody={getSelectedItemBody}
+      selected={state.selectedItemIndex}
+      searchPlaceholder='Search...'
+    />
+  </div>
+
+  <ColorPalette paletteName="gray" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
+  <ColorPalette paletteName="blue" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
+  <ColorPalette paletteName="green" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
+  <ColorPalette paletteName="red" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
+  <ColorPalette paletteName="orange" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
+  <ColorPalette paletteName="yellow" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
+  <ColorPalette paletteName="purple" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
+  <ColorPalette paletteName="white" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
+</div>
+```
+
+## Developer instructions
+
 To install `@livechat/design-system-colors` in your project, you will need to run the following
 command using [npm](https://www.npmjs.com/):
 
@@ -63,58 +126,3 @@ color: var(--lcds-blue-900);
 ```
 
 There is also a file named `styles.css`. This is a group of classes following the naming convention: `.lcds-text-<color>-<tone>` and `.lcds-bg-<color>-<tone>`.
-
-```jsx noeditor
-const items = [
-  {key: Colors.gray900, props: {name: 'gray900', value: Colors.gray900}},
-  {key: Colors.gray800, props: {name: 'gray800', value: Colors.gray800}},
-  {key: Colors.gray600, props: {name: 'gray600', value: Colors.gray600}}
-];
-
-initialState = {
-  selectedFontColor: Colors.gray900
-};
-
-const handleItemSelect = item => setState({selectedFontColor: item});
-
-<div>
-  <h3>Select text color to use in colors palette:</h3>
-  <div style={{ display: 'flex', margin: '0 -10px', flexWrap: 'wrap' }}>
-    <SingleColor
-      inversed
-      title="gray900"
-      subtitle={Colors.gray900}
-      color1={Colors.gray900}
-      color2={Colors.gray50}
-      selected={state.selectedFontColor === Colors.gray900}
-      onClick={() => handleItemSelect(Colors.gray900)}
-    />
-    <SingleColor
-      inversed
-      title="gray800"
-      subtitle={Colors.gray800}
-      color1={Colors.gray800}
-      color2={Colors.gray50}
-      selected={state.selectedFontColor === Colors.gray800}
-      onClick={() => handleItemSelect(Colors.gray800)}
-    />
-    <SingleColor
-      inversed
-      title="gray600"
-      subtitle={Colors.gray600}
-      color1={Colors.gray600}
-      color2={Colors.gray50}
-      selected={state.selectedFontColor === Colors.gray600}
-      onClick={() => handleItemSelect(Colors.gray600)}
-    />
-  </div>
-
-  <ColorPalette paletteName="blue" darkFontColor={state.selectedFontColor} />
-  <ColorPalette paletteName="orange" darkFontColor={state.selectedFontColor} />
-  <ColorPalette paletteName="yellow" darkFontColor={state.selectedFontColor} />
-  <ColorPalette paletteName="green" darkFontColor={state.selectedFontColor} />
-  <ColorPalette paletteName="red" darkFontColor={state.selectedFontColor} />
-  <ColorPalette paletteName="ruby" darkFontColor={state.selectedFontColor} />
-  <ColorPalette paletteName="gray" darkFontColor={state.selectedFontColor} />
-</div>
-```

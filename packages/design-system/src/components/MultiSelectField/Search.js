@@ -35,6 +35,7 @@ const Search = props => {
       size={size}
       placeholder={placeholder}
       name="select-box-input"
+      data-testid="multiselect-search-input"
       value={value}
       onChange={onChange}
       onKeyDown={onKeyDown}

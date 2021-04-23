@@ -48,9 +48,8 @@ class ComponentHtmlMarkup extends React.Component {
       <React.Fragment>
         <Button
           onClick={this.toggleCodeVisibility}
-          primary={isCodeVisible}
           size="compact"
-          kind="secondary"
+          kind={isCodeVisible ? 'primary' : 'secondary'}
           style={{
             marginBottom: isCodeVisible ? '5px' : '0'
           }}

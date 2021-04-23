@@ -1,5 +1,7 @@
 ```js noeditor
-<Banner size="large" type="warning">This component can be used only in React applications.</Banner>
+<Banner size="large" type="warning">
+  This component can be used only in React applications.
+</Banner>
 ```
 
 <h3>MultiSelect</h3>
@@ -29,12 +31,12 @@ const handleItemSelect = item => {
     const newState = state.selectedItems.filter(selected => item !== selected);
     return setState({selectedItems: newState.length === 0 ? null : newState});
   }
-  return setState({selectedItems: [...state.selectedItems, item]}); 
+  return setState({selectedItems: [...state.selectedItems, item]});
 }
 
 const handleItemRemove = item => {
   const newState = state.selectedItems.filter(selected => selected !== item);
-  return setState({selectedItems: newState.length > 0 ? newState : null}); 
+  return setState({selectedItems: newState.length > 0 ? newState : null});
 }
 
 const getItemBody = props => {
@@ -58,7 +60,7 @@ const toggleAll = items => {
     selectedItems: items
   })
 }
- 
+
 <div style={{width: '340px'}}>
   <MultiSelect
     items={items}
@@ -77,11 +79,12 @@ const toggleAll = items => {
   />
 </div>
 ```
+
 ```js noeditor
 const items = [
-  {key: '1', props: {name: 'option 1', value: '1'}},
-  {key: '2', props: {name: 'option 2', value: '2'}},
-  {key: '3', props: {name: 'option 3', value: '3'}}
+  { key: "1", props: { name: "option 1", value: "1" } },
+  { key: "2", props: { name: "option 2", value: "2" } },
+  { key: "3", props: { name: "option 3", value: "3" } }
 ];
 
 const getItemBody = props => {
@@ -98,7 +101,7 @@ const getSelectedItemBody = props => {
 <ComponentHtmlMarkup>
   <MultiSelect
     items={items}
-    searchProperty='name'
+    searchProperty="name"
     onItemSelect={() => {}}
     onItemRemove={() => {}}
     getItemBody={getItemBody}
@@ -108,10 +111,10 @@ const getSelectedItemBody = props => {
     search
     maxItemsContainerHeight={72}
     getSelectedItemBody={getSelectedItemBody}
-    selected={['1']}
-    placeholder='Search...'
+    selected={["1"]}
+    placeholder="Search..."
   />
-</ComponentHtmlMarkup>
+</ComponentHtmlMarkup>;
 ```
 
 <h3>Disabled</h3>
@@ -133,12 +136,12 @@ const handleItemSelect = item => {
     const newState = state.selectedItems.filter(selected => item !== selected);
     return setState({selectedItems: newState.length === 0 ? null : newState});
   }
-  return setState({selectedItems: [...state.selectedItems, item]}); 
+  return setState({selectedItems: [...state.selectedItems, item]});
 }
 
 const handleItemRemove = item => {
   const newState = state.selectedItems.filter(selected => selected !== item);
-  return setState({selectedItems: newState.length > 0 ? newState : null}); 
+  return setState({selectedItems: newState.length > 0 ? newState : null});
 }
 
 const getItemBody = props => {
@@ -162,7 +165,7 @@ const toggleAll = items => {
     selectedItems: items
   })
 }
- 
+
 <div style={{width: '340px'}}>
   <MultiSelect
     items={items}
@@ -185,8 +188,8 @@ const toggleAll = items => {
 
 ```js noeditor
 const items = [
-  {key: '1', props: {name: 'option 1', value: '1'}},
-  {key: '2', props: {name: 'option 2', value: '2'}}
+  { key: "1", props: { name: "option 1", value: "1" } },
+  { key: "2", props: { name: "option 2", value: "2" } }
 ];
 
 const getItemBody = props => {
@@ -203,7 +206,7 @@ const getSelectedItemBody = props => {
 <ComponentHtmlMarkup>
   <MultiSelect
     items={items}
-    searchProperty='name'
+    searchProperty="name"
     onItemSelect={() => {}}
     onItemRemove={() => {}}
     getItemBody={getItemBody}
@@ -214,10 +217,10 @@ const getSelectedItemBody = props => {
     disabled
     maxItemsContainerHeight={72}
     getSelectedItemBody={getSelectedItemBody}
-    selected={['1']}
-    placeholder='Search...'
+    selected={["1"]}
+    placeholder="Search..."
   />
-</ComponentHtmlMarkup>
+</ComponentHtmlMarkup>;
 ```
 
 <h3>MultiSelect with controlled dropdown visibility</h3>
@@ -240,15 +243,21 @@ initialState = {
   isOpen: false
 };
 
+const buttonRef = React.createRef();
+
 const handleDropdownToggle = isOpen => {
   setState({
     isOpen
   })
 }
 
-const toggleDropdown = () => setState({
-  isOpen: !state.isOpen
-})
+const toggleDropdown = () => {
+  setTimeout(() => {
+    setState({
+      isOpen: !state.isOpen
+    })
+  })
+}
 
 const handleItemSelect = item => {
   if (!state.selectedItems) {
@@ -258,12 +267,12 @@ const handleItemSelect = item => {
     const newState = state.selectedItems.filter(selected => item !== selected);
     return setState({selectedItems: newState.length === 0 ? null : newState});
   }
-  return setState({selectedItems: [...state.selectedItems, item]}); 
+  return setState({selectedItems: [...state.selectedItems, item]});
 }
 
 const handleItemRemove = item => {
   const newState = state.selectedItems.filter(selected => selected !== item);
-  return setState({selectedItems: newState.length > 0 ? newState : null}); 
+  return setState({selectedItems: newState.length > 0 ? newState : null});
 }
 
 const getItemBody = props => {
@@ -287,10 +296,10 @@ const toggleAll = items => {
     selectedItems: items
   })
 }
- 
+
 <div style={{width: '340px'}}>
   <div style={{margin: '10px 0'}}>
-    <Button onClick={toggleDropdown}>{state.isOpen ? 'Hide' : 'Show'}</Button>
+    <Button ref={buttonRef} onClick={toggleDropdown}>{state.isOpen ? 'Hide' : 'Show'}</Button>
   </div>
   <MultiSelect
     items={items}

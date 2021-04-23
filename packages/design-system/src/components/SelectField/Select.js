@@ -272,6 +272,7 @@ class Select extends React.PureComponent {
       searchEmptyState,
       searchPlaceholder,
       selected,
+      dataTestId,
       selectHeader
     } = this.props;
     const { searchPhrase, focusedItemKey, isFocused } = this.state;
@@ -289,7 +290,7 @@ class Select extends React.PureComponent {
     const shouldRenderClearButton = !!selectedItemModel && !isOpen && !required;
 
     return (
-      <div ref={this.containerRef} className={mergedClassNames} id={id}>
+      <div ref={this.containerRef} className={mergedClassNames} id={id} data-testid={dataTestId}>
         <SelectHead
           isFocused={isOpen || isFocused}
           disabled={disabled}
@@ -317,7 +318,7 @@ class Select extends React.PureComponent {
             ref={this.clearButtonRef}
             clearSelectedOption={this.clearSelectedOption}
           />
-          <MenuDownIcon width="24px" height="24px" fill="#424d57" />          
+          <MenuDownIcon width="24px" height="24px" fill="#424d57" data-testid="select-down-icon" />          
         </SelectHead>
         <div
           className={cx({
@@ -326,6 +327,7 @@ class Select extends React.PureComponent {
               filteredItems
             )
           })}
+          data-testid="select-body"
         >
           {filteredItems.length === 0 && searchEmptyState}
           <SelectList
@@ -352,6 +354,7 @@ Select.propTypes = {
   className: PropTypes.string,
   error: PropTypes.string,
   id: PropTypes.string,
+  dataTestId: PropTypes.string,
   /**
    * Use when you need to control multiselect dropdown visibility in its parent component
    * Remember to pass `onDropdownToggle` method as props, thanks to that you will be able to

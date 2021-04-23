@@ -8,11 +8,12 @@ const baseClass = 'multiselect-head__item';
 const MultiSelectHeadItem = props => {
   const { item, getSelectedItemBody } = props;
   return (
-    <div className={styles[`${baseClass}`]}>
+    <div className={styles[`${baseClass}`]} data-testid="multiselect-head-item">
       <CloseIcon
         width="14px"
         height="14px"
         fill="#fff"
+        data-testid="multiselect-remove-icon"
         onClick={e => props.onRemove(e, item.key)}
         className={styles[`${baseClass}-remove-icon`]}
       />

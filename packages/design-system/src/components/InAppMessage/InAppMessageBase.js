@@ -24,11 +24,8 @@ class InAppMessageBase extends React.PureComponent {
     this.removeEventListeners();
   }
 
-  onDocumentClick = event => {
-    if (
-      this.inAppMessageContentRef.current &&
-      !this.inAppMessageContentRef.current.contains(event.target)
-    ) {
+  onOverlayClick = event => {
+    if (event.target === event.currentTarget) {
       this.handleCloseInAppMessage();
     }
   };
@@ -89,6 +86,7 @@ class InAppMessageBase extends React.PureComponent {
           `${baseClass}__overlay`,
           `${baseClass}__overlay--visible`
         )}
+        onMouseDown={this.onOverlayClick}
       >
         <div className={cx(`${baseClass}__container`)}>
           <div
