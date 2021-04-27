@@ -13,14 +13,18 @@ module.exports = {
       name: 'Introduction',
       content: './docs/Introduction.md'
     },
-    {
-      name: 'Typography',
-      content:
-        './packages/design-system/src/foundations/Typography/Typography.md'
-    },
+    // {
+    //   name: 'Typography',
+    //   content:
+    //     './packages/design-system/src/foundations/Typography/Typography.md'
+    // },
     {
       name: 'Colors',
       content: './docs/colors/colors.md'
+    },
+    {
+      name: 'Themes',
+      content: './docs/themes/themes.md'
     },
     {
       name: 'Components',

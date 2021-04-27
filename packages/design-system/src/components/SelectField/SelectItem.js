@@ -16,6 +16,7 @@ const SelectItem = props => {
         [`${baseClass}__item--selected`]: isSelected,
         [`${baseClass}__item--focused`]: isFocused
       })}
+      data-testid="select-body-item"
       {...restProps}
     >
       <div className={styles[`${baseClass}__item-content`]}>{children}</div>
@@ -23,6 +24,7 @@ const SelectItem = props => {
         width="15px"
         height="15px"
         className={styles[`${baseClass}__checkmark`]}
+        data-testid="select-body-item-check-icon"
       />
     </li>
   );

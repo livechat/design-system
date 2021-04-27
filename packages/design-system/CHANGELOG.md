@@ -1,5 +1,47 @@
 All notable changes to this project will be documented in this file.
 
+## v0.12.0
+
+_Release: 2021-04-19_
+
+##### New Features
+
+- updated peer dependencies - react and react-dom #232
+
+Possible regressions after the update:
+
+- toggling for managed Multiselect and Select component, ie. on other element click
+- Tooltip and Dropdown positioning as react-popper library was updated
+- InaApp and Modal close on overlay click
+
+The components were tested so the risk is minimal.
+The update unlocks a few new features used in modern React code, like hooks and adds a few performance updates done by React team.
+
+## v0.11.4
+
+_Release: 2021-02-15_
+
+##### Bug Fixes
+
+- fixing SSR - checking if Element exists in PropTypes of UserGuideTooltip #224
+
+## v0.11.3
+
+_Release: 2021-02-08_
+
+##### New Features
+
+- adding data-testid attributes to Select and Multiselect #221
+
+## v0.11.2
+
+_Release: 2021-02-02_
+
+##### Bug Fixes
+
+- fixing wrong cursor for button in loading state #216
+- fixing design-system logo url in the docs sidebar #217
+
 ## v0.11.1
 
 _Release: 2020-12-09_

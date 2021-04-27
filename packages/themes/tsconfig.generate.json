@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": false,
+  },
+  "include": [
+    "tools",
+    "generate-files.ts"
+  ]
+}
