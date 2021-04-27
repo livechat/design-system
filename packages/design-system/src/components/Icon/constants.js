@@ -1,9 +1,9 @@
 export const IconSizeName = {
-  XSmall: 'XSmall',
-  Small: 'Small',
-  Medium: 'Medium',
-  Large: 'Large',
-  XLarge: 'XLarge'
+  XSmall: 'xsmall',
+  Small: 'small',
+  Medium: 'medium',
+  Large: 'large',
+  XLarge: 'xlarge'
 };
 
 export const IconSize = {

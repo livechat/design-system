@@ -181,10 +181,13 @@ export interface ISearchBarProps extends ISearchBarHtmlProps {
   onExpand?(): void;
 }
 
+export type TIconSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+export type TIconType = 'primary' | 'inverted' | 'link' | 'success' | 'warning' | 'error';
+
 export interface IIconProps extends React.HTMLAttributes<HTMLSpanElement> {
   source: string;
-  size?: string;
-  iconType?: string;
+  size?: TIconSize;
+  iconType?: TIconType;
   disabled?: boolean;
   className?: string;
 }

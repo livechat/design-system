@@ -44,7 +44,7 @@ Icon.propTypes = {
   /**
    * Defines width and height of the icon
    */
-  size: PropTypes.oneOf(['XSmall', 'Small', 'Medium', 'Large', 'XLarge']),
+  size: PropTypes.oneOf(['xsmall', 'small', 'medium', 'large', 'xlarge']),
   /**
    * Adjusts color of the icon (if passed)
    */
