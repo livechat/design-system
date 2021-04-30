@@ -24,6 +24,7 @@
     "polished": "^3.4.2"
   },
   "devDependencies": {
+    "@svgr/webpack": "^5.5.0",
     "autoprefixer": "^9.0.1",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
