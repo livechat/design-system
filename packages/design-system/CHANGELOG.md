@@ -1,5 +1,13 @@
 All notable changes to this project will be documented in this file.
 
+## v0.12.1
+
+_Release: 2021-04-30_
+
+##### New features
+
+- adding new Icon component #231
+
 ## v0.12.0
 
 _Release: 2021-04-19_
