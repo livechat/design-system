@@ -8,6 +8,7 @@ export * from "./divider";
 export * from "./dropdowns";
 export * from "./forms";
 export * from "./helpers";
+export * from "./icons";
 export * from "./inappmessages";
 export * from "./loader";
 export * from "./modals";
