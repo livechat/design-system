@@ -1,11 +1,11 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
-import styles from './style.scss';
-import FieldLabel from '../FieldLabel';
-import FieldError from '../FieldError';
-import FieldDescription from '../FieldDescription';
-import getMergedClassNames from '../../utils/getMergedClassNames';
+import * as React from "react";
+import * as PropTypes from "prop-types";
+import classNames from "classnames/bind";
+import styles from "./style.scss";
+import FieldLabel from "../FieldLabel";
+import FieldError from "../FieldError";
+import FieldDescription from "../FieldDescription";
+import getMergedClassNames from "../../utils/getMergedClassNames";
 
 const cx = classNames.bind(styles);
 
@@ -18,10 +18,12 @@ const TextField = props => {
     labelAdornment,
     className,
     htmlFor,
-    children
+    children,
+    charsLeft,
+    maxLength
   } = props;
 
-  const baseClass = 'text-field';
+  const baseClass = "text-field";
   const mergedClassNames = getMergedClassNames(
     cx({
       [baseClass]: true,
@@ -39,10 +41,25 @@ const TextField = props => {
             [`${baseClass}__label--inline`]: inline
           })}
         >
-          <FieldLabel htmlFor={htmlFor}>{labelText}</FieldLabel>
-          {labelAdornment && (
-            <div className={cx({ [`${baseClass}__label-adornment`]: true })}>
-              {labelAdornment}
+          <div
+            className={cx({
+              [`${baseClass}__label__wrapper`]: true
+            })}
+          >
+            <FieldLabel htmlFor={htmlFor}>{labelText}</FieldLabel>
+            {labelAdornment && (
+              <div className={cx({ [`${baseClass}__label-adornment`]: true })}>
+                {labelAdornment}
+              </div>
+            )}
+          </div>
+          {charsLeft >= 0 && (
+            <div
+              className={cx({
+                [`${baseClass}__label-charsCounter`]: true
+              })}
+            >
+              {charsLeft} / {maxLength}
             </div>
           )}
         </div>
@@ -65,7 +82,9 @@ TextField.propTypes = {
   inline: PropTypes.bool,
   error: PropTypes.string,
   description: PropTypes.node,
-  children: PropTypes.node
+  children: PropTypes.node,
+  maxLength: PropTypes.number,
+  charsLeft: PropTypes.number
 };
 
 export default TextField;
