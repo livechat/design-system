@@ -19,8 +19,7 @@ const TextField = props => {
     className,
     htmlFor,
     children,
-    charsLeft,
-    maxLength
+    labelRightNode    
   } = props;
 
   const baseClass = "text-field";
@@ -53,13 +52,13 @@ const TextField = props => {
               </div>
             )}
           </div>
-          {charsLeft >= 0 && (
+          {labelRightNode && (
             <div
               className={cx({
-                [`${baseClass}__label-charsCounter`]: true
+                [`${baseClass}__label-leftNode`]: true
               })}
             >
-              {charsLeft} / {maxLength}
+              {labelRightNode}
             </div>
           )}
         </div>
@@ -83,8 +82,7 @@ TextField.propTypes = {
   error: PropTypes.string,
   description: PropTypes.node,
   children: PropTypes.node,
-  maxLength: PropTypes.number,
-  charsLeft: PropTypes.number
+  labelRightNode: PropTypes.node
 };
 
 export default TextField;

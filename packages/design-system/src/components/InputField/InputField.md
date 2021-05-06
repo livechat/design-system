@@ -47,20 +47,20 @@ initialState = { value: "Input Field text", error: "Validation message here" };
 <h3>Input with chars left counter</h3>
 
 ```js
-initialState = { value: '', error: null, chars: 5 };
+initialState = { value: '', error: null, chars: 0 };
 
 onInputChange = (e) => {
   if (e.target.value.length > 5) {
     setState({
       value: e.target.value,
       error: 'Validation message here',
-      chars: 0
+      chars: 5
     });
   } else {
     setState({
       value: e.target.value,
       error: null,
-      chars: 5 - e.target.value.length
+      chars: e.target.value.length
     });
   }
 }
@@ -73,7 +73,38 @@ onInputChange = (e) => {
   placeholder='Placeholder...'
   onChange={onInputChange}
   maxLength={5}
-  charsLeft={state.chars}
+  labelRightNode={<span>{state.chars} / 5</span>}
+/>
+</div>
+```
+
+<h3>Input with custom left node</h3>
+
+```js
+initialState = { value: '', error: null, chars: 0 };
+
+onInputChange = (e) => {
+  if (e.target.value.length > 5) {
+    setState({
+      value: e.target.value,
+      error: 'Validation message here'
+    });
+  } else {
+    setState({
+      value: e.target.value,
+      error: null
+    });
+  }
+}
+<div style={{width: '170px'}}>
+<InputField
+  value={state.value}
+  labelText='Input Field label'
+  error={state.error}
+  id='input-field-example-1'
+  placeholder='Placeholder...'
+  onChange={onInputChange}
+  labelRightNode={<a href="/">link</a>}
 />
 </div>
 ```

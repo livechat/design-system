@@ -13,8 +13,8 @@ const InputField = React.forwardRef((props, ref) => {
     className,
     id,
     fieldClassName,
+    labelRightNode,
     maxLength,
-    charsLeft,
     ...restProps
   } = props;
 
@@ -27,8 +27,7 @@ const InputField = React.forwardRef((props, ref) => {
       labelAdornment={labelAdornment}
       className={className}
       htmlFor={id}
-      maxLength={maxLength}
-      charsLeft={charsLeft}
+      labelRightNode={labelRightNode}
     >
       <Input
         {...restProps}
@@ -53,10 +52,9 @@ InputField.propTypes = {
   inline: PropTypes.bool,
   error: PropTypes.string,
   description: PropTypes.node,
-  /** used with chars left to inform about text max length, could be used separately */
-  maxLength: PropTypes.number,
-  /** used with max length to inform how many chars are left */
-  charsLeft: PropTypes.number
+  labelRightNode: PropTypes.node,
+  maxLength: PropTypes.number
+
 };
 
 export default InputField;
