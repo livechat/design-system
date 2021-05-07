@@ -54,7 +54,6 @@ InputField.propTypes = {
   description: PropTypes.node,
   labelRightNode: PropTypes.node,
   maxLength: PropTypes.number
-
 };
 
 export default InputField;
