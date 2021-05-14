@@ -44,11 +44,13 @@ $base-class: 'text-field';
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    align-self: flex-end;
   }
   
   &__label-leftNode {
-    justify-content: flex-end;
     display: flex;
+    justify-content: flex-end;
+    align-self: flex-end;
     flex-shrink: 0;
     font-size: 14px;
     color: $font-primary-color;
