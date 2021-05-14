@@ -44,16 +44,16 @@ initialState = { value: "Input Field text", error: "Validation message here" };
 </ComponentHtmlMarkup>;
 ```
 
-<h3>Input with chars left counter</h3>
+<h3>Input with label right node</h3>
 
 ```js
 initialState = { value: '', error: null, chars: 0 };
 
 onInputChange = (e) => {
-  if (e.target.value.length > 5) {
+  if (e.target.value.length >= 5) {
     setState({
       value: e.target.value,
-      error: 'Validation message here',
+      error: 'Input value reached maximum lenght',
       chars: 5
     });
   } else {
@@ -64,46 +64,23 @@ onInputChange = (e) => {
     });
   }
 }
-<div style={{width: '170px'}}>
+<div style={{width: '250px'}}>
 <InputField
   value={state.value}
-  labelText='Input Field label'
+  labelText='Input with characters count'
   error={state.error}
-  id='input-field-example-1'
+  style={{ width: '100%'}}
+  id='input-field-example-2'
   placeholder='Placeholder...'
   onChange={onInputChange}
   maxLength={5}
   labelRightNode={<span>{state.chars} / 5</span>}
 />
-</div>
-```
-
-<h3>Input with custom left node</h3>
-
-```js
-initialState = { value: '', error: null, chars: 0 };
-
-onInputChange = (e) => {
-  if (e.target.value.length > 5) {
-    setState({
-      value: e.target.value,
-      error: 'Validation message here'
-    });
-  } else {
-    setState({
-      value: e.target.value,
-      error: null
-    });
-  }
-}
-<div style={{width: '170px'}}>
 <InputField
-  value={state.value}
-  labelText='Input Field label'
-  error={state.error}
-  id='input-field-example-1'
+  labelText='Input with custom label'
+  id='input-field-example-3'
+  style={{ width: '100%'}}
   placeholder='Placeholder...'
-  onChange={onInputChange}
   labelRightNode={<a href="/">link</a>}
 />
 </div>
@@ -133,7 +110,7 @@ onInputChange = (e) => {
   inline
   labelText='Input Field label'
   error={state.error}
-  id='input-field-example-3'
+  id='input-field-example-4'
   placeholder='Placeholder...'
   description='Text longer than 5 character will trigger error'
   onChange={onInputChange}
