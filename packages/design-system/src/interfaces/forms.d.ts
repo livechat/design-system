@@ -14,6 +14,7 @@ export interface IWithTextFieldProps {
   description?: React.ReactNode;
   error?: string;
   labelAdornment?: React.ReactNode;
+  labelRightNode?: React.ReactNode;
   fieldClassName?: string;
 }
 

@@ -1,3 +1,5 @@
+@import '../../scss/variables/colors';
+
 $base-class: 'text-field';
 
 .#{$base-class} {
@@ -20,6 +22,11 @@ $base-class: 'text-field';
     }
   }
 
+  &__label__wrapper {
+    display: flex;
+    flex-grow: 1;
+  }
+
   &__label--inline {
     justify-content: center;
     align-items: center;
@@ -36,6 +43,16 @@ $base-class: 'text-field';
     flex-shrink: 0;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: flex-end;
+    align-self: flex-end;
+  }
+
+  &__label-right-node {
+    display: flex;
+    justify-content: flex-end;
+    align-self: flex-end;
+    flex-shrink: 0;
+    font-size: 14px;
+    color: $font-primary-color;
   }
 }

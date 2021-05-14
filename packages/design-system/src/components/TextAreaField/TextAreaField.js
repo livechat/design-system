@@ -13,6 +13,7 @@ const TextAreaField = React.forwardRef((props, ref) => {
     className,
     id,
     fieldClassName,
+    labelRightNode,
     ...restProps
   } = props;
 
@@ -25,6 +26,7 @@ const TextAreaField = React.forwardRef((props, ref) => {
       labelAdornment={labelAdornment}
       className={className}
       htmlFor={id}
+      labelRightNode={labelRightNode}
     >
       <TextArea
         id={id}
@@ -46,7 +48,8 @@ TextAreaField.propTypes = {
   inline: PropTypes.bool,
   error: PropTypes.string,
   description: PropTypes.node,
-  fieldClassName: PropTypes.string
+  fieldClassName: PropTypes.string,
+  labelRightNode: PropTypes.node
 };
 
 export default TextAreaField;

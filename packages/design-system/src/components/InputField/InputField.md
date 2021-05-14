@@ -27,20 +27,63 @@ onInputChange = (e) => {
   onChange={onInputChange}
 />
 ```
+
 ```js noeditor
-initialState = { value: 'Input Field text', error: 'Validation message here' };
+initialState = { value: "Input Field text", error: "Validation message here" };
 
 <ComponentHtmlMarkup>
   <InputField
     value={state.value}
-    labelText='Input Field label'
+    labelText="Input Field label"
     error={state.error}
-    id='input-field-example-1'
-    placeholder='Placeholder...'
-    description='Optional helper text goes here'
+    id="input-field-example-1"
+    placeholder="Placeholder..."
+    description="Optional helper text goes here"
     onChange={() => {}}
   />
-</ComponentHtmlMarkup>
+</ComponentHtmlMarkup>;
+```
+
+<h3>Input with label right node</h3>
+
+```js
+initialState = { value: '', error: null, chars: 0 };
+
+onInputChange = (e) => {
+  if (e.target.value.length >= 5) {
+    setState({
+      value: e.target.value,
+      error: 'Input value reached maximum lenght',
+      chars: 5
+    });
+  } else {
+    setState({
+      value: e.target.value,
+      error: null,
+      chars: e.target.value.length
+    });
+  }
+}
+<div style={{width: '250px'}}>
+<InputField
+  value={state.value}
+  labelText='Input with characters count'
+  error={state.error}
+  style={{ width: '100%'}}
+  id='input-field-example-2'
+  placeholder='Placeholder...'
+  onChange={onInputChange}
+  maxLength={5}
+  labelRightNode={<span>{state.chars} / 5</span>}
+/>
+<InputField
+  labelText='Input with custom label'
+  id='input-field-example-3'
+  style={{ width: '100%'}}
+  placeholder='Placeholder...'
+  labelRightNode={<a href="/">link</a>}
+/>
+</div>
 ```
 
 <h3>Inline Input Field</h3>
@@ -67,51 +110,53 @@ onInputChange = (e) => {
   inline
   labelText='Input Field label'
   error={state.error}
-  id='input-field-example-3'
+  id='input-field-example-4'
   placeholder='Placeholder...'
   description='Text longer than 5 character will trigger error'
   onChange={onInputChange}
 />
 ```
+
 ```js noeditor
-initialState = { value: 'Input Field text', error: 'Validation message here' };
+initialState = { value: "Input Field text", error: "Validation message here" };
 
 <ComponentHtmlMarkup>
   <InputField
     value={state.value}
     inline
-    labelText='Input Field label'
+    labelText="Input Field label"
     error={state.error}
-    id='input-field-example-4'
-    placeholder='Placeholder...'
-    description='Validation message here'
+    id="input-field-example-4"
+    placeholder="Placeholder..."
+    description="Validation message here"
     onChange={() => {}}
   />
-</ComponentHtmlMarkup>
+</ComponentHtmlMarkup>;
 ```
 
 <h3>Input Field Disabled</h3>
 
 ```js
 <InputField
-  value='Input Field text'
-  labelText='Input Field label'
+  value="Input Field text"
+  labelText="Input Field label"
   disabled
-  id='input-field-example-5'
-  placeholder='Placeholder...'
-  description='Input is disabled'
+  id="input-field-example-5"
+  placeholder="Placeholder..."
+  description="Input is disabled"
   onChange={() => {}}
 />
 ```
+
 ```js noeditor
 <ComponentHtmlMarkup>
   <InputField
-    value='Input Field text'
-    labelText='Input Field label'
+    value="Input Field text"
+    labelText="Input Field label"
     disabled
-    id='input-field-example-5'
-    placeholder='Placeholder...'
-    description='Input is disabled'
+    id="input-field-example-5"
+    placeholder="Placeholder..."
+    description="Input is disabled"
     onChange={() => {}}
   />
 </ComponentHtmlMarkup>

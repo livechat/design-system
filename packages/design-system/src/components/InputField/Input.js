@@ -23,7 +23,8 @@ const Input = React.forwardRef((props, ref) => {
 Input.propTypes = {
   error: PropTypes.string,
   className: PropTypes.string,
-  type: PropTypes.string
+  type: PropTypes.string,
+  maxLength: PropTypes.number
 };
 
 Input.defaultProps = {
