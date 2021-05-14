@@ -55,7 +55,7 @@ const TextField = props => {
           {labelRightNode && (
             <div
               className={cx({
-                [`${baseClass}__label-leftNode`]: true
+                [`${baseClass}__label-right-node`]: true
               })}
             >
               {labelRightNode}
