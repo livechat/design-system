@@ -1,5 +1,13 @@
 All notable changes to this project will be documented in this file.
 
+## v0.12.2
+
+_Release: 2021-05-17_
+
+##### Bug Fixes
+
+- fixing wrong dimenssion styles of Modal component
+
 ## v0.12.1
 
 _Release: 2021-04-30_
