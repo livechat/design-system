@@ -33,7 +33,7 @@ const TextField = props => {
 
   return (
     <div className={mergedClassNames}>
-      {labelText && (
+      {(labelText || labelRightNode) && (
         <div
           className={cx({
             [`${baseClass}__label`]: true,
