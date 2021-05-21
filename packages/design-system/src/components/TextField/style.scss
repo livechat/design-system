@@ -34,6 +34,10 @@ $base-class: 'text-field';
     margin-right: 10px;
   }
 
+  &__label--inline--center {
+    margin-top: 20px;
+  }
+
   &__label-adornment {
     width: 20px;
     height: 20px;
@@ -54,5 +58,11 @@ $base-class: 'text-field';
     flex-shrink: 0;
     font-size: 14px;
     color: $font-primary-color;
+  }
+  
+  &__label-right-node--inline {
+    font-size: 14px;
+    color: $font-primary-color;
+    text-align: end;
   }
 }

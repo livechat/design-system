@@ -114,6 +114,7 @@ onInputChange = (e) => {
   placeholder='Placeholder...'
   description='Text longer than 5 character will trigger error'
   onChange={onInputChange}
+  labelRightNode="foo"
 />
 ```
 

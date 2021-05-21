@@ -19,7 +19,7 @@ const TextField = props => {
     className,
     htmlFor,
     children,
-    labelRightNode    
+    labelRightNode
   } = props;
 
   const baseClass = "text-field";
@@ -37,7 +37,8 @@ const TextField = props => {
         <div
           className={cx({
             [`${baseClass}__label`]: true,
-            [`${baseClass}__label--inline`]: inline
+            [`${baseClass}__label--inline`]: inline,
+            [`${baseClass}__label--inline--center`]: labelRightNode
           })}
         >
           <div
@@ -52,18 +53,29 @@ const TextField = props => {
               </div>
             )}
           </div>
-          {labelRightNode && (
+          {labelRightNode &&
+            !inline && (
+              <div
+                className={cx({
+                  [`${baseClass}__label-right-node`]: true
+                })}
+              >
+                {labelRightNode}
+              </div>
+            )}
+        </div>
+      )}
+      <div>
+        {labelRightNode &&
+          inline && (
             <div
               className={cx({
-                [`${baseClass}__label-right-node`]: true
+                [`${baseClass}__label-right-node--inline`]: true
               })}
             >
               {labelRightNode}
             </div>
           )}
-        </div>
-      )}
-      <div>
         {children}
         {error && <FieldError>{error}</FieldError>}
         {description && <FieldDescription>{description}</FieldDescription>}
