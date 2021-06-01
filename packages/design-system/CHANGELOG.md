@@ -1,5 +1,13 @@
 All notable changes to this project will be documented in this file.
 
+## v0.12.3
+
+_Release: 2021-06.01_
+
+##### Bug Fixes
+
+- fixing Icon sizes #249
+
 ## v0.12.2
 
 _Release: 2021-05-17_
