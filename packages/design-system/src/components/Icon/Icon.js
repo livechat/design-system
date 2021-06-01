@@ -1,6 +1,8 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
+import cx from 'classnames';
 
+import styles from './style.scss';
 import {
   IconSize,
   IconSizeName,
@@ -16,6 +18,7 @@ export const Icon = props => {
     iconType = IconTypeName.Primary,
     disabled,
     className,
+    inline,
     ...restProps
   } = props;
   let filledColor = IconColorMapper[iconType];
@@ -24,13 +27,18 @@ export const Icon = props => {
     filledColor = IconColorDisabledMapper[iconType];
   }
 
+  const iconClassName =
+    cx(className, {
+      [styles['icon--inline']]: inline
+    }) || null;
+
   const GeneratedIcon = React.createElement(source, {
     ...IconSize[size],
     fill: filledColor
   });
 
   return (
-    <span {...restProps} className={className}>
+    <span {...restProps} className={iconClassName}>
       {GeneratedIcon}
     </span>
   );
@@ -57,7 +65,8 @@ Icon.propTypes = {
     'warning',
     'error'
   ]),
-  className: PropTypes.string
+  className: PropTypes.string,
+  inline: PropTypes.bool
 };
 
 export default Icon;
