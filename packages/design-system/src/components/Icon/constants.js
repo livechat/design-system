@@ -8,24 +8,24 @@ export const IconSizeName = {
 
 export const IconSize = {
   [IconSizeName.XSmall]: {
+    width: 12,
+    height: 12
+  },
+  [IconSizeName.Small]: {
     width: 16,
     height: 16
   },
-  [IconSizeName.Small]: {
+  [IconSizeName.Medium]: {
     width: 20,
     height: 20
   },
-  [IconSizeName.Medium]: {
+  [IconSizeName.Large]: {
     width: 24,
     height: 24
   },
-  [IconSizeName.Large]: {
+  [IconSizeName.XLarge]: {
     width: 32,
     height: 32
-  },
-  [IconSizeName.XLarge]: {
-    width: 48,
-    height: 48
   }
 };
 
