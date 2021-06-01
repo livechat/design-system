@@ -23,7 +23,6 @@ export interface IconProps extends React.HTMLAttributes<HTMLSpanElement> {
   iconType?: IconTypeValue;
   disabled?: boolean;
   className?: string;
-  inline?: boolean;
 }
 
 export var Icon: React.ComponentType<IconProps>;
