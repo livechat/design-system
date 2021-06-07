@@ -6,7 +6,7 @@ initialState = { value: '', error: null };
 onInputChange = (e) => {
   if (e.target.value.length > 5) {
     setState({
-      value: e.target.value,
+      value: e.target.value.substring(0, 5),
       error: 'Validation message here'
     });
   } else {
@@ -23,6 +23,7 @@ onInputChange = (e) => {
   error={state.error}
   id='input-field-example-1'
   placeholder='Placeholder...'
+  labelRightNode={<span>{state.value.length} / 5</span>}
   description='Text longer than 5 character will trigger error'
   onChange={onInputChange}
 />
@@ -44,48 +45,6 @@ initialState = { value: "Input Field text", error: "Validation message here" };
 </ComponentHtmlMarkup>;
 ```
 
-<h3>Input with label right node</h3>
-
-```js
-initialState = { value: '', error: null, chars: 0 };
-
-onInputChange = (e) => {
-  if (e.target.value.length >= 5) {
-    setState({
-      value: e.target.value,
-      error: 'Input value reached maximum lenght',
-      chars: 5
-    });
-  } else {
-    setState({
-      value: e.target.value,
-      error: null,
-      chars: e.target.value.length
-    });
-  }
-}
-<div style={{width: '250px'}}>
-<InputField
-  value={state.value}
-  labelText='Input with characters count'
-  error={state.error}
-  style={{ width: '100%'}}
-  id='input-field-example-2'
-  placeholder='Placeholder...'
-  onChange={onInputChange}
-  maxLength={5}
-  labelRightNode={<span>{state.chars} / 5</span>}
-/>
-<InputField
-  labelText='Input with custom label'
-  id='input-field-example-3'
-  style={{ width: '100%'}}
-  placeholder='Placeholder...'
-  labelRightNode={<a href="/">link</a>}
-/>
-</div>
-```
-
 <h3>Inline Input Field</h3>
 
 ```js
@@ -94,7 +53,7 @@ initialState = { value: '', error: null };
 onInputChange = (e) => {
   if (e.target.value.length > 5) {
     setState({
-      value: e.target.value,
+      value: e.target.value.substring(0, 5),
       error: 'Validation message here'
     });
   } else {
@@ -108,6 +67,7 @@ onInputChange = (e) => {
 <InputField
   value={state.value}
   inline
+  labelRightNode={`${state.value.length}/5`}
   labelText='Input Field label'
   error={state.error}
   id='input-field-example-4'
