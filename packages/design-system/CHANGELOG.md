@@ -2,11 +2,19 @@ All notable changes to this project will be documented in this file.
 
 ## v0.13.0
 
-_Release: 2021-05-17_
+_Release: 2021-06-11_
 
 ##### New features
 
 - showing number of characters left in the input with maxLenght property set up #234
+
+## v0.12.3
+
+_Release: 2021-06.01_
+
+##### Bug Fixes
+
+- fixing Icon sizes #249
 
 ## v0.12.2
 
