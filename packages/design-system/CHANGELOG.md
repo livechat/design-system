@@ -6,7 +6,9 @@ _Release: 2021-06-11_
 
 ##### New features
 
-- showing number of characters left in the input with maxLenght property set up #234
+- adding new labelRightNode property to InputField and TextAreaField components #234 #250
+- adding new properties inputWidth and textareaWidth properties to change the default width value #250
+- changing default value of Input and TextArea width to 100% - it's a breaking change #250
 
 ## v0.12.3
 
