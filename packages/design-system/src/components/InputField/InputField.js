@@ -55,6 +55,7 @@ InputField.propTypes = {
   error: PropTypes.string,
   description: PropTypes.node,
   labelRightNode: PropTypes.node,
+  /** use to easily setup input width - by default the input takes 100% of its container width */
   inputWidth: PropTypes.string,
   maxLength: PropTypes.number
 };
