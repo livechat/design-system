@@ -18,8 +18,8 @@ const TextArea = React.forwardRef((props, ref) => {
     className
   );
   const mergedStyle = (style || width) ? {
-    ...(style || {}),
-    width
+    width,
+    ...(style || {})
   } : void 0;
 
   return <textarea ref={ref} className={mergedClassNames} style={mergedStyle} {...restProps} />;

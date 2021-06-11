@@ -18,8 +18,8 @@ const Input = React.forwardRef((props, ref) => {
   );
 
   const mergedStyle = (style || width) ? {
-    ...(style || {}),
-    width
+    width,
+    ...(style || {})
   } : void 0;
 
   return <input ref={ref} className={mergedClassNames} style={mergedStyle} {...restProps} />;
