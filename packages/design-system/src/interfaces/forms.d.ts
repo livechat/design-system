@@ -14,6 +14,7 @@ export interface IWithTextFieldProps {
   description?: React.ReactNode;
   error?: string;
   labelAdornment?: React.ReactNode;
+  labelRightNode?: React.ReactNode;
   fieldClassName?: string;
 }
 
@@ -99,12 +100,14 @@ export interface IMultiSelectFieldProps
 
 export interface IInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
+  width?: string;
   error?: string;
   ref?: React.Ref<HTMLInputElement> | React.Ref<React.Component<IInputProps>>;
 }
 
 export interface IInputFieldProps extends IInputProps, IWithTextFieldProps {
   id: string;
+  inputWidth?: string;
 }
 
 export interface ITextFieldProps extends IWithTextFieldProps {
@@ -114,6 +117,7 @@ export interface ITextFieldProps extends IWithTextFieldProps {
 export interface ITextAreaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   error?: string;
+  width?: string;
   ref?:
   | React.Ref<HTMLTextAreaElement>
   | React.Ref<React.Component<ITextAreaProps>>;
@@ -123,6 +127,7 @@ export interface ITextAreaFieldProps
   extends ITextAreaProps,
   IWithTextFieldProps {
   id: string;
+  textareaWidth?: string;
 }
 
 export interface INumericInputProps {

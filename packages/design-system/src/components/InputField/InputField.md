@@ -6,7 +6,7 @@ initialState = { value: '', error: null };
 onInputChange = (e) => {
   if (e.target.value.length > 5) {
     setState({
-      value: e.target.value,
+      value: e.target.value.substring(0, 5),
       error: 'Validation message here'
     });
   } else {
@@ -23,24 +23,26 @@ onInputChange = (e) => {
   error={state.error}
   id='input-field-example-1'
   placeholder='Placeholder...'
+  labelRightNode={<span>{state.value.length} / 5</span>}
   description='Text longer than 5 character will trigger error'
   onChange={onInputChange}
 />
 ```
+
 ```js noeditor
-initialState = { value: 'Input Field text', error: 'Validation message here' };
+initialState = { value: "Input Field text", error: "Validation message here" };
 
 <ComponentHtmlMarkup>
   <InputField
     value={state.value}
-    labelText='Input Field label'
+    labelText="Input Field label"
     error={state.error}
-    id='input-field-example-1'
-    placeholder='Placeholder...'
-    description='Optional helper text goes here'
+    id="input-field-example-1"
+    placeholder="Placeholder..."
+    description="Optional helper text goes here"
     onChange={() => {}}
   />
-</ComponentHtmlMarkup>
+</ComponentHtmlMarkup>;
 ```
 
 <h3>Inline Input Field</h3>
@@ -51,7 +53,7 @@ initialState = { value: '', error: null };
 onInputChange = (e) => {
   if (e.target.value.length > 5) {
     setState({
-      value: e.target.value,
+      value: e.target.value.substring(0, 5),
       error: 'Validation message here'
     });
   } else {
@@ -65,53 +67,56 @@ onInputChange = (e) => {
 <InputField
   value={state.value}
   inline
+  labelRightNode={`${state.value.length}/5`}
   labelText='Input Field label'
   error={state.error}
-  id='input-field-example-3'
+  id='input-field-example-4'
   placeholder='Placeholder...'
   description='Text longer than 5 character will trigger error'
   onChange={onInputChange}
 />
 ```
+
 ```js noeditor
-initialState = { value: 'Input Field text', error: 'Validation message here' };
+initialState = { value: "Input Field text", error: "Validation message here" };
 
 <ComponentHtmlMarkup>
   <InputField
     value={state.value}
     inline
-    labelText='Input Field label'
+    labelText="Input Field label"
     error={state.error}
-    id='input-field-example-4'
-    placeholder='Placeholder...'
-    description='Validation message here'
+    id="input-field-example-4"
+    placeholder="Placeholder..."
+    description="Validation message here"
     onChange={() => {}}
   />
-</ComponentHtmlMarkup>
+</ComponentHtmlMarkup>;
 ```
 
 <h3>Input Field Disabled</h3>
 
 ```js
 <InputField
-  value='Input Field text'
-  labelText='Input Field label'
+  value="Input Field text"
+  labelText="Input Field label"
   disabled
-  id='input-field-example-5'
-  placeholder='Placeholder...'
-  description='Input is disabled'
+  id="input-field-example-5"
+  placeholder="Placeholder..."
+  description="Input is disabled"
   onChange={() => {}}
 />
 ```
+
 ```js noeditor
 <ComponentHtmlMarkup>
   <InputField
-    value='Input Field text'
-    labelText='Input Field label'
+    value="Input Field text"
+    labelText="Input Field label"
     disabled
-    id='input-field-example-5'
-    placeholder='Placeholder...'
-    description='Input is disabled'
+    id="input-field-example-5"
+    placeholder="Placeholder..."
+    description="Input is disabled"
     onChange={() => {}}
   />
 </ComponentHtmlMarkup>

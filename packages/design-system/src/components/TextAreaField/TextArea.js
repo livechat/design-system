@@ -7,7 +7,7 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 const cx = classNames.bind(styles);
 
 const TextArea = React.forwardRef((props, ref) => {
-  const { error, className, ...restProps } = props;
+  const { error, className, width, style, ...restProps } = props;
 
   const baseClass = 'textarea';
   const mergedClassNames = getMergedClassNames(
@@ -17,8 +17,12 @@ const TextArea = React.forwardRef((props, ref) => {
     }),
     className
   );
+  const mergedStyle = (style || width) ? {
+    width,
+    ...(style || {})
+  } : void 0;
 
-  return <textarea ref={ref} className={mergedClassNames} {...restProps} />;
+  return <textarea ref={ref} className={mergedClassNames} style={mergedStyle} {...restProps} />;
 });
 
 TextArea.propTypes = {

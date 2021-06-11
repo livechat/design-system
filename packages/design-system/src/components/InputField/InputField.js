@@ -13,6 +13,9 @@ const InputField = React.forwardRef((props, ref) => {
     className,
     id,
     fieldClassName,
+    labelRightNode,
+    inputWidth,
+    maxLength,
     ...restProps
   } = props;
 
@@ -25,13 +28,16 @@ const InputField = React.forwardRef((props, ref) => {
       labelAdornment={labelAdornment}
       className={className}
       htmlFor={id}
+      labelRightNode={labelRightNode}
     >
       <Input
         {...restProps}
         ref={ref}
+        width={inputWidth}
         className={fieldClassName}
         id={id}
         error={error}
+        maxLength={maxLength}
       />
     </TextField>
   );
@@ -47,7 +53,11 @@ InputField.propTypes = {
   fieldClassName: PropTypes.string,
   inline: PropTypes.bool,
   error: PropTypes.string,
-  description: PropTypes.node
+  description: PropTypes.node,
+  labelRightNode: PropTypes.node,
+  /** use to easily setup input width - by default the input takes 100% of its container width */
+  inputWidth: PropTypes.string,
+  maxLength: PropTypes.number
 };
 
 export default InputField;
