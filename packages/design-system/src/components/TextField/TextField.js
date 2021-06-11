@@ -33,40 +33,41 @@ const TextField = props => {
 
   return (
     <div className={mergedClassNames}>
-      {labelText && (
-        <div
-          className={cx({
-            [`${baseClass}__label`]: true,
-            [`${baseClass}__label--inline`]: inline
-          })}
-        >
-          <div
-            className={cx({
-              [`${baseClass}__label__wrapper`]: true
-            })}
-          >
-            <FieldLabel htmlFor={htmlFor}>{labelText}</FieldLabel>
-            {labelAdornment && (
-              <div className={cx({ [`${baseClass}__label-adornment`]: true })}>
-                {labelAdornment}
+      {labelRightNode && inline && (
+        <React.Fragment>
+          <div className={cx([`${baseClass}__label-right-node`, `${baseClass}__label-right-node--inline`])}>
+            {labelRightNode}
+          </div>
+          <div className={cx(`${baseClass}__row-break`)}></div>
+        </React.Fragment>
+      )}
+      <div className={cx([`${baseClass}__wrapper`, inline && `${baseClass}__wrapper--inline`])}>
+        {(labelText || labelRightNode ) && (
+          <div className={cx([`${baseClass}__label`, inline && `${baseClass}__label--inline`, !labelText && `${baseClass}__label--no-text`])}>
+            {labelText && (
+              <div
+                className={cx(`${baseClass}__label-wrapper`)}
+              >
+                <FieldLabel htmlFor={htmlFor}>{labelText}</FieldLabel>
+                {labelAdornment && (
+                  <div className={cx(`${baseClass}__label-adornment`)}>
+                    {labelAdornment}
+                  </div>
+                )}
+              </div>
+            )}
+            {labelRightNode && !inline && (
+              <div className={cx(`${baseClass}__label-right-node`)}>
+                {labelRightNode}
               </div>
             )}
           </div>
-          {labelRightNode && (
-            <div
-              className={cx({
-                [`${baseClass}__label-right-node`]: true
-              })}
-            >
-              {labelRightNode}
-            </div>
-          )}
+        )}
+        <div className={cx(`${baseClass}__content`)}>
+          {children}
+          {error && <FieldError>{error}</FieldError>}
+          {description && <FieldDescription>{description}</FieldDescription>}
         </div>
-      )}
-      <div>
-        {children}
-        {error && <FieldError>{error}</FieldError>}
-        {description && <FieldDescription>{description}</FieldDescription>}
       </div>
     </div>
   );

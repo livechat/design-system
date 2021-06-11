@@ -11,6 +11,7 @@ const TextAreaField = React.forwardRef((props, ref) => {
     labelText,
     labelAdornment,
     className,
+    textareaWidth,
     id,
     fieldClassName,
     labelRightNode,
@@ -31,6 +32,7 @@ const TextAreaField = React.forwardRef((props, ref) => {
       <TextArea
         id={id}
         ref={ref}
+        width={textareaWidth}
         {...restProps}
         className={fieldClassName}
         error={error}
@@ -46,6 +48,8 @@ TextAreaField.propTypes = {
   id: PropTypes.string.isRequired,
   className: PropTypes.string,
   inline: PropTypes.bool,
+  /** use to easily setup textarea width - by default the element takes 100% of its container width */
+  textareaWidth: PropTypes.string,
   error: PropTypes.string,
   description: PropTypes.node,
   fieldClassName: PropTypes.string,

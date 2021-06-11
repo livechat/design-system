@@ -12,7 +12,7 @@ initialState = { value: '', error: null };
 onInputChange = (e) => {
   if (e.target.value.length > 100) {
     setState({
-      value: e.target.value,
+      value: e.target.value.substring(0, 100),
       error: 'Validation message here'
     });
   } else {
@@ -28,6 +28,7 @@ onInputChange = (e) => {
   value={state.value}
   labelText='Text Area Field label'
   error={state.error}
+  labelRightNode={`${state.value.length}/100`}
   id='text-area-field-example-1'
   placeholder='Placeholder...'
   description='Text longer than 100 character will trigger error'
@@ -50,7 +51,7 @@ initialState = { value: 'Text Area text', error: 'Validation message here' };
 </ComponentHtmlMarkup>
 ```
 
-<h3>Text Area Field</h3>
+<h3>Inline Text Area Field</h3>
 
 ```js
 initialState = { value: '', error: null };
@@ -58,7 +59,7 @@ initialState = { value: '', error: null };
 onInputChange = (e) => {
   if (e.target.value.length > 100) {
     setState({
-      value: e.target.value,
+      value: e.target.value.substring(0, 100),
       error: 'Validation message here'
     });
   } else {
@@ -73,6 +74,7 @@ onInputChange = (e) => {
   value={state.value}
   inline
   labelText='Text Area Field label'
+  labelRightNode={`${state.value.length}/100`}
   error={state.error}
   id='text-area-field-example-3'
   placeholder='Placeholder...'
