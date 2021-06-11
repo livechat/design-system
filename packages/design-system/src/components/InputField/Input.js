@@ -7,7 +7,7 @@ import getMergedClassNames from '../../utils/getMergedClassNames';
 const cx = classNames.bind(styles);
 
 const Input = React.forwardRef((props, ref) => {
-  const { error, className, ...restProps } = props;
+  const { error, className, width, style, ...restProps } = props;
 
   const mergedClassNames = getMergedClassNames(
     cx({
@@ -17,14 +17,20 @@ const Input = React.forwardRef((props, ref) => {
     className
   );
 
-  return <input ref={ref} className={mergedClassNames} {...restProps} />;
+  const mergedStyle = (style || width) ? {
+    ...(style || {}),
+    width
+  } : void 0;
+
+  return <input ref={ref} className={mergedClassNames} style={mergedStyle} {...restProps} />;
 });
 
 Input.propTypes = {
   error: PropTypes.string,
   className: PropTypes.string,
   type: PropTypes.string,
-  maxLength: PropTypes.number
+  maxLength: PropTypes.number,
+  width: PropTypes.string
 };
 
 Input.defaultProps = {
