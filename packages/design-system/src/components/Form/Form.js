@@ -12,10 +12,12 @@ const Form = ({
   ...restProps
 }) => (
   <form className={classnames(styles.form, className)} {...restProps}>
-    <div className={styles.form__header}>
-      {labelText && <h3 className={styles.form__label}>{labelText}</h3>}
-      {helperText && <p className={styles.form__helper}>{helperText}</p>}
-    </div>
+    {(labelText || helperText) && (
+      <div className={styles.form__header}>
+        {labelText && <h3 className={styles.form__label}>{labelText}</h3>}
+        {helperText && <p className={styles.form__helper}>{helperText}</p>}
+      </div>
+    )}
     {children}
     {formFooter && <div className={styles.form__footer}>{formFooter}</div>}
   </form>

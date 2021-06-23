@@ -1,6 +1,11 @@
 @import '../../scss/variables/colors';
 
 .form {
+  box-sizing: border-box;
+  border: none;
+  margin: 0;
+  padding: 0;
+
   &__header,
   &__footer {
     margin-bottom: 32px;
@@ -9,12 +14,12 @@
   &__label {
     color: $font-primary-color;
     margin: 0;
+    margin-bottom: 16px;
   }
 
   &__helper {
     color: $font-secondary-color;
     margin: 0;
-    margin-top: 16px;
     font-size: 15px;
     line-height: 24px;
   }
