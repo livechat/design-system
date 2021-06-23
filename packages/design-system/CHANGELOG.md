@@ -6,7 +6,7 @@ _Release: 2021-06-23_
 
 ##### Bug Fixes
 
-- not showing not needed tag for header in Form component (#253)
+- removing not needed tag for Form component's header (#253)
 
 ## v0.13.0
 
