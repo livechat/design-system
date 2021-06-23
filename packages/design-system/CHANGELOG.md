@@ -1,5 +1,13 @@
 All notable changes to this project will be documented in this file.
 
+## v0.13.1
+
+_Release: 2021-06-23_
+
+##### Bug Fixes
+
+- not showing not needed tag for header in Form component (#253)
+
 ## v0.13.0
 
 _Release: 2021-06-11_
