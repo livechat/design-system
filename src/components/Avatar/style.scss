@@ -1,0 +1,55 @@
+$base-class: "avatar";
+
+.#{$base-class} {
+  display: block;
+  position: relative;
+
+  &--compact {
+    width: 20px;
+  }
+
+  &--regular {
+    width: 32px;
+  }
+
+  &--large {
+    width: 40px;
+  }
+
+  &--x-large {
+    width: 72px;
+  }
+
+  &--display {
+    width: 96px;
+  }
+
+  &__image {
+    display: block;
+    border-radius: 50%;
+    width: 100%;
+  }
+
+  &__status-indicator {
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    box-shadow: 0 0 0 3px #fff;
+    position: absolute;
+    z-index: 1;
+    top: 7%;
+    right: 7%;
+
+    &--online {
+      background-color: #46b776;
+    }
+
+    &--away {
+      background-color: #cccccc;
+    }
+
+    &--offline {
+      background-color: #f3574c;
+    }
+  }
+}

@@ -40,6 +40,10 @@ module.exports = {
           ]
         },
         {
+          name: 'Avatar',
+          components: ['./src/components/Avatar/Avatar.js']
+        },
+        {
           name: 'Card',
           components: ['./packages/design-system/src/components/Card/Card.js']
         },
