@@ -3,21 +3,21 @@ Tabs make it easy to navigate between views within the same context. They should
 Give tab a clear label that describes its content.
 Tab label should be set in sentence case, and should not exceed three words. Don’t use icons in the tab labels.
 
-```js
-initialState = { selectedTab: "agents" };
+```jsx
 const items = [
   { id: "agents", title: "Agents", count: 1 },
   { id: "groups", title: "Groups", count: 3 }
 ];
+const [selectedTab, setSelectedTab] = React.useState("agents");
 
 <div>
   <TabsWrapper>
     <TabsList>
       {items.map(({ id, count, title }) => (
         <Tab
-          onClick={() => setState({ selectedTab: id })}
+          onClick={() => setSelectedTab(id)}
           key={id}
-          isSelected={state.selectedTab === id}
+          isSelected={selectedTab === id}
           description={count}
         >
           {title}

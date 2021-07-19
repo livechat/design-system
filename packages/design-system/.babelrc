@@ -1,5 +1,5 @@
 {
   "presets": [
-    "./.babelrc.js"
+    "./babel-config.js"
   ]
 }

@@ -54,9 +54,15 @@ module.exports = {
         },
         {
           name: 'Button',
-          components: [
-            './packages/design-system/src/components/Button/Button.js',
-            './packages/design-system/src/components/ButtonGroup/ButtonGroup.js'
+          sections: [
+            {
+              name: 'Button',
+              content: './packages/design-system/src/components/Button/Button.md',
+            },
+            {
+              name: 'ButtonGroup',
+              content: './packages/design-system/src/components/ButtonGroup/ButtonGroup.md'
+            }
           ]
         },
         {
@@ -321,7 +327,19 @@ module.exports = {
       linkHover: '#4379D6',
       border: '#C6C9CC',
       error: '#D64646',
-      sidebarBackground: '#F3F7F9'
+      sidebarBackground: '#F3F7F9',
+      codeBackground: "#272822",
+      codeBase: '#f8f8f2',
+      codeComment: '#8292a2',
+      codePunctuation: '#f8f8f2',
+      codeProperty: '#f92672',
+      codeDeleted: '#f92672',
+      codeString: '##a6e22e',
+      codeInserted: '#a6e22e',
+      codeOperator: '#f8f8f2',
+      codeKeyword: '#66d9ef',
+      codeFunction: '#e6db74',
+      codeVariable: '#f8f8f2',
     },
     fontSize: {
       base: 15,
@@ -335,8 +353,8 @@ module.exports = {
       h6: 14
     }
   },
-  editorConfig: {
-    theme: 'night'
-  },
+  // editorConfig: {
+  //   theme: 'night'
+  // },
   defaultExample: false
 };

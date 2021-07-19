@@ -139,7 +139,14 @@ Button expanded to the full width to fill the parent container (max-width: 320px
 ### Button with icon
 
 ```js
-<div style={{ width: 260, display: 'flex', flexFlow: 'row no-wrap', justifyContent: 'space-between'}}>
+<div
+  style={{
+    width: 260,
+    display: "flex",
+    flexFlow: "row no-wrap",
+    justifyContent: "space-between"
+  }}
+>
   <Button icon={<AlertCircleIcon />} kind="primary" iconPosition="left">
     Icon left
   </Button>
@@ -164,28 +171,41 @@ Button expanded to the full width to fill the parent container (max-width: 320px
 
 ### Loading
 
-```js
-  initialState = { loading: true };
-
-  toggleLoading = () => {
-    setState({
-      loading: !state.loading
-    });
-  }
-
-  <div>
-    <div style={{marginBottom: '10px'}}>
-      <Button kind="primary" onClick={toggleLoading}>Turn {state.loading ? 'off' : 'on'} loading</Button>
-    </div>
-    <div style={{display: 'flex', flexFlow: 'row wrap', justifyContent: 'space-between'}}>
-      <Button loading={state.loading}>Loading Button</Button>
-      <Button loading={state.loading} kind="secondary">Loading Button</Button>
-      <Button loading={state.loading} kind="destructive">Loading Button</Button>
-      <Button loading={state.loading} kind="primary">Loading Button</Button>
-      <Button loading={state.loading} loaderLabel="Processing">Loading Button</Button>
-      <Button loading={state.loading} kind="text" loaderLabel="Loading">Another Text Button</Button>
-    </div>
+```jsx
+import React, { useState } from "react";
+const [isLoading, setIsLoading] = useState(true);
+const handleLoadingToggle = () => setIsLoading(!isLoading);
+<div>
+  <div style={{ marginBottom: "10px" }}>
+    <Button kind="primary" onClick={handleLoadingToggle}>
+      Turn {isLoading ? "off" : "on"} loading
+    </Button>
   </div>
+  <div
+    style={{
+      display: "flex",
+      flexFlow: "row wrap",
+      justifyContent: "space-between"
+    }}
+  >
+    <Button loading={isLoading}>Loading Button</Button>
+    <Button loading={isLoading} kind="secondary">
+      Loading Button
+    </Button>
+    <Button loading={isLoading} kind="destructive">
+      Loading Button
+    </Button>
+    <Button loading={isLoading} kind="primary">
+      Loading Button
+    </Button>
+    <Button loading={isLoading} loaderLabel="Processing">
+      Loading Button
+    </Button>
+    <Button loading={isLoading} kind="text" loaderLabel="Loading">
+      Another Text Button
+    </Button>
+  </div>
+</div>;
 ```
 
 ```js noeditor

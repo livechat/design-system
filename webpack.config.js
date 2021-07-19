@@ -25,55 +25,24 @@ const config = {
         exclude: /node_modules\/(?!(ansi-styles|strip-ansi|ansi-regex|debug|react-dev-utils|chalk|buble)\/).*/
       },
       {
-        test: /\.css$/,
+        test: /\.(css|scss)$/,
         use: [
           require.resolve('style-loader'),
           {
             loader: require.resolve('css-loader'),
             options: {
               importLoaders: 1,
-              modules: true,
-              localIdentName: 'lc-[local]'
+              modules: {
+                localIdentName: 'lc-[local]' 
+              }
             }
           },
-          {
-            loader: require.resolve('postcss-loader'),
-            options: {
-              ident: 'postcss',
-              plugins: () => [
-                postCssFlexbugsfixes,
-                autoprefixer({
-                  browsers: [
-                    '>1%',
-                    'last 4 versions',
-                    'Firefox ESR',
-                    'not ie < 9'
-                  ],
-                  flexbox: 'no-2009'
-                })
-              ]
-            }
-          }
+          require.resolve('sass-loader')
         ]
       },
       {
         test: /\.svg$/,
         use: ['@svgr/webpack']
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          require.resolve('style-loader'),
-          {
-            loader: require.resolve('css-loader'),
-            options: {
-              importLoaders: 1,
-              modules: true,
-              localIdentName: 'lc-[local]'
-            }
-          },
-          require.resolve('sass-loader')
-        ]
       }
     ]
   },
@@ -90,7 +59,7 @@ const config = {
   },
   resolve: {
     alias: lernaAliases(),
-    extensions: ['.ts', '.tsx', '.d.ts', '.js', '.json']
+    extensions: ['.ts', '.tsx', '.js', '.json']
   }
 };
 

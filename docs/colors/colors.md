@@ -1,19 +1,28 @@
 ## Color palette
 
 ```js noeditor
-<Banner size="large" type="warning">Please note that those colors are not used yet in the components our design system. Colors support will be added gradually as we add themes to the library.</Banner>
+<Banner size="large" type="warning">
+  Please note that those colors are not used yet in the components our design
+  system. Colors support will be added gradually as we add themes to the
+  library.
+</Banner>
 ```
 
 ```jsx noeditor
 const items = [
-  {key: "0", props: {title: 'Any color', value: Colors.gray900, ignoreContrast: true}}
+  {
+    key: "0",
+    props: { title: "Any color", value: Colors.gray900, ignoreContrast: true }
+  }
 ];
 
 Object.keys(Colors).forEach((key, i) => {
-  items.push({key: String(i + 1), props: { title: key, value: Colors[key] }})
-})
+  items.push({ key: String(i + 1), props: { title: key, value: Colors[key] } });
+});
 
-const handleItemSelect = itemIndex => setState({selectedItemIndex: itemIndex});
+const [selectedColorKey, setSelectedColorKey] = React.useState("0");
+
+const handleItemSelect = itemKey => setSelectedColorKey(itemKey);
 
 const getItemBody = props => {
   if (!props) {
@@ -26,37 +35,48 @@ const getSelectedItemBody = props => {
   return <div id={props.value}>{props.title}</div>;
 };
 
-initialState = {
-  selectedItemIndex: "0"
-};
+const selectedColor = items[selectedColorKey];
+const palettes = [
+  "gray",
+  "blue",
+  "green",
+  "red",
+  "orange",
+  "yellow",
+  "purple",
+  "white"
+];
 
 <div>
-  <p>Check if the color meets WCAG 2.1 contrast criteria (minimal required is 4.5:1). Select second color (ie. font color):</p>
-  <div style={{ margin: '0 0 30px', width: '340px' }}>
+  <p>
+    Check if the color meets WCAG 2.1 contrast criteria (minimal required is
+    4.5:1). Select second color (ie. font color):
+  </p>
+  <div style={{ margin: "0 0 30px", width: "340px" }}>
     <Select
-      id='second-color-picker'
+      id="second-color-picker"
       items={items}
-      searchProperty='title'
+      searchProperty="title"
       onItemSelect={handleItemSelect}
       getItemBody={getItemBody}
       search
       required
-      placeholder='Select second color'
+      placeholder="Select second color"
       getSelectedItemBody={getSelectedItemBody}
-      selected={state.selectedItemIndex}
-      searchPlaceholder='Search...'
+      selected={selectedColorKey}
+      searchPlaceholder="Search..."
     />
   </div>
 
-  <ColorPalette paletteName="gray" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
-  <ColorPalette paletteName="blue" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
-  <ColorPalette paletteName="green" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
-  <ColorPalette paletteName="red" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
-  <ColorPalette paletteName="orange" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
-  <ColorPalette paletteName="yellow" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
-  <ColorPalette paletteName="purple" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
-  <ColorPalette paletteName="white" fontColor={items[state.selectedItemIndex].props.value} ignoreContrast={items[state.selectedItemIndex].props.ignoreContrast} />
-</div>
+  {palettes.map(palette => (
+    <ColorPalette
+      key={palette}
+      paletteName={palette}
+      fontColor={selectedColor.props.value}
+      ignoreContrast={selectedColor.props.ignoreContrast}
+    />
+  ))}
+</div>;
 ```
 
 ## Developer instructions
@@ -68,12 +88,14 @@ command using [npm](https://www.npmjs.com/):
 npm install @livechat/design-system-colors --save
 ```
 
-
 There are three ways to use LiveChat design colors palette:
+
 - use JavaScript implementation of colors
+
 ```js static
-import colors from '@livechat/design-system-colors'
+import colors from "@livechat/design-system-colors";
 ```
+
 - import `design-system-colos.css` file and style UI elements with classes
 - import `css/variables.css` (css classes) or `css/styles.css` (css vars) to style UI elements
 - import `scss/variables.scss` or `scss/styles.scss` if you are using `scss` in your project
@@ -83,14 +105,15 @@ import colors from '@livechat/design-system-colors'
 In your JavaScript files just import the library:
 
 ```js static
-import colors from '@livechat/design-system-colors'
+import colors from "@livechat/design-system-colors";
 // or just selected colors
-import { blue900 } from '@livechat/design-system-colors'
+import { blue900 } from "@livechat/design-system-colors";
 ```
 
 The library also provides JSON file with colors definitions
+
 ```js static
-import colors from '@livechat/design-system-colors/dist/design-system-colors.json'
+import colors from "@livechat/design-system-colors/dist/design-system-colors.json";
 ```
 
 ### Scss
@@ -98,7 +121,7 @@ import colors from '@livechat/design-system-colors/dist/design-system-colors.jso
 You can import the variables file directly in your scss:
 
 ```scss
-@import '~@livechat/design-system-colors/dist/scss/variables';
+@import "~@livechat/design-system-colors/dist/scss/variables";
 ```
 
 These color variables follow the naming convention: `$lcds-<color><tone>`.
@@ -115,7 +138,7 @@ There is also a file named `styles.scss`. This is a group of classes following t
 Almost idendital to Scss files you can import css variables directyly in your css file:
 
 ```scss
-@import '~@livechat/design-system-colors/dist/css/variables';
+@import "~@livechat/design-system-colors/dist/css/variables";
 ```
 
 These color variables follow the naming convention: `--lcds-<color>-<tone>`.

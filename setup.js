@@ -2,6 +2,7 @@ import * as DateFns from 'date-fns';
 import AlertCircleIcon from 'react-material-icon-svg/dist/AlertCircleIcon';
 import * as Components from '@livechat/design-system'; // eslint-disable-line
 import Colors from '@livechat/design-system-colors'; // eslint-disable-line
+import Themes from '@livechat/design-system-themes'; // eslint-disable-line
 import ComponentHtmlMarkup from './docs/ComponentHtmlMarkup';
 import { SingleColor } from './docs/colors/single-color';
 import { ColorPalette } from './docs/colors/color-palette';
@@ -15,6 +16,7 @@ import {
 
 // components
 global.Button = Components.Button;
+global.ButtonGroup = Components.ButtonGroup;
 global.Card = Components.Card;
 global.Tab = Components.Tab;
 global.TabsWrapper = Components.TabsWrapper;
@@ -78,6 +80,8 @@ global.FileUploadProgress = Components.FileUploadProgress;
 
 global.SearchBar = Components.SearchBar;
 
+global.Banner = Components.Banner;
+
 global.Icon = Components.Icon;
 global.IconSizeName = IconSizeName;
 global.IconTypeName = IconTypeName;
@@ -96,3 +100,4 @@ global.Colors = Colors;
 
 // docs themes
 global.ThemeTokens = ThemeTokens;
+global.Themes = Themes;

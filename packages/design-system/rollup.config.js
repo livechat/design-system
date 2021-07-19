@@ -1,6 +1,6 @@
 import nodeResolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
 import replace from 'rollup-plugin-replace';
 import postcss from 'rollup-plugin-postcss';
 import uglify from 'rollup-plugin-uglify';
@@ -22,6 +22,7 @@ const makeExternalPredicate = externalArr => {
   if (externalArr.length === 0) {
     return () => false;
   }
+
   const pattern = new RegExp(`^(${externalArr.join('|')})($|/)`);
   return id => pattern.test(id);
 };
@@ -68,8 +69,8 @@ const commonPlugins = [
   }),
   babel({
     exclude: 'node_modules/**',
+    babelHelpers: "runtime",
     plugins: [
-      'external-helpers',
       ['transform-react-remove-prop-types', { mode: 'unsafe-wrap' }]
     ]
   }),
