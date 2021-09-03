@@ -17,20 +17,31 @@ const Input = React.forwardRef((props, ref) => {
     className
   );
 
-  const mergedStyle = (style || width) ? {
-    width,
-    ...(style || {})
-  } : void 0;
+  const mergedStyle =
+    style || width
+      ? {
+          width,
+          ...(style || {})
+        }
+      : void 0;
 
-  return <input ref={ref} className={mergedClassNames} style={mergedStyle} {...restProps} />;
+  return (
+    <input
+      ref={ref}
+      className={mergedClassNames}
+      style={mergedStyle}
+      {...restProps}
+    />
+  );
 });
 
 Input.propTypes = {
   error: PropTypes.string,
   className: PropTypes.string,
-  type: PropTypes.string,
   maxLength: PropTypes.number,
-  width: PropTypes.string
+  width: PropTypes.string,
+  style: PropTypes.string,
+  type: PropTypes.oneOf(['text', 'email'])
 };
 
 Input.defaultProps = {
