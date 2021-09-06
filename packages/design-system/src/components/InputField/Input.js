@@ -38,10 +38,10 @@ const Input = React.forwardRef((props, ref) => {
 Input.propTypes = {
   error: PropTypes.string,
   className: PropTypes.string,
+  type: PropTypes.string,
   maxLength: PropTypes.number,
   width: PropTypes.string,
-  style: PropTypes.string,
-  type: PropTypes.oneOf(['text', 'email'])
+  style: PropTypes.string
 };
 
 Input.defaultProps = {
