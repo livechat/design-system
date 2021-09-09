@@ -4,6 +4,6 @@ export interface IButtonProps {
   title: string;
 }
 
-export const Button = ({ title = "xyz" }: IButtonProps) => (
+export const Button = ({ title = "ok" }: IButtonProps) => (
   <div className="btn">{title}</div>
 );
