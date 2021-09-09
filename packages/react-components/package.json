@@ -1,6 +1,6 @@
 {
   "name": "@livechat/design-system-react-components",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.0",
   "description": "",
   "author": "",
   "license": "ISC",
@@ -40,6 +40,6 @@
     "typescript": "^4.4.2"
   },
   "dependencies": {
-    "@livechat/design-system-styles": "^1.0.0"
+    "@livechat/design-system-styles": "^1.0.0-alpha.0"
   }
 }
