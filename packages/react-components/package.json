@@ -1,0 +1,47 @@
+{
+  "name": "@livechat/design-system-react-components",
+  "version": "1.0.0-alpha.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "source": "src/index.ts",
+  "exports": "./dist/index.modern.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.module.js",
+  "unpkg": "./dist/index.umd.js",
+  "types": "dist/index.d.ts",
+  "styles": "dist/index.css",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "run-p dev:*",
+    "dev:storybook": "start-storybook -p 6006",
+    "dev:lib": "microbundle watch --jsxImportSource react",
+    "build": "microbundle --jsxImportSource react",
+    "build-storybook": "build-storybook",
+    "chromatic": "dotenv -e ../../.env chromatic -- --exit-zero-on-changes"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@storybook/addon-actions": "^6.3.8",
+    "@storybook/addon-essentials": "^6.3.8",
+    "@storybook/addon-links": "^6.3.8",
+    "@storybook/react": "^6.3.8",
+    "@types/react": "^17.0.20",
+    "babel-loader": "^8.2.2",
+    "chromatic": "^5.9.2",
+    "microbundle": "^0.13.3",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typescript": "^4.4.2"
+  },
+  "dependencies": {
+    "@livechat/design-system-styles": "^1.0.0-alpha.0",
+    "classnames": "^2.3.1"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "private": "true",
+  "name": "@livechat/ds-workspace",
+  "version": "1.0.0",
+  "description": "Initial Readme. Please change me later.",
+  "scripts": {
+    "postinstall": "lerna bootstrap",
+    "clean": "lerna exec rimraf dist",
+    "prestart": "npm run clean",
+    "start": "lerna run dev --parallel",
+    "start:example": "lerna run start --scope example-react --stream",
+    "prebuild": "npm run clean",
+    "build": "lerna run build --ignore example-*",
+    "chromatic": "lerna run chromatic --stream"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/livechat/design-system.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/livechat/design-system/issues"
+  },
+  "homepage": "https://github.com/livechat/design-system#readme",
+  "devDependencies": {
+    "dotenv-cli": "^4.0.0",
+    "lerna": "^4.0.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2"
+  }
+}
