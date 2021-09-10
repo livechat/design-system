@@ -1,5 +1,9 @@
 @use './components/badge';
 
+@use './themes/legacy';
+@use './themes/light';
+@use './themes/dark';
+
 *[class^="lc-"] {
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;

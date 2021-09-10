@@ -15,11 +15,11 @@
     margin-left: 4px;
   }
 
-  color: #fff;
-  background-color: #d64646;
+  color: var(--content-invert-default);
+  background-color: var(--color-negative-default);
 }
 
 .lc-badge--secondary {
-  color: #424d57;
-  background-color: #cbd4de;
+  color: var(--surface-invert-default);
+  background-color: var(--surface-feedback-positive);
 }
