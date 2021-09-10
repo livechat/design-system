@@ -18,9 +18,8 @@
     "dev": "run-p dev:*",
     "dev:storybook": "start-storybook -p 6006",
     "dev:lib": "microbundle watch --jsxImportSource react",
-    "build": "run-p build:*",
-    "build:lib": "microbundle --jsxImportSource react",
-    "build:storybook": "build-storybook",
+    "build": "microbundle --jsxImportSource react",
+    "build-storybook": "build-storybook",
     "chromatic": "dotenv -e ../../.env chromatic -- --exit-zero-on-changes"
   },
   "peerDependencies": {
