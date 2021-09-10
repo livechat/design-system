@@ -11,6 +11,7 @@
     "start:example": "lerna run start --scope example-react --stream",
     "prebuild": "npm run clean",
     "build": "lerna run build --ignore example-*",
+    "build:storybook": "lerna run build-storybook --scope react-components",
     "chromatic": "lerna run chromatic --stream"
   },
   "repository": {
