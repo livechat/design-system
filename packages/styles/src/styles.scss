@@ -1,1 +1,14 @@
-@use './components/button';
+@use './components/badge';
+
+*[class^="lc-"] {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, Segoe UI,
+    Helvetica Neue, Arial, sans-serif;
+}
+
+*[class^="lc-"]::before,
+*[class^="lc-"]::after {
+  box-sizing: inherit;
+}

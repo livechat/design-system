@@ -1,0 +1,25 @@
+.lc-badge {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 3px;
+  height: 18px;
+  min-width: 18px;
+
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 18px;
+  text-align: center;
+  border-radius: 18px;
+
+  & + & {
+    margin-left: 4px;
+  }
+
+  color: #fff;
+  background-color: #d64646;
+}
+
+.lc-badge--secondary {
+  color: #424d57;
+  background-color: #cbd4de;
+}
