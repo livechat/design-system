@@ -1,0 +1,53 @@
+import * as React from "react";
+import cx from "classnames";
+import CloseIcon from "react-material-icon-svg/dist/CloseIcon";
+
+import { BannerIcon } from "./BannerIcon";
+
+const baseClass = "lc-banner"
+
+export enum BannerSize {
+  Small = "small",
+  Medium = "medium",
+  Large = "large"
+}
+
+export enum BannerType {
+  Info = "info",
+  Warning = "warning",
+  Success = "success",
+  Error = "error"
+}
+
+export interface IBannerProps {
+  children: React.ReactElement;
+  size?: BannerSize;
+  type: BannerType;
+  onClose?: () => void;
+}
+
+export const Banner = ({
+  children,
+  size = BannerSize.Small,
+  type = BannerType.Info,
+  onClose
+}: IBannerProps) => {
+  const className = cx(baseClass, {
+      [`${baseClass}--${type}`]: type,
+      [`${baseClass}--${size}`]: size
+    });
+
+  return (
+    <div className={className}>
+      <div className={`${baseClass}__content`}>
+        <BannerIcon type={type} />
+        <div className={`${baseClass}__content-text`}>{children}</div>
+      </div>
+      {onClose && (
+        <button type="button" className={`${baseClass}__close-icon`} onClick={onClose}>
+          <CloseIcon fill="#424d57"/>
+        </button>)
+      }
+    </div>
+  );
+}
