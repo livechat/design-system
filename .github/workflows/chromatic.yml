@@ -1,7 +1,7 @@
 # .github/workflows/chromatic.yml
 
 # Workflow name
-name: "Chromatic"
+name: 'Chromatic'
 
 # Event for the workflow
 on: push
@@ -31,9 +31,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-        # 👇 TODO: Check if build styles wouldn't be enough
       - name: Build packages
         run: npm run build
+
+      - name: Run linters and tests
+        run: npm run check
 
         # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
