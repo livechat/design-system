@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     # Job steps
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
 
       - name: Cache node modules
         uses: actions/cache@v2
@@ -33,9 +33,6 @@ jobs:
 
       - name: Build packages
         run: npm run build
-
-      - name: Run linters and tests
-        run: npm run check
 
         # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
