@@ -7,8 +7,6 @@ export interface IBadgeProps {
   className?: string;
 }
 
-const x = 1;
-
 export const Badge: React.FC<IBadgeProps> = ({
   children,
   className: extraClassName = '',
