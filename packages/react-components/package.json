@@ -17,8 +17,8 @@
   "scripts": {
     "dev": "run-p dev:*",
     "dev:storybook": "start-storybook -p 6006",
-    "dev:lib": "microbundle watch --jsxImportSource react",
-    "build": "microbundle --jsxImportSource react",
+    "dev:lib": "microbundle watch --jsxImportSource react --jsx 'React.createElement'",
+    "build": "microbundle --jsxImportSource react --jsx 'React.createElement'",
     "build-storybook": "build-storybook",
     "chromatic": "dotenv -e ../../.env chromatic -- --exit-zero-on-changes",
     "lint": "eslint src --ext js,jsx,ts,tsx",
