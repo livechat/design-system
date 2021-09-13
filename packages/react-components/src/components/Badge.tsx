@@ -2,8 +2,7 @@ import * as React from 'react';
 import cx from 'classnames';
 
 export interface IBadgeProps {
-  children: React.ReactElement;
-  secondary: boolean;
+  secondary?: boolean;
   className?: string;
 }
 

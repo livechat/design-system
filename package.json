@@ -14,6 +14,8 @@
     "chromatic": "lerna run chromatic --stream",
     "prepare": "husky install",
     "lint": "lerna run lint",
+    "test": "lerna run test --ignore example-react",
+    "test:watch": "lerna run test:watch --parallel",
     "prettier": "prettier --write packages"
   },
   "repository": {
