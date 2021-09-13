@@ -1,3 +1,3 @@
-import "../../styles/dist/styles.css";
+import '../../styles/dist/styles.css';
 
-export { Badge } from "./components/Badge";
+export { Badge } from './components/Badge';

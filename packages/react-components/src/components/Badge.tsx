@@ -1,5 +1,5 @@
-import * as React from "react";
-import cx from "classnames";
+import * as React from 'react';
+import cx from 'classnames';
 
 export interface IBadgeProps {
   children: React.ReactElement;
@@ -9,11 +9,11 @@ export interface IBadgeProps {
 
 export const Badge: React.FC<IBadgeProps> = ({
   children,
-  className: extraClassName = "",
+  className: extraClassName = '',
   secondary = false,
 }) => {
-  const className = cx("lc-badge", {
-    "lc-badge--secondary": secondary,
+  const className = cx('lc-badge', {
+    'lc-badge--secondary': secondary,
     [extraClassName]: !!extraClassName,
   });
 
