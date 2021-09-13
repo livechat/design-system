@@ -21,7 +21,7 @@
     "build": "microbundle --jsxImportSource react",
     "build-storybook": "build-storybook",
     "chromatic": "dotenv -e ../../.env chromatic -- --exit-zero-on-changes",
-    "lint": "eslint src --ext js,jsx,ts,tsx --fix",
+    "lint": "eslint src --ext js,jsx,ts,tsx",
     "test": "jest --ci",
     "test:watch": "jest --watch"
   },
