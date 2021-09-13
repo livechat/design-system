@@ -41,10 +41,5 @@
     "stylelint": "^13.13.1",
     "stylelint-config-sass-guidelines": "^8.0.0",
     "stylelint-config-standard": "^22.0.0"
-  },
-  "lint-staged": {
-    "*.{js?x,ts?x}": "eslint --cache --fix",
-    "*.?scss": "stylelint --fix",
-    "*.{js?x,ts?x,?scss,md}": "prettier --write"
   }
 }
