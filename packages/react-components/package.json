@@ -20,7 +20,8 @@
     "dev:lib": "microbundle watch --jsxImportSource react",
     "build": "microbundle --jsxImportSource react",
     "build-storybook": "build-storybook",
-    "chromatic": "dotenv -e ../../.env chromatic -- --exit-zero-on-changes"
+    "chromatic": "dotenv -e ../../.env chromatic -- --exit-zero-on-changes",
+    "lint": "eslint src --ext js,jsx,ts,tsx --fix"
   },
   "peerDependencies": {
     "react": "^17.0.2",

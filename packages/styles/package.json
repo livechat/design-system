@@ -8,7 +8,8 @@
   ],
   "scripts": {
     "dev": "npm run build -- --watch",
-    "build": "sass src:dist"
+    "build": "sass src:dist",
+    "lint": "stylelint src/**/*.scss --fix"
   },
   "author": "",
   "license": "ISC",

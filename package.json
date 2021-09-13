@@ -11,7 +11,9 @@
     "start:example": "lerna run start --scope example-react --stream",
     "prebuild": "npm run clean",
     "build": "lerna run build --ignore example-*",
-    "chromatic": "lerna run chromatic --stream"
+    "chromatic": "lerna run chromatic --stream",
+    "prepare": "husky install",
+    "lint": "lerna run lint"
   },
   "repository": {
     "type": "git",
@@ -24,9 +26,24 @@
   },
   "homepage": "https://github.com/livechat/design-system#readme",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.31.0",
+    "@typescript-eslint/parser": "^4.31.0",
     "dotenv-cli": "^4.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^7.0.2",
     "lerna": "^4.0.0",
+    "lint-staged": "^11.1.2",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^3.0.2"
+    "prettier": "2.4.0",
+    "rimraf": "^3.0.2",
+    "stylelint": "^13.13.1",
+    "stylelint-config-sass-guidelines": "^8.0.0",
+    "stylelint-config-standard": "^22.0.0"
+  },
+  "lint-staged": {
+    "*.js": "lerna run eslint --cache --fix",
+    "*.?scss": "lerna run stylelint --fix",
+    "*.{js?x,ts?x,?scss,md}": "prettier --write"
   }
 }
