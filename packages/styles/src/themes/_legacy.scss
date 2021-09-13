@@ -1,7 +1,7 @@
 :root,
 .lc-legacy-theme {
-  --background: #ffffff;
-  --surface-basic-default: #ffffff;
+  --background: #fff;
+  --surface-basic-default: #fff;
   --surface-basic-subtle: #f1f6f8;
   --surface-basic-hover: #e0e8eb;
   --surface-basic-active: #dae4eb;
@@ -21,8 +21,8 @@
   --content-default: #424d57;
   --content-subtle: #677179;
   --content-disabled: #a0a6ab;
-  --content-white-locked: #ffffff;
-  --content-invert-default: #ffffff;
+  --content-white-locked: #fff;
+  --content-invert-default: #fff;
   --content-invert-subtle: rgba(255, 255, 255, 0.7);
   --content-invert-disabled: rgba(255, 255, 255, 0.5);
   --border-default: #bdc7d1;
@@ -31,7 +31,7 @@
   --border-disabled: #dee3e8;
   --border-invert-default: rgba(255, 255, 255, 0.7);
   --border-invert-subtle: rgba(255, 255, 255, 0.3);
-  --border-invert-hover: #ffffff;
+  --border-invert-hover: #fff;
   --border-invert-disabled: rgba(255, 255, 255, 0.5);
   --color-action-active: #295fbc;
   --color-action-hover: #4379d6;

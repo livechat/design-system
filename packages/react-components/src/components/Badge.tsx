@@ -7,11 +7,11 @@ export interface IBadgeProps {
   className?: string;
 }
 
-export const Badge = ({
+export const Badge: React.FC<IBadgeProps> = ({
   children,
   className: extraClassName = "",
   secondary = false,
-}: IBadgeProps) => {
+}) => {
   const className = cx("lc-badge", {
     "lc-badge--secondary": secondary,
     [extraClassName]: !!extraClassName,
