@@ -1,6 +1,6 @@
 .lc-light-theme {
-  --background: #ffffff;
-  --surface-basic-default: #ffffff;
+  --background: #fff;
+  --surface-basic-default: #fff;
   --surface-basic-subtle: #f6f6f7;
   --surface-basic-hover: #e2e2e4;
   --surface-basic-active: #c9c9cd;
@@ -20,8 +20,8 @@
   --content-default: #1b1b20;
   --content-subtle: #4e4e58;
   --content-disabled: #8d8d95;
-  --content-white-locked: #ffffff;
-  --content-invert-default: #ffffff;
+  --content-white-locked: #fff;
+  --content-invert-default: #fff;
   --content-invert-subtle: rgba(255, 255, 255, 0.7);
   --content-invert-disabled: rgba(255, 255, 255, 0.5);
   --border-default: #c9c9cd;
@@ -30,11 +30,11 @@
   --border-disabled: #e2e2e4;
   --border-invert-default: rgba(255, 255, 255, 0.7);
   --border-invert-subtle: rgba(255, 255, 255, 0.3);
-  --border-invert-hover: #ffffff;
+  --border-invert-hover: #fff;
   --border-invert-disabled: rgba(255, 255, 255, 0.5);
   --color-action-active: #003fa4;
   --color-action-hover: #004bc2;
-  --color-action-default: #0066ff;
+  --color-action-default: #06f;
   --color-action-disabled: #9dceff;
   --color-negative-active: #930002;
   --color-negative-hover: #ae0003;

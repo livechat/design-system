@@ -1,7 +1,7 @@
 # .github/workflows/chromatic.yml
 
 # Workflow name
-name: "Chromatic"
+name: 'Chromatic'
 
 # Event for the workflow
 on: push
@@ -13,15 +13,19 @@ jobs:
     runs-on: ubuntu-latest
     # Job steps
     steps:
-      - uses: actions/checkout@v1
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0 # 👈 Required to retrieve git history
 
-      - name: Cache node modules
+      - name: Cache node_modules
         uses: actions/cache@v2
         env:
           cache-name: cache-node-modules
         with:
-          # npm cache files are stored in `~/.npm` on Linux/macOS
-          path: ~/.npm
+          path: |
+            node_modules
+            */*/node_modules
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
@@ -29,9 +33,8 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-        # 👇 TODO: Check if build styles wouldn't be enough
       - name: Build packages
         run: npm run build
 
