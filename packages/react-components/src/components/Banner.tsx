@@ -21,7 +21,6 @@ export enum BannerType {
 }
 
 export interface IBannerProps {
-  children: React.ReactElement;
   className?: string;
   size?: BannerSize;
   type: BannerType;

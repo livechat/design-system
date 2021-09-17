@@ -26,7 +26,6 @@ export enum PromoSize {
 export interface IPromoProps {
   className?: string;
   buttonText?: string;
-  children: React.ReactElement;
   header: string;
   img?: string;
   light?: boolean;
@@ -51,6 +50,7 @@ export const Promo: React.FC<IPromoProps> = ({
   onLinkClick,
 }) => {
   const mergedClassNames = cx(
+    baseClass,
     {
       [`${baseClass}--light`]: light,
       [`${baseClass}--${size}`]: size,
