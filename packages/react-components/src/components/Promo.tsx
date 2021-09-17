@@ -1,33 +1,43 @@
-import * as React from "react";
-import cx from "classnames";
-import CloseIcon from "react-material-icon-svg/dist/CloseIcon";
+import * as React from 'react';
+import cx from 'classnames';
+// TODO: remove and use the Icon wrapper with correct icon after migration
+import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 
 // TODO: Remove after `Button` component migration
-const Button = ({ children, className = null, onClick }) => <button className={className} onClick={onClick}>{children}</button>
+interface IButtonProps {
+  children: string;
+  className?: string;
+  onClick: () => void;
+}
+const Button = ({ children, className, onClick }: IButtonProps) => (
+  <button className={className} onClick={onClick}>
+    {children}
+  </button>
+);
 
-const baseClass = "lc-promo";
+const baseClass = 'lc-promo';
 
 export enum PromoSize {
-  Small = "small",
-  Medium = "medium",
-  Large = "large"
+  Small = 'small',
+  Medium = 'medium',
+  Large = 'large',
 }
 
 export interface IPromoProps {
-  className?: string,
-  buttonText?: string,
-  children: React.ReactElement,
-  header: string,
-  img?: string,
-  light?: boolean,
-  linkText?: string,
-  size?: PromoSize,
-  onButtonClick?: () => void,
-  onClose?: () => void,
-  onLinkClick?: () => void
+  className?: string;
+  buttonText?: string;
+  children: React.ReactElement;
+  header: string;
+  img?: string;
+  light?: boolean;
+  linkText?: string;
+  size?: PromoSize;
+  onButtonClick?: () => void;
+  onClose?: () => void;
+  onLinkClick?: () => void;
 }
 
-export const Promo = ({
+export const Promo: React.FC<IPromoProps> = ({
   className,
   buttonText,
   children,
@@ -38,13 +48,16 @@ export const Promo = ({
   size = PromoSize.Small,
   onButtonClick,
   onClose,
-  onLinkClick
-}: IPromoProps) => {
-  const mergedClassNames = cx({
-    [`${baseClass}--light`]: light,
-    [`${baseClass}--${size}`]: size,
-    [`${baseClass}`]: true
-  }, className)
+  onLinkClick,
+}) => {
+  const mergedClassNames = cx(
+    {
+      [`${baseClass}--light`]: light,
+      [`${baseClass}--${size}`]: size,
+      [`${baseClass}`]: true,
+    },
+    className
+  );
 
   const shouldRenderLargeFooter = (buttonText || linkText) && size === 'large';
   const shouldRenderSmallOrMediumFooter =
@@ -65,7 +78,7 @@ export const Promo = ({
         // </Button>
 
         <Button
-          onClick={onButtonClick}
+          onClick={() => onButtonClick}
           className={`${baseClass}__button-text`}
         >
           {buttonText}
@@ -78,11 +91,7 @@ export const Promo = ({
         //   {linkText}
         // </Button>
 
-        <Button
-          onClick={onLinkClick}
-        >
-          {linkText}
-        </Button>
+        <Button onClick={() => onLinkClick}>{linkText}</Button>
       )}
     </div>
   );
@@ -103,6 +112,7 @@ export const Promo = ({
         className={`${baseClass}__close-icon`}
         onClick={onClose}
       >
+        {/* TODO: remove and use the Icon wrapper with correct icon after migration */}
         <CloseIcon fill="#424d57" />
       </button>
     </div>
