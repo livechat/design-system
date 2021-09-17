@@ -1,14 +1,18 @@
-import React from "react";
-import { ComponentMeta } from "@storybook/react";
+import * as React from 'react';
+import { ComponentMeta } from '@storybook/react';
 
-import { Badge as BadgeComponent } from "../components/Badge";
+import { Badge as BadgeComponent, IBadgeProps } from '../components/Badge';
 
 export default {
-  title: "Components/Badge",
+  title: 'Components/Badge',
   component: BadgeComponent,
 } as ComponentMeta<typeof BadgeComponent>;
 
-export const Badge = (args) => (
+interface IBadgeArgs extends IBadgeProps {
+  label: string;
+}
+
+export const Badge = (args: IBadgeArgs): React.ReactElement => (
   <div>
     <BadgeComponent {...args} /> {args.label}
   </div>
@@ -16,6 +20,6 @@ export const Badge = (args) => (
 
 Badge.args = {
   secondary: false,
-  children: "7",
-  label: "Tickets",
+  children: '7',
+  label: 'Tickets',
 };

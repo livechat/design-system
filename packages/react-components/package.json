@@ -17,10 +17,13 @@
   "scripts": {
     "dev": "run-p dev:*",
     "dev:storybook": "start-storybook -p 6006",
-    "dev:lib": "microbundle watch --jsxImportSource react",
-    "build": "microbundle --jsxImportSource react",
+    "dev:lib": "microbundle watch --jsxImportSource react --jsx 'React.createElement'",
+    "build": "microbundle --jsxImportSource react --jsx 'React.createElement'",
     "build-storybook": "build-storybook",
-    "chromatic": "dotenv -e ../../.env chromatic -- --exit-zero-on-changes"
+    "chromatic": "dotenv -e ../../.env chromatic -- --exit-zero-on-changes",
+    "lint": "eslint src --ext js,jsx,ts,tsx",
+    "test": "jest --ci",
+    "test:watch": "jest --watch"
   },
   "peerDependencies": {
     "react": "^17.0.2",
@@ -28,18 +31,24 @@
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-react": "^7.14.5",
+    "@babel/preset-typescript": "^7.15.0",
     "@storybook/addon-actions": "^6.3.8",
     "@storybook/addon-essentials": "^6.3.8",
     "@storybook/addon-links": "^6.3.8",
     "@storybook/react": "^6.3.8",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.1.0",
+    "@types/jest": "^27.0.1",
     "@types/react": "^17.0.20",
     "babel-loader": "^8.2.2",
+    "babel-jest": "^27.2.0",
     "chromatic": "^5.9.2",
+    "jest": "^27.2.0",
     "microbundle": "^0.13.3",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "typescript": "^4.4.2",
-    "react-material-icon-svg": "1.7.0"
+    "react-dom": "^17.0.2"
   },
   "dependencies": {
     "@livechat/design-system-styles": "^1.0.0-alpha.0",

@@ -1,4 +1,4 @@
-import { Button } from "@livechat/design-system-react-components";
+import { Button } from '@livechat/design-system-react-components';
 
 function App() {
   return (

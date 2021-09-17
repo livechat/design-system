@@ -1,5 +1,8 @@
-node_modules
-dist
+**/node_modules
+**/coverage
+**/dist
+**/build
 .env
 *.log
 storybook-static
+.eslintcache

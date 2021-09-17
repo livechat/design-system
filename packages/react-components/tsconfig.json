@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "types": [],
+    "sourceMap": true,
+    "target": "ESNext",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "declaration": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "jsx": "react"
+  },
+  "include": ["src", "node_modules/@types"]
+}

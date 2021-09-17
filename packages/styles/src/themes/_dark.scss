@@ -20,13 +20,13 @@
   --content-default: rgba(255, 255, 255, 0.8);
   --content-subtle: rgba(255, 255, 255, 0.6);
   --content-disabled: rgba(255, 255, 255, 0.4);
-  --content-white-locked: #ffffff;
+  --content-white-locked: #fff;
   --content-invert-default: #131317;
   --content-invert-subtle: rgba(19, 19, 23, 0.7);
   --content-invert-disabled: rgba(19, 19, 23, 0.3);
   --border-default: rgba(255, 255, 255, 0.8);
   --border-subtle: rgba(255, 255, 255, 0.1);
-  --border-hover: #ffffff;
+  --border-hover: #fff;
   --border-disabled: rgba(255, 255, 255, 0.5);
   --border-invert-default: rgba(19, 19, 23, 0.5);
   --border-invert-subtle: rgba(19, 19, 23, 0.1);
@@ -45,6 +45,6 @@
   --color-positive-default: #00c057;
   --color-positive-hover: #00e066;
   --color-positive-disabled: #4d735e;
-  --color-filter: #0066ff;
+  --color-filter: #06f;
   --color-bot: #50009c;
 }
