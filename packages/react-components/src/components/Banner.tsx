@@ -21,6 +21,7 @@ export enum BannerType {
 
 export interface IBannerProps {
   children: React.ReactElement;
+  className?: string;
   size?: BannerSize;
   type: BannerType;
   onClose?: () => void;
@@ -28,17 +29,18 @@ export interface IBannerProps {
 
 export const Banner = ({
   children,
+  className,
   size = BannerSize.Small,
   type = BannerType.Info,
   onClose
 }: IBannerProps) => {
-  const className = cx(baseClass, {
-      [`${baseClass}--${type}`]: type,
-      [`${baseClass}--${size}`]: size
-    });
+  const mergedClassNames = cx(baseClass, {
+    [`${baseClass}--${type}`]: type,
+    [`${baseClass}--${size}`]: size
+  }, className);
 
   return (
-    <div className={className}>
+    <div className={mergedClassNames}>
       <div className={`${baseClass}__content`}>
         <BannerIcon type={type} />
         <div className={`${baseClass}__content-text`}>{children}</div>
