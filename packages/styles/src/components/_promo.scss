@@ -93,7 +93,7 @@
     }
 
     .lc-promo__footer {
-      margin: 0 56px 0 56px;
+      margin: 0 56px;
       display: inline-flex;
       align-items: center;
       flex-shrink: 0;
@@ -102,7 +102,7 @@
 
   &__close-icon {
     padding: 0;
-    border: none;
+    border: 0;
     background-color: transparent;
     box-shadow: none;
     position: absolute;
