@@ -32,7 +32,6 @@ export interface IPromoProps {
   light?: boolean;
   linkText?: string;
   size?: PromoSize;
-  showCloseButton?: boolean;
   onButtonClick?: () => void;
   onClose?: () => void;
   onLinkClick?: () => void;
@@ -47,7 +46,6 @@ export const Promo: React.FC<IPromoProps> = ({
   light,
   linkText,
   size = PromoSize.Small,
-  showCloseButton = false,
   onButtonClick,
   onClose,
   onLinkClick,
@@ -114,7 +112,7 @@ export const Promo: React.FC<IPromoProps> = ({
         </div>
         {shouldRenderLargeFooter && footer}
       </div>
-      {showCloseButton && (
+      {onClose && (
         <button
           data-testid="close"
           type="button"

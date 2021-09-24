@@ -18,6 +18,7 @@ export default {
       want to promote.
     `,
   },
+  argTypes: { onClose: { defaultValue: null } },
 } as ComponentMeta<typeof PromoComponent>;
 
 type IPromoArgs = IPromoProps;
@@ -37,7 +38,7 @@ Promo.args = {
   header: 'This example headline has 40 characters',
 };
 
-export const PromoWithButton = (args: IPromoArgs): React.ReactElement => (
+export const PromoWithButtons = (args: IPromoArgs): React.ReactElement => (
   <div>
     <PromoComponent {...args}>
       <>
@@ -48,30 +49,15 @@ export const PromoWithButton = (args: IPromoArgs): React.ReactElement => (
   </div>
 );
 
-PromoWithButton.args = {
+PromoWithButtons.args = {
   header: 'This example headline has 40 characters',
   buttonText: 'Example',
+  linkText: 'Example',
   onButtonClick: () => {
     alert('onButtonClick click');
   },
-};
-
-export const PromoWithLink = (args: IPromoArgs): React.ReactElement => (
-  <div>
-    <PromoComponent {...args}>
-      <>
-        A description with a <b>maximum of 100 characters</b>. That usually
-        means only one or two sentences.
-      </>
-    </PromoComponent>
-  </div>
-);
-
-PromoWithLink.args = {
-  header: 'This example headline has 40 characters',
-  linkText: 'Example',
-  onLinknClick: () => {
-    alert('onLinknClick click');
+  onLinkClick: () => {
+    alert('onLinkClick click');
   },
 };
 
@@ -120,7 +106,6 @@ export const PromoWithClose = (args: IPromoArgs): React.ReactElement => (
 
 PromoWithClose.args = {
   header: 'This example headline has 40 characters',
-  showCloseButton: true,
   onClose: () => {
     alert('onClose click');
   },
@@ -143,7 +128,6 @@ PromoSmall.args = {
   size: PromoSize.Small,
   buttonText: 'Example button',
   linkText: 'Example link',
-  showCloseButton: true,
   onClose: () => {
     alert('onClose click');
   },
@@ -172,7 +156,6 @@ PromoMedium.args = {
   size: PromoSize.Medium,
   buttonText: 'Example button',
   linkText: 'Example link',
-  showCloseButton: true,
   onClose: () => {
     alert('onClose click');
   },
@@ -201,7 +184,6 @@ PromoLarge.args = {
   size: PromoSize.Large,
   buttonText: 'Example button',
   linkText: 'Example link',
-  showCloseButton: true,
   onClose: () => {
     alert('onClose click');
   },

@@ -1,6 +1,5 @@
-import { fireEvent } from '@testing-library/dom';
 import * as React from 'react';
-import { render } from '../test-utils';
+import { render, fireEvent } from '../test-utils';
 import { Promo, PromoSize } from './Promo';
 
 const customClass = 'my-css-class';
@@ -61,16 +60,6 @@ describe('<Promo> component', () => {
     expect(container.firstChild).toHaveClass('lc-promo--light');
   });
 
-  it('should display with closeButton', () => {
-    const { getByTestId } = render(
-      <Promo header={promoHeader} showCloseButton={true}>
-        {promoContent}
-      </Promo>
-    );
-
-    expect(getByTestId('close')).toBeTruthy();
-  });
-
   it('should display with small size by default', () => {
     const { container } = render(
       <Promo header={promoHeader}>{promoContent}</Promo>
@@ -101,11 +90,7 @@ describe('<Promo> component', () => {
 
   it('should call onClose function', () => {
     const { getByTestId } = render(
-      <Promo
-        header={promoHeader}
-        showCloseButton={true}
-        onClose={mockedFunction}
-      >
+      <Promo header={promoHeader} onClose={mockedFunction}>
         {promoContent}
       </Promo>
     );
