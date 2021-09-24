@@ -10,6 +10,38 @@ const cx = cssClassNames.bind(styles);
 const baseClass = 'dropdown__list-item';
 
 class DropdownListItem extends React.PureComponent {
+  itemRef = React.createRef()
+  focusTimeout = null
+
+  componentDidMount() {
+    if (this.props.isFocused && this.itemRef.current) {
+      // dropdown needs to be positioned correctly at first so we need to postpone the focus
+      this.focusTimeout = setTimeout(() => {
+        this.itemRef.current.focus();
+      }, 0)
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.isFocused && this.props.isFocused && this.itemRef.current) {
+      this.itemRef.current.focus();
+
+      return;
+    }
+
+    if (prevProps.isFocused && !this.props.isFocused) {
+      this.itemRef.current.blur();
+
+      return;
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.focusTimeout) {
+      clearTimeout(this.focusTimeout)
+    }
+  }
+
   handleClick = event => {
     if (!this.props.isDisabled && this.props.onItemSelect) {
       event.nativeEvent.stopImmediatePropagation();
@@ -34,6 +66,15 @@ class DropdownListItem extends React.PureComponent {
     if (this.props.onMouseDown) {
       this.props.onMouseDown(event);
     }
+    return false;
+  };
+
+  handleFocus = event => {
+    event.preventDefault();
+    if (this.props.onFocus) {
+      this.props.onFocus(event);
+    }
+
     return false;
   };
 
@@ -66,10 +107,13 @@ class DropdownListItem extends React.PureComponent {
     return (
       <li
         {...restProps}
+        ref={this.itemRef}
+        tabIndex={0}
         className={mergedClassNames}
         onClick={this.handleClick}
         onMouseOver={this.handleMouseOver}
         onMouseDown={this.handleMouseDown}
+        onFocus={this.handleFocus}
       >
         <div className={styles[`${baseClass}__content`]}>
           {icon && <div className={styles[`${baseClass}__icon`]}>{icon}</div>}

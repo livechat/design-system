@@ -230,12 +230,13 @@ class DropdownList extends React.PureComponent {
         {...restProps}
       >
         {items.map(
-          ({ content, itemId, props, onItemFocus, ...itemRestProps }) => {
+          ({ content, itemId, props, onItemFocus, onFocus, ...itemRestProps }) => {
             const itemProps = {
               ...itemRestProps,
               itemId,
               isFocused: this.state.focusedElement === itemId,
-              onMouseOverItem: this.getFocusedItemCallback(itemId)
+              onMouseOverItem: this.getFocusedItemCallback(itemId),
+              onFocus: this.getFocusedItemCallback(itemId)
             };
 
             if (this.props.getItemBody) {
@@ -243,6 +244,7 @@ class DropdownList extends React.PureComponent {
                 ...itemProps,
                 props: props || {},
                 onItemFocus,
+                onFocus,
                 content
               });
             }
