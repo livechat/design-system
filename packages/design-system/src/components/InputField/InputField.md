@@ -121,6 +121,7 @@ initialState = { value: "Input Field text", error: "Validation message here" };
   />
 </ComponentHtmlMarkup>
 ```
+Although the component’s default value for type is set to ```text```, the component inherits the value after a native HTML element, hence other types like ```number``` or ```password``` are also available.
 
 <h3>Best practices</h3>
 <ul>
