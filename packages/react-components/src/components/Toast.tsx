@@ -23,21 +23,19 @@ interface IToastActionProps {
 }
 
 export interface IToastProps {
-  action: IToastActionProps;
+  action?: IToastActionProps;
   className?: string;
-  id: string;
-  removable: boolean;
-  variant: Variants;
-  onClose: () => void;
+  removable?: boolean;
+  variant?: Variants;
+  onClose?: () => void;
 }
 
 export const Toast: React.FC<IToastProps> = ({
   action,
   className,
-  id,
   children,
   removable,
-  variant,
+  variant = Variants.Info,
   onClose,
 }) => {
   const mergedClassNames = cx(
@@ -58,7 +56,7 @@ export const Toast: React.FC<IToastProps> = ({
   };
 
   return (
-    <div className={mergedClassNames} id={id}>
+    <div className={mergedClassNames}>
       <div className={`${baseClass}__icon`}>
         <ToastIcon variant={variant} />
       </div>
@@ -67,6 +65,7 @@ export const Toast: React.FC<IToastProps> = ({
         <div className={`${baseClass}__actions`}>
           {action && action.label && action.handler && (
             <button
+              data-testid="actionButton"
               className={`${baseClass}__actions-custom`}
               onClick={onActionClick(action)}
             >
@@ -75,6 +74,7 @@ export const Toast: React.FC<IToastProps> = ({
           )}
           {removable && (
             <div
+              data-testid="closeButton"
               className={`${baseClass}__actions-close`}
               aria-label="Close toast"
               onClick={onClose}

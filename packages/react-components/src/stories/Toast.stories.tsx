@@ -18,19 +18,82 @@ interface IToastArgs extends IToastProps {
 
 export const Toast = (args: IToastArgs): React.ReactElement => (
   <div>
-    <ToastComponent {...args}>{args.label}</ToastComponent>
+    <ToastComponent {...args}>Example text</ToastComponent>
   </div>
 );
 
 Toast.args = {
   id: 'lc-toast',
-  label: 'Message sent!',
-  removable: false,
+};
+
+export const SuccessToast = (args: IToastArgs): React.ReactElement => (
+  <div>
+    <ToastComponent {...args}>Example text</ToastComponent>
+  </div>
+);
+
+SuccessToast.args = {
+  id: 'lc-toast',
   variant: Variants.Success,
+};
+
+export const WarningToast = (args: IToastArgs): React.ReactElement => (
+  <div>
+    <ToastComponent {...args}>Example text</ToastComponent>
+  </div>
+);
+
+WarningToast.args = {
+  id: 'lc-toast',
+  variant: Variants.Warning,
+};
+
+export const ErrorToast = (args: IToastArgs): React.ReactElement => (
+  <div>
+    <ToastComponent {...args}>Example text</ToastComponent>
+  </div>
+);
+
+ErrorToast.args = {
+  id: 'lc-toast',
+  variant: Variants.Error,
+};
+
+export const InfoToast = (args: IToastArgs): React.ReactElement => (
+  <div>
+    <ToastComponent {...args}>Example text</ToastComponent>
+  </div>
+);
+
+InfoToast.args = {
+  id: 'lc-toast',
+  variant: Variants.Info,
+};
+
+export const NotificationToast = (args: IToastArgs): React.ReactElement => (
+  <div>
+    <ToastComponent {...args}>Example text</ToastComponent>
+  </div>
+);
+
+NotificationToast.args = {
+  id: 'lc-toast',
+  variant: Variants.Notification,
+};
+
+export const ToastWithActionAndRemovable = (
+  args: IToastArgs
+): React.ReactElement => (
+  <div>
+    <ToastComponent {...args}>Example text</ToastComponent>
+  </div>
+);
+
+ToastWithActionAndRemovable.args = {
   action: {
-    handler: () => alert('Action click'),
     label: 'Action',
-    closeOnClick: false,
+    handler: () => alert('onAction click'),
   },
+  removable: true,
   onClose: () => alert('onClose click'),
 };
