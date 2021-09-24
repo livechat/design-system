@@ -23,7 +23,7 @@ export enum BannerType {
 export interface IBannerProps {
   className?: string;
   size?: BannerSize;
-  type: BannerType;
+  type?: BannerType;
   onClose?: () => void;
 }
 
@@ -51,6 +51,7 @@ export const Banner: React.FC<IBannerProps> = ({
       </div>
       {onClose && (
         <button
+          data-testid="close"
           type="button"
           className={`${baseClass}__close-icon`}
           onClick={onClose}
