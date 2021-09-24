@@ -1,0 +1,17 @@
+{
+  "name": "@livechat/design-system-material-icons",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "build": "svgr --typescript -d ./dist ./icons "
+  },
+  "author": "",
+  "files": [
+    "icons"
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "@svgr/cli": "^5.5.0"
+  }
+}
