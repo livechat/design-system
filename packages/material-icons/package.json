@@ -1,14 +1,15 @@
 {
-  "name": "@livechat/design-system-material-icons",
+  "name": "@livechat/design-system-icons",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build": "svgr --typescript -d ./dist ./icons "
+    "build": "svgr --typescript -d ./dist ./src ",
+    "dev": "npm run build"
   },
   "author": "",
   "files": [
-    "icons"
+    "src"
   ],
   "license": "ISC",
   "devDependencies": {
