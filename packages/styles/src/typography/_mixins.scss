@@ -1,0 +1,111 @@
+@mixin h-xl {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 40px;
+}
+
+@mixin h-l {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 32px;
+}
+
+@mixin h-m {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 28px;
+}
+
+@mixin h-s {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 24px;
+}
+
+@mixin h-xs {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 24px;
+}
+
+@mixin caps {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.20000000298023224px;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
+@mixin caps-b {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.20000000298023224px;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
+@mixin lc-p-m {
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 22px;
+}
+
+@mixin lc-p-m-bold {
+  @include lc-p-m;
+
+  font-weight: 600;
+}
+
+@mixin lc-p-m-underline {
+  @include lc-p-m;
+
+  text-decoration-line: underline;
+}
+
+@mixin lc-p-m-strike {
+  @include lc-p-m;
+
+  text-decoration-line: line-through;
+}
+
+@mixin lc-p-s {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 20px;
+}
+
+@mixin lc-p-s-bold {
+  @include lc-p-s;
+
+  font-weight: 600;
+}
+
+@mixin lc-p-xs {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.20000000298023224px;
+  line-height: 16px;
+}
+
+@mixin lc-p-xs-bold {
+  @include lc-p-xs;
+
+  font-weight: 600;
+}

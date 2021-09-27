@@ -1,0 +1,61 @@
+@use './mixins';
+
+.lc-h-xl {
+  @include mixins.h-xl;
+}
+
+.lc-h-l {
+  @include mixins.h-l;
+}
+
+.lc-h-m {
+  @include mixins.h-m;
+}
+
+.lc-h-s {
+  @include mixins.h-s;
+}
+
+.lc-h-xs {
+  @include mixins.h-xs;
+}
+
+.lc-caps {
+  @include mixins.caps;
+}
+
+.lc-caps-bold {
+  @include mixins.caps-b;
+}
+
+.lc-p-m {
+  @include mixins.lc-p-m;
+}
+
+.lc-p-m-bold {
+  @include mixins.lc-p-m-bold;
+}
+
+.lc-p-m-underline {
+  @include mixins.lc-p-m-underline;
+}
+
+.lc-p-m-strike {
+  @include mixins.lc-p-m-strike;
+}
+
+.lc-p-s {
+  @include mixins.lc-p-s;
+}
+
+.lc-p-s-bold {
+  @include mixins.lc-p-s-bold;
+}
+
+.lc-p-xs {
+  @include mixins.lc-p-xs;
+}
+
+.lc-p-xs-bold {
+  @include mixins.lc-p-xs-bold;
+}
