@@ -5,12 +5,17 @@
   word-break: break-word;
   width: 100%;
   box-sizing: border-box;
+  color: var(--content-default);
   background-color: var(--surface-basic-subtle);
   border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-width: 180px;
+
+  b {
+    font-weight: 600;
+  }
 
   &__content {
     display: flex;
@@ -39,7 +44,7 @@
   }
 
   &--light {
-    border: solid 1px var(--border-default);
+    border: solid 1px var(--border-subtle);
     background-color: var(--surface-basic-default);
   }
 
@@ -106,8 +111,8 @@
     background-color: transparent;
     box-shadow: none;
     position: absolute;
-    top: 17px;
-    right: 20px;
+    top: 12px;
+    right: 12px;
     height: 24px;
     width: 24px;
     overflow: hidden;

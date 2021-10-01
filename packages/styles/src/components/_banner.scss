@@ -6,6 +6,10 @@
   width: 100%;
   word-break: break-word;
 
+  &__content-text {
+    color: var(--content-default);
+  }
+
   &--small {
     max-width: 400px;
 
