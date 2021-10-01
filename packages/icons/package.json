@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build": "svgr --typescript -d ./dist ./src ",
+    "build": "svgr --typescript -d ./dist ./src/material ",
     "dev": "npm run build"
   },
   "author": "",
   "files": [
-    "src"
+    "dist"
   ],
   "license": "ISC",
   "devDependencies": {
