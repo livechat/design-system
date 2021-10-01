@@ -2,15 +2,15 @@ import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 
 import {
-  Banner as BannerComponent,
-  BannerSize,
-  BannerType,
-  IBannerProps,
-} from '../components/Banner';
+  Alert as AlertComponent,
+  AlertSize,
+  AlertType,
+  IAlertProps,
+} from '../components/Alert';
 
 export default {
-  title: 'Components/Banner',
-  component: BannerComponent,
+  title: 'Components/Alert',
+  component: AlertComponent,
   parameters: {
     componentSubtitle: `
     Alert banners are used to let users know about important 
@@ -18,91 +18,91 @@ export default {
     `,
   },
   argTypes: { onClose: { defaultValue: null } },
-} as ComponentMeta<typeof BannerComponent>;
+} as ComponentMeta<typeof AlertComponent>;
 
-type IBannerArgs = IBannerProps;
+type IAlertArgs = IAlertProps;
 
-export const Banner = (args: IBannerArgs): React.ReactElement => (
+export const Alert = (args: IAlertArgs): React.ReactElement => (
   <div>
-    <BannerComponent {...args}>
+    <AlertComponent {...args}>
       <>
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
       </>
-    </BannerComponent>
+    </AlertComponent>
   </div>
 );
 
-Banner.args = {};
+Alert.args = {};
 
-export const InfoBanner = (args: IBannerArgs): React.ReactElement => (
+export const InfoAlert = (args: IAlertArgs): React.ReactElement => (
   <div>
-    <BannerComponent {...args}>
+    <AlertComponent {...args}>
       <>
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
       </>
-    </BannerComponent>
+    </AlertComponent>
   </div>
 );
 
-InfoBanner.args = {
-  type: BannerType.Info,
+InfoAlert.args = {
+  type: AlertType.Info,
 };
 
-export const WarningBanner = (args: IBannerArgs): React.ReactElement => (
+export const WarningAlert = (args: IAlertArgs): React.ReactElement => (
   <div>
-    <BannerComponent {...args}>
+    <AlertComponent {...args}>
       <>
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
       </>
-    </BannerComponent>
+    </AlertComponent>
   </div>
 );
 
-WarningBanner.args = {
-  type: BannerType.Warning,
+WarningAlert.args = {
+  type: AlertType.Warning,
 };
 
-export const SuccessBanner = (args: IBannerArgs): React.ReactElement => (
+export const SuccessAlert = (args: IAlertArgs): React.ReactElement => (
   <div>
-    <BannerComponent {...args}>
+    <AlertComponent {...args}>
       <>
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
       </>
-    </BannerComponent>
+    </AlertComponent>
   </div>
 );
 
-SuccessBanner.args = {
-  type: BannerType.Success,
+SuccessAlert.args = {
+  type: AlertType.Success,
 };
 
-export const ErrorBanner = (args: IBannerArgs): React.ReactElement => (
+export const ErrorAlert = (args: IAlertArgs): React.ReactElement => (
   <div>
-    <BannerComponent {...args}>
+    <AlertComponent {...args}>
       <>
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
       </>
-    </BannerComponent>
+    </AlertComponent>
   </div>
 );
 
-ErrorBanner.args = {
-  type: BannerType.Error,
+ErrorAlert.args = {
+  type: AlertType.Error,
 };
 
-export const BannerWithClose = (args: IBannerArgs): React.ReactElement => (
+export const BannerWithClose = (args: IAlertArgs): React.ReactElement => (
   <div>
-    <BannerComponent {...args}>
+    <AlertComponent {...args}>
       <>
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
       </>
-    </BannerComponent>
+    </AlertComponent>
   </div>
 );
 
@@ -110,47 +110,47 @@ BannerWithClose.args = {
   onClose: () => alert('onClose click'),
 };
 
-export const SmallBanner = (args: IBannerArgs): React.ReactElement => (
+export const SmallAlert = (args: IAlertArgs): React.ReactElement => (
   <div>
-    <BannerComponent {...args}>
+    <AlertComponent {...args}>
       <>
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
       </>
-    </BannerComponent>
+    </AlertComponent>
   </div>
 );
 
-SmallBanner.args = {
-  size: BannerSize.Small,
+SmallAlert.args = {
+  size: AlertSize.Small,
 };
 
-export const MediumBanner = (args: IBannerArgs): React.ReactElement => (
+export const MediumBanner = (args: IAlertArgs): React.ReactElement => (
   <div>
-    <BannerComponent {...args}>
+    <AlertComponent {...args}>
       <>
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
       </>
-    </BannerComponent>
+    </AlertComponent>
   </div>
 );
 
 MediumBanner.args = {
-  size: BannerSize.Medium,
+  size: AlertSize.Medium,
 };
 
-export const LargeBanner = (args: IBannerArgs): React.ReactElement => (
+export const LargeAlert = (args: IAlertArgs): React.ReactElement => (
   <div>
-    <BannerComponent {...args}>
+    <AlertComponent {...args}>
       <>
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
       </>
-    </BannerComponent>
+    </AlertComponent>
   </div>
 );
 
-LargeBanner.args = {
-  size: BannerSize.Large,
+LargeAlert.args = {
+  size: AlertSize.Large,
 };

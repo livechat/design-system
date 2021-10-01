@@ -2,14 +2,14 @@ import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 
 import {
-  IPromoProps,
-  Promo as PromoComponent,
-  PromoSize,
-} from '../components/Promo';
+  IPromoBannerProps,
+  PromoBanner as PromoBannerComponent,
+  PromoBannerSize,
+} from '../components/PromoBanner';
 
 export default {
-  title: 'Components/Promo',
-  component: PromoComponent,
+  title: 'Components/PromoBanner',
+  component: PromoBannerComponent,
   parameters: {
     componentSubtitle: `
       Promo banner component is used to let users know about upgrade options, new features, 
@@ -19,37 +19,39 @@ export default {
     `,
   },
   argTypes: { onClose: { defaultValue: null } },
-} as ComponentMeta<typeof PromoComponent>;
+} as ComponentMeta<typeof PromoBannerComponent>;
 
-type IPromoArgs = IPromoProps;
+type IPromoBannerArgs = IPromoBannerProps;
 
-export const Promo = (args: IPromoArgs): React.ReactElement => (
+export const PromoBanner = (args: IPromoBannerArgs): React.ReactElement => (
   <div>
-    <PromoComponent {...args}>
+    <PromoBannerComponent {...args}>
       <>
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
       </>
-    </PromoComponent>
+    </PromoBannerComponent>
   </div>
 );
 
-Promo.args = {
+PromoBanner.args = {
   header: 'This example headline has 40 characters',
 };
 
-export const PromoWithButtons = (args: IPromoArgs): React.ReactElement => (
+export const PromoBannerWithButtons = (
+  args: IPromoBannerArgs
+): React.ReactElement => (
   <div>
-    <PromoComponent {...args}>
+    <PromoBannerComponent {...args}>
       <>
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
       </>
-    </PromoComponent>
+    </PromoBannerComponent>
   </div>
 );
 
-PromoWithButtons.args = {
+PromoBannerWithButtons.args = {
   header: 'This example headline has 40 characters',
   buttonText: 'Example',
   linkText: 'Example',
@@ -61,71 +63,79 @@ PromoWithButtons.args = {
   },
 };
 
-export const PromoWithImage = (args: IPromoArgs): React.ReactElement => (
+export const PromoBannerWithImage = (
+  args: IPromoBannerArgs
+): React.ReactElement => (
   <div>
-    <PromoComponent {...args}>
+    <PromoBannerComponent {...args}>
       <>
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
       </>
-    </PromoComponent>
+    </PromoBannerComponent>
   </div>
 );
 
-PromoWithImage.args = {
+PromoBannerWithImage.args = {
   header: 'This example headline has 40 characters',
   img: 'https://via.placeholder.com/100',
 };
 
-export const PromoLight = (args: IPromoArgs): React.ReactElement => (
+export const PromoBannerLight = (
+  args: IPromoBannerArgs
+): React.ReactElement => (
   <div>
-    <PromoComponent {...args}>
+    <PromoBannerComponent {...args}>
       <>
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
       </>
-    </PromoComponent>
+    </PromoBannerComponent>
   </div>
 );
 
-PromoLight.args = {
+PromoBannerLight.args = {
   header: 'This example headline has 40 characters',
   light: true,
 };
 
-export const PromoWithClose = (args: IPromoArgs): React.ReactElement => (
+export const PromoBannerWithClose = (
+  args: IPromoBannerArgs
+): React.ReactElement => (
   <div>
-    <PromoComponent {...args}>
+    <PromoBannerComponent {...args}>
       <>
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
       </>
-    </PromoComponent>
+    </PromoBannerComponent>
   </div>
 );
 
-PromoWithClose.args = {
+PromoBannerWithClose.args = {
   header: 'This example headline has 40 characters',
   onClose: () => {
     alert('onClose click');
   },
 };
 
-export const PromoSmall = (args: IPromoArgs): React.ReactElement => (
+export const PromoBannerSmall = (
+  args: IPromoBannerArgs
+): React.ReactElement => (
   <div>
-    <PromoComponent {...args}>
+    <PromoBannerComponent {...args}>
       <>
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
       </>
-    </PromoComponent>
+    </PromoBannerComponent>
   </div>
 );
 
-PromoSmall.args = {
+PromoBannerSmall.args = {
   header: 'This example headline has 40 characters',
   img: 'https://via.placeholder.com/100',
-  size: PromoSize.Small,
+  size: PromoBannerSize.Small,
   buttonText: 'Example button',
   linkText: 'Example link',
   onClose: () => {
@@ -139,21 +149,23 @@ PromoSmall.args = {
   },
 };
 
-export const PromoMedium = (args: IPromoArgs): React.ReactElement => (
+export const PromoBannerMedium = (
+  args: IPromoBannerArgs
+): React.ReactElement => (
   <div>
-    <PromoComponent {...args}>
+    <PromoBannerComponent {...args}>
       <>
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
       </>
-    </PromoComponent>
+    </PromoBannerComponent>
   </div>
 );
 
-PromoMedium.args = {
+PromoBannerMedium.args = {
   header: 'This example headline has 40 characters',
   img: 'https://via.placeholder.com/100',
-  size: PromoSize.Medium,
+  size: PromoBannerSize.Medium,
   buttonText: 'Example button',
   linkText: 'Example link',
   onClose: () => {
@@ -167,21 +179,23 @@ PromoMedium.args = {
   },
 };
 
-export const PromoLarge = (args: IPromoArgs): React.ReactElement => (
+export const PromoBannerLarge = (
+  args: IPromoBannerArgs
+): React.ReactElement => (
   <div>
-    <PromoComponent {...args}>
+    <PromoBannerComponent {...args}>
       <>
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
       </>
-    </PromoComponent>
+    </PromoBannerComponent>
   </div>
 );
 
-PromoLarge.args = {
+PromoBannerLarge.args = {
   header: 'This example headline has 40 characters',
   img: 'https://via.placeholder.com/100',
-  size: PromoSize.Large,
+  size: PromoBannerSize.Large,
   buttonText: 'Example button',
   linkText: 'Example link',
   onClose: () => {

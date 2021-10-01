@@ -1,4 +1,4 @@
-.lc-banner {
+.lc-alert {
   box-sizing: border-box;
   overflow: hidden;
   padding: 20px;
@@ -13,7 +13,7 @@
   &--small {
     max-width: 400px;
 
-    .lc-banner__content {
+    .lc-alert__content {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -29,7 +29,7 @@
   &--medium {
     max-width: 800px;
 
-    .lc-banner__content {
+    .lc-alert__content {
       display: flex;
       justify-content: flex-start;
       width: 100%;
@@ -42,7 +42,7 @@
   }
 
   &--large {
-    .lc-banner__content {
+    .lc-alert__content {
       display: flex;
       justify-content: flex-start;
       width: 100%;

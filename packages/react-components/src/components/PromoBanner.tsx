@@ -16,28 +16,28 @@ const Button = ({ children, className, testId, onClick }: IButtonProps) => (
   </button>
 );
 
-const baseClass = 'lc-promo';
+const baseClass = 'lc-promo-banner';
 
-export enum PromoSize {
+export enum PromoBannerSize {
   Small = 'small',
   Medium = 'medium',
   Large = 'large',
 }
 
-export interface IPromoProps {
+export interface IPromoBannerProps {
   className?: string;
   buttonText?: string;
   header: string;
   img?: string;
   light?: boolean;
   linkText?: string;
-  size?: PromoSize;
+  size?: PromoBannerSize;
   onButtonClick?: () => void;
   onClose?: () => void;
   onLinkClick?: () => void;
 }
 
-export const Promo: React.FC<IPromoProps> = ({
+export const PromoBanner: React.FC<IPromoBannerProps> = ({
   className,
   buttonText,
   children,
@@ -45,7 +45,7 @@ export const Promo: React.FC<IPromoProps> = ({
   img,
   light,
   linkText,
-  size = PromoSize.Small,
+  size = PromoBannerSize.Small,
   onButtonClick,
   onClose,
   onLinkClick,

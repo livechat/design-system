@@ -3,35 +3,35 @@ import cx from 'classnames';
 // TODO: remove and use the Icon wrapper with correct icon after migration
 import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 
-import { BannerIcon } from './BannerIcon';
+import { AlertIcon } from './AlertIcon';
 
-const baseClass = 'lc-banner';
+const baseClass = 'lc-alert';
 
-export enum BannerSize {
+export enum AlertSize {
   Small = 'small',
   Medium = 'medium',
   Large = 'large',
 }
 
-export enum BannerType {
+export enum AlertType {
   Info = 'info',
   Warning = 'warning',
   Success = 'success',
   Error = 'error',
 }
 
-export interface IBannerProps {
+export interface IAlertProps {
   className?: string;
-  size?: BannerSize;
-  type?: BannerType;
+  size?: AlertSize;
+  type?: AlertType;
   onClose?: () => void;
 }
 
-export const Banner: React.FC<IBannerProps> = ({
+export const Alert: React.FC<IAlertProps> = ({
   children,
   className,
-  size = BannerSize.Small,
-  type = BannerType.Info,
+  size = AlertSize.Small,
+  type = AlertType.Info,
   onClose,
 }) => {
   const mergedClassNames = cx(
@@ -46,7 +46,7 @@ export const Banner: React.FC<IBannerProps> = ({
   return (
     <div className={mergedClassNames}>
       <div className={`${baseClass}__content`}>
-        <BannerIcon type={type} />
+        <AlertIcon type={type} />
         <div className={`${baseClass}__content-text`}>{children}</div>
       </div>
       {onClose && (

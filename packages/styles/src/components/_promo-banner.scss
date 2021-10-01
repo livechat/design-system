@@ -1,17 +1,17 @@
-.lc-promo {
-  position: relative;
-  font-size: 16px;
-  padding: 20px;
-  word-break: break-word;
-  width: 100%;
-  box-sizing: border-box;
-  color: var(--content-default);
+.lc-promo-banner {
+  align-items: center;
   background-color: var(--surface-basic-subtle);
   border-radius: 4px;
+  box-sizing: border-box;
+  color: var(--content-default);
   display: flex;
-  align-items: center;
+  font-size: 16px;
   justify-content: space-between;
   min-width: 180px;
+  padding: 20px;
+  position: relative;
+  width: 100%;
+  word-break: break-word;
 
   b {
     font-weight: 600;
@@ -19,8 +19,8 @@
 
   &__content {
     display: flex;
-    justify-content: flex-start;
     flex-direction: row;
+    justify-content: flex-start;
   }
 
   &__wrapper {
@@ -34,9 +34,9 @@
   }
 
   &__img {
+    height: 48px;
     object-fit: contain;
     width: 48px;
-    height: 48px;
   }
 
   &__button-text {
@@ -44,41 +44,41 @@
   }
 
   &--light {
-    border: solid 1px var(--border-subtle);
     background-color: var(--surface-basic-default);
+    border: solid 1px var(--border-subtle);
   }
 
   &--small {
-    max-width: 400px;
     flex-wrap: wrap;
+    max-width: 400px;
 
-    .lc-promo__content {
+    .lc-promo-banner__content {
       flex-direction: column;
     }
 
-    .lc-promo__img {
+    .lc-promo-banner__img {
       margin-bottom: 12px;
     }
 
-    .lc-promo__footer {
+    .lc-promo-banner__footer {
       display: flex;
       margin-top: 12px;
     }
   }
 
   &--medium {
-    max-width: 800px;
     flex-wrap: wrap;
+    max-width: 800px;
 
-    .lc-promo__img {
+    .lc-promo-banner__img {
       margin-right: 20px;
     }
 
-    .lc-promo__wrapper {
+    .lc-promo-banner__wrapper {
       max-width: 680px;
     }
 
-    .lc-promo__footer {
+    .lc-promo-banner__footer {
       display: flex;
       flex-shrink: 0;
       margin-top: 12px;
@@ -88,33 +88,33 @@
   &--large {
     min-width: 600px;
 
-    .lc-promo__img {
+    .lc-promo-banner__img {
       margin-right: 20px;
     }
 
-    .lc-promo__wrapper {
+    .lc-promo-banner__wrapper {
       max-width: 680px;
       min-width: 180px;
     }
 
-    .lc-promo__footer {
-      margin: 0 56px;
-      display: inline-flex;
+    .lc-promo-banner__footer {
       align-items: center;
+      display: inline-flex;
       flex-shrink: 0;
+      margin: 0 56px;
     }
   }
 
   &__close-icon {
-    padding: 0;
-    border: 0;
     background-color: transparent;
+    border: 0;
     box-shadow: none;
-    position: absolute;
-    top: 12px;
-    right: 12px;
     height: 24px;
-    width: 24px;
     overflow: hidden;
+    padding: 0;
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 24px;
   }
 }

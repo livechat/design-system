@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { render, fireEvent } from '../test-utils';
-import { Promo, PromoSize } from './Promo';
+import { PromoBanner, PromoBannerSize } from './PromoBanner';
 
 const customClass = 'my-css-class';
 const promoHeader = 'This example headline has 40 characters';
@@ -9,12 +9,12 @@ const text = 'Example text';
 const img = 'https://via.placeholder.com/100';
 const mockedFunction = jest.fn();
 
-describe('<Promo> component', () => {
+describe('<PromoBanner> component', () => {
   it('should allow for custom class', () => {
     const { container } = render(
-      <Promo header={promoHeader} className={customClass}>
+      <PromoBanner header={promoHeader} className={customClass}>
         {promoContent}
-      </Promo>
+      </PromoBanner>
     );
 
     expect(container.firstChild).toHaveClass(customClass);
@@ -22,9 +22,9 @@ describe('<Promo> component', () => {
 
   it('should display button', () => {
     const { getByTestId } = render(
-      <Promo header={promoHeader} buttonText={text}>
+      <PromoBanner header={promoHeader} buttonText={text}>
         {promoContent}
-      </Promo>
+      </PromoBanner>
     );
 
     expect(getByTestId('button')).toBeTruthy();
@@ -32,9 +32,9 @@ describe('<Promo> component', () => {
 
   it('should display link', () => {
     const { getByTestId } = render(
-      <Promo header={promoHeader} linkText={text}>
+      <PromoBanner header={promoHeader} linkText={text}>
         {promoContent}
-      </Promo>
+      </PromoBanner>
     );
 
     expect(getByTestId('link')).toBeTruthy();
@@ -42,9 +42,9 @@ describe('<Promo> component', () => {
 
   it('should display image', () => {
     const { getByTestId } = render(
-      <Promo header={promoHeader} img={img}>
+      <PromoBanner header={promoHeader} img={img}>
         {promoContent}
-      </Promo>
+      </PromoBanner>
     );
 
     expect(getByTestId('img')).toBeTruthy();
@@ -52,47 +52,47 @@ describe('<Promo> component', () => {
 
   it('should display with light mode', () => {
     const { container } = render(
-      <Promo header={promoHeader} light={true}>
+      <PromoBanner header={promoHeader} light={true}>
         {promoContent}
-      </Promo>
+      </PromoBanner>
     );
 
-    expect(container.firstChild).toHaveClass('lc-promo--light');
+    expect(container.firstChild).toHaveClass('lc-promo-banner--light');
   });
 
   it('should display with small size by default', () => {
     const { container } = render(
-      <Promo header={promoHeader}>{promoContent}</Promo>
+      <PromoBanner header={promoHeader}>{promoContent}</PromoBanner>
     );
 
-    expect(container.firstChild).toHaveClass('lc-promo--small');
+    expect(container.firstChild).toHaveClass('lc-promo-banner--small');
   });
 
   it('should display with medium size', () => {
     const { container } = render(
-      <Promo header={promoHeader} size={PromoSize.Medium}>
+      <PromoBanner header={promoHeader} size={PromoBannerSize.Medium}>
         {promoContent}
-      </Promo>
+      </PromoBanner>
     );
 
-    expect(container.firstChild).toHaveClass('lc-promo--medium');
+    expect(container.firstChild).toHaveClass('lc-promo-banner--medium');
   });
 
   it('should display with large size', () => {
     const { container } = render(
-      <Promo header={promoHeader} size={PromoSize.Large}>
+      <PromoBanner header={promoHeader} size={PromoBannerSize.Large}>
         {promoContent}
-      </Promo>
+      </PromoBanner>
     );
 
-    expect(container.firstChild).toHaveClass('lc-promo--large');
+    expect(container.firstChild).toHaveClass('lc-promo-banner--large');
   });
 
   it('should call onClose function', () => {
     const { getByTestId } = render(
-      <Promo header={promoHeader} onClose={mockedFunction}>
+      <PromoBanner header={promoHeader} onClose={mockedFunction}>
         {promoContent}
-      </Promo>
+      </PromoBanner>
     );
 
     fireEvent.click(getByTestId('close'));
@@ -101,13 +101,13 @@ describe('<Promo> component', () => {
 
   it('should call onButtonClick function', () => {
     const { getByTestId } = render(
-      <Promo
+      <PromoBanner
         header={promoHeader}
         buttonText={text}
         onButtonClick={mockedFunction}
       >
         {promoContent}
-      </Promo>
+      </PromoBanner>
     );
 
     fireEvent.click(getByTestId('button'));
@@ -116,9 +116,13 @@ describe('<Promo> component', () => {
 
   it('should call onLinkClick function', () => {
     const { getByTestId } = render(
-      <Promo header={promoHeader} linkText={text} onLinkClick={mockedFunction}>
+      <PromoBanner
+        header={promoHeader}
+        linkText={text}
+        onLinkClick={mockedFunction}
+      >
         {promoContent}
-      </Promo>
+      </PromoBanner>
     );
 
     fireEvent.click(getByTestId('link'));

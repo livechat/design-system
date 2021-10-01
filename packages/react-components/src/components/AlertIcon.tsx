@@ -1,19 +1,19 @@
 import * as React from 'react';
 
-import { BannerType } from './Banner';
+import { AlertType } from './Alert';
 // TODO: remove and use the Icon wrapper with correct icon after migration
-import AlertIcon from 'react-material-icon-svg/dist/AlertIcon';
+import { default as WarningIcon } from 'react-material-icon-svg/dist/AlertIcon';
 import InformationOutlineIcon from 'react-material-icon-svg/dist/InformationOutlineIcon';
 import BlockHelperIcon from 'react-material-icon-svg/dist/BlockHelperIcon';
 import CheckCircleIcon from 'react-material-icon-svg/dist/CheckCircleIcon';
 
-const baseClass = 'banner__icon';
+const baseClass = 'alert__icon';
 
-interface IBannerIconProps {
-  type: BannerType;
+interface IAlertIconProps {
+  type: AlertType;
 }
 
-export const BannerIcon: React.FC<IBannerIconProps> = ({ type }) => {
+export const AlertIcon: React.FC<IAlertIconProps> = ({ type }) => {
   switch (type) {
     case 'info':
       return (
@@ -26,7 +26,7 @@ export const BannerIcon: React.FC<IBannerIconProps> = ({ type }) => {
       );
     case 'warning':
       return (
-        <AlertIcon
+        <WarningIcon
           fill="#fb9d01"
           width="20px"
           height="20px"
