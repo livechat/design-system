@@ -5,6 +5,7 @@ import { Toast, Variants } from './Toast';
 const customClass = 'my-css-class';
 const toastContent = 'This example content';
 const mockedFunction = jest.fn();
+const mockedFunctionOnClose = jest.fn();
 const toastAction = {
   label: 'Example action',
   handler: mockedFunction,
@@ -74,9 +75,24 @@ describe('<Banner> component', () => {
     expect(mockedFunction).toHaveBeenCalled();
   });
 
+  it('should call action function with onClose function', () => {
+    const { getByTestId } = render(
+      <Toast
+        action={{ ...toastAction, closeOnClick: true }}
+        onClose={mockedFunctionOnClose}
+      >
+        {toastContent}
+      </Toast>
+    );
+
+    fireEvent.click(getByTestId('actionButton'));
+    expect(mockedFunction).toHaveBeenCalled();
+    expect(mockedFunctionOnClose).toHaveBeenCalled();
+  });
+
   it('should render with close button', () => {
     const { getByTestId } = render(
-      <Toast removable={true} onClose={mockedFunction}>
+      <Toast removable={true} onClose={mockedFunctionOnClose}>
         {toastContent}
       </Toast>
     );
@@ -86,12 +102,12 @@ describe('<Banner> component', () => {
 
   it('should call onClose function', () => {
     const { getByTestId } = render(
-      <Toast removable={true} onClose={mockedFunction}>
+      <Toast removable={true} onClose={mockedFunctionOnClose}>
         {toastContent}
       </Toast>
     );
 
     fireEvent.click(getByTestId('closeButton'));
-    expect(mockedFunction).toHaveBeenCalled();
+    expect(mockedFunctionOnClose).toHaveBeenCalled();
   });
 });

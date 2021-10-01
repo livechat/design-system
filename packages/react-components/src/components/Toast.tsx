@@ -48,11 +48,11 @@ export const Toast: React.FC<IToastProps> = ({
 
   const onActionClick = (action: IToastActionProps) => {
     if (action && action.closeOnClick && onClose) {
-      action.handler;
-      return onClose;
+      action.handler();
+      return onClose();
     }
 
-    return action.handler;
+    return action.handler();
   };
 
   return (
@@ -63,11 +63,11 @@ export const Toast: React.FC<IToastProps> = ({
       <div className={`${baseClass}__content`}>{children}</div>
       {(action || removable) && (
         <div className={`${baseClass}__actions`}>
-          {action && action.label && action.handler && (
+          {action && (
             <button
               data-testid="actionButton"
               className={`${baseClass}__actions-custom`}
-              onClick={onActionClick(action)}
+              onClick={() => onActionClick(action)}
             >
               {action.label}
             </button>
