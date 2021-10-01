@@ -19,18 +19,19 @@ export const ANIMATION_TIME = 200;
 
 const baseClass = 'lc-toast-wrapper';
 
-interface IToastsProps extends IToastProps {
-  content: React.ReactElement;
+export interface IToastsProps extends IToastProps {
+  id: string;
+  content: React.ReactElement | string;
 }
 
 export interface IToastWrapperProps {
-  className: string;
+  className?: string;
   toasts: IToastsProps[];
-  fixed: boolean;
-  block: boolean;
-  animationType: string;
-  verticalPosition: VerticalPosition;
-  horizontalPosition: HorizontalPosition;
+  fixed?: boolean;
+  block?: boolean;
+  animationType?: string;
+  verticalPosition?: VerticalPosition;
+  horizontalPosition?: HorizontalPosition;
 }
 
 export const ToastWrapper: React.FC<IToastWrapperProps> = ({
@@ -68,12 +69,11 @@ export const ToastWrapper: React.FC<IToastWrapperProps> = ({
             timeout={ANIMATION_TIME}
           >
             <Toast
-              id={id}
               variant={variant}
               onClose={onClose}
               removable={removable}
               action={action}
-              className="toast__single"
+              className="lc-toast__single"
             >
               {content}
             </Toast>

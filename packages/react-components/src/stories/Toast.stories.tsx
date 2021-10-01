@@ -10,6 +10,13 @@ import {
 export default {
   title: 'Components/Toast',
   component: ToastComponent,
+  parameters: {
+    componentSubtitle: `
+    Toast is a small message that by default shows up in the top middle of the screen. 
+    It disappears on its own after a few seconds. It provides a feedback about an operation 
+    for user.
+    `,
+  },
 } as ComponentMeta<typeof ToastComponent>;
 
 interface IToastArgs extends IToastProps {

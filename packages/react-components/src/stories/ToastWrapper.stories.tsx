@@ -10,15 +10,21 @@ import { Variants } from '../components/Toast';
 export default {
   title: 'Components/Toast Wrapper',
   component: ToastWrapperComponent,
+  parameters: {
+    componentSubtitle: `
+    You can use ToastWrapper component to position your toasts.
+    `,
+  },
 } as ComponentMeta<typeof ToastWrapperComponent>;
 
 export const ToastWrapper = (args: IToastWrapperProps): React.ReactElement => (
-  <div>
+  <div style={{ width: '100%', height: 700, position: 'relative' }}>
     <ToastWrapperComponent {...args} />
   </div>
 );
 
 ToastWrapper.args = {
+  fixed: false,
   toasts: [
     {
       id: '1',
