@@ -4,7 +4,6 @@
     "max-nesting-depth": null,
     "selector-class-pattern": ["lc-[a-z]+", {
       "resolveNestedSelectors": true
-    }],
-    "order/properties-alphabetical-order": null
+    }]
   }
 }
