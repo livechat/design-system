@@ -62,12 +62,11 @@ export interface IIconProps {
   source: string;
   size?: IconSizeName;
   iconType?: IconTypeName;
-  disabled: boolean;
-  className: string;
+  disabled?: boolean;
+  className?: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const Icon = (props: IIconProps) => {
+export const Icon: React.FC<IIconProps> = (props) => {
   const {
     source,
     size = IconSizeName.Medium,
