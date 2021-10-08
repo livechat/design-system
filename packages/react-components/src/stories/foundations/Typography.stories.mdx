@@ -9,49 +9,11 @@ import { Text } from '../../components/Text';
 
 (TODO) Let's document our Typography standards here from the UX perspective (do and dont's).
 
-### Headings
+## Heading
 
-<Canvas style={{ color: 'var(--content-default)' }}>
-  <h1 className="lc-h-xl">Heading XLarge</h1>
-  <h2 className="lc-h-l">Heading Large</h2>
-  <h3 className="lc-h-m">Heading Medium</h3>
-  <h4 className="lc-h-s">Heading Small</h4>
-  <h5 className="lc-h-xs">Heading XSmall</h5>
-  <h5 className="lc-caps">Small Caps</h5>
-  <h5 className="lc-caps-bold">Small Caps</h5>
-</Canvas>
+`Heading` component renders heading element with given size.
 
-### Paragraphs
-
-<Canvas style={{ color: 'var(--content-default)' }}>
-  <p className="lc-p-m">Paragraph Medium</p>
-  <p className="lc-p-m-bold">Paragraph Medium Bold</p>
-  <p className="lc-p-m-underline">Paragraph Medium Underline</p>
-  <p className="lc-p-m-strike">Paragraph Medium Strikethrough</p>
-  <p className="lc-p-s">Paragraph Small</p>
-  <p className="lc-p-s-bold">Paragraph Small Bold</p>
-  <p className="lc-p-xs">Paragraph XSmall</p>
-  <p className="lc-p-xs-bold">Paragraph XSmall Bold</p>
-</Canvas>
-
-# How to use?
-
-Our Typography system could be used in two different ways:
-
-1. css class
-1. react component
-
-## Css class
-
-All classes in our Design System starts with `lc` prefix. Then, Typography tokens are build following the rule: `lc-TYPE-SIZE-MODIFIER`. Where `TYPE` can be `h` - for heading, `p` - for paragraph, `caps` for capitalized sub-heading. `SIZE` - from `xl` to `xs` for heading, and from `m` to `xs` for paragraph. To see supported modifiers please click on `Show Code` button below.
-
-## React components
-
-### Heading
-
-Renders heading element with given size.
-
-In `Heading` component you can modify the output element via `as` prop. For example if you want to render XLarge heading as `h3` just pass `as='h3'`
+You can modify the output element via `as` prop. For example if you want to render XLarge heading as `h3` just pass `as='h3'`
 
 ```jsx
 <Heading size="xl" as="h3">
@@ -63,18 +25,18 @@ In `Heading` component you can modify the output element via `as` prop. For exam
 
 <Canvas style={{ color: 'var(--content-default)' }}>
   <Heading size="xl">Heading XLarge</Heading>
-  <Heading size="l">Heading Large</Heading>
-  <Heading size="m">Heading Medium</Heading>
-  <Heading size="s">Heading Small</Heading>
+  <Heading size="lg">Heading Large</Heading>
+  <Heading size="md">Heading Medium</Heading>
+  <Heading size="sm">Heading Small</Heading>
   <Heading size="xs">Heading XSmall</Heading>
 </Canvas>
 
-### Text
+## Text
 
 `Text` component renders a paragraph.
 
 ```jsx
-<Text size="s" decoration="bold">
+<Text size="sm" bold>
   This text is a small bold p
 </Text>
 ```
@@ -82,12 +44,23 @@ In `Heading` component you can modify the output element via `as` prop. For exam
 <ArgsTable of={Text} />
 
 <Canvas style={{ color: 'var(--content-default)' }}>
-  <Text>Standard Medium Paragraph</Text>
+  <Text>Paragraph Medium</Text>
+  <Text bold>Paragraph Medium Bold</Text>
+  <Text underline>Paragraph Medium Underline</Text>
+  <Text strike>Paragraph Medium Strikethrough</Text>
+  <Text size="sm">Paragraph Small</Text>
+  <Text size="sm" bold>
+    Paragraph Small Bold
+  </Text>
+  <Text size="xs">Paragraph XSmall</Text>
+  <Text size="xs" bold>
+    Paragraph XSmall Bold
+  </Text>
   <Text caps>Caps</Text>
-  <Text caps decoration="bold">
+  <Text caps bold>
     Bold Caps
   </Text>
-  <Text size="s" as="div">
-    Small text as div element
+  <Text as="div" size="sm">
+    Small text as div
   </Text>
 </Canvas>
