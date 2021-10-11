@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
 
 import {
   Alert as AlertComponent,
@@ -20,9 +20,7 @@ export default {
   argTypes: { onClose: { defaultValue: null } },
 } as ComponentMeta<typeof AlertComponent>;
 
-type IAlertArgs = IAlertProps;
-
-export const Alert = (args: IAlertArgs): React.ReactElement => (
+const StoryTemplate: Story<IAlertProps> = (args: IAlertProps) => (
   <div>
     <AlertComponent {...args}>
       A description with a <b>maximum of 100 characters</b>. That usually means
@@ -31,108 +29,45 @@ export const Alert = (args: IAlertArgs): React.ReactElement => (
   </div>
 );
 
+export const Alert = StoryTemplate.bind({});
 Alert.args = {};
 
-export const InfoAlert = (args: IAlertArgs): React.ReactElement => (
-  <div>
-    <AlertComponent {...args}>
-      A description with a <b>maximum of 100 characters</b>. That usually means
-      only one or two sentences.
-    </AlertComponent>
-  </div>
-);
-
+export const InfoAlert = StoryTemplate.bind({});
 InfoAlert.args = {
   type: AlertType.Info,
 };
 
-export const WarningAlert = (args: IAlertArgs): React.ReactElement => (
-  <div>
-    <AlertComponent {...args}>
-      A description with a <b>maximum of 100 characters</b>. That usually means
-      only one or two sentences.
-    </AlertComponent>
-  </div>
-);
-
+export const WarningAlert = StoryTemplate.bind({});
 WarningAlert.args = {
   type: AlertType.Warning,
 };
 
-export const SuccessAlert = (args: IAlertArgs): React.ReactElement => (
-  <div>
-    <AlertComponent {...args}>
-      A description with a <b>maximum of 100 characters</b>. That usually means
-      only one or two sentences.
-    </AlertComponent>
-  </div>
-);
-
+export const SuccessAlert = StoryTemplate.bind({});
 SuccessAlert.args = {
   type: AlertType.Success,
 };
 
-export const ErrorAlert = (args: IAlertArgs): React.ReactElement => (
-  <div>
-    <AlertComponent {...args}>
-      A description with a <b>maximum of 100 characters</b>. That usually means
-      only one or two sentences.
-    </AlertComponent>
-  </div>
-);
-
+export const ErrorAlert = StoryTemplate.bind({});
 ErrorAlert.args = {
   type: AlertType.Error,
 };
 
-export const BannerWithClose = (args: IAlertArgs): React.ReactElement => (
-  <div>
-    <AlertComponent {...args}>
-      A description with a <b>maximum of 100 characters</b>. That usually means
-      only one or two sentences.
-    </AlertComponent>
-  </div>
-);
-
+export const BannerWithClose = StoryTemplate.bind({});
 BannerWithClose.args = {
   onClose: () => alert('onClose click'),
 };
 
-export const SmallAlert = (args: IAlertArgs): React.ReactElement => (
-  <div>
-    <AlertComponent {...args}>
-      A description with a <b>maximum of 100 characters</b>. That usually means
-      only one or two sentences.
-    </AlertComponent>
-  </div>
-);
-
+export const SmallAlert = StoryTemplate.bind({});
 SmallAlert.args = {
   size: AlertSize.Small,
 };
 
-export const MediumBanner = (args: IAlertArgs): React.ReactElement => (
-  <div>
-    <AlertComponent {...args}>
-      A description with a <b>maximum of 100 characters</b>. That usually means
-      only one or two sentences.
-    </AlertComponent>
-  </div>
-);
-
+export const MediumBanner = StoryTemplate.bind({});
 MediumBanner.args = {
   size: AlertSize.Medium,
 };
 
-export const LargeAlert = (args: IAlertArgs): React.ReactElement => (
-  <div>
-    <AlertComponent {...args}>
-      A description with a <b>maximum of 100 characters</b>. That usually means
-      only one or two sentences.
-    </AlertComponent>
-  </div>
-);
-
+export const LargeAlert = StoryTemplate.bind({});
 LargeAlert.args = {
   size: AlertSize.Large,
 };

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
 
 import {
   IPromoBannerProps,
@@ -21,9 +21,7 @@ export default {
   argTypes: { onClose: { defaultValue: null } },
 } as ComponentMeta<typeof PromoBannerComponent>;
 
-type IPromoBannerArgs = IPromoBannerProps;
-
-export const PromoBanner = (args: IPromoBannerArgs): React.ReactElement => (
+const StoryTemplate: Story<IPromoBannerProps> = (args: IPromoBannerProps) => (
   <div>
     <PromoBannerComponent {...args}>
       <>
@@ -34,23 +32,12 @@ export const PromoBanner = (args: IPromoBannerArgs): React.ReactElement => (
   </div>
 );
 
+export const PromoBanner = StoryTemplate.bind({});
 PromoBanner.args = {
   header: 'This example headline has 40 characters',
 };
 
-export const PromoBannerWithButtons = (
-  args: IPromoBannerArgs
-): React.ReactElement => (
-  <div>
-    <PromoBannerComponent {...args}>
-      <>
-        A description with a <b>maximum of 100 characters</b>. That usually
-        means only one or two sentences.
-      </>
-    </PromoBannerComponent>
-  </div>
-);
-
+export const PromoBannerWithButtons = StoryTemplate.bind({});
 PromoBannerWithButtons.args = {
   header: 'This example headline has 40 characters',
   buttonText: 'Example',
@@ -63,55 +50,19 @@ PromoBannerWithButtons.args = {
   },
 };
 
-export const PromoBannerWithImage = (
-  args: IPromoBannerArgs
-): React.ReactElement => (
-  <div>
-    <PromoBannerComponent {...args}>
-      <>
-        A description with a <b>maximum of 100 characters</b>. That usually
-        means only one or two sentences.
-      </>
-    </PromoBannerComponent>
-  </div>
-);
-
+export const PromoBannerWithImage = StoryTemplate.bind({});
 PromoBannerWithImage.args = {
   header: 'This example headline has 40 characters',
   img: 'https://via.placeholder.com/100',
 };
 
-export const PromoBannerLight = (
-  args: IPromoBannerArgs
-): React.ReactElement => (
-  <div>
-    <PromoBannerComponent {...args}>
-      <>
-        A description with a <b>maximum of 100 characters</b>. That usually
-        means only one or two sentences.
-      </>
-    </PromoBannerComponent>
-  </div>
-);
-
+export const PromoBannerLight = StoryTemplate.bind({});
 PromoBannerLight.args = {
   header: 'This example headline has 40 characters',
   light: true,
 };
 
-export const PromoBannerWithClose = (
-  args: IPromoBannerArgs
-): React.ReactElement => (
-  <div>
-    <PromoBannerComponent {...args}>
-      <>
-        A description with a <b>maximum of 100 characters</b>. That usually
-        means only one or two sentences.
-      </>
-    </PromoBannerComponent>
-  </div>
-);
-
+export const PromoBannerWithClose = StoryTemplate.bind({});
 PromoBannerWithClose.args = {
   header: 'This example headline has 40 characters',
   onClose: () => {
@@ -119,19 +70,7 @@ PromoBannerWithClose.args = {
   },
 };
 
-export const PromoBannerSmall = (
-  args: IPromoBannerArgs
-): React.ReactElement => (
-  <div>
-    <PromoBannerComponent {...args}>
-      <>
-        A description with a <b>maximum of 100 characters</b>. That usually
-        means only one or two sentences.
-      </>
-    </PromoBannerComponent>
-  </div>
-);
-
+export const PromoBannerSmall = StoryTemplate.bind({});
 PromoBannerSmall.args = {
   header: 'This example headline has 40 characters',
   img: 'https://via.placeholder.com/100',
@@ -149,19 +88,7 @@ PromoBannerSmall.args = {
   },
 };
 
-export const PromoBannerMedium = (
-  args: IPromoBannerArgs
-): React.ReactElement => (
-  <div>
-    <PromoBannerComponent {...args}>
-      <>
-        A description with a <b>maximum of 100 characters</b>. That usually
-        means only one or two sentences.
-      </>
-    </PromoBannerComponent>
-  </div>
-);
-
+export const PromoBannerMedium = StoryTemplate.bind({});
 PromoBannerMedium.args = {
   header: 'This example headline has 40 characters',
   img: 'https://via.placeholder.com/100',
@@ -179,19 +106,7 @@ PromoBannerMedium.args = {
   },
 };
 
-export const PromoBannerLarge = (
-  args: IPromoBannerArgs
-): React.ReactElement => (
-  <div>
-    <PromoBannerComponent {...args}>
-      <>
-        A description with a <b>maximum of 100 characters</b>. That usually
-        means only one or two sentences.
-      </>
-    </PromoBannerComponent>
-  </div>
-);
-
+export const PromoBannerLarge = StoryTemplate.bind({});
 PromoBannerLarge.args = {
   header: 'This example headline has 40 characters',
   img: 'https://via.placeholder.com/100',
