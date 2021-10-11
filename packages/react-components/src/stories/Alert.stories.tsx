@@ -25,10 +25,8 @@ type IAlertArgs = IAlertProps;
 export const Alert = (args: IAlertArgs): React.ReactElement => (
   <div>
     <AlertComponent {...args}>
-      <>
-        A description with a <b>maximum of 100 characters</b>. That usually
-        means only one or two sentences.
-      </>
+      A description with a <b>maximum of 100 characters</b>. That usually means
+      only one or two sentences.
     </AlertComponent>
   </div>
 );
@@ -38,10 +36,8 @@ Alert.args = {};
 export const InfoAlert = (args: IAlertArgs): React.ReactElement => (
   <div>
     <AlertComponent {...args}>
-      <>
-        A description with a <b>maximum of 100 characters</b>. That usually
-        means only one or two sentences.
-      </>
+      A description with a <b>maximum of 100 characters</b>. That usually means
+      only one or two sentences.
     </AlertComponent>
   </div>
 );
@@ -53,10 +49,8 @@ InfoAlert.args = {
 export const WarningAlert = (args: IAlertArgs): React.ReactElement => (
   <div>
     <AlertComponent {...args}>
-      <>
-        A description with a <b>maximum of 100 characters</b>. That usually
-        means only one or two sentences.
-      </>
+      A description with a <b>maximum of 100 characters</b>. That usually means
+      only one or two sentences.
     </AlertComponent>
   </div>
 );
@@ -68,10 +62,8 @@ WarningAlert.args = {
 export const SuccessAlert = (args: IAlertArgs): React.ReactElement => (
   <div>
     <AlertComponent {...args}>
-      <>
-        A description with a <b>maximum of 100 characters</b>. That usually
-        means only one or two sentences.
-      </>
+      A description with a <b>maximum of 100 characters</b>. That usually means
+      only one or two sentences.
     </AlertComponent>
   </div>
 );
@@ -83,10 +75,8 @@ SuccessAlert.args = {
 export const ErrorAlert = (args: IAlertArgs): React.ReactElement => (
   <div>
     <AlertComponent {...args}>
-      <>
-        A description with a <b>maximum of 100 characters</b>. That usually
-        means only one or two sentences.
-      </>
+      A description with a <b>maximum of 100 characters</b>. That usually means
+      only one or two sentences.
     </AlertComponent>
   </div>
 );
@@ -98,10 +88,8 @@ ErrorAlert.args = {
 export const BannerWithClose = (args: IAlertArgs): React.ReactElement => (
   <div>
     <AlertComponent {...args}>
-      <>
-        A description with a <b>maximum of 100 characters</b>. That usually
-        means only one or two sentences.
-      </>
+      A description with a <b>maximum of 100 characters</b>. That usually means
+      only one or two sentences.
     </AlertComponent>
   </div>
 );
@@ -113,10 +101,8 @@ BannerWithClose.args = {
 export const SmallAlert = (args: IAlertArgs): React.ReactElement => (
   <div>
     <AlertComponent {...args}>
-      <>
-        A description with a <b>maximum of 100 characters</b>. That usually
-        means only one or two sentences.
-      </>
+      A description with a <b>maximum of 100 characters</b>. That usually means
+      only one or two sentences.
     </AlertComponent>
   </div>
 );
@@ -128,10 +114,8 @@ SmallAlert.args = {
 export const MediumBanner = (args: IAlertArgs): React.ReactElement => (
   <div>
     <AlertComponent {...args}>
-      <>
-        A description with a <b>maximum of 100 characters</b>. That usually
-        means only one or two sentences.
-      </>
+      A description with a <b>maximum of 100 characters</b>. That usually means
+      only one or two sentences.
     </AlertComponent>
   </div>
 );
@@ -143,10 +127,8 @@ MediumBanner.args = {
 export const LargeAlert = (args: IAlertArgs): React.ReactElement => (
   <div>
     <AlertComponent {...args}>
-      <>
-        A description with a <b>maximum of 100 characters</b>. That usually
-        means only one or two sentences.
-      </>
+      A description with a <b>maximum of 100 characters</b>. That usually means
+      only one or two sentences.
     </AlertComponent>
   </div>
 );

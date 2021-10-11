@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "npm run build -- --watch",
     "build": "sass src:dist",
-    "lint": "stylelint src/**/*.scss --fix"
+    "lint": "stylelint src/**/*.scss"
   },
   "author": "",
   "license": "ISC",

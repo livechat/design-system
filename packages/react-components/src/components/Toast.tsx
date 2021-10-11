@@ -65,7 +65,6 @@ export const Toast: React.FC<IToastProps> = ({
         <div className={`${baseClass}__actions`}>
           {action && (
             <button
-              data-testid="actionButton"
               className={`${baseClass}__actions-custom`}
               onClick={() => onActionClick(action)}
             >
@@ -74,7 +73,6 @@ export const Toast: React.FC<IToastProps> = ({
           )}
           {removable && (
             <div
-              data-testid="closeButton"
               className={`${baseClass}__actions-close`}
               aria-label="Close toast"
               onClick={onClose}

@@ -7,11 +7,10 @@ import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
 interface IButtonProps {
   children: string;
   className?: string;
-  testId: string;
   onClick?(): void;
 }
-const Button = ({ children, className, testId, onClick }: IButtonProps) => (
-  <button data-testid={testId} className={className} onClick={onClick}>
+const Button = ({ children, className, onClick }: IButtonProps) => (
+  <button className={className} onClick={onClick}>
     {children}
   </button>
 );
@@ -77,11 +76,7 @@ export const PromoBanner: React.FC<IPromoBannerProps> = ({
         //   {buttonText}
         // </Button>
 
-        <Button
-          testId="button"
-          onClick={onButtonClick}
-          className={`${baseClass}__button-text`}
-        >
+        <Button onClick={onButtonClick} className={`${baseClass}__button-text`}>
           {buttonText}
         </Button>
       )}
@@ -92,9 +87,7 @@ export const PromoBanner: React.FC<IPromoBannerProps> = ({
         //   {linkText}
         // </Button>
 
-        <Button testId="link" onClick={onLinkClick}>
-          {linkText}
-        </Button>
+        <Button onClick={onLinkClick}>{linkText}</Button>
       )}
     </div>
   );
@@ -102,9 +95,7 @@ export const PromoBanner: React.FC<IPromoBannerProps> = ({
   return (
     <div className={mergedClassNames}>
       <div className={`${baseClass}__content`}>
-        {img && (
-          <img src={img} data-testid="img" className={`${baseClass}__img`} />
-        )}
+        {img && <img src={img} className={`${baseClass}__img`} />}
         <div className={`${baseClass}__wrapper`}>
           <div className={`${baseClass}__header`}>{header}</div>
           <div>{children}</div>
@@ -114,7 +105,6 @@ export const PromoBanner: React.FC<IPromoBannerProps> = ({
       </div>
       {onClose && (
         <button
-          data-testid="close"
           type="button"
           className={`${baseClass}__close-icon`}
           onClick={onClose}

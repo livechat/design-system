@@ -1,131 +1,120 @@
 import * as React from 'react';
 import { render, fireEvent } from '../test-utils';
-import { PromoBanner, PromoBannerSize } from './PromoBanner';
+import { IPromoBannerProps, PromoBanner, PromoBannerSize } from './PromoBanner';
 
-const customClass = 'my-css-class';
 const promoHeader = 'This example headline has 40 characters';
-const promoContent = 'This example content';
-const text = 'Example text';
-const img = 'https://via.placeholder.com/100';
-const mockedFunction = jest.fn();
+
+const renderComponent = (props: IPromoBannerProps) => {
+  return render(
+    <PromoBanner {...props} className="my-css-class">
+      This example content
+    </PromoBanner>
+  );
+};
 
 describe('<PromoBanner> component', () => {
   it('should allow for custom class', () => {
-    const { container } = render(
-      <PromoBanner header={promoHeader} className={customClass}>
-        {promoContent}
-      </PromoBanner>
-    );
+    const { container } = renderComponent({
+      header: promoHeader,
+    });
 
-    expect(container.firstChild).toHaveClass(customClass);
+    expect(container.firstChild).toHaveClass('my-css-class');
   });
 
   it('should display button', () => {
-    const { getByTestId } = render(
-      <PromoBanner header={promoHeader} buttonText={text}>
-        {promoContent}
-      </PromoBanner>
-    );
+    const { getByText } = renderComponent({
+      header: promoHeader,
+      buttonText: 'Example text',
+    });
 
-    expect(getByTestId('button')).toBeTruthy();
+    expect(getByText('Example text')).toBeVisible();
   });
 
   it('should display link', () => {
-    const { getByTestId } = render(
-      <PromoBanner header={promoHeader} linkText={text}>
-        {promoContent}
-      </PromoBanner>
-    );
+    const { getByText } = renderComponent({
+      header: promoHeader,
+      linkText: 'Example text',
+    });
 
-    expect(getByTestId('link')).toBeTruthy();
+    expect(getByText('Example text')).toBeVisible();
   });
 
   it('should display image', () => {
-    const { getByTestId } = render(
-      <PromoBanner header={promoHeader} img={img}>
-        {promoContent}
-      </PromoBanner>
-    );
+    const { getByRole } = renderComponent({
+      header: promoHeader,
+      img: 'https://via.placeholder.com/100',
+    });
 
-    expect(getByTestId('img')).toBeTruthy();
+    expect(getByRole('img')).toBeVisible();
   });
 
   it('should display with light mode', () => {
-    const { container } = render(
-      <PromoBanner header={promoHeader} light={true}>
-        {promoContent}
-      </PromoBanner>
-    );
+    const { container } = renderComponent({
+      header: promoHeader,
+      light: true,
+    });
 
     expect(container.firstChild).toHaveClass('lc-promo-banner--light');
   });
 
   it('should display with small size by default', () => {
-    const { container } = render(
-      <PromoBanner header={promoHeader}>{promoContent}</PromoBanner>
-    );
+    const { container } = renderComponent({
+      header: promoHeader,
+    });
 
     expect(container.firstChild).toHaveClass('lc-promo-banner--small');
   });
 
   it('should display with medium size', () => {
-    const { container } = render(
-      <PromoBanner header={promoHeader} size={PromoBannerSize.Medium}>
-        {promoContent}
-      </PromoBanner>
-    );
+    const { container } = renderComponent({
+      header: promoHeader,
+      size: PromoBannerSize.Medium,
+    });
 
     expect(container.firstChild).toHaveClass('lc-promo-banner--medium');
   });
 
   it('should display with large size', () => {
-    const { container } = render(
-      <PromoBanner header={promoHeader} size={PromoBannerSize.Large}>
-        {promoContent}
-      </PromoBanner>
-    );
+    const { container } = renderComponent({
+      header: promoHeader,
+      size: PromoBannerSize.Large,
+    });
 
     expect(container.firstChild).toHaveClass('lc-promo-banner--large');
   });
 
   it('should call onClose function', () => {
-    const { getByTestId } = render(
-      <PromoBanner header={promoHeader} onClose={mockedFunction}>
-        {promoContent}
-      </PromoBanner>
-    );
+    const mockedFunction = jest.fn();
+    const { getByRole } = renderComponent({
+      header: promoHeader,
+      onClose: mockedFunction,
+    });
 
-    fireEvent.click(getByTestId('close'));
+    fireEvent.click(getByRole('button'));
     expect(mockedFunction).toHaveBeenCalled();
   });
 
   it('should call onButtonClick function', () => {
-    const { getByTestId } = render(
-      <PromoBanner
-        header={promoHeader}
-        buttonText={text}
-        onButtonClick={mockedFunction}
-      >
-        {promoContent}
-      </PromoBanner>
-    );
+    const mockedFunction = jest.fn();
+    const { getByText } = renderComponent({
+      header: promoHeader,
+      buttonText: 'Example text',
+      onButtonClick: mockedFunction,
+    });
 
-    fireEvent.click(getByTestId('button'));
+    fireEvent.click(getByText('Example text'));
     expect(mockedFunction).toHaveBeenCalled();
   });
 
   it('should call onLinkClick function', () => {
-    const { getByTestId } = render(
-      <PromoBanner
-        header={promoHeader}
-        linkText={text}
-        onLinkClick={mockedFunction}
-      >
-        {promoContent}
-      </PromoBanner>
-    );
+    const mockedFunction = jest.fn();
+    const { getByText } = renderComponent({
+      header: promoHeader,
+      linkText: 'Example text',
+      onLinkClick: mockedFunction,
+    });
 
-    fireEvent.click(getByTestId('link'));
+    fireEvent.click(getByText('Example text'));
     expect(mockedFunction).toHaveBeenCalled();
   });
 });

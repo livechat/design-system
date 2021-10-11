@@ -10,14 +10,17 @@
     color: var(--content-default);
   }
 
+  &__content {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
   &--small {
     max-width: 400px;
 
     .lc-alert__content {
-      display: flex;
       flex-direction: column;
-      justify-content: flex-start;
-      width: 100%;
 
       &-text {
         margin: 14px 0 0;
@@ -30,10 +33,6 @@
     max-width: 800px;
 
     .lc-alert__content {
-      display: flex;
-      justify-content: flex-start;
-      width: 100%;
-
       &-text {
         margin: 0 30px 0 16px;
         max-width: 640px;
@@ -43,10 +42,6 @@
 
   &--large {
     .lc-alert__content {
-      display: flex;
-      justify-content: flex-start;
-      width: 100%;
-
       &-text {
         margin: 0 30px 0 16px;
         max-width: 720px;

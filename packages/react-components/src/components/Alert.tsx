@@ -36,10 +36,8 @@ export const Alert: React.FC<IAlertProps> = ({
 }) => {
   const mergedClassNames = cx(
     baseClass,
-    {
-      [`${baseClass}--${type}`]: type,
-      [`${baseClass}--${size}`]: size,
-    },
+    `${baseClass}--${type}`,
+    `${baseClass}--${size}`,
     className
   );
 
@@ -51,7 +49,6 @@ export const Alert: React.FC<IAlertProps> = ({
       </div>
       {onClose && (
         <button
-          data-testid="close"
           type="button"
           className={`${baseClass}__close-icon`}
           onClick={onClose}

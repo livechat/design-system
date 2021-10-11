@@ -73,7 +73,6 @@ export const ToastWrapper: React.FC<IToastWrapperProps> = ({
               onClose={onClose}
               removable={removable}
               action={action}
-              className="lc-toast__single"
             >
               {content}
             </Toast>

@@ -1,113 +1,92 @@
 import * as React from 'react';
 import { render, fireEvent } from '../test-utils';
-import { Toast, Variants } from './Toast';
+import { IToastProps, Toast, Variants } from './Toast';
 
-const customClass = 'my-css-class';
-const toastContent = 'This example content';
-const mockedFunction = jest.fn();
-const mockedFunctionOnClose = jest.fn();
-const toastAction = {
-  label: 'Example action',
-  handler: mockedFunction,
+const renderComponent = (props: IToastProps) => {
+  return render(
+    <Toast {...props} className="my-css-class">
+      This example content
+    </Toast>
+  );
 };
 
-describe('<Banner> component', () => {
+describe('<Toast> component', () => {
   it('should allow for custom class', () => {
-    const { container } = render(
-      <Toast className={customClass}>{toastContent}</Toast>
-    );
+    const { container } = renderComponent({});
 
-    expect(container.firstChild).toHaveClass(customClass);
+    expect(container.firstChild).toHaveClass('my-css-class');
   });
 
   it('should render as info by default', () => {
-    const { container } = render(<Toast>{toastContent}</Toast>);
+    const { container } = renderComponent({});
 
     expect(container.firstChild).toHaveClass('lc-toast--info');
   });
 
   it('should render as success', () => {
-    const { container } = render(
-      <Toast variant={Variants.Success}>{toastContent}</Toast>
-    );
+    const { container } = renderComponent({ variant: Variants.Success });
 
     expect(container.firstChild).toHaveClass('lc-toast--success');
   });
 
   it('should render as warning', () => {
-    const { container } = render(
-      <Toast variant={Variants.Warning}>{toastContent}</Toast>
-    );
+    const { container } = renderComponent({ variant: Variants.Warning });
 
     expect(container.firstChild).toHaveClass('lc-toast--warning');
   });
 
   it('should render as error', () => {
-    const { container } = render(
-      <Toast variant={Variants.Error}>{toastContent}</Toast>
-    );
+    const { container } = renderComponent({ variant: Variants.Error });
 
     expect(container.firstChild).toHaveClass('lc-toast--error');
   });
 
   it('should render as notification', () => {
-    const { container } = render(
-      <Toast variant={Variants.Notification}>{toastContent}</Toast>
-    );
+    const { container } = renderComponent({ variant: Variants.Notification });
 
     expect(container.firstChild).toHaveClass('lc-toast--notification');
   });
 
-  it('should render with action button', () => {
-    const { getByTestId } = render(
-      <Toast action={toastAction}>{toastContent}</Toast>
-    );
+  it('should render with action button and call action function', () => {
+    const mockedFunction = jest.fn();
+    const { getByText } = renderComponent({
+      action: {
+        label: 'Example action',
+        handler: mockedFunction,
+      },
+    });
 
-    expect(getByTestId('actionButton')).toBeTruthy();
-  });
-
-  it('should call action function', () => {
-    const { getByTestId } = render(
-      <Toast action={toastAction}>{toastContent}</Toast>
-    );
-
-    fireEvent.click(getByTestId('actionButton'));
+    expect(getByText('Example action')).toBeVisible();
+    fireEvent.click(getByText('Example action'));
     expect(mockedFunction).toHaveBeenCalled();
   });
 
   it('should call action function with onClose function', () => {
-    const { getByTestId } = render(
-      <Toast
-        action={{ ...toastAction, closeOnClick: true }}
-        onClose={mockedFunctionOnClose}
-      >
-        {toastContent}
-      </Toast>
-    );
+    const mockedFunction = jest.fn();
+    const mockedFunctionOnClose = jest.fn();
+    const { getByText } = renderComponent({
+      action: {
+        label: 'Example action',
+        handler: mockedFunction,
+        closeOnClick: true,
+      },
+      onClose: mockedFunctionOnClose,
+    });
 
-    fireEvent.click(getByTestId('actionButton'));
+    fireEvent.click(getByText('Example action'));
     expect(mockedFunction).toHaveBeenCalled();
     expect(mockedFunctionOnClose).toHaveBeenCalled();
   });
 
-  it('should render with close button', () => {
-    const { getByTestId } = render(
-      <Toast removable={true} onClose={mockedFunctionOnClose}>
-        {toastContent}
-      </Toast>
-    );
+  it('should render with close button and call onClose function', () => {
+    const mockedFunction = jest.fn();
+    const { getByLabelText } = renderComponent({
+      removable: true,
+      onClose: mockedFunction,
+    });
 
-    expect(getByTestId('closeButton')).toBeTruthy();
-  });
-
-  it('should call onClose function', () => {
-    const { getByTestId } = render(
-      <Toast removable={true} onClose={mockedFunctionOnClose}>
-        {toastContent}
-      </Toast>
-    );
-
-    fireEvent.click(getByTestId('closeButton'));
-    expect(mockedFunctionOnClose).toHaveBeenCalled();
+    expect(getByLabelText('Close toast')).toBeVisible();
+    fireEvent.click(getByLabelText('Close toast'));
+    expect(mockedFunction).toHaveBeenCalled();
   });
 });

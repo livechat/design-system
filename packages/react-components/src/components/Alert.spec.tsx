@@ -1,86 +1,76 @@
 import * as React from 'react';
 import { render, fireEvent } from '../test-utils';
-import { Alert, AlertSize, AlertType } from './Alert';
+import { Alert, AlertSize, AlertType, IAlertProps } from './Alert';
 
-const customClass = 'my-css-class';
-const bannerContent = 'This example content';
-const mockedFunction = jest.fn();
+const renderComponent = (props: IAlertProps) => {
+  return render(
+    <Alert {...props} className="my-css-class">
+      This example content
+    </Alert>
+  );
+};
 
-describe('<Banner> component', () => {
+describe('<Alert> component', () => {
   it('should allow for custom class', () => {
-    const { container } = render(
-      <Alert className={customClass}>{bannerContent}</Alert>
-    );
+    const { container } = renderComponent({});
 
-    expect(container.firstChild).toHaveClass(customClass);
+    expect(container.firstChild).toHaveClass('my-css-class');
   });
 
   it('should render as info by default', () => {
-    const { container } = render(<Alert>{bannerContent}</Alert>);
+    const { container } = renderComponent({});
 
     expect(container.firstChild).toHaveClass('lc-alert--info');
   });
 
   it('should render as warning', () => {
-    const { container } = render(
-      <Alert type={AlertType.Warning}>{bannerContent}</Alert>
-    );
+    const { container } = renderComponent({ type: AlertType.Warning });
 
     expect(container.firstChild).toHaveClass('lc-alert--warning');
   });
 
   it('should render as success', () => {
-    const { container } = render(
-      <Alert type={AlertType.Success}>{bannerContent}</Alert>
-    );
+    const { container } = renderComponent({ type: AlertType.Success });
 
     expect(container.firstChild).toHaveClass('lc-alert--success');
   });
 
   it('should render as error', () => {
-    const { container } = render(
-      <Alert type={AlertType.Error}>{bannerContent}</Alert>
-    );
+    const { container } = renderComponent({ type: AlertType.Error });
 
     expect(container.firstChild).toHaveClass('lc-alert--error');
   });
 
   it('should render as small by default', () => {
-    const { container } = render(<Alert>{bannerContent}</Alert>);
+    const { container } = renderComponent({});
 
     expect(container.firstChild).toHaveClass('lc-alert--small');
   });
 
   it('should render as medium', () => {
-    const { container } = render(
-      <Alert size={AlertSize.Medium}>{bannerContent}</Alert>
-    );
+    const { container } = renderComponent({ size: AlertSize.Medium });
 
     expect(container.firstChild).toHaveClass('lc-alert--medium');
   });
 
   it('should render as large', () => {
-    const { container } = render(
-      <Alert size={AlertSize.Large}>{bannerContent}</Alert>
-    );
+    const { container } = renderComponent({ size: AlertSize.Large });
 
     expect(container.firstChild).toHaveClass('lc-alert--large');
   });
 
-  it('should render with close icon', () => {
-    const { getByTestId } = render(
-      <Alert onClose={mockedFunction}>{bannerContent}</Alert>
-    );
+  it('should render with close icon and call onClose function', () => {
+    const mockedFunction = jest.fn();
+    const { getByRole } = renderComponent({ onClose: mockedFunction });
 
-    expect(getByTestId('close')).toBeTruthy();
+    expect(getByRole('button')).toBeVisible();
+    fireEvent.click(getByRole('button'));
+    expect(mockedFunction).toHaveBeenCalled();
   });
 
-  it('should call onClose function', () => {
-    const { getByTestId } = render(
-      <Alert onClose={mockedFunction}>{bannerContent}</Alert>
-    );
+  it('should not render with close icon if no onClose function passed', () => {
+    const { queryByRole } = renderComponent({});
 
-    fireEvent.click(getByTestId('close'));
-    expect(mockedFunction).toHaveBeenCalled();
+    expect(queryByRole('button')).toBeFalsy();
   });
 });
