@@ -21,7 +21,7 @@ interface IProps {
 
 export const Heading: React.FC<IProps> = ({
   as,
-  size = 'lg',
+  size = 'md',
   children,
   className,
   ...props
