@@ -8,12 +8,12 @@ export const IconsShowcase = () => {
   const iconsGrid = Object.keys(Icons).map((item) => {
     const iconSource = (Icons as any)[item];
     return (
-      <div className={'grid'}>
+      <div className={'card'}>
         <Icon source={iconSource} size={IconSizeName.XLarge}></Icon>
         <p>{item}</p>
       </div>
     );
   });
 
-  return <div className={'wrap'}>{iconsGrid}</div>;
+  return <div className={'wrapper'}>{iconsGrid}</div>;
 };
