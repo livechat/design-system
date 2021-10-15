@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import * as Icons from '@livechat/design-system-icons/dist';
+import * as Icons from '@livechat/design-system-icons/dist/material';
 import { Icon, IconSizeName } from '../../../components/Icon';
 import './iconsShowcase.css';
 

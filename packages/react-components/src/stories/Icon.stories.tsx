@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 
 import { Icon as IconComponent, IconSize } from '../components/Icon';
-import Add from '@livechat/design-system-icons/dist/Add';
+import Add from '@livechat/design-system-icons/dist/material/Add';
 export default {
   title: 'Components/Icon',
   component: IconComponent,
