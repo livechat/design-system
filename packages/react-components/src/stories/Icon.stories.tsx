@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 
-import { Icon as IconComponent, IconSize } from '../components/Icon';
+import {
+  Icon as IconComponent,
+  IconSize,
+  IconTypeName,
+} from '../components/Icon';
 import Add from '@livechat/design-system-icons/dist/material/Add';
 export default {
   title: 'Components/Icon',
@@ -16,5 +20,6 @@ export const Icon = (args: any): React.ReactElement => (
 
 Icon.args = {
   source: Add,
-  size: IconSize.xlarge,
+  size: IconSize.medium,
+  iconType: IconTypeName.Primary,
 };
