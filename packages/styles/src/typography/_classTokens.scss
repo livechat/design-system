@@ -1,0 +1,37 @@
+@use './mixins';
+
+.lc-heading-xl {
+  @include mixins.heading-xl;
+}
+
+.lc-heading-lg {
+  @include mixins.heading-lg;
+}
+
+.lc-heading-md {
+  @include mixins.heading-md;
+}
+
+.lc-heading-sm {
+  @include mixins.heading-sm;
+}
+
+.lc-heading-xs {
+  @include mixins.heading-xs;
+}
+
+.lc-caps {
+  @include mixins.caps;
+}
+
+.lc-paragraph-md {
+  @include mixins.lc-paragraph-md;
+}
+
+.lc-paragraph-sm {
+  @include mixins.lc-paragraph-sm;
+}
+
+.lc-paragraph-xs {
+  @include mixins.lc-paragraph-xs;
+}

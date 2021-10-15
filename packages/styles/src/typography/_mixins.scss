@@ -1,0 +1,96 @@
+@mixin heading-xl {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 40px;
+}
+
+@mixin heading-lg {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 32px;
+}
+
+@mixin heading-md {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 28px;
+}
+
+@mixin heading-sm {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 24px;
+}
+
+@mixin heading-xs {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 24px;
+}
+
+@mixin caps {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  line-height: 20px;
+  text-transform: uppercase;
+
+  &--bold {
+    font-weight: 600;
+  }
+}
+
+@mixin lc-paragraph-md {
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 22px;
+
+  &--bold {
+    font-weight: 600;
+  }
+
+  &--underline {
+    text-decoration-line: underline;
+  }
+
+  &--strike {
+    text-decoration-line: line-through;
+  }
+}
+
+@mixin lc-paragraph-sm {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 20px;
+
+  &--bold {
+    font-weight: 600;
+  }
+}
+
+@mixin lc-paragraph-xs {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  line-height: 16px;
+
+  &--bold {
+    font-weight: 600;
+  }
+}
