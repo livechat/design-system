@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build": "svgr --typescript -d ./dist ./src/material ",
+    "build": "svgr --typescript --no-dimensions -d ./dist ./src ",
     "dev": "npm run build"
   },
   "author": "",
