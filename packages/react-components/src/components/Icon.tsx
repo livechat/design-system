@@ -33,7 +33,9 @@ export const IconSize = {
 
 export enum IconTypeName {
   Primary = 'primary',
+  Subtle = 'subtle',
   Inverted = 'inverted',
+  InvertedSubtle = 'inverted_subtle',
   Link = 'link',
   Success = 'success',
   Warning = 'warning',
@@ -42,7 +44,9 @@ export enum IconTypeName {
 
 export const IconColorMapper = {
   [IconTypeName.Primary]: '#424d57',
+  [IconTypeName.Subtle]: '#677179',
   [IconTypeName.Inverted]: '#fff',
+  [IconTypeName.InvertedSubtle]: '#c6cacd',
   [IconTypeName.Link]: '#4384f5',
   [IconTypeName.Success]: '#4bb678',
   [IconTypeName.Warning]: '#efa842',
@@ -51,7 +55,9 @@ export const IconColorMapper = {
 
 export const IconColorDisabledMapper = {
   [IconTypeName.Primary]: '#686d72',
+  [IconTypeName.Subtle]: '#a0a6ab',
   [IconTypeName.Inverted]: '#dbdbdb',
+  [IconTypeName.InvertedSubtle]: '#a0a6ab',
   [IconTypeName.Link]: '#c3d7fa',
   [IconTypeName.Success]: '#4bb678',
   [IconTypeName.Warning]: '#efa842',
@@ -59,7 +65,7 @@ export const IconColorDisabledMapper = {
 };
 
 export interface IIconProps {
-  source: string;
+  source: React.FC<React.SVGProps<SVGSVGElement>>;
   size?: IconSizeName;
   iconType?: IconTypeName;
   disabled?: boolean;
@@ -83,7 +89,7 @@ export const Icon: React.FC<IIconProps> = (props) => {
 
   const GeneratedIcon = React.createElement(source, {
     ...IconSize[size],
-    fill: filledColor,
+    color: filledColor,
   });
 
   return (
