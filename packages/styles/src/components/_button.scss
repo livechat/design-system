@@ -116,4 +116,16 @@
       color: var(--color-action-hover);
     }
   }
+
+  &--large {
+    min-height: 42px;
+    min-width: 42px;
+    padding: 9px 24px;
+  }
+
+  &--compact {
+    min-height: 32px;
+    min-width: 32px;
+    padding: 4px 16px;
+  }
 }
