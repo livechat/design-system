@@ -1,6 +1,8 @@
 @use './typography/classTokens';
 
 @use './components/badge';
+@use './components/radio-button';
+@use './components/field-description';
 
 @use './themes/legacy';
 @use './themes/light';
