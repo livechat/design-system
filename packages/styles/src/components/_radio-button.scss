@@ -50,6 +50,18 @@ $base-class: 'lc-radio-button';
     width: 100%;
   }
 
+  &__helper {
+    cursor: default;
+    margin-left: 24px;
+  }
+
+  &:focus {
+    .#{$base-class}__circle {
+      border-radius: 20px;
+      box-shadow: 0 0 1px 1.6px rgba(67, 132, 245, 0.7); // TODO use color token
+    }
+  }
+
   &--selected {
     .#{$base-class}__circle {
       border-color: var(--color-action-default);
@@ -60,15 +72,25 @@ $base-class: 'lc-radio-button';
     }
   }
 
-  &--disabled {
+  &--selected:hover {
     .#{$base-class}__circle {
-      background-color: var(--surface-basic-disabled);
-      border-color: var(---border-disabled);
-      opacity: 0.4;
+      border-color: var(--color-action-hover);
     }
 
     .#{$base-class}__inner-circle {
-      background-color: var(--surface-basic-disabled);
+      background-color: var(--color-action-hover);
+    }
+  }
+
+  &--disabled {
+    .#{$base-class}__circle {
+      opacity: 0.4;
+    }
+
+    &:not(.#{$base-class}--selected) {
+      .#{$base-class}__circle {
+        background-color: var(--surface-basic-disabled);
+      }
     }
 
     .#{$base-class}__label,
@@ -78,10 +100,5 @@ $base-class: 'lc-radio-button';
       color: var(--content-disabled);
       cursor: not-allowed;
     }
-  }
-
-  &__helper {
-    cursor: default;
-    margin-left: 24px;
   }
 }
