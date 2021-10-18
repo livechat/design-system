@@ -4,9 +4,11 @@ import * as MaterialIcons from '@livechat/design-system-icons/dist/material';
 import { Icon, IconSizeName } from '../../../components/Icon';
 import './iconsShowcase.css';
 
-const Icons = MaterialIcons as {
+export type IconsMap = {
   [key: string]: React.FC<React.SVGProps<SVGSVGElement>>;
 };
+
+const Icons = MaterialIcons as IconsMap;
 
 export const IconsShowcase = () => {
   const iconsGrid = Object.keys(Icons).map((item) => {
