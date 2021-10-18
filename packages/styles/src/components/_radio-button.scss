@@ -50,7 +50,7 @@ $base-class: 'lc-radio-button';
     width: 100%;
   }
 
-  &__helper {
+  .#{$base-class}__helper {
     cursor: default;
     margin-left: 24px;
   }

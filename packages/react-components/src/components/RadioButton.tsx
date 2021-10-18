@@ -11,16 +11,15 @@ export interface IRadioButtonProps
 
 export const RadioButton: React.FC<IRadioButtonProps> = ({
   children,
-  className: extraClassName = '',
+  className = '',
   description,
   checked,
   disabled,
   ...props
 }) => {
   const baseClass = 'lc-radio-button';
-  const mergedClassNames = cx({
-    [baseClass]: true,
-    [extraClassName]: !!extraClassName,
+  const mergedClassNames = cx(baseClass, {
+    [className]: !!className,
     [`${baseClass}--selected`]: checked,
     [`${baseClass}--disabled`]: disabled,
   });

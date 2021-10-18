@@ -9,6 +9,7 @@ import {
 export default {
   title: 'Components/RadioButton',
   component: RadioButtonComponent,
+  argTypes: { onChange: { action: 'changed' } },
 } as ComponentMeta<typeof RadioButtonComponent>;
 
 export const RadioButton = (args: IRadioButtonProps): React.ReactElement => (

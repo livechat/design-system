@@ -5,17 +5,16 @@ export type IFieldDescriptionProps = React.HTMLAttributes<HTMLSpanElement>;
 
 export const FieldDescription: React.FC<IFieldDescriptionProps> = ({
   children,
-  className: extraClassName = '',
+  className = '',
   ...props
 }) => {
   const baseClass = 'lc-field-description';
-  const mergedClassNames = cx({
-    [baseClass]: true,
-    [extraClassName]: !!extraClassName,
+  const mergedClassNames = cx(baseClass, {
+    [className]: !!className,
   });
 
   return (
-    <span className={mergedClassNames} {...props}>
+    <span {...props} className={mergedClassNames}>
       {children}
     </span>
   );
