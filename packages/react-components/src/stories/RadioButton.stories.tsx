@@ -12,9 +12,12 @@ export default {
   argTypes: { onChange: { action: 'changed' } },
 } as ComponentMeta<typeof RadioButtonComponent>;
 
-export const RadioButton = (args: IRadioButtonProps): React.ReactElement => (
+export const RadioButton = ({
+  children,
+  ...args
+}: IRadioButtonProps): React.ReactElement => (
   <div>
-    <RadioButtonComponent {...args}>Radio button label</RadioButtonComponent>
+    <RadioButtonComponent {...args}>{children}</RadioButtonComponent>
   </div>
 );
 
@@ -22,4 +25,5 @@ RadioButton.args = {
   checked: false,
   disabled: false,
   description: 'Lorem ipsum',
+  children: 'Radio button label',
 };
