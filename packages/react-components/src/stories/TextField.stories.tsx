@@ -21,7 +21,7 @@ export default {
 const StoryTemplate: Story<ITextFieldProps> = (args: ITextFieldProps) => (
   <div>
     <TextFieldComponent {...args}>
-      <input style={{ height: 26 }} id="input-field-example" />
+      <input style={{ height: 26 }} id="text-field-example" />
     </TextFieldComponent>
   </div>
 );
