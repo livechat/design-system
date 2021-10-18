@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "build": "svgr --typescript --no-dimensions -d ./dist ./src ",
+    "build": "svgr --replace-attr-values '#424D57=currentcolor' --typescript --no-dimensions -d ./dist ./src ",
     "dev": "npm run build"
   },
   "author": "",
