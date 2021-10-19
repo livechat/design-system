@@ -22,7 +22,7 @@ Card.args = {
   title: 'Title goes here',
   img: 'https://via.placeholder.com/100',
   children: (
-    <p>
+    <p style={{ margin: 0 }}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore
     </p>

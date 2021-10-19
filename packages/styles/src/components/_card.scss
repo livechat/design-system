@@ -1,13 +1,11 @@
 .lc-card {
-  background-color: #fff;
+  background-color: var(--surface-basic-default);
   border: solid 1px var(--border-default);
   border-radius: 4px;
   color: var(--content-default);
-  font-size: 15px;
-  line-height: 16px;
   margin-top: 8px;
   overflow: hidden;
-  padding: 18px;
+  padding: 16px;
 
   &__title {
     align-items: center;
@@ -17,9 +15,6 @@
 
   &__text {
     color: var(--content-default);
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 24px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
