@@ -50,7 +50,7 @@ $compact-move: $compact-width - $compact-size;
 
   &__input:focus + .#{$base-class}__container {
     .#{$base-class}__track {
-      box-shadow: 0 0 1px 2px var(--surface-secondary-hover);
+      box-shadow: 0 0 1px 2px var(--color-action-default);
     }
   }
 
