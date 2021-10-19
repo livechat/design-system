@@ -1,0 +1,13 @@
+.card {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.wrapper {
+  display: grid;
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+  grid-template-columns: repeat(8, 1fr);
+}
