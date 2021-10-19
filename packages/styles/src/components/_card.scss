@@ -1,0 +1,31 @@
+.lc-card {
+  background-color: var(--surface-basic-default);
+  border: solid 1px var(--border-subtle);
+  border-radius: 4px;
+  color: var(--content-default);
+  margin-top: 8px;
+  overflow: hidden;
+  padding: 16px;
+
+  &__title {
+    align-items: center;
+    display: flex;
+    margin-bottom: 14px;
+  }
+
+  &__text {
+    color: var(--content-default);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  &__img {
+    border-radius: 4px;
+    display: inline-block;
+    height: 24px;
+    margin-right: 10px;
+    width: 24px;
+  }
+}
