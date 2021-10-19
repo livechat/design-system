@@ -4,6 +4,9 @@
 @use './components/text-field';
 @use './components/input-field';
 
+@use './components/alert';
+@use './components/promo-banner';
+@use './components/toast';
 @use './themes/legacy';
 @use './themes/light';
 @use './themes/dark';
