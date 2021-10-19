@@ -1,0 +1,93 @@
+$base-class: 'lc-checkbox';
+
+.#{$base-class} {
+  display: inline-block;
+
+  &__label {
+    align-items: flex-start;
+    cursor: pointer;
+    display: inline-flex;
+    flex: 0 1 auto;
+    width: 100%;
+  }
+
+  &__square {
+    background-color: var(--surface-basic-default);
+    border: 1px solid var(--border-default);
+    border-radius: 4px;
+    box-sizing: border-box;
+    height: 16px;
+    margin-right: 8px;
+    margin-top: 2px;
+    position: relative;
+    transition: all 0.2s ease;
+    width: 16px;
+  }
+
+  &__checkmark {
+    fill: #fff;
+    height: 10px;
+    left: 2px;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 2px;
+    transition: all 0.2s ease;
+    width: 10px;
+  }
+
+  &--selected {
+    .#{$base-class}__square {
+      background-color: var(--color-action-default);
+      border-color: var(--color-action-default);
+    }
+
+    .#{$base-class}__checkmark {
+      opacity: 1;
+    }
+  }
+
+  &__text {
+    color: var(--content-default);
+    flex: 1 0 auto;
+    font-size: 15px;
+    line-height: 20px;
+  }
+
+  &__input {
+    display: none;
+    height: 100%;
+    width: 100%;
+
+    &:checked + .#{$base-class}__square {
+      background-color: var(--color-action-default);
+      border-color: var(--color-action-default);
+
+      .#{$base-class}__checkmark {
+        opacity: 1;
+      }
+    }
+  }
+
+  &--disabled {
+    .#{$base-class} {
+      &__square {
+        background-color: var(--color-action-disabled);
+        border-color: var(--color-action-disabled);
+        opacity: 0.4;
+      }
+
+      &__label,
+      &__input,
+      &__text {
+        color: var(--content-disabled);
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &__helper {
+    cursor: default;
+    margin-left: 24px;
+  }
+}
