@@ -1,4 +1,5 @@
 import * as React from 'react';
+import cx from 'classnames';
 
 export enum IconSizeName {
   XSmall = 'xsmall',
@@ -43,25 +44,25 @@ export enum IconTypeName {
 }
 
 export const IconColorMapper = {
-  [IconTypeName.Primary]: '#424d57',
-  [IconTypeName.Subtle]: '#677179',
-  [IconTypeName.Inverted]: '#fff',
-  [IconTypeName.InvertedSubtle]: '#c6cacd',
-  [IconTypeName.Link]: '#4384f5',
-  [IconTypeName.Success]: '#4bb678',
-  [IconTypeName.Warning]: '#efa842',
-  [IconTypeName.Error]: '#d64646',
+  [IconTypeName.Primary]: 'primary',
+  [IconTypeName.Subtle]: 'subtle',
+  [IconTypeName.Inverted]: 'inverted',
+  [IconTypeName.InvertedSubtle]: 'inverted-subtle',
+  [IconTypeName.Link]: 'link',
+  [IconTypeName.Success]: 'success',
+  [IconTypeName.Warning]: 'warning',
+  [IconTypeName.Error]: 'error',
 };
 
 export const IconColorDisabledMapper = {
-  [IconTypeName.Primary]: '#686d72',
-  [IconTypeName.Subtle]: '#a0a6ab',
-  [IconTypeName.Inverted]: '#dbdbdb',
-  [IconTypeName.InvertedSubtle]: '#a0a6ab',
-  [IconTypeName.Link]: '#c3d7fa',
-  [IconTypeName.Success]: '#4bb678',
-  [IconTypeName.Warning]: '#efa842',
-  [IconTypeName.Error]: '#d64646',
+  [IconTypeName.Primary]: 'disabled--primary',
+  [IconTypeName.Subtle]: 'disabled--subtle',
+  [IconTypeName.Inverted]: 'disabled--inverted',
+  [IconTypeName.InvertedSubtle]: 'disabled--inverted-subtle',
+  [IconTypeName.Link]: 'disabled--link',
+  [IconTypeName.Success]: 'disabled--success',
+  [IconTypeName.Warning]: 'disabled--warning',
+  [IconTypeName.Error]: 'disabled--error',
 };
 
 export interface IIconProps {
@@ -71,6 +72,8 @@ export interface IIconProps {
   disabled?: boolean;
   className?: string;
 }
+
+const baseClass = 'lc-icon';
 
 export const Icon: React.FC<IIconProps> = (props) => {
   const {
@@ -89,11 +92,12 @@ export const Icon: React.FC<IIconProps> = (props) => {
 
   const GeneratedIcon = React.createElement(source, {
     ...IconSize[size],
-    color: filledColor,
   });
 
+  const mergedClassNames = cx(className, `${baseClass}--${filledColor}`);
+
   return (
-    <span {...restProps} className={className}>
+    <span {...restProps} className={mergedClassNames}>
       {GeneratedIcon}
     </span>
   );
