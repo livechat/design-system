@@ -1,8 +1,8 @@
+@use '../typography/mixins';
+
 .lc-field-description {
+  @include mixins.lc-paragraph-sm;
+
   color: var(--content-subtle);
   display: block;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 16px;
-  margin: 4px 0 0;
 }
