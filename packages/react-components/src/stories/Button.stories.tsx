@@ -31,3 +31,21 @@ export const sizes = () => (
     </Button>
   </div>
 );
+
+export const loading = () => (
+  <div className="spacer">
+    <Button loading>Loading Button</Button>
+    <Button loading kind="primary">
+      Loading Button
+    </Button>
+    <Button loading kind="secondary">
+      Loading Button
+    </Button>
+    <Button loading kind="destructive">
+      Loading Button
+    </Button>
+    <Button loading loaderLabel="Processing" kind="text">
+      Loading Button
+    </Button>
+  </div>
+);

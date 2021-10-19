@@ -1,11 +1,13 @@
 import * as React from 'react';
 import cx from 'classnames';
+import { Loader } from '../Loader';
 
 export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
   fullWidth?: boolean;
   kind?: 'basic' | 'primary' | 'secondary' | 'destructive' | 'text';
   size?: 'compact' | 'medium' | 'large';
+  loaderLabel?: string;
 }
 
 const baseClass = 'lc-btn';
@@ -17,6 +19,7 @@ export const Button: React.FC<Props> = ({
   fullWidth = false,
   kind = 'basic',
   size = 'medium',
+  loaderLabel,
   className,
   children,
   ...props
@@ -42,7 +45,14 @@ export const Button: React.FC<Props> = ({
       type={type}
       {...props}
     >
-      {children}
+      {loading && (
+        <Loader
+          size="small"
+          label={loaderLabel}
+          className={`${baseClass}__loader`}
+        />
+      )}
+      <div>{children}</div>
     </button>
   );
 };

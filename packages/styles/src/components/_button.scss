@@ -56,6 +56,10 @@
       background-color: var(--surface-feedback-info);
       color: var(--color-action-hover);
     }
+
+    &.lc-btn--loading {
+      background-color: var(--surface-basic-default);
+    }
   }
 
   &--primary {
@@ -71,6 +75,11 @@
     &:active {
       background-color: var(--color-action-active);
       border-color: var(--color-action-active);
+    }
+
+    &.lc-btn--loading {
+      background-color: rgba(var(--color-action-default-rgb), 0.25);
+      border-color: inherit;
     }
   }
 
@@ -89,6 +98,11 @@
       border-color: var(--color-action-default);
       color: var(--color-action-default);
     }
+
+    &.lc-btn--loading {
+      background-color: var(--surface-basic-default);
+      border-color: var(--surface-secondary-default);
+    }
   }
 
   &--destructive {
@@ -104,6 +118,11 @@
     &:active {
       background-color: var(--color-negative-active);
       border-color: var(--color-negative-active);
+    }
+
+    &.lc-btn--loading {
+      background-color: rgba(var(--color-negative-default-rgb), 0.5);
+      border-color: inherit;
     }
   }
 
@@ -127,5 +146,37 @@
     min-height: 32px;
     min-width: 32px;
     padding: 4px 16px;
+  }
+
+  &--loading {
+    cursor: progress;
+    transition: all 0.2s cubic-bezier(0.64, 0, 0.35, 1);
+
+    > * {
+      opacity: 0;
+    }
+
+    .lc-btn__loader {
+      align-items: center;
+      box-sizing: border-box;
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      left: 0;
+      opacity: 1;
+      padding: inherit;
+      position: absolute;
+      top: 0;
+      width: 100%;
+
+      .lc-loader__label {
+        color: inherit;
+        margin: 0 5px;
+        overflow: hidden;
+        text-align: left;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
   }
 }
