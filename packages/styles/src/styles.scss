@@ -6,6 +6,9 @@
 @use './components/toast';
 @use './components/radio-button';
 @use './components/field-description';
+@use './components/field-label';
+@use './components/field-error';
+@use './components/field-group';
 
 @use './themes/legacy';
 @use './themes/light';

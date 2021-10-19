@@ -1,0 +1,27 @@
+$base-class: 'lc-field-group';
+
+.#{$base-class} {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  margin: -8px 0;
+
+  > * {
+    padding: 8px 0;
+  }
+
+  &--inline {
+    flex-direction: row;
+    margin: 0 -8px;
+
+    > * {
+      padding: 0 8px;
+    }
+  }
+
+  &--stretched {
+    > * {
+      width: 100%;
+    }
+  }
+}
