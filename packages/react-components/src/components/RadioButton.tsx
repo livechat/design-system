@@ -4,7 +4,7 @@ import { FieldDescription } from './FieldDescription';
 
 export interface IRadioButtonProps
   extends React.HTMLAttributes<HTMLInputElement> {
-  description?: string;
+  description?: React.ReactNode;
   checked?: boolean;
   disabled?: boolean;
 }
