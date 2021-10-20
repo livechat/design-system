@@ -1,5 +1,7 @@
 import * as React from 'react';
 import cx from 'classnames';
+import { Check } from '@livechat/design-system-icons/dist/material';
+import Icon, { IconSizeName, IconTypeName } from './Icon';
 
 export interface ICheckboxProps extends React.HTMLAttributes<HTMLInputElement> {
   className?: string;
@@ -19,8 +21,12 @@ export const Checkbox: React.FC<ICheckboxProps> = ({
     <div>
       <input {...props} className={`${baseClass}__input`} type="checkbox" />
       <div className={mergedClassNames}>
-        {/* TODO add checkbox icon*/}
-        {/*<CheckIcon className={`${baseClass}__checkmark`} />*/}
+        <Icon
+          source={Check}
+          iconType={IconTypeName.Inverted}
+          size={IconSizeName.XSmall}
+          className={`${baseClass}__checkmark`}
+        />
       </div>
     </div>
   );
