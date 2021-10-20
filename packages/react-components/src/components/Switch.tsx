@@ -18,7 +18,6 @@ enum SwitchStyles {
 
 export interface IProps {
   className?: string;
-  defaultOn?: boolean;
   disabled?: boolean;
   name?: string;
   on?: boolean;
@@ -29,7 +28,6 @@ export interface IProps {
 
 export const Switch: React.FC<IProps> = ({
   className = '',
-  defaultOn = false,
   disabled = false,
   name = baseClass,
   on,
@@ -38,10 +36,16 @@ export const Switch: React.FC<IProps> = ({
   innerRef,
   ...props
 }) => {
-  const getEnabledValue = () => (on !== undefined ? on : defaultOn);
+  const getEnabledValue = () => (on !== undefined ? on : false);
   const [enabled, setEnabled] = React.useState(getEnabledValue());
-  const valueStyles = enabled ? SwitchStyles.Enabled : SwitchStyles.Disabled;
 
+  React.useEffect(() => {
+    if (on !== undefined) {
+      setEnabled(on);
+    }
+  }, [on]);
+
+  const valueStyles = enabled ? SwitchStyles.Enabled : SwitchStyles.Disabled;
   const mergedClassNames = cx(baseClass, [`${baseClass}--${size}`], className);
 
   const handleChange = (e: React.FormEvent) => {
@@ -51,7 +55,7 @@ export const Switch: React.FC<IProps> = ({
       return;
     }
     e.stopPropagation();
-    setEnabled(!enabled);
+    setEnabled((prevEnabled) => !prevEnabled);
   };
 
   return (
@@ -64,6 +68,7 @@ export const Switch: React.FC<IProps> = ({
         name={name}
         ref={innerRef}
         disabled={disabled}
+        test-id="foo"
         {...props}
       />
       <span className={`${baseClass}__container`}>

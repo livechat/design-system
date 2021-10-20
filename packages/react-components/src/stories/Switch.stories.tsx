@@ -12,26 +12,14 @@ export default {
   component: SwitchComponent,
 } as ComponentMeta<typeof SwitchComponent>;
 
-interface ISwitchArgs extends ISwitchProps {
-  label: string;
-}
-
-export const Switch = (args: ISwitchArgs): React.ReactElement => {
-  const containerStyles = {
-    width: '150px',
-    height: '50px',
-    display: 'flex',
-    'align-items': 'center',
-    'justify-content': 'space-between',
-  };
+export const Switch = (args: ISwitchProps): React.ReactElement => {
   return (
-    <div style={containerStyles}>
-      <SwitchComponent {...args} /> {args.label}
+    <div>
+      <SwitchComponent {...args} />
     </div>
   );
 };
 
 Switch.args = {
-  label: 'Toggle me!',
   onChange: noop,
 };
