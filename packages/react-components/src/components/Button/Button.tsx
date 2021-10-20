@@ -9,6 +9,8 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
   fullWidth?: boolean;
   loaderLabel?: string;
+  icon?: React.ReactElement;
+  iconPosition?: 'left' | 'right';
 }
 
 const baseClass = 'lc-btn';
@@ -20,6 +22,8 @@ export const Button: React.FC<Props> = ({
   fullWidth = false,
   kind = 'basic',
   size = 'medium',
+  icon = null,
+  iconPosition = 'left',
   loaderLabel,
   className,
   children,
@@ -53,7 +57,15 @@ export const Button: React.FC<Props> = ({
           className={`${baseClass}__loader`}
         />
       )}
-      <div>{children}</div>
+      {icon &&
+        React.cloneElement(icon, {
+          className: cx(
+            `${baseClass}__icon`,
+            `${baseClass}__icon--${iconPosition}`
+          ),
+          disabled,
+        })}
+      <div className={`${baseClass}__content`}>{children}</div>
     </button>
   );
 };

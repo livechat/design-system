@@ -135,6 +135,10 @@ $base-class: 'lc-btn';
     &:hover {
       color: var(--color-action-hover);
     }
+
+    &[disabled] {
+      color: var(--color-action-disabled);
+    }
   }
 
   &--large {
@@ -172,12 +176,39 @@ $base-class: 'lc-btn';
 
       .lc-loader__label {
         color: inherit;
+        font-weight: inherit;
         margin: 0 5px;
         overflow: hidden;
         text-align: left;
         text-overflow: ellipsis;
         white-space: nowrap;
       }
+    }
+  }
+
+  // TODO: Investigate
+  &__content {
+    margin-top: -2px;
+  }
+
+  .lc-icon {
+    color: inherit;
+  }
+
+  &__icon {
+    display: inline-block;
+    height: 20px;
+    line-height: 1;
+    width: 20px;
+
+    &--left {
+      margin-right: 5px;
+      order: -1;
+    }
+
+    &--right {
+      margin-left: 5px;
+      order: 1;
     }
   }
 }

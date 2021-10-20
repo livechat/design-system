@@ -1,12 +1,51 @@
 import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 
+import * as MaterialIcons from '@livechat/design-system-icons/dist/material';
+
+import { Icon } from '../components/Icon';
 import { Button } from '../components/Button';
+
+const icons = Object.fromEntries(
+  Object.entries(MaterialIcons).map(([key, source]) => [
+    key,
+    <Icon source={source} />,
+  ])
+);
+
+const iterator = Object.keys(icons);
 
 export default {
   title: 'Components/Button',
   component: Button,
+  argTypes: {
+    icon: {
+      options: ['None', ...iterator],
+      mapping: Object.assign(icons, { None: null }),
+      control: {
+        type: 'select',
+        labels: iterator,
+      },
+    },
+  },
+  parameters: {
+    controls: {
+      sort: 'alpha',
+    },
+  },
 } as ComponentMeta<typeof Button>;
+
+export const button = (args) => <Button {...args} />;
+button.args = {
+  loading: false,
+  disabled: false,
+  size: 'medium',
+  kind: 'primary',
+  children: 'Button Text',
+  fullWidth: false,
+  iconPosition: 'left',
+  icon: 'None',
+};
 
 export const kinds = () => (
   <div>
