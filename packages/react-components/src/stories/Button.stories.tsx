@@ -9,12 +9,44 @@ export default {
 } as ComponentMeta<typeof Button>;
 
 export const kinds = () => (
-  <div className="spacer">
-    <Button>Basic</Button>
-    <Button kind="primary">Primary</Button>
-    <Button kind="secondary">Secondary</Button>
-    <Button kind="destructive">Destructive</Button>
-    <Button kind="text">Text</Button>
+  <div>
+    <div className="spacer">
+      <Button>Basic</Button>
+      <Button kind="primary">Primary</Button>
+      <Button kind="secondary">Secondary</Button>
+      <Button kind="destructive">Destructive</Button>
+      <Button kind="text">Text</Button>
+    </div>
+    <div className="spacer">
+      <Button disabled>Basic</Button>
+      <Button disabled kind="primary">
+        Primary
+      </Button>
+      <Button disabled kind="secondary">
+        Secondary
+      </Button>
+      <Button disabled kind="destructive">
+        Destructive
+      </Button>
+      <Button disabled kind="text">
+        Text
+      </Button>
+    </div>
+    <div className="spacer">
+      <Button loading>Basic</Button>
+      <Button loading kind="primary">
+        Primary
+      </Button>
+      <Button loading kind="secondary">
+        Secondary
+      </Button>
+      <Button loading kind="destructive">
+        Destructive
+      </Button>
+      <Button loading kind="text">
+        Text
+      </Button>
+    </div>
   </div>
 );
 

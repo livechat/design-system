@@ -1,6 +1,8 @@
 import * as React from 'react';
 import cx from 'classnames';
 
+import { Text } from '../Text';
+
 const baseClass = 'lc-loader';
 const spinnerClass = `${baseClass}__spinner`;
 
@@ -32,7 +34,11 @@ export const Loader: React.FC<Props> = ({
           }}
         />
       </div>
-      {label && <div className="lc-loader__label">{label}</div>}
+      {label && (
+        <Text as="div" size="md" className="lc-loader__label">
+          {label}
+        </Text>
+      )}
     </div>
   );
 };

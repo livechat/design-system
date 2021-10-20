@@ -3,6 +3,9 @@ body {
     Helvetica Neue, Arial, sans-serif;
 }
 
+.spacer {
+  margin-bottom: 5px;
+}
 .spacer > * + * {
   margin-left: 5px;
 }

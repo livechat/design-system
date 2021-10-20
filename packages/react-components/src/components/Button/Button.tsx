@@ -3,10 +3,11 @@ import cx from 'classnames';
 import { Loader } from '../Loader';
 
 export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  loading?: boolean;
-  fullWidth?: boolean;
   kind?: 'basic' | 'primary' | 'secondary' | 'destructive' | 'text';
   size?: 'compact' | 'medium' | 'large';
+  disabled?: boolean;
+  loading?: boolean;
+  fullWidth?: boolean;
   loaderLabel?: string;
 }
 

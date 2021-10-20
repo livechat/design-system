@@ -48,7 +48,7 @@
 
     &-circle {
       animation: rotate 1s infinite linear;
-      border-color: var(--color-action-disabled);
+      border-color: var(--surface-secondary-subtle);
       border-radius: 50%;
       border-style: solid;
       border-top-color: var(--color-action-default);
@@ -60,9 +60,7 @@
   }
 
   &__label {
-    color: var(--content-default);
-    font-size: 15px;
-    margin: 0 10px;
-    opacity: 0.8;
+    color: var(--content-subtle);
+    margin-left: 10px;
   }
 }
