@@ -1,0 +1,148 @@
+@mixin increment-border($color) {
+  border-color: transparent transparent $color transparent;
+  border-style: solid;
+  border-width: 0 4px 4px;
+}
+
+@mixin decrement-border($color) {
+  border-color: $color transparent transparent transparent;
+  border-style: solid;
+  border-width: 4px 4px 0;
+}
+
+.lc-numeric-input {
+  display: inline-block;
+  height: 36px;
+  position: relative;
+  width: 64px;
+
+  &__increment,
+  &__decrement {
+    background: transparent;
+    border: 0;
+    border-left: 1px solid var(--border-default);
+    box-sizing: border-box;
+    cursor: pointer;
+    height: 50%;
+    padding: 0;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    width: 23px;
+
+    &:hover,
+    &:focus {
+      outline: 0;
+    }
+
+    &::after {
+
+      @include increment-border(var(--content-subtle));
+
+      content: '';
+      left: calc(50% - 4px);
+      position: absolute;
+      top: calc(50% - 3px);
+    }
+  }
+
+  & &__increment {
+    &:hover::after {
+      @include increment-border(var(--content-default));
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+
+      &::after,
+      &:hover::after {
+
+        @include increment-border(var(--content-subtle));
+
+        opacity: 0.5;
+      }
+    }
+  }
+
+  & &__decrement {
+    border-top: 1px solid var(--border-default);
+    bottom: 1px;
+    top: auto;
+
+    &::after {
+      @include decrement-border(var(--content-subtle));
+    }
+
+    &:hover::after {
+      @include decrement-border(var(--content-default));
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+
+      &::after,
+      &:hover::after {
+
+        @include decrement-border(var(--content-subtle));
+
+        opacity: 0.5;
+      }
+    }
+  }
+
+  input {
+    appearance: textfield;
+    background-clip: padding-box;
+    border: 1px solid var(--border-default);
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: var(--content-subtle);
+    height: 100%;
+    line-height: 36px;
+    padding: 0 28px 0 4px;
+    text-align: right;
+    width: 100%;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      appearance: none;
+      margin: 0;
+    }
+
+    &:hover {
+      border-color: var(--border-hover);
+      outline: 0;
+    }
+
+    &:focus {
+      border-color: var(--color-action-default);
+      outline: 0;
+    }
+
+    &:disabled {
+      color: var(--content-default);
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+
+  &--disabled {
+    color: var(--content-default);
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  & &--no-controls {
+    input {
+      padding: 0 4px;
+    }
+  }
+
+  & &--error {
+    input,
+    input:hover,
+    input:focus {
+      border-color: var(--color-negative-default);
+    }
+  }
+}
