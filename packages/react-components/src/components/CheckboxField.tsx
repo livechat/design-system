@@ -1,9 +1,10 @@
 import * as React from 'react';
 import cx from 'classnames';
+import { Text } from './Text';
 import { FieldDescription } from './FieldDescription';
 import { Checkbox } from './Checkbox';
 
-export interface IRadioButtonProps
+export interface ICheckboxFieldProps
   extends React.HTMLAttributes<HTMLInputElement> {
   description?: string;
   checked?: boolean;
@@ -12,7 +13,7 @@ export interface IRadioButtonProps
 
 const baseClass = 'lc-checkbox';
 
-export const RadioButton: React.FC<IRadioButtonProps> = ({
+export const CheckboxField: React.FC<ICheckboxFieldProps> = ({
   children,
   className = '',
   description,
@@ -31,7 +32,9 @@ export const RadioButton: React.FC<IRadioButtonProps> = ({
     <div className={mergedClassNames}>
       <label className={`${baseClass}__label`}>
         <Checkbox {...props} checked={checked} disabled={disabled} />
-        <div className={`${baseClass}__text`}>{children}</div>
+        <Text as="div" size="md" className={`${baseClass}__text`}>
+          {children}
+        </Text>
       </label>
       {description && (
         <FieldDescription className={`${baseClass}__helper`}>
