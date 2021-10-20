@@ -1,5 +1,3 @@
-@use '../typography/mixins';
-
 $base-class: 'lc-radio-button';
 
 .#{$base-class} {
@@ -38,8 +36,6 @@ $base-class: 'lc-radio-button';
   }
 
   &__text {
-    @include mixins.lc-paragraph-md;
-
     color: var(--content-default);
     flex: 1 0 auto;
   }

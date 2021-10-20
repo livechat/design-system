@@ -1,5 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
+import { Text } from './Text';
 
 export type IFieldDescriptionProps = React.HTMLAttributes<HTMLSpanElement>;
 
@@ -13,8 +14,8 @@ export const FieldDescription: React.FC<IFieldDescriptionProps> = ({
   const mergedClassNames = cx(baseClass, className);
 
   return (
-    <span {...props} className={mergedClassNames}>
+    <Text as="span" size="sm" {...props} className={mergedClassNames}>
       {children}
-    </span>
+    </Text>
   );
 };
