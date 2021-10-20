@@ -1,0 +1,18 @@
+{
+  "name": "@livechat/design-system-icons",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "build": "svgr --replace-attr-values '#424D57=currentcolor' --typescript --no-dimensions -d ./dist ./src ",
+    "dev": "npm run build"
+  },
+  "author": "",
+  "files": [
+    "dist"
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "@svgr/cli": "^5.5.0"
+  }
+}
