@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { Loader } from '../Loader';
+import { Loader } from './Loader';
 
 export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   kind?: 'basic' | 'primary' | 'secondary' | 'destructive' | 'text';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { render } from '../../test-utils';
-import Icon from '../Icon';
+import { render } from '../test-utils';
+import Icon from './Icon';
 
 import { Button } from './Button';
 

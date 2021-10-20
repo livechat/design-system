@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 
-import { Text } from '../Text';
+import { Text } from './Text';
 
 const baseClass = 'lc-loader';
 const spinnerClass = `${baseClass}__spinner`;

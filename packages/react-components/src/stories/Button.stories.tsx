@@ -4,7 +4,7 @@ import { ComponentMeta } from '@storybook/react';
 import * as MaterialIcons from '@livechat/design-system-icons/dist/material';
 
 import { Icon } from '../components/Icon';
-import { Button } from '../components/Button';
+import { Button, Props as ButtonProps } from '../components/Button';
 
 const icons = Object.fromEntries(
   Object.entries(MaterialIcons).map(([key, source]) => [
@@ -35,7 +35,9 @@ export default {
   },
 } as ComponentMeta<typeof Button>;
 
-export const button = (args) => <Button {...args} />;
+export const button = (args: ButtonProps): React.ReactElement => (
+  <Button {...args} />
+);
 button.args = {
   loading: false,
   disabled: false,
@@ -47,7 +49,7 @@ button.args = {
   icon: 'None',
 };
 
-export const kinds = () => (
+export const kinds = (): React.ReactElement => (
   <div>
     <div className="spacer">
       <Button>Basic</Button>
@@ -89,7 +91,7 @@ export const kinds = () => (
   </div>
 );
 
-export const sizes = () => (
+export const sizes = (): React.ReactElement => (
   <>
     <div className="spacer">
       <Button size="compact" kind="primary">
@@ -122,7 +124,7 @@ export const sizes = () => (
   </>
 );
 
-export const loading = () => (
+export const loading = (): React.ReactElement => (
   <div className="spacer">
     <Button loading>Loading Button</Button>
     <Button loading kind="primary">
