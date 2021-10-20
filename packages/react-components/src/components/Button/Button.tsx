@@ -37,7 +37,6 @@ export const Button: React.FC<Props> = ({
     `${baseClass}--${kind}`,
     `${baseClass}--${size}`,
     {
-      [`${baseClass}--disabled`]: disabled,
       [`${baseClass}--loading`]: loading,
       [`${baseClass}--full-width`]: fullWidth,
       [`${baseClass}--icon-only`]: !children && icon,
