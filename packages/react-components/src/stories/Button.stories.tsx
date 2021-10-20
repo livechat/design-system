@@ -90,17 +90,36 @@ export const kinds = () => (
 );
 
 export const sizes = () => (
-  <div className="spacer">
-    <Button size="compact" kind="primary">
-      Compact
-    </Button>
-    <Button size="medium" kind="primary">
-      Medium (default)
-    </Button>
-    <Button size="large" kind="primary">
-      Large
-    </Button>
-  </div>
+  <>
+    <div className="spacer">
+      <Button size="compact" kind="primary">
+        Compact
+      </Button>
+      <Button size="medium" kind="primary">
+        Medium (default)
+      </Button>
+      <Button size="large" kind="primary">
+        Large
+      </Button>
+    </div>
+    <div className="spacer">
+      <Button
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+        size="compact"
+        kind="primary"
+      />
+      <Button
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+        size="medium"
+        kind="primary"
+      />
+      <Button
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+        size="large"
+        kind="primary"
+      />
+    </div>
+  </>
 );
 
 export const loading = () => (

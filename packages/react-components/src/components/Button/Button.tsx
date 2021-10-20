@@ -40,6 +40,7 @@ export const Button: React.FC<Props> = ({
       [`${baseClass}--disabled`]: disabled,
       [`${baseClass}--loading`]: loading,
       [`${baseClass}--full-width`]: fullWidth,
+      [`${baseClass}--icon-only`]: !children && icon,
     }
   );
 

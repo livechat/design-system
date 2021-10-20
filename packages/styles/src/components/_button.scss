@@ -36,6 +36,15 @@ $base-class: 'lc-btn';
     cursor: not-allowed;
   }
 
+  &--icon-only {
+    padding: 6px;
+
+    .#{$base-class}__icon--left,
+    .#{$base-class}__icon--right {
+      margin: 0;
+    }
+  }
+
   &--full-width {
     width: 100%;
   }
@@ -145,12 +154,20 @@ $base-class: 'lc-btn';
     min-height: 42px;
     min-width: 42px;
     padding: 9px 24px;
+
+    &.#{$base-class}--icon-only {
+      padding: 9px;
+    }
   }
 
   &--compact {
     min-height: 32px;
     min-width: 32px;
     padding: 4px 16px;
+
+    &.#{$base-class}--icon-only {
+      padding: 4px;
+    }
   }
 
   &--loading {
