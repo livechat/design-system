@@ -26,4 +26,4 @@ RadioButton.args = {
   disabled: false,
   description: 'Lorem ipsum',
   children: 'Radio button label',
-};
+} as IRadioButtonProps;
