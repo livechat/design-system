@@ -1,8 +1,4 @@
-@use '../typography/mixins';
-
 .lc-field-description {
-  @include mixins.lc-paragraph-sm;
-
   color: var(--content-subtle);
   display: block;
 }
