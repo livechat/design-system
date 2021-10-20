@@ -15,7 +15,7 @@ describe('<Tab /> component', () => {
 
   it('should render properly formatted description', () => {
     const { getByText } = render(<Tab description="1">Hello</Tab>);
-    expect(getByText('(1)')).toBeInTheDocument();
+    expect(getByText('(1)')).toBeVisible();
   });
 
   it('should render with button element by default', () => {

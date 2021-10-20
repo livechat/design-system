@@ -1,0 +1,12 @@
+.lc-tabs {
+  border-bottom: 1px solid var(--border-subtle);
+  position: relative;
+
+  &__list {
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+    margin: 0 -8px;
+    position: relative;
+  }
+}
