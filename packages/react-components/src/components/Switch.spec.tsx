@@ -30,4 +30,13 @@ describe('Switch', () => {
     fireEvent.click(checkbox);
     expect(checkbox.checked).toEqual(false);
   });
+
+  it('should be enabled if defaultOn is set to true', () => {
+    const { getByRole } = render(<Switch defaultOn={true} />);
+    const checkbox = getByRole('checkbox') as HTMLInputElement;
+    expect(checkbox.checked).toEqual(true);
+    fireEvent.click(checkbox);
+    expect(checkbox.checked).toEqual(false);
+  });
 });
+1;

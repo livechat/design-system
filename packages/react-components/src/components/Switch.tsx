@@ -18,16 +18,18 @@ enum SwitchStyles {
 
 export interface IProps {
   className?: string;
+  defaultOn?: boolean;
   disabled?: boolean;
+  innerRef?: React.LegacyRef<HTMLInputElement> | undefined;
   name?: string;
   on?: boolean;
   onChange?(e: React.FormEvent, value: boolean): void;
   size?: SwitchSize;
-  innerRef?: React.LegacyRef<HTMLInputElement> | undefined;
 }
 
 export const Switch: React.FC<IProps> = ({
   className = '',
+  defaultOn = false,
   disabled = false,
   name = baseClass,
   on,
@@ -36,7 +38,9 @@ export const Switch: React.FC<IProps> = ({
   innerRef,
   ...props
 }) => {
-  const getEnabledValue = () => (on !== undefined ? on : false);
+  const getEnabledValue = () => {
+    return on !== undefined ? on : defaultOn;
+  };
   const [enabled, setEnabled] = React.useState(getEnabledValue());
 
   React.useEffect(() => {
