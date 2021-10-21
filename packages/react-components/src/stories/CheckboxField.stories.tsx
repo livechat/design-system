@@ -14,11 +14,7 @@ export default {
 export const CheckboxField = (
   args: ICheckboxFieldProps
 ): React.ReactElement => {
-  return (
-    <div>
-      <CheckboxFieldComponent {...args} />
-    </div>
-  );
+  return <CheckboxFieldComponent {...args} />;
 };
 
 CheckboxField.args = {
