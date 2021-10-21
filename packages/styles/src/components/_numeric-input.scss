@@ -36,7 +36,6 @@
     }
 
     &::after {
-
       @include increment-border(var(--content-subtle));
 
       content: '';
@@ -56,7 +55,6 @@
 
       &::after,
       &:hover::after {
-
         @include increment-border(var(--content-subtle));
 
         opacity: 0.5;
@@ -82,7 +80,6 @@
 
       &::after,
       &:hover::after {
-
         @include decrement-border(var(--content-subtle));
 
         opacity: 0.5;
@@ -132,17 +129,21 @@
     opacity: 0.5;
   }
 
-  & &--no-controls {
+  /* stylelint-disable no-descending-specificity */
+  &--no-controls {
     input {
       padding: 0 4px;
     }
   }
 
-  & &--error {
-    input,
-    input:hover,
-    input:focus {
-      border-color: var(--color-negative-default);
+  &--error {
+    input {
+      &,
+      &:hover,
+      &:focus {
+        border-color: var(--color-negative-default);
+      }
     }
   }
+  /* stylelint-enable no-descending-specificity */
 }
