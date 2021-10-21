@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render } from '../test-utils';
+import { render, fireEvent } from '../test-utils';
 import { INumericInputProps, NumericInput } from './NumericInput';
 
 const renderComponent = (props: INumericInputProps) => {
@@ -72,6 +72,56 @@ describe('<NumericInput> component', () => {
 
     expect(
       queryByRole('button', {
+        name: /Decrement value/i,
+      })
+    ).toBeDisabled();
+  });
+
+  it('should call onChange when button click', () => {
+    const mockedFunction = jest.fn();
+    const { getByRole } = renderComponent({
+      value: '0',
+      onChange: mockedFunction,
+    });
+
+    fireEvent.click(
+      getByRole('button', {
+        name: /Increment value/i,
+      })
+    );
+    expect(mockedFunction).toHaveBeenCalled();
+
+    fireEvent.click(
+      getByRole('button', {
+        name: /Decrement value/i,
+      })
+    );
+    expect(mockedFunction).toHaveBeenCalled();
+  });
+
+  it('should disable Increment button when limit reached', () => {
+    const { getByRole } = renderComponent({
+      value: '10',
+      onChange: jest.fn(),
+      max: 10,
+    });
+
+    expect(
+      getByRole('button', {
+        name: /Increment value/i,
+      })
+    ).toBeDisabled();
+  });
+
+  it('should disable Decrement button when limit reached', () => {
+    const { getByRole } = renderComponent({
+      value: '-10',
+      onChange: jest.fn(),
+      min: -10,
+    });
+
+    expect(
+      getByRole('button', {
         name: /Decrement value/i,
       })
     ).toBeDisabled();

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render } from '../test-utils';
+import { render, fireEvent } from '../test-utils';
 import { IInputFieldProps, InputField } from './InputField';
 
 const renderComponent = (props: IInputFieldProps) => {
@@ -17,15 +17,34 @@ describe('<InputField> component', () => {
   });
 
   it('should allow for field custom class', () => {
-    const { getByPlaceholderText } = renderComponent({
+    const { getByRole } = renderComponent({
       id: 'input-field-example',
       onChange: jest.fn(),
       placeholder: 'placeholder',
       fieldClassName: 'my-field-css-class',
     });
 
-    expect(getByPlaceholderText('placeholder')).toHaveClass(
-      'my-field-css-class'
-    );
+    expect(getByRole('textbox')).toHaveClass('my-field-css-class');
+  });
+
+  it('should have error class', () => {
+    const { getByRole } = renderComponent({
+      id: 'input-field-example',
+      onChange: jest.fn(),
+      errorText: 'Error',
+    });
+
+    expect(getByRole('textbox')).toHaveClass('lc-input-field--error');
+  });
+
+  it('should call onChange when value changes', () => {
+    const mockedFunction = jest.fn();
+    const { getByRole } = renderComponent({
+      id: 'input-field-example',
+      onChange: mockedFunction,
+    });
+
+    fireEvent.change(getByRole('textbox'), { target: { value: 'test' } });
+    expect(mockedFunction).toHaveBeenCalled();
   });
 });

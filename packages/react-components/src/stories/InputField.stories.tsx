@@ -36,6 +36,7 @@ InputField.args = {};
 export const InputFieldWithInline = StoryTemplate.bind({});
 InputFieldWithInline.args = {
   inline: true,
+  id: 'withInline',
 };
 
 export const InputFieldWithDisabled = StoryTemplate.bind({});
@@ -61,9 +62,11 @@ export const InputFieldWithMaxLength = StoryTemplate.bind({});
 InputFieldWithMaxLength.args = {
   maxLength: 20,
   descriptionNode: <div>max 20 characters</div>,
+  id: 'withMaxLength',
 };
 
 export const InputFieldWithError = StoryTemplate.bind({});
 InputFieldWithError.args = {
   errorText: 'Error text',
+  id: 'withError',
 };
