@@ -3,7 +3,7 @@ import cx from 'classnames';
 import { FieldError } from './FieldError';
 import { FieldDescription } from './FieldDescription';
 
-export interface IFieldLabelProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface IFieldGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   description?: React.ReactNode;
   error?: string;
@@ -13,7 +13,7 @@ export interface IFieldLabelProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const baseClass = 'lc-field-group';
 
-export const FieldGroup: React.FC<IFieldLabelProps> = ({
+export const FieldGroup: React.FC<IFieldGroupProps> = ({
   className = '',
   children,
   description,

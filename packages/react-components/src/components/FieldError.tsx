@@ -1,5 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
+import { Text } from './Text';
 
 export type IFieldErrorProps = React.HTMLAttributes<HTMLSpanElement>;
 
@@ -10,11 +11,11 @@ export const FieldError: React.FC<IFieldErrorProps> = ({
   className = '',
   ...props
 }) => {
-  const mergedClassNames = cx(baseClass, { [className]: !!className });
+  const mergedClassNames = cx(baseClass, className);
 
   return (
-    <span {...props} className={mergedClassNames}>
+    <Text as="span" size="sm" {...props} className={mergedClassNames}>
       {children}
-    </span>
+    </Text>
   );
 };
