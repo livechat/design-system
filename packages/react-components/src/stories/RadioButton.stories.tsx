@@ -24,6 +24,6 @@ export const RadioButton = ({
 RadioButton.args = {
   checked: false,
   disabled: false,
-  description: 'Lorem ipsum',
-  children: 'Radio button label',
-};
+  description: 'Help text',
+  children: 'Radio label',
+} as IRadioButtonProps;

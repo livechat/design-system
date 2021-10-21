@@ -1,10 +1,11 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { FieldDescription } from './FieldDescription';
+import { Text } from './Text';
 
 export interface IRadioButtonProps
   extends React.HTMLAttributes<HTMLInputElement> {
-  description?: string;
+  description?: React.ReactNode;
   checked?: boolean;
   disabled?: boolean;
 }
@@ -38,7 +39,9 @@ export const RadioButton: React.FC<IRadioButtonProps> = ({
             disabled={disabled}
           />
         </div>
-        <div className={`${baseClass}__text`}>{children}</div>
+        <Text as="div" size="md" className={`${baseClass}__text`}>
+          {children}
+        </Text>
       </label>
       {description && (
         <FieldDescription className={`${baseClass}__helper`}>

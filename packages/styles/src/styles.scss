@@ -1,6 +1,7 @@
 @use './typography/classTokens';
 
 @use './components/badge';
+@use './components/switch';
 @use './components/alert';
 @use './components/promo-banner';
 @use './components/toast';
@@ -9,6 +10,8 @@
 @use './components/field-label';
 @use './components/field-error';
 @use './components/field-group';
+@use './components/icon';
+@use './components/card';
 
 @use './themes/legacy';
 @use './themes/light';
