@@ -9,14 +9,13 @@
   margin: 0 8px 11px;
   outline: none;
   overflow: visible;
-  padding: 0 12px;
+  padding: 0 12px 1px;
   position: relative;
   transition: color 0.25s;
 
   &__description {
     color: var(--content-subtle);
     display: inline-block;
-    opacity: 0.6;
     padding-left: 3px;
     transition: color 0.25s;
   }
@@ -42,7 +41,7 @@
 
     &::before {
       bottom: -12px;
-      height: 4px;
+      height: 3px;
     }
   }
 
