@@ -3,8 +3,7 @@ import { render } from '../test-utils';
 import userEvent from '@testing-library/user-event';
 import { CheckboxField } from './CheckboxField';
 
-// package alias: @livechat/design-system-icons/dist/material
-jest.mock('./../../../icons/dist/material', () => ({
+jest.mock('@livechat/design-system-icons/dist/material', () => ({
   Check: () => <div />,
 }));
 
