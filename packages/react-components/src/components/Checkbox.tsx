@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { Check } from '@livechat/design-system-icons/dist/material';
-import Icon, { IconSizeName, IconTypeName } from './Icon';
+import { Icon, IconSizeName, IconTypeName } from './Icon';
 
 export interface ICheckboxProps extends React.HTMLAttributes<HTMLInputElement> {
   className?: string;
