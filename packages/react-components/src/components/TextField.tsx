@@ -1,5 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
+import { Text } from './Text';
 
 const baseClass = 'lc-text-field';
 
@@ -66,7 +67,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
             {labelText && (
               <div className={cx(`${baseClass}__label-wrapper`)}>
                 <label className="lc-field-label" htmlFor={labelFor}>
-                  {labelText}
+                  <Text size="sm">{labelText}</Text>
                 </label>
                 {labelAdornment && (
                   <div className={cx(`${baseClass}__label-adornment`)}>
@@ -84,7 +85,11 @@ export const TextField: React.FC<ITextFieldProps> = ({
         )}
         <div className={cx(`${baseClass}__content`)}>
           {children}
-          {errorText && <span className="lc-field-error">{errorText}</span>}
+          {errorText && (
+            <span className="lc-field-error">
+              <Text size="sm">{errorText}</Text>
+            </span>
+          )}
           {descriptionNode && (
             <span className="lc-field-description">{descriptionNode}</span>
           )}

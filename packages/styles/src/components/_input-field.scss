@@ -12,8 +12,7 @@
   will-change: border-color;
 
   &::placeholder {
-    color: var(--content-default);
-    opacity: 0.4;
+    color: var(--content-disabled);
   }
 
   &:hover {
@@ -32,8 +31,7 @@
   }
 
   &:disabled {
-    color: var(--content-default);
+    color: var(--content-disabled);
     cursor: not-allowed;
-    opacity: 0.4;
   }
 }

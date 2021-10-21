@@ -5,6 +5,7 @@ import {
   IInputFieldProps,
   InputField as InputFieldComponent,
 } from '../components/InputField';
+import { Text } from '../components/Text';
 
 export default {
   title: 'Components/InputField',
@@ -24,7 +25,11 @@ const StoryTemplate: Story<IInputFieldProps> = (args: IInputFieldProps) => (
     <InputFieldComponent
       labelText="Input Field label"
       placeholder="Placeholder..."
-      descriptionNode={<div>Input Field description</div>}
+      descriptionNode={
+        <div>
+          <Text size="sm">Help text</Text>
+        </div>
+      }
       {...args}
     />
   </div>
@@ -51,17 +56,11 @@ InputFieldWithCustomInputStyles.args = {
     height: 50,
     borderColor: 'var(--color-positive-default)',
   },
-  descriptionNode: (
-    <div>
-      width: 400, height: 50, borderColor: var(--color-positive-default)
-    </div>
-  ),
 };
 
 export const InputFieldWithMaxLength = StoryTemplate.bind({});
 InputFieldWithMaxLength.args = {
   maxLength: 20,
-  descriptionNode: <div>max 20 characters</div>,
   id: 'withMaxLength',
 };
 

@@ -1,5 +1,7 @@
 import * as React from 'react';
 import cx from 'classnames';
+import * as MaterialIcons from '@livechat/design-system-icons/dist/material';
+import { Icon } from '..';
 
 enum EventKeys {
   ArrowUp = 'ArrowUp',
@@ -133,14 +135,24 @@ export const NumericInput: React.FC<INumericInputProps> = ({
             aria-label="Increment value"
             className={`${baseClass}__increment`}
             type="button"
-          />
+          >
+            <Icon
+              source={MaterialIcons.ChevronUp}
+              disabled={disabled || hasReachedTheLimit(value, max)}
+            />
+          </button>
           <button
             disabled={disabled || hasReachedTheLimit(value, min)}
             aria-label="Decrement value"
             className={`${baseClass}__decrement`}
             onClick={handleDecrementClick}
             type="button"
-          />
+          >
+            <Icon
+              source={MaterialIcons.ChevronDown}
+              disabled={disabled || hasReachedTheLimit(value, min)}
+            />
+          </button>
         </div>
       )}
     </div>
