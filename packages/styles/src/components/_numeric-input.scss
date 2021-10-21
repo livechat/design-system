@@ -10,7 +10,9 @@
   border-width: 4px 4px 0;
 }
 
-.lc-numeric-input {
+$base-class: lc-numeric-input;
+
+.#{$base-class} {
   display: inline-block;
   height: 36px;
   position: relative;
@@ -129,14 +131,13 @@
     opacity: 0.5;
   }
 
-  /* stylelint-disable no-descending-specificity */
-  &--no-controls {
+  &.#{$base-class}--no-controls {
     input {
       padding: 0 4px;
     }
   }
 
-  &--error {
+  &.#{$base-class}--error {
     input {
       &,
       &:hover,
@@ -145,5 +146,4 @@
       }
     }
   }
-  /* stylelint-enable no-descending-specificity */
 }
