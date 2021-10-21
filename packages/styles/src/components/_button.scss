@@ -13,7 +13,7 @@ $base-class: 'lc-btn';
   line-height: 1.5;
   min-height: 36px;
   min-width: 36px;
-  padding: 6px 16px;
+  padding: 8px 16px;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -150,23 +150,23 @@ $base-class: 'lc-btn';
     }
   }
 
-  &--large {
-    min-height: 42px;
-    min-width: 42px;
-    padding: 9px 24px;
-
-    &.#{$base-class}--icon-only {
-      padding: 9px;
-    }
-  }
-
   &--compact {
     min-height: 32px;
     min-width: 32px;
-    padding: 4px 16px;
+    padding: 6px 16px;
 
     &.#{$base-class}--icon-only {
       padding: 4px;
+    }
+  }
+
+  &--large {
+    min-height: 42px;
+    min-width: 42px;
+    padding: 11px 16px;
+
+    &.#{$base-class}--icon-only {
+      padding: 9px;
     }
   }
 
@@ -219,12 +219,14 @@ $base-class: 'lc-btn';
     width: 20px;
 
     &--left {
+      margin-left: -4px;
       margin-right: 5px;
       order: -1;
     }
 
     &--right {
       margin-left: 5px;
+      margin-right: -4px;
       order: 1;
     }
   }
