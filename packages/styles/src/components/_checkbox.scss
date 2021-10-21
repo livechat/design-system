@@ -41,6 +41,13 @@ $base-class: 'lc-checkbox';
     .#{$base-class}__checkmark {
       opacity: 1;
     }
+
+    &:hover {
+      .#{$base-class}__input:checked + .#{$base-class}__square {
+        background-color: var(--color-action-hover);
+        border-color: var(--color-action-hover);
+      }
+    }
   }
 
   &__text {
@@ -59,6 +66,12 @@ $base-class: 'lc-checkbox';
 
       .#{$base-class}__checkmark {
         opacity: 1;
+      }
+    }
+
+    &:focus {
+      + .#{$base-class}__square {
+        box-shadow: 0 0 1px 2px rgba(66, 132, 245, 0.7); // TODO use shadow token
       }
     }
   }
