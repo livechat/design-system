@@ -1,0 +1,101 @@
+$base-class: 'lc-checkbox';
+
+.#{$base-class} {
+  display: inline-block;
+
+  &__label {
+    align-items: center;
+    cursor: pointer;
+    display: inline-flex;
+    flex: 0 1 auto;
+    width: 100%;
+  }
+
+  &__square {
+    align-items: center;
+    background-color: var(--surface-basic-default);
+    border: 1px solid var(--border-default);
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: flex;
+    height: 16px;
+    justify-content: center;
+    margin-right: 8px;
+    position: relative;
+    transition: all 0.2s ease;
+    width: 16px;
+  }
+
+  &__checkmark {
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+  }
+
+  &--selected {
+    .#{$base-class}__square {
+      background-color: var(--color-action-default);
+      border-color: var(--color-action-default);
+    }
+
+    .#{$base-class}__checkmark {
+      opacity: 1;
+    }
+
+    &:hover {
+      .#{$base-class}__input:checked + .#{$base-class}__square {
+        background-color: var(--color-action-hover);
+        border-color: var(--color-action-hover);
+      }
+    }
+  }
+
+  &__text {
+    color: var(--content-default);
+    flex: 1 0 auto;
+  }
+
+  &__input {
+    display: none;
+    height: 100%;
+    width: 100%;
+
+    &:checked + .#{$base-class}__square {
+      background-color: var(--color-action-default);
+      border-color: var(--color-action-default);
+
+      .#{$base-class}__checkmark {
+        opacity: 1;
+      }
+    }
+
+    &:focus {
+      + .#{$base-class}__square {
+        box-shadow: 0 0 1px 2px rgba(66, 132, 245, 0.7); // TODO use shadow token
+      }
+    }
+  }
+
+  &--disabled {
+    .#{$base-class} {
+      &__square {
+        background-color: var(--surface-basic-disabled);
+        border-color: var(--border-disabled);
+        opacity: 0.4;
+      }
+
+      &__label,
+      &__input,
+      &__helper,
+      &__text {
+        color: var(--content-disabled);
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &__helper {
+    cursor: default;
+    margin-left: 24px;
+  }
+}
