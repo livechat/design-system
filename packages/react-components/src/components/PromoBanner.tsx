@@ -1,19 +1,10 @@
 import * as React from 'react';
 import cx from 'classnames';
+
+import { Button } from './Button';
+
 // TODO: remove and use the Icon wrapper with correct icon after migration
 import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
-
-// TODO: Remove after `Button` component migration
-interface IButtonProps {
-  children: string;
-  className?: string;
-  onClick?(): void;
-}
-const Button = ({ children, className, onClick }: IButtonProps) => (
-  <button className={className} onClick={onClick}>
-    {children}
-  </button>
-);
 
 const baseClass = 'lc-promo-banner';
 
@@ -65,29 +56,19 @@ export const PromoBanner: React.FC<IPromoBannerProps> = ({
   const footer = (
     <div className={`${baseClass}__footer`}>
       {buttonText && (
-        // TODO: Use `Button` component after migration
-        //
-        // <Button
-        //   kind="primary"
-        //   size="compact"
-        //   onClick={onButtonClick}
-        //   className={styles[`${baseClass}__button-text`]}
-        // >
-        //   {buttonText}
-        // </Button>
-
-        <Button onClick={onButtonClick} className={`${baseClass}__button-text`}>
+        <Button
+          kind="primary"
+          size="compact"
+          onClick={onButtonClick}
+          className={`${baseClass}__button-text`}
+        >
           {buttonText}
         </Button>
       )}
       {linkText && (
-        // TODO: Use `Button` component after migration
-        //
-        // <Button size="compact" kind="text" onClick={onLinkClick}>
-        //   {linkText}
-        // </Button>
-
-        <Button onClick={onLinkClick}>{linkText}</Button>
+        <Button size="compact" kind="text" onClick={onLinkClick}>
+          {linkText}
+        </Button>
       )}
     </div>
   );

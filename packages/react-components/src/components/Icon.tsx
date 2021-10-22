@@ -95,8 +95,8 @@ export const Icon: React.FC<IIconProps> = (props) => {
   });
 
   const mergedClassNames = cx(
-    baseClass,
     className,
+    baseClass,
     `${baseClass}--${filledColor}`
   );
 
