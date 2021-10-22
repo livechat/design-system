@@ -58,7 +58,9 @@ $base-class: lc-numeric-input;
     line-height: 36px;
     padding: 0 28px 0 4px;
     text-align: right;
+    transition: border 0.25s ease-in-out;
     width: 100%;
+    will-change: border-color;
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
