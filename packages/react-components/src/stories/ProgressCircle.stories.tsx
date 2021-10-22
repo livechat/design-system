@@ -7,7 +7,7 @@ import {
 } from '../components/ProgressCircle';
 
 export default {
-  title: 'Components/ProgressCircle',
+  title: 'Components/Progress Circle',
   component: ProgressCircleComponent,
 } as ComponentMeta<typeof ProgressCircleComponent>;
 

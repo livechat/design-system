@@ -7,7 +7,7 @@ import {
 } from '../components/ProgressBar';
 
 export default {
-  title: 'Components/ProgressBar',
+  title: 'Components/Progress Bar',
   component: ProgressBarComponent,
 } as ComponentMeta<typeof ProgressBarComponent>;
 
