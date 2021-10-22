@@ -2,10 +2,6 @@ import * as React from 'react';
 import { render, fireEvent } from '../test-utils';
 import { INumericInputProps, NumericInput } from './NumericInput';
 
-jest.mock('@livechat/design-system-icons/dist/material', () => ({
-  Check: () => <div />,
-}));
-
 const renderComponent = (props: INumericInputProps) => {
   return render(<NumericInput {...props} className="my-css-class" />);
 };

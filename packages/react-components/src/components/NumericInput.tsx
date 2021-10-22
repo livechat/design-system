@@ -1,6 +1,9 @@
 import * as React from 'react';
 import cx from 'classnames';
-import * as MaterialIcons from '@livechat/design-system-icons/dist/material';
+import {
+  ChevronUp,
+  ChevronDown,
+} from '@livechat/design-system-icons/dist/material';
 import { Icon } from './Icon';
 
 enum EventKeys {
@@ -137,7 +140,7 @@ export const NumericInput: React.FC<INumericInputProps> = ({
             type="button"
           >
             <Icon
-              source={MaterialIcons.ChevronUp}
+              source={ChevronUp}
               disabled={disabled || hasReachedTheLimit(value, max)}
             />
           </button>
@@ -149,7 +152,7 @@ export const NumericInput: React.FC<INumericInputProps> = ({
             type="button"
           >
             <Icon
-              source={MaterialIcons.ChevronDown}
+              source={ChevronDown}
               disabled={disabled || hasReachedTheLimit(value, min)}
             />
           </button>
