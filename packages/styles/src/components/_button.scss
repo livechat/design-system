@@ -1,0 +1,233 @@
+$base-class: 'lc-btn';
+
+.#{$base-class} {
+  align-items: center;
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 15px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.5;
+  min-height: 36px;
+  min-width: 36px;
+  padding: 8px 16px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition-duration: 200ms;
+  transition-property: opacity, border, color, background-color, box-shadow;
+  transition-timing-function: cubic-bezier(0.64, 0, 0.35, 1);
+  user-select: none;
+
+  &:focus,
+  &:hover,
+  &:active {
+    outline: 0;
+  }
+
+  &:focus {
+    box-shadow: 0 0 1px 2px rgba(var(--color-action-default-rgb), 0.7);
+  }
+
+  &:disabled:not(.#{$base-class}--loading) {
+    cursor: not-allowed;
+  }
+
+  &--icon-only {
+    padding: 6px;
+
+    .#{$base-class}__icon--left,
+    .#{$base-class}__icon--right {
+      margin: 0;
+    }
+  }
+
+  &--full-width {
+    width: 100%;
+  }
+
+  &--basic {
+    background-color: var(--surface-basic-default);
+    border-color: var(--color-action-default);
+    color: var(--color-action-default);
+
+    &:hover {
+      background-color: var(--surface-basic-subtle);
+      color: var(--color-action-hover);
+    }
+
+    &:active {
+      background-color: var(--surface-feedback-info);
+      color: var(--color-action-hover);
+    }
+
+    &[disabled] {
+      background-color: inherit;
+      border-color: var(--color-action-disabled);
+      color: var(--color-action-disabled);
+    }
+  }
+
+  &--primary {
+    background-color: var(--color-action-default);
+    border-color: var(--color-action-default);
+    color: var(--content-invert-default);
+
+    &:hover {
+      background-color: var(--color-action-hover);
+      border-color: var(--color-action-hover);
+    }
+
+    &:active {
+      background-color: var(--color-action-active);
+      border-color: var(--color-action-active);
+    }
+
+    &[disabled] {
+      background-color: var(--color-action-disabled);
+      border-color: var(--color-action-disabled);
+    }
+  }
+
+  &--secondary {
+    background-color: var(--surface-basic-default);
+    border-color: var(--surface-secondary-default);
+    color: var(--content-default);
+
+    &:hover {
+      background-color: var(--surface-basic-hover);
+      border-color: var(--surface-secondary-hover);
+    }
+
+    &:active {
+      background-color: var(--surface-feedback-info);
+      border-color: var(--color-action-default);
+      color: var(--color-action-default);
+    }
+
+    &[disabled] {
+      background-color: inherit;
+      border-color: var(--border-disabled);
+      color: var(--content-disabled);
+    }
+  }
+
+  &--destructive {
+    background-color: var(--color-negative-default);
+    border-color: var(--color-negative-default);
+    color: var(--content-invert-default);
+
+    &:hover {
+      background-color: var(--color-negative-hover);
+      border-color: var(--color-negative-hover);
+    }
+
+    &:active {
+      background-color: var(--color-negative-active);
+      border-color: var(--color-negative-active);
+    }
+
+    &[disabled] {
+      background-color: var(--color-negative-disabled);
+      border-color: var(--color-negative-disabled);
+    }
+  }
+
+  &--text {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--color-action-default);
+
+    &:hover {
+      color: var(--color-action-hover);
+    }
+
+    &[disabled] {
+      color: var(--color-action-disabled);
+    }
+  }
+
+  &--compact {
+    min-height: 32px;
+    min-width: 32px;
+    padding: 6px 16px;
+
+    &.#{$base-class}--icon-only {
+      padding: 4px;
+    }
+  }
+
+  &--large {
+    min-height: 42px;
+    min-width: 42px;
+    padding: 11px 16px;
+
+    &.#{$base-class}--icon-only {
+      padding: 9px;
+    }
+  }
+
+  &--loading {
+    cursor: progress;
+    transition: all 0.2s cubic-bezier(0.64, 0, 0.35, 1);
+
+    > * {
+      opacity: 0;
+    }
+
+    .#{$base-class}__loader {
+      align-items: center;
+      box-sizing: border-box;
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      left: 0;
+      opacity: 1;
+      padding: inherit;
+      position: absolute;
+      top: 0;
+      width: 100%;
+
+      .lc-loader__label {
+        color: inherit;
+        font-weight: inherit;
+        margin: 0 5px;
+        overflow: hidden;
+        text-align: left;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  // TODO: Investigate
+  &__content {
+    margin-top: -2px;
+  }
+
+  .lc-icon {
+    color: inherit;
+  }
+
+  &__icon {
+    display: inline-block;
+    height: 20px;
+    line-height: 1;
+    width: 20px;
+
+    &--left {
+      margin-left: -4px;
+      margin-right: 5px;
+      order: -1;
+    }
+
+    &--right {
+      margin-left: 5px;
+      margin-right: -4px;
+      order: 1;
+    }
+  }
+}
