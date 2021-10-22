@@ -67,7 +67,9 @@ export const TextField: React.FC<ITextFieldProps> = ({
             {labelText && (
               <div className={cx(`${baseClass}__label-wrapper`)}>
                 <label className="lc-field-label" htmlFor={labelFor}>
-                  <Text size="sm">{labelText}</Text>
+                  <Text as="span" size="sm">
+                    {labelText}
+                  </Text>
                 </label>
                 {labelAdornment && (
                   <div className={cx(`${baseClass}__label-adornment`)}>
@@ -87,7 +89,9 @@ export const TextField: React.FC<ITextFieldProps> = ({
           {children}
           {errorText && (
             <span className="lc-field-error">
-              <Text size="sm">{errorText}</Text>
+              <Text as="span" size="sm">
+                {errorText}
+              </Text>
             </span>
           )}
           {descriptionNode && (

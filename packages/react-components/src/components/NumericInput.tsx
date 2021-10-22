@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import * as MaterialIcons from '@livechat/design-system-icons/dist/material';
-import { Icon } from '..';
+import { Icon } from './Icon';
 
 enum EventKeys {
   ArrowUp = 'ArrowUp',

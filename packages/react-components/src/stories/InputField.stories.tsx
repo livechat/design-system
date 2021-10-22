@@ -27,7 +27,9 @@ const StoryTemplate: Story<IInputFieldProps> = (args: IInputFieldProps) => (
       placeholder="Placeholder..."
       descriptionNode={
         <div>
-          <Text size="sm">Help text</Text>
+          <Text as="span" size="sm">
+            Help text
+          </Text>
         </div>
       }
       {...args}
