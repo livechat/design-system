@@ -9,7 +9,7 @@ import { RadioButton } from '../components/RadioButton';
 import { FieldGroup } from '../components/FieldGroup';
 
 export default {
-  title: 'Components/FormGroup',
+  title: 'Components/Form Group',
   component: FormGroupComponent,
 } as ComponentMeta<typeof FormGroupComponent>;
 

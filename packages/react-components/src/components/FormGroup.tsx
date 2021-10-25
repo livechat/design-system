@@ -4,7 +4,6 @@ import { Text } from './Text';
 import { Heading } from './Heading';
 
 export interface IFormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
   className?: string;
   labelText?: string;
   helperText?: string;
@@ -25,7 +24,7 @@ export const FormGroup: React.FC<IFormGroupProps> = ({
     <div
       {...props}
       role="group"
-      aria-label={labelText}
+      {...(labelText && { 'aria-label': labelText })}
       className={mergedClassNames}
     >
       <div className={`${baseClass}__header`}>

@@ -4,7 +4,6 @@ import { FieldError } from './FieldError';
 import { FieldDescription } from './FieldDescription';
 
 export interface IFieldGroupProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
   description?: React.ReactNode;
   error?: string;
   inline?: boolean;
