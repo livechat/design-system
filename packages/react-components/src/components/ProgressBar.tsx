@@ -33,6 +33,7 @@ export const ProgressBar: React.FC<IProps> = React.forwardRef(
         [`${baseClass}--${size}`]: size,
         [`${baseClass}--error`]: progressStatus === ProgressStatus.Error,
         [`${baseClass}--success`]: progressStatus === ProgressStatus.Success,
+        [`${baseClass}--normal`]: progressStatus === ProgressStatus.Normal,
       },
       className
     );
@@ -40,7 +41,7 @@ export const ProgressBar: React.FC<IProps> = React.forwardRef(
     return (
       <div {...restProps} className={mergedClassNames} ref={ref}>
         <div
-          className={`${baseClass}__indicator`}
+          className={`${baseClass}__indicator--${status}`}
           style={{ width: `${percentNumber}%` }}
         />
       </div>

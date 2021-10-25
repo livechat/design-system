@@ -25,7 +25,23 @@ $base-class: 'progress';
       background-color: var(--color-negative-disabled);
     }
 
-    &__indicator {
+    &--success {
+      background-color: var(--color-positive-disabled);
+    }
+
+    &--normal {
+      background-color: var(--color-action-disabled);
+    }
+
+    &__indicator--success {
+      background-color: var(--color-positive-default);
+      border-radius: 100px;
+      height: 100%;
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
+    }
+
+    &__indicator--normal {
       background-color: var(--color-action-default);
       border-radius: 100px;
       height: 100%;
@@ -54,12 +70,29 @@ $base-class: 'progress';
       width: 56px;
     }
 
-    &__bg-line {
+    &__bg-line--normal {
       stroke: var(--color-action-disabled);
     }
 
-    &__indicator {
+    &__bg-line--success {
+      stroke: var(--color-positive-disabled);
+    }
+
+    &__bg-line--error {
+      stroke: var(--color-negative-disabled);
+    }
+
+    &__indicator--normal {
       stroke: var(--color-action-default);
+      transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
+    }
+
+    &__indicator--success {
+      stroke: var(--color-positive-default);
+      transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
+    }
+
+    &__indicator--error {
       transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
     }
 
@@ -67,9 +100,17 @@ $base-class: 'progress';
       .#{$base-class}-circle__bg-line {
         stroke: var(--color-negative-disabled);
       }
+    }
 
-      .#{$base-class}-circle__indicator {
-        stroke: transparent;
+    &--success {
+      .#{$base-class}-circle__bg-line {
+        stroke: var(--color-positive-disabled);
+      }
+    }
+
+    &--normal {
+      .#{$base-class}-circle__bg-line {
+        stroke: var(--color-action-disabled);
       }
     }
   }

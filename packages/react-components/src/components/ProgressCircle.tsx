@@ -46,6 +46,7 @@ export const ProgressCircle: React.FC<IProps> = React.forwardRef(
         [`${baseClass}--${size}`]: size,
         [`${baseClass}--error`]: progressStatus === ProgressStatus.Error,
         [`${baseClass}--success`]: progressStatus === ProgressStatus.Success,
+        [`${baseClass}--normal`]: progressStatus === ProgressStatus.Normal,
       },
       className
     );
@@ -73,7 +74,7 @@ export const ProgressCircle: React.FC<IProps> = React.forwardRef(
       >
         <svg viewBox={svgViewBox}>
           <circle
-            className={`${baseClass}__bg-line`}
+            className={`${baseClass}__bg-line--${status}`}
             cx={sizeValue}
             cy={sizeValue}
             r={(sizeValue - thickness) / 2}
@@ -81,7 +82,7 @@ export const ProgressCircle: React.FC<IProps> = React.forwardRef(
             strokeWidth={thickness}
           />
           <circle
-            className={`${baseClass}__indicator`}
+            className={`${baseClass}__indicator--${status}`}
             style={indicatorStyle}
             cx={sizeValue}
             cy={sizeValue}
