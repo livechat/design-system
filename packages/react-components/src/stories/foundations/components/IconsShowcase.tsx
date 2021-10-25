@@ -10,7 +10,7 @@ export type IconsMap = {
 
 const Icons = MaterialIcons as IconsMap;
 
-export const IconsShowcase = () => {
+export const IconsShowcase = (): React.ReactElement => {
   const iconsGrid = Object.keys(Icons).map((item) => {
     const iconSource = Icons[item];
     return (

@@ -18,4 +18,8 @@ module.exports = {
 
   // The test environment that will be used for testing
   testEnvironment: 'jsdom',
+
+  moduleNameMapper: {
+    '@livechat/design-system-icons': '<rootDir>/mocks/icon.ts',
+  },
 };

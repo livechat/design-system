@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "dev": "run-p dev:*",
-    "dev:storybook": "start-storybook -p 6006",
+    "dev:storybook": "start-storybook -p 6006 --quiet",
     "dev:lib": "microbundle watch --jsxImportSource react --jsx 'React.createElement'",
     "build": "microbundle --jsxImportSource react --jsx 'React.createElement'",
     "build-storybook": "build-storybook",
