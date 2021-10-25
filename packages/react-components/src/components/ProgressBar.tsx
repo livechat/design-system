@@ -18,7 +18,7 @@ export const ProgressBar: React.FC<IProps> = React.forwardRef(
     {
       status = ProgressStatus.Normal,
       percent,
-      size,
+      size = ProgressSize.Medium,
       className = '',
       ...restProps
     },
