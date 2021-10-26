@@ -4,7 +4,7 @@ import cx from 'classnames';
 import { ProgressSize, ProgressStatus } from './constants';
 import { getPercentNumber, getProgressStatus } from './helpers';
 
-const baseClass = 'progress-bar';
+const baseClass = 'lc-progress-bar';
 
 export interface IProps {
   className?: string;
@@ -13,7 +13,9 @@ export interface IProps {
   size?: ProgressSize;
 }
 
-export const ProgressBar: React.FC<IProps> = React.forwardRef(
+export const ProgressBar: React.ExoticComponent<
+  IProps & React.RefAttributes<HTMLInputElement>
+> = React.forwardRef(
   (
     {
       status = ProgressStatus.Normal,

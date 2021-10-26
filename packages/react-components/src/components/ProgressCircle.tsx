@@ -15,7 +15,7 @@ const SIZE_VALUE_FROM_SIZE = {
   [ProgressSize.Large]: 56,
 };
 
-const baseClass = 'progress-circle';
+const baseClass = 'lc-progress-circle';
 
 export interface IProps {
   className?: string;
