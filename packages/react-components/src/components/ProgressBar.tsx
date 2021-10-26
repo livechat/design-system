@@ -41,7 +41,12 @@ export const ProgressBar: React.ExoticComponent<
     );
 
     return (
-      <div {...restProps} className={mergedClassNames} ref={ref}>
+      <div
+        {...restProps}
+        className={mergedClassNames}
+        ref={ref}
+        role="progressbar"
+      >
         <div
           className={`${baseClass}__indicator--${status}`}
           style={{ width: `${percentNumber}%` }}
