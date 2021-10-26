@@ -15,7 +15,7 @@ import {
 } from '../components/Modal/ModalPortal';
 import { Button } from '../components/Button';
 import { Icon, IconSizeName } from '../components/Icon';
-import { Info } from '@livechat/design-system-icons/dist/material';
+import { Error } from '@livechat/design-system-icons/dist/material';
 import { ModalBase } from '../components/Modal/ModalBase';
 
 export default {
@@ -61,14 +61,14 @@ ActionModal.args = {
   actions: (
     <React.Fragment>
       <Button size="medium" kind="secondary" style={{ marginRight: '8px' }}>
-        Secondary
+        Wait, go back
       </Button>
-      <Button kind="primary" size="medium">
-        Primary
+      <Button kind="destructive" size="medium">
+        Yes, delete
       </Button>
     </React.Fragment>
   ),
-  icon: <Icon source={Info} size={IconSizeName.XLarge} />,
+  icon: <Icon source={Error} size={IconSizeName.XLarge} />,
 } as IActionModalProps;
 
 export const ModalPortal = ({
