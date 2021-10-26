@@ -24,7 +24,9 @@ export interface IProps {
   size?: ProgressSize;
 }
 
-export const ProgressCircle: React.FC<IProps> = React.forwardRef(
+export const ProgressCircle: React.ExoticComponent<
+  IProps & React.RefAttributes<HTMLInputElement>
+> = React.forwardRef(
   (
     {
       status = ProgressStatus.Normal,
