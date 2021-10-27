@@ -1,7 +1,9 @@
 @use './typography/classTokens';
 
-@use './components/alert';
 @use './components/badge';
+@use './components/switch';
+@use './components/progress';
+@use './components/alert';
 @use './components/button';
 @use './components/card';
 @use './components/checkbox';
@@ -10,7 +12,6 @@
 @use './components/loader';
 @use './components/promo-banner';
 @use './components/radio-button';
-@use './components/switch';
 @use './components/tab';
 @use './components/tabs-wrapper';
 @use './components/toast';
