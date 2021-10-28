@@ -1,9 +1,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { IModalBaseProps, ModalBase } from './ModalBase';
-import { ModalHeader } from './ModalHeader';
-import { ModalBody } from './ModalBody';
-import { ModalFooter } from './ModalFooter';
+import { Heading } from '../Heading';
 
 export interface IModalProps extends IModalBaseProps {
   heading?: React.ReactNode;
@@ -23,9 +21,15 @@ export const Modal: React.FC<IModalProps> = ({
 
   return (
     <ModalBase className={mergedClassNames} {...props}>
-      {heading && <ModalHeader>{heading}</ModalHeader>}
-      <ModalBody>{children}</ModalBody>
-      {footer && <ModalFooter>{footer}</ModalFooter>}
+      {heading && (
+        <div className={`${baseClass}__header`}>
+          <Heading size="sm" as="div" className={`${baseClass}__heading`}>
+            {heading}
+          </Heading>
+        </div>
+      )}
+      <div className={`${baseClass}__body`}>{children}</div>
+      {footer && <div className={`${baseClass}__footer`}>{footer}</div>}
     </ModalBase>
   );
 };
