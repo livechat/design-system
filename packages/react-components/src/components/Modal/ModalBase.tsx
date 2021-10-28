@@ -48,6 +48,7 @@ export const ModalBase: React.FC<IModalBaseProps> = ({
 
   return (
     <div
+      data-testid="lc-modal-overlay"
       onMouseDown={onOverlayClick}
       className={cx(`${baseClass}__overlay`, `${baseClass}__overlay--visible`)}
     >
