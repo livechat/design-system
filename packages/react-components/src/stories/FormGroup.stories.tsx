@@ -11,6 +11,11 @@ import { FieldGroup } from '../components/FieldGroup';
 export default {
   title: 'Components/Form Group',
   component: FormGroupComponent,
+  parameters: {
+    componentSubtitle: `
+    Use FormGroup component to group related fieldsets. Component provides label for group of fields which improves accessibility of your form.
+    `,
+  },
 } as ComponentMeta<typeof FormGroupComponent>;
 
 export const FormGroup = ({ ...args }: IFormGroupProps): React.ReactElement => (

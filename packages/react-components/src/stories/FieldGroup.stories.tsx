@@ -10,6 +10,11 @@ import { RadioButton } from '../components/RadioButton';
 export default {
   title: 'Components/Field Group',
   component: FieldGroupComponent,
+  parameters: {
+    componentSubtitle: `
+    Use FieldGroup component to group elements and display it in nice layout (inline or stacked).
+    `,
+  },
 } as ComponentMeta<typeof FieldGroupComponent>;
 
 export const FieldGroup = ({
