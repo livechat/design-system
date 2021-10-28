@@ -2,17 +2,24 @@
 
 @use './components/badge';
 @use './components/switch';
+@use './components/progress';
 @use './components/alert';
-@use './components/promo-banner';
-@use './components/toast';
-@use './components/radio-button';
+@use './components/button';
+@use './components/card';
+@use './components/checkbox';
 @use './components/field-description';
 @use './components/field-label';
 @use './components/field-error';
 @use './components/field-group';
 @use './components/form-group';
 @use './components/icon';
-@use './components/card';
+@use './components/loader';
+@use './components/promo-banner';
+@use './components/radio-button';
+@use './components/tab';
+@use './components/tabs-wrapper';
+@use './components/toast';
+@use './components/form';
 
 @use './themes/legacy';
 @use './themes/light';
