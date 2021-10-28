@@ -2,9 +2,11 @@ import * as React from 'react';
 import cx from 'classnames';
 import { Loader } from './Loader';
 
+export type ButtonSize = 'compact' | 'medium' | 'large';
+
 export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   kind?: 'basic' | 'primary' | 'secondary' | 'destructive' | 'text';
-  size?: 'compact' | 'medium' | 'large';
+  size?: ButtonSize;
   disabled?: boolean;
   loading?: boolean;
   fullWidth?: boolean;
