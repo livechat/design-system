@@ -31,7 +31,7 @@ describe('<InputField> component', () => {
     const { getByRole } = renderComponent({
       id: 'input-field-example',
       onChange: jest.fn(),
-      errorText: 'Error',
+      error: 'Error',
     });
 
     expect(getByRole('textbox')).toHaveClass('lc-input-field--error');
@@ -45,6 +45,7 @@ describe('<InputField> component', () => {
     });
 
     fireEvent.change(getByRole('textbox'), { target: { value: 'test' } });
-    expect(mockedFunction).toHaveBeenCalled();
+    const event = mockedFunction.mock.calls[0][0];
+    expect(event.target.value).toEqual('test');
   });
 });

@@ -8,8 +8,8 @@ interface IProps {
   labelAdornment?: React.ReactNode;
   className?: string;
   inline?: boolean;
-  errorText?: string;
-  descriptionNode?: React.ReactNode;
+  error?: string;
+  description?: React.ReactNode;
   labelRightNode?: React.ReactNode;
   fieldClassName?: string;
   value: string;
@@ -27,20 +27,18 @@ export const NumericInputField: React.FC<INumericInputFieldProps> = ({
   labelAdornment,
   className,
   inline,
-  errorText,
-  descriptionNode,
+  error,
+  description,
   labelRightNode,
   fieldClassName,
   style,
   ...restProps
 }) => {
-  const mergedStyle = style ? { ...style } : void 0;
-
   return (
     <TextField
       inline={inline}
-      errorText={errorText}
-      descriptionNode={descriptionNode}
+      error={error}
+      description={description}
       labelText={labelText}
       labelAdornment={labelAdornment}
       className={className}
@@ -51,8 +49,8 @@ export const NumericInputField: React.FC<INumericInputFieldProps> = ({
         {...restProps}
         id={id}
         className={fieldClassName}
-        style={mergedStyle}
-        error={errorText}
+        style={style}
+        error={error}
       />
     </TextField>
   );

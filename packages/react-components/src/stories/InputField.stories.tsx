@@ -25,7 +25,7 @@ const StoryTemplate: Story<IInputFieldProps> = (args: IInputFieldProps) => (
     <InputFieldComponent
       labelText="Input Field label"
       placeholder="Placeholder..."
-      descriptionNode={
+      description={
         <div>
           <Text as="span" size="sm">
             Help text
@@ -68,6 +68,6 @@ InputFieldWithMaxLength.args = {
 
 export const InputFieldWithError = StoryTemplate.bind({});
 InputFieldWithError.args = {
-  errorText: 'Error text',
+  error: 'Error text',
   id: 'withError',
 };

@@ -10,8 +10,8 @@ interface IProps {
   labelAdornment?: React.ReactNode;
   className?: string;
   inline?: boolean;
-  errorText?: string;
-  descriptionNode?: React.ReactNode;
+  error?: string;
+  description?: React.ReactNode;
   labelRightNode?: React.ReactNode;
   fieldClassName?: string;
   maxLength?: number;
@@ -29,8 +29,8 @@ export const InputField: React.FC<IInputFieldProps> = React.forwardRef(
       labelAdornment,
       className,
       inline,
-      errorText,
-      descriptionNode,
+      error,
+      description,
       labelRightNode,
       fieldClassName,
       style,
@@ -42,18 +42,16 @@ export const InputField: React.FC<IInputFieldProps> = React.forwardRef(
     const mergedClassNames = cx(
       baseClass,
       {
-        [`${baseClass}--error`]: errorText,
+        [`${baseClass}--error`]: error,
       },
       fieldClassName
     );
 
-    const mergedStyle = style ? { ...style } : void 0;
-
     return (
       <TextField
         inline={inline}
-        errorText={errorText}
-        descriptionNode={descriptionNode}
+        error={error}
+        description={description}
         labelText={labelText}
         labelAdornment={labelAdornment}
         className={className}
@@ -65,7 +63,7 @@ export const InputField: React.FC<IInputFieldProps> = React.forwardRef(
           id={id}
           ref={ref}
           className={mergedClassNames}
-          style={mergedStyle}
+          style={style}
           type={type}
         />
       </TextField>

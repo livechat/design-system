@@ -54,10 +54,10 @@ TextFieldWithLabelAdornment.args = {
 
 export const TextFieldWithError = StoryTemplate.bind({});
 TextFieldWithError.args = {
-  errorText: 'Error text',
+  error: 'Error text',
 };
 
 export const TextFieldWithDescription = StoryTemplate.bind({});
 TextFieldWithDescription.args = {
-  descriptionNode: <div>Description text</div>,
+  description: <div>Description text</div>,
 };

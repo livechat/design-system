@@ -10,16 +10,16 @@ export interface ITextFieldProps {
   labelFor?: string;
   className?: string;
   inline?: boolean;
-  errorText?: string;
-  descriptionNode?: React.ReactNode;
+  error?: string;
+  description?: React.ReactNode;
   children?: React.ReactNode;
   labelRightNode?: React.ReactNode;
 }
 
 export const TextField: React.FC<ITextFieldProps> = ({
   inline,
-  errorText,
-  descriptionNode,
+  error,
+  description,
   labelText,
   labelAdornment,
   className,
@@ -40,10 +40,10 @@ export const TextField: React.FC<ITextFieldProps> = ({
       {labelRightNode && inline && (
         <React.Fragment>
           <div
-            className={cx([
+            className={cx(
               `${baseClass}__label-right-node`,
-              `${baseClass}__label-right-node--inline`,
-            ])}
+              `${baseClass}__label-right-node--inline`
+            )}
           >
             {labelRightNode}
           </div>
@@ -51,18 +51,18 @@ export const TextField: React.FC<ITextFieldProps> = ({
         </React.Fragment>
       )}
       <div
-        className={cx([
+        className={cx(
           `${baseClass}__wrapper`,
-          inline && `${baseClass}__wrapper--inline`,
-        ])}
+          inline && `${baseClass}__wrapper--inline`
+        )}
       >
         {(labelText || labelRightNode) && (
           <div
-            className={cx([
+            className={cx(
               `${baseClass}__label`,
               inline && `${baseClass}__label--inline`,
-              !labelText && `${baseClass}__label--no-text`,
-            ])}
+              !labelText && `${baseClass}__label--no-text`
+            )}
           >
             {labelText && (
               <div className={cx(`${baseClass}__label-wrapper`)}>
@@ -87,15 +87,15 @@ export const TextField: React.FC<ITextFieldProps> = ({
         )}
         <div className={cx(`${baseClass}__content`)}>
           {children}
-          {errorText && (
+          {error && (
             <span className="lc-field-error">
               <Text as="span" size="sm">
-                {errorText}
+                {error}
               </Text>
             </span>
           )}
-          {descriptionNode && (
-            <span className="lc-field-description">{descriptionNode}</span>
+          {description && (
+            <span className="lc-field-description">{description}</span>
           )}
         </div>
       </div>

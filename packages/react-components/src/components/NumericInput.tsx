@@ -49,24 +49,19 @@ export const NumericInput: React.FC<INumericInputProps> = ({
     className
   );
 
-  const mergedStyle = style ? { ...style } : void 0;
+  const handleOnFocus = () =>
+    window.addEventListener('keydown', onKeyDown, true);
 
-  React.useEffect(() => {
-    window.addEventListener('keydown', onKeyDown);
-
-    return () => {
-      window.removeEventListener('keydown', onKeyDown);
-    };
-  }, [value]);
+  const handleonBlur = () => window.removeEventListener('keydown', onKeyDown);
 
   const callOnChange = (val: number | string) => onChange(String(val));
 
   const calcValue = (val: number) => {
-    if (max && val > max) {
+    if (max !== undefined && val > max) {
       return max;
     }
 
-    if (min && val < min) {
+    if (min !== undefined && val < min) {
       return min;
     }
 
@@ -120,19 +115,22 @@ export const NumericInput: React.FC<INumericInputProps> = ({
   };
 
   return (
-    <div className={mergedClassNames} style={mergedStyle}>
+    <div className={mergedClassNames} style={style}>
       <input
         type="text"
         {...restProps}
         value={value}
         disabled={disabled}
         onChange={handleOnChange}
+        onFocus={handleOnFocus}
+        onBlur={handleonBlur}
         min={min}
         max={max}
       />
       {!noControls && (
-        <div>
+        <>
           <button
+            tabIndex={-1}
             disabled={disabled || hasReachedTheLimit(value, max)}
             onClick={handleIncrementClick}
             aria-label="Increment value"
@@ -145,6 +143,7 @@ export const NumericInput: React.FC<INumericInputProps> = ({
             />
           </button>
           <button
+            tabIndex={-1}
             disabled={disabled || hasReachedTheLimit(value, min)}
             aria-label="Decrement value"
             className={`${baseClass}__decrement`}
@@ -156,7 +155,7 @@ export const NumericInput: React.FC<INumericInputProps> = ({
               disabled={disabled || hasReachedTheLimit(value, min)}
             />
           </button>
-        </div>
+        </>
       )}
     </div>
   );

@@ -26,13 +26,13 @@ describe('<NumericInput> component', () => {
       queryByRole('button', {
         name: /Increment value/i,
       })
-    ).toBeTruthy();
+    ).toBeVisible();
 
     expect(
       queryByRole('button', {
         name: /Decrement value/i,
       })
-    ).toBeTruthy();
+    ).toBeVisible();
   });
 
   it('should not display buttons', () => {
@@ -90,6 +90,8 @@ describe('<NumericInput> component', () => {
       })
     );
     expect(mockedFunction).toHaveBeenCalled();
+
+    mockedFunction.mockClear();
 
     fireEvent.click(
       getByRole('button', {

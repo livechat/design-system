@@ -19,7 +19,7 @@ export default {
 } as ComponentMeta<typeof NumericInputComponent>;
 
 const StoryTemplate: Story<INumericInputProps> = (args: INumericInputProps) => {
-  const [value, setValue] = React.useState('0');
+  const [value, setValue] = React.useState(args.value || '0');
 
   return (
     <div>

@@ -25,8 +25,8 @@ describe('<TextField> component', () => {
     const labelRight = <div>Label right</div>;
     const { getByText } = renderComponent({
       labelText: label,
-      errorText: error,
-      descriptionNode: description,
+      error: error,
+      description: description,
       labelAdornment: adornment,
       labelRightNode: labelRight,
     });

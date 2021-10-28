@@ -40,7 +40,7 @@ NumericInputField.args = {};
 export const NumericInputFieldWithProps = StoryTemplate.bind({});
 NumericInputFieldWithProps.args = {
   labelText: 'Number',
-  descriptionNode: 'Value should be within range [-10, 20]',
+  description: 'Value should be within range [-10, 20]',
   min: -10,
   max: 20,
 };
@@ -54,5 +54,5 @@ NumericInputFieldWithDisabled.args = {
 export const NumericInputFieldWithError = StoryTemplate.bind({});
 NumericInputFieldWithError.args = {
   labelText: 'Number',
-  errorText: 'Error text',
+  error: 'Error text',
 };
