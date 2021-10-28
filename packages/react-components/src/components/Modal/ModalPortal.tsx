@@ -14,7 +14,7 @@ export const ModalPortal: React.FC<IModalPortalProps> = ({
   parentElementName = 'body',
   zIndex,
 }) => {
-  const [container] = React.useState(document.createElement('div'));
+  const [container] = React.useState(() => document.createElement('div'));
 
   if (className) {
     container.classList.add(className);

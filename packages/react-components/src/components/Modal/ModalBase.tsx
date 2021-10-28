@@ -20,11 +20,19 @@ export const ModalBase: React.FC<IModalBaseProps> = ({
   const mergedClassNames = cx(baseClass, className);
 
   React.useEffect(() => {
-    addEventListeners();
-    return () => {
-      removeEventListeners();
+    if (!closeOnEscPress) {
+      return;
+    }
+
+    const onKeyUp = (event: KeyboardEvent) => {
+      if (event.key === KeyCodes.esc) {
+        onClose();
+      }
     };
-  }, []);
+
+    document.addEventListener('keyup', onKeyUp, true);
+    return () => document.removeEventListener('keyup', onKeyUp, true);
+  }, [closeOnEscPress]);
 
   const onOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
@@ -36,22 +44,6 @@ export const ModalBase: React.FC<IModalBaseProps> = ({
     event.preventDefault();
     event.stopPropagation();
     onClose();
-  };
-
-  const onKeyUp = (event: KeyboardEvent) => {
-    if (event.code === KeyCodes.esc) {
-      onClose();
-    }
-  };
-
-  const addEventListeners = () => {
-    if (closeOnEscPress) {
-      document.addEventListener('keyup', onKeyUp, true);
-    }
-  };
-
-  const removeEventListeners = () => {
-    document.removeEventListener('keyup', onKeyUp, true);
   };
 
   return (

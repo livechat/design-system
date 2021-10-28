@@ -10,7 +10,7 @@ export const ModalBody: React.FC<IModalBodyProps> = ({
   className = '',
   ...props
 }) => {
-  const mergedClassNames = cx(`${baseClass}`, className);
+  const mergedClassNames = cx(baseClass, className);
 
   return (
     <div {...props} className={mergedClassNames}>

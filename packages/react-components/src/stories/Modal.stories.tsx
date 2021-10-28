@@ -33,6 +33,7 @@ export const Modal = ({
 Modal.args = {
   heading: 'Modal',
   children: 'Modal content',
+  closeOnEscPress: true,
   style: { width: '600px', height: '400px' },
   footer: (
     <React.Fragment>
@@ -56,6 +57,7 @@ export const ActionModal = ({
 ActionModal.args = {
   heading: 'Danger! Danger!',
   style: { width: '410px' },
+  closeOnEscPress: true,
   children:
     'You’re about to do something that cannot be undone. Are you sure you want to continue?',
   actions: (

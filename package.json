@@ -30,7 +30,6 @@
   },
   "homepage": "https://github.com/livechat/design-system#readme",
   "devDependencies": {
-    "@types/react-dom": "^17.0.10",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
     "dotenv-cli": "^4.0.0",
