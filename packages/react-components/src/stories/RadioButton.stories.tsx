@@ -7,9 +7,14 @@ import {
 } from '../components/RadioButton';
 
 export default {
-  title: 'Components/RadioButton',
+  title: 'Components/Radio Button',
   component: RadioButtonComponent,
   argTypes: { onChange: { action: 'changed' } },
+  parameters: {
+    componentSubtitle: `
+    Use radio buttons where there’s a list of two or more mutually exclusive items, and the users must select exactly one option.
+    `,
+  },
 } as ComponentMeta<typeof RadioButtonComponent>;
 
 export const RadioButton = ({

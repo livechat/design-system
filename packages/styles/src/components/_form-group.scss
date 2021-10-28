@@ -1,0 +1,22 @@
+$base-class: 'lc-form-group';
+
+.#{$base-class} {
+  border-style: none;
+  margin: 0 0 32px;
+  min-width: auto;
+  padding: 0;
+
+  &__header {
+    margin-bottom: 16px;
+  }
+
+  &__label {
+    color: var(--content-default);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  &__helper {
+    color: var(--content-subtle);
+  }
+}
