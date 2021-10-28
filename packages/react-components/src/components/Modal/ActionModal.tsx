@@ -1,10 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { IModalBaseProps, ModalBase } from './ModalBase';
-import { ActionModalIcon } from './ActionModalIcon';
-import { ActionModalHeading } from './ActionModalHeading';
-import { ActionModalContent } from './ActionModalContent';
-import { ActionModalActions } from './ActionModalActions';
 
 export interface IActionModalProps extends IModalBaseProps {
   icon?: React.ReactNode;
@@ -26,10 +22,10 @@ export const ActionModal: React.FC<IActionModalProps> = ({
 
   return (
     <ModalBase className={mergedClassNames} {...props}>
-      {icon && <ActionModalIcon>{icon}</ActionModalIcon>}
-      {heading && <ActionModalHeading>{heading}</ActionModalHeading>}
-      <ActionModalContent>{children}</ActionModalContent>
-      {actions && <ActionModalActions>{actions}</ActionModalActions>}
+      {icon && <div className={`${baseClass}__icon`}>{icon}</div>}
+      {heading && <div className={`${baseClass}__heading`}>{heading}</div>}
+      <div className={`${baseClass}__content`}>{children}</div>
+      {actions && <div className={`${baseClass}__actions`}>{actions}</div>}
     </ModalBase>
   );
 };
