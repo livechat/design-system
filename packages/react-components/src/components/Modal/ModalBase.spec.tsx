@@ -8,7 +8,7 @@ jest.mock('@livechat/design-system-icons/dist/material', () => ({
 }));
 const onClose = jest.fn();
 
-describe('<FormGroup> component', () => {
+describe('<ModalBase /> component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
