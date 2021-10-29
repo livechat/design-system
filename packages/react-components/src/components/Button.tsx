@@ -4,7 +4,8 @@ import { Loader } from './Loader';
 
 export type ButtonSize = 'compact' | 'medium' | 'large';
 
-export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   kind?: 'basic' | 'primary' | 'secondary' | 'destructive' | 'text';
   size?: ButtonSize;
   disabled?: boolean;
@@ -17,7 +18,7 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const baseClass = 'lc-btn';
 
-export const Button: React.FC<Props> = ({
+export const Button: React.FC<ButtonProps> = ({
   loading = false,
   disabled = false,
   type = 'button',

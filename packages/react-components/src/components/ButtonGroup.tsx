@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 
-import { ButtonSize } from './Button';
+import { ButtonSize, ButtonProps } from './Button';
 
 import noop from '../utils/noop';
 
@@ -11,7 +11,13 @@ export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   currentIndex?: number;
   fullWidth?: boolean;
   size?: ButtonSize;
-  onIndexChange?: (currentIndex: number, event: React.PointerEvent) => void;
+  children: ReadonlyArray<
+    React.ReactElement<React.PropsWithChildren<ButtonProps>>
+  >;
+  onIndexChange?: (
+    currentIndex: number,
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => void;
 }
 
 export const ButtonGroup: React.FC<ButtonGroupProps> = ({
@@ -30,7 +36,10 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
 
   const _currentIndex = isControlled ? currentIndex : currentStateIndex;
 
-  const handleClick = (index: number, event: React.PointerEvent) => {
+  const handleClick = (
+    index: number,
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     if (!isControlled) {
       setCurrentStateIndex(index);
     }
@@ -46,7 +55,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
           size,
           kind: 'secondary',
           type: 'button',
-          onClick: (event: React.PointerEvent) => {
+          onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
             handleClick(i, event);
             if (child.props.onClick) {
               child.props.onClick(event);
