@@ -13,7 +13,7 @@ export default {
   component: ButtonGroupComponent,
 } as ComponentMeta<typeof ButtonGroupComponent>;
 
-export const ButtonGroup = (args: ButtonGroupProps): React.ReactElement => {
+export const controlled = (args: ButtonGroupProps): React.ReactElement => {
   return (
     <ButtonGroupComponent {...args}>
       <Button>First option</Button>
@@ -22,7 +22,32 @@ export const ButtonGroup = (args: ButtonGroupProps): React.ReactElement => {
   );
 };
 
-ButtonGroup.args = {
-  currentIndex: null,
-  size: 'compact',
+controlled.args = {
+  currentIndex: 1,
+};
+
+export const uncontrolledEmptySelection = (
+  args: ButtonGroupProps
+): React.ReactElement => {
+  return (
+    <ButtonGroupComponent {...args}>
+      <Button>First option</Button>
+      <Button>Second option</Button>
+    </ButtonGroupComponent>
+  );
+};
+
+export const uncontrolledWithInitialSelection = (
+  args: ButtonGroupProps
+): React.ReactElement => {
+  return (
+    <ButtonGroupComponent {...args}>
+      <Button>First option</Button>
+      <Button>Second option</Button>
+    </ButtonGroupComponent>
+  );
+};
+
+uncontrolledWithInitialSelection.args = {
+  initialIndex: 1,
 };
