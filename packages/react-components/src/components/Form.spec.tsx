@@ -26,7 +26,7 @@ describe('<Form /> component', () => {
   it("should render nested elements as 'children'", () => {
     const { getByRole } = render(
       <Form>
-        <input type="text" value="Hello" />
+        <input type="text" value="Hello" onChange={() => null} />
       </Form>
     );
 

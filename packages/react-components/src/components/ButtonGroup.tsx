@@ -9,6 +9,7 @@ const baseClass = 'lc-btn-group';
 
 export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   currentIndex?: number;
+  initialIndex?: number;
   fullWidth?: boolean;
   size?: ButtonSize;
   children: ReadonlyArray<
@@ -27,10 +28,12 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
   className,
   children,
   currentIndex,
+  initialIndex = -1,
   ...restProps
 }) => {
   const mergedClassName = cx(baseClass, className);
-  const [currentStateIndex, setCurrentStateIndex] = React.useState(-1);
+  const [currentStateIndex, setCurrentStateIndex] =
+    React.useState(initialIndex);
 
   const isControlled = typeof currentIndex === 'number';
 
