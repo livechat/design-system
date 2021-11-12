@@ -14,4 +14,5 @@ body {
 .lc-light-theme,
 .lc-legacy-theme {
   background-color: var(--background);
+  color: var(--content-default);
 }
