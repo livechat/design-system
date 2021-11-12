@@ -2,6 +2,9 @@
   "name": "@livechat/design-system-icons",
   "version": "1.0.0",
   "description": "",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "index.ts",
   "scripts": {
     "build": "svgr --replace-attr-values '#424D57=currentcolor' --typescript --no-dimensions -d ./dist ./src ",

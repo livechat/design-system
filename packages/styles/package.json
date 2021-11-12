@@ -2,6 +2,9 @@
   "name": "@livechat/design-system-styles",
   "version": "1.0.0-alpha.0",
   "description": "",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/styles.css",
   "files": [
     "dist"
