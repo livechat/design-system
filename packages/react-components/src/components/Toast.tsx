@@ -106,7 +106,11 @@ export const Toast: React.FC<IToastProps> = ({
               <Icon
                 source={Close}
                 size={IconSizeName.Small}
-                iconType={IconTypeName.Inverted}
+                iconType={
+                  [Variants.Warning, Variants.Notification].includes(variant)
+                    ? IconTypeName.Primary
+                    : IconTypeName.Inverted
+                }
               />
             </div>
           )}
