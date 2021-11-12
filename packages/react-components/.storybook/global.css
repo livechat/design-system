@@ -9,3 +9,9 @@ body {
 .spacer > * + * {
   margin-left: 5px;
 }
+
+.lc-dark-theme,
+.lc-light-theme,
+.lc-legacy-theme {
+  background-color: var(--background);
+}
