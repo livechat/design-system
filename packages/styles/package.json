@@ -2,18 +2,30 @@
   "name": "@livechat/design-system-styles",
   "version": "1.0.0-alpha.0",
   "description": "",
-  "main": "dist/styles.css",
+  "source": "src/index.ts",
+  "exports": {
+    "require": "./dist/index.cjs",
+    "default": "./dist/index.modern.js"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.module.js",
+  "unpkg": "./dist/index.umd.js",
   "files": [
     "dist"
   ],
   "scripts": {
-    "dev": "npm run build -- --watch",
-    "build": "sass src:dist",
+    "dev": "run-p watch:*",
+    "build": "run-s build:*",
+    "build:styles": "sass src:dist/css",
+    "build:js": "microbundle",
+    "watch:styles": "npm run build:styles -- --watch",
+    "watch:js": "microbundle watch",
     "lint": "stylelint src/**/*.scss"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "microbundle": "^0.14.1",
     "sass": "^1.39.0"
   }
 }

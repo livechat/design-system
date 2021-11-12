@@ -1,4 +1,4 @@
-import '@livechat/design-system-styles';
+import '@livechat/design-system-styles/dist/css/styles.css';
 
 import './global.css';
 
