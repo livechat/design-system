@@ -2,10 +2,6 @@ import * as React from 'react';
 import { render, userEvent } from '../test-utils';
 import { CheckboxField } from './CheckboxField';
 
-jest.mock('@livechat/design-system-icons/dist/material', () => ({
-  Check: () => <div />,
-}));
-
 const baseClass = 'lc-checkbox';
 const onChange = jest.fn();
 

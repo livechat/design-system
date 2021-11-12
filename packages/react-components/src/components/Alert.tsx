@@ -9,8 +9,7 @@ import {
 } from '@livechat/design-system-icons/dist/material';
 
 import { Text } from './Text';
-import { Icon } from '..';
-import { IconSizeName, IconTypeName } from './Icon';
+import { Icon, IconSizeName, IconTypeName } from './Icon';
 
 const baseClass = 'lc-alert';
 
