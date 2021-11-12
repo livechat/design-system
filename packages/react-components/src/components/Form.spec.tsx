@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { render } from '../test-utils';
+import noop from '../utils/noop';
 import { Form } from './Form';
 
 describe('<Form /> component', () => {
@@ -26,7 +27,7 @@ describe('<Form /> component', () => {
   it("should render nested elements as 'children'", () => {
     const { getByRole } = render(
       <Form>
-        <input type="text" value="Hello" onChange={() => null} />
+        <input type="text" value="Hello" onChange={noop} />
       </Form>
     );
 
