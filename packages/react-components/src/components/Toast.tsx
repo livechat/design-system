@@ -1,10 +1,14 @@
 import * as React from 'react';
 import cx from 'classnames';
 
-// TODO: remove and use the Icon wrapper with correct icon after migration
-import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
-
-import { ToastIcon } from './ToastIcon';
+import {
+  Close,
+  Info,
+  Warning,
+  CheckCircleSolid,
+  Error,
+} from '@livechat/design-system-icons/dist/material';
+import { Icon, IconSizeName, IconTypeName } from './Icon';
 
 const baseClass = 'lc-toast';
 
@@ -29,6 +33,28 @@ export interface IToastProps {
   variant?: Variants;
   onClose?: () => void;
 }
+
+const IconConfig = {
+  [Variants.Success]: {
+    source: CheckCircleSolid,
+    iconType: IconTypeName.Inverted,
+  },
+  [Variants.Warning]: {
+    source: Warning,
+  },
+  [Variants.Error]: {
+    source: Error,
+    iconType: IconTypeName.Inverted,
+  },
+  [Variants.Info]: {
+    source: Info,
+    iconType: IconTypeName.Inverted,
+  },
+  [Variants.Notification]: {
+    source: Info,
+    iconType: IconTypeName.Link,
+  },
+};
 
 export const Toast: React.FC<IToastProps> = ({
   action,
@@ -58,7 +84,7 @@ export const Toast: React.FC<IToastProps> = ({
   return (
     <div className={mergedClassNames}>
       <div className={`${baseClass}__icon`}>
-        <ToastIcon variant={variant} />
+        <Icon {...IconConfig[variant]} />
       </div>
       <div className={`${baseClass}__content`}>{children}</div>
       {(action || removable) && (
@@ -77,7 +103,11 @@ export const Toast: React.FC<IToastProps> = ({
               aria-label="Close toast"
               onClick={onClose}
             >
-              <CloseIcon />
+              <Icon
+                source={Close}
+                size={IconSizeName.Small}
+                iconType={IconTypeName.Inverted}
+              />
             </div>
           )}
         </div>
