@@ -72,6 +72,30 @@
     border-radius: 4px;
     color: var(--content-default);
     display: flex;
+    padding: 5px 8px 5px 12px;
     position: relative;
+  }
+
+  @at-root #{&}__remove-tag {
+    align-items: center;
+    background-color: transparent;
+    border-style: none;
+    box-shadow: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    outline: none;
+    padding: 0;
+    padding-left: 4px;
+
+    .lc-icon {
+      align-items: center;
+      color: var(--content-subtle);
+      display: flex;
+
+      &:hover {
+        color: var(--content-default);
+      }
+    }
   }
 }

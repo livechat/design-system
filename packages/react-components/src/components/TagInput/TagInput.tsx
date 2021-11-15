@@ -100,8 +100,9 @@ export const TagInput: React.FC<ITagInputProps> = ({
 
   return (
     <div className={mergedClassNames}>
-      {tags?.map((tag) => (
+      {tags?.map((tag, index) => (
         <Tag
+          index={index}
           key={tag}
           update={updateTag}
           remove={removeTag}
