@@ -5,6 +5,16 @@ import { KeyCodes } from '../../constants/keyCodes';
 
 const baseClass = 'lc-tag-input';
 
+const tagSeparatorKeys = [
+  KeyCodes.enter,
+  KeyCodes.spacebar,
+  KeyCodes.spacebarOld,
+  KeyCodes.tab,
+  KeyCodes.semicolon,
+  KeyCodes.comma,
+];
+const tagRemoveKeys = [KeyCodes.backspace, KeyCodes.delete, KeyCodes.del];
+
 type Tags = string[];
 
 export interface ITagInputProps {
@@ -20,6 +30,7 @@ export const TagInput: React.FC<ITagInputProps> = ({
   onChange,
   validator,
   error,
+  placeholder,
 }) => {
   const mergedClassNames = cx(baseClass, {
     [`${baseClass}--error`]: error,
@@ -32,8 +43,8 @@ export const TagInput: React.FC<ITagInputProps> = ({
     const valid = validator !== undefined ? validator(inputValue) : true;
     if (!tags?.includes(value) && valid) {
       onChange([...(tags || []), value]);
+      setInputValue('');
     }
-    setInputValue('');
   };
 
   const removeTag = (idx: number) => {
@@ -46,7 +57,7 @@ export const TagInput: React.FC<ITagInputProps> = ({
     setInputValue(e.target.value);
 
   const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === KeyCodes.enter) {
+    if (tagSeparatorKeys.includes(e.key)) {
       e.preventDefault();
 
       if (inputValue === '') {
@@ -54,11 +65,7 @@ export const TagInput: React.FC<ITagInputProps> = ({
       }
 
       addTag(inputValue);
-    } else if (
-      e.key === KeyCodes.backspace ||
-      e.key === KeyCodes.delete ||
-      e.key === KeyCodes.del
-    ) {
+    } else if (tagRemoveKeys.includes(e.key)) {
       if (inputValue !== '' || !tags?.length) {
         return;
       }
@@ -106,6 +113,7 @@ export const TagInput: React.FC<ITagInputProps> = ({
       <input
         ref={inputRef}
         className={`${baseClass}__input`}
+        placeholder={placeholder}
         value={inputValue}
         onChange={onInputChange}
         onKeyDown={onInputKeyDown}
