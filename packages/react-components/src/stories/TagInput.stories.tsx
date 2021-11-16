@@ -40,7 +40,6 @@ export const EmailTagInput = ({
   ...args
 }: IEmailTagInputProps): React.ReactElement => {
   const [tags, setTags] = useState(['one@test.com', 'two@test.com']);
-  console.log('tags', tags);
   return (
     <div>
       <EmailTagInputComponent {...args} tags={tags} onChange={setTags} />
