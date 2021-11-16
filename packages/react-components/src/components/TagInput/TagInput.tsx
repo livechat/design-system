@@ -40,8 +40,7 @@ export const TagInput: React.FC<ITagInputProps> = ({
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const addTag = (value: string) => {
-    const valid = validator !== undefined ? validator(inputValue) : true;
-    if (!tags?.includes(value) && valid) {
+    if (!tags?.includes(value)) {
       onChange([...(tags || []), value]);
       setInputValue('');
     }
