@@ -74,9 +74,22 @@
     display: flex;
     padding: 5px 8px 5px 12px;
     position: relative;
+
+    &--error {
+      background-color: var(--surface-feedback-negative);
+      border: 1px dashed var(--color-negative-default);
+      margin: 1px;
+    }
   }
 
-  @at-root #{&}__remove-tag {
+  @at-root #{&}__tag__content {
+    border-style: none;
+    outline: 0;
+    padding: 0;
+    white-space: nowrap;
+  }
+
+  @at-root #{&}__tag__remove {
     align-items: center;
     background-color: transparent;
     border-style: none;
@@ -85,8 +98,7 @@
     display: flex;
     justify-content: center;
     outline: none;
-    padding: 0;
-    padding-left: 4px;
+    padding: 0 0 0 4px;
 
     .lc-icon {
       align-items: center;

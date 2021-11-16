@@ -94,7 +94,11 @@ export const TagInput: React.FC<ITagInputProps> = ({
     const text = e.clipboardData.getData('text/plain');
     const newTags = text
       .split(/[\s,;\n]+/)
-      .filter((tag) => (validator !== undefined ? validator(tag) : true));
+      .filter(
+        (tag) =>
+          (validator !== undefined ? validator(tag) : true) &&
+          !tags?.includes(tag)
+      );
     onChange([...(tags || []), ...newTags]);
   };
 
@@ -107,6 +111,7 @@ export const TagInput: React.FC<ITagInputProps> = ({
           update={updateTag}
           remove={removeTag}
           inputRef={inputRef}
+          validator={validator}
         >
           {tag}
         </Tag>

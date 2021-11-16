@@ -42,6 +42,7 @@
     "@testing-library/react": "^12.1.0",
     "@testing-library/user-event": "^13.4.2",
     "@types/jest": "^27.0.1",
+    "@types/lodash.escape": "^4.0.6",
     "@types/react": "^17.0.20",
     "@types/react-dom": "^17.0.10",
     "babel-jest": "^27.2.0",
@@ -58,6 +59,7 @@
     "@livechat/design-system-icons": "^1.0.0",
     "@livechat/design-system-styles": "^1.0.0-alpha.0",
     "classnames": "^2.3.1",
+    "lodash.escape": "^4.0.1",
     "react-transition-group": "^4.4.2"
   }
 }
