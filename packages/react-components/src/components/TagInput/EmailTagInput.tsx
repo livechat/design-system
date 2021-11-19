@@ -4,10 +4,10 @@ import * as React from 'react';
 export type IEmailTagInputProps = Omit<ITagInputProps, 'validator'>;
 
 const defaultPlaceholder = 'name@company.com';
-const validator = (value: string) => {
-  const htmlRegex =
+const emailValidator = (value: string) => {
+  const htmlEmailRegex =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-  return htmlRegex.test(value);
+  return htmlEmailRegex.test(value);
 };
 
 export const EmailTagInput: React.FC<IEmailTagInputProps> = ({
@@ -22,7 +22,7 @@ export const EmailTagInput: React.FC<IEmailTagInputProps> = ({
       error={error}
       onChange={onChange}
       placeholder={placeholder}
-      validator={validator}
+      validator={emailValidator}
     />
   );
 };
