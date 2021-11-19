@@ -5,6 +5,7 @@ import {
   INumericInputFieldProps,
   NumericInputField as NumericInputFieldComponent,
 } from '../components/NumericInputField';
+import { sumString } from './helpers';
 
 export default {
   title: 'Components/NumericInputField',
@@ -28,7 +29,11 @@ const StoryTemplate: Story<INumericInputFieldProps> = (
       <NumericInputFieldComponent
         {...args}
         value={value}
-        onChange={(v) => setValue(v as string)}
+        onChange={(v) =>
+          setValue((prevValue) => {
+            return sumString(prevValue, v as string);
+          })
+        }
       />
     </div>
   );

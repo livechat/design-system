@@ -5,6 +5,7 @@ import {
   INumericInputProps,
   NumericInput as NumericInputComponent,
 } from '../components/NumericInput';
+import { sumString } from './helpers';
 
 export default {
   title: 'Components/NumericInput',
@@ -26,7 +27,11 @@ const StoryTemplate: Story<INumericInputProps> = (args: INumericInputProps) => {
       <NumericInputComponent
         {...args}
         value={value}
-        onChange={(v) => setValue(v as string)}
+        onChange={(v) =>
+          setValue((prevValue) => {
+            return sumString(prevValue, v as string);
+          })
+        }
       />
     </div>
   );
