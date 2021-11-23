@@ -26,13 +26,13 @@ export const Tag: React.FC<ITagProps> = ({
   update,
   ...restProps
 }) => {
-  const valid = React.useMemo(() => {
+  const isValid = React.useMemo(() => {
     return validator !== undefined ? validator(children) : true;
   }, [children, validator]);
 
   const mergedClassNames = cx(baseClass, {
     [className]: !!className,
-    [`${baseClass}--error`]: !valid,
+    [`${baseClass}--error`]: !isValid,
   });
   const innerEditableRef = React.useRef<HTMLInputElement>(null);
 

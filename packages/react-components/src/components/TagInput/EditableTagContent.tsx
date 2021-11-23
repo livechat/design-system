@@ -45,25 +45,23 @@ export const EditableTagContent: React.FC<IEditableTagContentProps> = ({
       return;
     }
 
-    const value = getValue();
-    if (e.key === KeyCodes.backspace && value === '') {
+    if (e.key === KeyCodes.backspace && getValue() === '') {
       setRemoved(true);
       remove();
       focusInputRef();
-      return;
     }
   };
 
   const onBlur = () => {
     const ref = getRef();
-    if (!removed && ref) {
-      if (ref.innerText === '') {
-        remove();
-        return;
-      }
-
-      change(ref.innerText);
+    if (removed || !ref) {
+      return;
     }
+    if (ref.innerText === '') {
+      remove();
+      return;
+    }
+    change(ref.innerText);
   };
 
   const onPaste = (e: React.ClipboardEvent<HTMLDivElement>) => {
