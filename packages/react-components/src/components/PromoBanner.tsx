@@ -3,8 +3,8 @@ import cx from 'classnames';
 
 import { Button } from './Button';
 
-// TODO: remove and use the Icon wrapper with correct icon after migration
-import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
+import { Close as CloseIcon } from '@livechat/design-system-icons/dist/material';
+import { Icon, IconSizeName } from './Icon';
 
 const baseClass = 'lc-promo-banner';
 
@@ -90,8 +90,7 @@ export const PromoBanner: React.FC<IPromoBannerProps> = ({
           className={`${baseClass}__close-icon`}
           onClick={onClose}
         >
-          {/* TODO: remove and use the Icon wrapper with correct icon after migration */}
-          <CloseIcon fill="#424d57" />
+          <Icon source={CloseIcon} size={IconSizeName.Large} />
         </button>
       )}
     </div>

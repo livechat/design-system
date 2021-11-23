@@ -3,9 +3,6 @@ import userEvent from '@testing-library/user-event';
 import { render } from '../../test-utils';
 import { ModalBase } from './ModalBase';
 
-jest.mock('@livechat/design-system-icons/dist/material', () => ({
-  Close: () => <div />,
-}));
 const onClose = jest.fn();
 
 describe('<ModalBase /> component', () => {

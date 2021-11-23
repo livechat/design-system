@@ -87,6 +87,10 @@ $toast-exit-animation-timeout: 200ms;
 
   &--warning {
     background: var(--color-warning-default);
+
+    .lc-toast__content {
+      color: #424d57;
+    }
   }
 
   &--error {
@@ -98,16 +102,11 @@ $toast-exit-animation-timeout: 200ms;
   }
 
   &--success,
-  &--warning,
   &--error,
   &--info {
     .lc-toast__content,
     .lc-toast__actions-custom {
       color: #fff;
-    }
-
-    svg {
-      fill: #fff;
     }
   }
 
