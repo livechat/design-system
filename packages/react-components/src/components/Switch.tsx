@@ -2,7 +2,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import classNames from 'classnames/bind';
 
-import { noop } from './constants';
+import noop from '../utils/noop';
 
 const baseClass = 'switch';
 
