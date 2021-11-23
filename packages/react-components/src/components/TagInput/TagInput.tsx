@@ -8,12 +8,11 @@ const baseClass = 'lc-tag-input';
 const tagSeparatorKeys = [
   KeyCodes.enter,
   KeyCodes.spacebar,
-  KeyCodes.spacebarOld,
   KeyCodes.tab,
   KeyCodes.semicolon,
   KeyCodes.comma,
 ];
-const tagRemoveKeys = [KeyCodes.backspace, KeyCodes.delete, KeyCodes.del];
+const tagRemoveKeys = [KeyCodes.backspace, KeyCodes.delete];
 
 type Tags = string[];
 

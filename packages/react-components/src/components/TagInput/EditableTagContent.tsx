@@ -5,7 +5,7 @@ import { escape } from 'lodash';
 
 export interface IEditableTagContentProps {
   value: string;
-  className: string;
+  className?: string;
   innerEditableRef: React.RefObject<HTMLDivElement>;
   inputRef: React.RefObject<HTMLInputElement>;
   change: (value: string) => void;
