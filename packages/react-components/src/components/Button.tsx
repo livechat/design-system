@@ -2,9 +2,12 @@ import * as React from 'react';
 import cx from 'classnames';
 import { Loader } from './Loader';
 
-export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export type ButtonSize = 'compact' | 'medium' | 'large';
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   kind?: 'basic' | 'primary' | 'secondary' | 'destructive' | 'text';
-  size?: 'compact' | 'medium' | 'large';
+  size?: ButtonSize;
   disabled?: boolean;
   loading?: boolean;
   fullWidth?: boolean;
@@ -15,7 +18,7 @@ export interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const baseClass = 'lc-btn';
 
-export const Button: React.FC<Props> = ({
+export const Button: React.FC<ButtonProps> = ({
   loading = false,
   disabled = false,
   type = 'button',
