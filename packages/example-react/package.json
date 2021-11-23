@@ -1,9 +1,9 @@
 {
   "name": "example-react",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "private": true,
   "dependencies": {
-    "@livechat/design-system-react-components": "^1.0.0-alpha.1",
+    "@livechat/design-system-react-components": "^1.0.0-alpha.2",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
