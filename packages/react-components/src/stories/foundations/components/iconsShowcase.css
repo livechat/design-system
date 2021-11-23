@@ -1,11 +1,11 @@
-.card {
+.icons-showcase-card {
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.wrapper {
+.icons-showcase-wrapper {
   display: grid;
   gap: 10px;
   grid-auto-rows: minmax(100px, auto);
