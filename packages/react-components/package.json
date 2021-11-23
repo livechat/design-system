@@ -1,7 +1,10 @@
 {
   "name": "@livechat/design-system-react-components",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "",
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "",
   "license": "ISC",
   "source": "src/index.ts",
@@ -51,12 +54,12 @@
     "microbundle": "^0.14.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "typescript": "^4.4.2",
-    "react-material-icon-svg": "1.7.0"
+    "react-material-icon-svg": "1.7.0",
+    "typescript": "^4.4.2"
   },
   "dependencies": {
-    "@livechat/design-system-icons": "^1.0.0",
-    "@livechat/design-system-styles": "^1.0.0-alpha.0",
+    "@livechat/design-system-icons": "^1.0.0-alpha.1",
+    "@livechat/design-system-styles": "^1.0.0-alpha.1",
     "classnames": "^2.3.1",
     "react-transition-group": "^4.4.2"
   }
