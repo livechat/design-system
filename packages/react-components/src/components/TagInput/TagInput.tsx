@@ -39,10 +39,8 @@ export const TagInput: React.FC<ITagInputProps> = ({
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const addTag = (value: string) => {
-    if (!tags?.includes(value)) {
-      onChange([...(tags || []), value]);
-      setInputValue('');
-    }
+    onChange([...(tags || []), value]);
+    setInputValue('');
   };
 
   const removeTag = (idx: number) => {
@@ -90,13 +88,7 @@ export const TagInput: React.FC<ITagInputProps> = ({
   const onPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
     e.preventDefault();
     const text = e.clipboardData.getData('text/plain');
-    const newTags = text
-      .split(/[\s,;\n]+/)
-      .filter(
-        (tag) =>
-          (validator !== undefined ? validator(tag) : true) &&
-          !tags?.includes(tag)
-      );
+    const newTags = text.split(/[\s,;\n]+/);
     onChange([...(tags || []), ...newTags]);
   };
 
