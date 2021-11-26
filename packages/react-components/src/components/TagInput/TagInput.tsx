@@ -97,7 +97,7 @@ export const TagInput: React.FC<ITagInputProps> = ({
       {tags?.map((tag, index) => (
         <Tag
           index={index}
-          key={tag}
+          key={index}
           update={updateTag}
           remove={removeTag}
           inputRef={inputRef}
