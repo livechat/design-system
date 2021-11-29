@@ -1,9 +1,6 @@
 import * as React from 'react';
-import cx from 'classnames';
-import { Text } from '../Text';
-import { Icon, IconSizeName } from '../Icon';
-import { Close } from '@livechat/design-system-icons/dist/material';
 import { EditableTagContent } from './EditableTagContent';
+import { Filter } from '../Filter';
 
 const baseClass = 'lc-tag-input__tag';
 
@@ -14,32 +11,28 @@ export interface ITagProps extends React.HTMLAttributes<HTMLDivElement> {
   remove: (idx: number) => void;
   validator?: (val: string) => boolean;
   children: string;
+  size: 'medium' | 'large';
 }
 
 export const Tag: React.FC<ITagProps> = ({
-  className = '',
   children,
   index,
   remove,
   validator,
   inputRef,
   update,
-  ...restProps
+  size,
 }) => {
   const isValid = React.useMemo(() => {
     return validator !== undefined ? validator(children) : true;
   }, [children, validator]);
 
-  const mergedClassNames = cx(baseClass, {
-    [className]: !!className,
-    [`${baseClass}--error`]: !isValid,
-  });
   const innerEditableRef = React.useRef<HTMLInputElement>(null);
 
   const removeTag = () => remove(index);
 
   return (
-    <Text className={mergedClassNames} {...restProps} as="div" size="md">
+    <Filter error={!isValid} dismissible size={size} onRemove={removeTag}>
       <EditableTagContent
         value={children}
         inputRef={inputRef}
@@ -49,14 +42,6 @@ export const Tag: React.FC<ITagProps> = ({
         remove={removeTag}
         validator={validator}
       />
-      <button
-        title="Remove"
-        onClick={removeTag}
-        type="button"
-        className={`${baseClass}__remove`}
-      >
-        <Icon source={Close} size={IconSizeName.Medium} />
-      </button>
-    </Text>
+    </Filter>
   );
 };

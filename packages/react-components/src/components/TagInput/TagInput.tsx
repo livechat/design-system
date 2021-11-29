@@ -22,6 +22,7 @@ export interface ITagInputProps {
   onChange: (tags: Tags) => void;
   placeholder?: string;
   validator?: (val: string) => boolean;
+  size: 'medium' | 'large';
 }
 
 export const TagInput: React.FC<ITagInputProps> = ({
@@ -30,6 +31,7 @@ export const TagInput: React.FC<ITagInputProps> = ({
   validator,
   error,
   placeholder,
+  size,
 }) => {
   const mergedClassNames = cx(baseClass, {
     [`${baseClass}--error`]: error,
@@ -102,6 +104,7 @@ export const TagInput: React.FC<ITagInputProps> = ({
           remove={removeTag}
           inputRef={inputRef}
           validator={validator}
+          size={size}
         >
           {tag}
         </Tag>

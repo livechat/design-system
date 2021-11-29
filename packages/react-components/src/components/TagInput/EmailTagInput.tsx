@@ -16,6 +16,7 @@ export const EmailTagInput: React.FC<IEmailTagInputProps> = ({
   onChange,
   error,
   placeholder = defaultPlaceholder,
+  size,
 }) => {
   return (
     <TagInput
@@ -24,6 +25,7 @@ export const EmailTagInput: React.FC<IEmailTagInputProps> = ({
       onChange={onChange}
       placeholder={placeholder}
       validator={emailValidator}
+      size={size}
     />
   );
 };
