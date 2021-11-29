@@ -36,6 +36,10 @@ export const TagInput: React.FC<ITagInputProps> = ({
   const mergedClassNames = cx(baseClass, {
     [`${baseClass}--error`]: error,
   });
+  const inputClassNames = cx(
+    `${baseClass}__input`,
+    `${baseClass}__input--${size}`
+  );
 
   const [inputValue, setInputValue] = React.useState('');
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -111,7 +115,7 @@ export const TagInput: React.FC<ITagInputProps> = ({
       ))}
       <input
         ref={inputRef}
-        className={`${baseClass}__input`}
+        className={inputClassNames}
         placeholder={placeholder}
         value={inputValue}
         onChange={onInputChange}

@@ -8,10 +8,8 @@
   display: flex;
   flex-wrap: wrap;
   font-size: 15px;
-  line-height: 1.2;
-  min-height: 54px;
   overflow-y: auto;
-  padding: 8px 10px;
+  padding: 4px;
   transition: border 0.25s ease-in-out;
   width: 100%;
   will-change: border-color;
@@ -56,11 +54,18 @@
     color: var(--content-default);
     flex-grow: 1;
     font-size: 15px;
-    line-height: 1;
     margin: 0 4px;
     outline: 0;
     padding: 0 0 0 4px;
     width: auto;
+
+    &--medium {
+      line-height: 28px;
+    }
+
+    &--large {
+      line-height: 36px;
+    }
 
     &:focus {
       border-style: none;
