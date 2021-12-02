@@ -20,7 +20,6 @@ export const Filter = ({
 };
 
 Filter.args = {
-  placeholder: 'Tag input placeholder',
   error: false,
   size: 'medium',
   children: 'Example tag',

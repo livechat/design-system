@@ -31,7 +31,7 @@ $base-class: 'lc-filter';
 
   &--dismissible {
     &.#{$base-class}--medium {
-      padding-right: 2px;
+      padding-right: 4px;
     }
     &.#{$base-class}--large {
       padding-right: 6px;
