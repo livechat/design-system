@@ -7,8 +7,13 @@ import {
 } from '../components/CheckboxField';
 
 export default {
-  title: 'Components/CheckboxField',
+  title: 'Components/Checkbox Field',
   component: CheckboxFieldComponent,
+  parameters: {
+    componentSubtitle: `
+    Use checkboxes when there is a short list of options and the user can select multiple options, all or none.
+    `,
+  },
 } as ComponentMeta<typeof CheckboxFieldComponent>;
 
 export const CheckboxField = (
