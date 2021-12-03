@@ -1,6 +1,9 @@
 @use './typography/classTokens';
 
 @use './components/badge';
+@use './components/text-field';
+@use './components/input-field';
+@use './components/numeric-input';
 @use './components/switch';
 @use './components/progress';
 @use './components/alert';

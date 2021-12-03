@@ -1,4 +1,7 @@
 .lc-icon {
+  align-items: center;
+  display: flex;
+
   &--primary {
     color: var(--content-default);
   }

@@ -1,0 +1,112 @@
+$base-class: lc-numeric-input;
+
+.#{$base-class} {
+  display: inline-block;
+  height: 36px;
+  position: relative;
+  width: 64px;
+
+  &__increment,
+  &__decrement {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    border-left: 1px solid var(--border-default);
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    height: 50%;
+    justify-content: center;
+    padding: 0;
+    position: absolute;
+    right: 1px;
+    top: 1px;
+    width: 23px;
+
+    &:hover,
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  & &__increment {
+    &:disabled {
+      border-color: var(--border-disabled);
+      cursor: not-allowed;
+    }
+  }
+
+  & &__decrement {
+    border-top: 1px solid var(--border-default);
+    bottom: 1px;
+    top: auto;
+
+    &:disabled {
+      border-color: var(--border-disabled);
+      cursor: not-allowed;
+    }
+  }
+
+  input {
+    appearance: textfield;
+    background-clip: padding-box;
+    border: 1px solid var(--border-default);
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: var(--content-default);
+    height: 100%;
+    line-height: 36px;
+    padding: 0 28px 0 4px;
+    text-align: right;
+    transition: border 0.25s ease-in-out;
+    width: 100%;
+    will-change: border-color;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      appearance: none;
+      margin: 0;
+    }
+
+    &:hover {
+      border-color: var(--border-hover);
+      outline: 0;
+    }
+
+    &:focus {
+      border-color: var(--color-action-default);
+      outline: 0;
+    }
+
+    &:disabled {
+      color: var(--content-disabled);
+      cursor: not-allowed;
+
+      &:hover {
+        border-color: var(--border-disabled);
+      }
+    }
+  }
+
+  &--disabled {
+    background-color: var(--surface-basic-disabled);
+    color: var(--content-default);
+    cursor: not-allowed;
+  }
+
+  &.#{$base-class}--no-controls {
+    input {
+      padding: 0 4px;
+    }
+  }
+
+  &.#{$base-class}--error {
+    input {
+      &,
+      &:hover,
+      &:focus {
+        border-color: var(--color-negative-default);
+      }
+    }
+  }
+}
