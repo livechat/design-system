@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { render } from '../test-utils';
-import { Filter } from './Filter';
+import { Tag } from './Tag';
 import userEvent from '@testing-library/user-event';
 
 jest.mock('@livechat/design-system-icons/dist/material', () => ({
   Close: () => <div />,
 }));
 
-const baseClass = 'lc-filter';
+const baseClass = 'lc-tag';
 const onRemove = jest.fn();
 const tagIndex = 0;
 const props = {
@@ -15,21 +15,21 @@ const props = {
   index: tagIndex,
 };
 
-describe('<Filter> component', () => {
+describe('<Tag> component', () => {
   it('should have error class when error occurs', () => {
     const { container } = render(
-      <Filter {...props} error>
+      <Tag {...props} error>
         tag1
-      </Filter>
+      </Tag>
     );
     expect(container.firstChild).toHaveClass(`${baseClass}--error`);
   });
 
   it('should call remove method on remove button press', () => {
     const { getByRole } = render(
-      <Filter {...props} dismissible>
+      <Tag {...props} dismissible>
         tag1
-      </Filter>
+      </Tag>
     );
     const removeButton = getByRole('button');
     userEvent.click(removeButton);

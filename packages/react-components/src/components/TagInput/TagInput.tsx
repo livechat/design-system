@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { Tag } from './Tag';
+import { EditableTag } from './EditableTag';
 import { KeyCodes } from '../../constants/keyCodes';
 
 const baseClass = 'lc-tag-input';
@@ -101,7 +101,7 @@ export const TagInput: React.FC<ITagInputProps> = ({
   return (
     <div className={mergedClassNames}>
       {tags?.map((tag, index) => (
-        <Tag
+        <EditableTag
           index={index}
           key={`${index}${tag}`}
           update={updateTag}
@@ -111,7 +111,7 @@ export const TagInput: React.FC<ITagInputProps> = ({
           size={size}
         >
           {tag}
-        </Tag>
+        </EditableTag>
       ))}
       <input
         ref={inputRef}

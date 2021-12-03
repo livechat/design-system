@@ -4,29 +4,37 @@ import { Text } from './Text';
 import { Close } from '@livechat/design-system-icons/dist/material';
 import Icon, { IconSizeName } from './Icon';
 
-const baseClass = 'lc-filter';
+const baseClass = 'lc-tag';
 
-export interface IFilterProps extends React.HTMLAttributes<HTMLDivElement> {
-  error?: boolean;
+export interface ITagProps extends React.HTMLAttributes<HTMLDivElement> {
+  kind?: 'default' | 'info' | 'warning' | 'success' | 'error';
   size?: 'medium' | 'large';
   dismissible?: boolean;
+  outline?: boolean;
   onRemove?(): void;
   // TODO: icon XOR avatar prop
 }
 
-export const Filter: React.FC<IFilterProps> = ({
+export const Tag: React.FC<ITagProps> = ({
   className = '',
   children,
   dismissible = false,
   size = 'medium',
-  error,
+  kind = 'default',
   onRemove,
+  outline = false,
   ...restProps
 }) => {
-  const mergedClassNames = cx(baseClass, className, `${baseClass}--${size}`, {
-    [`${baseClass}--error`]: error,
-    [`${baseClass}--dismissible`]: dismissible,
-  });
+  const mergedClassNames = cx(
+    baseClass,
+    className,
+    `${baseClass}--${size}`,
+    `${baseClass}--${kind}`,
+    {
+      [`${baseClass}--dismissible`]: dismissible,
+      [`${baseClass}--outline`]: outline,
+    }
+  );
 
   return (
     <Text className={mergedClassNames} {...restProps} as="div" size="md">
