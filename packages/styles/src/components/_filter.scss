@@ -1,0 +1,71 @@
+$base-class: 'lc-filter';
+
+.#{$base-class} {
+  align-items: center;
+  background: var(--surface-secondary-default);
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: var(--content-default);
+  display: flex;
+  position: relative;
+
+  &--medium {
+    padding: 1px 8px;
+  }
+
+  &--large {
+    padding: 5px 12px;
+  }
+
+  &--error {
+    background-color: var(--surface-feedback-negative);
+    border: 1px dashed var(--color-negative-default);
+
+    &.#{$base-class}--medium {
+      padding: 0 7px;
+    }
+    &.#{$base-class}--large {
+      padding: 4px 11px;
+    }
+  }
+
+  &--dismissible {
+    &.#{$base-class}--medium {
+      padding-right: 4px;
+    }
+    &.#{$base-class}--large {
+      padding-right: 6px;
+    }
+
+    &.#{$base-class}--error {
+      &.#{$base-class}--medium {
+        padding-right: 1px;
+      }
+      &.#{$base-class}--large {
+        padding-right: 5px;
+      }
+    }
+  }
+
+  &__remove {
+    align-items: center;
+    background-color: transparent;
+    border-style: none;
+    box-shadow: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    outline: none;
+    padding: 0 0 0 4px;
+
+    .lc-icon {
+      align-items: center;
+      color: var(--content-subtle);
+      display: flex;
+
+      &:hover {
+        color: var(--content-default);
+      }
+    }
+  }
+}
