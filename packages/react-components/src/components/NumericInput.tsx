@@ -52,7 +52,7 @@ export const NumericInput: React.FC<INumericInputProps> = ({
   const handleOnFocus = () =>
     window.addEventListener('keydown', onKeyDown, true);
 
-  const handleonBlur = () => window.removeEventListener('keydown', onKeyDown);
+  const handleOnBlur = () => window.removeEventListener('keydown', onKeyDown);
 
   const callOnChange = (val: number | string) => onChange(String(val));
 
@@ -123,7 +123,7 @@ export const NumericInput: React.FC<INumericInputProps> = ({
         disabled={disabled}
         onChange={handleOnChange}
         onFocus={handleOnFocus}
-        onBlur={handleonBlur}
+        onBlur={handleOnBlur}
         min={min}
         max={max}
       />
