@@ -19,7 +19,7 @@ export interface ISelectProps {
   getItemBody: (props: ISelectItem['props']) => React.ReactNode;
   getSelectedItemBody: (props: ISelectItem['props']) => React.ReactNode;
   onItemSelect: (itemKey: string) => void;
-  searchEmptyState: React.ReactNode;
+  searchEmptyState?: React.ReactNode;
   items: ISelectItem[];
   searchPlaceholder?: string;
   searchProperty: string | string[];
