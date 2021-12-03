@@ -81,11 +81,12 @@ export const Select: React.FC<ISelectProps> = ({
     return isIsOpenControlled() ? controlledIsOpen : isOpen;
   };
 
-  const onDocumentClick = (e) => {
+  const onDocumentClick = (e: MouseEvent) => {
     if (
       getIsOpen() &&
       containerRef.current &&
-      !containerRef.current.contains(e.target)
+      !containerRef.current.contains(e.target as Node) &&
+      listRef?.current
     ) {
       listRef.current.scrollTop = 0;
       hideSelectBody();
@@ -97,7 +98,7 @@ export const Select: React.FC<ISelectProps> = ({
 
     if (search && searchInputRef.current) {
       timerId = setTimeout(() => {
-        searchInputRef.current.focus();
+        searchInputRef?.current?.focus();
       }, 150);
     }
   };
