@@ -1,0 +1,37 @@
+.lc-input-field {
+  background-clip: padding-box;
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: var(--content-default);
+  font-size: 15px;
+  line-height: 1.2;
+  padding: 8px 10px;
+  transition: border 0.25s ease-in-out;
+  width: 100%;
+  will-change: border-color;
+
+  &::placeholder {
+    color: var(--content-disabled);
+  }
+
+  &:hover {
+    border-color: var(--border-hover);
+    outline: 0;
+  }
+
+  &:focus {
+    border-color: var(--color-action-default);
+    outline: 0;
+  }
+
+  &--error,
+  &--error:focus {
+    border-color: var(--color-negative-default);
+  }
+
+  &:disabled {
+    color: var(--content-disabled);
+    cursor: not-allowed;
+  }
+}

@@ -5,7 +5,7 @@ import {
   Switch as SwitchComponent,
   IProps as ISwitchProps,
 } from '../components/Switch';
-import { noop } from '../components/constants';
+import noop from '../utils/noop';
 
 export default {
   title: 'Components/Switch',

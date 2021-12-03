@@ -1,9 +1,15 @@
 import * as React from 'react';
 import cx from 'classnames';
-// TODO: remove and use the Icon wrapper with correct icon after migration
-import CloseIcon from 'react-material-icon-svg/dist/CloseIcon';
+import {
+  Close as CloseIcon,
+  Warning as WarningIcon,
+  Info as InfoIcon,
+  Block as BlockIcon,
+  CheckCircleSolid as CheckIcon,
+} from '@livechat/design-system-icons/dist/material';
 
-import { AlertIcon } from './AlertIcon';
+import { Text } from './Text';
+import { Icon, IconSizeName, IconTypeName } from './Icon';
 
 const baseClass = 'lc-alert';
 
@@ -27,6 +33,25 @@ export interface IAlertProps {
   onClose?: () => void;
 }
 
+const IconConfig = {
+  [AlertType.Info]: {
+    source: InfoIcon,
+    iconType: IconTypeName.Link,
+  },
+  [AlertType.Warning]: {
+    source: WarningIcon,
+    iconType: IconTypeName.Warning,
+  },
+  [AlertType.Success]: {
+    source: CheckIcon,
+    iconType: IconTypeName.Success,
+  },
+  [AlertType.Error]: {
+    source: BlockIcon,
+    iconType: IconTypeName.Error,
+  },
+};
+
 export const Alert: React.FC<IAlertProps> = ({
   children,
   className,
@@ -44,8 +69,10 @@ export const Alert: React.FC<IAlertProps> = ({
   return (
     <div className={mergedClassNames}>
       <div className={`${baseClass}__content`}>
-        <AlertIcon type={type} />
-        <div className={`${baseClass}__content-text`}>{children}</div>
+        <Icon {...IconConfig[type]} />
+        <Text as="div" className={`${baseClass}__content-text`}>
+          {children}
+        </Text>
       </div>
       {onClose && (
         <button
@@ -53,8 +80,7 @@ export const Alert: React.FC<IAlertProps> = ({
           className={`${baseClass}__close-icon`}
           onClick={onClose}
         >
-          {/* TODO: remove and use the Icon wrapper with correct icon after migration */}
-          <CloseIcon fill="#424d57" />
+          <Icon source={CloseIcon} size={IconSizeName.Large} />
         </button>
       )}
     </div>

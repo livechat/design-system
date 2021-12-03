@@ -23,6 +23,20 @@ export default {
         labels: iterator,
       },
     },
+    size: {
+      table: {
+        defaultValue: {
+          summary: IconSizeName.Medium,
+        },
+      },
+    },
+    iconType: {
+      table: {
+        defaultValue: {
+          summary: IconTypeName.Primary,
+        },
+      },
+    },
   },
 } as ComponentMeta<typeof IconComponent>;
 

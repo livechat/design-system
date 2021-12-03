@@ -14,12 +14,12 @@ export const IconsShowcase = (): React.ReactElement => {
   const iconsGrid = Object.keys(Icons).map((item) => {
     const iconSource = Icons[item];
     return (
-      <div className={'card'}>
+      <div className="icon-showcase-card">
         <Icon source={iconSource} size={IconSizeName.XLarge}></Icon>
         <p>{item}</p>
       </div>
     );
   });
 
-  return <div className={'wrapper'}>{iconsGrid}</div>;
+  return <div className="icons-showcase-wrapper">{iconsGrid}</div>;
 };
