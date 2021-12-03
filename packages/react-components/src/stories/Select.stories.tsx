@@ -5,6 +5,8 @@ import {
   ISelectProps,
   Select as SelectComponent,
 } from '../components/Select/Select';
+import { ISelectItem } from '../components/Select/interfaces';
+import { Button } from '../components/Button';
 
 export default {
   title: 'Components/Select',
@@ -21,38 +23,7 @@ export default {
   },
 } as ComponentMeta<typeof SelectComponent>;
 
-const StoryTemplate: Story<ISelectProps> = (args: ISelectProps) => {
-  const [selectedItem, setSelectedItem] = React.useState(null);
-
-  const handleItemSelect = (item) => setSelectedItem(item);
-
-  const getItemBody = (props) => {
-    if (!props) {
-      return null;
-    }
-    return <div id={props.value}>{props.name}</div>;
-  };
-
-  const getSelectedItemBody = (props) => {
-    return <div id={props.value}>{props.name}</div>;
-  };
-
-  return (
-    <div style={{ width: 320 }}>
-      <SelectComponent
-        {...args}
-        onItemSelect={handleItemSelect}
-        selected={selectedItem}
-        getItemBody={getItemBody}
-        getSelectedItemBody={getSelectedItemBody}
-      />
-    </div>
-  );
-};
-
-export const Select = StoryTemplate.bind({});
-Select.args = {
-  id: 'select-example',
+const selectDefaultProps = {
   items: [
     { key: '1', props: { name: 'option 1', value: '1' } },
     { key: '2', props: { name: 'option 2', value: '2' } },
@@ -68,3 +39,95 @@ Select.args = {
   placeholder: 'Select option',
   searchPlaceholder: 'Search...',
 };
+
+interface ISelectArgs extends ISelectProps {
+  controlledVisibility?: boolean;
+  withEmptyState?: boolean;
+}
+
+const StoryTemplate: Story<ISelectProps> = (args: ISelectArgs) => {
+  const [selectedItem, setSelectedItem] = React.useState('');
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [searchPhrase, setSearchPhrase] = React.useState('');
+
+  const handleItemSelect = (itemKey: string) => setSelectedItem(itemKey);
+
+  const getItemBody = (props: ISelectItem['props']) => {
+    if (!props) {
+      return null;
+    }
+    return <div id={props.value}>{props.name}</div>;
+  };
+
+  const getSelectedItemBody = (props: ISelectItem['props']) => {
+    return <div id={props.value}>{props.name}</div>;
+  };
+
+  const getEmptyState = () => {
+    return (
+      <div
+        style={{ width: '100%', padding: '14px 10px', boxSizing: 'border-box' }}
+      >
+        No search results for phrase "{searchPhrase}
+        ". :(
+        <br /> Please type something different.
+      </div>
+    );
+  };
+
+  const handleSearchPhraseChange = (phrase: string) => {
+    setSearchPhrase(phrase);
+  };
+
+  return (
+    <div style={{ width: 320 }}>
+      {args.controlledVisibility && (
+        <Button
+          style={{ marginBottom: 15 }}
+          onClick={() => setIsOpen(isOpen ? false : true)}
+        >
+          {isOpen ? 'Hide' : 'Show'}
+        </Button>
+      )}
+      <SelectComponent
+        {...args}
+        onItemSelect={handleItemSelect}
+        selected={selectedItem}
+        getItemBody={getItemBody}
+        getSelectedItemBody={getSelectedItemBody}
+        controlledIsOpen={args.controlledVisibility && isOpen}
+        searchEmptyState={args.withEmptyState && getEmptyState()}
+        onSearchPhraseChange={(phrase: string) =>
+          args.withEmptyState && handleSearchPhraseChange(phrase)
+        }
+      />
+    </div>
+  );
+};
+
+export const Select = StoryTemplate.bind({});
+Select.args = {
+  id: 'select-example-1',
+  ...selectDefaultProps,
+};
+
+export const SelectWithDisabled = StoryTemplate.bind({});
+SelectWithDisabled.args = {
+  id: 'select-example-2',
+  ...selectDefaultProps,
+  disabled: true,
+};
+
+export const SelectWithControlledVisibility = StoryTemplate.bind({});
+SelectWithControlledVisibility.args = {
+  id: 'select-example-3',
+  ...selectDefaultProps,
+  controlledVisibility: true,
+} as ISelectArgs;
+
+export const SelectWithSearchEmptyState = StoryTemplate.bind({});
+SelectWithSearchEmptyState.args = {
+  id: 'select-example-4',
+  ...selectDefaultProps,
+  withEmptyState: true,
+} as ISelectArgs;
