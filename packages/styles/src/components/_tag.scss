@@ -9,8 +9,36 @@ $base-class: 'lc-tag';
   border-width: 1px;
   box-sizing: border-box;
   color: var(--content-default);
-  display: flex;
+  display: inline-flex;
   position: relative;
+
+  &--success,
+  &--success > .lc-icon {
+    background-color: #d1f4d5;
+    border-color: #005321;
+    color: #005321;
+  }
+
+  &--error,
+  &--error > .lc-icon {
+    background-color: var(--surface-feedback-negative);
+    border-color: var(--color-negative-active);
+    color: var(--color-negative-active);
+  }
+
+  &--warning,
+  &--warning > .lc-icon {
+    background-color: #ffe9bc;
+    border-color: #755b00;
+    color: #755b00;
+  }
+
+  &--info,
+  &--info > .lc-icon {
+    background-color: var(--surface-feedback-info);
+    border-color: var(--color-action-active);
+    color: var(--color-action-active);
+  }
 
   &--medium {
     padding: 1px 8px;
@@ -18,30 +46,6 @@ $base-class: 'lc-tag';
 
   &--large {
     padding: 5px 12px;
-  }
-
-  &--success {
-    background-color: #d1f4d5;
-    border-color: #005321;
-    color: #005321;
-  }
-
-  &--error {
-    background-color: var(--surface-feedback-negative);
-    border-color: var(--color-negative-active);
-    color: var(--color-negative-active);
-  }
-
-  &--warning {
-    background-color: #ffe9bc;
-    border-color: #755b00;
-    color: #755b00;
-  }
-
-  &--info {
-    background-color: var(--surface-feedback-info);
-    border-color: var(--color-action-active);
-    color: var(--color-action-active);
   }
 
   &--outline {
@@ -53,6 +57,19 @@ $base-class: 'lc-tag';
     }
     &.#{$base-class}--large {
       padding: 4px 11px;
+    }
+
+    .lc-icon {
+      background-color: transparent;
+    }
+  }
+
+  &--with-icon {
+    &.#{$base-class}--medium {
+      padding-left: 4px;
+    }
+    &.#{$base-class}--large {
+      padding-left: 6px;
     }
   }
 
@@ -72,6 +89,17 @@ $base-class: 'lc-tag';
         padding-right: 5px;
       }
     }
+  }
+
+  &__icon {
+    margin-right: 4px;
+  }
+
+  &__avatar {
+    border-radius: 50%;
+    height: 20px;
+    margin-right: 4px;
+    width: 20px;
   }
 
   &__remove {

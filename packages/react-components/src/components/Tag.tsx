@@ -12,7 +12,8 @@ export interface ITagProps extends React.HTMLAttributes<HTMLDivElement> {
   dismissible?: boolean;
   outline?: boolean;
   onRemove?(): void;
-  // TODO: icon XOR avatar prop
+  icon?: React.FC<React.SVGProps<SVGSVGElement>> | string;
+  avatar?: string;
 }
 
 export const Tag: React.FC<ITagProps> = ({
@@ -23,6 +24,8 @@ export const Tag: React.FC<ITagProps> = ({
   kind = 'default',
   onRemove,
   outline = false,
+  icon,
+  avatar,
   ...restProps
 }) => {
   const mergedClassNames = cx(
@@ -33,11 +36,23 @@ export const Tag: React.FC<ITagProps> = ({
     {
       [`${baseClass}--dismissible`]: dismissible,
       [`${baseClass}--outline`]: outline,
+      [`${baseClass}--with-icon`]: !!icon || !!avatar,
     }
   );
 
   return (
     <Text className={mergedClassNames} {...restProps} as="div" size="md">
+      {avatar && (
+        <img className={`${baseClass}__avatar`} src={avatar} alt="tag-avatar" />
+      )}{' '}
+      {/*TODO replace with Avatar component*/}
+      {icon && !avatar && (
+        <Icon
+          className={`${baseClass}__icon`}
+          source={icon}
+          size={IconSizeName.Small}
+        />
+      )}
       {children}
       {dismissible && (
         <button

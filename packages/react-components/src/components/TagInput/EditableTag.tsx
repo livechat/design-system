@@ -33,7 +33,12 @@ export const EditableTag: React.FC<IEditableTagProps> = ({
   const removeTag = () => remove(index);
 
   return (
-    <Tag error={!isValid} dismissible size={size} onRemove={removeTag}>
+    <Tag
+      kind={isValid ? 'default' : 'error'}
+      dismissible
+      size={size}
+      onRemove={removeTag}
+    >
       <EditableTagContent
         value={children}
         inputRef={inputRef}
