@@ -23,7 +23,7 @@ export interface ITagInputProps {
   onChange: (tags: Tags) => void;
   placeholder?: string;
   validator?: (val: string) => boolean;
-  size: 'medium' | 'large';
+  size?: 'medium' | 'large';
 }
 
 export const TagInput: React.FC<ITagInputProps> = ({
@@ -32,7 +32,7 @@ export const TagInput: React.FC<ITagInputProps> = ({
   validator,
   error,
   placeholder,
-  size,
+  size = 'medium',
 }) => {
   const mergedClassNames = cx(baseClass, {
     [`${baseClass}--error`]: error,
@@ -100,7 +100,7 @@ export const TagInput: React.FC<ITagInputProps> = ({
   };
 
   return (
-    <div>
+    <>
       <div className={mergedClassNames}>
         {tags?.map((tag, index) => (
           <EditableTag
@@ -132,6 +132,6 @@ export const TagInput: React.FC<ITagInputProps> = ({
           </Text>
         </span>
       )}
-    </div>
+    </>
   );
 };
