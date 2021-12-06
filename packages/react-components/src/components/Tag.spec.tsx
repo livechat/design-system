@@ -18,7 +18,7 @@ const props = {
 describe('<Tag> component', () => {
   it('should have error class when error occurs', () => {
     const { container } = render(
-      <Tag {...props} error>
+      <Tag {...props} kind="error">
         tag1
       </Tag>
     );

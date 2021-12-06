@@ -21,27 +21,27 @@ $base-class: 'lc-tag';
   }
 
   &--success {
-    background-color: var(--lcds-green100);
-    border-color: var(--lcds-green800);
-    color: var(--lcds-green800);
+    background-color: #d1f4d5;
+    border-color: #005321;
+    color: #005321;
   }
 
   &--error {
-    background-color: var(--lcds-red100);
-    border-color: var(--lcds-red800);
-    color: var(--lcds-red800);
+    background-color: var(--surface-feedback-negative);
+    border-color: var(--color-negative-active);
+    color: var(--color-negative-active);
   }
 
   &--warning {
-    background-color: var(--lcds-yellow100);
-    border-color: var(--lcds-yellow800);
-    color: var(--lcds-yellow800);
+    background-color: #ffe9bc;
+    border-color: #755b00;
+    color: #755b00;
   }
 
   &--info {
-    background-color: var(--lcds-blue100);
-    border-color: var(--lcds-blue800);
-    color: var(--lcds-blue800);
+    background-color: var(--surface-feedback-info);
+    border-color: var(--color-action-active);
+    color: var(--color-action-active);
   }
 
   &--outline {
