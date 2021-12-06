@@ -23,13 +23,13 @@
     outline: 0;
   }
 
-  &:focus {
+  &:focus-within {
     border-color: var(--color-action-default);
     outline: 0;
   }
 
   &--error,
-  &--error:focus {
+  &--error:focus-within {
     border-color: var(--color-negative-default);
   }
 
