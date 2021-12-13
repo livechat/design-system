@@ -10,11 +10,7 @@ export default {
 } as ComponentMeta<typeof TagComponent>;
 
 export const Tag = ({ children, ...args }: ITagProps): React.ReactElement => {
-  return (
-    <div className="spacer" style={{ display: 'flex' }}>
-      <TagComponent {...args}>{children}</TagComponent>
-    </div>
-  );
+  return <TagComponent {...args}>{children}</TagComponent>;
 };
 
 Tag.args = {
@@ -30,96 +26,113 @@ const avatar =
 
 export const kinds = ({ children, ...args }: ITagProps): React.ReactElement => {
   return (
-    <div>
-      <div className="spacer" style={{ display: 'flex' }}>
-        <TagComponent {...args} kind="default">
-          {children}
-        </TagComponent>
-        <TagComponent {...args} kind="info">
-          {children}
-        </TagComponent>
-        <TagComponent {...args} kind="warning">
-          {children}
-        </TagComponent>
-        <TagComponent {...args} kind="success">
-          {children}
-        </TagComponent>
-        <TagComponent {...args} kind="error">
-          {children}
-        </TagComponent>
-      </div>
-      <div className="spacer" style={{ display: 'flex' }}>
-        <TagComponent {...args} kind="default" outline>
-          {children}
-        </TagComponent>
-        <TagComponent {...args} kind="info" outline>
-          {children}
-        </TagComponent>
-        <TagComponent {...args} kind="warning" outline>
-          {children}
-        </TagComponent>
-        <TagComponent {...args} kind="success" outline>
-          {children}
-        </TagComponent>
-        <TagComponent {...args} kind="error" outline>
-          {children}
-        </TagComponent>
-      </div>
-      <div className="spacer" style={{ display: 'flex' }}>
-        <TagComponent {...args} kind="default" icon={Smiles}>
-          {children}
-        </TagComponent>
-        <TagComponent {...args} kind="info" icon={Smiles}>
-          {children}
-        </TagComponent>
-        <TagComponent {...args} kind="warning" icon={Smiles}>
-          {children}
-        </TagComponent>
-        <TagComponent {...args} kind="success" icon={Smiles}>
-          {children}
-        </TagComponent>
-        <TagComponent {...args} kind="error" icon={Smiles}>
-          {children}
-        </TagComponent>
-      </div>
-      <div className="spacer" style={{ display: 'flex' }}>
-        <TagComponent {...args} kind="default" avatar={avatar}>
-          {children}
-        </TagComponent>
-        <TagComponent {...args} kind="info" avatar={avatar}>
-          {children}
-        </TagComponent>
-        <TagComponent {...args} kind="warning" avatar={avatar}>
-          {children}
-        </TagComponent>
-        <TagComponent {...args} kind="success" avatar={avatar}>
-          {children}
-        </TagComponent>
-        <TagComponent {...args} kind="error" avatar={avatar}>
-          {children}
-        </TagComponent>
-      </div>
-      <div className="spacer" style={{ display: 'flex' }}>
-        <TagComponent {...args} kind="default" icon={Smiles} dismissible>
-          {children}
-        </TagComponent>
-        <TagComponent {...args} kind="info" icon={Smiles} dismissible>
-          {children}
-        </TagComponent>
-        <TagComponent {...args} kind="warning" icon={Smiles} dismissible>
-          {children}
-        </TagComponent>
-        <TagComponent {...args} kind="success" icon={Smiles} dismissible>
-          {children}
-        </TagComponent>
-        <TagComponent {...args} kind="error" icon={Smiles} dismissible>
-          {children}
-        </TagComponent>
-      </div>
+    <div className="spacer" style={{ display: 'flex' }}>
+      <TagComponent {...args} kind="default">
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="info">
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="warning">
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="success">
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="error">
+        {children}
+      </TagComponent>
     </div>
   );
 };
 
 kinds.args = {
+  children: 'Example tag',
+};
+
+export const kindsWithOutline = ({
+  children,
+  ...args
+}: ITagProps): React.ReactElement => {
+  return (
+    <div className="spacer" style={{ display: 'flex' }}>
+      <TagComponent {...args} kind="default" outline>
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="info" outline>
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="warning" outline>
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="success" outline>
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="error" outline>
+        {children}
+      </TagComponent>
+    </div>
+  );
+};
+
+kindsWithOutline.args = {
+  children: 'Example tag',
+};
+
+export const kindsWithIcon = ({
+  children,
+  ...args
+}: ITagProps): React.ReactElement => {
+  return (
+    <div className="spacer" style={{ display: 'flex' }}>
+      <TagComponent {...args} kind="default" icon={Smiles}>
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="info" icon={Smiles}>
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="warning" icon={Smiles}>
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="success" icon={Smiles}>
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="error" icon={Smiles}>
+        {children}
+      </TagComponent>
+    </div>
+  );
+};
+
+kindsWithIcon.args = {
+  children: 'Example tag',
+};
+
+export const kindsWithAvatar = ({
+  children,
+  ...args
+}: ITagProps): React.ReactElement => {
+  return (
+    <div className="spacer" style={{ display: 'flex' }}>
+      <TagComponent {...args} kind="default" avatar={avatar}>
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="info" avatar={avatar}>
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="warning" avatar={avatar}>
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="success" avatar={avatar}>
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="error" avatar={avatar}>
+        {children}
+      </TagComponent>
+    </div>
+  );
+};
+
+kindsWithAvatar.args = {
   children: 'Example tag',
 };
