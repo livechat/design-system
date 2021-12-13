@@ -12,6 +12,7 @@ $base-class: 'lc-tag';
   display: inline-flex;
   position: relative;
 
+  /* TODO: Replace colors below with decor tokens when ready */
   &--success,
   &--success > .lc-icon {
     background-color: #d1f4d5;
