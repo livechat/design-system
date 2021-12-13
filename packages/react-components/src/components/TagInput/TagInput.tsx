@@ -2,7 +2,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { EditableTag } from './EditableTag';
 import { KeyCodes } from '../../constants/keyCodes';
-import { Text } from '../Text';
+import { FieldError } from '../FieldError';
 
 const baseClass = 'lc-tag-input';
 
@@ -125,13 +125,7 @@ export const TagInput: React.FC<ITagInputProps> = ({
           onPaste={onPaste}
         />
       </div>
-      {error && (
-        <span className="lc-field-error">
-          <Text as="span" size="sm">
-            {error}
-          </Text>
-        </span>
-      )}
+      {error && <FieldError>{error}</FieldError>}
     </>
   );
 };

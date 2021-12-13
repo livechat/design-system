@@ -1,6 +1,8 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { Text } from './Text';
+import { FieldError } from './FieldError';
+import { FieldDescription } from './FieldDescription';
 
 const baseClass = 'lc-text-field';
 
@@ -47,7 +49,7 @@ export const TextField: React.FC<ITextFieldProps> = ({
           >
             {labelRightNode}
           </div>
-          <div className={cx(`${baseClass}__row-break`)}></div>
+          <div className={cx(`${baseClass}__row-break`)} />
         </React.Fragment>
       )}
       <div
@@ -87,16 +89,8 @@ export const TextField: React.FC<ITextFieldProps> = ({
         )}
         <div className={cx(`${baseClass}__content`)}>
           {children}
-          {error && (
-            <span className="lc-field-error">
-              <Text as="span" size="sm">
-                {error}
-              </Text>
-            </span>
-          )}
-          {description && (
-            <span className="lc-field-description">{description}</span>
-          )}
+          {error && <FieldError>{error}</FieldError>}
+          {description && <FieldDescription>{description}</FieldDescription>}
         </div>
       </div>
     </div>
