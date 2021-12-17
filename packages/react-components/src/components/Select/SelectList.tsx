@@ -69,7 +69,7 @@ export const SelectList: React.FC<ISelectListProps> = ({
 
     const focusedElement = listRef.current.querySelector(
       `${baseClass}__item--focused`
-    ) ;
+    );
 
     if (focusedElement) {
       listRef.current.classList.add('disable-hover');
@@ -178,7 +178,7 @@ export const SelectList: React.FC<ISelectListProps> = ({
         </li>
       )}
       {items
-        .filter((v) => !v.props.hidden)
+        .filter((v) => !v.hidden)
         .map((item) => (
           <li
             key={item.key}

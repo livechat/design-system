@@ -23,6 +23,7 @@ export default {
 
 const StoryTemplate: Story<ISelectProps> = (args: ISelectProps) => {
   const [selectedItem, setSelectedItem] = React.useState(null);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   const handleItemSelect = (item) => setSelectedItem(item);
 
@@ -41,6 +42,8 @@ const StoryTemplate: Story<ISelectProps> = (args: ISelectProps) => {
     <div style={{ width: 320 }}>
       <SelectComponent
         {...args}
+        isOpen={isOpen}
+        onHeaderClick={(isOpen) => setIsOpen(isOpen)}
         onItemSelect={handleItemSelect}
         selected={selectedItem}
         getItemBody={getItemBody}
@@ -54,17 +57,15 @@ export const Select = StoryTemplate.bind({});
 Select.args = {
   id: 'select-example',
   items: [
-    { key: '1', props: { name: 'option 1', value: '1' } },
-    { key: '2', props: { name: 'option 2', value: '2' } },
-    { key: '3', props: { name: 'option 3', value: '3' } },
-    { key: '4', props: { name: 'option 4', value: '4' } },
-    { key: '5', props: { name: 'option 5', value: '5' } },
-    { key: '6', props: { name: 'option 6', value: '6' } },
-    { key: '7', props: { name: 'option 7', value: '7' } },
-    { key: '8', props: { name: 'option 8', value: '8' } },
+    { key: '1', props: { name: 'option one', value: '1' } },
+    { key: '2', props: { name: 'option two', value: '2' } },
+    { key: '3', props: { name: 'option three', value: '3' } },
+    { key: '4', props: { name: 'option four', value: '4' } },
+    { key: '5', props: { name: 'option five', value: '5' } },
+    { key: '6', props: { name: 'option six', value: '6' } },
+    { key: '7', props: { name: 'option seven', value: '7' } },
+    { key: '8', props: { name: 'option eight', value: '8' } },
   ],
-  searchProperty: 'name',
   search: true,
-  placeholder: 'Select option',
   searchPlaceholder: 'Search...',
 };

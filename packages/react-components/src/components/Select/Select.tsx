@@ -13,55 +13,52 @@ const baseClass = 'lc-select';
 
 export interface ISelectProps {
   className?: string;
-  error?: string;
+  disabled?: boolean;
+  error?: boolean;
   id: string;
-  controlledIsOpen?: boolean;
+  isOpen: boolean;
+  items: ISelectItem[];
+  search?: boolean;
+  searchEmptyState?: React.ReactNode;
+  searchPlaceholder?: string;
+  searchProperty?: string | string[];
+  selected: string | null;
+  selectHeader?: string;
+  placeholder?: string;
+  required?: boolean;
   getItemBody: (props: ISelectItem['props']) => React.ReactNode;
   getSelectedItemBody: (props: ISelectItem['props']) => React.ReactNode;
+  onDropdownToggle?: (value: boolean) => void;
+  onHeaderClick: (isOpen: boolean) => void;
   onItemSelect: (itemKey: string) => void;
-  searchEmptyState?: React.ReactNode;
-  items: ISelectItem[];
-  searchPlaceholder?: string;
-  searchProperty: string | string[];
-  selected: string | number | null;
-  search?: boolean;
-  required?: boolean;
-  placeholder?: string;
-  disabled?: boolean;
-  openedOnInit?: boolean;
-  onDropdownToggle?: (v: boolean) => void;
   onSearchPhraseChange?: (phrase: string) => void;
-  selectHeader?: string;
 }
 
 export const Select: React.FC<ISelectProps> = ({
   className,
+  disabled,
   error,
   id,
-  controlledIsOpen,
+  isOpen,
+  items = [],
+  search,
+  searchEmptyState,
+  searchPlaceholder,
+  searchProperty = 'name',
+  selected,
+  selectHeader,
+  placeholder = 'Select item',
+  required,
   getItemBody,
   getSelectedItemBody,
-  onItemSelect,
-  searchEmptyState,
-  items = [],
-  searchPlaceholder,
-  searchProperty,
-  selected,
-  search,
-  required,
-  placeholder,
-  disabled,
-  openedOnInit,
   onDropdownToggle = () => null,
+  onHeaderClick,
+  onItemSelect,
   onSearchPhraseChange,
-  selectHeader,
 }) => {
   let timerId: ReturnType<typeof setTimeout> | null = null;
   const [isFocused, setIsFocused] = React.useState(false);
   const [searchPhrase, setSearchPhrase] = React.useState('');
-  const [isOpen, setIsOpen] = React.useState(
-    openedOnInit || controlledIsOpen || false
-  );
   const [focusedItemKey, setFocusedItemKey] = React.useState(
     items[0] ? items[0].key : null
   );
@@ -71,30 +68,25 @@ export const Select: React.FC<ISelectProps> = ({
   const clearButtonRef = React.createRef<HTMLDivElement>();
   const listRef = React.createRef<HTMLUListElement>();
 
-  const isIsOpenControlled = () => controlledIsOpen !== undefined;
-
-  const getIsOpen = () => {
-    if (disabled) {
-      return false;
-    }
-
-    return isIsOpenControlled() ? controlledIsOpen : isOpen;
-  };
+  const getIsOpen = React.useCallback(
+    () => (disabled ? false : isOpen),
+    [disabled, isOpen]
+  );
 
   const onDocumentClick = (e: MouseEvent) => {
-    if (
-      getIsOpen() &&
-      containerRef.current &&
-      !containerRef.current.contains(e.target as Node) &&
-      listRef?.current
-    ) {
-      listRef.current.scrollTop = 0;
-      hideSelectBody();
+    if (containerRef?.current?.contains(e.target as Node)) {
+      return;
     }
+
+    if (listRef?.current) {
+      listRef.current.scrollTop = 0;
+    }
+
+    hideSelectBody();
   };
 
   const onBodyOpen = () => {
-    document.addEventListener('click', onDocumentClick);
+    document.addEventListener('click', onDocumentClick, true);
 
     if (search && searchInputRef.current) {
       timerId = setTimeout(() => {
@@ -104,7 +96,7 @@ export const Select: React.FC<ISelectProps> = ({
   };
 
   const onBodyClose = () => {
-    document.removeEventListener('click', onDocumentClick);
+    document.removeEventListener('click', onDocumentClick, true);
 
     if (timerId) {
       clearTimeout(timerId);
@@ -112,23 +104,15 @@ export const Select: React.FC<ISelectProps> = ({
   };
 
   React.useEffect(() => {
-    if (isOpen) {
+    if (getIsOpen()) {
       onDropdownToggle(true);
       onBodyOpen();
-    }
-  }, []);
-
-  React.useEffect(() => {
-    if (getIsOpen()) {
-      return onBodyOpen();
-    }
-
-    if (!getIsOpen()) {
+    } else {
       onBodyClose();
     }
-  }, [getIsOpen]);
+  }, [isOpen]);
 
-  const filterItem = (item: any): any => {
+  const filterItem = (item: ISelectItem): boolean => {
     if (searchPhrase) {
       if (typeof searchProperty === 'string') {
         if (!(searchProperty in item.props)) {
@@ -176,13 +160,13 @@ export const Select: React.FC<ISelectProps> = ({
   };
 
   const showSelectBody = () => {
-    setIsOpen(true);
+    onHeaderClick(true);
     setSearchPhrase('');
     onDropdownToggle(true);
   };
 
   const hideSelectBody = () => {
-    setIsOpen(false);
+    onHeaderClick(false);
     setFocusedItemKey(items[0] ? items[0].key : null);
     setSearchPhrase('');
     onDropdownToggle(false);
@@ -220,7 +204,7 @@ export const Select: React.FC<ISelectProps> = ({
   const onSelectHeadFocus = () => {
     setIsFocused(true);
 
-    if (!isOpen) {
+    if (!getIsOpen()) {
       document.addEventListener('keydown', onArrowPress);
     }
   };
@@ -240,11 +224,9 @@ export const Select: React.FC<ISelectProps> = ({
     hideSelectBody();
   };
 
-  const shouldShowSelectBody = (filteredItems: any) => {
-    const isOpen = getIsOpen();
-
+  const shouldShowSelectBody = (filteredItems: ISelectItem[]) => {
     return (
-      (isOpen && filteredItems.length > 0) ||
+      (getIsOpen() && filteredItems.length > 0) ||
       (searchEmptyState &&
         searchPhrase.length > 0 &&
         filteredItems.length === 0)
