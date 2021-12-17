@@ -47,11 +47,9 @@ export const SelectList: React.FC<ISelectListProps> = ({
         listRef.current.scrollTop = 0;
       }
 
-      document.addEventListener('keydown', onKeydown);
-    }
-
-    if (!isOpen) {
-      document.removeEventListener('keydown', onKeydown);
+      document.addEventListener('keydown', onKeydown, true);
+    } else {
+      document.removeEventListener('keydown', onKeydown, true);
 
       if (timerId) {
         clearTimeout(timerId);
@@ -193,7 +191,10 @@ export const SelectList: React.FC<ISelectListProps> = ({
               {getItemBody(item.props)}
             </div>
             {isItemSelected(item.key) && (
-              <Icon source={MaterialIcons.Check}></Icon>
+              <Icon
+                className={`${baseClass}__item-icon`}
+                source={MaterialIcons.Check}
+              ></Icon>
             )}
           </li>
         ))}

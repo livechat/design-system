@@ -9,7 +9,6 @@ $base-class: 'lc-select';
 
   &-head {
     align-items: center;
-    background-color: #fff;
     border: 1px solid var(--border-default);
     border-radius: 4px;
     cursor: pointer;
@@ -35,8 +34,9 @@ $base-class: 'lc-select';
     }
 
     &--disabled {
+      border-color: var(--border-disabled);
+      color: var(--content-disabled);
       cursor: not-allowed;
-      opacity: 0.4;
       pointer-events: none;
     }
   }
@@ -54,8 +54,13 @@ $base-class: 'lc-select';
     }
   }
 
+  &-head__icon {
+    &--disabled {
+      color: var(--content-disabled);
+    }
+  }
+
   &-head__search {
-    background-color: #fff;
     border-radius: 4px;
     left: 10px;
     opacity: 0;
@@ -82,6 +87,7 @@ $base-class: 'lc-select';
     box-sizing: border-box;
     color: var(--content-default);
     display: block;
+    font-size: 15px;
     height: 100%;
     margin: 0;
     outline: none;
@@ -104,7 +110,6 @@ $base-class: 'lc-select';
   }
 
   &-body {
-    background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
@@ -162,8 +167,12 @@ $base-class: 'lc-select';
         width: 100%;
       }
 
+      &-icon {
+        color: var(--color-action-default);
+      }
+
       &--selected {
-        color: var(--content-default);
+        color: var(--color-action-default);
 
         .#{$base-class}-body__checkmark {
           opacity: 1;
@@ -173,7 +182,7 @@ $base-class: 'lc-select';
       }
 
       &--focused {
-        background-color: var(--color-action-default);
+        background-color: var(--surface-basic-hover);
       }
     }
   }

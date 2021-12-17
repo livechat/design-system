@@ -167,7 +167,7 @@ export const Select: React.FC<ISelectProps> = ({
 
   const hideSelectBody = () => {
     onHeaderClick(false);
-    setFocusedItemKey(items[0] ? items[0].key : null);
+    setFocusedItemKey(focusedItemKey ? focusedItemKey : items[0].key);
     setSearchPhrase('');
     onDropdownToggle(false);
 
@@ -326,7 +326,11 @@ export const Select: React.FC<ISelectProps> = ({
             <Icon source={Close} />
           </div>
         </div>
-        <Icon source={ChevronDown} size={IconSizeName.Large} />
+        <Icon
+          source={ChevronDown}
+          className={cx({ [`${baseClass}-head__icon--disabled`]: disabled })}
+          size={IconSizeName.Large}
+        />
       </div>
       <div
         className={cx(`${baseClass}-body`, {

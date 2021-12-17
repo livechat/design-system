@@ -5,6 +5,7 @@ import {
   ISelectProps,
   Select as SelectComponent,
 } from '../components/Select/Select';
+import { Text } from '../components/Text';
 
 export default {
   title: 'Components/Select',
@@ -35,7 +36,11 @@ const StoryTemplate: Story<ISelectProps> = (args: ISelectProps) => {
   };
 
   const getSelectedItemBody = (props) => {
-    return <div id={props.value}>{props.name}</div>;
+    return (
+      <Text size="md" as="div">
+        <div id={props.value}>{props.name}</div>
+      </Text>
+    );
   };
 
   return (
