@@ -8,6 +8,7 @@ import { Icon, IconSizeName } from '../Icon';
 import { ISelectItem } from './interfaces';
 import { EventKeys } from '../constants';
 import { SelectList } from './SelectList';
+import { Text } from '../Text';
 
 const baseClass = 'lc-select';
 
@@ -292,7 +293,9 @@ export const Select: React.FC<ISelectProps> = ({
             </div>
           ) : (
             <div className={`${baseClass}-head__item-placeholder`}>
-              {placeholder}
+              <Text size="md" as="div">
+                {placeholder}
+              </Text>
             </div>
           )}
         </div>
