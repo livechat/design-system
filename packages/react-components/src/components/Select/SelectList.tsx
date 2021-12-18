@@ -48,14 +48,16 @@ export const SelectList: React.FC<ISelectListProps> = ({
       }
 
       document.addEventListener('keydown', onKeydown, true);
-    } else {
+    }
+
+    return () => {
       document.removeEventListener('keydown', onKeydown, true);
 
       if (timerId) {
         clearTimeout(timerId);
       }
-    }
-  }, [isOpen]);
+    };
+  }, [isOpen, focusedItemKey]);
 
   const getFocusedItemIndex = (itemKey: string) =>
     items.map((item) => item.key).indexOf(itemKey);
