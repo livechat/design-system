@@ -65,6 +65,14 @@ $base-class: 'lc-tag';
     }
   }
 
+  &--text-white {
+    color: #fff;
+  }
+
+  &--text-black {
+    color: #000;
+  }
+
   &--with-icon {
     &.#{$base-class}--medium {
       padding-left: 4px;
