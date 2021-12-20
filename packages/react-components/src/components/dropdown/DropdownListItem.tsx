@@ -6,14 +6,13 @@ import { getMergedClassNames } from './helpers';
 const baseClass = 'dropdown__list-item';
 
 export interface IDropdownListItem {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
   icon?: React.ReactNode;
   itemId: number;
   isFocused?: boolean;
   isSelected?: boolean;
   divider?: boolean;
-  content: React.ReactNode;
   isDisabled?: boolean;
   onItemSelect?: (
     itemId: number,
@@ -22,11 +21,11 @@ export interface IDropdownListItem {
       | React.MouseEvent<HTMLLIElement>
       | Event
   ) => void;
-  onClick: (event: React.MouseEvent<HTMLLIElement>) => void;
-  onMouseOver: (event: React.MouseEvent<HTMLLIElement>) => void;
-  onMouseOverItem: (itemId: number | string) => void;
-  onMouseDown: (event: React.MouseEvent<HTMLLIElement>) => void;
-  onItemFocus: (event: React.FocusEvent<HTMLLIElement>) => boolean;
+  onClick?: (event: React.MouseEvent<HTMLLIElement>) => void;
+  onMouseOver?: (event: React.MouseEvent<HTMLLIElement>) => void;
+  onMouseOverItem?: (itemId: number | string) => void;
+  onMouseDown?: (event: React.MouseEvent<HTMLLIElement>) => void;
+  onItemFocus?: (event: React.FocusEvent<HTMLLIElement>) => boolean;
 }
 
 const DropdownListItem: React.FC<IDropdownListItem> = ({

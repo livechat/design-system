@@ -8,8 +8,8 @@ import {
 } from 'react-popper';
 import * as PopperJS from 'popper.js';
 import ResizeObserver from 'resize-observer-polyfill';
-import { getMergedClassNames } from './helpers';
 import { KeyCodes } from './constants';
+import cx from 'classnames';
 
 export interface IDropdownProps {
   children?: React.ReactNode;
@@ -22,9 +22,9 @@ export interface IDropdownProps {
   modifiers: PopperJS.Modifiers;
   placement?: PopperJS.Placement;
   positionFixed?: boolean;
-  referenceElement?: PopperJS.ReferenceObject;
+  referenceElement?: PopperJS.ReferenceObject | null;
   shouldUpdateOnResize?: boolean;
-  triggerRenderer?: (props: ReferenceChildrenProps) => React.ReactNode;
+  triggerRenderer: (props: ReferenceChildrenProps) => React.ReactNode;
   zIndex?: number;
   onClose?: () => void;
   popupRef?: React.RefObject<HTMLElement>;
@@ -181,7 +181,7 @@ const Dropdown: React.FC<IDropdownProps> = (props) => {
     computedModifiers = buildPopperModifiers(modifiers);
     popperScheduleUpdate = scheduleUpdate;
 
-    const mergedClassNames = getMergedClassNames(
+    const mergedClassNames = cx(
       `${className ? className : ''} dropdown ${
         isVisible ? 'dropdown--visible' : ''
       }`
@@ -229,7 +229,7 @@ const Dropdown: React.FC<IDropdownProps> = (props) => {
           modifiers={computedModifiers}
           eventsEnabled={eventsEnabled}
           positionFixed={positionFixed}
-          referenceElement={referenceElement}
+          referenceElement={referenceElement ? referenceElement : undefined}
         >
           {renderDropdownContent}
         </Popper>
