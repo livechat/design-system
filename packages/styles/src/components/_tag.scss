@@ -13,32 +13,48 @@ $base-class: 'lc-tag';
   position: relative;
 
   /* TODO: Replace colors below with decor tokens when ready */
-  &--success,
-  &--success > .lc-icon {
+  &--success {
     background-color: #d1f4d5;
     border-color: #005321;
     color: #005321;
+
+    .lc-icon,
+    .lc-tag__remove > .lc-icon {
+      color: #005321;
+    }
   }
 
-  &--error,
-  &--error > .lc-icon {
+  &--error {
     background-color: var(--surface-feedback-negative);
     border-color: var(--color-negative-active);
     color: var(--color-negative-active);
+
+    .lc-icon,
+    .lc-tag__remove > .lc-icon {
+      color: var(--color-negative-active);
+    }
   }
 
-  &--warning,
-  &--warning > .lc-icon {
+  &--warning {
     background-color: #ffe9bc;
     border-color: #755b00;
     color: #755b00;
+
+    .lc-icon,
+    .lc-tag__remove > .lc-icon {
+      color: #755b00;
+    }
   }
 
-  &--info,
-  &--info > .lc-icon {
+  &--info {
     background-color: var(--surface-feedback-info);
     border-color: var(--color-action-active);
     color: var(--color-action-active);
+
+    .lc-icon,
+    .lc-tag__remove > .lc-icon {
+      color: var(--color-action-active);
+    }
   }
 
   &--medium {
@@ -88,15 +104,6 @@ $base-class: 'lc-tag';
     }
     &.#{$base-class}--large {
       padding-right: 6px;
-    }
-
-    &.#{$base-class}--error {
-      &.#{$base-class}--medium {
-        padding-right: 1px;
-      }
-      &.#{$base-class}--large {
-        padding-right: 5px;
-      }
     }
   }
 

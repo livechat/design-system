@@ -1,12 +1,24 @@
 import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
-import { Smiles } from '@livechat/design-system-icons/dist/material';
+import * as MaterialIcons from '@livechat/design-system-icons/dist/material';
 
 import { Tag as TagComponent, ITagProps } from '../components/Tag';
+
+const iterator = Object.keys(MaterialIcons);
 
 export default {
   title: 'Components/Tag',
   component: TagComponent,
+  argTypes: {
+    icon: {
+      options: iterator,
+      mapping: MaterialIcons,
+      control: {
+        type: 'select',
+        labels: iterator,
+      },
+    },
+  },
 } as ComponentMeta<typeof TagComponent>;
 
 export const Tag = ({ children, ...args }: ITagProps): React.ReactElement => {
@@ -85,19 +97,19 @@ export const kindsWithIcon = ({
 }: ITagProps): React.ReactElement => {
   return (
     <div className="spacer" style={{ display: 'flex' }}>
-      <TagComponent {...args} kind="default" icon={Smiles}>
+      <TagComponent {...args} kind="default">
         {children}
       </TagComponent>
-      <TagComponent {...args} kind="info" icon={Smiles}>
+      <TagComponent {...args} kind="info">
         {children}
       </TagComponent>
-      <TagComponent {...args} kind="warning" icon={Smiles}>
+      <TagComponent {...args} kind="warning">
         {children}
       </TagComponent>
-      <TagComponent {...args} kind="success" icon={Smiles}>
+      <TagComponent {...args} kind="success">
         {children}
       </TagComponent>
-      <TagComponent {...args} kind="error" icon={Smiles}>
+      <TagComponent {...args} kind="error">
         {children}
       </TagComponent>
     </div>
@@ -106,6 +118,7 @@ export const kindsWithIcon = ({
 
 kindsWithIcon.args = {
   children: 'Example tag',
+  icon: MaterialIcons.Smiles,
 };
 
 export const kindsWithAvatar = ({

@@ -69,6 +69,16 @@ export const Tag: React.FC<ITagProps> = ({
     return { style: { 'background-color': customColor } };
   };
 
+  const getIconCustomColor = () => {
+    if (!customColor) {
+      return undefined;
+    }
+    if (outline) {
+      return customColor;
+    }
+    return getContrast(customColor, '#FFFFFF') > 4.5 ? '#FFFFFF' : '#000000';
+  };
+
   return (
     <Text
       className={mergedClassNames}
@@ -86,6 +96,7 @@ export const Tag: React.FC<ITagProps> = ({
           className={`${baseClass}__icon`}
           source={icon}
           size={IconSizeName.Small}
+          customColor={getIconCustomColor()}
         />
       )}
       {children}
@@ -96,7 +107,11 @@ export const Tag: React.FC<ITagProps> = ({
           type="button"
           className={`${baseClass}__remove`}
         >
-          <Icon source={Close} size={IconSizeName.Medium} />
+          <Icon
+            source={Close}
+            size={IconSizeName.Medium}
+            customColor={getIconCustomColor()}
+          />
         </button>
       )}
     </Text>
