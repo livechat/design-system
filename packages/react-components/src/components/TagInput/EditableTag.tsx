@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { EditableTagContent } from './EditableTagContent';
-import { Filter } from '../Filter';
+import { Tag } from '../Tag';
 
 const baseClass = 'lc-tag-input__tag';
 
-export interface ITagProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface IEditableTagProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   inputRef: React.RefObject<HTMLInputElement>;
   index: number;
   update: (idx: number, value: string) => void;
@@ -14,7 +15,7 @@ export interface ITagProps extends React.HTMLAttributes<HTMLDivElement> {
   size: 'medium' | 'large';
 }
 
-export const Tag: React.FC<ITagProps> = ({
+export const EditableTag: React.FC<IEditableTagProps> = ({
   children,
   index,
   remove,
@@ -32,7 +33,12 @@ export const Tag: React.FC<ITagProps> = ({
   const removeTag = () => remove(index);
 
   return (
-    <Filter error={!isValid} dismissible size={size} onRemove={removeTag}>
+    <Tag
+      kind={isValid ? 'default' : 'error'}
+      dismissible
+      size={size}
+      onRemove={removeTag}
+    >
       <EditableTagContent
         value={children}
         inputRef={inputRef}
@@ -42,6 +48,6 @@ export const Tag: React.FC<ITagProps> = ({
         remove={removeTag}
         validator={validator}
       />
-    </Filter>
+    </Tag>
   );
 };

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { Tag } from './Tag';
+import { EditableTag } from './EditableTag';
 import { KeyCodes } from '../../constants/keyCodes';
+import { FieldError } from '../FieldError';
 
 const baseClass = 'lc-tag-input';
 
@@ -22,7 +23,7 @@ export interface ITagInputProps {
   onChange: (tags: Tags) => void;
   placeholder?: string;
   validator?: (val: string) => boolean;
-  size: 'medium' | 'large';
+  size?: 'medium' | 'large';
 }
 
 export const TagInput: React.FC<ITagInputProps> = ({
@@ -31,7 +32,7 @@ export const TagInput: React.FC<ITagInputProps> = ({
   validator,
   error,
   placeholder,
-  size,
+  size = 'medium',
 }) => {
   const mergedClassNames = cx(baseClass, {
     [`${baseClass}--error`]: error,
@@ -99,29 +100,32 @@ export const TagInput: React.FC<ITagInputProps> = ({
   };
 
   return (
-    <div className={mergedClassNames}>
-      {tags?.map((tag, index) => (
-        <Tag
-          index={index}
-          key={`${index}${tag}`}
-          update={updateTag}
-          remove={removeTag}
-          inputRef={inputRef}
-          validator={validator}
-          size={size}
-        >
-          {tag}
-        </Tag>
-      ))}
-      <input
-        ref={inputRef}
-        className={inputClassNames}
-        placeholder={placeholder}
-        value={inputValue}
-        onChange={onInputChange}
-        onKeyDown={onInputKeyDown}
-        onPaste={onPaste}
-      />
-    </div>
+    <>
+      <div className={mergedClassNames}>
+        {tags?.map((tag, index) => (
+          <EditableTag
+            index={index}
+            key={`${index}${tag}`}
+            update={updateTag}
+            remove={removeTag}
+            inputRef={inputRef}
+            validator={validator}
+            size={size}
+          >
+            {tag}
+          </EditableTag>
+        ))}
+        <input
+          ref={inputRef}
+          className={inputClassNames}
+          placeholder={placeholder}
+          value={inputValue}
+          onChange={onInputChange}
+          onKeyDown={onInputKeyDown}
+          onPaste={onPaste}
+        />
+      </div>
+      {error && <FieldError>{error}</FieldError>}
+    </>
   );
 };
