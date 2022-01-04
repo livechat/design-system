@@ -60,13 +60,13 @@ export const Tag: React.FC<ITagProps> = ({
     if (outline) {
       return {
         style: {
-          'background-color': 'transparent',
+          backgroundColor: 'transparent',
           color: customColor,
-          'border-color': customColor,
+          borderColor: customColor,
         },
       };
     }
-    return { style: { 'background-color': customColor } };
+    return { style: { backgroundColor: customColor } };
   };
 
   const getIconCustomColor = () => {
@@ -88,11 +88,17 @@ export const Tag: React.FC<ITagProps> = ({
       size="md"
     >
       {avatar && (
-        <img className={`${baseClass}__avatar`} src={avatar} alt="tag-avatar" />
+        <img
+          className={`${baseClass}__avatar`}
+          src={avatar}
+          alt="tag-avatar"
+          data-testid="lc-tag-avatar"
+        />
       )}{' '}
       {/*TODO replace with Avatar component*/}
       {icon && !avatar && (
         <Icon
+          data-testid="lc-tag-icon"
           className={`${baseClass}__icon`}
           source={icon}
           size={IconSizeName.Small}
