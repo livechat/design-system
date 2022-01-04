@@ -4,7 +4,6 @@ import Dropdown from '../../../components/dropdown/Dropdown';
 
 const DropdownExample = () => {
   const [isVisible, setIsVisible] = React.useState(false);
-  const buttonRef = React.useRef(null);
   const handleClose = () => {
     setIsVisible(false);
   };
@@ -14,31 +13,39 @@ const DropdownExample = () => {
   };
 
   return (
-    <Dropdown
-      isVisible={isVisible}
-      placement="bottom"
-      onClose={handleClose}
-      closeOnEscPress
-      triggerRenderer={() => (
-        <div ref={buttonRef}>
-          <Button onClick={handleTriggerClick}>Menu</Button>
-        </div>
-      )}
-      modifiers={{
-        flip: {
-          behavior: 'flip',
-        },
-        arrow: {
-          enabled: true,
-        },
+    <div
+      style={{
+        width: '500px',
+        height: '500px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
-      referenceElement={buttonRef.current}
     >
-      <div style={{ padding: '100px', textAlign: 'center' }}>
-        <div style={{ padding: '20px' }}>Dropdown content</div>
-        <Button onClick={handleClose}>Close</Button>
-      </div>
-    </Dropdown>
+      <Dropdown
+        isVisible={isVisible}
+        placement="right"
+        onClose={handleClose}
+        closeOnEscPress
+        triggerRenderer={() => (
+          <div>
+            <Button onClick={handleTriggerClick}>Menu</Button>
+          </div>
+        )}
+        modifiers={{
+          arrow: {
+            options: {},
+          },
+          flip: {},
+          preventOverflow: {},
+        }}
+      >
+        <div style={{ padding: '100px', textAlign: 'center' }}>
+          <div style={{ padding: '20px' }}>Dropdown content</div>
+          <Button onClick={handleClose}>Close</Button>
+        </div>
+      </Dropdown>
+    </div>
   );
 };
 

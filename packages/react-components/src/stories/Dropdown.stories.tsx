@@ -14,11 +14,12 @@ export const Dropdown = (): React.ReactElement => (
     style={{
       height: '100vh',
       display: 'flex',
+      width: '800px',
       justifyContent: 'center',
       alignItems: 'center',
     }}
   >
     <DropdownExample />
-    <DropdownListExample />
+    {/* <DropdownListExample /> */}
   </div>
 );

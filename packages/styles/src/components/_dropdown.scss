@@ -36,57 +36,58 @@ $base-class: 'dropdown';
 
     &::after {
       border: 6px solid transparent;
-      border-color: var(--border-default) var(--border-default) transparent
-        transparent;
+      border-color: var(--border-invert-default) var(--border-invert-default)
+        transparent transparent;
       box-shadow: -5px 5px 10px -2px rgba(66, 77, 87, 0.3);
       content: '';
       position: absolute;
+      top: 0;
       transform: rotate(-45deg);
       z-index: 1;
     }
 
-    &[data-placement*='bottom'] {
+    &[data-popper-placement^='bottom'] {
       top: 0;
 
       &::after {
-        border-color: var(--border-default) var(--border-default) transparent
-          transparent;
+        border-color: var(--border-invert-default) var(--border-invert-default)
+          transparent transparent;
         box-shadow: 3px -3px 10px -2px rgba(66, 77, 87, 0.3);
       }
     }
 
-    &[data-placement*='top'] {
+    &[data-popper-placement*='top'] {
       top: 100%;
 
       &::after {
-        border-color: transparent transparent var(--border-default)
-          var(--border-default);
+        border-color: transparent transparent var(--border-invert-default)
+          var(--border-invert-default);
         box-shadow: -3px 3px 10px -2px rgba(66, 77, 87, 0.3);
       }
     }
 
-    &[data-placement*='right'] {
+    &[data-popper-placement*='right'] {
       height: 12px;
-      left: 0;
+      left: 100;
       margin: 0 -6px;
       width: 6px;
 
       &::after {
-        border-color: var(--border-default) transparent transparent
-          var(--border-default);
+        border-color: var(--border-invert-default) transparent transparent
+          var(--border-invert-default);
         box-shadow: -3px -3px 10px -2px rgba(66, 77, 87, 0.3);
       }
     }
 
-    &[data-placement*='left'] {
+    &[data-popper-placement*='left'] {
       height: 12px;
       left: 100%;
       margin: 0 -6px;
       width: 6px;
 
       &::after {
-        border-color: transparent var(--border-default) var(--border-default)
-          transparent;
+        border-color: transparent var(--border-invert-default)
+          var(--border-invert-default) transparent;
         box-shadow: 3px 3px 10px -2px rgba(66, 77, 87, 0.3);
       }
     }
