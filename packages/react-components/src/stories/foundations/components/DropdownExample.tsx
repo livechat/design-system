@@ -1,8 +1,13 @@
 import * as React from 'react';
 import { Button } from '../../../components/Button';
 import Dropdown from '../../../components/dropdown/Dropdown';
+import * as PopperCore from '@popperjs/core';
 
-const DropdownExample = () => {
+export interface IDropdownExample {
+  placement: PopperCore.Placement;
+}
+
+const DropdownExample: React.FC<IDropdownExample> = ({ placement }) => {
   const [isVisible, setIsVisible] = React.useState(false);
   const handleClose = () => {
     setIsVisible(false);
@@ -24,7 +29,7 @@ const DropdownExample = () => {
     >
       <Dropdown
         isVisible={isVisible}
-        placement="right"
+        placement={placement}
         onClose={handleClose}
         closeOnEscPress
         triggerRenderer={() => (
@@ -33,10 +38,7 @@ const DropdownExample = () => {
           </div>
         )}
         modifiers={{
-          arrow: {
-            options: {},
-          },
-          flip: {},
+          arrow: {},
           preventOverflow: {},
         }}
       >
