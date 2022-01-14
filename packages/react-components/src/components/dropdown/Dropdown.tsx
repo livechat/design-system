@@ -37,7 +37,7 @@ const Dropdown: React.FC<IDropdownProps> = (props) => {
 
   const { triggerRenderer, isVisible, children, className, placement } = props;
 
-  const buildPopperModifiers = (modifiers: any) => {
+  const buildPopperModifiers = (modifiers: DropdownModifiers) => {
     const { offset, arrow, flip, preventOverflow } = modifiers;
 
     const calculatedOffset = [
@@ -45,7 +45,7 @@ const Dropdown: React.FC<IDropdownProps> = (props) => {
         name: 'offset',
         options: {
           offset: arrow || {} ? [0, 12] : [0, 4],
-          ...(offset || {}),
+          ...(offset?.options || {}),
         },
       },
     ];
@@ -54,7 +54,7 @@ const Dropdown: React.FC<IDropdownProps> = (props) => {
       {
         name: 'arrow',
         options: arrow
-          ? { element: arrowElement, ...arrow }
+          ? { element: arrowElement, ...arrow?.options }
           : { element: null },
       },
     ];
@@ -63,7 +63,7 @@ const Dropdown: React.FC<IDropdownProps> = (props) => {
       {
         name: 'flip',
         options: {
-          ...(flip || {}),
+          ...(flip?.options || {}),
         },
       },
     ];
@@ -72,9 +72,8 @@ const Dropdown: React.FC<IDropdownProps> = (props) => {
       {
         name: 'preventOverlow',
         options: {
-          enabled: true,
           rootBoundary: 'viewport',
-          ...(preventOverflow || {}),
+          ...(preventOverflow?.options || {}),
         },
       },
     ];

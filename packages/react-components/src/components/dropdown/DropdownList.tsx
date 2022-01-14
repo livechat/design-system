@@ -6,34 +6,32 @@ import { getFirstFocusableItemId } from './helpers';
 
 const baseClass = 'dropdown';
 
-const getMergedClassNames = (classNames: string, classNameProperty: string) => {
-  if (classNameProperty) {
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    return `${classNames} ${classNameProperty}`;
-  }
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-  return classNames;
-};
+import cx from 'classnames';
+
+export interface IDropdownListItems extends IDropdownListItem {
+  content?: string | React.ReactNode;
+}
 
 const DropdownList = (props: {
   autoFocusedItemId?: string | number;
-  items: IDropdownListItem[];
+  items: IDropdownListItems[];
   keyboardEventsEnabled?: boolean;
   onScroll?: (x: React.UIEvent<HTMLElement>) => void;
   getItemBody?: (x: IDropdownListItem) => void;
   itemSelectKeyCodes?: number[];
   className?: string | null;
 }): React.ReactElement => {
-  const [focusedElement, setFocusedElement] = React.useState(
-    props.autoFocusedItemId || getFirstFocusableItemId(props.items)
-  );
+  const focusedElement = React.useRef<number | string | null>(0);
+
   const [isHoverDisabled, setIsHoverDisabled] = React.useState(false);
   const hoverCallbacks: (() => void)[] = [];
 
   let hoverEnablerTimeout: ReturnType<typeof setTimeout>;
-  let listRef: React.RefObject<HTMLUListElement>;
+  const listRef: React.RefObject<HTMLUListElement> = React.useRef(null);
 
   React.useEffect(() => {
+    focusedElement.current =
+      props.autoFocusedItemId || getFirstFocusableItemId(props.items);
     if (props.keyboardEventsEnabled) {
       document.addEventListener('keydown', onKeydown as EventListener, true);
     }
@@ -73,7 +71,7 @@ const DropdownList = (props: {
 
     const nextItem = findNextFocusableItem(
       items,
-      focusedElement as number,
+      focusedElement.current as number,
       keyCode
     );
 
@@ -94,9 +92,9 @@ const DropdownList = (props: {
   };
 
   const handleSelectKeyUse = (event: Event) => {
-    if (focusedElement !== null) {
+    if (focusedElement.current !== null) {
       const selectedItem = props.items.find(
-        (item: { itemId: number }) => item.itemId === focusedElement
+        (item: { itemId: number }) => item.itemId === focusedElement.current
       );
 
       if (selectedItem && selectedItem.onItemSelect) {
@@ -106,7 +104,8 @@ const DropdownList = (props: {
   };
 
   const changeFocusedElement = (id: number) => {
-    setFocusedElement(id);
+    // setFocusedElement(id);
+    focusedElement.current = id;
   };
 
   const scrollItems = () => {
@@ -114,19 +113,19 @@ const DropdownList = (props: {
       return;
     }
 
-    const focusedElement: HTMLElement | null = listRef.current.querySelector(
+    const focusedEl: HTMLElement | null = listRef.current.querySelector(
       `.lc-${baseClass}__list-item--focused`
     );
 
-    if (focusedElement) {
+    if (focusedEl) {
       setIsHoverDisabled(true);
 
       const { height: ulHeight, top: ulTop } =
         listRef.current.getBoundingClientRect();
       const { height: itemHeigth, top: itemTop } =
-        focusedElement.getBoundingClientRect();
+        focusedEl.getBoundingClientRect();
       const relativeTop = itemTop + itemHeigth - ulTop;
-      const itemOfsetTop = focusedElement.offsetTop;
+      const itemOfsetTop = focusedEl.offsetTop;
 
       if (relativeTop > ulHeight) {
         listRef.current.scrollTop = itemOfsetTop - ulHeight + itemHeigth;
@@ -173,10 +172,7 @@ const DropdownList = (props: {
 
   const { className, items, ...restProps } = props;
 
-  const mergedClassNames = getMergedClassNames(
-    `${baseClass}__list`,
-    className ? className : ''
-  );
+  const mergedClassNames = cx(`${baseClass}__list`, className ? className : '');
 
   return (
     <ul
@@ -185,14 +181,13 @@ const DropdownList = (props: {
       onScroll={handleListScroll}
       {...restProps}
     >
-      {items.map(({ content, itemId, onItemFocus, ...itemRestProps }) => {
+      {items.map(({ itemId, content, onItemFocus, ...itemRestProps }) => {
         const itemProps = {
           ...itemRestProps,
           itemId,
           isFocused: false,
           onMouseOverItem: getFocusedItemCallback(itemId),
           onFocus: getFocusedItemCallback(itemId),
-          content,
           onItemFocus,
         };
 
@@ -200,7 +195,6 @@ const DropdownList = (props: {
           return props.getItemBody({
             ...itemProps,
             onItemFocus,
-            content,
           });
         }
 

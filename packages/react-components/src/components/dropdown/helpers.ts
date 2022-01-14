@@ -4,14 +4,13 @@ import { IDropdownListItem } from './DropdownListItem';
 export function getFirstFocusableItemId(
   items: IDropdownListItem[]
 ): null | number {
-  const focusableItem: IDropdownListItem | undefined = items.find(
-    (item) => !item.isDisabled
-  );
+  const focusableItem = items.find((item) => !item.isDisabled);
 
   if (!focusableItem) {
     return null;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   return focusableItem.itemId;
 }
 
@@ -45,7 +44,6 @@ export const findNextFocusableItem = (
     activeItems = activeItems.reverse();
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   return activeItems[0];
 };
 

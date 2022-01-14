@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import * as React from 'react';
 
-import { getMergedClassNames } from './helpers';
-
+import cx from 'classnames';
+import { Check } from '@livechat/design-system-icons/dist/material';
+import { Icon, IconSizeName, IconTypeName } from '../../components/Icon';
 const baseClass = 'dropdown__list-item';
 
 export interface IDropdownListItem {
@@ -44,7 +45,7 @@ const DropdownListItem: React.FC<IDropdownListItem> = ({
   isSelected,
   divider,
 }) => {
-  const itemRef: React.RefObject<HTMLLIElement> = React.createRef();
+  const itemRef: React.RefObject<HTMLLIElement> | null = React.useRef(null);
   let focusTimeout: ReturnType<typeof setTimeout> | null = null;
 
   useEffect(() => {
@@ -113,12 +114,14 @@ const DropdownListItem: React.FC<IDropdownListItem> = ({
     return false;
   };
 
-  let stateClass = isSelected ? `${baseClass}--selected` : '';
-  stateClass = isFocused && !isDisabled ? `${baseClass}--focused` : '';
-  stateClass = isDisabled ? `${baseClass}--disabled` : '';
-  stateClass = divider ? `${baseClass}--with-divider` : '';
-
-  const mergedClassNames = getMergedClassNames(stateClass, className);
+  const mergedClassNames = cx({
+    [`${baseClass}`]: true,
+    [`${baseClass}--selected`]: isSelected,
+    [`${baseClass}--focused`]: isFocused && !isDisabled,
+    [`${baseClass}--disabled`]: isDisabled,
+    [`${baseClass}--with-divider`]: divider,
+    className,
+  });
 
   return (
     <li
@@ -134,7 +137,13 @@ const DropdownListItem: React.FC<IDropdownListItem> = ({
         {icon && <div className={`${baseClass}__icon`}>{icon}</div>}
         <div className={`${baseClass}__title`}>{children}</div>
       </div>
-      {isSelected && '>>>'}
+      {isSelected && (
+        <Icon
+          source={Check}
+          iconType={IconTypeName.Inverted}
+          size={IconSizeName.XSmall}
+        />
+      )}
     </li>
   );
 };

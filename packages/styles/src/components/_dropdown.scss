@@ -96,7 +96,7 @@ $base-class: 'dropdown';
   &__list-item {
     align-items: center;
     box-sizing: border-box;
-    color: var(--content-default);
+    color: burlywood;
     cursor: pointer;
     display: flex;
     font-size: 14px;
@@ -126,7 +126,7 @@ $base-class: 'dropdown';
     }
 
     &--focused {
-      background-color: var(--color-action-hover);
+      background-color: green;
     }
 
     &__checkmark {
@@ -139,7 +139,7 @@ $base-class: 'dropdown';
     }
 
     &--selected {
-      color: var(--color-negative-default);
+      color: yellow;
 
       .#{$base-class}__list-item__checkmark {
         opacity: 1;
@@ -155,7 +155,7 @@ $base-class: 'dropdown';
     }
 
     &--with-divider {
-      border-bottom: 1px solid var(--color-positive-defaults);
+      border-bottom: 1px solid grey;
     }
   }
 }
