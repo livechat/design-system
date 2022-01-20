@@ -9,9 +9,13 @@ export interface LinkProps
 const baseClass = 'lc-link';
 
 /**
- * Place the `<Link>` inside `<Text>` component or pass custom className to set the typography styles.
+ * Simple component which renders an `<a>` element.
  *
- * Use `lc-link` & `lc-link--bold` classes for styling custom components like `ReactRouter.Link`.
+ * Place the `<Link>` inside a `<Text>` component or pass a custom className to set the typography styles.
+ *
+ * Use `<Button kind="link">` to act as a `<button>` - <a target="_self" href="/story/components-button--kinds">see the story</a>.
+ *
+ * Use `<Button href="">` to display as a `<Button>` - <a target="_self" href="/story/components-button--link">see the story</a>.
  */
 export const Link: React.FC<LinkProps> = ({
   bold = false,

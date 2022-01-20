@@ -57,6 +57,7 @@ export const kinds = (): React.ReactElement => (
       <Button kind="secondary">Secondary</Button>
       <Button kind="destructive">Destructive</Button>
       <Button kind="text">Text</Button>
+      <Button kind="link">Link</Button>
     </div>
     <div className="spacer">
       <Button disabled>Basic</Button>
@@ -72,6 +73,9 @@ export const kinds = (): React.ReactElement => (
       <Button disabled kind="text">
         Text
       </Button>
+      <Button disabled kind="link">
+        Link
+      </Button>
     </div>
     <div className="spacer">
       <Button loading>Basic</Button>
@@ -86,6 +90,9 @@ export const kinds = (): React.ReactElement => (
       </Button>
       <Button loading kind="text">
         Text
+      </Button>
+      <Button loading kind="link">
+        Link
       </Button>
     </div>
   </div>

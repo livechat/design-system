@@ -135,7 +135,8 @@ $base-class: 'lc-btn';
     }
   }
 
-  &--text {
+  &--text,
+  &--link {
     background-color: transparent;
     border-color: transparent;
     color: var(--color-action-default);
@@ -146,6 +147,19 @@ $base-class: 'lc-btn';
 
     &[disabled] {
       color: var(--color-action-disabled);
+    }
+  }
+
+  &--link {
+    border: 0;
+    min-height: auto;
+    min-width: auto;
+    padding: 0;
+
+    &:hover,
+    &:focus {
+      box-shadow: none;
+      text-decoration: underline;
     }
   }
 

@@ -5,7 +5,7 @@ import { Loader } from './Loader';
 export type ButtonSize = 'compact' | 'medium' | 'large';
 
 export type ButtonProps = {
-  kind?: 'basic' | 'primary' | 'secondary' | 'destructive' | 'text';
+  kind?: 'basic' | 'primary' | 'secondary' | 'destructive' | 'text' | 'link';
   size?: ButtonSize;
   disabled?: boolean;
   loading?: boolean;
