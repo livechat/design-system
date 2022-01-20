@@ -4,12 +4,12 @@ import { ComponentMeta } from '@storybook/react';
 import * as MaterialIcons from '@livechat/design-system-icons/dist/material';
 
 import { Icon } from '../components/Icon';
-import { Button, Props as ButtonProps } from '../components/Button';
+import { Button, ButtonProps } from '../components/Button';
 
 const icons = Object.fromEntries(
   Object.entries(MaterialIcons).map(([key, source]) => [
     key,
-    <Icon source={source} />,
+    <Icon source={source as 'string'} />,
   ])
 );
 
@@ -140,4 +140,10 @@ export const loading = (): React.ReactElement => (
       Loading Button
     </Button>
   </div>
+);
+
+export const link = (): React.ReactElement => (
+  <Button href="https://livechat.com" target="_blank" kind="destructive">
+    Button as an external link to livechat.com
+  </Button>
 );
