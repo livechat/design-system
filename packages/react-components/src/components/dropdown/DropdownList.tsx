@@ -16,7 +16,7 @@ const DropdownList = (props: {
   autoFocusedItemId?: string | number;
   items: IDropdownListItems[];
   keyboardEventsEnabled?: boolean;
-  onItemSelect: (id: number) => void;
+  onItemSelect?: (id: number) => void;
   onScroll?: (x: React.UIEvent<HTMLElement>) => void;
   getItemBody?: (x: IDropdownListItem) => void;
   itemSelectKeyCodes?: number[];
@@ -58,7 +58,7 @@ const DropdownList = (props: {
 
     if (isItemSelectKeyCode(keyCode)) {
       event.preventDefault();
-      handleSelectKeyUse(event);
+      handleSelectKeyUse();
     }
   };
 
@@ -92,20 +92,19 @@ const DropdownList = (props: {
     return false;
   };
 
-  const handleSelectKeyUse = (event: Event) => {
+  const handleSelectKeyUse = () => {
     if (focusedElement.current !== null) {
       const selectedItem = props.items.find(
         (item: { itemId: number }) => item.itemId === focusedElement.current
       );
 
-      if (selectedItem && selectedItem.onItemSelect) {
+      if (selectedItem && props.onItemSelect) {
         props.onItemSelect(selectedItem.itemId);
       }
     }
   };
 
   const changeFocusedElement = (id: number) => {
-    // setFocusedElement(id);
     focusedElement.current = id;
   };
 
@@ -200,7 +199,11 @@ const DropdownList = (props: {
         }
 
         return (
-          <DropdownListItem key={itemId} onItemSelect={props.onItemSelect} {...itemProps}>
+          <DropdownListItem
+            key={itemId}
+            onItemSelect={props.onItemSelect}
+            {...itemProps}
+          >
             {content}
           </DropdownListItem>
         );
