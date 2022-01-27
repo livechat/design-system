@@ -12,7 +12,7 @@ import * as PopperCore from '@popperjs/core';
 import DropdownListBodyPropExample from './foundations/components/DropdownListBodyPropExample';
 
 export default {
-  title: 'Components/Dropdown examples',
+  title: 'Components/Dropdown',
   component: DropdownExample,
   argTypes: {
     placement: {
