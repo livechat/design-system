@@ -25,25 +25,10 @@ const DropdownListSelectableExample: React.FC<IDropdownListExample> = ({
 }) => {
   const buttonRef = React.useRef(null);
   const [isVisible, setIsVisible] = React.useState(false);
-  const [listItems, setListItems] = React.useState<IDropdownListItems[]>([]);
-
-  React.useEffect(() => {
-    setListItems(getListItems());
-  }, [isVisible]);
-
-  const handleClose = () => {
-    setIsVisible(false);
-  };
-
-  const handleTriggerClick = () => {
-    setIsVisible(!isVisible);
-  };
-
-  const getListItems = () => {
+  const [listItems, setListItems] = React.useState<IDropdownListItems[]>(() => {
     const batchItem: IDropdownListItems = {
       itemId: TOGGLE_ALL_ITEM_ID,
       content: <div>Select all</div>,
-      onItemSelect: handleToggleAll,
       isSelected: false,
       divider: true,
     };
@@ -59,7 +44,6 @@ const DropdownListSelectableExample: React.FC<IDropdownListExample> = ({
               size={IconSizeName.XSmall}
             />
           ),
-          onItemSelect: handleItemSelect,
           isSelected: false,
           isDisabled,
         });
@@ -67,22 +51,44 @@ const DropdownListSelectableExample: React.FC<IDropdownListExample> = ({
       },
       [batchItem]
     );
+  });
+
+  const handleClose = () => {
+    setIsVisible(false);
   };
 
-  const handleItemSelect = (id: number) => {
-    const list = listItems.map((item) => {
-      return item.itemId === id
-        ? {
-            ...item,
-            ...{
-              isSelected: !item.isSelected,
-            },
-          }
-        : item;
-    });
+  const handleTriggerClick = () => {
+    setIsVisible(!isVisible);
+  };
 
-    const isAllItemsSelected = isAllSelected(list);
+  const onItemSelect = (id: number) => {
+    let isAllItemsSelected = isAllSelected(listItems);
+    let list = [];
+    if(id === TOGGLE_ALL_ITEM_ID) {
+      list = listItems.map((item) => {
+        return !item.isDisabled
+          ? {
+              ...item,
+              ...{
+                isSelected: !isAllItemsSelected,
+              },
+            }
+          : item;
+      });
+    } else {
+      list = listItems.map((item) => {
+        return item.itemId === id
+          ? {
+              ...item,
+              ...{
+                isSelected: !item.isSelected,
+              },
+            }
+          : item;
+      });
+    }
 
+    isAllItemsSelected = isAllSelected(list);
     list[0].content = isAllItemsSelected ? (
       <div>Clear all</div>
     ) : (
@@ -90,35 +96,7 @@ const DropdownListSelectableExample: React.FC<IDropdownListExample> = ({
     );
 
     setListItems(list);
-  };
-
-  const handleToggleAll = () => {
-    const isAllItemsSelected = isAllSelected(listItems);
-
-    const list = listItems.map((item) => {
-      if (item.itemId === TOGGLE_ALL_ITEM_ID) {
-        return {
-          ...item,
-          content: !isAllItemsSelected ? (
-            <div>Clear all</div>
-          ) : (
-            <div>Select all</div>
-          ),
-        };
-      }
-
-      return !item.isDisabled
-        ? {
-            ...item,
-            ...{
-              isSelected: !isAllItemsSelected,
-            },
-          }
-        : item;
-    });
-
-    if (list) setListItems(list);
-  };
+  }
 
   const isAllSelected = (items: IDropdownListItems[]) => {
     return !items.some((item) => {
@@ -146,7 +124,10 @@ const DropdownListSelectableExample: React.FC<IDropdownListExample> = ({
         arrow: {},
       }}
     >
-      <DropdownList items={listItems} />
+      <DropdownList
+        items={listItems}
+        onItemSelect={onItemSelect}
+      />
     </Dropdown>
   );
 };
