@@ -38,7 +38,6 @@ const DropdownExample: React.FC<IDropdownExample> = ({ placement }) => {
           </div>
         )}
         modifiers={{
-          arrow: {},
           preventOverflow: {},
         }}
       >

@@ -120,8 +120,7 @@ const DropdownListSelectableExample: React.FC<IDropdownListExample> = ({
         </div>
       )}
       modifiers={{
-        flip: {},
-        arrow: {},
+        flip: {}
       }}
     >
       <DropdownList

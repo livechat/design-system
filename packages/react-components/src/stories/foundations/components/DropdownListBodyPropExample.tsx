@@ -71,7 +71,6 @@ const DropdownListBodyPropExample: React.FC<IDropdownListExample> = ({
       )}
       modifiers={{
         flip: {},
-        arrow: {},
       }}
     >
       <DropdownList items={listItems} getItemBody={getItemBody} />

@@ -17,7 +17,6 @@ export interface IDropdownProps {
   modifiers: DropdownModifiers; //;
   placement?: PopperCore.Placement;
   positionFixed?: boolean;
-  // referenceElement?: PopperCore.ReferenceObject | null;
   shouldUpdateOnResize?: boolean;
   triggerRenderer: () => React.ReactNode;
   zIndex?: number;
@@ -44,18 +43,9 @@ const Dropdown: React.FC<IDropdownProps> = (props) => {
       {
         name: 'offset',
         options: {
-          offset: arrow || {} ? [0, 12] : [0, 4],
+          offset: [0, 4],
           ...(offset?.options || {}),
         },
-      },
-    ];
-
-    const calculatedArrow = [
-      {
-        name: 'arrow',
-        options: arrow
-          ? { element: arrowElement, ...arrow?.options }
-          : { element: null },
       },
     ];
 
@@ -80,7 +70,6 @@ const Dropdown: React.FC<IDropdownProps> = (props) => {
 
     return [
       ...calculatedOffset,
-      ...calculatedArrow,
       ...calculateFlip,
       ...calculatePreventOverflow,
     ];
@@ -113,8 +102,6 @@ const Dropdown: React.FC<IDropdownProps> = (props) => {
           {children}
           <div
             ref={setArrowElement}
-            style={styles.arrow}
-            className={props.modifiers.arrow ? 'dropdown__arrow' : ''}
             data-popper-placement={
               attributes.popper
                 ? attributes.popper['data-popper-placement']
