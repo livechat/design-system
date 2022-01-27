@@ -42,9 +42,7 @@ export const Dropdown = (args: IDropdownExample): React.ReactElement => (
   </div>
 );
 
-export const DropdownListSelectable = (
-  args: IDropdownExample
-): React.ReactElement => (
+export const DropdownList = (args: IDropdownExample): React.ReactElement => (
   <div
     style={{
       height: '100vh',
@@ -58,9 +56,7 @@ export const DropdownListSelectable = (
   </div>
 );
 
-export const DropdownListNotSelectable = (
-  args: IDropdownExample
-): React.ReactElement => (
+export const ActionMenu = (args: IDropdownExample): React.ReactElement => (
   <div
     style={{
       height: '100vh',
