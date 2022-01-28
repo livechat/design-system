@@ -37,13 +37,6 @@ const DropdownListSelectableExample: React.FC<IDropdownListExample> = ({
         acc.push({
           itemId: id,
           content: `Item ${id}`,
-          icon: (
-            <Icon
-              source={Check}
-              iconType={IconTypeName.Inverted}
-              size={IconSizeName.XSmall}
-            />
-          ),
           isSelected: false,
           isDisabled,
         });

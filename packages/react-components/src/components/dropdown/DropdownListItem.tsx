@@ -26,7 +26,7 @@ export interface IDropdownListItem {
   onMouseOver?: (event: React.MouseEvent<HTMLLIElement>) => void;
   onMouseOverItem?: (itemId: number | string) => void;
   onMouseDown?: (event: React.MouseEvent<HTMLLIElement>) => void;
-  onItemFocus?: (event: React.FocusEvent<HTMLLIElement>) => boolean;
+  onItemFocus?: (id: number) => boolean;
 }
 
 const DropdownListItem: React.FC<IDropdownListItem> = ({
@@ -105,10 +105,9 @@ const DropdownListItem: React.FC<IDropdownListItem> = ({
     return false;
   };
 
-  const handleFocus = (event: React.FocusEvent<HTMLLIElement>) => {
-    event.preventDefault();
+  const handleFocus = (id: number) => {
     if (onItemFocus) {
-      onItemFocus(event);
+      onItemFocus(id);
     }
 
     return false;
@@ -131,18 +130,19 @@ const DropdownListItem: React.FC<IDropdownListItem> = ({
       onClick={handleClick}
       onMouseOver={handleMouseOver}
       onMouseDown={handleMouseDown}
-      onFocus={handleFocus}
+      onFocus={()=> handleFocus(itemId)}
     >
       <div className={`${baseClass}__content`}>
         {icon && <div className={`${baseClass}__icon`}>{icon}</div>}
         <div className={`${baseClass}__title`}>{children}</div>
       </div>
       {isSelected && (
-        <Icon
-          source={Check}
-          iconType={IconTypeName.Inverted}
-          size={IconSizeName.XSmall}
-        />
+        <div className={`${baseClass}__icon`}>
+          <Icon
+            source={Check}
+            size={IconSizeName.Medium}
+          />
+        </div>
       )}
     </li>
   );

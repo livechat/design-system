@@ -22,7 +22,8 @@ const DropdownList = (props: {
   itemSelectKeyCodes?: number[];
   className?: string | null;
 }): React.ReactElement => {
-  const focusedElement = React.useRef<number | string | null>(0);
+  const [focusedElement, setFocusedElement] = React.useState<number | string | null>(0);
+
 
   const [isHoverDisabled, setIsHoverDisabled] = React.useState(false);
   const hoverCallbacks: (() => void)[] = [];
@@ -31,8 +32,7 @@ const DropdownList = (props: {
   const listRef: React.RefObject<HTMLUListElement> = React.useRef(null);
 
   React.useEffect(() => {
-    focusedElement.current =
-      props.autoFocusedItemId || getFirstFocusableItemId(props.items);
+    setFocusedElement(props.autoFocusedItemId || getFirstFocusableItemId(props.items));
     if (props.keyboardEventsEnabled) {
       document.addEventListener('keydown', onKeydown as EventListener, true);
     }
@@ -72,7 +72,7 @@ const DropdownList = (props: {
 
     const nextItem = findNextFocusableItem(
       items,
-      focusedElement.current as number,
+      focusedElement as number,
       keyCode
     );
 
@@ -93,9 +93,9 @@ const DropdownList = (props: {
   };
 
   const handleSelectKeyUse = () => {
-    if (focusedElement.current !== null) {
+    if (focusedElement !== null) {
       const selectedItem = props.items.find(
-        (item: { itemId: number }) => item.itemId === focusedElement.current
+        (item: { itemId: number }) => item.itemId === focusedElement
       );
 
       if (selectedItem && props.onItemSelect) {
@@ -105,7 +105,14 @@ const DropdownList = (props: {
   };
 
   const changeFocusedElement = (id: number) => {
-    focusedElement.current = id;
+    setFocusedElement(id);
+
+    const focusedItem = props.items.find(item => item.itemId === id);
+
+    if (focusedItem && focusedItem.onItemFocus) {
+
+      focusedItem.onItemFocus(focusedItem.itemId);
+    }
   };
 
   const scrollItems = () => {
@@ -185,7 +192,7 @@ const DropdownList = (props: {
         const itemProps = {
           ...itemRestProps,
           itemId,
-          isFocused: false,
+          isFocused: itemId === focusedElement,
           onMouseOverItem: getFocusedItemCallback(itemId),
           onFocus: getFocusedItemCallback(itemId),
           onItemFocus,
