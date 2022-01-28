@@ -1,32 +1,66 @@
+import { DropDown, Chats, Tickets, Email, Block } from '@livechat/design-system-icons/dist/material';
 import * as React from 'react';
 import { Button } from '../../../components/Button';
 import Dropdown from '../../../components/dropdown/Dropdown';
 import DropdownList, {
   IDropdownListItems,
 } from '../../../components/dropdown/DropdownList';
+import { Icon } from '../../../components/Icon';
 
 import { IDropdownListExample } from './DropdownListExample';
 
-const generateItemsConfig = () =>
-  Array.from(new Array(20), (value, index) => ({
-    id: index + 1,
-    isDisabled: (index + 1) % 3 === 1,
-    divider: false,
-  }));
+const label = {
+  marginLeft: '5px',
+  lineHeight: '20px'
+}
 
-const itemsConfig = generateItemsConfig();
+const listElement = {
+  display: 'flex',
+}
+
+const OpenChat = () => {
+  return (<div style={listElement}><Icon source={Chats} /> <span style={label}>Open chat</span> </div>)
+}
+
+const CreateTicket = () => {
+  return (<div style={listElement}><Icon source={Tickets} />  <span style={label}>Create a ticket</span>  </div>)
+}
+
+const SendTranscript = () => {
+  return (<div style={listElement}><Icon source={Email} /> <span style={label}>Send transcript</span> </div>)
+}
+
+const BanCustomer = () => {
+  return (<div style={listElement}><Icon source={Block} /> <span style={label}>Ban this customer</span>  </div>)
+}
 
 const getListItems = (onItemSelect: (id: number) => void) => {
-  const accumulator: IDropdownListItems[] = [];
-  return itemsConfig.reduce((acc, { id, divider }) => {
-    acc.push({
-      itemId: id,
-      content: `Item ${id}`,
-      onItemSelect: onItemSelect,
-      divider,
-    });
-    return acc;
-  }, accumulator);
+  const accumulator: IDropdownListItems[] = [{
+    itemId: 1,
+    content: <OpenChat />,
+    onItemSelect: onItemSelect,
+    divider: false,
+  },
+  {
+    itemId: 2,
+    content: <CreateTicket />,
+    onItemSelect: onItemSelect,
+    divider: false,
+  },
+  {
+    itemId: 3,
+    content: <SendTranscript />,
+    onItemSelect: onItemSelect,
+    divider: true,
+  },
+  {
+    itemId: 4,
+    content: <BanCustomer />,
+    onItemSelect: onItemSelect,
+    divider: false,
+  }];
+
+  return accumulator;
 };
 
 const DropdownListSelectableExample: React.FC<IDropdownListExample> = ({
@@ -56,12 +90,17 @@ const DropdownListSelectableExample: React.FC<IDropdownListExample> = ({
       closeOnEscPress
       triggerRenderer={() => (
         <div ref={buttonRef}>
-          <Button onClick={handleTriggerClick}>Menu</Button>
+            <Button
+              onClick={handleTriggerClick}
+              icon={<Icon source={DropDown} />}
+              iconPosition={'right'}
+            >
+              Actions
+            </Button>
         </div>
       )}
       modifiers={{
-        flip: {},
-        arrow: {},
+        flip: {}
       }}
     >
       <DropdownList items={listItems} />
