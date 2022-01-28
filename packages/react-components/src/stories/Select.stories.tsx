@@ -12,8 +12,8 @@ export default {
   component: SelectComponent,
   parameters: {
     componentSubtitle: `
-    A select allows users to choose one option from a list of items. 
-    Use it when you have >4 options. A select can allow users to search 
+    A select allows users to choose one Option from a list of items. 
+    Use it when you have >4 Options. A select can allow users to search 
     through a list of choices. When the user types in the input, suggestions 
     are provided. When an item is selected, it appears highlighted, has a 
     check mark and the primary color. The selected item replaces the input 
@@ -61,16 +61,18 @@ const StoryTemplate: Story<ISelectProps> = (args: ISelectProps) => {
 export const Select = StoryTemplate.bind({});
 Select.args = {
   id: 'select-example',
+  description: 'Helper text',
   items: [
-    { key: '1', props: { name: 'option one', value: '1' } },
-    { key: '2', props: { name: 'option two', value: '2' } },
-    { key: '3', props: { name: 'option three', value: '3' } },
-    { key: '4', props: { name: 'option four', value: '4' } },
-    { key: '5', props: { name: 'option five', value: '5' } },
-    { key: '6', props: { name: 'option six', value: '6' } },
-    { key: '7', props: { name: 'option seven', value: '7' } },
-    { key: '8', props: { name: 'option eight', value: '8' } },
+    { key: '1', props: { name: 'Option one', value: '1' } },
+    { key: '2', props: { name: 'Option two', value: '2' } },
+    { key: '3', props: { name: 'Option three', value: '3' } },
+    { key: '4', props: { name: 'Option four', value: '4' } },
+    { key: '5', props: { name: 'Option five', value: '5' } },
+    { key: '6', props: { name: 'Option six', value: '6' } },
+    { key: '7', props: { name: 'Option seven', value: '7' } },
+    { key: '8', props: { name: 'Option eight', value: '8' } },
   ],
+  labelText: 'Select example',
   search: true,
   searchPlaceholder: 'Search...',
 };

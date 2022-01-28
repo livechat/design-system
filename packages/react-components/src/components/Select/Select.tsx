@@ -9,16 +9,21 @@ import { ISelectItem } from './interfaces';
 import { EventKeys } from '../constants';
 import { SelectList } from './SelectList';
 import { Text } from '../Text';
+import { TextField } from '../TextField';
 
 const baseClass = 'lc-select';
-
 export interface ISelectProps {
   className?: string;
+  fieldClassName?: string;
+  description?: string;
   disabled?: boolean;
-  error?: boolean;
+  error?: string;
   id: string;
+  inline?: boolean;
   isOpen: boolean;
   items: ISelectItem[];
+  labelAdornment?: React.ReactNode;
+  labelText?: string;
   search?: boolean;
   searchEmptyState?: React.ReactNode;
   searchPlaceholder?: string;
@@ -37,11 +42,16 @@ export interface ISelectProps {
 
 export const Select: React.FC<ISelectProps> = ({
   className,
+  fieldClassName,
+  description,
   disabled,
   error,
   id,
+  inline,
   isOpen,
   items = [],
+  labelAdornment,
+  labelText,
   search,
   searchEmptyState,
   searchPlaceholder,
@@ -262,7 +272,7 @@ export const Select: React.FC<ISelectProps> = ({
     {
       [`${baseClass}--error`]: error,
     },
-    className
+    fieldClassName
   );
 
   const isCurrentlyOpen = getIsOpen();
@@ -270,91 +280,103 @@ export const Select: React.FC<ISelectProps> = ({
     !!selectedItemModel && !isCurrentlyOpen && !required;
 
   return (
-    <div ref={containerRef} className={mergedClassNames} id={id}>
-      <div
-        ref={headRef}
-        className={cx(`${baseClass}-head`, {
-          [`${baseClass}-head--focused`]: isCurrentlyOpen || isFocused,
-          [`${baseClass}-head--disabled`]: disabled,
-        })}
-        tabIndex={disabled ? -1 : 0}
-        onClick={onSelectHeadClick}
-        onFocus={onSelectHeadFocus}
-        onBlur={onSelectHeadBlur}
-      >
+    <TextField
+      inline={inline}
+      error={error}
+      description={description}
+      labelText={labelText}
+      labelAdornment={labelAdornment}
+      className={className}
+      labelFor={id}
+    >
+      <div ref={containerRef} className={mergedClassNames} id={id}>
         <div
-          className={cx(`${baseClass}-head__item`, {
-            [`${baseClass}-head__item--visible`]: !(isCurrentlyOpen && search),
+          ref={headRef}
+          className={cx(`${baseClass}-head`, {
+            [`${baseClass}-head--focused`]: isCurrentlyOpen || isFocused,
+            [`${baseClass}-head--disabled`]: disabled,
           })}
+          tabIndex={disabled ? -1 : 0}
+          onClick={onSelectHeadClick}
+          onFocus={onSelectHeadFocus}
+          onBlur={onSelectHeadBlur}
         >
-          {selectedItemModel ? (
-            <div className={`${baseClass}-head__item-content`}>
-              {getSelectedItemBody(selectedItemModel.props)}
+          <div
+            className={cx(`${baseClass}-head__item`, {
+              [`${baseClass}-head__item--visible`]: !(
+                isCurrentlyOpen && search
+              ),
+            })}
+          >
+            {selectedItemModel ? (
+              <div className={`${baseClass}-head__item-content`}>
+                {getSelectedItemBody(selectedItemModel.props)}
+              </div>
+            ) : (
+              <div className={`${baseClass}-head__item-placeholder`}>
+                <Text size="md" as="div">
+                  {placeholder}
+                </Text>
+              </div>
+            )}
+          </div>
+          <div
+            className={cx(`${baseClass}-head__search`, {
+              [`${baseClass}-head__search--visible`]: !search
+                ? false
+                : isCurrentlyOpen,
+            })}
+          >
+            <input
+              ref={searchInputRef}
+              className={`${baseClass}-head__input`}
+              type="text"
+              placeholder={searchPlaceholder || 'Search ...'}
+              name="select-box-input"
+              value={searchPhrase}
+              onChange={onSearchChange}
+              onKeyDown={onKeyDown}
+              autoComplete="off"
+              disabled={disabled}
+            />
+          </div>
+          <div
+            ref={clearButtonRef}
+            className={cx(`${baseClass}-head__clear`, {
+              [`${baseClass}-head__clear--visible`]: shouldRenderClearButton,
+            })}
+          >
+            <div onClick={clearSelectedOption}>
+              <Icon source={Close} />
             </div>
-          ) : (
-            <div className={`${baseClass}-head__item-placeholder`}>
-              <Text size="md" as="div">
-                {placeholder}
-              </Text>
-            </div>
-          )}
-        </div>
-        <div
-          className={cx(`${baseClass}-head__search`, {
-            [`${baseClass}-head__search--visible`]: !search
-              ? false
-              : isCurrentlyOpen,
-          })}
-        >
-          <input
-            ref={searchInputRef}
-            className={`${baseClass}-head__input`}
-            type="text"
-            placeholder={searchPlaceholder || 'Search ...'}
-            name="select-box-input"
-            value={searchPhrase}
-            onChange={onSearchChange}
-            onKeyDown={onKeyDown}
-            autoComplete="off"
-            disabled={disabled}
+          </div>
+          <Icon
+            source={ChevronDown}
+            className={cx({ [`${baseClass}-head__icon--disabled`]: disabled })}
+            size={IconSizeName.Large}
           />
         </div>
         <div
-          ref={clearButtonRef}
-          className={cx(`${baseClass}-head__clear`, {
-            [`${baseClass}-head__clear--visible`]: shouldRenderClearButton,
+          className={cx(`${baseClass}-body`, {
+            [`${baseClass}-body--visible`]: shouldShowSelectBody(filteredItems),
           })}
         >
-          <div onClick={clearSelectedOption}>
-            <Icon source={Close} />
-          </div>
+          {filteredItems.length === 0 && searchEmptyState}
+          <SelectList
+            listRef={listRef}
+            getItemBody={getItemBody}
+            isOpen={isCurrentlyOpen}
+            onListClose={hideSelectBody}
+            items={filteredItems}
+            selectedItem={selected}
+            getItemSelectedHandler={getItemSelectedHandler}
+            onEnterKey={handleEnterKeyUse}
+            onFocusedItemChange={changeFocusedItem}
+            focusedItemKey={focusedItemKey}
+            selectHeader={selectHeader}
+          />
         </div>
-        <Icon
-          source={ChevronDown}
-          className={cx({ [`${baseClass}-head__icon--disabled`]: disabled })}
-          size={IconSizeName.Large}
-        />
       </div>
-      <div
-        className={cx(`${baseClass}-body`, {
-          [`${baseClass}-body--visible`]: shouldShowSelectBody(filteredItems),
-        })}
-      >
-        {filteredItems.length === 0 && searchEmptyState}
-        <SelectList
-          listRef={listRef}
-          getItemBody={getItemBody}
-          isOpen={isCurrentlyOpen}
-          onListClose={hideSelectBody}
-          items={filteredItems}
-          selectedItem={selected}
-          getItemSelectedHandler={getItemSelectedHandler}
-          onEnterKey={handleEnterKeyUse}
-          onFocusedItemChange={changeFocusedItem}
-          focusedItemKey={focusedItemKey}
-          selectHeader={selectHeader}
-        />
-      </div>
-    </div>
+    </TextField>
   );
 };

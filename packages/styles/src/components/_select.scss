@@ -9,12 +9,13 @@ $base-class: 'lc-select';
 
   &-head {
     align-items: center;
+    background-color: var(--surface-basic-default);
     border: 1px solid var(--border-default);
     border-radius: 4px;
     cursor: pointer;
     display: flex;
     outline: 0;
-    padding: 7px 10px;
+    padding: 9px 10px;
     position: relative;
     transition: border 0.15s ease-in-out;
 
@@ -110,6 +111,7 @@ $base-class: 'lc-select';
   }
 
   &-body {
+    background-color: var(--surface-basic-default);
     border-radius: 4px;
     box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
