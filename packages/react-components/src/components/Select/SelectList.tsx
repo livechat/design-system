@@ -47,17 +47,17 @@ export const SelectList: React.FC<ISelectListProps> = ({
         listRef.current.scrollTop = 0;
       }
 
-      document.addEventListener('keydown', onKeydown);
+      document.addEventListener('keydown', onKeydown, true);
     }
 
-    if (!isOpen) {
-      document.removeEventListener('keydown', onKeydown);
+    return () => {
+      document.removeEventListener('keydown', onKeydown, true);
 
       if (timerId) {
         clearTimeout(timerId);
       }
-    }
-  }, [isOpen]);
+    };
+  }, [isOpen, focusedItemKey]);
 
   const getFocusedItemIndex = (itemKey: string) =>
     items.map((item) => item.key).indexOf(itemKey);
@@ -69,7 +69,7 @@ export const SelectList: React.FC<ISelectListProps> = ({
 
     const focusedElement = listRef.current.querySelector(
       `${baseClass}__item--focused`
-    ) ;
+    );
 
     if (focusedElement) {
       listRef.current.classList.add('disable-hover');
@@ -178,7 +178,7 @@ export const SelectList: React.FC<ISelectListProps> = ({
         </li>
       )}
       {items
-        .filter((v) => !v.props.hidden)
+        .filter((v) => !v.hidden)
         .map((item) => (
           <li
             key={item.key}
@@ -193,7 +193,10 @@ export const SelectList: React.FC<ISelectListProps> = ({
               {getItemBody(item.props)}
             </div>
             {isItemSelected(item.key) && (
-              <Icon source={MaterialIcons.Check}></Icon>
+              <Icon
+                className={`${baseClass}__item-icon`}
+                source={MaterialIcons.Check}
+              ></Icon>
             )}
           </li>
         ))}

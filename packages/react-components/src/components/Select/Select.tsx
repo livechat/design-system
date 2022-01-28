@@ -8,60 +8,68 @@ import { Icon, IconSizeName } from '../Icon';
 import { ISelectItem } from './interfaces';
 import { EventKeys } from '../constants';
 import { SelectList } from './SelectList';
+import { Text } from '../Text';
+import { TextField } from '../TextField';
 
 const baseClass = 'lc-select';
-
 export interface ISelectProps {
   className?: string;
+  fieldClassName?: string;
+  description?: string;
+  disabled?: boolean;
   error?: string;
   id: string;
-  controlledIsOpen?: boolean;
+  inline?: boolean;
+  isOpen: boolean;
+  items: ISelectItem[];
+  labelAdornment?: React.ReactNode;
+  labelText?: string;
+  search?: boolean;
+  searchEmptyState?: React.ReactNode;
+  searchPlaceholder?: string;
+  searchProperty?: string | string[];
+  selected: string | null;
+  selectHeader?: string;
+  placeholder?: string;
+  required?: boolean;
   getItemBody: (props: ISelectItem['props']) => React.ReactNode;
   getSelectedItemBody: (props: ISelectItem['props']) => React.ReactNode;
+  onDropdownToggle?: (value: boolean) => void;
+  onHeaderClick: (isOpen: boolean) => void;
   onItemSelect: (itemKey: string) => void;
-  searchEmptyState?: React.ReactNode;
-  items: ISelectItem[];
-  searchPlaceholder?: string;
-  searchProperty: string | string[];
-  selected: string | number | null;
-  search?: boolean;
-  required?: boolean;
-  placeholder?: string;
-  disabled?: boolean;
-  openedOnInit?: boolean;
-  onDropdownToggle?: (v: boolean) => void;
   onSearchPhraseChange?: (phrase: string) => void;
-  selectHeader?: string;
 }
 
 export const Select: React.FC<ISelectProps> = ({
   className,
+  fieldClassName,
+  description,
+  disabled,
   error,
   id,
-  controlledIsOpen,
+  inline,
+  isOpen,
+  items = [],
+  labelAdornment,
+  labelText,
+  search,
+  searchEmptyState,
+  searchPlaceholder,
+  searchProperty = 'name',
+  selected,
+  selectHeader,
+  placeholder = 'Select item',
+  required,
   getItemBody,
   getSelectedItemBody,
-  onItemSelect,
-  searchEmptyState,
-  items = [],
-  searchPlaceholder,
-  searchProperty,
-  selected,
-  search,
-  required,
-  placeholder,
-  disabled,
-  openedOnInit,
   onDropdownToggle = () => null,
+  onHeaderClick,
+  onItemSelect,
   onSearchPhraseChange,
-  selectHeader,
 }) => {
   let timerId: ReturnType<typeof setTimeout> | null = null;
   const [isFocused, setIsFocused] = React.useState(false);
   const [searchPhrase, setSearchPhrase] = React.useState('');
-  const [isOpen, setIsOpen] = React.useState(
-    openedOnInit || controlledIsOpen || false
-  );
   const [focusedItemKey, setFocusedItemKey] = React.useState(
     items[0] ? items[0].key : null
   );
@@ -71,30 +79,25 @@ export const Select: React.FC<ISelectProps> = ({
   const clearButtonRef = React.createRef<HTMLDivElement>();
   const listRef = React.createRef<HTMLUListElement>();
 
-  const isIsOpenControlled = () => controlledIsOpen !== undefined;
-
-  const getIsOpen = () => {
-    if (disabled) {
-      return false;
-    }
-
-    return isIsOpenControlled() ? controlledIsOpen : isOpen;
-  };
+  const getIsOpen = React.useCallback(
+    () => (disabled ? false : isOpen),
+    [disabled, isOpen]
+  );
 
   const onDocumentClick = (e: MouseEvent) => {
-    if (
-      getIsOpen() &&
-      containerRef.current &&
-      !containerRef.current.contains(e.target as Node) &&
-      listRef?.current
-    ) {
-      listRef.current.scrollTop = 0;
-      hideSelectBody();
+    if (containerRef?.current?.contains(e.target as Node)) {
+      return;
     }
+
+    if (listRef?.current) {
+      listRef.current.scrollTop = 0;
+    }
+
+    hideSelectBody();
   };
 
   const onBodyOpen = () => {
-    document.addEventListener('click', onDocumentClick);
+    document.addEventListener('click', onDocumentClick, true);
 
     if (search && searchInputRef.current) {
       timerId = setTimeout(() => {
@@ -104,7 +107,7 @@ export const Select: React.FC<ISelectProps> = ({
   };
 
   const onBodyClose = () => {
-    document.removeEventListener('click', onDocumentClick);
+    document.removeEventListener('click', onDocumentClick, true);
 
     if (timerId) {
       clearTimeout(timerId);
@@ -112,23 +115,15 @@ export const Select: React.FC<ISelectProps> = ({
   };
 
   React.useEffect(() => {
-    if (isOpen) {
+    if (getIsOpen()) {
       onDropdownToggle(true);
       onBodyOpen();
-    }
-  }, []);
-
-  React.useEffect(() => {
-    if (getIsOpen()) {
-      return onBodyOpen();
-    }
-
-    if (!getIsOpen()) {
+    } else {
       onBodyClose();
     }
-  }, [getIsOpen]);
+  }, [isOpen]);
 
-  const filterItem = (item: any): any => {
+  const filterItem = (item: ISelectItem): boolean => {
     if (searchPhrase) {
       if (typeof searchProperty === 'string') {
         if (!(searchProperty in item.props)) {
@@ -176,14 +171,14 @@ export const Select: React.FC<ISelectProps> = ({
   };
 
   const showSelectBody = () => {
-    setIsOpen(true);
+    onHeaderClick(true);
     setSearchPhrase('');
     onDropdownToggle(true);
   };
 
   const hideSelectBody = () => {
-    setIsOpen(false);
-    setFocusedItemKey(items[0] ? items[0].key : null);
+    onHeaderClick(false);
+    setFocusedItemKey(focusedItemKey ? focusedItemKey : items[0].key);
     setSearchPhrase('');
     onDropdownToggle(false);
 
@@ -220,7 +215,7 @@ export const Select: React.FC<ISelectProps> = ({
   const onSelectHeadFocus = () => {
     setIsFocused(true);
 
-    if (!isOpen) {
+    if (!getIsOpen()) {
       document.addEventListener('keydown', onArrowPress);
     }
   };
@@ -240,11 +235,9 @@ export const Select: React.FC<ISelectProps> = ({
     hideSelectBody();
   };
 
-  const shouldShowSelectBody = (filteredItems: any) => {
-    const isOpen = getIsOpen();
-
+  const shouldShowSelectBody = (filteredItems: ISelectItem[]) => {
     return (
-      (isOpen && filteredItems.length > 0) ||
+      (getIsOpen() && filteredItems.length > 0) ||
       (searchEmptyState &&
         searchPhrase.length > 0 &&
         filteredItems.length === 0)
@@ -279,7 +272,7 @@ export const Select: React.FC<ISelectProps> = ({
     {
       [`${baseClass}--error`]: error,
     },
-    className
+    fieldClassName
   );
 
   const isCurrentlyOpen = getIsOpen();
@@ -287,85 +280,103 @@ export const Select: React.FC<ISelectProps> = ({
     !!selectedItemModel && !isCurrentlyOpen && !required;
 
   return (
-    <div ref={containerRef} className={mergedClassNames} id={id}>
-      <div
-        ref={headRef}
-        className={cx(`${baseClass}-head`, {
-          [`${baseClass}-head--focused`]: isCurrentlyOpen || isFocused,
-          [`${baseClass}-head--disabled`]: disabled,
-        })}
-        tabIndex={disabled ? -1 : 0}
-        onClick={onSelectHeadClick}
-        onFocus={onSelectHeadFocus}
-        onBlur={onSelectHeadBlur}
-      >
+    <TextField
+      inline={inline}
+      error={error}
+      description={description}
+      labelText={labelText}
+      labelAdornment={labelAdornment}
+      className={className}
+      labelFor={id}
+    >
+      <div ref={containerRef} className={mergedClassNames} id={id}>
         <div
-          className={cx(`${baseClass}-head__item`, {
-            [`${baseClass}-head__item--visible`]: !(isCurrentlyOpen && search),
+          ref={headRef}
+          className={cx(`${baseClass}-head`, {
+            [`${baseClass}-head--focused`]: isCurrentlyOpen || isFocused,
+            [`${baseClass}-head--disabled`]: disabled,
           })}
+          tabIndex={disabled ? -1 : 0}
+          onClick={onSelectHeadClick}
+          onFocus={onSelectHeadFocus}
+          onBlur={onSelectHeadBlur}
         >
-          {selectedItemModel ? (
-            <div className={`${baseClass}-head__item-content`}>
-              {getSelectedItemBody(selectedItemModel.props)}
+          <div
+            className={cx(`${baseClass}-head__item`, {
+              [`${baseClass}-head__item--visible`]: !(
+                isCurrentlyOpen && search
+              ),
+            })}
+          >
+            {selectedItemModel ? (
+              <div className={`${baseClass}-head__item-content`}>
+                {getSelectedItemBody(selectedItemModel.props)}
+              </div>
+            ) : (
+              <div className={`${baseClass}-head__item-placeholder`}>
+                <Text size="md" as="div">
+                  {placeholder}
+                </Text>
+              </div>
+            )}
+          </div>
+          <div
+            className={cx(`${baseClass}-head__search`, {
+              [`${baseClass}-head__search--visible`]: !search
+                ? false
+                : isCurrentlyOpen,
+            })}
+          >
+            <input
+              ref={searchInputRef}
+              className={`${baseClass}-head__input`}
+              type="text"
+              placeholder={searchPlaceholder || 'Search ...'}
+              name="select-box-input"
+              value={searchPhrase}
+              onChange={onSearchChange}
+              onKeyDown={onKeyDown}
+              autoComplete="off"
+              disabled={disabled}
+            />
+          </div>
+          <div
+            ref={clearButtonRef}
+            className={cx(`${baseClass}-head__clear`, {
+              [`${baseClass}-head__clear--visible`]: shouldRenderClearButton,
+            })}
+          >
+            <div onClick={clearSelectedOption}>
+              <Icon source={Close} />
             </div>
-          ) : (
-            <div className={`${baseClass}-head__item-placeholder`}>
-              {placeholder}
-            </div>
-          )}
-        </div>
-        <div
-          className={cx(`${baseClass}-head__search`, {
-            [`${baseClass}-head__search--visible`]: !search
-              ? false
-              : isCurrentlyOpen,
-          })}
-        >
-          <input
-            ref={searchInputRef}
-            className={`${baseClass}-head__input`}
-            type="text"
-            placeholder={searchPlaceholder || 'Search ...'}
-            name="select-box-input"
-            value={searchPhrase}
-            onChange={onSearchChange}
-            onKeyDown={onKeyDown}
-            autoComplete="off"
-            disabled={disabled}
+          </div>
+          <Icon
+            source={ChevronDown}
+            className={cx({ [`${baseClass}-head__icon--disabled`]: disabled })}
+            size={IconSizeName.Large}
           />
         </div>
         <div
-          ref={clearButtonRef}
-          className={cx(`${baseClass}-head__clear`, {
-            [`${baseClass}-head__clear--visible`]: shouldRenderClearButton,
+          className={cx(`${baseClass}-body`, {
+            [`${baseClass}-body--visible`]: shouldShowSelectBody(filteredItems),
           })}
         >
-          <div onClick={clearSelectedOption}>
-            <Icon source={Close} />
-          </div>
+          {filteredItems.length === 0 && searchEmptyState}
+          <SelectList
+            listRef={listRef}
+            getItemBody={getItemBody}
+            isOpen={isCurrentlyOpen}
+            onListClose={hideSelectBody}
+            items={filteredItems}
+            selectedItem={selected}
+            getItemSelectedHandler={getItemSelectedHandler}
+            onEnterKey={handleEnterKeyUse}
+            onFocusedItemChange={changeFocusedItem}
+            focusedItemKey={focusedItemKey}
+            selectHeader={selectHeader}
+          />
         </div>
-        <Icon source={ChevronDown} size={IconSizeName.Large} />
       </div>
-      <div
-        className={cx(`${baseClass}-body`, {
-          [`${baseClass}-body--visible`]: shouldShowSelectBody(filteredItems),
-        })}
-      >
-        {filteredItems.length === 0 && searchEmptyState}
-        <SelectList
-          listRef={listRef}
-          getItemBody={getItemBody}
-          isOpen={isCurrentlyOpen}
-          onListClose={hideSelectBody}
-          items={filteredItems}
-          selectedItem={selected}
-          getItemSelectedHandler={getItemSelectedHandler}
-          onEnterKey={handleEnterKeyUse}
-          onFocusedItemChange={changeFocusedItem}
-          focusedItemKey={focusedItemKey}
-          selectHeader={selectHeader}
-        />
-      </div>
-    </div>
+    </TextField>
   );
 };

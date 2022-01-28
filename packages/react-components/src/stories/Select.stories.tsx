@@ -7,14 +7,21 @@ import {
 } from '../components/Select/Select';
 import { ISelectItem } from '../components/Select/interfaces';
 import { Button } from '../components/Button';
+import { Text } from '../components/Text';
 
 export default {
   title: 'Components/Select',
   component: SelectComponent,
+  argTypes: {
+    labelAdornment: {
+      description:
+        'Specifies additional decorative element rendered at the end of the label',
+    },
+  },
   parameters: {
     componentSubtitle: `
-    A select allows users to choose one option from a list of items. 
-    Use it when you have >4 options. A select can allow users to search 
+    A select allows users to choose one Option from a list of items. 
+    Use it when you have >4 Options. A select can allow users to search 
     through a list of choices. When the user types in the input, suggestions 
     are provided. When an item is selected, it appears highlighted, has a 
     check mark and the primary color. The selected item replaces the input 
@@ -24,16 +31,18 @@ export default {
 } as ComponentMeta<typeof SelectComponent>;
 
 const selectDefaultProps = {
+  description: 'Helper text',
   items: [
-    { key: '1', props: { name: 'option 1', value: '1' } },
-    { key: '2', props: { name: 'option 2', value: '2' } },
-    { key: '3', props: { name: 'option 3', value: '3' } },
-    { key: '4', props: { name: 'option 4', value: '4' } },
-    { key: '5', props: { name: 'option 5', value: '5' } },
-    { key: '6', props: { name: 'option 6', value: '6' } },
-    { key: '7', props: { name: 'option 7', value: '7' } },
-    { key: '8', props: { name: 'option 8', value: '8' } },
+    { key: '1', props: { name: 'Option one', value: '1' } },
+    { key: '2', props: { name: 'Option two', value: '2' } },
+    { key: '3', props: { name: 'Option three', value: '3' } },
+    { key: '4', props: { name: 'Option four', value: '4' } },
+    { key: '5', props: { name: 'Option five', value: '5' } },
+    { key: '6', props: { name: 'Option six', value: '6' } },
+    { key: '7', props: { name: 'Option seven', value: '7' } },
+    { key: '8', props: { name: 'Option eight', value: '8' } },
   ],
+  labelText: 'Select example',
   searchProperty: 'name',
   search: true,
   placeholder: 'Select option',
@@ -59,8 +68,12 @@ const StoryTemplate: Story<ISelectProps> = (args: ISelectArgs) => {
     return <div id={props.value}>{props.name}</div>;
   };
 
-  const getSelectedItemBody = (props: ISelectItem['props']) => {
-    return <div id={props.value}>{props.name}</div>;
+  const getSelectedItemBody = (props) => {
+    return (
+      <Text size="md" as="div">
+        <div id={props.value}>{props.name}</div>
+      </Text>
+    );
   };
 
   const getEmptyState = () => {
@@ -91,11 +104,12 @@ const StoryTemplate: Story<ISelectProps> = (args: ISelectArgs) => {
       )}
       <SelectComponent
         {...args}
+        isOpen={isOpen}
+        onHeaderClick={(isOpen) => setIsOpen(isOpen)}
         onItemSelect={handleItemSelect}
         selected={selectedItem}
         getItemBody={getItemBody}
         getSelectedItemBody={getSelectedItemBody}
-        controlledIsOpen={args.controlledVisibility && isOpen}
         searchEmptyState={args.withEmptyState && getEmptyState()}
         onSearchPhraseChange={(phrase: string) =>
           args.withEmptyState && handleSearchPhraseChange(phrase)
@@ -111,22 +125,22 @@ Select.args = {
   ...selectDefaultProps,
 };
 
-export const SelectWithDisabled = StoryTemplate.bind({});
-SelectWithDisabled.args = {
+export const SelectDisabled = StoryTemplate.bind({});
+SelectDisabled.args = {
   id: 'select-example-2',
   ...selectDefaultProps,
   disabled: true,
 };
 
-export const SelectWithControlledVisibility = StoryTemplate.bind({});
-SelectWithControlledVisibility.args = {
+export const SelectControlledVisibility = StoryTemplate.bind({});
+SelectControlledVisibility.args = {
   id: 'select-example-3',
   ...selectDefaultProps,
   controlledVisibility: true,
 } as ISelectArgs;
 
-export const SelectWithSearchEmptyState = StoryTemplate.bind({});
-SelectWithSearchEmptyState.args = {
+export const SelectSearchEmptyState = StoryTemplate.bind({});
+SelectSearchEmptyState.args = {
   id: 'select-example-4',
   ...selectDefaultProps,
   withEmptyState: true,
