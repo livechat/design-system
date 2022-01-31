@@ -46,6 +46,7 @@ export const Button: React.FC<ButtonProps> = ({
       [`${baseClass}--loading`]: loading,
       [`${baseClass}--full-width`]: fullWidth,
       [`${baseClass}--icon-only`]: !children && icon,
+      [`${baseClass}--disabled`]: isDisabled,
     }
   );
 
@@ -54,7 +55,7 @@ export const Button: React.FC<ButtonProps> = ({
       className={mergedClassNames}
       disabled={isDisabled}
       type={type}
-      href={href}
+      href={isDisabled ? undefined : href}
       {...props}
     >
       {loading && (

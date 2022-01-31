@@ -9,7 +9,7 @@ import { Button, ButtonProps } from '../components/Button';
 const icons = Object.fromEntries(
   Object.entries(MaterialIcons).map(([key, source]) => [
     key,
-    <Icon source={source as 'string'} />,
+    <Icon source={source as React.FC} />,
   ])
 );
 
@@ -149,8 +149,10 @@ export const loading = (): React.ReactElement => (
   </div>
 );
 
-export const link = (): React.ReactElement => (
-  <Button href="https://livechat.com" target="_blank" kind="destructive">
+export const buttonAsLink = (args): React.ReactElement => (
+  <Button href="https://livechat.com" target="_blank" kind="primary" {...args}>
     Button as an external link to livechat.com
   </Button>
 );
+
+buttonAsLink.args = { ...button.args, href: 'https://livechat.com' };
