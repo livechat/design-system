@@ -1,0 +1,34 @@
+$base-class: 'lc-picker-list';
+
+.#{$base-class} {
+  background-color: var(--surface-basic-default);
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+  bottom: -231px;
+  box-sizing: border-box;
+  font-size: 15px;
+  font-weight: 400;
+  height: 224px;
+  line-height: 22px;
+  overflow: scroll;
+  padding: 4px 0;
+  position: absolute;
+  width: 341px;
+
+  &_item {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    height: 36px;
+    justify-content: space-between;
+    padding: 7px 12px;
+
+    &:hover {
+      background-color: var(--surface-basic-hover);
+    }
+
+    &--focused {
+      color: var(--color-action-default);
+    }
+  }
+}

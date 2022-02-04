@@ -1,0 +1,6 @@
+$base-class: 'lc-picker';
+
+.#{$base-class} {
+  color: var(--content-default);
+  position: relative;
+}

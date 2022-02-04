@@ -1,32 +1,53 @@
 import * as React from 'react';
-import cx from 'classnames';
 import { Trigger, TriggerSize } from './Trigger';
+import { IPickerListItem, PickerList } from './PickerList';
 
 const baseClass = 'lc-picker';
 
 export interface IPickerProps {
-  className?: string;
+  items: IPickerListItem[];
   size?: TriggerSize;
   triggerText?: string;
 }
 
 export const Picker: React.FC<IPickerProps> = ({
-  className,
+  items,
   size,
   triggerText,
 }) => {
-  const mergedClassNames = cx(baseClass);
+  const [isListOpen, setIsListOpen] = React.useState<boolean>(false);
+  const [selectedItem, setSelectedItem] =
+    React.useState<IPickerListItem | null>(null);
 
-  const handleOnClick = () => {
-    console.log('handled onClick');
+  const handleOnTriggerClick = () => {
+    setIsListOpen(true);
+  };
+
+  const handleOnSelect = (item: IPickerListItem) => {
+    setIsListOpen(false);
+    setSelectedItem(item);
+  };
+
+  const handleOnClearClick = () => {
+    setIsListOpen(false);
+    setSelectedItem(null);
   };
 
   return (
-    <div className={mergedClassNames}>
-      {/* <FormField label="label"> */}
-      <Trigger size={size} triggerText={triggerText} onClick={handleOnClick} />
-      {/* </FormField> */}
-      {/* <PickerList /> */}
+    <div className={baseClass}>
+      <Trigger
+        selectedItemText={selectedItem?.name}
+        size={size}
+        triggerText={triggerText}
+        onClick={handleOnTriggerClick}
+        onClearClick={handleOnClearClick}
+      />
+      <PickerList
+        selectedItem={selectedItem}
+        items={items}
+        isOpen={isListOpen}
+        onSelect={handleOnSelect}
+      />
     </div>
   );
 };
