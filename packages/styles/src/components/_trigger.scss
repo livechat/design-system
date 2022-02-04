@@ -1,0 +1,32 @@
+$base-class: 'lc-trigger';
+
+.#{$base-class} {
+  align-items: center;
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+  display: flex;
+  font-size: 15px;
+  font-weight: 400;
+  justify-content: space-between;
+  line-height: 22px;
+  padding: 7px 12px;
+  width: 240px;
+
+  &--small {
+    height: 36px;
+  }
+
+  &--medium {
+    height: 40px;
+  }
+
+  &--large {
+    height: 44px;
+  }
+
+  &:hover {
+    border-color: var(--border-hover);
+    cursor: pointer;
+    transition: border 0.15s ease-in-out;
+  }
+}

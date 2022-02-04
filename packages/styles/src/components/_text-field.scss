@@ -91,7 +91,7 @@
 
 .lc-field-error {
   color: var(--color-negative-default);
-  display: block;
+  display: inline-flex;
   font-size: 13px;
   font-weight: 400;
   line-height: 16px;
@@ -107,4 +107,8 @@
   line-height: 16px;
   margin: 0;
   margin-top: 4px;
+}
+
+.lc-field-error-icon {
+  margin-right: 5px;
 }
