@@ -1,8 +1,6 @@
 import * as React from 'react';
 import cx from 'classnames';
-import { Error } from '@livechat/design-system-icons/dist/material';
 import { Text } from './Text';
-import { Icon, IconTypeName } from './Icon';
 
 const baseClass = 'lc-text-field';
 
@@ -91,11 +89,6 @@ export const TextField: React.FC<ITextFieldProps> = ({
           {children}
           {error && (
             <span className="lc-field-error">
-              <Icon
-                source={Error}
-                iconType={IconTypeName.Error}
-                className="lc-field-error-icon"
-              />
               <Text as="span" size="sm">
                 {error}
               </Text>
