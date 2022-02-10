@@ -65,7 +65,7 @@
     "jest": "^23.4.2",
     "mini-css-extract-plugin": "^0.5.0",
     "node-eval": "^2.0.0",
-    "node-sass": "^4.9.3",
+    "node-sass": "^7.0.0",
     "normalize.css": "^8.0.0",
     "postcss-flexbugs-fixes": "^4.0.0",
     "postcss-global-import": "^1.0.6",
