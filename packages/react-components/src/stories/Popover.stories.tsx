@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { Button } from '../components/Button';
-import Popover from '../components/Popover';
+import { Popover as PopoverComponent } from '../components/Popover';
 import { DropDown } from '@livechat/design-system-icons/dist/material';
 import { Icon } from '../components/Icon';
 
 import * as PopperCore from '@popperjs/core';
 
-export const Popover2 = (args: any): React.ReactElement => (
+export const Popover = (args: any): React.ReactElement => (
   <div
     style={{
       height: '100vh',
@@ -21,8 +21,8 @@ export const Popover2 = (args: any): React.ReactElement => (
   </div>
 );
 
-Popover2.args = {
-  placement: 'bottom',
+Popover.args = {
+  placement: 'bottom-start',
 };
 
 export interface IPopoverExample {
@@ -49,7 +49,7 @@ const PopoverExample: React.FC<IPopoverExample> = ({ placement }) => {
         justifyContent: 'center',
       }}
     >
-      <Popover
+      <PopoverComponent
         isVisible={isVisible}
         placement={placement}
         onClose={handleClose}
@@ -94,7 +94,7 @@ const PopoverExample: React.FC<IPopoverExample> = ({ placement }) => {
             Popover content
           </div>
         </div>
-      </Popover>
+      </PopoverComponent>
     </div>
   );
 };
@@ -110,7 +110,7 @@ export default {
         labels: PopperCore.placements,
       },
       table: {
-        defaultValue: { summary: PopperCore.placements[3] },
+        defaultValue: { summary: PopperCore.placements[4] },
       },
     },
   },

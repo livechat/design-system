@@ -17,7 +17,7 @@ export interface IPopoverProps {
   onClose?: () => void;
 }
 
-const Popover: React.FC<IPopoverProps> = (props) => {
+export const Popover: React.FC<IPopoverProps> = (props) => {
   const [referenceElement, setReferenceElement] =
     React.useState<HTMLDivElement | null>(null);
   const [popperElement, setPopperElement] =
@@ -97,5 +97,3 @@ const Popover: React.FC<IPopoverProps> = (props) => {
     </>
   );
 };
-
-export default Popover;
