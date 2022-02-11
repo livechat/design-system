@@ -67,7 +67,7 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
 
   const mergedClassNames = cx(
     `${className ? className : ''} popover ${
-      isVisible ? 'popover--visible' : ''
+      isVisible ? 'popover__visible' : ''
     }`
   );
 

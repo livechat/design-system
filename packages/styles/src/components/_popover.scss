@@ -12,13 +12,7 @@ $base-class: 'popover';
     outline: none;
   }
 
-  &--visible {
+  &__visible {
     display: block;
-  }
-}
-
-@media screen and (max-height: 490px) {
-  .#{$base-class}__list {
-    max-height: calc(100vh - 10px);
   }
 }
