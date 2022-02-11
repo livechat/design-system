@@ -12,7 +12,7 @@ $base-class: 'lc-popover';
     outline: none;
   }
 
-  &--visible {
+  &__visible {
     display: block;
   }
 }
