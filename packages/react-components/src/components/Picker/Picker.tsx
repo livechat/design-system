@@ -5,15 +5,17 @@ import { IPickerListItem, PickerList } from './PickerList';
 const baseClass = 'lc-picker';
 
 export interface IPickerProps {
-  items: IPickerListItem[];
+  options: IPickerListItem[];
   size?: TriggerSize;
-  triggerText?: string;
+  placeholder?: string;
+  onSelect: (selectedItem: IPickerListItem | null) => void;
 }
 
 export const Picker: React.FC<IPickerProps> = ({
-  items,
+  options,
   size,
-  triggerText,
+  placeholder = 'Select option',
+  onSelect,
 }) => {
   const [isListOpen, setIsListOpen] = React.useState<boolean>(false);
   const [selectedItem, setSelectedItem] =
@@ -26,25 +28,28 @@ export const Picker: React.FC<IPickerProps> = ({
   const handleOnSelect = (item: IPickerListItem) => {
     setIsListOpen(false);
     setSelectedItem(item);
+    onSelect(item);
   };
 
   const handleOnClearClick = () => {
     setIsListOpen(false);
     setSelectedItem(null);
+    onSelect(null);
   };
 
   return (
     <div className={baseClass}>
       <Trigger
-        selectedItemText={selectedItem?.name}
+        isItemSelected={!!selectedItem}
         size={size}
-        triggerText={triggerText}
         onClick={handleOnTriggerClick}
         onClearClick={handleOnClearClick}
-      />
+      >
+        {selectedItem ? selectedItem.name : placeholder}
+      </Trigger>
       <PickerList
         selectedItem={selectedItem}
-        items={items}
+        items={options}
         isOpen={isListOpen}
         onSelect={handleOnSelect}
       />

@@ -4,6 +4,7 @@ import { Check } from '@livechat/design-system-icons/dist/material';
 import { Icon, IconTypeName } from '../Icon';
 
 const baseClass = 'lc-picker-list';
+const itemClassName = `${baseClass}__item`;
 
 export interface IPickerListItem {
   key: string;
@@ -23,8 +24,6 @@ export const PickerList: React.FC<IPickerListProps> = ({
   selectedItem,
   onSelect,
 }) => {
-  const mergedClassNames = cx(baseClass);
-
   const handleOnClick = (item: IPickerListItem) => {
     onSelect(item);
   };
@@ -38,23 +37,24 @@ export const PickerList: React.FC<IPickerListProps> = ({
   }
 
   return (
-    <div className={mergedClassNames}>
+    <ul className={baseClass}>
       {items.map((item) => {
         return (
-          <div
+          <li
             key={item.key}
-            className={cx(`${baseClass}_item`, {
-              [`${baseClass}_item--focused`]: isItemSelected(item.key),
-            })}
+            className={cx(
+              itemClassName,
+              isItemSelected(item.key) && `${itemClassName}--focused`
+            )}
             onClick={() => handleOnClick(item)}
           >
             {item.name}
             {isItemSelected(item.key) && (
-              <Icon iconType={IconTypeName.Link} source={Check}></Icon>
+              <Icon iconType={IconTypeName.Link} source={Check} />
             )}
-          </div>
+          </li>
         );
       })}
-    </div>
+    </ul>
   );
 };

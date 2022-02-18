@@ -10,12 +10,13 @@ $base-class: 'lc-picker-list';
   font-weight: 400;
   height: 224px;
   line-height: 22px;
+  margin: 0;
   overflow: scroll;
   padding: 4px 0;
   position: absolute;
   width: 341px;
 
-  &_item {
+  &__item {
     align-items: center;
     cursor: pointer;
     display: flex;

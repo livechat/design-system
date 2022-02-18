@@ -1,4 +1,4 @@
-$base-class: 'lc-trigger';
+$base-class: 'lc-picker-trigger';
 
 .#{$base-class} {
   align-items: center;
@@ -32,7 +32,7 @@ $base-class: 'lc-trigger';
     transition: border 0.15s ease-in-out;
   }
 
-  &_text {
+  &__text {
     flex-grow: 2;
   }
 }

@@ -17,7 +17,7 @@ export default {
 
 const StoryTemplate: Story<IPickerProps> = (args: IPickerProps) => {
   return (
-    <div style={{ width: 320 }}>
+    <div style={{ height: 320 }}>
       <PickerComponent {...args} />
     </div>
   );
@@ -25,7 +25,7 @@ const StoryTemplate: Story<IPickerProps> = (args: IPickerProps) => {
 
 export const Picker = StoryTemplate.bind({});
 Picker.args = {
-  items: [
+  options: [
     { key: 'one', name: 'Option one' },
     { key: 'two', name: 'Option two' },
     { key: 'three', name: 'Option three' },
@@ -35,4 +35,5 @@ Picker.args = {
     { key: 'seven', name: 'Option seven' },
   ],
   size: TriggerSize.Medium,
+  onSelect: (item) => console.log(item),
 };
