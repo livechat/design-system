@@ -30,15 +30,6 @@ export interface IPopoverExample {
 }
 
 const PopoverExample: React.FC<IPopoverExample> = ({ placement }) => {
-  const [isVisible, setIsVisible] = React.useState(false);
-  const handleClose = () => {
-    setIsVisible(false);
-  };
-
-  const handleTriggerClick = () => {
-    setIsVisible(!isVisible);
-  };
-
   return (
     <div
       style={{
@@ -50,14 +41,11 @@ const PopoverExample: React.FC<IPopoverExample> = ({ placement }) => {
       }}
     >
       <PopoverComponent
-        isVisible={isVisible}
         placement={placement}
-        onClose={handleClose}
         closeOnEscPress
         triggerRenderer={() => (
           <div>
             <Button
-              onClick={handleTriggerClick}
               icon={<Icon source={DropDown}></Icon>}
               iconPosition={'right'}
             >
