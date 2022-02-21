@@ -2,5 +2,6 @@ $base-class: 'lc-picker';
 
 .#{$base-class} {
   color: var(--content-default);
+  display: inline-block;
   position: relative;
 }

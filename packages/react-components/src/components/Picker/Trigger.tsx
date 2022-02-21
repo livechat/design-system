@@ -15,6 +15,7 @@ export const enum TriggerSize {
 }
 
 interface ITriggerProps {
+  isDisabled?: boolean;
   isItemSelected: boolean;
   size?: TriggerSize;
   onClick: () => void;
@@ -23,12 +24,17 @@ interface ITriggerProps {
 
 export const Trigger: React.FC<ITriggerProps> = ({
   children,
+  isDisabled,
   isItemSelected,
   size = TriggerSize.Medium,
   onClick,
   onClearClick,
 }) => {
-  const mergedClassNames = cx(baseClass, [`${baseClass}--${size}`]);
+  const mergedClassNames = cx(
+    baseClass,
+    `${baseClass}--${size}`,
+    isDisabled && `${baseClass}__disabled`
+  );
 
   const handleTriggerClick = () => {
     return onClick();
@@ -46,7 +52,11 @@ export const Trigger: React.FC<ITriggerProps> = ({
           <Icon iconType={IconTypeName.Link} source={Close} />
         </div>
       )}
-      <Icon source={ChevronDown} size={IconSizeName.Large} />
+      <Icon
+        source={ChevronDown}
+        size={IconSizeName.Large}
+        disabled={isDisabled}
+      />
     </div>
   );
 };

@@ -35,4 +35,14 @@ $base-class: 'lc-picker-trigger';
   &__text {
     flex-grow: 2;
   }
+
+  &__disabled {
+    background-color: var(--surface-basic-disabled);
+    color: var(--content-disabled);
+
+    &:hover {
+      border-color: var(--border-default);
+      cursor: auto;
+    }
+  }
 }
