@@ -23,25 +23,31 @@ export const Popover = (args: any): React.ReactElement => (
 
 Popover.args = {
   placement: 'bottom-start',
+  isVisible: true,
 };
 
 export interface IPopoverExample {
   placement: PopperCore.Placement;
+  isVisible: boolean;
 }
 
-const PopoverExample: React.FC<IPopoverExample> = ({ placement }) => {
+const PopoverExample: React.FC<IPopoverExample> = ({
+  placement,
+  isVisible,
+}) => {
   return (
     <div
       style={{
         width: '500px',
         height: '500px',
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         justifyContent: 'center',
       }}
     >
       <PopoverComponent
         placement={placement}
+        isVisible={isVisible}
         closeOnEscPress
         triggerRenderer={() => (
           <div>
@@ -54,7 +60,9 @@ const PopoverExample: React.FC<IPopoverExample> = ({ placement }) => {
           </div>
         )}
         modifiers={{
-          preventOverflow: {},
+          preventOverflow: {
+            enabled: true,
+          },
         }}
       >
         <div
@@ -96,9 +104,6 @@ export default {
       control: {
         type: 'select',
         labels: PopperCore.placements,
-      },
-      table: {
-        defaultValue: { summary: PopperCore.placements[4] },
       },
     },
   },

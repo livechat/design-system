@@ -10,30 +10,39 @@ export interface IPopoverProps {
   children?: React.ReactNode;
   className?: string;
   closeOnEscPress?: boolean;
-  modifiers: PopoverModifiers;
+  modifiers?: PopoverModifiers;
   placement?: PopperCore.Placement;
+  isVisible?: boolean;
   triggerRenderer: () => React.ReactNode;
 }
 
 export const Popover: React.FC<IPopoverProps> = (props) => {
-  const { triggerRenderer, children, className, placement, closeOnEscPress } =
-    props;
+  const {
+    triggerRenderer,
+    children,
+    className,
+    placement,
+    closeOnEscPress,
+    isVisible,
+  } = props;
 
-  const referenceRef = React.useRef<HTMLDivElement | null>(null);
+  const rendererRef = React.useRef<HTMLDivElement | null>(null);
   const popperRef = React.useRef<HTMLDivElement | null>(null);
 
-  const [visible, setVisibility] = React.useState(false);
+  const [visible, setVisibility] = React.useState(isVisible);
 
-  function handleDropdownClick() {
-    setVisibility(!visible);
-  }
+  React.useEffect(() => {
+    setVisibility(isVisible);
+  }, [isVisible]);
 
   function handleDocumentClick(event: any) {
-    if (referenceRef.current?.contains(event.target)) {
+    if (popperRef.current?.contains(event.target)) {
       return;
+    } else if (rendererRef.current?.contains(event.target)) {
+      setVisibility((prevVisible) => !prevVisible);
+    } else {
+      setVisibility(false);
     }
-
-    setVisibility(false);
   }
 
   const handleHideOnEscape = (event: KeyboardEvent) => {
@@ -78,7 +87,7 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
         name: 'preventOverlow',
         options: {
           rootBoundary: 'viewport',
-          ...(preventOverflow?.options || {}),
+          ...(preventOverflow || {}),
         },
       },
     ];
@@ -87,10 +96,10 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
   };
 
   const { styles, attributes } = usePopper(
-    referenceRef.current,
+    rendererRef.current,
     popperRef.current,
     {
-      modifiers: buildPopperModifiers(props.modifiers),
+      modifiers: props.modifiers ? buildPopperModifiers(props.modifiers) : [],
       placement: placement,
     }
   );
@@ -101,12 +110,7 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
 
   return (
     <>
-      {triggerRenderer && (
-        <div onClick={handleDropdownClick} ref={referenceRef}>
-          {triggerRenderer()}
-        </div>
-      )}
-
+      <div ref={rendererRef}>{triggerRenderer()}</div>
       <div
         ref={popperRef}
         className={mergedClassNames}
