@@ -4,4 +4,28 @@ $base-class: 'lc-picker';
   color: var(--content-default);
   display: inline-block;
   position: relative;
+
+  &__container {
+    position: relative;
+  }
+
+  &__label {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    margin-bottom: 4px;
+  }
+
+  &__error {
+    color: var(--color-negative-default);
+    display: flex;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    margin-top: 4px;
+
+    &__icon {
+      margin-right: 5px;
+    }
+  }
 }

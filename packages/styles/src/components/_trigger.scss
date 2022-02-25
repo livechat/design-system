@@ -12,6 +12,7 @@ $base-class: 'lc-picker-trigger';
   justify-content: flex-end;
   line-height: 22px;
   padding: 7px 12px;
+  transition: border 0.15s ease-in-out;
   width: 341px;
 
   &--compact {
@@ -27,16 +28,15 @@ $base-class: 'lc-picker-trigger';
   }
 
   &:hover {
-    border-color: var(--border-hover);
+    border-color: var(--color-action-default);
     cursor: pointer;
-    transition: border 0.15s ease-in-out;
   }
 
   &__text {
     flex-grow: 2;
   }
 
-  &__disabled {
+  &--disabled {
     background-color: var(--surface-basic-disabled);
     color: var(--content-disabled);
 
@@ -44,5 +44,14 @@ $base-class: 'lc-picker-trigger';
       border-color: var(--border-default);
       cursor: auto;
     }
+  }
+
+  &--focused {
+    border-color: var(--color-action-default);
+  }
+
+  &--error,
+  &--error:hover {
+    border-color: var(--color-negative-default);
   }
 }

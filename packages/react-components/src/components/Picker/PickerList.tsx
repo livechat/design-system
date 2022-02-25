@@ -9,6 +9,7 @@ const itemClassName = `${baseClass}__item`;
 export interface IPickerListItem {
   key: string;
   name: string;
+  disabled?: boolean;
 }
 
 export interface IPickerListProps {
@@ -44,9 +45,10 @@ export const PickerList: React.FC<IPickerListProps> = ({
             key={item.key}
             className={cx(
               itemClassName,
-              isItemSelected(item.key) && `${itemClassName}--focused`
+              isItemSelected(item.key) && `${itemClassName}--focused`,
+              item.disabled && `${itemClassName}--disabled`
             )}
-            onClick={() => handleOnClick(item)}
+            onClick={() => !item.disabled && handleOnClick(item)}
           >
             {item.name}
             {isItemSelected(item.key) && (

@@ -2,6 +2,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import {
   ChevronDown,
+  ChevronUp,
   Close,
 } from '@livechat/design-system-icons/dist/material';
 import { Icon, IconSizeName, IconTypeName } from '../Icon';
@@ -16,7 +17,9 @@ export const enum TriggerSize {
 
 interface ITriggerProps {
   isDisabled?: boolean;
+  isError?: boolean;
   isItemSelected: boolean;
+  isOpen: boolean;
   size?: TriggerSize;
   onClick: () => void;
   onClearClick: () => void;
@@ -25,7 +28,9 @@ interface ITriggerProps {
 export const Trigger: React.FC<ITriggerProps> = ({
   children,
   isDisabled,
+  isError,
   isItemSelected,
+  isOpen,
   size = TriggerSize.Medium,
   onClick,
   onClearClick,
@@ -33,7 +38,9 @@ export const Trigger: React.FC<ITriggerProps> = ({
   const mergedClassNames = cx(
     baseClass,
     `${baseClass}--${size}`,
-    isDisabled && `${baseClass}__disabled`
+    isDisabled && `${baseClass}--disabled`,
+    isOpen && `${baseClass}--focused`,
+    isError && `${baseClass}--error`
   );
 
   const handleTriggerClick = () => {
@@ -53,7 +60,7 @@ export const Trigger: React.FC<ITriggerProps> = ({
         </div>
       )}
       <Icon
-        source={ChevronDown}
+        source={!isOpen ? ChevronDown : ChevronUp}
         size={IconSizeName.Large}
         disabled={isDisabled}
       />

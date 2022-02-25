@@ -1,11 +1,15 @@
 import * as React from 'react';
+import { Error } from '@livechat/design-system-icons/dist/material';
 import { Trigger, TriggerSize } from './Trigger';
 import { IPickerListItem, PickerList } from './PickerList';
+import Icon, { IconSizeName, IconTypeName } from '../Icon';
 
 const baseClass = 'lc-picker';
 
 export interface IPickerProps {
   disabled?: boolean;
+  label?: string;
+  error?: string;
   options: IPickerListItem[];
   size?: TriggerSize;
   placeholder?: string;
@@ -14,6 +18,8 @@ export interface IPickerProps {
 
 export const Picker: React.FC<IPickerProps> = ({
   disabled,
+  error,
+  label,
   options,
   size,
   placeholder = 'Select option',
@@ -67,21 +73,37 @@ export const Picker: React.FC<IPickerProps> = ({
 
   return (
     <div ref={triggerRef} className={baseClass}>
-      <Trigger
-        isDisabled={disabled}
-        isItemSelected={!!selectedItem}
-        size={size}
-        onClick={handleOnTriggerClick}
-        onClearClick={handleOnClearClick}
-      >
-        {selectedItem ? selectedItem.name : placeholder}
-      </Trigger>
-      <PickerList
-        selectedItem={selectedItem}
-        items={options}
-        isOpen={isListOpen}
-        onSelect={handleOnSelect}
-      />
+      {label && <div className={`${baseClass}__label`}>{label}</div>}
+      <div className={`${baseClass}__container`}>
+        <Trigger
+          isError={!!error}
+          isOpen={isListOpen}
+          isDisabled={disabled}
+          isItemSelected={!!selectedItem}
+          size={size}
+          onClick={handleOnTriggerClick}
+          onClearClick={handleOnClearClick}
+        >
+          {selectedItem ? selectedItem.name : placeholder}
+        </Trigger>
+        <PickerList
+          selectedItem={selectedItem}
+          items={options}
+          isOpen={isListOpen}
+          onSelect={handleOnSelect}
+        />
+      </div>
+      {error && (
+        <div className={`${baseClass}__error`}>
+          <Icon
+            className={`${baseClass}__error__icon`}
+            source={Error}
+            iconType={IconTypeName.Error}
+            size={IconSizeName.Small}
+          />
+          {error}
+        </div>
+      )}
     </div>
   );
 };

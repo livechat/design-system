@@ -28,8 +28,13 @@ $base-class: 'lc-picker-list';
       background-color: var(--surface-basic-hover);
     }
 
-    &--focused {
-      color: var(--color-action-default);
+    &--disabled {
+      color: var(--content-disabled);
+
+      &:hover {
+        background-color: unset;
+        cursor: auto;
+      }
     }
   }
 }

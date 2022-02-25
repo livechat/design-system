@@ -31,9 +31,10 @@ Picker.args = {
     { key: 'three', name: 'Option three' },
     { key: 'four', name: 'Option four' },
     { key: 'five', name: 'Option five' },
-    { key: 'six', name: 'Option six' },
-    { key: 'seven', name: 'Option seven' },
+    { key: 'six', name: 'Option six', disabled: true },
+    { key: 'seven', name: 'Option seven', disabled: true },
   ],
   size: TriggerSize.Medium,
+  label: 'Picker',
   onSelect: (item) => console.log(item),
 };
