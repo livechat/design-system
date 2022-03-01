@@ -62,7 +62,7 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
   const rendererRef = React.useRef<HTMLDivElement | null>(null);
   const popperRef = React.useRef<HTMLDivElement | null>(null);
 
-  const [visible, setVisibility] = React.useState(isVisible);
+  const [visible, setVisibility] = React.useState(false);
 
   React.useEffect(() => {
     setVisibility(isVisible);
