@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render } from '../test-utils';
+import { render, fireEvent } from '../test-utils';
 import { Popover } from './Popover';
 
 const PopperContent = () => {
@@ -7,7 +7,7 @@ const PopperContent = () => {
 };
 
 const PopperTrigger = () => {
-  return <div>Button</div>;
+  return <button>Button</button>;
 };
 
 describe('<Popover> component', () => {
@@ -17,6 +17,23 @@ describe('<Popover> component', () => {
         <PopperContent></PopperContent>
       </Popover>
     );
+
+    expect(container).toHaveTextContent('Content');
+  });
+
+  it('should show content if trigger has been clicked', () => {
+    const { container, getByRole } = render(
+      <Popover triggerRenderer={PopperTrigger}>
+        <PopperContent></PopperContent>
+      </Popover>
+    );
+
+    fireEvent.click(
+      getByRole('button', {
+        name: /Button/i,
+      })
+    );
+
     expect(container).toHaveTextContent('Content');
   });
 });
