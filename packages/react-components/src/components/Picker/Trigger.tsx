@@ -47,7 +47,8 @@ export const Trigger: React.FC<ITriggerProps> = ({
     return onClick();
   };
 
-  const handleOnClearClick = () => {
+  const handleOnClearClick = (e) => {
+    e.stopPropagation();
     return onClearClick();
   };
 
@@ -55,11 +56,15 @@ export const Trigger: React.FC<ITriggerProps> = ({
     <div className={mergedClassNames} onClick={handleTriggerClick}>
       <div className={`${baseClass}__text`}>{children}</div>
       {isItemSelected && (
-        <div onClick={handleOnClearClick}>
+        <div
+          className={`${baseClass}__clear-icon`}
+          onClick={handleOnClearClick}
+        >
           <Icon iconType={IconTypeName.Link} source={Close} />
         </div>
       )}
       <Icon
+        className={`${baseClass}__chevron-icon`}
         source={!isOpen ? ChevronDown : ChevronUp}
         size={IconSizeName.Large}
         disabled={isDisabled}

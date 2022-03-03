@@ -6,6 +6,7 @@ import Icon, { IconSizeName, IconTypeName } from '../Icon';
 
 const baseClass = 'lc-picker';
 
+// layout
 export interface IPickerProps {
   disabled?: boolean;
   label?: string;
@@ -32,19 +33,15 @@ export const Picker: React.FC<IPickerProps> = ({
 
   React.useEffect(() => {
     if (!isListOpen) {
-      return document.removeEventListener('click', onDocumentClick, true);
+      return document.removeEventListener('click', onDocumentClick);
     }
 
-    return document.addEventListener('click', onDocumentClick, true);
+    return document.addEventListener('click', onDocumentClick);
   }, [isListOpen]);
 
   const onDocumentClick = React.useCallback(
     (e) => {
-      if (
-        isListOpen &&
-        triggerRef.current &&
-        !triggerRef.current.contains(e.target as Node)
-      ) {
+      if (isListOpen && e.target.contains(triggerRef.current)) {
         return setIsListOpen(false);
       }
     },
@@ -56,7 +53,15 @@ export const Picker: React.FC<IPickerProps> = ({
       return;
     }
 
+    if (isListOpen) {
+      return setIsListOpen(false);
+    }
+
     return setIsListOpen(true);
+  };
+
+  const handleOnClose = () => {
+    setIsListOpen(false);
   };
 
   const handleOnSelect = (item: IPickerListItem) => {
@@ -90,6 +95,7 @@ export const Picker: React.FC<IPickerProps> = ({
           selectedItem={selectedItem}
           items={options}
           isOpen={isListOpen}
+          onClose={handleOnClose}
           onSelect={handleOnSelect}
         />
       </div>

@@ -4,13 +4,14 @@ $base-class: 'lc-picker-list';
   background-color: var(--surface-basic-default);
   border: 1px solid var(--border-default);
   border-radius: 4px;
-  bottom: -231px;
+  bottom: -249px;
+  box-shadow: 0 6px 20px rgba(66, 77, 87, 0.4);
   box-sizing: border-box;
   font-size: 15px;
   font-weight: 400;
-  height: 224px;
   line-height: 22px;
   margin: 0;
+  max-height: 242px;
   overflow: scroll;
   padding: 4px 0;
   position: absolute;
@@ -24,6 +25,7 @@ $base-class: 'lc-picker-list';
     justify-content: space-between;
     padding: 7px 12px;
 
+    &--hovered,
     &:hover {
       background-color: var(--surface-basic-hover);
     }

@@ -28,7 +28,7 @@ $base-class: 'lc-picker-trigger';
   }
 
   &:hover {
-    border-color: var(--color-action-default);
+    border-color: var(--border-hover);
     cursor: pointer;
   }
 
@@ -46,7 +46,8 @@ $base-class: 'lc-picker-trigger';
     }
   }
 
-  &--focused {
+  &--focused,
+  &--focused:hover {
     border-color: var(--color-action-default);
   }
 
@@ -54,4 +55,8 @@ $base-class: 'lc-picker-trigger';
   &--error:hover {
     border-color: var(--color-negative-default);
   }
+
+  // &__text, &__clear-icon, &__chevron-icon {
+  //   pointer-events: none;
+  // }
 }
