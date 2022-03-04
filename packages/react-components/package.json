@@ -61,6 +61,7 @@
     "@livechat/design-system-icons": "^1.0.0-alpha.2",
     "@livechat/design-system-styles": "^1.0.0-alpha.2",
     "classnames": "^2.3.1",
+    "react-day-picker": "^7.4.10",
     "react-transition-group": "^4.4.2"
   }
 }
