@@ -1,16 +1,16 @@
 import * as React from 'react';
 import ReactDayPicker, { DayPickerProps } from 'react-day-picker';
 import cx from 'classnames';
-// import DatePickerNavbar from './DatePickerNavbar';
+import DatePickerNavbar from './DatePickerNavbar';
 
 const baseClass = 'date-picker';
 
-export interface IProps extends DayPickerProps {
+export interface IDatePickerProps extends DayPickerProps {
   innerRef?: React.Ref<ReactDayPicker>;
   range?: boolean;
 }
 
-const DatePickerComponent = (props: IProps) => {
+const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
   const [month, setMonth] = React.useState(props.month || new Date());
 
   React.useEffect(() => {
@@ -78,40 +78,52 @@ const DatePickerComponent = (props: IProps) => {
 
   const {
     className,
+    classNames,
     range,
+    month: propsMonth,
     toMonth,
     fromMonth,
-    firstDayOfWeek,
+    firstDayOfWeek: propsFirstDayOfWeek,
     numberOfMonths,
     navbarElement,
     renderDay: dayRenderer,
-    classNames,
     innerRef,
-    month: propsMonth,
     ...restProps
   } = props;
+
+  let firstDayOfWeek = 1;
+
+  if (
+    propsFirstDayOfWeek === 0 ||
+    (propsFirstDayOfWeek && propsFirstDayOfWeek < 7)
+  ) {
+    firstDayOfWeek = propsFirstDayOfWeek;
+  }
 
   const datePickerClassNames = getDatePickerClassNames();
 
   return (
     <ReactDayPicker
-      // navbarElement={
-      //   navbarElement || (
-      //     <DatePickerNavbar
-      //       classNames={datePickerClassNames}
-      //       numberOfMonths={numberOfMonths}
-      //       onMonthChange={handleMonthChange}
-      //       toMonth={toMonth}
-      //       fromMonth={fromMonth}
-      //     />
-      //   )
-      // }
+      navbarElement={
+        navbarElement || (
+          <DatePickerNavbar
+            month={month}
+            onNextClick={() => void 0}
+            onPreviousClick={() => void 0}
+            classNames={datePickerClassNames}
+            numberOfMonths={numberOfMonths}
+            onMonthChange={handleMonthChange}
+            toMonth={toMonth}
+            fromMonth={fromMonth}
+          />
+        )
+      }
       ref={innerRef}
       classNames={datePickerClassNames}
       numberOfMonths={numberOfMonths}
       toMonth={toMonth}
       fromMonth={fromMonth}
-      firstDayOfWeek={firstDayOfWeek || 1}
+      firstDayOfWeek={firstDayOfWeek}
       month={month}
       renderDay={dayRenderer || renderDay}
       {...restProps}
@@ -119,6 +131,8 @@ const DatePickerComponent = (props: IProps) => {
   );
 };
 
-export const DatePicker = React.forwardRef<ReactDayPicker, IProps>(
+export const DatePicker = React.forwardRef<ReactDayPicker, IDatePickerProps>(
   (props, ref) => <DatePickerComponent innerRef={ref} {...props} />
 );
+
+DatePicker.displayName = 'DatePicker';

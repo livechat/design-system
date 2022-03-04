@@ -11,9 +11,6 @@ $base-class: 'date-picker';
     position: relative;
     transition: 0.2s border-color ease-in-out;
     user-select: none;
-    user-select: none;
-    user-select: none;
-    user-select: none;
 
     &:focus {
       border: 1px solid var(--color-action-default);
@@ -32,9 +29,6 @@ $base-class: 'date-picker';
   &__month {
     display: table;
     margin: 0;
-    user-select: none;
-    user-select: none;
-    user-select: none;
     user-select: none;
   }
 
@@ -70,6 +64,7 @@ $base-class: 'date-picker';
 
     &--interaction-disabled {
       display: none;
+      pointer-events: none;
     }
   }
 
@@ -183,12 +178,14 @@ $base-class: 'date-picker';
     &--disabled {
       color: #dce0e0;
       cursor: default;
+      pointer-events: none;
     }
   }
 
   &--interaction-disabled {
     .#{$base-class}__day {
       cursor: default;
+      pointer-events: none;
     }
   }
 
