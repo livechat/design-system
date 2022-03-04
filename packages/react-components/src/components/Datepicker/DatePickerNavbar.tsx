@@ -87,7 +87,7 @@ const DatePickerNavbar: React.FC<IProps> = (props) => {
           })}
           onClick={handlePrevYearClick}
         >
-          <Icon source={ChevronDoubleLeft} iconType={IconTypeName.Link} />
+          <Icon source={ChevronDoubleLeft} iconType={IconTypeName.Subtle} />
         </button>
         <button
           className={cx({
@@ -96,7 +96,7 @@ const DatePickerNavbar: React.FC<IProps> = (props) => {
           })}
           onClick={handlePrevClick}
         >
-          <Icon source={ChevronLeft} iconType={IconTypeName.Link} />
+          <Icon source={ChevronLeft} iconType={IconTypeName.Subtle} />
         </button>
       </div>
       <div style={{ display: 'flex' }}>
@@ -107,7 +107,7 @@ const DatePickerNavbar: React.FC<IProps> = (props) => {
           })}
           onClick={handleNextClick}
         >
-          <Icon source={ChevronRight} iconType={IconTypeName.Link} />
+          <Icon source={ChevronRight} iconType={IconTypeName.Subtle} />
         </button>
         <button
           className={cx({
@@ -116,7 +116,7 @@ const DatePickerNavbar: React.FC<IProps> = (props) => {
           })}
           onClick={handleNextYearClick}
         >
-          <Icon source={ChevronDoubleRight} iconType={IconTypeName.Link} />
+          <Icon source={ChevronDoubleRight} iconType={IconTypeName.Subtle} />
         </button>
       </div>
     </div>

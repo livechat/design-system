@@ -5,7 +5,8 @@ import DatePickerNavbar from './DatePickerNavbar';
 
 const baseClass = 'date-picker';
 
-export interface IDatePickerProps extends DayPickerProps {
+export interface IDatePickerProps
+  extends Omit<DayPickerProps, 'todayButton' | 'showWeekNumbers'> {
   innerRef?: React.Ref<ReactDayPicker>;
   range?: boolean;
 }
