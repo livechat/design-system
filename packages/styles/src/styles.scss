@@ -1,6 +1,9 @@
 @use './typography/classTokens';
 
 @use './components/badge';
+@use './components/text-field';
+@use './components/input-field';
+@use './components/numeric-input';
 @use './components/switch';
 @use './components/progress';
 @use './components/alert';
@@ -23,6 +26,8 @@
 @use './components/form';
 @use './components/modal';
 @use './components/date-picker';
+@use './components/tag-input';
+@use './components/tag';
 
 @use './themes/legacy';
 @use './themes/light';
