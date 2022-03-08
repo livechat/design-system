@@ -18,6 +18,7 @@ const itemClassName = `${baseClass}__item`;
 export interface IPickerListItem {
   key: string;
   name: string;
+  groupHeader?: boolean;
   disabled?: boolean;
 }
 
@@ -39,6 +40,8 @@ export const PickerList: React.FC<IPickerListProps> = ({
   const [selectedItemKey, setSelectedItemKey] = React.useState<string | null>(
     null
   );
+  const indexRef = React.useRef(-1);
+  const lastIndexRef = React.useRef(0);
 
   React.useEffect(() => {
     document.addEventListener('keydown', onKeyDown);
@@ -46,7 +49,45 @@ export const PickerList: React.FC<IPickerListProps> = ({
     return () => document.removeEventListener('keydown', onKeyDown);
   }, []);
 
-  const indexRef = React.useRef(0);
+  const isHeaderOrDisabled = (i: number) =>
+    !!items[i] && (items[i].disabled || items[i].groupHeader);
+
+  const getPrevItemIndex = () => {
+    indexRef.current = indexRef.current - 1;
+
+    while (isHeaderOrDisabled(indexRef.current)) {
+      indexRef.current = indexRef.current - 1;
+
+      if (!isHeaderOrDisabled(indexRef.current)) {
+        break;
+      }
+    }
+
+    lastIndexRef.current = indexRef.current;
+    return indexRef.current;
+  };
+
+  const getNextItemIndex = () => {
+    indexRef.current = indexRef.current + 1;
+
+    while (isHeaderOrDisabled(indexRef.current)) {
+      indexRef.current = indexRef.current + 1;
+
+      if (
+        indexRef.current === items.length &&
+        !isHeaderOrDisabled(indexRef.current)
+      ) {
+        return lastIndexRef.current;
+      }
+
+      if (!isHeaderOrDisabled(indexRef.current)) {
+        break;
+      }
+    }
+
+    lastIndexRef.current = indexRef.current;
+    return indexRef.current;
+  };
 
   const onKeyDown = (e) => {
     e.preventDefault();
@@ -56,7 +97,13 @@ export const PickerList: React.FC<IPickerListProps> = ({
     }
 
     if (e.keyCode === KeyCodes.arrowUp && indexRef.current > 0) {
-      indexRef.current = indexRef.current - 1;
+      indexRef.current = getPrevItemIndex();
+
+      const targetToScroll = document.getElementById(
+        items[indexRef.current].key
+      );
+      targetToScroll?.scrollIntoView();
+
       return setSelectedItemKey(items[indexRef.current].key);
     }
 
@@ -64,13 +111,24 @@ export const PickerList: React.FC<IPickerListProps> = ({
       e.keyCode === KeyCodes.arrowDown &&
       indexRef.current + 1 < items.length
     ) {
-      indexRef.current = indexRef.current + 1;
+      indexRef.current = getNextItemIndex();
+
+      const targetToScroll = document.getElementById(
+        items[indexRef.current].key
+      );
+      targetToScroll?.scrollIntoView();
+
       return setSelectedItemKey(items[indexRef.current].key);
     }
 
     if (e.keyCode === KeyCodes.enter && !items[indexRef.current].disabled) {
       return onSelect(items[indexRef.current]);
     }
+  };
+
+  const handleOnMouseEnter = (key: string) => {
+    indexRef.current = items.findIndex((item) => item.key === key);
+    return setSelectedItemKey(key);
   };
 
   const handleOnClick = (item: IPickerListItem) => {
@@ -88,8 +146,17 @@ export const PickerList: React.FC<IPickerListProps> = ({
   return (
     <ul className={baseClass}>
       {items.map((item) => {
+        if (item.groupHeader) {
+          return (
+            <li key={item.key} className={`${itemClassName}__header`}>
+              {item.name}
+            </li>
+          );
+        }
+
         return (
           <li
+            id={item.key}
             key={item.key}
             className={cx(
               itemClassName,
@@ -98,6 +165,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
               item.disabled && `${itemClassName}--disabled`
             )}
             onClick={() => !item.disabled && handleOnClick(item)}
+            onMouseEnter={() => handleOnMouseEnter(item.key)}
           >
             {item.name}
             {isItemSelected(item.key) && (

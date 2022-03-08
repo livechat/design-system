@@ -25,8 +25,7 @@ $base-class: 'lc-picker-list';
     justify-content: space-between;
     padding: 7px 12px;
 
-    &--hovered,
-    &:hover {
+    &--hovered {
       background-color: var(--surface-basic-hover);
     }
 
@@ -37,6 +36,19 @@ $base-class: 'lc-picker-list';
         background-color: unset;
         cursor: auto;
       }
+    }
+
+    &__header {
+      align-items: center;
+      color: var(--content-subtle);
+      cursor: auto;
+      display: flex;
+      font-size: 12px;
+      font-weight: 600;
+      height: 36px;
+      justify-content: space-between;
+      padding: 7px 12px;
+      text-transform: uppercase;
     }
   }
 }

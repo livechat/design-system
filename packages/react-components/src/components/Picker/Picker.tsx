@@ -5,8 +5,6 @@ import { IPickerListItem, PickerList } from './PickerList';
 import Icon, { IconSizeName, IconTypeName } from '../Icon';
 
 const baseClass = 'lc-picker';
-
-// layout
 export interface IPickerProps {
   disabled?: boolean;
   label?: string;
