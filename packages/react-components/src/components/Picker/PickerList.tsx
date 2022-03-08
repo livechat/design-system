@@ -3,6 +3,7 @@ import cx from 'classnames';
 import { Check } from '@livechat/design-system-icons/dist/material';
 import { Icon, IconTypeName } from '../Icon';
 import { KeyCodes } from '../../constants/keyCodes';
+import { TriggerSize } from './Trigger';
 
 const baseClass = 'lc-picker-list';
 const itemClassName = `${baseClass}__item`;
@@ -18,6 +19,7 @@ export interface IPickerListProps {
   isOpen: boolean;
   items: IPickerListItem[];
   selectedItem: IPickerListItem | null;
+  size?: TriggerSize;
   onClose: () => void;
   onSelect: (item: IPickerListItem) => void;
 }
@@ -26,6 +28,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   isOpen,
   items,
   selectedItem,
+  size = TriggerSize.Medium,
   onClose,
   onSelect,
 }) => {
@@ -34,6 +37,11 @@ export const PickerList: React.FC<IPickerListProps> = ({
   );
   const indexRef = React.useRef(-1);
   const lastIndexRef = React.useRef(0);
+
+  const mergedClassNames = cx(
+    baseClass
+    // `${baseClass}--${size}`,
+  );
 
   React.useEffect(() => {
     document.addEventListener('keydown', onKeyDown);
@@ -110,10 +118,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
       return setSelectedItemKey(items[indexRef.current].key);
     }
 
-    if (
-      (e.key === KeyCodes.enter || e.key === KeyCodes.space) &&
-      !items[indexRef.current].disabled
-    ) {
+    if (e.key === KeyCodes.enter && !items[indexRef.current].disabled) {
       return onSelect(items[indexRef.current]);
     }
   };
@@ -123,20 +128,17 @@ export const PickerList: React.FC<IPickerListProps> = ({
     return setSelectedItemKey(key);
   };
 
-  const handleOnClick = (item: IPickerListItem) => {
-    onSelect(item);
-  };
+  const handleOnClick = (item: IPickerListItem) => onSelect(item);
 
-  const isItemSelected = (key: string) => {
-    return selectedItem && key === selectedItem.key;
-  };
+  const isItemSelected = (key: string) =>
+    selectedItem && key === selectedItem.key;
 
   if (!isOpen) {
     return null;
   }
 
   return (
-    <ul className={baseClass}>
+    <ul className={mergedClassNames}>
       {items.map((item) => {
         if (item.groupHeader) {
           return (

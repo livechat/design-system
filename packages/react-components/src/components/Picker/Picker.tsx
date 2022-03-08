@@ -27,6 +27,7 @@ export const Picker: React.FC<IPickerProps> = ({
   const [isListOpen, setIsListOpen] = React.useState<boolean>(false);
   const [selectedItem, setSelectedItem] =
     React.useState<IPickerListItem | null>(null);
+  const [searchPhrase, setSearchPhrase] = React.useState<string | null>(null);
   const triggerRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -74,6 +75,23 @@ export const Picker: React.FC<IPickerProps> = ({
     onSelect(null);
   };
 
+  const handleOnFilter = (text: string) => setSearchPhrase(text);
+
+  const getOptions = (): IPickerListItem[] => {
+    if (!searchPhrase) {
+      return options;
+    }
+
+    return options.filter((item: IPickerListItem) => {
+      const search = searchPhrase.toLowerCase();
+      const itemName = item.name.toLocaleLowerCase();
+
+      if (itemName.includes(search) && !item.groupHeader) {
+        return item;
+      }
+    });
+  };
+
   return (
     <div ref={triggerRef} className={baseClass}>
       {label && <div className={`${baseClass}__label`}>{label}</div>}
@@ -86,13 +104,15 @@ export const Picker: React.FC<IPickerProps> = ({
           size={size}
           onClick={handleOnTriggerClick}
           onClearClick={handleOnClearClick}
+          onFilter={handleOnFilter}
         >
           {selectedItem ? selectedItem.name : placeholder}
         </Trigger>
         <PickerList
           selectedItem={selectedItem}
-          items={options}
+          items={getOptions()}
           isOpen={isListOpen}
+          size={size}
           onClose={handleOnClose}
           onSelect={handleOnSelect}
         />

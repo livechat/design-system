@@ -56,7 +56,12 @@ $base-class: 'lc-picker-trigger';
     border-color: var(--color-negative-default);
   }
 
-  // &__text, &__clear-icon, &__chevron-icon {
-  //   pointer-events: none;
-  // }
+  &__input {
+    border: 0;
+    color: var(--content-default);
+    flex-grow: 2;
+    font-size: 15px;
+    outline: none;
+    padding: 0;
+  }
 }

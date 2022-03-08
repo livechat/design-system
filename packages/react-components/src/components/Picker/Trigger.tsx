@@ -23,6 +23,7 @@ interface ITriggerProps {
   size?: TriggerSize;
   onClick: () => void;
   onClearClick: () => void;
+  onFilter: (text: string) => void;
 }
 
 export const Trigger: React.FC<ITriggerProps> = ({
@@ -34,6 +35,7 @@ export const Trigger: React.FC<ITriggerProps> = ({
   size = TriggerSize.Medium,
   onClick,
   onClearClick,
+  onFilter,
 }) => {
   const mergedClassNames = cx(
     baseClass,
@@ -52,9 +54,22 @@ export const Trigger: React.FC<ITriggerProps> = ({
     return onClearClick();
   };
 
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    return onFilter(e.target.value);
+  };
+
   return (
     <div className={mergedClassNames} onClick={handleTriggerClick}>
-      <div className={`${baseClass}__text`}>{children}</div>
+      {isOpen ? (
+        <input
+          className={`${baseClass}__input`}
+          placeholder="Select option"
+          onChange={handleOnChange}
+          autoFocus
+        />
+      ) : (
+        <div className={`${baseClass}__text`}>{children}</div>
+      )}
       {isItemSelected && (
         <div
           className={`${baseClass}__clear-icon`}
