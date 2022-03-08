@@ -90,13 +90,15 @@ export const PickerList: React.FC<IPickerListProps> = ({
   };
 
   const onKeyDown = (e: KeyboardEvent) => {
-    e.preventDefault();
-
     if (e.key === KeyCodes.esc) {
+      e.preventDefault();
+
       return onClose();
     }
 
     if (e.key === KeyCodes.arrowUp && indexRef.current > 0) {
+      e.preventDefault();
+
       indexRef.current = getPrevItemIndex();
 
       const targetToScroll = document.getElementById(
@@ -108,6 +110,8 @@ export const PickerList: React.FC<IPickerListProps> = ({
     }
 
     if (e.key === KeyCodes.arrowDown && indexRef.current + 1 < items.length) {
+      e.preventDefault();
+
       indexRef.current = getNextItemIndex();
 
       const targetToScroll = document.getElementById(
@@ -119,6 +123,8 @@ export const PickerList: React.FC<IPickerListProps> = ({
     }
 
     if (e.key === KeyCodes.enter && !items[indexRef.current].disabled) {
+      e.preventDefault();
+      
       return onSelect(items[indexRef.current]);
     }
   };
