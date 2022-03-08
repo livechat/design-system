@@ -9,12 +9,46 @@ type PopoverModifiers = {
 export interface IPopoverProps {
   children?: React.ReactNode;
   className?: string;
-  closeOnEscPress?: boolean;
   modifiers?: PopoverModifiers;
   placement?: PopperCore.Placement;
   isVisible?: boolean;
   triggerRenderer: () => React.ReactNode;
 }
+
+const buildPopperModifiers = (modifiers: PopoverModifiers) => {
+  const { offset, flip, preventOverflow } = modifiers;
+
+  const calculatedOffset = [
+    {
+      name: 'offset',
+      options: {
+        offset: [0, 4],
+        ...(offset?.options || {}),
+      },
+    },
+  ];
+
+  const calculateFlip = [
+    {
+      name: 'flip',
+      options: {
+        ...(flip?.options || {}),
+      },
+    },
+  ];
+
+  const calculatePreventOverflow = [
+    {
+      name: 'preventOverlow',
+      options: {
+        rootBoundary: 'viewport',
+        ...(preventOverflow || {}),
+      },
+    },
+  ];
+
+  return [...calculatedOffset, ...calculateFlip, ...calculatePreventOverflow];
+};
 
 export const Popover: React.FC<IPopoverProps> = (props) => {
   const {
@@ -22,7 +56,6 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
     children,
     className,
     placement,
-    closeOnEscPress,
     isVisible = false,
   } = props;
 
@@ -46,7 +79,7 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
   }
 
   const handleHideOnEscape = (event: KeyboardEvent) => {
-    if (event.key === 'Escape' && closeOnEscPress) {
+    if (event.key === 'Escape') {
       setVisibility(false);
     }
   };
@@ -60,41 +93,6 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
     };
   }, []);
 
-  const buildPopperModifiers = (modifiers: PopoverModifiers) => {
-    const { offset, flip, preventOverflow } = modifiers;
-
-    const calculatedOffset = [
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 4],
-          ...(offset?.options || {}),
-        },
-      },
-    ];
-
-    const calculateFlip = [
-      {
-        name: 'flip',
-        options: {
-          ...(flip?.options || {}),
-        },
-      },
-    ];
-
-    const calculatePreventOverflow = [
-      {
-        name: 'preventOverlow',
-        options: {
-          rootBoundary: 'viewport',
-          ...(preventOverflow || {}),
-        },
-      },
-    ];
-
-    return [...calculatedOffset, ...calculateFlip, ...calculatePreventOverflow];
-  };
-
   const { styles, attributes } = usePopper(
     rendererRef.current,
     popperRef.current,
@@ -104,9 +102,10 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
     }
   );
 
-  const mergedClassNames = cx(
-    `${className ? className : ''} popover ${visible ? 'popover__visible' : ''}`
-  );
+  const mergedClassNames = cx('lc-popover', {
+    [className ]: className,
+    'lc-popover--visible': visible,
+  });
 
   return (
     <>
@@ -118,13 +117,6 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
         {...attributes.popper}
       >
         {children}
-        <div
-          data-popper-placement={
-            attributes.popper
-              ? attributes.popper['data-popper-placement']
-              : 'bottom'
-          }
-        />
       </div>
     </>
   );

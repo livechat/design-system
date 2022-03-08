@@ -48,7 +48,6 @@ const PopoverExample: React.FC<IPopoverExample> = ({
       <PopoverComponent
         placement={placement}
         isVisible={isVisible}
-        closeOnEscPress
         triggerRenderer={() => (
           <div>
             <Button

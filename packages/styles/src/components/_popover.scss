@@ -1,4 +1,4 @@
-$base-class: 'popover';
+$base-class: 'lc-popover';
 
 .#{$base-class} {
   background-color: var(--surface-basic-default);
@@ -12,7 +12,7 @@ $base-class: 'popover';
     outline: none;
   }
 
-  &__visible {
+  &--visible {
     display: block;
   }
 }
