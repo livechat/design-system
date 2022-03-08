@@ -32,16 +32,16 @@ export const PickerList: React.FC<IPickerListProps> = ({
   onClose,
   onSelect,
 }) => {
+  const mergedClassNames = cx(
+    baseClass,
+    `${baseClass}--${size}`
+  );
+
   const [selectedItemKey, setSelectedItemKey] = React.useState<string | null>(
     null
   );
   const indexRef = React.useRef(-1);
   const lastIndexRef = React.useRef(0);
-
-  const mergedClassNames = cx(
-    baseClass
-    // `${baseClass}--${size}`,
-  );
 
   React.useEffect(() => {
     document.addEventListener('keydown', onKeyDown);
