@@ -32,17 +32,16 @@ export const PickerList: React.FC<IPickerListProps> = ({
   onClose,
   onSelect,
 }) => {
-  const mergedClassNames = cx(
-    baseClass,
-    `${baseClass}--${size}`
-  );
+  /* eslint-disable */
+  const mergedClassNames = cx(baseClass, `${baseClass}--${size}`);
+  /* eslint-enable */
 
   const [selectedItemKey, setSelectedItemKey] = React.useState<string | null>(
     null
   );
   const indexRef = React.useRef(-1);
   const lastIndexRef = React.useRef(0);
-  const listRef = React.useRef<HTMLUListElement>();
+  const listRef = React.useRef<HTMLUListElement>(null);
 
   React.useEffect(() => {
     document.addEventListener('keydown', onKeyDown);
@@ -60,25 +59,19 @@ export const PickerList: React.FC<IPickerListProps> = ({
     );
 
     if (focusedElement instanceof HTMLElement) {
-      const {
-        height: ulHeight,
-        top: ulTop
-      } = listRef.current.getBoundingClientRect();
+      const { height: ulHeight, top: ulTop } =
+        listRef.current.getBoundingClientRect();
 
-      const {
-        height: itemHeigth,
-        top: itemTop
-      } = focusedElement.getBoundingClientRect();
+      const { height: itemHeigth, top: itemTop } =
+        focusedElement.getBoundingClientRect();
 
       const relativeTop = itemTop + itemHeigth - ulTop;
       const itemOfsetTop = focusedElement.offsetTop;
 
       if (relativeTop > ulHeight) {
-        listRef.current.scrollTop =
-          itemOfsetTop - ulHeight + itemHeigth;
+        listRef.current.scrollTop = itemOfsetTop - ulHeight + itemHeigth;
       } else if (itemTop < ulTop) {
-        listRef.current.scrollTop =
-          itemOfsetTop - (itemOfsetTop % itemHeigth);
+        listRef.current.scrollTop = itemOfsetTop - (itemOfsetTop % itemHeigth);
       }
     }
   };
@@ -150,7 +143,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
     if (e.key === KeyCodes.enter && !items[indexRef.current].disabled) {
       e.preventDefault();
-      
+
       return onSelect(items[indexRef.current]);
     }
   };
