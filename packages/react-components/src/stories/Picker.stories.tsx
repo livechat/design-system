@@ -5,7 +5,6 @@ import {
   IPickerProps,
   Picker as PickerComponent,
 } from '../components/Picker/Picker';
-import { TriggerSize } from '../components/Picker/Trigger';
 
 export default {
   title: 'Components/Picker',
@@ -26,7 +25,65 @@ const StoryTemplate: Story<IPickerProps> = (args: IPickerProps) => {
 export const Picker = StoryTemplate.bind({});
 Picker.args = {
   options: [
-    { key: 'something', name: 'Free option' },
+    { key: 'one', name: 'Option one' },
+    { key: 'two', name: 'Option two' },
+    { key: 'three', name: 'Option three' },
+    { key: 'four', name: 'Option four' },
+    { key: 'five', name: 'Option five' },
+    { key: 'six', name: 'Option six' },
+    { key: 'seven', name: 'Option seven' },
+  ],
+  onSelect: (item) => alert(item),
+};
+
+export const PickerWithLabel = StoryTemplate.bind({});
+PickerWithLabel.args = {
+  options: [
+    { key: 'one', name: 'Option one' },
+    { key: 'two', name: 'Option two' },
+    { key: 'three', name: 'Option three' },
+    { key: 'four', name: 'Option four' },
+    { key: 'five', name: 'Option five' },
+    { key: 'six', name: 'Option six' },
+    { key: 'seven', name: 'Option seven' },
+  ],
+  onSelect: (item) => alert(item),
+  label: 'Picker',
+};
+
+export const PickerWithError = StoryTemplate.bind({});
+PickerWithError.args = {
+  options: [
+    { key: 'one', name: 'Option one' },
+    { key: 'two', name: 'Option two' },
+    { key: 'three', name: 'Option three' },
+    { key: 'four', name: 'Option four' },
+    { key: 'five', name: 'Option five' },
+    { key: 'six', name: 'Option six' },
+    { key: 'seven', name: 'Option seven' },
+  ],
+  onSelect: (item) => alert(item),
+  error: 'Error message',
+};
+
+export const DisabledPicker = StoryTemplate.bind({});
+DisabledPicker.args = {
+  options: [
+    { key: 'one', name: 'Option one' },
+    { key: 'two', name: 'Option two' },
+    { key: 'three', name: 'Option three' },
+    { key: 'four', name: 'Option four' },
+    { key: 'five', name: 'Option five' },
+    { key: 'six', name: 'Option six' },
+    { key: 'seven', name: 'Option seven' },
+  ],
+  onSelect: (item) => alert(item),
+  disabled: true,
+};
+
+export const PickerWithGroupedOptions = StoryTemplate.bind({});
+PickerWithGroupedOptions.args = {
+  options: [
     { key: 'groupA', name: 'Group A title header', groupHeader: true },
     { key: 'one', name: 'Option one' },
     { key: 'two', name: 'Option two' },
@@ -37,7 +94,5 @@ Picker.args = {
     { key: 'six', name: 'Option six', disabled: true },
     { key: 'seven', name: 'Option seven', disabled: true },
   ],
-  size: TriggerSize.Medium,
-  label: 'Picker',
-  onSelect: (item) => console.log(item),
+  onSelect: (item) => alert(item),
 };
