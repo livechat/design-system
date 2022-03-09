@@ -32,6 +32,9 @@ Picker.args = {
     { key: 'five', name: 'Option five' },
     { key: 'six', name: 'Option six' },
     { key: 'seven', name: 'Option seven' },
+    { key: 'eight', name: 'Option eight' },
+    { key: 'nine', name: 'Option nine' },
+    { key: 'ten', name: 'Option ten' },
   ],
   onSelect: (item) => alert(item),
 };

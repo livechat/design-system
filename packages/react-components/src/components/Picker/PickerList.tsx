@@ -42,12 +42,46 @@ export const PickerList: React.FC<IPickerListProps> = ({
   );
   const indexRef = React.useRef(-1);
   const lastIndexRef = React.useRef(0);
+  const listRef = React.useRef<HTMLUListElement>();
 
   React.useEffect(() => {
     document.addEventListener('keydown', onKeyDown);
 
     return () => document.removeEventListener('keydown', onKeyDown);
   }, []);
+
+  const scrollItems = () => {
+    if (!listRef.current) {
+      return;
+    }
+
+    const focusedElement = listRef.current.querySelector(
+      `.${itemClassName}--hovered`
+    );
+
+    if (focusedElement instanceof HTMLElement) {
+      const {
+        height: ulHeight,
+        top: ulTop
+      } = listRef.current.getBoundingClientRect();
+
+      const {
+        height: itemHeigth,
+        top: itemTop
+      } = focusedElement.getBoundingClientRect();
+
+      const relativeTop = itemTop + itemHeigth - ulTop;
+      const itemOfsetTop = focusedElement.offsetTop;
+
+      if (relativeTop > ulHeight) {
+        listRef.current.scrollTop =
+          itemOfsetTop - ulHeight + itemHeigth;
+      } else if (itemTop < ulTop) {
+        listRef.current.scrollTop =
+          itemOfsetTop - (itemOfsetTop % itemHeigth);
+      }
+    }
+  };
 
   const isHeaderOrDisabled = (i: number) =>
     !!items[i] && (items[i].disabled || items[i].groupHeader);
@@ -101,12 +135,8 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
       indexRef.current = getPrevItemIndex();
 
-      const targetToScroll = document.getElementById(
-        items[indexRef.current].key
-      );
-      targetToScroll?.scrollIntoView();
-
-      return setSelectedItemKey(items[indexRef.current].key);
+      setSelectedItemKey(items[indexRef.current].key);
+      scrollItems();
     }
 
     if (e.key === KeyCodes.arrowDown && indexRef.current + 1 < items.length) {
@@ -114,12 +144,8 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
       indexRef.current = getNextItemIndex();
 
-      const targetToScroll = document.getElementById(
-        items[indexRef.current].key
-      );
-      targetToScroll?.scrollIntoView();
-
-      return setSelectedItemKey(items[indexRef.current].key);
+      setSelectedItemKey(items[indexRef.current].key);
+      scrollItems();
     }
 
     if (e.key === KeyCodes.enter && !items[indexRef.current].disabled) {
@@ -144,7 +170,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   }
 
   return (
-    <ul className={mergedClassNames}>
+    <ul ref={listRef} className={mergedClassNames}>
       {items.map((item) => {
         if (item.groupHeader) {
           return (
