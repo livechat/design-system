@@ -70,7 +70,7 @@ export const Trigger: React.FC<ITriggerProps> = ({
       ) : (
         <div className={`${baseClass}__text`}>{children}</div>
       )}
-      {isItemSelected && (
+      {isItemSelected && !isDisabled && (
         <div
           className={`${baseClass}__clear-icon`}
           onClick={handleOnClearClick}

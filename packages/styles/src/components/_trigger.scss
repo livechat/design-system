@@ -57,6 +57,7 @@ $base-class: 'lc-picker-trigger';
   }
 
   &__input {
+    background: none;
     border: 0;
     color: var(--content-default);
     flex-grow: 2;

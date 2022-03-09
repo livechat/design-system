@@ -32,6 +32,7 @@ export const Picker: React.FC<IPickerProps> = ({
 
   React.useEffect(() => {
     if (!isListOpen) {
+      setSearchPhrase(null);
       return document.removeEventListener('click', onDocumentClick);
     }
 
