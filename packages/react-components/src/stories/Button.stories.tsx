@@ -4,12 +4,12 @@ import { ComponentMeta } from '@storybook/react';
 import * as MaterialIcons from '@livechat/design-system-icons/dist/material';
 
 import { Icon } from '../components/Icon';
-import { Button, Props as ButtonProps } from '../components/Button';
+import { Button, ButtonProps } from '../components/Button';
 
 const icons = Object.fromEntries(
   Object.entries(MaterialIcons).map(([key, source]) => [
     key,
-    <Icon source={source} />,
+    <Icon source={source as React.FC} />,
   ])
 );
 
@@ -57,35 +57,54 @@ export const kinds = (): React.ReactElement => (
       <Button kind="secondary">Secondary</Button>
       <Button kind="destructive">Destructive</Button>
       <Button kind="text">Text</Button>
+      <Button kind="plain">Plain</Button>
+      <Button kind="plain-light">Plain light</Button>
     </div>
+  </div>
+);
+
+export const states = () => (
+  <div>
     <div className="spacer">
-      <Button disabled>Basic</Button>
+      <Button disabled>Disabled</Button>
       <Button disabled kind="primary">
-        Primary
+        Disabled
       </Button>
       <Button disabled kind="secondary">
-        Secondary
+        Disabled
       </Button>
       <Button disabled kind="destructive">
-        Destructive
+        Disabled
       </Button>
       <Button disabled kind="text">
-        Text
+        Disabled
+      </Button>
+      <Button disabled kind="plain">
+        Disabled
+      </Button>
+      <Button disabled kind="plain-light">
+        Disabled
       </Button>
     </div>
     <div className="spacer">
-      <Button loading>Basic</Button>
+      <Button loading>Loading</Button>
       <Button loading kind="primary">
-        Primary
+        Loading
       </Button>
       <Button loading kind="secondary">
-        Secondary
+        Loading
       </Button>
       <Button loading kind="destructive">
-        Destructive
+        Loading
       </Button>
       <Button loading kind="text">
-        Text
+        Loading
+      </Button>
+      <Button loading kind="plain">
+        Loading
+      </Button>
+      <Button loading kind="plain-light">
+        Loading
       </Button>
     </div>
   </div>
@@ -124,20 +143,10 @@ export const sizes = (): React.ReactElement => (
   </>
 );
 
-export const loading = (): React.ReactElement => (
-  <div className="spacer">
-    <Button loading>Loading Button</Button>
-    <Button loading kind="primary">
-      Loading Button
-    </Button>
-    <Button loading kind="secondary">
-      Loading Button
-    </Button>
-    <Button loading kind="destructive">
-      Loading Button
-    </Button>
-    <Button loading loaderLabel="Processing" kind="text">
-      Loading Button
-    </Button>
-  </div>
+export const buttonAsLink = (args): React.ReactElement => (
+  <Button href="https://livechat.com" target="_blank" kind="primary" {...args}>
+    Button as an external link to livechat.com
+  </Button>
 );
+
+buttonAsLink.args = { ...button.args, href: 'https://livechat.com' };

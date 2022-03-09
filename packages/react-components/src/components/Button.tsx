@@ -4,9 +4,15 @@ import { Loader } from './Loader';
 
 export type ButtonSize = 'compact' | 'medium' | 'large';
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  kind?: 'basic' | 'primary' | 'secondary' | 'destructive' | 'text';
+export type ButtonProps = {
+  kind?:
+    | 'basic'
+    | 'primary'
+    | 'secondary'
+    | 'destructive'
+    | 'text'
+    | 'plain'
+    | 'plain-light';
   size?: ButtonSize;
   disabled?: boolean;
   loading?: boolean;
@@ -14,7 +20,8 @@ export interface ButtonProps
   loaderLabel?: string;
   icon?: React.ReactElement;
   iconPosition?: 'left' | 'right';
-}
+} & React.ButtonHTMLAttributes<HTMLButtonElement> &
+  React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const baseClass = 'lc-btn';
 
@@ -30,9 +37,12 @@ export const Button: React.FC<ButtonProps> = ({
   loaderLabel,
   className,
   children,
+  href,
   ...props
 }) => {
   const isDisabled = loading || disabled;
+
+  const Component = href ? 'a' : 'button';
 
   const mergedClassNames = cx(
     className,
@@ -43,14 +53,16 @@ export const Button: React.FC<ButtonProps> = ({
       [`${baseClass}--loading`]: loading,
       [`${baseClass}--full-width`]: fullWidth,
       [`${baseClass}--icon-only`]: !children && icon,
+      [`${baseClass}--disabled`]: isDisabled,
     }
   );
 
   return (
-    <button
+    <Component
       className={mergedClassNames}
       disabled={isDisabled}
       type={type}
+      href={isDisabled ? undefined : href}
       {...props}
     >
       {loading && (
@@ -69,6 +81,6 @@ export const Button: React.FC<ButtonProps> = ({
           disabled,
         })}
       <div className={`${baseClass}__content`}>{children}</div>
-    </button>
+    </Component>
   );
 };

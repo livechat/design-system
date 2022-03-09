@@ -89,4 +89,12 @@ describe('<Button> component', () => {
 
     expect(btnEl).toHaveClass('lc-btn--icon-only');
   });
+
+  it('should render as an anchor element if href is passed', () => {
+    const { btnEl: linkEl } = renderButton({ href: 'https://example.com' });
+    const { btnEl } = renderButton({ href: '' });
+
+    expect((btnEl as HTMLElement).tagName).toBe('BUTTON');
+    expect((linkEl as HTMLElement).tagName).toBe('A');
+  });
 });
