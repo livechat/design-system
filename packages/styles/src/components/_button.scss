@@ -9,8 +9,8 @@ $base-class: 'lc-btn';
   display: inline-flex;
   font-size: 15px;
   font-weight: 600;
+  height: 36px;
   justify-content: center;
-  min-height: 36px;
   min-width: 36px;
   padding: 8px 16px;
   position: relative;
@@ -135,8 +135,29 @@ $base-class: 'lc-btn';
     }
   }
 
+  &--compact {
+    height: 32px;
+    min-width: 32px;
+    padding: 6px 16px;
+
+    &.#{$base-class}--icon-only {
+      padding: 4px;
+    }
+  }
+
+  &--large {
+    height: 42px;
+    min-width: 42px;
+    padding: 11px 16px;
+
+    &.#{$base-class}--icon-only {
+      padding: 9px;
+    }
+  }
+
   &--text,
-  &--link {
+  &--plain,
+  &--plain-light {
     background-color: transparent;
     border-color: transparent;
     color: var(--color-action-default);
@@ -150,9 +171,18 @@ $base-class: 'lc-btn';
     }
   }
 
-  &--link {
+  &--plain-light {
+    font-weight: 400;
+  }
+
+  &--plain {
+    font-weight: 600;
+  }
+
+  &--plain,
+  &--plain-light {
     border: 0;
-    min-height: auto;
+    height: auto;
     min-width: auto;
     padding: 0;
 
@@ -164,26 +194,6 @@ $base-class: 'lc-btn';
 
     &:disabled {
       text-decoration: none;
-    }
-  }
-
-  &--compact {
-    min-height: 32px;
-    min-width: 32px;
-    padding: 6px 16px;
-
-    &.#{$base-class}--icon-only {
-      padding: 4px;
-    }
-  }
-
-  &--large {
-    min-height: 42px;
-    min-width: 42px;
-    padding: 11px 16px;
-
-    &.#{$base-class}--icon-only {
-      padding: 9px;
     }
   }
 

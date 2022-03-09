@@ -5,7 +5,14 @@ import { Loader } from './Loader';
 export type ButtonSize = 'compact' | 'medium' | 'large';
 
 export type ButtonProps = {
-  kind?: 'basic' | 'primary' | 'secondary' | 'destructive' | 'text' | 'link';
+  kind?:
+    | 'basic'
+    | 'primary'
+    | 'secondary'
+    | 'destructive'
+    | 'text'
+    | 'plain'
+    | 'plain-light';
   size?: ButtonSize;
   disabled?: boolean;
   loading?: boolean;

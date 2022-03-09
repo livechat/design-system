@@ -13,6 +13,16 @@
     &--active {
       background-color: var(--surface-basic-active);
     }
+
+    &--compact {
+      height: 24px;
+    }
+    &--medium {
+      height: 28px;
+    }
+    &--large {
+      height: 34px;
+    }
   }
 
   .lc-btn + .lc-btn {
