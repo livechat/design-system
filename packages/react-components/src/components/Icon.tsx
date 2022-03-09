@@ -71,6 +71,7 @@ export interface IIconProps {
   iconType?: IconTypeName;
   disabled?: boolean;
   className?: string;
+  customColor?: string;
 }
 
 const baseClass = 'lc-icon';
@@ -82,6 +83,7 @@ export const Icon: React.FC<IIconProps> = (props) => {
     iconType = IconTypeName.Primary,
     disabled,
     className,
+    customColor,
     ...restProps
   } = props;
   let filledColor = IconColorMapper[iconType];
@@ -92,6 +94,7 @@ export const Icon: React.FC<IIconProps> = (props) => {
 
   const GeneratedIcon = React.createElement(source, {
     ...IconSize[size],
+    color: customColor,
   });
 
   const mergedClassNames = cx(
