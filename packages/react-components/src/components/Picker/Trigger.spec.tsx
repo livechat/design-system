@@ -100,4 +100,14 @@ describe('<Trigger> component', () => {
     fireEvent.change(getByRole('textbox'), { target: { value: 'option' } });
     expect(mockedFunction).toHaveBeenCalledWith('option');
   });
+
+  it('shouldnt render clear button if isRequired', () => {
+    const { queryByTestId } = renderComponent({
+      ...defaultProps,
+      isItemSelected: true,
+      isRequired: true,
+    });
+
+    expect(queryByTestId(`${baseClass}__clear-icon`)).toBeNull();
+  });
 });

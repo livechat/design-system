@@ -20,6 +20,7 @@ export interface ITriggerProps {
   isError?: boolean;
   isItemSelected: boolean;
   isOpen: boolean;
+  isRequired?: boolean;
   size?: TriggerSize;
   onClick: () => void;
   onClearClick: () => void;
@@ -32,6 +33,7 @@ export const Trigger: React.FC<ITriggerProps> = ({
   isError,
   isItemSelected,
   isOpen,
+  isRequired,
   size = TriggerSize.Medium,
   onClick,
   onClearClick,
@@ -70,7 +72,7 @@ export const Trigger: React.FC<ITriggerProps> = ({
       ) : (
         <div className={`${baseClass}__text`}>{children}</div>
       )}
-      {isItemSelected && !isDisabled && (
+      {isItemSelected && !isDisabled && !isRequired && (
         <div
           data-testid={`${baseClass}__clear-icon`}
           className={`${baseClass}__clear-icon`}
