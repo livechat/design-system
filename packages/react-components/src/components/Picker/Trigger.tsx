@@ -15,7 +15,7 @@ export const enum TriggerSize {
   Large = 'large',
 }
 
-interface ITriggerProps {
+export interface ITriggerProps {
   isDisabled?: boolean;
   isError?: boolean;
   isItemSelected: boolean;
@@ -72,6 +72,7 @@ export const Trigger: React.FC<ITriggerProps> = ({
       )}
       {isItemSelected && !isDisabled && (
         <div
+          data-testid={`${baseClass}__clear-icon`}
           className={`${baseClass}__clear-icon`}
           onClick={handleOnClearClick}
         >
