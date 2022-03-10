@@ -76,4 +76,14 @@ describe('<PickerList> component', () => {
 
     expect(getByText('Option three')).toHaveClass(`${itemClassName}--disabled`);
   });
+
+  it('should display empty state if no filter result', () => {
+    const { getByText } = renderComponent({
+      ...defaultProps,
+      isOpen: true,
+      items: [],
+    });
+
+    expect(getByText('No results found')).toBeVisible();
+  });
 });

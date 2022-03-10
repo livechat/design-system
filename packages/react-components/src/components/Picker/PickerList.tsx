@@ -33,7 +33,11 @@ export const PickerList: React.FC<IPickerListProps> = ({
   onSelect,
 }) => {
   /* eslint-disable */
-  const mergedClassNames = cx(baseClass, `${baseClass}--${size}`);
+  const mergedClassNames = cx(
+    baseClass,
+    `${baseClass}--${size}`,
+    items.length === 0 && `${baseClass}__no-results`
+  );
   /* eslint-enable */
 
   const [selectedItemKey, setSelectedItemKey] = React.useState<string | null>(
@@ -160,6 +164,10 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
   if (!isOpen) {
     return null;
+  }
+
+  if (items.length === 0) {
+    return <div className={mergedClassNames}>No results found</div>;
   }
 
   return (

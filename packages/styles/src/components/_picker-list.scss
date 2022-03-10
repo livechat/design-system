@@ -27,6 +27,13 @@ $base-class: 'lc-picker-list';
     top: 46px;
   }
 
+  &__no-results {
+    align-items: center;
+    display: flex;
+    height: 36px;
+    justify-content: center;
+  }
+
   &__item {
     align-items: center;
     cursor: pointer;
