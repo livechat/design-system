@@ -36,7 +36,7 @@ Picker.args = {
     { key: 'nine', name: 'Option nine' },
     { key: 'ten', name: 'Option ten' },
   ],
-  onSelect: (item) => alert(item),
+  onSelect: (item) => console.log(item),
 };
 
 export const PickerWithLabel = StoryTemplate.bind({});
@@ -50,7 +50,7 @@ PickerWithLabel.args = {
     { key: 'six', name: 'Option six' },
     { key: 'seven', name: 'Option seven' },
   ],
-  onSelect: (item) => alert(item),
+  onSelect: (item) => console.log(item),
   label: 'Picker',
 };
 
@@ -65,7 +65,7 @@ PickerWithError.args = {
     { key: 'six', name: 'Option six' },
     { key: 'seven', name: 'Option seven' },
   ],
-  onSelect: (item) => alert(item),
+  onSelect: (item) => console.log(item),
   error: 'Error message',
 };
 
@@ -80,7 +80,7 @@ DisabledPicker.args = {
     { key: 'six', name: 'Option six' },
     { key: 'seven', name: 'Option seven' },
   ],
-  onSelect: (item) => alert(item),
+  onSelect: (item) => console.log(item),
   disabled: true,
 };
 
@@ -97,5 +97,5 @@ PickerWithGroupedOptions.args = {
     { key: 'six', name: 'Option six', disabled: true },
     { key: 'seven', name: 'Option seven', disabled: true },
   ],
-  onSelect: (item) => alert(item),
+  onSelect: (item) => console.log(item),
 };

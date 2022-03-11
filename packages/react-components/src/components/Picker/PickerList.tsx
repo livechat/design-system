@@ -32,13 +32,11 @@ export const PickerList: React.FC<IPickerListProps> = ({
   onClose,
   onSelect,
 }) => {
-  /* eslint-disable */
   const mergedClassNames = cx(
     baseClass,
-    `${baseClass}--${size}`,
+    `${baseClass}--${size as string}`,
     items.length === 0 && `${baseClass}__no-results`
   );
-  /* eslint-enable */
 
   const [selectedItemKey, setSelectedItemKey] = React.useState<string | null>(
     null

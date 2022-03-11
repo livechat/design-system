@@ -33,33 +33,22 @@ export const Picker: React.FC<IPickerProps> = ({
   const triggerRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    if (!isListOpen) {
-      setSearchPhrase(null);
-      return document.removeEventListener('click', onDocumentClick);
-    }
+    const onDocumentClick = (e) =>
+      e.target.contains(triggerRef.current) &&
+      isListOpen &&
+      setIsListOpen(false);
 
-    return document.addEventListener('click', onDocumentClick);
+    document.addEventListener('click', onDocumentClick);
+
+    return () => document.removeEventListener('click', onDocumentClick);
   }, [isListOpen]);
-
-  const onDocumentClick = React.useCallback(
-    (e) => {
-      if (isListOpen && e.target.contains(triggerRef.current)) {
-        return setIsListOpen(false);
-      }
-    },
-    [isListOpen]
-  );
 
   const handleOnTriggerClick = () => {
     if (disabled) {
       return;
     }
 
-    if (isListOpen) {
-      return setIsListOpen(false);
-    }
-
-    return setIsListOpen(true);
+    return setIsListOpen((prev) => !prev);
   };
 
   const handleOnClose = () => {
