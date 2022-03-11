@@ -1,4 +1,5 @@
 import * as React from 'react';
+import cx from 'classnames';
 import { Error } from '@livechat/design-system-icons/dist/material';
 import { Trigger, TriggerSize } from './Trigger';
 import { IPickerListItem, PickerList } from './PickerList';
@@ -89,7 +90,16 @@ export const Picker: React.FC<IPickerProps> = ({
 
   return (
     <div ref={triggerRef} className={baseClass}>
-      {label && <div className={`${baseClass}__label`}>{label}</div>}
+      {label && (
+        <div
+          className={cx(
+            `${baseClass}__label`,
+            disabled && `${baseClass}__label--disabled`
+          )}
+        >
+          {label}
+        </div>
+      )}
       <div className={`${baseClass}__container`}>
         <Trigger
           isError={!!error}
