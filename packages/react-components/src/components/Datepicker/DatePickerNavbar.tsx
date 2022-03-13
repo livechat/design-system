@@ -30,6 +30,20 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
     toMonth,
   } = props;
 
+  // prev and next button handler are passed by react-day-picker, added check to be safe
+  // see: https://github.com/gpbl/react-day-picker/blob/v7/src/DayPicker.js#L529
+  const handlePrevClick = () => {
+    if (typeof onPreviousClick === 'function') {
+      onPreviousClick();
+    }
+  };
+
+  const handleNextClick = () => {
+    if (typeof onNextClick === 'function') {
+      onNextClick();
+    }
+  };
+
   const handlePrevYearClick = () => {
     if (!fromMonth) {
       const newMonth = subMonths(month, 12);
@@ -77,7 +91,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
             [classNames.navButtonPrev]: true,
             [classNames.navButtonInteractionDisabled]: !showPreviousButton,
           })}
-          onClick={onPreviousClick}
+          onClick={handlePrevClick}
         >
           <Icon source={ChevronLeft} iconType={IconTypeName.Subtle} />
         </button>
@@ -88,7 +102,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
             [classNames.navButtonNext]: true,
             [classNames.navButtonInteractionDisabled]: !showNextButton,
           })}
-          onClick={onNextClick}
+          onClick={handleNextClick}
         >
           <Icon source={ChevronRight} iconType={IconTypeName.Subtle} />
         </button>
