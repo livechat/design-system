@@ -17,8 +17,8 @@ export interface IDatePickerNavbarProps {
   numberOfMonths?: number;
   className?: string;
   classNames: ClassNames;
-  onPreviousClick: () => void;
-  onNextClick: () => void;
+  onPreviousClick?: () => void;
+  onNextClick?: () => void;
   onMonthChange: (newMonth: Date) => void;
 }
 

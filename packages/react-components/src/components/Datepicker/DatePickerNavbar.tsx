@@ -30,9 +30,6 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
     toMonth,
   } = props;
 
-  const handlePrevClick = () => onPreviousClick();
-  const handleNextClick = () => onNextClick();
-
   const handlePrevYearClick = () => {
     if (!fromMonth) {
       const newMonth = subMonths(month, 12);
@@ -80,7 +77,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
             [classNames.navButtonPrev]: true,
             [classNames.navButtonInteractionDisabled]: !showPreviousButton,
           })}
-          onClick={handlePrevClick}
+          onClick={onPreviousClick}
         >
           <Icon source={ChevronLeft} iconType={IconTypeName.Subtle} />
         </button>
@@ -91,7 +88,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
             [classNames.navButtonNext]: true,
             [classNames.navButtonInteractionDisabled]: !showNextButton,
           })}
-          onClick={handleNextClick}
+          onClick={onNextClick}
         >
           <Icon source={ChevronRight} iconType={IconTypeName.Subtle} />
         </button>
