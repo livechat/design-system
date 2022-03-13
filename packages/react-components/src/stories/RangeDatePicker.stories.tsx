@@ -78,7 +78,7 @@ const StoryTemplate: Story<IRangeDatePickerProps> = (
       selectedOption.value.from
     ) {
       alert(
-        `Selected dates - from: ${selectedOption.value.from.toISOString()}, to: ${selectedOption.value.to.toISOString()}`
+        `Selected dates - from: ${selectedOption.value.from.toDateString()}, to: ${selectedOption.value.to.toDateString()}`
       );
     }
   };

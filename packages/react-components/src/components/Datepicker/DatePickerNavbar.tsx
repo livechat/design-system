@@ -13,23 +13,9 @@ import {
 } from '@livechat/design-system-icons/dist/material';
 import cx from 'classnames';
 import Icon, { IconTypeName } from '../Icon';
-import { ClassNames } from 'react-day-picker/types/ClassNames';
+import { IDatePickerNavbarProps } from './types';
 
-export interface IProps {
-  showPreviousButton?: boolean;
-  showNextButton?: boolean;
-  month: Date;
-  fromMonth?: Date;
-  toMonth?: Date;
-  numberOfMonths?: number;
-  className?: string;
-  classNames: ClassNames;
-  onPreviousClick: () => void;
-  onNextClick: () => void;
-  onMonthChange: (newMonth: Date) => void;
-}
-
-const DatePickerNavbar: React.FC<IProps> = (props) => {
+const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
   const {
     onPreviousClick,
     onMonthChange,
