@@ -78,6 +78,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
     <div className={className}>
       <div style={{ display: 'flex' }}>
         <button
+          data-testid="date-picker-prev-year-button"
           className={cx({
             [classNames.navButtonPrev]: true,
             [classNames.navButtonInteractionDisabled]: !showPreviousButton,
@@ -87,6 +88,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
           <Icon source={ChevronDoubleLeft} iconType={IconTypeName.Subtle} />
         </button>
         <button
+          data-testid="date-picker-prev-month-button"
           className={cx({
             [classNames.navButtonPrev]: true,
             [classNames.navButtonInteractionDisabled]: !showPreviousButton,
@@ -98,6 +100,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
       </div>
       <div style={{ display: 'flex' }}>
         <button
+          data-testid="date-picker-next-month-button"
           className={cx({
             [classNames.navButtonNext]: true,
             [classNames.navButtonInteractionDisabled]: !showNextButton,
@@ -107,6 +110,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
           <Icon source={ChevronRight} iconType={IconTypeName.Subtle} />
         </button>
         <button
+          data-testid="date-picker-next-year-button"
           className={cx({
             [classNames.navButtonNext]: true,
             [classNames.navButtonInteractionDisabled]: !showNextButton,
