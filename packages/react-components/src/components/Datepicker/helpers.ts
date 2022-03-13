@@ -26,16 +26,26 @@ export const isDateWithinRange = (
   return true;
 };
 
-export const calculateDatepickerMonth = (
-  date: Date,
-  toMonth?: Date,
-  forcePreviousMonth?: boolean
+export const calculateDatePickerMonth = (
+  initialFromDate?: Date,
+  initialToDate?: Date,
+  toMonth?: Date
 ): Date => {
-  if (forcePreviousMonth || (toMonth && isSameMonth(date, toMonth))) {
-    return subMonths(date, 1);
+  if (initialToDate) {
+    const forcePreviousMonth =
+      initialFromDate && !isSameMonth(initialFromDate, initialToDate);
+
+    if (
+      forcePreviousMonth ||
+      (toMonth && isSameMonth(initialToDate, toMonth))
+    ) {
+      return subMonths(initialToDate, 1);
+    }
+
+    return initialToDate;
   }
 
-  return date;
+  return subMonths(toMonth || new Date(), 1);
 };
 
 export const getRangeDatePickerModifiers = (
@@ -102,18 +112,18 @@ export const getInitialStateFromProps = (
   const state: Partial<IRangeDatePickerState> = {};
 
   if (props.initialSelectedItemKey) {
-    const selectedItem = getSelectedOption(
+    const selectedOption = getSelectedOption(
       props.initialSelectedItemKey,
       props.options
     );
 
-    if (!selectedItem) {
+    if (!selectedOption) {
       return {};
     }
 
     state.selectedItem = props.initialSelectedItemKey;
 
-    if (!selectedItem.isManual) {
+    if (!selectedOption.isManual) {
       return state;
     }
 
