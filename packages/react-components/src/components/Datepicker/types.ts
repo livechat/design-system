@@ -5,6 +5,8 @@ export enum RangeDatePickerAction {
   NEW_SELECTED_ITEM = 'NEW_SELECTED_ITEM',
   NEW_TEMPORARY_TO_VALUE = 'NEW_TEMPORARY_TO_VALUE',
   CLEAR = 'CLEAR',
+  SET_FROM = 'SET_FROM',
+  SET_TO = 'SET_TO',
   SELECT_FIRST_DAY = 'SELECT_FIRST_DAY',
   SELECT_SECOND_DAY_AS_FROM = 'SELECT_SECOND_DAY_AS_FROM',
   SELECT_SECOND_DAY_AS_TO = 'SELECT_SECOND_DAY_AS_TO',
@@ -19,9 +21,6 @@ export type IRangeDatePickerReducerAction =
       };
     }
   | {
-      type: RangeDatePickerAction.CLEAR;
-    }
-  | {
       type:
         | RangeDatePickerAction.NEW_TEMPORARY_TO_VALUE
         | RangeDatePickerAction.SELECT_FIRST_DAY
@@ -30,6 +29,12 @@ export type IRangeDatePickerReducerAction =
         | RangeDatePickerAction.CURRENT_MONTH_CHANGE;
       payload: {
         date: Date;
+      };
+    }
+  | {
+      type: RangeDatePickerAction.SET_FROM | RangeDatePickerAction.SET_TO;
+      payload: {
+        date?: Date;
       };
     };
 
@@ -53,11 +58,10 @@ export interface IRangeDatePickerOption {
   value: {
     from?: Date;
     to?: Date;
-  };
+  } | null;
 }
 
 interface IRangeDatePickerChildrenPayloadDatePicker {
-  innerRef?: React.Ref<Element>;
   modifiers?: DayPickerProps['modifiers'];
   initialMonth?: Date;
   month: Date;
@@ -72,28 +76,17 @@ interface IRangeDatePickerChildrenPayloadDatePicker {
   onMonthChange(month: Date): void;
 }
 
-interface IRangeDatePickerChildrenPayloadSelect {
-  selected: string | number;
-  onItemSelect(itemKey: string | number): void;
-}
-
-interface IRangeDatePickerChildrenPayloadInput
-  extends React.InputHTMLAttributes<HTMLInputElement> {
-  ref?: {
-    current: HTMLElement;
-  };
-  value: string;
-  onChange(e: React.ChangeEvent<HTMLInputElement>): void;
-}
-
 export interface IRangeDatePickerChildrenPayload {
-  select: IRangeDatePickerChildrenPayloadSelect;
+  select: {
+    selected: string | number;
+    onItemSelect(itemKey: string | number): void;
+  };
   inputs: {
     fromDate?: Date;
     toDate?: Date;
   };
   datepicker: IRangeDatePickerChildrenPayloadDatePicker;
-  [k: string]: any;
+  selectedOption?: IRangeDatePickerOption;
 }
 
 export interface IRangeDatePickerProps {

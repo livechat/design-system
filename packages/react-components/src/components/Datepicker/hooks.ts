@@ -1,6 +1,5 @@
-import { subMonths, isSameMonth } from 'date-fns';
 import * as React from 'react';
-import { calculateDatepickerMonth, getInitialStateFromProps } from './helpers';
+import { calculateDatePickerMonth, getInitialStateFromProps } from './helpers';
 import {
   IRangeDatePickerProps,
   IRangeDatePickerReducerAction,
@@ -15,14 +14,11 @@ export const useRangeDatePickerState = (
   React.ReducerState<RangeDatePickerReducer>,
   React.Dispatch<React.ReducerAction<RangeDatePickerReducer>>
 ] => {
-  const initialCurrentMonth = props.initialToDate
-    ? calculateDatepickerMonth(
-        props.initialToDate,
-        props.toMonth,
-        props.initialFromDate &&
-          !isSameMonth(props.initialFromDate, props.initialToDate)
-      )
-    : subMonths(props.toMonth || new Date(), 1);
+  const initialCurrentMonth = calculateDatePickerMonth(
+    props.initialFromDate,
+    props.initialToDate,
+    props.toMonth
+  );
 
   const defaultInitialState: IRangeDatePickerState = {
     selectedItem: null,
@@ -80,8 +76,16 @@ export const useRangeDatePickerState = (
           ...state,
           currentMonth: action.payload.date,
         };
-      case RangeDatePickerAction.CLEAR:
-        return initialState;
+      case RangeDatePickerAction.SET_FROM:
+        return {
+          ...state,
+          from: action.payload.date,
+        };
+      case RangeDatePickerAction.SET_TO:
+        return {
+          ...state,
+          to: action.payload.date,
+        };
       default:
         return state;
     }
