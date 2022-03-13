@@ -78,6 +78,9 @@ const StoryTemplate: Story<IDatePickerProps> = (args: IDatePickerProps) => {
     <div style={{ width: '300px' }}>
       <DatePickerComponent
         {...args}
+        toMonth={args.toMonth ? new Date(args.toMonth) : void 0}
+        fromMonth={args.fromMonth ? new Date(args.fromMonth) : void 0}
+        month={args.month ? new Date(args.month) : void 0}
         disabledDays={argsDisabledDays}
         onDayClick={(date: Date) => {
           setSelectedDate(date);
