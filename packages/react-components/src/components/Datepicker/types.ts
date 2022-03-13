@@ -1,5 +1,26 @@
 import { Reducer } from 'react';
-import { DayPickerProps } from 'react-day-picker';
+import ReactDayPicker, { DayPickerProps } from 'react-day-picker';
+import { ClassNames } from 'react-day-picker/types/ClassNames';
+
+export interface IDatePickerProps
+  extends Omit<DayPickerProps, 'todayButton' | 'showWeekNumbers'> {
+  innerRef?: React.Ref<ReactDayPicker>;
+  range?: boolean;
+}
+
+export interface IDatePickerNavbarProps {
+  showPreviousButton?: boolean;
+  showNextButton?: boolean;
+  month: Date;
+  fromMonth?: Date;
+  toMonth?: Date;
+  numberOfMonths?: number;
+  className?: string;
+  classNames: ClassNames;
+  onPreviousClick: () => void;
+  onNextClick: () => void;
+  onMonthChange: (newMonth: Date) => void;
+}
 
 export enum RangeDatePickerAction {
   NEW_SELECTED_ITEM = 'NEW_SELECTED_ITEM',

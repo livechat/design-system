@@ -1,15 +1,10 @@
 import * as React from 'react';
-import ReactDayPicker, { DayPickerProps } from 'react-day-picker';
+import ReactDayPicker from 'react-day-picker';
 import cx from 'classnames';
 import DatePickerNavbar from './DatePickerNavbar';
+import { IDatePickerProps } from './types';
 
 const baseClass = 'date-picker';
-
-export interface IDatePickerProps
-  extends Omit<DayPickerProps, 'todayButton' | 'showWeekNumbers'> {
-  innerRef?: React.Ref<ReactDayPicker>;
-  range?: boolean;
-}
 
 const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
   const [month, setMonth] = React.useState(props.month || new Date());

@@ -45,19 +45,30 @@ export default {
         type: 'date',
       },
     },
+    fromMonth: {
+      control: {
+        type: 'date',
+      },
+    },
+    toMonth: {
+      control: {
+        type: 'date',
+      },
+    },
+    month: {
+      control: {
+        type: 'date',
+      },
+    },
   },
 } as ComponentMeta<typeof DatePickerComponent>;
 
 const StoryTemplate: Story<IDatePickerProps> = (args: IDatePickerProps) => {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const argsSelectedDate = args.selectedDays
-    ? new Date(args.selectedDays)
+    ? new Date(args.selectedDays as Date)
     : void 0;
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   const argsDisabledDays = args.disabledDays
-    ? new Date(args.disabledDays)
+    ? new Date(args.disabledDays as Date)
     : void 0;
   const [selectedDate, setSelectedDate] = React.useState<
     IDatePickerProps['selectedDays'] | undefined
@@ -70,6 +81,7 @@ const StoryTemplate: Story<IDatePickerProps> = (args: IDatePickerProps) => {
         disabledDays={argsDisabledDays}
         onDayClick={(date: Date) => {
           setSelectedDate(date);
+          alert(`Selected date: ${date.toDateString()}`);
         }}
         selectedDays={selectedDate}
       />
@@ -91,18 +103,3 @@ export const DatePickerWithCustomFirstDayOfWeek = StoryTemplate.bind({});
 DatePickerWithCustomFirstDayOfWeek.args = {
   firstDayOfWeek: 0,
 };
-
-// export const NumericInputWithNoControls = StoryTemplate.bind({});
-// NumericInputWithNoControls.args = {
-//   noControls: true,
-// };
-
-// export const NumericInputWithDisabled = StoryTemplate.bind({});
-// NumericInputWithDisabled.args = {
-//   disabled: true,
-// };
-
-// export const NumericInputWithError = StoryTemplate.bind({});
-// NumericInputWithError.args = {
-//   error: 'Error',
-// };

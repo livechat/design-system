@@ -235,7 +235,6 @@ export const RangeDatePicker = (
 };
 
 RangeDatePicker.defaultProps = {
-  toMonth: new Date(),
   options: [
     {
       id: 'default',
