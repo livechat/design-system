@@ -3,8 +3,19 @@ import ReactDayPicker from 'react-day-picker';
 import cx from 'classnames';
 import DatePickerNavbar from './DatePickerNavbar';
 import { IDatePickerProps } from './types';
+import { isDateWithinRange } from './helpers';
 
 const baseClass = 'date-picker';
+
+const defaultDayRenderer = (day: Date): JSX.Element => {
+  const date = day.getDate();
+
+  return (
+    <div className={`${baseClass}__day-wrapper`}>
+      <div className={`${baseClass}__day-content`}>{date}</div>
+    </div>
+  );
+};
 
 const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
   const [month, setMonth] = React.useState(props.month || new Date());
@@ -15,24 +26,27 @@ const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
     }
   }, [props.month, month]);
 
-  const handleMonthChange = (month: Date) => {
-    if (props.onMonthChange && props.month) {
-      props.onMonthChange(month);
-      return;
+  React.useEffect(() => {
+    if (props.toMonth) {
+      if (
+        !isDateWithinRange(month, { from: props.fromMonth, to: props.toMonth })
+      ) {
+        setMonth(props.toMonth);
+      }
     }
+  }, [month, props.toMonth, props.fromMonth]);
 
-    setMonth(month);
-  };
+  const handleMonthChange = React.useCallback(
+    (month: Date) => {
+      if (props.onMonthChange && props.month) {
+        props.onMonthChange(month);
+        return;
+      }
 
-  const renderDay = (day: Date) => {
-    const date = day.getDate();
-
-    return (
-      <div className={`${baseClass}__day-wrapper`}>
-        <div className={`${baseClass}__day-content`}>{date}</div>
-      </div>
-    );
-  };
+      setMonth(month);
+    },
+    [props.month, props.onMonthChange]
+  );
 
   const getDatePickerClassNames = () => ({
     container: cx({
@@ -82,7 +96,7 @@ const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
     firstDayOfWeek: propsFirstDayOfWeek,
     numberOfMonths,
     navbarElement,
-    renderDay: dayRenderer,
+    renderDay,
     innerRef,
     ...restProps
   } = props;
@@ -96,7 +110,10 @@ const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
     firstDayOfWeek = propsFirstDayOfWeek;
   }
 
-  const datePickerClassNames = getDatePickerClassNames();
+  const datePickerClassNames = React.useMemo(
+    () => getDatePickerClassNames(),
+    [props.range, props.classNames]
+  );
 
   return (
     <ReactDayPicker
@@ -121,7 +138,7 @@ const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
       fromMonth={fromMonth}
       firstDayOfWeek={firstDayOfWeek}
       month={month}
-      renderDay={dayRenderer || renderDay}
+      renderDay={renderDay || defaultDayRenderer}
       {...restProps}
     />
   );
