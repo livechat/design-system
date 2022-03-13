@@ -121,8 +121,6 @@ const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
         navbarElement || (
           <DatePickerNavbar
             month={month}
-            onNextClick={() => void 0}
-            onPreviousClick={() => void 0}
             classNames={datePickerClassNames}
             numberOfMonths={numberOfMonths}
             onMonthChange={handleMonthChange}
