@@ -7,3 +7,4 @@ export { Tab } from './components/Tab';
 export { TabsWrapper, TabsList } from './components/TabsWrapper';
 export { Form } from './components/Form';
 export { Button } from './components/Button';
+export { Link } from './components/Link';

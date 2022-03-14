@@ -9,8 +9,8 @@ $base-class: 'lc-btn';
   display: inline-flex;
   font-size: 15px;
   font-weight: 600;
+  height: 36px;
   justify-content: center;
-  min-height: 36px;
   min-width: 36px;
   padding: 8px 16px;
   position: relative;
@@ -31,7 +31,7 @@ $base-class: 'lc-btn';
     box-shadow: 0 0 1px 2px rgba(var(--color-action-default-rgb), 0.7);
   }
 
-  &:disabled:not(.#{$base-class}--loading) {
+  &--disabled {
     cursor: not-allowed;
   }
 
@@ -135,7 +135,29 @@ $base-class: 'lc-btn';
     }
   }
 
-  &--text {
+  &--compact {
+    height: 32px;
+    min-width: 32px;
+    padding: 6px 16px;
+
+    &.#{$base-class}--icon-only {
+      padding: 4px;
+    }
+  }
+
+  &--large {
+    height: 42px;
+    min-width: 42px;
+    padding: 11px 16px;
+
+    &.#{$base-class}--icon-only {
+      padding: 9px;
+    }
+  }
+
+  &--text,
+  &--plain,
+  &--plain-light {
     background-color: transparent;
     border-color: transparent;
     color: var(--color-action-default);
@@ -149,23 +171,29 @@ $base-class: 'lc-btn';
     }
   }
 
-  &--compact {
-    min-height: 32px;
-    min-width: 32px;
-    padding: 6px 16px;
-
-    &.#{$base-class}--icon-only {
-      padding: 4px;
-    }
+  &--plain-light {
+    font-weight: 400;
   }
 
-  &--large {
-    min-height: 42px;
-    min-width: 42px;
-    padding: 11px 16px;
+  &--plain {
+    font-weight: 600;
+  }
 
-    &.#{$base-class}--icon-only {
-      padding: 9px;
+  &--plain,
+  &--plain-light {
+    border: 0;
+    height: auto;
+    min-width: auto;
+    padding: 0;
+
+    &:hover,
+    &:focus {
+      box-shadow: none;
+      text-decoration: underline;
+    }
+
+    &:disabled {
+      text-decoration: none;
     }
   }
 
