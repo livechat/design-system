@@ -1,0 +1,99 @@
+$base-class: 'lc-tooltip';
+
+.#{$base-class} {
+  background-color: var(--surface-basic-default);
+  border-radius: 4px;
+  box-shadow: 0 1px 10px 0 rgba(66, 77, 87, 0.3);
+  max-width: 260px;
+  padding: 12px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &-appear {
+    opacity: 0;
+  }
+
+  &-appear-active {
+    opacity: 1;
+    transition: opacity 200ms;
+  }
+
+  &-exit {
+    opacity: 1;
+  }
+
+  &-exit-active {
+    opacity: 0;
+    transition: opacity 200ms;
+  }
+
+  &__arrow {
+    height: 6px;
+    margin: -6px 0;
+    position: absolute;
+    width: 12px;
+
+    &::after {
+      border: 6px;
+      border-color: var(--border-invert-default) var(--border-invert-default)
+        transparent transparent;
+      border-style: solid;
+      content: '';
+      position: absolute;
+      top: 0;
+      transform: rotate(-45deg);
+      z-index: 10;
+    }
+
+    &[data-popper-placement*='bottom'] {
+      top: 1px;
+
+      &::after {
+        background-color: var(--surface-basic-default);
+        box-shadow: 8px -6px 10px -2px rgba(66, 77, 87, 0.3);
+        content: '';
+      }
+    }
+
+    &[data-popper-placement*='top'] {
+      top: 100%;
+
+      &::after {
+        background-color: var(--surface-basic-default);
+        border-color: transparent transparent var(--border-invert-default)
+          var(--border-invert-default);
+        box-shadow: -8px 8px 10px -2px rgba(66, 77, 87, 0.3);
+      }
+    }
+
+    &[data-popper-placement*='right'] {
+      height: 12px;
+      left: 0;
+      margin: 0 -6px;
+      width: 6px;
+
+      &::after {
+        background-color: var(--surface-basic-default);
+        border-color: var(--border-invert-default) transparent transparent
+          var(--border-invert-default);
+        box-shadow: -5px -5px 10px -2px rgba(66, 77, 87, 0.3);
+      }
+    }
+
+    &[data-popper-placement*='left'] {
+      height: 12px;
+      left: 99%;
+      margin: 0 -6px;
+      width: 6px;
+
+      &::after {
+        background-color: var(--surface-basic-default);
+        border-color: transparent var(--border-invert-default)
+          var(--border-invert-default) transparent;
+        box-shadow: 6px 6px 10px -2px rgba(66, 77, 87, 0.3);
+      }
+    }
+  }
+}
