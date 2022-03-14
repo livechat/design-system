@@ -59,7 +59,7 @@ export const TooltipInfo = (args: any): React.ReactElement => (
 
 TooltipInfo.args = {
   placement: 'bottom',
-  isVisible: false,
+  isVisible: true,
 };
 
 export interface ITooltipExample {
