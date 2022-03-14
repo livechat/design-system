@@ -1,4 +1,6 @@
-.lc-alert {
+$base-class: 'lc-alert';
+
+.#{$base-class} {
   box-sizing: border-box;
   overflow: hidden;
   padding: 20px;
@@ -6,45 +8,27 @@
   width: 100%;
   word-break: break-word;
 
-  &__content-text {
-    color: var(--content-default);
-  }
-
   &__content {
     display: flex;
     justify-content: flex-start;
     width: 100%;
+
+    &-text {
+      color: var(--content-default);
+      margin: 0 30px 0 0;
+    }
+
+    &-icon {
+      margin-right: 16px;
+    }
   }
 
   &--small {
-    max-width: 400px;
-
-    .lc-alert__content {
+    .#{$base-class}__content {
       flex-direction: column;
 
-      &-text {
-        margin: 14px 0 0;
-        max-width: 246px;
-      }
-    }
-  }
-
-  &--medium {
-    max-width: 800px;
-
-    .lc-alert__content {
-      &-text {
-        margin: 0 30px 0 16px;
-        max-width: 640px;
-      }
-    }
-  }
-
-  &--large {
-    .lc-alert__content {
-      &-text {
-        margin: 0 30px 0 16px;
-        max-width: 720px;
+      &-icon {
+        margin-bottom: 14px;
       }
     }
   }

@@ -7,17 +7,12 @@ import {
   Block as BlockIcon,
   CheckCircleSolid as CheckIcon,
 } from '@livechat/design-system-icons/dist/material';
+import { debounce } from 'lodash';
 
 import { Text } from './Text';
 import { Icon, IconSizeName, IconTypeName } from './Icon';
 
 const baseClass = 'lc-alert';
-
-export enum AlertSize {
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
-}
 
 export enum AlertType {
   Info = 'info',
@@ -28,7 +23,6 @@ export enum AlertType {
 
 export interface IAlertProps {
   className?: string;
-  size?: AlertSize;
   type?: AlertType;
   onClose?: () => void;
 }
@@ -55,21 +49,36 @@ const IconConfig = {
 export const Alert: React.FC<IAlertProps> = ({
   children,
   className,
-  size = AlertSize.Small,
   type = AlertType.Info,
   onClose,
 }) => {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [isSmallContainer, setIsSmallContainer] = React.useState(false);
+
   const mergedClassNames = cx(
     baseClass,
     `${baseClass}--${type}`,
-    `${baseClass}--${size}`,
+    isSmallContainer && `${baseClass}--small`,
     className
   );
 
+  React.useEffect(() => {
+    const handleResize = debounce(() => {
+      if (containerRef.current && containerRef.current.offsetWidth <= 400) {
+        return setIsSmallContainer(true);
+      }
+      return setIsSmallContainer(false);
+    }, 500);
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  });
+
   return (
-    <div className={mergedClassNames}>
+    <div ref={containerRef} className={mergedClassNames}>
       <div className={`${baseClass}__content`}>
-        <Icon {...IconConfig[type]} />
+        <Icon {...IconConfig[type]} className={`${baseClass}__content-icon`} />
         <Text as="div" className={`${baseClass}__content-text`}>
           {children}
         </Text>

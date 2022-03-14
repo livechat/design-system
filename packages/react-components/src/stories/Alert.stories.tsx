@@ -3,7 +3,6 @@ import { ComponentMeta, Story } from '@storybook/react';
 
 import {
   Alert as AlertComponent,
-  AlertSize,
   AlertType,
   IAlertProps,
 } from '../components/Alert';
@@ -55,19 +54,4 @@ ErrorAlert.args = {
 export const BannerWithClose = StoryTemplate.bind({});
 BannerWithClose.args = {
   onClose: () => alert('onClose click'),
-};
-
-export const SmallAlert = StoryTemplate.bind({});
-SmallAlert.args = {
-  size: AlertSize.Small,
-};
-
-export const MediumBanner = StoryTemplate.bind({});
-MediumBanner.args = {
-  size: AlertSize.Medium,
-};
-
-export const LargeAlert = StoryTemplate.bind({});
-LargeAlert.args = {
-  size: AlertSize.Large,
 };
