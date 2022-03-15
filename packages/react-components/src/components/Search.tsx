@@ -16,6 +16,7 @@ export const enum SearchSize {
 }
 
 export interface ISearchProps {
+  isCollapsable?: boolean;
   isDisabled?: boolean;
   isLoading?: boolean;
   placeholder?: string;
@@ -24,6 +25,7 @@ export interface ISearchProps {
 }
 
 export const Search: React.FC<ISearchProps> = ({
+  isCollapsable,
   isDisabled,
   isLoading,
   placeholder = 'Search ...',
@@ -32,12 +34,15 @@ export const Search: React.FC<ISearchProps> = ({
 }) => {
   const [searchValue, setSearchValue] = React.useState<string>('');
   const [isfocused, setIsFocused] = React.useState<boolean>(false);
+  const [isCollapsed, setIsCollapsed] = React.useState<boolean>(true);
 
   const mergedClassNames = cx(
     baseClass,
     `${baseClass}--${size}`,
     isfocused && `${baseClass}--focused`,
-    (isDisabled || isLoading) && `${baseClass}--disabled`
+    (isDisabled || isLoading) && `${baseClass}--disabled`,
+    isCollapsable && `${baseClass}--collapsable`,
+    !isCollapsed && `${baseClass}--collapsable--open`
   );
 
   const handleOnChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -60,8 +65,16 @@ export const Search: React.FC<ISearchProps> = ({
     return onChange('');
   };
 
+  const handleOnClick = () => {
+    if (!isCollapsable) {
+      return;
+    }
+
+    return setIsCollapsed(false);
+  };
+
   return (
-    <div className={mergedClassNames}>
+    <div className={mergedClassNames} onClick={handleOnClick}>
       <Icon
         className={`${baseClass}__search-icon`}
         source={SearchIcon}
