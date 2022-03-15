@@ -2,7 +2,12 @@ import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { Button } from '../components/Button';
 import { Tooltip as TooltipComponent } from '../components/Tooltip';
-import { DropDown, Smiles } from '@livechat/design-system-icons/dist/material';
+import {
+  DropDown,
+  Smiles,
+  CannedResponse,
+  Attachment,
+} from '@livechat/design-system-icons/dist/material';
 
 import { Icon } from '../components/Icon';
 import { Placement } from '@floating-ui/dom';
@@ -39,17 +44,17 @@ export const Tooltip = (args: any): React.ReactElement => (
       <TooltipIconExample {...args}></TooltipIconExample>
     </span>
     <span className={'lc-tooltip-icon-wrap'}>
-      <Icon source={Smiles}></Icon>
+      <Icon source={CannedResponse}></Icon>
     </span>
     <span className={'lc-tooltip-icon-wrap'}>
-      <Icon source={Smiles}></Icon>
+      <Icon source={Attachment}></Icon>
     </span>
   </div>
 );
 
 Tooltip.args = {
   placement: 'bottom',
-  isVisible: false,
+  isVisible: true,
 };
 
 export const TooltipInfo = (args: any) => (
@@ -57,7 +62,6 @@ export const TooltipInfo = (args: any) => (
     style={{
       height: '100vh',
       display: 'flex',
-      width: '800px',
       justifyContent: 'center',
       alignItems: 'center',
     }}
