@@ -1,19 +1,12 @@
-.lc-tooltip-info-header {
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 24px;
-    margin-bottom: 4px;
+.lc-tooltip-icon-wrap {
+  align-items: center;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  height: 32px;
+  justify-content: center;
+  width: 32px;
 }
-
-.lc-tooltip-info-text {
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 22px;
-}
-
-.lc-tooltip-info-x {
-    cursor: pointer;
-    position: absolute;
-    right: 0;
-    top: 0;
+.lc-tooltip-icon-wrap:hover {
+  background-color: #e5e5e5;
 }

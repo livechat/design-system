@@ -2,12 +2,14 @@ import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { Button } from '../components/Button';
 import { Tooltip as TooltipComponent } from '../components/Tooltip';
-import { DropDown, Close } from '@livechat/design-system-icons/dist/material';
+import { DropDown, Smiles } from '@livechat/design-system-icons/dist/material';
 
 import { Icon } from '../components/Icon';
 import { Placement } from '@floating-ui/dom';
 
 import './Tooltip.stories.css';
+import { TooltipIcon } from '../components/Tooltip/TooltipIcon';
+import { TooltipInfo as TooltipInfoComponent } from '../components/Tooltip/TooltipInfo';
 
 const tooltipPlacements = [
   'bottom',
@@ -29,12 +31,19 @@ export const Tooltip = (args: any): React.ReactElement => (
     style={{
       height: '100vh',
       display: 'flex',
-      width: '800px',
       justifyContent: 'center',
       alignItems: 'center',
     }}
   >
-    <TooltipIconExample {...args}></TooltipIconExample>
+    <span className={'lc-tooltip-icon-wrap'}>
+      <TooltipIconExample {...args}></TooltipIconExample>
+    </span>
+    <span className={'lc-tooltip-icon-wrap'}>
+      <Icon source={Smiles}></Icon>
+    </span>
+    <span className={'lc-tooltip-icon-wrap'}>
+      <Icon source={Smiles}></Icon>
+    </span>
   </div>
 );
 
@@ -43,7 +52,7 @@ Tooltip.args = {
   isVisible: false,
 };
 
-export const TooltipInfo = (args: any): React.ReactElement => (
+export const TooltipInfo = (args: any) => (
   <div
     style={{
       height: '100vh',
@@ -67,34 +76,6 @@ export interface ITooltipExample {
   isVisible: boolean;
 }
 
-const TooltipIcon = ({ text }: { text: string }) => {
-  return <div>{text}</div>;
-};
-
-const TooltipInfoComponent = ({
-  header,
-  text,
-  closeWithX,
-  handleCloseOnClick,
-}: {
-  header: string;
-  text: string;
-  closeWithX?: boolean;
-  handleCloseOnClick?: () => void;
-}) => {
-  return (
-    <div style={{ position: 'relative' }}>
-      {closeWithX && (
-        <div className="lc-tooltip-info-x" onClick={handleCloseOnClick}>
-          <Icon source={Close}></Icon>
-        </div>
-      )}
-      {header && <div className="lc-tooltip-info-header">{header}</div>}
-      <div className="lc-tooltip-info-text">{text}</div>
-    </div>
-  );
-};
-
 const TooltipIconExample: React.FC<ITooltipExample> = ({
   placement,
   isVisible,
@@ -102,8 +83,6 @@ const TooltipIconExample: React.FC<ITooltipExample> = ({
   return (
     <div
       style={{
-        width: '500px',
-        height: '500px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -112,16 +91,7 @@ const TooltipIconExample: React.FC<ITooltipExample> = ({
       <TooltipComponent
         placement={placement}
         isVisible={isVisible}
-        triggerRenderer={() => (
-          <div>
-            <Button
-              icon={<Icon source={DropDown}></Icon>}
-              iconPosition={'right'}
-            >
-              Open Tooltip
-            </Button>
-          </div>
-        )}
+        triggerRenderer={() => <Icon source={Smiles}></Icon>}
       >
         <TooltipIcon text="Simple tooltip" />
       </TooltipComponent>
