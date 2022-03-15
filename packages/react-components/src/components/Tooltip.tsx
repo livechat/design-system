@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import cx from 'classnames';
+import { css } from '@emotion/css';
 import {
   useFloating,
   arrow,
@@ -16,7 +17,9 @@ export interface ITooltipProps {
   placement?: Placement;
   isVisible?: boolean;
   withFadeAnimation?: boolean;
+  transition?: number;
   offsetMainAxis?: number;
+  triggerOnClick?: boolean;
   triggerRenderer: () => React.ReactNode;
 }
 
@@ -28,14 +31,16 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     placement,
     isVisible = false,
     withFadeAnimation = true,
+    transition = 200,
     offsetMainAxis = 8,
+    triggerOnClick = false,
   } = props;
 
   const arrowRef = React.useRef<HTMLDivElement | null>(null);
 
   const [visible, setVisibility] = React.useState(isVisible);
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     setVisibility(isVisible);
   }, [isVisible]);
 
@@ -51,6 +56,10 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     if (event.key === 'Escape') {
       setVisibility(false);
     }
+  };
+
+  const handleClick = () => {
+    setVisibility((prevVisible) => !prevVisible);
   };
 
   const handleCloseOnClick = () => {
@@ -86,9 +95,36 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   }, [refs.reference, refs.floating, update, updatedPlacement]);
 
   React.useEffect(() => {
+    if (triggerOnClick) {
+      (refs.reference.current as HTMLElement).addEventListener(
+        'click',
+        handleClick
+      );
+    } else {
+      (refs.reference.current as HTMLElement).addEventListener(
+        'mouseenter',
+        handleMouseEnter
+      );
+      (refs.reference.current as HTMLElement).addEventListener(
+        'mouseleave',
+        handleMouseLeave
+      );
+    }
     document.addEventListener('keydown', handleHideOnEscape);
     return () => {
-      document.addEventListener('keydown', handleHideOnEscape);
+      document.removeEventListener('keydown', handleHideOnEscape);
+      (refs.reference.current as HTMLElement)?.removeEventListener(
+        'click',
+        handleClick
+      );
+      (refs.reference.current as HTMLElement)?.removeEventListener(
+        'mouseenter',
+        handleMouseEnter
+      );
+      (refs.reference.current as HTMLElement)?.removeEventListener(
+        'mouseleave',
+        handleMouseLeave
+      );
     };
   }, []);
 
@@ -125,10 +161,33 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
 
   function renderPopperComponent() {
     if (withFadeAnimation) {
+      const appear = css`
+        opacity: 0;
+      `;
+
+      const appearActive = css`
+        opacity: 1;
+        transition: opacity ${transition}ms;
+      `;
+
+      const exit = css`
+        opacity: 1;
+      `;
+
+      const exitActive = css`
+        opacity: 0;
+        transition: opacity ${transition}ms;
+      `;
+
       return (
         <CSSTransition
-          timeout={200}
-          classNames="lc-tooltip"
+          timeout={transition}
+          classNames={{
+            appear: appear,
+            appearActive: appearActive,
+            exit: exit,
+            exitActive: exitActive,
+          }}
           in={visible}
           appear
         >
@@ -142,13 +201,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
 
   return (
     <>
-      <div
-        ref={reference}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        {triggerRenderer()}
-      </div>
+      <div ref={reference}>{triggerRenderer()}</div>
       {visible && renderPopperComponent()}
     </>
   );
