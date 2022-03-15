@@ -37,7 +37,7 @@ export const Search: React.FC<ISearchProps> = ({
     baseClass,
     `${baseClass}--${size}`,
     isfocused && `${baseClass}--focused`,
-    isDisabled || (isLoading && `${baseClass}--disabled`)
+    (isDisabled || isLoading) && `${baseClass}--disabled`
   );
 
   const handleOnChange = (e: React.FormEvent<HTMLInputElement>) => {
