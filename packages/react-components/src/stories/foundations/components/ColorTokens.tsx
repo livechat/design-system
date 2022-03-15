@@ -8,9 +8,10 @@ interface TokensGroup {
   content: string[];
   border: string[];
   color: string[];
+  decor: string[];
 }
 
-type TokenGroupName = 'background' | 'surface' | 'content' | 'border' | 'color';
+type TokenGroupName = 'background' | 'surface' | 'content' | 'border' | 'color' | 'decor';
 
 const Tokens: TokensGroup = Object.values(
   DesignTokens as { [key: string]: string }
@@ -21,7 +22,7 @@ const Tokens: TokensGroup = Object.values(
 
     return acc;
   },
-  { background: [], surface: [], content: [], border: [], color: [] }
+  { background: [], surface: [], content: [], border: [], color: [], decor: [] }
 );
 
 const CONTENT = {
@@ -48,6 +49,10 @@ const CONTENT = {
     content:
       'All colors that drive attention in the UI - it can be either action, warning, negative or positive',
   },
+  decor: {
+    heading: 'Decor',
+    content: 'Those colors can be used for specific elements of the UI, they were purposely separated from all other tokens, as they are used only for decorative means. Those colors are shared between all three themes — Legacy, Light & Dark. This palette is not yet fully supported in dark mode.'
+  }
 };
 
 export const ColorTokensPallete: React.FC = () => (
