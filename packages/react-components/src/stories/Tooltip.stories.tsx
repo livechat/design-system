@@ -73,11 +73,13 @@ export const TooltipInfo = (args: any) => (
 TooltipInfo.args = {
   placement: 'bottom',
   isVisible: true,
+  triggerOnClick: false,
 };
 
 export interface ITooltipExample {
   placement: Placement;
   isVisible: boolean;
+  triggerOnClick: boolean;
 }
 
 const TooltipIconExample: React.FC<ITooltipExample> = ({
@@ -106,6 +108,7 @@ const TooltipIconExample: React.FC<ITooltipExample> = ({
 const TooltipInfoExample: React.FC<ITooltipExample> = ({
   placement,
   isVisible,
+  triggerOnClick,
 }) => {
   return (
     <div
@@ -120,6 +123,7 @@ const TooltipInfoExample: React.FC<ITooltipExample> = ({
       <TooltipComponent
         placement={placement}
         isVisible={isVisible}
+        triggerOnClick={triggerOnClick}
         triggerRenderer={() => (
           <div>
             <Button
