@@ -2,6 +2,7 @@ $base-class: 'lc-search';
 
 .#{$base-class} {
   align-items: center;
+  background-color: var(--surface-basic-default);
   border: 1px solid var(--border-default);
   border-radius: 4px;
   color: var(--content-default);
