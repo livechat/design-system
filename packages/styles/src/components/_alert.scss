@@ -15,11 +15,11 @@ $base-class: 'lc-alert';
 
     &-text {
       color: var(--content-default);
-      margin: 0 30px 0 0;
     }
 
     &-icon {
-      margin-right: 16px;
+      height: 22px;
+      margin-right: 22px;
     }
   }
 
