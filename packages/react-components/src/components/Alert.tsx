@@ -79,7 +79,13 @@ export const Alert: React.FC<IAlertProps> = ({
     <div ref={containerRef} className={mergedClassNames}>
       <div className={`${baseClass}__content`}>
         <Icon {...IconConfig[type]} className={`${baseClass}__content-icon`} />
-        <Text as="div" className={`${baseClass}__content-text`}>
+        <Text
+          as="div"
+          className={cx(
+            `${baseClass}__content-text`,
+            onClose && `${baseClass}__content-text--margin`
+          )}
+        >
           {children}
         </Text>
       </div>

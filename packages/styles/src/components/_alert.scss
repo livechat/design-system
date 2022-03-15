@@ -15,6 +15,10 @@ $base-class: 'lc-alert';
 
     &-text {
       color: var(--content-default);
+
+      &--margin {
+        margin-right: 22px;
+      }
     }
 
     &-icon {
@@ -26,6 +30,10 @@ $base-class: 'lc-alert';
   &--small {
     .#{$base-class}__content {
       flex-direction: column;
+
+      &-text--margin {
+        margin-right: 0;
+      }
 
       &-icon {
         margin-bottom: 14px;
@@ -41,8 +49,8 @@ $base-class: 'lc-alert';
     overflow: hidden;
     padding: 0;
     position: absolute;
-    right: 12px;
-    top: 12px;
+    right: 17px;
+    top: 17px;
     width: 24px;
   }
 
