@@ -26,15 +26,10 @@ export const TooltipInteractive: React.FC<{
   return (
     <div style={{ width: '245px' }}>
       {closeWithX && (
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'end',
-            marginBottom: '10px',
-          }}
-          onClick={handleCloseOnClick}
-        >
-          <Icon source={Close}></Icon>
+        <div className="lc-tooltip-interactive-x">
+          <div style={{ cursor: 'pointer' }} onClick={handleCloseOnClick}>
+            <Icon source={Close}></Icon>
+          </div>
         </div>
       )}
       {image && (

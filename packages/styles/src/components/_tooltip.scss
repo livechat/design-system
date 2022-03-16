@@ -109,4 +109,10 @@ $base-class: 'lc-tooltip';
     right: 0;
     top: 0;
   }
+
+  &-interactive-x {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 10px;
+  }
 }

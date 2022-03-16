@@ -159,9 +159,9 @@ const TooltipInteractiveExample: React.FC<ITooltipExample> = ({
           header="Header - concise and clear"
           image={{
             src: 'https://cdn.glitch.global/710a918e-7410-4b64-8652-f75b9a33bc74/placeholder.png?v=1647354230937',
-            alt: 'obrazek',
+            alt: 'image',
           }}
-          text="Tooltip content is used to explain the details of elements or features. Tooltip content is used to explain the details of elements or features. Tooltip content is used to explain the details of elements or features."
+          text="Tooltip content is used to explain the details of elements or features."
           handleClickPrimary={() => console.log('primary click handler')}
           handleClickSecondary={() => console.log('secondary click handler')}
           closeWithX
