@@ -87,10 +87,20 @@ $base-class: 'lc-tooltip';
     margin-bottom: 4px;
   }
 
+  &-info-image {
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 12px;
+    max-height: 138px;
+    max-width: 238px;
+    width: 100%;
+  }
+
   &-info-text {
     font-size: 15px;
     font-weight: 400;
     line-height: 22px;
+    margin-bottom: 12px;
   }
 
   &-info-x {

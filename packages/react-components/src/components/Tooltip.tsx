@@ -95,36 +95,9 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   }, [refs.reference, refs.floating, update, updatedPlacement]);
 
   React.useEffect(() => {
-    if (triggerOnClick) {
-      (refs.reference.current as HTMLElement).addEventListener(
-        'click',
-        handleClick
-      );
-    } else {
-      (refs.reference.current as HTMLElement).addEventListener(
-        'mouseenter',
-        handleMouseEnter
-      );
-      (refs.reference.current as HTMLElement).addEventListener(
-        'mouseleave',
-        handleMouseLeave
-      );
-    }
     document.addEventListener('keydown', handleHideOnEscape);
     return () => {
       document.removeEventListener('keydown', handleHideOnEscape);
-      (refs.reference.current as HTMLElement)?.removeEventListener(
-        'click',
-        handleClick
-      );
-      (refs.reference.current as HTMLElement)?.removeEventListener(
-        'mouseenter',
-        handleMouseEnter
-      );
-      (refs.reference.current as HTMLElement)?.removeEventListener(
-        'mouseleave',
-        handleMouseLeave
-      );
     };
   }, []);
 
@@ -198,10 +171,29 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
       return popperComponent;
     }
   }
+  let referenceElement;
+
+  if (triggerOnClick) {
+    referenceElement = (
+      <div onClick={handleClick} ref={reference}>
+        {triggerRenderer()}
+      </div>
+    );
+  } else {
+    referenceElement = (
+      <div
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        ref={reference}
+      >
+        {triggerRenderer()}
+      </div>
+    );
+  }
 
   return (
     <>
-      <div ref={reference}>{triggerRenderer()}</div>
+      {referenceElement}
       {visible && renderPopperComponent()}
     </>
   );
