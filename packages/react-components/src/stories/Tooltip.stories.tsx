@@ -16,6 +16,7 @@ import './Tooltip.stories.css';
 import { Simple } from '../components/Tooltip/Simple';
 import { Info as TooltipInfoComponent } from '../components/Tooltip/Info';
 import { Interactive as TooltipInteractiveComponent } from '../components/Tooltip/Interactive';
+import { UserGuide as TooltipUserGuideComponent } from '../components/Tooltip/UserGuide';
 
 const tooltipPlacements = [
   'bottom',
@@ -96,6 +97,25 @@ TooltipInteractive.args = {
   triggerOnClick: false,
 };
 
+export const TooltipUserGuide = (args: any) => (
+  <div
+    style={{
+      height: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    <TooltipUserGuideExample {...args}></TooltipUserGuideExample>
+  </div>
+);
+
+TooltipInteractive.args = {
+  placement: 'bottom',
+  isVisible: true,
+  triggerOnClick: false,
+};
+
 export interface ITooltipExample {
   placement: Placement;
   isVisible: boolean;
@@ -164,6 +184,53 @@ const TooltipInteractiveExample: React.FC<ITooltipExample> = ({
           text="Tooltip content is used to explain the details of elements or features."
           handleClickPrimary={() => console.log('primary click handler')}
           handleClickSecondary={() => console.log('secondary click handler')}
+          closeWithX
+        />
+      </TooltipComponent>
+    </div>
+  );
+};
+
+const TooltipUserGuideExample: React.FC<ITooltipExample> = ({
+  placement,
+  isVisible,
+  triggerOnClick,
+}) => {
+  return (
+    <div
+      style={{
+        width: '500px',
+        height: '600px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <TooltipComponent
+        placement={placement}
+        isVisible={isVisible}
+        triggerOnClick={triggerOnClick}
+        triggerRenderer={() => (
+          <div>
+            <Button
+              icon={<Icon source={DropDown}></Icon>}
+              iconPosition={'right'}
+            >
+              Open Tooltip
+            </Button>
+          </div>
+        )}
+      >
+        <TooltipUserGuideComponent
+          header="Header - concise and clear"
+          image={{
+            src: 'https://cdn.glitch.global/710a918e-7410-4b64-8652-f75b9a33bc74/placeholder.png?v=1647354230937',
+            alt: 'image',
+          }}
+          text="Tooltip content is used to explain the details of elements or features."
+          handleClickPrimary={() => console.log('primary click handler')}
+          currentStep={1}
+          stepMax={3}
           closeWithX
         />
       </TooltipComponent>

@@ -115,4 +115,12 @@ $base-class: 'lc-tooltip';
     justify-content: end;
     margin-bottom: 10px;
   }
+
+  &-step {
+    color: #677179;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+  }
 }
