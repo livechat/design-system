@@ -2,22 +2,102 @@ import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { Button } from '../components/Button';
 import { Popover as PopoverComponent } from '../components/Popover';
-import { DropDown } from '@livechat/design-system-icons/dist/material';
+import {
+  Block,
+  Chats,
+  DropDown,
+  Email,
+  Tickets,
+} from '@livechat/design-system-icons/dist/material';
 import { Icon } from '../components/Icon';
 
 import * as PopperCore from '@popperjs/core';
+import './Popover.stories.css';
 
-export const Popover = (args: any): React.ReactElement => (
-  <div
-    style={{
-      height: '100vh',
-      display: 'flex',
-      width: '800px',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}
-  >
-    <PopoverExample {...args}></PopoverExample>
+const OpenChat = () => {
+  return (
+    <div className="lc-listElement">
+      <Icon source={Chats} /> <span className="lc-label">Open chat</span>{' '}
+    </div>
+  );
+};
+
+const CreateTicket = () => {
+  return (
+    <div className="lc-listElement">
+      <Icon source={Tickets} />{' '}
+      <span className="lc-label">Create a ticket</span>{' '}
+    </div>
+  );
+};
+
+const SendTranscript = () => {
+  return (
+    <div className="lc-listElement lc-divider">
+      <Icon source={Email} /> <span className="lc-label">Send transcript</span>{' '}
+    </div>
+  );
+};
+
+const BanCustomer = () => {
+  return (
+    <div className="lc-listElement">
+      <Icon source={Block} />{' '}
+      <span className="lc-label">Ban this customer</span>{' '}
+    </div>
+  );
+};
+
+export const Popover = ({
+  placement,
+  isVisible,
+}: {
+  placement: PopperCore.Placement;
+  isVisible: boolean;
+}): React.ReactElement => (
+  <div style={{ minHeight: '400px' }}>
+    <PopoverComponent
+      placement={placement}
+      isVisible={isVisible}
+      triggerRenderer={() => (
+        <div>
+          <Button icon={<Icon source={DropDown}></Icon>} iconPosition={'right'}>
+            Open Popover
+          </Button>
+        </div>
+      )}
+      modifiers={{
+        preventOverflow: {
+          enabled: true,
+        },
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: '12px',
+          width: '308px',
+          height: '308px',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            border: '1px dashed var(--border-default)',
+            backgroundColor: 'var(--surface-basic-default)',
+            width: '100%',
+            height: '100%',
+            borderRadius: '4px',
+          }}
+        >
+          Popover content
+        </div>
+      </div>
+    </PopoverComponent>
   </div>
 );
 
@@ -26,77 +106,52 @@ Popover.args = {
   isVisible: true,
 };
 
-export interface IPopoverExample {
-  placement: PopperCore.Placement;
-  isVisible: boolean;
-}
-
-const PopoverExample: React.FC<IPopoverExample> = ({
+export const Actions = ({
   placement,
   isVisible,
-}) => {
-  return (
-    <div
-      style={{
-        width: '500px',
-        height: '500px',
-        display: 'flex',
-        alignItems: 'flex-start',
-        justifyContent: 'center',
+}: {
+  placement: PopperCore.Placement;
+  isVisible: boolean;
+}): React.ReactElement => (
+  <div style={{ minHeight: '200px' }}>
+    <PopoverComponent
+      placement={placement}
+      isVisible={isVisible}
+      triggerRenderer={() => (
+        <div>
+          <Button icon={<Icon source={DropDown}></Icon>} iconPosition={'right'}>
+            Actions
+          </Button>
+        </div>
+      )}
+      modifiers={{
+        preventOverflow: {
+          enabled: true,
+        },
       }}
     >
-      <PopoverComponent
-        placement={placement}
-        isVisible={isVisible}
-        triggerRenderer={() => (
-          <div>
-            <Button
-              icon={<Icon source={DropDown}></Icon>}
-              iconPosition={'right'}
-            >
-              Open Popover
-            </Button>
-          </div>
-        )}
-        modifiers={{
-          preventOverflow: {
-            enabled: true,
-          },
+      <div
+        style={{
+          minWidth: '200px',
         }}
       >
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: '12px',
-            width: '308px',
-            height: '308px',
-          }}
-        >
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              border: '1px dashed var(--border-default)',
-              backgroundColor: 'var(--surface-basic-default)',
-              width: '100%',
-              height: '100%',
-              borderRadius: '4px',
-            }}
-          >
-            Popover content
-          </div>
-        </div>
-      </PopoverComponent>
-    </div>
-  );
+        <OpenChat />
+        <CreateTicket />
+        <SendTranscript />
+        <BanCustomer />
+      </div>
+    </PopoverComponent>
+  </div>
+);
+
+Actions.args = {
+  placement: 'bottom-start',
+  isVisible: true,
 };
 
 export default {
   title: 'Components/Popover',
-  component: PopoverExample,
+  component: Popover,
   argTypes: {
     placement: {
       options: PopperCore.placements,
@@ -106,4 +161,4 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof PopoverExample>;
+} as ComponentMeta<typeof Popover>;
