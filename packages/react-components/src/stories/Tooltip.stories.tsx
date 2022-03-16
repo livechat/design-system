@@ -17,7 +17,7 @@ import { Simple } from '../components/Tooltip/Simple';
 import { Info as TooltipInfoComponent } from '../components/Tooltip/Info';
 import { Interactive as TooltipInteractiveComponent } from '../components/Tooltip/Interactive';
 import { UserGuide as TooltipUserGuideComponent } from '../components/Tooltip/UserGuide';
-
+import beutifulImage from './images/placeholder.png';
 const tooltipPlacements = [
   'bottom',
   'bottom-end',
@@ -178,7 +178,7 @@ const TooltipInteractiveExample: React.FC<ITooltipExample> = ({
         <TooltipInteractiveComponent
           header="Header - concise and clear"
           image={{
-            src: 'https://cdn.glitch.global/710a918e-7410-4b64-8652-f75b9a33bc74/placeholder.png?v=1647354230937',
+            src: beutifulImage,
             alt: 'image',
           }}
           text="Tooltip content is used to explain the details of elements or features."
@@ -224,7 +224,7 @@ const TooltipUserGuideExample: React.FC<ITooltipExample> = ({
         <TooltipUserGuideComponent
           header="Header - concise and clear"
           image={{
-            src: 'https://cdn.glitch.global/710a918e-7410-4b64-8652-f75b9a33bc74/placeholder.png?v=1647354230937',
+            src: beutifulImage,
             alt: 'image',
           }}
           text="Tooltip content is used to explain the details of elements or features."
