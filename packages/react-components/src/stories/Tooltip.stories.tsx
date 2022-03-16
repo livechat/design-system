@@ -13,7 +13,7 @@ import { Icon } from '../components/Icon';
 import { Placement } from '@floating-ui/dom';
 
 import './Tooltip.stories.css';
-import { TooltipIcon } from '../components/Tooltip/TooltipIcon';
+import { TooltipSimple } from '../components/Tooltip/TooltipSimple';
 import { TooltipInfo as TooltipInfoComponent } from '../components/Tooltip/TooltipInfo';
 import { TooltipInteractive as TooltipInteractiveComponent } from '../components/Tooltip/TooltipInteractive';
 
@@ -42,7 +42,7 @@ export const Tooltip = (args: any): React.ReactElement => (
     }}
   >
     <span className={'lc-tooltip-icon-wrap'}>
-      <TooltipIconExample {...args}></TooltipIconExample>
+      <TooltipSimpleExample {...args}></TooltipSimpleExample>
     </span>
     <span className={'lc-tooltip-icon-wrap'}>
       <Icon source={CannedResponse}></Icon>
@@ -102,7 +102,7 @@ export interface ITooltipExample {
   triggerOnClick: boolean;
 }
 
-const TooltipIconExample: React.FC<ITooltipExample> = ({
+const TooltipSimpleExample: React.FC<ITooltipExample> = ({
   placement,
   isVisible,
 }) => {
@@ -119,7 +119,7 @@ const TooltipIconExample: React.FC<ITooltipExample> = ({
         isVisible={isVisible}
         triggerRenderer={() => <Icon source={Smiles}></Icon>}
       >
-        <TooltipIcon text="Simple tooltip" />
+        <TooltipSimple text="Simple tooltip" />
       </TooltipComponent>
     </div>
   );
@@ -213,7 +213,7 @@ const TooltipInfoExample: React.FC<ITooltipExample> = ({
 
 export default {
   title: 'Components/Tooltip',
-  component: TooltipIconExample,
+  component: TooltipSimpleExample,
   argTypes: {
     placement: {
       options: tooltipPlacements,
@@ -223,4 +223,4 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof TooltipIconExample>;
+} as ComponentMeta<typeof TooltipSimpleExample>;
