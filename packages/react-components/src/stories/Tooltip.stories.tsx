@@ -13,9 +13,9 @@ import { Icon } from '../components/Icon';
 import { Placement } from '@floating-ui/dom';
 
 import './Tooltip.stories.css';
-import { TooltipSimple } from '../components/Tooltip/TooltipSimple';
-import { TooltipInfo as TooltipInfoComponent } from '../components/Tooltip/TooltipInfo';
-import { TooltipInteractive as TooltipInteractiveComponent } from '../components/Tooltip/TooltipInteractive';
+import { Simple } from '../components/Tooltip/Simple';
+import { Info as TooltipInfoComponent } from '../components/Tooltip/Info';
+import { Interactive as TooltipInteractiveComponent } from '../components/Tooltip/Interactive';
 
 const tooltipPlacements = [
   'bottom',
@@ -119,7 +119,7 @@ const TooltipSimpleExample: React.FC<ITooltipExample> = ({
         isVisible={isVisible}
         triggerRenderer={() => <Icon source={Smiles}></Icon>}
       >
-        <TooltipSimple text="Simple tooltip" />
+        <Simple text="Simple tooltip" />
       </TooltipComponent>
     </div>
   );

@@ -3,7 +3,7 @@ import Icon from '../Icon';
 import { Close } from '@livechat/design-system-icons/dist/material';
 import { Button } from '../Button';
 
-export const TooltipInteractive: React.FC<{
+export const Interactive: React.FC<{
   header: string;
   text: string;
   image?: {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Icon from '../Icon';
 import { Close } from '@livechat/design-system-icons/dist/material';
 
-export const TooltipInfo: React.FC<{
+export const Info: React.FC<{
   header: string;
   text: string;
   closeWithX?: boolean;
