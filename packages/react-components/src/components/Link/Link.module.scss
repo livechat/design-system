@@ -1,0 +1,18 @@
+.link {
+  color: var(--color-action-default);
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-action-hover);
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: var(--color-action-active);
+  }
+
+  &--bold {
+    font-weight: 600;
+  }
+}

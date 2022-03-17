@@ -3,23 +3,21 @@
   "version": "1.0.0-alpha.2",
   "description": "",
   "source": "src/index.ts",
-  "exports": {
-    "require": "./dist/index.cjs",
-    "default": "./dist/index.modern.js"
-  },
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.js",
   "module": "./dist/index.module.js",
   "unpkg": "./dist/index.umd.js",
   "publishConfig": {
     "access": "public"
   },
+  "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "css"
   ],
   "scripts": {
     "dev": "run-p watch:*",
     "build": "run-s build:*",
-    "build:styles": "sass src:dist/css",
+    "build:styles": "sass src:css",
     "build:js": "microbundle",
     "watch:styles": "npm run build:styles -- --watch",
     "watch:js": "microbundle watch",

@@ -6,11 +6,7 @@
   ],
   "rules": {
     "max-nesting-depth": null,
-    "selector-class-pattern": [
-      "lc-[a-z]+",
-      {
-        "resolveNestedSelectors": true
-      }
-    ]
+    "selector-class-pattern": null,
+    "no-descending-specificity": null
   }
 }

@@ -1,0 +1,31 @@
+.btn-group {
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  display: inline-flex;
+  flex-direction: row;
+  padding: 3px;
+  vertical-align: middle;
+
+  .btn {
+    border-color: transparent;
+    color: var(--content-default);
+
+    &--active {
+      background-color: var(--surface-basic-active);
+    }
+
+    &--compact {
+      height: 24px;
+    }
+    &--medium {
+      height: 28px;
+    }
+    &--large {
+      height: 34px;
+    }
+  }
+
+  .btn + .btn {
+    margin-left: 2px;
+  }
+}

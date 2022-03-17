@@ -1,14 +1,13 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-export interface IModalPortalProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+export interface ModalPortalProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   zIndex: number;
   parentElementName: string;
 }
 
-export const ModalPortal: React.FC<IModalPortalProps> = ({
+export const ModalPortal: React.FC<ModalPortalProps> = ({
   children,
   className = '',
   parentElementName = 'body',

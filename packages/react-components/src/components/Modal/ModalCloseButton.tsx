@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { Close } from '@livechat/design-system-icons/dist/material';
+import { Close } from '@livechat/design-system-icons/react/material';
 import { Icon, IconSizeName } from '../Icon';
 
-export type IModalCloseButtonProps = React.HTMLAttributes<HTMLButtonElement>;
+import styles from './Modal.module.scss';
 
-const baseClass = 'lc-modal-base__close';
+export type ModalCloseButtonProps = React.HTMLAttributes<HTMLButtonElement>;
 
-export const ModalCloseButton: React.FC<IModalCloseButtonProps> = ({
+export const ModalCloseButton: React.FC<ModalCloseButtonProps> = ({
   onClick,
 }) => (
   <button
     title="Close modal"
-    className={baseClass}
+    className={styles['modal-base__close']}
     onClick={onClick}
     type="button"
   >

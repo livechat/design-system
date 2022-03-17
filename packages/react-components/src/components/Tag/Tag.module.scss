@@ -1,0 +1,140 @@
+.tag {
+  align-items: center;
+  background-color: var(--surface-secondary-default);
+  border-color: var(--border-default);
+  border-radius: 4px;
+  border-style: none;
+  border-width: 1px;
+  box-sizing: border-box;
+  color: var(--content-default);
+  display: inline-flex;
+  position: relative;
+
+  /* TODO: Replace colors below with decor tokens when ready */
+  &--success {
+    background-color: #d1f4d5;
+    border-color: #005321;
+    color: #005321;
+
+    .icon,
+    .tag__remove > .icon {
+      color: #005321;
+    }
+  }
+
+  &--error {
+    background-color: var(--surface-feedback-negative);
+    border-color: var(--color-negative-active);
+    color: var(--color-negative-active);
+
+    .icon,
+    .tag__remove > .icon {
+      color: var(--color-negative-active);
+    }
+  }
+
+  &--warning {
+    background-color: #ffe9bc;
+    border-color: #755b00;
+    color: #755b00;
+
+    .icon,
+    .tag__remove > .icon {
+      color: #755b00;
+    }
+  }
+
+  &--info {
+    background-color: var(--surface-feedback-info);
+    border-color: var(--color-action-active);
+    color: var(--color-action-active);
+
+    .icon,
+    .tag__remove > .icon {
+      color: var(--color-action-active);
+    }
+  }
+
+  &--medium {
+    padding: 1px 8px;
+  }
+
+  &--large {
+    padding: 5px 12px;
+  }
+
+  &--outline {
+    background-color: transparent;
+    border-style: solid;
+
+    &.tag--medium {
+      padding: 0 7px;
+    }
+    &.tag--large {
+      padding: 4px 11px;
+    }
+
+    .icon {
+      background-color: transparent;
+    }
+  }
+
+  &--text-white {
+    color: #fff;
+  }
+
+  &--text-black {
+    color: #000;
+  }
+
+  &--with-icon {
+    &.tag--medium {
+      padding-left: 4px;
+    }
+    &.tag--large {
+      padding-left: 6px;
+    }
+  }
+
+  &--dismissible {
+    &.tag--medium {
+      padding-right: 4px;
+    }
+    &.tag--large {
+      padding-right: 6px;
+    }
+  }
+
+  &__icon {
+    margin-right: 4px;
+  }
+
+  &__avatar {
+    border-radius: 50%;
+    height: 20px;
+    margin-right: 4px;
+    width: 20px;
+  }
+
+  &__remove {
+    align-items: center;
+    background-color: transparent;
+    border-style: none;
+    box-shadow: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    outline: none;
+    padding: 0 0 0 4px;
+
+    .icon {
+      align-items: center;
+      color: var(--content-subtle);
+      display: flex;
+
+      &:hover {
+        color: var(--content-default);
+      }
+    }
+  }
+}

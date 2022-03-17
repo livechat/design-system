@@ -1,12 +1,10 @@
-import '@livechat/design-system-styles/dist/css/styles.css';
-
-import './global.css';
+import '@livechat/design-system-styles/css/themes/legacy.css';
+import '@livechat/design-system-styles/css/themes/light.css';
+import '@livechat/design-system-styles/css/themes/dark.css';
 
 export const parameters = {
-  backgrounds: { disable: true },
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
-    exclude: ['className'],
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,

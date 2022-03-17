@@ -1,0 +1,48 @@
+.progress-bar {
+  background-color: var(--color-action-disabled);
+  border-radius: 100px;
+  display: inline-block;
+  height: 4px;
+  position: relative;
+  width: 100%;
+
+  &--small {
+    height: 3px;
+  }
+
+  &--medium {
+    height: 4px;
+  }
+
+  &--large {
+    height: 6px;
+  }
+
+  &--error {
+    background-color: var(--color-negative-disabled);
+  }
+
+  &--success {
+    background-color: var(--color-positive-disabled);
+  }
+
+  &--normal {
+    background-color: var(--color-action-disabled);
+  }
+
+  &__indicator--success {
+    background-color: var(--color-positive-default);
+    border-radius: 100px;
+    height: 100%;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
+  }
+
+  &__indicator--normal {
+    background-color: var(--color-action-default);
+    border-radius: 100px;
+    height: 100%;
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
+  }
+}

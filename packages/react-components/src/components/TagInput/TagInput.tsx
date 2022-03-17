@@ -1,10 +1,12 @@
 import * as React from 'react';
-import cx from 'classnames';
+import cx from 'clsx';
 import { EditableTag } from './EditableTag';
-import { KeyCodes } from '../../constants/keyCodes';
+import { KeyCodes } from '../../utils/keyCodes';
 import { FieldError } from '../FieldError';
 
-const baseClass = 'lc-tag-input';
+import styles from './TagInput.module.scss';
+
+const baseClass = 'tag-input';
 
 const tagSeparatorKeys = [
   KeyCodes.enter,
@@ -17,7 +19,7 @@ const tagRemoveKeys = [KeyCodes.backspace, KeyCodes.delete];
 
 type Tags = string[];
 
-export interface ITagInputProps {
+export interface TagInputProps {
   error?: string;
   tags?: Tags;
   onChange: (tags: Tags) => void;
@@ -26,7 +28,7 @@ export interface ITagInputProps {
   size?: 'medium' | 'large';
 }
 
-export const TagInput: React.FC<ITagInputProps> = ({
+export const TagInput: React.FC<TagInputProps> = ({
   tags,
   onChange,
   validator,
@@ -34,12 +36,12 @@ export const TagInput: React.FC<ITagInputProps> = ({
   placeholder,
   size = 'medium',
 }) => {
-  const mergedClassNames = cx(baseClass, {
-    [`${baseClass}--error`]: error,
+  const mergedClassNames = cx(styles[baseClass], {
+    [styles[`${baseClass}--error`]]: error,
   });
   const inputClassNames = cx(
-    `${baseClass}__input`,
-    `${baseClass}__input--${size}`
+    styles[`${baseClass}__input`],
+    styles[`${baseClass}__input--${size}`]
   );
 
   const [inputValue, setInputValue] = React.useState('');
