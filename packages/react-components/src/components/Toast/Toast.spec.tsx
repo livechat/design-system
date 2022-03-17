@@ -43,7 +43,7 @@ describe('<Toast> component', () => {
     expect(container.firstChild).toHaveClass(styles['toast--error']);
   });
 
-  it.only('should render as notification', () => {
+  it('should render as notification', () => {
     const { container } = renderComponent({
       variant: Variants.Notification,
     });
