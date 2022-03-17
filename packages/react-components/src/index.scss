@@ -1,6 +1,6 @@
-@use '@livechat/design-system-styles/css/themes/legacy.css';
+@use './themes/legacy';
 
-* [class^='lc-'] {
+*[class^='lc-'] {
   box-sizing: border-box;
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, Segoe UI,
     Helvetica Neue, Arial, sans-serif;

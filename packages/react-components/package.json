@@ -15,7 +15,10 @@
     "dev": "run-p dev:*",
     "dev:storybook": "start-storybook -p 6006 --quiet",
     "dev:lib": "vite build -w",
-    "build": "tsc && vite build",
+    "dev:styles": "npm run build:styles -- --watch",
+    "build": "run-s build:*",
+    "build:lib": "tsc && vite build",
+    "build:styles": "sass src/themes:dist/themes",
     "build-storybook": "build-storybook",
     "chromatic": "dotenv -e ../../.env chromatic -- --exit-zero-on-changes",
     "lint": "eslint src --ext js,jsx,ts,tsx",
@@ -56,7 +59,6 @@
     "vitest": "^0.6.3"
   },
   "dependencies": {
-    "@livechat/design-system-styles": "^1.0.0-alpha.2",
     "@popperjs/core": "^2.11.2",
     "clsx": "^1.1.1",
     "lodash.escape": "^4.0.1",

@@ -1,6 +1,6 @@
-import '@livechat/design-system-styles/css/themes/legacy.css';
-import '@livechat/design-system-styles/css/themes/light.css';
-import '@livechat/design-system-styles/css/themes/dark.css';
+import '../src/themes/legacy.scss';
+import '../src/themes/light.scss';
+import '../src/themes/dark.scss';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },

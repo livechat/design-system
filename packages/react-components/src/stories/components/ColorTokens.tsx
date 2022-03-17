@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DesignTokens } from '@livechat/design-system-styles';
+import { DesignTokens } from '../../themes/designTokens';
 import { Text } from '../../components/Typography';
 
 interface TokensGroup {

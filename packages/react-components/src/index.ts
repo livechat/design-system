@@ -1,5 +1,7 @@
 import './index.scss';
 
+export { DesignTokens } from './themes/designTokens';
+
 export * from './components/Alert';
 export * from './components/Badge';
 export * from './components/Button';
