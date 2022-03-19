@@ -32,11 +32,9 @@ export const PickerList: React.FC<IPickerListProps> = ({
   onClose,
   onSelect,
 }) => {
-  const mergedClassNames = cx(
-    baseClass,
-    `${baseClass}--${size as string}`,
-    items.length === 0 && `${baseClass}__no-results`
-  );
+  const mergedClassNames = cx(baseClass, `${baseClass}--${size as string}`, {
+    [`${baseClass}__no-results`]: items.length === 0,
+  });
 
   const [selectedItemKey, setSelectedItemKey] = React.useState<string | null>(
     null
@@ -183,12 +181,11 @@ export const PickerList: React.FC<IPickerListProps> = ({
           <li
             id={item.key}
             key={item.key}
-            className={cx(
-              itemClassName,
-              selectedItemKey === item.key && `${itemClassName}--hovered`,
-              isItemSelected(item.key) && `${itemClassName}--focused`,
-              item.disabled && `${itemClassName}--disabled`
-            )}
+            className={cx(itemClassName, {
+              [`${itemClassName}--hovered`]: selectedItemKey === item.key,
+              [`${itemClassName}--focused`]: isItemSelected(item.key),
+              [`${itemClassName}--disabled`]: item.disabled,
+            })}
             onClick={() => !item.disabled && handleOnClick(item)}
             onMouseEnter={() => handleOnMouseEnter(item.key)}
           >

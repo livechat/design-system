@@ -6,6 +6,7 @@ import { IPickerListItem, PickerList } from './PickerList';
 import Icon, { IconSizeName, IconTypeName } from '../Icon';
 
 const baseClass = 'lc-picker';
+
 export interface IPickerProps {
   disabled?: boolean;
   label?: string;
@@ -80,7 +81,7 @@ export const Picker: React.FC<IPickerProps> = ({
 
     return options.filter((item: IPickerListItem) => {
       const search = searchPhrase.toLowerCase();
-      const itemName = item.name.toLocaleLowerCase();
+      const itemName = item.name.toLowerCase();
 
       if (itemName.includes(search) && !item.groupHeader) {
         return item;
@@ -92,10 +93,9 @@ export const Picker: React.FC<IPickerProps> = ({
     <div ref={triggerRef} className={baseClass}>
       {label && (
         <div
-          className={cx(
-            `${baseClass}__label`,
-            disabled && `${baseClass}__label--disabled`
-          )}
+          className={cx(`${baseClass}__label`, {
+            [`${baseClass}__label--disabled`]: disabled,
+          })}
         >
           {label}
         </div>
