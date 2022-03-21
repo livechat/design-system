@@ -82,7 +82,11 @@ export const Alert: React.FC<AlertProps> = ({
           className={styles[`${baseClass}__close-icon`]}
           onClick={onClose}
         >
-          <Icon source={CloseIcon} size={IconSizeName.Large} />
+          <Icon
+            source={CloseIcon}
+            size={IconSizeName.Large}
+            iconType={IconTypeName.Primary}
+          />
         </button>
       )}
     </div>

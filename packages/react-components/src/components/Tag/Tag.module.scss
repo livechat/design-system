@@ -16,8 +16,7 @@
     border-color: #005321;
     color: #005321;
 
-    .icon,
-    .tag__remove > .icon {
+    .tag__remove {
       color: #005321;
     }
   }
@@ -27,8 +26,7 @@
     border-color: var(--color-negative-active);
     color: var(--color-negative-active);
 
-    .icon,
-    .tag__remove > .icon {
+    .tag__remove {
       color: var(--color-negative-active);
     }
   }
@@ -38,8 +36,7 @@
     border-color: #755b00;
     color: #755b00;
 
-    .icon,
-    .tag__remove > .icon {
+    .tag__remove {
       color: #755b00;
     }
   }
@@ -49,8 +46,7 @@
     border-color: var(--color-action-active);
     color: var(--color-action-active);
 
-    .icon,
-    .tag__remove > .icon {
+    .tag__remove {
       color: var(--color-action-active);
     }
   }
@@ -121,20 +117,15 @@
     background-color: transparent;
     border-style: none;
     box-shadow: none;
+    color: var(--content-subtle);
     cursor: pointer;
     display: flex;
     justify-content: center;
     outline: none;
     padding: 0 0 0 4px;
 
-    .icon {
-      align-items: center;
-      color: var(--content-subtle);
-      display: flex;
-
-      &:hover {
-        color: var(--content-default);
-      }
+    &:hover {
+      color: var(--content-default);
     }
   }
 }
