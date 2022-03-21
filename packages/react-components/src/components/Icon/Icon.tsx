@@ -81,16 +81,20 @@ export const Icon: React.FC<IconProps> = (props) => {
   const {
     source,
     size = IconSizeName.Medium,
-    iconType = IconTypeName.Primary,
+    iconType,
     disabled,
     className,
     customColor,
     ...restProps
   } = props;
-  let filledColor = IconColorMapper[iconType];
+  let filledColor;
 
-  if (disabled) {
-    filledColor = IconColorDisabledMapper[iconType];
+  if (iconType) {
+    filledColor = IconColorMapper[iconType];
+
+    if (disabled) {
+      filledColor = IconColorDisabledMapper[iconType];
+    }
   }
 
   const GeneratedIcon = React.createElement(source, {
@@ -101,7 +105,7 @@ export const Icon: React.FC<IconProps> = (props) => {
   const mergedClassNames = cx(
     className,
     styles[baseClass],
-    styles[`${baseClass}--${filledColor}`]
+    filledColor && styles[`${baseClass}--${filledColor as string}`]
   );
 
   return (
