@@ -1,4 +1,4 @@
 export { TagInput } from './TagInput';
-export type { ITagInputProps } from './TagInput';
+export type { TagInputProps } from './TagInput';
 export { EmailTagInput } from './EmailTagInput';
-export type { IEmailTagInputProps } from './EmailTagInput';
+export type { EmailTagInputProps } from './EmailTagInput';

@@ -1,0 +1,90 @@
+.text-field {
+  margin-bottom: 20px;
+
+  &--inline {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__wrapper--inline {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  &__label {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 4px;
+
+    label {
+      margin-bottom: 0;
+    }
+
+    &--inline {
+      align-items: center;
+      height: 32px;
+      justify-content: center;
+      margin-bottom: 0;
+      margin-right: 10px;
+    }
+
+    &--no-text {
+      justify-content: flex-end;
+      margin-right: 0;
+    }
+  }
+
+  &__label-wrapper {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  &__label-adornment {
+    align-items: center;
+    align-self: flex-end;
+    display: flex;
+    flex-shrink: 0;
+    height: 20px;
+    justify-content: flex-end;
+    line-height: 20px;
+    margin-left: 4px;
+    overflow: hidden;
+    width: 20px;
+  }
+
+  &__label-right-node {
+    align-self: flex-end;
+    color: var(--content-default);
+    display: flex;
+    flex-shrink: 0;
+    font-size: 14px;
+    justify-content: flex-end;
+    line-height: 20px;
+    margin-left: 5px;
+
+    &--inline {
+      flex-grow: 1;
+      margin-bottom: 4px;
+    }
+  }
+
+  &__row-break {
+    flex-basis: 100%;
+    height: 0;
+  }
+
+  &__content {
+    flex-grow: 1;
+  }
+}
+
+.field-label {
+  color: var(--content-default);
+  display: block;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 4px;
+}

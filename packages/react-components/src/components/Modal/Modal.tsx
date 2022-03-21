@@ -1,35 +1,41 @@
 import * as React from 'react';
-import cx from 'classnames';
-import { IModalBaseProps, ModalBase } from './ModalBase';
-import { Heading } from '../Heading';
+import cx from 'clsx';
+import { ModalBaseProps, ModalBase } from './ModalBase';
+import { Heading } from '../Typography';
 
-export interface IModalProps extends IModalBaseProps {
+import styles from './Modal.module.scss';
+
+export interface ModalProps extends ModalBaseProps {
   heading?: React.ReactNode;
   footer?: React.ReactNode;
 }
 
-const baseClass = 'lc-modal';
+const baseClass = 'modal';
 
-export const Modal: React.FC<IModalProps> = ({
+export const Modal: React.FC<ModalProps> = ({
   children,
   className = '',
   heading,
   footer,
   ...props
 }) => {
-  const mergedClassNames = cx(baseClass, className);
+  const mergedClassNames = cx(styles[baseClass], className);
 
   return (
     <ModalBase className={mergedClassNames} {...props}>
       {heading && (
-        <div className={`${baseClass}__header`}>
-          <Heading size="sm" as="div" className={`${baseClass}__heading`}>
+        <div className={styles[`${baseClass}__header`]}>
+          <Heading
+            size="sm"
+            as="div"
+            className={styles[`${baseClass}__heading`]}
+          >
             {heading}
           </Heading>
         </div>
       )}
-      <div className={`${baseClass}__body`}>{children}</div>
-      {footer && <div className={`${baseClass}__footer`}>{footer}</div>}
+      <div className={styles[`${baseClass}__body`]}>{children}</div>
+      {footer && <div className={styles[`${baseClass}__footer`]}>{footer}</div>}
     </ModalBase>
   );
 };
