@@ -105,7 +105,7 @@ export const Icon: React.FC<IconProps> = (props) => {
   const mergedClassNames = cx(
     className,
     styles[baseClass],
-    filledColor && styles[`${baseClass}--${filledColor as string}`]
+    filledColor && styles[`${baseClass}--${filledColor}`]
   );
 
   return (
