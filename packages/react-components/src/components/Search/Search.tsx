@@ -4,11 +4,11 @@ import {
   Search as SearchIcon,
   Close,
 } from '@livechat/design-system-icons/react/material';
-import { KeyCodes } from 'utils/keyCodes';
-import { Icon } from 'components/Icon';
+import { Icon } from '../Icon';
 import { Loader } from '../Loader';
 
 import styles from './Search.module.scss';
+import { KeyCodes } from '../../utils/keyCodes';
 
 const baseClass = 'search';
 
