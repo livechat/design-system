@@ -1,7 +1,8 @@
 import * as React from 'react';
-import Icon from '../Icon';
+import Icon, { IconTypeName } from '../Icon';
 import { Close } from '@livechat/design-system-icons/dist/material';
 import { Button } from '../Button';
+import { getIconType } from './helpers';
 
 export const UserGuide: React.FC<{
   header: string;
@@ -13,6 +14,7 @@ export const UserGuide: React.FC<{
   currentStep: number;
   stepMax: number;
   closeWithX?: boolean;
+  theme?: string;
   handleClickPrimary: () => void;
   handleCloseOnClick?: () => void;
 }> = ({
@@ -22,6 +24,7 @@ export const UserGuide: React.FC<{
   currentStep,
   stepMax,
   closeWithX,
+  theme,
   handleCloseOnClick,
   handleClickPrimary,
 }) => {
@@ -30,7 +33,10 @@ export const UserGuide: React.FC<{
       {closeWithX && (
         <div className="lc-tooltip-interactive-x">
           <div style={{ cursor: 'pointer' }} onClick={handleCloseOnClick}>
-            <Icon source={Close}></Icon>
+            <Icon
+              source={Close}
+              iconType={theme ? getIconType(theme) : IconTypeName.Primary}
+            ></Icon>
           </div>
         </div>
       )}

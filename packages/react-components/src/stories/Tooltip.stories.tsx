@@ -195,6 +195,7 @@ const TooltipInteractiveExample: React.FC<ITooltipExample> = ({
             src: beutifulImage,
             alt: 'image',
           }}
+          theme={theme}
           text="Tooltip content is used to explain the details of elements or features."
           handleClickPrimary={() => console.log('primary click handler')}
           handleClickSecondary={() => console.log('secondary click handler')}

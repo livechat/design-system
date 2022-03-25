@@ -1,7 +1,8 @@
 import * as React from 'react';
-import Icon from '../Icon';
+import Icon, { IconTypeName } from '../Icon';
 import { Close } from '@livechat/design-system-icons/dist/material';
 import { Button } from '../Button';
+import { getIconType } from './helpers';
 
 export const Interactive: React.FC<{
   header: string;
@@ -11,6 +12,7 @@ export const Interactive: React.FC<{
     alt: string;
   };
   closeWithX?: boolean;
+  theme?: 'invert' | 'important';
   handleClickPrimary: () => void;
   handleClickSecondary: () => void;
   handleCloseOnClick?: () => void;
@@ -19,6 +21,7 @@ export const Interactive: React.FC<{
   text,
   image,
   closeWithX,
+  theme,
   handleCloseOnClick,
   handleClickPrimary,
   handleClickSecondary,
@@ -28,7 +31,10 @@ export const Interactive: React.FC<{
       {closeWithX && (
         <div className="lc-tooltip-interactive-x">
           <div style={{ cursor: 'pointer' }} onClick={handleCloseOnClick}>
-            <Icon source={Close}></Icon>
+            <Icon
+              source={Close}
+              iconType={theme ? getIconType(theme) : IconTypeName.Primary}
+            ></Icon>
           </div>
         </div>
       )}
