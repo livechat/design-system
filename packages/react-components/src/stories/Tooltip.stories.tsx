@@ -116,7 +116,7 @@ export const TooltipUserGuide = (args: any) => (
   </div>
 );
 
-TooltipInteractive.args = {
+TooltipUserGuide.args = {
   placement: 'bottom',
   isVisible: true,
   theme: undefined,
@@ -161,6 +161,7 @@ const TooltipInteractiveExample: React.FC<ITooltipExample> = ({
   placement,
   isVisible,
   triggerOnClick,
+  theme,
 }) => {
   return (
     <div
@@ -176,6 +177,7 @@ const TooltipInteractiveExample: React.FC<ITooltipExample> = ({
         placement={placement}
         isVisible={isVisible}
         triggerOnClick={triggerOnClick}
+        theme={theme}
         triggerRenderer={() => (
           <div>
             <Button
@@ -207,6 +209,7 @@ const TooltipUserGuideExample: React.FC<ITooltipExample> = ({
   placement,
   isVisible,
   triggerOnClick,
+  theme,
 }) => {
   return (
     <div
@@ -222,6 +225,7 @@ const TooltipUserGuideExample: React.FC<ITooltipExample> = ({
         placement={placement}
         isVisible={isVisible}
         triggerOnClick={triggerOnClick}
+        theme={theme}
         triggerRenderer={() => (
           <div>
             <Button
@@ -254,6 +258,7 @@ const TooltipInfoExample: React.FC<ITooltipExample> = ({
   placement,
   isVisible,
   triggerOnClick,
+  theme,
 }) => {
   return (
     <div
@@ -269,6 +274,7 @@ const TooltipInfoExample: React.FC<ITooltipExample> = ({
         placement={placement}
         isVisible={isVisible}
         triggerOnClick={triggerOnClick}
+        theme={theme}
         triggerRenderer={() => (
           <div>
             <Button
