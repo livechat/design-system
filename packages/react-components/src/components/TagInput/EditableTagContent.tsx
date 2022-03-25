@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { KeyCodes } from '../../constants/keyCodes';
-import cx from 'classnames';
-import { escape } from 'lodash';
+import { KeyCodes } from '../../utils/keyCodes';
+import escape from 'lodash.escape';
 
-export interface IEditableTagContentProps {
+export interface EditableTagContentProps {
   value: string;
   className?: string;
   innerEditableRef: React.RefObject<HTMLDivElement>;
@@ -13,7 +12,7 @@ export interface IEditableTagContentProps {
   validator?: (value: string) => boolean;
 }
 
-export const EditableTagContent: React.FC<IEditableTagContentProps> = ({
+export const EditableTagContent: React.FC<EditableTagContentProps> = ({
   className = '',
   innerEditableRef,
   inputRef,
@@ -21,8 +20,6 @@ export const EditableTagContent: React.FC<IEditableTagContentProps> = ({
   remove,
   value,
 }) => {
-  const mergedClassNames = cx(className);
-
   const [removed, setRemoved] = React.useState(false);
 
   const getRef = () => innerEditableRef.current;
@@ -73,7 +70,7 @@ export const EditableTagContent: React.FC<IEditableTagContentProps> = ({
   return (
     <div
       ref={innerEditableRef}
-      className={mergedClassNames}
+      className={className}
       contentEditable={true}
       onPaste={onPaste}
       onBlur={onBlur}

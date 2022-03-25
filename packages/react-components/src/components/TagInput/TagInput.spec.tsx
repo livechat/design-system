@@ -1,21 +1,22 @@
 import * as React from 'react';
-import userEvent from '@testing-library/user-event';
-import { render } from '../../test-utils';
-import { TagInput } from './TagInput';
-import { fireEvent } from '@testing-library/dom';
+import { render, fireEvent, userEvent, vi } from 'test-utils';
+import noop from '../../utils/noop';
 
-const baseClass = 'lc-tag-input';
-const onChange = jest.fn();
+import { TagInput } from './TagInput';
+import styles from './TagInput.module.scss';
+
+const baseClass = 'tag-input';
 
 describe('<TagInput> component', () => {
   it('should have error class when error occurs', () => {
     const { container } = render(
-      <TagInput onChange={onChange} error={'test error'} />
+      <TagInput onChange={noop} error={'test error'} />
     );
-    expect(container.firstChild).toHaveClass(`${baseClass}--error`);
+    expect(container.firstChild).toHaveClass(styles[`${baseClass}--error`]);
   });
 
   it('should call onChange method on enter press', () => {
+    const onChange = vi.fn();
     const { getByRole } = render(<TagInput onChange={onChange} />);
     const tagText = 'tagText';
     const input = getByRole('textbox');
@@ -24,6 +25,7 @@ describe('<TagInput> component', () => {
   });
 
   it('should call onChange method on separator provided', () => {
+    const onChange = vi.fn();
     const { getByRole } = render(<TagInput onChange={onChange} />);
     const tagText = 'tagText';
     const tagSeparator = ';';
@@ -33,6 +35,7 @@ describe('<TagInput> component', () => {
   });
 
   it('should not call onChange method on enter press when tag separator is not provided', () => {
+    const onChange = vi.fn();
     const { getByRole } = render(<TagInput onChange={onChange} />);
     const tagText = 'tagText';
     const input = getByRole('textbox');
@@ -41,6 +44,7 @@ describe('<TagInput> component', () => {
   });
 
   it('should call onChange method on text paste', () => {
+    const onChange = vi.fn();
     const { getByRole } = render(<TagInput onChange={onChange} />);
     const pastedText = 'tag1;tag2,tag3 tag4';
     const input = getByRole('textbox');

@@ -2,10 +2,11 @@ import * as React from 'react';
 import { EditableTagContent } from './EditableTagContent';
 import { Tag } from '../Tag';
 
-const baseClass = 'lc-tag-input__tag';
+import styles from './TagInput.module.scss';
 
-export interface IEditableTagProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+const baseClass = 'tag-input__tag';
+
+export interface EditableTagProps extends React.HTMLAttributes<HTMLDivElement> {
   inputRef: React.RefObject<HTMLInputElement>;
   index: number;
   update: (idx: number, value: string) => void;
@@ -15,7 +16,7 @@ export interface IEditableTagProps
   size: 'medium' | 'large';
 }
 
-export const EditableTag: React.FC<IEditableTagProps> = ({
+export const EditableTag: React.FC<EditableTagProps> = ({
   children,
   index,
   remove,
@@ -43,7 +44,7 @@ export const EditableTag: React.FC<IEditableTagProps> = ({
         value={children}
         inputRef={inputRef}
         innerEditableRef={innerEditableRef}
-        className={`${baseClass}__content`}
+        className={styles[`${baseClass}__content`]}
         change={(newValue) => update(index, newValue)}
         remove={removeTag}
         validator={validator}
