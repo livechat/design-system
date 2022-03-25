@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { render, fireEvent, vi } from 'test-utils';
-import noop from 'utils/noop';
+import noop from '../../utils/noop';
 import { ISearchProps, Search, SearchSize } from './Search';
+import styles from './Search.module.scss';
 
-const baseClass = 'lc-search';
+const baseClass = 'search';
 
 const defaultProps = {
   onChange: () => noop,
@@ -19,7 +20,7 @@ describe('<Search> component', () => {
       ...defaultProps,
     });
 
-    expect(container.firstChild).toHaveClass(`${baseClass}--compact`);
+    expect(container.firstChild).toHaveClass(styles[`${baseClass}--compact`]);
   });
 
   it('should render with given medium size', () => {
@@ -28,7 +29,7 @@ describe('<Search> component', () => {
       size: SearchSize.Medium,
     });
 
-    expect(container.firstChild).toHaveClass(`${baseClass}--medium`);
+    expect(container.firstChild).toHaveClass(styles[`${baseClass}--medium`]);
   });
 
   it('should render with given large size', () => {
@@ -37,7 +38,7 @@ describe('<Search> component', () => {
       size: SearchSize.Large,
     });
 
-    expect(container.firstChild).toHaveClass(`${baseClass}--large`);
+    expect(container.firstChild).toHaveClass(styles[`${baseClass}--large`]);
   });
 
   it('should render as disabled', () => {
@@ -46,7 +47,7 @@ describe('<Search> component', () => {
       isDisabled: true,
     });
 
-    expect(container.firstChild).toHaveClass(`${baseClass}--disabled`);
+    expect(container.firstChild).toHaveClass(styles[`${baseClass}--disabled`]);
   });
 
   it('should render as loading', () => {
@@ -55,7 +56,7 @@ describe('<Search> component', () => {
       isLoading: true,
     });
 
-    expect(container.firstChild).toHaveClass(`${baseClass}--disabled`);
+    expect(container.firstChild).toHaveClass(styles[`${baseClass}--disabled`]);
     expect(getByTestId(`${baseClass}-loader`)).toBeVisible();
   });
 
@@ -65,9 +66,13 @@ describe('<Search> component', () => {
       isCollapsable: true,
     });
 
-    expect(container.firstChild).toHaveClass(`${baseClass}--collapsable`);
+    expect(container.firstChild).toHaveClass(
+      styles[`${baseClass}--collapsable`]
+    );
     fireEvent.click(getByTestId(`${baseClass}-container`));
-    expect(container.firstChild).toHaveClass(`${baseClass}--collapsable--open`);
+    expect(container.firstChild).toHaveClass(
+      styles[`${baseClass}--collapsable--open`]
+    );
   });
 
   it('should render with given custom placeholder', () => {

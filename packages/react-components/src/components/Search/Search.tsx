@@ -97,7 +97,7 @@ export const Search: React.FC<ISearchProps> = ({
 
   return (
     <div
-      data-testid={styles[`${baseClass}-container`]}
+      data-testid={`${baseClass}-container`}
       className={mergedClassNames}
       onClick={handleOnClick}
     >
@@ -119,15 +119,12 @@ export const Search: React.FC<ISearchProps> = ({
         disabled={isDisabled || isLoading}
       />
       {!!searchValue && !isDisabled && !isLoading && (
-        <div
-          data-testid={styles[`${baseClass}-clear-icon`]}
-          onClick={handleOnClear}
-        >
+        <div data-testid={`${baseClass}-clear-icon`} onClick={handleOnClear}>
           <Icon className={styles[`${baseClass}__clear-icon`]} source={Close} />
         </div>
       )}
       {isLoading && (
-        <div data-testid={styles[`${baseClass}-loader`]}>
+        <div data-testid={`${baseClass}-loader`}>
           <Loader size="small" />
         </div>
       )}
