@@ -14,56 +14,91 @@ import {
 export interface ITooltipProps {
   children?: React.ReactNode;
   className?: string;
+  theme?: 'invert' | 'important' | undefined;
   placement?: Placement;
   isVisible?: boolean;
   withFadeAnimation?: boolean;
   transition?: number;
+  transitionDelay?: number;
+  hoverOutDelayTimeout?: number;
   offsetMainAxis?: number;
   triggerOnClick?: boolean;
   triggerRenderer: () => React.ReactNode;
+  onOpen?: () => void;
+  onClose?: () => void;
 }
+
+const sleep = (milliseconds: number) => {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+};
 
 export const Tooltip: React.FC<ITooltipProps> = (props) => {
   const {
     triggerRenderer,
     children,
     className,
+    theme,
     placement,
     isVisible = false,
     withFadeAnimation = true,
     transition = 200,
+    transitionDelay = 500,
+    hoverOutDelayTimeout = 100,
     offsetMainAxis = 8,
     triggerOnClick = false,
+    onOpen,
+    onClose,
   } = props;
 
   const arrowRef = React.useRef<HTMLDivElement | null>(null);
 
   const [visible, setVisibility] = React.useState(isVisible);
+  const isHovered = React.useRef(false);
+
+  const handleMouseLeave = () => {
+    isHovered.current = false;
+    void sleep(hoverOutDelayTimeout).then(() => {
+      if (!isHovered.current) {
+        setVisibility(false);
+      }
+    });
+  };
 
   React.useEffect(() => {
     setVisibility(isVisible);
   }, [isVisible]);
 
-  const handleMouseEnter = () => {
+  const handleOpen = () => {
+    if (onOpen) onOpen();
     setVisibility(true);
   };
 
-  const handleMouseLeave = () => {
+  const handleClosed = () => {
+    if (onClose) onClose();
     setVisibility(false);
+  };
+
+  const handleMouseEnter = () => {
+    isHovered.current = true;
+    setVisibility(true);
   };
 
   const handleHideOnEscape = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
-      setVisibility(false);
+      handleClosed();
     }
   };
 
   const handleClick = () => {
-    setVisibility((prevVisible) => !prevVisible);
+    if (visible) {
+      handleClosed();
+    } else {
+      handleOpen();
+    }
   };
 
   const handleCloseOnClick = () => {
-    setVisibility(false);
+    handleClosed();
   };
 
   const {
@@ -103,6 +138,8 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
 
   const mergedClassNames = cx('lc-tooltip', {
     [className ]: className,
+    [`lc-tooltip--invert`]: theme === 'invert',
+    [`lc-tooltip--important`]: theme === 'important',
   });
 
   const popperComponent = (
@@ -125,7 +162,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
       })}
       <div
         ref={arrowRef}
-        className={'lc-tooltip__arrow'}
+        className={cx('lc-tooltip__arrow')}
         data-popper-placement={updatedPlacement}
         style={{ top: arrowY, left: arrowX }}
       />
@@ -140,7 +177,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
 
       const appearActive = css`
         opacity: 1;
-        transition: opacity ${transition}ms;
+        transition: opacity ${transition}ms ${transitionDelay}ms;
       `;
 
       const exit = css`
@@ -149,7 +186,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
 
       const exitActive = css`
         opacity: 0;
-        transition: opacity ${transition}ms;
+        transition: opacity ${transition}ms ${transitionDelay}ms;
       `;
 
       return (

@@ -2,8 +2,10 @@ $base-class: 'lc-tooltip';
 
 .#{$base-class} {
   background-color: var(--surface-basic-default);
+  border-color: var(--surface-basic-default);
   border-radius: 4px;
   box-shadow: 0 1px 10px 0 rgba(66, 77, 87, 0.3);
+  color: var(--content-default);
   max-width: 320px;
   padding: 12px;
   z-index: 999999999;
@@ -12,31 +14,42 @@ $base-class: 'lc-tooltip';
     outline: none;
   }
 
+  &--invert {
+    background-color: var(--surface-invert-default);
+    border-color: var(--surface-invert-default);
+    color: var(--content-invert-default);
+  }
+
+  &--important {
+    background-color: var(--color-warning-default);
+    border-color: var(--color-warning-default);
+    color: var(--content-default);
+  }
+
   &__arrow {
+    background-color: inherit;
+    border-color: inherit;
+    color: inherit;
     height: 6px;
     margin: -6px 0;
     position: absolute;
     width: 12px;
 
     &::after {
-      border: 6px;
-      border-color: var(--border-invert-default) var(--border-invert-default)
-        transparent transparent;
-      border-style: solid;
+      border: 6px solid transparent;
       content: '';
       position: absolute;
-      top: 0;
       transform: rotate(-45deg);
-      z-index: 10;
     }
 
     &[data-popper-placement*='bottom'] {
+      height: 0;
       top: 1px;
 
       &::after {
-        background-color: var(--surface-basic-default);
+        border-right-color: inherit;
+        border-top-color: inherit;
         box-shadow: 8px -6px 10px -2px rgba(66, 77, 87, 0.3);
-        content: '';
       }
     }
 
@@ -44,23 +57,20 @@ $base-class: 'lc-tooltip';
       top: 100%;
 
       &::after {
-        background-color: var(--surface-basic-default);
-        border-color: transparent transparent var(--border-invert-default)
-          var(--border-invert-default);
+        border-bottom-color: inherit;
+        border-left-color: inherit;
         box-shadow: -8px 8px 10px -2px rgba(66, 77, 87, 0.3);
       }
     }
 
     &[data-popper-placement*='right'] {
-      height: 12px;
+      height: 0;
       left: 0;
-      margin: 0 -6px;
-      width: 6px;
-
+      margin: 0 -4px;
+      top: 48% !important;
       &::after {
-        background-color: var(--surface-basic-default);
-        border-color: var(--border-invert-default) transparent transparent
-          var(--border-invert-default);
+        border-left-color: inherit;
+        border-top-color: inherit;
         box-shadow: -5px -5px 10px -2px rgba(66, 77, 87, 0.3);
       }
     }
@@ -72,9 +82,8 @@ $base-class: 'lc-tooltip';
       width: 6px;
 
       &::after {
-        background-color: var(--surface-basic-default);
-        border-color: transparent var(--border-invert-default)
-          var(--border-invert-default) transparent;
+        border-bottom-color: inherit;
+        border-right-color: inherit;
         box-shadow: 6px 6px 10px -2px rgba(66, 77, 87, 0.3);
       }
     }
