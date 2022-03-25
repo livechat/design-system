@@ -11,6 +11,9 @@
   "module": "./dist/dsrc.es.js",
   "unpkg": "./dist/dsrc.umd.js",
   "types": "./dist/src/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "run-p dev:*",
     "dev:storybook": "start-storybook -p 6006 --quiet",
