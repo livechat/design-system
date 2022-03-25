@@ -56,6 +56,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   const isHovered = React.useRef(false);
 
   const handleMouseLeave = () => {
+    if (triggerOnClick) return;
     isHovered.current = false;
     void sleep(hoverOutDelayTimeout).then(() => {
       if (!isHovered.current) {
@@ -79,6 +80,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   };
 
   const handleMouseEnter = () => {
+    if (triggerOnClick) return;
     isHovered.current = true;
     setVisibility(true);
   };
@@ -137,7 +139,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   }, []);
 
   const mergedClassNames = cx('lc-tooltip', {
-    [className ]: className,
+    [className]: className,
     [`lc-tooltip--invert`]: theme === 'invert',
     [`lc-tooltip--important`]: theme === 'important',
   });

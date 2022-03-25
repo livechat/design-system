@@ -33,6 +33,8 @@ const tooltipPlacements = [
   'top-start',
 ];
 
+const tooltipThemes = ['invert', 'important', undefined];
+
 export const Tooltip = (args: any): React.ReactElement => (
   <div
     style={{
@@ -57,6 +59,8 @@ export const Tooltip = (args: any): React.ReactElement => (
 Tooltip.args = {
   placement: 'bottom',
   isVisible: true,
+  theme: undefined,
+  triggerOnClick: false,
 };
 
 export const TooltipInfo = (args: any) => (
@@ -75,6 +79,7 @@ export const TooltipInfo = (args: any) => (
 TooltipInfo.args = {
   placement: 'bottom',
   isVisible: true,
+  theme: undefined,
   triggerOnClick: false,
 };
 
@@ -94,6 +99,7 @@ export const TooltipInteractive = (args: any) => (
 TooltipInteractive.args = {
   placement: 'bottom',
   isVisible: true,
+  theme: undefined,
   triggerOnClick: false,
 };
 
@@ -113,18 +119,22 @@ export const TooltipUserGuide = (args: any) => (
 TooltipInteractive.args = {
   placement: 'bottom',
   isVisible: true,
+  theme: undefined,
   triggerOnClick: false,
 };
 
 export interface ITooltipExample {
   placement: Placement;
   isVisible: boolean;
+  theme: 'invert' | 'important' | undefined;
   triggerOnClick: boolean;
 }
 
 const TooltipSimpleExample: React.FC<ITooltipExample> = ({
   placement,
   isVisible,
+  triggerOnClick,
+  theme,
 }) => {
   return (
     <div
@@ -137,6 +147,8 @@ const TooltipSimpleExample: React.FC<ITooltipExample> = ({
       <TooltipComponent
         placement={placement}
         isVisible={isVisible}
+        triggerOnClick={triggerOnClick}
+        theme={theme}
         triggerRenderer={() => <Icon source={Smiles}></Icon>}
       >
         <Simple text="Simple tooltip" />
@@ -287,6 +299,13 @@ export default {
       control: {
         type: 'select',
         labels: 'Placement',
+      },
+    },
+    theme: {
+      options: tooltipThemes,
+      control: {
+        type: 'select',
+        labels: 'Theme',
       },
     },
   },
