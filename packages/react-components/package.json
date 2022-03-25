@@ -1,6 +1,6 @@
 {
   "name": "@livechat/design-system-react-components",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "",
   "publishConfig": {
     "access": "public"
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.17.7",
-    "@livechat/design-system-icons": "^1.0.0-alpha.3",
+    "@livechat/design-system-icons": "^1.0.0-alpha.4",
     "@storybook/addon-actions": "^6.4.13",
     "@storybook/addon-essentials": "^6.4.13",
     "@storybook/addon-links": "^6.4.13",
