@@ -22,8 +22,8 @@ interface Props {
   onChange: (value: string) => void;
 }
 
-export type NumericInputProps = Props &
-  React.InputHTMLAttributes<HTMLInputElement>;
+export type NumericInputProps = React.InputHTMLAttributes<HTMLInputElement> &
+  Props;
 
 export const NumericInput: React.FC<NumericInputProps> = ({
   className,
@@ -37,6 +37,8 @@ export const NumericInput: React.FC<NumericInputProps> = ({
   onChange,
   ...restProps
 }) => {
+  const inputRef = React.useRef<null | HTMLInputElement>(null);
+
   const mergedClassNames = cx(
     styles[baseClass],
     {
@@ -46,11 +48,6 @@ export const NumericInput: React.FC<NumericInputProps> = ({
     },
     className
   );
-
-  const handleOnFocus = () =>
-    window.addEventListener('keydown', onKeyDown, true);
-
-  const handleOnBlur = () => window.removeEventListener('keydown', onKeyDown);
 
   const callOnChange = (val: number | string) => onChange(String(val));
 
@@ -72,7 +69,7 @@ export const NumericInput: React.FC<NumericInputProps> = ({
     return callOnChange(calcValue(newValue));
   };
 
-  const onKeyDown = (e: KeyboardEvent) => {
+  const onKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key === KeyCodes.arrowDown) {
       e.preventDefault();
       updateValue(-1);
@@ -105,10 +102,12 @@ export const NumericInput: React.FC<NumericInputProps> = ({
   };
 
   const handleIncrementClick = () => {
+    inputRef.current?.focus();
     return updateValue(1);
   };
 
   const handleDecrementClick = () => {
+    inputRef.current?.focus();
     return updateValue(-1);
   };
 
@@ -116,12 +115,12 @@ export const NumericInput: React.FC<NumericInputProps> = ({
     <div className={mergedClassNames} style={style}>
       <input
         type="text"
+        ref={inputRef}
         {...restProps}
         value={value}
         disabled={disabled}
         onChange={handleOnChange}
-        onFocus={handleOnFocus}
-        onBlur={handleOnBlur}
+        onKeyDown={onKeyDown}
         min={min}
         max={max}
       />
