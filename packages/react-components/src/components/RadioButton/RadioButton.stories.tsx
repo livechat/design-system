@@ -7,7 +7,7 @@ import {
 } from './RadioButton';
 
 export default {
-  title: 'Components/Radio Button',
+  title: 'Forms (WIP)/Radio Button',
   component: RadioButtonComponent,
   argTypes: { onChange: { action: 'changed' } },
   parameters: {

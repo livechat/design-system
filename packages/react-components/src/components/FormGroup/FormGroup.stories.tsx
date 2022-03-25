@@ -6,7 +6,7 @@ import { RadioButton } from '../RadioButton';
 import { FieldGroup } from '../FieldGroup';
 
 export default {
-  title: 'Components/Form Group',
+  title: 'Forms (WIP)/Form Group',
   component: FormGroupComponent,
   parameters: {
     componentSubtitle: `

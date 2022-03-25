@@ -8,7 +8,7 @@ import {
 import { sumString } from './helpers';
 
 export default {
-  title: 'Components/NumericInput',
+  title: 'Forms (WIP)/NumericInput',
   component: NumericInputComponent,
   argTypes: {
     value: {

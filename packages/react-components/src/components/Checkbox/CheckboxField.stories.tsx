@@ -7,7 +7,7 @@ import {
 } from './CheckboxField';
 
 export default {
-  title: 'Components/Checkbox Field',
+  title: 'Forms (WIP)/Checkbox Field',
   component: CheckboxFieldComponent,
   parameters: {
     componentSubtitle: `

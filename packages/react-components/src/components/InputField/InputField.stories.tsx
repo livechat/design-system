@@ -8,7 +8,7 @@ import {
 import { Text } from '../Typography';
 
 export default {
-  title: 'Components/InputField',
+  title: 'Forms (WIP)/InputField',
   component: InputFieldComponent,
   parameters: {
     componentSubtitle: `
