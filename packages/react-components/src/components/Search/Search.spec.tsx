@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { render, fireEvent } from '../test-utils';
-import noop from '../utils/noop';
+import { render, fireEvent, vi } from 'test-utils';
+import noop from 'utils/noop';
 import { ISearchProps, Search, SearchSize } from './Search';
 
 const baseClass = 'lc-search';
@@ -90,7 +90,7 @@ describe('<Search> component', () => {
   });
 
   it('should call onChange if input value change', () => {
-    const onChangeFunction = jest.fn();
+    const onChangeFunction = vi.fn();
     const { getByRole } = renderComponent({
       ...defaultProps,
       onChange: onChangeFunction,
@@ -111,7 +111,7 @@ describe('<Search> component', () => {
   });
 
   it('should call onChange in controlled submit if enter key is pressed', () => {
-    const onChangeFunction = jest.fn();
+    const onChangeFunction = vi.fn();
     const { getByRole } = renderComponent({
       ...defaultProps,
       isControlledSubmit: true,
