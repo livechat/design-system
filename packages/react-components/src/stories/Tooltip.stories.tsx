@@ -18,6 +18,7 @@ import { Info as TooltipInfoComponent } from '../components/Tooltip/Info';
 import { Interactive as TooltipInteractiveComponent } from '../components/Tooltip/Interactive';
 import { UserGuide as TooltipUserGuideComponent } from '../components/Tooltip/UserGuide';
 import beutifulImage from './images/placeholder.png';
+
 const tooltipPlacements = [
   'bottom',
   'bottom-end',
@@ -34,6 +35,13 @@ const tooltipPlacements = [
 ];
 
 const tooltipThemes = ['invert', 'important', undefined];
+
+export interface ITooltipExample {
+  placement: Placement;
+  isVisible: boolean;
+  theme: 'invert' | 'important' | undefined;
+  triggerOnClick: boolean;
+}
 
 export const Tooltip = (args: any): React.ReactElement => (
   <div
@@ -123,13 +131,6 @@ TooltipUserGuide.args = {
   triggerOnClick: false,
 };
 
-export interface ITooltipExample {
-  placement: Placement;
-  isVisible: boolean;
-  theme: 'invert' | 'important' | undefined;
-  triggerOnClick: boolean;
-}
-
 const TooltipSimpleExample: React.FC<ITooltipExample> = ({
   placement,
   isVisible,
@@ -174,6 +175,7 @@ const TooltipInteractiveExample: React.FC<ITooltipExample> = ({
       }}
     >
       <TooltipComponent
+        className="tooltip-interactive"
         placement={placement}
         isVisible={isVisible}
         triggerOnClick={triggerOnClick}

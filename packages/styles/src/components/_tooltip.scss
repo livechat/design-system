@@ -87,40 +87,37 @@ $base-class: 'lc-tooltip';
     }
   }
 
-  &-info-header {
+  &-header {
     font-size: 16px;
     font-weight: 600;
     line-height: 24px;
     margin-bottom: 4px;
+    margin-left: 4px;
+    margin-right: 4px;
   }
 
-  &-info-image {
+  &-image {
+    aspect-ratio: 16 / 9;
     border-radius: 4px;
     box-sizing: border-box;
     margin-bottom: 12px;
     max-height: 138px;
-    max-width: 238px;
-    width: 100%;
   }
 
-  &-info-text {
+  &-text {
     font-size: 15px;
     font-weight: 400;
     line-height: 22px;
     margin-bottom: 12px;
+    margin-left: 4px;
+    margin-right: 4px;
   }
 
-  &-info-x {
+  &-x {
     cursor: pointer;
     position: absolute;
-    right: 0;
-    top: 0;
-  }
-
-  &-interactive-x {
-    display: flex;
-    justify-content: end;
-    margin-bottom: 10px;
+    right: -4px;
+    top: -4px;
   }
 
   &-step {

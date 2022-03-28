@@ -17,12 +17,15 @@ export interface ITooltipProps {
   theme?: 'invert' | 'important' | undefined;
   placement?: Placement;
   isVisible?: boolean;
+  isManaged?: boolean;
   withFadeAnimation?: boolean;
-  transition?: number;
+  transitionDuration?: number;
   transitionDelay?: number;
   hoverOutDelayTimeout?: number;
   offsetMainAxis?: number;
   triggerOnClick?: boolean;
+  arrowOffsetY?: number;
+  arrowOffsetX?: number;
   triggerRenderer: () => React.ReactNode;
   onOpen?: () => void;
   onClose?: () => void;
@@ -40,68 +43,22 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     theme,
     placement,
     isVisible = false,
+    isManaged = false,
     withFadeAnimation = true,
-    transition = 200,
-    transitionDelay = 500,
+    transitionDuration = 200,
+    transitionDelay = 0,
     hoverOutDelayTimeout = 100,
     offsetMainAxis = 8,
     triggerOnClick = false,
+    arrowOffsetY,
+    arrowOffsetX,
     onOpen,
     onClose,
   } = props;
 
   const arrowRef = React.useRef<HTMLDivElement | null>(null);
-
   const [visible, setVisibility] = React.useState(isVisible);
   const isHovered = React.useRef(false);
-
-  const handleMouseLeave = () => {
-    if (triggerOnClick) return;
-    isHovered.current = false;
-    void sleep(hoverOutDelayTimeout).then(() => {
-      if (!isHovered.current) {
-        setVisibility(false);
-      }
-    });
-  };
-
-  React.useEffect(() => {
-    setVisibility(isVisible);
-  }, [isVisible]);
-
-  const handleOpen = () => {
-    if (onOpen) onOpen();
-    setVisibility(true);
-  };
-
-  const handleClosed = () => {
-    if (onClose) onClose();
-    setVisibility(false);
-  };
-
-  const handleMouseEnter = () => {
-    if (triggerOnClick) return;
-    isHovered.current = true;
-    setVisibility(true);
-  };
-
-  const handleHideOnEscape = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') {
-      handleClosed();
-    }
-  };
-
-  const handleClick = () => {
-    if (visible) {
-      handleClosed();
-    } else {
-      handleOpen();
-    }
-  };
-
-  const handleCloseOnClick = () => {
-    handleClosed();
-  };
 
   const {
     x,
@@ -123,13 +80,8 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   });
 
   React.useEffect(() => {
-    if (!refs.reference.current || !refs.floating.current) {
-      return;
-    }
-
-    // Only call this when the floating element is rendered
-    return autoUpdate(refs.reference.current, refs.floating.current, update);
-  }, [refs.reference, refs.floating, update, updatedPlacement]);
+    setVisibility(isVisible);
+  }, [isVisible]);
 
   React.useEffect(() => {
     document.addEventListener('keydown', handleHideOnEscape);
@@ -138,8 +90,65 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     };
   }, []);
 
+  React.useEffect(() => {
+    if (!refs.reference.current || !refs.floating.current) {
+      return;
+    }
+
+    // Only call this when the floating element is rendered
+    return autoUpdate(refs.reference.current, refs.floating.current, update);
+  }, [refs.reference, refs.floating, update, updatedPlacement]);
+
+  const handleMouseLeave = () => {
+    if (triggerOnClick) return;
+    isHovered.current = false;
+    void sleep(hoverOutDelayTimeout).then(() => {
+      if (!isHovered.current) {
+        setVisibility(false);
+      }
+    });
+  };
+
+  const handleOpen = () => {
+    if (onOpen) onOpen();
+    setVisibility(true);
+  };
+
+  const handleClose = () => {
+    if (onClose) onClose();
+    setVisibility(false);
+  };
+
+  const handleMouseEnter = () => {
+    if (triggerOnClick || isManaged) return;
+    isHovered.current = true;
+    setVisibility(true);
+  };
+
+  const handleHideOnEscape = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      handleClose();
+    }
+  };
+
+  const handleClick = () => {
+    if (isManaged) return;
+    if (visible) {
+      handleClose();
+    } else {
+      handleOpen();
+    }
+  };
+
+  const handleCloseOnClick = () => {
+    handleClose();
+  };
+
+  const top = arrowOffsetY && arrowY ? arrowY + arrowOffsetY : arrowY;
+  const left = arrowOffsetX && arrowX ? arrowX + arrowOffsetX : arrowX;
+
   const mergedClassNames = cx('lc-tooltip', {
-    [className]: className,
+    [className ]: className,
     [`lc-tooltip--invert`]: theme === 'invert',
     [`lc-tooltip--important`]: theme === 'important',
   });
@@ -158,7 +167,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     >
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(child, { handleCloseOnClick });
+          return React.cloneElement(child, { handleCloseOnClick, theme });
         }
         return null;
       })}
@@ -166,7 +175,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
         ref={arrowRef}
         className={cx('lc-tooltip__arrow')}
         data-popper-placement={updatedPlacement}
-        style={{ top: arrowY, left: arrowX }}
+        style={{ top: top, left: left }}
       />
     </div>
   );
@@ -179,7 +188,9 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
 
       const appearActive = css`
         opacity: 1;
-        transition: opacity ${transition}ms ${transitionDelay}ms;
+        transition-property: opacity;
+        transition-duration: ${transitionDuration}ms;
+        transition-delay: ${transitionDelay}ms;
       `;
 
       const exit = css`
@@ -188,12 +199,16 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
 
       const exitActive = css`
         opacity: 0;
-        transition: opacity ${transition}ms ${transitionDelay}ms;
+        transition-property: opacity;
+        transition-duration: ${transitionDuration}ms;
+        transition-delay: ${transitionDelay}ms;
       `;
+
+      const timeout = transitionDuration + transitionDelay
 
       return (
         <CSSTransition
-          timeout={transition}
+          timeout={timeout}
           classNames={{
             appear: appear,
             appearActive: appearActive,

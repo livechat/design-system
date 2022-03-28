@@ -13,15 +13,15 @@ export const Info: React.FC<{
   return (
     <div style={{ position: 'relative' }}>
       {closeWithX && (
-        <div className="lc-tooltip-info-x" onClick={handleCloseOnClick}>
+        <div className="lc-tooltip-x" onClick={handleCloseOnClick}>
           <Icon
             source={Close}
             iconType={theme ? getIconType(theme) : IconTypeName.Primary}
           ></Icon>
         </div>
       )}
-      {header && <div className="lc-tooltip-info-header">{header}</div>}
-      <div className="lc-tooltip-info-text">{text}</div>
+      {header && <div className="lc-tooltip-header">{header}</div>}
+      <div className="lc-tooltip-text">{text}</div>
     </div>
   );
 };
