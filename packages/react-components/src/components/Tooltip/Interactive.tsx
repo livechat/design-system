@@ -28,7 +28,7 @@ export const Interactive: React.FC<{
 }) => {
   const decoration = theme === 'invert' ? 'underline' : 'none';
   return (
-    <div style={{ width: '100%' }}>
+    <div style={{ width: '270px' }}>
       <div
         style={{ position: 'relative', height: '25px', marginBottom: '10px' }}
       >

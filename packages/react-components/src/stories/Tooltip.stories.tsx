@@ -34,7 +34,7 @@ const tooltipPlacements = [
   'top-start',
 ];
 
-const tooltipThemes = ['invert', 'important', undefined];
+const tooltipThemes = ['invert', 'important', 'default'];
 
 export interface ITooltipExample {
   placement: Placement;
