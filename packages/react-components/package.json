@@ -35,7 +35,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.17.7",
-    "@livechat/design-system-icons": "^1.0.0-alpha.4",
     "@storybook/addon-actions": "^6.4.13",
     "@storybook/addon-essentials": "^6.4.13",
     "@storybook/addon-links": "^6.4.13",
@@ -62,6 +61,7 @@
     "vitest": "^0.6.3"
   },
   "dependencies": {
+    "@livechat/design-system-icons": "^1.0.0-alpha.5",
     "@popperjs/core": "^2.11.2",
     "clsx": "^1.1.1",
     "lodash.escape": "^4.0.1",
