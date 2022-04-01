@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { Button } from '../components/Button';
-import { Tooltip as TooltipComponent } from '../components/Tooltip';
+import {
+  ITooltipProps,
+  Tooltip as TooltipComponent,
+} from '../components/Tooltip';
 import {
   DropDown,
   Smiles,
@@ -36,13 +39,6 @@ const tooltipPlacements = [
 
 const tooltipThemes = ['invert', 'important', 'default'];
 
-export interface ITooltipExample {
-  placement: Placement;
-  isVisible: boolean;
-  theme: 'invert' | 'important' | undefined;
-  triggerOnClick: boolean;
-}
-
 export const Tooltip = (args: any): React.ReactElement => (
   <div
     style={{
@@ -67,8 +63,15 @@ export const Tooltip = (args: any): React.ReactElement => (
 Tooltip.args = {
   placement: 'bottom',
   isVisible: true,
-  theme: undefined,
+  theme: 'default',
   triggerOnClick: false,
+  arrowOffsetY: 0,
+  arrowOffsetX: 0,
+  offsetMainAxis: 8,
+  withFadeAnimation: true,
+  transitionDuration: 200,
+  transitionDelay: 0,
+  hoverOutDelayTimeout: 100,
 };
 
 export const TooltipInfo = (args: any) => (
@@ -87,8 +90,15 @@ export const TooltipInfo = (args: any) => (
 TooltipInfo.args = {
   placement: 'bottom',
   isVisible: true,
-  theme: undefined,
+  theme: 'default',
   triggerOnClick: false,
+  arrowOffsetY: 0,
+  arrowOffsetX: 0,
+  offsetMainAxis: 8,
+  withFadeAnimation: true,
+  transitionDuration: 200,
+  transitionDelay: 0,
+  hoverOutDelayTimeout: 100,
 };
 
 export const TooltipInteractive = (args: any) => (
@@ -107,8 +117,15 @@ export const TooltipInteractive = (args: any) => (
 TooltipInteractive.args = {
   placement: 'bottom',
   isVisible: true,
-  theme: undefined,
+  theme: 'default',
   triggerOnClick: false,
+  arrowOffsetY: 0,
+  arrowOffsetX: 0,
+  offsetMainAxis: 8,
+  withFadeAnimation: true,
+  transitionDuration: 200,
+  transitionDelay: 0,
+  hoverOutDelayTimeout: 100,
 };
 
 export const TooltipUserGuide = (args: any) => (
@@ -127,16 +144,18 @@ export const TooltipUserGuide = (args: any) => (
 TooltipUserGuide.args = {
   placement: 'bottom',
   isVisible: true,
-  theme: undefined,
+  theme: 'default',
   triggerOnClick: false,
+  arrowOffsetY: 0,
+  arrowOffsetX: 0,
+  offsetMainAxis: 8,
+  withFadeAnimation: true,
+  transitionDuration: 200,
+  transitionDelay: 0,
+  hoverOutDelayTimeout: 100,
 };
 
-const TooltipSimpleExample: React.FC<ITooltipExample> = ({
-  placement,
-  isVisible,
-  triggerOnClick,
-  theme,
-}) => {
+const TooltipSimpleExample: React.FC<ITooltipProps> = (props) => {
   return (
     <div
       style={{
@@ -146,10 +165,7 @@ const TooltipSimpleExample: React.FC<ITooltipExample> = ({
       }}
     >
       <TooltipComponent
-        placement={placement}
-        isVisible={isVisible}
-        triggerOnClick={triggerOnClick}
-        theme={theme}
+        {...props}
         triggerRenderer={() => <Icon source={Smiles}></Icon>}
       >
         <Simple text="Simple tooltip" />
@@ -158,12 +174,7 @@ const TooltipSimpleExample: React.FC<ITooltipExample> = ({
   );
 };
 
-const TooltipInteractiveExample: React.FC<ITooltipExample> = ({
-  placement,
-  isVisible,
-  triggerOnClick,
-  theme,
-}) => {
+const TooltipInteractiveExample: React.FC<ITooltipProps> = (props) => {
   return (
     <div
       style={{
@@ -175,11 +186,8 @@ const TooltipInteractiveExample: React.FC<ITooltipExample> = ({
       }}
     >
       <TooltipComponent
+        {...props}
         className="tooltip-interactive"
-        placement={placement}
-        isVisible={isVisible}
-        triggerOnClick={triggerOnClick}
-        theme={theme}
         triggerRenderer={() => (
           <div>
             <Button
@@ -197,7 +205,7 @@ const TooltipInteractiveExample: React.FC<ITooltipExample> = ({
             src: beutifulImage,
             alt: 'image',
           }}
-          theme={theme}
+          theme={props.theme}
           text="Tooltip content is used to explain the details of elements or features."
           handleClickPrimary={() => console.log('primary click handler')}
           handleClickSecondary={() => console.log('secondary click handler')}
@@ -208,12 +216,7 @@ const TooltipInteractiveExample: React.FC<ITooltipExample> = ({
   );
 };
 
-const TooltipUserGuideExample: React.FC<ITooltipExample> = ({
-  placement,
-  isVisible,
-  triggerOnClick,
-  theme,
-}) => {
+const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
   return (
     <div
       style={{
@@ -225,10 +228,7 @@ const TooltipUserGuideExample: React.FC<ITooltipExample> = ({
       }}
     >
       <TooltipComponent
-        placement={placement}
-        isVisible={isVisible}
-        triggerOnClick={triggerOnClick}
-        theme={theme}
+        {...props}
         triggerRenderer={() => (
           <div>
             <Button
@@ -257,12 +257,7 @@ const TooltipUserGuideExample: React.FC<ITooltipExample> = ({
   );
 };
 
-const TooltipInfoExample: React.FC<ITooltipExample> = ({
-  placement,
-  isVisible,
-  triggerOnClick,
-  theme,
-}) => {
+const TooltipInfoExample: React.FC<ITooltipProps> = (props) => {
   return (
     <div
       style={{
@@ -274,10 +269,7 @@ const TooltipInfoExample: React.FC<ITooltipExample> = ({
       }}
     >
       <TooltipComponent
-        placement={placement}
-        isVisible={isVisible}
-        triggerOnClick={triggerOnClick}
-        theme={theme}
+        {...props}
         triggerRenderer={() => (
           <div>
             <Button
