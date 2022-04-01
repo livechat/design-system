@@ -99,9 +99,9 @@ $base-class: 'lc-tooltip';
   &-image {
     aspect-ratio: 16 / 9;
     border-radius: 4px;
-    box-sizing: border-box;
     margin-bottom: 12px;
     max-height: 138px;
+    width: 100%;
   }
 
   &-text {
