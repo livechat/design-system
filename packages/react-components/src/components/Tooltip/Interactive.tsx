@@ -54,13 +54,17 @@ export const Interactive: React.FC<{
         <Button kind="primary" onClick={handleClickPrimary}>
           Primary button
         </Button>
-        <Button
-          kind="plain"
+        <div
           onClick={handleClickSecondary}
-          style={{ marginLeft: '16px', textDecoration: decoration }}
+          style={{
+            cursor: 'pointer',
+            display: 'inline-block',
+            marginLeft: '16px',
+            textDecoration: decoration,
+          }}
         >
           Link
-        </Button>
+        </div>
       </div>
     </div>
   );
