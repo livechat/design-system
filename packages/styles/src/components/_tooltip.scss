@@ -64,7 +64,7 @@ $base-class: 'lc-tooltip';
 
     &[data-popper-placement*='right'] {
       left: 0;
-      margin: -3px -6px;
+      margin: -3px -5px;
 
       &::after {
         border-left-color: inherit;
@@ -76,7 +76,7 @@ $base-class: 'lc-tooltip';
     &[data-popper-placement*='left'] {
       height: 12px;
       left: 100%;
-      margin: 0 -6px;
+      margin: 0 -7px;
       width: 6px;
 
       &::after {

@@ -50,7 +50,7 @@ export const UserGuide: React.FC<{
         </div>
       )}
       {header && <div className="lc-tooltip-header">{header}</div>}
-      <div className="lc-tooltip-info-text">{text}</div>
+      <div className="lc-tooltip-text">{text}</div>
       <div style={{ margin: '4px' }}>
         <div
           style={{
