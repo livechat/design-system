@@ -3,72 +3,87 @@ $base-class: 'search';
 .#{$base-class} {
   align-items: center;
   background-color: var(--surface-basic-default);
-  border: 1px solid var(--border-default);
-  border-radius: 4px;
-  color: var(--content-default);
   display: flex;
-  padding: 5px 16px;
-  transition: border 0.25s ease-in-out;
+  position: relative;
   width: 100%;
 
-  &--compact {
-    height: 32px;
+  &__search-icon {
+    left: 14px;
+    position: absolute;
   }
 
-  &--medium {
-    height: 36px;
-  }
+  &__clear-icon {
+    height: 20px;
+    position: absolute;
+    right: 11px;
+    width: 22px;
 
-  &--large {
-    height: 42px;
-  }
-
-  &:hover {
-    border-color: var(--border-hover);
-  }
-
-  &--focused,
-  &--focused:hover {
-    border-color: var(--color-action-default);
-  }
-
-  &--disabled,
-  &--disabled:hover {
-    background-color: var(--surface-basic-disabled);
-    border-color: var(--border-disabled);
-    color: var(--content-disabled);
-  }
-
-  &--collapsable {
-    overflow: hidden;
-    transition: width 0.25s ease-in-out;
-    width: 54px;
-
-    &--open {
-      width: 100%;
+    &:hover {
+      cursor: pointer;
     }
   }
 
-  &__clear-icon:hover {
-    cursor: pointer;
+  &__loader {
+    height: 15px;
+    position: absolute;
+    right: 16px;
+    width: 15px;
   }
 
   &__input {
     background-color: transparent;
-    border: 0;
+    border: 1px solid var(--border-default);
+    border-radius: 4px;
     color: inherit;
+    color: var(--content-default);
     font-size: 15px;
     font-weight: 400;
-    height: 100%;
     line-height: 22px;
-    margin-left: 12px;
+    padding: 5px 40px;
+    transition: border 0.25s ease-in-out;
     width: 100%;
 
-    &:focus {
+    &--compact {
+      height: 32px;
+    }
+
+    &--medium {
+      height: 36px;
+    }
+
+    &--large {
+      height: 42px;
+    }
+
+    &--collapsable {
+      padding: 5px 23px;
+      transition: all 0.25s ease-in-out;
+      width: 0;
+
+      &--open {
+        padding: 5px 40px;
+        width: 100%;
+      }
+    }
+
+    &:hover {
+      border-color: var(--border-hover);
+    }
+
+    &:focus,
+    &:focus:hover {
+      border-color: var(--color-action-default);
       outline: none;
     }
 
     &::placeholder {
+      color: var(--content-disabled);
+    }
+
+    &--disabled,
+    &--disabled:hover {
+      background-color: var(--surface-basic-disabled);
+      border-color: var(--border-disabled);
       color: var(--content-disabled);
     }
   }

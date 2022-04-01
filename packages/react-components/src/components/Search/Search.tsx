@@ -4,13 +4,14 @@ import {
   Search as SearchIcon,
   Close,
 } from '@livechat/design-system-icons/react/material';
-import { Icon } from '../Icon';
+import { Icon, IconTypeName } from '../Icon';
 import { Loader } from '../Loader';
 
 import styles from './Search.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
 
 const baseClass = 'search';
+const inputBaseClass = `${baseClass}__input`;
 
 export const enum SearchSize {
   Compact = 'compact',
@@ -40,17 +41,15 @@ export const Search: React.FC<ISearchProps> = ({
   onChange,
 }) => {
   const [searchValue, setSearchValue] = React.useState<string>(value || '');
-  const [isFocused, setIsFocused] = React.useState<boolean>(false);
   const [isCollapsed, setIsCollapsed] = React.useState<boolean>(true);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const mergedClassNames = cx(
-    styles[baseClass],
-    styles[`${baseClass}--${size}`],
-    isFocused && styles[`${baseClass}--focused`],
-    (isDisabled || isLoading) && styles[`${baseClass}--disabled`],
-    isCollapsable && styles[`${baseClass}--collapsable`],
-    !isCollapsed && styles[`${baseClass}--collapsable--open`]
+    styles[`${inputBaseClass}`],
+    styles[`${inputBaseClass}--${size}`],
+    (isDisabled || isLoading) && styles[`${inputBaseClass}--disabled`],
+    isCollapsable && styles[`${inputBaseClass}--collapsable`],
+    !isCollapsed && styles[`${inputBaseClass}--collapsable--open`]
   );
 
   const handleOnChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -65,14 +64,6 @@ export const Search: React.FC<ISearchProps> = ({
     return onChange(value);
   };
 
-  const handleOnFocus = () => {
-    return setIsFocused(true);
-  };
-
-  const handleOnBlur = () => {
-    return setIsFocused(false);
-  };
-
   const handleOnClear = () => {
     setSearchValue('');
     return onChange('');
@@ -83,7 +74,6 @@ export const Search: React.FC<ISearchProps> = ({
       return;
     }
 
-    setIsFocused(true);
     inputRef.current?.focus();
     return setIsCollapsed(false);
   };
@@ -98,33 +88,39 @@ export const Search: React.FC<ISearchProps> = ({
   return (
     <div
       data-testid={`${baseClass}-container`}
-      className={mergedClassNames}
+      className={styles[baseClass]}
       onClick={handleOnClick}
     >
       <Icon
         className={styles[`${baseClass}__search-icon`]}
         source={SearchIcon}
         disabled={isDisabled || isLoading}
+        iconType={IconTypeName.Primary}
       />
       <input
         ref={inputRef}
-        className={styles[`${baseClass}__input`]}
+        className={mergedClassNames}
         type="text"
         value={searchValue}
         placeholder={placeholder}
         onChange={handleOnChange}
-        onFocus={handleOnFocus}
-        onBlur={handleOnBlur}
         onKeyDown={handleOnKeyDown}
         disabled={isDisabled || isLoading}
       />
       {!!searchValue && !isDisabled && !isLoading && (
-        <div data-testid={`${baseClass}-clear-icon`} onClick={handleOnClear}>
-          <Icon className={styles[`${baseClass}__clear-icon`]} source={Close} />
+        <div
+          className={styles[`${baseClass}__clear-icon`]}
+          data-testid={`${baseClass}-clear-icon`}
+          onClick={handleOnClear}
+        >
+          <Icon source={Close} />
         </div>
       )}
       {isLoading && (
-        <div data-testid={`${baseClass}-loader`}>
+        <div
+          data-testid={`${baseClass}-loader`}
+          className={styles[`${baseClass}__loader`]}
+        >
           <Loader size="small" />
         </div>
       )}

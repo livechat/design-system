@@ -5,6 +5,7 @@ import { ISearchProps, Search, SearchSize } from './Search';
 import styles from './Search.module.scss';
 
 const baseClass = 'search';
+const inputBaseClass = `${baseClass}__input`;
 
 const defaultProps = {
   onChange: () => noop,
@@ -16,62 +17,72 @@ const renderComponent = (props: ISearchProps) => {
 
 describe('<Search> component', () => {
   it('should render with default size', () => {
-    const { container } = renderComponent({
+    const { getByRole } = renderComponent({
       ...defaultProps,
     });
 
-    expect(container.firstChild).toHaveClass(styles[`${baseClass}--compact`]);
+    expect(getByRole('textbox')).toHaveClass(
+      styles[`${inputBaseClass}--compact`]
+    );
   });
 
   it('should render with given medium size', () => {
-    const { container } = renderComponent({
+    const { getByRole } = renderComponent({
       ...defaultProps,
       size: SearchSize.Medium,
     });
 
-    expect(container.firstChild).toHaveClass(styles[`${baseClass}--medium`]);
+    expect(getByRole('textbox')).toHaveClass(
+      styles[`${inputBaseClass}--medium`]
+    );
   });
 
   it('should render with given large size', () => {
-    const { container } = renderComponent({
+    const { getByRole } = renderComponent({
       ...defaultProps,
       size: SearchSize.Large,
     });
 
-    expect(container.firstChild).toHaveClass(styles[`${baseClass}--large`]);
+    expect(getByRole('textbox')).toHaveClass(
+      styles[`${inputBaseClass}--large`]
+    );
   });
 
   it('should render as disabled', () => {
-    const { container } = renderComponent({
+    const { getByRole } = renderComponent({
       ...defaultProps,
       isDisabled: true,
     });
 
-    expect(container.firstChild).toHaveClass(styles[`${baseClass}--disabled`]);
+    expect(getByRole('textbox')).toHaveClass(
+      styles[`${inputBaseClass}--disabled`]
+    );
   });
 
   it('should render as loading', () => {
-    const { container, getByTestId } = renderComponent({
+    const { getByRole, getByTestId } = renderComponent({
       ...defaultProps,
       isLoading: true,
     });
 
-    expect(container.firstChild).toHaveClass(styles[`${baseClass}--disabled`]);
+    expect(getByRole('textbox')).toHaveClass(
+      styles[`${inputBaseClass}--disabled`]
+    );
     expect(getByTestId(`${baseClass}-loader`)).toBeVisible();
   });
 
   it('should render as collapsable and open it after click', () => {
-    const { container, getByTestId } = renderComponent({
+    const { getByRole, getByTestId } = renderComponent({
       ...defaultProps,
       isCollapsable: true,
     });
 
-    expect(container.firstChild).toHaveClass(
-      styles[`${baseClass}--collapsable`]
+    expect(getByRole('textbox')).toHaveClass(
+      styles[`${inputBaseClass}--collapsable`]
     );
     fireEvent.click(getByTestId(`${baseClass}-container`));
-    expect(container.firstChild).toHaveClass(
-      styles[`${baseClass}--collapsable--open`]
+    expect(getByRole('textbox')).toHaveClass(
+      styles[`${inputBaseClass}--collapsable--open`]
     );
   });
 
