@@ -18,7 +18,9 @@
     "test": "lerna run test --ignore example-react --stream",
     "test:watch": "lerna run test:watch --parallel",
     "prettier": "prettier --write packages",
-    "check": "run-s lint test"
+    "check": "run-s lint test",
+    "predeploy": "npm run build",
+    "deploy": "lerna version"
   },
   "repository": {
     "type": "git",
