@@ -148,7 +148,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   const left = arrowOffsetX && arrowX ? arrowX + arrowOffsetX : arrowX;
 
   const mergedClassNames = cx('lc-tooltip', {
-    [className ]: className,
+    [className]: className,
     [`lc-tooltip--invert`]: theme === 'invert',
     [`lc-tooltip--important`]: theme === 'important',
   });
@@ -182,11 +182,11 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
 
   function renderPopperComponent() {
     if (withFadeAnimation) {
-      const appear = css`
+      const enter = css`
         opacity: 0;
       `;
 
-      const appearActive = css`
+      const enterActive = css`
         opacity: 1;
         transition-property: opacity;
         transition-duration: ${transitionDuration}ms;
@@ -204,25 +204,26 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
         transition-delay: ${transitionDelay}ms;
       `;
 
-      const timeout = transitionDuration + transitionDelay
+      const timeout = transitionDuration + transitionDelay;
 
       return (
         <CSSTransition
+          in={visible}
+          mountOnEnter
+          unmountOnExit
           timeout={timeout}
           classNames={{
-            appear: appear,
-            appearActive: appearActive,
+            enter: enter,
+            enterActive: enterActive,
             exit: exit,
             exitActive: exitActive,
           }}
-          in={visible}
-          appear
         >
           {popperComponent}
         </CSSTransition>
       );
     } else {
-      return popperComponent;
+      return visible && popperComponent;
     }
   }
   let referenceElement;
@@ -248,7 +249,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   return (
     <>
       {referenceElement}
-      {visible && renderPopperComponent()}
+      {renderPopperComponent()}
     </>
   );
 };
