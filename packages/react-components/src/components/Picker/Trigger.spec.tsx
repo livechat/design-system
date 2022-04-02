@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { render, fireEvent } from '../../test-utils';
+import { render, fireEvent, vi } from 'test-utils';
 import noop from '../../utils/noop';
 import { ITriggerProps, Trigger } from './Trigger';
+import styles from './Trigger.module.scss';
 
-const baseClass = 'lc-picker-trigger';
+const baseClass = 'picker-trigger';
 
 const defaultProps = {
   isItemSelected: false,
@@ -27,7 +28,7 @@ describe('<Trigger> component', () => {
   it('should render Trigger with default size', () => {
     const { container } = renderComponent(defaultProps);
 
-    expect(container.firstChild).toHaveClass(`${baseClass}--medium`);
+    expect(container.firstChild).toHaveClass(styles[`${baseClass}--medium`]);
   });
 
   it('should render Trigger with input if isOpen', () => {
@@ -54,7 +55,7 @@ describe('<Trigger> component', () => {
       isDisabled: true,
     });
 
-    expect(container.firstChild).toHaveClass(`${baseClass}--disabled`);
+    expect(container.firstChild).toHaveClass(styles[`${baseClass}--disabled`]);
   });
 
   it('should render error Trigger if isError', () => {
@@ -63,11 +64,11 @@ describe('<Trigger> component', () => {
       isError: true,
     });
 
-    expect(container.firstChild).toHaveClass(`${baseClass}--error`);
+    expect(container.firstChild).toHaveClass(styles[`${baseClass}--error`]);
   });
 
   it('should call onClick when Trigger clicked', () => {
-    const mockedFunction = jest.fn();
+    const mockedFunction = vi.fn();
     const { getByText } = renderComponent({
       ...defaultProps,
       onClick: mockedFunction,
@@ -78,7 +79,7 @@ describe('<Trigger> component', () => {
   });
 
   it('should call onClearClick when clear button clicked', () => {
-    const mockedFunction = jest.fn();
+    const mockedFunction = vi.fn();
     const { getByTestId } = renderComponent({
       ...defaultProps,
       isItemSelected: true,
@@ -90,7 +91,7 @@ describe('<Trigger> component', () => {
   });
 
   it('should call onFilter when input value change', () => {
-    const mockedFunction = jest.fn();
+    const mockedFunction = vi.fn();
     const { getByRole } = renderComponent({
       ...defaultProps,
       isOpen: true,

@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    [
+      "@babel/plugin-transform-react-jsx",
+      {
+        "useSpread": true
+      }
+    ]
+  ],
+  "presets": ["@babel/preset-typescript", "@babel/preset-react"]
+}

@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { render, fireEvent } from '../../test-utils';
+import { render, fireEvent, vi } from 'test-utils';
 import noop from '../../utils/noop';
 import { IPickerListProps, PickerList } from './PickerList';
+import styles from './PickerList.module.scss';
 
-const baseClass = 'lc-picker-list';
+const baseClass = 'picker-list';
 const itemClassName = `${baseClass}__item`;
 
 const defaultProps = {
@@ -43,7 +44,7 @@ describe('<PickerList> component', () => {
   });
 
   it('should call onSelect when list item clicked', () => {
-    const mockedFunction = jest.fn();
+    const mockedFunction = vi.fn();
     const { getByText } = renderComponent({
       ...defaultProps,
       isOpen: true,
@@ -64,7 +65,9 @@ describe('<PickerList> component', () => {
       selectedItem: { key: 'three', name: 'Option three' },
     });
 
-    expect(getByText('Option three')).toHaveClass(`${itemClassName}--focused`);
+    expect(getByText('Option three')).toHaveClass(
+      styles[`${itemClassName}--focused`]
+    );
   });
 
   it('should mark selected list item as disabled', () => {
@@ -74,7 +77,9 @@ describe('<PickerList> component', () => {
       items: [{ key: 'three', name: 'Option three', disabled: true }],
     });
 
-    expect(getByText('Option three')).toHaveClass(`${itemClassName}--disabled`);
+    expect(getByText('Option three')).toHaveClass(
+      styles[`${itemClassName}--disabled`]
+    );
   });
 
   it('should display empty state if no filter result', () => {

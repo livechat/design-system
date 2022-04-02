@@ -1,13 +1,14 @@
 import * as React from 'react';
-import cx from 'classnames';
+import cx from 'clsx';
 import {
   ChevronDown,
   ChevronUp,
   Close,
-} from '@livechat/design-system-icons/dist/material';
+} from '@livechat/design-system-icons/react/material';
 import { Icon, IconSizeName, IconTypeName } from '../Icon';
+import styles from './Trigger.module.scss';
 
-const baseClass = 'lc-picker-trigger';
+const baseClass = 'picker-trigger';
 
 export const enum TriggerSize {
   Compact = 'compact',
@@ -40,11 +41,11 @@ export const Trigger: React.FC<ITriggerProps> = ({
   onFilter,
 }) => {
   const mergedClassNames = cx(
-    baseClass,
-    `${baseClass}--${size}`,
-    isDisabled && `${baseClass}--disabled`,
-    isOpen && `${baseClass}--focused`,
-    isError && `${baseClass}--error`
+    styles[baseClass],
+    styles[`${baseClass}--${size}`],
+    isDisabled && styles[`${baseClass}--disabled`],
+    isOpen && styles[`${baseClass}--focused`],
+    isError && styles[`${baseClass}--error`]
   );
 
   const handleTriggerClick = () => {
@@ -64,25 +65,25 @@ export const Trigger: React.FC<ITriggerProps> = ({
     <div className={mergedClassNames} onClick={handleTriggerClick}>
       {isOpen ? (
         <input
-          className={`${baseClass}__input`}
+          className={styles[`${baseClass}__input`]}
           placeholder="Select option"
           onChange={handleOnChange}
           autoFocus
         />
       ) : (
-        <div className={`${baseClass}__text`}>{children}</div>
+        <div className={styles[`${baseClass}__text`]}>{children}</div>
       )}
       {isItemSelected && !isDisabled && !isRequired && (
         <div
           data-testid={`${baseClass}__clear-icon`}
-          className={`${baseClass}__clear-icon`}
+          className={styles[`${baseClass}__clear-icon`]}
           onClick={handleOnClearClick}
         >
           <Icon iconType={IconTypeName.Link} source={Close} />
         </div>
       )}
       <Icon
-        className={`${baseClass}__chevron-icon`}
+        className={styles[`${baseClass}__chevron-icon`]}
         source={!isOpen ? ChevronDown : ChevronUp}
         size={IconSizeName.Large}
         disabled={isDisabled}

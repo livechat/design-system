@@ -1,16 +1,11 @@
 import * as React from 'react';
 import userEvent from '@testing-library/user-event';
-import { render } from '../../test-utils';
+import { render, vi } from 'test-utils';
 import { ModalBase } from './ModalBase';
 
-const onClose = jest.fn();
-
 describe('<ModalBase /> component', () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
   it('should allow for custom class', () => {
+    const onClose = vi.fn();
     const { container } = render(
       <ModalBase onClose={onClose} className="my-css-class">
         test
@@ -20,6 +15,7 @@ describe('<ModalBase /> component', () => {
   });
 
   it('should call onClose method on overlay click', () => {
+    const onClose = vi.fn();
     const { queryByTestId } = render(
       <ModalBase onClose={onClose}>test</ModalBase>
     );
@@ -33,6 +29,7 @@ describe('<ModalBase /> component', () => {
   });
 
   it('should call onClose method on close modal button press', () => {
+    const onClose = vi.fn();
     const { getByRole } = render(<ModalBase onClose={onClose}>test</ModalBase>);
 
     userEvent.click(getByRole('button'));
@@ -40,6 +37,7 @@ describe('<ModalBase /> component', () => {
   });
 
   it('should call onClose on escape button pressed by default', () => {
+    const onClose = vi.fn();
     render(<ModalBase onClose={onClose}>test</ModalBase>);
 
     userEvent.keyboard('[Escape]');
@@ -47,6 +45,7 @@ describe('<ModalBase /> component', () => {
   });
 
   it('should not call onClose on escape button pressed when closeOnEscPress is disabled', () => {
+    const onClose = vi.fn();
     render(
       <ModalBase onClose={onClose} closeOnEscPress={false}>
         test

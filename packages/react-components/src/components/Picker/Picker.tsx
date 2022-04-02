@@ -1,11 +1,12 @@
 import * as React from 'react';
-import cx from 'classnames';
-import { Error } from '@livechat/design-system-icons/dist/material';
+import { Error } from '@livechat/design-system-icons/react/material';
 import { Trigger, TriggerSize } from './Trigger';
 import { IPickerListItem, PickerList } from './PickerList';
-import Icon, { IconSizeName, IconTypeName } from '../Icon';
+import { Icon, IconSizeName, IconTypeName } from '../Icon';
+import styles from './Picker.module.scss';
+import cx from 'clsx';
 
-const baseClass = 'lc-picker';
+const baseClass = 'picker';
 
 export interface IPickerProps {
   disabled?: boolean;
@@ -93,14 +94,14 @@ export const Picker: React.FC<IPickerProps> = ({
     <div ref={triggerRef} className={baseClass}>
       {label && (
         <div
-          className={cx(`${baseClass}__label`, {
-            [`${baseClass}__label--disabled`]: disabled,
+          className={cx(styles[`${baseClass}__label`], {
+            [styles[`${baseClass}__label--disabled`]]: disabled,
           })}
         >
           {label}
         </div>
       )}
-      <div className={`${baseClass}__container`}>
+      <div className={styles[`${baseClass}__container`]}>
         <Trigger
           isError={!!error}
           isOpen={isListOpen}
@@ -124,9 +125,9 @@ export const Picker: React.FC<IPickerProps> = ({
         />
       </div>
       {error && (
-        <div className={`${baseClass}__error`}>
+        <div className={styles[`${baseClass}__error`]}>
           <Icon
-            className={`${baseClass}__error__icon`}
+            className={styles[`${baseClass}__error__icon`]}
             source={Error}
             iconType={IconTypeName.Error}
             size={IconSizeName.Small}

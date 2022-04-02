@@ -1,23 +1,25 @@
 import * as React from 'react';
-import cx from 'classnames';
+import cx from 'clsx';
 import { ModalCloseButton } from './ModalCloseButton';
-import { KeyCodes } from '../../constants/keyCodes';
+import { KeyCodes } from '../../utils/keyCodes';
 
-export interface IModalBaseProps extends React.HTMLAttributes<HTMLDivElement> {
+import styles from './Modal.module.scss';
+
+export interface ModalBaseProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose(): void;
   closeOnEscPress?: boolean;
 }
 
-const baseClass = 'lc-modal-base';
+const baseClass = 'modal-base';
 
-export const ModalBase: React.FC<IModalBaseProps> = ({
+export const ModalBase: React.FC<ModalBaseProps> = ({
   children,
   className = '',
   onClose,
   closeOnEscPress = true,
   ...props
 }) => {
-  const mergedClassNames = cx(baseClass, className);
+  const mergedClassNames = cx(styles[baseClass], className);
 
   React.useEffect(() => {
     if (!closeOnEscPress) {
@@ -50,7 +52,10 @@ export const ModalBase: React.FC<IModalBaseProps> = ({
     <div
       data-testid="lc-modal-overlay"
       onMouseDown={onOverlayClick}
-      className={cx(`${baseClass}__overlay`, `${baseClass}__overlay--visible`)}
+      className={cx(
+        styles[`${baseClass}__overlay`],
+        styles[`${baseClass}__overlay--visible`]
+      )}
     >
       <div className={mergedClassNames} {...props}>
         <ModalCloseButton onClick={onCloseButtonClick} />

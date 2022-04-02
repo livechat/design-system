@@ -1,16 +1,18 @@
 import * as React from 'react';
-import cx from 'classnames';
-import { IModalBaseProps, ModalBase } from './ModalBase';
+import cx from 'clsx';
+import { ModalBaseProps, ModalBase } from './ModalBase';
 
-export interface IActionModalProps extends IModalBaseProps {
+import styles from './Modal.module.scss';
+
+export interface ActionModalProps extends ModalBaseProps {
   icon?: React.ReactNode;
   heading?: React.ReactNode;
   actions?: React.ReactNode;
 }
 
-const baseClass = 'lc-action-modal';
+const baseClass = 'action-modal';
 
-export const ActionModal: React.FC<IActionModalProps> = ({
+export const ActionModal: React.FC<ActionModalProps> = ({
   children,
   className = '',
   icon,
@@ -18,14 +20,18 @@ export const ActionModal: React.FC<IActionModalProps> = ({
   actions,
   ...props
 }) => {
-  const mergedClassNames = cx(baseClass, className);
+  const mergedClassNames = cx(styles[baseClass], className);
 
   return (
     <ModalBase className={mergedClassNames} {...props}>
-      {icon && <div className={`${baseClass}__icon`}>{icon}</div>}
-      {heading && <div className={`${baseClass}__heading`}>{heading}</div>}
-      <div className={`${baseClass}__content`}>{children}</div>
-      {actions && <div className={`${baseClass}__actions`}>{actions}</div>}
+      {icon && <div className={styles[`${baseClass}__icon`]}>{icon}</div>}
+      {heading && (
+        <div className={styles[`${baseClass}__heading`]}>{heading}</div>
+      )}
+      <div className={styles[`${baseClass}__content`]}>{children}</div>
+      {actions && (
+        <div className={styles[`${baseClass}__actions`]}>{actions}</div>
+      )}
     </ModalBase>
   );
 };

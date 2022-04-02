@@ -1,11 +1,12 @@
 import * as React from 'react';
-import cx from 'classnames';
-import { Check } from '@livechat/design-system-icons/dist/material';
+import cx from 'clsx';
+import { Check } from '@livechat/design-system-icons/react/material';
 import { Icon, IconTypeName } from '../Icon';
-import { KeyCodes } from '../../constants/keyCodes';
 import { TriggerSize } from './Trigger';
+import styles from './PickerList.module.scss';
+import { KeyCodes } from '../../utils/keyCodes';
 
-const baseClass = 'lc-picker-list';
+const baseClass = 'picker-list';
 const itemClassName = `${baseClass}__item`;
 
 export interface IPickerListItem {
@@ -32,9 +33,13 @@ export const PickerList: React.FC<IPickerListProps> = ({
   onClose,
   onSelect,
 }) => {
-  const mergedClassNames = cx(baseClass, `${baseClass}--${size as string}`, {
-    [`${baseClass}__no-results`]: items.length === 0,
-  });
+  const mergedClassNames = cx(
+    styles[baseClass],
+    styles[`${baseClass}--${size as string}`],
+    {
+      [styles[`${baseClass}__no-results`]]: items.length === 0,
+    }
+  );
 
   const [selectedItemKey, setSelectedItemKey] = React.useState<string | null>(
     null
@@ -55,7 +60,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
     }
 
     const focusedElement = listRef.current.querySelector(
-      `.${itemClassName}--hovered`
+      styles[`.${itemClassName}--hovered`]
     );
 
     if (focusedElement instanceof HTMLElement) {
@@ -171,7 +176,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
       {items.map((item) => {
         if (item.groupHeader) {
           return (
-            <li key={item.key} className={`${itemClassName}__header`}>
+            <li key={item.key} className={styles[`${itemClassName}__header`]}>
               {item.name}
             </li>
           );
@@ -181,10 +186,11 @@ export const PickerList: React.FC<IPickerListProps> = ({
           <li
             id={item.key}
             key={item.key}
-            className={cx(itemClassName, {
-              [`${itemClassName}--hovered`]: selectedItemKey === item.key,
-              [`${itemClassName}--focused`]: isItemSelected(item.key),
-              [`${itemClassName}--disabled`]: item.disabled,
+            className={cx(styles[itemClassName], {
+              [styles[`${itemClassName}--hovered`]]:
+                selectedItemKey === item.key,
+              [styles[`${itemClassName}--focused`]]: isItemSelected(item.key),
+              [styles[`${itemClassName}--disabled`]]: item.disabled,
             })}
             onClick={() => !item.disabled && handleOnClick(item)}
             onMouseEnter={() => handleOnMouseEnter(item.key)}
