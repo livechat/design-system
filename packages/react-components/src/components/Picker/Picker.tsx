@@ -36,8 +36,8 @@ export const Picker: React.FC<IPickerProps> = ({
   const triggerRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    const onDocumentClick = (e) => {
-      if (e.target.contains(triggerRef.current) && isListOpen) {
+    const onDocumentClick = (e: MouseEvent) => {
+      if ((e.target as Element).contains(triggerRef.current) && isListOpen) {
         return setIsListOpen(false);
       }
 

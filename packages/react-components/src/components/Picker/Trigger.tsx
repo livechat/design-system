@@ -52,7 +52,7 @@ export const Trigger: React.FC<ITriggerProps> = ({
     return onClick();
   };
 
-  const handleOnClearClick = (e) => {
+  const handleOnClearClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     return onClearClick();
   };
