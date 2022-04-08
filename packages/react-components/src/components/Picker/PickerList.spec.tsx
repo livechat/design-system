@@ -28,7 +28,7 @@ const renderComponent = (props: IPickerListProps) => {
 };
 
 describe('<PickerList> component', () => {
-  it('shouldnt render PickerList if not isOpen', () => {
+  it('should not render PickerList if not isOpen', () => {
     const { container } = renderComponent(defaultProps);
 
     expect(container.firstChild).toBeNull();
@@ -44,15 +44,15 @@ describe('<PickerList> component', () => {
   });
 
   it('should call onSelect when list item clicked', () => {
-    const mockedFunction = vi.fn();
+    const onSelect = vi.fn();
     const { getByText } = renderComponent({
       ...defaultProps,
       isOpen: true,
-      onSelect: mockedFunction,
+      onSelect,
     });
 
     fireEvent.click(getByText('Option three'));
-    expect(mockedFunction).toHaveBeenCalledWith({
+    expect(onSelect).toHaveBeenCalledWith({
       key: 'three',
       name: 'Option three',
     });

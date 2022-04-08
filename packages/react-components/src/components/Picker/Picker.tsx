@@ -24,7 +24,7 @@ export const Picker: React.FC<IPickerProps> = ({
   error,
   label,
   options,
-  size = TriggerSize.Medium,
+  size = 'medium',
   placeholder = 'Select option',
   isRequired,
   onSelect,

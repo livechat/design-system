@@ -10,11 +10,7 @@ import styles from './Trigger.module.scss';
 
 const baseClass = 'picker-trigger';
 
-export const enum TriggerSize {
-  Compact = 'compact',
-  Medium = 'medium',
-  Large = 'large',
-}
+export type TriggerSize = 'compact' | 'medium' | 'large';
 
 export interface ITriggerProps {
   isDisabled?: boolean;
@@ -35,7 +31,7 @@ export const Trigger: React.FC<ITriggerProps> = ({
   isItemSelected,
   isOpen,
   isRequired,
-  size = TriggerSize.Medium,
+  size = 'medium',
   onClick,
   onClearClick,
   onFilter,

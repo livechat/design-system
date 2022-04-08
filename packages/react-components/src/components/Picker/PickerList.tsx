@@ -2,9 +2,9 @@ import * as React from 'react';
 import cx from 'clsx';
 import { Check } from '@livechat/design-system-icons/react/material';
 import { Icon, IconTypeName } from '../Icon';
-import { TriggerSize } from './Trigger';
 import styles from './PickerList.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
+import { TriggerSize } from './Trigger';
 
 const baseClass = 'picker-list';
 const itemClassName = `${baseClass}__item`;
@@ -29,7 +29,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   isOpen,
   items,
   selectedItem,
-  size = TriggerSize.Medium,
+  size = 'medium',
   onClose,
   onSelect,
 }) => {
@@ -60,7 +60,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
     }
 
     const focusedElement = listRef.current.querySelector(
-      styles[`.${itemClassName}--hovered`]
+      `.${styles[`${itemClassName}--hovered`]}`
     );
 
     if (focusedElement instanceof HTMLElement) {

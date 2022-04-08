@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render } from 'test-utils';
+import { render, fireEvent, vi } from 'test-utils';
 import noop from '../../utils/noop';
 import { IPickerProps, Picker } from './Picker';
 
@@ -37,5 +37,37 @@ describe('<Picker> component', () => {
     });
 
     expect(getByText('Example error')).toBeVisible();
+  });
+
+  it('should call onSelect with selected item', () => {
+    const onSelect = vi.fn();
+    const { getByText } = renderComponent({
+      ...defaultProps,
+      onSelect,
+    });
+
+    fireEvent.click(getByText('Select option'));
+    fireEvent.click(getByText('Option three'));
+    expect(onSelect).toHaveBeenCalledWith({
+      key: 'three',
+      name: 'Option three',
+    });
+  });
+
+  it('should call onSelect with null after clearing the selection', () => {
+    const onSelect = vi.fn();
+    const { getByText, getByTestId } = renderComponent({
+      ...defaultProps,
+      onSelect,
+    });
+
+    fireEvent.click(getByText('Select option'));
+    fireEvent.click(getByText('Option three'));
+    expect(onSelect).toHaveBeenCalledWith({
+      key: 'three',
+      name: 'Option three',
+    });
+    fireEvent.click(getByTestId('picker-trigger__clear-icon'));
+    expect(onSelect).toHaveBeenCalledWith(null);
   });
 });

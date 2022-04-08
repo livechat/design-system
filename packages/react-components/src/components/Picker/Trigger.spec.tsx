@@ -68,38 +68,38 @@ describe('<Trigger> component', () => {
   });
 
   it('should call onClick when Trigger clicked', () => {
-    const mockedFunction = vi.fn();
+    const onClick = vi.fn();
     const { getByText } = renderComponent({
       ...defaultProps,
-      onClick: mockedFunction,
+      onClick,
     });
 
     fireEvent.click(getByText('Example text'));
-    expect(mockedFunction).toHaveBeenCalled();
+    expect(onClick).toHaveBeenCalled();
   });
 
   it('should call onClearClick when clear button clicked', () => {
-    const mockedFunction = vi.fn();
+    const onClearClick = vi.fn();
     const { getByTestId } = renderComponent({
       ...defaultProps,
       isItemSelected: true,
-      onClearClick: mockedFunction,
+      onClearClick,
     });
 
     fireEvent.click(getByTestId(`${baseClass}__clear-icon`));
-    expect(mockedFunction).toHaveBeenCalled();
+    expect(onClearClick).toHaveBeenCalled();
   });
 
   it('should call onFilter when input value change', () => {
-    const mockedFunction = vi.fn();
+    const onFilter = vi.fn();
     const { getByRole } = renderComponent({
       ...defaultProps,
       isOpen: true,
-      onFilter: mockedFunction,
+      onFilter,
     });
 
     fireEvent.change(getByRole('textbox'), { target: { value: 'option' } });
-    expect(mockedFunction).toHaveBeenCalledWith('option');
+    expect(onFilter).toHaveBeenCalledWith('option');
   });
 
   it('shouldnt render clear button if isRequired', () => {

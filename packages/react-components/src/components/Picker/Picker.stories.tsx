@@ -1,10 +1,7 @@
 import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
 
-import {
-  IPickerProps,
-  Picker as PickerComponent,
-} from '../components/Picker/Picker';
+import { IPickerProps, Picker as PickerComponent } from './Picker';
 
 export default {
   title: 'Components/Picker',
