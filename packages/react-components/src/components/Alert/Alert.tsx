@@ -7,17 +7,12 @@ import {
   Block as BlockIcon,
   CheckCircleSolid as CheckIcon,
 } from '@livechat/design-system-icons/react/material';
+import { debounce } from 'lodash';
 
 import { Text } from '../Typography';
 import { Icon, IconSizeName, IconTypeName } from '../Icon';
 
 import styles from './Alert.module.scss';
-
-export enum AlertSize {
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
-}
 
 export enum AlertType {
   Info = 'info',
@@ -28,7 +23,6 @@ export enum AlertType {
 
 export interface AlertProps {
   className?: string;
-  size?: AlertSize;
   type?: AlertType;
   onClose?: () => void;
 }
@@ -57,22 +51,46 @@ const baseClass = 'alert';
 export const Alert: React.FC<AlertProps> = ({
   children,
   className,
-  size = AlertSize.Small,
   type = AlertType.Info,
   onClose,
 }) => {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [isSmallContainer, setIsSmallContainer] = React.useState(false);
+
   const mergedClassNames = cx(
     styles[baseClass],
     styles[`${baseClass}--${type}`],
-    styles[`${baseClass}--${size}`],
+    isSmallContainer && styles[`${baseClass}--small`],
     className
   );
 
+  React.useEffect(() => {
+    const handleResize = debounce(() => {
+      if (containerRef.current && containerRef.current.offsetWidth <= 400) {
+        return setIsSmallContainer(true);
+      }
+      return setIsSmallContainer(false);
+    }, 500);
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  });
+
   return (
-    <div className={mergedClassNames}>
+    <div ref={containerRef} className={mergedClassNames}>
       <div className={styles[`${baseClass}__content`]}>
-        <Icon {...IconConfig[type]} />
-        <Text as="div" className={styles[`${baseClass}__content-text`]}>
+        <Icon
+          {...IconConfig[type]}
+          className={styles[`${baseClass}__content-icon`]}
+        />
+        <Text
+          as="div"
+          className={cx(
+            styles[`${baseClass}__content-text`],
+            onClose && styles[`${baseClass}__content-text--margin`]
+          )}
+        >
           {children}
         </Text>
       </div>

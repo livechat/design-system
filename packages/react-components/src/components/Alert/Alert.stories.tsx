@@ -1,12 +1,7 @@
 import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
 
-import {
-  Alert as AlertComponent,
-  AlertSize,
-  AlertType,
-  AlertProps,
-} from './Alert';
+import { Alert as AlertComponent, AlertType, AlertProps } from './Alert';
 
 export default {
   title: 'Components/Alert',
@@ -55,19 +50,4 @@ ErrorAlert.args = {
 export const BannerWithClose = StoryTemplate.bind({});
 BannerWithClose.args = {
   onClose: () => alert('onClose click'),
-};
-
-export const SmallAlert = StoryTemplate.bind({});
-SmallAlert.args = {
-  size: AlertSize.Small,
-};
-
-export const MediumBanner = StoryTemplate.bind({});
-MediumBanner.args = {
-  size: AlertSize.Medium,
-};
-
-export const LargeAlert = StoryTemplate.bind({});
-LargeAlert.args = {
-  size: AlertSize.Large,
 };

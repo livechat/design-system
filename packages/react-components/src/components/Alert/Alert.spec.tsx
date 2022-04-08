@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { render, fireEvent, vi } from 'test-utils';
-import { Alert, AlertSize, AlertType, AlertProps } from './Alert';
+import { Alert, AlertType, AlertProps } from './Alert';
 
 import styles from './Alert.module.scss';
 
@@ -41,24 +41,6 @@ describe('<Alert> component', () => {
     const { container } = renderComponent({ type: AlertType.Error });
 
     expect(container.firstChild).toHaveClass(styles['alert--error']);
-  });
-
-  it('should render as small by default', () => {
-    const { container } = renderComponent({});
-
-    expect(container.firstChild).toHaveClass(styles['alert--small']);
-  });
-
-  it('should render as medium', () => {
-    const { container } = renderComponent({ size: AlertSize.Medium });
-
-    expect(container.firstChild).toHaveClass(styles['alert--medium']);
-  });
-
-  it('should render as large', () => {
-    const { container } = renderComponent({ size: AlertSize.Large });
-
-    expect(container.firstChild).toHaveClass(styles['alert--large']);
   });
 
   it('should render with close icon and call onClose function', () => {
