@@ -36,7 +36,7 @@ jobs:
         run: npm ci
 
       - name: Build packages
-        run: npm run build
+        run: npm run build:icons
 
         # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic
