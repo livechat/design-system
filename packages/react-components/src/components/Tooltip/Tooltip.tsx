@@ -152,7 +152,8 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   const left = arrowOffsetX && arrowX ? arrowX + arrowOffsetX : arrowX;
 
   const mergedClassNames = cx(styles[baseClass], {
-    [className ]: className,
+    // eslint-disable-next-line
+    [className as string]: className,
     [styles[`${baseClass}--invert`]]: theme === 'invert',
     [styles[`${baseClass}--important`]]: theme === 'important',
   });
