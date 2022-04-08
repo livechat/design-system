@@ -1,0 +1,12 @@
+.lc-tooltip-icon-wrap {
+  align-items: center;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  height: 32px;
+  justify-content: center;
+  width: 32px;
+}
+.lc-tooltip-icon-wrap:hover {
+  background-color: #e5e5e5;
+}

@@ -1,0 +1,129 @@
+$base-class: 'lc-tooltip';
+
+.#{$base-class} {
+  background-color: var(--surface-basic-default);
+  border-color: var(--surface-basic-default);
+  border-radius: 4px;
+  box-shadow: 0 1px 10px 0 rgba(66, 77, 87, 0.3);
+  color: var(--content-default);
+  max-width: 320px;
+  padding: 12px;
+  z-index: 999999999;
+
+  &:focus {
+    outline: none;
+  }
+
+  &--invert {
+    background-color: var(--surface-invert-default);
+    border-color: var(--surface-invert-default);
+    color: var(--content-invert-default);
+  }
+
+  &--important {
+    background-color: var(--color-warning-default);
+    border-color: var(--color-warning-default);
+    color: var(--content-default);
+  }
+
+  &__arrow {
+    border-color: inherit;
+    color: inherit;
+    height: 6px;
+    margin: -6px 0;
+    position: absolute;
+    width: 12px;
+
+    &::after {
+      border: 6px solid transparent;
+      content: '';
+      position: absolute;
+      transform: rotate(-45deg);
+    }
+
+    &[data-popper-placement*='bottom'] {
+      height: 0;
+      top: 1px;
+
+      &::after {
+        border-right-color: inherit;
+        border-top-color: inherit;
+        box-shadow: 8px -6px 10px -2px rgba(66, 77, 87, 0.3);
+      }
+    }
+
+    &[data-popper-placement*='top'] {
+      top: 100%;
+
+      &::after {
+        border-bottom-color: inherit;
+        border-left-color: inherit;
+        box-shadow: -8px 8px 10px -2px rgba(66, 77, 87, 0.3);
+      }
+    }
+
+    &[data-popper-placement*='right'] {
+      left: 0;
+      margin: -3px -5px;
+
+      &::after {
+        border-left-color: inherit;
+        border-top-color: inherit;
+        box-shadow: -5px -5px 10px -2px rgba(66, 77, 87, 0.3);
+      }
+    }
+
+    &[data-popper-placement*='left'] {
+      height: 12px;
+      left: 100%;
+      margin: 0 -7px;
+      width: 6px;
+
+      &::after {
+        border-bottom-color: inherit;
+        border-right-color: inherit;
+        box-shadow: 6px 6px 10px -2px rgba(66, 77, 87, 0.3);
+      }
+    }
+  }
+
+  &-header {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    margin-bottom: 4px;
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+
+  &-image {
+    aspect-ratio: 16 / 9;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    max-height: 138px;
+    width: 100%;
+  }
+
+  &-text {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 22px;
+    margin-bottom: 12px;
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+
+  &-x {
+    cursor: pointer;
+    position: absolute;
+    right: -4px;
+    top: -4px;
+  }
+
+  &-step {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+  }
+}
