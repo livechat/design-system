@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render, fireEvent } from '../test-utils';
+import { render, fireEvent } from 'test-utils';
 import { Tooltip } from './Tooltip';
 
 global.ResizeObserver = jest.fn().mockImplementation(() => ({
