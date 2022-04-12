@@ -6,16 +6,8 @@ import { ToastProps, Toast } from './Toast';
 
 import styles from './Toast.module.scss';
 
-export enum HorizontalPosition {
-  Left = 'left',
-  Center = 'center',
-  Right = 'right',
-}
-
-export enum VerticalPosition {
-  Top = 'top',
-  Bottom = 'bottom',
-}
+type HorizontalPosition = 'left' | 'center' | 'right';
+type VerticalPosition = 'top' | 'bottom';
 
 export const ANIMATION_TIME = 200;
 

@@ -9,11 +9,7 @@ import styles from './PromoBanner.module.scss';
 
 const baseClass = 'promo-banner';
 
-export const enum PromoBannerSize {
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
-}
+type PromoBannerSize = 'small' | 'medium' | 'large';
 
 export interface PromoBannerProps {
   className?: string;
@@ -36,7 +32,7 @@ export const PromoBanner: React.FC<PromoBannerProps> = ({
   img,
   light = false,
   linkText,
-  size = PromoBannerSize.Small,
+  size = 'small',
   onButtonClick,
   onClose,
   onLinkClick,

@@ -2,7 +2,7 @@ import * as React from 'react';
 import cx from 'clsx';
 import styles from './Icon.module.scss';
 
-export enum IconSizeName {
+export const enum IconSizeName {
   XSmall = 'xsmall',
   Small = 'small',
   Medium = 'medium',
@@ -33,7 +33,7 @@ export const IconSize = {
   },
 };
 
-export enum IconTypeName {
+export const enum IconTypeName {
   Primary = 'primary',
   Subtle = 'subtle',
   Inverted = 'inverted',

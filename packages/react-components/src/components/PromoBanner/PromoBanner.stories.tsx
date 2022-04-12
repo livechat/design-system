@@ -4,7 +4,6 @@ import { ComponentMeta, Story } from '@storybook/react';
 import {
   PromoBannerProps,
   PromoBanner as PromoBannerComponent,
-  PromoBannerSize,
 } from './PromoBanner';
 
 export default {
@@ -74,7 +73,7 @@ export const PromoBannerSmall = StoryTemplate.bind({});
 PromoBannerSmall.args = {
   header: 'This example headline has 40 characters',
   img: 'https://via.placeholder.com/100',
-  size: PromoBannerSize.Small,
+  size: 'small',
   buttonText: 'Example button',
   linkText: 'Example link',
   onClose: () => {
@@ -92,7 +91,7 @@ export const PromoBannerMedium = StoryTemplate.bind({});
 PromoBannerMedium.args = {
   header: 'This example headline has 40 characters',
   img: 'https://via.placeholder.com/100',
-  size: PromoBannerSize.Medium,
+  size: 'medium',
   buttonText: 'Example button',
   linkText: 'Example link',
   onClose: () => {
@@ -110,7 +109,7 @@ export const PromoBannerLarge = StoryTemplate.bind({});
 PromoBannerLarge.args = {
   header: 'This example headline has 40 characters',
   img: 'https://via.placeholder.com/100',
-  size: PromoBannerSize.Large,
+  size: 'large',
   buttonText: 'Example button',
   linkText: 'Example link',
   onClose: () => {

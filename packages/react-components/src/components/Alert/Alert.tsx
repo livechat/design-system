@@ -14,7 +14,7 @@ import { Icon, IconSizeName, IconTypeName } from '../Icon';
 
 import styles from './Alert.module.scss';
 
-export enum AlertType {
+export const enum AlertType {
   Info = 'info',
   Warning = 'warning',
   Success = 'success',
