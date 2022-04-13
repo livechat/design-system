@@ -9,10 +9,11 @@
   "typings": "./index.d.ts",
   "scripts": {
     "prebuild": "rimraf react lib",
-    "build": "run-s build:*",
-    "build:ts": "svgr --replace-attr-values '#424D57=currentcolor' --typescript --no-dimensions -d ./lib/react ./svg ",
+    "build": "run-s build:lib build:js",
+    "build:lib": "svgr --replace-attr-values '#424D57=currentcolor' --typescript --no-dimensions -d ./lib/react ./svg ",
     "build:js": "babel ./lib/react --out-dir react --extensions '.tsx,.ts'",
-    "dev": "npm run build"
+    "build:ts": "rimraf react && svgr --replace-attr-values '#424D57=currentcolor' --typescript --no-dimensions -d ./react ./svg ",
+    "dev": "npm run build:ts"
   },
   "author": "",
   "files": [

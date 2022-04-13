@@ -9,9 +9,6 @@ import * as path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  optimizeDeps: {
-    include: ['../icons/react/material'],
-  },
   css: {
     modules: {
       generateScopedName: 'lc-[name]__[local]___[hash:base64:5]',
@@ -41,10 +38,6 @@ export default defineConfig({
   resolve: {
     alias: {
       'test-utils': path.resolve(__dirname, 'src/test/utils.ts'),
-      '@livechat/design-system-icons/react/material': path.resolve(
-        __dirname,
-        '../icons/lib/react/material'
-      ),
     },
   },
   plugins: [dts(), react({ jsxRuntime: 'classic' })],
