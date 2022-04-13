@@ -7,7 +7,7 @@ import {
   Block as BlockIcon,
   CheckCircleSolid as CheckIcon,
 } from '@livechat/design-system-icons/react/material';
-import { debounce } from 'lodash';
+import debounce from 'lodash.debounce';
 
 import { Text } from '../Typography';
 import { Icon, IconSizeName, IconTypeName } from '../Icon';
