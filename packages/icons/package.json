@@ -6,17 +6,19 @@
     "access": "public"
   },
   "types": "./index.d.ts",
+  "typings": "./index.d.ts",
   "scripts": {
-    "prebuild": "rimraf react",
+    "prebuild": "rimraf react lib",
     "build": "run-s build:*",
-    "build:ts": "svgr --replace-attr-values '#424D57=currentcolor' --typescript --no-dimensions -d ./react ./svg ",
-    "build:js": "babel react --out-dir react --extensions '.tsx,.ts'",
-    "dev": "rimraf react && npm run build:ts"
+    "build:ts": "svgr --replace-attr-values '#424D57=currentcolor' --typescript --no-dimensions -d ./lib/react ./svg ",
+    "build:js": "babel ./lib/react --out-dir react --extensions '.tsx,.ts'",
+    "dev": "npm run build"
   },
   "author": "",
   "files": [
     "react",
     "svg",
+    "lib",
     "index.d.ts"
   ],
   "license": "ISC",
