@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { render, fireEvent, vi } from 'test-utils';
-import { PromoBannerProps, PromoBanner, PromoBannerSize } from './PromoBanner';
+import { PromoBannerProps, PromoBanner } from './PromoBanner';
 
 import styles from './PromoBanner.module.scss';
 
@@ -67,7 +67,7 @@ describe('<PromoBanner> component', () => {
   it('should display with medium size', () => {
     const { container } = renderComponent({
       header: promoHeader,
-      size: PromoBannerSize.Medium,
+      size: 'medium',
     });
 
     expect(container.firstChild).toHaveClass(styles['promo-banner--medium']);
@@ -76,7 +76,7 @@ describe('<PromoBanner> component', () => {
   it('should display with large size', () => {
     const { container } = renderComponent({
       header: promoHeader,
-      size: PromoBannerSize.Large,
+      size: 'large',
     });
 
     expect(container.firstChild).toHaveClass(styles['promo-banner--large']);

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
 
-import { Alert as AlertComponent, AlertType, AlertProps } from './Alert';
+import { Alert as AlertComponent, AlertProps } from './Alert';
 
 export default {
   title: 'Components/Alert',
@@ -29,22 +29,22 @@ Alert.args = {};
 
 export const InfoAlert = StoryTemplate.bind({});
 InfoAlert.args = {
-  type: AlertType.Info,
+  kind: 'info',
 };
 
 export const WarningAlert = StoryTemplate.bind({});
 WarningAlert.args = {
-  type: AlertType.Warning,
+  kind: 'warning',
 };
 
 export const SuccessAlert = StoryTemplate.bind({});
 SuccessAlert.args = {
-  type: AlertType.Success,
+  kind: 'success',
 };
 
 export const ErrorAlert = StoryTemplate.bind({});
 ErrorAlert.args = {
-  type: AlertType.Error,
+  kind: 'error',
 };
 
 export const BannerWithClose = StoryTemplate.bind({});

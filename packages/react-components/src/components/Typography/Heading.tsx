@@ -3,13 +3,13 @@ import cx from 'clsx';
 
 import styles from './Typography.module.scss';
 
-enum sizeToElement {
-  xl = 'h1',
-  lg = 'h2',
-  md = 'h3',
-  sm = 'h4',
-  xs = 'h5',
-}
+const SIZE_TO_ELEMENT_MAP = {
+  xl: 'h1',
+  lg: 'h2',
+  md: 'h3',
+  sm: 'h4',
+  xs: 'h5',
+};
 
 type TSize = 'xl' | 'lg' | 'md' | 'sm' | 'xs';
 
@@ -29,7 +29,7 @@ export const Heading: React.FC<IProps> = ({
   ...props
 }) => {
   return React.createElement(
-    as || sizeToElement[size],
+    as || SIZE_TO_ELEMENT_MAP[size],
     { className: cx(styles[`heading-${size}`], className), ...props },
     children
   );

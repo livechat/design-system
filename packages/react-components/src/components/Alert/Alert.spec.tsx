@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { render, fireEvent, vi } from 'test-utils';
-import { Alert, AlertType, AlertProps } from './Alert';
+import { Alert, AlertProps } from './Alert';
 
 import styles from './Alert.module.scss';
 
@@ -26,19 +26,19 @@ describe('<Alert> component', () => {
   });
 
   it('should render as warning', () => {
-    const { container } = renderComponent({ type: AlertType.Warning });
+    const { container } = renderComponent({ kind: 'warning' });
 
     expect(container.firstChild).toHaveClass(styles['alert--warning']);
   });
 
   it('should render as success', () => {
-    const { container } = renderComponent({ type: AlertType.Success });
+    const { container } = renderComponent({ kind: 'success' });
 
     expect(container.firstChild).toHaveClass(styles['alert--success']);
   });
 
   it('should render as error', () => {
-    const { container } = renderComponent({ type: AlertType.Error });
+    const { container } = renderComponent({ kind: 'error' });
 
     expect(container.firstChild).toHaveClass(styles['alert--error']);
   });
