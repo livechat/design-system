@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 
-import { Switch as SwitchComponent, SwitchProps, SwitchSize } from './Switch';
+import { Switch as SwitchComponent, SwitchProps } from './Switch';
 import noop from '../../utils/noop';
 
 export default {
@@ -18,6 +18,6 @@ export const Switch = (args: SwitchProps): React.ReactElement => {
 };
 
 Switch.args = {
-  size: SwitchSize.Basic,
+  size: 'basic',
   onChange: noop,
 };
