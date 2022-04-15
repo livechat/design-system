@@ -38,7 +38,7 @@ ToastWrapper.args = {
     },
     {
       id: '3',
-      kind: 'waringn',
+      kind: 'warning',
       content: 'Third toast with action',
       action: {
         label: 'Action',

@@ -52,7 +52,7 @@ export const ToastWrapper: React.FC<ToastWrapperProps> = ({
   return (
     <div className={mergedClassNames}>
       <TransitionGroup component={null}>
-        {toasts.map(({ id, variant, content, removable, action, onClose }) => (
+        {toasts.map(({ id, kind, content, removable, action, onClose }) => (
           <CSSTransition
             key={id}
             classNames={{
@@ -64,7 +64,7 @@ export const ToastWrapper: React.FC<ToastWrapperProps> = ({
             timeout={ANIMATION_TIME}
           >
             <Toast
-              variant={variant}
+              kind={kind}
               onClose={onClose}
               removable={removable}
               action={action}

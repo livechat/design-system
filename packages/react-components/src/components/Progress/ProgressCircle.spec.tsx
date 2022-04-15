@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { render } from 'test-utils';
-import { ProgressStatus } from './constants';
 import { ProgressCircle } from './ProgressCircle';
 
 import styles from './ProgressCircle.module.scss';
