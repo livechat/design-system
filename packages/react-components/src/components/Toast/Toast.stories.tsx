@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
 
-import { ToastProps, Toast as ToastComponent, Variants } from './Toast';
+import { ToastProps, Toast as ToastComponent } from './Toast';
 
 export default {
   title: 'Components/Toast',
@@ -30,27 +30,27 @@ Toast.args = {};
 
 export const SuccessToast = StoryTemplate.bind({});
 SuccessToast.args = {
-  variant: Variants.Success,
+  kind: 'success',
 };
 
 export const WarningToast = StoryTemplate.bind({});
 WarningToast.args = {
-  variant: Variants.Warning,
+  kind: 'warning',
 };
 
 export const ErrorToast = StoryTemplate.bind({});
 ErrorToast.args = {
-  variant: Variants.Error,
+  kind: 'error',
 };
 
 export const InfoToast = StoryTemplate.bind({});
 InfoToast.args = {
-  variant: Variants.Info,
+  kind: 'info',
 };
 
 export const NotificationToast = StoryTemplate.bind({});
 NotificationToast.args = {
-  variant: Variants.Notification,
+  kind: 'notification',
 };
 
 export const ToastWithActionAndRemovable = StoryTemplate.bind({});

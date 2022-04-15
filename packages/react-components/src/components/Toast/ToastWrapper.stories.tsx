@@ -5,7 +5,6 @@ import {
   ToastWrapperProps,
   ToastWrapper as ToastWrapperComponent,
 } from './ToastWrapper';
-import { Variants } from './Toast';
 
 export default {
   title: 'Components/Toast Wrapper',
@@ -28,18 +27,18 @@ ToastWrapper.args = {
   toasts: [
     {
       id: '1',
-      variant: Variants.Success,
+      kind: 'success',
       content: <div>First toast with DOM element as content</div>,
     },
     {
       id: '2',
-      variant: Variants.Info,
+      kind: 'info',
       content: 'Second toast with string as content and with removable prop',
       removable: true,
     },
     {
       id: '3',
-      variant: Variants.Warning,
+      kind: 'waringn',
       content: 'Third toast with action',
       action: {
         label: 'Action',
@@ -48,7 +47,7 @@ ToastWrapper.args = {
     },
     {
       id: '4',
-      variant: Variants.Error,
+      kind: 'error',
       content: 'Fourth toast',
     },
   ],
