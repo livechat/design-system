@@ -20,9 +20,9 @@ export const ProgressBar: React.ExoticComponent<
 > = React.forwardRef(
   (
     {
-      status = ProgressStatus.Normal,
+      status = 'normal',
       percent,
-      size = ProgressSize.Medium,
+      size = 'medium',
       className = '',
       ...restProps
     },
@@ -35,12 +35,7 @@ export const ProgressBar: React.ExoticComponent<
       styles[baseClass],
       {
         [styles[`${baseClass}--${size}`]]: size,
-        [styles[`${baseClass}--error`]]:
-          progressStatus === ProgressStatus.Error,
-        [styles[`${baseClass}--success`]]:
-          progressStatus === ProgressStatus.Success,
-        [styles[`${baseClass}--normal`]]:
-          progressStatus === ProgressStatus.Normal,
+        [styles[`${baseClass}--${status}`]]: status,
       },
       className
     );

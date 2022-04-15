@@ -1,23 +1,10 @@
-export const enum ProgressStatus {
-  Normal = 'normal',
-  Error = 'error',
-  Success = 'success',
-}
+export type ProgressStatus = 'normal' | 'error' | 'success';
+export type ProgressSize = 'small' | 'medium' | 'large';
 
-export const enum ProgressSize {
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
-}
-
-export const PROGRESS_STATUSES = [
-  ProgressStatus.Normal,
-  ProgressStatus.Error,
-  ProgressStatus.Success,
+export const PROGRESS_STATUSES: ProgressStatus[] = [
+  'normal',
+  'error',
+  'success',
 ];
 
-export const PROGRESS_SIZES = [
-  ProgressSize.Small,
-  ProgressSize.Medium,
-  ProgressSize.Large,
-];
+export const PROGRESS_SIZES: ProgressSize[] = ['small', 'medium', 'large'];
