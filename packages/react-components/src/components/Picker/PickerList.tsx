@@ -21,6 +21,7 @@ export interface IPickerListProps {
   items: IPickerListItem[];
   selectedItem: IPickerListItem | null;
   size?: TriggerSize;
+  emptyStateText?: string;
   onClose: () => void;
   onSelect: (item: IPickerListItem) => void;
 }
@@ -30,18 +31,19 @@ export const PickerList: React.FC<IPickerListProps> = ({
   items,
   selectedItem,
   size = 'medium',
+  emptyStateText = 'No results found',
   onClose,
   onSelect,
 }) => {
   const mergedClassNames = cx(
     styles[baseClass],
-    styles[`${baseClass}--${size as string}`],
+    styles[`${baseClass}--${size}`],
     {
       [styles[`${baseClass}__no-results`]]: items.length === 0,
     }
   );
 
-  const [selectedItemKey, setSelectedItemKey] = React.useState<string | null>(
+  const [hoveredItemKey, setHoveredItemKey] = React.useState<string | null>(
     null
   );
   const indexRef = React.useRef(-1);
@@ -133,7 +135,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
       indexRef.current = getPrevItemIndex();
 
-      setSelectedItemKey(items[indexRef.current].key);
+      setHoveredItemKey(items[indexRef.current].key);
       scrollItems();
     }
 
@@ -142,7 +144,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
       indexRef.current = getNextItemIndex();
 
-      setSelectedItemKey(items[indexRef.current].key);
+      setHoveredItemKey(items[indexRef.current].key);
       scrollItems();
     }
 
@@ -155,7 +157,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
   const handleOnMouseEnter = (key: string) => {
     indexRef.current = items.findIndex((item) => item.key === key);
-    return setSelectedItemKey(key);
+    return setHoveredItemKey(key);
   };
 
   const handleOnClick = (item: IPickerListItem) => onSelect(item);
@@ -168,7 +170,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   }
 
   if (items.length === 0) {
-    return <div className={mergedClassNames}>No results found</div>;
+    return <div className={mergedClassNames}>{emptyStateText}</div>;
   }
 
   return (
@@ -188,8 +190,8 @@ export const PickerList: React.FC<IPickerListProps> = ({
             key={item.key}
             className={cx(styles[itemClassName], {
               [styles[`${itemClassName}--hovered`]]:
-                selectedItemKey === item.key,
-              [styles[`${itemClassName}--focused`]]: isItemSelected(item.key),
+                hoveredItemKey === item.key,
+              [styles[`${itemClassName}--selected`]]: isItemSelected(item.key),
               [styles[`${itemClassName}--disabled`]]: item.disabled,
             })}
             onClick={() => !item.disabled && handleOnClick(item)}

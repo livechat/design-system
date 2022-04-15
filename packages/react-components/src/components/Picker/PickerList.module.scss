@@ -43,7 +43,7 @@ $base-class: 'picker-list';
     padding: 7px 12px;
 
     &--hovered,
-    &--focused {
+    &--selected {
       background-color: var(--surface-basic-hover);
     }
 

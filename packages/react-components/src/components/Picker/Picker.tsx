@@ -16,6 +16,7 @@ export interface IPickerProps {
   size?: TriggerSize;
   placeholder?: string;
   isRequired?: boolean;
+  noSearchResultText?: string;
   onSelect: (selectedItem: IPickerListItem | null) => void;
 }
 
@@ -27,6 +28,7 @@ export const Picker: React.FC<IPickerProps> = ({
   size = 'medium',
   placeholder = 'Select option',
   isRequired,
+  noSearchResultText = 'No results found',
   onSelect,
 }) => {
   const [isListOpen, setIsListOpen] = React.useState<boolean>(false);
@@ -120,6 +122,7 @@ export const Picker: React.FC<IPickerProps> = ({
           items={getOptions()}
           isOpen={isListOpen}
           size={size}
+          emptyStateText={noSearchResultText}
           onClose={handleOnClose}
           onSelect={handleOnSelect}
         />

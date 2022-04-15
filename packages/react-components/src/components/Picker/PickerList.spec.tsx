@@ -66,7 +66,7 @@ describe('<PickerList> component', () => {
     });
 
     expect(getByText('Option three')).toHaveClass(
-      styles[`${itemClassName}--focused`]
+      styles[`${itemClassName}--selected`]
     );
   });
 
@@ -82,7 +82,7 @@ describe('<PickerList> component', () => {
     );
   });
 
-  it('should display empty state if no filter result', () => {
+  it('should display default empty state if no filter result', () => {
     const { getByText } = renderComponent({
       ...defaultProps,
       isOpen: true,
@@ -90,5 +90,16 @@ describe('<PickerList> component', () => {
     });
 
     expect(getByText('No results found')).toBeVisible();
+  });
+
+  it('should display custom empty state if no filter result', () => {
+    const { getByText } = renderComponent({
+      ...defaultProps,
+      isOpen: true,
+      items: [],
+      emptyStateText: 'Custom empty state',
+    });
+
+    expect(getByText('Custom empty state')).toBeVisible();
   });
 });
