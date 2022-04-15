@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import * as MaterialIcons from '@livechat/design-system-icons/react/material';
-import { Icon, IconSizeName } from '../../components/Icon';
+import { Icon } from '../../components/Icon';
 import './iconsShowcase.css';
 
 export type IconsMap = {
@@ -15,7 +15,7 @@ export const IconsShowcase = (): React.ReactElement => {
     const iconSource = Icons[item];
     return (
       <div className="icon-showcase-card">
-        <Icon source={iconSource} size={IconSizeName.XLarge}></Icon>
+        <Icon source={iconSource} size="xlarge"></Icon>
         <p>{item}</p>
       </div>
     );

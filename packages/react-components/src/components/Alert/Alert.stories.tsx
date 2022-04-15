@@ -29,22 +29,22 @@ Alert.args = {};
 
 export const InfoAlert = StoryTemplate.bind({});
 InfoAlert.args = {
-  type: 'info',
+  kind: 'info',
 };
 
 export const WarningAlert = StoryTemplate.bind({});
 WarningAlert.args = {
-  type: 'warnign',
+  kind: 'warning',
 };
 
 export const SuccessAlert = StoryTemplate.bind({});
 SuccessAlert.args = {
-  type: 'success',
+  kind: 'success',
 };
 
 export const ErrorAlert = StoryTemplate.bind({});
 ErrorAlert.args = {
-  type: 'error',
+  kind: 'error',
 };
 
 export const BannerWithClose = StoryTemplate.bind({});

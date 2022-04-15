@@ -12,7 +12,7 @@ import {
   ModalBase,
 } from './index';
 import { Button } from '../Button';
-import { Icon, IconSizeName } from '../Icon';
+import { Icon } from '../Icon';
 
 export default {
   title: 'Components/Modal',
@@ -66,7 +66,7 @@ ActionModal.args = {
       </Button>
     </React.Fragment>
   ),
-  icon: <Icon source={Error} size={IconSizeName.XLarge} />,
+  icon: <Icon source={Error} size="xlarge" />,
 } as ActionModalProps;
 
 export const ModalPortal = ({

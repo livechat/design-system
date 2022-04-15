@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Close } from '@livechat/design-system-icons/react/material';
-import { Icon, IconSizeName } from '../Icon';
+import { Icon } from '../Icon';
 
 import styles from './Modal.module.scss';
 
@@ -15,6 +15,6 @@ export const ModalCloseButton: React.FC<ModalCloseButtonProps> = ({
     onClick={onClick}
     type="button"
   >
-    <Icon source={Close} size={IconSizeName.Large} />
+    <Icon source={Close} size="large" />
   </button>
 );

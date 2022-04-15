@@ -10,7 +10,7 @@ import {
 import debounce from 'lodash.debounce';
 
 import { Text } from '../Typography';
-import { Icon, IconSource, IconSizeName, IconTypeName } from '../Icon';
+import { Icon, IconSource, IconKind } from '../Icon';
 
 import styles from './Alert.module.scss';
 
@@ -22,25 +22,22 @@ export interface AlertProps {
   onClose?: () => void;
 }
 
-const IconConfig: Record<
-  AlertKind,
-  { source: IconSource; iconType: IconTypeName }
-> = {
+const IconConfig: Record<AlertKind, { source: IconSource; kind: IconKind }> = {
   info: {
     source: InfoIcon,
-    iconType: IconTypeName.Link,
+    kind: 'link',
   },
   warning: {
     source: WarningIcon,
-    iconType: IconTypeName.Warning,
+    kind: 'warning',
   },
   success: {
     source: CheckIcon,
-    iconType: IconTypeName.Success,
+    kind: 'success',
   },
   error: {
     source: BlockIcon,
-    iconType: IconTypeName.Error,
+    kind: 'error',
   },
 };
 
@@ -98,11 +95,7 @@ export const Alert: React.FC<AlertProps> = ({
           className={styles[`${baseClass}__close-icon`]}
           onClick={onClose}
         >
-          <Icon
-            source={CloseIcon}
-            size={IconSizeName.Large}
-            iconType={IconTypeName.Primary}
-          />
+          <Icon source={CloseIcon} size="large" kind="primary" />
         </button>
       )}
     </div>

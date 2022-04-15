@@ -8,7 +8,7 @@ import {
   CheckCircleSolid,
   Error,
 } from '@livechat/design-system-icons/react/material';
-import { Icon, IconSizeName, IconTypeName } from '../Icon';
+import { Icon } from '../Icon';
 
 import styles from './Toast.module.scss';
 
@@ -39,22 +39,22 @@ export interface ToastProps {
 const IconConfig = {
   [Variants.Success]: {
     source: CheckCircleSolid,
-    iconType: IconTypeName.Inverted,
+    kind: 'inverted',
   },
   [Variants.Warning]: {
     source: Warning,
   },
   [Variants.Error]: {
     source: Error,
-    iconType: IconTypeName.Inverted,
+    kind: 'inverted',
   },
   [Variants.Info]: {
     source: Info,
-    iconType: IconTypeName.Inverted,
+    kind: 'inverted',
   },
   [Variants.Notification]: {
     source: Info,
-    iconType: IconTypeName.Link,
+    kind: 'link',
   },
 };
 
@@ -105,11 +105,11 @@ export const Toast: React.FC<ToastProps> = ({
             >
               <Icon
                 source={Close}
-                size={IconSizeName.Small}
-                iconType={
+                size="small"
+                kind={
                   [Variants.Warning, Variants.Notification].includes(variant)
-                    ? IconTypeName.Primary
-                    : IconTypeName.Inverted
+                    ? 'primary'
+                    : 'inverted'
                 }
               />
             </div>
