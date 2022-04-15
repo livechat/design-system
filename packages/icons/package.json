@@ -1,22 +1,25 @@
 {
   "name": "@livechat/design-system-icons",
-  "version": "1.0.0-alpha.9",
+  "version": "1.0.0-alpha.11",
   "description": "",
   "publishConfig": {
     "access": "public"
   },
   "types": "./index.d.ts",
+  "typings": "./index.d.ts",
   "scripts": {
-    "prebuild": "rimraf react",
-    "build": "run-s build:*",
-    "build:ts": "svgr --replace-attr-values '#424D57=currentcolor' --typescript --no-dimensions -d ./react ./svg ",
-    "build:js": "babel react --out-dir react --extensions '.tsx,.ts'",
-    "dev": "rimraf react && npm run build:ts"
+    "prebuild": "rimraf react lib",
+    "build": "run-s build:lib build:js",
+    "build:lib": "svgr --replace-attr-values '#424D57=currentcolor' --typescript --no-dimensions -d ./lib/react ./svg ",
+    "build:js": "babel ./lib/react --out-dir react --extensions '.tsx,.ts'",
+    "build:ts": "rimraf react && svgr --replace-attr-values '#424D57=currentcolor' --typescript --no-dimensions -d ./react ./svg ",
+    "dev": "npm run build:ts"
   },
   "author": "",
   "files": [
     "react",
     "svg",
+    "lib",
     "index.d.ts"
   ],
   "license": "ISC",
