@@ -10,37 +10,35 @@ import {
 import debounce from 'lodash.debounce';
 
 import { Text } from '../Typography';
-import { Icon, IconSizeName, IconTypeName } from '../Icon';
+import { Icon, IconSource, IconSizeName, IconTypeName } from '../Icon';
 
 import styles from './Alert.module.scss';
 
-export const enum AlertType {
-  Info = 'info',
-  Warning = 'warning',
-  Success = 'success',
-  Error = 'error',
-}
+type AlertKind = 'info' | 'warning' | 'success' | 'error';
 
 export interface AlertProps {
   className?: string;
-  type?: AlertType;
+  kind?: AlertKind;
   onClose?: () => void;
 }
 
-const IconConfig = {
-  [AlertType.Info]: {
+const IconConfig: Record<
+  AlertKind,
+  { source: IconSource; iconType: IconTypeName }
+> = {
+  info: {
     source: InfoIcon,
     iconType: IconTypeName.Link,
   },
-  [AlertType.Warning]: {
+  warning: {
     source: WarningIcon,
     iconType: IconTypeName.Warning,
   },
-  [AlertType.Success]: {
+  success: {
     source: CheckIcon,
     iconType: IconTypeName.Success,
   },
-  [AlertType.Error]: {
+  error: {
     source: BlockIcon,
     iconType: IconTypeName.Error,
   },
@@ -51,7 +49,7 @@ const baseClass = 'alert';
 export const Alert: React.FC<AlertProps> = ({
   children,
   className,
-  type = AlertType.Info,
+  kind = 'info',
   onClose,
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -59,7 +57,7 @@ export const Alert: React.FC<AlertProps> = ({
 
   const mergedClassNames = cx(
     styles[baseClass],
-    styles[`${baseClass}--${type}`],
+    styles[`${baseClass}--${kind}`],
     isSmallContainer && styles[`${baseClass}--small`],
     className
   );
@@ -81,7 +79,7 @@ export const Alert: React.FC<AlertProps> = ({
     <div ref={containerRef} className={mergedClassNames}>
       <div className={styles[`${baseClass}__content`]}>
         <Icon
-          {...IconConfig[type]}
+          {...IconConfig[kind]}
           className={styles[`${baseClass}__content-icon`]}
         />
         <Text

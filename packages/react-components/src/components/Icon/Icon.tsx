@@ -66,8 +66,9 @@ export const IconColorDisabledMapper = {
   [IconTypeName.Error]: 'disabled--error',
 };
 
+export type IconSource = React.FC<React.SVGProps<SVGSVGElement>> | string;
 export interface IconProps {
-  source: React.FC<React.SVGProps<SVGSVGElement>> | string;
+  source: IconSource;
   size?: IconSizeName;
   iconType?: IconTypeName;
   disabled?: boolean;
