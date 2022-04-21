@@ -1,5 +1,13 @@
 All notable changes to this project will be documented in this file.
 
+## v0.13.2
+
+_Release: 2022-04-21_
+
+##### New features
+
+- adding support for onFocus and onBlur properties to NumericInput component (#314)
+
 ## v0.13.1
 
 _Release: 2021-06-23_
