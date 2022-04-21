@@ -6,7 +6,7 @@ import { Button } from '..//Button';
 import { RadioButton } from '../RadioButton';
 
 export default {
-  title: 'Forms (WIP)/Form',
+  title: 'Forms/Form',
   component: FormComponenet,
 } as ComponentMeta<typeof FormComponenet>;
 
