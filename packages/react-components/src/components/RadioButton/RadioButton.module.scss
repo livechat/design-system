@@ -15,7 +15,6 @@
     border-radius: 16px;
     box-sizing: border-box;
     height: 16px;
-    margin-right: 8px;
     position: relative;
     transition: all 0.2s ease;
     width: 16px;
@@ -36,6 +35,7 @@
   &__text {
     color: var(--content-default);
     flex: 1 0 auto;
+    margin-left: 8px;
   }
 
   &__input {
