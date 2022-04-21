@@ -93,7 +93,7 @@ export interface IMultiSelectProps {
 
 export interface IMultiSelectFieldProps
   extends IMultiSelectProps,
-  IWithTextFieldProps {
+    IWithTextFieldProps {
   id: string;
   className?: string;
 }
@@ -119,13 +119,13 @@ export interface ITextAreaProps
   error?: string;
   width?: string;
   ref?:
-  | React.Ref<HTMLTextAreaElement>
-  | React.Ref<React.Component<ITextAreaProps>>;
+    | React.Ref<HTMLTextAreaElement>
+    | React.Ref<React.Component<ITextAreaProps>>;
 }
 
 export interface ITextAreaFieldProps
   extends ITextAreaProps,
-  IWithTextFieldProps {
+    IWithTextFieldProps {
   id: string;
   textareaWidth?: string;
 }
@@ -141,11 +141,13 @@ export interface INumericInputProps {
   noControls?: boolean;
   width?: string;
   onChange(value: string): void;
+  onFocus?(event: React.FocusEvent<HTMLInputElement>): void;
+  onBlur?(event: React.FocusEvent<HTMLInputElement>): void;
 }
 
 export interface INumericInputFieldProps
   extends INumericInputProps,
-  IWithTextFieldProps {
+    IWithTextFieldProps {
   id: string;
 }
 
@@ -169,7 +171,10 @@ export interface IFieldGroupProps extends React.HTMLAttributes<HTMLElement> {
   stretch?: boolean;
 }
 
-type ISearchBarHtmlProps = Omit<Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'>, 'onSubmit'>;
+type ISearchBarHtmlProps = Omit<
+  Omit<React.HTMLAttributes<HTMLDivElement>, "onChange">,
+  "onSubmit"
+>;
 
 export interface ISearchBarProps extends ISearchBarHtmlProps {
   placeholder?: string;
