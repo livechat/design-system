@@ -7,7 +7,7 @@ import {
 } from './NumericInput';
 
 export default {
-  title: 'Forms (WIP)/NumericInput',
+  title: 'Forms/NumericInput',
   component: NumericInputComponent,
   argTypes: {
     value: {
