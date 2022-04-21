@@ -121,12 +121,18 @@ class NumericInput extends React.PureComponent {
     this.changeValue(-1);
   };
 
-  handleFocus = () => {
+  handleFocus = event => {
     this.addKeyboardEventListeners();
+    if (this.props.onFocus) {
+      this.props.onFocus(event);
+    }
   };
 
-  handleBlur = () => {
+  handleBlur = event => {
     this.removeKeyboardEventListeners();
+    if (this.props.onBlur) {
+      this.props.onBlur(event);
+    }
   };
 
   render() {
@@ -217,7 +223,9 @@ NumericInput.propTypes = {
   /**
    * It's called with string value: '', '-' or '{number}'
    */
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func
 };
 
 export default NumericInput;
