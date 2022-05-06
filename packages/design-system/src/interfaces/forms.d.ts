@@ -140,6 +140,8 @@ export interface INumericInputProps {
   min?: number;
   noControls?: boolean;
   width?: string;
+  placeholder?: string;
+  disabled?: boolean;
   onChange(value: string): void;
   onFocus?(event: React.FocusEvent<HTMLInputElement>): void;
   onBlur?(event: React.FocusEvent<HTMLInputElement>): void;
