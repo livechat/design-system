@@ -11,7 +11,7 @@ const baseClass = 'numeric-input';
 class NumericInput extends React.PureComponent {
   hasMin = () => this.props.min !== undefined;
   hasMax = () => this.props.max !== undefined;
-  
+
   componentDidMount() {
     if (this.hasMax() && parseInt(this.props.value, 10) > this.props.max) {
       this.callOnChange(this.props.max);
@@ -42,7 +42,7 @@ class NumericInput extends React.PureComponent {
       return {
         ...(this.props.style || {}),
         width: this.props.width
-      }
+      };
     }
 
     return this.props.style;
@@ -109,9 +109,8 @@ class NumericInput extends React.PureComponent {
     return val;
   };
 
-  hasReachedTheLimit = (value, margin) => (
-    margin !== undefined && parseInt(value, 10) === margin
-  ) 
+  hasReachedTheLimit = (value, margin) =>
+    margin !== undefined && parseInt(value, 10) === margin;
 
   handleIncrementClick = () => {
     this.changeValue(1);
@@ -160,7 +159,6 @@ class NumericInput extends React.PureComponent {
       className
     );
 
-
     return (
       <div className={mergedClassNames} style={this.getComponentStyles()}>
         <input
@@ -178,9 +176,7 @@ class NumericInput extends React.PureComponent {
           <React.Fragment>
             <button
               tabIndex="-1"
-              disabled={
-                disabled || this.hasReachedTheLimit(value, max)
-              }
+              disabled={disabled || this.hasReachedTheLimit(value, max)}
               onClick={this.handleIncrementClick}
               aria-label="Increment value"
               className={styles[`${baseClass}__increment`]}
@@ -188,16 +184,14 @@ class NumericInput extends React.PureComponent {
             />
             <button
               tabIndex="-1"
-              disabled={
-                disabled || this.hasReachedTheLimit(value, min)
-              }
+              disabled={disabled || this.hasReachedTheLimit(value, min)}
               aria-label="Decrement value"
               className={styles[`${baseClass}__decrement`]}
               onClick={this.handleDecrementClick}
               type="button"
             />
           </React.Fragment>
-          )}
+        )}
       </div>
     );
   }
@@ -217,9 +211,10 @@ NumericInput.propTypes = {
   noControls: PropTypes.bool,
   style: PropTypes.object,
   /**
-   * Static value of input width i.e. "120px" or "100%"  
+   * Static value of input width i.e. "120px" or "100%"
    */
   width: PropTypes.string,
+  placeholder: PropTypes.string,
   /**
    * It's called with string value: '', '-' or '{number}'
    */

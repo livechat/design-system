@@ -1,5 +1,13 @@
 All notable changes to this project will be documented in this file.
 
+## v0.13.3
+
+_Release: 2022-05-09_
+
+##### New features
+
+- fixing types for disabled and placeholder properties to NumericInput component (#319)
+
 ## v0.13.2
 
 _Release: 2022-04-21_
