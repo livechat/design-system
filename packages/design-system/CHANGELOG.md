@@ -6,7 +6,7 @@ _Release: 2022-05-09_
 
 ##### New features
 
-- fixing types for disabled and placeholder properties to NumericInput component
+- fixing types for disabled and placeholder properties to NumericInput component (#319)
 
 ## v0.13.2
 
