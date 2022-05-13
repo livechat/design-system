@@ -168,7 +168,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   const handleOnClick = (item: IPickerListItem) => onSelect(item);
 
   const isItemSelected = (key: string): boolean =>
-    (selectedItem && key === selectedItem.key);
+    !!selectedItem && key === selectedItem.key;
 
   if (!isOpen) {
     return null;
