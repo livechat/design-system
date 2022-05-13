@@ -2,7 +2,6 @@ $base-class: 'search';
 
 .#{$base-class} {
   align-items: center;
-  background-color: var(--surface-basic-default);
   display: flex;
   position: relative;
   width: 100%;
@@ -31,7 +30,7 @@ $base-class: 'search';
   }
 
   &__input {
-    background-color: transparent;
+    background-color: var(--surface-basic-default);
     border: 1px solid var(--border-default);
     border-radius: 4px;
     color: inherit;
