@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { render, fireEvent, vi } from 'test-utils';
-import { ToastProps, Toast, Variants } from './Toast';
+import { ToastProps, Toast } from './Toast';
 
 import styles from './Toast.module.scss';
 
@@ -26,26 +26,26 @@ describe('<Toast> component', () => {
   });
 
   it('should render as success', () => {
-    const { container } = renderComponent({ variant: Variants.Success });
+    const { container } = renderComponent({ kind: 'success' });
 
     expect(container.firstChild).toHaveClass(styles['toast--success']);
   });
 
   it('should render as warning', () => {
-    const { container } = renderComponent({ variant: Variants.Warning });
+    const { container } = renderComponent({ kind: 'warning' });
 
     expect(container.firstChild).toHaveClass(styles['toast--warning']);
   });
 
   it('should render as error', () => {
-    const { container } = renderComponent({ variant: Variants.Error });
+    const { container } = renderComponent({ kind: 'error' });
 
     expect(container.firstChild).toHaveClass(styles['toast--error']);
   });
 
   it('should render as notification', () => {
     const { container } = renderComponent({
-      variant: Variants.Notification,
+      kind: 'notification',
     });
 
     expect(container.firstChild).toHaveClass(styles['toast--notification']);

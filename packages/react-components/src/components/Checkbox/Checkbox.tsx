@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cx from 'clsx';
 import { Check } from '@livechat/design-system-icons/react/material';
-import { Icon, IconSizeName, IconTypeName } from '../Icon';
+import { Icon } from '../Icon';
 
 import styles from './Checkbox.module.scss';
 
@@ -29,8 +29,8 @@ export const Checkbox: React.FC<CheckboxProps> = ({
       <div className={mergedClassNames}>
         <Icon
           source={Check}
-          iconType={IconTypeName.Inverted}
-          size={IconSizeName.XSmall}
+          kind="inverted"
+          size="xsmall"
           className={styles[`${baseClass}__checkmark`]}
         />
       </div>

@@ -6,16 +6,8 @@ import { ToastProps, Toast } from './Toast';
 
 import styles from './Toast.module.scss';
 
-export enum HorizontalPosition {
-  Left = 'left',
-  Center = 'center',
-  Right = 'right',
-}
-
-export enum VerticalPosition {
-  Top = 'top',
-  Bottom = 'bottom',
-}
+type HorizontalPosition = 'left' | 'center' | 'right';
+type VerticalPosition = 'top' | 'bottom';
 
 export const ANIMATION_TIME = 200;
 
@@ -60,7 +52,7 @@ export const ToastWrapper: React.FC<ToastWrapperProps> = ({
   return (
     <div className={mergedClassNames}>
       <TransitionGroup component={null}>
-        {toasts.map(({ id, variant, content, removable, action, onClose }) => (
+        {toasts.map(({ id, kind, content, removable, action, onClose }) => (
           <CSSTransition
             key={id}
             classNames={{
@@ -72,7 +64,7 @@ export const ToastWrapper: React.FC<ToastWrapperProps> = ({
             timeout={ANIMATION_TIME}
           >
             <Toast
-              variant={variant}
+              kind={kind}
               onClose={onClose}
               removable={removable}
               action={action}

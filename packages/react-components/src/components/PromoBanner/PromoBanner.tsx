@@ -4,17 +4,11 @@ import { Close as CloseIcon } from '@livechat/design-system-icons/react/material
 import { debounce } from 'lodash';
 
 import { Button } from '../Button';
-import { Icon, IconSizeName } from '../Icon';
+import { Icon } from '../Icon';
 
 import styles from './PromoBanner.module.scss';
 
 const baseClass = 'promo-banner';
-
-export const enum PromoBannerSize {
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
-}
 
 export interface PromoBannerProps {
   className?: string;
@@ -110,7 +104,7 @@ export const PromoBanner: React.FC<PromoBannerProps> = ({
           className={styles[`${baseClass}__close-icon`]}
           onClick={onClose}
         >
-          <Icon source={CloseIcon} size={IconSizeName.Large} />
+          <Icon source={CloseIcon} size="large" />
         </button>
       )}
     </div>

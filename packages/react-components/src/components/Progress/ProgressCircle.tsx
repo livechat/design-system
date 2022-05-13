@@ -5,16 +5,16 @@ import { getPercentNumber, getProgressStatus } from './helpers';
 
 import styles from './ProgressCircle.module.scss';
 
-const THICKNESS_FROM_SIZE = {
-  [ProgressSize.Small]: 2,
-  [ProgressSize.Medium]: 3,
-  [ProgressSize.Large]: 4,
+const THICKNESS_FROM_SIZE: Record<ProgressSize, number> = {
+  small: 2,
+  medium: 3,
+  large: 4,
 };
 
 const SIZE_VALUE_FROM_SIZE = {
-  [ProgressSize.Small]: 15,
-  [ProgressSize.Medium]: 36,
-  [ProgressSize.Large]: 56,
+  small: 15,
+  medium: 36,
+  large: 56,
 };
 
 const baseClass = 'progress-circle';
@@ -30,13 +30,7 @@ export const ProgressCircle: React.ExoticComponent<
   ProgressCircleProps & React.RefAttributes<HTMLInputElement>
 > = React.forwardRef(
   (
-    {
-      status = ProgressStatus.Normal,
-      percent,
-      className,
-      size = ProgressSize.Medium,
-      ...restProps
-    },
+    { status = 'normal', percent, className, size = 'medium', ...restProps },
     ref: React.LegacyRef<HTMLInputElement>
   ) => {
     const progressStatus = getProgressStatus(status, percent);
@@ -48,12 +42,7 @@ export const ProgressCircle: React.ExoticComponent<
       styles[baseClass],
       {
         [styles[`${baseClass}--${size}`]]: size,
-        [styles[`${baseClass}--error`]]:
-          progressStatus === ProgressStatus.Error,
-        [styles[`${baseClass}--success`]]:
-          progressStatus === ProgressStatus.Success,
-        [styles[`${baseClass}--normal`]]:
-          progressStatus === ProgressStatus.Normal,
+        [styles[`${baseClass}--${status}`]]: status,
       },
       className
     );

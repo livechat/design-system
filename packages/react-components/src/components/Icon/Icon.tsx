@@ -2,74 +2,45 @@ import * as React from 'react';
 import cx from 'clsx';
 import styles from './Icon.module.scss';
 
-export enum IconSizeName {
-  XSmall = 'xsmall',
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
-  XLarge = 'xlarge',
-}
+export type IconSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+export type IconKind =
+  | 'primary'
+  | 'subtle'
+  | 'inverted'
+  | 'inverted-subtle'
+  | 'link'
+  | 'success'
+  | 'warning'
+  | 'error';
 
-export const IconSize = {
-  [IconSizeName.XSmall]: {
+const IconSizeMap: Record<IconSize, { width: number; height: number }> = {
+  xsmall: {
     width: 12,
     height: 12,
   },
-  [IconSizeName.Small]: {
+  small: {
     width: 16,
     height: 16,
   },
-  [IconSizeName.Medium]: {
+  medium: {
     width: 20,
     height: 20,
   },
-  [IconSizeName.Large]: {
+  large: {
     width: 24,
     height: 24,
   },
-  [IconSizeName.XLarge]: {
+  xlarge: {
     width: 32,
     height: 32,
   },
 };
 
-export enum IconTypeName {
-  Primary = 'primary',
-  Subtle = 'subtle',
-  Inverted = 'inverted',
-  InvertedSubtle = 'inverted_subtle',
-  Link = 'link',
-  Success = 'success',
-  Warning = 'warning',
-  Error = 'error',
-}
-
-export const IconColorMapper = {
-  [IconTypeName.Primary]: 'primary',
-  [IconTypeName.Subtle]: 'subtle',
-  [IconTypeName.Inverted]: 'inverted',
-  [IconTypeName.InvertedSubtle]: 'inverted-subtle',
-  [IconTypeName.Link]: 'link',
-  [IconTypeName.Success]: 'success',
-  [IconTypeName.Warning]: 'warning',
-  [IconTypeName.Error]: 'error',
-};
-
-export const IconColorDisabledMapper = {
-  [IconTypeName.Primary]: 'disabled--primary',
-  [IconTypeName.Subtle]: 'disabled--subtle',
-  [IconTypeName.Inverted]: 'disabled--inverted',
-  [IconTypeName.InvertedSubtle]: 'disabled--inverted-subtle',
-  [IconTypeName.Link]: 'disabled--link',
-  [IconTypeName.Success]: 'disabled--success',
-  [IconTypeName.Warning]: 'disabled--warning',
-  [IconTypeName.Error]: 'disabled--error',
-};
-
+export type IconSource = React.FC<React.SVGProps<SVGSVGElement>> | string;
 export interface IconProps {
-  source: React.FC<React.SVGProps<SVGSVGElement>> | string;
-  size?: IconSizeName;
-  iconType?: IconTypeName;
+  source: IconSource;
+  size?: IconSize;
+  kind?: IconKind;
   disabled?: boolean;
   className?: string;
   customColor?: string;
@@ -80,32 +51,23 @@ const baseClass = 'icon';
 export const Icon: React.FC<IconProps> = (props) => {
   const {
     source,
-    size = IconSizeName.Medium,
-    iconType,
+    size = 'medium',
+    kind,
     disabled,
     className,
     customColor,
     ...restProps
   } = props;
-  let filledColor;
-
-  if (iconType) {
-    filledColor = IconColorMapper[iconType];
-
-    if (disabled) {
-      filledColor = IconColorDisabledMapper[iconType];
-    }
-  }
 
   const GeneratedIcon = React.createElement(source, {
-    ...IconSize[size],
+    ...IconSizeMap[size],
     color: customColor,
   });
 
   const mergedClassNames = cx(
     className,
     styles[baseClass],
-    filledColor && styles[`${baseClass}--${filledColor}`]
+    kind && styles[`${baseClass}--${disabled ? 'disabled--' : ''}${kind}`]
   );
 
   return (

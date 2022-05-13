@@ -4,7 +4,6 @@ import { ComponentMeta, Story } from '@storybook/react';
 import {
   PromoBannerProps,
   PromoBanner as PromoBannerComponent,
-  PromoBannerSize,
 } from './PromoBanner';
 
 export default {

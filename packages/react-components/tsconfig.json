@@ -20,6 +20,6 @@
       "test-utils": ["test/utils.ts"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "./node_modules/@livechat/design-system-icons/index.d.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

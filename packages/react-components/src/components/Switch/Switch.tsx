@@ -7,16 +7,7 @@ import styles from './Switch.module.scss';
 
 const baseClass = 'switch';
 
-export const enum SwitchSize {
-  Basic = 'basic',
-  Compact = 'compact',
-}
-
-export const enum SwitchStyles {
-  Enabled = 'enabled',
-  Disabled = 'disabled',
-}
-
+export type SwitchSize = 'basic' | 'compact';
 export interface SwitchProps {
   className?: string;
   defaultOn?: boolean;
@@ -35,14 +26,13 @@ export const Switch: React.FC<SwitchProps> = ({
   name = baseClass,
   on,
   onChange = noop,
-  size = SwitchSize.Basic,
+  size = 'basic',
   innerRef,
   ...props
 }) => {
-  const getEnabledValue = () => {
-    return on !== undefined ? on : defaultOn;
-  };
-  const [enabled, setEnabled] = React.useState(getEnabledValue());
+  const [enabled, setEnabled] = React.useState(() =>
+    on !== undefined ? on : defaultOn
+  );
 
   React.useEffect(() => {
     if (on !== undefined) {
@@ -50,7 +40,7 @@ export const Switch: React.FC<SwitchProps> = ({
     }
   }, [on]);
 
-  const valueStyles = enabled ? SwitchStyles.Enabled : SwitchStyles.Disabled;
+  const valueStyles = enabled ? 'enabled' : 'disabled';
   const mergedClassNames = cx(
     styles[baseClass],
     styles[`${baseClass}--${size}`],
