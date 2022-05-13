@@ -56,12 +56,7 @@ export const Search: React.FC<ISearchProps> = ({
     const value = e.currentTarget.value;
 
     setSearchValue(value);
-
-    if (isControlledSubmit) {
-      return;
-    }
-
-    return onChange(value);
+    return !isControlledSubmit && onChange(value);
   };
 
   const handleOnClear = () => {

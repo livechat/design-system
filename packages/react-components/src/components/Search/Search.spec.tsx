@@ -53,10 +53,10 @@ describe('<Search> component', () => {
       ...defaultProps,
       isDisabled: true,
     });
+    const textbox = getByRole('textbox');
 
-    expect(getByRole('textbox')).toHaveClass(
-      styles[`${inputBaseClass}--disabled`]
-    );
+    expect(textbox).toHaveClass(styles[`${inputBaseClass}--disabled`]);
+    expect(textbox).toBeDisabled();
   });
 
   it('should render as loading', () => {
@@ -92,7 +92,7 @@ describe('<Search> component', () => {
       placeholder: 'Custom placeholder',
     });
 
-    expect(queryByPlaceholderText(/Custom placeholder/i)).toBeTruthy();
+    expect(queryByPlaceholderText(/Custom placeholder/i)).toBeVisible();
   });
 
   it('should render clear icon if value is given', () => {

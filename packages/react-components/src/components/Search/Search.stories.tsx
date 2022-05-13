@@ -6,6 +6,7 @@ import { Search as SearchComponent, ISearchProps, SearchSize } from './Search';
 export default {
   title: 'Components/Search',
   component: SearchComponent,
+  argTypes: { onChange: { action: 'changed' } },
 } as ComponentMeta<typeof SearchComponent>;
 
 const containerStyles = { width: 300, marginBottom: 15 };
@@ -18,9 +19,7 @@ const StoryTemplate: Story<ISearchProps> = (args: ISearchProps) => (
 );
 
 export const Search = StoryTemplate.bind({});
-Search.args = {
-  onChange: (v) => console.log(v),
-};
+Search.args = {};
 
 export const states = (args: ISearchProps): React.ReactElement => (
   <div>
@@ -43,9 +42,7 @@ export const states = (args: ISearchProps): React.ReactElement => (
   </div>
 );
 
-states.args = {
-  onChange: (v: string) => console.log(v),
-};
+states.args = {};
 
 export const sizes = (args: ISearchProps): React.ReactElement => (
   <div>
@@ -64,24 +61,19 @@ export const sizes = (args: ISearchProps): React.ReactElement => (
   </div>
 );
 
-sizes.args = {
-  onChange: (v: string) => console.log(v),
-};
+sizes.args = {};
 
 export const WithDefaultValue = StoryTemplate.bind({});
 WithDefaultValue.args = {
   value: 'Default value',
-  onChange: (v: string) => console.log(v),
 };
 
 export const WithCustomPlaceholder = StoryTemplate.bind({});
 WithCustomPlaceholder.args = {
   placeholder: 'Custom placeholder',
-  onChange: (v: string) => console.log(v),
 };
 
 export const WithControlledSubmit = StoryTemplate.bind({});
 WithControlledSubmit.args = {
   isControlledSubmit: true,
-  onChange: (v: string) => alert(`Text submitted: ${v}`),
 };
