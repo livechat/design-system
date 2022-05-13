@@ -23,7 +23,6 @@ export interface PromoBannerProps {
   img?: string;
   light?: boolean;
   linkText?: string;
-  // size?: PromoBannerSize;
   onButtonClick?: () => void;
   onClose?: () => void;
   onLinkClick?: () => void;
@@ -37,7 +36,6 @@ export const PromoBanner: React.FC<PromoBannerProps> = ({
   img,
   light = false,
   linkText,
-  // size = PromoBannerSize.Small,
   onButtonClick,
   onClose,
   onLinkClick,
