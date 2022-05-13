@@ -7,6 +7,7 @@ import {
 } from '@livechat/design-system-icons/react/material';
 import { Icon, IconSizeName, IconTypeName } from '../Icon';
 import styles from './Trigger.module.scss';
+import { KeyCodes } from '../../utils/keyCodes';
 
 const baseClass = 'picker-trigger';
 
@@ -44,6 +45,21 @@ export const Trigger: React.FC<ITriggerProps> = ({
     isError && styles[`${baseClass}--error`]
   );
 
+  React.useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      const el = document.getElementById('picker-trigger');
+      const isFocused = document.activeElement === el;
+
+      if (isFocused && e.key !== KeyCodes.tab) {
+        return onClick();
+      }
+    };
+
+    document.addEventListener('keydown', onKeyDown);
+
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, []);
+
   const handleTriggerClick = () => {
     return onClick();
   };
@@ -58,7 +74,12 @@ export const Trigger: React.FC<ITriggerProps> = ({
   };
 
   return (
-    <div className={mergedClassNames} onClick={handleTriggerClick}>
+    <div
+      id="picker-trigger"
+      className={mergedClassNames}
+      onClick={handleTriggerClick}
+      tabIndex={0}
+    >
       {isOpen ? (
         <input
           className={styles[`${baseClass}__input`]}

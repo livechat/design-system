@@ -36,18 +36,23 @@ $base-class: 'picker-list';
 
   &__item {
     align-items: center;
+    border: 1px solid transparent;
     cursor: pointer;
     display: flex;
     height: 36px;
     justify-content: space-between;
-    padding: 7px 12px;
+    padding: 6px 11px;
 
-    &--hovered,
-    &--selected {
+    &:hover,
+    &[aria-selected='true'] {
       background-color: var(--surface-basic-hover);
     }
 
-    &--disabled {
+    &[aria-current='true'] {
+      border-color: var(--color-action-default);
+    }
+
+    &[aria-disabled='true'] {
       color: var(--content-disabled);
 
       &:hover {

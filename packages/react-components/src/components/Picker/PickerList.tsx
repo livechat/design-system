@@ -43,7 +43,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
     }
   );
 
-  const [hoveredItemKey, setHoveredItemKey] = React.useState<string | null>(
+  const [currentItemKey, setCurrentItemKey] = React.useState<string | null>(
     null
   );
   const indexRef = React.useRef(-1);
@@ -51,10 +51,15 @@ export const PickerList: React.FC<IPickerListProps> = ({
   const listRef = React.useRef<HTMLUListElement>(null);
 
   React.useEffect(() => {
-    document.addEventListener('keydown', onKeyDown);
+    indexRef.current = 0;
+    setCurrentItemKey(items[indexRef.current].key);
+
+    if (isOpen) {
+      document.addEventListener('keydown', onKeyDown);
+    }
 
     return () => document.removeEventListener('keydown', onKeyDown);
-  }, []);
+  }, [items, isOpen]);
 
   const scrollItems = () => {
     if (!listRef.current) {
@@ -62,7 +67,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
     }
 
     const focusedElement = listRef.current.querySelector(
-      `.${styles[`${itemClassName}--hovered`]}`
+      `[aria-current="true"]`
     );
 
     if (focusedElement instanceof HTMLElement) {
@@ -104,6 +109,11 @@ export const PickerList: React.FC<IPickerListProps> = ({
   const getNextItemIndex = () => {
     indexRef.current = indexRef.current + 1;
 
+    if (!isHeaderOrDisabled(indexRef.current)) {
+      lastIndexRef.current = indexRef.current;
+      return indexRef.current;
+    }
+
     while (isHeaderOrDisabled(indexRef.current)) {
       indexRef.current = indexRef.current + 1;
 
@@ -135,7 +145,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
       indexRef.current = getPrevItemIndex();
 
-      setHoveredItemKey(items[indexRef.current].key);
+      setCurrentItemKey(items[indexRef.current].key);
       scrollItems();
     }
 
@@ -144,7 +154,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
       indexRef.current = getNextItemIndex();
 
-      setHoveredItemKey(items[indexRef.current].key);
+      setCurrentItemKey(items[indexRef.current].key);
       scrollItems();
     }
 
@@ -155,15 +165,10 @@ export const PickerList: React.FC<IPickerListProps> = ({
     }
   };
 
-  const handleOnMouseEnter = (key: string) => {
-    indexRef.current = items.findIndex((item) => item.key === key);
-    return setHoveredItemKey(key);
-  };
-
   const handleOnClick = (item: IPickerListItem) => onSelect(item);
 
-  const isItemSelected = (key: string) =>
-    selectedItem && key === selectedItem.key;
+  const isItemSelected = (key: string): boolean =>
+    (selectedItem && key === selectedItem.key);
 
   if (!isOpen) {
     return null;
@@ -174,11 +179,15 @@ export const PickerList: React.FC<IPickerListProps> = ({
   }
 
   return (
-    <ul ref={listRef} className={mergedClassNames}>
+    <ul ref={listRef} className={mergedClassNames} role="listbox" tabIndex={-1}>
       {items.map((item) => {
         if (item.groupHeader) {
           return (
-            <li key={item.key} className={styles[`${itemClassName}__header`]}>
+            <li
+              role="option"
+              key={item.key}
+              className={styles[`${itemClassName}__header`]}
+            >
               {item.name}
             </li>
           );
@@ -186,16 +195,14 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
         return (
           <li
+            role="option"
+            aria-current={currentItemKey === item.key}
+            aria-selected={isItemSelected(item.key)}
+            aria-disabled={item.disabled}
             id={item.key}
             key={item.key}
-            className={cx(styles[itemClassName], {
-              [styles[`${itemClassName}--hovered`]]:
-                hoveredItemKey === item.key,
-              [styles[`${itemClassName}--selected`]]: isItemSelected(item.key),
-              [styles[`${itemClassName}--disabled`]]: item.disabled,
-            })}
+            className={styles[itemClassName]}
             onClick={() => !item.disabled && handleOnClick(item)}
-            onMouseEnter={() => handleOnMouseEnter(item.key)}
           >
             {item.name}
             {isItemSelected(item.key) && (

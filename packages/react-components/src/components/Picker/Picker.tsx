@@ -5,6 +5,7 @@ import { IPickerListItem, PickerList } from './PickerList';
 import { Icon, IconSizeName, IconTypeName } from '../Icon';
 import styles from './Picker.module.scss';
 import cx from 'clsx';
+import { KeyCodes } from '../../utils/keyCodes';
 
 const baseClass = 'picker';
 
@@ -46,9 +47,25 @@ export const Picker: React.FC<IPickerProps> = ({
       return;
     };
 
-    document.addEventListener('click', onDocumentClick);
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (isListOpen && e.key === KeyCodes.tab) {
+        return setIsListOpen(false);
+      }
 
-    return () => document.removeEventListener('click', onDocumentClick);
+      return;
+    };
+
+    if (!isListOpen) {
+      setSearchPhrase(null);
+    }
+
+    document.addEventListener('click', onDocumentClick);
+    document.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.removeEventListener('click', onDocumentClick);
+      document.addEventListener('keydown', onKeyDown);
+    };
   }, [isListOpen]);
 
   const handleOnTriggerClick = () => {
