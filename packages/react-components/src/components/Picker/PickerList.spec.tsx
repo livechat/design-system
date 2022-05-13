@@ -65,9 +65,7 @@ describe('<PickerList> component', () => {
       selectedItem: { key: 'three', name: 'Option three' },
     });
 
-    expect(getByText('Option three')).toHaveClass(
-      styles[`${itemClassName}--selected`]
-    );
+    expect(getByText('Option three')).toHaveAttribute('aria-selected', 'true');
   });
 
   it('should mark selected list item as disabled', () => {
@@ -77,9 +75,7 @@ describe('<PickerList> component', () => {
       items: [{ key: 'three', name: 'Option three', disabled: true }],
     });
 
-    expect(getByText('Option three')).toHaveClass(
-      styles[`${itemClassName}--disabled`]
-    );
+    expect(getByText('Option three')).toHaveAttribute('aria-disabled', 'true');
   });
 
   it('should display default empty state if no filter result', () => {

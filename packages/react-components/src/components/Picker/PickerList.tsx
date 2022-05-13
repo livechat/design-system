@@ -52,7 +52,10 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
   React.useEffect(() => {
     indexRef.current = 0;
-    setCurrentItemKey(items[indexRef.current].key);
+
+    if (items.length > 0) {
+      setCurrentItemKey(items[indexRef.current].key);
+    }
 
     if (isOpen) {
       document.addEventListener('keydown', onKeyDown);
