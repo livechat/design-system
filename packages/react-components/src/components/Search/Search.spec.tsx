@@ -22,7 +22,7 @@ describe('<Search> component', () => {
     });
 
     expect(getByRole('textbox')).toHaveClass(
-      styles[`${inputBaseClass}--compact`]
+      styles[`${inputBaseClass}--medium`]
     );
   });
 

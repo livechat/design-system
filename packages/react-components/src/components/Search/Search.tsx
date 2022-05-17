@@ -10,7 +10,7 @@ import { Loader } from '../Loader';
 import styles from './Search.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
 
-const baseClass = 'search';
+const baseClass = 'search-input';
 const inputBaseClass = `${baseClass}__input`;
 
 export const enum SearchSize {
@@ -36,7 +36,7 @@ export const Search: React.FC<ISearchProps> = ({
   isDisabled,
   isLoading,
   placeholder = 'Search ...',
-  size = SearchSize.Compact,
+  size = SearchSize.Medium,
   value,
   onChange,
 }) => {

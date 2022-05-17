@@ -21,7 +21,7 @@ const StoryTemplate: Story<ISearchProps> = (args: ISearchProps) => (
 export const Search = StoryTemplate.bind({});
 Search.args = {};
 
-export const states = (args: ISearchProps): React.ReactElement => (
+export const States = (args: ISearchProps): React.ReactElement => (
   <div>
     <div style={containerStyles}>
       <div style={textStyles}>Basic</div>
@@ -42,9 +42,9 @@ export const states = (args: ISearchProps): React.ReactElement => (
   </div>
 );
 
-states.args = {};
+States.args = {};
 
-export const sizes = (args: ISearchProps): React.ReactElement => (
+export const Sizes = (args: ISearchProps): React.ReactElement => (
   <div>
     <div style={containerStyles}>
       <div style={textStyles}>Compact</div>
@@ -61,7 +61,7 @@ export const sizes = (args: ISearchProps): React.ReactElement => (
   </div>
 );
 
-sizes.args = {};
+Sizes.args = {};
 
 export const WithDefaultValue = StoryTemplate.bind({});
 WithDefaultValue.args = {
