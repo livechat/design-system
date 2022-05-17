@@ -73,6 +73,7 @@ export const InAppMessage: React.FC<InAppMessageProps> = ({
 
   return (
     <div
+      data-testId={`${baseClass}-overlay`}
       className={styles[`${baseClass}__overlay`]}
       onMouseDown={handleOnOverlayClick}
     >
