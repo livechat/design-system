@@ -8,6 +8,10 @@ import { Icon } from '../Icon';
 
 import styles from './PromoBanner.module.scss';
 
+const SMALL_CONTAINER_WIDTH_TRESHOLD = 400;
+const LARGE_CONTAINER_WIDTH_TRESHOLD = 800;
+const RESIZE_DEBOUNCE_TRESHOLD = 500;
+
 const baseClass = 'promo-banner';
 
 export interface PromoBannerProps {
@@ -50,17 +54,23 @@ export const PromoBanner: React.FC<PromoBannerProps> = ({
 
   React.useEffect(() => {
     const handleResize = debounce(() => {
-      if (containerRef.current && containerRef.current.offsetWidth <= 400) {
+      if (
+        containerRef.current &&
+        containerRef.current.offsetWidth <= SMALL_CONTAINER_WIDTH_TRESHOLD
+      ) {
         return setIsSmallContainer(true);
       }
 
-      if (containerRef.current && containerRef.current.offsetWidth >= 800) {
+      if (
+        containerRef.current &&
+        containerRef.current.offsetWidth >= LARGE_CONTAINER_WIDTH_TRESHOLD
+      ) {
         return setIsLargeContainer(true);
       }
 
       setIsLargeContainer(false);
       return setIsSmallContainer(false);
-    }, 500);
+    }, RESIZE_DEBOUNCE_TRESHOLD);
 
     window.addEventListener('resize', handleResize);
 
