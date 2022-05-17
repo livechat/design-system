@@ -1,53 +1,53 @@
 .tag {
   align-items: center;
-  background-color: var(--surface-secondary-default);
-  border-color: var(--border-default);
+  background-color: var(--decor-gray100);
+  border-color: var(--decor-gray800);
   border-radius: 4px;
   border-style: none;
   border-width: 1px;
   box-sizing: border-box;
-  color: var(--content-default);
+  color: var(--decor-gray800);
   display: inline-flex;
   position: relative;
 
   /* TODO: Replace colors below with decor tokens when ready */
   &--success {
-    background-color: #d1f4d5;
-    border-color: #005321;
-    color: #005321;
+    background-color: var(--decor-green100);
+    border-color: var(--decor-green800);
+    color: var(--decor-green800);
 
     .tag__remove {
-      color: #005321;
+      color: var(--decor-green800);
     }
   }
 
   &--error {
-    background-color: var(--surface-feedback-negative);
-    border-color: var(--color-negative-active);
-    color: var(--color-negative-active);
+    background-color: var(--decor-red100);
+    border-color: var(--decor-red800);
+    color: var(--decor-red800);
 
     .tag__remove {
-      color: var(--color-negative-active);
+      color: var(--decor-red800);
     }
   }
 
   &--warning {
-    background-color: #ffe9bc;
-    border-color: #755b00;
-    color: #755b00;
+    background-color: var(--decor-yellow100);
+    border-color: var(--decor-yellow800);
+    color: var(--decor-yellow800);
 
     .tag__remove {
-      color: #755b00;
+      color: var(--decor-yellow800);
     }
   }
 
   &--info {
-    background-color: var(--surface-feedback-info);
-    border-color: var(--color-action-active);
-    color: var(--color-action-active);
+    background-color: var(--decor-blue100);
+    border-color: var(--decor-blue800);
+    color: var(--decor-blue800);
 
     .tag__remove {
-      color: var(--color-action-active);
+      color: var(--decor-blue800);
     }
   }
 
