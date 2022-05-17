@@ -50,13 +50,50 @@ $base-class: 'in-app-message';
     display: flex;
     flex-flow: column nowrap;
     overflow-y: auto;
+
+    &__body {
+      align-items: center;
+      box-sizing: border-box !important;
+      color: var(--content-default);
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      max-width: $in-app-message-max-width;
+      padding: 32px;
+      position: relative;
+      text-align: center;
+      width: 100%;
+
+      * {
+        box-sizing: border-box;
+        margin: 12px 0;
+        max-width: $in-app-content-max-width;
+
+        &:first-child {
+          margin: 0 0 12px;
+        }
+
+        &:last-child {
+          margin: 12px 0 0;
+        }
+      }
+
+      p {
+        text-align: justify;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        max-width: $in-app-message-max-width;
+      }
+    }
   }
 
   &__with-footer {
     padding-bottom: 96px;
-
-    .inapp__body {
-      padding: 32px 32px 0;
-    }
   }
 }

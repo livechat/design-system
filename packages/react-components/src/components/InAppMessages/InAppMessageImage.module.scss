@@ -1,0 +1,10 @@
+$base-class: 'in-app-message-image';
+
+.#{$base-class} {
+  text-align: center;
+
+    img {
+      max-height: 400px;
+      max-width: 100%;
+    }
+}

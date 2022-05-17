@@ -6,6 +6,7 @@ import {
   InAppMessageProps,
 } from './InAppMessage';
 import { Button } from '../Button';
+import { Text, Heading } from '../Typography';
 
 export default {
   title: 'components/InAppMessage',
@@ -31,7 +32,14 @@ const StoryTemplate: Story<InAppMessageProps> = (args: InAppMessageProps) => {
           {...args}
           onClose={() => setIsInAppVisible(false)}
         >
-          <div style={{ textAlign: 'center' }}>Example in app message</div>
+          <Heading as="h2" size="lg">
+            Product Cards for Shopify
+          </Heading>
+          <Text>
+            Sync LiveChat with your Shopify products and send the Product Cards
+            via chat. Save time on searching for links to products and see
+            customers buy more at your store.
+          </Text>
         </InAppMessageComponent>
       )}
     </div>
@@ -40,6 +48,10 @@ const StoryTemplate: Story<InAppMessageProps> = (args: InAppMessageProps) => {
 
 export const InAppMessage = StoryTemplate.bind({});
 InAppMessage.args = {
+  image: {
+    src: 'https://cdn.livechat-static.com/api/file/v2/lc/att-old/8656216/fe28d6850106f65c9207f3dcea091099/product-cards-shopify-preview.gif',
+    alt: 'InAppMessage',
+  },
   header: {
     avatar: {
       src: 'https://avatars2.githubusercontent.com/u/29309941?s=88&v=4',

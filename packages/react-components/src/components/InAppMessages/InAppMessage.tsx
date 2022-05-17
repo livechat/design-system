@@ -3,6 +3,7 @@ import cx from 'clsx';
 
 import { InAppMessageHeader } from './InAppMessageHeader';
 import { InAppMessageAvatarProps } from './InAppMessageAvatar';
+import { InAppMessageImage, InAppMessageImageProps } from './InAppMessageImage';
 import {
   InAppMessageFooter,
   InAppMessageFooterProps,
@@ -15,6 +16,7 @@ const baseClass = 'in-app-message';
 
 export interface InAppMessageProps {
   className?: string;
+  image?: InAppMessageImageProps;
   header?: {
     avatar?: InAppMessageAvatarProps;
     text?: React.ReactElement;
@@ -28,6 +30,7 @@ export const InAppMessage: React.FC<InAppMessageProps> = ({
   children,
   className,
   closeOnEscPress = true,
+  image,
   header,
   footerButtons,
   onClose,
@@ -84,7 +87,12 @@ export const InAppMessage: React.FC<InAppMessageProps> = ({
             [`${baseClass}__with-footer`]: footerButtons,
           })}
         >
-          <div className={styles[`${baseClass}__content`]}>{children}</div>
+          <div className={styles[`${baseClass}__content`]}>
+            {image && <InAppMessageImage src={image.src} alt={image.alt} />}
+            <div className={styles[`${baseClass}__content__body`]}>
+              {children}
+            </div>
+          </div>
           {footerButtons && (
             <InAppMessageFooter
               cta={footerButtons.cta}
