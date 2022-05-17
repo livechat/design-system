@@ -4,7 +4,7 @@ import noop from '../../utils/noop';
 import { ISearchProps, Search, SearchSize } from './Search';
 import styles from './Search.module.scss';
 
-const baseClass = 'search';
+const baseClass = 'search-input';
 const inputBaseClass = `${baseClass}__input`;
 
 const defaultProps = {
