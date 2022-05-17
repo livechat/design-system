@@ -1,0 +1,8 @@
+$base-class: 'in-app-message-avatar';
+
+.#{$base-class} {
+  border-radius: 100%;
+  height: 40px;
+  margin: 0 10px 0 0;
+  width: 40px;
+}

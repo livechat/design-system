@@ -1,0 +1,51 @@
+@import './variables/InAppMessage';
+
+$base-class: 'in-app-message-header';
+
+.#{$base-class} {
+  align-items: center;
+  box-sizing: border-box;
+  color: #fff;
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0;
+  max-height: $in-app-message-max-height;
+  max-width: $in-app-message-max-width;
+  min-width: $in-app-message-min-width;
+  width: 100%;
+
+  &__text {
+    flex-grow: 3;
+    font-size: 16px;
+    margin: 0 auto;
+    padding: 0;
+    text-align: left;
+  }
+
+  &__close {
+    align-items: center;
+    display: flex;
+    flex-grow: 2;
+    justify-content: flex-end;
+
+    button {
+      background-color: transparent;
+      border: 0;
+      box-shadow: none;
+      color: #fff;
+      cursor: pointer;
+      height: 24px;
+      outline: none;
+      padding: 0;
+      width: 24px;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      svg {
+        fill: currentColor;
+      }
+    }
+  }
+}

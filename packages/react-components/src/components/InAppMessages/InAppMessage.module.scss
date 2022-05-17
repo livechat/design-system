@@ -1,0 +1,62 @@
+@import './variables/InAppMessage';
+
+$base-class: 'in-app-message';
+
+.#{$base-class} {
+  background-color: var(--surface-basic-default);
+  border-radius: 4px;
+  box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.3);
+  color: var(--content-default);
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  margin: 10px 0;
+  max-height: $in-app-message-max-height;
+  max-width: $in-app-message-max-width;
+  min-height: $in-app-message-min-height;
+  min-width: $in-app-message-min-width;
+  overflow: auto;
+  position: relative;
+
+  &__overlay {
+    align-items: center;
+    background-color: var(--surface-overlay);
+    display: none;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 13000;
+  }
+
+  &__container {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    max-height: $in-app-message-max-height;
+    max-width: $in-app-message-max-width;
+    min-height: $in-app-message-min-height;
+    min-width: $in-app-message-min-width;
+    padding: 0 10px;
+  }
+
+  &__content {
+    align-items: center;
+    display: flex;
+    flex-flow: column nowrap;
+    overflow-y: auto;
+  }
+
+  &__with-footer {
+    padding-bottom: 96px;
+
+    .inapp__body {
+      padding: 32px 32px 0;
+    }
+  }
+}

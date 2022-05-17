@@ -1,0 +1,26 @@
+@import './variables/InAppMessage';
+
+$base-class: 'in-app-message-footer';
+
+.#{$base-class} {
+  align-self: center;
+  background: var(--surface-basic-default);
+  bottom: 0;
+  box-sizing: border-box !important;
+  display: flex;
+  justify-content: space-between;
+  max-width: $in-app-message-max-width;
+  padding: 24px 32px 27px;
+  position: absolute;
+  width: 100%;
+
+  button {
+    &:first-of-type {
+      margin: 0 5px 0 0;
+    }
+
+    &:last-of-type {
+      margin: 0 0 0 5px;
+    }
+  }
+}

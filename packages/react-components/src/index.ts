@@ -30,3 +30,4 @@ export * from './components/TagInput';
 export * from './components/TextField';
 export * from './components/Toast';
 export * from './components/Typography';
+export * from './components/InAppMessages';
