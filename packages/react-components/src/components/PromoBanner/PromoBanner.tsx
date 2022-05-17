@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cx from 'clsx';
 import { Close as CloseIcon } from '@livechat/design-system-icons/react/material';
-import { debounce } from 'lodash';
+import debounce from 'lodash.debounce';
 
 import { Button } from '../Button';
 import { Icon } from '../Icon';
@@ -39,15 +39,16 @@ export const PromoBanner: React.FC<PromoBannerProps> = ({
   onLinkClick,
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const [isSmallContainer, setIsSmallContainer] = React.useState(false);
-  const [isLargeContainer, setIsLargeContainer] = React.useState(false);
+  const [containerSize, setContainerSize] = React.useState<
+    'small' | 'medium' | 'large'
+  >('medium');
 
   const mergedClassNames = cx(
     styles[baseClass],
     {
       [styles[`${baseClass}--light`]]: light,
-      [styles[`${baseClass}--small`]]: isSmallContainer,
-      [styles[`${baseClass}--large`]]: isLargeContainer,
+      [styles[`${baseClass}--small`]]: containerSize === 'small',
+      [styles[`${baseClass}--large`]]: containerSize === 'large',
     },
     className
   );
@@ -58,24 +59,26 @@ export const PromoBanner: React.FC<PromoBannerProps> = ({
         containerRef.current &&
         containerRef.current.offsetWidth <= SMALL_CONTAINER_WIDTH_TRESHOLD
       ) {
-        return setIsSmallContainer(true);
+        return setContainerSize('small');
       }
 
       if (
         containerRef.current &&
         containerRef.current.offsetWidth >= LARGE_CONTAINER_WIDTH_TRESHOLD
       ) {
-        return setIsLargeContainer(true);
+        return setContainerSize('large');
       }
 
-      setIsLargeContainer(false);
-      return setIsSmallContainer(false);
+      return setContainerSize('medium');
     }, RESIZE_DEBOUNCE_TRESHOLD);
 
     window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
-  });
+    return () => {
+      handleResize.cancel();
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const footer = (
     <div className={styles[`${baseClass}__footer`]}>
@@ -104,9 +107,9 @@ export const PromoBanner: React.FC<PromoBannerProps> = ({
         <div className={styles[`${baseClass}__wrapper`]}>
           <div className={styles[`${baseClass}__header`]}>{header}</div>
           <div>{children}</div>
-          {!isLargeContainer && footer}
+          {containerSize !== 'large' && footer}
         </div>
-        {isLargeContainer && footer}
+        {containerSize === 'large' && footer}
       </div>
       {onClose && (
         <button
