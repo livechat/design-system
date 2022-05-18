@@ -118,7 +118,7 @@ export const InAppWithButtons = (
       </div>
       {isInAppVisible === 'single' && (
         <InAppMessageComponent
-          footerButtons={{
+          footer={{
             cta: {
               children: 'Check it out!',
               onClick: () => setIsInAppVisible(null),
@@ -131,7 +131,7 @@ export const InAppWithButtons = (
       )}
       {isInAppVisible === 'all' && (
         <InAppMessageComponent
-          footerButtons={{
+          footer={{
             cta: {
               children: 'Check it out!',
               onClick: () => setIsInAppVisible(null),
@@ -217,7 +217,7 @@ InAppWithEverything.args = {
       </React.Fragment>
     ),
   },
-  footerButtons: {
+  footer: {
     cta: {
       children: 'Check it out!',
       onClick: () => console.log('test'),

@@ -1,8 +1,10 @@
 import * as React from 'react';
 import cx from 'clsx';
 
-import { InAppMessageHeader } from './InAppMessageHeader';
-import { InAppMessageAvatarProps } from './InAppMessageAvatar';
+import {
+  InAppMessageHeader,
+  InAppMessageHeaderProps,
+} from './InAppMessageHeader';
 import { InAppMessageImage, InAppMessageImageProps } from './InAppMessageImage';
 import {
   InAppMessageFooter,
@@ -17,12 +19,9 @@ const baseClass = 'in-app-message';
 export interface InAppMessageProps {
   className?: string;
   image?: InAppMessageImageProps;
-  header?: {
-    avatar?: InAppMessageAvatarProps;
-    text?: React.ReactElement;
-  };
+  header?: InAppMessageHeaderProps;
+  footer?: InAppMessageFooterProps;
   closeOnEscPress?: boolean;
-  footerButtons?: InAppMessageFooterProps;
   onClose: () => void;
 }
 
@@ -32,7 +31,7 @@ export const InAppMessage: React.FC<InAppMessageProps> = ({
   closeOnEscPress = true,
   image,
   header,
-  footerButtons,
+  footer,
   onClose,
 }) => {
   React.useEffect(() => {
@@ -88,18 +87,14 @@ export const InAppMessage: React.FC<InAppMessageProps> = ({
             {image && <InAppMessageImage src={image.src} alt={image.alt} />}
             <div
               className={cx(styles[`${baseClass}__content__body`], {
-                [styles[`${baseClass}__content__body__with-footer`]]:
-                  footerButtons,
+                [styles[`${baseClass}__content__body__with-footer`]]: footer,
               })}
             >
               {children}
             </div>
           </div>
-          {footerButtons && (
-            <InAppMessageFooter
-              cta={footerButtons.cta}
-              remind={footerButtons.remind}
-            />
+          {footer && (
+            <InAppMessageFooter cta={footer.cta} remind={footer.remind} />
           )}
         </div>
       </div>
