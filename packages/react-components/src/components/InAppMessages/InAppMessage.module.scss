@@ -64,6 +64,10 @@ $base-class: 'in-app-message';
       text-align: center;
       width: 100%;
 
+      &__with-footer {
+        padding-bottom: 96px;
+      }
+
       * {
         box-sizing: border-box;
         margin: 12px 0;
@@ -91,9 +95,5 @@ $base-class: 'in-app-message';
         max-width: $in-app-message-max-width;
       }
     }
-  }
-
-  &__with-footer {
-    padding-bottom: 96px;
   }
 }

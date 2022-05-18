@@ -73,7 +73,7 @@ export const InAppMessage: React.FC<InAppMessageProps> = ({
 
   return (
     <div
-      data-testId={`${baseClass}-overlay`}
+      data-testid={`${baseClass}-overlay`}
       className={styles[`${baseClass}__overlay`]}
       onMouseDown={handleOnOverlayClick}
     >
@@ -83,14 +83,15 @@ export const InAppMessage: React.FC<InAppMessageProps> = ({
           text={header && header.text}
           onCloseButtonClick={handleOnCloseButtonClick}
         />
-        <div
-          className={cx(mergedClassNames, {
-            [`${baseClass}__with-footer`]: footerButtons,
-          })}
-        >
+        <div className={mergedClassNames}>
           <div className={styles[`${baseClass}__content`]}>
             {image && <InAppMessageImage src={image.src} alt={image.alt} />}
-            <div className={styles[`${baseClass}__content__body`]}>
+            <div
+              className={cx(styles[`${baseClass}__content__body`], {
+                [styles[`${baseClass}__content__body__with-footer`]]:
+                  footerButtons,
+              })}
+            >
               {children}
             </div>
           </div>

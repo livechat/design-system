@@ -11,6 +11,7 @@ $base-class: 'in-app-message-footer';
   justify-content: space-between;
   max-width: $in-app-message-max-width;
   padding: 24px 32px 27px;
+  position: absolute;
   width: 100%;
 
   button {
