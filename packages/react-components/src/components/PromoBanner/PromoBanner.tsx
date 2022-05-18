@@ -54,7 +54,7 @@ export const PromoBanner: React.FC<PromoBannerProps> = ({
   );
 
   React.useEffect(() => {
-    const handleResize = debounce(() => {
+    const handleResize = () => {
       if (
         containerRef.current &&
         containerRef.current.offsetWidth <= SMALL_CONTAINER_WIDTH_TRESHOLD
@@ -70,12 +70,17 @@ export const PromoBanner: React.FC<PromoBannerProps> = ({
       }
 
       return setContainerSize('medium');
-    }, RESIZE_DEBOUNCE_TRESHOLD);
+    };
 
-    window.addEventListener('resize', handleResize);
+    const debouncedHandleResize = debounce(
+      handleResize,
+      RESIZE_DEBOUNCE_TRESHOLD
+    );
+    window.addEventListener('resize', debouncedHandleResize);
+    handleResize();
 
     return () => {
-      handleResize.cancel();
+      debouncedHandleResize.cancel();
       window.removeEventListener('resize', handleResize);
     };
   }, []);
