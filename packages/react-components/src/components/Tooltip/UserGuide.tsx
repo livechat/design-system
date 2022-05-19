@@ -4,6 +4,8 @@ import { ITooltipProps, Tooltip } from './Tooltip';
 import SpotlightOverlay from './SpotlightOverlay';
 import cx from 'clsx';
 import styles from './Tooltip.module.scss';
+import { ClientRectObject } from '@floating-ui/core';
+import { throttle } from '@livechat/data-utils';
 
 const spotlightPadding = 200;
 const baseClass = 'guide-tooltip';
@@ -21,13 +23,35 @@ interface IUserGuide
 
 export const UserGuide: React.FC<IUserGuide> = (props) => {
   const { shouldSlide, className, parentElementName } = props;
+
   const [parentElement, setParentElement] = React.useState<Element | null>(
     null
   );
+
+  const [rect, setRect] = React.useState<DOMRect | null>(null);
+
   React.useEffect(() => {
     const element = document.querySelector(parentElementName);
     setParentElement(element);
   }, [parentElementName]);
+
+  React.useEffect(() => {
+    parentElement && setRect(parentElement.getBoundingClientRect());
+  }, [parentElement]);
+
+  const handleViewportChange = throttle(16, () => {
+    parentElement && setRect(parentElement.getBoundingClientRect());
+  });
+
+  React.useEffect(() => {
+    window.addEventListener('resize', handleViewportChange);
+    window.addEventListener('scroll', handleViewportChange);
+
+    return () => {
+      window.addEventListener('resize', handleViewportChange);
+      window.addEventListener('resize', handleViewportChange);
+    };
+  }, []);
 
   return parentElement ? (
     <ModalPortal
@@ -36,7 +60,7 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
       style={{ height: '100px' }}
     >
       <SpotlightOverlay
-        gap={parentElement.getBoundingClientRect()}
+        gap={rect}
         isVisible={true}
         slide={shouldSlide}
         disablePointerEvents={true}
@@ -45,7 +69,7 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
         {...props}
         referenceElement={{
           getBoundingClientRect: () => {
-            return parentElement.getBoundingClientRect();
+            return rect as ClientRectObject;
           },
           contextElement: parentElement,
         }}

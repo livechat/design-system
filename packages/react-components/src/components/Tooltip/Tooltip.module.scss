@@ -136,6 +136,7 @@ $base-class: 'lc-tooltip';
   &__overlay {
     background-color: var(--surface-invert-default);
     display: none;
+    opacity: 0.5;
     position: fixed;
 
     &--slide {
