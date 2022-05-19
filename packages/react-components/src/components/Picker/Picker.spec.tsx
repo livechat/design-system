@@ -1,7 +1,11 @@
 import * as React from 'react';
-import { render, fireEvent, vi } from 'test-utils';
+import { render, vi } from 'test-utils';
+import userEvent from '@testing-library/user-event';
 import noop from '../../utils/noop';
 import { IPickerProps, Picker } from './Picker';
+
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+window.HTMLElement.prototype.scrollIntoView = () => {};
 
 const defaultProps = {
   options: [
@@ -46,8 +50,8 @@ describe('<Picker> component', () => {
       onSelect,
     });
 
-    fireEvent.click(getByText('Select option'));
-    fireEvent.click(getByText('Option three'));
+    userEvent.click(getByText('Select option'));
+    userEvent.click(getByText('Option three'));
     expect(onSelect).toHaveBeenCalledWith({
       key: 'three',
       name: 'Option three',
@@ -61,13 +65,13 @@ describe('<Picker> component', () => {
       onSelect,
     });
 
-    fireEvent.click(getByText('Select option'));
-    fireEvent.click(getByText('Option three'));
+    userEvent.click(getByText('Select option'));
+    userEvent.click(getByText('Option three'));
     expect(onSelect).toHaveBeenCalledWith({
       key: 'three',
       name: 'Option three',
     });
-    fireEvent.click(getByTestId('picker-trigger__clear-icon'));
+    userEvent.click(getByTestId('picker-trigger__clear-icon'));
     expect(onSelect).toHaveBeenCalledWith(null);
   });
 });

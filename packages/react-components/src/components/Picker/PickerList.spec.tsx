@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { render, fireEvent, vi } from 'test-utils';
+import { render, vi } from 'test-utils';
+import userEvent from '@testing-library/user-event';
 import noop from '../../utils/noop';
 import { IPickerListProps, PickerList } from './PickerList';
-import styles from './PickerList.module.scss';
 
-const baseClass = 'picker-list';
-const itemClassName = `${baseClass}__item`;
+// eslint-disable-next-line @typescript-eslint/no-empty-function
+window.HTMLElement.prototype.scrollIntoView = () => {};
 
 const defaultProps = {
   isOpen: false,
@@ -51,7 +51,7 @@ describe('<PickerList> component', () => {
       onSelect,
     });
 
-    fireEvent.click(getByText('Option three'));
+    userEvent.click(getByText('Option three'));
     expect(onSelect).toHaveBeenCalledWith({
       key: 'three',
       name: 'Option three',
