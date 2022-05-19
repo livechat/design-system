@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Icon, IconTypeName } from '../Icon';
+import { Icon } from '../Icon';
 import { Close } from '@livechat/design-system-icons/react/material';
 import { getIconType } from './helpers';
 import styles from './Tooltip.module.scss';
@@ -19,7 +19,7 @@ export const Info: React.FC<{
         <div className={styles[`${baseClass}-x`]} onClick={handleCloseOnClick}>
           <Icon
             source={Close}
-            iconType={theme ? getIconType(theme) : IconTypeName.Primary}
+            kind={theme ? getIconType(theme) : 'primary'}
           ></Icon>
         </div>
       )}

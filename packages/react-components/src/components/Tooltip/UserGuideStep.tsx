@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Icon, IconTypeName } from '../Icon';
+import { Icon } from '../Icon';
 import { Close } from '@livechat/design-system-icons/react/material';
 import { Button } from '../Button';
 import { getIconType } from './helpers';
@@ -41,7 +41,7 @@ export const UserGuideStep: React.FC<{
             <div onClick={handleCloseOnClick}>
               <Icon
                 source={Close}
-                iconType={theme ? getIconType(theme) : IconTypeName.Primary}
+                kind={theme ? getIconType(theme) : 'primary'}
               ></Icon>
             </div>
           </div>

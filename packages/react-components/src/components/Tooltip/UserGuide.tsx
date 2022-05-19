@@ -58,7 +58,6 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
       >
         {props.children}
       </Tooltip>
-      <SpotlightOverlay />
     </ModalPortal>
   ) : null;
 };
