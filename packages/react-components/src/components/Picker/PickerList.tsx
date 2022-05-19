@@ -59,37 +59,9 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
     if (isOpen) {
       document.addEventListener('keydown', onKeyDown);
+      return () => document.removeEventListener('keydown', onKeyDown);
     }
-
-    return () => document.removeEventListener('keydown', onKeyDown);
   }, [items, isOpen]);
-
-  const scrollItems = () => {
-    if (!listRef.current) {
-      return;
-    }
-
-    const focusedElement = listRef.current.querySelector(
-      `[aria-current="true"]`
-    );
-
-    if (focusedElement instanceof HTMLElement) {
-      const { height: ulHeight, top: ulTop } =
-        listRef.current.getBoundingClientRect();
-
-      const { height: itemHeigth, top: itemTop } =
-        focusedElement.getBoundingClientRect();
-
-      const relativeTop = itemTop + itemHeigth - ulTop;
-      const itemOfsetTop = focusedElement.offsetTop;
-
-      if (relativeTop > ulHeight) {
-        listRef.current.scrollTop = itemOfsetTop - ulHeight + itemHeigth;
-      } else if (itemTop < ulTop) {
-        listRef.current.scrollTop = itemOfsetTop - (itemOfsetTop % itemHeigth);
-      }
-    }
-  };
 
   const isHeaderOrDisabled = (i: number) =>
     !!items[i] && (items[i].disabled || items[i].groupHeader);
@@ -139,8 +111,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === KeyCodes.esc) {
       e.preventDefault();
-
-      return onClose();
+      onClose();
     }
 
     if (e.key === KeyCodes.arrowUp && indexRef.current > 0) {
@@ -149,7 +120,6 @@ export const PickerList: React.FC<IPickerListProps> = ({
       indexRef.current = getPrevItemIndex();
 
       setCurrentItemKey(items[indexRef.current].key);
-      scrollItems();
     }
 
     if (e.key === KeyCodes.arrowDown && indexRef.current + 1 < items.length) {
@@ -158,13 +128,11 @@ export const PickerList: React.FC<IPickerListProps> = ({
       indexRef.current = getNextItemIndex();
 
       setCurrentItemKey(items[indexRef.current].key);
-      scrollItems();
     }
 
     if (e.key === KeyCodes.enter && !items[indexRef.current].disabled) {
       e.preventDefault();
-
-      return onSelect(items[indexRef.current]);
+      onSelect(items[indexRef.current]);
     }
   };
 
@@ -198,6 +166,11 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
         return (
           <li
+            ref={(element) => {
+              if (currentItemKey === item.key) {
+                element?.scrollIntoView({ block: 'nearest' });
+              }
+            }}
             role="option"
             aria-current={currentItemKey === item.key}
             aria-selected={isItemSelected(item.key)}

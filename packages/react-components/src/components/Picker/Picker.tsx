@@ -39,33 +39,29 @@ export const Picker: React.FC<IPickerProps> = ({
   const triggerRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    const onDocumentClick = (e: MouseEvent) => {
-      if ((e.target as Element).contains(triggerRef.current) && isListOpen) {
-        return setIsListOpen(false);
-      }
+    if (isListOpen) {
+      const onDocumentClick = (e: MouseEvent) => {
+        if (!triggerRef.current?.contains(e.target as Element)) {
+          setIsListOpen(false);
+        }
+      };
 
-      return;
-    };
+      const onKeyDown = (e: KeyboardEvent) => {
+        if (e.key === KeyCodes.tab) {
+          setIsListOpen(false);
+        }
+      };
 
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (isListOpen && e.key === KeyCodes.tab) {
-        return setIsListOpen(false);
-      }
+      document.addEventListener('mousedown', onDocumentClick);
+      document.addEventListener('keydown', onKeyDown);
 
-      return;
-    };
-
-    if (!isListOpen) {
+      return () => {
+        document.removeEventListener('mousedown', onDocumentClick);
+        document.addEventListener('keydown', onKeyDown);
+      };
+    } else {
       setSearchPhrase(null);
     }
-
-    document.addEventListener('click', onDocumentClick);
-    document.addEventListener('keydown', onKeyDown);
-
-    return () => {
-      document.removeEventListener('click', onDocumentClick);
-      document.addEventListener('keydown', onKeyDown);
-    };
   }, [isListOpen]);
 
   const handleOnTriggerClick = () => {
@@ -94,20 +90,21 @@ export const Picker: React.FC<IPickerProps> = ({
 
   const handleOnFilter = (text: string) => setSearchPhrase(text);
 
-  const getOptions = (): IPickerListItem[] => {
+  const items = React.useMemo<IPickerListItem[]>(() => {
     if (!searchPhrase) {
       return options;
     }
 
-    return options.filter((item: IPickerListItem) => {
+    return options.filter((item) => {
+      if (item.groupHeader) {
+        return false;
+      }
+
       const search = searchPhrase.toLowerCase();
       const itemName = item.name.toLowerCase();
-
-      if (itemName.includes(search) && !item.groupHeader) {
-        return item;
-      }
+      return itemName.includes(search);
     });
-  };
+  }, [searchPhrase]);
 
   return (
     <div ref={triggerRef} className={baseClass}>
@@ -136,7 +133,7 @@ export const Picker: React.FC<IPickerProps> = ({
         </Trigger>
         <PickerList
           selectedItem={selectedItem}
-          items={getOptions()}
+          items={items}
           isOpen={isListOpen}
           size={size}
           emptyStateText={noSearchResultText}

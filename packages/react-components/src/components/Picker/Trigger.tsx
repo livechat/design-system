@@ -37,6 +37,7 @@ export const Trigger: React.FC<ITriggerProps> = ({
   onClearClick,
   onFilter,
 }) => {
+  const triggerRef = React.useRef<HTMLDivElement>(null);
   const mergedClassNames = cx(
     styles[baseClass],
     styles[`${baseClass}--${size}`],
@@ -47,11 +48,10 @@ export const Trigger: React.FC<ITriggerProps> = ({
 
   React.useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
-      const el = document.getElementById('picker-trigger');
-      const isFocused = document.activeElement === el;
+      const isFocused = document.activeElement === triggerRef.current;
 
       if (isFocused && e.key !== KeyCodes.tab) {
-        return onClick();
+        onClick();
       }
     };
 
@@ -61,21 +61,21 @@ export const Trigger: React.FC<ITriggerProps> = ({
   }, []);
 
   const handleTriggerClick = () => {
-    return onClick();
+    onClick();
   };
 
   const handleOnClearClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    return onClearClick();
+    onClearClick();
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    return onFilter(e.target.value);
+    onFilter(e.target.value);
   };
 
   return (
     <div
-      id="picker-trigger"
+      ref={triggerRef}
       className={mergedClassNames}
       onClick={handleTriggerClick}
       tabIndex={0}
