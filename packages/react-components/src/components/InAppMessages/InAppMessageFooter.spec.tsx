@@ -4,11 +4,11 @@ import { render, vi } from 'test-utils';
 import { InAppMessageFooter } from './InAppMessageFooter';
 
 const defaultProps = {
-  cta: {
+  primary: {
     children: 'CTA button',
     onClick: vi.fn(),
   },
-  remind: {
+  secondary: {
     children: 'Remind button',
     onClick: vi.fn(),
   },
@@ -26,7 +26,7 @@ describe('<InAppMessageFooter> component', () => {
 
   it('should render with one button', () => {
     const { container, getByText, queryByText } = render(
-      <InAppMessageFooter {...defaultProps} remind={undefined} />
+      <InAppMessageFooter {...defaultProps} secondary={undefined} />
     );
     expect(container.firstChild).toBeVisible();
     expect(getByText('CTA button')).toBeVisible();
@@ -37,11 +37,11 @@ describe('<InAppMessageFooter> component', () => {
     const ctaOnClick = vi.fn();
     const remindOnClick = vi.fn();
     const defaultProps = {
-      cta: {
+      primary: {
         children: 'CTA button',
         onClick: ctaOnClick,
       },
-      remind: {
+      secondary: {
         children: 'Remind button',
         onClick: remindOnClick,
       },
