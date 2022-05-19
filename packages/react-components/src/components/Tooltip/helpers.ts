@@ -1,12 +1,12 @@
-import { IconTypeName } from '../Icon';
+import { IconKind } from '../Icon';
 
-export function getIconType(theme: string): IconTypeName {
+export function getIconType(theme: string): IconKind {
   switch (theme) {
     case 'invert':
-      return IconTypeName.Inverted;
+      return 'inverted';
     case 'important':
-      return IconTypeName.Subtle;
+      return 'subtle';
     default:
-      return IconTypeName.Primary;
+      return 'primary';
   }
 }
