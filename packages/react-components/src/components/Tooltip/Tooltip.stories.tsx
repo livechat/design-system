@@ -16,6 +16,7 @@ import { Simple } from './Simple';
 import { Info as TooltipInfoComponent } from './Info';
 import { Interactive as TooltipInteractiveComponent } from './Interactive';
 import { UserGuide as TooltipUserGuideComponent } from './UserGuide';
+import { UserGuideStep } from './UserGuideStep';
 import beutifulImage from './placeholder.png';
 
 const tooltipPlacements = [
@@ -213,6 +214,26 @@ const TooltipInteractiveExample: React.FC<ITooltipProps> = (props) => {
 };
 
 const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
+  const reducer = (state, action) => {
+    if (action.type === 'reference1') {
+      return {
+        reference: 'reference1',
+        isVisible: !state.isVisible,
+      };
+    }
+    if (action.type === 'reference2') {
+      return {
+        reference: 'reference2',
+        isVisible: !state.isVisible,
+      };
+    }
+    return state;
+  };
+
+  const [state, dispatch] = React.useReducer(reducer, {
+    reference: 'reference1',
+  });
+
   return (
     <div
       style={{
@@ -220,35 +241,68 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
         height: '600px',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
       }}
     >
-      <TooltipComponent
+      <div
+        onClick={() => dispatch({ type: 'reference1' })}
+        id="reference1"
+        style={{
+          display: 'block',
+          backgroundColor: 'red',
+          height: '50px',
+          width: '100px',
+        }}
+      ></div>
+      <div
+        onClick={() => dispatch({ type: 'reference2' })}
+        id="reference2"
+        style={{
+          display: 'block',
+          backgroundColor: 'red',
+          height: '50px',
+          width: '100px',
+        }}
+      ></div>
+
+      <TooltipUserGuideComponent
         {...props}
-        triggerRenderer={() => (
-          <div>
-            <Button
-              icon={<Icon source={DropDown}></Icon>}
-              iconPosition={'right'}
-            >
-              Open Tooltip
-            </Button>
-          </div>
-        )}
+        isManaged={true}
+        isVisible={true}
+        parentElementName={`#${state.reference}`}
+        zIndex={1000}
+        shouldSlide={true}
       >
-        <TooltipUserGuideComponent
-          header="Header - concise and clear"
-          image={{
-            src: beutifulImage,
-            alt: 'image',
-          }}
-          text="Tooltip content is used to explain the details of elements or features."
-          handleClickPrimary={() => console.log('primary click handler')}
-          currentStep={1}
-          stepMax={3}
-          closeWithX
-        />
-      </TooltipComponent>
+        {state.reference === 'reference1' ? (
+          <UserGuideStep
+            header="Header - concise and clear"
+            image={{
+              src: beutifulImage,
+              alt: 'image',
+            }}
+            text="Tooltip content is used to explain the details of elements or features."
+            handleClickPrimary={() => dispatch({ type: 'reference2' })}
+            currentStep={1}
+            stepMax={3}
+            closeWithX
+          />
+        ) : null}
+
+        {state.reference === 'reference2' ? (
+          <UserGuideStep
+            header="Header - concise and clear"
+            image={{
+              src: beutifulImage,
+              alt: 'image',
+            }}
+            text="Tooltip content is used to explain the details of elements or features."
+            handleClickPrimary={() => dispatch({ type: 'reference1' })}
+            currentStep={1}
+            stepMax={3}
+            closeWithX
+          />
+        ) : null}
+      </TooltipUserGuideComponent>
     </div>
   );
 };

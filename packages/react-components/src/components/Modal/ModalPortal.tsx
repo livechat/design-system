@@ -28,7 +28,7 @@ export const ModalPortal: React.FC<ModalPortalProps> = ({
     return () => {
       document.querySelector(parentElementName)?.removeChild(container);
     };
-  }, []);
+  }, [parentElementName]);
 
   // Fragment added to fix TS complaining about createPortal any type
   return <>{ReactDOM.createPortal(children, container)}</>;

@@ -3,6 +3,9 @@ import { Icon, IconTypeName } from '../Icon';
 import { Close } from '@livechat/design-system-icons/react/material';
 import { Button } from '../Button';
 import { getIconType } from './helpers';
+import styles from './Tooltip.module.scss';
+
+const baseClass = 'lc-tooltip';
 
 export const UserGuideStep: React.FC<{
   header: string;
@@ -34,7 +37,7 @@ export const UserGuideStep: React.FC<{
         style={{ position: 'relative', height: '25px', marginBottom: '10px' }}
       >
         {closeWithX && (
-          <div className="lc-tooltip-x">
+          <div className={styles[`${baseClass}-x`]}>
             <div onClick={handleCloseOnClick}>
               <Icon
                 source={Close}
@@ -46,11 +49,15 @@ export const UserGuideStep: React.FC<{
       </div>
       {image && (
         <div style={{ margin: '0 4px' }}>
-          <img className="lc-tooltip-image" src={image.src} alt={image.alt} />
+          <img
+            className={styles[`${baseClass}-image`]}
+            src={image.src}
+            alt={image.alt}
+          />
         </div>
       )}
-      {header && <div className="lc-tooltip-header">{header}</div>}
-      <div className="lc-tooltip-text">{text}</div>
+      {header && <div className={styles[`${baseClass}-header`]}>{header}</div>}
+      <div className={styles[`${baseClass}-text`]}>{text}</div>
       <div style={{ margin: '4px' }}>
         <div
           style={{
@@ -59,7 +66,7 @@ export const UserGuideStep: React.FC<{
             alignItems: 'center',
           }}
         >
-          <span className="lc-tooltip-step">
+          <span className={styles[`${baseClass}-step`]}>
             Step {currentStep} of {stepMax}
           </span>
           <Button kind="primary" onClick={handleClickPrimary}>

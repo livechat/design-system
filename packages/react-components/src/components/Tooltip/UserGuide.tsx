@@ -1,79 +1,64 @@
 import * as React from 'react';
-import { Icon, IconTypeName } from '../Icon';
-import { Close } from '@livechat/design-system-icons/react/material';
-import { Button } from '../Button';
-import { getIconType } from './helpers';
+import { ModalPortal, ModalPortalProps } from '../Modal/';
+import { ITooltipProps, Tooltip } from './Tooltip';
+import SpotlightOverlay from './SpotlightOverlay';
+import cx from 'clsx';
 import styles from './Tooltip.module.scss';
 
-const baseClass = 'lc-tooltip';
+const spotlightPadding = 200;
+const baseClass = 'guide-tooltip';
 
-export const UserGuide: React.FC<{
-  header: string;
-  text: string;
-  image?: {
-    src: string;
-    alt: string;
-  };
-  currentStep: number;
-  stepMax: number;
-  closeWithX?: boolean;
-  theme?: string;
-  handleClickPrimary: () => void;
-  handleCloseOnClick?: () => void;
-}> = ({
-  header,
-  text,
-  image,
-  currentStep,
-  stepMax,
-  closeWithX,
-  theme,
-  handleCloseOnClick,
-  handleClickPrimary,
-}) => {
-  return (
-    <div style={{ width: '270px' }}>
-      <div
-        style={{ position: 'relative', height: '25px', marginBottom: '10px' }}
-      >
-        {closeWithX && (
-          <div className={styles[`${baseClass}-x`]}>
-            <div onClick={handleCloseOnClick}>
-              <Icon
-                source={Close}
-                iconType={theme ? getIconType(theme) : IconTypeName.Primary}
-              ></Icon>
-            </div>
-          </div>
-        )}
-      </div>
-      {image && (
-        <div style={{ margin: '0 4px' }}>
-          <img
-            className={styles[`${baseClass}-image`]}
-            src={image.src}
-            alt={image.alt}
-          />
-        </div>
-      )}
-      {header && <div className={styles[`${baseClass}-header`]}>{header}</div>}
-      <div className={styles[`${baseClass}-text`]}>{text}</div>
-      <div style={{ margin: '4px' }}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-        >
-          <span className={styles[`${baseClass}-step`]}>
-            Step {currentStep} of {stepMax}
-          </span>
-          <Button kind="primary" onClick={handleClickPrimary}>
-            Primary button
-          </Button>
-        </div>
-      </div>
-    </div>
+interface IOwnProps {
+  shouldSlide?: boolean;
+  className?: string;
+  disableSpotlightPointerEvents?: boolean;
+}
+
+interface IUserGuide
+  extends IOwnProps,
+    ITooltipProps,
+    Omit<ModalPortalProps, 'children'> {}
+
+export const UserGuide: React.FC<IUserGuide> = (props) => {
+  const { shouldSlide, className, parentElementName } = props;
+  const [parentElement, setParentElement] = React.useState<Element | null>(
+    null
   );
+  React.useEffect(() => {
+    const element = document.querySelector(parentElementName);
+    setParentElement(element);
+  }, [parentElementName]);
+
+  return parentElement ? (
+    <ModalPortal
+      parentElementName={props.parentElementName}
+      zIndex={props.zIndex}
+      style={{ height: '100px' }}
+    >
+      <SpotlightOverlay
+        gap={parentElement.getBoundingClientRect()}
+        isVisible={true}
+        slide={shouldSlide}
+        disablePointerEvents={true}
+      />
+      <Tooltip
+        {...props}
+        referenceElement={{
+          getBoundingClientRect: () => {
+            return parentElement.getBoundingClientRect();
+          },
+          contextElement: parentElement,
+        }}
+        arrowOffsetY={25}
+        className={cx({
+          [styles[baseClass]]: true,
+          [styles[`${baseClass}--slide`]]: shouldSlide,
+          className: className,
+        })}
+      >
+        {props.children}
+      </Tooltip>
+      <SpotlightOverlay />
+    </ModalPortal>
+  ) : null;
 };

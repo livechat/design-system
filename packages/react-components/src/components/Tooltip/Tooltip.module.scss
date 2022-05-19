@@ -127,3 +127,25 @@ $base-class: 'lc-tooltip';
     line-height: 20px;
   }
 }
+
+.guide-tooltip {
+  &--slide {
+    transition-property: opacity, visibility, transform;
+  }
+
+  &__overlay {
+    background-color: var(--surface-invert-default);
+    display: none;
+    position: fixed;
+
+    &--slide {
+      transition-duration: 0.2s;
+      transition-property: top, left, width, height;
+      transition-timing-function: ease-in-out;
+    }
+  }
+
+  &__overlay--visible {
+    display: block;
+  }
+}

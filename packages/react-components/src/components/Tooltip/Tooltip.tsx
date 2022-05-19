@@ -9,6 +9,7 @@ import {
   autoUpdate,
   flip,
   offset,
+  VirtualElement,
 } from '@floating-ui/react-dom';
 
 import styles from './Tooltip.module.scss';
@@ -29,6 +30,7 @@ export interface ITooltipProps {
   arrowOffsetY?: number;
   arrowOffsetX?: number;
   triggerRenderer: () => React.ReactNode;
+  referenceElement?: VirtualElement;
   onOpen?: () => void;
   onClose?: () => void;
 }
@@ -42,6 +44,7 @@ const baseClass = 'lc-tooltip';
 export const Tooltip: React.FC<ITooltipProps> = (props) => {
   const {
     triggerRenderer,
+    referenceElement,
     children,
     className,
     theme,
@@ -84,6 +87,10 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   });
 
   React.useEffect(() => {
+    referenceElement && reference(referenceElement);
+  }, [reference, referenceElement]);
+
+  React.useEffect(() => {
     setVisibility(isVisible);
   }, [isVisible]);
 
@@ -104,7 +111,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   }, [refs.reference, refs.floating, update, updatedPlacement]);
 
   const handleMouseLeave = () => {
-    if (triggerOnClick) return;
+    if (triggerOnClick || isManaged) return;
     isHovered.current = false;
     void sleep(hoverOutDelayTimeout).then(() => {
       if (!isHovered.current) {
@@ -152,8 +159,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   const left = arrowOffsetX && arrowX ? arrowX + arrowOffsetX : arrowX;
 
   const mergedClassNames = cx(styles[baseClass], {
-    // eslint-disable-next-line
-    [className as string]: className,
+    [className ]: className,
     [styles[`${baseClass}--invert`]]: theme === 'invert',
     [styles[`${baseClass}--important`]]: theme === 'important',
   });
@@ -231,29 +237,35 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
       return visible && popperComponent;
     }
   }
-  let referenceElement;
 
-  if (triggerOnClick) {
-    referenceElement = (
-      <div onClick={handleClick} ref={reference}>
-        {triggerRenderer()}
-      </div>
-    );
-  } else {
-    referenceElement = (
-      <div
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        ref={reference}
-      >
-        {triggerRenderer()}
-      </div>
-    );
+  if (referenceElement) {
+    return <>{renderPopperComponent()}</>;
   }
+
+  const referenceOptions = () => {
+    if (!isManaged) {
+      if (triggerOnClick) {
+        return {
+          onClick: handleClick,
+        };
+      } else {
+        return {
+          onMouseEnter: handleMouseEnter,
+          onMouseLeave: handleMouseLeave,
+        };
+      }
+    }
+  };
+
+  const triggerElement = (
+    <div ref={reference} {...referenceOptions()}>
+      {triggerRenderer()}
+    </div>
+  );
 
   return (
     <>
-      {referenceElement}
+      {triggerElement}
       {renderPopperComponent()}
     </>
   );
