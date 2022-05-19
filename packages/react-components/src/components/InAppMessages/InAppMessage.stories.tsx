@@ -119,7 +119,7 @@ export const InAppWithButtons = (
       {isInAppVisible === 'single' && (
         <InAppMessageComponent
           footer={{
-            cta: {
+            primary: {
               children: 'Check it out!',
               onClick: () => setIsInAppVisible(null),
             },
@@ -132,11 +132,11 @@ export const InAppWithButtons = (
       {isInAppVisible === 'all' && (
         <InAppMessageComponent
           footer={{
-            cta: {
+            primary: {
               children: 'Check it out!',
               onClick: () => setIsInAppVisible(null),
             },
-            remind: {
+            secondary: {
               children: 'Remind me later!',
               onClick: () => setIsInAppVisible(null),
             },
@@ -186,6 +186,16 @@ export const InAppWithEverything = (
       {isInAppVisible && (
         <InAppMessageComponent
           {...args}
+          footer={{
+            primary: {
+              children: 'Check it out!',
+              onClick: () => setIsInAppVisible(false),
+            },
+            secondary: {
+              children: 'Remind me later!',
+              onClick: () => setIsInAppVisible(false),
+            },
+          }}
           onClose={() => setIsInAppVisible(false)}
         >
           <Heading as="h2" size="lg">
@@ -216,15 +226,5 @@ InAppWithEverything.args = {
         <strong>Michał</strong> from LiveChat
       </React.Fragment>
     ),
-  },
-  footer: {
-    cta: {
-      children: 'Check it out!',
-      onClick: () => console.log('test'),
-    },
-    remind: {
-      children: 'Remind me later!',
-      onClick: () => console.log('test'),
-    },
   },
 };

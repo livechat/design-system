@@ -94,7 +94,10 @@ export const InAppMessage: React.FC<InAppMessageProps> = ({
             </div>
           </div>
           {footer && (
-            <InAppMessageFooter cta={footer.cta} remind={footer.remind} />
+            <InAppMessageFooter
+              primary={footer.primary}
+              secondary={footer.secondary}
+            />
           )}
         </div>
       </div>

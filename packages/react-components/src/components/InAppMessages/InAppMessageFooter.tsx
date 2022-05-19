@@ -6,29 +6,29 @@ import styles from './InAppMessageFooter.module.scss';
 const baseClass = 'in-app-message-footer';
 
 export interface InAppMessageFooterProps {
-  cta: {
+  primary: {
     children: string;
     onClick: () => void;
   };
-  remind?: {
+  secondary?: {
     children: string;
     onClick: () => void;
   };
 }
 
 export const InAppMessageFooter: React.FC<InAppMessageFooterProps> = ({
-  cta,
-  remind,
+  primary,
+  secondary,
 }) => {
   return (
     <div className={styles[baseClass]}>
-      {remind && (
-        <Button fullWidth kind="secondary" onClick={remind.onClick}>
-          {remind.children}
+      {secondary && (
+        <Button fullWidth kind="secondary" onClick={secondary.onClick}>
+          {secondary.children}
         </Button>
       )}
-      <Button fullWidth kind="primary" onClick={cta.onClick}>
-        {cta.children}
+      <Button fullWidth kind="primary" onClick={primary.onClick}>
+        {primary.children}
       </Button>
     </div>
   );

@@ -10,7 +10,7 @@ import {
 const baseClass = 'in-app-message-header';
 export interface InAppMessageHeaderProps {
   avatar?: InAppMessageAvatarProps;
-  text?: React.ReactElement;
+  text?: React.ReactElement | string;
 }
 
 interface InAppMessageHeaderWithOnCloseProps extends InAppMessageHeaderProps {
