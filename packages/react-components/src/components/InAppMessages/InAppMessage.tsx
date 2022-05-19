@@ -66,8 +66,6 @@ export const InAppMessage: React.FC<InAppMessageProps> = ({
     }
   };
 
-  const handleOnCloseButtonClick = () => handleCloseInAppMessage();
-
   const mergedClassNames = cx(styles[`${baseClass}`], className);
 
   return (
@@ -80,7 +78,7 @@ export const InAppMessage: React.FC<InAppMessageProps> = ({
         <InAppMessageHeader
           avatar={header && header.avatar}
           text={header && header.text}
-          onCloseButtonClick={handleOnCloseButtonClick}
+          onCloseButtonClick={handleCloseInAppMessage}
         />
         <div className={mergedClassNames}>
           <div className={styles[`${baseClass}__content`]}>
