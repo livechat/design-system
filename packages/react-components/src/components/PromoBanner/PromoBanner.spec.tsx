@@ -56,32 +56,6 @@ describe('<PromoBanner> component', () => {
     expect(container.firstChild).toHaveClass(styles['promo-banner--light']);
   });
 
-  it('should display with small size by default', () => {
-    const { container } = renderComponent({
-      header: promoHeader,
-    });
-
-    expect(container.firstChild).toHaveClass(styles['promo-banner--small']);
-  });
-
-  it('should display with medium size', () => {
-    const { container } = renderComponent({
-      header: promoHeader,
-      size: 'medium',
-    });
-
-    expect(container.firstChild).toHaveClass(styles['promo-banner--medium']);
-  });
-
-  it('should display with large size', () => {
-    const { container } = renderComponent({
-      header: promoHeader,
-      size: 'large',
-    });
-
-    expect(container.firstChild).toHaveClass(styles['promo-banner--large']);
-  });
-
   it('should call onClose function', () => {
     const onClose = vi.fn();
     const { getByRole } = renderComponent({
