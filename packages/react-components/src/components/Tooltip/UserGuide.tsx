@@ -30,18 +30,9 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
 
   const [rect, setRect] = React.useState<DOMRect | null>(null);
 
-  React.useEffect(() => {
-    const element = document.querySelector(parentElementName);
-    setParentElement(element);
-  }, [parentElementName]);
-
-  React.useEffect(() => {
+  const handleViewportChange = () => {
     parentElement && setRect(parentElement.getBoundingClientRect());
-  }, [parentElement]);
-
-  const handleViewportChange = throttle(16, () => {
-    parentElement && setRect(parentElement.getBoundingClientRect());
-  });
+  };
 
   React.useEffect(() => {
     window.addEventListener('resize', handleViewportChange);
@@ -52,6 +43,15 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
       window.addEventListener('resize', handleViewportChange);
     };
   }, []);
+
+  React.useEffect(() => {
+    const element = document.querySelector(parentElementName);
+    setParentElement(element);
+  }, [parentElementName]);
+
+  React.useEffect(() => {
+    parentElement && setRect(parentElement.getBoundingClientRect());
+  }, [parentElement]);
 
   return parentElement ? (
     <ModalPortal
