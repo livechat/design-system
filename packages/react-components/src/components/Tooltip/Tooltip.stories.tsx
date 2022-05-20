@@ -227,6 +227,12 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
         isVisible: !state.isVisible,
       };
     }
+    if (action.type === 'reference3') {
+      return {
+        reference: 'reference3',
+        isVisible: !state.isVisible,
+      };
+    }
     return state;
   };
 
@@ -234,6 +240,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
     reference: 'reference1',
   });
 
+  console.log('state', state);
   return (
     <div
       style={{
@@ -265,13 +272,24 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
         }}
       ></div>
 
+      <div
+        onClick={() => dispatch({ type: 'reference3' })}
+        id="reference3"
+        style={{
+          display: 'block',
+          backgroundColor: 'red',
+          height: '50px',
+          width: '100px',
+        }}
+      ></div>
+
       <TooltipUserGuideComponent
         {...props}
         isManaged={true}
         isVisible={true}
         parentElementName={`#${state.reference}`}
         zIndex={1000}
-        shouldSlide={true}
+        shouldSlide={false}
       >
         {state.reference === 'reference1' ? (
           <UserGuideStep
@@ -289,6 +307,21 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
         ) : null}
 
         {state.reference === 'reference2' ? (
+          <UserGuideStep
+            header="Header - concise and clear"
+            image={{
+              src: beutifulImage,
+              alt: 'image',
+            }}
+            text="Tooltip content is used to explain the details of elements or features."
+            handleClickPrimary={() => dispatch({ type: 'reference3' })}
+            currentStep={1}
+            stepMax={3}
+            closeWithX
+          />
+        ) : null}
+
+        {state.reference === 'reference3' ? (
           <UserGuideStep
             header="Header - concise and clear"
             image={{

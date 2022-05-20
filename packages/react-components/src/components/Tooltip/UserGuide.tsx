@@ -35,14 +35,16 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
   };
 
   React.useEffect(() => {
-    window.addEventListener('resize', handleViewportChange);
-    window.addEventListener('scroll', handleViewportChange);
+    if (parentElement !== null) {
+      window.addEventListener('resize', handleViewportChange);
+      window.addEventListener('scroll', handleViewportChange);
 
-    return () => {
-      window.addEventListener('resize', handleViewportChange);
-      window.addEventListener('resize', handleViewportChange);
-    };
-  }, []);
+      return () => {
+        window.addEventListener('resize', handleViewportChange);
+        window.addEventListener('resize', handleViewportChange);
+      };
+    }
+  }, [parentElement, parentElementName]);
 
   React.useEffect(() => {
     const element = document.querySelector(parentElementName);
