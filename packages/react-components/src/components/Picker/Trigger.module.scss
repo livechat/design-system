@@ -1,0 +1,68 @@
+$base-class: 'picker-trigger';
+
+.#{$base-class} {
+  align-items: center;
+  background-color: var(--surface-basic-default);
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: flex;
+  font-size: 15px;
+  font-weight: 400;
+  justify-content: flex-end;
+  line-height: 22px;
+  padding: 7px 12px;
+  transition: border 0.15s ease-in-out;
+  width: 341px;
+
+  &--compact {
+    height: 32px;
+  }
+
+  &--medium {
+    height: 36px;
+  }
+
+  &--large {
+    height: 42px;
+  }
+
+  &:hover {
+    border-color: var(--border-hover);
+    cursor: pointer;
+  }
+
+  &__text {
+    flex-grow: 2;
+  }
+
+  &--disabled {
+    background-color: var(--surface-basic-disabled);
+    color: var(--content-disabled);
+
+    &:hover {
+      border-color: var(--border-default);
+      cursor: auto;
+    }
+  }
+
+  &--focused,
+  &--focused:hover {
+    border-color: var(--color-action-default);
+  }
+
+  &--error,
+  &--error:hover {
+    border-color: var(--color-negative-default);
+  }
+
+  &__input {
+    background: none;
+    border: 0;
+    color: var(--content-default);
+    flex-grow: 2;
+    font-size: 15px;
+    outline: none;
+    padding: 0;
+  }
+}
