@@ -5,7 +5,7 @@ import {
   ChevronUp,
   Close,
 } from '@livechat/design-system-icons/react/material';
-import { Icon, IconSizeName, IconTypeName } from '../Icon';
+import { Icon } from '../Icon';
 import styles from './Trigger.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
 
@@ -96,13 +96,13 @@ export const Trigger: React.FC<ITriggerProps> = ({
           className={styles[`${baseClass}__clear-icon`]}
           onClick={handleOnClearClick}
         >
-          <Icon iconType={IconTypeName.Link} source={Close} />
+          <Icon kind="link" source={Close} />
         </div>
       )}
       <Icon
         className={styles[`${baseClass}__chevron-icon`]}
         source={!isOpen ? ChevronDown : ChevronUp}
-        size={IconSizeName.Large}
+        size="large"
         disabled={isDisabled}
       />
     </div>

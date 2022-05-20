@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cx from 'clsx';
 import { Check } from '@livechat/design-system-icons/react/material';
-import { Icon, IconTypeName } from '../Icon';
+import { Icon } from '../Icon';
 import styles from './PickerList.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
 import { TriggerSize } from './Trigger';
@@ -183,9 +183,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
             onClick={() => !item.disabled && handleOnClick(item)}
           >
             {item.name}
-            {isItemSelected(item.key) && (
-              <Icon iconType={IconTypeName.Link} source={Check} />
-            )}
+            {isItemSelected(item.key) && <Icon kind="link" source={Check} />}
           </li>
         );
       })}

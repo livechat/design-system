@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Error } from '@livechat/design-system-icons/react/material';
 import { Trigger, TriggerSize } from './Trigger';
 import { IPickerListItem, PickerList } from './PickerList';
-import { Icon, IconSizeName, IconTypeName } from '../Icon';
+import { Icon } from '../Icon';
 import styles from './Picker.module.scss';
 import cx from 'clsx';
 import { KeyCodes } from '../../utils/keyCodes';
@@ -146,8 +146,8 @@ export const Picker: React.FC<IPickerProps> = ({
           <Icon
             className={styles[`${baseClass}__error__icon`]}
             source={Error}
-            iconType={IconTypeName.Error}
-            size={IconSizeName.Small}
+            kind="error"
+            size="small"
           />
           {error}
         </div>
