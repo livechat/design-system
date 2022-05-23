@@ -20,7 +20,6 @@ export interface ITooltipProps {
   theme?: 'invert' | 'important' | undefined;
   placement?: Placement;
   isVisible?: boolean;
-  isManaged?: boolean;
   withFadeAnimation?: boolean;
   transitionDuration?: number;
   transitionDelay?: number;
@@ -39,7 +38,7 @@ const sleep = (milliseconds: number) => {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 };
 
-const baseClass = 'lc-tooltip';
+const baseClass = 'tooltip';
 
 export const Tooltip: React.FC<ITooltipProps> = (props) => {
   const {
@@ -49,8 +48,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     className,
     theme,
     placement,
-    isVisible = false,
-    isManaged = false,
+    isVisible,
     withFadeAnimation = true,
     transitionDuration = 200,
     transitionDelay = 0,
@@ -63,6 +61,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     onClose,
   } = props;
 
+  const isManaged = typeof isVisible === 'boolean';
   const arrowRef = React.useRef<HTMLDivElement | null>(null);
   const [visible, setVisibility] = React.useState(isVisible);
   const isHovered = React.useRef(false);
@@ -152,19 +151,19 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   };
 
   const handleCloseOnClick = () => {
+    if (isManaged) return;
     handleClose();
   };
 
   const top = arrowOffsetY && arrowY ? arrowY + arrowOffsetY : arrowY;
   const left = arrowOffsetX && arrowX ? arrowX + arrowOffsetX : arrowX;
 
-  const mergedClassNames = cx(styles[baseClass], {
-    [className ]: className,
+  const mergedClassNames = cx(styles[baseClass], className, {
     [styles[`${baseClass}--invert`]]: theme === 'invert',
     [styles[`${baseClass}--important`]]: theme === 'important',
   });
 
-  const popperComponent = (
+  const floatingComponent = (
     <div
       ref={floating}
       style={{
@@ -185,13 +184,13 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
       <div
         ref={arrowRef}
         className={cx([styles[`${baseClass}__arrow`]])}
-        data-popper-placement={updatedPlacement}
+        data-arrow-placement={updatedPlacement}
         style={{ top: top, left: left }}
       />
     </div>
   );
 
-  function renderPopperComponent() {
+  function renderFloatingComponent() {
     if (withFadeAnimation) {
       const enter = css`
         opacity: 0;
@@ -230,16 +229,16 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
             exitActive: exitActive,
           }}
         >
-          {popperComponent}
+          {floatingComponent}
         </CSSTransition>
       );
     } else {
-      return visible && popperComponent;
+      return visible && floatingComponent;
     }
   }
 
   if (referenceElement) {
-    return <>{renderPopperComponent()}</>;
+    return <>{renderFloatingComponent()}</>;
   }
 
   const referenceOptions = () => {
@@ -266,7 +265,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   return (
     <>
       {triggerElement}
-      {renderPopperComponent()}
+      {renderFloatingComponent()}
     </>
   );
 };

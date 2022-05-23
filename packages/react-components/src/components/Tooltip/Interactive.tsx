@@ -5,7 +5,7 @@ import { Button } from '../Button';
 import { getIconType } from './helpers';
 import styles from './Tooltip.module.scss';
 
-const baseClass = 'lc-tooltip';
+const baseClass = 'tooltip';
 
 export const Interactive: React.FC<{
   header: string;
@@ -18,14 +18,14 @@ export const Interactive: React.FC<{
   theme?: 'invert' | 'important';
   handleClickPrimary: () => void;
   handleClickSecondary: () => void;
-  handleCloseOnClick?: () => void;
+  handleCloseClick?: () => void;
 }> = ({
   header,
   text,
   image,
   closeWithX,
   theme,
-  handleCloseOnClick,
+  handleCloseClick,
   handleClickPrimary,
   handleClickSecondary,
 }) => {
@@ -36,8 +36,8 @@ export const Interactive: React.FC<{
         style={{ position: 'relative', height: '25px', marginBottom: '10px' }}
       >
         {closeWithX && (
-          <div className={styles[`${baseClass}-x`]}>
-            <div onClick={handleCloseOnClick}>
+          <div className={styles[`${baseClass}-close`]}>
+            <div onClick={handleCloseClick}>
               <Icon
                 source={Close}
                 kind={theme ? getIconType(theme) : 'primary'}

@@ -4,19 +4,22 @@ import { Close } from '@livechat/design-system-icons/react/material';
 import { getIconType } from './helpers';
 import styles from './Tooltip.module.scss';
 
-const baseClass = 'lc-tooltip';
+const baseClass = 'tooltip';
 
 export const Info: React.FC<{
   header: string;
   text: string;
   closeWithX?: boolean;
   theme?: string;
-  handleCloseOnClick?: () => void;
-}> = ({ header, text, closeWithX, theme, handleCloseOnClick }) => {
+  handleCloseClick?: () => void;
+}> = ({ header, text, closeWithX, theme, handleCloseClick }) => {
   return (
     <div style={{ position: 'relative' }}>
       {closeWithX && (
-        <div className={styles[`${baseClass}-x`]} onClick={handleCloseOnClick}>
+        <div
+          className={styles[`${baseClass}-close`]}
+          onClick={handleCloseClick}
+        >
           <Icon
             source={Close}
             kind={theme ? getIconType(theme) : 'primary'}

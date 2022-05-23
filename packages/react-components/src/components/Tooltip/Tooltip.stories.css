@@ -1,4 +1,4 @@
-.lc-tooltip-icon-wrap {
+.tooltip-icon-wrap {
   align-items: center;
   border-radius: 4px;
   display: flex;
@@ -7,6 +7,6 @@
   justify-content: center;
   width: 32px;
 }
-.lc-tooltip-icon-wrap:hover {
+.tooltip-icon-wrap:hover {
   background-color: #e5e5e5;
 }

@@ -4,7 +4,17 @@ import styles from './Tooltip.module.scss';
 
 const baseClass = 'guide-tooltip';
 
-const SpotlightOverlay = ({ gap, isVisible, slide, disablePointerEvents }) => {
+const SpotlightOverlay = ({
+  gap,
+  isVisible,
+  slide,
+  disablePointerEvents,
+}: {
+  gap: DOMRect | null;
+  isVisible: boolean;
+  slide: boolean;
+  disablePointerEvents: boolean;
+}): JSX.Element | null => {
   if (!gap) return null;
   const overlayLeft = {
     top: `${gap.top}px`,

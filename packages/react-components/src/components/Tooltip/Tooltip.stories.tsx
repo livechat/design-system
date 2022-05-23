@@ -45,13 +45,13 @@ export const Tooltip = (args: any): React.ReactElement => (
       alignItems: 'center',
     }}
   >
-    <span className={'lc-tooltip-icon-wrap'}>
+    <span className={'tooltip-icon-wrap'}>
       <TooltipSimpleExample {...args}></TooltipSimpleExample>
     </span>
-    <span className={'lc-tooltip-icon-wrap'}>
+    <span className={'tooltip-icon-wrap'}>
       <Icon source={CannedResponse}></Icon>
     </span>
-    <span className={'lc-tooltip-icon-wrap'}>
+    <span className={'tooltip-icon-wrap'}>
       <Icon source={Attachment}></Icon>
     </span>
   </div>
@@ -268,6 +268,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
           backgroundColor: 'red',
           height: '50px',
           width: '100px',
+          alignSelf: 'flex-start',
         }}
       ></div>
 
@@ -284,7 +285,6 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
 
       <TooltipUserGuideComponent
         {...props}
-        isManaged={true}
         isVisible={true}
         parentElementName={`#${state.reference}`}
         zIndex={1000}
@@ -314,7 +314,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
             }}
             text="Tooltip content is used to explain the details of elements or features."
             handleClickPrimary={() => dispatch({ type: 'reference3' })}
-            currentStep={1}
+            currentStep={2}
             stepMax={3}
             closeWithX
           />
@@ -329,7 +329,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
             }}
             text="Tooltip content is used to explain the details of elements or features."
             handleClickPrimary={() => dispatch({ type: 'reference1' })}
-            currentStep={1}
+            currentStep={3}
             stepMax={3}
             closeWithX
           />

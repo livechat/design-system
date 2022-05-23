@@ -5,7 +5,7 @@ import { Button } from '../Button';
 import { getIconType } from './helpers';
 import styles from './Tooltip.module.scss';
 
-const baseClass = 'lc-tooltip';
+const baseClass = 'tooltip';
 
 export const UserGuideStep: React.FC<{
   header: string;
@@ -19,7 +19,7 @@ export const UserGuideStep: React.FC<{
   closeWithX?: boolean;
   theme?: string;
   handleClickPrimary: () => void;
-  handleCloseOnClick?: () => void;
+  handleCloseClick?: () => void;
 }> = ({
   header,
   text,
@@ -28,7 +28,7 @@ export const UserGuideStep: React.FC<{
   stepMax,
   closeWithX,
   theme,
-  handleCloseOnClick,
+  handleCloseClick,
   handleClickPrimary,
 }) => {
   return (
@@ -37,8 +37,8 @@ export const UserGuideStep: React.FC<{
         style={{ position: 'relative', height: '25px', marginBottom: '10px' }}
       >
         {closeWithX && (
-          <div className={styles[`${baseClass}-x`]}>
-            <div onClick={handleCloseOnClick}>
+          <div className={styles[`${baseClass}-close`]}>
+            <div onClick={handleCloseClick}>
               <Icon
                 source={Close}
                 kind={theme ? getIconType(theme) : 'primary'}

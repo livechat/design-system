@@ -1,4 +1,4 @@
-$base-class: 'lc-tooltip';
+$base-class: 'tooltip';
 
 .#{$base-class} {
   background-color: var(--surface-basic-default);
@@ -41,7 +41,7 @@ $base-class: 'lc-tooltip';
       transform: rotate(-45deg);
     }
 
-    &[data-popper-placement*='bottom'] {
+    &[data-arrow-placement*='bottom'] {
       height: 0;
       top: 1px;
 
@@ -52,7 +52,7 @@ $base-class: 'lc-tooltip';
       }
     }
 
-    &[data-popper-placement*='top'] {
+    &[data-arrow-placement*='top'] {
       top: 100%;
 
       &::after {
@@ -62,7 +62,7 @@ $base-class: 'lc-tooltip';
       }
     }
 
-    &[data-popper-placement*='right'] {
+    &[data-arrow-placement*='right'] {
       left: 0;
       margin: -3px -5px;
 
@@ -73,7 +73,7 @@ $base-class: 'lc-tooltip';
       }
     }
 
-    &[data-popper-placement*='left'] {
+    &[data-arrow-placement*='left'] {
       height: 12px;
       left: 100%;
       margin: 0 -7px;
@@ -113,7 +113,7 @@ $base-class: 'lc-tooltip';
     margin-right: 4px;
   }
 
-  &-x {
+  &-close {
     cursor: pointer;
     position: absolute;
     right: -4px;
