@@ -240,7 +240,6 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
     reference: 'reference1',
   });
 
-  console.log('state', state);
   return (
     <div
       style={{
@@ -289,7 +288,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
         isVisible={true}
         parentElementName={`#${state.reference}`}
         zIndex={1000}
-        shouldSlide={false}
+        shouldSlide={true}
       >
         {state.reference === 'reference1' ? (
           <UserGuideStep

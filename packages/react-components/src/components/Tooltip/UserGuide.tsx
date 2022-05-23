@@ -5,11 +5,13 @@ import SpotlightOverlay from './SpotlightOverlay';
 import cx from 'clsx';
 import styles from './Tooltip.module.scss';
 import { ClientRectObject } from '@floating-ui/core';
-import { throttle } from '@livechat/data-utils';
+import VirtualReference from './virtualElementReference';
 
-const spotlightPadding = 200;
+const spotlightPadding = 8;
 const baseClass = 'guide-tooltip';
 
+const virtualReference = (element: Element, padding: number) =>
+  new VirtualReference(element, padding);
 interface IOwnProps {
   shouldSlide?: boolean;
   className?: string;
@@ -22,16 +24,25 @@ interface IUserGuide
     Omit<ModalPortalProps, 'children'> {}
 
 export const UserGuide: React.FC<IUserGuide> = (props) => {
-  const { shouldSlide, className, parentElementName } = props;
+  const { className, parentElementName, shouldSlide = true } = props;
 
   const [parentElement, setParentElement] = React.useState<Element | null>(
     null
   );
 
   const [rect, setRect] = React.useState<DOMRect | null>(null);
+  const [isSliding, setIsSliding] = React.useState<boolean>(shouldSlide);
 
   const handleViewportChange = () => {
-    parentElement && setRect(parentElement.getBoundingClientRect());
+    if (parentElement) {
+      setRect(
+        virtualReference(
+          parentElement,
+          spotlightPadding
+        ).getBoundingClientRect() as DOMRect
+      );
+      setIsSliding(false);
+    }
   };
 
   React.useEffect(() => {
@@ -52,7 +63,14 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
   }, [parentElementName]);
 
   React.useEffect(() => {
-    parentElement && setRect(parentElement.getBoundingClientRect());
+    parentElement &&
+      setRect(
+        virtualReference(
+          parentElement,
+          spotlightPadding
+        ).getBoundingClientRect() as DOMRect
+      );
+    setIsSliding(true);
   }, [parentElement]);
 
   return parentElement ? (
@@ -64,7 +82,7 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
       <SpotlightOverlay
         gap={rect}
         isVisible={true}
-        slide={shouldSlide}
+        slide={isSliding}
         disablePointerEvents={true}
       />
       <Tooltip
@@ -78,7 +96,7 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
         arrowOffsetY={25}
         className={cx({
           [styles[baseClass]]: true,
-          [styles[`${baseClass}--slide`]]: shouldSlide,
+          [styles[`${baseClass}--slide`]]: isSliding,
           className: className,
         })}
       >
