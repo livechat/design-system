@@ -4,7 +4,6 @@ import { ComponentMeta, Story } from '@storybook/react';
 import {
   PromoBannerProps,
   PromoBanner as PromoBannerComponent,
-  PromoBannerSize,
 } from './PromoBanner';
 
 export default {
@@ -35,10 +34,22 @@ const StoryTemplate: Story<PromoBannerProps> = (args: PromoBannerProps) => (
 export const PromoBanner = StoryTemplate.bind({});
 PromoBanner.args = {
   header: 'This example headline has 40 characters',
+  img: 'https://via.placeholder.com/100',
+  buttonText: 'Example',
+  linkText: 'Example',
+  onButtonClick: () => {
+    alert('onButtonClick click');
+  },
+  onLinkClick: () => {
+    alert('onLinkClick click');
+  },
+  onClose: () => {
+    alert('onClose click');
+  },
 };
 
-export const PromoBannerWithButtons = StoryTemplate.bind({});
-PromoBannerWithButtons.args = {
+export const WithButtons = StoryTemplate.bind({});
+WithButtons.args = {
   header: 'This example headline has 40 characters',
   buttonText: 'Example',
   linkText: 'Example',
@@ -50,76 +61,22 @@ PromoBannerWithButtons.args = {
   },
 };
 
-export const PromoBannerWithImage = StoryTemplate.bind({});
-PromoBannerWithImage.args = {
+export const WithImage = StoryTemplate.bind({});
+WithImage.args = {
   header: 'This example headline has 40 characters',
   img: 'https://via.placeholder.com/100',
 };
 
-export const PromoBannerLight = StoryTemplate.bind({});
-PromoBannerLight.args = {
+export const WithClose = StoryTemplate.bind({});
+WithClose.args = {
+  header: 'This example headline has 40 characters',
+  onClose: () => {
+    alert('onClose click');
+  },
+};
+
+export const WithLight = StoryTemplate.bind({});
+WithLight.args = {
   header: 'This example headline has 40 characters',
   light: true,
-};
-
-export const PromoBannerWithClose = StoryTemplate.bind({});
-PromoBannerWithClose.args = {
-  header: 'This example headline has 40 characters',
-  onClose: () => {
-    alert('onClose click');
-  },
-};
-
-export const PromoBannerSmall = StoryTemplate.bind({});
-PromoBannerSmall.args = {
-  header: 'This example headline has 40 characters',
-  img: 'https://via.placeholder.com/100',
-  size: PromoBannerSize.Small,
-  buttonText: 'Example button',
-  linkText: 'Example link',
-  onClose: () => {
-    alert('onClose click');
-  },
-  onButtonClick: () => {
-    alert('onButtonClick click');
-  },
-  onLinkClick: () => {
-    alert('onLinkClick click');
-  },
-};
-
-export const PromoBannerMedium = StoryTemplate.bind({});
-PromoBannerMedium.args = {
-  header: 'This example headline has 40 characters',
-  img: 'https://via.placeholder.com/100',
-  size: PromoBannerSize.Medium,
-  buttonText: 'Example button',
-  linkText: 'Example link',
-  onClose: () => {
-    alert('onClose click');
-  },
-  onButtonClick: () => {
-    alert('onButtonClick click');
-  },
-  onLinkClick: () => {
-    alert('onLinkClick click');
-  },
-};
-
-export const PromoBannerLarge = StoryTemplate.bind({});
-PromoBannerLarge.args = {
-  header: 'This example headline has 40 characters',
-  img: 'https://via.placeholder.com/100',
-  size: PromoBannerSize.Large,
-  buttonText: 'Example button',
-  linkText: 'Example link',
-  onClose: () => {
-    alert('onClose click');
-  },
-  onButtonClick: () => {
-    alert('onButtonClick click');
-  },
-  onLinkClick: () => {
-    alert('onLinkClick click');
-  },
 };

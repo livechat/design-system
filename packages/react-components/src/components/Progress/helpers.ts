@@ -4,7 +4,7 @@ const clampPercentage = (percent: number): number =>
   Math.min(Math.max(percent, 0), 100);
 
 export function getPercentNumber(status: ProgressStatus, percent = 0): number {
-  if (status === ProgressStatus.Error) {
+  if (status === 'error') {
     return 0;
   }
 
@@ -16,8 +16,8 @@ export function getProgressStatus(
   percent: number
 ): ProgressStatus {
   if (!PROGRESS_STATUSES.includes(status) && percent >= 100) {
-    return ProgressStatus.Normal;
+    return 'normal';
   }
 
-  return status || ProgressStatus.Normal;
+  return status || 'normal';
 }

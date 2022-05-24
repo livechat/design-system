@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { render, fireEvent, vi } from 'test-utils';
-import { PromoBannerProps, PromoBanner, PromoBannerSize } from './PromoBanner';
+import { PromoBannerProps, PromoBanner } from './PromoBanner';
 
 import styles from './PromoBanner.module.scss';
 
@@ -54,32 +54,6 @@ describe('<PromoBanner> component', () => {
     });
 
     expect(container.firstChild).toHaveClass(styles['promo-banner--light']);
-  });
-
-  it('should display with small size by default', () => {
-    const { container } = renderComponent({
-      header: promoHeader,
-    });
-
-    expect(container.firstChild).toHaveClass(styles['promo-banner--small']);
-  });
-
-  it('should display with medium size', () => {
-    const { container } = renderComponent({
-      header: promoHeader,
-      size: PromoBannerSize.Medium,
-    });
-
-    expect(container.firstChild).toHaveClass(styles['promo-banner--medium']);
-  });
-
-  it('should display with large size', () => {
-    const { container } = renderComponent({
-      header: promoHeader,
-      size: PromoBannerSize.Large,
-    });
-
-    expect(container.firstChild).toHaveClass(styles['promo-banner--large']);
   });
 
   it('should call onClose function', () => {

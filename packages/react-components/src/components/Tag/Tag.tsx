@@ -4,7 +4,7 @@ import cx from 'clsx';
 import { getContrast } from 'polished';
 
 import { Text } from '../Typography';
-import { Icon, IconSizeName } from '../Icon';
+import { Icon } from '../Icon';
 
 import styles from './Tag.module.scss';
 
@@ -105,7 +105,7 @@ export const Tag: React.FC<TagProps> = ({
           data-testid="lc-tag-icon"
           className={styles[`${baseClass}__icon`]}
           source={icon}
-          size={IconSizeName.Small}
+          size="small"
           customColor={getIconCustomColor()}
         />
       )}
@@ -119,7 +119,7 @@ export const Tag: React.FC<TagProps> = ({
         >
           <Icon
             source={Close}
-            size={IconSizeName.Medium}
+            size="medium"
             customColor={getIconCustomColor()}
           />
         </button>

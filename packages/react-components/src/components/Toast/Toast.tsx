@@ -8,19 +8,18 @@ import {
   CheckCircleSolid,
   Error,
 } from '@livechat/design-system-icons/react/material';
-import { Icon, IconSizeName, IconTypeName } from '../Icon';
+import { Icon, IconKind, IconSource } from '../Icon';
 
 import styles from './Toast.module.scss';
 
 const baseClass = 'toast';
 
-export const enum Variants {
-  Success = 'success',
-  Warning = 'warning',
-  Error = 'error',
-  Info = 'info',
-  Notification = 'notification',
-}
+export type ToastKind =
+  | 'success'
+  | 'warning'
+  | 'error'
+  | 'info'
+  | 'notification';
 
 interface ToastAction {
   handler: () => void;
@@ -32,29 +31,29 @@ export interface ToastProps {
   action?: ToastAction;
   className?: string;
   removable?: boolean;
-  variant?: Variants;
+  kind?: ToastKind;
   onClose?: () => void;
 }
 
-const IconConfig = {
-  [Variants.Success]: {
+const IconConfig: Record<ToastKind, { source: IconSource; kind?: IconKind }> = {
+  success: {
     source: CheckCircleSolid,
-    iconType: IconTypeName.Inverted,
+    kind: 'inverted',
   },
-  [Variants.Warning]: {
+  warning: {
     source: Warning,
   },
-  [Variants.Error]: {
+  error: {
     source: Error,
-    iconType: IconTypeName.Inverted,
+    kind: 'inverted',
   },
-  [Variants.Info]: {
+  info: {
     source: Info,
-    iconType: IconTypeName.Inverted,
+    kind: 'inverted',
   },
-  [Variants.Notification]: {
+  notification: {
     source: Info,
-    iconType: IconTypeName.Link,
+    kind: 'link',
   },
 };
 
@@ -63,12 +62,12 @@ export const Toast: React.FC<ToastProps> = ({
   className,
   children,
   removable,
-  variant = Variants.Info,
+  kind = 'info',
   onClose,
 }) => {
   const mergedClassNames = cx(
     styles[baseClass],
-    styles[`${baseClass}--${variant}`],
+    styles[`${baseClass}--${kind}`],
     className
   );
 
@@ -84,7 +83,7 @@ export const Toast: React.FC<ToastProps> = ({
   return (
     <div className={mergedClassNames}>
       <div className={styles[`${baseClass}__icon`]}>
-        <Icon {...IconConfig[variant]} />
+        <Icon {...IconConfig[kind]} />
       </div>
       <div className={styles[`${baseClass}__content`]}>{children}</div>
       {(action || removable) && (
@@ -105,11 +104,11 @@ export const Toast: React.FC<ToastProps> = ({
             >
               <Icon
                 source={Close}
-                size={IconSizeName.Small}
-                iconType={
-                  [Variants.Warning, Variants.Notification].includes(variant)
-                    ? IconTypeName.Primary
-                    : IconTypeName.Inverted
+                size="small"
+                kind={
+                  ['warning', 'notification'].includes(kind)
+                    ? 'primary'
+                    : 'inverted'
                 }
               />
             </div>

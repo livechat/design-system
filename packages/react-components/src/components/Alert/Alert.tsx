@@ -7,48 +7,37 @@ import {
   Block as BlockIcon,
   CheckCircleSolid as CheckIcon,
 } from '@livechat/design-system-icons/react/material';
+import debounce from 'lodash.debounce';
 
 import { Text } from '../Typography';
-import { Icon, IconSizeName, IconTypeName } from '../Icon';
+import { Icon, IconSource, IconKind } from '../Icon';
 
 import styles from './Alert.module.scss';
 
-export enum AlertSize {
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
-}
-
-export enum AlertType {
-  Info = 'info',
-  Warning = 'warning',
-  Success = 'success',
-  Error = 'error',
-}
+type AlertKind = 'info' | 'warning' | 'success' | 'error';
 
 export interface AlertProps {
   className?: string;
-  size?: AlertSize;
-  type?: AlertType;
+  kind?: AlertKind;
   onClose?: () => void;
 }
 
-const IconConfig = {
-  [AlertType.Info]: {
+const IconConfig: Record<AlertKind, { source: IconSource; kind: IconKind }> = {
+  info: {
     source: InfoIcon,
-    iconType: IconTypeName.Link,
+    kind: 'link',
   },
-  [AlertType.Warning]: {
+  warning: {
     source: WarningIcon,
-    iconType: IconTypeName.Warning,
+    kind: 'warning',
   },
-  [AlertType.Success]: {
+  success: {
     source: CheckIcon,
-    iconType: IconTypeName.Success,
+    kind: 'success',
   },
-  [AlertType.Error]: {
+  error: {
     source: BlockIcon,
-    iconType: IconTypeName.Error,
+    kind: 'error',
   },
 };
 
@@ -57,22 +46,46 @@ const baseClass = 'alert';
 export const Alert: React.FC<AlertProps> = ({
   children,
   className,
-  size = AlertSize.Small,
-  type = AlertType.Info,
+  kind = 'info',
   onClose,
 }) => {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [isSmallContainer, setIsSmallContainer] = React.useState(false);
+
   const mergedClassNames = cx(
     styles[baseClass],
-    styles[`${baseClass}--${type}`],
-    styles[`${baseClass}--${size}`],
+    styles[`${baseClass}--${kind}`],
+    isSmallContainer && styles[`${baseClass}--small`],
     className
   );
 
+  React.useEffect(() => {
+    const handleResize = debounce(() => {
+      if (containerRef.current && containerRef.current.offsetWidth <= 400) {
+        return setIsSmallContainer(true);
+      }
+      return setIsSmallContainer(false);
+    }, 500);
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  });
+
   return (
-    <div className={mergedClassNames}>
+    <div ref={containerRef} className={mergedClassNames}>
       <div className={styles[`${baseClass}__content`]}>
-        <Icon {...IconConfig[type]} />
-        <Text as="div" className={styles[`${baseClass}__content-text`]}>
+        <Icon
+          {...IconConfig[kind]}
+          className={styles[`${baseClass}__content-icon`]}
+        />
+        <Text
+          as="div"
+          className={cx(
+            styles[`${baseClass}__content-text`],
+            onClose && styles[`${baseClass}__content-text--margin`]
+          )}
+        >
           {children}
         </Text>
       </div>
@@ -82,11 +95,7 @@ export const Alert: React.FC<AlertProps> = ({
           className={styles[`${baseClass}__close-icon`]}
           onClick={onClose}
         >
-          <Icon
-            source={CloseIcon}
-            size={IconSizeName.Large}
-            iconType={IconTypeName.Primary}
-          />
+          <Icon source={CloseIcon} size="large" kind="primary" />
         </button>
       )}
     </div>

@@ -5,7 +5,6 @@ import {
   ProgressBar as ProgressBarComponent,
   ProgressBarProps,
 } from './ProgressBar';
-import { ProgressSize, ProgressStatus } from './constants';
 
 export default {
   title: 'Components/Progress',
@@ -18,6 +17,6 @@ export const ProgressBar = (args: ProgressBarProps): React.ReactElement => {
 
 ProgressBar.args = {
   percent: 10,
-  status: ProgressStatus.Normal,
-  size: ProgressSize.Medium,
+  status: 'normal',
+  size: 'medium',
 };

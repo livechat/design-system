@@ -1,19 +1,18 @@
 import * as React from 'react';
 import cx from 'clsx';
 import { Close as CloseIcon } from '@livechat/design-system-icons/react/material';
+import debounce from 'lodash.debounce';
 
 import { Button } from '../Button';
-import { Icon, IconSizeName } from '../Icon';
+import { Icon } from '../Icon';
 
 import styles from './PromoBanner.module.scss';
 
-const baseClass = 'promo-banner';
+const SMALL_CONTAINER_WIDTH_TRESHOLD = 400;
+const LARGE_CONTAINER_WIDTH_TRESHOLD = 800;
+const RESIZE_DEBOUNCE_TRESHOLD = 500;
 
-export const enum PromoBannerSize {
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large',
-}
+const baseClass = 'promo-banner';
 
 export interface PromoBannerProps {
   className?: string;
@@ -22,7 +21,6 @@ export interface PromoBannerProps {
   img?: string;
   light?: boolean;
   linkText?: string;
-  size?: PromoBannerSize;
   onButtonClick?: () => void;
   onClose?: () => void;
   onLinkClick?: () => void;
@@ -36,23 +34,56 @@ export const PromoBanner: React.FC<PromoBannerProps> = ({
   img,
   light = false,
   linkText,
-  size = PromoBannerSize.Small,
   onButtonClick,
   onClose,
   onLinkClick,
 }) => {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [containerSize, setContainerSize] = React.useState<
+    'small' | 'medium' | 'large'
+  >('medium');
+
   const mergedClassNames = cx(
     styles[baseClass],
     {
       [styles[`${baseClass}--light`]]: light,
-      [styles[`${baseClass}--${size}`]]: size,
+      [styles[`${baseClass}--small`]]: containerSize === 'small',
+      [styles[`${baseClass}--large`]]: containerSize === 'large',
     },
     className
   );
 
-  const shouldRenderLargeFooter = (buttonText || linkText) && size === 'large';
-  const shouldRenderSmallOrMediumFooter =
-    (buttonText || linkText) && size !== 'large';
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (
+        containerRef.current &&
+        containerRef.current.offsetWidth <= SMALL_CONTAINER_WIDTH_TRESHOLD
+      ) {
+        return setContainerSize('small');
+      }
+
+      if (
+        containerRef.current &&
+        containerRef.current.offsetWidth >= LARGE_CONTAINER_WIDTH_TRESHOLD
+      ) {
+        return setContainerSize('large');
+      }
+
+      return setContainerSize('medium');
+    };
+
+    const debouncedHandleResize = debounce(
+      handleResize,
+      RESIZE_DEBOUNCE_TRESHOLD
+    );
+    window.addEventListener('resize', debouncedHandleResize);
+    handleResize();
+
+    return () => {
+      debouncedHandleResize.cancel();
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const footer = (
     <div className={styles[`${baseClass}__footer`]}>
@@ -75,15 +106,15 @@ export const PromoBanner: React.FC<PromoBannerProps> = ({
   );
 
   return (
-    <div className={mergedClassNames}>
+    <div ref={containerRef} className={mergedClassNames}>
       <div className={styles[`${baseClass}__content`]}>
         {img && <img src={img} className={styles[`${baseClass}__img`]} />}
         <div className={styles[`${baseClass}__wrapper`]}>
           <div className={styles[`${baseClass}__header`]}>{header}</div>
           <div>{children}</div>
-          {shouldRenderSmallOrMediumFooter && footer}
+          {containerSize !== 'large' && footer}
         </div>
-        {shouldRenderLargeFooter && footer}
+        {containerSize === 'large' && footer}
       </div>
       {onClose && (
         <button
@@ -91,7 +122,7 @@ export const PromoBanner: React.FC<PromoBannerProps> = ({
           className={styles[`${baseClass}__close-icon`]}
           onClick={onClose}
         >
-          <Icon source={CloseIcon} size={IconSizeName.Large} />
+          <Icon source={CloseIcon} size="large" />
         </button>
       )}
     </div>

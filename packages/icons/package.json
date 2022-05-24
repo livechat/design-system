@@ -1,27 +1,39 @@
 {
   "name": "@livechat/design-system-icons",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.11",
   "description": "",
   "publishConfig": {
     "access": "public"
   },
-  "types": "index.d.ts",
+  "types": "./index.d.ts",
+  "typings": "./index.d.ts",
   "scripts": {
-    "prebuild": "rimraf react",
-    "build": "svgr --replace-attr-values '#424D57=currentcolor' --typescript --no-dimensions -d ./react ./svg ",
-    "dev": "npm run build"
+    "prebuild": "rimraf react lib",
+    "build": "run-s build:lib build:js",
+    "build:lib": "svgr --replace-attr-values '#424D57=currentcolor' --typescript --no-dimensions -d ./lib/react ./svg ",
+    "build:js": "babel ./lib/react --out-dir react --extensions '.tsx,.ts'",
+    "build:ts": "rimraf react && svgr --replace-attr-values '#424D57=currentcolor' --typescript --no-dimensions -d ./react ./svg ",
+    "dev": "npm run build:ts"
   },
   "author": "",
   "files": [
     "react",
-    "svg"
+    "svg",
+    "lib",
+    "index.d.ts"
   ],
   "license": "ISC",
   "devDependencies": {
-    "@svgr/cli": "^5.5.0",
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.8",
+    "@babel/plugin-transform-modules-commonjs": "^7.17.9",
+    "@babel/plugin-transform-runtime": "^7.17.0",
+    "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
+    "@svgr/cli": "^6.2.1",
     "@types/react": "^17.0.40"
   },
   "peerDependencies": {
-    "react": "^17.0.2"
+    "react": ">= 16"
   }
 }

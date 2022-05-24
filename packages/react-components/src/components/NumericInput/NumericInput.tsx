@@ -4,7 +4,7 @@ import {
   ChevronUp,
   ChevronDown,
 } from '@livechat/design-system-icons/react/material';
-import { Icon, IconTypeName } from '../Icon';
+import { Icon } from '../Icon';
 import { KeyCodes } from '../../utils/keyCodes';
 
 import styles from './NumericInput.module.scss';
@@ -137,7 +137,7 @@ export const NumericInput: React.FC<NumericInputProps> = ({
             <Icon
               source={ChevronUp}
               disabled={disabled || hasReachedTheLimit(value, max)}
-              iconType={IconTypeName.Primary}
+              kind="primary"
             />
           </button>
           <button
@@ -150,7 +150,7 @@ export const NumericInput: React.FC<NumericInputProps> = ({
           >
             <Icon
               source={ChevronDown}
-              iconType={IconTypeName.Primary}
+              kind="primary"
               disabled={disabled || hasReachedTheLimit(value, min)}
             />
           </button>

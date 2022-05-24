@@ -2,12 +2,7 @@ import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import * as MaterialIcons from '@livechat/design-system-icons/react/material';
 
-import {
-  Icon as IconComponent,
-  IconSizeName,
-  IconTypeName,
-  IconProps,
-} from './Icon';
+import { Icon as IconComponent, IconProps } from './Icon';
 
 const iterator = Object.keys(MaterialIcons);
 
@@ -26,14 +21,14 @@ export default {
     size: {
       table: {
         defaultValue: {
-          summary: IconSizeName.Medium,
+          summary: 'medium',
         },
       },
     },
-    iconType: {
+    kind: {
       table: {
         defaultValue: {
-          summary: IconTypeName.Primary,
+          summary: 'primary',
         },
       },
     },
@@ -48,6 +43,7 @@ export const Icon = (args: IconProps): React.ReactElement => (
 
 Icon.args = {
   source: MaterialIcons.Email,
-  size: IconSizeName.Medium,
-  iconType: IconTypeName.Primary,
+  size: 'medium',
+  kind: 'primary',
+  disabled: false,
 };
