@@ -107,7 +107,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
 
     // Only call this when the floating element is rendered
     return autoUpdate(refs.reference.current, refs.floating.current, update);
-  }, [refs.reference, refs.floating, update, updatedPlacement]);
+  }, [refs.reference, refs.floating, update, updatedPlacement, visible]);
 
   const handleMouseLeave = () => {
     if (triggerOnClick || isManaged) return;
@@ -176,7 +176,11 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     >
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(child, { handleCloseClick, theme });
+          return React.cloneElement(child, {
+            handleCloseClick,
+            theme,
+            ...child.props,
+          });
         }
         return null;
       })}

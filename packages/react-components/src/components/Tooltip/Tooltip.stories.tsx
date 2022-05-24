@@ -302,7 +302,6 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
           parentElementName={`#${state.reference}`}
           zIndex={1000}
           shouldSlide={true}
-          onClose={() => dispatch({ type: 'isVisible' })}
         >
           {state.reference === 'reference1' ? (
             <UserGuideStep
