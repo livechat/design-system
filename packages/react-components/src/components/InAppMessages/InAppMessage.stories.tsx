@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentMeta, Story } from '@storybook/react';
+import { ComponentMeta } from '@storybook/react';
 
 import {
   InAppMessage as InAppMessageComponent,
@@ -7,6 +7,9 @@ import {
 } from './InAppMessage';
 import { Button } from '../Button';
 import { Text, Heading } from '../Typography';
+import { InAppMessageHeader } from './InAppMessageHeader';
+import { InAppMessageFooter } from './InAppMessageFooter';
+import { InAppMessageImage } from './InAppMessageImage';
 
 export default {
   title: 'components/InAppMessage',
@@ -40,9 +43,7 @@ export const DefaultInApp = (args: InAppMessageProps): React.ReactElement => {
 };
 DefaultInApp.args = {};
 
-export const InAppWithHeader = (
-  args: InAppMessageProps
-): React.ReactElement => {
+export const InAppWithHeader = (): React.ReactElement => {
   const [isInAppVisible, setIsInAppVisible] = React.useState<
     'avatar' | 'text' | 'all' | null
   >(null);
@@ -60,7 +61,15 @@ export const InAppWithHeader = (
       </div>
       {isInAppVisible === 'avatar' && (
         <InAppMessageComponent
-          header={{ avatar: args.header?.avatar }}
+          header={
+            <InAppMessageHeader
+              avatar={{
+                src: 'https://avatars2.githubusercontent.com/u/29309941?s=88&v=4',
+                alt: 'Agent',
+              }}
+              onCloseButtonClick={() => setIsInAppVisible(null)}
+            />
+          }
           onClose={() => setIsInAppVisible(null)}
         >
           <Text>Example content</Text>
@@ -68,7 +77,16 @@ export const InAppWithHeader = (
       )}
       {isInAppVisible === 'text' && (
         <InAppMessageComponent
-          header={{ text: args.header?.text }}
+          header={
+            <InAppMessageHeader
+              text={
+                <React.Fragment>
+                  <strong>Michał</strong> from LiveChat
+                </React.Fragment>
+              }
+              onCloseButtonClick={() => setIsInAppVisible(null)}
+            />
+          }
           onClose={() => setIsInAppVisible(null)}
         >
           <Text>Example content</Text>
@@ -76,7 +94,20 @@ export const InAppWithHeader = (
       )}
       {isInAppVisible === 'all' && (
         <InAppMessageComponent
-          {...args}
+          header={
+            <InAppMessageHeader
+              avatar={{
+                src: 'https://avatars2.githubusercontent.com/u/29309941?s=88&v=4',
+                alt: 'Agent',
+              }}
+              text={
+                <React.Fragment>
+                  <strong>Michał</strong> from LiveChat
+                </React.Fragment>
+              }
+              onCloseButtonClick={() => setIsInAppVisible(null)}
+            />
+          }
           onClose={() => setIsInAppVisible(null)}
         >
           <Text>Example content</Text>
@@ -85,23 +116,8 @@ export const InAppWithHeader = (
     </div>
   );
 };
-InAppWithHeader.args = {
-  header: {
-    avatar: {
-      src: 'https://avatars2.githubusercontent.com/u/29309941?s=88&v=4',
-      alt: 'Agent',
-    },
-    text: (
-      <React.Fragment>
-        <strong>Michał</strong> from LiveChat
-      </React.Fragment>
-    ),
-  },
-};
 
-export const InAppWithButtons = (
-  args: InAppMessageProps
-): React.ReactElement => {
+export const InAppWithButtons = (): React.ReactElement => {
   const [isInAppVisible, setIsInAppVisible] = React.useState<
     'single' | 'all' | null
   >(null);
@@ -118,12 +134,14 @@ export const InAppWithButtons = (
       </div>
       {isInAppVisible === 'single' && (
         <InAppMessageComponent
-          footer={{
-            primary: {
-              children: 'Check it out!',
-              onClick: () => setIsInAppVisible(null),
-            },
-          }}
+          footer={
+            <InAppMessageFooter
+              primary={{
+                children: 'Check it out!',
+                onClick: () => setIsInAppVisible(null),
+              }}
+            />
+          }
           onClose={() => setIsInAppVisible(null)}
         >
           <Text>Example content</Text>
@@ -131,16 +149,18 @@ export const InAppWithButtons = (
       )}
       {isInAppVisible === 'all' && (
         <InAppMessageComponent
-          footer={{
-            primary: {
-              children: 'Check it out!',
-              onClick: () => setIsInAppVisible(null),
-            },
-            secondary: {
-              children: 'Remind me later!',
-              onClick: () => setIsInAppVisible(null),
-            },
-          }}
+          footer={
+            <InAppMessageFooter
+              primary={{
+                children: 'Check it out!',
+                onClick: () => setIsInAppVisible(null),
+              }}
+              secondary={{
+                children: 'Remind me later!',
+                onClick: () => setIsInAppVisible(null),
+              }}
+            />
+          }
           onClose={() => setIsInAppVisible(null)}
         >
           <Text>Example content</Text>
@@ -149,9 +169,8 @@ export const InAppWithButtons = (
     </div>
   );
 };
-InAppWithButtons.args = {};
 
-export const InAppWithImage = (args: InAppMessageProps): React.ReactElement => {
+export const InAppWithImage = (): React.ReactElement => {
   const [isInAppVisible, setIsInAppVisible] = React.useState(false);
 
   return (
@@ -159,7 +178,12 @@ export const InAppWithImage = (args: InAppMessageProps): React.ReactElement => {
       <Button onClick={() => setIsInAppVisible(true)}>Open InApp</Button>
       {isInAppVisible && (
         <InAppMessageComponent
-          {...args}
+          image={
+            <InAppMessageImage
+              src="https://cdn.livechat-static.com/api/file/v2/lc/att-old/8656216/fe28d6850106f65c9207f3dcea091099/product-cards-shopify-preview.gif"
+              alt="InAppMessage"
+            />
+          }
           onClose={() => setIsInAppVisible(false)}
         >
           <Text>Example content</Text>
@@ -168,16 +192,8 @@ export const InAppWithImage = (args: InAppMessageProps): React.ReactElement => {
     </div>
   );
 };
-InAppWithImage.args = {
-  image: {
-    src: 'https://cdn.livechat-static.com/api/file/v2/lc/att-old/8656216/fe28d6850106f65c9207f3dcea091099/product-cards-shopify-preview.gif',
-    alt: 'InAppMessage',
-  },
-};
 
-export const InAppWithEverything = (
-  args: InAppMessageProps
-): React.ReactElement => {
+export const InAppWithEverything = (): React.ReactElement => {
   const [isInAppVisible, setIsInAppVisible] = React.useState(false);
 
   return (
@@ -185,17 +201,38 @@ export const InAppWithEverything = (
       <Button onClick={() => setIsInAppVisible(true)}>Open InApp</Button>
       {isInAppVisible && (
         <InAppMessageComponent
-          {...args}
-          footer={{
-            primary: {
-              children: 'Check it out!',
-              onClick: () => setIsInAppVisible(false),
-            },
-            secondary: {
-              children: 'Remind me later!',
-              onClick: () => setIsInAppVisible(false),
-            },
-          }}
+          header={
+            <InAppMessageHeader
+              avatar={{
+                src: 'https://avatars2.githubusercontent.com/u/29309941?s=88&v=4',
+                alt: 'Agent',
+              }}
+              text={
+                <React.Fragment>
+                  <strong>Michał</strong> from LiveChat
+                </React.Fragment>
+              }
+              onCloseButtonClick={() => setIsInAppVisible(null)}
+            />
+          }
+          image={
+            <InAppMessageImage
+              src="https://cdn.livechat-static.com/api/file/v2/lc/att-old/8656216/fe28d6850106f65c9207f3dcea091099/product-cards-shopify-preview.gif"
+              alt="InAppMessage"
+            />
+          }
+          footer={
+            <InAppMessageFooter
+              primary={{
+                children: 'Check it out!',
+                onClick: () => setIsInAppVisible(false),
+              }}
+              secondary={{
+                children: 'Remind me later!',
+                onClick: () => setIsInAppVisible(false),
+              }}
+            />
+          }
           onClose={() => setIsInAppVisible(false)}
         >
           <Heading as="h2" size="lg">
@@ -210,21 +247,4 @@ export const InAppWithEverything = (
       )}
     </div>
   );
-};
-InAppWithEverything.args = {
-  image: {
-    src: 'https://cdn.livechat-static.com/api/file/v2/lc/att-old/8656216/fe28d6850106f65c9207f3dcea091099/product-cards-shopify-preview.gif',
-    alt: 'InAppMessage',
-  },
-  header: {
-    avatar: {
-      src: 'https://avatars2.githubusercontent.com/u/29309941?s=88&v=4',
-      alt: 'Agent',
-    },
-    text: (
-      <React.Fragment>
-        <strong>Michał</strong> from LiveChat
-      </React.Fragment>
-    ),
-  },
 };
