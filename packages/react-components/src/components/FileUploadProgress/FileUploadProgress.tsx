@@ -22,8 +22,8 @@ export interface FileUploadProgressProps {
   percent: number;
   size?: ProgressSize;
   status?: ProgressStatus;
-  onCloseButtonClick: () => void;
-  onRetryButtonClick: () => void;
+  onCloseButtonClick?: () => void;
+  onRetryButtonClick?: () => void;
 }
 
 export const FileUploadProgress: React.ExoticComponent<
@@ -43,10 +43,8 @@ export const FileUploadProgress: React.ExoticComponent<
     },
     ref
   ) => {
-    const mergedClassNames = cx(styles[baseClass]);
-
     return (
-      <div className={mergedClassNames} ref={ref}>
+      <div className={styles[baseClass]} ref={ref}>
         {icon && status !== 'success' && (
           <div className={styles[`${baseClass}__icon`]}>{icon}</div>
         )}
@@ -55,13 +53,19 @@ export const FileUploadProgress: React.ExoticComponent<
             <Icon source={CheckIcon} kind="success" />
           </div>
         )}
-        <div className={styles[`${baseClass}__wrapper`]}>
+        <div
+          className={cx(styles[`${baseClass}__wrapper`], {
+            [styles[`${baseClass}__wrapper--with-icon`]]: icon,
+          })}
+        >
           <div className={styles[`${baseClass}__wrapper__header`]}>
             {title && (
               <div
                 className={cx(styles[wrapperHeaderTitleClass], {
                   [styles[`${wrapperHeaderTitleClass}--success`]]:
                     status === 'success',
+                  [styles[`${wrapperHeaderTitleClass}--error`]]:
+                    status === 'error',
                 })}
               >
                 {title}

@@ -13,8 +13,8 @@ const baseClass = 'file-upload-progress-actions';
 
 interface FileUploadProgressActionsProps {
   status: ProgressStatus;
-  onCloseButtonClick: () => void;
-  onRetryButtonClick: () => void;
+  onCloseButtonClick?: () => void;
+  onRetryButtonClick?: () => void;
 }
 
 export const FileUploadProgressActions: React.FC<FileUploadProgressActionsProps> =

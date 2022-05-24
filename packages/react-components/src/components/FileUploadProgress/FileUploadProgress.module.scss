@@ -17,9 +17,12 @@ $base-class: 'file-upload-progress';
     flex-direction: column;
     width: 100%;
 
+    &--with-icon {
+      width: calc(100% - 28px);
+    }
+
     &__header {
       display: flex;
-      height: 22px;
       justify-content: space-between;
 
       &__title {
@@ -36,6 +39,10 @@ $base-class: 'file-upload-progress';
         &--success {
           line-height: normal;
           margin-bottom: 0;
+        }
+
+        &--error {
+          color: var(--color-negative-default);
         }
       }
 

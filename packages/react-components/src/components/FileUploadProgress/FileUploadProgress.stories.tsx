@@ -27,7 +27,7 @@ const PdfIcon: React.FC = () => (
 );
 
 export default {
-  title: 'Components/FileUploadProgress',
+  title: 'Components/Progress/FileUploadProgress',
   component: FileUploadProgressComponent,
   parameters: {
     componentSubtitle: `TBD`,
