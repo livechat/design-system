@@ -81,10 +81,7 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
   }, [parentElement]);
 
   return parentElement && isVisible ? (
-    <ModalPortal
-      parentElementName={props.parentElementName}
-      zIndex={props.zIndex}
-    >
+    <div>
       <SpotlightOverlay
         gap={rect}
         isVisible={isVisible}
@@ -108,6 +105,6 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
       >
         {props.children}
       </Tooltip>
-    </ModalPortal>
+    </div>
   ) : null;
 };

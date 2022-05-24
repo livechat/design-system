@@ -121,12 +121,16 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
 
   const handleOpen = () => {
     if (onOpen) onOpen();
-    setVisibility(true);
+    if (!isManaged) {
+      setVisibility(true);
+    }
   };
 
   const handleClose = () => {
     if (onClose) onClose();
-    setVisibility(false);
+    if (!isManaged) {
+      setVisibility(false);
+    }
   };
 
   const handleMouseEnter = () => {
