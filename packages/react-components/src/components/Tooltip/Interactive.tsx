@@ -18,14 +18,14 @@ export const Interactive: React.FC<{
   theme?: 'invert' | 'important';
   handleClickPrimary: () => void;
   handleClickSecondary: () => void;
-  handleCloseClick?: () => void;
+  handleCloseAction?: (ev: React.MouseEvent) => void;
 }> = ({
   header,
   text,
   image,
   closeWithX,
   theme,
-  handleCloseClick,
+  handleCloseAction,
   handleClickPrimary,
   handleClickSecondary,
 }) => {
@@ -37,7 +37,7 @@ export const Interactive: React.FC<{
       >
         {closeWithX && (
           <div className={styles[`${baseClass}-close`]}>
-            <div onClick={handleCloseClick}>
+            <div onClick={handleCloseAction}>
               <Icon
                 source={Close}
                 kind={theme ? getIconType(theme) : 'primary'}

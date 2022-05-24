@@ -312,7 +312,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
               }}
               text="Tooltip content is used to explain the details of elements or features."
               handleClickPrimary={() => dispatch({ type: 'reference2' })}
-              handleCloseClick={() => dispatch({ type: 'isVisible' })}
+              handleCloseAction={() => dispatch({ type: 'isVisible' })}
               currentStep={1}
               stepMax={3}
               closeWithX
@@ -328,7 +328,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
               }}
               text="Tooltip content is used to explain the details of elements or features."
               handleClickPrimary={() => dispatch({ type: 'reference3' })}
-              handleCloseClick={() => dispatch({ type: 'isVisible' })}
+              handleCloseAction={() => dispatch({ type: 'isVisible' })}
               currentStep={2}
               stepMax={3}
               closeWithX
@@ -344,7 +344,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
               }}
               text="Tooltip content is used to explain the details of elements or features."
               handleClickPrimary={() => dispatch({ type: 'isVisible' })}
-              handleCloseClick={() => {
+              handleCloseAction={() => {
                 dispatch({ type: 'isVisible' });
               }}
               currentStep={3}

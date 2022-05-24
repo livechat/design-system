@@ -11,14 +11,14 @@ export const Info: React.FC<{
   text: string;
   closeWithX?: boolean;
   theme?: string;
-  handleCloseClick?: () => void;
-}> = ({ header, text, closeWithX, theme, handleCloseClick }) => {
+  handleCloseAction?: (ev: React.MouseEvent) => void;
+}> = ({ header, text, closeWithX, theme, handleCloseAction }) => {
   return (
     <div style={{ position: 'relative' }}>
       {closeWithX && (
         <div
           className={styles[`${baseClass}-close`]}
-          onClick={handleCloseClick}
+          onClick={handleCloseAction}
         >
           <Icon
             source={Close}

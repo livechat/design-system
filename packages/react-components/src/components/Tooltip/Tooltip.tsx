@@ -94,9 +94,9 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   }, [isVisible]);
 
   React.useEffect(() => {
-    document.addEventListener('keydown', handleHideOnEscape);
+    document.addEventListener('keydown', handleCloseAction);
     return () => {
-      document.removeEventListener('keydown', handleHideOnEscape);
+      document.removeEventListener('keydown', handleCloseAction);
     };
   }, []);
 
@@ -135,8 +135,12 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     setVisibility(true);
   };
 
-  const handleHideOnEscape = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') {
+  const handleCloseAction = (event: KeyboardEvent | MouseEvent) => {
+    if (event instanceof KeyboardEvent && event.key === 'Escape') {
+      handleClose();
+    }
+
+    if (event.type === 'click') {
       handleClose();
     }
   };
@@ -148,10 +152,6 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     } else {
       handleOpen();
     }
-  };
-
-  const handleCloseClick = () => {
-    handleClose();
   };
 
   const top = arrowOffsetY && arrowY ? arrowY + arrowOffsetY : arrowY;
@@ -177,7 +177,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
           return React.cloneElement(child, {
-            handleCloseClick,
+            handleCloseAction,
             theme,
             ...child.props,
           });

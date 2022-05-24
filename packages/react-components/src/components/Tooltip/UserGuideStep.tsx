@@ -19,7 +19,7 @@ export const UserGuideStep: React.FC<{
   closeWithX?: boolean;
   theme?: string;
   handleClickPrimary: () => void;
-  handleCloseClick?: () => void;
+  handleCloseAction?: (ev: KeyboardEvent | React.MouseEvent) => void;
 }> = ({
   header,
   text,
@@ -28,9 +28,19 @@ export const UserGuideStep: React.FC<{
   stepMax,
   closeWithX,
   theme,
-  handleCloseClick,
+  handleCloseAction,
   handleClickPrimary,
 }) => {
+  React.useEffect(() => {
+    if (handleCloseAction) {
+      document.addEventListener('keydown', handleCloseAction);
+
+      return () => {
+        document.removeEventListener('keydown', handleCloseAction);
+      };
+    }
+  }, []);
+
   return (
     <div style={{ width: '270px' }}>
       <div
@@ -38,7 +48,7 @@ export const UserGuideStep: React.FC<{
       >
         {closeWithX && (
           <div className={styles[`${baseClass}-close`]}>
-            <div onClick={handleCloseClick}>
+            <div onClick={handleCloseAction}>
               <Icon
                 source={Close}
                 kind={theme ? getIconType(theme) : 'primary'}
