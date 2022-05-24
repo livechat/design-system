@@ -4,7 +4,7 @@ import {
   Search as SearchIcon,
   Close,
 } from '@livechat/design-system-icons/react/material';
-import { Icon, IconTypeName } from '../Icon';
+import { Icon } from '../Icon';
 import { Loader } from '../Loader';
 
 import styles from './Search.module.scss';
@@ -20,7 +20,6 @@ export const enum SearchSize {
 }
 
 export interface ISearchProps {
-  isControlledSubmit?: boolean;
   isCollapsable?: boolean;
   isDisabled?: boolean;
   isLoading?: boolean;
@@ -31,7 +30,6 @@ export interface ISearchProps {
 }
 
 export const Search: React.FC<ISearchProps> = ({
-  isControlledSubmit,
   isCollapsable,
   isDisabled,
   isLoading,
@@ -52,31 +50,42 @@ export const Search: React.FC<ISearchProps> = ({
     !isCollapsed && styles[`${inputBaseClass}--collapsable--open`]
   );
 
+  React.useEffect(() => {
+    if (typeof value === 'string') {
+      setSearchValue(value);
+    }
+  }, [value]);
+
   const handleOnChange = (e: React.FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
 
     setSearchValue(value);
-    return !isControlledSubmit && onChange(value);
+    onChange(value);
   };
 
   const handleOnClear = () => {
     setSearchValue('');
-    return onChange('');
+    onChange('');
   };
 
   const handleOnClick = () => {
-    if (!isCollapsable) {
-      return;
-    }
-
     inputRef.current?.focus();
-    return setIsCollapsed(false);
+  };
+  const handleOnFocus = () => {
+    if (isCollapsable) {
+      setIsCollapsed(false);
+    }
+  };
+  const handleOnBlur = () => {
+    if (isCollapsable && !searchValue) {
+      setIsCollapsed(true);
+    }
   };
 
   const handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (isControlledSubmit && e.key === KeyCodes.enter) {
+    if (e.key === KeyCodes.enter) {
       e.preventDefault();
-      return onChange(searchValue);
+      onChange(searchValue);
     }
   };
 
@@ -90,7 +99,7 @@ export const Search: React.FC<ISearchProps> = ({
         className={styles[`${baseClass}__search-icon`]}
         source={SearchIcon}
         disabled={isDisabled || isLoading}
-        iconType={IconTypeName.Primary}
+        kind="primary"
       />
       <input
         ref={inputRef}
@@ -99,6 +108,8 @@ export const Search: React.FC<ISearchProps> = ({
         value={searchValue}
         placeholder={placeholder}
         onChange={handleOnChange}
+        onBlur={handleOnBlur}
+        onFocus={handleOnFocus}
         onKeyDown={handleOnKeyDown}
         disabled={isDisabled || isLoading}
       />

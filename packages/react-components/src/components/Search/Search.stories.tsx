@@ -72,8 +72,3 @@ export const WithCustomPlaceholder = StoryTemplate.bind({});
 WithCustomPlaceholder.args = {
   placeholder: 'Custom placeholder',
 };
-
-export const WithControlledSubmit = StoryTemplate.bind({});
-WithControlledSubmit.args = {
-  isControlledSubmit: true,
-};

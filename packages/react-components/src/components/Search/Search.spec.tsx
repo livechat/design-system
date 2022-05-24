@@ -125,19 +125,4 @@ describe('<Search> component', () => {
     fireEvent.click(getByTestId(`${baseClass}-clear-icon`));
     expect(getByRole('textbox')).toHaveTextContent('');
   });
-
-  it('should call onChange in controlled submit if enter key is pressed', () => {
-    const onChangeFunction = vi.fn();
-    const { getByRole } = renderComponent({
-      ...defaultProps,
-      isControlledSubmit: true,
-      onChange: onChangeFunction,
-    });
-    const input = getByRole('textbox');
-
-    fireEvent.change(input, { target: { value: 'test' } });
-    expect(onChangeFunction).not.toBeCalled();
-    fireEvent.keyDown(input, { key: 'Enter', charCode: 13 });
-    expect(onChangeFunction).toBeCalledWith('test');
-  });
 });
