@@ -24,7 +24,12 @@ interface IUserGuide
     Omit<ModalPortalProps, 'children'> {}
 
 export const UserGuide: React.FC<IUserGuide> = (props) => {
-  const { className, parentElementName, shouldSlide = true } = props;
+  const {
+    className,
+    parentElementName,
+    isVisible = false,
+    shouldSlide = true,
+  } = props;
 
   const [parentElement, setParentElement] = React.useState<Element | null>(
     null
@@ -58,8 +63,10 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
   }, [parentElement, parentElementName]);
 
   React.useEffect(() => {
-    const element = document.querySelector(parentElementName);
-    setParentElement(element);
+    if (parentElementName) {
+      const element = document.querySelector(parentElementName);
+      setParentElement(element);
+    }
   }, [parentElementName]);
 
   React.useEffect(() => {
@@ -73,15 +80,14 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
     setIsSliding(true);
   }, [parentElement]);
 
-  return parentElement ? (
+  return parentElement && isVisible ? (
     <ModalPortal
       parentElementName={props.parentElementName}
       zIndex={props.zIndex}
-      style={{ height: '100px' }}
     >
       <SpotlightOverlay
         gap={rect}
-        isVisible={true}
+        isVisible={isVisible}
         slide={isSliding}
         disablePointerEvents={true}
       />

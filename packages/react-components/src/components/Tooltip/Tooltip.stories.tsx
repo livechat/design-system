@@ -34,6 +34,8 @@ const tooltipPlacements = [
   'top-start',
 ];
 
+const isVisibleOptions = [true, false, undefined];
+
 const tooltipThemes = ['invert', 'important', 'default'];
 
 export const Tooltip = (args: any): React.ReactElement => (
@@ -217,19 +219,25 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
   const reducer = (state, action) => {
     if (action.type === 'reference1') {
       return {
+        ...state,
         reference: 'reference1',
-        isVisible: !state.isVisible,
       };
     }
     if (action.type === 'reference2') {
       return {
+        ...state,
         reference: 'reference2',
-        isVisible: !state.isVisible,
       };
     }
     if (action.type === 'reference3') {
       return {
+        ...state,
         reference: 'reference3',
+      };
+    }
+    if (action.type === 'isVisible') {
+      return {
+        reference: 'reference1',
         isVisible: !state.isVisible,
       };
     }
@@ -238,103 +246,115 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
 
   const [state, dispatch] = React.useReducer(reducer, {
     reference: 'reference1',
+    isVisible: false,
   });
 
   return (
-    <div
-      style={{
-        width: '500px',
-        height: '600px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      }}
-    >
+    <div>
+      <Button onClick={() => dispatch({ type: 'isVisible' })}>
+        {state.isVisible ? 'Hide' : 'Show'}
+      </Button>
       <div
-        onClick={() => dispatch({ type: 'reference1' })}
-        id="reference1"
         style={{
-          display: 'block',
-          backgroundColor: 'red',
-          height: '50px',
-          width: '100px',
+          width: '500px',
+          height: '600px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
         }}
-      ></div>
-      <div
-        onClick={() => dispatch({ type: 'reference2' })}
-        id="reference2"
-        style={{
-          display: 'block',
-          backgroundColor: 'red',
-          height: '50px',
-          width: '100px',
-          alignSelf: 'flex-start',
-        }}
-      ></div>
-
-      <div
-        onClick={() => dispatch({ type: 'reference3' })}
-        id="reference3"
-        style={{
-          display: 'block',
-          backgroundColor: 'red',
-          height: '50px',
-          width: '100px',
-        }}
-      ></div>
-
-      <TooltipUserGuideComponent
-        {...props}
-        isVisible={true}
-        parentElementName={`#${state.reference}`}
-        zIndex={1000}
-        shouldSlide={true}
       >
-        {state.reference === 'reference1' ? (
-          <UserGuideStep
-            header="Header - concise and clear"
-            image={{
-              src: beutifulImage,
-              alt: 'image',
-            }}
-            text="Tooltip content is used to explain the details of elements or features."
-            handleClickPrimary={() => dispatch({ type: 'reference2' })}
-            currentStep={1}
-            stepMax={3}
-            closeWithX
-          />
-        ) : null}
+        <div
+          onClick={() => dispatch({ type: 'reference1' })}
+          id="reference1"
+          style={{
+            display: 'block',
+            backgroundColor: 'red',
+            height: '50px',
+            width: '100px',
+          }}
+        ></div>
+        <div
+          onClick={() => dispatch({ type: 'reference2' })}
+          id="reference2"
+          style={{
+            display: 'block',
+            backgroundColor: 'red',
+            height: '50px',
+            width: '100px',
+            alignSelf: 'flex-start',
+          }}
+        ></div>
 
-        {state.reference === 'reference2' ? (
-          <UserGuideStep
-            header="Header - concise and clear"
-            image={{
-              src: beutifulImage,
-              alt: 'image',
-            }}
-            text="Tooltip content is used to explain the details of elements or features."
-            handleClickPrimary={() => dispatch({ type: 'reference3' })}
-            currentStep={2}
-            stepMax={3}
-            closeWithX
-          />
-        ) : null}
+        <div
+          onClick={() => dispatch({ type: 'reference3' })}
+          id="reference3"
+          style={{
+            display: 'block',
+            backgroundColor: 'red',
+            height: '50px',
+            width: '100px',
+          }}
+        ></div>
 
-        {state.reference === 'reference3' ? (
-          <UserGuideStep
-            header="Header - concise and clear"
-            image={{
-              src: beutifulImage,
-              alt: 'image',
-            }}
-            text="Tooltip content is used to explain the details of elements or features."
-            handleClickPrimary={() => dispatch({ type: 'reference1' })}
-            currentStep={3}
-            stepMax={3}
-            closeWithX
-          />
-        ) : null}
-      </TooltipUserGuideComponent>
+        <TooltipUserGuideComponent
+          {...props}
+          isVisible={state.isVisible}
+          parentElementName={`#${state.reference}`}
+          zIndex={1000}
+          shouldSlide={true}
+          onClose={() => dispatch({ type: 'isVisible' })}
+        >
+          {state.reference === 'reference1' ? (
+            <UserGuideStep
+              header="Header - concise and clear"
+              image={{
+                src: beutifulImage,
+                alt: 'image',
+              }}
+              text="Tooltip content is used to explain the details of elements or features."
+              handleClickPrimary={() => dispatch({ type: 'reference2' })}
+              handleCloseClick={() => dispatch({ type: 'isVisible' })}
+              currentStep={1}
+              stepMax={3}
+              closeWithX
+            />
+          ) : null}
+
+          {state.reference === 'reference2' ? (
+            <UserGuideStep
+              header="Header - concise and clear"
+              image={{
+                src: beutifulImage,
+                alt: 'image',
+              }}
+              text="Tooltip content is used to explain the details of elements or features."
+              handleClickPrimary={() => dispatch({ type: 'reference3' })}
+              handleCloseClick={() => dispatch({ type: 'isVisible' })}
+              currentStep={2}
+              stepMax={3}
+              closeWithX
+            />
+          ) : null}
+
+          {state.reference === 'reference3' ? (
+            <UserGuideStep
+              header="Header - concise and clear"
+              image={{
+                src: beutifulImage,
+                alt: 'image',
+              }}
+              text="Tooltip content is used to explain the details of elements or features."
+              handleClickPrimary={() => dispatch({ type: 'isVisible' })}
+              handleCloseClick={() => {
+                dispatch({ type: 'isVisible' });
+              }}
+              currentStep={3}
+              stepMax={3}
+              closeWithX
+            />
+          ) : null}
+        </TooltipUserGuideComponent>
+      </div>
     </div>
   );
 };
@@ -389,6 +409,13 @@ export default {
       control: {
         type: 'select',
         labels: 'Theme',
+      },
+    },
+    isVisible: {
+      options: isVisibleOptions,
+      control: {
+        type: 'select',
+        labels: 'Visibility',
       },
     },
   },

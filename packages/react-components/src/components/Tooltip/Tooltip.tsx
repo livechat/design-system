@@ -61,7 +61,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     onClose,
   } = props;
 
-  const isManaged = typeof isVisible === 'boolean';
+  const isManaged = isVisible !== undefined;
   const arrowRef = React.useRef<HTMLDivElement | null>(null);
   const [visible, setVisibility] = React.useState(isVisible);
   const isHovered = React.useRef(false);
@@ -150,8 +150,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     }
   };
 
-  const handleCloseOnClick = () => {
-    if (isManaged) return;
+  const handleCloseClick = () => {
     handleClose();
   };
 
@@ -177,7 +176,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     >
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
-          return React.cloneElement(child, { handleCloseOnClick, theme });
+          return React.cloneElement(child, { handleCloseClick, theme });
         }
         return null;
       })}

@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom';
 export interface ModalPortalProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   zIndex: number;
-  parentElementName: string;
+  parentElementName?: string;
 }
 
 export const ModalPortal: React.FC<ModalPortalProps> = ({
