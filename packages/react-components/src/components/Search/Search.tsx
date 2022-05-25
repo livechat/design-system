@@ -19,7 +19,7 @@ export const enum SearchSize {
   Large = 'large',
 }
 
-export interface ISearchProps {
+export interface ISearchInputProps {
   isCollapsable?: boolean;
   isDisabled?: boolean;
   isLoading?: boolean;
@@ -29,7 +29,7 @@ export interface ISearchProps {
   onChange: (value: string) => void;
 }
 
-export const Search: React.FC<ISearchProps> = ({
+export const SearchInput: React.FC<ISearchInputProps> = ({
   isCollapsable,
   isDisabled,
   isLoading,
@@ -41,6 +41,7 @@ export const Search: React.FC<ISearchProps> = ({
   const [searchValue, setSearchValue] = React.useState<string>(value || '');
   const [isCollapsed, setIsCollapsed] = React.useState<boolean>(true);
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const isCloseIconVisible = !!searchValue && !isDisabled && !isLoading;
 
   const mergedClassNames = cx(
     styles[`${inputBaseClass}`],
@@ -63,26 +64,26 @@ export const Search: React.FC<ISearchProps> = ({
     onChange(value);
   };
 
-  const handleOnClear = () => {
+  const handleClear = () => {
     setSearchValue('');
     onChange('');
   };
 
-  const handleOnClick = () => {
+  const handleClick = () => {
     inputRef.current?.focus();
   };
-  const handleOnFocus = () => {
+  const handleFocus = () => {
     if (isCollapsable) {
       setIsCollapsed(false);
     }
   };
-  const handleOnBlur = () => {
+  const handleBlur = () => {
     if (isCollapsable && !searchValue) {
       setIsCollapsed(true);
     }
   };
 
-  const handleOnKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === KeyCodes.enter) {
       e.preventDefault();
       onChange(searchValue);
@@ -93,7 +94,7 @@ export const Search: React.FC<ISearchProps> = ({
     <div
       data-testid={`${baseClass}-container`}
       className={styles[baseClass]}
-      onClick={handleOnClick}
+      onClick={handleClick}
     >
       <Icon
         className={styles[`${baseClass}__search-icon`]}
@@ -108,16 +109,16 @@ export const Search: React.FC<ISearchProps> = ({
         value={searchValue}
         placeholder={placeholder}
         onChange={handleOnChange}
-        onBlur={handleOnBlur}
-        onFocus={handleOnFocus}
-        onKeyDown={handleOnKeyDown}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
+        onKeyDown={handleKeyDown}
         disabled={isDisabled || isLoading}
       />
-      {!!searchValue && !isDisabled && !isLoading && (
+      {isCloseIconVisible && (
         <div
           className={styles[`${baseClass}__clear-icon`]}
           data-testid={`${baseClass}-clear-icon`}
-          onClick={handleOnClear}
+          onClick={handleClear}
         >
           <Icon source={Close} />
         </div>

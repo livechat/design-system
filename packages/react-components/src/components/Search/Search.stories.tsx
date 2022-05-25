@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
 
-import { Search as SearchComponent, ISearchProps, SearchSize } from './Search';
+import {
+  SearchInput as SearchComponent,
+  ISearchInputProps,
+  SearchSize,
+} from './Search';
 
 export default {
   title: 'Components/Search',
@@ -12,7 +16,7 @@ export default {
 const containerStyles = { width: 300, marginBottom: 15 };
 const textStyles = { marginBottom: 5, fontSize: 15 };
 
-const StoryTemplate: Story<ISearchProps> = (args: ISearchProps) => (
+const StoryTemplate: Story<ISearchInputProps> = (args: ISearchInputProps) => (
   <div style={{ width: 300 }}>
     <SearchComponent {...args} />
   </div>
@@ -21,7 +25,7 @@ const StoryTemplate: Story<ISearchProps> = (args: ISearchProps) => (
 export const Search = StoryTemplate.bind({});
 Search.args = {};
 
-export const States = (args: ISearchProps): React.ReactElement => (
+export const States = (args: ISearchInputProps): React.ReactElement => (
   <div>
     <div style={containerStyles}>
       <div style={textStyles}>Basic</div>
@@ -44,7 +48,7 @@ export const States = (args: ISearchProps): React.ReactElement => (
 
 States.args = {};
 
-export const Sizes = (args: ISearchProps): React.ReactElement => (
+export const Sizes = (args: ISearchInputProps): React.ReactElement => (
   <div>
     <div style={containerStyles}>
       <div style={textStyles}>Compact</div>

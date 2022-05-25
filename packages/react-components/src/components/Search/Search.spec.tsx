@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { render, fireEvent, vi } from 'test-utils';
 import noop from '../../utils/noop';
-import { ISearchProps, Search, SearchSize } from './Search';
+import { ISearchInputProps, SearchInput, SearchSize } from './Search';
 import styles from './Search.module.scss';
 
 const baseClass = 'search-input';
@@ -11,8 +11,8 @@ const defaultProps = {
   onChange: () => noop,
 };
 
-const renderComponent = (props: ISearchProps) => {
-  return render(<Search {...props} />);
+const renderComponent = (props: ISearchInputProps) => {
+  return render(<SearchInput {...props} />);
 };
 
 describe('<Search> component', () => {
