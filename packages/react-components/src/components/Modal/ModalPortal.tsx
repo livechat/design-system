@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom';
 export interface ModalPortalProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   zIndex: number;
-  parentElementName: string;
+  parentElementName?: string;
 }
 
 export const ModalPortal: React.FC<ModalPortalProps> = ({
@@ -28,7 +28,7 @@ export const ModalPortal: React.FC<ModalPortalProps> = ({
     return () => {
       document.querySelector(parentElementName)?.removeChild(container);
     };
-  }, []);
+  }, [parentElementName]);
 
   // Fragment added to fix TS complaining about createPortal any type
   return <>{ReactDOM.createPortal(children, container)}</>;

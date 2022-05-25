@@ -52,5 +52,8 @@
   },
   "volta": {
     "node": "16.13.2"
+  },
+  "dependencies": {
+    "clsx": "^1.1.1"
   }
 }
