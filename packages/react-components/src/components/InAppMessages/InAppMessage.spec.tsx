@@ -6,15 +6,13 @@ import { InAppMessage } from './InAppMessage';
 const baseClass = 'in-app-message';
 
 describe('<InAppMessage> component', () => {
-  it('should render as default and trigger onClose click', () => {
+  it('should render as default', () => {
     const onClose = vi.fn();
-    const { container, getByText, getByRole } = render(
+    const { container, getByText } = render(
       <InAppMessage onClose={onClose}>Example text</InAppMessage>
     );
     expect(container.firstChild).toBeVisible();
     expect(getByText('Example text')).toBeVisible();
-    userEvent.click(getByRole('button'));
-    expect(onClose).toBeCalled();
   });
 
   it('should call onClose when esc key is pressed', () => {

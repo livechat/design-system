@@ -1,10 +1,20 @@
+@import './variables/InAppMessage';
+
 $base-class: 'in-app-message-image';
 
 .#{$base-class} {
   text-align: center;
 
-    img {
-      max-height: 400px;
-      max-width: 100%;
-    }
+  @include inapp-media-text {
+    display: none;
+  }
+
+  @include inapp-media-mobile-horizontal {
+    display: none;
+  }
+
+  img {
+    max-height: 400px;
+    max-width: 100%;
+  }
 }

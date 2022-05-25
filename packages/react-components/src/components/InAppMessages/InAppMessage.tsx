@@ -60,19 +60,21 @@ export const InAppMessage: React.FC<InAppMessageProps> = ({
       onMouseDown={handleOnOverlayClick}
     >
       <div className={styles[`${baseClass}__container`]}>
-        {header}
-        <div className={mergedClassNames}>
-          <div className={styles[`${baseClass}__content`]}>
-            {image}
-            <div
-              className={cx(styles[`${baseClass}__content__body`], {
-                [styles[`${baseClass}__content__body__with-footer`]]: footer,
-              })}
-            >
-              {children}
+        <div className={styles[`${baseClass}__container__wrapper`]}>
+          {header}
+          <div className={mergedClassNames}>
+            <div className={styles[`${baseClass}__content`]}>
+              {image}
+              <div
+                className={cx(styles[`${baseClass}__content__body`], {
+                  [styles[`${baseClass}__content__body__with-footer`]]: footer,
+                })}
+              >
+                {children}
+              </div>
             </div>
+            {footer}
           </div>
-          {footer}
         </div>
       </div>
     </div>

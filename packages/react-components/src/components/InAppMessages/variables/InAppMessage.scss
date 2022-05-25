@@ -4,3 +4,19 @@ $in-app-message-min-width: 320px;
 $in-app-message-max-width: 800px;
 $in-app-breakpoint-text-only: 400px;
 $in-app-content-max-width: 522px;
+$in-app-header-max-height: 40px;
+
+$in-app-breakpoint-mobile-horizontal: 572px;
+$in-app-breakpoint-text-only: 400px;
+
+@mixin inapp-media-text {
+  @media screen and (max-width: #{$in-app-breakpoint-text-only - 1px}) {
+    @content;
+  }
+}
+
+@mixin inapp-media-mobile-horizontal {
+  @media screen and (max-height: #{$in-app-breakpoint-mobile-horizontal - 1px}) {
+    @content;
+  }
+}

@@ -18,6 +18,26 @@ $base-class: 'in-app-message';
   overflow: auto;
   position: relative;
 
+  @include inapp-media-mobile-horizontal {
+    justify-content: flex-start;
+    max-height: calc(100vh - #{2 * $in-app-header-max-height});
+    max-width: calc(100vw - 10px);
+    min-height: unset;
+    min-width: unset;
+
+    &__container {
+      max-height: calc(100vh - #{2 * $in-app-header-max-height});
+      max-width: calc(100vw - 10px);
+      min-height: unset;
+      min-width: unset;
+    }
+
+    &__overlay {
+      max-height: 100vh;
+      min-height: unset;
+    }
+  }
+
   &__overlay {
     align-items: center;
     background-color: var(--surface-overlay);
@@ -43,6 +63,11 @@ $base-class: 'in-app-message';
     min-height: $in-app-message-min-height;
     min-width: $in-app-message-min-width;
     padding: 0 10px;
+
+    &__wrapper {
+      display: flex;
+      flex-flow: column nowrap;
+    }
   }
 
   &__content {
