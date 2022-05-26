@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
+import { Placement } from '@floating-ui/react-dom';
+
 import { Button } from '../Button';
 import { Popover as PopoverComponent } from './Popover';
+
 import {
   Block,
   Chats,
@@ -9,10 +12,25 @@ import {
   Email,
   Tickets,
 } from '@livechat/design-system-icons/react/material';
+
 import { Icon } from '../Icon';
 
-import * as PopperCore from '@popperjs/core';
 import './Popover.stories.css';
+
+const placements = [
+  'top',
+  'right',
+  'bottom',
+  'left',
+  'top-start',
+  'right-start',
+  'bottom-start',
+  'left-start',
+  'top-end',
+  'right-end',
+  'bottom-end',
+  'left-end',
+];
 
 const OpenChat = () => {
   return (
@@ -52,7 +70,7 @@ export const Popover = ({
   placement,
   isVisible,
 }: {
-  placement: PopperCore.Placement;
+  placement: Placement;
   isVisible: boolean;
 }): React.ReactElement => (
   <div style={{ minHeight: '400px' }}>
@@ -60,17 +78,10 @@ export const Popover = ({
       placement={placement}
       isVisible={isVisible}
       triggerRenderer={() => (
-        <div>
-          <Button icon={<Icon source={DropDown}></Icon>} iconPosition={'right'}>
-            Open Popover
-          </Button>
-        </div>
+        <Button icon={<Icon source={DropDown}></Icon>} iconPosition={'right'}>
+          Open Popover
+        </Button>
       )}
-      modifiers={{
-        preventOverflow: {
-          enabled: true,
-        },
-      }}
     >
       <div
         style={{
@@ -110,7 +121,7 @@ export const Actions = ({
   placement,
   isVisible,
 }: {
-  placement: PopperCore.Placement;
+  placement: Placement;
   isVisible: boolean;
 }): React.ReactElement => (
   <div style={{ minHeight: '200px' }}>
@@ -118,17 +129,10 @@ export const Actions = ({
       placement={placement}
       isVisible={isVisible}
       triggerRenderer={() => (
-        <div>
-          <Button icon={<Icon source={DropDown}></Icon>} iconPosition={'right'}>
-            Actions
-          </Button>
-        </div>
+        <Button icon={<Icon source={DropDown}></Icon>} iconPosition={'right'}>
+          Actions
+        </Button>
       )}
-      modifiers={{
-        preventOverflow: {
-          enabled: true,
-        },
-      }}
     >
       <div
         style={{
@@ -154,10 +158,10 @@ export default {
   component: Popover,
   argTypes: {
     placement: {
-      options: PopperCore.placements,
+      options: placements,
       control: {
         type: 'select',
-        labels: PopperCore.placements,
+        labels: placements,
       },
     },
   },
