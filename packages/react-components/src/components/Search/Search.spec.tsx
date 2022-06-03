@@ -123,6 +123,6 @@ describe('<Search> component', () => {
     });
 
     fireEvent.click(getByTestId(`${baseClass}-clear-icon`));
-    expect(getByRole('textbox')).toHaveTextContent('');
+    expect(getByRole('textbox')).toHaveValue('');
   });
 });
