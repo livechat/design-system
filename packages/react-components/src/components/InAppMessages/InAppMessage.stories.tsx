@@ -212,7 +212,7 @@ export const InAppWithEverything = (): React.ReactElement => {
                   <strong>Michał</strong> from LiveChat
                 </React.Fragment>
               }
-              onCloseButtonClick={() => setIsInAppVisible(null)}
+              onCloseButtonClick={() => setIsInAppVisible(false)}
             />
           }
           image={

@@ -23,13 +23,11 @@ $base-class: 'in-app-message';
     max-height: calc(100vh - #{2 * $in-app-header-max-height});
     max-width: calc(100vw - 10px);
     min-height: unset;
-    min-width: unset;
 
     &__container {
       max-height: calc(100vh - #{2 * $in-app-header-max-height});
       max-width: calc(100vw - 10px);
       min-height: unset;
-      min-width: unset;
     }
 
     &__overlay {
