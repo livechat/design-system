@@ -20,12 +20,13 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const baseClass = 'upload-bar';
 const wrapperHeaderClass = `${baseClass}__wrapper__header`;
+const TRANSITION_TIMEOUT = 300;
 
 export interface UploadBarProps {
   className?: string;
-  percent: number;
+  progressValue: number;
   title: string;
-  expanded?: boolean;
+  isExpanded?: boolean;
   errorMessage?: string;
   status?: ProgressStatus;
   icon?: React.ReactNode;
@@ -35,12 +36,38 @@ export interface UploadBarProps {
   onRetryButtonClick?: () => void;
 }
 
+const getHeaderIcon = (status: ProgressStatus, progressValue: number) => {
+  if (status === 'success') {
+    return (
+      <div className={styles[`${wrapperHeaderClass}__success-icon`]}>
+        <Icon source={CheckIcon} kind="success" />
+      </div>
+    );
+  }
+
+  if (status === 'error') {
+    return (
+      <div className={styles[`${wrapperHeaderClass}__error-icon`]}>
+        <Icon source={ErrorIcon} kind="error" />
+      </div>
+    );
+  }
+
+  return (
+    <ProgressCircle
+      status={status}
+      progressValue={progressValue}
+      size={'small'}
+    />
+  );
+};
+
 export const UploadBar: React.FC<UploadBarProps> = ({
   children,
   className,
-  percent,
+  progressValue,
   title,
-  expanded,
+  isExpanded,
   errorMessage,
   status = 'normal',
   icon,
@@ -49,35 +76,19 @@ export const UploadBar: React.FC<UploadBarProps> = ({
   onCloseButtonClick,
   onRetryButtonClick,
 }) => {
-  const [isExpanded, setIsExpanded] = React.useState(expanded || false);
+  const [expanded, setExpanded] = React.useState(isExpanded || false);
   const withError = status === 'error';
   const withSuccess = status === 'success';
   const mergedClassNames = cx(styles[baseClass], className, {
     [styles[`${baseClass}--error`]]: withError,
     [styles[`${baseClass}--success`]]: withSuccess,
   });
+  const shouldShowCollapseButton = !(
+    withError &&
+    (onRetryButtonClick || onCloseButtonClick)
+  );
 
-  const handleOnWrapperClick = () => setIsExpanded(!isExpanded);
-
-  const getHeaderIcon = () => {
-    if (status === 'success') {
-      return (
-        <div className={styles[`${wrapperHeaderClass}__success-icon`]}>
-          <Icon source={CheckIcon} kind="success" />
-        </div>
-      );
-    }
-
-    if (status === 'error') {
-      return (
-        <div className={styles[`${wrapperHeaderClass}__error-icon`]}>
-          <Icon source={ErrorIcon} kind="error" />
-        </div>
-      );
-    }
-
-    return <ProgressCircle status={status} percent={percent} size={'small'} />;
-  };
+  const handleOnWrapperClick = () => setExpanded(!expanded);
 
   if (mode === 'single') {
     return (
@@ -86,7 +97,7 @@ export const UploadBar: React.FC<UploadBarProps> = ({
           <div className={styles[`${wrapperHeaderClass}`]}>
             <FileUploadProgress
               title={withError ? errorMessage || title : title}
-              percent={percent}
+              progressValue={progressValue}
               status={status}
               icon={icon}
               size={size}
@@ -112,18 +123,18 @@ export const UploadBar: React.FC<UploadBarProps> = ({
       >
         <div className={styles[`${wrapperHeaderClass}`]}>
           <div className={styles[`${wrapperHeaderClass}__icon`]}>
-            {getHeaderIcon()}
+            {getHeaderIcon(status, progressValue)}
           </div>
           <div className={styles[`${wrapperHeaderClass}__title`]}>
             {withError ? errorMessage || title : title}
           </div>
-          {!(withError && (onRetryButtonClick || onCloseButtonClick)) && (
+          {shouldShowCollapseButton && (
             <button
               className={styles[`${wrapperHeaderClass}__collapse-button`]}
               type="button"
               onClick={handleOnWrapperClick}
             >
-              {isExpanded ? (
+              {expanded ? (
                 <Icon source={ChevronUpIcon} />
               ) : (
                 <Icon source={ChevronDownIcon} />
@@ -142,9 +153,9 @@ export const UploadBar: React.FC<UploadBarProps> = ({
         </div>
       </div>
       <TransitionGroup component={null}>
-        {isExpanded && (
+        {expanded && (
           <CSSTransition
-            timeout={300}
+            timeout={TRANSITION_TIMEOUT}
             classNames={{
               enter: styles[`${baseClass}__files--enter`],
               enterActive: styles[`${baseClass}__files--enter-active`],

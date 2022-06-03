@@ -6,7 +6,7 @@ import styles from './ProgressCircle.module.scss';
 
 describe('<ProgressCircle /> component', () => {
   it('should render  ProgressCircle by default', () => {
-    const { getByRole } = render(<ProgressCircle percent={10} />);
+    const { getByRole } = render(<ProgressCircle progressValue={10} />);
     expect(getByRole('progressbar')).toHaveClass(styles['progress-circle']);
     expect(getByRole('progressbar')).toHaveClass(
       styles['progress-circle--normal']
@@ -15,7 +15,7 @@ describe('<ProgressCircle /> component', () => {
 
   it('should render success ProgressCircle when success status is passed', () => {
     const { getByRole } = render(
-      <ProgressCircle status="success" percent={10} />
+      <ProgressCircle status="success" progressValue={10} />
     );
     expect(getByRole('progressbar')).toHaveClass(
       styles['progress-circle--success']
@@ -24,7 +24,7 @@ describe('<ProgressCircle /> component', () => {
 
   it('should render error ProgressCircle when error status is passed', () => {
     const { getByRole } = render(
-      <ProgressCircle status="error" percent={10} />
+      <ProgressCircle status="error" progressValue={10} />
     );
     expect(getByRole('progressbar')).toHaveClass(
       styles['progress-circle--error']

@@ -19,7 +19,7 @@ export interface FileUploadProgressProps {
   className?: string;
   icon?: React.ReactNode;
   title: string;
-  percent: number;
+  progressValue: number;
   size?: ProgressSize;
   status?: ProgressStatus;
   onCloseButtonClick?: () => void;
@@ -35,7 +35,7 @@ export const FileUploadProgress: React.ExoticComponent<
       className,
       icon,
       title,
-      percent,
+      progressValue: percent,
       size,
       status = 'normal',
       onCloseButtonClick,
