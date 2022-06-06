@@ -38,7 +38,7 @@ const isVisibleOptions = [true, false, undefined];
 
 const tooltipThemes = ['invert', 'important', 'default'];
 
-export const Tooltip = (args: any): React.ReactElement => (
+export const Tooltip = (args: ITooltipProps): React.ReactElement => (
   <div
     style={{
       height: '100vh',
@@ -216,7 +216,10 @@ const TooltipInteractiveExample: React.FC<ITooltipProps> = (props) => {
 };
 
 const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
-  const reducer = (state, action) => {
+  const reducer = (
+    state: { isVisible: boolean; reference: string },
+    action: { type: string }
+  ) => {
     if (action.type === 'reference1') {
       return {
         ...state,
