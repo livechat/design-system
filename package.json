@@ -20,7 +20,7 @@
     "prettier": "prettier --write packages",
     "check": "run-s lint test",
     "predeploy": "npm run build",
-    "deploy": "lerna version"
+    "deploy": "lerna version && lerna publish from-package"
   },
   "repository": {
     "type": "git",
