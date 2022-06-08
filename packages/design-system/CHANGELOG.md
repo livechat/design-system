@@ -1,5 +1,14 @@
 All notable changes to this project will be documented in this file.
 
+## v0.13.4
+
+_Release: 2022-06-08_
+
+##### Refactors
+
+- Exports sub-components of SelectField (#328)
+- TabIndex Parameterization in SelectHead Component (#328)
+
 ## v0.13.3
 
 _Release: 2022-05-09_

@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 const baseClass = 'select-head';
 
 const SelectHead = React.forwardRef((props, ref) => {
-  const { isFocused, disabled, children, ...restProps } = props;
+  const { isFocused, tabIndex = 0, disabled, children, ...restProps } = props;
 
   return (
     <div
@@ -21,7 +21,7 @@ const SelectHead = React.forwardRef((props, ref) => {
       disabled={disabled}
       data-testid="select-head"
       {...restProps}
-      tabIndex={disabled ? -1 : 0}
+      tabIndex={disabled ? -1 : tabIndex}
     >
       {children}
     </div>
@@ -31,7 +31,8 @@ const SelectHead = React.forwardRef((props, ref) => {
 SelectHead.propTypes = {
   children: PropTypes.node,
   disabled: PropTypes.bool,
-  isFocused: PropTypes.bool
+  isFocused: PropTypes.bool,
+  tabIndex: PropTypes.number,
 };
 
 export default SelectHead;

@@ -54,6 +54,52 @@ export interface ISelectProps {
   selectHeader?: string;
 }
 
+export interface ISelectSearchProps {
+  inputRef?: React.Ref<HTMLInputElement>;
+  isVisible?: boolean;
+  placeholder?: string;
+  value?: string;
+  onChange?(event: React.ChangeEvent<HTMLInputElement>): void;
+  disabled?: boolean;
+}
+
+export interface ISelectSelectHeadProps {
+  disabled?: boolean;
+  isFocused?: boolean;
+  tabIndex?: number;
+}
+
+export interface ISelectSelectHeadItemProps {
+  isVisible?: boolean;
+  selectedItem?: {
+    key: string;
+    props: {
+      [key: string]: any;
+    };
+  };
+  placeholder?: string;
+  getSelectedItemBody(props: { [key: string]: any }): React.ReactNode;
+}
+
+export interface ISelectSelectListProps {
+  getItemBody(props: { [key: string]: any }): React.ReactNode;
+  isOpen: boolean,
+  items: {
+    key: string;
+    props: {
+      [key: string]: any;
+    };
+  }[];
+  onListClose(): void,
+  selectedItem: string | number,
+  getItemSelectedHandler: (itemKey: string | number) => (event: MouseEvent) => void;
+  onEnterKey(itemKey: string | number): any,
+  focusedItemKey?: string | number,
+  onFocusedItemChange(itemKey: string | number): any,
+  listRef?: React.Ref<HTMLUListElement>
+  selectHeader?: string;
+}
+
 export interface ISelectFieldProps extends ISelectProps, IWithTextFieldProps {
   id: string;
   className?: string;
@@ -207,6 +253,10 @@ export var NumericInput: React.ComponentType<INumericInputProps>;
 export var NumericInputField: React.ComponentType<INumericInputFieldProps>;
 export var RadioButton: React.ComponentType<IRadioButtonProps>;
 export var Select: React.ComponentType<ISelectProps>;
+export var Search: React.ComponentType<ISelectSearchProps>;
+export var SelectHead: React.ComponentType<ISelectSelectHeadProps>;
+export var SelectHeadItem: React.ComponentType<ISelectSelectHeadItemProps>;
+export var SelectList: React.ComponentType<ISelectSelectListProps>;
 export var SelectField: React.ComponentType<ISelectFieldProps>;
 export var TextField: React.ComponentType<ITextFieldProps>;
 export var TextArea: React.ComponentType<ITextAreaProps>;

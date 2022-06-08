@@ -42,7 +42,7 @@ export { default as FieldGroup } from './FieldGroup';
 export { default as FieldError } from './FieldError';
 export { default as FieldLabel } from './FieldLabel';
 export { default as FieldDescription } from './FieldDescription';
-export { Select, SelectField } from './SelectField';
+export { Select, SelectField, Search, SelectHead, SelectHeadItem, SelectList } from './SelectField';
 export { MultiSelect, MultiSelectField } from './MultiSelectField';
 export { NumericInput, NumericInputField } from './NumericInputField';
 export {
