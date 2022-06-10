@@ -1,56 +1,22 @@
 import * as React from 'react';
-import { usePopper } from 'react-popper';
-import * as PopperCore from '@popperjs/core';
 import cx from 'clsx';
+import {
+  useFloating,
+  Placement,
+  flip,
+  offset,
+  autoUpdate,
+} from '@floating-ui/react-dom';
 
 import cssStyles from './Popover.module.scss';
 
-type PopoverModifiers = {
-  [key: string]: Partial<PopperCore.StrictModifiers>;
-};
 export interface IPopoverProps {
   children?: React.ReactNode;
   className?: string;
-  modifiers?: PopoverModifiers;
-  placement?: PopperCore.Placement;
+  placement?: Placement;
   isVisible?: boolean;
   triggerRenderer: () => React.ReactNode;
 }
-
-const buildPopperModifiers = (modifiers: PopoverModifiers) => {
-  const { offset, flip, preventOverflow } = modifiers;
-
-  const calculatedOffset = [
-    {
-      name: 'offset',
-      options: {
-        offset: [0, 4],
-        ...(offset?.options || {}),
-      },
-    },
-  ];
-
-  const calculateFlip = [
-    {
-      name: 'flip',
-      options: {
-        ...(flip?.options || {}),
-      },
-    },
-  ];
-
-  const calculatePreventOverflow = [
-    {
-      name: 'preventOverlow',
-      options: {
-        rootBoundary: 'viewport',
-        ...(preventOverflow || {}),
-      },
-    },
-  ];
-
-  return [...calculatedOffset, ...calculateFlip, ...calculatePreventOverflow];
-};
 
 export const Popover: React.FC<IPopoverProps> = (props) => {
   const {
@@ -60,20 +26,45 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
     placement,
     isVisible = false,
   } = props;
-
-  const rendererRef = React.useRef<HTMLDivElement | null>(null);
-  const popperRef = React.useRef<HTMLDivElement | null>(null);
-
   const [visible, setVisibility] = React.useState(false);
+
+  const {
+    x,
+    y,
+    reference,
+    floating,
+    strategy,
+    refs,
+    update,
+    placement: updatedPlacement,
+  } = useFloating({
+    middleware: [offset(4), flip()],
+    placement: placement,
+  });
 
   React.useEffect(() => {
     setVisibility(isVisible);
   }, [isVisible]);
 
-  function handleDocumentClick(event: MouseEvent) {
-    if (popperRef.current?.contains(event.target as Node)) {
+  React.useEffect(() => {
+    if (!refs.reference.current || !refs.floating.current) {
       return;
-    } else if (rendererRef.current?.contains(event.target as Node)) {
+    }
+
+    // Only call this when the floating element is rendered
+    return autoUpdate(refs.reference.current, refs.floating.current, update);
+  }, [refs.reference, refs.floating, update, updatedPlacement, visible]);
+
+  function handleDocumentClick(event: MouseEvent) {
+    if (
+      refs.floating.current &&
+      (refs.floating.current as Node).contains(event.target as Node)
+    ) {
+      return;
+    } else if (
+      refs.reference.current &&
+      (refs.reference.current as Node).contains(event.target as Node)
+    ) {
       setVisibility((prevVisible) => !prevVisible);
     } else {
       setVisibility(false);
@@ -95,27 +86,23 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
     };
   }, []);
 
-  const { styles, attributes } = usePopper(
-    rendererRef.current,
-    popperRef.current,
-    {
-      modifiers: props.modifiers ? buildPopperModifiers(props.modifiers) : [],
-      placement: placement,
-    }
-  );
-
   const mergedClassNames = cx(cssStyles['popover'], className, {
     [cssStyles['popover--visible']]: visible,
   });
 
   return (
     <>
-      <div ref={rendererRef}>{triggerRenderer()}</div>
+      <div style={{ width: 'fit-content' }} ref={reference}>
+        {triggerRenderer()}
+      </div>
       <div
-        ref={popperRef}
+        ref={floating}
         className={mergedClassNames}
-        style={styles.popper}
-        {...attributes.popper}
+        style={{
+          position: strategy,
+          top: y ?? '',
+          left: x ?? '',
+        }}
       >
         {children}
       </div>

@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
+import { Placement } from '@floating-ui/react-dom';
+
 import { Button } from '../Button';
 import { Popover as PopoverComponent } from './Popover';
+
 import {
   Block,
   Chats,
@@ -9,41 +12,54 @@ import {
   Email,
   Tickets,
 } from '@livechat/design-system-icons/react/material';
+
 import { Icon } from '../Icon';
 
-import * as PopperCore from '@popperjs/core';
 import './Popover.stories.css';
+
+const placements = [
+  'top',
+  'right',
+  'bottom',
+  'left',
+  'top-start',
+  'right-start',
+  'bottom-start',
+  'left-start',
+  'top-end',
+  'right-end',
+  'bottom-end',
+  'left-end',
+];
 
 const OpenChat = () => {
   return (
-    <div className="lc-listElement">
-      <Icon source={Chats} /> <span className="lc-label">Open chat</span>{' '}
+    <div className="listElement">
+      <Icon source={Chats} /> <span className="label">Open chat</span>{' '}
     </div>
   );
 };
 
 const CreateTicket = () => {
   return (
-    <div className="lc-listElement">
-      <Icon source={Tickets} />{' '}
-      <span className="lc-label">Create a ticket</span>{' '}
+    <div className="listElement">
+      <Icon source={Tickets} /> <span className="label">Create a ticket</span>{' '}
     </div>
   );
 };
 
 const SendTranscript = () => {
   return (
-    <div className="lc-listElement lc-divider">
-      <Icon source={Email} /> <span className="lc-label">Send transcript</span>{' '}
+    <div className="listElement divider">
+      <Icon source={Email} /> <span className="label">Send transcript</span>{' '}
     </div>
   );
 };
 
 const BanCustomer = () => {
   return (
-    <div className="lc-listElement">
-      <Icon source={Block} />{' '}
-      <span className="lc-label">Ban this customer</span>{' '}
+    <div className="listElement">
+      <Icon source={Block} /> <span className="label">Ban this customer</span>{' '}
     </div>
   );
 };
@@ -52,25 +68,18 @@ export const Popover = ({
   placement,
   isVisible,
 }: {
-  placement: PopperCore.Placement;
+  placement: Placement;
   isVisible: boolean;
 }): React.ReactElement => (
-  <div style={{ minHeight: '400px' }}>
+  <div className="wrap">
     <PopoverComponent
       placement={placement}
       isVisible={isVisible}
       triggerRenderer={() => (
-        <div>
-          <Button icon={<Icon source={DropDown}></Icon>} iconPosition={'right'}>
-            Open Popover
-          </Button>
-        </div>
+        <Button icon={<Icon source={DropDown}></Icon>} iconPosition={'right'}>
+          Open Popover
+        </Button>
       )}
-      modifiers={{
-        preventOverflow: {
-          enabled: true,
-        },
-      }}
     >
       <div
         style={{
@@ -110,7 +119,7 @@ export const Actions = ({
   placement,
   isVisible,
 }: {
-  placement: PopperCore.Placement;
+  placement: Placement;
   isVisible: boolean;
 }): React.ReactElement => (
   <div style={{ minHeight: '200px' }}>
@@ -118,17 +127,10 @@ export const Actions = ({
       placement={placement}
       isVisible={isVisible}
       triggerRenderer={() => (
-        <div>
-          <Button icon={<Icon source={DropDown}></Icon>} iconPosition={'right'}>
-            Actions
-          </Button>
-        </div>
+        <Button icon={<Icon source={DropDown}></Icon>} iconPosition={'right'}>
+          Actions
+        </Button>
       )}
-      modifiers={{
-        preventOverflow: {
-          enabled: true,
-        },
-      }}
     >
       <div
         style={{
@@ -154,10 +156,10 @@ export default {
   component: Popover,
   argTypes: {
     placement: {
-      options: PopperCore.placements,
+      options: placements,
       control: {
         type: 'select',
-        labels: PopperCore.placements,
+        labels: placements,
       },
     },
   },
