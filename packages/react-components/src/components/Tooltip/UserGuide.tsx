@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ModalPortal, ModalPortalProps } from '../Modal/';
+import { ModalPortalProps } from '../Modal/';
 import { ITooltipProps, Tooltip } from './Tooltip';
 import SpotlightOverlay from './SpotlightOverlay';
 import cx from 'clsx';

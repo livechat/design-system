@@ -73,7 +73,7 @@ Tooltip.args = {
   hoverOutDelayTimeout: 100,
 };
 
-export const TooltipInfo = (args: any) => (
+export const TooltipInfo = (args: ITooltipProps): JSX.Element => (
   <div
     style={{
       height: '100vh',
@@ -100,7 +100,7 @@ TooltipInfo.args = {
   hoverOutDelayTimeout: 100,
 };
 
-export const TooltipInteractive = (args: any) => (
+export const TooltipInteractive = (args: ITooltipProps): JSX.Element => (
   <div
     style={{
       height: '100vh',
@@ -127,7 +127,7 @@ TooltipInteractive.args = {
   hoverOutDelayTimeout: 100,
 };
 
-export const TooltipUserGuide = (args: any) => (
+export const TooltipUserGuide = (args: ITooltipProps): JSX.Element => (
   <div
     style={{
       height: '100vh',
