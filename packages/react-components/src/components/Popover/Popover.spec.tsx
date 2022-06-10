@@ -23,19 +23,19 @@ vi.mock('@floating-ui/react-dom', () => {
   };
 });
 
-const PopperContent = () => {
+const Content = () => {
   return <div>Content</div>;
 };
 
-const PopperTrigger = () => {
+const Trigger = () => {
   return <button>Button</button>;
 };
 
 describe('<Popover> component', () => {
   it('should show content if isVisible is set', () => {
     const { container } = render(
-      <Popover isVisible={true} triggerRenderer={PopperTrigger}>
-        <PopperContent></PopperContent>
+      <Popover isVisible={true} triggerRenderer={Trigger}>
+        <Content></Content>
       </Popover>
     );
 
@@ -44,8 +44,8 @@ describe('<Popover> component', () => {
 
   it('should show content if trigger has been clicked', () => {
     const { container, getByRole } = render(
-      <Popover triggerRenderer={PopperTrigger}>
-        <PopperContent></PopperContent>
+      <Popover triggerRenderer={Trigger}>
+        <Content></Content>
       </Popover>
     );
 
