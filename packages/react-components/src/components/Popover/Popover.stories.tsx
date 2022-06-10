@@ -73,7 +73,7 @@ export const Popover = ({
   placement: Placement;
   isVisible: boolean;
 }): React.ReactElement => (
-  <div style={{ minHeight: '400px' }}>
+  <div className="lc-testArea">
     <PopoverComponent
       placement={placement}
       isVisible={isVisible}

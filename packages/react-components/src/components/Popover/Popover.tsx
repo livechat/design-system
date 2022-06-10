@@ -1,6 +1,12 @@
 import * as React from 'react';
 import cx from 'clsx';
-import { useFloating, Placement, flip, offset } from '@floating-ui/react-dom';
+import {
+  useFloating,
+  Placement,
+  flip,
+  offset,
+  autoUpdate,
+} from '@floating-ui/react-dom';
 
 import cssStyles from './Popover.module.scss';
 
@@ -22,7 +28,16 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
   } = props;
   const [visible, setVisibility] = React.useState(false);
 
-  const { x, y, reference, floating, strategy, refs } = useFloating({
+  const {
+    x,
+    y,
+    reference,
+    floating,
+    strategy,
+    refs,
+    update,
+    placement: updatedPlacement,
+  } = useFloating({
     middleware: [offset(4), flip()],
     placement: placement,
   });
@@ -30,6 +45,15 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
   React.useEffect(() => {
     setVisibility(isVisible);
   }, [isVisible]);
+
+  React.useEffect(() => {
+    if (!refs.reference.current || !refs.floating.current) {
+      return;
+    }
+
+    // Only call this when the floating element is rendered
+    return autoUpdate(refs.reference.current, refs.floating.current, update);
+  }, [refs.reference, refs.floating, update, updatedPlacement, visible]);
 
   function handleDocumentClick(event: MouseEvent) {
     if (

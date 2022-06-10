@@ -21,3 +21,10 @@
   line-height: 20px;
   margin-left: 5px;
 }
+
+.lc-testArea {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
