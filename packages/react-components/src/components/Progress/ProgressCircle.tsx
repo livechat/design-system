@@ -21,7 +21,7 @@ const baseClass = 'progress-circle';
 
 export interface ProgressCircleProps {
   className?: string;
-  percent: number;
+  progressValue: number;
   status?: ProgressStatus;
   size?: ProgressSize;
 }
@@ -30,11 +30,17 @@ export const ProgressCircle: React.ExoticComponent<
   ProgressCircleProps & React.RefAttributes<HTMLInputElement>
 > = React.forwardRef(
   (
-    { status = 'normal', percent, className, size = 'medium', ...restProps },
+    {
+      status = 'normal',
+      progressValue,
+      className,
+      size = 'medium',
+      ...restProps
+    },
     ref: React.LegacyRef<HTMLInputElement>
   ) => {
-    const progressStatus = getProgressStatus(status, percent);
-    const percentNumber = getPercentNumber(progressStatus, percent);
+    const progressStatus = getProgressStatus(status, progressValue);
+    const percentNumber = getPercentNumber(progressStatus, progressValue);
     const thickness = THICKNESS_FROM_SIZE[size];
     const sizeValue = SIZE_VALUE_FROM_SIZE[size];
 
