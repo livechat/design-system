@@ -34,34 +34,32 @@ const placements = [
 
 const OpenChat = () => {
   return (
-    <div className="lc-listElement">
-      <Icon source={Chats} /> <span className="lc-label">Open chat</span>{' '}
+    <div className="listElement">
+      <Icon source={Chats} /> <span className="label">Open chat</span>{' '}
     </div>
   );
 };
 
 const CreateTicket = () => {
   return (
-    <div className="lc-listElement">
-      <Icon source={Tickets} />{' '}
-      <span className="lc-label">Create a ticket</span>{' '}
+    <div className="listElement">
+      <Icon source={Tickets} /> <span className="label">Create a ticket</span>{' '}
     </div>
   );
 };
 
 const SendTranscript = () => {
   return (
-    <div className="lc-listElement lc-divider">
-      <Icon source={Email} /> <span className="lc-label">Send transcript</span>{' '}
+    <div className="listElement divider">
+      <Icon source={Email} /> <span className="label">Send transcript</span>{' '}
     </div>
   );
 };
 
 const BanCustomer = () => {
   return (
-    <div className="lc-listElement">
-      <Icon source={Block} />{' '}
-      <span className="lc-label">Ban this customer</span>{' '}
+    <div className="listElement">
+      <Icon source={Block} /> <span className="label">Ban this customer</span>{' '}
     </div>
   );
 };
@@ -73,7 +71,7 @@ export const Popover = ({
   placement: Placement;
   isVisible: boolean;
 }): React.ReactElement => (
-  <div className="lc-testArea">
+  <div className="wrap">
     <PopoverComponent
       placement={placement}
       isVisible={isVisible}
