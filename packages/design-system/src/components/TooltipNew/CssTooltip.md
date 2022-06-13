@@ -1,6 +1,6 @@
 <h3>CssTooltip</h3>
 
-Almost pure css implementation of tooltip component. You will be able to control it's visibility for instance with css pseudo elements.
+Almost pure css implementation of tooltip component. You will be able to control its visibility for instance with css pseudo elements.
 Also you can use state to change isVisible property.
 
 The component is designed for simple use cases where you will not need auto-positioning feature of `PopperTooltip` component.
