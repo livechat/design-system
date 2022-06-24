@@ -12,6 +12,6 @@ assignees: ''
 ## Design
 
 ## Checklist
-[ ] Self review
-[ ] Design review
-[ ] Test coverage
+- [ ] Self review
+- [ ] Design review
+- [ ] Test coverage
