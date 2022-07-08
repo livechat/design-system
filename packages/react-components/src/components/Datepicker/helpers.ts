@@ -12,6 +12,10 @@ import {
   IRangeDatePickerOption,
 } from './types';
 
+const baseClass = 'date-picker';
+
+import styles from './DatePicker.module.scss';
+
 export const isDateWithinRange = (
   date: Date,
   range: { from?: Date; to?: Date }
@@ -47,23 +51,24 @@ export const calculateDatePickerMonth = (
 
   return subMonths(toMonth || new Date(), 1);
 };
+//styles[`${baseClass}__day--start`]
 
 export const getRangeDatePickerModifiers = (
   from?: Date,
   to?: Date
 ): Partial<Modifiers> => {
   const base = {
-    'date-picker__day--monday': { daysOfWeek: [1] },
-    'date-picker__day--sunday': { daysOfWeek: [0] },
-    'date-picker__day--start': from,
-    'date-picker__day--end': from,
+    [styles[`${baseClass}__day--monday`]]: { daysOfWeek: [1] },
+    [styles[`${baseClass}__day--sunday`]]: { daysOfWeek: [0] },
+    [styles[`${baseClass}__day--start`]]: from,
+    [styles[`${baseClass}__day--end`]]: from,
   };
 
   if (to) {
     if (!from) {
       return {
         ...base,
-        'date-picker__day--start': to,
+        [styles[`${baseClass}__day--start`]]: to,
       };
     }
 
@@ -72,18 +77,18 @@ export const getRangeDatePickerModifiers = (
     if (diff > 0) {
       return {
         ...base,
-        'date-picker__day--end': to,
+        [styles[`${baseClass}__day--end`]]: to,
       };
     } else if (diff < 0) {
       return {
         ...base,
-        'date-picker__day--start': to,
+        [styles[`${baseClass}__day--start`]]: to,
       };
     }
     return {
       ...base,
-      'date-picker__day--start': [from, to],
-      'date-picker__day--end': [from, to],
+      [styles[`${baseClass}__day--start`]]: [from, to],
+      [styles[`${baseClass}__day--end`]]: [from, to],
     };
   }
 
