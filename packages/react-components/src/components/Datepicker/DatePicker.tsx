@@ -4,6 +4,7 @@ import cx from 'classnames';
 import DatePickerNavbar from './DatePickerNavbar';
 import { IDatePickerProps } from './types';
 import { isDateWithinRange } from './helpers';
+import styles from './DatePicker.module.scss';
 
 const baseClass = 'date-picker';
 
@@ -11,83 +12,14 @@ const defaultDayRenderer = (day: Date): JSX.Element => {
   const date = day.getDate();
 
   return (
-    <div className={`${baseClass}__day-wrapper`}>
-      <div className={`${baseClass}__day-content`}>{date}</div>
+    <div className={styles[`${baseClass}__day-wrapper`]}>
+      <div className={styles[`${baseClass}__day-content`]}>{date}</div>
     </div>
   );
 };
 
 const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
-  const [month, setMonth] = React.useState(props.month || new Date());
-
-  React.useEffect(() => {
-    if (props.month && props.month !== month) {
-      setMonth(props.month);
-    }
-  }, [props.month, month]);
-
-  React.useEffect(() => {
-    if (props.toMonth) {
-      if (
-        !isDateWithinRange(month, { from: props.fromMonth, to: props.toMonth })
-      ) {
-        setMonth(props.toMonth);
-      }
-    }
-  }, [month, props.toMonth, props.fromMonth]);
-
-  const handleMonthChange = React.useCallback(
-    (month: Date) => {
-      if (props.onMonthChange && props.month) {
-        props.onMonthChange(month);
-        return;
-      }
-
-      setMonth(month);
-    },
-    [props.month, props.onMonthChange]
-  );
-
-  const getDatePickerClassNames = () => ({
-    container: cx({
-      [baseClass]: true,
-      [`${baseClass}--range`]: props.range,
-    }),
-    wrapper: `${baseClass}__wrapper`,
-    interactionDisabled: `${baseClass}--interaction-disabled`,
-    months: `${baseClass}__months`,
-    month: `${baseClass}__month`,
-    navBar: `${baseClass}__nav-bar`,
-    navButtonPrev: cx(
-      `${baseClass}__nav-button`,
-      `${baseClass}__nav-button--prev`
-    ),
-    navButtonNext: cx(
-      `${baseClass}__nav-button`,
-      `${baseClass}__nav-button--next`
-    ),
-    navButtonInteractionDisabled: `${baseClass}__nav-button--interaction-disabled`,
-    caption: `${baseClass}__caption`,
-    weekdays: `${baseClass}__weekdays`,
-    weekdaysRow: `${baseClass}__weekdays-row`,
-    weekday: `${baseClass}__weekday`,
-    body: `${baseClass}__body`,
-    week: `${baseClass}__week`,
-    weekNumber: `${baseClass}__week-number`,
-    day: `${baseClass}__day`,
-    footer: `${baseClass}__footer`,
-    todayButton: `${baseClass}__today-button`,
-    today: `${baseClass}__day--today`,
-    selected: `${baseClass}__day--selected`,
-    disabled: `${baseClass}__day--disabled`,
-    outside: `${baseClass}__day--outside`,
-    start: `${baseClass}__day--start`,
-    end: `${baseClass}__day--end`,
-    ...props.classNames,
-  });
-
   const {
-    className,
     classNames,
     range,
     month: propsMonth,
@@ -101,6 +33,75 @@ const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
     ...restProps
   } = props;
 
+  const [month, setMonth] = React.useState(propsMonth || new Date());
+
+  React.useEffect(() => {
+    if (propsMonth && propsMonth !== month) {
+      setMonth(propsMonth);
+    }
+  }, [propsMonth, month]);
+
+  React.useEffect(() => {
+    if (props.toMonth) {
+      if (
+        !isDateWithinRange(month, { from: props.fromMonth, to: props.toMonth })
+      ) {
+        setMonth(props.toMonth);
+      }
+    }
+  }, [month, props.toMonth, props.fromMonth]);
+
+  const handleMonthChange = React.useCallback(
+    (month: Date) => {
+      if (props.onMonthChange && propsMonth) {
+        props.onMonthChange(month);
+        return;
+      }
+
+      setMonth(month);
+    },
+    [propsMonth, props.onMonthChange]
+  );
+
+  const getDatePickerClassNames = () => ({
+    container: cx({
+      [styles[`${baseClass}`]]: true,
+      [styles[`${baseClass}--range`]]: props.range,
+    }),
+    wrapper: styles[`${baseClass}__wrapper`],
+    interactionDisabled: styles[`${baseClass}--interaction-disabled`],
+    months: styles[`${baseClass}__months`],
+    month: styles[`${baseClass}__month`],
+    navBar: styles[`${baseClass}__nav-bar`],
+    navButtonPrev: cx(
+      styles[`${baseClass}__nav-button`],
+      styles[`${baseClass}__nav-button--prev`]
+    ),
+    navButtonNext: cx(
+      styles[`${baseClass}__nav-button`],
+      styles[`${baseClass}__nav-button--next`]
+    ),
+    navButtonInteractionDisabled:
+      styles[`${baseClass}__nav-button--interaction-disabled`],
+    caption: styles[`${baseClass}__caption`],
+    weekdays: styles[`${baseClass}__weekdays`],
+    weekdaysRow: styles[`${baseClass}__weekdays-row`],
+    weekday: styles[`${baseClass}__weekday`],
+    body: styles[`${baseClass}__body`],
+    week: styles[`${baseClass}__week`],
+    weekNumber: styles[`${baseClass}__week-number`],
+    day: styles[`${baseClass}__day`],
+    footer: styles[`${baseClass}__footer`],
+    todayButton: styles[`${baseClass}__today-button`],
+    today: styles[`${baseClass}__day--today`],
+    selected: styles[`${baseClass}__day--selected`],
+    disabled: styles[`${baseClass}__day--disabled`],
+    outside: styles[`${baseClass}__day--outside`],
+    start: styles[`${baseClass}__day--start`],
+    end: styles[`${baseClass}__day--end`],
+    ...props.classNames,
+  });
+
   let firstDayOfWeek = 1;
 
   if (
@@ -112,7 +113,7 @@ const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
 
   const datePickerClassNames = React.useMemo(
     () => getDatePickerClassNames(),
-    [props.range, props.classNames]
+    [range, classNames]
   );
 
   return (

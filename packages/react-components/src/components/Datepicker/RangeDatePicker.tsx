@@ -193,7 +193,6 @@ export const RangeDatePicker = (
       [from, temporaryTo]
     );
     const selectedOption = React.useMemo(() => {
-      // eslint-disable-next-line
       return getSelectedOption(selectedItem, props.options);
     }, [props.options, selectedItem]);
 
@@ -221,7 +220,7 @@ export const RangeDatePicker = (
         onDayClick: handleDayClick,
         selectedDays,
         modifiers,
-        initialMonth: from || (props.toMonth && subMonths(props.toMonth, 1)),
+        initialMonth: props.toMonth && subMonths(props.toMonth, 1),
         toMonth: props.toMonth,
         disabledDays,
         onDayMouseEnter: handleDayMouseEnter,

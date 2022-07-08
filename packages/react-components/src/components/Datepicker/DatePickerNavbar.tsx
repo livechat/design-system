@@ -8,11 +8,11 @@ import {
 import {
   ChevronLeft,
   ChevronRight,
-  ChevronDoubleLeft,
-  ChevronDoubleRight,
-} from '@livechat/design-system-icons/dist/material';
+  DoubleArrowLeft,
+  DoubleArrowRight,
+} from '@livechat/design-system-icons/react/material';
 import cx from 'classnames';
-import Icon, { IconTypeName } from '../Icon';
+import { Icon } from '../Icon';
 import { IDatePickerNavbarProps } from './types';
 
 const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
@@ -85,7 +85,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
           })}
           onClick={handlePrevYearClick}
         >
-          <Icon source={ChevronDoubleLeft} iconType={IconTypeName.Subtle} />
+          <Icon source={DoubleArrowLeft} kind="subtle" />
         </button>
         <button
           data-testid="date-picker-prev-month-button"
@@ -95,7 +95,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
           })}
           onClick={handlePrevClick}
         >
-          <Icon source={ChevronLeft} iconType={IconTypeName.Subtle} />
+          <Icon source={ChevronLeft} kind="subtle" />
         </button>
       </div>
       <div style={{ display: 'flex' }}>
@@ -107,7 +107,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
           })}
           onClick={handleNextClick}
         >
-          <Icon source={ChevronRight} iconType={IconTypeName.Subtle} />
+          <Icon source={ChevronRight} kind="subtle" />
         </button>
         <button
           data-testid="date-picker-next-year-button"
@@ -117,7 +117,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
           })}
           onClick={handleNextYearClick}
         >
-          <Icon source={ChevronDoubleRight} iconType={IconTypeName.Subtle} />
+          <Icon source={DoubleArrowRight} kind="subtle" />
         </button>
       </div>
     </div>

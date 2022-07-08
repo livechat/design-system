@@ -1,0 +1,295 @@
+$base-class: 'date-picker';
+
+.#{$base-class} {
+  color: var(--content-default);
+  display: inline-block;
+
+  &__wrapper {
+    border: 1px solid transparent;
+    flex-direction: row;
+    padding-bottom: 10px;
+    position: relative;
+    transition: 0.2s border-color ease-in-out;
+    user-select: none;
+
+    &:focus {
+      border: 1px solid var(--color-action-default);
+      border-radius: 4px;
+      outline: none;
+      transition: 0.2s border-color ease-in-out;
+    }
+  }
+
+  &__months {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__month {
+    display: table;
+    margin: 0;
+    user-select: none;
+  }
+
+  &__nav-bar {
+    display: flex;
+    justify-content: space-between;
+    left: 50%;
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    width: calc(100% - 18px);
+  }
+
+  &__nav-button {
+    align-content: center;
+    background-color: transparent;
+    border: 1px solid transparent;
+    color: var(--content-subtle);
+    cursor: pointer;
+    display: flex;
+    padding: 0;
+    transition: 0.2s border-color ease-in-out;
+
+    &:hover,
+    &:focus {
+      outline: none;
+
+      svg {
+        color: var(--content-default);
+      }
+    }
+
+    &--interaction-disabled {
+      display: none;
+      pointer-events: none;
+    }
+  }
+
+  &__caption {
+    display: table-caption;
+    margin-bottom: 12px;
+    padding: 0 50px;
+
+    > div {
+      color: var(--content-default);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+      text-align: center;
+    }
+  }
+
+  &__weekdays {
+    display: table-header-group;
+  }
+
+  &__weekdays-row {
+    display: table-row;
+  }
+
+  &__weekday {
+    color: var(--content-subtle);
+    display: table-cell;
+    font-size: 12px;
+    letter-spacing: 0.2px;
+    line-height: 16px;
+    margin-bottom: 2px;
+    padding: 6px 0;
+    text-align: center;
+
+    abbr[title] {
+      border-bottom: initial;
+      text-decoration: none;
+    }
+  }
+
+  &__body {
+    display: table-row-group;
+  }
+
+  &__week {
+    display: table-row;
+  }
+
+  &__day {
+    color: var(--content-default);
+    cursor: pointer;
+    display: table-cell;
+    font-size: 14px;
+    height: 18px;
+    width: 18px;
+
+    &:focus {
+      outline: none;
+
+      .#{$base-class}__day-content {
+        border-radius: 2px;
+        box-shadow: 0 0 0 1px var(--border-default);
+      }
+    }
+
+    &-wrapper {
+      margin: 1px 0;
+      padding: 0 2px;
+    }
+
+    &-content {
+      align-items: center;
+      display: flex;
+      height: 28px;
+      justify-content: center;
+      width: 28px;
+    }
+
+    &--today {
+      .#{$base-class}__day-content {
+        background-color: var(--surface-basic-default);
+        border-radius: 2px;
+        box-shadow: 0 0 0 1px var(--border-default);
+      }
+    }
+
+    &--selected {
+      .#{$base-class}__day-content {
+        background-color: var(--color-action-default);
+        border-radius: 2px;
+        color: var(--content-invert-default);
+      }
+    }
+
+    &--outside {
+      color: var(--content-disabled);
+      cursor: default;
+    }
+
+    &--disabled {
+      color: var(--content-disabled);
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+
+  &--interaction-disabled {
+    .#{$base-class}__day {
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+
+  &__footer {
+    padding-top: 5px;
+  }
+
+  &__input {
+    display: inline-block;
+
+    &-overlay-wrapper {
+      position: relative;
+    }
+
+    &-overlay {
+      display: block;
+    }
+  }
+
+  &:not(.#{$base-class}--interaction-disabled)
+    &__day:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--selected):not(.#{$base-class}__day--outside):hover {
+    .#{$base-class}__day-content {
+      background-color: var(--surface-basic-hover);
+      border-radius: 2px;
+    }
+  }
+
+  &--range {
+    .#{$base-class}__day {
+      &--selected {
+        .#{$base-class}__day-content {
+          background-color: transparent;
+          border-radius: 0;
+          color: var(--content-default);
+        }
+
+        &:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--outside):not(.#{$base-class}__day--start):not(.#{$base-class}__day--end):not(.#{$base-class}__day--single):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday) {
+          .#{$base-class}__day-wrapper {
+            background-color: var(--surface-feedback-info);
+          }
+        }
+      }
+
+      &--start:not(.#{$base-class}__day--end):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday),
+      &--monday.#{$base-class}__day--selected:not(.#{$base-class}__day--end) {
+        .#{$base-class}__day-wrapper {
+          background: linear-gradient(
+            to left,
+            var(--surface-feedback-info) 0%,
+            var(--surface-feedback-info) 50%,
+            var(--surface-basic-default) 50%,
+            var(--surface-basic-default) 100%
+          );
+        }
+      }
+
+      &--end:not(.#{$base-class}__day--start):not(.#{$base-class}__day--monday):not(.#{$base-class}__day--sunday),
+      &--sunday.#{$base-class}__day--selected:not(.#{$base-class}__day--start) {
+        .#{$base-class}__day-wrapper {
+          background: linear-gradient(
+            to right,
+            var(--surface-feedback-info) 0%,
+            var(--surface-feedback-info) 50%,
+            var(--surface-basic-default) 50%,
+            var(--surface-basic-default) 100%
+          );
+        }
+      }
+
+      &--monday.#{$base-class}__day--selected:not(.#{$base-class}__day--start):not(.#{$base-class}__day--end),
+      &--sunday.#{$base-class}__day--selected:not(.#{$base-class}__day--start):not(.#{$base-class}__day--end) {
+        .#{$base-class}__day-content {
+          background-color: var(--surface-feedback-info);
+        }
+      }
+
+      &--start,
+      &--end {
+        .#{$base-class}__day-content {
+          background-color: var(--color-action-default);
+          border-radius: 2px;
+          color: var(--content-invert-default);
+        }
+      }
+    }
+
+    &__select-input {
+      border-color: transparent;
+      max-width: 90px;
+      padding: 0 5px;
+      text-align: left;
+    }
+
+    &__calendars-wrapper {
+      align-items: flex-start;
+      display: flex;
+
+      .#{$base-class}__months {
+        flex-wrap: nowrap;
+        margin: 0 -12px;
+
+        &::before {
+          background-color: var(--border-subtle);
+          content: '';
+          height: 100%;
+          left: 50%;
+          position: absolute;
+          top: 0;
+          width: 1px;
+        }
+      }
+
+      .#{$base-class}__month {
+        padding: 0 12px;
+      }
+    }
+  }
+}

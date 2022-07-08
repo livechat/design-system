@@ -1,6 +1,7 @@
 import { within } from '@testing-library/react';
 import * as React from 'react';
-import { render, userEvent } from '../../test-utils';
+import { render, userEvent } from 'test-utils';
+import { vi } from 'vitest';
 import { DatePicker } from './DatePicker';
 import { IDatePickerProps } from './types';
 
@@ -10,7 +11,7 @@ describe('<DatePicker> component', () => {
   }
 
   it('should call passed onMonthChange method on day click', () => {
-    const onMonthChange = jest.fn();
+    const onMonthChange = vi.fn();
     const { getByTestId } = renderComponent({
       month: new Date('2022-01-01'),
       onMonthChange,
