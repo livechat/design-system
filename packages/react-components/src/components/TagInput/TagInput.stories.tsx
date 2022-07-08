@@ -9,7 +9,7 @@ import {
 } from './index';
 
 export default {
-  title: 'Forms (WIP)/Tag Input',
+  title: 'Forms/Tag Input',
   component: TagInputComponent,
   argTypes: {
     tags: {

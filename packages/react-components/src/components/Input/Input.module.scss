@@ -1,0 +1,41 @@
+.input {
+  border: 1px solid #bdc7d1;
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+  box-sizing: border-box;
+  color: var(--content-default);
+  font-size: 15px;
+  line-height: 22px;
+  outline: none;
+
+  &:focus {
+    border-color: var(--color-action-default);
+  }
+
+  &:disabled {
+    background-color: var(--surface-basic-disabled);
+    border-color: var(--border-disabled);
+    color: var(--content-disabled);
+  }
+
+  &--error {
+    border-color: var(--color-negative-default);
+  }
+
+  &--xsmall {
+    height: 24px;
+    padding: 1px 4px;
+  }
+  &--small {
+    height: 32px;
+    padding: 4px 8px;
+  }
+  &--medium {
+    height: 36px;
+    padding: 6px 8px;
+  }
+  &--large {
+    height: 40px;
+    padding: 8px;
+  }
+}

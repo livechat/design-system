@@ -1,4 +1,5 @@
-.text-field {
+.form-field {
+  display: inline-block;
   margin-bottom: 20px;
 
   &--inline {
@@ -25,7 +26,6 @@
 
     &--inline {
       align-items: center;
-      height: 32px;
       justify-content: center;
       margin-bottom: 0;
       margin-right: 10px;
@@ -55,6 +55,14 @@
     width: 20px;
   }
 
+  &__label-left-node {
+    color: var(--content-default);
+    display: block;
+    font-size: 14px;
+    line-height: 20px;
+    margin-bottom: 4px;
+  }
+
   &__label-right-node {
     align-self: flex-end;
     color: var(--content-default);
@@ -79,12 +87,4 @@
   &__content {
     flex-grow: 1;
   }
-}
-
-.field-label {
-  color: var(--content-default);
-  display: block;
-  font-size: 14px;
-  line-height: 20px;
-  margin-bottom: 4px;
 }
