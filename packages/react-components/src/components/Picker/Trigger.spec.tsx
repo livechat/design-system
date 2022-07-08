@@ -7,7 +7,7 @@ import styles from './Trigger.module.scss';
 const baseClass = 'picker-trigger';
 
 const defaultProps = {
-  disabledSearch: false,
+  isSearchDisabled: false,
   isItemSelected: false,
   isOpen: false,
   onClick: () => noop,
@@ -113,11 +113,11 @@ describe('<Trigger> component', () => {
     expect(queryByTestId(`${baseClass}__clear-icon`)).toBeNull();
   });
 
-  it('should render Trigger without input if isOpen and disabledSearch', () => {
+  it('should render Trigger without input if isOpen and isSearchDisabled', () => {
     const { queryByRole } = renderComponent({
       ...defaultProps,
       isOpen: true,
-      disabledSearch: true,
+      isSearchDisabled: true,
     });
 
     expect(queryByRole('textbox')).toBeNull();

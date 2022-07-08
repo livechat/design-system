@@ -1,3 +1,5 @@
+@import '../../utils/StackingContextLevel';
+
 $base-class: 'picker-list';
 
 .#{$base-class} {
@@ -14,7 +16,7 @@ $base-class: 'picker-list';
   padding: 4px 0;
   position: absolute;
   width: 341px;
-  z-index: 10000;
+  z-index: $stacking-context-level-dropdown;
 
   &--compact {
     top: 36px;
