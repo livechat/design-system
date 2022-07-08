@@ -251,8 +251,8 @@ $base-class: 'date-picker';
         }
       }
 
-      &--start,
-      &--end {
+      &--selected.#{$base-class}__day--start,
+      &--selected.#{$base-class}__day--end {
         .#{$base-class}__day-content {
           background-color: var(--color-action-default);
           border-radius: 2px;
