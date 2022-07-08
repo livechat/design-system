@@ -10,10 +10,10 @@ describe('<DatePicker> component', () => {
     return render(<DatePicker {...props} />);
   }
 
-  it('should call passed onMonthChange method on day click', () => {
+  it('should call advance a year by one on "next year" click', () => {
     const onMonthChange = vi.fn();
     const { getByTestId } = renderComponent({
-      month: new Date('2022-01-01'),
+      month: new Date(2022, 0, 1),
       onMonthChange,
     });
 
@@ -21,9 +21,8 @@ describe('<DatePicker> component', () => {
 
     userEvent.click(button);
 
-    expect(onMonthChange).toHaveBeenCalledWith(
-      new Date('2023-01-01T11:00:00.000Z')
-    );
+    // Datepicker has 12 o'clock as default hour
+    expect(onMonthChange).toHaveBeenCalledWith(new Date(2023, 0, 1, 12));
   });
 
   it('should have Monday as a default first weekday', () => {
