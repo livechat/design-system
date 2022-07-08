@@ -99,7 +99,7 @@ PickerWithGroupedOptions.args = {
 
 export const PickerWithDisabledSearch = StoryTemplate.bind({});
 PickerWithDisabledSearch.args = {
-  disableSearch: true,
+  searchDisabled: true,
   options: [
     { key: 'groupA', name: 'Group A title header', groupHeader: true },
     { key: 'one', name: 'Option one' },

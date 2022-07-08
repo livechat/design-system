@@ -21,7 +21,7 @@ export interface IPickerProps {
   placeholder?: string;
   isRequired?: boolean;
   noSearchResultText?: string;
-  disableSearch?: boolean;
+  searchDisabled?: boolean;
   onSelect: (selectedItem: IPickerListItem | null) => void;
 }
 
@@ -35,7 +35,7 @@ export const Picker: React.FC<IPickerProps> = ({
   placeholder = 'Select option',
   isRequired,
   noSearchResultText = 'No results found',
-  disableSearch = false,
+  searchDisabled = false,
   onSelect,
 }) => {
   const [isListOpen, setIsListOpen] = React.useState<boolean>(false);
@@ -125,7 +125,7 @@ export const Picker: React.FC<IPickerProps> = ({
       )}
       <div className={styles[`${baseClass}__container`]}>
         <Trigger
-          disabledSearch={disableSearch}
+          isSearchDisabled={searchDisabled}
           isError={!!error}
           isOpen={isListOpen}
           isDisabled={disabled}

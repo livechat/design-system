@@ -14,7 +14,7 @@ const baseClass = 'picker-trigger';
 export type TriggerSize = 'compact' | 'medium' | 'large';
 
 export interface ITriggerProps {
-  disabledSearch: boolean;
+  isSearchDisabled: boolean;
   isDisabled?: boolean;
   isError?: boolean;
   isItemSelected: boolean;
@@ -28,7 +28,7 @@ export interface ITriggerProps {
 
 export const Trigger: React.FC<ITriggerProps> = ({
   children,
-  disabledSearch,
+  isSearchDisabled,
   isDisabled,
   isError,
   isItemSelected,
@@ -57,16 +57,16 @@ export const Trigger: React.FC<ITriggerProps> = ({
       }
     };
 
-    if (!disabledSearch) {
+    if (!isSearchDisabled) {
       document.addEventListener('keydown', onKeyDown);
     }
 
     return () => {
-      if (!disabledSearch) {
+      if (!isSearchDisabled) {
         document.removeEventListener('keydown', onKeyDown);
       }
     };
-  }, []);
+  }, [isSearchDisabled]);
 
   const handleTriggerClick = () => {
     onClick();
@@ -88,7 +88,7 @@ export const Trigger: React.FC<ITriggerProps> = ({
       onClick={handleTriggerClick}
       tabIndex={0}
     >
-      {isOpen && !disabledSearch ? (
+      {isOpen && !isSearchDisabled ? (
         <input
           className={styles[`${baseClass}__input`]}
           placeholder="Select option"
