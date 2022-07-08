@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { Error } from '@livechat/design-system-icons/react/material';
+import cx from 'clsx';
+
 import { Trigger, TriggerSize } from './Trigger';
 import { IPickerListItem, PickerList } from './PickerList';
 import { Icon } from '../Icon';
-import styles from './Picker.module.scss';
-import cx from 'clsx';
 import { KeyCodes } from '../../utils/keyCodes';
+
+import styles from './Picker.module.scss';
 
 const baseClass = 'picker';
 
@@ -14,10 +16,12 @@ export interface IPickerProps {
   label?: string;
   error?: string;
   options: IPickerListItem[];
+  selectedOption?: IPickerListItem;
   size?: TriggerSize;
   placeholder?: string;
   isRequired?: boolean;
   noSearchResultText?: string;
+  searchDisabled?: boolean;
   onSelect: (selectedItem: IPickerListItem | null) => void;
 }
 
@@ -26,15 +30,17 @@ export const Picker: React.FC<IPickerProps> = ({
   error,
   label,
   options,
+  selectedOption,
   size = 'medium',
   placeholder = 'Select option',
   isRequired,
   noSearchResultText = 'No results found',
+  searchDisabled = false,
   onSelect,
 }) => {
   const [isListOpen, setIsListOpen] = React.useState<boolean>(false);
   const [selectedItem, setSelectedItem] =
-    React.useState<IPickerListItem | null>(null);
+    React.useState<IPickerListItem | null>(selectedOption || null);
   const [searchPhrase, setSearchPhrase] = React.useState<string | null>(null);
   const triggerRef = React.useRef<HTMLDivElement>(null);
 
@@ -107,7 +113,7 @@ export const Picker: React.FC<IPickerProps> = ({
   }, [searchPhrase]);
 
   return (
-    <div ref={triggerRef} className={baseClass}>
+    <div ref={triggerRef} className={styles[baseClass]}>
       {label && (
         <div
           className={cx(styles[`${baseClass}__label`], {
@@ -119,6 +125,7 @@ export const Picker: React.FC<IPickerProps> = ({
       )}
       <div className={styles[`${baseClass}__container`]}>
         <Trigger
+          isSearchDisabled={searchDisabled}
           isError={!!error}
           isOpen={isListOpen}
           isDisabled={disabled}

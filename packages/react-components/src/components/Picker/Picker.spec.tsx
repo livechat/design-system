@@ -74,4 +74,13 @@ describe('<Picker> component', () => {
     userEvent.click(getByTestId('picker-trigger__clear-icon'));
     expect(onSelect).toHaveBeenCalledWith(null);
   });
+
+  it('should render selected option if selectedOption is provided', () => {
+    const { getByText } = renderComponent({
+      ...defaultProps,
+      selectedOption: { key: 'three', name: 'Option three' },
+    });
+
+    expect(getByText('Option three')).toBeVisible();
+  });
 });

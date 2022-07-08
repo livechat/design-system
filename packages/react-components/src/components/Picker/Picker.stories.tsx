@@ -96,3 +96,37 @@ PickerWithGroupedOptions.args = {
   ],
   onSelect: (item) => console.log(item),
 };
+
+export const PickerWithDisabledSearch = StoryTemplate.bind({});
+PickerWithDisabledSearch.args = {
+  searchDisabled: true,
+  options: [
+    { key: 'groupA', name: 'Group A title header', groupHeader: true },
+    { key: 'one', name: 'Option one' },
+    { key: 'two', name: 'Option two' },
+    { key: 'three', name: 'Option three' },
+    { key: 'groupB', name: 'Group B title header', groupHeader: true },
+    { key: 'four', name: 'Option four' },
+    { key: 'five', name: 'Option five' },
+    { key: 'six', name: 'Option six', disabled: true },
+    { key: 'seven', name: 'Option seven', disabled: true },
+  ],
+  onSelect: (item) => console.log(item),
+};
+
+export const PickerWithSelectedOption = StoryTemplate.bind({});
+PickerWithSelectedOption.args = {
+  selectedOption: { key: 'two', name: 'Option two' },
+  options: [
+    { key: 'groupA', name: 'Group A title header', groupHeader: true },
+    { key: 'one', name: 'Option one' },
+    { key: 'two', name: 'Option two' },
+    { key: 'three', name: 'Option three' },
+    { key: 'groupB', name: 'Group B title header', groupHeader: true },
+    { key: 'four', name: 'Option four' },
+    { key: 'five', name: 'Option five' },
+    { key: 'six', name: 'Option six', disabled: true },
+    { key: 'seven', name: 'Option seven', disabled: true },
+  ],
+  onSelect: (item) => console.log(item),
+};
