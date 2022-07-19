@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Canvas } from '@storybook/addon-docs';
 import { DesignTokens } from '../../themes/designTokens';
 import { Text } from '../../components/Typography';
 
