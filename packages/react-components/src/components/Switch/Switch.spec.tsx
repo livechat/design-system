@@ -13,7 +13,7 @@ describe('Switch', () => {
     expect(checkbox.checked).toEqual(false);
   });
 
-  it('should change state to enabled when user clicks on disabled switch', () => {
+  it('should change state to checked (on) when user clicks on unchecked (off) switch', () => {
     const { getByRole } = render(<Switch />);
     const checkbox = getByRole('checkbox') as HTMLInputElement;
     expect(checkbox.checked).toEqual(false);
@@ -21,7 +21,7 @@ describe('Switch', () => {
     expect(checkbox.checked).toEqual(true);
   });
 
-  it('should change state to disabled when user clicks on enabled switch', () => {
+  it('should change state to unchecked (off) when user clicks on checked (on) switch', () => {
     const { getByRole } = render(<Switch on={true} />);
     const checkbox = getByRole('checkbox') as HTMLInputElement;
     expect(checkbox.checked).toEqual(true);
@@ -29,7 +29,7 @@ describe('Switch', () => {
     expect(checkbox.checked).toEqual(false);
   });
 
-  it('should be enabled if defaultOn is set to true', () => {
+  it('should be checked (on) if defaultOn is set to true', () => {
     const { getByRole } = render(<Switch defaultOn={true} />);
     const checkbox = getByRole('checkbox') as HTMLInputElement;
     expect(checkbox.checked).toEqual(true);
@@ -37,4 +37,3 @@ describe('Switch', () => {
     expect(checkbox.checked).toEqual(false);
   });
 });
-1;

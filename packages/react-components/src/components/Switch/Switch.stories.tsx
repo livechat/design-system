@@ -1,23 +1,35 @@
 import * as React from 'react';
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
 
-import { Switch as SwitchComponent, SwitchProps } from './Switch';
-import noop from '../../utils/noop';
+import { Switch, SwitchProps } from './Switch';
 
 export default {
   title: 'Components/Switch',
-  component: SwitchComponent,
-} as ComponentMeta<typeof SwitchComponent>;
+  component: Switch,
+} as ComponentMeta<typeof Switch>;
 
-export const Switch = (args: SwitchProps): React.ReactElement => {
-  return (
-    <div>
-      <SwitchComponent {...args} />
-    </div>
-  );
+const Template: Story<SwitchProps> = (args: SwitchProps) => (
+  <Switch {...args} />
+);
+
+const basicWithoutStateHandler: Partial<SwitchProps> = {
+  onChange: undefined,
 };
 
-Switch.args = {
-  size: 'basic',
-  onChange: noop,
-};
+export const BasicSize = Template.bind({});
+BasicSize.args = { ...basicWithoutStateHandler, size: 'basic' };
+
+export const CompactSize = Template.bind({});
+CompactSize.args = { ...basicWithoutStateHandler, size: 'compact' };
+
+export const EnabledOn = Template.bind({});
+EnabledOn.args = { ...basicWithoutStateHandler, on: true };
+
+export const EnabledOff = Template.bind({});
+EnabledOff.args = { ...basicWithoutStateHandler, on: false };
+
+export const DisabledOn = Template.bind({});
+DisabledOn.args = { ...basicWithoutStateHandler, on: true, disabled: true };
+
+export const DisabledOff = Template.bind({});
+DisabledOff.args = { ...basicWithoutStateHandler, on: false, disabled: true };
