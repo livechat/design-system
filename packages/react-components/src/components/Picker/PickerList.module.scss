@@ -43,8 +43,7 @@ $base-class: 'picker-list';
     justify-content: space-between;
     padding: 6px 11px;
 
-    &:hover,
-    &[aria-selected='true'] {
+    &:hover {
       background-color: var(--surface-basic-hover);
     }
 

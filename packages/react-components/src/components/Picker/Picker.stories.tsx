@@ -9,6 +9,9 @@ export default {
   parameters: {
     componentSubtitle: `TBD`,
   },
+  argTypes: {
+    onSelect: { action: 'changed' },
+  },
 } as ComponentMeta<typeof PickerComponent>;
 
 const StoryTemplate: Story<IPickerProps> = (args: IPickerProps) => {
@@ -21,6 +24,7 @@ const StoryTemplate: Story<IPickerProps> = (args: IPickerProps) => {
 
 export const Picker = StoryTemplate.bind({});
 Picker.args = {
+  multiselect: true,
   options: [
     { key: 'one', name: 'Option one' },
     { key: 'two', name: 'Option two' },
@@ -33,7 +37,6 @@ Picker.args = {
     { key: 'nine', name: 'Option nine' },
     { key: 'ten', name: 'Option ten' },
   ],
-  onSelect: (item) => console.log(item),
 };
 
 export const PickerWithLabel = StoryTemplate.bind({});
@@ -47,7 +50,6 @@ PickerWithLabel.args = {
     { key: 'six', name: 'Option six' },
     { key: 'seven', name: 'Option seven' },
   ],
-  onSelect: (item) => console.log(item),
   label: 'Picker',
 };
 
@@ -62,7 +64,6 @@ PickerWithError.args = {
     { key: 'six', name: 'Option six' },
     { key: 'seven', name: 'Option seven' },
   ],
-  onSelect: (item) => console.log(item),
   error: 'Error message',
 };
 
@@ -77,7 +78,6 @@ DisabledPicker.args = {
     { key: 'six', name: 'Option six' },
     { key: 'seven', name: 'Option seven' },
   ],
-  onSelect: (item) => console.log(item),
   disabled: true,
 };
 
@@ -94,5 +94,4 @@ PickerWithGroupedOptions.args = {
     { key: 'six', name: 'Option six', disabled: true },
     { key: 'seven', name: 'Option seven', disabled: true },
   ],
-  onSelect: (item) => console.log(item),
 };

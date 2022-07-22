@@ -2,6 +2,10 @@
   align-items: center;
   display: flex;
 
+  svg {
+    pointer-events: none;
+  }
+
   &--primary {
     color: var(--content-default);
   }

@@ -27,6 +27,13 @@ $base-class: 'picker-trigger';
     height: 42px;
   }
 
+  &--multi-select {
+    align-items: flex-start;
+    height: auto;
+    max-height: 96px;
+    overflow-y: scroll;
+  }
+
   &:hover {
     border-color: var(--border-hover);
     cursor: pointer;

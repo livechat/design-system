@@ -32,4 +32,9 @@ $base-class: 'picker';
       margin-right: 5px;
     }
   }
+
+  &__tag {
+    margin-bottom: 4px;
+    margin-left: 4px;
+  }
 }

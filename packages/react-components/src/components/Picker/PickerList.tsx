@@ -19,7 +19,7 @@ export interface IPickerListItem {
 export interface IPickerListProps {
   isOpen: boolean;
   items: IPickerListItem[];
-  selectedItem: IPickerListItem | null;
+  selectedItemsKeys: string[] | null;
   size?: TriggerSize;
   emptyStateText?: string;
   onClose: () => void;
@@ -29,7 +29,7 @@ export interface IPickerListProps {
 export const PickerList: React.FC<IPickerListProps> = ({
   isOpen,
   items,
-  selectedItem,
+  selectedItemsKeys,
   size = 'medium',
   emptyStateText = 'No results found',
   onClose,
@@ -140,8 +140,13 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
   const handleOnClick = (item: IPickerListItem) => onSelect(item);
 
-  const isItemSelected = (key: string): boolean =>
-    !!selectedItem && key === selectedItem.key;
+  const isItemSelected = (key: string): boolean => {
+    if (!selectedItemsKeys) {
+      return false;
+    }
+
+    return selectedItemsKeys.includes(key);
+  };
 
   if (!isOpen) {
     return null;

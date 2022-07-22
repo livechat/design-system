@@ -19,8 +19,9 @@ export interface ITriggerProps {
   isItemSelected: boolean;
   isOpen: boolean;
   isRequired?: boolean;
+  isMultiSelect?: boolean;
   size?: TriggerSize;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent | KeyboardEvent) => void;
   onClearClick: () => void;
   onFilter: (text: string) => void;
 }
@@ -32,6 +33,7 @@ export const Trigger: React.FC<ITriggerProps> = ({
   isItemSelected,
   isOpen,
   isRequired,
+  isMultiSelect,
   size = 'medium',
   onClick,
   onClearClick,
@@ -41,6 +43,7 @@ export const Trigger: React.FC<ITriggerProps> = ({
   const mergedClassNames = cx(
     styles[baseClass],
     styles[`${baseClass}--${size}`],
+    isMultiSelect && styles[`${baseClass}--multi-select`],
     isDisabled && styles[`${baseClass}--disabled`],
     isOpen && styles[`${baseClass}--focused`],
     isError && styles[`${baseClass}--error`]
@@ -51,7 +54,7 @@ export const Trigger: React.FC<ITriggerProps> = ({
       const isFocused = document.activeElement === triggerRef.current;
 
       if (isFocused && e.key !== KeyCodes.tab) {
-        onClick();
+        onClick(e);
       }
     };
 
@@ -60,8 +63,8 @@ export const Trigger: React.FC<ITriggerProps> = ({
     return () => document.removeEventListener('keydown', onKeyDown);
   }, []);
 
-  const handleTriggerClick = () => {
-    onClick();
+  const handleTriggerClick = (e: React.MouseEvent) => {
+    onClick(e);
   };
 
   const handleOnClearClick = (e: React.MouseEvent) => {
