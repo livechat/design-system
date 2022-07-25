@@ -11,6 +11,13 @@ describe('Badge', () => {
     expect(container.firstChild).toHaveClass('my-custom-class');
   });
 
+  it('should display content passed as children by default', () => {
+    const content = '3 steps left';
+    const { container } = render(<Badge>{content}</Badge>);
+
+    expect(container).toHaveTextContent(content);
+  });
+
   it('should display exclamation mark for alert type', () => {
     const { container } = render(<Badge type="alert" />);
 
