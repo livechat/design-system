@@ -8,28 +8,23 @@ export default {
   component: Switch,
 } as ComponentMeta<typeof Switch>;
 
-const Template: Story<SwitchProps> = (args: SwitchProps) => (
-  <Switch {...args} />
+export const Default: Story<SwitchProps> = (args: SwitchProps) => (
+  <Switch {...args} onChange={undefined} />
+);
+Default.storyName = 'Switch';
+
+export const States = (): JSX.Element => (
+  <div className="spacer">
+    <Switch on={true} />
+    <Switch on={false} />
+    <Switch on={true} disabled={true} />
+    <Switch on={false} disabled={true} />
+  </div>
 );
 
-const basicWithoutStateHandler: Partial<SwitchProps> = {
-  onChange: undefined,
-};
-
-export const BasicSize = Template.bind({});
-BasicSize.args = { ...basicWithoutStateHandler, size: 'basic' };
-
-export const CompactSize = Template.bind({});
-CompactSize.args = { ...basicWithoutStateHandler, size: 'compact' };
-
-export const EnabledOn = Template.bind({});
-EnabledOn.args = { ...basicWithoutStateHandler, on: true };
-
-export const EnabledOff = Template.bind({});
-EnabledOff.args = { ...basicWithoutStateHandler, on: false };
-
-export const DisabledOn = Template.bind({});
-DisabledOn.args = { ...basicWithoutStateHandler, on: true, disabled: true };
-
-export const DisabledOff = Template.bind({});
-DisabledOff.args = { ...basicWithoutStateHandler, on: false, disabled: true };
+export const Sizes = (): JSX.Element => (
+  <div className="spacer">
+    <Switch size="basic" />
+    <Switch size="compact" />
+  </div>
+);
