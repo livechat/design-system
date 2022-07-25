@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
 
+import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+
 import { Switch, SwitchProps } from './Switch';
 
 export default {
@@ -15,20 +17,24 @@ Default.storyName = 'Switch';
 
 export const States = (): JSX.Element => (
   <>
-    <div className="spacer">
+    <StoryDescriptor title="Enabled">
       <Switch on={true} />
       <Switch on={false} />
-    </div>
-    <div className="spacer">
+    </StoryDescriptor>
+    <StoryDescriptor title="Disabled">
       <Switch on={true} disabled={true} />
       <Switch on={false} disabled={true} />
-    </div>
+    </StoryDescriptor>
   </>
 );
 
 export const Sizes = (): JSX.Element => (
-  <div className="spacer">
-    <Switch size="basic" />
-    <Switch size="compact" />
-  </div>
+  <>
+    <StoryDescriptor title="Compact">
+      <Switch size="compact" />
+    </StoryDescriptor>
+    <StoryDescriptor title="Basic">
+      <Switch size="basic" />
+    </StoryDescriptor>
+  </>
 );
