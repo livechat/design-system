@@ -14,12 +14,16 @@ export const Default: Story<SwitchProps> = (args: SwitchProps) => (
 Default.storyName = 'Switch';
 
 export const States = (): JSX.Element => (
-  <div className="spacer">
-    <Switch on={true} />
-    <Switch on={false} />
-    <Switch on={true} disabled={true} />
-    <Switch on={false} disabled={true} />
-  </div>
+  <>
+    <div className="spacer">
+      <Switch on={true} />
+      <Switch on={false} />
+    </div>
+    <div className="spacer">
+      <Switch on={true} disabled={true} />
+      <Switch on={false} disabled={true} />
+    </div>
+  </>
 );
 
 export const Sizes = (): JSX.Element => (
