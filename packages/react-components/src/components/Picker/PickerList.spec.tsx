@@ -18,9 +18,10 @@ const defaultProps = {
     { key: 'six', name: 'Option six' },
     { key: 'seven', name: 'Option seven' },
   ],
-  selectedItem: null,
+  selectedItemsKeys: null,
   onClose: () => noop,
   onSelect: () => noop,
+  onSelectAll: () => noop,
 };
 
 const renderComponent = (props: IPickerListProps) => {
@@ -62,7 +63,7 @@ describe('<PickerList> component', () => {
     const { getByText } = renderComponent({
       ...defaultProps,
       isOpen: true,
-      selectedItem: { key: 'three', name: 'Option three' },
+      selectedItemsKeys: ['three'],
     });
 
     expect(getByText('Option three')).toHaveAttribute('aria-selected', 'true');
@@ -97,5 +98,15 @@ describe('<PickerList> component', () => {
     });
 
     expect(getByText('Custom empty state')).toBeVisible();
+  });
+
+  it('should add "Select all" option to the list in multiselect mode', () => {
+    const { getByText } = renderComponent({
+      ...defaultProps,
+      isOpen: true,
+      isMultiSelect: true,
+    });
+
+    expect(getByText('Select all')).toBeVisible();
   });
 });

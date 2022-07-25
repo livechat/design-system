@@ -8,14 +8,10 @@ import cx from 'clsx';
 import { KeyCodes } from '../../utils/keyCodes';
 import { Tag } from '../Tag';
 
-// TODO:
-// wysokość multipickera
-// opcja "Select all"
-// rozwayć case z search przy multipicker
-
 const baseClass = 'picker';
 
 export interface IPickerProps {
+  className?: string;
   disabled?: boolean;
   label?: string;
   error?: string;
@@ -29,6 +25,7 @@ export interface IPickerProps {
 }
 
 export const Picker: React.FC<IPickerProps> = ({
+  className,
   disabled,
   error,
   label,
@@ -46,6 +43,8 @@ export const Picker: React.FC<IPickerProps> = ({
   >(null);
   const [searchPhrase, setSearchPhrase] = React.useState<string | null>(null);
   const triggerRef = React.useRef<HTMLDivElement>(null);
+
+  const mergedClassNames = cx(styles[baseClass], className);
 
   React.useEffect(() => {
     if (isListOpen) {
@@ -108,6 +107,11 @@ export const Picker: React.FC<IPickerProps> = ({
     setSelectedItems(newSelectedItems);
   };
 
+  const handleOnSelectAll = () => {
+    setIsListOpen(false);
+    setSelectedItems(items);
+  };
+
   const handleOnClearClick = () => {
     setIsListOpen(false);
     setSelectedItems(null);
@@ -137,6 +141,7 @@ export const Picker: React.FC<IPickerProps> = ({
         {items.map((item) => {
           return (
             <Tag
+              key={item.name}
               className={styles[`${baseClass}__tag`]}
               dismissible
               onRemove={() => handleItemRemove(item)}
@@ -169,7 +174,7 @@ export const Picker: React.FC<IPickerProps> = ({
   }, [searchPhrase]);
 
   return (
-    <div ref={triggerRef} className={baseClass}>
+    <div ref={triggerRef} className={mergedClassNames}>
       {label && (
         <div
           className={cx(styles[`${baseClass}__label`], {
@@ -202,8 +207,10 @@ export const Picker: React.FC<IPickerProps> = ({
           isOpen={isListOpen}
           size={size}
           emptyStateText={noSearchResultText}
+          isMultiSelect={multiselect}
           onClose={handleOnClose}
           onSelect={handleOnSelect}
+          onSelectAll={handleOnSelectAll}
         />
       </div>
       {error && (

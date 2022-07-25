@@ -6,6 +6,7 @@ import styles from './PickerList.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
 import { TriggerSize } from './Trigger';
 
+const selectAllElement = { key: 'select-all', name: 'Select all' };
 const baseClass = 'picker-list';
 const itemClassName = `${baseClass}__item`;
 
@@ -18,22 +19,26 @@ export interface IPickerListItem {
 
 export interface IPickerListProps {
   isOpen: boolean;
+  isMultiSelect?: boolean;
   items: IPickerListItem[];
   selectedItemsKeys: string[] | null;
   size?: TriggerSize;
   emptyStateText?: string;
   onClose: () => void;
   onSelect: (item: IPickerListItem) => void;
+  onSelectAll: () => void;
 }
 
 export const PickerList: React.FC<IPickerListProps> = ({
   isOpen,
+  isMultiSelect,
   items,
   selectedItemsKeys,
   size = 'medium',
   emptyStateText = 'No results found',
   onClose,
   onSelect,
+  onSelectAll,
 }) => {
   const mergedClassNames = cx(
     styles[baseClass],
@@ -50,6 +55,43 @@ export const PickerList: React.FC<IPickerListProps> = ({
   const lastIndexRef = React.useRef(0);
   const listRef = React.useRef<HTMLUListElement>(null);
 
+  if (isMultiSelect && items.indexOf(selectAllElement) === -1) {
+    items.unshift(selectAllElement);
+  }
+
+  const onKeyDown = (e: KeyboardEvent) => {
+    if (e.key === KeyCodes.esc) {
+      e.preventDefault();
+      onClose();
+    }
+
+    if (e.key === KeyCodes.arrowUp && indexRef.current > 0) {
+      e.preventDefault();
+
+      indexRef.current = getPrevItemIndex();
+
+      setCurrentItemKey(items[indexRef.current].key);
+    }
+
+    if (e.key === KeyCodes.arrowDown && indexRef.current + 1 < items.length) {
+      e.preventDefault();
+
+      indexRef.current = getNextItemIndex();
+
+      setCurrentItemKey(items[indexRef.current].key);
+    }
+
+    if (e.key === KeyCodes.enter && !items[indexRef.current].disabled) {
+      e.preventDefault();
+
+      if (items[indexRef.current].key === 'select-all') {
+        return onSelectAll();
+      }
+
+      onSelect(items[indexRef.current]);
+    }
+  };
+
   React.useEffect(() => {
     if (indexRef.current > -1 && items.length > 0) {
       setCurrentItemKey(items[indexRef.current].key);
@@ -63,7 +105,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
       lastIndexRef.current = 0;
       setCurrentItemKey(null);
     }
-  }, [items, isOpen]);
+  }, [items, isOpen, onKeyDown]);
 
   const isHeaderOrDisabled = (i: number) =>
     !!items[i] && (items[i].disabled || items[i].groupHeader);
@@ -110,35 +152,9 @@ export const PickerList: React.FC<IPickerListProps> = ({
     return indexRef.current;
   };
 
-  const onKeyDown = (e: KeyboardEvent) => {
-    if (e.key === KeyCodes.esc) {
-      e.preventDefault();
-      onClose();
-    }
-
-    if (e.key === KeyCodes.arrowUp && indexRef.current > 0) {
-      e.preventDefault();
-
-      indexRef.current = getPrevItemIndex();
-
-      setCurrentItemKey(items[indexRef.current].key);
-    }
-
-    if (e.key === KeyCodes.arrowDown && indexRef.current + 1 < items.length) {
-      e.preventDefault();
-
-      indexRef.current = getNextItemIndex();
-
-      setCurrentItemKey(items[indexRef.current].key);
-    }
-
-    if (e.key === KeyCodes.enter && !items[indexRef.current].disabled) {
-      e.preventDefault();
-      onSelect(items[indexRef.current]);
-    }
-  };
-
   const handleOnClick = (item: IPickerListItem) => onSelect(item);
+
+  const handleOnSelectAllClick = () => onSelectAll();
 
   const isItemSelected = (key: string): boolean => {
     if (!selectedItemsKeys) {
@@ -167,6 +183,29 @@ export const PickerList: React.FC<IPickerListProps> = ({
               className={styles[`${itemClassName}__header`]}
             >
               {item.name}
+            </li>
+          );
+        }
+
+        if (item.key === 'select-all') {
+          return (
+            <li
+              ref={(element) => {
+                if (currentItemKey === item.key) {
+                  element?.scrollIntoView({ block: 'nearest' });
+                }
+              }}
+              role="option"
+              aria-current={currentItemKey === item.key}
+              id={item.key}
+              key={item.key}
+              className={cx(
+                styles[itemClassName],
+                styles[`${itemClassName}--select-all`]
+              )}
+              onClick={handleOnSelectAllClick}
+            >
+              Select all
             </li>
           );
         }

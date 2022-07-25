@@ -19,7 +19,7 @@ const renderComponent = (props: ITriggerProps) => {
 };
 
 describe('<Trigger> component', () => {
-  it('should render Trigger with placeholder text', () => {
+  it('should render Trigger with given content', () => {
     const { getByText } = renderComponent(defaultProps);
 
     expect(getByText('Example text')).toBeVisible();
@@ -110,5 +110,16 @@ describe('<Trigger> component', () => {
     });
 
     expect(queryByTestId(`${baseClass}__clear-icon`)).toBeNull();
+  });
+
+  it('should render Trigger with proper class in multiselect mode', () => {
+    const { container } = renderComponent({
+      ...defaultProps,
+      isMultiSelect: true,
+    });
+
+    expect(container.firstChild).toHaveClass(
+      styles[`${baseClass}--multi-select`]
+    );
   });
 });

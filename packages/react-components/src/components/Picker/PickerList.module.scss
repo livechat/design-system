@@ -60,6 +60,10 @@ $base-class: 'picker-list';
       }
     }
 
+    &--select-all {
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
     &__header {
       align-items: center;
       color: var(--content-subtle);

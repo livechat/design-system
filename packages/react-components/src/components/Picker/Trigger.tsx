@@ -91,7 +91,14 @@ export const Trigger: React.FC<ITriggerProps> = ({
           autoFocus
         />
       ) : (
-        <div className={styles[`${baseClass}__text`]}>{children}</div>
+        <div
+          className={cx(
+            styles[`${baseClass}__text`],
+            isMultiSelect && styles[`${baseClass}__text--multi-select`]
+          )}
+        >
+          {children}
+        </div>
       )}
       {isItemSelected && !isDisabled && !isRequired && (
         <div

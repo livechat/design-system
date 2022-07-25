@@ -12,6 +12,7 @@ $base-class: 'picker-trigger';
   justify-content: flex-end;
   line-height: 22px;
   padding: 7px 12px;
+  position: relative;
   transition: border 0.15s ease-in-out;
   width: 341px;
 
@@ -30,8 +31,7 @@ $base-class: 'picker-trigger';
   &--multi-select {
     align-items: flex-start;
     height: auto;
-    max-height: 96px;
-    overflow-y: scroll;
+    overflow: hidden;
   }
 
   &:hover {
@@ -39,8 +39,18 @@ $base-class: 'picker-trigger';
     cursor: pointer;
   }
 
+  &__clear-icon {
+    margin-top: 2px;
+  }
+
   &__text {
     flex-grow: 2;
+
+    &--multi-select {
+      height: auto;
+      max-height: 96px;
+      overflow-y: scroll;
+    }
   }
 
   &--disabled {
@@ -64,11 +74,14 @@ $base-class: 'picker-trigger';
   }
 
   &__input {
+    align-items: center;
     background: none;
     border: 0;
     color: var(--content-default);
+    display: flex;
     flex-grow: 2;
     font-size: 15px;
+    height: 22px;
     outline: none;
     padding: 0;
   }
