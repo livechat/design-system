@@ -2,11 +2,18 @@ Resolves: [issue_number]
 
 ## Description
 
-
 ## Storybook
 
-
 ## Checklist
-[] - Self review
-[] - Design review
-[] - Accessibility cases (keyboard control, correct html markup, etc.)
+
+**Obligatory:**
+
+- [ ] Self-review
+- [ ] Unit & integration tests
+- [ ] Storybook cases
+- [ ] Design review
+- [ ] Functional (QA) review
+
+**Optional:**
+
+- [ ] Accessibility cases (keyboard control, correct HTML markup, etc.)
