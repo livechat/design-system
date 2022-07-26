@@ -107,4 +107,13 @@ describe('<Picker> component', () => {
 
     expect(getByText('Example placeholder')).toBeVisible();
   });
+
+  it('should render selected option if selectedOption is provided', () => {
+    const { getByText } = renderComponent({
+      ...defaultProps,
+      selectedOptions: [{ key: 'three', name: 'Option three' }],
+    });
+
+    expect(getByText('Option three')).toBeVisible();
+  });
 });

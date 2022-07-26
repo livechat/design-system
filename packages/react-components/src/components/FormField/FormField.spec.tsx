@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { render } from 'test-utils';
-import { TextFieldProps, TextField } from './TextField';
+import { FormFieldProps, FormField } from './FormField';
 
-const renderComponent = (props: TextFieldProps) => {
+const renderComponent = (props: FormFieldProps) => {
   return render(
-    <TextField {...props} className="my-css-class">
+    <FormField {...props} className="my-css-class">
       <input id="input-field-example" />
-    </TextField>
+    </FormField>
   );
 };
 
-describe('<TextField> component', () => {
+describe('<FormField> component', () => {
   it('should allow for custom class', () => {
     const { container } = renderComponent({});
 

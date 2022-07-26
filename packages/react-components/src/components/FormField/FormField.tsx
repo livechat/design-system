@@ -4,11 +4,11 @@ import { Text } from '../Typography';
 import { FieldError } from '../FieldError';
 import { FieldDescription } from '../FieldDescription';
 
-import styles from './TextField.module.scss';
+import styles from './FormField.module.scss';
 
-const baseClass = 'text-field';
+const baseClass = 'form-field';
 
-export interface TextFieldProps {
+export interface FormFieldProps {
   labelText?: string;
   labelAdornment?: React.ReactNode;
   labelFor?: string;
@@ -20,7 +20,7 @@ export interface TextFieldProps {
   labelRightNode?: React.ReactNode;
 }
 
-export const TextField: React.FC<TextFieldProps> = ({
+export const FormField: React.FC<FormFieldProps> = ({
   inline,
   error,
   description,
@@ -70,7 +70,10 @@ export const TextField: React.FC<TextFieldProps> = ({
           >
             {labelText && (
               <div className={cx(styles[`${baseClass}__label-wrapper`])}>
-                <label className="lc-field-label" htmlFor={labelFor}>
+                <label
+                  className={styles[`${baseClass}__label-left-node`]}
+                  htmlFor={labelFor}
+                >
                   <Text as="span" size="sm">
                     {labelText}
                   </Text>

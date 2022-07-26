@@ -1,9 +1,11 @@
 $base-class: 'picker';
 
 .#{$base-class} {
+  box-sizing: border-box;
   color: var(--content-default);
   display: inline-block;
   position: relative;
+  width: 100%;
 
   &__container {
     position: relative;

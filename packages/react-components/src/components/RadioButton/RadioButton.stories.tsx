@@ -7,7 +7,7 @@ import {
 } from './RadioButton';
 
 export default {
-  title: 'Forms (WIP)/Radio Button',
+  title: 'Forms/Radio Button',
   component: RadioButtonComponent,
   argTypes: { onChange: { action: 'changed' } },
   parameters: {
@@ -31,4 +31,4 @@ RadioButton.args = {
   disabled: false,
   description: 'Help text',
   children: 'Radio label',
-} as RadioButtonProps;
+};

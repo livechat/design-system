@@ -1,30 +1,37 @@
 import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
 
-import { TextFieldProps, TextField as TextFieldComponent } from './TextField';
+import { FormField as FormFieldComponent, FormFieldProps } from './FormField';
+import { Input } from '../Input';
+import { NumericInput } from '../NumericInput';
 
 export default {
-  title: 'Forms (WIP)/TextField',
-  component: TextFieldComponent,
+  title: 'Forms/FormField',
+  component: FormFieldComponent,
   parameters: {
-    componentSubtitle: `
-      TextField is useful if you need to develop custom input field, 
-      but want to reuse the logic behind labels, descriptions and errors 
-      present in other form components like InputField, TextAreaField etc.
-    `,
+    controls: { exclude: ['children'] },
   },
-} as ComponentMeta<typeof TextFieldComponent>;
+} as ComponentMeta<typeof FormFieldComponent>;
 
-const StoryTemplate: Story<TextFieldProps> = (args: TextFieldProps) => (
+const StoryTemplate: Story<FormFieldProps> = (args: FormFieldProps) => (
   <div>
-    <TextFieldComponent {...args}>
-      <input style={{ height: 26 }} id="text-field-example" />
-    </TextFieldComponent>
+    <FormFieldComponent {...args}>
+      {args.children || (
+        <Input error={!!args.error} placeholder="Placeholder text" />
+      )}
+    </FormFieldComponent>
   </div>
 );
 
 export const TextField = StoryTemplate.bind({});
-TextField.args = {};
+TextField.args = {
+  inline: false,
+  labelText: '',
+  labelRightNode: '',
+  labelAdornment: '',
+  description: '',
+  error: '',
+};
 
 export const TextFieldWithLabel = StoryTemplate.bind({});
 TextFieldWithLabel.args = {
@@ -40,7 +47,7 @@ TextFieldWithLabelInline.args = {
 export const TextFieldWithLabelAndLabelRightNode = StoryTemplate.bind({});
 TextFieldWithLabelAndLabelRightNode.args = {
   labelText: 'Example label text',
-  labelRightNode: <img src="https://via.placeholder.com/100" />,
+  labelRightNode: '10/100',
 };
 
 export const TextFieldWithLabelAdornment = StoryTemplate.bind({});
@@ -56,5 +63,12 @@ TextFieldWithError.args = {
 
 export const TextFieldWithDescription = StoryTemplate.bind({});
 TextFieldWithDescription.args = {
-  description: <div>Description text</div>,
+  description: 'Description text',
+};
+
+export const NumericField = StoryTemplate.bind({});
+NumericField.args = {
+  labelText: 'Label',
+  description: 'Description text',
+  children: <NumericInput value="1" onChange={() => 1} />,
 };

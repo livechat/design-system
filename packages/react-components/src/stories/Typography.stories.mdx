@@ -1,6 +1,6 @@
-import { Meta, Canvas, ArgsTable } from "@storybook/addon-docs";
+import { Meta, Canvas, ArgsTable } from '@storybook/addon-docs';
 
-import { Heading, Text } from "../components/Typography";
+import { Heading, Text } from '../components/Typography';
 
 <Meta title="Foundations/Typography" />
 
@@ -22,7 +22,12 @@ You can modify the output element via `as` prop. For example if you want to rend
 
 <ArgsTable of={Heading} />
 
-<Canvas style={{ color: "var(--content-default)" }}>
+<Canvas
+  style={{
+    color: 'var(--content-default)',
+    backgroundColor: 'var(--background)',
+  }}
+>
   <Heading size="xl">Heading XLarge</Heading>
   <Heading size="lg">Heading Large</Heading>
   <Heading size="md">Heading Medium</Heading>
@@ -42,7 +47,12 @@ You can modify the output element via `as` prop. For example if you want to rend
 
 <ArgsTable of={Text} />
 
-<Canvas style={{ color: "var(--content-default)" }}>
+<Canvas
+  style={{
+    color: 'var(--content-default)',
+    backgroundColor: 'var(--background)',
+  }}
+>
   <Text>Paragraph Medium</Text>
   <Text bold>Paragraph Medium Bold</Text>
   <Text underline>Paragraph Medium Underline</Text>

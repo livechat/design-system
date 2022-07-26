@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { Error } from '@livechat/design-system-icons/react/material';
+import cx from 'clsx';
+
 import { Trigger, TriggerSize } from './Trigger';
 import { IPickerListItem, PickerList } from './PickerList';
 import { Icon } from '../Icon';
-import styles from './Picker.module.scss';
-import cx from 'clsx';
 import { KeyCodes } from '../../utils/keyCodes';
 import { Tag } from '../Tag';
+
+import styles from './Picker.module.scss';
 
 const baseClass = 'picker';
 
@@ -16,11 +18,13 @@ export interface IPickerProps {
   label?: string;
   error?: string;
   options: IPickerListItem[];
+  selectedOptions?: IPickerListItem[];
   size?: TriggerSize;
   placeholder?: string;
   isRequired?: boolean;
   noSearchResultText?: string;
   multiselect?: boolean;
+  searchDisabled?: boolean;
   onSelect: (selectedItems: IPickerListItem[] | null) => void;
 }
 
@@ -30,17 +34,19 @@ export const Picker: React.FC<IPickerProps> = ({
   error,
   label,
   options,
+  selectedOptions,
   size = 'medium',
   placeholder = 'Select option',
   isRequired,
   noSearchResultText = 'No results found',
   multiselect = false,
+  searchDisabled = false,
   onSelect,
 }) => {
   const [isListOpen, setIsListOpen] = React.useState<boolean>(false);
   const [selectedItems, setSelectedItems] = React.useState<
     IPickerListItem[] | null
-  >(null);
+  >(selectedOptions || null);
   const [searchPhrase, setSearchPhrase] = React.useState<string | null>(null);
   const triggerRef = React.useRef<HTMLDivElement>(null);
 
@@ -109,7 +115,12 @@ export const Picker: React.FC<IPickerProps> = ({
 
   const handleOnSelectAll = () => {
     setIsListOpen(false);
-    setSelectedItems(items);
+
+    const itemsToSelect = items.filter(
+      (item) => !item.disabled || !item.groupHeader || item.key !== 'select-all'
+    );
+
+    setSelectedItems(itemsToSelect);
   };
 
   const handleOnClearClick = () => {
@@ -186,6 +197,7 @@ export const Picker: React.FC<IPickerProps> = ({
       )}
       <div className={styles[`${baseClass}__container`]}>
         <Trigger
+          isSearchDisabled={searchDisabled}
           isError={!!error}
           isOpen={isListOpen}
           isDisabled={disabled}

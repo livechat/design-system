@@ -14,7 +14,7 @@ $base-class: 'picker-trigger';
   padding: 7px 12px;
   position: relative;
   transition: border 0.15s ease-in-out;
-  width: 341px;
+  width: 100%;
 
   &--compact {
     height: 32px;

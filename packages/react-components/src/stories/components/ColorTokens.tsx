@@ -63,7 +63,7 @@ const CONTENT = {
 };
 
 export const ColorTokensPallete: React.FC = () => (
-  <div style={{ color: 'var(--content-default)' }}>
+  <React.Fragment>
     {Object.entries(CONTENT).map(([section, { heading, content }]) => (
       <React.Fragment key={section}>
         <h2>{heading}</h2>
@@ -95,5 +95,5 @@ export const ColorTokensPallete: React.FC = () => (
         </ul>
       </React.Fragment>
     ))}
-  </div>
+  </React.Fragment>
 );

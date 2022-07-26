@@ -93,7 +93,7 @@ $toast-exit-animation-timeout: 200ms;
     background: var(--color-warning-default);
 
     .toast__content {
-      color: #424d57;
+      color: var(--content-default);
     }
   }
 
@@ -110,7 +110,7 @@ $toast-exit-animation-timeout: 200ms;
   &--info {
     .toast__content,
     .toast__actions-custom {
-      color: #fff;
+      color: var(--content-invert-default);
     }
   }
 
