@@ -1,5 +1,8 @@
-import { Story } from '@storybook/react';
 import * as React from 'react';
+import { Story } from '@storybook/react';
+
+import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+
 import { Badge, BadgeProps } from './Badge';
 
 export default {
@@ -17,25 +20,43 @@ Default.args = {
 };
 
 export const Sizes = (): JSX.Element => (
-  <div className="spacer">
-    <Badge size="compact">1</Badge>
-    <Badge size="medium">1</Badge>
-    <Badge size="large">1</Badge>
-  </div>
+  <>
+    <StoryDescriptor title="Compact">
+      <Badge size="compact">1</Badge>
+    </StoryDescriptor>
+    <StoryDescriptor title="Medium">
+      <Badge size="medium">1</Badge>
+    </StoryDescriptor>
+    <StoryDescriptor title="Large">
+      <Badge size="large">1</Badge>
+    </StoryDescriptor>
+  </>
 );
 
 export const Kinds = (): JSX.Element => (
-  <div className="spacer">
-    <Badge kind="primary">1</Badge>
-    <Badge kind="secondary">1</Badge>
-    <Badge kind="tertiary">1</Badge>
-  </div>
+  <>
+    <StoryDescriptor title="Primary">
+      <Badge kind="primary">1</Badge>
+    </StoryDescriptor>
+    <StoryDescriptor title="Secondary">
+      <Badge kind="secondary">1</Badge>
+    </StoryDescriptor>
+    <StoryDescriptor title="Tertiary">
+      <Badge kind="tertiary">1</Badge>
+    </StoryDescriptor>
+  </>
 );
 
 export const Types = (): JSX.Element => (
-  <div className="spacer">
-    <Badge type="content">3 steps left</Badge>
-    <Badge type="alert" />
-    <Badge type="dot" />
-  </div>
+  <>
+    <StoryDescriptor title="Content">
+      <Badge type="content">3 steps left</Badge>
+    </StoryDescriptor>
+    <StoryDescriptor title="Alert">
+      <Badge type="alert" />
+    </StoryDescriptor>
+    <StoryDescriptor title="Dot">
+      <Badge type="dot" />
+    </StoryDescriptor>
+  </>
 );
