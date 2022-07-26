@@ -7,7 +7,7 @@ $base-class: 'promo-banner';
   box-sizing: border-box;
   color: var(--content-default);
   display: flex;
-  font-size: 16px;
+  font-size: 15px;
   justify-content: space-between;
   min-width: 180px;
   padding: 20px;
@@ -31,6 +31,7 @@ $base-class: 'promo-banner';
   }
 
   &__header {
+    font-size: 16px;
     font-weight: 600;
     margin-bottom: 8px;
   }

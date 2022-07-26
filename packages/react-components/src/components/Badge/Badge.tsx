@@ -3,22 +3,33 @@ import * as React from 'react';
 import styles from './Badge.module.scss';
 import cx from 'clsx';
 
+const baseClass = 'badge';
+
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
-  secondary?: boolean;
+  kind?: 'primary' | 'secondary' | 'tertiary';
+  size?: 'large' | 'medium' | 'compact';
+  type?: 'content' | 'alert' | 'dot';
 }
 
 export const Badge: React.FC<BadgeProps> = ({
   children,
   className,
-  secondary = false,
+  kind = 'primary',
+  size = 'medium',
+  type = 'content',
 }) => {
-  return (
-    <span
-      className={cx(styles.badge, className, {
-        [styles['badge--secondary']]: secondary,
-      })}
-    >
-      {children}
-    </span>
+  const mergedClassNames = cx(
+    className,
+    styles[baseClass],
+    styles[`${baseClass}--${kind}`],
+    styles[`${baseClass}--${size}`]
   );
+
+  const content = {
+    ['content']: children,
+    ['alert']: '!',
+    ['dot']: <span className={styles[`${baseClass}__dot`]} />,
+  }[type];
+
+  return <span className={mergedClassNames}>{content}</span>;
 };

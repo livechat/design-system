@@ -1,6 +1,8 @@
 import * as React from 'react';
 import cx from 'clsx';
+import { LockBlack as LockIcon } from '@livechat/design-system-icons/react/material';
 
+import { Icon, IconSize } from '../../components/Icon';
 import noop from '../../utils/noop';
 
 import styles from './Switch.module.scss';
@@ -30,17 +32,19 @@ export const Switch: React.FC<SwitchProps> = ({
   innerRef,
   ...props
 }) => {
-  const [enabled, setEnabled] = React.useState(() =>
+  const [checked, setChecked] = React.useState(() =>
     on !== undefined ? on : defaultOn
   );
 
   React.useEffect(() => {
     if (on !== undefined) {
-      setEnabled(on);
+      setChecked(on);
     }
   }, [on]);
 
-  const valueStyles = enabled ? 'enabled' : 'disabled';
+  const iconSize: IconSize = size === 'basic' ? 'small' : 'xsmall';
+  const toggleStyles = checked ? 'on' : 'off';
+  const availabilityStyles = disabled ? 'disabled' : 'enabled';
   const mergedClassNames = cx(
     styles[baseClass],
     styles[`${baseClass}--${size}`],
@@ -50,20 +54,23 @@ export const Switch: React.FC<SwitchProps> = ({
   const handleChange = (e: React.FormEvent) => {
     const hasOnChangePassed = onChange !== noop;
     if (hasOnChangePassed) {
-      onChange(e, enabled);
+      onChange(e, checked);
       return;
     }
     e.stopPropagation();
-    setEnabled((prevEnabled) => !prevEnabled);
+    setChecked((prevEnabled) => !prevEnabled);
   };
 
   return (
     <span className={mergedClassNames}>
       <input
         type="checkbox"
-        className={styles[`${baseClass}__input`]}
+        className={cx(
+          styles[`${baseClass}__input`],
+          styles[`${baseClass}__input--${availabilityStyles}`]
+        )}
         onChange={handleChange}
-        checked={enabled}
+        checked={checked}
         name={name}
         ref={innerRef}
         disabled={disabled}
@@ -74,16 +81,21 @@ export const Switch: React.FC<SwitchProps> = ({
         <span
           className={cx(
             styles[`${baseClass}__track`],
-            styles[`${baseClass}__track--${valueStyles}`]
+            styles[`${baseClass}__track--${toggleStyles}`],
+            styles[`${baseClass}__track--${availabilityStyles}`]
           )}
         />
         <span
           className={cx(
             styles[`${baseClass}__slider`],
             styles[`${baseClass}__slider--${size}`],
-            styles[`${baseClass}__slider--${size}--${valueStyles}`]
+            styles[`${baseClass}__slider--${size}--${toggleStyles}`]
           )}
-        />
+        >
+          {disabled && (
+            <Icon size={iconSize} source={LockIcon} kind={'primary'} />
+          )}
+        </span>
       </span>
     </span>
   );

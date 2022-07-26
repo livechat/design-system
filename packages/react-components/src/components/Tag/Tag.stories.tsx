@@ -38,7 +38,7 @@ const avatar =
 
 export const kinds = ({ children, ...args }: TagProps): React.ReactElement => {
   return (
-    <div className="spacer" style={{ display: 'flex' }}>
+    <div className="story-spacer" style={{ display: 'flex' }}>
       <TagComponent {...args} kind="default">
         {children}
       </TagComponent>
@@ -67,7 +67,7 @@ export const kindsWithOutline = ({
   ...args
 }: TagProps): React.ReactElement => {
   return (
-    <div className="spacer" style={{ display: 'flex' }}>
+    <div className="story-spacer" style={{ display: 'flex' }}>
       <TagComponent {...args} kind="default" outline>
         {children}
       </TagComponent>
@@ -96,7 +96,7 @@ export const kindsWithIcon = ({
   ...args
 }: TagProps): React.ReactElement => {
   return (
-    <div className="spacer" style={{ display: 'flex' }}>
+    <div className="story-spacer" style={{ display: 'flex' }}>
       <TagComponent {...args} kind="default">
         {children}
       </TagComponent>
@@ -126,7 +126,7 @@ export const kindsWithAvatar = ({
   ...args
 }: TagProps): React.ReactElement => {
   return (
-    <div className="spacer" style={{ display: 'flex' }}>
+    <div className="story-spacer" style={{ display: 'flex' }}>
       <TagComponent {...args} kind="default" avatar={avatar}>
         {children}
       </TagComponent>

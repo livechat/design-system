@@ -1,23 +1,100 @@
-.badge {
-  background-color: var(--color-negative-default);
-  border-radius: 18px;
+$base-class: 'badge';
+
+@mixin dot($size) {
+  border-radius: $size;
+  height: $size;
+  width: $size;
+}
+
+.#{$base-class} {
+  align-items: center;
   box-sizing: border-box;
-  color: var(--content-invert-default);
-  display: inline-block;
-  font-size: 10px;
+  display: inline-flex;
+  flex-direction: column;
+  font-size: 12px;
   font-weight: 600;
-  height: 18px;
-  line-height: 18px;
-  min-width: 18px;
-  padding: 0 3px;
-  text-align: center;
+  gap: 10px;
+  justify-content: center;
+  line-height: 16px;
+
+  &__dot {
+    background-color: var(--content-invert-default);
+    margin: 0 -2px;
+  }
 
   & + & {
     margin-left: 4px;
   }
 
+  &--large {
+    border-radius: 24px;
+    height: 24px;
+    min-width: 24px;
+    padding: 4px 8.5px;
+
+    .#{$base-class}__dot {
+      @include dot(10px);
+    }
+  }
+
+  &--medium {
+    border-radius: 20px;
+    height: 20px;
+    min-width: 20px;
+    padding: 2px 7px;
+
+    .#{$base-class}__dot {
+      @include dot(8px);
+    }
+  }
+
+  &--compact {
+    border-radius: 24px;
+    height: 18px;
+    min-width: 18px;
+    padding: 1px 6px;
+
+    .#{$base-class}__dot {
+      @include dot(6px);
+    }
+  }
+
+  &--primary {
+    background-color: var(--color-negative-default);
+    color: var(--content-invert-default);
+
+    &:hover {
+      background-color: var(--color-negative-hover);
+    }
+
+    .#{$base-class}__dot {
+      background-color: var(--content-invert-default);
+    }
+  }
+
   &--secondary {
+    background-color: var(--color-action-default);
+    color: var(--content-invert-default);
+
+    &:hover {
+      background-color: var(--color-action-hover);
+    }
+
+    .#{$base-class}__dot {
+      background-color: var(--content-invert-default);
+    }
+  }
+
+  &--tertiary {
     background-color: var(--surface-secondary-default);
-    color: var(--surface-invert-default);
+    color: var(--content-default);
+
+    &:hover {
+      background-color: var(--surface-secondary-hover);
+    }
+
+    .#{$base-class}__dot {
+      background-color: var(--content-default);
+    }
   }
 }
