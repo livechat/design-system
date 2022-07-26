@@ -86,17 +86,31 @@ describe('<Picker> component', () => {
     expect(onSelect).toHaveBeenCalledWith(null);
   });
 
-  it('should call onSelect with all elements in multiselect mode if "Select all" option is chosen', () => {
+  it('should call onSelect with all correct elements in multiselect mode if "Select all" option is chosen', () => {
     const onSelect = vi.fn();
+    const expectedResult = [
+      { key: 'one', name: 'Option one' },
+      { key: 'three', name: 'Option three' },
+      { key: 'five', name: 'Option five' },
+    ];
     const { getByText } = renderComponent({
       ...defaultProps,
+      options: [
+        { key: 'groupA', name: 'Group A title header', groupHeader: true },
+        { key: 'one', name: 'Option one' },
+        { key: 'two', name: 'Option two', disabled: true },
+        { key: 'three', name: 'Option three' },
+        { key: 'groupB', name: 'Group B title header', groupHeader: true },
+        { key: 'four', name: 'Option four', disabled: true },
+        { key: 'five', name: 'Option five' },
+      ],
       multiselect: true,
       onSelect,
     });
 
     userEvent.click(getByText('Select option'));
     userEvent.click(getByText('Select all'));
-    expect(onSelect).toHaveBeenCalledWith(defaultOptions);
+    expect(onSelect).toHaveBeenCalledWith(expectedResult);
   });
 
   it('should render given placeholder text if no item selected', () => {

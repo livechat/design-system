@@ -117,7 +117,7 @@ export const Picker: React.FC<IPickerProps> = ({
     setIsListOpen(false);
 
     const itemsToSelect = items.filter(
-      (item) => !item.disabled || !item.groupHeader || item.key !== 'select-all'
+      (item) => !item.disabled && !item.groupHeader && item.key !== 'select-all'
     );
 
     setSelectedItems(itemsToSelect);
