@@ -68,7 +68,7 @@ export const UploadBarWithSingleElement: React.FC = () => {
 
   return (
     <div>
-      <div className="spacer" style={{ marginBottom: 30 }}>
+      <div className="story-spacer" style={{ marginBottom: 30 }}>
         <Button onClick={() => setStatus('normal')}>Default</Button>
         <Button kind="primary" onClick={() => setStatus('success')}>
           Success
@@ -100,7 +100,7 @@ export const UploadBarWithMultipleElements: React.FC = () => {
 
   return (
     <div>
-      <div className="spacer" style={{ marginBottom: 30 }}>
+      <div className="story-spacer" style={{ marginBottom: 30 }}>
         <Button onClick={() => setStatus('normal')}>Default</Button>
         <Button kind="primary" onClick={() => setStatus('success')}>
           Success

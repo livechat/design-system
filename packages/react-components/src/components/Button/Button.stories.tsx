@@ -51,7 +51,7 @@ button.args = {
 
 export const kinds = (): React.ReactElement => (
   <div>
-    <div className="spacer">
+    <div className="story-spacer">
       <Button>Basic</Button>
       <Button kind="primary">Primary</Button>
       <Button kind="secondary">Secondary</Button>
@@ -65,7 +65,7 @@ export const kinds = (): React.ReactElement => (
 
 export const states = (): React.ReactElement => (
   <div>
-    <div className="spacer">
+    <div className="story-spacer">
       <Button disabled>Disabled</Button>
       <Button disabled kind="primary">
         Disabled
@@ -86,7 +86,7 @@ export const states = (): React.ReactElement => (
         Disabled
       </Button>
     </div>
-    <div className="spacer">
+    <div className="story-spacer">
       <Button loading>Loading</Button>
       <Button loading kind="primary">
         Loading
@@ -112,7 +112,7 @@ export const states = (): React.ReactElement => (
 
 export const sizes = (): React.ReactElement => (
   <>
-    <div className="spacer">
+    <div className="story-spacer">
       <Button size="compact" kind="primary">
         Compact
       </Button>
@@ -123,7 +123,7 @@ export const sizes = (): React.ReactElement => (
         Large
       </Button>
     </div>
-    <div className="spacer">
+    <div className="story-spacer">
       <Button
         icon={<Icon source={MaterialIcons.AddCircle} />}
         size="compact"

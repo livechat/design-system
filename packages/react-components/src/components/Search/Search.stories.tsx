@@ -1,11 +1,15 @@
 import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
 
+import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+
 import {
   SearchInput as SearchComponent,
   ISearchInputProps,
   SearchSize,
 } from './Search';
+
+const commonWidth: React.CSSProperties = { width: 300 };
 
 export default {
   title: 'Components/Search',
@@ -13,11 +17,8 @@ export default {
   argTypes: { onChange: { action: 'changed' } },
 } as ComponentMeta<typeof SearchComponent>;
 
-const containerStyles = { width: 300, marginBottom: 15 };
-const textStyles = { marginBottom: 5, fontSize: 15 };
-
 const StoryTemplate: Story<ISearchInputProps> = (args: ISearchInputProps) => (
-  <div style={{ width: 300 }}>
+  <div style={commonWidth}>
     <SearchComponent {...args} />
   </div>
 );
@@ -26,42 +27,35 @@ export const Search = StoryTemplate.bind({});
 Search.args = {};
 
 export const States = (args: ISearchInputProps): React.ReactElement => (
-  <div>
-    <div style={containerStyles}>
-      <div style={textStyles}>Basic</div>
+  <div style={commonWidth}>
+    <StoryDescriptor title="Basic">
       <SearchComponent {...args} />
-    </div>
-    <div style={containerStyles}>
-      <div style={textStyles}>Disabled</div>
+    </StoryDescriptor>
+    <StoryDescriptor title="Disabled">
       <SearchComponent {...args} isDisabled />
-    </div>
-    <div style={containerStyles}>
-      <div style={textStyles}>Loading</div>
+    </StoryDescriptor>
+    <StoryDescriptor title="Loading">
       <SearchComponent {...args} isLoading />
-    </div>
-    <div style={containerStyles}>
-      <div style={textStyles}>Collapsable</div>
+    </StoryDescriptor>
+    <StoryDescriptor title="Collapsible">
       <SearchComponent {...args} isCollapsable />
-    </div>
+    </StoryDescriptor>
   </div>
 );
 
 States.args = {};
 
 export const Sizes = (args: ISearchInputProps): React.ReactElement => (
-  <div>
-    <div style={containerStyles}>
-      <div style={textStyles}>Compact</div>
+  <div style={commonWidth}>
+    <StoryDescriptor title="Compact">
       <SearchComponent {...args} size={SearchSize.Compact} />
-    </div>
-    <div style={containerStyles}>
-      <div style={textStyles}>Medium</div>
+    </StoryDescriptor>
+    <StoryDescriptor title="Medium">
       <SearchComponent {...args} size={SearchSize.Medium} />
-    </div>
-    <div style={containerStyles}>
-      <div style={textStyles}>Large</div>
+    </StoryDescriptor>
+    <StoryDescriptor title="Large">
       <SearchComponent {...args} size={SearchSize.Large} />
-    </div>
+    </StoryDescriptor>
   </div>
 );
 

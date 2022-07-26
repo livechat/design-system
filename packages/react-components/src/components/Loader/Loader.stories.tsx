@@ -9,7 +9,7 @@ export default {
 } as ComponentMeta<typeof Loader>;
 
 export const sizes = (): React.ReactElement => (
-  <div className="spacer">
+  <div className="story-spacer">
     <Loader size="small" />
     <Loader size="medium" />
     <Loader size="large"></Loader>
