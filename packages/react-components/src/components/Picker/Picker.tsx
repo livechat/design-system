@@ -112,6 +112,9 @@ export const Picker: React.FC<IPickerProps> = ({
     });
   }, [searchPhrase]);
 
+  const getSelectedItem = (item: IPickerListItem) =>
+    item?.customElement || item.name;
+
   return (
     <div ref={triggerRef} className={styles[baseClass]}>
       {label && (
@@ -136,7 +139,7 @@ export const Picker: React.FC<IPickerProps> = ({
           onClearClick={handleOnClearClick}
           onFilter={handleOnFilter}
         >
-          {selectedItem ? selectedItem.name : placeholder}
+          {selectedItem ? getSelectedItem(selectedItem) : placeholder}
         </Trigger>
         <PickerList
           selectedItem={selectedItem}

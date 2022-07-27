@@ -96,7 +96,7 @@ export const Trigger: React.FC<ITriggerProps> = ({
           autoFocus
         />
       ) : (
-        <div className={styles[`${baseClass}__text`]}>{children}</div>
+        <div className={styles[`${baseClass}__content`]}>{children}</div>
       )}
       {isItemSelected && !isDisabled && !isRequired && (
         <div

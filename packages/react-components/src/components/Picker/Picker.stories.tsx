@@ -3,6 +3,8 @@ import { ComponentMeta, Story } from '@storybook/react';
 
 import { IPickerProps, Picker as PickerComponent } from './Picker';
 
+import './Picker.stories.css';
+
 export default {
   title: 'Components/Picker',
   component: PickerComponent,
@@ -127,6 +129,43 @@ PickerWithSelectedOption.args = {
     { key: 'five', name: 'Option five' },
     { key: 'six', name: 'Option six', disabled: true },
     { key: 'seven', name: 'Option seven', disabled: true },
+  ],
+  onSelect: (item) => console.log(item),
+};
+
+const CustomPickerOption: React.FC = ({ children }) => (
+  <div className="custom-picker-option">{children}</div>
+);
+
+export const PickerWithOptionsAsCustomElements = StoryTemplate.bind({});
+PickerWithOptionsAsCustomElements.args = {
+  options: [
+    {
+      key: 'one',
+      name: 'Option one',
+      customElement: (
+        <CustomPickerOption>
+          <img
+            className="image"
+            src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
+          />
+          <div>Custom element 1</div>
+        </CustomPickerOption>
+      ),
+    },
+    {
+      key: 'two',
+      name: 'Option two',
+      customElement: (
+        <CustomPickerOption>
+          <img
+            className="image"
+            src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
+          />
+          <div>Custom element 2</div>
+        </CustomPickerOption>
+      ),
+    },
   ],
   onSelect: (item) => console.log(item),
 };

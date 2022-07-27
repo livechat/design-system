@@ -1,0 +1,12 @@
+.custom-picker-option {
+  align-items: center;
+  display: flex;
+  flex-flow: row;
+}
+
+.image {
+  border-radius: 50%;
+  height: auto;
+  margin-right: 15px;
+  width: 24px;
+}
