@@ -5,6 +5,7 @@
     "postinstall": "lerna bootstrap",
     "build:cdn": "lerna run --scope @livechat/design-system build:cdn",
     "deploy": "gh-pages -d styleguide",
+    "publish": "lerna version && lerna publish from-package",
     "predeploy": "npm run-script styleguide:build",
     "styleguide:build": "cross-env NODE_ENV=production styleguidist build",
     "styleguide": "cross-env NODE_ENV=development styleguidist server",
