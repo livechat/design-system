@@ -1,5 +1,6 @@
 .tag-input {
   align-items: center;
+  background: var(--surface-basic-default);
   background-clip: padding-box;
   border: 1px solid var(--border-default);
   border-radius: 4px;
@@ -34,6 +35,8 @@
   }
 
   &:disabled {
+    background-color: var(--surface-basic-disabled);
+    border: 1px solid var(--border-disabled);
     color: var(--content-disabled);
     cursor: not-allowed;
   }

@@ -6,8 +6,9 @@ import styles from './Input.module.scss';
 type InputSize = 'xsmall' | 'small' | 'medium' | 'large';
 
 export interface InputProps extends React.HTMLAttributes<HTMLInputElement> {
-  size?: InputSize;
-  error?: boolean;
+  size?: InputSize | undefined;
+  error?: boolean | undefined;
+  disabled?: boolean | undefined;
 }
 
 const baseClass = 'input';

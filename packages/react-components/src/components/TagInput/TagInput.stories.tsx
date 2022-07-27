@@ -1,16 +1,21 @@
 import * as React from 'react';
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
+
+import noop from '../../utils/noop';
+import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
 import {
-  TagInput as TagInputComponent,
+  TagInput,
   TagInputProps,
-  EmailTagInput as EmailTagInputComponent,
+  EmailTagInput,
   EmailTagInputProps,
 } from './index';
 
+const placeholderText = 'Placeholder text';
+
 export default {
   title: 'Forms/Tag Input',
-  component: TagInputComponent,
+  component: TagInput,
   argTypes: {
     tags: {
       control: {
@@ -18,32 +23,46 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof TagInputComponent>;
+} as ComponentMeta<typeof TagInput>;
 
-export const TagInput = ({ ...args }: TagInputProps): React.ReactElement => {
+export const DefaultTagInput: Story<TagInputProps> = ({
+  ...args
+}: TagInputProps) => {
   const [tags, setTags] = React.useState(['tag1', 'tag2']);
   return (
     <div>
-      <TagInputComponent {...args} tags={tags} onChange={setTags} />
+      <TagInput {...args} tags={tags} onChange={setTags} />
     </div>
   );
 };
 
-TagInput.args = {
-  placeholder: 'Tag input placeholder',
-} as TagInputProps;
+DefaultTagInput.storyName = 'TagInput';
+DefaultTagInput.args = {
+  placeholder: placeholderText,
+};
 
-export const EmailTagInput = ({
+export const DefaultEmailTagInput: Story<EmailTagInputProps> = ({
   ...args
-}: EmailTagInputProps): React.ReactElement => {
+}: EmailTagInputProps) => {
   const [tags, setTags] = React.useState(['one@test.com', 'two@test.com']);
   return (
     <div>
-      <EmailTagInputComponent {...args} tags={tags} onChange={setTags} />
+      <EmailTagInput {...args} tags={tags} onChange={setTags} />
     </div>
   );
 };
-
-EmailTagInput.args = {
+DefaultEmailTagInput.storyName = 'EmailTagInput';
+DefaultEmailTagInput.args = {
   placeholder: 'name@company.com',
-} as TagInputProps;
+};
+
+export const Sizes = (): JSX.Element => (
+  <>
+    <StoryDescriptor title="Medium">
+      <TagInput size="medium" onChange={noop} placeholder={placeholderText} />
+    </StoryDescriptor>
+    <StoryDescriptor title="Large">
+      <TagInput size="large" onChange={noop} placeholder={placeholderText} />
+    </StoryDescriptor>
+  </>
+);
