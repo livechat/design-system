@@ -1,6 +1,6 @@
 All notable changes to this project will be documented in this file.
 
-## v0.13.3
+## v0.13.5
 
 _Release: 2022-07-27_
 
