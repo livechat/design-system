@@ -1,24 +1,51 @@
 import * as React from 'react';
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
 
-import { Input as InputComponent, InputProps } from './Input';
+import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+
+import { Input, InputProps } from './Input';
+
+const placeholderText = 'Placeholder text';
 
 export default {
   title: 'Forms/Input',
-  component: InputComponent,
-} as ComponentMeta<typeof InputComponent>;
+  component: Input,
+} as ComponentMeta<typeof Input>;
 
-export const Input = ({ ...args }): React.ReactElement => (
-  <InputComponent {...args} />
+export const Default: Story<InputProps> = (args: InputProps) => (
+  <Input {...args} />
 );
 
-Input.args = {
+Default.storyName = 'Input';
+Default.args = {
   size: 'medium',
   placeholder: 'Placeholder text',
-  error: false,
-  disabled: false,
-} as InputProps;
+};
 
-export const WithIcon = () => <div>TODO</div>;
-export const WithArrow = () => <div>TODO</div>;
-export const WithIconAndArrow = () => <div>TODO</div>;
+export const Sizes = (): JSX.Element => (
+  <>
+    <StoryDescriptor title="XSmall">
+      <Input size="xsmall" placeholder={placeholderText} />
+    </StoryDescriptor>
+    <StoryDescriptor title="Small">
+      <Input size="small" placeholder={placeholderText} />
+    </StoryDescriptor>
+    <StoryDescriptor title="Medium">
+      <Input size="medium" placeholder={placeholderText} />
+    </StoryDescriptor>
+    <StoryDescriptor title="Large">
+      <Input size="large" placeholder={placeholderText} />
+    </StoryDescriptor>
+  </>
+);
+
+export const States = (): JSX.Element => (
+  <>
+    <StoryDescriptor title="With error">
+      <Input error={true} placeholder={placeholderText} />
+    </StoryDescriptor>
+    <StoryDescriptor title="Disabled">
+      <Input disabled={true} placeholder={placeholderText} />
+    </StoryDescriptor>
+  </>
+);

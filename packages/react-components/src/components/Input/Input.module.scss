@@ -1,5 +1,5 @@
 .input {
-  border: 1px solid #bdc7d1;
+  background: var(--surface-basic-default);
   border: 1px solid var(--border-default);
   border-radius: 4px;
   box-sizing: border-box;
@@ -7,6 +7,10 @@
   font-size: 15px;
   line-height: 22px;
   outline: none;
+
+  &::placeholder {
+    color: var(--content-disabled);
+  }
 
   &:focus {
     border-color: var(--color-action-default);
