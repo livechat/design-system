@@ -1,10 +1,16 @@
 All notable changes to this project will be documented in this file.
 
-## v0.13.2
+## v0.13.3
 
 _Release: 2022-07-27_
 
 - updated in-direct dependencies using @dependabot
+
+## v0.13.2
+
+_Release: 2022-04-21_
+
+- extend `INumericInputProps` interface (#315)
 
 ## v0.13.1
 
