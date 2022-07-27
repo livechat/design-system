@@ -1,4 +1,7 @@
 @use './themes/legacy';
+@use './themes/light';
+@use './themes/dark';
+@use './spacing/spacing';
 
 *[class^='lc-'] {
   box-sizing: border-box;

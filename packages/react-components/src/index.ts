@@ -1,6 +1,7 @@
 import './index.scss';
 
 export { DesignTokens } from './themes/designTokens';
+export { SpacingTokens } from './spacing/spacingTokens';
 
 export * from './components/Alert';
 export * from './components/Badge';
