@@ -39,6 +39,10 @@
     color: var(--content-disabled);
   }
 
+  &::placeholder {
+    color: var(--content-disabled);
+  }
+
   &:focus {
     border-color: var(--color-action-default);
   }
