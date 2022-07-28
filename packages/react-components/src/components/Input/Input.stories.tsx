@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
-
-import * as MaterialIcons from '@livechat/design-system-icons/react/material';
+import { AddCircle as AddCircleIcon } from '@livechat/design-system-icons/react/material';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Icon } from '../Icon';
@@ -55,7 +54,7 @@ export const States = (): JSX.Element => (
 export const Kinds = (): JSX.Element => (
   <>
     <StoryDescriptor title="Text">
-      <Input placeholder={placeholderText} />
+      <Input kind="text" placeholder={placeholderText} />
     </StoryDescriptor>
     <StoryDescriptor title="Password">
       <Input kind="password" placeholder={placeholderText} />
@@ -66,7 +65,7 @@ export const Kinds = (): JSX.Element => (
 export const WithIcon = (): JSX.Element => (
   <>
     <Input
-      icon={<Icon source={MaterialIcons.AddCircle} />}
+      icon={<Icon source={AddCircleIcon} />}
       placeholder={placeholderText}
     />
   </>
