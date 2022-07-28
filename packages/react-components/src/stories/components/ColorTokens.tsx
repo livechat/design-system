@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DesignTokens } from '../../themes/designTokens';
+import { DesignToken } from '../../themes/design-token';
 import { Text } from '../../components/Typography';
 
 interface TokensGroup {
@@ -20,7 +20,7 @@ type TokenGroupName =
   | 'decor';
 
 const Tokens: TokensGroup = Object.values(
-  DesignTokens as { [key: string]: string }
+  DesignToken as { [key: string]: string }
 ).reduce(
   (acc: TokensGroup, value) => {
     const groupName = value.split('-').filter(Boolean)[0] as TokenGroupName;

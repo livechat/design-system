@@ -1,4 +1,4 @@
-export const DesignTokens = {
+export const DesignToken = {
   Background: '--background',
   SurfaceBasicDefault: '--surface-basic-default',
   SurfaceBasicSubtle: '--surface-basic-subtle',

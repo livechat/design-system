@@ -1,4 +1,4 @@
-export const SpacingTokens = {
+export const SpacingToken = {
   Spacing0: '--spacing-0',
   Spacing05: '--spacing-05',
   Spacing1: '--spacing-1',

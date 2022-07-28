@@ -1,7 +1,7 @@
 import './index.scss';
 
-export { DesignTokens } from './themes/designTokens';
-export { SpacingTokens } from './spacing/spacingTokens';
+export { DesignToken } from './themes/design-token';
+export { SpacingToken } from './foundations/spacing-token';
 
 export * from './components/Alert';
 export * from './components/Badge';

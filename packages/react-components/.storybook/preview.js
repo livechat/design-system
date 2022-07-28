@@ -1,7 +1,7 @@
 import '../src/themes/legacy.scss';
 import '../src/themes/light.scss';
 import '../src/themes/dark.scss';
-import '../src/spacing/spacing.scss';
+import '../src/foundations/spacing.css';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
