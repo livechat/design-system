@@ -58,6 +58,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             }),
           })}
         <input
+          data-testid="input"
           type={!isPasswordVisible ? kind : 'text'}
           ref={ref}
           onFocus={() => setIsFocused(true)}
