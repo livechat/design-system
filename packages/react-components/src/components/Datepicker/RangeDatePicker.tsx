@@ -21,62 +21,78 @@ import {
   RangeDatePickerAction,
 } from './types';
 
-export const RangeDatePicker = (
-  props: IRangeDatePickerProps
-): React.ReactElement => {
+export const RangeDatePicker = ({
+  options,
+  initialSelectedItemKey,
+  initialFromDate,
+  initialToDate,
+  toMonth,
+  onChange,
+  children,
+}: IRangeDatePickerProps): React.ReactElement => {
   const prevSelectedItem = React.useRef<string | null>(
-    props.initialSelectedItemKey || null
+    initialSelectedItemKey || null
   );
-  const [state, dispatch] = useRangeDatePickerState(props);
+  const [state, dispatch] = useRangeDatePickerState({
+    options,
+    initialSelectedItemKey,
+    initialFromDate,
+    initialToDate,
+    toMonth,
+    onChange,
+    children,
+  });
 
   // handle initialFromDate change
   React.useEffect(() => {
     dispatch({
       type: RangeDatePickerAction.SET_FROM,
-      payload: { date: props.initialFromDate },
+      payload: { date: initialFromDate },
     });
-  }, [props.initialFromDate]);
+  }, [initialFromDate]);
 
   // handle initialToDate change
   React.useEffect(() => {
     dispatch({
       type: RangeDatePickerAction.SET_TO,
-      payload: { date: props.initialToDate },
+      payload: { date: initialToDate },
     });
-  }, [props.initialToDate]);
+  }, [initialToDate]);
 
   // handle showing correct month on dates in props change
   React.useEffect(() => {
     const currentMonth = calculateDatePickerMonth(
-      props.initialFromDate,
-      props.initialToDate,
-      props.toMonth
+      initialFromDate,
+      initialToDate,
+      toMonth
     );
 
     dispatch({
       type: RangeDatePickerAction.CURRENT_MONTH_CHANGE,
       payload: { date: currentMonth },
     });
-  }, [props.toMonth, props.initialFromDate, props.initialToDate]);
+  }, [toMonth, initialFromDate, initialToDate]);
 
   // call onChange when valid dates selected (for manual options - with date picker)
   React.useEffect(() => {
     const { from, selectedItem, to } = state;
-
-    if (from && to) {
-      const selectedOption = getSelectedOption(selectedItem, props.options);
-
-      if (selectedOption) {
-        props.onChange({
-          ...selectedOption,
-          value: {
-            from: from,
-            to: to,
-          },
-        });
-      }
+    if (!(from && to)) {
+      return;
     }
-  }, [state.from, state.to, state.selectedItem, props.options, props.onChange]);
+
+    const selectedOption = getSelectedOption(selectedItem, options);
+
+    if (!selectedOption) return;
+
+    onChange &&
+      onChange({
+        ...selectedOption,
+        value: {
+          from: from,
+          to: to,
+        },
+      });
+  }, [state.from, state.to, state.selectedItem, options, onChange]);
 
   // handle selected option change
   React.useEffect(() => {
@@ -87,17 +103,17 @@ export const RangeDatePicker = (
     }
 
     if (!selectedItem) {
-      props.onChange(null);
+      onChange(null);
       return;
     }
 
-    const selectedOption = getSelectedOption(selectedItem, props.options);
+    const selectedOption = getSelectedOption(selectedItem, options);
 
     if (!selectedOption) {
       return;
     }
 
-    const optionsHash = props.options.reduce(
+    const optionsHash = options.reduce(
       (
         acc: { [key: string]: IRangeDatePickerOption },
         option: IRangeDatePickerOption
@@ -105,13 +121,13 @@ export const RangeDatePicker = (
       {}
     );
 
-    props.onChange(optionsHash[selectedItem]);
-  }, [props.onChange, state.selectedItem, props.options]);
+    onChange(optionsHash[selectedItem]);
+  }, [onChange, state.selectedItem, options]);
 
   const handleDayMouseEnter = React.useCallback(
     (day: Date) => {
-      const isInRange = props.toMonth
-        ? differenceInCalendarDays(props.toMonth, day) >= 0
+      const isInRange = toMonth
+        ? differenceInCalendarDays(toMonth, day) >= 0
         : true;
 
       if (!isSelectingFirstDay(state.from, state.to) && isInRange) {
@@ -121,14 +137,14 @@ export const RangeDatePicker = (
         });
       }
     },
-    [props.toMonth, state.from, state.to]
+    [toMonth, state.from, state.to]
   );
 
   const handleDayClick = React.useCallback(
     (day: Date) => {
       const { from, to } = state;
 
-      if (!isDateWithinRange(day, { to: props.toMonth })) {
+      if (!isDateWithinRange(day, { to: toMonth })) {
         return;
       }
 
@@ -152,7 +168,7 @@ export const RangeDatePicker = (
         });
       }
     },
-    [props.toMonth, state.from, state.to]
+    [toMonth, state.from, state.to]
   );
 
   const handleItemSelect = React.useCallback(
@@ -165,7 +181,7 @@ export const RangeDatePicker = (
         return;
       }
 
-      const selectedOption = getSelectedOption(itemKey, props.options);
+      const selectedOption = getSelectedOption(itemKey, options);
 
       if (!selectedOption) {
         return;
@@ -176,7 +192,7 @@ export const RangeDatePicker = (
         payload: { selectedItem: itemKey },
       });
     },
-    [props.options]
+    [options]
   );
 
   const handleMonthChange = React.useCallback((date: Date) => {
@@ -193,16 +209,16 @@ export const RangeDatePicker = (
       [from, temporaryTo]
     );
     const selectedOption = React.useMemo(() => {
-      return getSelectedOption(selectedItem, props.options);
-    }, [props.options, selectedItem]);
+      return getSelectedOption(selectedItem, options);
+    }, [options, selectedItem]);
 
     const selectedDays = React.useMemo(() => {
       return [from, { from, to: temporaryTo }];
     }, [from, temporaryTo]);
 
     const disabledDays = React.useMemo(() => {
-      return props.toMonth ? { after: props.toMonth } : void 0;
-    }, [props.toMonth]);
+      return toMonth ? { after: toMonth } : void 0;
+    }, [toMonth]);
 
     return {
       select: {
@@ -220,8 +236,8 @@ export const RangeDatePicker = (
         onDayClick: handleDayClick,
         selectedDays,
         modifiers,
-        initialMonth: props.toMonth && subMonths(props.toMonth, 1),
-        toMonth: props.toMonth,
+        initialMonth: toMonth && subMonths(toMonth, 1),
+        toMonth: toMonth,
         disabledDays,
         onDayMouseEnter: handleDayMouseEnter,
         onMonthChange: handleMonthChange,
@@ -230,7 +246,7 @@ export const RangeDatePicker = (
     };
   };
 
-  return props.children(getRangeDatePickerApi());
+  return children(getRangeDatePickerApi());
 };
 
 RangeDatePicker.defaultProps = {
