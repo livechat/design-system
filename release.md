@@ -1,12 +1,12 @@
 **Design system - build and deploy HOWTO**
 
-To deploy package to the npm you need to be logged in. To confirm that you are logged in use you can use 'npm whoami'. If you are not use npm login and follow instructions.
+To deploy a package to the npm you need to be logged in to an npm in your console. To confirm that you are logged in, you can use `npm whoami`. If you are not, use `npm login` and follow the instructions.
 
-After that run:
+To deploy you just have to do 'npm run deploy'. It will execute several commands you can run separately if you wish, namely: - 'check' - fire up linter and unit tests that are provided per package - 'prettier' - format the code across the packages - 'predeploy' - clean up old dist files and build new ones. - and finally deploy files to npm.
 
-- 'npm run check' - this fires up linter and unit tests that are provided per package
-- 'npm run prettier' - to format code across the packages
-- 'npm run predeploy' - cleans up old dist files and builds new ones
-- 'npm run deploy' - deploys files to npm - accept suggested versioning. **Package won't be versioned if not changed, and if changed package will catchup with other packages in versioning.**
+When deploying to npm you will have to decide how to version your changes. Currently we are on the verge of deploying first mayor version of DS and because of that we use following convention `1.0.0-alpha.xx` where `xx` is the revision of current build. After release we will follow SemVer.
 
-On github add release with correct version and change log.
+**Keep in mind that package won't be versioned if it is not changed, and changed package will catch up with other packages in versioning.** For example current version of package `react-components` is `1.0.0-alpha.17` but `icons` lag behind a bit and are at `1.0.0-alpha.15` because no changes has been made since two deploys. If you make some changes in `react-components` and in `icons` both packages will get `1.0.0-alpha.18` version.
+
+On github add release with correct version and change log. Example of correctly filled release note:
+<img width="1242" alt="design_system_release" src="https://user-images.githubusercontent.com/7773964/181774311-a035fa43-0f96-4c92-8bf6-9c66dedd7a93.png">

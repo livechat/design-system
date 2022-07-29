@@ -19,8 +19,8 @@
     "test:watch": "lerna run test:watch --parallel",
     "prettier": "prettier --write packages",
     "check": "run-s lint test",
-    "predeploy": "npm run build",
-    "deploy": "lerna version && lerna publish from-package"
+    "predeploy": "npm run check && npm run prettier && npm run build",
+    "deploy": "npm run predeploy && lerna version && lerna publish from-package"
   },
   "repository": {
     "type": "git",
