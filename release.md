@@ -8,5 +8,10 @@ When deploying to npm you will have to decide how to version your changes. Curre
 
 **Keep in mind that package won't be versioned if it is not changed, and changed package will catch up with other packages in versioning.** For example current version of package `react-components` is `1.0.0-alpha.17` but `icons` lag behind a bit and are at `1.0.0-alpha.15` because no changes has been made since two deploys. If you make some changes in `react-components` and in `icons` both packages will get `1.0.0-alpha.18` version.
 
-On github add release with correct version and change log. Example of correctly filled release note:
-<img width="1242" alt="design_system_release" src="https://user-images.githubusercontent.com/7773964/181774311-a035fa43-0f96-4c92-8bf6-9c66dedd7a93.png">
+On github add release with correct version and change log.
+
+- Remember to add correct tag that corresponds to correct version of release and target `v1` branch.
+- Title can be set to 'What's Changed'.
+- In change log mention packages changed and link the pull requests that are part of release.
+  Example of correctly filled release note:
+  <img width="1242" alt="design_system_release" src="https://user-images.githubusercontent.com/7773964/181774311-a035fa43-0f96-4c92-8bf6-9c66dedd7a93.png">
