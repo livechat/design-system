@@ -9,7 +9,7 @@ const baseClass = 'loader';
 const spinnerClass = `${baseClass}__spinner`;
 
 export interface LoaderProps extends React.HTMLAttributes<HTMLDivElement> {
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large' | 'cover';
   label?: string;
   /** Fragment circle color */
   primaryColor?: string;
@@ -25,7 +25,13 @@ export const Loader: React.FC<LoaderProps> = ({
   size = 'medium',
 }) => {
   return (
-    <div className={cx(styles[baseClass], className)}>
+    <div
+      className={cx(
+        styles[baseClass],
+        { [styles[`${baseClass}--cover`]]: size === 'cover' },
+        className
+      )}
+    >
       <div
         className={cx(styles[spinnerClass], styles[`${spinnerClass}--${size}`])}
       >

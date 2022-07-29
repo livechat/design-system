@@ -1,11 +1,16 @@
 import * as React from 'react';
 import cx from 'clsx';
-import { LockBlack as LockIcon } from '@livechat/design-system-icons/react/material';
+import {
+  LockBlack as LockIcon,
+  Check as CheckIcon,
+  Close as CloseIcon,
+} from '@livechat/design-system-icons/react/material';
 
 import { Icon, IconSize } from '../../components/Icon';
 import noop from '../../utils/noop';
 
 import styles from './Switch.module.scss';
+import { Loader } from '../Loader';
 
 const baseClass = 'switch';
 
@@ -14,6 +19,7 @@ export interface SwitchProps {
   className?: string;
   defaultOn?: boolean;
   disabled?: boolean;
+  loading?: boolean;
   innerRef?: React.LegacyRef<HTMLInputElement> | undefined;
   name?: string;
   on?: boolean;
@@ -25,6 +31,7 @@ export const Switch: React.FC<SwitchProps> = ({
   className = '',
   defaultOn = false,
   disabled = false,
+  loading = false,
   name = baseClass,
   on,
   onChange = noop,
@@ -42,7 +49,31 @@ export const Switch: React.FC<SwitchProps> = ({
     }
   }, [on]);
 
+  const getIcon = (): JSX.Element => {
+    if (loading) {
+      return <Loader size="cover" />;
+    }
+
+    if (disabled) {
+      return <Icon size={iconSize} source={LockIcon} kind={'primary'} />;
+    }
+
+    if (on) {
+      return (
+        <Icon
+          className={styles[`${baseClass}__icon--on`]}
+          size={iconSize}
+          source={CheckIcon}
+          kind={'primary'}
+        />
+      );
+    }
+
+    return <Icon size={iconSize} source={CloseIcon} kind={'primary'} />;
+  };
+
   const iconSize: IconSize = size === 'basic' ? 'small' : 'xsmall';
+  const SwitchIcon = getIcon();
   const toggleStyles = checked ? 'on' : 'off';
   const availabilityStyles = disabled ? 'disabled' : 'enabled';
   const mergedClassNames = cx(
@@ -92,9 +123,7 @@ export const Switch: React.FC<SwitchProps> = ({
             styles[`${baseClass}__slider--${size}--${toggleStyles}`]
           )}
         >
-          {disabled && (
-            <Icon size={iconSize} source={LockIcon} kind={'primary'} />
-          )}
+          {SwitchIcon}
         </span>
       </span>
     </span>

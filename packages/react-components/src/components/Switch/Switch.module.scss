@@ -2,14 +2,14 @@ $switch-transition-duration: 300ms;
 $switch-transition-timing-function: cubic-bezier(0.33, 0, 0.67, 1);
 
 $base-class: 'switch';
-$basic-height: 28px;
+$basic-height: 24px;
 $basic-width: 44px;
-$basic-size: $basic-height - 4px;
+$basic-size: $basic-height - 8px;
 $basic-move: $basic-width - $basic-size;
 
 $compact-height: 16px;
-$compact-width: 25px;
-$compact-size: $compact-height - 2px;
+$compact-width: 32px;
+$compact-size: $compact-height - 4px;
 $compact-move: $compact-width - $compact-size;
 
 /* stylelint-disable max-nesting-depth */
@@ -112,13 +112,13 @@ $compact-move: $compact-width - $compact-size;
       width: calc(#{$basic-size});
 
       &--on {
-        left: calc(#{$basic-move} - 2px);
-        right: 2px;
+        left: calc(#{$basic-move} - 3px);
+        right: 3px;
       }
 
       &--off {
-        left: 2px;
-        right: calc(#{$basic-move} - 2px);
+        left: 3px;
+        right: calc(#{$basic-move} - 3px);
       }
     }
 
@@ -135,6 +135,12 @@ $compact-move: $compact-width - $compact-size;
         left: 2px;
         right: calc(#{$compact-move} - 2px);
       }
+    }
+  }
+
+  &__icon {
+    &--on {
+      color: var(--color-positive-default);
     }
   }
 }
