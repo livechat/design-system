@@ -2,6 +2,8 @@ import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
 
 import { IPickerProps, Picker as PickerComponent } from './Picker';
+import { defaultExtendedOptions, defaultOptions } from './constants';
+import { IPickerListItem } from './PickerList';
 
 export default {
   title: 'Components/Picker',
@@ -15,132 +17,67 @@ export default {
 } as ComponentMeta<typeof PickerComponent>;
 
 const StoryTemplate: Story<IPickerProps> = (args: IPickerProps) => {
+  const [selectedItems, setSelectedItems] = React.useState<
+    IPickerListItem[] | null
+  >(args.selected || null);
+
   return (
     <div style={{ height: 320 }}>
-      <PickerComponent {...args} />
+      <PickerComponent
+        {...args}
+        selected={selectedItems}
+        onSelect={(items) => setSelectedItems(items)}
+      />
     </div>
   );
 };
 
 export const Picker = StoryTemplate.bind({});
 Picker.args = {
-  multiselect: true,
-  options: [
-    { key: 'one', name: 'Option one' },
-    { key: 'two', name: 'Option two' },
-    { key: 'three', name: 'Option three' },
-    { key: 'four', name: 'Option four' },
-    { key: 'five', name: 'Option five' },
-    { key: 'six', name: 'Option six' },
-    { key: 'seven', name: 'Option seven' },
-    { key: 'eight', name: 'Option eight' },
-    { key: 'nine', name: 'Option nine' },
-    { key: 'ten', name: 'Option ten' },
-  ],
+  options: defaultOptions,
 };
 
 export const PickerWithLabel = StoryTemplate.bind({});
 PickerWithLabel.args = {
-  options: [
-    { key: 'one', name: 'Option one' },
-    { key: 'two', name: 'Option two' },
-    { key: 'three', name: 'Option three' },
-    { key: 'four', name: 'Option four' },
-    { key: 'five', name: 'Option five' },
-    { key: 'six', name: 'Option six' },
-    { key: 'seven', name: 'Option seven' },
-  ],
+  options: defaultOptions,
   label: 'Picker',
 };
 
 export const PickerWithError = StoryTemplate.bind({});
 PickerWithError.args = {
-  options: [
-    { key: 'one', name: 'Option one' },
-    { key: 'two', name: 'Option two' },
-    { key: 'three', name: 'Option three' },
-    { key: 'four', name: 'Option four' },
-    { key: 'five', name: 'Option five' },
-    { key: 'six', name: 'Option six' },
-    { key: 'seven', name: 'Option seven' },
-  ],
+  options: defaultOptions,
   error: 'Error message',
 };
 
 export const DisabledPicker = StoryTemplate.bind({});
 DisabledPicker.args = {
-  options: [
-    { key: 'one', name: 'Option one' },
-    { key: 'two', name: 'Option two' },
-    { key: 'three', name: 'Option three' },
-    { key: 'four', name: 'Option four' },
-    { key: 'five', name: 'Option five' },
-    { key: 'six', name: 'Option six' },
-    { key: 'seven', name: 'Option seven' },
-  ],
+  options: defaultOptions,
   disabled: true,
 };
 
 export const PickerWithGroupedOptions = StoryTemplate.bind({});
 PickerWithGroupedOptions.args = {
-  options: [
-    { key: 'groupA', name: 'Group A title header', groupHeader: true },
-    { key: 'one', name: 'Option one' },
-    { key: 'two', name: 'Option two' },
-    { key: 'three', name: 'Option three' },
-    { key: 'groupB', name: 'Group B title header', groupHeader: true },
-    { key: 'four', name: 'Option four' },
-    { key: 'five', name: 'Option five' },
-    { key: 'six', name: 'Option six', disabled: true },
-    { key: 'seven', name: 'Option seven', disabled: true },
-  ],
+  options: defaultExtendedOptions,
 };
 
 export const PickerWithDisabledSearch = StoryTemplate.bind({});
 PickerWithDisabledSearch.args = {
   searchDisabled: true,
-  options: [
-    { key: 'groupA', name: 'Group A title header', groupHeader: true },
-    { key: 'one', name: 'Option one' },
-    { key: 'two', name: 'Option two' },
-    { key: 'three', name: 'Option three' },
-    { key: 'groupB', name: 'Group B title header', groupHeader: true },
-    { key: 'four', name: 'Option four' },
-    { key: 'five', name: 'Option five' },
-    { key: 'six', name: 'Option six', disabled: true },
-    { key: 'seven', name: 'Option seven', disabled: true },
-  ],
+  options: defaultExtendedOptions,
 };
 
 export const PickerWithSelectedOption = StoryTemplate.bind({});
 PickerWithSelectedOption.args = {
-  selectedOptions: [{ key: 'two', name: 'Option two' }],
-  options: [
-    { key: 'groupA', name: 'Group A title header', groupHeader: true },
-    { key: 'one', name: 'Option one' },
-    { key: 'two', name: 'Option two' },
-    { key: 'three', name: 'Option three' },
-    { key: 'groupB', name: 'Group B title header', groupHeader: true },
-    { key: 'four', name: 'Option four' },
-    { key: 'five', name: 'Option five' },
-    { key: 'six', name: 'Option six', disabled: true },
-    { key: 'seven', name: 'Option seven', disabled: true },
-  ],
+  selected: [{ key: 'two', name: 'Option two' }],
+  options: defaultExtendedOptions,
 };
 
 export const PickerInMultiselectMode = StoryTemplate.bind({});
 PickerInMultiselectMode.args = {
-  multiselect: true,
+  type: 'multi',
   options: [
-    { key: 'groupA', name: 'Group A title header', groupHeader: true },
-    { key: 'one', name: 'Option one' },
-    { key: 'two', name: 'Option two' },
-    { key: 'three', name: 'Option three' },
-    { key: 'groupB', name: 'Group B title header', groupHeader: true },
-    { key: 'four', name: 'Option four' },
-    { key: 'five', name: 'Option five' },
-    { key: 'six', name: 'Option six', disabled: true },
-    { key: 'seven', name: 'Option seven', disabled: true },
+    { key: 'select-all', name: 'Select all', selectAllOption: true },
+    ...defaultExtendedOptions,
   ],
 };
 
@@ -148,20 +85,13 @@ export const PickerInMultiselectModeWithSelectedOptions = StoryTemplate.bind(
   {}
 );
 PickerInMultiselectModeWithSelectedOptions.args = {
-  selectedOptions: [
+  selected: [
     { key: 'two', name: 'Option two' },
-    { key: 'three', name: 'Option three' },
-  ],
-  multiselect: true,
-  options: [
-    { key: 'groupA', name: 'Group A title header', groupHeader: true },
-    { key: 'one', name: 'Option one' },
-    { key: 'two', name: 'Option two' },
-    { key: 'three', name: 'Option three' },
-    { key: 'groupB', name: 'Group B title header', groupHeader: true },
     { key: 'four', name: 'Option four' },
-    { key: 'five', name: 'Option five' },
-    { key: 'six', name: 'Option six', disabled: true },
-    { key: 'seven', name: 'Option seven', disabled: true },
+  ],
+  type: 'multi',
+  options: [
+    { key: 'select-all', name: 'Select all', selectAllOption: true },
+    ...defaultExtendedOptions,
   ],
 };

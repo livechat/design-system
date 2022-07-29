@@ -3,19 +3,11 @@ import { render, vi } from 'test-utils';
 import userEvent from '@testing-library/user-event';
 import noop from '../../utils/noop';
 import { IPickerProps, Picker } from './Picker';
+import { defaultOptions } from './constants';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 window.HTMLElement.prototype.scrollIntoView = () => {};
 
-const defaultOptions = [
-  { key: 'one', name: 'Option one' },
-  { key: 'two', name: 'Option two' },
-  { key: 'three', name: 'Option three' },
-  { key: 'four', name: 'Option four' },
-  { key: 'five', name: 'Option five' },
-  { key: 'six', name: 'Option six' },
-  { key: 'seven', name: 'Option seven' },
-];
 const defaultProps = {
   options: defaultOptions,
   onSelect: () => noop,
@@ -69,19 +61,12 @@ describe('<Picker> component', () => {
 
   it('should call onSelect with null after clearing the selection', () => {
     const onSelect = vi.fn();
-    const { getByText, getByTestId } = renderComponent({
+    const { getByTestId } = renderComponent({
       ...defaultProps,
+      selected: [{ key: 'three', name: 'Option three' }],
       onSelect,
     });
 
-    userEvent.click(getByText('Select option'));
-    userEvent.click(getByText('Option three'));
-    expect(onSelect).toHaveBeenCalledWith([
-      {
-        key: 'three',
-        name: 'Option three',
-      },
-    ]);
     userEvent.click(getByTestId('picker-trigger__clear-icon'));
     expect(onSelect).toHaveBeenCalledWith(null);
   });
@@ -96,6 +81,7 @@ describe('<Picker> component', () => {
     const { getByText } = renderComponent({
       ...defaultProps,
       options: [
+        { key: 'select-all', name: 'Select all', selectAllOption: true },
         { key: 'groupA', name: 'Group A title header', groupHeader: true },
         { key: 'one', name: 'Option one' },
         { key: 'two', name: 'Option two', disabled: true },
@@ -104,7 +90,7 @@ describe('<Picker> component', () => {
         { key: 'four', name: 'Option four', disabled: true },
         { key: 'five', name: 'Option five' },
       ],
-      multiselect: true,
+      type: 'multi',
       onSelect,
     });
 
@@ -125,7 +111,7 @@ describe('<Picker> component', () => {
   it('should render selected option if selectedOption is provided', () => {
     const { getByText } = renderComponent({
       ...defaultProps,
-      selectedOptions: [{ key: 'three', name: 'Option three' }],
+      selected: [{ key: 'three', name: 'Option three' }],
     });
 
     expect(getByText('Option three')).toBeVisible();

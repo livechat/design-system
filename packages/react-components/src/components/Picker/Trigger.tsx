@@ -22,8 +22,8 @@ export interface ITriggerProps {
   isRequired?: boolean;
   isMultiSelect?: boolean;
   size?: TriggerSize;
-  onClick: (e: React.MouseEvent | KeyboardEvent) => void;
-  onClearClick: () => void;
+  onTrigger: (e: React.MouseEvent | KeyboardEvent) => void;
+  onClear: () => void;
   onFilter: (text: string) => void;
 }
 
@@ -37,8 +37,8 @@ export const Trigger: React.FC<ITriggerProps> = ({
   isRequired,
   isMultiSelect,
   size = 'medium',
-  onClick,
-  onClearClick,
+  onTrigger,
+  onClear,
   onFilter,
 }) => {
   const triggerRef = React.useRef<HTMLDivElement>(null);
@@ -56,7 +56,7 @@ export const Trigger: React.FC<ITriggerProps> = ({
       const isFocused = document.activeElement === triggerRef.current;
 
       if (isFocused && e.key !== KeyCodes.tab) {
-        onClick(e);
+        onTrigger(e);
       }
     };
 
@@ -72,12 +72,12 @@ export const Trigger: React.FC<ITriggerProps> = ({
   }, [isSearchDisabled]);
 
   const handleTriggerClick = (e: React.MouseEvent) => {
-    onClick(e);
+    onTrigger(e);
   };
 
   const handleOnClearClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    onClearClick();
+    onClear();
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {

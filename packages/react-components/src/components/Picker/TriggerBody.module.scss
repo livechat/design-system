@@ -1,0 +1,7 @@
+$base-class: 'picker-trigger-body';
+
+.#{$base-class} {
+  &__tag {
+    margin: 0 4px 4px 0;
+  }
+}

@@ -6,7 +6,6 @@ import styles from './PickerList.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
 import { TriggerSize } from './Trigger';
 
-const selectAllElement = { key: 'select-all', name: 'Select all' };
 const baseClass = 'picker-list';
 const itemClassName = `${baseClass}__item`;
 
@@ -15,11 +14,11 @@ export interface IPickerListItem {
   name: string;
   groupHeader?: boolean;
   disabled?: boolean;
+  selectAllOption?: boolean;
 }
 
 export interface IPickerListProps {
   isOpen: boolean;
-  isMultiSelect?: boolean;
   items: IPickerListItem[];
   selectedItemsKeys: string[] | null;
   size?: TriggerSize;
@@ -31,7 +30,6 @@ export interface IPickerListProps {
 
 export const PickerList: React.FC<IPickerListProps> = ({
   isOpen,
-  isMultiSelect,
   items,
   selectedItemsKeys,
   size = 'medium',
@@ -54,10 +52,6 @@ export const PickerList: React.FC<IPickerListProps> = ({
   const indexRef = React.useRef(-1);
   const lastIndexRef = React.useRef(0);
   const listRef = React.useRef<HTMLUListElement>(null);
-
-  if (isMultiSelect && items.indexOf(selectAllElement) === -1) {
-    items.unshift(selectAllElement);
-  }
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === KeyCodes.esc) {
@@ -84,7 +78,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
     if (e.key === KeyCodes.enter && !items[indexRef.current].disabled) {
       e.preventDefault();
 
-      if (items[indexRef.current].key === 'select-all') {
+      if (items[indexRef.current]?.selectAllOption) {
         return onSelectAll();
       }
 
@@ -187,7 +181,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
           );
         }
 
-        if (item.key === 'select-all') {
+        if (item.selectAllOption) {
           return (
             <li
               ref={(element) => {
@@ -205,7 +199,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
               )}
               onClick={handleOnSelectAllClick}
             >
-              Select all
+              {item.name}
             </li>
           );
         }

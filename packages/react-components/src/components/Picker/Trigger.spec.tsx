@@ -10,8 +10,8 @@ const defaultProps = {
   isSearchDisabled: false,
   isItemSelected: false,
   isOpen: false,
-  onClick: () => noop,
-  onClearClick: () => noop,
+  onTrigger: () => noop,
+  onClear: () => noop,
   onFilter: () => noop,
 };
 
@@ -72,7 +72,7 @@ describe('<Trigger> component', () => {
     const onClick = vi.fn();
     const { getByText } = renderComponent({
       ...defaultProps,
-      onClick,
+      onTrigger: onClick,
     });
 
     fireEvent.click(getByText('Example text'));
@@ -84,7 +84,7 @@ describe('<Trigger> component', () => {
     const { getByTestId } = renderComponent({
       ...defaultProps,
       isItemSelected: true,
-      onClearClick,
+      onClear: onClearClick,
     });
 
     fireEvent.click(getByTestId(`${baseClass}__clear-icon`));

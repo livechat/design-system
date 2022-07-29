@@ -6,11 +6,13 @@ import { Trigger, TriggerSize } from './Trigger';
 import { IPickerListItem, PickerList } from './PickerList';
 import { Icon } from '../Icon';
 import { KeyCodes } from '../../utils/keyCodes';
-import { Tag } from '../Tag';
 
 import styles from './Picker.module.scss';
+import { TriggerBody } from './TriggerBody';
 
 const baseClass = 'picker';
+
+export type PickerType = 'single' | 'multi';
 
 export interface IPickerProps {
   className?: string;
@@ -18,12 +20,12 @@ export interface IPickerProps {
   label?: string;
   error?: string;
   options: IPickerListItem[];
-  selectedOptions?: IPickerListItem[];
+  selected?: IPickerListItem[] | null;
   size?: TriggerSize;
   placeholder?: string;
   isRequired?: boolean;
   noSearchResultText?: string;
-  multiselect?: boolean;
+  type?: PickerType;
   searchDisabled?: boolean;
   onSelect: (selectedItems: IPickerListItem[] | null) => void;
 }
@@ -34,19 +36,16 @@ export const Picker: React.FC<IPickerProps> = ({
   error,
   label,
   options,
-  selectedOptions,
+  selected,
   size = 'medium',
   placeholder = 'Select option',
   isRequired,
   noSearchResultText = 'No results found',
-  multiselect = false,
+  type = 'single',
   searchDisabled = false,
   onSelect,
 }) => {
   const [isListOpen, setIsListOpen] = React.useState<boolean>(false);
-  const [selectedItems, setSelectedItems] = React.useState<
-    IPickerListItem[] | null
-  >(selectedOptions || null);
   const [searchPhrase, setSearchPhrase] = React.useState<string | null>(null);
   const triggerRef = React.useRef<HTMLDivElement>(null);
 
@@ -78,9 +77,7 @@ export const Picker: React.FC<IPickerProps> = ({
     }
   }, [isListOpen]);
 
-  React.useEffect(() => onSelect(selectedItems), [selectedItems]);
-
-  const handleOnTriggerClick = (e: React.MouseEvent | KeyboardEvent) => {
+  const handleOnTrigger = (e: React.MouseEvent | KeyboardEvent) => {
     const target = e.target as Element;
 
     if (disabled || target.getAttribute('data-dismiss-icon')) {
@@ -95,74 +92,52 @@ export const Picker: React.FC<IPickerProps> = ({
   };
 
   const handleOnSelect = (item: IPickerListItem) => {
-    if (!multiselect) {
+    if (type === 'single') {
       setIsListOpen(false);
-      return setSelectedItems([item]);
+      return onSelect([item]);
     }
 
-    const currentSelectedItems = selectedItems;
+    const currentSelectedItems = selected;
 
     if (!currentSelectedItems) {
-      return setSelectedItems([item]);
+      return onSelect([item]);
     }
 
     const newSelectedItems = currentSelectedItems.includes(item)
       ? currentSelectedItems.filter((selectedItem) => selectedItem !== item)
       : currentSelectedItems.concat(item);
 
-    setSelectedItems(newSelectedItems);
+    onSelect(newSelectedItems);
   };
+
+  const isItemSelectable = (item: IPickerListItem) =>
+    !item.disabled && !item.groupHeader && item.key !== 'select-all';
 
   const handleOnSelectAll = () => {
     setIsListOpen(false);
 
-    const itemsToSelect = items.filter(
-      (item) => !item.disabled && !item.groupHeader && item.key !== 'select-all'
-    );
+    const itemsToSelect = items.filter(isItemSelectable);
 
-    setSelectedItems(itemsToSelect);
+    onSelect(itemsToSelect);
   };
 
-  const handleOnClearClick = () => {
+  const handleOnClear = () => {
     setIsListOpen(false);
-    setSelectedItems(null);
+    onSelect(null);
   };
 
   const handleOnFilter = (text: string) => setSearchPhrase(text);
 
   const handleItemRemove = (item: IPickerListItem) => {
-    const newSelectedItems = selectedItems
-      ? selectedItems.filter((selectedItem) => selectedItem !== item)
+    const newSelectedItems = selected
+      ? selected.filter((selectedItem) => selectedItem !== item)
       : null;
 
     if (newSelectedItems?.length === 0) {
-      return setSelectedItems(null);
+      return onSelect(null);
     }
 
-    setSelectedItems(newSelectedItems);
-  };
-
-  const getSelectedItems = (items: IPickerListItem[]) => {
-    if (!multiselect) {
-      return <div>{items[0].name}</div>;
-    }
-
-    return (
-      <div>
-        {items.map((item) => {
-          return (
-            <Tag
-              key={item.name}
-              className={styles[`${baseClass}__tag`]}
-              dismissible
-              onRemove={() => handleItemRemove(item)}
-            >
-              {item.name}
-            </Tag>
-          );
-        })}
-      </div>
-    );
+    onSelect(newSelectedItems);
   };
 
   const getSelectedItemsKeys = (items: IPickerListItem[]) =>
@@ -201,25 +176,30 @@ export const Picker: React.FC<IPickerProps> = ({
           isError={!!error}
           isOpen={isListOpen}
           isDisabled={disabled}
-          isItemSelected={!!selectedItems}
+          isItemSelected={!!selected}
           isRequired={isRequired}
-          isMultiSelect={multiselect}
+          isMultiSelect={type === 'multi'}
           size={size}
-          onClick={handleOnTriggerClick}
-          onClearClick={handleOnClearClick}
+          onTrigger={handleOnTrigger}
+          onClear={handleOnClear}
           onFilter={handleOnFilter}
         >
-          {selectedItems ? getSelectedItems(selectedItems) : placeholder}
+          {selected ? (
+            <TriggerBody
+              items={selected}
+              type={type}
+              onItemRemove={handleItemRemove}
+            />
+          ) : (
+            placeholder
+          )}
         </Trigger>
         <PickerList
-          selectedItemsKeys={
-            selectedItems ? getSelectedItemsKeys(selectedItems) : null
-          }
+          selectedItemsKeys={selected ? getSelectedItemsKeys(selected) : null}
           items={items}
           isOpen={isListOpen}
           size={size}
           emptyStateText={noSearchResultText}
-          isMultiSelect={multiselect}
           onClose={handleOnClose}
           onSelect={handleOnSelect}
           onSelectAll={handleOnSelectAll}

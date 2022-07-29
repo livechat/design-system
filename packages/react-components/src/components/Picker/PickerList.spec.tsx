@@ -3,21 +3,14 @@ import { render, vi } from 'test-utils';
 import userEvent from '@testing-library/user-event';
 import noop from '../../utils/noop';
 import { IPickerListProps, PickerList } from './PickerList';
+import { defaultOptions } from './constants';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 window.HTMLElement.prototype.scrollIntoView = () => {};
 
 const defaultProps = {
   isOpen: false,
-  items: [
-    { key: 'one', name: 'Option one' },
-    { key: 'two', name: 'Option two' },
-    { key: 'three', name: 'Option three' },
-    { key: 'four', name: 'Option four' },
-    { key: 'five', name: 'Option five' },
-    { key: 'six', name: 'Option six' },
-    { key: 'seven', name: 'Option seven' },
-  ],
+  items: defaultOptions,
   selectedItemsKeys: null,
   onClose: () => noop,
   onSelect: () => noop,
@@ -98,15 +91,5 @@ describe('<PickerList> component', () => {
     });
 
     expect(getByText('Custom empty state')).toBeVisible();
-  });
-
-  it('should add "Select all" option to the list in multiselect mode', () => {
-    const { getByText } = renderComponent({
-      ...defaultProps,
-      isOpen: true,
-      isMultiSelect: true,
-    });
-
-    expect(getByText('Select all')).toBeVisible();
   });
 });
