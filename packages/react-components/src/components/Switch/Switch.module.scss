@@ -4,13 +4,18 @@ $switch-transition-timing-function: cubic-bezier(0.33, 0, 0.67, 1);
 $base-class: 'switch';
 $basic-height: 24px;
 $basic-width: 44px;
-$basic-size: $basic-height - 8px;
+$basic-size: $basic-height - 4px;
 $basic-move: $basic-width - $basic-size;
 
 $compact-height: 16px;
 $compact-width: 32px;
-$compact-size: $compact-height - 4px;
+$compact-size: $compact-height - 2px;
 $compact-move: $compact-width - $compact-size;
+
+$medium-height: 20px;
+$medium-width: 36px;
+$medium-size: $medium-height - 4px;
+$medium-move: $medium-width - $medium-size;
 
 /* stylelint-disable max-nesting-depth */
 .#{$base-class} {
@@ -38,6 +43,11 @@ $compact-move: $compact-width - $compact-size;
   &--compact {
     height: $compact-height;
     width: $compact-width;
+  }
+
+  &--medium {
+    height: $medium-height;
+    width: $medium-width;
   }
 
   &__input {
@@ -134,6 +144,21 @@ $compact-move: $compact-width - $compact-size;
       &--off {
         left: 2px;
         right: calc(#{$compact-move} - 2px);
+      }
+    }
+
+    &--medium {
+      height: calc(#{$medium-size});
+      width: calc(#{$medium-size});
+
+      &--on {
+        left: calc(#{$medium-move} - 3px);
+        right: 3px;
+      }
+
+      &--off {
+        left: 3px;
+        right: calc(#{$medium-move} - 3px);
       }
     }
   }

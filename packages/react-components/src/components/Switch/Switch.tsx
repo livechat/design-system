@@ -14,7 +14,7 @@ import { Loader } from '../Loader';
 
 const baseClass = 'switch';
 
-export type SwitchSize = 'basic' | 'compact';
+export type SwitchSize = 'basic' | 'compact' | 'medium';
 export interface SwitchProps {
   className?: string;
   defaultOn?: boolean;
@@ -49,7 +49,7 @@ export const Switch: React.FC<SwitchProps> = ({
     }
   }, [on]);
 
-  const getIcon = (): JSX.Element => {
+  const getIcon = (iconSize: IconSize): JSX.Element => {
     if (loading) {
       return <Loader size="cover" />;
     }
@@ -73,7 +73,7 @@ export const Switch: React.FC<SwitchProps> = ({
   };
 
   const iconSize: IconSize = size === 'basic' ? 'small' : 'xsmall';
-  const SwitchIcon = getIcon();
+  const SwitchIcon = getIcon(iconSize);
   const toggleStyles = checked ? 'on' : 'off';
   const availabilityStyles = disabled ? 'disabled' : 'enabled';
   const mergedClassNames = cx(
