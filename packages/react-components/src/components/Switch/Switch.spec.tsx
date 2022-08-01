@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { render, fireEvent, vi } from 'test-utils';
-import { Switch } from './Switch';
+import { baseClass, Switch } from './Switch';
+import loaderStyles from '../Loader/Loader.module.scss';
 
 describe('Switch', () => {
   it('should call onChange without changing state when custom handler is passed', () => {
@@ -35,5 +36,33 @@ describe('Switch', () => {
     expect(checkbox.checked).toEqual(true);
     fireEvent.click(checkbox);
     expect(checkbox.checked).toEqual(false);
+  });
+
+  it('should be disabled if disabled is set to true', () => {
+    const { getByRole, getByTestId } = render(<Switch disabled={true} />);
+    const checkbox = getByRole('checkbox') as HTMLInputElement;
+    expect(checkbox.disabled).toEqual(true);
+    expect(getByTestId(`${baseClass}__disabled-icon`)).toBeVisible();
+  });
+
+  it('should have loader icon visible if loading is set to true', () => {
+    const { container } = render(<Switch loading={true} />);
+    const loader = container.querySelector(
+      `.${loaderStyles['loader__spinner']}`
+    );
+    expect(loader).toBeVisible();
+  });
+
+  it('should always show loader icon on top if there are other icons to be displayed', () => {
+    const { container, queryByTestId } = render(
+      <Switch loading={true} disabled={true} />
+    );
+    const loader = container.querySelector(
+      `.${loaderStyles['loader__spinner']}`
+    );
+    expect(loader).toBeVisible();
+    expect(
+      queryByTestId(`${baseClass}__disabled-icon`)
+    ).not.toBeInTheDocument();
   });
 });

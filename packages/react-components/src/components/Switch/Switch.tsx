@@ -12,7 +12,7 @@ import noop from '../../utils/noop';
 import styles from './Switch.module.scss';
 import { Loader } from '../Loader';
 
-const baseClass = 'switch';
+export const baseClass = 'switch';
 
 export type SwitchSize = 'large' | 'medium' | 'compact';
 export interface SwitchProps {
@@ -55,7 +55,14 @@ export const Switch: React.FC<SwitchProps> = ({
     }
 
     if (disabled) {
-      return <Icon size={iconSize} source={LockIcon} kind={'primary'} />;
+      return (
+        <Icon
+          data-testid={`${baseClass}__disabled-icon`}
+          size={iconSize}
+          source={LockIcon}
+          kind={'primary'}
+        />
+      );
     }
 
     if (on) {
