@@ -12,7 +12,7 @@ export const sizes = (): React.ReactElement => (
   <div className="story-spacer">
     <Loader size="small" />
     <Loader size="medium" />
-    <Loader size="large"></Loader>
+    <Loader size="large" />
   </div>
 );
 
@@ -23,3 +23,13 @@ export const labeled = (args: LoaderProps): React.ReactElement => (
 export const customColors = (args: LoaderProps): React.ReactElement => (
   <Loader primaryColor="#d64646" secondaryColor="#eec4c5" {...args} />
 );
+
+export const coverSize = (args: LoaderProps): React.ReactElement => {
+  const coverStyles = { width: '30px', height: '30px' };
+
+  return (
+    <div style={coverStyles}>
+      <Loader size="cover" {...args} />
+    </div>
+  );
+};
