@@ -40,8 +40,8 @@ export const Sizes = (): JSX.Element => (
     <StoryDescriptor title="Medium">
       <Switch size="medium" />
     </StoryDescriptor>
-    <StoryDescriptor title="Basic">
-      <Switch size="basic" />
+    <StoryDescriptor title="Large">
+      <Switch size="large" />
     </StoryDescriptor>
   </>
 );

@@ -14,7 +14,7 @@ import { Loader } from '../Loader';
 
 const baseClass = 'switch';
 
-export type SwitchSize = 'basic' | 'compact' | 'medium';
+export type SwitchSize = 'large' | 'medium' | 'compact';
 export interface SwitchProps {
   className?: string;
   defaultOn?: boolean;
@@ -35,7 +35,7 @@ export const Switch: React.FC<SwitchProps> = ({
   name = baseClass,
   on,
   onChange = noop,
-  size = 'basic',
+  size = 'large',
   innerRef,
   ...props
 }) => {
@@ -72,7 +72,7 @@ export const Switch: React.FC<SwitchProps> = ({
     return <Icon size={iconSize} source={CloseIcon} kind={'primary'} />;
   };
 
-  const iconSize: IconSize = size === 'basic' ? 'small' : 'xsmall';
+  const iconSize: IconSize = size === 'large' ? 'small' : 'xsmall';
   const SwitchIcon = getIcon(iconSize);
   const toggleStyles = checked ? 'on' : 'off';
   const availabilityStyles = disabled ? 'disabled' : 'enabled';

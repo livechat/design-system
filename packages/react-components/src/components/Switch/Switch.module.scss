@@ -2,10 +2,10 @@ $switch-transition-duration: 300ms;
 $switch-transition-timing-function: cubic-bezier(0.33, 0, 0.67, 1);
 
 $base-class: 'switch';
-$basic-height: 24px;
-$basic-width: 44px;
-$basic-size: $basic-height - 4px;
-$basic-move: $basic-width - $basic-size;
+$large-height: 24px;
+$large-width: 44px;
+$large-size: $large-height - 4px;
+$large-move: $large-width - $large-size;
 
 $compact-height: 16px;
 $compact-width: 32px;
@@ -35,9 +35,9 @@ $medium-move: $medium-width - $medium-size;
     }
   }
 
-  &--basic {
-    height: $basic-height;
-    width: $basic-width;
+  &--large {
+    height: $large-height;
+    width: $large-width;
   }
 
   &--compact {
@@ -117,18 +117,18 @@ $medium-move: $medium-width - $medium-size;
     transition-property: left, right;
     transition-timing-function: $switch-transition-timing-function;
 
-    &--basic {
-      height: calc(#{$basic-size});
-      width: calc(#{$basic-size});
+    &--large {
+      height: calc(#{$large-size});
+      width: calc(#{$large-size});
 
       &--on {
-        left: calc(#{$basic-move} - 3px);
+        left: calc(#{$large-move} - 3px);
         right: 3px;
       }
 
       &--off {
         left: 3px;
-        right: calc(#{$basic-move} - 3px);
+        right: calc(#{$large-move} - 3px);
       }
     }
 
