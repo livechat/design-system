@@ -1,0 +1,316 @@
+$base-class: 'avatar';
+
+.#{$base-class} {
+  align-items: center;
+  background-color: var(--surface-basic-disabled);
+  display: flex;
+  font-weight: 600;
+  justify-content: center;
+  position: relative;
+
+  &__status {
+    $status-class: &;
+
+    border: 1px solid var(--background);
+    border-radius: 50%;
+    position: absolute;
+
+    &--available {
+      background: var(--color-positive-default);
+    }
+
+    &--unavailable {
+      background: var(--color-negative-default);
+    }
+
+    &--unknown {
+      background: var(--surface-secondary-default);
+    }
+
+    &--xxxsmall {
+      height: 8px;
+      width: 8px;
+
+      &#{$status-class}--circle {
+        bottom: 62.5%;
+        left: 62.5%;
+      }
+
+      &#{$status-class}--rounded-square {
+        bottom: 62.5%;
+        left: 62.5%;
+      }
+    }
+
+    &--xxsmall {
+      height: 8px;
+      width: 8px;
+
+      &#{$status-class}--circle {
+        bottom: 60%;
+        left: 60%;
+      }
+
+      &#{$status-class}--rounded-square {
+        bottom: 70%;
+        left: 70%;
+      }
+    }
+
+    &--xsmall {
+      height: 8px;
+      width: 8px;
+
+      &#{$status-class}--circle {
+        bottom: 66.67%;
+        left: 66.67%;
+      }
+
+      &#{$status-class}--rounded-square {
+        bottom: 75%;
+        left: 75%;
+      }
+    }
+
+    &--small {
+      height: 10px;
+      width: 10px;
+
+      &#{$status-class}--circle {
+        bottom: 68.75%;
+        left: 68.75%;
+      }
+
+      &#{$status-class}--rounded-square {
+        bottom: 75%;
+        left: 75%;
+      }
+    }
+
+    &--medium {
+      height: 12px;
+      width: 12px;
+
+      &#{$status-class}--circle {
+        bottom: 66.67%;
+        left: 66.67%;
+      }
+
+      &#{$status-class}--rounded-square {
+        bottom: 72.92%;
+        left: 72.92%;
+      }
+    }
+
+    &--large {
+      height: 16px;
+      width: 16px;
+
+      &#{$status-class}--circle {
+        bottom: 66.67%;
+        left: 66.67%;
+      }
+
+      &#{$status-class}--rounded-square {
+        bottom: 72.92%;
+        left: 72.92%;
+      }
+    }
+
+    &--xlarge {
+      height: 16px;
+      width: 16px;
+
+      &#{$status-class}--circle {
+        bottom: 75%;
+        left: 75%;
+      }
+
+      &#{$status-class}--rounded-square {
+        bottom: 81.25%;
+        left: 81.25%;
+      }
+    }
+
+    &--xxlarge {
+      height: 24px;
+      width: 24px;
+
+      &#{$status-class}--circle {
+        bottom: 75%;
+        left: 75%;
+      }
+
+      &#{$status-class}--rounded-square {
+        bottom: 81.25%;
+        left: 81.25%;
+      }
+    }
+  }
+
+  &__rim {
+    background: transparent;
+    border-color: var(--color-negative-default);
+    border-radius: inherit;
+    border-style: solid;
+    box-sizing: content-box;
+    display: block;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    &--xxxsmall,
+    &--xxsmall,
+    &--xsmall {
+      border-width: 2px;
+      height: calc(100% + 2px);
+      width: calc(100% + 2px);
+    }
+
+    &--small,
+    &--medium,
+    &--large {
+      border-width: 3px;
+      height: calc(100% + 4px);
+      width: calc(100% + 4px);
+    }
+
+    &--xlarge,
+    &--xxlarge {
+      border-width: 4px;
+      height: calc(100% + 8px);
+      width: calc(100% + 8px);
+    }
+  }
+
+  &__image {
+    border-radius: inherit;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  &--circle {
+    border-radius: 50%;
+  }
+
+  &--rounded-square {
+    border-radius: 4px;
+  }
+
+  &--xxxsmall,
+  &--xxsmall,
+  &--xsmall {
+    margin: 3px;
+  }
+
+  &--small,
+  &--medium,
+  &--large {
+    margin: 5px;
+  }
+
+  &--xlarge,
+  &--xxlarge {
+    margin: 8px;
+  }
+
+  &--xxxsmall {
+    font-size: 12px;
+    height: 16px;
+    line-height: 20px;
+    width: 16px;
+  }
+
+  &--xxsmall {
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    width: 20px;
+  }
+
+  &--xsmall {
+    font-size: 12px;
+    height: 24px;
+    line-height: 20px;
+    width: 24px;
+  }
+
+  &--small {
+    font-size: 15px;
+    height: 32px;
+    line-height: 22px;
+    width: 32px;
+  }
+
+  &--medium {
+    font-size: 15px;
+    height: 36px;
+    line-height: 22px;
+    width: 36px;
+  }
+
+  &--large {
+    font-size: 18px;
+    height: 48px;
+    line-height: 24px;
+    width: 48px;
+  }
+
+  &--xlarge {
+    font-size: 24px;
+    height: 64px;
+    line-height: 32px;
+    width: 64px;
+  }
+
+  &--xxlarge {
+    font-size: 32px;
+    height: 96px;
+    line-height: 40px;
+    width: 96px;
+  }
+
+  &__icon {
+    &--xxxsmall svg {
+      height: 8px;
+      width: 8px;
+    }
+
+    &--xxsmall svg {
+      height: 10px;
+      width: 10px;
+    }
+
+    &--xsmall svg {
+      height: 12px;
+      width: 12px;
+    }
+
+    &--small svg {
+      height: 16px;
+      width: 16px;
+    }
+
+    &--medium svg {
+      height: 18px;
+      width: 18px;
+    }
+
+    &--large svg {
+      height: 24px;
+      width: 24px;
+    }
+
+    &--xlarge svg {
+      height: 32px;
+      width: 32px;
+    }
+
+    &--xxlarge svg {
+      height: 48px;
+      width: 48px;
+    }
+  }
+}
