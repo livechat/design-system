@@ -26,8 +26,8 @@ export const States = (): JSX.Element => (
       <Switch on={false} disabled={true} />
     </StoryDescriptor>
     <StoryDescriptor title="Loading">
-      <Switch on={true} loading={true} disabled={true} />
-      <Switch on={false} loading={true} disabled={true} />
+      <Switch on={true} loading={true} />
+      <Switch on={false} loading={true} />
     </StoryDescriptor>
   </>
 );
