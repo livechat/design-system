@@ -71,7 +71,7 @@ describe('<Picker> component', () => {
     expect(onSelect).toHaveBeenCalledWith(null);
   });
 
-  it('should call onSelect with all currently selected options in multiselect mode', () => {
+  it('should call onSelect includes the currently selected options in multiselect mode', () => {
     const onSelect = vi.fn();
     const stepOneState = [{ key: 'two', name: 'Option two' }];
     const stepTwoState = [
