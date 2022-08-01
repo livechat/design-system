@@ -2,7 +2,7 @@ import * as React from 'react';
 import { render, vi } from 'test-utils';
 import userEvent from '@testing-library/user-event';
 import noop from '../../utils/noop';
-import { IPickerProps, Picker } from './Picker';
+import { IPickerProps, Picker, PickerType } from './Picker';
 import { defaultOptions } from './constants';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -69,6 +69,40 @@ describe('<Picker> component', () => {
 
     userEvent.click(getByTestId('picker-trigger__clear-icon'));
     expect(onSelect).toHaveBeenCalledWith(null);
+  });
+
+  it('should call onSelect with all currently selected options in multiselect mode', () => {
+    const onSelect = vi.fn();
+    const stepOneState = [{ key: 'two', name: 'Option two' }];
+    const stepTwoState = [
+      { key: 'two', name: 'Option two' },
+      { key: 'four', name: 'Option four' },
+    ];
+    const stepThreeState = [
+      { key: 'two', name: 'Option two' },
+      { key: 'four', name: 'Option four' },
+      { key: 'seven', name: 'Option seven' },
+    ];
+    const props = {
+      ...defaultProps,
+      type: 'multi' as PickerType,
+      onSelect,
+    };
+    const { getByText, rerender } = renderComponent(props);
+
+    userEvent.click(getByText('Select option'));
+    userEvent.click(getByText('Option two'));
+    expect(onSelect).toHaveBeenCalledWith(stepOneState);
+
+    rerender(<Picker {...props} selected={stepOneState} />);
+
+    userEvent.click(getByText('Option four'));
+    expect(onSelect).toHaveBeenCalledWith(stepTwoState);
+
+    rerender(<Picker {...props} selected={stepTwoState} />);
+
+    userEvent.click(getByText('Option seven'));
+    expect(onSelect).toHaveBeenCalledWith(stepThreeState);
   });
 
   it('should call onSelect with all correct elements in multiselect mode if "Select all" option is chosen', () => {
