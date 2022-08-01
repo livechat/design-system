@@ -75,7 +75,8 @@ export const Switch: React.FC<SwitchProps> = ({
   const iconSize: IconSize = size === 'large' ? 'small' : 'xsmall';
   const SwitchIcon = getIcon(iconSize);
   const toggleStyles = checked ? 'on' : 'off';
-  const availabilityStyles = disabled ? 'disabled' : 'enabled';
+  const shouldBehaveAsDisabled = disabled || loading;
+  const availabilityStyles = shouldBehaveAsDisabled ? 'disabled' : 'enabled';
   const mergedClassNames = cx(
     styles[baseClass],
     styles[`${baseClass}--${size}`],
@@ -104,7 +105,7 @@ export const Switch: React.FC<SwitchProps> = ({
         checked={checked}
         name={name}
         ref={innerRef}
-        disabled={disabled}
+        disabled={shouldBehaveAsDisabled}
         test-id="foo"
         {...props}
       />
