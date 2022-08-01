@@ -4,30 +4,12 @@
 
 # How to install?
 
-Install [Homebrew Package Manager](http://mxcl.github.io/homebrew/) and then check it by running commands:
+To run the project, first You need to use a the tool for managing the node version, which is convenient for you.
+We suggest using [Volta](https://volta.sh/).
 
-```
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-```
+Required version of node is `16.13.2` and npm `8.1.0`.
 
-```
-brew doctor
-```
-
-Install NVM (Node Version Manager):
-
-```
-brew install nvm
-```
-
-and follow instructions presented by brew (you will need to add a proper entry to .bash_profile).
-
-After installing nvm, you should install our preferred node and npm version. Required version for node is `16.13.0`. It comes with npm `8.1.0`. Please make sure that you're using the correct version of both, as you might encounter unintended `package-lock.json` updates along with other errors.
-
-```
-nvm install 16.13.0
-nvm use 16.13.0
-```
+Then, just run `npm install`.
 
 # How to use?
 
