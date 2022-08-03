@@ -1,5 +1,5 @@
 import * as React from 'react';
-import clsx from 'clsx';
+import cx from 'clsx';
 import { Person as PersonIcon } from '@livechat/design-system-icons/react/material';
 
 import { Icon } from '../Icon';
@@ -59,23 +59,24 @@ export const Avatar: React.FC<AvatarProps> = ({
   const backgroundColor = color || defaultBackgroundColor;
   const fontColor = color ? getFontColor(color) : defaultFontColor;
 
-  const mergedClassNames = clsx(
-    styles[baseClass],
-    styles[`${baseClass}--${shape}`],
-    styles[`${baseClass}--${size}`],
-    className
-  );
-  const mergedStatusClassNames = clsx(
+  const mergedClassNames = cx({
+    [styles[baseClass]]: true,
+    [styles[`${baseClass}--${shape}`]]: true,
+    [styles[`${baseClass}--${size}`]]: true,
+    [styles[`${baseClass}--with-rim`]]: withRim,
+    className,
+  });
+  const mergedStatusClassNames = cx(
     styles[`${baseClass}__status`],
     styles[`${baseClass}__status--${shape}`],
     styles[`${baseClass}__status--${size}`],
     styles[`${baseClass}__status--${status}`]
   );
-  const mergedIconClassNames = clsx(
+  const mergedIconClassNames = cx(
     styles[`${baseClass}__icon`],
     styles[`${baseClass}__icon--${size}`]
   );
-  const mergedRimClassNames = clsx(
+  const mergedRimClassNames = cx(
     styles[`${baseClass}__rim`],
     styles[`${baseClass}__rim--${size}`]
   );

@@ -170,17 +170,12 @@ $base-class: 'avatar';
 
     &--small,
     &--medium,
-    &--large {
+    &--large,
+    &--xlarge,
+    &--xxlarge {
       border-width: 3px;
       height: calc(100% + 4px);
       width: calc(100% + 4px);
-    }
-
-    &--xlarge,
-    &--xxlarge {
-      border-width: 4px;
-      height: calc(100% + 8px);
-      width: calc(100% + 8px);
     }
   }
 
@@ -191,6 +186,48 @@ $base-class: 'avatar';
     width: 100%;
   }
 
+  &__icon {
+    &--xxxsmall svg {
+      height: 8px;
+      width: 8px;
+    }
+
+    &--xxsmall svg {
+      height: 10px;
+      width: 10px;
+    }
+
+    &--xsmall svg {
+      height: 12px;
+      width: 12px;
+    }
+
+    &--small svg {
+      height: 16px;
+      width: 16px;
+    }
+
+    &--medium svg {
+      height: 18px;
+      width: 18px;
+    }
+
+    &--large svg {
+      height: 24px;
+      width: 24px;
+    }
+
+    &--xlarge svg {
+      height: 32px;
+      width: 32px;
+    }
+
+    &--xxlarge svg {
+      height: 48px;
+      width: 48px;
+    }
+  }
+
   &--circle {
     border-radius: 50%;
   }
@@ -199,21 +236,18 @@ $base-class: 'avatar';
     border-radius: 4px;
   }
 
-  &--xxxsmall,
-  &--xxsmall,
-  &--xsmall {
+  &--with-rim.#{$base-class}--xxxsmall,
+  &--with-rim.#{$base-class}--xxsmall,
+  &--with-rim.#{$base-class}--xsmall {
     margin: 3px;
   }
 
-  &--small,
-  &--medium,
-  &--large {
+  &--with-rim.#{$base-class}--small,
+  &--with-rim.#{$base-class}--medium,
+  &--with-rim.#{$base-class}--large,
+  &--with-rim.#{$base-class}--xlarge,
+  &--with-rim.#{$base-class}--xxlarge {
     margin: 5px;
-  }
-
-  &--xlarge,
-  &--xxlarge {
-    margin: 8px;
   }
 
   &--xxxsmall {
@@ -270,47 +304,5 @@ $base-class: 'avatar';
     height: 96px;
     line-height: 40px;
     width: 96px;
-  }
-
-  &__icon {
-    &--xxxsmall svg {
-      height: 8px;
-      width: 8px;
-    }
-
-    &--xxsmall svg {
-      height: 10px;
-      width: 10px;
-    }
-
-    &--xsmall svg {
-      height: 12px;
-      width: 12px;
-    }
-
-    &--small svg {
-      height: 16px;
-      width: 16px;
-    }
-
-    &--medium svg {
-      height: 18px;
-      width: 18px;
-    }
-
-    &--large svg {
-      height: 24px;
-      width: 24px;
-    }
-
-    &--xlarge svg {
-      height: 32px;
-      width: 32px;
-    }
-
-    &--xxlarge svg {
-      height: 48px;
-      width: 48px;
-    }
   }
 }
