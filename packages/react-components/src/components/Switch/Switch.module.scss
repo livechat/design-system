@@ -167,6 +167,18 @@ $medium-move: $medium-width - $medium-size;
     height: 100%;
     width: 100%;
 
+    &--compact {
+      padding: 1.5px;
+    }
+
+    &--medium {
+      padding: 2px;
+    }
+
+    &--large {
+      padding: 3px;
+    }
+
     > div {
       height: 100%;
       width: 100%;

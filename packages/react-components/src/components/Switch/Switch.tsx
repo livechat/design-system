@@ -54,6 +54,7 @@ export const Switch: React.FC<SwitchProps> = ({
     styles[`${baseClass}--${size}`],
     className
   );
+  const shouldShowDisabledIcon = disabled && !loading;
 
   const handleChange = (e: React.FormEvent) => {
     const hasOnChangePassed = onChange !== noop;
@@ -96,8 +97,15 @@ export const Switch: React.FC<SwitchProps> = ({
             styles[`${baseClass}__slider--${size}--${toggleStyles}`]
           )}
         >
-          {loading && <Loader className={styles[`${baseClass}__loader`]} />}
-          {disabled && !loading && (
+          {loading && (
+            <Loader
+              className={cx(
+                styles[`${baseClass}__loader`],
+                styles[`${baseClass}__loader--${size}`]
+              )}
+            />
+          )}
+          {shouldShowDisabledIcon && (
             <Icon
               data-testid="disabled-icon"
               size={iconSize}
