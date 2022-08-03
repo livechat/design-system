@@ -10,6 +10,8 @@ $base-class: 'avatar';
 
   &__status {
     $status-class: &;
+    $circle-class: #{$status-class}--circle;
+    $rounded-square-class: #{$status-class}--rounded-square;
 
     border: 1px solid var(--background);
     border-radius: 50%;
@@ -27,124 +29,76 @@ $base-class: 'avatar';
       background: var(--surface-secondary-default);
     }
 
+    &--xxxsmall#{$circle-class},
+    &--xxsmall#{$circle-class},
+    &--xsmall#{$circle-class},
+    &--small#{$circle-class},
+    &--medium#{$circle-class},
+    &--large#{$circle-class},
+    &--xlarge#{$circle-class},
+    &--xxlarge#{$circle-class} {
+      bottom: 75%;
+      left: 75%;
+    }
+
+    &--xxxsmall#{$rounded-square-class},
+    &--xxsmall#{$rounded-square-class},
+    &--xsmall#{$rounded-square-class},
+    &--small#{$rounded-square-class},
+    &--medium#{$rounded-square-class},
+    &--large#{$rounded-square-class},
+    &--xlarge#{$rounded-square-class},
+    &--xxlarge#{$rounded-square-class} {
+      bottom: 81.25%;
+      left: 81.25%;
+    }
+
     &--xxxsmall {
-      height: 8px;
-      width: 8px;
-
-      &#{$status-class}--circle {
-        bottom: 62.5%;
-        left: 62.5%;
-      }
-
-      &#{$status-class}--rounded-square {
-        bottom: 62.5%;
-        left: 62.5%;
-      }
+      border-width: calc(4px * 0.125);
+      height: 4px;
+      width: 4px;
     }
 
     &--xxsmall {
-      height: 8px;
-      width: 8px;
-
-      &#{$status-class}--circle {
-        bottom: 60%;
-        left: 60%;
-      }
-
-      &#{$status-class}--rounded-square {
-        bottom: 70%;
-        left: 70%;
-      }
+      border-width: calc(5px * 0.125);
+      height: 5px;
+      width: 5px;
     }
 
     &--xsmall {
-      height: 8px;
-      width: 8px;
-
-      &#{$status-class}--circle {
-        bottom: 66.67%;
-        left: 66.67%;
-      }
-
-      &#{$status-class}--rounded-square {
-        bottom: 75%;
-        left: 75%;
-      }
+      border-width: calc(6px * 0.125);
+      height: 6px;
+      width: 6px;
     }
 
     &--small {
-      height: 10px;
-      width: 10px;
-
-      &#{$status-class}--circle {
-        bottom: 68.75%;
-        left: 68.75%;
-      }
-
-      &#{$status-class}--rounded-square {
-        bottom: 75%;
-        left: 75%;
-      }
+      border-width: calc(8px * 0.125);
+      height: 8px;
+      width: 8px;
     }
 
     &--medium {
-      height: 12px;
-      width: 12px;
-
-      &#{$status-class}--circle {
-        bottom: 66.67%;
-        left: 66.67%;
-      }
-
-      &#{$status-class}--rounded-square {
-        bottom: 72.92%;
-        left: 72.92%;
-      }
+      border-width: calc(8px * 0.125);
+      height: 9px;
+      width: 9px;
     }
 
     &--large {
-      height: 16px;
-      width: 16px;
-
-      &#{$status-class}--circle {
-        bottom: 66.67%;
-        left: 66.67%;
-      }
-
-      &#{$status-class}--rounded-square {
-        bottom: 72.92%;
-        left: 72.92%;
-      }
+      border-width: calc(12px * 0.125);
+      height: 12px;
+      width: 12px;
     }
 
     &--xlarge {
+      border-width: calc(16px * 0.125);
       height: 16px;
       width: 16px;
-
-      &#{$status-class}--circle {
-        bottom: 75%;
-        left: 75%;
-      }
-
-      &#{$status-class}--rounded-square {
-        bottom: 81.25%;
-        left: 81.25%;
-      }
     }
 
     &--xxlarge {
+      border-width: calc(24px * 0.125);
       height: 24px;
       width: 24px;
-
-      &#{$status-class}--circle {
-        bottom: 75%;
-        left: 75%;
-      }
-
-      &#{$status-class}--rounded-square {
-        bottom: 81.25%;
-        left: 81.25%;
-      }
     }
   }
 
