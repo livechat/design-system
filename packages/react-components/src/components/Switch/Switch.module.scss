@@ -168,4 +168,14 @@ $medium-move: $medium-width - $medium-size;
       color: var(--color-positive-default);
     }
   }
+
+  &__loader {
+    height: 100%;
+    width: 100%;
+
+    > div {
+      height: 100%;
+      width: 100%;
+    }
+  }
 }

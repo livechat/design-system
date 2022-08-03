@@ -14,7 +14,7 @@ import { Loader } from '../Loader';
 
 export const baseClass = 'switch';
 
-export type SwitchSize = 'large' | 'medium' | 'compact';
+export type SwitchSize = 'compact' | 'medium' | 'large';
 export interface SwitchProps {
   className?: string;
   defaultOn?: boolean;
@@ -51,7 +51,7 @@ export const Switch: React.FC<SwitchProps> = ({
 
   const getIcon = (iconSize: IconSize): JSX.Element => {
     if (loading) {
-      return <Loader size="cover" />;
+      return <Loader className={styles[`${baseClass}__loader`]} />;
     }
 
     if (disabled) {

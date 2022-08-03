@@ -14,11 +14,6 @@
   flex-direction: row;
   flex-wrap: nowrap;
 
-  &--cover {
-    height: 100%;
-    width: 100%;
-  }
-
   &__spinner {
     flex-shrink: 0;
     height: 36px;
@@ -49,11 +44,6 @@
       [class*='spinner-circle'] {
         border-width: 4px;
       }
-    }
-
-    &--cover {
-      height: 100%;
-      width: 100%;
     }
 
     &-circle {

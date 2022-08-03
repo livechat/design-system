@@ -23,13 +23,3 @@ export const labeled = (args: LoaderProps): React.ReactElement => (
 export const customColors = (args: LoaderProps): React.ReactElement => (
   <Loader primaryColor="#d64646" secondaryColor="#eec4c5" {...args} />
 );
-
-export const coverSize = (args: LoaderProps): React.ReactElement => {
-  const coverStyles = { width: '30px', height: '30px' };
-
-  return (
-    <div style={coverStyles}>
-      <Loader size="cover" {...args} />
-    </div>
-  );
-};
