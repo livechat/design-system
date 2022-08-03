@@ -36,21 +36,18 @@ export const calculateDatePickerMonth = (
   initialToDate?: Date,
   toMonth?: Date
 ): Date => {
-  if (initialToDate) {
-    const forcePreviousMonth =
-      initialFromDate && !isSameMonth(initialFromDate, initialToDate);
-
-    if (
-      forcePreviousMonth ||
-      (toMonth && isSameMonth(initialToDate, toMonth))
-    ) {
-      return subMonths(initialToDate, 1);
-    }
-
-    return initialToDate;
+  if (!initialToDate) {
+    return subMonths(toMonth || new Date(), 1);
   }
 
-  return subMonths(toMonth || new Date(), 1);
+  const forcePreviousMonth =
+    initialFromDate && !isSameMonth(initialFromDate, initialToDate);
+
+  if (forcePreviousMonth || (toMonth && isSameMonth(initialToDate, toMonth))) {
+    return subMonths(initialToDate, 1);
+  }
+
+  return initialToDate;
 };
 
 export const getRangeDatePickerModifiers = (
@@ -73,7 +70,9 @@ export const getRangeDatePickerModifiers = (
       ...base,
       [styles[`${baseClass}__day--end`]]: to,
     };
-  } else if (diff < 0) {
+  }
+
+  if (diff < 0) {
     return {
       ...base,
       [styles[`${baseClass}__day--start`]]: to,
@@ -104,30 +103,33 @@ export const getInitialStateFromProps = (
 ): Partial<IRangeDatePickerState> => {
   const state: Partial<IRangeDatePickerState> = {};
 
-  if (props.initialSelectedItemKey) {
-    const selectedOption = getSelectedOption(
-      props.initialSelectedItemKey,
-      props.options
-    );
-
-    if (!selectedOption) {
-      return {};
-    }
-
-    state.selectedItem = props.initialSelectedItemKey;
-
-    if (!selectedOption.isManual) {
-      return state;
-    }
-
-    if (props.initialFromDate) {
-      state.from = props.initialFromDate;
-    }
-    if (props.initialToDate) {
-      state.to = props.initialToDate;
-      state.temporaryTo = props.initialToDate;
-    }
+  if (!props.initialSelectedItemKey) {
+    return state;
   }
+
+  const selectedOption = getSelectedOption(
+    props.initialSelectedItemKey,
+    props.options
+  );
+
+  if (!selectedOption) {
+    return {};
+  }
+
+  state.selectedItem = props.initialSelectedItemKey;
+
+  if (!selectedOption.isManual) {
+    return state;
+  }
+
+  if (props.initialFromDate) {
+    state.from = props.initialFromDate;
+  }
+  if (props.initialToDate) {
+    state.to = props.initialToDate;
+    state.temporaryTo = props.initialToDate;
+  }
+
   return state;
 };
 
