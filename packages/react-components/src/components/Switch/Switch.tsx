@@ -1,10 +1,6 @@
 import * as React from 'react';
 import cx from 'clsx';
-import {
-  LockBlack as LockIcon,
-  Check as CheckIcon,
-  Close as CloseIcon,
-} from '@livechat/design-system-icons/react/material';
+import { LockBlack as LockIcon } from '@livechat/design-system-icons/react/material';
 
 import { Icon, IconSize } from '../../components/Icon';
 import noop from '../../utils/noop';
@@ -49,38 +45,7 @@ export const Switch: React.FC<SwitchProps> = ({
     }
   }, [on]);
 
-  const getIcon = (iconSize: IconSize): JSX.Element => {
-    if (loading) {
-      return <Loader className={styles[`${baseClass}__loader`]} />;
-    }
-
-    if (disabled) {
-      return (
-        <Icon
-          data-testid={`${baseClass}__disabled-icon`}
-          size={iconSize}
-          source={LockIcon}
-          kind={'primary'}
-        />
-      );
-    }
-
-    if (on) {
-      return (
-        <Icon
-          className={styles[`${baseClass}__icon--on`]}
-          size={iconSize}
-          source={CheckIcon}
-          kind={'primary'}
-        />
-      );
-    }
-
-    return <Icon size={iconSize} source={CloseIcon} kind={'primary'} />;
-  };
-
   const iconSize: IconSize = size === 'large' ? 'small' : 'xsmall';
-  const SwitchIcon = getIcon(iconSize);
   const toggleStyles = checked ? 'on' : 'off';
   const shouldBehaveAsDisabled = disabled || loading;
   const availabilityStyles = shouldBehaveAsDisabled ? 'disabled' : 'enabled';
@@ -131,7 +96,15 @@ export const Switch: React.FC<SwitchProps> = ({
             styles[`${baseClass}__slider--${size}--${toggleStyles}`]
           )}
         >
-          {SwitchIcon}
+          {loading && <Loader className={styles[`${baseClass}__loader`]} />}
+          {disabled && !loading && (
+            <Icon
+              data-testid="disabled-icon"
+              size={iconSize}
+              source={LockIcon}
+              kind="primary"
+            />
+          )}
         </span>
       </span>
     </span>

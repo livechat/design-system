@@ -163,12 +163,6 @@ $medium-move: $medium-width - $medium-size;
     }
   }
 
-  &__icon {
-    &--on {
-      color: var(--color-positive-default);
-    }
-  }
-
   &__loader {
     height: 100%;
     width: 100%;
