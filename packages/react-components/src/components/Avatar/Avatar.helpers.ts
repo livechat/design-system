@@ -11,6 +11,6 @@ export function getInitials(name = '', count = 2): string {
 
 export function getFontColor(color: string): string {
   return getContrast(color, '#FFFFFF') > 4.5
-    ? 'var(--content-white-locked)'
-    : 'var(--content-subtle)';
+    ? 'var(--color-white)'
+    : 'var(--color-black)';
 }
