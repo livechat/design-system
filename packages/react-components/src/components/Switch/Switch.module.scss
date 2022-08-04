@@ -9,7 +9,7 @@ $large-move: $large-width - $large-size;
 
 $compact-height: 16px;
 $compact-width: 32px;
-$compact-size: $compact-height - 2px;
+$compact-size: $compact-height - 4px;
 $compact-move: $compact-width - $compact-size;
 
 $medium-height: 20px;
@@ -182,6 +182,10 @@ $medium-move: $medium-width - $medium-size;
     > div {
       height: 100%;
       width: 100%;
+    }
+
+    div:last-child {
+      border-width: 2px;
     }
   }
 }
