@@ -8,7 +8,7 @@ const renderComponent = (props: AvatarProps) => {
 
 const baseClass = 'avatar';
 
-describe('<Alert> component', () => {
+describe('<Avatar> component', () => {
   it('should allow for custom CSS class', () => {
     const customClass = 'custom-class';
     const { container } = renderComponent({
