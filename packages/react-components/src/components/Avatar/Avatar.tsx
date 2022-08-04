@@ -49,7 +49,7 @@ export const Avatar: React.FC<AvatarProps> = ({
   type,
   withRim = false,
 }) => {
-  const isImproperImageSetup = type === 'image' && src?.length === 0;
+  const isImproperImageSetup = type === 'image' && !src;
   const [shouldDisplayFallbackAvatar, setShouldDisplayFallbackAvatar] =
     React.useState(isImproperImageSetup);
 
@@ -66,7 +66,7 @@ export const Avatar: React.FC<AvatarProps> = ({
     [styles[`${baseClass}--${shape}`]]: true,
     [styles[`${baseClass}--${size}`]]: true,
     [styles[`${baseClass}--with-rim`]]: withRim,
-    className,
+    [`${className}`]: className,
   });
   const mergedStatusClassNames = cx(
     styles[`${baseClass}__status`],
@@ -92,8 +92,18 @@ export const Avatar: React.FC<AvatarProps> = ({
 
   return (
     <div className={mergedClassNames} style={{ backgroundColor }}>
-      {withRim && <div className={mergedRimClassNames} />}
-      {status && <div className={mergedStatusClassNames} />}
+      {withRim && (
+        <div
+          data-testid={`${baseClass}__rim`}
+          className={mergedRimClassNames}
+        />
+      )}
+      {status && (
+        <div
+          data-testid={`${baseClass}__status`}
+          className={mergedStatusClassNames}
+        />
+      )}
       {shouldDisplayImage && (
         <img
           className={styles[`${baseClass}__image`]}
@@ -107,6 +117,7 @@ export const Avatar: React.FC<AvatarProps> = ({
       )}
       {shouldDisplayFallbackAvatar && (
         <Icon
+          data-testid={`${baseClass}__icon`}
           className={mergedIconClassNames}
           source={PersonIcon}
           kind="primary"
