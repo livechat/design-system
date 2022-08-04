@@ -49,10 +49,12 @@ export const Avatar: React.FC<AvatarProps> = ({
   type,
   withRim = false,
 }) => {
+  const isImproperImageSetup = type === 'image' && src?.length === 0;
   const [shouldDisplayFallbackAvatar, setShouldDisplayFallbackAvatar] =
-    React.useState(false);
+    React.useState(isImproperImageSetup);
 
-  const shouldDisplayImage = type === 'image' && !shouldDisplayFallbackAvatar;
+  const shouldDisplayImage =
+    type === 'image' && !!src && !shouldDisplayFallbackAvatar;
   const shouldDisplayInitials = type === 'text';
   const letterCount = ['xxxsmall', 'xxsmall', 'xsmall'].includes(size) ? 1 : 2;
   const initials = getInitials(text, letterCount);
@@ -83,6 +85,10 @@ export const Avatar: React.FC<AvatarProps> = ({
 
   const handleError: React.ReactEventHandler<HTMLImageElement> | undefined =
     React.useCallback(() => setShouldDisplayFallbackAvatar(true), []);
+
+  React.useEffect(() => {
+    setShouldDisplayFallbackAvatar(isImproperImageSetup);
+  }, [isImproperImageSetup]);
 
   return (
     <div className={mergedClassNames} style={{ backgroundColor }}>
