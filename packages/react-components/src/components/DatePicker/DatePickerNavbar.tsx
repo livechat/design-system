@@ -15,6 +15,7 @@ import {
 import { Icon } from '../Icon';
 import { IDatePickerNavbarProps } from './types';
 import clsx from 'clsx';
+import styles from './DatePicker.module.scss';
 
 const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
   const {
@@ -77,7 +78,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
 
   return (
     <div className={className}>
-      <div style={{ display: 'flex' }}>
+      <div className={styles['date-picker-navbar-buttons-wrapper']}>
         <button
           data-testid="date-picker-prev-year-button"
           className={clsx({
@@ -99,7 +100,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
           <Icon source={ChevronLeft} kind="subtle" />
         </button>
       </div>
-      <div style={{ display: 'flex' }}>
+      <div className={styles['date-picker-navbar-buttons-wrapper']}>
         <button
           data-testid="date-picker-next-month-button"
           className={clsx({
