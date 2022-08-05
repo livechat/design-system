@@ -11,7 +11,7 @@ import {
   IRangeDatePickerState,
   IRangeDatePickerOption,
 } from './types';
-import cx from 'classnames';
+import clsx from 'clsx';
 const baseClass = 'date-picker';
 
 import styles from './DatePicker.module.scss';
@@ -137,7 +137,7 @@ export const getDatePickerClassNames = (
   range?: boolean,
   classNames?: ClassNames
 ) => ({
-  container: cx({
+  container: clsx({
     [styles[`${baseClass}`]]: true,
     [styles[`${baseClass}--range`]]: range,
   }),
@@ -146,11 +146,11 @@ export const getDatePickerClassNames = (
   months: styles[`${baseClass}__months`],
   month: styles[`${baseClass}__month`],
   navBar: styles[`${baseClass}__nav-bar`],
-  navButtonPrev: cx(
+  navButtonPrev: clsx(
     styles[`${baseClass}__nav-button`],
     styles[`${baseClass}__nav-button--prev`]
   ),
-  navButtonNext: cx(
+  navButtonNext: clsx(
     styles[`${baseClass}__nav-button`],
     styles[`${baseClass}__nav-button--next`]
   ),

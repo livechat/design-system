@@ -11,9 +11,10 @@ import {
   DoubleArrowLeft,
   DoubleArrowRight,
 } from '@livechat/design-system-icons/react/material';
-import cx from 'classnames';
+
 import { Icon } from '../Icon';
 import { IDatePickerNavbarProps } from './types';
+import clsx from 'clsx';
 
 const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
   const {
@@ -79,7 +80,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
       <div style={{ display: 'flex' }}>
         <button
           data-testid="date-picker-prev-year-button"
-          className={cx({
+          className={clsx({
             [classNames.navButtonPrev]: true,
             [classNames.navButtonInteractionDisabled]: !showPreviousButton,
           })}
@@ -89,7 +90,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
         </button>
         <button
           data-testid="date-picker-prev-month-button"
-          className={cx({
+          className={clsx({
             [classNames.navButtonPrev]: true,
             [classNames.navButtonInteractionDisabled]: !showPreviousButton,
           })}
@@ -101,7 +102,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
       <div style={{ display: 'flex' }}>
         <button
           data-testid="date-picker-next-month-button"
-          className={cx({
+          className={clsx({
             [classNames.navButtonNext]: true,
             [classNames.navButtonInteractionDisabled]: !showNextButton,
           })}
@@ -111,7 +112,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
         </button>
         <button
           data-testid="date-picker-next-year-button"
-          className={cx({
+          className={clsx({
             [classNames.navButtonNext]: true,
             [classNames.navButtonInteractionDisabled]: !showNextButton,
           })}

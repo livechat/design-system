@@ -1,5 +1,5 @@
+import clsx from 'clsx';
 import * as React from 'react';
-import cx from 'classnames';
 
 import styles from './DatePicker.module.scss';
 
@@ -8,7 +8,7 @@ export const DatePickerRangeCalendarsWrapper: React.FC<
 > = (props) => {
   const { className, children, ...restProps } = props;
 
-  const mergedClassNames = cx(
+  const mergedClassNames = clsx(
     className,
     styles['date-picker--range__calendars-wrapper']
   );
