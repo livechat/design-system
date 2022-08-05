@@ -292,8 +292,8 @@ $base-class: 'date-picker';
       }
     }
   }
-}
 
-.date-picker-navbar-buttons-wrapper {
-  display: flex;
+  .#{$base-class}__navbar-buttons-wrapper {
+    display: flex;
+  }
 }

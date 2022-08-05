@@ -17,6 +17,8 @@ import { IDatePickerNavbarProps } from './types';
 import clsx from 'clsx';
 import styles from './DatePicker.module.scss';
 
+const baseClass = 'date-picker';
+
 const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
   const {
     onPreviousClick,
@@ -78,7 +80,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
 
   return (
     <div className={className}>
-      <div className={styles['date-picker-navbar-buttons-wrapper']}>
+      <div className={styles[`${baseClass}__navbar-buttons-wrapper`]}>
         <button
           data-testid="date-picker-prev-year-button"
           className={clsx({
@@ -100,7 +102,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
           <Icon source={ChevronLeft} kind="subtle" />
         </button>
       </div>
-      <div className={styles['date-picker-navbar-buttons-wrapper']}>
+      <div className={styles[`${baseClass}__navbar-buttons-wrapper`]}>
         <button
           data-testid="date-picker-next-month-button"
           className={clsx({
