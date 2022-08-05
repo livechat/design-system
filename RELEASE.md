@@ -22,7 +22,7 @@ Example:
 
 **Keep in mind that package won't be versioned if it is not changed, and changed package will catch up with other packages in versioning.** For example current version of package `react-components` is `1.0.0-alpha.17` but `icons` lag behind a bit and are at `1.0.0-alpha.15` because no changes has been made since two deploys. If you make some changes in `react-components` and in `icons` both packages will get `1.0.0-alpha.18` version.
 
-On github add release with correct version and change log.
+On Github add release with correct version and change log.
 
 - Tag is added automatically by lerna, remember to target `v1` branch.
 - Title can be set to 'What's Changed'.
