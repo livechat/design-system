@@ -1,0 +1,262 @@
+$base-class: 'avatar';
+
+.#{$base-class} {
+  align-items: center;
+  background-color: var(--surface-basic-disabled);
+  display: flex;
+  font-weight: 600;
+  justify-content: center;
+  position: relative;
+
+  &__status {
+    $status-class: &;
+    $circle-class: #{$status-class}--circle;
+    $rounded-square-class: #{$status-class}--rounded-square;
+
+    border: 1px solid var(--background);
+    border-radius: 50%;
+    position: absolute;
+
+    &--available {
+      background: var(--color-positive-default);
+    }
+
+    &--unavailable {
+      background: var(--color-negative-default);
+    }
+
+    &--unknown {
+      background: var(--surface-secondary-default);
+    }
+
+    &--xxxsmall#{$circle-class},
+    &--xxsmall#{$circle-class},
+    &--xsmall#{$circle-class},
+    &--small#{$circle-class},
+    &--medium#{$circle-class},
+    &--large#{$circle-class},
+    &--xlarge#{$circle-class},
+    &--xxlarge#{$circle-class} {
+      bottom: 75%;
+      left: 75%;
+    }
+
+    &--xxxsmall#{$rounded-square-class},
+    &--xxsmall#{$rounded-square-class},
+    &--xsmall#{$rounded-square-class},
+    &--small#{$rounded-square-class},
+    &--medium#{$rounded-square-class},
+    &--large#{$rounded-square-class},
+    &--xlarge#{$rounded-square-class},
+    &--xxlarge#{$rounded-square-class} {
+      bottom: 81.25%;
+      left: 81.25%;
+    }
+
+    &--xxxsmall {
+      border-width: calc(4px * 0.125);
+      height: 4px;
+      width: 4px;
+    }
+
+    &--xxsmall {
+      border-width: calc(5px * 0.125);
+      height: 5px;
+      width: 5px;
+    }
+
+    &--xsmall {
+      border-width: calc(6px * 0.125);
+      height: 6px;
+      width: 6px;
+    }
+
+    &--small {
+      border-width: calc(8px * 0.125);
+      height: 8px;
+      width: 8px;
+    }
+
+    &--medium {
+      border-width: calc(8px * 0.125);
+      height: 9px;
+      width: 9px;
+    }
+
+    &--large {
+      border-width: calc(12px * 0.125);
+      height: 12px;
+      width: 12px;
+    }
+
+    &--xlarge {
+      border-width: calc(16px * 0.125);
+      height: 16px;
+      width: 16px;
+    }
+
+    &--xxlarge {
+      border-width: calc(24px * 0.125);
+      height: 24px;
+      width: 24px;
+    }
+  }
+
+  &__rim {
+    background: transparent;
+    border-color: var(--color-negative-default);
+    border-radius: inherit;
+    border-style: solid;
+    box-sizing: content-box;
+    display: block;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    &--xxxsmall,
+    &--xxsmall,
+    &--xsmall {
+      border-width: 2px;
+      height: calc(100% + 2px);
+      width: calc(100% + 2px);
+    }
+
+    &--small,
+    &--medium,
+    &--large,
+    &--xlarge,
+    &--xxlarge {
+      border-width: 3px;
+      height: calc(100% + 4px);
+      width: calc(100% + 4px);
+    }
+  }
+
+  &__image {
+    border-radius: inherit;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  &__icon {
+    &--xxxsmall svg {
+      height: 8px;
+      width: 8px;
+    }
+
+    &--xxsmall svg {
+      height: 10px;
+      width: 10px;
+    }
+
+    &--xsmall svg {
+      height: 12px;
+      width: 12px;
+    }
+
+    &--small svg {
+      height: 16px;
+      width: 16px;
+    }
+
+    &--medium svg {
+      height: 18px;
+      width: 18px;
+    }
+
+    &--large svg {
+      height: 24px;
+      width: 24px;
+    }
+
+    &--xlarge svg {
+      height: 32px;
+      width: 32px;
+    }
+
+    &--xxlarge svg {
+      height: 48px;
+      width: 48px;
+    }
+  }
+
+  &--circle {
+    border-radius: 50%;
+  }
+
+  &--rounded-square {
+    border-radius: 4px;
+  }
+
+  &--with-rim.#{$base-class}--xxxsmall,
+  &--with-rim.#{$base-class}--xxsmall,
+  &--with-rim.#{$base-class}--xsmall {
+    margin: 3px;
+  }
+
+  &--with-rim.#{$base-class}--small,
+  &--with-rim.#{$base-class}--medium,
+  &--with-rim.#{$base-class}--large,
+  &--with-rim.#{$base-class}--xlarge,
+  &--with-rim.#{$base-class}--xxlarge {
+    margin: 5px;
+  }
+
+  &--xxxsmall {
+    font-size: 12px;
+    height: 16px;
+    line-height: 20px;
+    width: 16px;
+  }
+
+  &--xxsmall {
+    font-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    width: 20px;
+  }
+
+  &--xsmall {
+    font-size: 12px;
+    height: 24px;
+    line-height: 20px;
+    width: 24px;
+  }
+
+  &--small {
+    font-size: 15px;
+    height: 32px;
+    line-height: 22px;
+    width: 32px;
+  }
+
+  &--medium {
+    font-size: 15px;
+    height: 36px;
+    line-height: 22px;
+    width: 36px;
+  }
+
+  &--large {
+    font-size: 18px;
+    height: 48px;
+    line-height: 24px;
+    width: 48px;
+  }
+
+  &--xlarge {
+    font-size: 24px;
+    height: 64px;
+    line-height: 32px;
+    width: 64px;
+  }
+
+  &--xxlarge {
+    font-size: 32px;
+    height: 96px;
+    line-height: 40px;
+    width: 96px;
+  }
+}
