@@ -23,6 +23,7 @@ const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
     classNames,
     range,
     toMonth,
+    month,
     fromMonth,
     firstDayOfWeek: propsFirstDayOfWeek,
     numberOfMonths,
@@ -32,32 +33,32 @@ const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
     ...restProps
   } = props;
 
-  const [month, setMonth] = React.useState(props.month || new Date());
+  const [currentMonth, setCurrentMonth] = React.useState(month || new Date());
 
   React.useEffect(() => {
-    if (props.month && props.month !== month) {
-      setMonth(props.month);
+    if (month && month !== currentMonth) {
+      setCurrentMonth(month);
     }
-  }, [props.month, month]);
+  }, [month, currentMonth]);
 
   React.useEffect(() => {
     if (toMonth) {
-      if (!isDateWithinRange(month, { from: fromMonth, to: toMonth })) {
-        setMonth(toMonth);
+      if (!isDateWithinRange(currentMonth, { from: fromMonth, to: toMonth })) {
+        setCurrentMonth(toMonth);
       }
     }
-  }, [month, props.toMonth, props.fromMonth]);
+  }, [currentMonth, props.toMonth, props.fromMonth]);
 
   const handleMonthChange = React.useCallback(
     (month: Date) => {
-      if (props.onMonthChange && props.month) {
+      if (props.onMonthChange && month) {
         props.onMonthChange(month);
         return;
       }
 
-      setMonth(month);
+      setCurrentMonth(month);
     },
-    [props.month, props.onMonthChange]
+    [month, props.onMonthChange]
   );
 
   let firstDayOfWeek = 1;
@@ -79,7 +80,7 @@ const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
       navbarElement={
         navbarElement || (
           <DatePickerNavbar
-            month={month}
+            month={currentMonth}
             classNames={datePickerClassNames}
             numberOfMonths={numberOfMonths}
             onMonthChange={handleMonthChange}
@@ -94,7 +95,7 @@ const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
       toMonth={toMonth}
       fromMonth={fromMonth}
       firstDayOfWeek={firstDayOfWeek}
-      month={month}
+      month={currentMonth}
       renderDay={renderDay || defaultDayRenderer}
       {...restProps}
     />
