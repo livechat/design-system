@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ReactElement, useCallback, useEffect, useMemo, useRef } from 'react';
 import {
   isAfter,
   isSameDay,
@@ -29,8 +29,8 @@ export const RangeDatePicker = ({
   toMonth,
   onChange,
   children,
-}: IRangeDatePickerProps): React.ReactElement => {
-  const prevSelectedItem = React.useRef<string | null>(
+}: IRangeDatePickerProps): ReactElement => {
+  const prevSelectedItem = useRef<string | null>(
     initialSelectedItemKey || null
   );
   const [state, dispatch] = useRangeDatePickerState({
@@ -44,7 +44,7 @@ export const RangeDatePicker = ({
   });
 
   // handle initialFromDate change
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch({
       type: RangeDatePickerAction.SET_FROM,
       payload: { date: initialFromDate },
@@ -52,7 +52,7 @@ export const RangeDatePicker = ({
   }, [initialFromDate]);
 
   // handle initialToDate change
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch({
       type: RangeDatePickerAction.SET_TO,
       payload: { date: initialToDate },
@@ -60,7 +60,7 @@ export const RangeDatePicker = ({
   }, [initialToDate]);
 
   // handle showing correct month on dates in props change
-  React.useEffect(() => {
+  useEffect(() => {
     const currentMonth = calculateDatePickerMonth(
       initialFromDate,
       initialToDate,
@@ -74,7 +74,7 @@ export const RangeDatePicker = ({
   }, [toMonth, initialFromDate, initialToDate]);
 
   // call onChange when valid dates selected (for manual options - with date picker)
-  React.useEffect(() => {
+  useEffect(() => {
     const { from, selectedItem, to } = state;
     if (!(from && to)) {
       return;
@@ -95,7 +95,7 @@ export const RangeDatePicker = ({
   }, [state.from, state.to, state.selectedItem, options, onChange]);
 
   // handle selected option change
-  React.useEffect(() => {
+  useEffect(() => {
     const { selectedItem } = state;
 
     if (selectedItem === prevSelectedItem.current) {
@@ -124,7 +124,7 @@ export const RangeDatePicker = ({
     onChange(optionsHash[selectedItem]);
   }, [onChange, state.selectedItem, options]);
 
-  const handleDayMouseEnter = React.useCallback(
+  const handleDayMouseEnter = useCallback(
     (day: Date) => {
       const isInRange = toMonth
         ? differenceInCalendarDays(toMonth, day) >= 0
@@ -140,7 +140,7 @@ export const RangeDatePicker = ({
     [toMonth, state.from, state.to]
   );
 
-  const handleDayClick = React.useCallback(
+  const handleDayClick = useCallback(
     (day: Date) => {
       const { from, to } = state;
 
@@ -171,7 +171,7 @@ export const RangeDatePicker = ({
     [toMonth, state.from, state.to]
   );
 
-  const handleItemSelect = React.useCallback(
+  const handleItemSelect = useCallback(
     (itemKey: string) => {
       if (itemKey === null) {
         dispatch({
@@ -195,7 +195,7 @@ export const RangeDatePicker = ({
     [options]
   );
 
-  const handleMonthChange = React.useCallback((date: Date) => {
+  const handleMonthChange = useCallback((date: Date) => {
     dispatch({
       type: RangeDatePickerAction.CURRENT_MONTH_CHANGE,
       payload: { date },
@@ -204,19 +204,19 @@ export const RangeDatePicker = ({
 
   const getRangeDatePickerApi = (): IRangeDatePickerChildrenPayload => {
     const { currentMonth, from, selectedItem, temporaryTo, to } = state;
-    const modifiers = React.useMemo(
+    const modifiers = useMemo(
       () => getRangeDatePickerModifiers(from, temporaryTo),
       [from, temporaryTo]
     );
-    const selectedOption = React.useMemo(() => {
+    const selectedOption = useMemo(() => {
       return getSelectedOption(selectedItem, options);
     }, [options, selectedItem]);
 
-    const selectedDays = React.useMemo(() => {
+    const selectedDays = useMemo(() => {
       return [from, { from, to: temporaryTo }];
     }, [from, temporaryTo]);
 
-    const disabledDays = React.useMemo(() => {
+    const disabledDays = useMemo(() => {
       return toMonth ? { after: toMonth } : void 0;
     }, [toMonth]);
 

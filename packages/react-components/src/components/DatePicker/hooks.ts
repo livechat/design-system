@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { Dispatch, ReducerAction, ReducerState, useReducer } from 'react';
 import { calculateDatePickerMonth, getInitialStateFromProps } from './helpers';
 import {
   IRangeDatePickerProps,
@@ -11,8 +11,8 @@ import {
 export const useRangeDatePickerState = (
   props: IRangeDatePickerProps
 ): [
-  React.ReducerState<RangeDatePickerReducer>,
-  React.Dispatch<React.ReducerAction<RangeDatePickerReducer>>
+  ReducerState<RangeDatePickerReducer>,
+  Dispatch<ReducerAction<RangeDatePickerReducer>>
 ] => {
   const initialCurrentMonth = calculateDatePickerMonth(
     props.initialFromDate,
@@ -91,5 +91,5 @@ export const useRangeDatePickerState = (
     }
   }
 
-  return React.useReducer(reducer, initialState);
+  return useReducer(reducer, initialState);
 };
