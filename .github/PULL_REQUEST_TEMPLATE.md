@@ -1,8 +1,10 @@
-Resolves: [issue_number]
+Resolves: #{issue-number}
 
 ## Description
 
+
 ## Storybook
+https://feature-{issue_number}--613a8e945a5665003a05113b.chromatic.com/
 
 ## Checklist
 
