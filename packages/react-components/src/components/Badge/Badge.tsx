@@ -1,22 +1,27 @@
 import * as React from 'react';
+import cx from 'clsx';
 
 import styles from './Badge.module.scss';
-import cx from 'clsx';
+import { formatCount } from './Badge.helpers';
 
 const baseClass = 'badge';
 
-export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
+  count?: number;
+  limit?: number;
   kind?: 'primary' | 'secondary' | 'tertiary';
   size?: 'large' | 'medium' | 'compact';
-  type?: 'content' | 'alert' | 'dot';
+  type?: 'counter' | 'alert' | 'dot';
 }
 
 export const Badge: React.FC<BadgeProps> = ({
-  children,
   className,
+  count = 0,
+  limit = 99,
   kind = 'primary',
   size = 'medium',
-  type = 'content',
+  type = 'counter',
+  ...spanProps
 }) => {
   const mergedClassNames = cx(
     className,
@@ -26,10 +31,14 @@ export const Badge: React.FC<BadgeProps> = ({
   );
 
   const content = {
-    ['content']: children,
+    ['counter']: formatCount(count, limit),
     ['alert']: '!',
     ['dot']: <span className={styles[`${baseClass}__dot`]} />,
   }[type];
 
-  return <span className={mergedClassNames}>{content}</span>;
+  return (
+    <span className={mergedClassNames} {...spanProps}>
+      {content}
+    </span>
+  );
 };

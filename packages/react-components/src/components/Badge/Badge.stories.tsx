@@ -16,19 +16,19 @@ export const Default: Story<BadgeProps> = (
 
 Default.storyName = 'Badge';
 Default.args = {
-  children: '1',
+  count: 1,
 };
 
 export const Sizes = (): JSX.Element => (
   <>
     <StoryDescriptor title="Compact">
-      <Badge size="compact">1</Badge>
+      <Badge size="compact" count={1} />
     </StoryDescriptor>
     <StoryDescriptor title="Medium">
-      <Badge size="medium">1</Badge>
+      <Badge size="medium" count={1} />
     </StoryDescriptor>
     <StoryDescriptor title="Large">
-      <Badge size="large">1</Badge>
+      <Badge size="large" count={1} />
     </StoryDescriptor>
   </>
 );
@@ -36,21 +36,27 @@ export const Sizes = (): JSX.Element => (
 export const Kinds = (): JSX.Element => (
   <>
     <StoryDescriptor title="Primary">
-      <Badge kind="primary">1</Badge>
+      <Badge kind="primary" count={1} />
     </StoryDescriptor>
     <StoryDescriptor title="Secondary">
-      <Badge kind="secondary">1</Badge>
+      <Badge kind="secondary" count={1} />
     </StoryDescriptor>
     <StoryDescriptor title="Tertiary">
-      <Badge kind="tertiary">1</Badge>
+      <Badge kind="tertiary" count={1} />
     </StoryDescriptor>
   </>
 );
 
 export const Types = (): JSX.Element => (
   <>
-    <StoryDescriptor title="Content">
-      <Badge type="content">3 steps left</Badge>
+    <StoryDescriptor title="Count">
+      <Badge type="counter" count={1} />
+    </StoryDescriptor>
+    <StoryDescriptor title="Count with default limit">
+      <Badge type="counter" count={100} />
+    </StoryDescriptor>
+    <StoryDescriptor title="Count with custom limit">
+      <Badge type="counter" count={6} limit={5} />
     </StoryDescriptor>
     <StoryDescriptor title="Alert">
       <Badge type="alert" />
