@@ -77,6 +77,7 @@ export const Alert: React.FC<AlertProps> = ({
       <div className={styles[`${baseClass}__content`]}>
         <Icon
           {...IconConfig[kind]}
+          size="large"
           className={styles[`${baseClass}__content-icon`]}
         />
         <Text
