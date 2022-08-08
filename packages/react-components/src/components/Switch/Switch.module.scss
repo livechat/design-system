@@ -188,4 +188,11 @@ $medium-move: $medium-width - $medium-size;
       border-width: 2px;
     }
   }
+
+  &__disabled-icon {
+    &--compact {
+      height: 9px;
+      width: 9px;
+    }
+  }
 }
