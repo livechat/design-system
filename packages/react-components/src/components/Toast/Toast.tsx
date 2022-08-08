@@ -1,6 +1,4 @@
 import * as React from 'react';
-import cx from 'clsx';
-
 import {
   Close,
   Info,
@@ -8,26 +6,22 @@ import {
   CheckCircleSolid,
   Error,
 } from '@livechat/design-system-icons/react/material';
+import cx from 'clsx';
+
+import { Button } from '../Button';
 import { Icon, IconKind, IconSource } from '../Icon';
 
 import styles from './Toast.module.scss';
 
-const baseClass = 'toast';
+type ToastKind = 'success' | 'warning' | 'error' | 'info';
 
-export type ToastKind =
-  | 'success'
-  | 'warning'
-  | 'error'
-  | 'info'
-  | 'notification';
-
-interface ToastAction {
-  handler: () => void;
+type ToastAction = {
+  onClick: () => void;
   label: string;
-  closeOnClick?: boolean;
-}
+  closesOnClick?: boolean;
+};
 
-export interface ToastProps {
+export interface ToastProps extends React.HTMLAttributes<HTMLDivElement> {
   action?: ToastAction;
   className?: string;
   removable?: boolean;
@@ -35,7 +29,7 @@ export interface ToastProps {
   onClose?: () => void;
 }
 
-const IconConfig: Record<ToastKind, { source: IconSource; kind?: IconKind }> = {
+const iconConfig: Record<ToastKind, { source: IconSource; kind?: IconKind }> = {
   success: {
     source: CheckCircleSolid,
     kind: 'inverted',
@@ -51,11 +45,9 @@ const IconConfig: Record<ToastKind, { source: IconSource; kind?: IconKind }> = {
     source: Info,
     kind: 'inverted',
   },
-  notification: {
-    source: Info,
-    kind: 'link',
-  },
 };
+
+const baseClass = 'toast';
 
 export const Toast: React.FC<ToastProps> = ({
   action,
@@ -64,6 +56,7 @@ export const Toast: React.FC<ToastProps> = ({
   removable,
   kind = 'info',
   onClose,
+  ...divProps
 }) => {
   const mergedClassNames = cx(
     styles[baseClass],
@@ -72,44 +65,41 @@ export const Toast: React.FC<ToastProps> = ({
   );
 
   const onActionClick = (action: ToastAction) => {
-    if (action && action.closeOnClick && onClose) {
-      action.handler();
+    if (action && action.closesOnClick && onClose) {
+      action.onClick();
       return onClose();
     }
 
-    return action.handler();
+    return action.onClick();
   };
 
   return (
-    <div className={mergedClassNames}>
+    <div className={mergedClassNames} {...divProps}>
       <div className={styles[`${baseClass}__icon`]}>
-        <Icon {...IconConfig[kind]} />
+        <Icon {...iconConfig[kind]} size="medium" />
       </div>
       <div className={styles[`${baseClass}__content`]}>{children}</div>
       {(action || removable) && (
         <div className={styles[`${baseClass}__actions`]}>
           {action && (
-            <button
-              className={styles[`${baseClass}__actions-custom`]}
+            <Button
+              className={styles[`${baseClass}__actions--custom`]}
+              kind="plain"
               onClick={() => onActionClick(action)}
             >
               {action.label}
-            </button>
+            </Button>
           )}
           {removable && (
             <div
-              className={styles[`${baseClass}__actions-close`]}
+              className={styles[`${baseClass}__actions--close`]}
               aria-label="Close toast"
               onClick={onClose}
             >
               <Icon
                 source={Close}
-                size="small"
-                kind={
-                  ['warning', 'notification'].includes(kind)
-                    ? 'primary'
-                    : 'inverted'
-                }
+                size="medium"
+                kind={['warning'].includes(kind) ? 'primary' : 'inverted'}
               />
             </div>
           )}

@@ -2,6 +2,7 @@
 @use './themes/light';
 @use './themes/dark';
 @use './foundations/spacing';
+@use './foundations/shadow';
 
 *[class^='lc-'] {
   box-sizing: border-box;

@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
 
-import { ToastProps, Toast as ToastComponent } from './Toast';
+import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import { ToastProps, Toast } from './Toast';
 
 export default {
   title: 'Components/Toast',
-  component: ToastComponent,
+  component: Toast,
   parameters: {
     componentSubtitle: `
     Toast is a small message that by default shows up in the top middle of the screen. 
@@ -13,52 +14,80 @@ export default {
     for user.
     `,
   },
-} as ComponentMeta<typeof ToastComponent>;
+} as ComponentMeta<typeof Toast>;
 
-interface IToastArgs extends ToastProps {
-  label: string;
-}
+export const Default: Story<ToastProps> = (args: ToastProps) => (
+  <Toast {...args}>All systems running</Toast>
+);
+Default.storyName = 'Toast';
+Default.args = {};
 
-const StoryTemplate: Story<IToastArgs> = (args: IToastArgs) => (
-  <div>
-    <ToastComponent {...args}>Example text</ToastComponent>
-  </div>
+export const Kinds = (): JSX.Element => (
+  <>
+    <StoryDescriptor title="Success">
+      <Toast kind="success">Saved successfully</Toast>
+    </StoryDescriptor>
+    <StoryDescriptor title="Error">
+      <Toast kind="error">System error</Toast>
+    </StoryDescriptor>
+    <StoryDescriptor title="Warning">
+      <Toast kind="warning">Check your system</Toast>
+    </StoryDescriptor>
+    <StoryDescriptor title="Info">
+      <Toast kind="info">All systems running</Toast>
+    </StoryDescriptor>
+  </>
 );
 
-export const Toast = StoryTemplate.bind({});
-Toast.args = {};
+export const WithCloseIcon = (): JSX.Element => (
+  <Toast
+    kind="success"
+    removable={true}
+    onClose={() => alert('Close icon clicked')}
+  >
+    Saved successfully
+  </Toast>
+);
 
-export const SuccessToast = StoryTemplate.bind({});
-SuccessToast.args = {
-  kind: 'success',
-};
-
-export const WarningToast = StoryTemplate.bind({});
-WarningToast.args = {
-  kind: 'warning',
-};
-
-export const ErrorToast = StoryTemplate.bind({});
-ErrorToast.args = {
-  kind: 'error',
-};
-
-export const InfoToast = StoryTemplate.bind({});
-InfoToast.args = {
-  kind: 'info',
-};
-
-export const NotificationToast = StoryTemplate.bind({});
-NotificationToast.args = {
-  kind: 'notification',
-};
-
-export const ToastWithActionAndRemovable = StoryTemplate.bind({});
-ToastWithActionAndRemovable.args = {
-  action: {
-    label: 'Action',
-    handler: () => alert('onAction click'),
-  },
-  removable: true,
-  onClose: () => alert('onClose click'),
-};
+export const WithCustomAction = (): JSX.Element => (
+  <>
+    <StoryDescriptor title="Without close icon">
+      <Toast
+        kind="success"
+        action={{
+          label: 'Show details',
+          onClick: () => alert('Custom action button clicked'),
+        }}
+      >
+        Saved successfully
+      </Toast>
+    </StoryDescriptor>
+    <StoryDescriptor title="With close icon">
+      <Toast
+        kind="success"
+        removable={true}
+        action={{
+          label: 'Show details',
+          onClick: () => alert('Custom action button clicked'),
+        }}
+        onClose={() => alert('Close icon clicked')}
+      >
+        Saved successfully
+      </Toast>
+    </StoryDescriptor>
+    <StoryDescriptor title="Closing on action click">
+      <Toast
+        kind="success"
+        removable={true}
+        action={{
+          label: 'Show details',
+          onClick: () => alert('Custom action button clicked'),
+          closesOnClick: true,
+        }}
+        onClose={() => alert('Close icon clicked')}
+      >
+        Saved successfully
+      </Toast>
+    </StoryDescriptor>
+  </>
+);
