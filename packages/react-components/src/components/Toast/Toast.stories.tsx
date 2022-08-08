@@ -40,12 +40,8 @@ export const Kinds = (): JSX.Element => (
 );
 
 export const WithCloseIcon = (): JSX.Element => (
-  <Toast
-    kind="success"
-    removable={true}
-    onClose={() => alert('Close icon clicked')}
-  >
-    Saved successfully
+  <Toast removable={true} onClose={() => alert('Close icon clicked')}>
+    All systems running
   </Toast>
 );
 
@@ -53,18 +49,16 @@ export const WithCustomAction = (): JSX.Element => (
   <>
     <StoryDescriptor title="Without close icon">
       <Toast
-        kind="success"
         action={{
           label: 'Show details',
           onClick: () => alert('Custom action button clicked'),
         }}
       >
-        Saved successfully
+        All systems running
       </Toast>
     </StoryDescriptor>
     <StoryDescriptor title="With close icon">
       <Toast
-        kind="success"
         removable={true}
         action={{
           label: 'Show details',
@@ -72,12 +66,11 @@ export const WithCustomAction = (): JSX.Element => (
         }}
         onClose={() => alert('Close icon clicked')}
       >
-        Saved successfully
+        All systems running
       </Toast>
     </StoryDescriptor>
     <StoryDescriptor title="Closing on action click">
       <Toast
-        kind="success"
         removable={true}
         action={{
           label: 'Show details',
@@ -86,7 +79,7 @@ export const WithCustomAction = (): JSX.Element => (
         }}
         onClose={() => alert('Close icon clicked')}
       >
-        Saved successfully
+        All systems running
       </Toast>
     </StoryDescriptor>
   </>
