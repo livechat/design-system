@@ -4,7 +4,7 @@ Resolves: #{issue-number}
 
 
 ## Storybook
-https://feature-{issue_number}--613a8e945a5665003a05113b.chromatic.com/
+https://feature-{issue-number}--613a8e945a5665003a05113b.chromatic.com/
 
 ## Checklist
 
