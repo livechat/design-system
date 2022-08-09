@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import { DISABLED_CONTROLS } from '../../utils/story-parameters';
+
 import { ToastProps, Toast } from './Toast';
 
 export default {
@@ -13,6 +16,11 @@ export default {
     It disappears on its own after a few seconds. It provides a feedback about an operation 
     for user.
     `,
+    exclude: { controls: { exclude: ['action'] } },
+  },
+  argTypes: {
+    onClose: { action: 'closed' },
+    action: { control: false },
   },
 } as ComponentMeta<typeof Toast>;
 
@@ -22,7 +30,7 @@ export const Default: Story<ToastProps> = (args: ToastProps) => (
 Default.storyName = 'Toast';
 Default.args = {};
 
-export const Kinds = (): JSX.Element => (
+export const Kinds: Story = (): JSX.Element => (
   <>
     <StoryDescriptor title="Success">
       <Toast kind="success">Saved successfully</Toast>
@@ -38,12 +46,14 @@ export const Kinds = (): JSX.Element => (
     </StoryDescriptor>
   </>
 );
+Kinds.parameters = DISABLED_CONTROLS;
 
-export const WithCloseIcon = (): JSX.Element => (
-  <Toast removable={true} onClose={() => alert('Close icon clicked')}>
+export const WithCloseIcon: Story = (): JSX.Element => (
+  <Toast removable={true} onClose={action('closed')}>
     All systems running
   </Toast>
 );
+WithCloseIcon.parameters = DISABLED_CONTROLS;
 
 export const WithCustomAction = (): JSX.Element => (
   <>
@@ -51,7 +61,7 @@ export const WithCustomAction = (): JSX.Element => (
       <Toast
         action={{
           label: 'Show details',
-          onClick: () => alert('Custom action button clicked'),
+          onClick: action('closed'),
         }}
       >
         All systems running
@@ -62,9 +72,9 @@ export const WithCustomAction = (): JSX.Element => (
         removable={true}
         action={{
           label: 'Show details',
-          onClick: () => alert('Custom action button clicked'),
+          onClick: action('action-clicked'),
         }}
-        onClose={() => alert('Close icon clicked')}
+        onClose={action('closed')}
       >
         All systems running
       </Toast>
@@ -74,13 +84,14 @@ export const WithCustomAction = (): JSX.Element => (
         removable={true}
         action={{
           label: 'Show details',
-          onClick: () => alert('Custom action button clicked'),
+          onClick: action('action-clicked'),
           closesOnClick: true,
         }}
-        onClose={() => alert('Close icon clicked')}
+        onClose={action('closed')}
       >
         All systems running
       </Toast>
     </StoryDescriptor>
   </>
 );
+WithCustomAction.parameters = DISABLED_CONTROLS;
