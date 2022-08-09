@@ -111,7 +111,6 @@ export const Switch: React.FC<SwitchProps> = ({
               size={iconSize}
               source={LockIcon}
               kind="primary"
-              className={styles[`${baseClass}__disabled-icon--${size}`]}
             />
           )}
         </span>
