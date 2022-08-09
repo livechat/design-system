@@ -6,14 +6,16 @@ import { Icon, IconSize } from '../../components/Icon';
 import noop from '../../utils/noop';
 
 import styles from './Switch.module.scss';
+import { Loader } from '../Loader';
 
-const baseClass = 'switch';
+export const baseClass = 'switch';
 
-export type SwitchSize = 'basic' | 'compact';
+export type SwitchSize = 'compact' | 'medium' | 'large';
 export interface SwitchProps {
   className?: string;
   defaultOn?: boolean;
   disabled?: boolean;
+  loading?: boolean;
   innerRef?: React.LegacyRef<HTMLInputElement> | undefined;
   name?: string;
   on?: boolean;
@@ -25,10 +27,11 @@ export const Switch: React.FC<SwitchProps> = ({
   className = '',
   defaultOn = false,
   disabled = false,
+  loading = false,
   name = baseClass,
   on,
   onChange = noop,
-  size = 'basic',
+  size = 'large',
   innerRef,
   ...props
 }) => {
@@ -42,14 +45,16 @@ export const Switch: React.FC<SwitchProps> = ({
     }
   }, [on]);
 
-  const iconSize: IconSize = size === 'basic' ? 'small' : 'xsmall';
+  const iconSize: IconSize = size === 'large' ? 'small' : 'xsmall';
   const toggleStyles = checked ? 'on' : 'off';
-  const availabilityStyles = disabled ? 'disabled' : 'enabled';
+  const shouldBehaveAsDisabled = disabled || loading;
+  const availabilityStyles = shouldBehaveAsDisabled ? 'disabled' : 'enabled';
   const mergedClassNames = cx(
     styles[baseClass],
     styles[`${baseClass}--${size}`],
     className
   );
+  const shouldShowDisabledIcon = disabled && !loading;
 
   const handleChange = (e: React.FormEvent) => {
     const hasOnChangePassed = onChange !== noop;
@@ -73,7 +78,7 @@ export const Switch: React.FC<SwitchProps> = ({
         checked={checked}
         name={name}
         ref={innerRef}
-        disabled={disabled}
+        disabled={shouldBehaveAsDisabled}
         test-id="foo"
         {...props}
       />
@@ -92,8 +97,21 @@ export const Switch: React.FC<SwitchProps> = ({
             styles[`${baseClass}__slider--${size}--${toggleStyles}`]
           )}
         >
-          {disabled && (
-            <Icon size={iconSize} source={LockIcon} kind={'primary'} />
+          {loading && (
+            <Loader
+              className={cx(
+                styles[`${baseClass}__loader`],
+                styles[`${baseClass}__loader--${size}`]
+              )}
+            />
+          )}
+          {shouldShowDisabledIcon && (
+            <Icon
+              data-testid="disabled-icon"
+              size={iconSize}
+              source={LockIcon}
+              kind="primary"
+            />
           )}
         </span>
       </span>
