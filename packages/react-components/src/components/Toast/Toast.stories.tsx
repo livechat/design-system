@@ -16,7 +16,6 @@ export default {
     It disappears on its own after a few seconds. It provides a feedback about an operation 
     for user.
     `,
-    exclude: { controls: { exclude: ['action'] } },
   },
   argTypes: {
     onClose: { action: 'closed' },
