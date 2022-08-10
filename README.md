@@ -22,6 +22,4 @@ If Storybook is not enough, you can additionaly run `npm start:example` which wi
 
 # How to release?
 
-You need to be a member of @livechat organization on npm. Then after authorization (`npm login`) you can publish packages into npm registry.
-
-To bump package versions and publish them into registry please run `npm run deploy`.
+We have entire document about that take a look [here](./RELEASE.md).
