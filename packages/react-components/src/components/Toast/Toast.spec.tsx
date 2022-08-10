@@ -43,42 +43,34 @@ describe('<Toast> component', () => {
     expect(container.firstChild).toHaveClass(styles['toast--error']);
   });
 
-  it('should render as notification', () => {
-    const { container } = renderComponent({
-      kind: 'notification',
-    });
-
-    expect(container.firstChild).toHaveClass(styles['toast--notification']);
-  });
-
   it('should render with action button and call action function', () => {
-    const handler = vi.fn();
+    const onClick = vi.fn();
     const { getByText } = renderComponent({
       action: {
         label: 'Example action',
-        handler,
+        onClick,
       },
     });
 
     expect(getByText('Example action')).toBeVisible();
     fireEvent.click(getByText('Example action'));
-    expect(handler).toHaveBeenCalled();
+    expect(onClick).toHaveBeenCalled();
   });
 
   it('should call action function with onClose function', () => {
-    const handler = vi.fn();
+    const onClick = vi.fn();
     const onClose = vi.fn();
     const { getByText } = renderComponent({
       action: {
         label: 'Example action',
-        handler,
-        closeOnClick: true,
+        onClick,
+        closesOnClick: true,
       },
       onClose,
     });
 
     fireEvent.click(getByText('Example action'));
-    expect(handler).toHaveBeenCalled();
+    expect(onClick).toHaveBeenCalled();
     expect(onClose).toHaveBeenCalled();
   });
 

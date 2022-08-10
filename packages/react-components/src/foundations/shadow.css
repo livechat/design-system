@@ -1,0 +1,5 @@
+:root {
+  --shadow-float: 0 2px 6px rgba(66, 77, 87, 0.4);
+  --shadow-pop-over: 0 6px 20px rgba(66, 77, 87, 0.4);
+  --shadow-modal: 0 10px 50px rgba(66, 77, 87, 0.4);
+}
