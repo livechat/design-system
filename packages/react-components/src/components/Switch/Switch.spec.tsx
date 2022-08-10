@@ -39,14 +39,13 @@ describe('Switch', () => {
   });
 
   it('should be disabled if disabled is set to true', () => {
-    const { getByRole, queryByTestId } = render(<Switch disabled={true} />);
+    const { getByRole } = render(<Switch disabled={true} />);
     const checkbox = getByRole('checkbox') as HTMLInputElement;
     expect(checkbox.disabled).toEqual(true);
-    expect(queryByTestId('disabled-icon')).toBeVisible();
   });
 
-  it('should have loader icon visible if loading is set to true', () => {
-    const { container, getByRole } = render(<Switch loading={true} />);
+  it('should display loader icon if in loading state and behave as disabled', () => {
+    const { container, getByRole } = render(<Switch state="loading" />);
     const checkbox = getByRole('checkbox') as HTMLInputElement;
     const loader = container.querySelector(
       `.${loaderStyles['loader__spinner']}`
@@ -55,16 +54,12 @@ describe('Switch', () => {
     expect(loader).toBeVisible();
   });
 
-  it('should always show loader icon on top if there are other icons to be displayed', () => {
-    const { container, getByRole, queryByTestId } = render(
-      <Switch loading={true} disabled={true} />
-    );
+  it('should display lock icon if in locked state and behave as disabled', () => {
+    const { getByTestId, getByRole } = render(<Switch state="locked" />);
     const checkbox = getByRole('checkbox') as HTMLInputElement;
-    const loader = container.querySelector(
-      `.${loaderStyles['loader__spinner']}`
-    );
-    expect(loader).toBeVisible();
+    const lockIcon = getByTestId('lock-icon');
+
     expect(checkbox.disabled).toEqual(true);
-    expect(queryByTestId('disabled-icon')).not.toBeInTheDocument();
+    expect(lockIcon).toBeVisible();
   });
 });
