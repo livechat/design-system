@@ -4,7 +4,6 @@ import { Check } from '@livechat/design-system-icons/react/material';
 import { Icon } from '../Icon';
 import styles from './PickerList.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
-import { TriggerSize } from './Trigger';
 
 const baseClass = 'picker-list';
 const itemClassName = `${baseClass}__item`;
@@ -21,7 +20,6 @@ export interface IPickerListProps {
   isOpen: boolean;
   items: IPickerListItem[];
   selectedItemsKeys: string[] | null;
-  size?: TriggerSize;
   emptyStateText?: string;
   onClose: () => void;
   onSelect: (item: IPickerListItem) => void;
@@ -32,19 +30,14 @@ export const PickerList: React.FC<IPickerListProps> = ({
   isOpen,
   items,
   selectedItemsKeys,
-  size = 'medium',
   emptyStateText = 'No results found',
   onClose,
   onSelect,
   onSelectAll,
 }) => {
-  const mergedClassNames = cx(
-    styles[baseClass],
-    styles[`${baseClass}--${size}`],
-    {
-      [styles[`${baseClass}__no-results`]]: items.length === 0,
-    }
-  );
+  const mergedClassNames = cx(styles[baseClass], {
+    [styles[`${baseClass}__no-results`]]: items.length === 0,
+  });
 
   const [currentItemKey, setCurrentItemKey] = React.useState<string | null>(
     null

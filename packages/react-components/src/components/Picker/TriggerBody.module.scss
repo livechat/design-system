@@ -1,7 +1,24 @@
 $base-class: 'picker-trigger-body';
 
 .#{$base-class} {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
   &__tag {
     margin: 0 4px 4px 0;
+  }
+
+  &__input {
+    align-items: center;
+    background: none;
+    border: 0;
+    color: var(--content-default);
+    display: flex;
+    flex-grow: 2;
+    font-size: 15px;
+    height: 22px;
+    outline: none;
+    padding: 0;
   }
 }

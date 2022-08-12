@@ -24,7 +24,6 @@ export interface ITriggerProps {
   size?: TriggerSize;
   onTrigger: (e: React.MouseEvent | KeyboardEvent) => void;
   onClear: () => void;
-  onFilter: (text: string) => void;
 }
 
 export const Trigger: React.FC<ITriggerProps> = ({
@@ -39,7 +38,7 @@ export const Trigger: React.FC<ITriggerProps> = ({
   size = 'medium',
   onTrigger,
   onClear,
-  onFilter,
+  // onFilter,
 }) => {
   const triggerRef = React.useRef<HTMLDivElement>(null);
   const mergedClassNames = cx(
@@ -80,10 +79,6 @@ export const Trigger: React.FC<ITriggerProps> = ({
     onClear();
   };
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onFilter(e.target.value);
-  };
-
   return (
     <div
       ref={triggerRef}
@@ -91,30 +86,21 @@ export const Trigger: React.FC<ITriggerProps> = ({
       onClick={handleTriggerClick}
       tabIndex={0}
     >
-      {isOpen && !isSearchDisabled ? (
-        <input
-          className={styles[`${baseClass}__input`]}
-          placeholder="Select option"
-          onChange={handleOnChange}
-          autoFocus
-        />
-      ) : (
-        <div
-          className={cx(
-            styles[`${baseClass}__text`],
-            isMultiSelect && styles[`${baseClass}__text--multi-select`]
-          )}
-        >
-          {children}
-        </div>
-      )}
+      <div
+        className={cx(
+          styles[`${baseClass}__content`],
+          isMultiSelect && styles[`${baseClass}__content--multi-select`]
+        )}
+      >
+        {children}
+      </div>
       {isItemSelected && !isDisabled && !isRequired && (
         <div
           data-testid={`${baseClass}__clear-icon`}
           className={styles[`${baseClass}__clear-icon`]}
           onClick={handleOnClearClick}
         >
-          <Icon kind="link" source={Close} />
+          <Icon kind="primary" size="small" source={Close} />
         </div>
       )}
       <Icon

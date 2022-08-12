@@ -77,7 +77,7 @@ export const Picker: React.FC<IPickerProps> = ({
     }
   }, [isListOpen]);
 
-  const handleOnTrigger = (e: React.MouseEvent | KeyboardEvent) => {
+  const handleTrigger = (e: React.MouseEvent | KeyboardEvent) => {
     const target = e.target as Element;
 
     if (disabled || target.getAttribute('data-dismiss-icon')) {
@@ -91,7 +91,7 @@ export const Picker: React.FC<IPickerProps> = ({
     setIsListOpen(false);
   };
 
-  const handleOnSelect = (item: IPickerListItem) => {
+  const handleSelect = (item: IPickerListItem) => {
     if (type === 'single') {
       setIsListOpen(false);
       return onSelect([item]);
@@ -113,7 +113,7 @@ export const Picker: React.FC<IPickerProps> = ({
   const isItemSelectable = (item: IPickerListItem) =>
     !item.disabled && !item.groupHeader && item.key !== 'select-all';
 
-  const handleOnSelectAll = () => {
+  const handleSelectAll = () => {
     setIsListOpen(false);
 
     const itemsToSelect = items.filter(isItemSelectable);
@@ -121,7 +121,7 @@ export const Picker: React.FC<IPickerProps> = ({
     onSelect(itemsToSelect);
   };
 
-  const handleOnClear = () => {
+  const handleClear = () => {
     setIsListOpen(false);
     onSelect(null);
   };
@@ -180,29 +180,27 @@ export const Picker: React.FC<IPickerProps> = ({
           isRequired={isRequired}
           isMultiSelect={type === 'multi'}
           size={size}
-          onTrigger={handleOnTrigger}
-          onClear={handleOnClear}
-          onFilter={handleOnFilter}
+          onTrigger={handleTrigger}
+          onClear={handleClear}
         >
-          {selected ? (
-            <TriggerBody
-              items={selected}
-              type={type}
-              onItemRemove={handleItemRemove}
-            />
-          ) : (
-            placeholder
-          )}
+          <TriggerBody
+            isOpen={isListOpen}
+            isSearchDisabled={searchDisabled}
+            placeholder={placeholder}
+            items={selected}
+            type={type}
+            onItemRemove={handleItemRemove}
+            onFilter={handleOnFilter}
+          />
         </Trigger>
         <PickerList
           selectedItemsKeys={selected ? getSelectedItemsKeys(selected) : null}
           items={items}
           isOpen={isListOpen}
-          size={size}
           emptyStateText={noSearchResultText}
           onClose={handleOnClose}
-          onSelect={handleOnSelect}
-          onSelectAll={handleOnSelectAll}
+          onSelect={handleSelect}
+          onSelectAll={handleSelectAll}
         />
       </div>
       {error && (

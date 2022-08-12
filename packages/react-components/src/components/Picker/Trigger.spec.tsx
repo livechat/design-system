@@ -69,26 +69,26 @@ describe('<Trigger> component', () => {
   });
 
   it('should call onClick when Trigger clicked', () => {
-    const onClick = vi.fn();
+    const onTrigger = vi.fn();
     const { getByText } = renderComponent({
       ...defaultProps,
-      onTrigger: onClick,
+      onTrigger,
     });
 
     fireEvent.click(getByText('Example text'));
-    expect(onClick).toHaveBeenCalled();
+    expect(onTrigger).toHaveBeenCalled();
   });
 
   it('should call onClearClick when clear button clicked', () => {
-    const onClearClick = vi.fn();
+    const onClear = vi.fn();
     const { getByTestId } = renderComponent({
       ...defaultProps,
       isItemSelected: true,
-      onClear: onClearClick,
+      onClear,
     });
 
     fireEvent.click(getByTestId(`${baseClass}__clear-icon`));
-    expect(onClearClick).toHaveBeenCalled();
+    expect(onClear).toHaveBeenCalled();
   });
 
   it('should call onFilter when input value change', () => {

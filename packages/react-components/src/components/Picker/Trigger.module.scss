@@ -40,10 +40,17 @@ $base-class: 'picker-trigger';
   }
 
   &__clear-icon {
+    align-items: center;
+    background-color: var(--surface-secondary-subtle);
+    border-radius: 50%;
+    display: flex;
+    height: 20px;
+    justify-content: center;
     margin-top: 2px;
+    width: 20px;
   }
 
-  &__text {
+  &__content {
     flex-grow: 2;
 
     &--multi-select {
@@ -71,18 +78,5 @@ $base-class: 'picker-trigger';
   &--error,
   &--error:hover {
     border-color: var(--color-negative-default);
-  }
-
-  &__input {
-    align-items: center;
-    background: none;
-    border: 0;
-    color: var(--content-default);
-    display: flex;
-    flex-grow: 2;
-    font-size: 15px;
-    height: 22px;
-    outline: none;
-    padding: 0;
   }
 }

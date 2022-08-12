@@ -15,20 +15,9 @@ $base-class: 'picker-list';
   overflow: scroll;
   padding: 4px 0;
   position: absolute;
+  top: calc(100% + 4px);
   width: 100%;
   z-index: $stacking-context-level-dropdown;
-
-  &--compact {
-    top: 36px;
-  }
-
-  &--medium {
-    top: 40px;
-  }
-
-  &--large {
-    top: 46px;
-  }
 
   &__no-results {
     align-items: center;
