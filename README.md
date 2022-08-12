@@ -2,6 +2,15 @@
 
 [See the Storybook](https://v1--613a8e945a5665003a05113b.chromatic.com/)
 
+# How to install?
+
+To run the project, first You need to use a the tool for managing the node version, which is convenient for you.
+We suggest using [Volta](https://volta.sh/).
+
+Required version of node is `16.13.2` and npm `8.1.0`.
+
+Then, just run `npm install`.
+
 # How to use?
 
 For React based projects:
@@ -11,6 +20,10 @@ For React based projects:
 If you also want to use icons:
 
 `npm i --save @livechat/design-system-icons`
+
+Currently, for component styles to be available in your application, you need to add an import:
+
+`import '@livechat/design-system-react-components/dist/style.css';`
 
 # How to develop?
 
