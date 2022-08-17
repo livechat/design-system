@@ -11,27 +11,29 @@ import { Loader } from '../Loader';
 export const baseClass = 'switch';
 
 export type SwitchSize = 'compact' | 'medium' | 'large';
+export type SwitchState = 'regular' | 'loading' | 'locked';
+
 export interface SwitchProps {
   className?: string;
   defaultOn?: boolean;
   disabled?: boolean;
-  loading?: boolean;
   innerRef?: React.LegacyRef<HTMLInputElement> | undefined;
   name?: string;
   on?: boolean;
   onChange?(e: React.FormEvent, value: boolean): void;
   size?: SwitchSize;
+  state?: SwitchState;
 }
 
 export const Switch: React.FC<SwitchProps> = ({
   className = '',
   defaultOn = false,
   disabled = false,
-  loading = false,
   name = baseClass,
   on,
   onChange = noop,
   size = 'large',
+  state = 'regular',
   innerRef,
   ...props
 }) => {
@@ -45,16 +47,17 @@ export const Switch: React.FC<SwitchProps> = ({
     }
   }, [on]);
 
+  const isLoading = state === 'loading';
+  const isLocked = state === 'locked';
   const iconSize: IconSize = size === 'large' ? 'small' : 'xsmall';
   const toggleStyles = checked ? 'on' : 'off';
-  const shouldBehaveAsDisabled = disabled || loading;
+  const shouldBehaveAsDisabled = disabled || isLoading || isLocked;
   const availabilityStyles = shouldBehaveAsDisabled ? 'disabled' : 'enabled';
   const mergedClassNames = cx(
     styles[baseClass],
     styles[`${baseClass}--${size}`],
     className
   );
-  const shouldShowDisabledIcon = disabled && !loading;
 
   const handleChange = (e: React.FormEvent) => {
     const hasOnChangePassed = onChange !== noop;
@@ -97,7 +100,7 @@ export const Switch: React.FC<SwitchProps> = ({
             styles[`${baseClass}__slider--${size}--${toggleStyles}`]
           )}
         >
-          {loading && (
+          {isLoading && (
             <Loader
               className={cx(
                 styles[`${baseClass}__loader`],
@@ -105,9 +108,9 @@ export const Switch: React.FC<SwitchProps> = ({
               )}
             />
           )}
-          {shouldShowDisabledIcon && (
+          {isLocked && (
             <Icon
-              data-testid="disabled-icon"
+              data-testid="lock-icon"
               size={iconSize}
               source={LockIcon}
               kind="primary"
