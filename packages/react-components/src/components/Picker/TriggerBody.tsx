@@ -8,10 +8,10 @@ import styles from './TriggerBody.module.scss';
 
 const baseClass = 'picker-trigger-body';
 
-interface ITriggerBodyProps {
+export interface ITriggerBodyProps {
   isOpen: boolean;
   isSearchDisabled?: boolean;
-  placeholder?: string;
+  placeholder: string;
   items?: IPickerListItem[] | null;
   type: PickerType;
   onItemRemove: (item: IPickerListItem) => void;
@@ -41,8 +41,17 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
     onFilter(e.target.value);
   };
 
+  const getSearch = () => (
+    <input
+      className={styles[`${baseClass}__input`]}
+      placeholder="Select option"
+      onChange={handleOnChange}
+      autoFocus
+    />
+  );
+
   if (!items || items.length === 0) {
-    return <div>{placeholder}</div>;
+    return shouldDisplaySearch ? getSearch() : <div>{placeholder}</div>;
   }
 
   return (
@@ -61,14 +70,7 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
               </Tag>
             );
           })}
-      {shouldDisplaySearch && (
-        <input
-          className={styles[`${baseClass}__input`]}
-          placeholder="Select option"
-          onChange={handleOnChange}
-          autoFocus
-        />
-      )}
+      {shouldDisplaySearch && getSearch()}
     </div>
   );
 };

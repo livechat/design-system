@@ -12,7 +12,6 @@ const defaultProps = {
   isOpen: false,
   onTrigger: () => noop,
   onClear: () => noop,
-  onFilter: () => noop,
 };
 
 const renderComponent = (props: ITriggerProps) => {
@@ -30,15 +29,6 @@ describe('<Trigger> component', () => {
     const { container } = renderComponent(defaultProps);
 
     expect(container.firstChild).toHaveClass(styles[`${baseClass}--medium`]);
-  });
-
-  it('should render Trigger with input if isOpen', () => {
-    const { getByRole } = renderComponent({
-      ...defaultProps,
-      isOpen: true,
-    });
-
-    expect(getByRole('textbox')).toBeVisible();
   });
 
   it('should render clear button if isItemSelected', () => {
@@ -89,18 +79,6 @@ describe('<Trigger> component', () => {
 
     fireEvent.click(getByTestId(`${baseClass}__clear-icon`));
     expect(onClear).toHaveBeenCalled();
-  });
-
-  it('should call onFilter when input value change', () => {
-    const onFilter = vi.fn();
-    const { getByRole } = renderComponent({
-      ...defaultProps,
-      isOpen: true,
-      onFilter,
-    });
-
-    fireEvent.change(getByRole('textbox'), { target: { value: 'option' } });
-    expect(onFilter).toHaveBeenCalledWith('option');
   });
 
   it('shouldnt render clear button if isRequired', () => {

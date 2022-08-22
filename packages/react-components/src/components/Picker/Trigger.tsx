@@ -38,7 +38,6 @@ export const Trigger: React.FC<ITriggerProps> = ({
   size = 'medium',
   onTrigger,
   onClear,
-  // onFilter,
 }) => {
   const triggerRef = React.useRef<HTMLDivElement>(null);
   const mergedClassNames = cx(
