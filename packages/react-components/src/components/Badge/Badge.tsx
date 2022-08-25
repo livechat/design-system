@@ -8,8 +8,8 @@ const baseClass = 'badge';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   count?: number;
-  limit?: number;
   kind?: 'primary' | 'secondary' | 'tertiary';
+  max?: number;
   size?: 'large' | 'medium' | 'compact';
   type?: 'counter' | 'alert' | 'dot';
 }
@@ -17,7 +17,7 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
 export const Badge: React.FC<BadgeProps> = ({
   className,
   count = 0,
-  limit = 99,
+  max = 99,
   kind = 'primary',
   size = 'medium',
   type = 'counter',
@@ -31,7 +31,7 @@ export const Badge: React.FC<BadgeProps> = ({
   );
 
   const content = {
-    ['counter']: formatCount(count, limit),
+    ['counter']: formatCount(count, max),
     ['alert']: '!',
     ['dot']: <span className={styles[`${baseClass}__dot`]} />,
   }[type];

@@ -18,19 +18,19 @@ describe('Badge', () => {
     expect(container).toHaveTextContent(`${count}`);
   });
 
-  it('should display number shortened to default limit', () => {
+  it('should display number shortened to default max limit', () => {
     const count = 100;
     const { container } = render(<Badge count={count} />);
 
     expect(container).toHaveTextContent('99+');
   });
 
-  it('should display number shortened to passed limit', () => {
+  it('should display number shortened to passed max limit', () => {
     const count = 10;
-    const limit = 9;
-    const { container } = render(<Badge count={count} limit={limit} />);
+    const max = 9;
+    const { container } = render(<Badge count={count} max={max} />);
 
-    expect(container).toHaveTextContent(`${limit}+`);
+    expect(container).toHaveTextContent(`${max}+`);
   });
 
   it('should display exclamation mark for alert type', () => {

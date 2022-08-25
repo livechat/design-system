@@ -52,11 +52,11 @@ export const Types = (): JSX.Element => (
     <StoryDescriptor title="Count">
       <Badge type="counter" count={1} />
     </StoryDescriptor>
-    <StoryDescriptor title="Count with default limit">
+    <StoryDescriptor title="Count with default max limit">
       <Badge type="counter" count={100} />
     </StoryDescriptor>
-    <StoryDescriptor title="Count with custom limit">
-      <Badge type="counter" count={6} limit={5} />
+    <StoryDescriptor title="Count with custom max limit">
+      <Badge type="counter" count={6} max={5} />
     </StoryDescriptor>
     <StoryDescriptor title="Alert">
       <Badge type="alert" />

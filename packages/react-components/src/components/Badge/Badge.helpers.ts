@@ -1,3 +1,3 @@
-export function formatCount(count: number, limit: number): string {
-  return count > limit ? `${limit}+` : `${count}`;
+export function formatCount(count: number, max: number): string {
+  return count > max ? `${max}+` : `${count}`;
 }
