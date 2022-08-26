@@ -11,7 +11,6 @@ import { Icon } from '../Icon';
 
 import styles from './Card.module.scss';
 
-export type CardActionType = 'none' | 'buttons' | 'expand';
 export type CardButtonOptions = Pick<
   ButtonProps,
   'children' | 'kind' | 'onClick'
