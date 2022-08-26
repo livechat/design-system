@@ -5,6 +5,7 @@
   display: none;
   max-width: 336px;
   min-width: 168px;
+  z-index: 1000;
 
   &:focus {
     outline: none;
