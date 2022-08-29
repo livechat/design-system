@@ -45,20 +45,6 @@ describe('<Card> component', () => {
     expect(nestedHeading).toHaveTextContent('Lorem ipsum');
   });
 
-  it('should display nested elements as children', () => {
-    const { getAllByRole } = render(
-      <Card title="Hello">
-        <div>
-          <h3>Lorem ipsum</h3>
-        </div>
-      </Card>
-    );
-
-    const [, nestedHeading] = getAllByRole('heading');
-    expect(nestedHeading).toBeVisible();
-    expect(nestedHeading).toHaveTextContent('Lorem ipsum');
-  });
-
   it('should allow expanding hidden content', () => {
     const expandableText = 'dolor sit amet';
     const { getByText } = render(
