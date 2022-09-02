@@ -5,7 +5,7 @@
   display: none;
   max-width: 336px;
   min-width: 168px;
-  z-index: 1000;
+  z-index: $stacking-context-level-popover;
 
   &:focus {
     outline: none;
