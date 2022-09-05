@@ -5,16 +5,17 @@ import { Loader } from '../Loader';
 import styles from './Button.module.scss';
 
 export type ButtonSize = 'compact' | 'medium' | 'large';
+export type ButtonKind =
+  | 'basic'
+  | 'primary'
+  | 'secondary'
+  | 'destructive'
+  | 'text'
+  | 'plain'
+  | 'plain-light';
 
 export type ButtonProps = {
-  kind?:
-    | 'basic'
-    | 'primary'
-    | 'secondary'
-    | 'destructive'
-    | 'text'
-    | 'plain'
-    | 'plain-light';
+  kind?: ButtonKind;
   size?: ButtonSize;
   disabled?: boolean;
   loading?: boolean;
