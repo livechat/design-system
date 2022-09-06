@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { render } from 'test-utils';
+import { render, fireEvent, vi } from 'test-utils';
 import { Icon } from '../Icon';
 
 import { Button } from './Button';
@@ -9,7 +9,6 @@ import styles from './Button.module.scss';
 describe('<Button> component', () => {
   function renderButton(props = {}) {
     const result = render(<Button {...props} />);
-
     return {
       ...result,
       btnEl: result.container.firstChild,
@@ -106,5 +105,21 @@ describe('<Button> component', () => {
 
     expect((btnEl as HTMLElement).tagName).toBe('BUTTON');
     expect((linkEl as HTMLElement).tagName).toBe('A');
+  });
+
+  it('should set aria-disabled if we pass disabled prop', () => {
+    const { btnEl } = renderButton({ disabled: true });
+
+    expect(btnEl).toHaveAttribute('aria-disabled', 'true');
+  });
+
+  it('should not fire callback if we pass disabled prop as true', () => {
+    const onClick = vi.fn();
+
+    const { btnEl } = renderButton({ disabled: true, onClick });
+
+    fireEvent.click(btnEl as Element);
+
+    expect(onClick).not.toHaveBeenCalled();
   });
 });
