@@ -107,16 +107,11 @@ describe('<Button> component', () => {
     expect((linkEl as HTMLElement).tagName).toBe('A');
   });
 
-  it('should set aria-disabled if we pass disabled prop', () => {
-    const { btnEl } = renderButton({ disabled: true });
+  it('should set aria-disabled if we pass disabled prop and should not fire onClick callback if disabled is true', () => {
+    const onClick = vi.fn();
+    const { btnEl } = renderButton({ disabled: true, onClick });
 
     expect(btnEl).toHaveAttribute('aria-disabled', 'true');
-  });
-
-  it('should not fire callback if we pass disabled prop as true', () => {
-    const onClick = vi.fn();
-
-    const { btnEl } = renderButton({ disabled: true, onClick });
 
     fireEvent.click(btnEl as Element);
 
