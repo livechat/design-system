@@ -41,6 +41,7 @@ export const Button: React.FC<ButtonProps> = ({
   className,
   children,
   href,
+  onClick,
   ...props
 }) => {
   const isDisabled = loading || disabled;
@@ -63,9 +64,10 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <Component
       className={mergedClassNames}
-      disabled={isDisabled}
+      aria-disabled={isDisabled}
       type={type}
       href={isDisabled ? undefined : href}
+      onClick={isDisabled ? undefined : onClick}
       {...props}
     >
       {loading && (
