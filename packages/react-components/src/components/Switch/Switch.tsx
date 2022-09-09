@@ -110,7 +110,7 @@ export const Switch: React.FC<SwitchProps> = ({
           )}
           {isLocked && (
             <Icon
-              className={`${baseClass}__icon`}
+              className={styles[`${baseClass}__icon`]}
               data-testid="lock-icon"
               size={iconSize}
               source={LockIcon}
