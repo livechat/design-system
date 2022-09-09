@@ -188,4 +188,8 @@ $medium-move: $medium-width - $medium-size;
       border-width: 2px;
     }
   }
+
+  &__icon {
+    color: var(--content-black-locked);
+  }
 }
