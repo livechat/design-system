@@ -2,11 +2,13 @@
   "extends": [
     "stylelint-config-standard",
     "stylelint-config-sass-guidelines",
-    "stylelint-config-prettier"
+    "stylelint-config-prettier",
+    "stylelint-config-concentric-order"
   ],
   "rules": {
     "max-nesting-depth": null,
     "selector-class-pattern": null,
-    "no-descending-specificity": null
+    "no-descending-specificity": null,
+    "order/properties-alphabetical-order": null
   }
 }

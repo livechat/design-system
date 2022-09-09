@@ -1,24 +1,24 @@
 $base-class: 'btn';
 
 .#{$base-class} {
-  align-items: center;
-  border-radius: 4px;
-  border-style: solid;
-  border-width: 1px;
-  cursor: pointer;
   display: inline-flex;
-  font-size: 15px;
-  font-weight: 600;
-  height: 36px;
-  justify-content: center;
-  min-width: 36px;
-  padding: 8px 16px;
   position: relative;
-  text-align: center;
-  text-decoration: none;
+  align-items: center;
+  justify-content: center;
   transition-duration: 200ms;
   transition-property: opacity, border, color, background-color, box-shadow;
   transition-timing-function: cubic-bezier(0.64, 0, 0.35, 1);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 8px 16px;
+  min-width: 36px;
+  height: 36px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
   user-select: none;
 
   &:focus,
@@ -28,7 +28,7 @@ $base-class: 'btn';
   }
 
   &:focus {
-    box-shadow: 0 0 1px 2px rgba(var(--color-action-default-rgb), 0.7);
+    box-shadow: 0 0 1px 2px rgb(var(--color-action-default-rgb) 0.7);
   }
 
   &--disabled {
@@ -49,8 +49,8 @@ $base-class: 'btn';
   }
 
   &--basic {
-    background-color: var(--surface-basic-default);
     border-color: var(--color-action-default);
+    background-color: var(--surface-basic-default);
     color: var(--color-action-default);
 
     &:hover {
@@ -63,82 +63,82 @@ $base-class: 'btn';
       color: var(--color-action-hover);
     }
 
-    &[disabled] {
-      background-color: inherit;
+    &[aria-disabled='true'] {
       border-color: var(--color-action-disabled);
+      background-color: inherit;
       color: var(--color-action-disabled);
     }
   }
 
   &--primary {
-    background-color: var(--color-action-default);
     border-color: var(--color-action-default);
+    background-color: var(--color-action-default);
     color: var(--content-invert-default);
 
     &:hover {
-      background-color: var(--color-action-hover);
       border-color: var(--color-action-hover);
+      background-color: var(--color-action-hover);
     }
 
     &:active {
-      background-color: var(--color-action-active);
       border-color: var(--color-action-active);
+      background-color: var(--color-action-active);
     }
 
-    &[disabled] {
-      background-color: var(--color-action-disabled);
+    &[aria-disabled='true'] {
       border-color: var(--color-action-disabled);
+      background-color: var(--color-action-disabled);
     }
   }
 
   &--secondary {
-    background-color: var(--surface-basic-default);
     border-color: var(--surface-secondary-default);
+    background-color: var(--surface-basic-default);
     color: var(--content-default);
 
     &:hover {
-      background-color: var(--surface-basic-hover);
       border-color: var(--surface-secondary-hover);
+      background-color: var(--surface-basic-hover);
     }
 
     &:active {
-      background-color: var(--surface-feedback-info);
       border-color: var(--color-action-default);
+      background-color: var(--surface-feedback-info);
       color: var(--color-action-default);
     }
 
-    &[disabled] {
-      background-color: inherit;
+    &[aria-disabled='true'] {
       border-color: var(--border-disabled);
+      background-color: inherit;
       color: var(--content-disabled);
     }
   }
 
   &--destructive {
-    background-color: var(--color-negative-default);
     border-color: var(--color-negative-default);
+    background-color: var(--color-negative-default);
     color: var(--content-invert-default);
 
     &:hover {
-      background-color: var(--color-negative-hover);
       border-color: var(--color-negative-hover);
+      background-color: var(--color-negative-hover);
     }
 
     &:active {
-      background-color: var(--color-negative-active);
       border-color: var(--color-negative-active);
+      background-color: var(--color-negative-active);
     }
 
-    &[disabled] {
-      background-color: var(--color-negative-disabled);
+    &[aria-disabled='true'] {
       border-color: var(--color-negative-disabled);
+      background-color: var(--color-negative-disabled);
     }
   }
 
   &--compact {
-    height: 32px;
-    min-width: 32px;
     padding: 6px 16px;
+    min-width: 32px;
+    height: 32px;
 
     &.#{$base-class}--icon-only {
       padding: 4px;
@@ -146,9 +146,9 @@ $base-class: 'btn';
   }
 
   &--large {
-    height: 42px;
-    min-width: 42px;
     padding: 11px 16px;
+    min-width: 42px;
+    height: 42px;
 
     &.#{$base-class}--icon-only {
       padding: 9px;
@@ -158,15 +158,15 @@ $base-class: 'btn';
   &--text,
   &--plain,
   &--plain-light {
-    background-color: transparent;
     border-color: transparent;
+    background-color: transparent;
     color: var(--color-action-default);
 
     &:hover {
       color: var(--color-action-hover);
     }
 
-    &[disabled] {
+    &[aria-disabled='true'] {
       color: var(--color-action-disabled);
     }
   }
@@ -182,9 +182,9 @@ $base-class: 'btn';
   &--plain,
   &--plain-light {
     border: 0;
-    height: auto;
-    min-width: auto;
     padding: 0;
+    min-width: auto;
+    height: auto;
 
     &:hover,
     &:focus {
@@ -198,34 +198,34 @@ $base-class: 'btn';
   }
 
   &--loading {
-    cursor: progress;
     transition: all 0.2s cubic-bezier(0.64, 0, 0.35, 1);
+    cursor: progress;
 
     > * {
       opacity: 0;
     }
 
     .#{$base-class}__loader {
-      align-items: center;
       box-sizing: border-box;
       display: flex;
-      height: 100%;
-      justify-content: center;
-      left: 0;
-      opacity: 1;
-      padding: inherit;
       position: absolute;
       top: 0;
+      left: 0;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      padding: inherit;
       width: 100%;
+      height: 100%;
 
       > * {
-        color: inherit;
-        font-weight: inherit;
         margin: 0 5px;
         overflow: hidden;
         text-align: left;
         text-overflow: ellipsis;
         white-space: nowrap;
+        color: inherit;
+        font-weight: inherit;
       }
     }
   }
@@ -236,22 +236,22 @@ $base-class: 'btn';
   }
 
   &__icon {
-    color: inherit;
     display: inline-block;
+    width: 20px;
     height: 20px;
     line-height: 1;
-    width: 20px;
+    color: inherit;
 
     &--left {
-      margin-left: -4px;
-      margin-right: 5px;
       order: -1;
+      margin-right: 5px;
+      margin-left: -4px;
     }
 
     &--right {
-      margin-left: 5px;
-      margin-right: -4px;
       order: 1;
+      margin-right: -4px;
+      margin-left: 5px;
     }
   }
 }
