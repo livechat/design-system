@@ -21,11 +21,16 @@ https://{branch-name}--613a8e945a5665003a05113b.chromatic.com/
 where {branch-name} is a branch name where `/` and other special characters should be replaced with `-`.
 
 You can also find a direct link to the latest commit instance in the PR checks section:
-{image}
+![image](https://user-images.githubusercontent.com/46003125/189325522-e47a5a96-6657-40fb-9a86-cdc45ebe566c.png)
+
 
 # Visual regression
 
-Chromatic is used for visual regression and available in Github actions
+Chromatic is used for visual regression and available in Github actions. Tests are run automatically after each commit, direct link to results can be found in PR checks section:
+
+<img width="1828" alt="design-system 2022-09-09 12-03-20" src="https://user-images.githubusercontent.com/46003125/189325825-da23cce6-bad9-4633-b3dc-ca0ca1974402.png">
+
+Each change needs to be manually reviewed in Chromatic and although not required should be done as a good practice.
 
 # Automatic Testing
 
@@ -37,3 +42,4 @@ Basic tests are done using Jest and Render plugin
 - basic accessibility should be tested (e.g keyboard controls)
 - testing is done on controls with assumption of correct/reasonable data and conditions in context of the component
 - extreme parameters should be handled by the user and are not Design System responsibility
+- each component should be tested and work out of the box on all modern browsers
