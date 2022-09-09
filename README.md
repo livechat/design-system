@@ -33,6 +33,10 @@ If Storybook is not enough, you can additionaly run `npm start:example` which wi
 
 `example-react` is a simple React app based on vite-react boilterplate. It has direct dependency on `react-components` package, so every change should be reflected in the app via auto-reload.
 
+# How to test?
+
+We have prepared a document describing testing process and principals [here](./TESTING.md).
+
 # How to release?
 
 We have entire document about that take a look [here](./RELEASE.md).
