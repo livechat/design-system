@@ -11,6 +11,7 @@ export * from './components/Button';
 export * from './components/ButtonGroup';
 export * from './components/Card';
 export * from './components/Checkbox';
+export * from './components/DatePicker';
 export * from './components/FieldDescription';
 export * from './components/FieldError';
 export * from './components/FieldGroup';
