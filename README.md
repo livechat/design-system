@@ -35,7 +35,7 @@ If Storybook is not enough, you can additionaly run `npm start:example` which wi
 
 # How to test?
 
-We have prepared a document describing testing process and principals [here](./TESTING.md).
+We have prepared a document describing testing process and principles [here](./TESTING.md).
 
 # How to release?
 
