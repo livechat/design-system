@@ -12,6 +12,7 @@ const emailValidator = (value: string) => {
 };
 
 export const EmailTagInput: React.FC<EmailTagInputProps> = ({
+  id,
   tags,
   onChange,
   error,
@@ -20,6 +21,7 @@ export const EmailTagInput: React.FC<EmailTagInputProps> = ({
 }) => {
   return (
     <TagInput
+      id={id}
       tags={tags}
       error={error}
       onChange={onChange}
