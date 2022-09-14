@@ -8,6 +8,7 @@ import styles from './Modal.module.scss';
 export interface ModalBaseProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose(): void;
   closeOnEscPress?: boolean;
+  closeOnOverlayPress?: boolean;
 }
 
 const baseClass = 'modal-base';
@@ -17,6 +18,7 @@ export const ModalBase: React.FC<ModalBaseProps> = ({
   className = '',
   onClose,
   closeOnEscPress = true,
+  closeOnOverlayPress = true,
   ...props
 }) => {
   const mergedClassNames = cx(styles[baseClass], className);
@@ -37,7 +39,7 @@ export const ModalBase: React.FC<ModalBaseProps> = ({
   }, [closeOnEscPress]);
 
   const onOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (event.target === event.currentTarget) {
+    if (closeOnOverlayPress && event.target === event.currentTarget) {
       onClose();
     }
   };
