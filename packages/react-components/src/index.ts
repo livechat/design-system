@@ -8,7 +8,7 @@ export * from './components/Alert';
 export * from './components/Avatar';
 export * from './components/Badge';
 export * from './components/Button';
-export * from './components/ButtonGroup';
+export * from './components/SegmentedControl';
 export * from './components/Card';
 export * from './components/Checkbox';
 export * from './components/DatePicker';

@@ -46,12 +46,15 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
   ...restProps
 }) => {
   const mergedClassName = cx(styles[baseClass], className);
-  const [currentStateIndex, setCurrentStateIndex] =
-    React.useState(initialIndex);
+  const [currentStateIndex, setCurrentStateIndex] = React.useState(
+    () => initialIndex
+  );
 
   const isControlled = typeof currentIndex === 'number';
 
-  const _currentIndex = isControlled ? currentIndex : currentStateIndex;
+  React.useEffect(() => {
+    isControlled && setCurrentStateIndex(currentIndex);
+  }, [currentIndex]);
 
   const handleClick = (index: number, event: any) => {
     if (!isControlled) {
@@ -63,12 +66,23 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
 
   return (
     <div role="group" className={mergedClassName} {...restProps}>
-      {React.Children.map(children, (child, i) =>
-        React.cloneElement(child, {
+      {React.Children.map(children, (child, i) => {
+        const activityStyles =
+          i === currentStateIndex
+            ? styles['btn--active']
+            : styles[`btn--${state?.[i]}`];
+        const loadingStatus =
+          i === currentStateIndex
+            ? false
+            : state?.[i] === 'loading'
+            ? true
+            : false;
+
+        return React.cloneElement(child, {
           fullWidth,
           size,
           kind: 'secondary',
-          loading: state?.[i] === 'loading' ? true : false,
+          loading: loadingStatus,
           type: 'button',
           onClick: (event: any) => {
             handleClick(i, event);
@@ -79,11 +93,10 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
           className: cx(
             styles['btn'],
             styles[`btn--${size as string}`],
-            i === _currentIndex && styles['btn--active'],
-            styles[`btn--${state?.[i]}`]
+            activityStyles
           ),
-        })
-      )}
+        });
+      })}
     </div>
   );
 };

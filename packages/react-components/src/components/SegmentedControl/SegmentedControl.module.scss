@@ -18,12 +18,9 @@
       background-color: var(--surface-basic-active);
     }
 
-    &--enabled {
-      background-color: var(--surface-basic-default);
-    }
-
     &--disabled {
       background-color: var(--surface-basic-default);
+      cursor: initial;
       color: var(--surface-basic-disabled);
     }
 
