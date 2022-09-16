@@ -2,17 +2,17 @@ import * as React from 'react';
 import { render, userEvent, vi } from 'test-utils';
 import noop from '../../utils/noop';
 import { Button } from '../Button';
-import { ButtonGroup } from './ButtonGroup';
+import { SegmentedControl } from './SegmentedControl';
 
-import styles from './ButtonGroup.module.scss';
+import styles from './SegmentedControl.module.scss';
 
 describe('<ButtonGroup> component', () => {
   function renderComponent(props = {}, onButtonClick = noop) {
     return render(
-      <ButtonGroup {...props}>
+      <SegmentedControl {...props}>
         <Button onClick={onButtonClick}>First button</Button>
         <Button>Second button</Button>
-      </ButtonGroup>
+      </SegmentedControl>
     );
   }
 

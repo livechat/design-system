@@ -3,17 +3,28 @@ import cx from 'clsx';
 
 import { ButtonSize, ButtonProps } from '../Button';
 
-import styles from './ButtonGroup.module.scss';
+import styles from './SegmentedControl.module.scss';
 
 import noop from '../../utils/noop';
 
-const baseClass = 'btn-group';
+const baseClass = 'segmented-control';
 
-export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+export type ButtonState =
+  | 'active'
+  | 'hover'
+  | 'enabled'
+  | 'disabled'
+  | 'loading';
+
+export type SegmentedControlState = { [index: number]: ButtonState };
+
+export interface SegmentedControlProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   currentIndex?: number;
   initialIndex?: number;
   fullWidth?: boolean;
   size?: ButtonSize;
+  state?: SegmentedControlState;
   children: ReadonlyArray<
     React.ReactElement<React.PropsWithChildren<ButtonProps>>
   >;
@@ -23,8 +34,9 @@ export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   ) => void;
 }
 
-export const ButtonGroup: React.FC<ButtonGroupProps> = ({
+export const SegmentedControl: React.FC<SegmentedControlProps> = ({
   size = 'medium',
+  state,
   fullWidth = false,
   onIndexChange = noop,
   className,
@@ -56,6 +68,7 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
           fullWidth,
           size,
           kind: 'secondary',
+          loading: state?.[i] === 'loading' ? true : false,
           type: 'button',
           onClick: (event: any) => {
             handleClick(i, event);
@@ -66,7 +79,8 @@ export const ButtonGroup: React.FC<ButtonGroupProps> = ({
           className: cx(
             styles['btn'],
             styles[`btn--${size as string}`],
-            i === _currentIndex && styles['btn--active']
+            i === _currentIndex && styles['btn--active'],
+            styles[`btn--${state?.[i]}`]
           ),
         })
       )}

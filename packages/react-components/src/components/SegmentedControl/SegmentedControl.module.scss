@@ -1,8 +1,8 @@
-.btn-group {
-  border: 1px solid var(--border-subtle);
-  border-radius: 4px;
+.segmented-control {
   display: inline-flex;
   flex-direction: row;
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
   padding: 3px;
   vertical-align: middle;
 
@@ -14,12 +14,27 @@
       background-color: var(--surface-basic-active);
     }
 
+    &--hover {
+      background-color: var(--surface-basic-active);
+    }
+
+    &--enabled {
+      background-color: var(--surface-basic-default);
+    }
+
+    &--disabled {
+      background-color: var(--surface-basic-default);
+      color: var(--surface-basic-disabled);
+    }
+
     &--compact {
       height: 24px;
     }
+
     &--medium {
       height: 28px;
     }
+
     &--large {
       height: 34px;
     }
