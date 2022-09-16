@@ -72,11 +72,7 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
             ? styles['btn--active']
             : styles[`btn--${state?.[i]}`];
         const loadingStatus =
-          i === currentStateIndex
-            ? false
-            : state?.[i] === 'loading'
-            ? true
-            : false;
+          i === currentStateIndex ? false : state?.[i] === 'loading';
 
         return React.cloneElement(child, {
           fullWidth,
