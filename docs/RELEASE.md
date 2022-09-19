@@ -23,6 +23,7 @@ When deploying to `npm` you will have to decide how to version your changes. Cur
 <img width="680" alt="final confirmation of the release in lerna" src="https://user-images.githubusercontent.com/7773964/182622918-ee484e9e-8237-422a-8252-05f02a0332b1.png">
 
 ### Disclamer
+
 Keep in mind that a package won't be versioned if it has not changed. In the future a changed package will catch up with other packages in versioning. For example, assuming that version of package `react-components` is `1.0.0-alpha.17` but `icons` lag behind a bit and are at `1.0.0-alpha.15` because no changes has been made since two deploys. If you make some changes in `react-components` and in `icons` both packages will get `1.0.0-alpha.18` version.
 
 ## Updating documentation
