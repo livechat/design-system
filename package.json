@@ -2,7 +2,7 @@
   "private": "true",
   "name": "@livechat/ds-workspace",
   "version": "1.0.0",
-  "description": "Initial Readme. Please change me later.",
+  "description": "LiveChat Design System",
   "scripts": {
     "postinstall": "lerna bootstrap",
     "clean": "lerna exec rimraf dist",

@@ -11,9 +11,10 @@ In order to start testing please follow installation and running instructions as
 ## Manual testing
 
 Manual testing is done using [Storybook](https://storybook.js.org/) and a separate instance is published for every PR (feature branch) using [Chromatic](https://www.chromatic.com/). For each component, the first story allows using [Controls](https://storybook.js.org/docs/react/essentials/controls) and [Actions](https://storybook.js.org/docs/react/essentials/actions), which simplify the process of testing most of the scenarios. The remaining stories work as a sort of documentation that can be used in order to compare implementation with designs. Other useful add-ons:
-* [Measure & Outline](https://storybook.js.org/docs/react/essentials/measure-and-outline)
-* [Theme Switcher](https://storybook.js.org/addons/storybook-addon-themes)
-* [Viewport](https://storybook.js.org/docs/react/essentials/viewport)
+
+- [Measure & Outline](https://storybook.js.org/docs/react/essentials/measure-and-outline)
+- [Theme Switcher](https://storybook.js.org/addons/storybook-addon-themes)
+- [Viewport](https://storybook.js.org/docs/react/essentials/viewport)
 
 Storybook instances are currently available under the following link pattern:
 https://{branch-name}--613a8e945a5665003a05113b.chromatic.com/
@@ -22,7 +23,6 @@ where {branch-name} is a branch name where `/` and other special characters shou
 
 You can also find a direct link to the latest commit instance in the PR checks section:
 ![image](https://user-images.githubusercontent.com/46003125/189325522-e47a5a96-6657-40fb-9a86-cdc45ebe566c.png)
-
 
 # Visual regression
 
@@ -40,7 +40,7 @@ Although `Storybook` covers most of the scenarios we still invest in automated c
 
 - UI- and UX-wise the verification should be performed based on our public [Figma](https://www.figma.com/file/2pFu80PXO5A2tfyrAGnx91/Product-Components?node-id=6250%3A30703) design. LiveChat's designers will provide final acceptance in case of doubts.
 - basic accessibility should be tested (e.g keyboard controls, color contrasts), although @livechat/design-system team will focus on greater support in this area after releasing `v1.0.0`.
-- manual testing is done using `Storybook` controls with an assumption of correct/reasonable data provided. 
+- manual testing is done using `Storybook` controls with an assumption of correct/reasonable data provided.
 - design system is targeting the atomic approach, therefore, extreme parameters and scenarios should be handled externally (from a development perspective). `@livechat/design-system` is open for discussions on what should be supported in case of issues.
 - each component should be tested and work out of the box on all modern browsers. We do not define a specific list of browsers and are open to analyzing issues focusing on specific cases.
 - our pull request template assumes that a change should be covered from the quality perspective by
