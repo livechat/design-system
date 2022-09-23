@@ -185,6 +185,7 @@ export default {
         type: 'select',
         labels: placementsWithUnselect,
       },
+      name: 'flipOptions.fallbackPlacements',
     },
   },
 } as ComponentMeta<typeof Popover>;
