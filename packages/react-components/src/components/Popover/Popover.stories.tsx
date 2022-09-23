@@ -31,6 +31,15 @@ const placements = [
   'left-end',
 ];
 
+const provideFallbackPlacement = (flipOptions: Placement) => {
+  const hasNoFallback = (flipOptions as string) === 'none';
+  const hasNotChosen = Object.keys(flipOptions).length === 0;
+
+  return hasNoFallback || hasNotChosen
+    ? undefined
+    : { fallbackPlacements: [flipOptions] };
+};
+
 const placementsWithUnselect = ['none', ...placements];
 
 const OpenChat = () => {
@@ -78,11 +87,7 @@ export const Popover = ({
     <PopoverComponent
       placement={placement}
       isVisible={isVisible}
-      flipOptions={
-        (flipOptions as string) === 'none'
-          ? undefined
-          : { fallbackPlacements: [flipOptions] }
-      }
+      flipOptions={provideFallbackPlacement(flipOptions)}
       triggerRenderer={() => (
         <Button icon={<Icon source={DropDown}></Icon>} iconPosition={'right'}>
           Open Popover
@@ -132,35 +137,33 @@ export const Actions = ({
   placement: Placement;
   isVisible: boolean;
   flipOptions: Placement;
-}): React.ReactElement => (
-  <div style={{ minHeight: '200px' }}>
-    <PopoverComponent
-      placement={placement}
-      isVisible={isVisible}
-      flipOptions={
-        (flipOptions as string) === 'none'
-          ? undefined
-          : { fallbackPlacements: [flipOptions] }
-      }
-      triggerRenderer={() => (
-        <Button icon={<Icon source={DropDown}></Icon>} iconPosition={'right'}>
-          Actions
-        </Button>
-      )}
-    >
-      <div
-        style={{
-          minWidth: '200px',
-        }}
+}): React.ReactElement => {
+  return (
+    <div style={{ minHeight: '200px' }}>
+      <PopoverComponent
+        placement={placement}
+        isVisible={isVisible}
+        flipOptions={provideFallbackPlacement(flipOptions)}
+        triggerRenderer={() => (
+          <Button icon={<Icon source={DropDown}></Icon>} iconPosition={'right'}>
+            Actions
+          </Button>
+        )}
       >
-        <OpenChat />
-        <CreateTicket />
-        <SendTranscript />
-        <BanCustomer />
-      </div>
-    </PopoverComponent>
-  </div>
-);
+        <div
+          style={{
+            minWidth: '200px',
+          }}
+        >
+          <OpenChat />
+          <CreateTicket />
+          <SendTranscript />
+          <BanCustomer />
+        </div>
+      </PopoverComponent>
+    </div>
+  );
+};
 
 Actions.args = {
   placement: 'bottom-start',
