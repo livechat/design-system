@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { Placement } from '@floating-ui/react-dom';
-
 import { Button } from '../Button';
 import { Popover as PopoverComponent } from './Popover';
 
@@ -31,6 +30,8 @@ const placements = [
   'bottom-end',
   'left-end',
 ];
+
+const placementsWithUnselect = ['none', ...placements];
 
 const OpenChat = () => {
   return (
@@ -67,14 +68,21 @@ const BanCustomer = () => {
 export const Popover = ({
   placement,
   isVisible,
+  flipOptions,
 }: {
   placement: Placement;
   isVisible: boolean;
+  flipOptions: Placement;
 }): React.ReactElement => (
   <div className="wrap">
     <PopoverComponent
       placement={placement}
       isVisible={isVisible}
+      flipOptions={
+        (flipOptions as string) === 'none'
+          ? undefined
+          : { fallbackPlacements: [flipOptions] }
+      }
       triggerRenderer={() => (
         <Button icon={<Icon source={DropDown}></Icon>} iconPosition={'right'}>
           Open Popover
@@ -112,20 +120,28 @@ export const Popover = ({
 
 Popover.args = {
   placement: 'bottom-start',
+  flipOptions: {},
   isVisible: true,
 };
 
 export const Actions = ({
   placement,
   isVisible,
+  flipOptions,
 }: {
   placement: Placement;
   isVisible: boolean;
+  flipOptions: Placement;
 }): React.ReactElement => (
   <div style={{ minHeight: '200px' }}>
     <PopoverComponent
       placement={placement}
       isVisible={isVisible}
+      flipOptions={
+        (flipOptions as string) === 'none'
+          ? undefined
+          : { fallbackPlacements: [flipOptions] }
+      }
       triggerRenderer={() => (
         <Button icon={<Icon source={DropDown}></Icon>} iconPosition={'right'}>
           Actions
@@ -149,6 +165,7 @@ export const Actions = ({
 Actions.args = {
   placement: 'bottom-start',
   isVisible: true,
+  flipOptions: {},
 };
 
 export default {
@@ -160,6 +177,13 @@ export default {
       control: {
         type: 'select',
         labels: placements,
+      },
+    },
+    flipOptions: {
+      options: placementsWithUnselect,
+      control: {
+        type: 'select',
+        labels: placementsWithUnselect,
       },
     },
   },
