@@ -32,7 +32,7 @@ const placements = [
 ];
 
 const provideFallbackPlacement = (flipOptions: Placement) => {
-  const hasNoFallback = (flipOptions as string) === 'none';
+  const hasNoFallback = (flipOptions as string) === 'default';
   const hasNotChosen = Object.keys(flipOptions).length === 0;
 
   return hasNoFallback || hasNotChosen
@@ -40,7 +40,7 @@ const provideFallbackPlacement = (flipOptions: Placement) => {
     : { fallbackPlacements: [flipOptions] };
 };
 
-const placementsWithUnselect = ['none', ...placements];
+const placementsWithUnselect = ['default', ...placements];
 
 const OpenChat = () => {
   return (
