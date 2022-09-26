@@ -8,20 +8,9 @@
 
   .btn {
     border-color: transparent;
-    color: var(--content-default);
 
     &--active {
       background-color: var(--surface-basic-active);
-    }
-
-    &--hover {
-      background-color: var(--surface-basic-active);
-    }
-
-    &--disabled {
-      background-color: var(--surface-basic-default);
-      cursor: initial;
-      color: var(--surface-basic-disabled);
     }
 
     &--compact {

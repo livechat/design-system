@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cx from 'clsx';
 
-import { ButtonSize, ButtonProps } from '../Button';
+import { Button } from '../Button';
 
 import styles from './SegmentedControl.module.scss';
 
@@ -9,90 +9,76 @@ import noop from '../../utils/noop';
 
 const baseClass = 'segmented-control';
 
-export type ButtonState =
-  | 'active'
-  | 'hover'
-  | 'enabled'
-  | 'disabled'
-  | 'loading';
+export type ButtonState = 'disabled' | 'loading';
 
-export type SegmentedControlState = { [index: number]: ButtonState };
+type ButtonElement = {
+  id: string;
+  label: string;
+  state?: ButtonState | ButtonState[];
+};
 
 export interface SegmentedControlProps
   extends React.HTMLAttributes<HTMLDivElement> {
-  currentIndex?: number;
-  initialIndex?: number;
+  className?: string;
+  buttons: ButtonElement[];
   fullWidth?: boolean;
-  size?: ButtonSize;
-  state?: SegmentedControlState;
-  children: ReadonlyArray<
-    React.ReactElement<React.PropsWithChildren<ButtonProps>>
-  >;
-  onIndexChange?: (
-    currentIndex: number,
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => void;
+  size?: string;
+  initialId?: string;
+  currentId?: string;
+  onButtonClick?: (id: string, event: React.MouseEvent<HTMLElement>) => void;
 }
 
 export const SegmentedControl: React.FC<SegmentedControlProps> = ({
   size = 'medium',
-  state,
-  fullWidth = false,
-  onIndexChange = noop,
+  buttons,
   className,
-  children,
-  currentIndex,
-  initialIndex = -1,
-  ...restProps
+  initialId,
+  currentId,
+  fullWidth = false,
+  onButtonClick = noop,
 }) => {
   const mergedClassName = cx(styles[baseClass], className);
-  const [currentStateIndex, setCurrentStateIndex] = React.useState(
-    () => initialIndex
-  );
+  const [currentStateId, setCurrentStateId] = React.useState(() => initialId);
 
-  const isControlled = typeof currentIndex === 'number';
+  const isControlled = typeof currentId === 'string';
 
   React.useEffect(() => {
-    isControlled && setCurrentStateIndex(currentIndex);
-  }, [currentIndex]);
+    isControlled && setCurrentStateId(currentId);
+  }, [currentId]);
 
-  const handleClick = (index: number, event: any) => {
+  const handleClick = (id: string, event: any) => {
     if (!isControlled) {
-      setCurrentStateIndex(index);
+      setCurrentStateId(id);
     }
 
-    onIndexChange(index, event);
+    onButtonClick(id, event);
   };
+  const buttonSet = buttons.map(({ id, label, state }) => {
+    const activityStyles = id === currentStateId ? styles['btn--active'] : '';
+    const loadingStatus =
+      id === currentStateId ? false : state?.includes('loading');
+    const disabledStatus = state?.includes('disabled');
+
+    return (
+      <Button
+        key={id}
+        fullWidth={fullWidth}
+        loading={loadingStatus}
+        disabled={disabledStatus}
+        kind="secondary"
+        className={cx(styles['btn'], styles[`btn--${size}`], activityStyles)}
+        onClick={(event: React.MouseEvent<HTMLElement>) => {
+          handleClick(id, event);
+        }}
+      >
+        {label}
+      </Button>
+    );
+  });
 
   return (
-    <div role="group" className={mergedClassName} {...restProps}>
-      {React.Children.map(children, (child, i) => {
-        const activityStyles =
-          i === currentStateIndex
-            ? styles['btn--active']
-            : styles[`btn--${state?.[i]}`];
-        const loadingStatus =
-          i === currentStateIndex ? false : state?.[i] === 'loading';
-
-        return React.cloneElement(child, {
-          fullWidth,
-          size,
-          kind: 'secondary',
-          loading: loadingStatus,
-          type: 'button',
-          onClick: (event: any) => {
-            handleClick(i, event);
-            if (child.props.onClick) {
-              child.props.onClick(event);
-            }
-          },
-          className: cx(
-            styles['btn'],
-            styles[`btn--${size as string}`],
-            activityStyles
-          ),
-        });
-      })}
+    <div role="group" className={mergedClassName}>
+      {buttonSet}
     </div>
   );
 };

@@ -6,40 +6,37 @@ import {
   SegmentedControlProps,
 } from './SegmentedControl';
 
-import { Button } from '../Button';
-
 export default {
   title: 'Components/Segmented Control',
   component: SegmentedControlComponent,
 } as ComponentMeta<typeof SegmentedControlComponent>;
 
 export const controlled = (args: SegmentedControlProps): React.ReactElement => {
-  return (
-    <SegmentedControlComponent {...args}>
-      <Button>First option</Button>
-      <Button>Second option</Button>
-      <Button>Third option</Button>
-      <Button>Fourth option</Button>
-    </SegmentedControlComponent>
-  );
+  return <SegmentedControlComponent {...args} />;
 };
 
 controlled.args = {
-  currentIndex: 1,
-  state: { 0: 'loading', 2: 'enabled', 3: 'disabled' },
+  buttons: [
+    { id: 'one', label: 'one', state: ['loading', 'disabled'] },
+    { id: 'two', label: 'two', state: 'disabled' },
+    { id: 'three', label: 'three' },
+    { id: 'fourth', label: 'fourth' },
+  ],
+  initialId: 'fourth',
 };
 
 export const uncontrolledWithInitialSelection = (
   args: SegmentedControlProps
 ): React.ReactElement => {
-  return (
-    <SegmentedControlComponent {...args}>
-      <Button>First option</Button>
-      <Button>Second option</Button>
-    </SegmentedControlComponent>
-  );
+  return <SegmentedControlComponent {...args} />;
 };
 
 uncontrolledWithInitialSelection.args = {
-  initialIndex: 1,
+  buttons: [
+    { id: 'one', label: 'one' },
+    { id: 'two', label: 'two', state: 'disabled' },
+    { id: 'three', label: 'three' },
+    { id: 'fourth', label: 'fourth' },
+  ],
+  currentId: 'one',
 };
