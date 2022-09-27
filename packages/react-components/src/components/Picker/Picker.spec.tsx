@@ -3,7 +3,7 @@ import { render, vi } from 'test-utils';
 import userEvent from '@testing-library/user-event';
 import noop from '../../utils/noop';
 import { IPickerProps, Picker, PickerType } from './Picker';
-import { defaultOptions } from './constants';
+import { defaultOptions, SELECT_ALL_OPTION_KEY } from './constants';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 window.HTMLElement.prototype.scrollIntoView = () => {};
@@ -115,7 +115,11 @@ describe('<Picker> component', () => {
     const { getByText } = renderComponent({
       ...defaultProps,
       options: [
-        { key: 'select-all', name: 'Select all', selectAllOption: true },
+        {
+          key: SELECT_ALL_OPTION_KEY,
+          name: 'Select all',
+          selectAllOption: true,
+        },
         { key: 'groupA', name: 'Group A title header', groupHeader: true },
         { key: 'one', name: 'Option one' },
         { key: 'two', name: 'Option two', disabled: true },

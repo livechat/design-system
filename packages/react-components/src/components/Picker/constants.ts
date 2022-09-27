@@ -19,3 +19,5 @@ export const defaultExtendedOptions = [
   { key: 'six', name: 'Option six', disabled: true },
   { key: 'seven', name: 'Option seven', disabled: true },
 ];
+
+export const SELECT_ALL_OPTION_KEY = 'select-all';

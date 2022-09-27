@@ -9,6 +9,7 @@ import { KeyCodes } from '../../utils/keyCodes';
 
 import styles from './Picker.module.scss';
 import { TriggerBody } from './TriggerBody';
+import { SELECT_ALL_OPTION_KEY } from './constants';
 
 const baseClass = 'picker';
 
@@ -115,7 +116,7 @@ export const Picker: React.FC<IPickerProps> = ({
   };
 
   const isItemSelectable = (item: IPickerListItem) =>
-    !item.disabled && !item.groupHeader && item.key !== 'select-all';
+    !item.disabled && !item.groupHeader && item.key !== SELECT_ALL_OPTION_KEY;
 
   const handleSelectAll = () => {
     setIsListOpen(false);
@@ -144,9 +145,6 @@ export const Picker: React.FC<IPickerProps> = ({
     onSelect(newSelectedItems);
   };
 
-  const getSelectedItemsKeys = (items: IPickerListItem[]) =>
-    items ? items.map((item) => item.key) : null;
-
   const items = React.useMemo<IPickerListItem[]>(() => {
     if (!searchPhrase) {
       return options;
@@ -162,6 +160,14 @@ export const Picker: React.FC<IPickerProps> = ({
       return itemName.includes(search);
     });
   }, [searchPhrase]);
+
+  const selectedItemsKeys = React.useMemo(() => {
+    if (!selected) {
+      return null;
+    }
+
+    return selected.map((item) => item.key);
+  }, [selected]);
 
   return (
     <div ref={triggerRef} className={mergedClassNames}>
@@ -198,7 +204,7 @@ export const Picker: React.FC<IPickerProps> = ({
           />
         </Trigger>
         <PickerList
-          selectedItemsKeys={selected ? getSelectedItemsKeys(selected) : null}
+          selectedItemsKeys={selectedItemsKeys}
           items={items}
           isOpen={isListOpen}
           emptyStateText={noSearchResultText}
