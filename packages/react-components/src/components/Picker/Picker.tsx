@@ -98,19 +98,26 @@ export const Picker: React.FC<IPickerProps> = ({
       return onSelect([item]);
     }
 
-    const currentSelectedItems = selected;
+    const selectedItemKey = item.key;
+    const currentSelectedItemsKeys = selectedItemsKeys;
 
-    if (!currentSelectedItems) {
+    if (!currentSelectedItemsKeys) {
       return onSelect([item]);
     }
 
-    const newSelectedItems = currentSelectedItems.includes(item)
-      ? currentSelectedItems.filter((selectedItem) => selectedItem !== item)
-      : currentSelectedItems.concat(item);
+    const newSelectedItemsKeys = currentSelectedItemsKeys.includes(
+      selectedItemKey
+    )
+      ? currentSelectedItemsKeys.filter((key) => key !== selectedItemKey)
+      : currentSelectedItemsKeys.concat(selectedItemKey);
 
-    if (newSelectedItems?.length === 0) {
+    if (newSelectedItemsKeys?.length === 0) {
       return onSelect(null);
     }
+
+    const newSelectedItems = items.filter((item) =>
+      newSelectedItemsKeys.includes(item.key)
+    );
 
     onSelect(newSelectedItems);
   };
