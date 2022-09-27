@@ -107,6 +107,10 @@ export const Picker: React.FC<IPickerProps> = ({
       ? currentSelectedItems.filter((selectedItem) => selectedItem !== item)
       : currentSelectedItems.concat(item);
 
+    if (newSelectedItems?.length === 0) {
+      return onSelect(null);
+    }
+
     onSelect(newSelectedItems);
   };
 
