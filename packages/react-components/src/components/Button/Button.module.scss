@@ -28,7 +28,7 @@ $base-class: 'btn';
   }
 
   &:focus {
-    box-shadow: 0 0 1px 2px rgb(var(--color-action-default-rgb) 0.7);
+    filter: drop-shadow(0 0 1px 2px rgb(var(--color-action-default-rgb) 0.7));
   }
 
   &--disabled {
