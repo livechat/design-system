@@ -16,17 +16,17 @@ describe('<Input> component', () => {
   });
 
   it('should allow for compact size', () => {
-    const { container } = render(<Input size="compact" />);
+    const { container } = render(<Input kind="compact" />);
     expect(container.firstChild).toHaveClass(styles['input--compact']);
   });
 
   it('should allow for medium size', () => {
-    const { container } = render(<Input size="medium" />);
+    const { container } = render(<Input kind="medium" />);
     expect(container.firstChild).toHaveClass(styles['input--medium']);
   });
 
   it('should allow for large size', () => {
-    const { container } = render(<Input size="large" />);
+    const { container } = render(<Input kind="large" />);
     expect(container.firstChild).toHaveClass(styles['input--large']);
   });
 
@@ -55,12 +55,12 @@ describe('<Input> component', () => {
   });
 
   it('should have password type input if kind "password" is set', () => {
-    const { getByTestId } = render(<Input kind="password" />);
+    const { getByTestId } = render(<Input type="password" />);
     expect(getByTestId('input')).toHaveAttribute('type', 'password');
   });
 
   it('should change the input type if show password icon is clicked', () => {
-    const { getByTestId, getByRole } = render(<Input kind="password" />);
+    const { getByTestId, getByRole } = render(<Input type="password" />);
     const input = getByTestId('input');
     const button = getByRole('button');
 

@@ -22,20 +22,20 @@ export const Default: Story<InputProps> = (args: InputProps) => (
 
 Default.storyName = 'Input';
 Default.args = {
-  size: 'medium',
+  kind: 'medium',
   placeholder: 'Placeholder text',
 };
 
 export const Sizes = (): JSX.Element => (
   <>
     <StoryDescriptor title="Compact">
-      <Input size="compact" placeholder={placeholderText} />
+      <Input kind="compact" placeholder={placeholderText} />
     </StoryDescriptor>
     <StoryDescriptor title="Medium">
-      <Input size="medium" placeholder={placeholderText} />
+      <Input kind="medium" placeholder={placeholderText} />
     </StoryDescriptor>
     <StoryDescriptor title="Large">
-      <Input size="large" placeholder={placeholderText} />
+      <Input kind="large" placeholder={placeholderText} />
     </StoryDescriptor>
   </>
 );
@@ -51,13 +51,13 @@ export const States = (): JSX.Element => (
   </>
 );
 
-export const Kinds = (): JSX.Element => (
+export const Types = (): JSX.Element => (
   <>
     <StoryDescriptor title="Text">
-      <Input kind="text" placeholder={placeholderText} />
+      <Input type="text" placeholder={placeholderText} />
     </StoryDescriptor>
     <StoryDescriptor title="Password">
-      <Input kind="password" placeholder={placeholderText} />
+      <Input type="password" placeholder={placeholderText} />
     </StoryDescriptor>
   </>
 );

@@ -12,11 +12,11 @@ import { Icon } from '../Icon';
 
 type InputSize = 'compact' | 'medium' | 'large';
 
-export interface InputProps extends React.HTMLAttributes<HTMLInputElement> {
-  size?: InputSize | undefined;
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  kind?: InputSize | undefined;
   error?: boolean | undefined;
   disabled?: boolean | undefined;
-  kind?: 'text' | 'password';
   icon?: React.ReactElement;
 }
 
@@ -25,10 +25,9 @@ const baseClass = 'input';
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
-      size = 'medium',
+      kind = 'medium',
       error = false,
       disabled,
-      kind = 'text',
       icon = null,
       className,
       ...inputProps
@@ -37,11 +36,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const [isFocused, setIsFocused] = React.useState(false);
     const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
-
+    const { type } = inputProps;
     const mergedClassNames = cx(
       className,
       styles[baseClass],
-      styles[`${baseClass}--${size}`],
+      styles[`${baseClass}--${kind}`],
       {
         [styles[`${baseClass}--disabled`]]: disabled,
         [styles[`${baseClass}--focused`]]: isFocused,
@@ -58,15 +57,15 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             }),
           })}
         <input
+          {...inputProps}
           data-testid="input"
-          type={!isPasswordVisible ? kind : 'text'}
           ref={ref}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           disabled={disabled}
-          {...inputProps}
+          type={type && !isPasswordVisible ? type : 'text'}
         />
-        {kind === 'password' && (
+        {type === 'password' && (
           <Button
             disabled={disabled}
             kind="plain"
