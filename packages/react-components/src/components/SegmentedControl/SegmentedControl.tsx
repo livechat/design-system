@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cx from 'clsx';
 
-import { Button } from '../Button';
+import { Button, ButtonProps } from '../Button';
 
 import styles from './SegmentedControl.module.scss';
 
@@ -9,7 +9,7 @@ import noop from '../../utils/noop';
 
 const baseClass = 'segmented-control';
 
-export type ButtonState = 'disabled' | 'loading';
+export type ButtonState = Pick<ButtonProps, 'disabled' | 'loading'>;
 
 type ButtonElement = {
   id: string;
@@ -56,8 +56,12 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
   const buttonSet = buttons.map(({ id, label, state }) => {
     const activityStyles = id === currentStateId ? styles['btn--active'] : '';
     const loadingStatus =
-      id === currentStateId ? false : state?.includes('loading');
-    const disabledStatus = state?.includes('disabled');
+      id === currentStateId
+        ? false
+        : (state as Array<ButtonState>)?.includes('loading' as ButtonState);
+    const disabledStatus = (state as Array<ButtonState>)?.includes(
+      'disabled' as ButtonState
+    );
 
     return (
       <Button
