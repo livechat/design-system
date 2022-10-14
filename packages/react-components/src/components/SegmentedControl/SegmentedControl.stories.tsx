@@ -1,21 +1,19 @@
 import * as React from 'react';
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
 
-import {
-  SegmentedControl as SegmentedControlComponent,
-  SegmentedControlProps,
-} from './SegmentedControl';
+import { SegmentedControl, SegmentedControlProps } from './SegmentedControl';
 
 export default {
   title: 'Components/Segmented Control',
-  component: SegmentedControlComponent,
-} as ComponentMeta<typeof SegmentedControlComponent>;
+  component: SegmentedControl,
+} as ComponentMeta<typeof SegmentedControl>;
 
-export const controlled = (args: SegmentedControlProps): React.ReactElement => {
-  return <SegmentedControlComponent {...args} />;
-};
+export const Default: Story<SegmentedControlProps> = (
+  args: SegmentedControlProps
+) => <SegmentedControl {...args} />;
 
-controlled.args = {
+Default.storyName = 'Controlled';
+Default.args = {
   buttons: [
     { id: 'one', label: 'one', state: ['loading', 'disabled'] },
     { id: 'two', label: 'two', state: ['disabled'] },
@@ -25,13 +23,12 @@ controlled.args = {
   initialId: 'fourth',
 };
 
-export const uncontrolledWithInitialSelection = (
+export const Uncontrolled: Story<SegmentedControlProps> = (
   args: SegmentedControlProps
-): React.ReactElement => {
-  return <SegmentedControlComponent {...args} />;
-};
+) => <SegmentedControl {...args} />;
 
-uncontrolledWithInitialSelection.args = {
+Uncontrolled.storyName = 'Uncontrolled With Initial Selection';
+Uncontrolled.args = {
   buttons: [
     { id: 'one', label: 'one' },
     { id: 'two', label: 'two', state: ['disabled'] },
