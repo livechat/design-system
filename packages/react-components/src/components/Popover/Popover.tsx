@@ -15,6 +15,7 @@ export interface IPopoverProps {
   className?: string;
   placement?: Placement;
   isVisible?: boolean;
+  flipOptions?: Parameters<typeof flip>[0];
   triggerRenderer: () => React.ReactNode;
 }
 
@@ -24,6 +25,7 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
     children,
     className,
     placement,
+    flipOptions,
     isVisible = false,
   } = props;
   const [visible, setVisibility] = React.useState(false);
@@ -38,7 +40,7 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
     update,
     placement: updatedPlacement,
   } = useFloating({
-    middleware: [offset(4), flip()],
+    middleware: [offset(4), flip(flipOptions)],
     placement: placement,
   });
 

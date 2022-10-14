@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { Placement } from '@floating-ui/react-dom';
-
 import { Button } from '../Button';
 import { Popover as PopoverComponent } from './Popover';
 
@@ -31,6 +30,17 @@ const placements = [
   'bottom-end',
   'left-end',
 ];
+
+const provideFallbackPlacement = (flipOptions: Placement) => {
+  const hasNoFallback = (flipOptions as string) === 'default';
+  const hasNotChosen = Object.keys(flipOptions).length === 0;
+
+  return hasNoFallback || hasNotChosen
+    ? undefined
+    : { fallbackPlacements: [flipOptions] };
+};
+
+const placementsWithUnselect = ['default', ...placements];
 
 const OpenChat = () => {
   return (
@@ -67,14 +77,17 @@ const BanCustomer = () => {
 export const Popover = ({
   placement,
   isVisible,
+  flipOptions,
 }: {
   placement: Placement;
   isVisible: boolean;
+  flipOptions: Placement;
 }): React.ReactElement => (
   <div className="wrap">
     <PopoverComponent
       placement={placement}
       isVisible={isVisible}
+      flipOptions={provideFallbackPlacement(flipOptions)}
       triggerRenderer={() => (
         <Button icon={<Icon source={DropDown}></Icon>} iconPosition={'right'}>
           Open Popover
@@ -112,43 +125,50 @@ export const Popover = ({
 
 Popover.args = {
   placement: 'bottom-start',
+  flipOptions: {},
   isVisible: true,
 };
 
 export const Actions = ({
   placement,
   isVisible,
+  flipOptions,
 }: {
   placement: Placement;
   isVisible: boolean;
-}): React.ReactElement => (
-  <div style={{ minHeight: '200px' }}>
-    <PopoverComponent
-      placement={placement}
-      isVisible={isVisible}
-      triggerRenderer={() => (
-        <Button icon={<Icon source={DropDown}></Icon>} iconPosition={'right'}>
-          Actions
-        </Button>
-      )}
-    >
-      <div
-        style={{
-          minWidth: '200px',
-        }}
+  flipOptions: Placement;
+}): React.ReactElement => {
+  return (
+    <div style={{ minHeight: '200px' }}>
+      <PopoverComponent
+        placement={placement}
+        isVisible={isVisible}
+        flipOptions={provideFallbackPlacement(flipOptions)}
+        triggerRenderer={() => (
+          <Button icon={<Icon source={DropDown}></Icon>} iconPosition={'right'}>
+            Actions
+          </Button>
+        )}
       >
-        <OpenChat />
-        <CreateTicket />
-        <SendTranscript />
-        <BanCustomer />
-      </div>
-    </PopoverComponent>
-  </div>
-);
+        <div
+          style={{
+            minWidth: '200px',
+          }}
+        >
+          <OpenChat />
+          <CreateTicket />
+          <SendTranscript />
+          <BanCustomer />
+        </div>
+      </PopoverComponent>
+    </div>
+  );
+};
 
 Actions.args = {
   placement: 'bottom-start',
   isVisible: true,
+  flipOptions: {},
 };
 
 export default {
@@ -161,6 +181,14 @@ export default {
         type: 'select',
         labels: placements,
       },
+    },
+    flipOptions: {
+      options: placementsWithUnselect,
+      control: {
+        type: 'select',
+        labels: placementsWithUnselect,
+      },
+      name: 'flipOptions.fallbackPlacements',
     },
   },
 } as ComponentMeta<typeof Popover>;
