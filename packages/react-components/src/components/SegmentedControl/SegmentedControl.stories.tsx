@@ -18,7 +18,7 @@ export const controlled = (args: SegmentedControlProps): React.ReactElement => {
 controlled.args = {
   buttons: [
     { id: 'one', label: 'one', state: ['loading', 'disabled'] },
-    { id: 'two', label: 'two', state: 'disabled' },
+    { id: 'two', label: 'two', state: ['disabled'] },
     { id: 'three', label: 'three' },
     { id: 'fourth', label: 'fourth' },
   ],
@@ -34,7 +34,7 @@ export const uncontrolledWithInitialSelection = (
 uncontrolledWithInitialSelection.args = {
   buttons: [
     { id: 'one', label: 'one' },
-    { id: 'two', label: 'two', state: 'disabled' },
+    { id: 'two', label: 'two', state: ['disabled'] },
     { id: 'three', label: 'three' },
     { id: 'fourth', label: 'fourth' },
   ],

@@ -9,12 +9,12 @@ import noop from '../../utils/noop';
 
 const baseClass = 'segmented-control';
 
-export type ButtonState = Pick<ButtonProps, 'disabled' | 'loading'>;
+type ButtonState = Pick<ButtonProps, 'label' & 'id' & 'disabled' & 'loading'>;
 
 type ButtonElement = {
   id: string;
   label: string;
-  state?: ButtonState | ButtonState[];
+  state?: ButtonState[];
 };
 
 export interface SegmentedControlProps
@@ -56,12 +56,8 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
   const buttonSet = buttons.map(({ id, label, state }) => {
     const activityStyles = id === currentStateId ? styles['btn--active'] : '';
     const loadingStatus =
-      id === currentStateId
-        ? false
-        : (state as Array<ButtonState>)?.includes('loading' as ButtonState);
-    const disabledStatus = (state as Array<ButtonState>)?.includes(
-      'disabled' as ButtonState
-    );
+      id === currentStateId ? false : state?.includes('loading');
+    const disabledStatus = state?.includes('disabled');
 
     return (
       <Button
