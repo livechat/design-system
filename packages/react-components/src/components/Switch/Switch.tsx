@@ -14,6 +14,7 @@ export type SwitchSize = 'compact' | 'medium' | 'large';
 export type SwitchState = 'regular' | 'loading' | 'locked';
 
 export interface SwitchProps {
+  ariaLabel?: string;
   className?: string;
   defaultOn?: boolean;
   disabled?: boolean;
@@ -23,7 +24,6 @@ export interface SwitchProps {
   onChange?(e: React.FormEvent, value: boolean): void;
   size?: SwitchSize;
   state?: SwitchState;
-  ariaLabel?: string;
 }
 
 export const Switch: React.FC<SwitchProps> = ({
@@ -35,8 +35,8 @@ export const Switch: React.FC<SwitchProps> = ({
   onChange = noop,
   size = 'large',
   state = 'regular',
-  ariaLabel,
   innerRef,
+  ariaLabel,
   ...props
 }) => {
   const [checked, setChecked] = React.useState(() =>
