@@ -14,6 +14,7 @@ export type SwitchSize = 'compact' | 'medium' | 'large';
 export type SwitchState = 'regular' | 'loading' | 'locked';
 
 export interface SwitchProps {
+  ariaLabel?: string;
   className?: string;
   defaultOn?: boolean;
   disabled?: boolean;
@@ -35,6 +36,7 @@ export const Switch: React.FC<SwitchProps> = ({
   size = 'large',
   state = 'regular',
   innerRef,
+  ariaLabel,
   ...props
 }) => {
   const [checked, setChecked] = React.useState(() =>
@@ -82,7 +84,7 @@ export const Switch: React.FC<SwitchProps> = ({
         name={name}
         ref={innerRef}
         disabled={shouldBehaveAsDisabled}
-        test-id="foo"
+        aria-label={ariaLabel}
         {...props}
       />
       <span className={styles[`${baseClass}__container`]}>
