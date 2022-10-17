@@ -62,4 +62,12 @@ describe('Switch', () => {
     expect(checkbox.disabled).toEqual(true);
     expect(lockIcon).toBeVisible();
   });
+
+  it('should allow setting accessible name for input element', () => {
+    const label = 'Hello world';
+    const { getByRole } = render(<Switch on={true} ariaLabel={label} />);
+
+    const checkbox = getByRole('checkbox', { name: label });
+    expect(checkbox).toHaveAccessibleName(label);
+  });
 });

@@ -23,6 +23,7 @@ export interface SwitchProps {
   onChange?(e: React.FormEvent, value: boolean): void;
   size?: SwitchSize;
   state?: SwitchState;
+  ariaLabel?: string;
 }
 
 export const Switch: React.FC<SwitchProps> = ({
@@ -34,6 +35,7 @@ export const Switch: React.FC<SwitchProps> = ({
   onChange = noop,
   size = 'large',
   state = 'regular',
+  ariaLabel,
   innerRef,
   ...props
 }) => {
@@ -82,7 +84,7 @@ export const Switch: React.FC<SwitchProps> = ({
         name={name}
         ref={innerRef}
         disabled={shouldBehaveAsDisabled}
-        test-id="foo"
+        aria-label={ariaLabel}
         {...props}
       />
       <span className={styles[`${baseClass}__container`]}>
