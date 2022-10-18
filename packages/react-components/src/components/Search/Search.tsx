@@ -26,6 +26,7 @@ export interface ISearchInputProps {
   placeholder?: string;
   size?: SearchSize;
   value?: string;
+  className?: string;
   onChange: (value: string) => void;
 }
 
@@ -36,6 +37,7 @@ export const SearchInput: React.FC<ISearchInputProps> = ({
   placeholder = 'Search ...',
   size = SearchSize.Medium,
   value,
+  className,
   onChange,
 }) => {
   const [searchValue, setSearchValue] = React.useState<string>(value || '');
@@ -44,6 +46,7 @@ export const SearchInput: React.FC<ISearchInputProps> = ({
   const isCloseIconVisible = !!searchValue && !isDisabled && !isLoading;
 
   const mergedClassNames = cx(
+    className,
     styles[`${inputBaseClass}`],
     styles[`${inputBaseClass}--${size}`],
     (isDisabled || isLoading) && styles[`${inputBaseClass}--disabled`],
