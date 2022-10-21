@@ -15,8 +15,8 @@ export const Default: Story<SegmentedControlProps> = (
 Default.storyName = 'Controlled';
 Default.args = {
   buttons: [
-    { id: 'one', label: 'one', state: ['loading', 'disabled'] },
-    { id: 'two', label: 'two', state: ['disabled'] },
+    { id: 'one', label: 'one', loading: true, disabled: true },
+    { id: 'two', label: 'two', disabled: true },
     { id: 'three', label: 'three' },
     { id: 'fourth', label: 'fourth' },
   ],
@@ -31,7 +31,7 @@ Uncontrolled.storyName = 'Uncontrolled With Initial Selection';
 Uncontrolled.args = {
   buttons: [
     { id: 'one', label: 'one' },
-    { id: 'two', label: 'two', state: ['disabled'] },
+    { id: 'two', label: 'two', disabled: true },
     { id: 'three', label: 'three' },
     { id: 'fourth', label: 'fourth' },
   ],

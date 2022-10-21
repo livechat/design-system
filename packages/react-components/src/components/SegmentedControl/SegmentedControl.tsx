@@ -9,13 +9,10 @@ import noop from '../../utils/noop';
 
 const baseClass = 'segmented-control';
 
-type ButtonState = Pick<ButtonProps, 'label' & 'id' & 'disabled' & 'loading'>;
-
 type ButtonElement = {
   id: string;
   label: string;
-  state?: ButtonState[];
-};
+} & Pick<ButtonProps, 'disabled' | 'loading'>;
 
 export interface SegmentedControlProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -53,18 +50,16 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
 
     onButtonClick(id, event);
   };
-  const buttonSet = buttons.map(({ id, label, state }) => {
+  const buttonSet = buttons.map(({ id, label, loading, disabled }) => {
     const activityStyles = id === currentStateId ? styles['btn--active'] : '';
-    const loadingStatus =
-      id === currentStateId ? false : state?.includes('loading');
-    const disabledStatus = state?.includes('disabled');
+    const loadingStatus = id === currentStateId ? false : loading;
 
     return (
       <Button
         key={id}
         fullWidth={fullWidth}
         loading={loadingStatus}
-        disabled={disabledStatus}
+        disabled={disabled}
         kind="secondary"
         className={cx(styles['btn'], styles[`btn--${size}`], activityStyles)}
         onClick={(event: React.MouseEvent<HTMLElement>) => {
