@@ -3,9 +3,20 @@ import { ComponentMeta, Story } from '@storybook/react';
 
 import { SegmentedControl, SegmentedControlProps } from './SegmentedControl';
 
+const buttonSizes = ['compact', 'medium', 'large'];
+
 export default {
   title: 'Components/Segmented Control',
   component: SegmentedControl,
+  argTypes: {
+    size: {
+      options: buttonSizes,
+      control: {
+        type: 'select',
+        labels: buttonSizes,
+      },
+    },
+  },
 } as ComponentMeta<typeof SegmentedControl>;
 
 export const Default: Story<SegmentedControlProps> = (

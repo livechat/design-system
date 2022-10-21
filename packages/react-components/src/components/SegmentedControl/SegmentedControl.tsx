@@ -9,6 +9,8 @@ import noop from '../../utils/noop';
 
 const baseClass = 'segmented-control';
 
+export type ButtonSize = 'compact' | 'medium' | 'large';
+
 type ButtonElement = {
   id: string;
   label: string;
@@ -19,7 +21,7 @@ export interface SegmentedControlProps
   className?: string;
   buttons: ButtonElement[];
   fullWidth?: boolean;
-  size?: string;
+  size?: ButtonSize;
   initialId?: string;
   currentId?: string;
   onButtonClick?: (id: string, event: React.MouseEvent<HTMLElement>) => void;
