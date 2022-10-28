@@ -14,9 +14,9 @@ type InputSize = 'compact' | 'medium' | 'large';
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  kind?: InputSize | undefined;
-  error?: boolean | undefined;
-  disabled?: boolean | undefined;
+  kind?: InputSize;
+  error?: boolean;
+  disabled?: boolean;
   icon?: React.ReactElement;
 }
 
