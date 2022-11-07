@@ -44,6 +44,9 @@ export const Trigger: React.FC<ITriggerProps> = ({
     styles[baseClass],
     styles[`${baseClass}--${size}`],
     isMultiSelect && styles[`${baseClass}--multi-select`],
+    isMultiSelect &&
+      isItemSelected &&
+      styles[`${baseClass}--multi-select--with-items`],
     isDisabled && styles[`${baseClass}--disabled`],
     isOpen && styles[`${baseClass}--focused`],
     isError && styles[`${baseClass}--error`]
@@ -93,21 +96,28 @@ export const Trigger: React.FC<ITriggerProps> = ({
       >
         {children}
       </div>
-      {isItemSelected && !isDisabled && !isRequired && (
-        <div
-          data-testid={`${baseClass}__clear-icon`}
-          className={styles[`${baseClass}__clear-icon`]}
-          onClick={handleOnClearClick}
-        >
-          <Icon kind="primary" size="small" source={Close} />
-        </div>
-      )}
-      <Icon
-        className={styles[`${baseClass}__chevron-icon`]}
-        source={!isOpen ? ChevronDown : ChevronUp}
-        size="large"
-        disabled={isDisabled}
-      />
+      <div
+        className={cx(
+          styles[`${baseClass}__controls`],
+          styles[`${baseClass}__controls--${size}`]
+        )}
+      >
+        {isItemSelected && !isDisabled && !isRequired && (
+          <div
+            data-testid={`${baseClass}__clear-icon`}
+            className={styles[`${baseClass}__clear-icon`]}
+            onClick={handleOnClearClick}
+          >
+            <Icon kind="primary" size="small" source={Close} />
+          </div>
+        )}
+        <Icon
+          className={styles[`${baseClass}__chevron-icon`]}
+          source={!isOpen ? ChevronDown : ChevronUp}
+          size="large"
+          disabled={isDisabled}
+        />
+      </div>
     </div>
   );
 };

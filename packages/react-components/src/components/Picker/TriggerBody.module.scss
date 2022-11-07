@@ -3,11 +3,8 @@ $base-class: 'picker-trigger-body';
 .#{$base-class} {
   display: flex;
   flex-wrap: wrap;
+  gap: 4px;
   justify-content: flex-start;
-
-  &__tag {
-    margin: 0 4px 4px 0;
-  }
 
   &__input {
     align-items: center;
