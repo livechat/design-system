@@ -21,6 +21,7 @@ export interface IPickerListProps {
   items: IPickerListItem[];
   selectedItemsKeys: string[] | null;
   emptyStateText?: string;
+  isMultiSelect?: boolean;
   onClose: () => void;
   onSelect: (item: IPickerListItem) => void;
   onSelectAll: () => void;
@@ -31,6 +32,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   items,
   selectedItemsKeys,
   emptyStateText = 'No results found',
+  isMultiSelect,
   onClose,
   onSelect,
   onSelectAll,
@@ -172,6 +174,10 @@ export const PickerList: React.FC<IPickerListProps> = ({
               {item.name}
             </li>
           );
+        }
+
+        if (item.selectAllOption && !isMultiSelect) {
+          return null;
         }
 
         if (item.selectAllOption) {

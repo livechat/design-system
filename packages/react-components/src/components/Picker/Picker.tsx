@@ -214,6 +214,7 @@ export const Picker: React.FC<IPickerProps> = ({
           selectedItemsKeys={selectedItemsKeys}
           items={items}
           isOpen={isListOpen}
+          isMultiSelect={type === 'multi'}
           emptyStateText={noSearchResultText}
           onClose={handleOnClose}
           onSelect={handleSelect}
