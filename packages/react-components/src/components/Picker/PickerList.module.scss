@@ -15,20 +15,9 @@ $base-class: 'picker-list';
   overflow: scroll;
   padding: 4px 0;
   position: absolute;
-  width: 341px;
+  top: calc(100% + 4px);
+  width: 100%;
   z-index: $stacking-context-level-dropdown;
-
-  &--compact {
-    top: 36px;
-  }
-
-  &--medium {
-    top: 40px;
-  }
-
-  &--large {
-    top: 46px;
-  }
 
   &__no-results {
     align-items: center;
@@ -46,8 +35,7 @@ $base-class: 'picker-list';
     justify-content: space-between;
     padding: 6px 11px;
 
-    &:hover,
-    &[aria-selected='true'] {
+    &:hover {
       background-color: var(--surface-basic-hover);
     }
 
@@ -62,6 +50,10 @@ $base-class: 'picker-list';
         background-color: unset;
         cursor: auto;
       }
+    }
+
+    &--select-all {
+      border-bottom: 1px solid var(--border-subtle);
     }
 
     &__header {

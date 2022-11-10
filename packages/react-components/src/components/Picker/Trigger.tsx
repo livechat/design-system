@@ -20,10 +20,10 @@ export interface ITriggerProps {
   isItemSelected: boolean;
   isOpen: boolean;
   isRequired?: boolean;
+  isMultiSelect?: boolean;
   size?: TriggerSize;
-  onClick: () => void;
-  onClearClick: () => void;
-  onFilter: (text: string) => void;
+  onTrigger: (e: React.MouseEvent | KeyboardEvent) => void;
+  onClear: () => void;
 }
 
 export const Trigger: React.FC<ITriggerProps> = ({
@@ -34,15 +34,19 @@ export const Trigger: React.FC<ITriggerProps> = ({
   isItemSelected,
   isOpen,
   isRequired,
+  isMultiSelect,
   size = 'medium',
-  onClick,
-  onClearClick,
-  onFilter,
+  onTrigger,
+  onClear,
 }) => {
   const triggerRef = React.useRef<HTMLDivElement>(null);
   const mergedClassNames = cx(
     styles[baseClass],
     styles[`${baseClass}--${size}`],
+    isMultiSelect && styles[`${baseClass}--multi-select`],
+    isMultiSelect &&
+      isItemSelected &&
+      styles[`${baseClass}--multi-select--with-items`],
     isDisabled && styles[`${baseClass}--disabled`],
     isOpen && styles[`${baseClass}--focused`],
     isError && styles[`${baseClass}--error`]
@@ -53,7 +57,7 @@ export const Trigger: React.FC<ITriggerProps> = ({
       const isFocused = document.activeElement === triggerRef.current;
 
       if (isFocused && e.key !== KeyCodes.tab) {
-        onClick();
+        onTrigger(e);
       }
     };
 
@@ -68,17 +72,13 @@ export const Trigger: React.FC<ITriggerProps> = ({
     };
   }, [isSearchDisabled]);
 
-  const handleTriggerClick = () => {
-    onClick();
+  const handleTriggerClick = (e: React.MouseEvent) => {
+    onTrigger(e);
   };
 
   const handleOnClearClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    onClearClick();
-  };
-
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onFilter(e.target.value);
+    onClear();
   };
 
   return (
@@ -88,31 +88,36 @@ export const Trigger: React.FC<ITriggerProps> = ({
       onClick={handleTriggerClick}
       tabIndex={0}
     >
-      {isOpen && !isSearchDisabled ? (
-        <input
-          className={styles[`${baseClass}__input`]}
-          placeholder="Select option"
-          onChange={handleOnChange}
-          autoFocus
+      <div
+        className={cx(
+          styles[`${baseClass}__content`],
+          isMultiSelect && styles[`${baseClass}__content--multi-select`]
+        )}
+      >
+        {children}
+      </div>
+      <div
+        className={cx(
+          styles[`${baseClass}__controls`],
+          styles[`${baseClass}__controls--${size}`]
+        )}
+      >
+        {isItemSelected && !isDisabled && !isRequired && (
+          <div
+            data-testid={`${baseClass}__clear-icon`}
+            className={styles[`${baseClass}__clear-icon`]}
+            onClick={handleOnClearClick}
+          >
+            <Icon kind="primary" size="small" source={Close} />
+          </div>
+        )}
+        <Icon
+          className={styles[`${baseClass}__chevron-icon`]}
+          source={!isOpen ? ChevronDown : ChevronUp}
+          size="large"
+          disabled={isDisabled}
         />
-      ) : (
-        <div className={styles[`${baseClass}__text`]}>{children}</div>
-      )}
-      {isItemSelected && !isDisabled && !isRequired && (
-        <div
-          data-testid={`${baseClass}__clear-icon`}
-          className={styles[`${baseClass}__clear-icon`]}
-          onClick={handleOnClearClick}
-        >
-          <Icon kind="link" source={Close} />
-        </div>
-      )}
-      <Icon
-        className={styles[`${baseClass}__chevron-icon`]}
-        source={!isOpen ? ChevronDown : ChevronUp}
-        size="large"
-        disabled={isDisabled}
-      />
+      </div>
     </div>
   );
 };

@@ -5,6 +5,7 @@ $base-class: 'picker';
   color: var(--content-default);
   display: inline-block;
   position: relative;
+  width: 100%;
 
   &__container {
     position: relative;

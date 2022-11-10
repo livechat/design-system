@@ -118,6 +118,7 @@ export const Tag: React.FC<TagProps> = ({
           className={styles[`${baseClass}__remove`]}
         >
           <Icon
+            data-dismiss-icon
             source={Close}
             size="medium"
             customColor={getIconCustomColor()}

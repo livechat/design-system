@@ -1,0 +1,21 @@
+$base-class: 'picker-trigger-body';
+
+.#{$base-class} {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  justify-content: flex-start;
+
+  &__input {
+    align-items: center;
+    background: none;
+    border: 0;
+    color: var(--content-default);
+    display: flex;
+    flex-grow: 2;
+    font-size: 15px;
+    height: 22px;
+    outline: none;
+    padding: 0;
+  }
+}
