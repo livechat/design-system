@@ -92,4 +92,15 @@ describe('<PickerList> component', () => {
 
     expect(getByText('Custom empty state')).toBeVisible();
   });
+
+  it('should display "Select all" option in multiselect mode if this option text is given', () => {
+    const { getByText } = renderComponent({
+      ...defaultProps,
+      isOpen: true,
+      isMultiSelect: true,
+      selectAllOptionText: 'Select all',
+    });
+
+    expect(getByText('Select all')).toBeVisible();
+  });
 });

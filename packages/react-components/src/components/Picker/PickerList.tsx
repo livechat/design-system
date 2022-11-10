@@ -4,6 +4,7 @@ import { Check } from '@livechat/design-system-icons/react/material';
 import { Icon } from '../Icon';
 import styles from './PickerList.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
+import { SELECT_ALL_OPTION_KEY } from './constants';
 
 const baseClass = 'picker-list';
 const itemClassName = `${baseClass}__item`;
@@ -13,7 +14,6 @@ export interface IPickerListItem {
   name: string;
   groupHeader?: boolean;
   disabled?: boolean;
-  selectAllOption?: boolean;
 }
 
 export interface IPickerListProps {
@@ -21,6 +21,7 @@ export interface IPickerListProps {
   items: IPickerListItem[];
   selectedItemsKeys: string[] | null;
   emptyStateText?: string;
+  selectAllOptionText?: string;
   isMultiSelect?: boolean;
   onClose: () => void;
   onSelect: (item: IPickerListItem) => void;
@@ -32,6 +33,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   items,
   selectedItemsKeys,
   emptyStateText = 'No results found',
+  selectAllOptionText,
   isMultiSelect,
   onClose,
   onSelect,
@@ -73,7 +75,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
     if (e.key === KeyCodes.enter && !items[indexRef.current].disabled) {
       e.preventDefault();
 
-      if (items[indexRef.current]?.selectAllOption) {
+      if (items[indexRef.current].key === SELECT_ALL_OPTION_KEY) {
         return onSelectAll();
       }
 
@@ -153,6 +155,33 @@ export const PickerList: React.FC<IPickerListProps> = ({
     return selectedItemsKeys.includes(key);
   };
 
+  const getSelectAllOption = () => {
+    if (!isMultiSelect || (isMultiSelect && !selectAllOptionText)) {
+      return null;
+    }
+
+    return (
+      <li
+        ref={(element) => {
+          if (currentItemKey === SELECT_ALL_OPTION_KEY) {
+            element?.scrollIntoView({ block: 'nearest' });
+          }
+        }}
+        role="option"
+        aria-current={currentItemKey === SELECT_ALL_OPTION_KEY}
+        id={SELECT_ALL_OPTION_KEY}
+        key={SELECT_ALL_OPTION_KEY}
+        className={cx(
+          styles[itemClassName],
+          styles[`${itemClassName}--select-all`]
+        )}
+        onClick={handleOnSelectAllClick}
+      >
+        {selectAllOptionText}
+      </li>
+    );
+  };
+
   if (!isOpen) {
     return null;
   }
@@ -163,6 +192,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
   return (
     <ul ref={listRef} className={mergedClassNames} role="listbox" tabIndex={-1}>
+      {getSelectAllOption()}
       {items.map((item) => {
         if (item.groupHeader) {
           return (
@@ -170,33 +200,6 @@ export const PickerList: React.FC<IPickerListProps> = ({
               role="option"
               key={item.key}
               className={styles[`${itemClassName}__header`]}
-            >
-              {item.name}
-            </li>
-          );
-        }
-
-        if (item.selectAllOption && !isMultiSelect) {
-          return null;
-        }
-
-        if (item.selectAllOption) {
-          return (
-            <li
-              ref={(element) => {
-                if (currentItemKey === item.key) {
-                  element?.scrollIntoView({ block: 'nearest' });
-                }
-              }}
-              role="option"
-              aria-current={currentItemKey === item.key}
-              id={item.key}
-              key={item.key}
-              className={cx(
-                styles[itemClassName],
-                styles[`${itemClassName}--select-all`]
-              )}
-              onClick={handleOnSelectAllClick}
             >
               {item.name}
             </li>

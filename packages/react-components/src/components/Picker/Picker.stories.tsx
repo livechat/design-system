@@ -2,11 +2,7 @@ import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
 
 import { IPickerProps, Picker as PickerComponent } from './Picker';
-import {
-  defaultExtendedOptions,
-  defaultOptions,
-  SELECT_ALL_OPTION_KEY,
-} from './constants';
+import { defaultExtendedOptions, defaultOptions } from './constants';
 import { IPickerListItem } from './PickerList';
 
 export default {
@@ -79,10 +75,8 @@ PickerWithSelectedOption.args = {
 export const PickerInMultiselectMode = StoryTemplate.bind({});
 PickerInMultiselectMode.args = {
   type: 'multi',
-  options: [
-    { key: SELECT_ALL_OPTION_KEY, name: 'Select all', selectAllOption: true },
-    ...defaultExtendedOptions,
-  ],
+  options: defaultExtendedOptions,
+  selectAllOptionText: 'Select all',
 };
 
 export const PickerInMultiselectModeWithSelectedOptions = StoryTemplate.bind(
@@ -94,8 +88,6 @@ PickerInMultiselectModeWithSelectedOptions.args = {
     { key: 'four', name: 'Option four' },
   ],
   type: 'multi',
-  options: [
-    { key: SELECT_ALL_OPTION_KEY, name: 'Select all', selectAllOption: true },
-    ...defaultExtendedOptions,
-  ],
+  options: defaultExtendedOptions,
+  selectAllOptionText: 'Select all',
 };

@@ -115,11 +115,6 @@ describe('<Picker> component', () => {
     const { getByText } = renderComponent({
       ...defaultProps,
       options: [
-        {
-          key: SELECT_ALL_OPTION_KEY,
-          name: 'Select all',
-          selectAllOption: true,
-        },
         { key: 'groupA', name: 'Group A title header', groupHeader: true },
         { key: 'one', name: 'Option one' },
         { key: 'two', name: 'Option two', disabled: true },
@@ -130,6 +125,7 @@ describe('<Picker> component', () => {
       ],
       type: 'multi',
       onSelect,
+      selectAllOptionText: 'Select all',
     });
 
     userEvent.click(getByText('Select option'));

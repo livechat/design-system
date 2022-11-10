@@ -26,6 +26,7 @@ export interface IPickerProps {
   placeholder?: string;
   isRequired?: boolean;
   noSearchResultText?: string;
+  selectAllOptionText?: string;
   type?: PickerType;
   searchDisabled?: boolean;
   onSelect: (selectedItems: IPickerListItem[] | null) => void;
@@ -42,6 +43,7 @@ export const Picker: React.FC<IPickerProps> = ({
   placeholder = 'Select option',
   isRequired,
   noSearchResultText = 'No results found',
+  selectAllOptionText,
   type = 'single',
   searchDisabled = false,
   onSelect,
@@ -216,6 +218,7 @@ export const Picker: React.FC<IPickerProps> = ({
           isOpen={isListOpen}
           isMultiSelect={type === 'multi'}
           emptyStateText={noSearchResultText}
+          selectAllOptionText={selectAllOptionText}
           onClose={handleOnClose}
           onSelect={handleSelect}
           onSelectAll={handleSelectAll}
