@@ -14,7 +14,7 @@ type InputSize = 'compact' | 'medium' | 'large';
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  kind?: InputSize;
+  wrapperSize?: InputSize;
   error?: boolean;
   disabled?: boolean;
   icon?: React.ReactElement;
@@ -25,7 +25,7 @@ const baseClass = 'input';
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
-      kind = 'medium',
+      wrapperSize = 'medium',
       error = false,
       disabled,
       icon = null,
@@ -40,7 +40,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const mergedClassNames = cx(
       className,
       styles[baseClass],
-      styles[`${baseClass}--${kind}`],
+      styles[`${baseClass}--${wrapperSize}`],
       {
         [styles[`${baseClass}--disabled`]]: disabled,
         [styles[`${baseClass}--focused`]]: isFocused,

@@ -16,17 +16,17 @@ describe('<Input> component', () => {
   });
 
   it('should allow for compact size', () => {
-    const { container } = render(<Input kind="compact" />);
+    const { container } = render(<Input wrapperSize="compact" />);
     expect(container.firstChild).toHaveClass(styles['input--compact']);
   });
 
   it('should allow for medium size', () => {
-    const { container } = render(<Input kind="medium" />);
+    const { container } = render(<Input wrapperSize="medium" />);
     expect(container.firstChild).toHaveClass(styles['input--medium']);
   });
 
   it('should allow for large size', () => {
-    const { container } = render(<Input kind="large" />);
+    const { container } = render(<Input wrapperSize="large" />);
     expect(container.firstChild).toHaveClass(styles['input--large']);
   });
 

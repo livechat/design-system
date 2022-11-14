@@ -22,20 +22,20 @@ export const Default: Story<InputProps> = (args: InputProps) => (
 
 Default.storyName = 'Input';
 Default.args = {
-  kind: 'medium',
+  wrapperSize: 'medium',
   placeholder: 'Placeholder text',
 };
 
 export const Sizes = (): JSX.Element => (
   <>
     <StoryDescriptor title="Compact">
-      <Input kind="compact" placeholder={placeholderText} />
+      <Input wrapperSize="compact" placeholder={placeholderText} />
     </StoryDescriptor>
     <StoryDescriptor title="Medium">
-      <Input kind="medium" placeholder={placeholderText} />
+      <Input wrapperSize="medium" placeholder={placeholderText} />
     </StoryDescriptor>
     <StoryDescriptor title="Large">
-      <Input kind="large" placeholder={placeholderText} />
+      <Input wrapperSize="large" placeholder={placeholderText} />
     </StoryDescriptor>
   </>
 );
