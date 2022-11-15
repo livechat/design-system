@@ -88,14 +88,7 @@ export const Trigger: React.FC<ITriggerProps> = ({
       onClick={handleTriggerClick}
       tabIndex={0}
     >
-      <div
-        className={cx(
-          styles[`${baseClass}__content`],
-          isMultiSelect && styles[`${baseClass}__content--multi-select`]
-        )}
-      >
-        {children}
-      </div>
+      <div className={styles[`${baseClass}__content`]}>{children}</div>
       <div
         className={cx(
           styles[`${baseClass}__controls`],

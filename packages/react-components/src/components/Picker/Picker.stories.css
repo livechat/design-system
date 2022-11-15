@@ -1,0 +1,31 @@
+.custom-picker-option {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+
+.image {
+  margin-right: 15px;
+  border-radius: 50%;
+  width: 45px;
+  height: auto;
+}
+
+.image.selected {
+  width: 20px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.title.selected {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.description {
+  color: var(--content-subtle);
+  font-size: 14px;
+}

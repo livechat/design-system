@@ -5,6 +5,8 @@ import { IPickerProps, Picker as PickerComponent } from './Picker';
 import { defaultExtendedOptions, defaultOptions } from './constants';
 import { IPickerListItem } from './PickerList';
 
+import './Picker.stories.css';
+
 export default {
   title: 'Components/Picker',
   component: PickerComponent,
@@ -90,4 +92,130 @@ PickerInMultiselectModeWithSelectedOptions.args = {
   type: 'multi',
   options: defaultExtendedOptions,
   selectAllOptionText: 'Select all',
+};
+
+const CustomPickerOption: React.FC = ({ children }) => (
+  <div className="custom-picker-option">{children}</div>
+);
+
+export const PickerWithOptionsAsCustomElements = StoryTemplate.bind({});
+PickerWithOptionsAsCustomElements.args = {
+  options: [
+    {
+      key: 'one',
+      name: 'Example custom element one',
+      customElement: {
+        listItemBody: (
+          <CustomPickerOption>
+            <img
+              className="image"
+              src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
+            />
+            <div>
+              <div className="title">Example custom element one</div>
+              <div className="description">Example custom element</div>
+            </div>
+          </CustomPickerOption>
+        ),
+        selectedItemBody: (
+          <CustomPickerOption>
+            <img
+              className="image selected"
+              src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
+            />
+            <div className="title selected">Example custom element one</div>
+          </CustomPickerOption>
+        ),
+      },
+    },
+    {
+      key: 'two',
+      name: 'Example custom element two',
+      customElement: {
+        listItemBody: (
+          <CustomPickerOption>
+            <img
+              className="image"
+              src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
+            />
+            <div>
+              <div className="title">Example custom element two</div>
+              <div className="description">Example custom element</div>
+            </div>
+          </CustomPickerOption>
+        ),
+        selectedItemBody: (
+          <CustomPickerOption>
+            <img
+              className="image selected"
+              src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
+            />
+            <div className="title selected">Example custom element two</div>
+          </CustomPickerOption>
+        ),
+      },
+    },
+  ],
+};
+
+export const PickerInMultiselectModeWithOptionsAsCustomElements =
+  StoryTemplate.bind({});
+PickerInMultiselectModeWithOptionsAsCustomElements.args = {
+  type: 'multi',
+  options: [
+    {
+      key: 'one',
+      name: 'Example custom element one',
+      customElement: {
+        listItemBody: (
+          <CustomPickerOption>
+            <img
+              className="image"
+              src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
+            />
+            <div>
+              <div className="title">Example custom element one</div>
+              <div className="description">Example custom element</div>
+            </div>
+          </CustomPickerOption>
+        ),
+        selectedItemBody: (
+          <CustomPickerOption>
+            <img
+              className="image selected"
+              src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
+            />
+            <div className="title selected">Example custom element one</div>
+          </CustomPickerOption>
+        ),
+      },
+    },
+    {
+      key: 'two',
+      name: 'Example custom element two',
+      customElement: {
+        listItemBody: (
+          <CustomPickerOption>
+            <img
+              className="image"
+              src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
+            />
+            <div>
+              <div className="title">Example custom element two</div>
+              <div className="description">Example custom element</div>
+            </div>
+          </CustomPickerOption>
+        ),
+        selectedItemBody: (
+          <CustomPickerOption>
+            <img
+              className="image selected"
+              src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
+            />
+            <div className="title selected">Example custom element two</div>
+          </CustomPickerOption>
+        ),
+      },
+    },
+  ],
 };
