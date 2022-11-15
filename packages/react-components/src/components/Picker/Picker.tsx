@@ -8,41 +8,51 @@ import { Icon } from '../Icon';
 import { KeyCodes } from '../../utils/keyCodes';
 
 import styles from './Picker.module.scss';
+import { TriggerBody } from './TriggerBody';
+import { SELECT_ALL_OPTION_KEY } from './constants';
 
 const baseClass = 'picker';
 
+export type PickerType = 'single' | 'multi';
+
 export interface IPickerProps {
+  className?: string;
   disabled?: boolean;
   label?: string;
   error?: string;
   options: IPickerListItem[];
-  selectedOption?: IPickerListItem;
+  selected?: IPickerListItem[] | null;
   size?: TriggerSize;
   placeholder?: string;
   isRequired?: boolean;
   noSearchResultText?: string;
+  selectAllOptionText?: string;
+  type?: PickerType;
   searchDisabled?: boolean;
-  onSelect: (selectedItem: IPickerListItem | null) => void;
+  onSelect: (selectedItems: IPickerListItem[] | null) => void;
 }
 
 export const Picker: React.FC<IPickerProps> = ({
+  className,
   disabled,
   error,
   label,
   options,
-  selectedOption,
+  selected,
   size = 'medium',
   placeholder = 'Select option',
   isRequired,
   noSearchResultText = 'No results found',
+  selectAllOptionText,
+  type = 'single',
   searchDisabled = false,
   onSelect,
 }) => {
   const [isListOpen, setIsListOpen] = React.useState<boolean>(false);
-  const [selectedItem, setSelectedItem] =
-    React.useState<IPickerListItem | null>(selectedOption || null);
   const [searchPhrase, setSearchPhrase] = React.useState<string | null>(null);
   const triggerRef = React.useRef<HTMLDivElement>(null);
+
+  const mergedClassNames = cx(styles[baseClass], className);
 
   React.useEffect(() => {
     if (isListOpen) {
@@ -70,31 +80,79 @@ export const Picker: React.FC<IPickerProps> = ({
     }
   }, [isListOpen]);
 
-  const handleOnTriggerClick = () => {
-    if (disabled) {
+  const handleTrigger = (e: React.MouseEvent | KeyboardEvent) => {
+    const target = e.target as Element;
+
+    if (disabled || target.getAttribute('data-dismiss-icon')) {
       return;
     }
 
-    return setIsListOpen((prev) => !prev);
+    setIsListOpen((prev) => !prev);
   };
 
   const handleOnClose = () => {
     setIsListOpen(false);
   };
 
-  const handleOnSelect = (item: IPickerListItem) => {
-    setIsListOpen(false);
-    setSelectedItem(item);
-    onSelect(item);
+  const handleSelect = (item: IPickerListItem) => {
+    if (type === 'single') {
+      setIsListOpen(false);
+      return onSelect([item]);
+    }
+
+    const selectedItemKey = item.key;
+    const currentSelectedItemsKeys = selectedItemsKeys;
+
+    if (!currentSelectedItemsKeys) {
+      return onSelect([item]);
+    }
+
+    const newSelectedItemsKeys = currentSelectedItemsKeys.includes(
+      selectedItemKey
+    )
+      ? currentSelectedItemsKeys.filter((key) => key !== selectedItemKey)
+      : currentSelectedItemsKeys.concat(selectedItemKey);
+
+    if (newSelectedItemsKeys?.length === 0) {
+      return onSelect(null);
+    }
+
+    const newSelectedItems = items.filter((item) =>
+      newSelectedItemsKeys.includes(item.key)
+    );
+
+    onSelect(newSelectedItems);
   };
 
-  const handleOnClearClick = () => {
+  const isItemSelectable = (item: IPickerListItem) =>
+    !item.disabled && !item.groupHeader && item.key !== SELECT_ALL_OPTION_KEY;
+
+  const handleSelectAll = () => {
     setIsListOpen(false);
-    setSelectedItem(null);
+
+    const itemsToSelect = items.filter(isItemSelectable);
+
+    onSelect(itemsToSelect);
+  };
+
+  const handleClear = () => {
+    setIsListOpen(false);
     onSelect(null);
   };
 
   const handleOnFilter = (text: string) => setSearchPhrase(text);
+
+  const handleItemRemove = (item: IPickerListItem) => {
+    const newSelectedItems = selected
+      ? selected.filter((selectedItem) => selectedItem !== item)
+      : null;
+
+    if (newSelectedItems?.length === 0) {
+      return onSelect(null);
+    }
+
+    onSelect(newSelectedItems);
+  };
 
   const items = React.useMemo<IPickerListItem[]>(() => {
     if (!searchPhrase) {
@@ -112,8 +170,16 @@ export const Picker: React.FC<IPickerProps> = ({
     });
   }, [searchPhrase]);
 
+  const selectedItemsKeys = React.useMemo(() => {
+    if (!selected) {
+      return null;
+    }
+
+    return selected.map((item) => item.key);
+  }, [selected]);
+
   return (
-    <div ref={triggerRef} className={styles[baseClass]}>
+    <div ref={triggerRef} className={mergedClassNames}>
       {label && (
         <div
           className={cx(styles[`${baseClass}__label`], {
@@ -129,23 +195,33 @@ export const Picker: React.FC<IPickerProps> = ({
           isError={!!error}
           isOpen={isListOpen}
           isDisabled={disabled}
-          isItemSelected={!!selectedItem}
+          isItemSelected={!!selected}
           isRequired={isRequired}
+          isMultiSelect={type === 'multi'}
           size={size}
-          onClick={handleOnTriggerClick}
-          onClearClick={handleOnClearClick}
-          onFilter={handleOnFilter}
+          onTrigger={handleTrigger}
+          onClear={handleClear}
         >
-          {selectedItem ? selectedItem.name : placeholder}
+          <TriggerBody
+            isOpen={isListOpen}
+            isSearchDisabled={searchDisabled}
+            placeholder={placeholder}
+            items={selected}
+            type={type}
+            onItemRemove={handleItemRemove}
+            onFilter={handleOnFilter}
+          />
         </Trigger>
         <PickerList
-          selectedItem={selectedItem}
+          selectedItemsKeys={selectedItemsKeys}
           items={items}
           isOpen={isListOpen}
-          size={size}
+          isMultiSelect={type === 'multi'}
           emptyStateText={noSearchResultText}
+          selectAllOptionText={selectAllOptionText}
           onClose={handleOnClose}
-          onSelect={handleOnSelect}
+          onSelect={handleSelect}
+          onSelectAll={handleSelectAll}
         />
       </div>
       {error && (

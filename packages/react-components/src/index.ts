@@ -1,14 +1,18 @@
 import './index.scss';
 
-export { DesignTokens } from './themes/designTokens';
+export { DesignToken } from './themes/design-token';
+export { SpacingToken } from './foundations/spacing-token';
+export { ShadowToken } from './foundations/shadow-token';
 export type { Size } from './utils';
 
 export * from './components/Alert';
+export * from './components/Avatar';
 export * from './components/Badge';
 export * from './components/Button';
-export * from './components/ButtonGroup';
+export * from './components/SegmentedControl';
 export * from './components/Card';
 export * from './components/Checkbox';
+export * from './components/DatePicker';
 export * from './components/FieldDescription';
 export * from './components/FieldError';
 export * from './components/FieldGroup';

@@ -11,11 +11,26 @@ describe('Badge', () => {
     expect(container.firstChild).toHaveClass('my-custom-class');
   });
 
-  it('should display content passed as children by default', () => {
-    const content = '3 steps left';
-    const { container } = render(<Badge>{content}</Badge>);
+  it('should display number passed as count', () => {
+    const count = 1;
+    const { container } = render(<Badge count={count} />);
 
-    expect(container).toHaveTextContent(content);
+    expect(container).toHaveTextContent(`${count}`);
+  });
+
+  it('should display number shortened to default max limit', () => {
+    const count = 100;
+    const { container } = render(<Badge count={count} />);
+
+    expect(container).toHaveTextContent('99+');
+  });
+
+  it('should display number shortened to passed max limit', () => {
+    const count = 10;
+    const max = 9;
+    const { container } = render(<Badge count={count} max={max} />);
+
+    expect(container).toHaveTextContent(`${max}+`);
   });
 
   it('should display exclamation mark for alert type', () => {

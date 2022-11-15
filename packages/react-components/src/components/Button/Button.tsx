@@ -1,19 +1,20 @@
 import * as React from 'react';
 import cx from 'clsx';
 import { Loader } from '../Loader';
-
-import styles from './Button.module.scss';
 import { Size } from 'utils';
+import styles from './Button.module.scss';
+
+export type ButtonKind =
+  | 'basic'
+  | 'primary'
+  | 'secondary'
+  | 'destructive'
+  | 'text'
+  | 'plain'
+  | 'plain-light';
 
 export type ButtonProps = {
-  kind?:
-    | 'basic'
-    | 'primary'
-    | 'secondary'
-    | 'destructive'
-    | 'text'
-    | 'plain'
-    | 'plain-light';
+  kind?: ButtonKind;
   size?: Size;
   disabled?: boolean;
   loading?: boolean;
@@ -39,6 +40,7 @@ export const Button: React.FC<ButtonProps> = ({
   className,
   children,
   href,
+  onClick,
   ...props
 }) => {
   const isDisabled = loading || disabled;
@@ -61,9 +63,10 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <Component
       className={mergedClassNames}
-      disabled={isDisabled}
+      aria-disabled={isDisabled}
       type={type}
       href={isDisabled ? undefined : href}
+      onClick={isDisabled ? undefined : onClick}
       {...props}
     >
       {loading && (

@@ -6,11 +6,15 @@ import { Icon, IconSize } from '../../components/Icon';
 import noop from '../../utils/noop';
 
 import styles from './Switch.module.scss';
+import { Loader } from '../Loader';
 
-const baseClass = 'switch';
+export const baseClass = 'switch';
 
-export type SwitchSize = 'basic' | 'compact';
+export type SwitchSize = 'compact' | 'medium' | 'large';
+export type SwitchState = 'regular' | 'loading' | 'locked';
+
 export interface SwitchProps {
+  ariaLabel?: string;
   className?: string;
   defaultOn?: boolean;
   disabled?: boolean;
@@ -19,6 +23,7 @@ export interface SwitchProps {
   on?: boolean;
   onChange?(e: React.FormEvent, value: boolean): void;
   size?: SwitchSize;
+  state?: SwitchState;
 }
 
 export const Switch: React.FC<SwitchProps> = ({
@@ -28,8 +33,10 @@ export const Switch: React.FC<SwitchProps> = ({
   name = baseClass,
   on,
   onChange = noop,
-  size = 'basic',
+  size = 'large',
+  state = 'regular',
   innerRef,
+  ariaLabel,
   ...props
 }) => {
   const [checked, setChecked] = React.useState(() =>
@@ -42,9 +49,12 @@ export const Switch: React.FC<SwitchProps> = ({
     }
   }, [on]);
 
-  const iconSize: IconSize = size === 'basic' ? 'small' : 'xsmall';
+  const isLoading = state === 'loading';
+  const isLocked = state === 'locked';
+  const iconSize: IconSize = size === 'large' ? 'small' : 'xsmall';
   const toggleStyles = checked ? 'on' : 'off';
-  const availabilityStyles = disabled ? 'disabled' : 'enabled';
+  const shouldBehaveAsDisabled = disabled || isLoading || isLocked;
+  const availabilityStyles = shouldBehaveAsDisabled ? 'disabled' : 'enabled';
   const mergedClassNames = cx(
     styles[baseClass],
     styles[`${baseClass}--${size}`],
@@ -73,8 +83,8 @@ export const Switch: React.FC<SwitchProps> = ({
         checked={checked}
         name={name}
         ref={innerRef}
-        disabled={disabled}
-        test-id="foo"
+        disabled={shouldBehaveAsDisabled}
+        aria-label={ariaLabel}
         {...props}
       />
       <span className={styles[`${baseClass}__container`]}>
@@ -92,8 +102,22 @@ export const Switch: React.FC<SwitchProps> = ({
             styles[`${baseClass}__slider--${size}--${toggleStyles}`]
           )}
         >
-          {disabled && (
-            <Icon size={iconSize} source={LockIcon} kind={'primary'} />
+          {isLoading && (
+            <Loader
+              className={cx(
+                styles[`${baseClass}__loader`],
+                styles[`${baseClass}__loader--${size}`]
+              )}
+            />
+          )}
+          {isLocked && (
+            <Icon
+              className={styles[`${baseClass}__icon`]}
+              data-testid="lock-icon"
+              size={iconSize}
+              source={LockIcon}
+              kind="primary"
+            />
           )}
         </span>
       </span>

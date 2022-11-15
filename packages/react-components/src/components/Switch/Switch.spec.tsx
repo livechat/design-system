@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { render, fireEvent, vi } from 'test-utils';
 import { Switch } from './Switch';
+import loaderStyles from '../Loader/Loader.module.scss';
 
 describe('Switch', () => {
   it('should call onChange without changing state when custom handler is passed', () => {
@@ -35,5 +36,38 @@ describe('Switch', () => {
     expect(checkbox.checked).toEqual(true);
     fireEvent.click(checkbox);
     expect(checkbox.checked).toEqual(false);
+  });
+
+  it('should be disabled if disabled is set to true', () => {
+    const { getByRole } = render(<Switch disabled={true} />);
+    const checkbox = getByRole('checkbox') as HTMLInputElement;
+    expect(checkbox.disabled).toEqual(true);
+  });
+
+  it('should display loader icon if in loading state and behave as disabled', () => {
+    const { container, getByRole } = render(<Switch state="loading" />);
+    const checkbox = getByRole('checkbox') as HTMLInputElement;
+    const loader = container.querySelector(
+      `.${loaderStyles['loader__spinner']}`
+    );
+    expect(checkbox.disabled).toEqual(true);
+    expect(loader).toBeVisible();
+  });
+
+  it('should display lock icon if in locked state and behave as disabled', () => {
+    const { getByTestId, getByRole } = render(<Switch state="locked" />);
+    const checkbox = getByRole('checkbox') as HTMLInputElement;
+    const lockIcon = getByTestId('lock-icon');
+
+    expect(checkbox.disabled).toEqual(true);
+    expect(lockIcon).toBeVisible();
+  });
+
+  it('should allow setting accessible name for input element', () => {
+    const label = 'Hello world';
+    const { getByRole } = render(<Switch on={true} ariaLabel={label} />);
+
+    const checkbox = getByRole('checkbox', { name: label });
+    expect(checkbox).toHaveAccessibleName(label);
   });
 });

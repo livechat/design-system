@@ -2,87 +2,47 @@ $toast-appear-animation-timeout: 200ms;
 $toast-exit-animation-timeout: 200ms;
 
 .toast {
-  align-items: center;
-  background: #fff;
-  border-radius: 4px;
-  box-shadow: 0 6px 30px -10px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
   display: inline-flex;
-  flex: 0 1 auto;
-  font-size: 15px;
-  font-stretch: normal;
-  font-style: normal;
-  font-weight: 600;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
   justify-content: flex-start;
-  letter-spacing: normal;
-  line-height: 20px;
-  max-width: 500px;
-  min-width: 300px;
+  border-radius: 4px;
+  box-shadow: var(--shadow-pop-over);
   padding: 10px 12px;
+  min-width: 300px;
+  max-width: 500px;
+  line-height: 22px;
+  font-size: 15px;
 
   &__content {
-    color: var(--content-default);
     width: 100%;
-  }
-
-  &__icon,
-  &__close {
-    align-self: baseline;
-    height: 20px;
-    padding-right: 12px;
-  }
-
-  &__icon svg {
-    display: flex;
-    fill: var(--color-action-default);
-    height: 20px;
-    width: 20px;
+    min-width: 192px;
+    color: var(--content-default);
+    font-weight: 600;
   }
 
   &__actions {
-    align-items: center;
-    align-self: flex-start;
     display: inline-flex;
-    flex: 1 0 auto;
     flex-wrap: nowrap;
-    height: 20px;
-    margin-bottom: auto;
-    margin-left: auto;
+    gap: 8px;
+    align-items: center;
 
-    &-close {
-      align-items: center;
-      display: flex;
-      flex: 0 1 auto;
-      height: 100%;
-      margin-left: 16px;
-      width: 100%;
-
-      svg {
-        cursor: pointer;
-        display: flex;
-        fill: var(--content-subtle);
-        height: 16px;
-        width: 16px;
-      }
+    &--close svg {
+      cursor: pointer;
+      fill: var(--content-subtle);
     }
 
-    &-custom {
-      background-color: transparent;
-      border: 0;
-      color: var(--content-default);
-      cursor: pointer;
-      font-weight: 600;
-      line-height: 20px;
-      margin-left: 16px;
-      outline: 0;
-      padding: 0;
+    &--custom {
       text-decoration: underline;
       white-space: nowrap;
+      color: var(--content-default);
     }
-  }
 
-  &--notification {
-    background: #fff;
+    button {
+      font-weight: 400;
+    }
   }
 
   &--success {
@@ -102,23 +62,23 @@ $toast-exit-animation-timeout: 200ms;
   }
 
   &--info {
-    background: var(--color-action-default);
+    background: var(--surface-invert-default);
   }
 
   &--success,
   &--error,
   &--info {
     .toast__content,
-    .toast__actions-custom {
+    .toast__actions--custom {
       color: var(--content-invert-default);
     }
   }
 
   &-wrapper {
-    align-items: center;
     display: flex;
-    flex-direction: column;
     position: absolute;
+    flex-direction: column;
+    align-items: center;
     z-index: 120;
 
     &--fixed {
@@ -200,14 +160,14 @@ $toast-exit-animation-timeout: 200ms;
         opacity: 0;
 
         &.toast-appear-active--fade {
-          opacity: 1;
           transition: opacity $toast-appear-animation-timeout ease-in;
+          opacity: 1;
         }
       }
 
       .toast-exit--fade {
-        opacity: 1;
         transition: opacity $toast-appear-animation-timeout ease-in;
+        opacity: 1;
 
         &.toast-exit-active--fade {
           opacity: 0;

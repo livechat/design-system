@@ -12,7 +12,7 @@ export const sizes = (): React.ReactElement => (
   <div className="story-spacer">
     <Loader size="small" />
     <Loader size="medium" />
-    <Loader size="large"></Loader>
+    <Loader size="large" />
   </div>
 );
 

@@ -55,4 +55,16 @@ describe('<ModalBase /> component', () => {
     userEvent.keyboard('[Escape]');
     expect(onClose).not.toBeCalled();
   });
+
+  it('should not call onClose on overlay pressed when closeOnOverlayPress is disabled', () => {
+    const onClose = vi.fn();
+    const { getByTestId } = render(
+      <ModalBase onClose={onClose} closeOnOverlayPress={false}>
+        test
+      </ModalBase>
+    );
+
+    userEvent.click(getByTestId('lc-modal-overlay'));
+    expect(onClose).not.toBeCalled();
+  });
 });

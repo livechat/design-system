@@ -4,7 +4,7 @@ import { Check } from '@livechat/design-system-icons/react/material';
 import { Icon } from '../Icon';
 import styles from './PickerList.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
-import { TriggerSize } from './Trigger';
+import { SELECT_ALL_OPTION_KEY } from './constants';
 
 const baseClass = 'picker-list';
 const itemClassName = `${baseClass}__item`;
@@ -19,29 +19,29 @@ export interface IPickerListItem {
 export interface IPickerListProps {
   isOpen: boolean;
   items: IPickerListItem[];
-  selectedItem: IPickerListItem | null;
-  size?: TriggerSize;
+  selectedItemsKeys: string[] | null;
   emptyStateText?: string;
+  selectAllOptionText?: string;
+  isMultiSelect?: boolean;
   onClose: () => void;
   onSelect: (item: IPickerListItem) => void;
+  onSelectAll: () => void;
 }
 
 export const PickerList: React.FC<IPickerListProps> = ({
   isOpen,
   items,
-  selectedItem,
-  size = 'medium',
+  selectedItemsKeys,
   emptyStateText = 'No results found',
+  selectAllOptionText,
+  isMultiSelect,
   onClose,
   onSelect,
+  onSelectAll,
 }) => {
-  const mergedClassNames = cx(
-    styles[baseClass],
-    styles[`${baseClass}--${size}`],
-    {
-      [styles[`${baseClass}__no-results`]]: items.length === 0,
-    }
-  );
+  const mergedClassNames = cx(styles[baseClass], {
+    [styles[`${baseClass}__no-results`]]: items.length === 0,
+  });
 
   const [currentItemKey, setCurrentItemKey] = React.useState<string | null>(
     null
@@ -49,6 +49,39 @@ export const PickerList: React.FC<IPickerListProps> = ({
   const indexRef = React.useRef(-1);
   const lastIndexRef = React.useRef(0);
   const listRef = React.useRef<HTMLUListElement>(null);
+
+  const onKeyDown = (e: KeyboardEvent) => {
+    if (e.key === KeyCodes.esc) {
+      e.preventDefault();
+      onClose();
+    }
+
+    if (e.key === KeyCodes.arrowUp && indexRef.current > 0) {
+      e.preventDefault();
+
+      indexRef.current = getPrevItemIndex();
+
+      setCurrentItemKey(items[indexRef.current].key);
+    }
+
+    if (e.key === KeyCodes.arrowDown && indexRef.current + 1 < items.length) {
+      e.preventDefault();
+
+      indexRef.current = getNextItemIndex();
+
+      setCurrentItemKey(items[indexRef.current].key);
+    }
+
+    if (e.key === KeyCodes.enter && !items[indexRef.current].disabled) {
+      e.preventDefault();
+
+      if (items[indexRef.current].key === SELECT_ALL_OPTION_KEY) {
+        return onSelectAll();
+      }
+
+      onSelect(items[indexRef.current]);
+    }
+  };
 
   React.useEffect(() => {
     if (indexRef.current > -1 && items.length > 0) {
@@ -63,7 +96,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
       lastIndexRef.current = 0;
       setCurrentItemKey(null);
     }
-  }, [items, isOpen]);
+  }, [items, isOpen, onKeyDown]);
 
   const isHeaderOrDisabled = (i: number) =>
     !!items[i] && (items[i].disabled || items[i].groupHeader);
@@ -110,38 +143,44 @@ export const PickerList: React.FC<IPickerListProps> = ({
     return indexRef.current;
   };
 
-  const onKeyDown = (e: KeyboardEvent) => {
-    if (e.key === KeyCodes.esc) {
-      e.preventDefault();
-      onClose();
-    }
-
-    if (e.key === KeyCodes.arrowUp && indexRef.current > 0) {
-      e.preventDefault();
-
-      indexRef.current = getPrevItemIndex();
-
-      setCurrentItemKey(items[indexRef.current].key);
-    }
-
-    if (e.key === KeyCodes.arrowDown && indexRef.current + 1 < items.length) {
-      e.preventDefault();
-
-      indexRef.current = getNextItemIndex();
-
-      setCurrentItemKey(items[indexRef.current].key);
-    }
-
-    if (e.key === KeyCodes.enter && !items[indexRef.current].disabled) {
-      e.preventDefault();
-      onSelect(items[indexRef.current]);
-    }
-  };
-
   const handleOnClick = (item: IPickerListItem) => onSelect(item);
 
-  const isItemSelected = (key: string): boolean =>
-    !!selectedItem && key === selectedItem.key;
+  const handleOnSelectAllClick = () => onSelectAll();
+
+  const isItemSelected = (key: string): boolean => {
+    if (!selectedItemsKeys) {
+      return false;
+    }
+
+    return selectedItemsKeys.includes(key);
+  };
+
+  const getSelectAllOption = () => {
+    if (!isMultiSelect || (isMultiSelect && !selectAllOptionText)) {
+      return null;
+    }
+
+    return (
+      <li
+        ref={(element) => {
+          if (currentItemKey === SELECT_ALL_OPTION_KEY) {
+            element?.scrollIntoView({ block: 'nearest' });
+          }
+        }}
+        role="option"
+        aria-current={currentItemKey === SELECT_ALL_OPTION_KEY}
+        id={SELECT_ALL_OPTION_KEY}
+        key={SELECT_ALL_OPTION_KEY}
+        className={cx(
+          styles[itemClassName],
+          styles[`${itemClassName}--select-all`]
+        )}
+        onClick={handleOnSelectAllClick}
+      >
+        {selectAllOptionText}
+      </li>
+    );
+  };
 
   if (!isOpen) {
     return null;
@@ -153,6 +192,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
   return (
     <ul ref={listRef} className={mergedClassNames} role="listbox" tabIndex={-1}>
+      {getSelectAllOption()}
       {items.map((item) => {
         if (item.groupHeader) {
           return (

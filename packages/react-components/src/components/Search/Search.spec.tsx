@@ -125,4 +125,13 @@ describe('<Search> component', () => {
     fireEvent.click(getByTestId(`${baseClass}-clear-icon`));
     expect(getByRole('textbox')).toHaveValue('');
   });
+
+  it('should apply className prop', () => {
+    const { getByRole } = renderComponent({
+      ...defaultProps,
+      className: 'test-class',
+    });
+
+    expect(getByRole('textbox')).toHaveClass('test-class');
+  });
 });

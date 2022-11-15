@@ -30,6 +30,7 @@ Modal.args = {
   heading: 'Modal',
   children: 'Modal content',
   closeOnEscPress: true,
+  closeOnOverlayPress: true,
   style: { width: '600px', height: '400px' },
   footer: (
     <React.Fragment>

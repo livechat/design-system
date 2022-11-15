@@ -3,51 +3,39 @@
 $base-class: 'picker-list';
 
 .#{$base-class} {
-  background-color: var(--surface-basic-default);
-  border-radius: 4px;
-  box-shadow: 0 6px 20px rgba(66, 77, 87, 0.4);
   box-sizing: border-box;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 22px;
+  position: absolute;
+  top: calc(100% + 4px);
+  z-index: $stacking-context-level-dropdown;
   margin: 0;
+  border-radius: 4px;
+  box-shadow: 0 6px 20px rgb(66 77 87 / 40%);
+  background-color: var(--surface-basic-default);
+  padding: 4px 0;
+  width: 100%;
   max-height: 242px;
   overflow: scroll;
-  padding: 4px 0;
-  position: absolute;
-  width: 341px;
-  z-index: $stacking-context-level-dropdown;
-
-  &--compact {
-    top: 36px;
-  }
-
-  &--medium {
-    top: 40px;
-  }
-
-  &--large {
-    top: 46px;
-  }
+  line-height: 22px;
+  font-size: 15px;
+  font-weight: 400;
 
   &__no-results {
-    align-items: center;
     display: flex;
-    height: 36px;
+    align-items: center;
     justify-content: center;
+    height: 36px;
   }
 
   &__item {
+    display: flex;
     align-items: center;
+    justify-content: space-between;
     border: 1px solid transparent;
     cursor: pointer;
-    display: flex;
-    height: 36px;
-    justify-content: space-between;
     padding: 6px 11px;
+    height: 36px;
 
-    &:hover,
-    &[aria-selected='true'] {
+    &:hover {
       background-color: var(--surface-basic-hover);
     }
 
@@ -64,17 +52,21 @@ $base-class: 'picker-list';
       }
     }
 
+    &--select-all {
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
     &__header {
-      align-items: center;
-      color: var(--content-subtle);
-      cursor: auto;
       display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: auto;
+      padding: 7px 12px;
+      height: 36px;
+      text-transform: uppercase;
+      color: var(--content-subtle);
       font-size: 12px;
       font-weight: 600;
-      height: 36px;
-      justify-content: space-between;
-      padding: 7px 12px;
-      text-transform: uppercase;
     }
   }
 }

@@ -2,21 +2,26 @@ $switch-transition-duration: 300ms;
 $switch-transition-timing-function: cubic-bezier(0.33, 0, 0.67, 1);
 
 $base-class: 'switch';
-$basic-height: 28px;
-$basic-width: 44px;
-$basic-size: $basic-height - 4px;
-$basic-move: $basic-width - $basic-size;
+$large-height: 24px;
+$large-width: 44px;
+$large-size: $large-height - 4px;
+$large-move: $large-width - $large-size;
 
 $compact-height: 16px;
-$compact-width: 25px;
-$compact-size: $compact-height - 2px;
+$compact-width: 32px;
+$compact-size: $compact-height - 4px;
 $compact-move: $compact-width - $compact-size;
+
+$medium-height: 20px;
+$medium-width: 36px;
+$medium-size: $medium-height - 4px;
+$medium-move: $medium-width - $medium-size;
 
 /* stylelint-disable max-nesting-depth */
 .#{$base-class} {
   display: inline-block;
-  outline: none;
   position: relative;
+  outline: none;
 
   &:hover {
     $hovered-track: #{$base-class}__track;
@@ -30,22 +35,27 @@ $compact-move: $compact-width - $compact-size;
     }
   }
 
-  &--basic {
-    height: $basic-height;
-    width: $basic-width;
+  &--large {
+    width: $large-width;
+    height: $large-height;
   }
 
   &--compact {
-    height: $compact-height;
     width: $compact-width;
+    height: $compact-height;
+  }
+
+  &--medium {
+    width: $medium-width;
+    height: $medium-height;
   }
 
   &__input {
-    cursor: pointer;
-    height: 100%;
-    margin: 0;
     opacity: 0;
+    margin: 0;
+    cursor: pointer;
     width: 100%;
+    height: 100%;
 
     &--disabled {
       cursor: not-allowed;
@@ -54,28 +64,28 @@ $compact-move: $compact-width - $compact-size;
 
   &__input:focus + .#{$base-class}__container {
     .#{$base-class}__track {
-      box-shadow: 0 0 1px 2px rgba(var(--color-action-default-rgb), 0.7);
+      box-shadow: 0 0 1px 2px rgb(var(--color-action-default-rgb) 0.7);
     }
   }
 
   &__container {
-    align-items: center;
     display: flex;
-    height: 100%;
-    left: 0;
-    pointer-events: none;
     position: absolute;
     top: 0;
+    left: 0;
+    align-items: center;
     width: 100%;
+    height: 100%;
+    pointer-events: none;
   }
 
   &__track {
-    border-radius: 24px;
     flex: 1;
-    height: 100%;
     transition-duration: $switch-transition-duration;
     transition-property: background-color;
     transition-timing-function: $switch-transition-timing-function;
+    border-radius: 24px;
+    height: 100%;
 
     &--on#{&}--enabled {
       background-color: var(--color-positive-default);
@@ -95,46 +105,91 @@ $compact-move: $compact-width - $compact-size;
   }
 
   &__slider {
-    align-items: center;
-    background: var(--content-white-locked);
-    border-radius: 50%;
     display: flex;
-    justify-content: center;
     position: absolute;
     top: 50%;
+    align-items: center;
+    justify-content: center;
     transform: translateY(-50%);
     transition-duration: $switch-transition-duration;
     transition-property: left, right;
     transition-timing-function: $switch-transition-timing-function;
+    border-radius: 50%;
+    background: var(--content-white-locked);
 
-    &--basic {
-      height: calc(#{$basic-size});
-      width: calc(#{$basic-size});
+    &--large {
+      width: calc(#{$large-size});
+      height: calc(#{$large-size});
 
       &--on {
-        left: calc(#{$basic-move} - 2px);
-        right: 2px;
+        right: 3px;
+        left: calc(#{$large-move} - 3px);
       }
 
       &--off {
-        left: 2px;
-        right: calc(#{$basic-move} - 2px);
+        right: calc(#{$large-move} - 3px);
+        left: 3px;
       }
     }
 
     &--compact {
-      height: calc(#{$compact-size});
       width: calc(#{$compact-size});
+      height: calc(#{$compact-size});
 
       &--on {
-        left: calc(#{$compact-move} - 2px);
         right: 2px;
+        left: calc(#{$compact-move} - 2px);
       }
 
       &--off {
-        left: 2px;
         right: calc(#{$compact-move} - 2px);
+        left: 2px;
       }
     }
+
+    &--medium {
+      width: calc(#{$medium-size});
+      height: calc(#{$medium-size});
+
+      &--on {
+        right: 3px;
+        left: calc(#{$medium-move} - 3px);
+      }
+
+      &--off {
+        right: calc(#{$medium-move} - 3px);
+        left: 3px;
+      }
+    }
+  }
+
+  &__loader {
+    width: 100%;
+    height: 100%;
+
+    &--compact {
+      padding: 1.5px;
+    }
+
+    &--medium {
+      padding: 2px;
+    }
+
+    &--large {
+      padding: 3px;
+    }
+
+    > div {
+      width: 100%;
+      height: 100%;
+    }
+
+    div:last-child {
+      border-width: 2px;
+    }
+  }
+
+  &__icon {
+    color: var(--content-black-locked);
   }
 }

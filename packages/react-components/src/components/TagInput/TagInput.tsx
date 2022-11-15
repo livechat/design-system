@@ -20,6 +20,7 @@ const tagRemoveKeys = [KeyCodes.backspace, KeyCodes.delete];
 type Tags = string[];
 
 export interface TagInputProps {
+  id?: string;
   error?: string;
   tags?: Tags;
   onChange: (tags: Tags) => void;
@@ -29,6 +30,7 @@ export interface TagInputProps {
 }
 
 export const TagInput: React.FC<TagInputProps> = ({
+  id,
   tags,
   onChange,
   validator,
@@ -118,6 +120,7 @@ export const TagInput: React.FC<TagInputProps> = ({
           </EditableTag>
         ))}
         <input
+          id={id}
           ref={inputRef}
           className={inputClassNames}
           placeholder={placeholder}

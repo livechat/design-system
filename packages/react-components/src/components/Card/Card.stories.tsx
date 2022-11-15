@@ -1,30 +1,82 @@
 import * as React from 'react';
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
 
-import { Card as CardComponent, CardProps } from '../Card';
+import { Card, CardProps } from '../Card';
+import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Components/Card',
-  component: CardComponent,
-} as ComponentMeta<typeof CardComponent>;
+  component: Card,
+} as ComponentMeta<typeof Card>;
 
-type ICardArgs = CardProps;
+export const Default: Story<CardProps> = (args: CardProps) => (
+  <Card {...args} />
+);
 
-export const Card = (args: ICardArgs): React.ReactElement => {
-  return (
-    <div style={{ width: '300px' }}>
-      <CardComponent {...args} />
-    </div>
-  );
-};
+Default.args = {
+  title: 'Card title',
+  src: 'https://via.placeholder.com/100',
+  alt: 'Image description',
+  children:
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
+} as CardProps;
+Default.storyName = 'Card';
 
-Card.args = {
-  title: 'Title goes here',
-  img: 'https://via.placeholder.com/100',
-  children: (
-    <p style={{ margin: 0 }}>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore
-    </p>
-  ),
-} as ICardArgs;
+export const Expandable: Story = (): JSX.Element => (
+  <Card
+    title="Expandable card"
+    description="Click show more to expand"
+    src="https://via.placeholder.com/100"
+    expandableContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore
+  </Card>
+);
+
+export const WithButtons: Story = (): JSX.Element => (
+  <Card
+    title="Expandable card"
+    description="Click show more to expand"
+    src="https://via.placeholder.com/100"
+    buttonsOptions={[
+      {
+        kind: 'secondary',
+        onClick: action('Secondary action clicked'),
+        children: 'Details',
+      },
+      {
+        kind: 'destructive',
+        onClick: action('Destructive action clicked'),
+        children: 'Delete',
+      },
+    ]}
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore
+  </Card>
+);
+
+export const ExpandableWithButtons: Story = (): JSX.Element => (
+  <Card
+    title="Expandable card"
+    description="Click show more to expand"
+    src="https://via.placeholder.com/100"
+    expandableContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
+    buttonsOptions={[
+      {
+        kind: 'secondary',
+        onClick: action('Secondary action clicked'),
+        children: 'Details',
+      },
+      {
+        kind: 'destructive',
+        onClick: action('Destructive action clicked'),
+        children: 'Delete',
+      },
+    ]}
+  >
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+    tempor incididunt ut labore
+  </Card>
+);

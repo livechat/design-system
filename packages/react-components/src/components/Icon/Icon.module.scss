@@ -1,6 +1,10 @@
 .icon {
-  align-items: center;
   display: flex;
+  align-items: center;
+
+  svg {
+    pointer-events: none;
+  }
 
   &--primary {
     color: var(--content-default);
