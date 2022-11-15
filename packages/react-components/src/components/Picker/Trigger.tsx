@@ -8,10 +8,9 @@ import {
 import { Icon } from '../Icon';
 import styles from './Trigger.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
+import { Size } from 'utils';
 
 const baseClass = 'picker-trigger';
-
-export type TriggerSize = 'compact' | 'medium' | 'large';
 
 export interface ITriggerProps {
   isSearchDisabled: boolean;
@@ -20,7 +19,7 @@ export interface ITriggerProps {
   isItemSelected: boolean;
   isOpen: boolean;
   isRequired?: boolean;
-  size?: TriggerSize;
+  size?: Size;
   onClick: () => void;
   onClearClick: () => void;
   onFilter: (text: string) => void;

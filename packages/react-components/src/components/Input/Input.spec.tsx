@@ -16,17 +16,17 @@ describe('<Input> component', () => {
   });
 
   it('should allow for compact size', () => {
-    const { container } = render(<Input wrapperSize="compact" />);
+    const { container } = render(<Input inputSize="compact" />);
     expect(container.firstChild).toHaveClass(styles['input--compact']);
   });
 
   it('should allow for medium size', () => {
-    const { container } = render(<Input wrapperSize="medium" />);
+    const { container } = render(<Input inputSize="medium" />);
     expect(container.firstChild).toHaveClass(styles['input--medium']);
   });
 
   it('should allow for large size', () => {
-    const { container } = render(<Input wrapperSize="large" />);
+    const { container } = render(<Input inputSize="large" />);
     expect(container.firstChild).toHaveClass(styles['input--large']);
   });
 
@@ -38,6 +38,7 @@ describe('<Input> component', () => {
   it('should have disabled class and input should be disabled if "disabled" prop is set', () => {
     const { container, getByTestId } = render(<Input disabled />);
     expect(container.firstChild).toHaveClass(styles['input--disabled']);
+    expect(container.firstChild).toHaveAttribute('aria-disabled', 'true');
     expect(getByTestId('input')).toHaveAttribute('disabled');
   });
 

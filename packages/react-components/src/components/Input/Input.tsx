@@ -6,15 +6,14 @@ import {
   VisibilityOff as VisibilityOffIcon,
 } from '@livechat/design-system-icons/react/material';
 
+import { Size } from 'utils/constants';
 import styles from './Input.module.scss';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
 
-type InputSize = 'compact' | 'medium' | 'large';
-
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  wrapperSize?: InputSize;
+  inputSize?: Size;
   error?: boolean;
   disabled?: boolean;
   icon?: React.ReactElement;
@@ -25,7 +24,7 @@ const baseClass = 'input';
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
-      wrapperSize = 'medium',
+      inputSize = 'medium',
       error = false,
       disabled,
       icon = null,
@@ -40,16 +39,22 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const mergedClassNames = cx(
       className,
       styles[baseClass],
-      styles[`${baseClass}--${wrapperSize}`],
+      styles[`${baseClass}--${inputSize}`],
       {
         [styles[`${baseClass}--disabled`]]: disabled,
         [styles[`${baseClass}--focused`]]: isFocused,
         [styles[`${baseClass}--error`]]: error,
       }
     );
+    const iconCustomColor = !disabled
+      ? 'var(--content-default)'
+      : 'var(--content-disabled)';
+    const iconSource = !isPasswordVisible
+      ? VisibilityOnIcon
+      : VisibilityOffIcon;
 
     return (
-      <div className={mergedClassNames}>
+      <div className={mergedClassNames} aria-disabled={disabled} tab-index="0">
         {icon &&
           React.cloneElement(icon, {
             className: cx(styles[`${baseClass}__icon`], {
@@ -69,18 +74,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <Button
             disabled={disabled}
             kind="plain"
-            icon={
-              <Icon
-                customColor={
-                  !disabled
-                    ? 'var(--content-default)'
-                    : 'var(--content-disabled)'
-                }
-                source={
-                  !isPasswordVisible ? VisibilityOnIcon : VisibilityOffIcon
-                }
-              />
-            }
+            icon={<Icon customColor={iconCustomColor} source={iconSource} />}
             onClick={() => setIsPasswordVisible((v) => !v)}
           />
         )}

@@ -3,8 +3,7 @@ import cx from 'clsx';
 import { Loader } from '../Loader';
 
 import styles from './Button.module.scss';
-
-export type ButtonSize = 'compact' | 'medium' | 'large';
+import { Size } from 'utils';
 
 export type ButtonProps = {
   kind?:
@@ -15,7 +14,7 @@ export type ButtonProps = {
     | 'text'
     | 'plain'
     | 'plain-light';
-  size?: ButtonSize;
+  size?: Size;
   disabled?: boolean;
   loading?: boolean;
   fullWidth?: boolean;

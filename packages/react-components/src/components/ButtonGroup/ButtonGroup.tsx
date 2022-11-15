@@ -1,11 +1,12 @@
 import * as React from 'react';
 import cx from 'clsx';
 
-import { ButtonSize, ButtonProps } from '../Button';
+import { ButtonProps } from '../Button';
 
 import styles from './ButtonGroup.module.scss';
 
 import noop from '../../utils/noop';
+import { Size } from 'utils';
 
 const baseClass = 'btn-group';
 
@@ -13,7 +14,7 @@ export interface ButtonGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   currentIndex?: number;
   initialIndex?: number;
   fullWidth?: boolean;
-  size?: ButtonSize;
+  size?: Size;
   children: ReadonlyArray<
     React.ReactElement<React.PropsWithChildren<ButtonProps>>
   >;
