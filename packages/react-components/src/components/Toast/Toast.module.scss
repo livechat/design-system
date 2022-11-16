@@ -2,42 +2,42 @@ $toast-appear-animation-timeout: 200ms;
 $toast-exit-animation-timeout: 200ms;
 
 .toast {
-  align-items: center;
-  border-radius: 4px;
-  box-shadow: var(--shadow-pop-over);
   box-sizing: border-box;
   display: inline-flex;
   flex-direction: row;
-  font-size: 15px;
   gap: 8px;
+  align-items: center;
   justify-content: flex-start;
-  line-height: 22px;
-  max-width: 500px;
-  min-width: 300px;
+  border-radius: 4px;
+  box-shadow: var(--shadow-pop-over);
   padding: 10px 12px;
+  min-width: 300px;
+  max-width: 500px;
+  line-height: 22px;
+  font-size: 15px;
 
   &__content {
+    width: 100%;
+    min-width: 192px;
     color: var(--content-default);
     font-weight: 600;
-    min-width: 192px;
-    width: 100%;
   }
 
   &__actions {
-    align-items: center;
     display: inline-flex;
     flex-wrap: nowrap;
     gap: 8px;
+    align-items: center;
 
     &--close svg {
       cursor: pointer;
       fill: var(--content-subtle);
     }
 
-    &--custom {
-      color: var(--content-default);
+    &--custom, &--custom:hover {
       text-decoration: underline;
       white-space: nowrap;
+      color: var(--content-default);
     }
 
     button {
@@ -62,12 +62,15 @@ $toast-exit-animation-timeout: 200ms;
   }
 
   &--info {
-    background: var(--surface-invert-default);
+    background: var(--decor-blue200);
+
+    .toast__content {
+      color: var(--content-default);
+    }
   }
 
   &--success,
-  &--error,
-  &--info {
+  &--error {
     .toast__content,
     .toast__actions--custom {
       color: var(--content-invert-default);
@@ -75,10 +78,10 @@ $toast-exit-animation-timeout: 200ms;
   }
 
   &-wrapper {
-    align-items: center;
     display: flex;
-    flex-direction: column;
     position: absolute;
+    flex-direction: column;
+    align-items: center;
     z-index: 120;
 
     &--fixed {
@@ -160,14 +163,14 @@ $toast-exit-animation-timeout: 200ms;
         opacity: 0;
 
         &.toast-appear-active--fade {
-          opacity: 1;
           transition: opacity $toast-appear-animation-timeout ease-in;
+          opacity: 1;
         }
       }
 
       .toast-exit--fade {
-        opacity: 1;
         transition: opacity $toast-appear-animation-timeout ease-in;
+        opacity: 1;
 
         &.toast-exit-active--fade {
           opacity: 0;
