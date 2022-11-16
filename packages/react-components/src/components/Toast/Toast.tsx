@@ -4,7 +4,7 @@ import {
   Info,
   Warning,
   CheckCircleSolid,
-  Error,
+  Block,
 } from '@livechat/design-system-icons/react/material';
 import cx from 'clsx';
 
@@ -38,12 +38,11 @@ const iconConfig: Record<ToastKind, { source: IconSource; kind?: IconKind }> = {
     source: Warning,
   },
   error: {
-    source: Error,
+    source: Block,
     kind: 'inverted',
   },
   info: {
     source: Info,
-    kind: 'inverted',
   },
 };
 
@@ -99,7 +98,9 @@ export const Toast: React.FC<ToastProps> = ({
               <Icon
                 source={Close}
                 size="medium"
-                kind={['warning'].includes(kind) ? 'primary' : 'inverted'}
+                kind={
+                  ['warning', 'info'].includes(kind) ? 'primary' : 'inverted'
+                }
               />
             </div>
           )}
