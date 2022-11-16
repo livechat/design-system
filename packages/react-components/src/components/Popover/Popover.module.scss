@@ -4,7 +4,7 @@
   display: none;
   z-index: $stacking-context-level-popover;
   border-radius: 4px;
-  box-shadow: 0 1px 10px 0 rgb(66 77 87 / 30%);
+  box-shadow: var(--shadow-pop-over);
   background-color: var(--surface-basic-default);
   min-width: 168px;
   max-width: 336px;
