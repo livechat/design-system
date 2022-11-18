@@ -38,3 +38,4 @@ export * from './components/FormField';
 export * from './components/Toast';
 export * from './components/Tooltip';
 export * from './components/Typography';
+export * from './components/Textarea';

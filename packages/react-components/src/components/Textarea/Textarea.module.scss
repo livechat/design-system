@@ -1,0 +1,44 @@
+.textarea {
+  box-sizing: border-box;
+  display: inline-block;
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+  background: var(--surface-basic-default);
+  line-height: 22px;
+  color: var(--content-default);
+  font-size: 15px;
+  font-weight: 400;
+
+  &:hover {
+    border-color: var(--border-hover);
+  }
+
+  &--focused,
+  &--focused:hover {
+    border-color: var(--color-action-default);
+  }
+
+  &--disabled,
+  &--disabled:hover {
+    border-color: var(--border-disabled);
+    background-color: var(--surface-basic-disabled);
+    color: var(--content-disabled);
+  }
+
+  &--error,
+  &--error:hover {
+    border-color: var(--color-negative-default);
+  }
+
+  textarea {
+    display: block;
+    outline: none;
+    border: 0;
+    border-radius: 4px;
+    background: inherit;
+    padding: 8px 12px;
+    min-width: 125px;
+    min-height: 32px;
+    color: inherit;
+  }
+}
