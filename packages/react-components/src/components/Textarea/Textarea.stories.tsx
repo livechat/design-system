@@ -11,13 +11,7 @@ const exampleText = 'Example textarea text';
 export default {
   title: 'Forms/Textarea',
   component: Textarea,
-  argTypes: {
-    value: {
-      control: {
-        disable: true,
-      },
-    },
-  },
+  argTypes: { onChange: { action: 'changed' } },
 } as ComponentMeta<typeof Textarea>;
 
 export const Default: Story<TextareaProps> = (args: TextareaProps) => {
@@ -36,11 +30,7 @@ Default.args = {
 export const States = (): JSX.Element => (
   <>
     <StoryDescriptor title="With error">
-      <Textarea
-        error={true}
-        value={exampleText}
-        placeholder={placeholderText}
-      />
+      <Textarea error placeholder={placeholderText} />
     </StoryDescriptor>
     <StoryDescriptor title="Disabled">
       <Textarea

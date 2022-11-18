@@ -8,7 +8,7 @@ const baseClass = 'textarea';
 export interface TextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   className?: string;
-  error?: boolean | undefined;
+  error?: boolean;
 }
 
 export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
