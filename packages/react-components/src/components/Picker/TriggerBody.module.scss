@@ -7,15 +7,15 @@ $base-class: 'picker-trigger-body';
   justify-content: flex-start;
 
   &__input {
-    align-items: center;
-    background: none;
-    border: 0;
-    color: var(--content-default);
     display: flex;
     flex-grow: 2;
-    font-size: 15px;
-    height: 22px;
+    align-items: center;
     outline: none;
+    border: 0;
+    background: none;
     padding: 0;
+    height: 22px;
+    color: var(--content-default);
+    font-size: 15px;
   }
 }

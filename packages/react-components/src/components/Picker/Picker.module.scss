@@ -2,20 +2,20 @@ $base-class: 'picker';
 
 .#{$base-class} {
   box-sizing: border-box;
-  color: var(--content-default);
   display: inline-block;
   position: relative;
   width: 100%;
+  color: var(--content-default);
 
   &__container {
     position: relative;
   }
 
   &__label {
+    margin-bottom: 4px;
+    line-height: 20px;
     font-size: 14px;
     font-weight: 400;
-    line-height: 20px;
-    margin-bottom: 4px;
 
     &--disabled {
       color: var(--content-disabled);
@@ -23,12 +23,12 @@ $base-class: 'picker';
   }
 
   &__error {
-    color: var(--color-negative-default);
     display: flex;
+    margin-top: 4px;
+    line-height: 20px;
+    color: var(--color-negative-default);
     font-size: 14px;
     font-weight: 400;
-    line-height: 20px;
-    margin-top: 4px;
 
     &__icon {
       margin-right: 5px;

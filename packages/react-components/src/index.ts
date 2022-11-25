@@ -3,6 +3,7 @@ import './index.scss';
 export { DesignToken } from './themes/design-token';
 export { SpacingToken } from './foundations/spacing-token';
 export { ShadowToken } from './foundations/shadow-token';
+export type { Size } from './utils';
 
 export * from './components/Alert';
 export * from './components/Avatar';
@@ -38,3 +39,4 @@ export * from './components/FormField';
 export * from './components/Toast';
 export * from './components/Tooltip';
 export * from './components/Typography';
+export * from './components/Textarea';
