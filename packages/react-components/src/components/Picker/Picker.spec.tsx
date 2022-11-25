@@ -3,7 +3,7 @@ import { render, vi } from 'test-utils';
 import userEvent from '@testing-library/user-event';
 import noop from '../../utils/noop';
 import { IPickerProps, Picker, PickerType } from './Picker';
-import { defaultOptions, SELECT_ALL_OPTION_KEY } from './constants';
+import { defaultOptions } from './constants';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 window.HTMLElement.prototype.scrollIntoView = () => {};

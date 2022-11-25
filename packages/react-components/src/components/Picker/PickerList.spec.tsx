@@ -103,4 +103,32 @@ describe('<PickerList> component', () => {
 
     expect(getByText('Select all')).toBeVisible();
   });
+
+  it('should display custom components as options', () => {
+    const { getByText } = renderComponent({
+      ...defaultProps,
+      isOpen: true,
+      items: [
+        {
+          key: 'custom-one',
+          name: 'Custom one',
+          customElement: {
+            listItemBody: <div>List custom one</div>,
+            selectedItemBody: <div>Selected custom one</div>,
+          },
+        },
+        {
+          key: 'custom-two',
+          name: 'Custom two',
+          customElement: {
+            listItemBody: <div>List custom two</div>,
+            selectedItemBody: <div>Selected custom two</div>,
+          },
+        },
+      ],
+    });
+
+    expect(getByText('List custom one')).toBeVisible();
+    expect(getByText('List custom two')).toBeVisible();
+  });
 });
