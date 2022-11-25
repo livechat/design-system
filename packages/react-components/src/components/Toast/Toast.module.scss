@@ -34,7 +34,7 @@ $toast-exit-animation-timeout: 200ms;
       fill: var(--content-subtle);
     }
 
-    &--custom {
+    &--custom, &--custom:hover {
       text-decoration: underline;
       white-space: nowrap;
       color: var(--content-default);
@@ -62,12 +62,15 @@ $toast-exit-animation-timeout: 200ms;
   }
 
   &--info {
-    background: var(--surface-invert-default);
+    background: var(--decor-blue200);
+
+    .toast__content {
+      color: var(--content-default);
+    }
   }
 
   &--success,
-  &--error,
-  &--info {
+  &--error {
     .toast__content,
     .toast__actions--custom {
       color: var(--content-invert-default);
