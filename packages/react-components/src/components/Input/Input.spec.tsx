@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { fireEvent, render } from 'test-utils';
+import { AddCircle as AddCircleIcon } from '@livechat/design-system-icons/react/material';
 import { Input } from './Input';
+import { Icon } from '../Icon';
 
 import styles from './Input.module.scss';
 
@@ -55,7 +57,7 @@ describe('<Input> component', () => {
     expect(getByTestId('input')).toHaveAttribute('type', 'text');
   });
 
-  it('should have password type input if kind "password" is set', () => {
+  it('should have password type input if type "password" is set', () => {
     const { getByTestId } = render(<Input type="password" />);
     expect(getByTestId('input')).toHaveAttribute('type', 'password');
   });
@@ -70,5 +72,45 @@ describe('<Input> component', () => {
     expect(input).toHaveAttribute('type', 'text');
     fireEvent.click(button);
     expect(input).toHaveAttribute('type', 'password');
+  });
+
+  it('should render with icon from the left side', () => {
+    const { getByTestId } = render(
+      <Input
+        icon={{
+          source: <Icon source={AddCircleIcon} />,
+          place: 'left',
+        }}
+      />
+    );
+
+    expect(getByTestId('input-icon-left')).toBeVisible();
+  });
+
+  it('should render with icon from the right side', () => {
+    const { getByTestId } = render(
+      <Input
+        icon={{
+          source: <Icon source={AddCircleIcon} />,
+          place: 'right',
+        }}
+      />
+    );
+
+    expect(getByTestId('input-icon-right')).toBeVisible();
+  });
+
+  it('should not render with icon from the right side if type "password" is set', () => {
+    const { queryByTestId } = render(
+      <Input
+        type="password"
+        icon={{
+          source: <Icon source={AddCircleIcon} />,
+          place: 'right',
+        }}
+      />
+    );
+
+    expect(queryByTestId('input-icon-right')).toBeFalsy();
   });
 });

@@ -1,18 +1,32 @@
 .input {
+  box-sizing: border-box;
+  display: flex;
   align-items: center;
-  background: var(--surface-basic-default);
+  outline: none;
   border: 1px solid var(--border-default);
   border-radius: 4px;
-  box-sizing: border-box;
-  color: var(--content-default);
-  display: flex;
-  font-size: 15px;
-  line-height: 22px;
-  outline: none;
+  background: var(--surface-basic-default);
   padding: 5px 12px;
+  line-height: 22px;
+  color: var(--content-default);
+  font-size: 15px;
+
+  &::placeholder {
+    color: var(--content-disabled);
+  }
 
   &:hover {
     border-color: var(--border-hover);
+  }
+
+  &:focus {
+    border-color: var(--color-action-default);
+  }
+
+  &:disabled {
+    border-color: var(--border-disabled);
+    background-color: var(--surface-basic-disabled);
+    color: var(--content-disabled);
   }
 
   &--focused,
@@ -22,35 +36,17 @@
 
   &--disabled,
   &--disabled:hover {
-    background-color: var(--surface-basic-disabled);
     border-color: var(--border-disabled);
+    background-color: var(--surface-basic-disabled);
   }
 
   input {
-    background: none;
-    border: 0;
-    color: var(--content-default);
     outline: none;
+    border: 0;
+    background: none;
     padding: 0;
     width: 100%;
-  }
-
-  &::placeholder {
-    color: var(--content-disabled);
-  }
-
-  &::placeholder {
-    color: var(--content-disabled);
-  }
-
-  &:focus {
-    border-color: var(--color-action-default);
-  }
-
-  &:disabled {
-    background-color: var(--surface-basic-disabled);
-    border-color: var(--border-disabled);
-    color: var(--content-disabled);
+    color: var(--content-default);
   }
 
   &--error,
@@ -71,10 +67,20 @@
   }
 
   &__icon {
-    margin-right: 9px;
-
     &--disabled {
       color: var(--content-disabled);
     }
+
+    &--left {
+      margin-right: 9px;
+    }
+
+    &--right {
+      margin-left: 9px;
+    }
+  }
+
+  &__visibility-button {
+    margin-left: 9px;
   }
 }

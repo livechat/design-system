@@ -62,11 +62,35 @@ export const Types = (): JSX.Element => (
   </>
 );
 
-export const WithIcon = (): JSX.Element => (
+export const WithIcons = (): JSX.Element => (
   <>
-    <Input
-      icon={<Icon source={AddCircleIcon} />}
-      placeholder={placeholderText}
-    />
+    <StoryDescriptor title="Left icon">
+      <Input
+        icon={{
+          source: <Icon source={AddCircleIcon} />,
+          place: 'left',
+        }}
+        placeholder={placeholderText}
+      />
+    </StoryDescriptor>
+    <StoryDescriptor title="Right icon">
+      <Input
+        icon={{
+          source: <Icon source={AddCircleIcon} />,
+          place: 'right',
+        }}
+        placeholder={placeholderText}
+      />
+    </StoryDescriptor>
+    <StoryDescriptor title="Left icon with password type">
+      <Input
+        icon={{
+          source: <Icon source={AddCircleIcon} />,
+          place: 'left',
+        }}
+        placeholder={placeholderText}
+        type="password"
+      />
+    </StoryDescriptor>
   </>
 );

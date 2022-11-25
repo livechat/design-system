@@ -11,15 +11,32 @@ import styles from './Input.module.scss';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
 
+interface InputIcon {
+  source: React.ReactElement;
+  place: 'left' | 'right';
+}
+
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   inputSize?: Size;
   error?: boolean;
   disabled?: boolean;
-  icon?: React.ReactElement;
+  icon?: InputIcon;
 }
 
 const baseClass = 'input';
+
+const renderIcon = (icon: InputIcon, disabled?: boolean) =>
+  React.cloneElement(icon.source, {
+    ['data-testid']: `input-icon-${icon.place}`,
+    className: cx(
+      styles[`${baseClass}__icon`],
+      styles[`${baseClass}__icon--${icon.place}`],
+      {
+        [styles[`${baseClass}__icon--disabled`]]: disabled,
+      }
+    ),
+  });
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
@@ -49,18 +66,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const iconCustomColor = !disabled
       ? 'var(--content-default)'
       : 'var(--content-disabled)';
-    const iconSource = !isPasswordVisible
-      ? VisibilityOnIcon
-      : VisibilityOffIcon;
+    const iconSource = isPasswordVisible ? VisibilityOnIcon : VisibilityOffIcon;
+    const shouldRenderLeftIcon = icon && icon.place === 'left';
+    const shouldRenderRightIcon =
+      icon && type !== 'password' && icon.place === 'right';
 
     return (
       <div className={mergedClassNames} aria-disabled={disabled} tab-index="0">
-        {icon &&
-          React.cloneElement(icon, {
-            className: cx(styles[`${baseClass}__icon`], {
-              [styles[`${baseClass}__icon--disabled`]]: disabled,
-            }),
-          })}
+        {shouldRenderLeftIcon && renderIcon(icon, disabled)}
         <input
           {...inputProps}
           data-testid="input"
@@ -70,12 +83,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           disabled={disabled}
           type={type && !isPasswordVisible ? type : 'text'}
         />
+        {shouldRenderRightIcon && renderIcon(icon, disabled)}
         {type === 'password' && (
           <Button
             disabled={disabled}
             kind="plain"
             icon={<Icon customColor={iconCustomColor} source={iconSource} />}
             onClick={() => setIsPasswordVisible((v) => !v)}
+            className={styles[`${baseClass}__visibility-button`]}
           />
         )}
       </div>
