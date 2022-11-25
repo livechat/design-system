@@ -1,20 +1,25 @@
 $base-class: 'picker-trigger';
 
 .#{$base-class} {
-  align-items: center;
-  background-color: var(--surface-basic-default);
-  border: 1px solid var(--border-default);
-  border-radius: 4px;
   box-sizing: border-box;
   display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: flex-end;
+  transition: border 0.15s ease-in-out;
+  border: 1px solid var(--border-default);
+  border-radius: 4px;
+  background-color: var(--surface-basic-default);
+  padding: 7px 12px;
+  width: 100%;
+  line-height: 22px;
   font-size: 15px;
   font-weight: 400;
-  justify-content: flex-end;
-  line-height: 22px;
-  padding: 7px 12px;
-  position: relative;
-  transition: border 0.15s ease-in-out;
-  width: 100%;
+
+  &:hover {
+    border-color: var(--border-hover);
+    cursor: pointer;
+  }
 
   &--compact {
     height: 32px;
@@ -36,15 +41,10 @@ $base-class: 'picker-trigger';
     }
   }
 
-  &:hover {
-    border-color: var(--border-hover);
-    cursor: pointer;
-  }
-
   &__controls {
+    display: flex;
     align-items: center;
     align-self: flex-start;
-    display: flex;
 
     &--compact {
       height: 18px;
@@ -60,13 +60,13 @@ $base-class: 'picker-trigger';
   }
 
   &__clear-icon {
-    align-items: center;
-    background-color: var(--surface-secondary-subtle);
-    border-radius: 50%;
     display: flex;
-    height: 20px;
+    align-items: center;
     justify-content: center;
+    border-radius: 50%;
+    background-color: var(--surface-secondary-subtle);
     width: 20px;
+    height: 20px;
   }
 
   &__content {

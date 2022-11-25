@@ -1,64 +1,64 @@
 $base-class: 'upload-bar';
 
 .#{$base-class} {
-  background-color: var(--surface-default);
+  box-sizing: border-box;
   border: solid 1px var(--border-deault);
   border-radius: 8px;
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  color: var(--content-default);
-  overflow: hidden;
+  box-shadow: 0 2px 6px 0 rgb(0 0 0 / 20%);
+  background-color: var(--surface-default);
   padding: 10px;
   width: 100%;
+  overflow: hidden;
+  color: var(--content-default);
 
   &--error {
     color: var(--color-negative-default);
   }
 
   &__wrapper {
-    align-content: center;
     box-sizing: border-box;
-    cursor: pointer;
     display: flex;
+    align-content: center;
     justify-content: space-between;
+    cursor: pointer;
 
     &__header {
-      align-items: center;
       display: flex;
-      font-size: 15px;
+      align-items: center;
       width: 100%;
+      font-size: 15px;
 
       &__icon {
         margin-right: 11px;
       }
 
       &__title {
-        font-size: 14px;
         justify-self: flex-start;
-        line-height: 1.3;
+        width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
+        line-height: 1.3;
         white-space: nowrap;
-        width: 100%;
+        font-size: 14px;
       }
 
       &__collapse-button {
-        align-items: center;
-        background-color: transparent;
-        border: 0;
-        border-radius: 4px;
-        color: var(--content-default);
-        cursor: pointer;
         display: flex;
         flex: 0 1 auto;
+        align-items: center;
         margin: 0;
         margin-left: 8px;
+        border: 0;
+        border-radius: 4px;
+        background-color: transparent;
+        cursor: pointer;
         padding: 4px;
+        color: var(--content-default);
       }
 
       &__actions-container {
-        align-items: center;
         display: flex;
+        align-items: center;
         height: 28px;
       }
     }
@@ -74,8 +74,8 @@ $base-class: 'upload-bar';
     }
 
     &--enter-active {
-      max-height: 200px;
       transition: max-height 300ms cubic-bezier(0.14, 0, 0, 1);
+      max-height: 200px;
     }
 
     &--exit {
@@ -84,27 +84,27 @@ $base-class: 'upload-bar';
 
     &--exit-active,
     &--exit-done {
-      max-height: 0;
       transition: max-height 300ms cubic-bezier(0.14, 0, 0, 1);
+      max-height: 0;
     }
 
     &-wrapper {
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
-      max-height: inherit;
       padding-top: 16px;
       width: 100%;
+      max-height: inherit;
     }
 
     &__list {
+      padding-right: 20px;
       height: 100%;
       overflow-y: auto;
-      padding-right: 20px;
 
       > div:not(:last-child) {
-        margin-bottom: 14px;
         margin-top: 5px;
+        margin-bottom: 14px;
       }
     }
   }

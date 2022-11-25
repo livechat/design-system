@@ -8,10 +8,9 @@ import {
 import { Icon } from '../Icon';
 import styles from './Trigger.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
+import { Size } from 'utils';
 
 const baseClass = 'picker-trigger';
-
-export type TriggerSize = 'compact' | 'medium' | 'large';
 
 export interface ITriggerProps {
   isSearchDisabled: boolean;
@@ -21,7 +20,7 @@ export interface ITriggerProps {
   isOpen: boolean;
   isRequired?: boolean;
   isMultiSelect?: boolean;
-  size?: TriggerSize;
+  size?: Size;
   onTrigger: (e: React.MouseEvent | KeyboardEvent) => void;
   onClear: () => void;
 }

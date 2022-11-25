@@ -1,21 +1,21 @@
 $base-class: 'avatar';
 
 .#{$base-class} {
-  align-items: center;
-  background-color: var(--surface-basic-disabled);
   display: flex;
-  font-weight: 600;
-  justify-content: center;
   position: relative;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--surface-basic-disabled);
+  font-weight: 600;
 
   &__status {
     $status-class: &;
     $circle-class: #{$status-class}--circle;
     $rounded-square-class: #{$status-class}--rounded-square;
 
+    position: absolute;
     border: 1px solid var(--background);
     border-radius: 50%;
-    position: absolute;
 
     &--available {
       background: var(--color-positive-default);
@@ -55,71 +55,71 @@ $base-class: 'avatar';
 
     &--xxxsmall {
       border-width: calc(4px * 0.125);
-      height: 4px;
       width: 4px;
+      height: 4px;
     }
 
     &--xxsmall {
       border-width: calc(5px * 0.125);
-      height: 5px;
       width: 5px;
+      height: 5px;
     }
 
     &--xsmall {
       border-width: calc(6px * 0.125);
-      height: 6px;
       width: 6px;
+      height: 6px;
     }
 
     &--small {
       border-width: calc(8px * 0.125);
-      height: 8px;
       width: 8px;
+      height: 8px;
     }
 
     &--medium {
       border-width: calc(8px * 0.125);
-      height: 9px;
       width: 9px;
+      height: 9px;
     }
 
     &--large {
       border-width: calc(12px * 0.125);
-      height: 12px;
       width: 12px;
+      height: 12px;
     }
 
     &--xlarge {
       border-width: calc(16px * 0.125);
-      height: 16px;
       width: 16px;
+      height: 16px;
     }
 
     &--xxlarge {
       border-width: calc(24px * 0.125);
-      height: 24px;
       width: 24px;
+      height: 24px;
     }
   }
 
   &__rim {
-    background: transparent;
-    border-color: var(--color-negative-default);
-    border-radius: inherit;
-    border-style: solid;
     box-sizing: content-box;
     display: block;
-    left: 50%;
     position: absolute;
     top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
+    border-style: solid;
+    border-radius: inherit;
+    border-color: var(--color-negative-default);
+    background: transparent;
 
     &--xxxsmall,
     &--xxsmall,
     &--xsmall {
       border-width: 2px;
-      height: calc(100% + 2px);
       width: calc(100% + 2px);
+      height: calc(100% + 2px);
     }
 
     &--small,
@@ -128,57 +128,57 @@ $base-class: 'avatar';
     &--xlarge,
     &--xxlarge {
       border-width: 3px;
-      height: calc(100% + 4px);
       width: calc(100% + 4px);
+      height: calc(100% + 4px);
     }
   }
 
   &__image {
     border-radius: inherit;
+    width: 100%;
     height: 100%;
     object-fit: cover;
-    width: 100%;
   }
 
   &__icon {
     &--xxxsmall svg {
-      height: 8px;
       width: 8px;
+      height: 8px;
     }
 
     &--xxsmall svg {
-      height: 10px;
       width: 10px;
+      height: 10px;
     }
 
     &--xsmall svg {
-      height: 12px;
       width: 12px;
+      height: 12px;
     }
 
     &--small svg {
-      height: 16px;
       width: 16px;
+      height: 16px;
     }
 
     &--medium svg {
-      height: 18px;
       width: 18px;
+      height: 18px;
     }
 
     &--large svg {
-      height: 24px;
       width: 24px;
+      height: 24px;
     }
 
     &--xlarge svg {
-      height: 32px;
       width: 32px;
+      height: 32px;
     }
 
     &--xxlarge svg {
-      height: 48px;
       width: 48px;
+      height: 48px;
     }
   }
 
@@ -205,58 +205,58 @@ $base-class: 'avatar';
   }
 
   &--xxxsmall {
-    font-size: 12px;
+    width: 16px;
     height: 16px;
     line-height: 20px;
-    width: 16px;
+    font-size: 12px;
   }
 
   &--xxsmall {
-    font-size: 12px;
+    width: 20px;
     height: 20px;
     line-height: 20px;
-    width: 20px;
+    font-size: 12px;
   }
 
   &--xsmall {
-    font-size: 12px;
+    width: 24px;
     height: 24px;
     line-height: 20px;
-    width: 24px;
+    font-size: 12px;
   }
 
   &--small {
-    font-size: 15px;
+    width: 32px;
     height: 32px;
     line-height: 22px;
-    width: 32px;
+    font-size: 15px;
   }
 
   &--medium {
-    font-size: 15px;
+    width: 36px;
     height: 36px;
     line-height: 22px;
-    width: 36px;
+    font-size: 15px;
   }
 
   &--large {
-    font-size: 18px;
+    width: 48px;
     height: 48px;
     line-height: 24px;
-    width: 48px;
+    font-size: 18px;
   }
 
   &--xlarge {
-    font-size: 24px;
+    width: 64px;
     height: 64px;
     line-height: 32px;
-    width: 64px;
+    font-size: 24px;
   }
 
   &--xxlarge {
-    font-size: 32px;
+    width: 96px;
     height: 96px;
     line-height: 40px;
-    width: 96px;
+    font-size: 32px;
   }
 }

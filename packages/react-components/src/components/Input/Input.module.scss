@@ -1,15 +1,22 @@
 .input {
-  background: var(--surface-basic-default);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  outline: none;
   border: 1px solid var(--border-default);
   border-radius: 4px;
-  box-sizing: border-box;
+  background: var(--surface-basic-default);
+  padding: 5px 12px;
+  line-height: 22px;
   color: var(--content-default);
   font-size: 15px;
-  line-height: 22px;
-  outline: none;
 
   &::placeholder {
     color: var(--content-disabled);
+  }
+
+  &:hover {
+    border-color: var(--border-hover);
   }
 
   &:focus {
@@ -17,29 +24,63 @@
   }
 
   &:disabled {
-    background-color: var(--surface-basic-disabled);
     border-color: var(--border-disabled);
+    background-color: var(--surface-basic-disabled);
     color: var(--content-disabled);
   }
 
-  &--error {
+  &--focused,
+  &--focused:hover {
+    border-color: var(--color-action-default);
+  }
+
+  &--disabled,
+  &--disabled:hover {
+    border-color: var(--border-disabled);
+    background-color: var(--surface-basic-disabled);
+  }
+
+  input {
+    outline: none;
+    border: 0;
+    background: none;
+    padding: 0;
+    width: 100%;
+    color: var(--content-default);
+  }
+
+  &--error,
+  &--error:hover {
     border-color: var(--color-negative-default);
   }
 
-  &--xsmall {
-    height: 24px;
-    padding: 1px 4px;
-  }
-  &--small {
+  &--compact {
     height: 32px;
-    padding: 4px 8px;
   }
+
   &--medium {
     height: 36px;
-    padding: 6px 8px;
   }
+
   &--large {
     height: 40px;
-    padding: 8px;
+  }
+
+  &__icon {
+    &--disabled {
+      color: var(--content-disabled);
+    }
+
+    &--left {
+      margin-right: 9px;
+    }
+
+    &--right {
+      margin-left: 9px;
+    }
+  }
+
+  &__visibility-button {
+    margin-left: 9px;
   }
 }
