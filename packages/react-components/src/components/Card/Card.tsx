@@ -22,7 +22,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   description?: string;
   expandableContent?: React.ReactNode;
   src?: string;
-  title: string;
+  title?: string;
 }
 
 const baseClass = 'card';
@@ -47,7 +47,7 @@ export const Card: React.FC<CardProps> = ({
   const shouldShowActionButtons = buttonsOptions?.length > 0;
   const shouldShowExpandAction = !!expandableContent;
   const shouldShowActions = shouldShowActionButtons || shouldShowExpandAction;
-  const isTitleAvailable = title.length > 0;
+  const isTitleAvailable = title;
 
   return (
     <div className={cx(styles[baseClass], className)} {...divProps}>
