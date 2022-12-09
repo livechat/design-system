@@ -22,7 +22,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   description?: string;
   expandableContent?: React.ReactNode;
   src?: string;
-  title: string;
+  title?: string;
 }
 
 const baseClass = 'card';
@@ -47,26 +47,29 @@ export const Card: React.FC<CardProps> = ({
   const shouldShowActionButtons = buttonsOptions?.length > 0;
   const shouldShowExpandAction = !!expandableContent;
   const shouldShowActions = shouldShowActionButtons || shouldShowExpandAction;
+  const isTitleAvailable = title;
 
   return (
     <div className={cx(styles[baseClass], className)} {...divProps}>
-      <div className={styles[headerClass]}>
-        {src && (
-          <img
-            alt={alt}
-            className={styles[`${headerClass}__image`]}
-            src={src}
-          />
-        )}
-        <div className={styles[headingClass]}>
-          <Heading size="sm" className={styles[`${headingClass}__title`]}>
-            {title}
-          </Heading>
-          <Text size="sm" className={styles[`${headingClass}__description`]}>
-            {description}
-          </Text>
+      {isTitleAvailable && (
+        <div className={styles[headerClass]}>
+          {src && (
+            <img
+              alt={alt}
+              className={styles[`${headerClass}__image`]}
+              src={src}
+            />
+          )}
+          <div className={styles[headingClass]}>
+            <Heading size="sm" className={styles[`${headingClass}__title`]}>
+              {title}
+            </Heading>
+            <Text size="sm" className={styles[`${headingClass}__description`]}>
+              {description}
+            </Text>
+          </div>
         </div>
-      </div>
+      )}
       <Text as="div" size="md" className={styles[`${baseClass}__content`]}>
         {children}
       </Text>
