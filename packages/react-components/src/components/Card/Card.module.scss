@@ -47,10 +47,7 @@ $base-class: card;
 
   &__content,
   &__expanded-content {
-    display: flex;
-    flex-direction: column;
     gap: 10px;
-    align-items: flex-start;
     margin: 0;
     width: 100%;
   }
