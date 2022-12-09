@@ -12,6 +12,10 @@ const itemClassName = `${baseClass}__item`;
 export interface IPickerListItem {
   key: string;
   name: string;
+  customElement?: {
+    listItemBody: React.ReactElement;
+    selectedItemBody: React.ReactElement;
+  };
   groupHeader?: boolean;
   disabled?: boolean;
 }
@@ -182,6 +186,18 @@ export const PickerList: React.FC<IPickerListProps> = ({
     );
   };
 
+  const getOptionContent = (item: IPickerListItem) => {
+    if (item?.customElement) {
+      return (
+        <div className={styles[`${itemClassName}__custom`]}>
+          {item.customElement.listItemBody}
+        </div>
+      );
+    }
+
+    return item.name;
+  };
+
   if (!isOpen) {
     return null;
   }
@@ -219,10 +235,12 @@ export const PickerList: React.FC<IPickerListProps> = ({
             aria-disabled={item.disabled}
             id={item.key}
             key={item.key}
-            className={styles[itemClassName]}
+            className={cx(styles[itemClassName], {
+              [styles[`${itemClassName}__custom`]]: item?.customElement,
+            })}
             onClick={() => !item.disabled && handleOnClick(item)}
           >
-            {item.name}
+            {getOptionContent(item)}
             {isItemSelected(item.key) && <Icon kind="link" source={Check} />}
           </li>
         );

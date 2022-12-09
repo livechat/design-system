@@ -102,4 +102,50 @@ describe('<TriggerBody> component', () => {
       name: 'Option three',
     });
   });
+
+  it('should show custom component as selected item in single mode', () => {
+    const { queryByText } = renderComponent({
+      ...defaultProps,
+      items: [
+        {
+          key: 'custom-one',
+          name: 'Custom one',
+          customElement: {
+            listItemBody: <div>List custom one</div>,
+            selectedItemBody: <div>Selected custom one</div>,
+          },
+        },
+      ],
+    });
+
+    expect(queryByText('Selected custom one')).toBeVisible();
+  });
+
+  it('should show custom components as selected items in multiselect mode', () => {
+    const { queryByText } = renderComponent({
+      ...defaultProps,
+      type: 'multi',
+      items: [
+        {
+          key: 'custom-one',
+          name: 'Custom one',
+          customElement: {
+            listItemBody: <div>List custom one</div>,
+            selectedItemBody: <div>Selected custom one</div>,
+          },
+        },
+        {
+          key: 'custom-two',
+          name: 'Custom two',
+          customElement: {
+            listItemBody: <div>List custom two</div>,
+            selectedItemBody: <div>Selected custom two</div>,
+          },
+        },
+      ],
+    });
+
+    expect(queryByText('Selected custom one')).toBeVisible();
+    expect(queryByText('Selected custom two')).toBeVisible();
+  });
 });

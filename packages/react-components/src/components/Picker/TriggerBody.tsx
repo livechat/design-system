@@ -29,12 +29,20 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
 }) => {
   const shouldDisplaySearch = isOpen && !isSearchDisabled;
 
-  const getSingleItem = (name: string) => {
-    if (isOpen && !isSearchDisabled) {
+  const getSingleItem = (item: IPickerListItem) => {
+    if (type === 'single' && isOpen && !isSearchDisabled) {
       return null;
     }
 
-    return name;
+    if (item?.customElement) {
+      return (
+        <div className={styles[`${baseClass}__custom`]}>
+          {item.customElement.selectedItemBody}
+        </div>
+      );
+    }
+
+    return item.name;
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +65,7 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
   return (
     <div className={styles[baseClass]}>
       {type === 'single'
-        ? getSingleItem(items[0].name)
+        ? getSingleItem(items[0])
         : items.map((item) => {
             return (
               <Tag
@@ -66,7 +74,7 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
                 dismissible
                 onRemove={() => onItemRemove(item)}
               >
-                {item.name}
+                {getSingleItem(item)}
               </Tag>
             );
           })}

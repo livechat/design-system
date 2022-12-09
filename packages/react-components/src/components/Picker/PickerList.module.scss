@@ -27,6 +27,7 @@ $base-class: 'picker-list';
   }
 
   &__item {
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -34,6 +35,7 @@ $base-class: 'picker-list';
     cursor: pointer;
     padding: 6px 11px;
     height: 36px;
+    overflow: hidden;
 
     &:hover {
       background-color: var(--surface-basic-hover);
@@ -67,6 +69,11 @@ $base-class: 'picker-list';
       color: var(--content-subtle);
       font-size: 12px;
       font-weight: 600;
+    }
+
+    &__custom {
+      width: 100%;
+      height: auto;
     }
   }
 }
