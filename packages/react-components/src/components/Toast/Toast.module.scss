@@ -34,7 +34,8 @@ $toast-exit-animation-timeout: 200ms;
       fill: var(--content-subtle);
     }
 
-    &--custom, &--custom:hover {
+    &--custom,
+    &--custom:hover {
       text-decoration: underline;
       white-space: nowrap;
       color: var(--content-default);

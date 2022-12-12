@@ -205,7 +205,6 @@ $base-class: 'date-picker';
   &--range {
     .#{$base-class}__day {
       &--selected {
-
         &:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--outside):not(.#{$base-class}__day--start):not(.#{$base-class}__day--end):not(.#{$base-class}__day--single):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday) {
           .#{$base-class}__day-wrapper {
             background-color: var(--surface-feedback-info);
