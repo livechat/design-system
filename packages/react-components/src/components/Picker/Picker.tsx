@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Error } from '@livechat/design-system-icons/react/material';
 import cx from 'clsx';
 
-import { Trigger, TriggerSize } from './Trigger';
+import { Trigger } from './Trigger';
 import { IPickerListItem, PickerList } from './PickerList';
 import { Icon } from '../Icon';
 import { KeyCodes } from '../../utils/keyCodes';
@@ -10,6 +10,7 @@ import { KeyCodes } from '../../utils/keyCodes';
 import styles from './Picker.module.scss';
 import { TriggerBody } from './TriggerBody';
 import { SELECT_ALL_OPTION_KEY } from './constants';
+import { Size } from 'utils';
 
 const baseClass = 'picker';
 
@@ -22,7 +23,7 @@ export interface IPickerProps {
   error?: string;
   options: IPickerListItem[];
   selected?: IPickerListItem[] | null;
-  size?: TriggerSize;
+  size?: Size;
   placeholder?: string;
   isRequired?: boolean;
   noSearchResultText?: string;
