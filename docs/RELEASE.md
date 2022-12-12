@@ -4,7 +4,7 @@
 
 To deploy a package to the `npm` you need to be logged in as a `LiveChat` organization member. To confirm that you are logged in, you can use `npm whoami`. If you are not, use `npm login` and follow the instructions.
 
-The deployment process consists of only single commandL `npm run deploy`. It will execute several sub-commands and you can run them separately if you wish, namely:
+The deployment process consists of only single command: `npm run deploy`. It will execute several sub-commands and you can run them separately if you wish, namely:
 
 - `check` - fire up linter and unit tests that are provided per package
 - `prettier` - format the code across the packages
