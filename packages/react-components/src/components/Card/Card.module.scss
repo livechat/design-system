@@ -43,6 +43,10 @@ $base-class: card;
         color: var(--content-subtle);
       }
     }
+
+    &__no-image {
+      height: 24px;
+    }
   }
 
   &__content,

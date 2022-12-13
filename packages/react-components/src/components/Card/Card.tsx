@@ -29,6 +29,7 @@ const baseClass = 'card';
 const headerClass = `${baseClass}__header`;
 const headingClass = `${headerClass}__heading`;
 const actionsClass = `${baseClass}__actions`;
+const noImageClass = `${headerClass}__no-image`;
 
 export const Card: React.FC<CardProps> = ({
   alt,
@@ -48,12 +49,14 @@ export const Card: React.FC<CardProps> = ({
   const shouldShowExpandAction = !!expandableContent;
   const shouldShowActions = shouldShowActionButtons || shouldShowExpandAction;
   const isTitleAvailable = title;
+  const isImageAvailable = src;
+  const noImageAvailable = isImageAvailable ? '' : styles[noImageClass];
 
   return (
     <div className={cx(styles[baseClass], className)} {...divProps}>
       {isTitleAvailable && (
-        <div className={styles[headerClass]}>
-          {src && (
+        <div className={cx(styles[headerClass], noImageAvailable)}>
+          {isImageAvailable && (
             <img
               alt={alt}
               className={styles[`${headerClass}__image`]}
