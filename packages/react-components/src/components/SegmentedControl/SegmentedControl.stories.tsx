@@ -2,8 +2,10 @@ import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
 
 import { SegmentedControl, SegmentedControlProps } from './SegmentedControl';
+import * as MaterialIcons from '@livechat/design-system-icons/react/material';
 
 const buttonSizes = ['compact', 'medium', 'large'];
+const buttonIcon = MaterialIcons.AddCircle;
 
 export default {
   title: 'Components/Segmented Control',
@@ -30,6 +32,7 @@ Default.args = {
     { id: 'two', label: 'two', disabled: true },
     { id: 'three', label: 'three' },
     { id: 'fourth', label: 'fourth' },
+    { id: 'fifth', label: 'fifth', icon: buttonIcon },
   ],
   initialId: 'fourth',
 };

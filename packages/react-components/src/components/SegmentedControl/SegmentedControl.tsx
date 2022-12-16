@@ -6,6 +6,7 @@ import { Button, ButtonProps } from '../Button';
 import styles from './SegmentedControl.module.scss';
 
 import noop from '../../utils/noop';
+import { Icon, IconSource } from '../Icon';
 
 const baseClass = 'segmented-control';
 
@@ -14,7 +15,7 @@ export type ButtonSize = 'compact' | 'medium' | 'large';
 type ButtonElement = {
   id: string;
   label: string;
-} & Pick<ButtonProps, 'disabled' | 'loading'>;
+} & Pick<ButtonProps, 'disabled' | 'loading' | 'icon'>;
 
 export interface SegmentedControlProps
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -52,10 +53,12 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
 
     onButtonClick(id, event);
   };
-  const buttonSet = buttons.map(({ id, label, loading, disabled }) => {
+  const buttonSet = buttons.map(({ id, label, loading, disabled, icon }) => {
     const activityStyles = id === currentStateId ? styles['btn--active'] : '';
     const loadingStatus = id === currentStateId ? false : loading;
-
+    const hasIcon = icon ? (
+      <Icon source={icon as unknown as IconSource} />
+    ) : undefined;
     return (
       <Button
         key={id}
@@ -63,6 +66,7 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
         loading={loadingStatus}
         disabled={disabled}
         kind="secondary"
+        icon={hasIcon}
         className={cx(styles['btn'], styles[`btn--${size}`], activityStyles)}
         onClick={(event: React.MouseEvent<HTMLElement>) => {
           handleClick(id, event);
