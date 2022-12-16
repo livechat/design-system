@@ -30,6 +30,8 @@ export const Tab: React.FC<TabProps> = ({
 }) => {
   const { disabled } =
     restProps as React.ButtonHTMLAttributes<HTMLButtonElement>;
+  const shouldDisplayAsCounter = count && !asBadge;
+  const shouldDisplayAsBadge = count && asBadge;
 
   return (
     <Text
@@ -46,12 +48,12 @@ export const Tab: React.FC<TabProps> = ({
       )}
     >
       {children}
-      {count && !asBadge && (
+      {shouldDisplayAsCounter && (
         <Text as="span" size="md" className={styles[`${baseClass}__count`]}>
           ({count})
         </Text>
       )}
-      {count && asBadge && (
+      {shouldDisplayAsBadge && (
         <Badge
           data-testid="tab-badge"
           count={count}
