@@ -3,9 +3,10 @@ import { ComponentMeta, Story } from '@storybook/react';
 
 import { SegmentedControl, SegmentedControlProps } from './SegmentedControl';
 import * as MaterialIcons from '@livechat/design-system-icons/react/material';
+import { Icon } from '../Icon';
 
 const buttonSizes = ['compact', 'medium', 'large'];
-const buttonIcon = MaterialIcons.AddCircle;
+const buttonIcon = <Icon source={MaterialIcons.AddCircle} />;
 
 export default {
   title: 'Components/Segmented Control',
