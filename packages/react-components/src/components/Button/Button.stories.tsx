@@ -3,13 +3,13 @@ import { ComponentMeta } from '@storybook/react';
 
 import * as MaterialIcons from '@livechat/design-system-icons/react/material';
 
-import { Icon } from '../Icon';
+import { Icon, IconSource } from '../Icon';
 import { Button, ButtonProps } from './Button';
 
 const icons = Object.fromEntries(
   Object.entries(MaterialIcons).map(([key, source]) => [
     key,
-    <Icon source={source as React.FC} />,
+    <Icon source={source as IconSource} />,
   ])
 );
 

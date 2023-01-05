@@ -4,7 +4,7 @@ import cx from 'clsx';
 import { getContrast } from 'polished';
 
 import { Text } from '../Typography';
-import { Icon } from '../Icon';
+import { Icon, IconSource } from '../Icon';
 
 import styles from './Tag.module.scss';
 
@@ -17,7 +17,7 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
   dismissible?: boolean;
   outline?: boolean;
   onRemove?(): void;
-  icon?: React.FC<React.SVGProps<SVGSVGElement>> | string;
+  icon?: IconSource;
   avatar?: string;
 }
 

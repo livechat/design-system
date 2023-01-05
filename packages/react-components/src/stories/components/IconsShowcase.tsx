@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 import * as MaterialIcons from '@livechat/design-system-icons/react/material';
-import { Icon } from '../../components/Icon';
+import { Icon, IconSource } from '../../components/Icon';
 import './iconsShowcase.css';
 
 export type IconsMap = {
-  [key: string]: React.FC<React.SVGProps<SVGSVGElement>>;
+  [key: string]: IconSource;
 };
 
 const Icons = MaterialIcons as IconsMap;
