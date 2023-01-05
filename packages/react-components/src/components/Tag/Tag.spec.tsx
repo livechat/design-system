@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { render, userEvent, vi } from 'test-utils';
+import * as MaterialIcons from '@livechat/design-system-icons/react/material';
 import noop from '../../utils/noop';
 import { Tag } from './Tag';
 
@@ -71,7 +72,7 @@ describe('<Tag> component', () => {
 
   it('should show avatar when both avatar and icon are provided', () => {
     const { getByTestId, queryByTestId } = render(
-      <Tag {...props} avatar="http://test.img" icon="arrow-left">
+      <Tag {...props} avatar="http://test.img" icon={MaterialIcons.AddCircle}>
         tag1
       </Tag>
     );
