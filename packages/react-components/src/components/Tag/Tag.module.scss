@@ -1,19 +1,17 @@
 .tag {
-  align-items: center;
-  background-color: var(--decor-gray100);
-  border-color: var(--decor-gray800);
-  border-radius: 4px;
-  border-style: none;
-  border-width: 1px;
   box-sizing: border-box;
-  color: var(--decor-gray800);
   display: inline-flex;
   position: relative;
+  align-items: center;
+  border-radius: 4px;
+  border-color: var(--decor-gray800);
+  background-color: var(--surface-secondary-subtle);
+  color: var(--decor-gray800);
 
   /* TODO: Replace colors below with decor tokens when ready */
   &--success {
-    background-color: var(--decor-green100);
     border-color: var(--decor-green800);
+    background-color: var(--decor-green100);
     color: var(--decor-green800);
 
     .tag__remove {
@@ -22,8 +20,8 @@
   }
 
   &--error {
-    background-color: var(--decor-red100);
     border-color: var(--decor-red800);
+    background-color: var(--decor-red100);
     color: var(--decor-red800);
 
     .tag__remove {
@@ -32,8 +30,8 @@
   }
 
   &--warning {
-    background-color: var(--decor-yellow100);
     border-color: var(--decor-yellow800);
+    background-color: var(--decor-yellow100);
     color: var(--decor-yellow800);
 
     .tag__remove {
@@ -42,8 +40,8 @@
   }
 
   &--info {
-    background-color: var(--decor-blue100);
     border-color: var(--decor-blue800);
+    background-color: var(--decor-blue100);
     color: var(--decor-blue800);
 
     .tag__remove {
@@ -60,12 +58,13 @@
   }
 
   &--outline {
-    background-color: transparent;
     border-style: solid;
+    background-color: transparent;
 
     &.tag--medium {
       padding: 0 7px;
     }
+
     &.tag--large {
       padding: 4px 11px;
     }
@@ -87,6 +86,7 @@
     &.tag--medium {
       padding-left: 4px;
     }
+
     &.tag--large {
       padding-left: 6px;
     }
@@ -96,6 +96,7 @@
     &.tag--medium {
       padding-right: 4px;
     }
+
     &.tag--large {
       padding-right: 6px;
     }
@@ -106,23 +107,23 @@
   }
 
   &__avatar {
-    border-radius: 50%;
-    height: 20px;
     margin-right: 4px;
+    border-radius: 50%;
     width: 20px;
+    height: 20px;
   }
 
   &__remove {
-    align-items: center;
-    background-color: transparent;
-    border-style: none;
-    box-shadow: none;
-    color: var(--content-subtle);
-    cursor: pointer;
     display: flex;
+    align-items: center;
     justify-content: center;
     outline: none;
+    border-style: none;
+    box-shadow: none;
+    background-color: transparent;
+    cursor: pointer;
     padding: 0 0 0 4px;
+    color: var(--content-subtle);
 
     &:hover {
       color: var(--content-default);
