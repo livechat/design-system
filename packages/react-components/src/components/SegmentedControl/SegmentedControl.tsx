@@ -53,8 +53,9 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
     onButtonClick(id, event);
   };
   const buttonSet = buttons.map(({ id, label, loading, disabled, icon }) => {
-    const activityStyles = id === currentStateId ? styles['btn--active'] : '';
-    const loadingStatus = id === currentStateId ? false : loading;
+    const isPressed = id === currentStateId;
+    const activityStyles = isPressed ? styles['btn--active'] : '';
+    const loadingStatus = isPressed ? false : loading;
 
     return (
       <Button
@@ -62,6 +63,7 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
         fullWidth={fullWidth}
         loading={loadingStatus}
         disabled={disabled}
+        aria-pressed={isPressed}
         kind="secondary"
         icon={icon}
         className={cx(styles['btn'], styles[`btn--${size}`], activityStyles)}
