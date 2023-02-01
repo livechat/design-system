@@ -4,7 +4,7 @@ import cx from 'clsx';
 
 import { Trigger } from './Trigger';
 import { IPickerListItem, PickerList } from './PickerList';
-import { Icon } from '../Icon';
+import { Icon, IconSize } from '../Icon';
 import { KeyCodes } from '../../utils/keyCodes';
 
 import styles from './Picker.module.scss';
@@ -24,6 +24,7 @@ export interface IPickerProps {
   options: IPickerListItem[];
   selected?: IPickerListItem[] | null;
   size?: Size;
+  tagIconSize?: IconSize;
   placeholder?: string;
   isRequired?: boolean;
   noSearchResultText?: string;
@@ -41,6 +42,7 @@ export const Picker: React.FC<IPickerProps> = ({
   options,
   selected,
   size = 'medium',
+  tagIconSize = 'medium',
   placeholder = 'Select option',
   isRequired,
   noSearchResultText = 'No results found',
@@ -207,6 +209,7 @@ export const Picker: React.FC<IPickerProps> = ({
             isOpen={isListOpen}
             isSearchDisabled={searchDisabled}
             placeholder={placeholder}
+            iconSize={tagIconSize}
             items={selected}
             type={type}
             onItemRemove={handleItemRemove}
