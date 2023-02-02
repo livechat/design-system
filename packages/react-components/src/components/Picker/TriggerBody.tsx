@@ -5,6 +5,7 @@ import { Tag } from '../Tag';
 import { PickerType } from './Picker';
 
 import styles from './TriggerBody.module.scss';
+import { IconSize } from 'index';
 
 const baseClass = 'picker-trigger-body';
 
@@ -14,6 +15,7 @@ export interface ITriggerBodyProps {
   placeholder: string;
   items?: IPickerListItem[] | null;
   type: PickerType;
+  iconSize?: IconSize;
   onItemRemove: (item: IPickerListItem) => void;
   onFilter: (text: string) => void;
 }
@@ -24,6 +26,7 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
   placeholder,
   items,
   type,
+  iconSize,
   onItemRemove,
   onFilter,
 }) => {
@@ -71,6 +74,7 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
               <Tag
                 key={item.name}
                 className={styles[`${baseClass}__tag`]}
+                iconSize={iconSize}
                 dismissible
                 onRemove={() => onItemRemove(item)}
               >

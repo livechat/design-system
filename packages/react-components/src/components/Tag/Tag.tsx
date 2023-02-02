@@ -4,7 +4,7 @@ import cx from 'clsx';
 import { getContrast } from 'polished';
 
 import { Text } from '../Typography';
-import { Icon, IconSource } from '../Icon';
+import { Icon, IconSize, IconSource } from '../Icon';
 
 import styles from './Tag.module.scss';
 
@@ -13,6 +13,7 @@ const baseClass = 'tag';
 export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
   kind?: 'default' | 'info' | 'warning' | 'success' | 'error';
   size?: 'medium' | 'large';
+  iconSize?: IconSize;
   customColor?: string;
   dismissible?: boolean;
   outline?: boolean;
@@ -35,6 +36,7 @@ export const Tag: React.FC<TagProps> = ({
   children,
   dismissible = false,
   size = 'medium',
+  iconSize = 'medium',
   kind = 'default',
   onRemove,
   outline = false,
@@ -120,7 +122,7 @@ export const Tag: React.FC<TagProps> = ({
           <Icon
             data-dismiss-icon
             source={Close}
-            size="medium"
+            size={iconSize}
             customColor={getIconCustomColor()}
           />
         </button>
