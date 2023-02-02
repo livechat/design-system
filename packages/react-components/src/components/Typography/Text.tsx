@@ -6,6 +6,7 @@ import styles from './Typography.module.scss';
 type TSize = 'md' | 'sm' | 'xs';
 
 interface IProps {
+  children?: React.ReactNode;
   /** DOM element name that will be rendered */
   as?: string;
   size?: TSize;

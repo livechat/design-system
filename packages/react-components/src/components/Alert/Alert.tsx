@@ -17,6 +17,7 @@ import styles from './Alert.module.scss';
 type AlertKind = 'info' | 'warning' | 'success' | 'error';
 
 export interface AlertProps {
+  children?: React.ReactNode;
   className?: string;
   kind?: AlertKind;
   onClose?: () => void;

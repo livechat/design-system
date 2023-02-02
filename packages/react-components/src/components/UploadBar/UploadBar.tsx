@@ -23,6 +23,7 @@ const wrapperHeaderClass = `${baseClass}__wrapper__header`;
 const TRANSITION_TIMEOUT = 300;
 
 export interface UploadBarProps {
+  children?: React.ReactNode;
   className?: string;
   progressValue: number;
   title: string;
