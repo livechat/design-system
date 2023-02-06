@@ -14,6 +14,8 @@ type ITabArgs = {
     id: string;
     title: string;
     count: number;
+    asBadge?: boolean;
+    isDisabled?: boolean;
   }>;
 };
 
@@ -23,12 +25,14 @@ export const TabsWrapper = ({ items }: ITabArgs): React.ReactElement => {
   return (
     <TabsWrapperComponenet>
       <TabsList>
-        {items.map(({ id, title, count }) => (
+        {items.map(({ id, title, count, asBadge, isDisabled }) => (
           <Tab
             key={id}
-            description={count}
+            count={count}
             isSelected={selectedTab === id}
-            onClick={() => setSelectedTab(id)}
+            disabled={isDisabled}
+            asBadge={asBadge}
+            onClick={() => !isDisabled && setSelectedTab(id)}
           >
             {title}
           </Tab>
@@ -42,5 +46,6 @@ TabsWrapper.args = {
   items: [
     { id: 'agents', title: 'Agents', count: 1 },
     { id: 'groups', title: 'Groups', count: 3 },
+    { id: 'bots', title: 'Bots', count: 2 },
   ],
 } as ITabArgs;
