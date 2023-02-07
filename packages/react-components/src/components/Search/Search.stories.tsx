@@ -3,25 +3,25 @@ import { ComponentMeta, Story } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
-import {
-  SearchInput as SearchComponent,
-  ISearchInputProps,
-  SearchSize,
-} from './Search';
+import { SearchInput, ISearchInputProps } from './Search';
+import { Avatar } from '../Avatar';
 
 const commonWidth: React.CSSProperties = { width: 300 };
 
 export default {
   title: 'Components/Search',
-  component: SearchComponent,
+  component: SearchInput,
   argTypes: { onChange: { action: 'changed' } },
-} as ComponentMeta<typeof SearchComponent>;
+} as ComponentMeta<typeof SearchInput>;
 
-const StoryTemplate: Story<ISearchInputProps> = (args: ISearchInputProps) => (
-  <div style={commonWidth}>
-    <SearchComponent {...args} />
-  </div>
-);
+const SearchInputComponent = (args: ISearchInputProps) => {
+  const [value, setValue] = React.useState(args.value);
+  return <SearchInput {...args} value={value} onChange={setValue} />;
+};
+
+const StoryTemplate: Story<ISearchInputProps> = (args: ISearchInputProps) => {
+  return <SearchInputComponent {...args} />;
+};
 
 export const Search = StoryTemplate.bind({});
 Search.args = {};
@@ -29,16 +29,21 @@ Search.args = {};
 export const States = (args: ISearchInputProps): React.ReactElement => (
   <div style={commonWidth}>
     <StoryDescriptor title="Basic">
-      <SearchComponent {...args} />
+      <SearchInputComponent {...args} />
     </StoryDescriptor>
     <StoryDescriptor title="Disabled">
-      <SearchComponent {...args} isDisabled />
+      <SearchInputComponent {...args} isDisabled />
     </StoryDescriptor>
     <StoryDescriptor title="Loading">
-      <SearchComponent {...args} isLoading />
+      <SearchInputComponent {...args} value="Example text" isLoading />
     </StoryDescriptor>
-    <StoryDescriptor title="Collapsible">
-      <SearchComponent {...args} isCollapsable />
+    <StoryDescriptor title="Loading + Disabled">
+      <SearchInputComponent
+        {...args}
+        value="Example text"
+        isLoading
+        isDisabled
+      />
     </StoryDescriptor>
   </div>
 );
@@ -48,25 +53,38 @@ States.args = {};
 export const Sizes = (args: ISearchInputProps): React.ReactElement => (
   <div style={commonWidth}>
     <StoryDescriptor title="Compact">
-      <SearchComponent {...args} size={SearchSize.Compact} />
+      <SearchInputComponent {...args} size="compact" />
     </StoryDescriptor>
     <StoryDescriptor title="Medium">
-      <SearchComponent {...args} size={SearchSize.Medium} />
+      <SearchInputComponent {...args} size="medium" />
     </StoryDescriptor>
     <StoryDescriptor title="Large">
-      <SearchComponent {...args} size={SearchSize.Large} />
+      <SearchInputComponent {...args} size="large" />
     </StoryDescriptor>
   </div>
 );
 
 Sizes.args = {};
 
-export const WithDefaultValue = StoryTemplate.bind({});
-WithDefaultValue.args = {
-  value: 'Default value',
-};
+export const CollapsableSearch = (
+  args: ISearchInputProps
+): React.ReactElement => (
+  <div
+    style={{
+      display: 'flex',
+      justifyContent: 'flex-start',
+    }}
+  >
+    <SearchInputComponent {...args} isCollapsable />
+    <div
+      style={{
+        flexShrink: 0,
+        marginLeft: 15,
+      }}
+    >
+      <Avatar type="image" />
+    </div>
+  </div>
+);
 
-export const WithCustomPlaceholder = StoryTemplate.bind({});
-WithCustomPlaceholder.args = {
-  placeholder: 'Custom placeholder',
-};
+CollapsableSearch.args = {};

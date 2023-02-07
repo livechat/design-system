@@ -1,9 +1,6 @@
 import * as React from 'react';
 import cx from 'clsx';
-import {
-  Search as SearchIcon,
-  Close,
-} from '@livechat/design-system-icons/react/material';
+import { Search, Close } from '@livechat/design-system-icons/react/material';
 import { Icon } from '../Icon';
 import { Loader } from '../Loader';
 
@@ -13,18 +10,12 @@ import { KeyCodes } from '../../utils/keyCodes';
 const baseClass = 'search-input';
 const inputBaseClass = `${baseClass}__input`;
 
-export const enum SearchSize {
-  Compact = 'compact',
-  Medium = 'medium',
-  Large = 'large',
-}
-
 export interface ISearchInputProps {
   isCollapsable?: boolean;
   isDisabled?: boolean;
   isLoading?: boolean;
   placeholder?: string;
-  size?: SearchSize;
+  size?: 'compact' | 'medium' | 'large';
   value?: string;
   className?: string;
   onChange: (value: string) => void;
@@ -35,87 +26,96 @@ export const SearchInput: React.FC<ISearchInputProps> = ({
   isDisabled,
   isLoading,
   placeholder = 'Search ...',
-  size = SearchSize.Medium,
-  value,
+  size = 'medium',
+  value = '',
   className,
   onChange,
 }) => {
-  const [searchValue, setSearchValue] = React.useState<string>(value || '');
   const [isCollapsed, setIsCollapsed] = React.useState<boolean>(true);
+  const [isFocused, setIsFocused] = React.useState<boolean>(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const isCloseIconVisible = !!searchValue && !isDisabled && !isLoading;
+  const isCloseIconVisible = !!value && !isDisabled && !isLoading;
 
   const mergedClassNames = cx(
     className,
+    styles[baseClass],
+    styles[`${baseClass}--${size}`],
+    isFocused && styles[`${baseClass}--focused`],
+    isDisabled && styles[`${baseClass}--disabled`],
+    isCollapsable && styles[`${baseClass}--collapsable`],
+    !isCollapsed && styles[`${baseClass}--collapsable--open`]
+  );
+
+  const mergedInputClassNames = cx(
     styles[`${inputBaseClass}`],
-    styles[`${inputBaseClass}--${size}`],
-    (isDisabled || isLoading) && styles[`${inputBaseClass}--disabled`],
+    isDisabled && styles[`${inputBaseClass}--disabled`],
     isCollapsable && styles[`${inputBaseClass}--collapsable`],
     !isCollapsed && styles[`${inputBaseClass}--collapsable--open`]
   );
 
   React.useEffect(() => {
-    if (typeof value === 'string') {
-      setSearchValue(value);
+    if (isCollapsable && !!value) {
+      setIsCollapsed(false);
     }
-  }, [value]);
+  }, [isCollapsable]);
 
   const handleOnChange = (e: React.FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
-
-    setSearchValue(value);
     onChange(value);
   };
 
   const handleClear = () => {
-    setSearchValue('');
     onChange('');
   };
 
   const handleClick = () => {
     inputRef.current?.focus();
   };
+
   const handleFocus = () => {
     if (isCollapsable) {
       setIsCollapsed(false);
     }
+    setIsFocused(true);
   };
+
   const handleBlur = () => {
-    if (isCollapsable && !searchValue) {
+    if (isCollapsable && !value) {
       setIsCollapsed(true);
     }
+    setIsFocused(false);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === KeyCodes.enter) {
       e.preventDefault();
-      onChange(searchValue);
+      onChange(value);
     }
   };
 
   return (
     <div
       data-testid={`${baseClass}-container`}
-      className={styles[baseClass]}
+      className={mergedClassNames}
       onClick={handleClick}
     >
       <Icon
         className={styles[`${baseClass}__search-icon`]}
-        source={SearchIcon}
-        disabled={isDisabled || isLoading}
+        source={Search}
+        disabled={isDisabled}
         kind="primary"
       />
       <input
         ref={inputRef}
-        className={mergedClassNames}
+        className={mergedInputClassNames}
         type="text"
-        value={searchValue}
+        value={value}
         placeholder={placeholder}
         onChange={handleOnChange}
         onBlur={handleBlur}
         onFocus={handleFocus}
         onKeyDown={handleKeyDown}
-        disabled={isDisabled || isLoading}
+        disabled={isDisabled}
       />
       {isCloseIconVisible && (
         <div
