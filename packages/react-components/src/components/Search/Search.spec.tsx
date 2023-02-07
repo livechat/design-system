@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { render, fireEvent, vi } from 'test-utils';
+import { render, userEvent, fireEvent, vi } from 'test-utils';
 import noop from '../../utils/noop';
-import { ISearchInputProps, SearchInput, SearchSize } from './Search';
+import { ISearchInputProps, SearchInput } from './Search';
 import styles from './Search.module.scss';
 
 const baseClass = 'search-input';
 const inputBaseClass = `${baseClass}__input`;
+const componentTestId = `${baseClass}-container`;
 
 const defaultProps = {
+  value: '',
   onChange: () => noop,
 };
 
@@ -15,75 +17,166 @@ const renderComponent = (props: ISearchInputProps) => {
   return render(<SearchInput {...props} />);
 };
 
+const rerenderedComponent = (props: ISearchInputProps) => {
+  return <SearchInput {...props} />;
+};
+
 describe('<Search> component', () => {
-  it('should render with default size', () => {
-    const { getByRole } = renderComponent({
+  it('should apply className prop', () => {
+    const { getByTestId } = renderComponent({
       ...defaultProps,
+      className: 'test-class',
     });
 
-    expect(getByRole('textbox')).toHaveClass(
-      styles[`${inputBaseClass}--medium`]
+    expect(getByTestId(componentTestId)).toHaveClass('test-class');
+  });
+
+  it('should render with default values', () => {
+    const { getByTestId, getByRole } = renderComponent({
+      ...defaultProps,
+    });
+    const textbox = getByRole('textbox');
+
+    expect(getByTestId(componentTestId)).toHaveClass(
+      styles[`${baseClass}--medium`]
+    );
+    expect(textbox).toHaveValue('');
+    expect(textbox).toHaveAttribute('placeholder', 'Search ...');
+  });
+
+  it('should render with compact size, if that prop is given', () => {
+    const { getByTestId } = renderComponent({
+      ...defaultProps,
+      size: 'compact',
+    });
+
+    expect(getByTestId(componentTestId)).toHaveClass(
+      styles[`${baseClass}--compact`]
     );
   });
 
-  it('should render with given medium size', () => {
-    const { getByRole } = renderComponent({
+  it('should render with medium size, if that prop is given', () => {
+    const { getByTestId } = renderComponent({
       ...defaultProps,
-      size: SearchSize.Medium,
+      size: 'medium',
     });
 
-    expect(getByRole('textbox')).toHaveClass(
-      styles[`${inputBaseClass}--medium`]
+    expect(getByTestId(componentTestId)).toHaveClass(
+      styles[`${baseClass}--medium`]
     );
   });
 
-  it('should render with given large size', () => {
-    const { getByRole } = renderComponent({
+  it('should render with large size, if that prop is given', () => {
+    const { getByTestId } = renderComponent({
       ...defaultProps,
-      size: SearchSize.Large,
+      size: 'large',
     });
 
-    expect(getByRole('textbox')).toHaveClass(
-      styles[`${inputBaseClass}--large`]
+    expect(getByTestId(componentTestId)).toHaveClass(
+      styles[`${baseClass}--large`]
     );
   });
 
-  it('should render as disabled', () => {
-    const { getByRole } = renderComponent({
+  it('should render as disabled and input should be disabled, if that prop is given', () => {
+    const { getByTestId, getByRole } = renderComponent({
       ...defaultProps,
       isDisabled: true,
     });
     const textbox = getByRole('textbox');
 
+    expect(getByTestId(componentTestId)).toHaveClass(
+      styles[`${baseClass}--disabled`]
+    );
     expect(textbox).toHaveClass(styles[`${inputBaseClass}--disabled`]);
     expect(textbox).toBeDisabled();
   });
 
-  it('should render as loading', () => {
-    const { getByRole, getByTestId } = renderComponent({
+  it('should render as loading, if that prop is given', () => {
+    const { getByTestId } = renderComponent({
       ...defaultProps,
       isLoading: true,
     });
 
-    expect(getByRole('textbox')).toHaveClass(
-      styles[`${inputBaseClass}--disabled`]
-    );
     expect(getByTestId(`${baseClass}-loader`)).toBeVisible();
   });
 
-  it('should render as collapsable and open it after click', () => {
-    const { getByRole, getByTestId } = renderComponent({
+  it('should render as disabled loading and input should be disabled, if that props are given', () => {
+    const { getByTestId, getByRole } = renderComponent({
+      ...defaultProps,
+      isDisabled: true,
+      isLoading: true,
+    });
+    const textbox = getByRole('textbox');
+
+    expect(getByTestId(componentTestId)).toHaveClass(
+      styles[`${baseClass}--disabled`]
+    );
+    expect(getByTestId(`${baseClass}-loader`)).toBeVisible();
+    expect(textbox).toHaveClass(styles[`${inputBaseClass}--disabled`]);
+    expect(textbox).toBeDisabled();
+  });
+
+  it('should render as collapsable and open it after click, if that prop is given', () => {
+    const { getByTestId, getByRole } = renderComponent({
       ...defaultProps,
       isCollapsable: true,
     });
+    const component = getByTestId(componentTestId);
+    const textbox = getByRole('textbox');
 
-    expect(getByRole('textbox')).toHaveClass(
-      styles[`${inputBaseClass}--collapsable`]
+    expect(component).toHaveClass(styles[`${baseClass}--collapsable`]);
+    expect(textbox).toHaveClass(styles[`${inputBaseClass}--collapsable`]);
+    userEvent.click(component);
+    expect(component).toHaveClass(styles[`${baseClass}--collapsable--open`]);
+    expect(textbox).toHaveClass(styles[`${inputBaseClass}--collapsable--open`]);
+    expect(textbox).toHaveFocus();
+  });
+
+  it('should close collapsable search if user clicks outside and no value is given', () => {
+    const { getByTestId, getByRole } = renderComponent({
+      ...defaultProps,
+      isCollapsable: true,
+    });
+    const component = getByTestId(componentTestId);
+    const textbox = getByRole('textbox');
+
+    userEvent.click(component);
+    expect(textbox).toHaveFocus();
+    userEvent.click(document.body);
+    expect(textbox).not.toHaveFocus();
+    expect(component).not.toHaveClass(
+      styles[`${baseClass}--collapsable--open`]
     );
-    fireEvent.click(getByTestId(`${baseClass}-container`));
-    expect(getByRole('textbox')).toHaveClass(
+    expect(textbox).not.toHaveClass(
       styles[`${inputBaseClass}--collapsable--open`]
     );
+  });
+
+  it('should not close collapsable search if user clicks outside and value is given', () => {
+    const { getByTestId, getByRole, rerender } = renderComponent({
+      ...defaultProps,
+      isCollapsable: true,
+    });
+    const component = getByTestId(componentTestId);
+    const textbox = getByRole('textbox');
+    const text = 'test value';
+
+    userEvent.click(component);
+    userEvent.type(textbox, text);
+
+    rerender(
+      rerenderedComponent({
+        ...defaultProps,
+        value: text,
+        isCollapsable: true,
+      })
+    );
+
+    userEvent.click(document.body);
+    expect(textbox).not.toHaveFocus();
+    expect(component).toHaveClass(styles[`${baseClass}--collapsable--open`]);
+    expect(component).not.toHaveClass(styles[`${baseClass}--focused`]);
+    expect(textbox).toHaveClass(styles[`${inputBaseClass}--collapsable--open`]);
   });
 
   it('should render with given custom placeholder', () => {
@@ -95,13 +188,22 @@ describe('<Search> component', () => {
     expect(queryByPlaceholderText(/Custom placeholder/i)).toBeVisible();
   });
 
-  it('should render clear icon if value is given', () => {
-    const { getByRole, queryByTestId } = renderComponent({
+  it('should render clear icon if value is given by the user', () => {
+    const { getByRole, queryByTestId, rerender } = renderComponent({
       ...defaultProps,
     });
+    const text = 'test value';
 
     expect(queryByTestId(`${baseClass}-clear-icon`)).toBeFalsy();
-    fireEvent.change(getByRole('textbox'), { target: { value: 'test' } });
+    userEvent.type(getByRole('textbox'), text);
+
+    rerender(
+      rerenderedComponent({
+        ...defaultProps,
+        value: text,
+      })
+    );
+
     expect(queryByTestId(`${baseClass}-clear-icon`)).toBeVisible();
   });
 
@@ -111,27 +213,23 @@ describe('<Search> component', () => {
       ...defaultProps,
       onChange: onChangeFunction,
     });
+    const text = 'test value';
 
-    fireEvent.change(getByRole('textbox'), { target: { value: 'test' } });
-    expect(onChangeFunction).toBeCalledWith('test');
+    // Temporary solution because using the userEvent cause firing the function for each element typed.
+    // Probably related to this: https://github.com/testing-library/user-event/issues/387
+    fireEvent.change(getByRole('textbox'), { target: { value: text } });
+    expect(onChangeFunction).toBeCalledWith(text);
   });
 
   it('should clear input value if clear icon clicked', () => {
-    const { getByTestId, getByRole } = renderComponent({
+    const onChangeFunction = vi.fn();
+    const { getByTestId } = renderComponent({
       ...defaultProps,
-      value: 'test',
+      value: 'test value',
+      onChange: onChangeFunction,
     });
 
-    fireEvent.click(getByTestId(`${baseClass}-clear-icon`));
-    expect(getByRole('textbox')).toHaveValue('');
-  });
-
-  it('should apply className prop', () => {
-    const { getByRole } = renderComponent({
-      ...defaultProps,
-      className: 'test-class',
-    });
-
-    expect(getByRole('textbox')).toHaveClass('test-class');
+    userEvent.click(getByTestId(`${baseClass}-clear-icon`));
+    expect(onChangeFunction).toBeCalledWith('');
   });
 });

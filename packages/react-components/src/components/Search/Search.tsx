@@ -16,7 +16,7 @@ export interface ISearchInputProps {
   isLoading?: boolean;
   placeholder?: string;
   size?: 'compact' | 'medium' | 'large';
-  value?: string;
+  value: string;
   className?: string;
   onChange: (value: string) => void;
 }
