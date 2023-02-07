@@ -15,7 +15,7 @@ export default {
 } as ComponentMeta<typeof SearchInput>;
 
 const SearchInputComponent = (args: ISearchInputProps) => {
-  const [value, setValue] = React.useState(args.value);
+  const [value, setValue] = React.useState('');
   return <SearchInput {...args} value={value} onChange={setValue} />;
 };
 

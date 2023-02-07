@@ -209,16 +209,24 @@ describe('<Search> component', () => {
 
   it('should call onChange if input value change', () => {
     const onChangeFunction = vi.fn();
-    const { getByRole } = renderComponent({
-      ...defaultProps,
-      onChange: onChangeFunction,
-    });
+    const SearchWrapper = () => {
+      const [value, setValue] = React.useState('');
+      return (
+        <SearchInput
+          value={value}
+          onChange={(v) => {
+            setValue(v);
+            onChangeFunction(v);
+          }}
+        />
+      );
+    };
+
+    const { getByRole } = render(<SearchWrapper />);
     const text = 'test value';
 
-    // Temporary solution because using the userEvent cause firing the function for each element typed.
-    // Probably related to this: https://github.com/testing-library/user-event/issues/387
-    fireEvent.change(getByRole('textbox'), { target: { value: text } });
-    expect(onChangeFunction).toBeCalledWith(text);
+    userEvent.type(getByRole('textbox'), text, { delay: 0 });
+    expect(onChangeFunction).toHaveBeenCalledWith(text);
   });
 
   it('should clear input value if clear icon clicked', () => {
