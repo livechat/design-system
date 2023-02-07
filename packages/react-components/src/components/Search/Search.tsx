@@ -27,7 +27,7 @@ export const SearchInput: React.FC<ISearchInputProps> = ({
   isLoading,
   placeholder = 'Search ...',
   size = 'medium',
-  value = '',
+  value,
   className,
   onChange,
 }) => {
