@@ -1,4 +1,5 @@
 import * as React from 'react';
+import cx from 'clsx';
 
 import { IPickerListItem } from './PickerList';
 import { Tag } from '../Tag';
@@ -12,6 +13,7 @@ const baseClass = 'picker-trigger-body';
 export interface ITriggerBodyProps {
   isOpen: boolean;
   isSearchDisabled?: boolean;
+  isDisabled?: boolean;
   placeholder: string;
   items?: IPickerListItem[] | null;
   type: PickerType;
@@ -23,6 +25,7 @@ export interface ITriggerBodyProps {
 export const TriggerBody: React.FC<ITriggerBodyProps> = ({
   isOpen,
   isSearchDisabled,
+  isDisabled,
   placeholder,
   items,
   type,
@@ -30,6 +33,11 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
   onItemRemove,
   onFilter,
 }) => {
+  const mergedClassNames = cx(
+    styles[baseClass],
+    type === 'multi' && styles[`${baseClass}--multi`]
+  );
+
   const shouldDisplaySearch = isOpen && !isSearchDisabled;
 
   const getSingleItem = (item: IPickerListItem) => {
@@ -45,7 +53,7 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
       );
     }
 
-    return item.name;
+    return <div className={styles[`${baseClass}__item`]}>{item.name}</div>;
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -66,7 +74,7 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
   }
 
   return (
-    <div className={styles[baseClass]}>
+    <div className={mergedClassNames}>
       {type === 'single'
         ? getSingleItem(items[0])
         : items.map((item) => {
@@ -75,7 +83,7 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
                 key={item.name}
                 className={styles[`${baseClass}__tag`]}
                 iconSize={iconSize}
-                dismissible
+                dismissible={!isDisabled}
                 onRemove={() => onItemRemove(item)}
               >
                 {getSingleItem(item)}

@@ -240,7 +240,9 @@ export const PickerList: React.FC<IPickerListProps> = ({
             })}
             onClick={() => !item.disabled && handleOnClick(item)}
           >
-            {getOptionContent(item)}
+            <div className={styles[`${itemClassName}__content`]}>
+              {getOptionContent(item)}
+            </div>
             {isItemSelected(item.key) && <Icon kind="link" source={Check} />}
           </li>
         );

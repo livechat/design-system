@@ -120,7 +120,7 @@ export const Picker: React.FC<IPickerProps> = ({
       return onSelect(null);
     }
 
-    const newSelectedItems = items.filter((item) =>
+    const newSelectedItems = options.filter((item) =>
       newSelectedItemsKeys.includes(item.key)
     );
 
@@ -208,6 +208,7 @@ export const Picker: React.FC<IPickerProps> = ({
           <TriggerBody
             isOpen={isListOpen}
             isSearchDisabled={searchDisabled}
+            isDisabled={disabled}
             placeholder={placeholder}
             iconSize={tagIconSize}
             items={selected}
