@@ -224,6 +224,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
         return (
           <li
+            data-testid={item.key}
             ref={(element) => {
               if (currentItemKey === item.key) {
                 element?.scrollIntoView({ block: 'nearest' });

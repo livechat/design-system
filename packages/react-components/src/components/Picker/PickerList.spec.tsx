@@ -53,23 +53,23 @@ describe('<PickerList> component', () => {
   });
 
   it('should mark selected list item as selected', () => {
-    const { getByText } = renderComponent({
+    const { getByTestId } = renderComponent({
       ...defaultProps,
       isOpen: true,
       selectedItemsKeys: ['three'],
     });
 
-    expect(getByText('Option three')).toHaveAttribute('aria-selected', 'true');
+    expect(getByTestId('three')).toHaveAttribute('aria-selected', 'true');
   });
 
   it('should mark selected list item as disabled', () => {
-    const { getByText } = renderComponent({
+    const { getByTestId } = renderComponent({
       ...defaultProps,
       isOpen: true,
       items: [{ key: 'three', name: 'Option three', disabled: true }],
     });
 
-    expect(getByText('Option three')).toHaveAttribute('aria-disabled', 'true');
+    expect(getByTestId('three')).toHaveAttribute('aria-disabled', 'true');
   });
 
   it('should display default empty state if no filter result', () => {
