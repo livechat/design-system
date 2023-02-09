@@ -44,6 +44,7 @@ $base-class: 'search-input';
   }
 
   &--collapsable {
+    transition: border 0.25s ease-in-out, width 0.25s ease-in-out 0.25s;
     border-color: transparent;
     background-color: transparent;
     width: 40px;
@@ -77,7 +78,7 @@ $base-class: 'search-input';
   }
 
   &__search-icon {
-    flex-shrink: 0;
+    flex: 0 0 40px;
     justify-content: center;
     width: 40px;
     height: 100%;
@@ -85,6 +86,7 @@ $base-class: 'search-input';
 
   &__clear-icon {
     display: inline-flex;
+    flex: 0 0 40px;
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
@@ -114,7 +116,7 @@ $base-class: 'search-input';
   }
 
   &__input {
-    display: none;
+    flex: 1 1;
     border: 0;
     background-color: transparent;
     padding: 0;
