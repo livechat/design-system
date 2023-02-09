@@ -1,4 +1,6 @@
 $base-class: 'search-input';
+$transition: 0.25s ease-in-out;
+$transition-with-delay: 0.25s ease-in-out 0.25s;
 
 .#{$base-class} {
   box-sizing: border-box;
@@ -10,7 +12,6 @@ $base-class: 'search-input';
   border-radius: 4px;
   background-color: var(--surface-basic-default);
   width: 100%;
-  overflow: hidden;
   color: var(--content-default);
 
   &:hover {
@@ -44,7 +45,8 @@ $base-class: 'search-input';
   }
 
   &--collapsable {
-    transition: border 0.25s ease-in-out, width 0.25s ease-in-out 0.25s;
+    transition: width $transition, background $transition-with-delay,
+      border $transition-with-delay;
     border-color: transparent;
     background-color: transparent;
     width: 40px;
@@ -58,6 +60,8 @@ $base-class: 'search-input';
     }
 
     &--open {
+      transition: border $transition, background $transition,
+        width $transition-with-delay;
       border-color: var(--border-default);
       background-color: var(--surface-basic-default);
       width: 100%;
