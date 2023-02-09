@@ -68,8 +68,13 @@ Sizes.args = {};
 export const CollapsableSearch = (
   args: ISearchInputProps
 ): React.ReactElement => (
-  <div>
-    <SearchInputComponent {...args} isCollapsable />
+  <div style={commonWidth}>
+    <StoryDescriptor title="Collapsed">
+      <SearchInputComponent {...args} isCollapsable />
+    </StoryDescriptor>
+    <StoryDescriptor title="Expanded with value">
+      <SearchInputComponent {...args} isCollapsable value="Example text" />
+    </StoryDescriptor>
   </div>
 );
 
