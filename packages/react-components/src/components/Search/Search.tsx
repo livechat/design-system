@@ -35,6 +35,7 @@ export const SearchInput: React.FC<ISearchInputProps> = ({
   const [isFocused, setIsFocused] = React.useState<boolean>(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const isCloseIconVisible = !!value && !isDisabled && !isLoading;
+  const ariaExpandedValue = isCollapsable && !isCollapsed && 'true';
 
   const mergedClassNames = cx(
     className,
@@ -44,13 +45,6 @@ export const SearchInput: React.FC<ISearchInputProps> = ({
     isDisabled && styles[`${baseClass}--disabled`],
     isCollapsable && styles[`${baseClass}--collapsable`],
     !isCollapsed && styles[`${baseClass}--collapsable--open`]
-  );
-
-  const mergedInputClassNames = cx(
-    styles[`${inputBaseClass}`],
-    isDisabled && styles[`${inputBaseClass}--disabled`],
-    isCollapsable && styles[`${inputBaseClass}--collapsable`],
-    !isCollapsed && styles[`${inputBaseClass}--collapsable--open`]
   );
 
   React.useEffect(() => {
@@ -95,7 +89,8 @@ export const SearchInput: React.FC<ISearchInputProps> = ({
 
   return (
     <div
-      data-testid={`${baseClass}-container`}
+      aria-expanded={ariaExpandedValue}
+      role="search"
       className={mergedClassNames}
       onClick={handleClick}
     >
@@ -106,8 +101,9 @@ export const SearchInput: React.FC<ISearchInputProps> = ({
         kind="primary"
       />
       <input
+        role="searchbox"
         ref={inputRef}
-        className={mergedInputClassNames}
+        className={styles[inputBaseClass]}
         type="text"
         value={value}
         placeholder={placeholder}
@@ -118,13 +114,14 @@ export const SearchInput: React.FC<ISearchInputProps> = ({
         disabled={isDisabled}
       />
       {isCloseIconVisible && (
-        <div
+        <button
+          aria-label="Clear search"
+          title="Clear search"
           className={styles[`${baseClass}__clear-icon`]}
-          data-testid={`${baseClass}-clear-icon`}
           onClick={handleClear}
         >
-          <Icon source={Close} />
-        </div>
+          <Icon source={Close} kind="primary" />
+        </button>
       )}
       {isLoading && (
         <div
