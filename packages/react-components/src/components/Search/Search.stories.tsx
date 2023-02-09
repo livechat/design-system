@@ -4,7 +4,6 @@ import { ComponentMeta, Story } from '@storybook/react';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
 import { SearchInput, ISearchInputProps } from './Search';
-import { Avatar } from '../Avatar';
 
 const commonWidth: React.CSSProperties = { width: 300 };
 
@@ -69,21 +68,8 @@ Sizes.args = {};
 export const CollapsableSearch = (
   args: ISearchInputProps
 ): React.ReactElement => (
-  <div
-    style={{
-      display: 'flex',
-      justifyContent: 'flex-start',
-    }}
-  >
+  <div>
     <SearchInputComponent {...args} isCollapsable />
-    <div
-      style={{
-        flexShrink: 0,
-        marginLeft: 15,
-      }}
-    >
-      <Avatar type="image" />
-    </div>
   </div>
 );
 
