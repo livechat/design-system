@@ -33,11 +33,6 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
   onItemRemove,
   onFilter,
 }) => {
-  const mergedClassNames = cx(
-    styles[baseClass],
-    type === 'multi' && styles[`${baseClass}--multi`]
-  );
-
   const shouldDisplaySearch = isOpen && !isSearchDisabled;
 
   const getSingleItem = (item: IPickerListItem) => {
@@ -74,7 +69,7 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
   }
 
   return (
-    <div className={mergedClassNames}>
+    <div className={styles[baseClass]}>
       {type === 'single'
         ? getSingleItem(items[0])
         : items.map((item) => {
