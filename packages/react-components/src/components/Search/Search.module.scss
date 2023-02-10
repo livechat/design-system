@@ -12,6 +12,7 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
   border-radius: 4px;
   background-color: var(--surface-basic-default);
   width: 100%;
+  overflow: hidden;
   color: var(--content-default);
 
   &:hover {
@@ -49,7 +50,7 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
       border $transition-with-delay;
     border-color: transparent;
     background-color: transparent;
-    width: 40px;
+    width: 42px;
 
     &:hover {
       border-color: transparent;
@@ -77,12 +78,13 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
 
       .#{$base-class}__search-icon {
         cursor: text;
+        pointer-events: none;
       }
     }
   }
 
   &__search-icon {
-    flex: 0 0 40px;
+    position: absolute;
     justify-content: center;
     width: 40px;
     height: 100%;
@@ -123,7 +125,7 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
     flex: 1 1;
     border: 0;
     background-color: transparent;
-    padding: 0;
+    padding: 0 0 0 40px;
     width: 100%;
     line-height: 22px;
     color: inherit;
