@@ -11,6 +11,7 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     'storybook-addon-themes',
+    '@storybook/addon-a11y',
   ],
   framework: '@storybook/react',
   core: {
