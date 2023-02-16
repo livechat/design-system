@@ -36,7 +36,9 @@ const StoryTemplate: Story<ModalProps> = ({
   children,
   ...args
 }: ModalProps): React.ReactElement => (
-  <ModalComponent {...args}>{children}</ModalComponent>
+  <ModalComponent {...args} title="Modal">
+    {children}
+  </ModalComponent>
 );
 
 export const Modal = StoryTemplate.bind({});
@@ -51,8 +53,8 @@ ModalWithCustomHeader.args = {
   heading: <ModalHeader />,
 } as ModalProps;
 
-export const ModalWithLabelledHeader = StoryTemplate.bind({});
-ModalWithLabelledHeader.args = {
+export const ModalWithLabeledHeader = StoryTemplate.bind({});
+ModalWithLabeledHeader.args = {
   ...defaultModalProps,
   labelHeading: <ModalHeader color="#fff" />,
 } as ModalProps;

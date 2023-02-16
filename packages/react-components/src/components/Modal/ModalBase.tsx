@@ -52,7 +52,12 @@ export const ModalBase: React.FC<ModalBaseProps> = ({
         styles[`${baseClass}__overlay--visible`]
       )}
     >
-      <div className={mergedClassNames} {...props}>
+      <div
+        role="dialog"
+        aria-modal={true}
+        className={mergedClassNames}
+        {...props}
+      >
         {children}
       </div>
     </div>

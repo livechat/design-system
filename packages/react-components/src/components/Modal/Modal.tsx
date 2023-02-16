@@ -63,6 +63,7 @@ export const Modal: React.FC<ModalProps> = ({
       )}
       {!labelHeading && <ModalCloseButton onClick={onCloseButtonClick} />}
       <div
+        data-testid="modal-body"
         className={cx(
           styles[`${baseClass}__body`],
           fullSpaceContent && styles[`${baseClass}__body--full-space`]
