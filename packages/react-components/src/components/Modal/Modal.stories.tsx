@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
 import { Error } from '@livechat/design-system-icons/react/material';
 
 import {
@@ -13,35 +13,57 @@ import {
 } from './index';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
+import {
+  ModalFooter,
+  ModalFullSpaceContent,
+  ModalHeader,
+} from './StoriesComponents';
 
 export default {
   title: 'Components/Modal',
   component: ModalComponent,
 } as ComponentMeta<typeof ModalComponent>;
 
-export const Modal = ({
+const defaultModalProps = {
+  children: 'Modal content',
+  closeOnEscPress: true,
+  closeOnOverlayPress: true,
+  style: { width: '600px', height: '400px' },
+  footer: <ModalFooter />,
+};
+
+const StoryTemplate: Story<ModalProps> = ({
   children,
   ...args
 }: ModalProps): React.ReactElement => (
   <ModalComponent {...args}>{children}</ModalComponent>
 );
 
+export const Modal = StoryTemplate.bind({});
 Modal.args = {
+  ...defaultModalProps,
   heading: 'Modal',
-  children: 'Modal content',
-  closeOnEscPress: true,
-  closeOnOverlayPress: true,
-  style: { width: '600px', height: '400px' },
-  footer: (
-    <React.Fragment>
-      <Button size="medium" kind="secondary" style={{ marginRight: '8px' }}>
-        Secondary
-      </Button>
-      <Button kind="primary" size="medium">
-        Primary
-      </Button>
-    </React.Fragment>
-  ),
+} as ModalProps;
+
+export const ModalWithCustomHeader = StoryTemplate.bind({});
+ModalWithCustomHeader.args = {
+  ...defaultModalProps,
+  heading: <ModalHeader />,
+} as ModalProps;
+
+export const ModalWithLabelledHeader = StoryTemplate.bind({});
+ModalWithLabelledHeader.args = {
+  ...defaultModalProps,
+  labelHeading: <ModalHeader color="#fff" />,
+} as ModalProps;
+
+export const ModalWithFullSpaceContent = StoryTemplate.bind({});
+ModalWithFullSpaceContent.args = {
+  ...defaultModalProps,
+  children: <ModalFullSpaceContent />,
+  fullSpaceContent: true,
+  style: { width: '600px' },
+  footer: null,
 } as ModalProps;
 
 export const ActionModal = ({
