@@ -5,6 +5,9 @@ import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
 import { SearchInput, ISearchInputProps } from './Search';
 
+import { within, userEvent } from '@storybook/testing-library';
+import { expect } from '@storybook/jest';
+
 const commonWidth: React.CSSProperties = { width: 300 };
 
 export default {
@@ -24,6 +27,24 @@ const StoryTemplate: Story<ISearchInputProps> = (args: ISearchInputProps) => {
 
 export const Search = StoryTemplate.bind({});
 Search.args = {};
+Search.play = async ({ canvasElement }) => {
+  // Assigns canvas to the component root element
+  const canvas = within(canvasElement);
+
+  // 🔢 Type into input field
+  await userEvent.type(canvas.getByRole('search'), 'test value', { delay: 100 });
+
+  // 👇 Assert DOM structure
+  await expect(
+    canvas.getByRole('button')
+  ).toBeVisible();
+
+  await userEvent.click(canvas.getByRole('button'));
+
+  await expect(
+    canvas.queryByRole('button')
+  ).toBeFalsy();
+}
 
 export const States = (args: ISearchInputProps): React.ReactElement => (
   <div style={commonWidth}>

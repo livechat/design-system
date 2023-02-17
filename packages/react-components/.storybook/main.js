@@ -12,9 +12,13 @@ module.exports = {
     '@storybook/addon-essentials',
     'storybook-addon-themes',
     '@storybook/addon-a11y',
+    '@storybook/addon-interactions',
   ],
   framework: '@storybook/react',
   core: {
     builder: '@storybook/builder-vite',
+  },
+  features: {
+    interactionsDebugger: true, // 👈 Enable playback controls
   },
 };
