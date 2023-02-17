@@ -8,10 +8,12 @@ import styles from './Modal.module.scss';
 export interface ModalCloseButtonProps
   extends React.HTMLAttributes<HTMLButtonElement> {
   labelType?: boolean;
+  customColor?: string;
 }
 
 export const ModalCloseButton: React.FC<ModalCloseButtonProps> = ({
   labelType,
+  customColor,
   onClick,
 }) => (
   <button
@@ -23,6 +25,6 @@ export const ModalCloseButton: React.FC<ModalCloseButtonProps> = ({
     onClick={onClick}
     type="button"
   >
-    <Icon source={Close} size="large" />
+    <Icon source={Close} size="large" customColor={customColor} />
   </button>
 );
