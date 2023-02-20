@@ -17,11 +17,13 @@ export interface IPopoverProps {
   isVisible?: boolean;
   flipOptions?: Parameters<typeof flip>[0];
   triggerRenderer: () => React.ReactNode;
+  onClose?: () => void;
 }
 
 export const Popover: React.FC<IPopoverProps> = (props) => {
   const {
     triggerRenderer,
+    onClose,
     children,
     className,
     placement,
@@ -29,6 +31,7 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
     isVisible = false,
   } = props;
   const [visible, setVisibility] = React.useState(false);
+  const prevVisibleState = React.useRef(false);
 
   const {
     x,
@@ -47,6 +50,13 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
   React.useEffect(() => {
     setVisibility(isVisible);
   }, [isVisible]);
+
+  React.useEffect(() => {
+    if (onClose && prevVisibleState.current !== visible && !visible) {
+      onClose();
+    }
+    prevVisibleState.current = visible;
+  }, [visible]);
 
   React.useEffect(() => {
     if (!refs.reference.current || !refs.floating.current) {
