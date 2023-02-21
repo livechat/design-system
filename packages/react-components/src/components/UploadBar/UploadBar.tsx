@@ -57,7 +57,7 @@ const getHeaderIcon = (status: ProgressStatus, progressValue: number) => {
     <ProgressCircle
       status={status}
       progressValue={progressValue}
-      size="small"
+      size="medium"
     />
   );
 };
