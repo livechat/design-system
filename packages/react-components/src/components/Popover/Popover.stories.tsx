@@ -45,7 +45,8 @@ const placementsWithUnselect = ['default', ...placements];
 const OpenChat = () => {
   return (
     <div className="listElement">
-      <Icon source={Chats} /> <span className="label">Open chat</span>{' '}
+      <Icon source={Chats} />{' '}
+      <span className="label test-class">Open chat</span>{' '}
     </div>
   );
 };
