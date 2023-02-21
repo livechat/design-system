@@ -52,7 +52,7 @@ button.args = {
 export const kinds = (): React.ReactElement => (
   <div>
     <div className="story-spacer">
-      <Button>Basic</Button>
+      <Button>Basic button</Button>
       <Button kind="primary">Primary</Button>
       <Button kind="secondary">Secondary</Button>
       <Button kind="destructive">Destructive</Button>
