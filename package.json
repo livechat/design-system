@@ -7,7 +7,7 @@
     "postinstall": "lerna bootstrap",
     "clean": "lerna exec rimraf dist",
     "prestart": "npm run clean",
-    "start": "lerna run dev --parallel --openssl-legacy-provider",
+    "start": "lerna run dev --parallel",
     "start:example": "lerna run start --scope example-react --stream",
     "prebuild": "npm run clean",
     "build": "lerna run build --ignore example-*",
