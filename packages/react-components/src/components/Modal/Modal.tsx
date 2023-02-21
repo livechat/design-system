@@ -46,7 +46,6 @@ export const Modal: React.FC<ModalProps> = ({
           </Heading>
           <ModalCloseButton
             labelType={!!labelHeading}
-            customColor={`var(--color-white)`}
             onClick={onCloseButtonClick}
           />
         </div>
