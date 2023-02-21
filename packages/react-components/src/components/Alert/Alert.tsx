@@ -48,6 +48,7 @@ export const Alert: React.FC<AlertProps> = ({
   className,
   kind = 'info',
   onClose,
+  ...props
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [isSmallContainer, setIsSmallContainer] = React.useState(false);
@@ -73,7 +74,7 @@ export const Alert: React.FC<AlertProps> = ({
   });
 
   return (
-    <div ref={containerRef} className={mergedClassNames}>
+    <div ref={containerRef} className={mergedClassNames} {...props}>
       <div className={styles[`${baseClass}__content`]}>
         <Icon
           {...IconConfig[kind]}
