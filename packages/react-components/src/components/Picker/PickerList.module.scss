@@ -35,7 +35,6 @@ $base-class: 'picker-list';
     cursor: pointer;
     padding: 6px 11px;
     height: 36px;
-    overflow: hidden;
 
     &:hover {
       background-color: var(--surface-basic-hover);
@@ -70,6 +69,13 @@ $base-class: 'picker-list';
       color: var(--content-subtle);
       font-size: 12px;
       font-weight: 600;
+    }
+
+    &__content {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     &__custom {

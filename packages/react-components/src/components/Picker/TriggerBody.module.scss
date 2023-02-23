@@ -6,6 +6,13 @@ $base-class: 'picker-trigger-body';
   gap: 4px;
   justify-content: flex-start;
 
+  &__item {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   &__input {
     display: flex;
     flex-grow: 2;
