@@ -6,33 +6,21 @@ import { ModalBase } from './ModalBase';
 describe('<ModalBase /> component', () => {
   it('should allow for custom class', () => {
     const onClose = vi.fn();
-    const { container } = render(
+    const { getByRole } = render(
       <ModalBase onClose={onClose} className="my-css-class">
         test
       </ModalBase>
     );
-    expect(container.firstChild?.firstChild).toHaveClass('my-css-class');
+    expect(getByRole('dialog')).toHaveClass('my-css-class');
   });
 
   it('should call onClose method on overlay click', () => {
     const onClose = vi.fn();
-    const { queryByTestId } = render(
+    const { getByTestId } = render(
       <ModalBase onClose={onClose}>test</ModalBase>
     );
 
-    const overlay = queryByTestId('lc-modal-overlay');
-
-    if (overlay) {
-      userEvent.click(overlay);
-    }
-    expect(onClose).toBeCalledTimes(1);
-  });
-
-  it('should call onClose method on close modal button press', () => {
-    const onClose = vi.fn();
-    const { getByRole } = render(<ModalBase onClose={onClose}>test</ModalBase>);
-
-    userEvent.click(getByRole('button'));
+    userEvent.click(getByTestId('lc-modal-overlay'));
     expect(onClose).toBeCalledTimes(1);
   });
 

@@ -1,27 +1,26 @@
 .modal-base {
-  background-color: var(--surface-basic-default);
-  border-radius: 4px;
-  box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.3);
-  color: var(--content-default);
   display: flex;
+  position: relative;
   flex-direction: column;
   margin: 10px;
-  max-width: 800px;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px 0 rgb(0 0 0 / 30%);
+  background-color: var(--surface-basic-default);
   min-width: 400px;
-  overflow: hidden;
-  position: relative;
+  max-width: 800px;
+  color: var(--content-default);
 
   &__overlay {
-    align-items: center;
-    background-color: var(--surface-overlay);
     display: none;
-    height: 100%;
-    justify-content: center;
-    left: 0;
     position: fixed;
     top: 0;
-    width: 100%;
+    left: 0;
+    align-items: center;
+    justify-content: center;
     z-index: 13000;
+    background-color: var(--surface-overlay);
+    width: 100%;
+    height: 100%;
 
     &--visible {
       display: flex;
@@ -29,92 +28,120 @@
   }
 
   &__close {
+    display: flex;
+    position: absolute;
+    top: 18px;
+    right: 18px;
     align-items: center;
-    background-color: transparent;
+    justify-content: center;
+    z-index: 1;
+    outline: none;
     border-style: none;
     box-shadow: none;
-    color: var(--content-subtle);
+    background-color: transparent;
     cursor: pointer;
-    display: flex;
-    height: 24px;
-    justify-content: center;
-    outline: none;
     padding: 0;
-    position: absolute;
-    right: 18px;
-    top: 18px;
     width: 24px;
-    z-index: 1;
+    height: 24px;
+    color: var(--content-subtle);
 
     &:hover {
       color: var(--content-default);
+    }
+
+    &--label-type {
+      position: initial;
+      color: var(--content-invert-default);
+
+      &:hover {
+        color: var(--content-invert-subtle);
+      }
     }
   }
 }
 
 .modal {
   &__header {
-    background-color: var(--surface-basic-default);
-    box-shadow: inset 0 -1px 0 var(--border-subtle);
     box-sizing: border-box;
-    color: var(--content-default);
-    padding: 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 -1px 0 var(--border-subtle);
+    padding: 0 20px;
     width: 100%;
+    height: 64px;
+    color: var(--content-default);
+  }
+
+  &__label-header {
+    display: flex;
+    position: absolute;
+    top: -52px;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 40px;
   }
 
   &__heading {
-    color: var(--content-default);
     margin: 0;
-    max-width: calc(100% - 32px);
     padding: 0;
+    max-width: calc(100% - 32px);
     text-align: left;
+    color: var(--content-default);
+  }
+
+  &__label-heading {
+    color: var(--color-white);
   }
 
   &__body {
-    background-color: var(--surface-basic-default);
     box-sizing: border-box;
-    color: var(--content-default);
     display: flex;
+    position: relative;
     flex-direction: column;
     flex-grow: 1;
     padding: 20px;
-    position: relative;
     width: 100%;
+    color: var(--content-default);
+
+    &--full-space {
+      padding: 0;
+    }
   }
 
   &__footer {
-    box-shadow: inset 0 1px 0 var(--border-subtle);
     box-sizing: border-box;
     display: flex;
     flex-shrink: 0;
     justify-content: flex-end;
+    box-shadow: inset 0 1px 0 var(--border-subtle);
     padding: 20px;
     width: 100%;
   }
 }
 
 .action-modal {
-  align-items: center;
   box-sizing: border-box;
+  align-items: center;
   justify-content: center;
   padding: 52px 20px;
 
   &__heading {
+    margin: 0 0 20px;
+    width: 100%;
+    text-align: center;
+    line-height: 1.33;
     color: var(--content-default);
     font-size: 24px;
     font-weight: 600;
-    line-height: 1.33;
-    margin: 0 0 20px;
-    text-align: center;
-    width: 100%;
   }
 
   &__content {
+    width: 100%;
+    text-align: center;
+    line-height: 1.33;
     color: var(--content-default);
     font-size: 15px;
-    line-height: 1.33;
-    text-align: center;
-    width: 100%;
   }
 
   &__actions {
