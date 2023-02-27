@@ -1,10 +1,10 @@
 .progress-bar {
-  background-color: var(--color-action-disabled);
-  border-radius: 100px;
   display: inline-block;
-  height: 4px;
   position: relative;
+  border-radius: 100px;
+  background-color: var(--color-action-disabled);
   width: 100%;
+  height: 4px;
 
   &--small {
     height: 3px;
@@ -27,22 +27,22 @@
   }
 
   &--normal {
-    background-color: var(--color-action-disabled);
+    background-color: var(--surface-secondary-default);
   }
 
   &__indicator--success {
-    background-color: var(--color-positive-default);
-    border-radius: 100px;
-    height: 100%;
     position: relative;
     transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
+    border-radius: 100px;
+    background-color: var(--color-positive-default);
+    height: 100%;
   }
 
   &__indicator--normal {
-    background-color: var(--color-action-default);
-    border-radius: 100px;
-    height: 100%;
     position: relative;
     transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
+    border-radius: 100px;
+    background-color: var(--color-action-default);
+    height: 100%;
   }
 }

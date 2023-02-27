@@ -1,25 +1,25 @@
 .progress-circle {
-  height: 36px;
   transform: rotate(-90deg);
   width: 36px;
+  height: 36px;
 
   &--small {
-    height: 15px;
-    width: 15px;
+    width: 16px;
+    height: 16px;
   }
 
   &--medium {
-    height: 36px;
     width: 36px;
+    height: 36px;
   }
 
   &--large {
-    height: 56px;
     width: 56px;
+    height: 56px;
   }
 
   &__bg-line--normal {
-    stroke: var(--color-action-disabled);
+    stroke: var(--surface-secondary-default);
   }
 
   &__bg-line--success {

@@ -51,6 +51,8 @@ export const Types = (): JSX.Element => (
   <>
     <StoryDescriptor title="Count">
       <Badge type="counter" count={1} />
+      <Badge type="counter" count={7} />
+      <Badge type="counter" count={13} />
     </StoryDescriptor>
     <StoryDescriptor title="Count with default max limit">
       <Badge type="counter" count={100} />

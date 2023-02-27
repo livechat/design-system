@@ -1,6 +1,5 @@
 import * as React from 'react';
 import cx from 'clsx';
-import { ModalCloseButton } from './ModalCloseButton';
 import { KeyCodes } from '../../utils/keyCodes';
 
 import styles from './Modal.module.scss';
@@ -44,12 +43,6 @@ export const ModalBase: React.FC<ModalBaseProps> = ({
     }
   };
 
-  const onCloseButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-    event.stopPropagation();
-    onClose();
-  };
-
   return (
     <div
       data-testid="lc-modal-overlay"
@@ -59,8 +52,12 @@ export const ModalBase: React.FC<ModalBaseProps> = ({
         styles[`${baseClass}__overlay--visible`]
       )}
     >
-      <div className={mergedClassNames} {...props}>
-        <ModalCloseButton onClick={onCloseButtonClick} />
+      <div
+        role="dialog"
+        aria-modal={true}
+        className={mergedClassNames}
+        {...props}
+      >
         {children}
       </div>
     </div>
