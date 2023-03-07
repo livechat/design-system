@@ -26,7 +26,7 @@ $base-class: 'avatar';
     }
 
     &--unknown {
-      background: var(--surface-secondary-default);
+      background: var(--surface-moderate-default);
     }
 
     &--xxxsmall#{$circle-class},

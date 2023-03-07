@@ -7,8 +7,12 @@ interface TokensGroup {
   surface: string[];
   content: string[];
   border: string[];
+  action: string[];
   color: string[];
   decor: string[];
+  products: string[];
+  illustrations: string[];
+  tag: string[];
 }
 
 type TokenGroupName =
@@ -16,8 +20,12 @@ type TokenGroupName =
   | 'surface'
   | 'content'
   | 'border'
+  | 'action'
   | 'color'
-  | 'decor';
+  | 'decor'
+  | 'products'
+  | 'illustrations'
+  | 'tag';
 
 const Tokens: TokensGroup = Object.values(
   DesignToken as { [key: string]: string }
@@ -28,7 +36,18 @@ const Tokens: TokensGroup = Object.values(
 
     return acc;
   },
-  { background: [], surface: [], content: [], border: [], color: [], decor: [] }
+  {
+    background: [],
+    surface: [],
+    content: [],
+    border: [],
+    action: [],
+    color: [],
+    decor: [],
+    products: [],
+    illustrations: [],
+    tag: [],
+  }
 );
 
 const CONTENT = {
@@ -50,6 +69,11 @@ const CONTENT = {
     heading: 'Border',
     content: 'Style for components borders',
   },
+  action: {
+    heading: 'Action colors',
+    content:
+      'All colors that drive attention in the UI - it can be either action, warning, negative or positive',
+  },
   color: {
     heading: 'Accent colors',
     content:
@@ -59,6 +83,18 @@ const CONTENT = {
     heading: 'Decor',
     content:
       'Those colors can be used for specific elements of the UI, they were purposely separated from all other tokens, as they are used only for decorative means. Those colors are shared between all three themes — Legacy, Light & Dark. This palette is not yet fully supported in dark mode.',
+  },
+  products: {
+    heading: 'Products',
+    content: '',
+  },
+  illustrations: {
+    heading: 'Illustrations',
+    content: '',
+  },
+  tag: {
+    heading: 'Tag',
+    content: '',
   },
 };
 

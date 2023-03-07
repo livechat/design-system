@@ -92,7 +92,7 @@ $base-class: 'btn';
   }
 
   &--secondary {
-    border-color: var(--surface-secondary-default);
+    border-color: var(--border-basic-primary);
     background-color: var(--surface-basic-default);
     color: var(--content-default);
 
