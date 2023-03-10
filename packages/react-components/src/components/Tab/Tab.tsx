@@ -30,8 +30,8 @@ export const Tab: React.FC<TabProps> = ({
 }) => {
   const { disabled } =
     restProps as React.ButtonHTMLAttributes<HTMLButtonElement>;
-  const shouldDisplayAsCounter = count && !asBadge;
-  const shouldDisplayAsBadge = count && asBadge;
+  const shouldDisplayAsCounter = count !== undefined && !asBadge;
+  const shouldDisplayAsBadge = count !== undefined && asBadge;
 
   return (
     <Text
