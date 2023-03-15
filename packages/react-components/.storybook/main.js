@@ -1,4 +1,4 @@
-const foundations = ['Typography', 'ColorTokens', 'Icons'].map(
+const foundations = ['Typography', 'ColorTokens', 'Icons', 'TablerIcons'].map(
   (name) => `../src/stories/${name}.stories.mdx`
 );
 module.exports = {
