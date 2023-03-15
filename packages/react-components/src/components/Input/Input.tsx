@@ -52,7 +52,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   ) => {
     const [isFocused, setIsFocused] = React.useState(false);
     const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
-    const { type } = inputProps;
+    const { type, onFocus, onBlur } = inputProps;
     const mergedClassNames = cx(
       className,
       styles[baseClass],
@@ -78,8 +78,14 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           {...inputProps}
           data-testid="input"
           ref={ref}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onFocus={(e) => {
+            setIsFocused(true);
+            onFocus?.(e);
+          }}
+          onBlur={(e) => {
+            setIsFocused(false);
+            onBlur?.(e);
+          }}
           disabled={disabled}
           type={type && !isPasswordVisible ? type : 'text'}
         />

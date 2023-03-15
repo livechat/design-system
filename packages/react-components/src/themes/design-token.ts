@@ -1,51 +1,140 @@
 export const DesignToken = {
-  Background: '--background',
-  SurfaceBasicDefault: '--surface-basic-default',
-  SurfaceBasicSubtle: '--surface-basic-subtle',
-  SurfaceBasicHover: '--surface-basic-hover',
-  SurfaceBasicActive: '--surface-basic-active',
-  SurfaceBasicDisabled: '--surface-basic-disabled',
+  Background: '--background', // deprecated
+  Background01: '--background-01',
+  Background02: '--background-02',
+  Background03: '--background-03',
+  SurfaceBasicDefault: '--surface-basic-default', // deprecated
+  SurfacePrimaryDefault: '--surface-primary-default',
+  SurfaceBasicSubtle: '--surface-basic-subtle', // deprecated
   SurfaceSecondaryDefault: '--surface-secondary-default',
-  SurfaceSecondarySubtle: '--surface-secondary-subtle',
   SurfaceSecondaryHover: '--surface-secondary-hover',
+  SurfaceSecondaryActive: '--surface-secondary-active',
   SurfaceSecondaryDisabled: '--surface-secondary-disabled',
-  SurfaceFeedbackInfo: '--surface-feedback-info',
-  SurfaceFeedbackNegative: '--surface-feedback-negative',
-  SurfaceFeedbackWarning: '--surface-feedback-warning',
-  SurfaceFeedbackPositive: '--surface-feedback-positive',
-  SurfaceInvertDefault: '--surface-invert-default',
-  SurfaceInvertSubtle: '--surface-invert-subtle',
+  SurfaceBasicHover: '--surface-basic-hover', // deprecated
+  SurfacePrimaryHover: '--surface-primary-hover',
+  SurfaceBasicActive: '--surface-basic-active', // deprecated
+  SurfacePrimaryActive: '--surface-primary-active',
+  SurfacePrimaryActiveColored: '--surface-primary-active-colored',
+  SurfaceBasicDisabled: '--surface-basic-disabled', // deprecated
+  SurfacePrimaryDisabled: '--surface-primary-disabled',
+  SurfaceTertiaryDefault: '--surface-tertiary-default',
+  SurfaceSecondarySubtle: '--surface-secondary-subtle', // deprecated
+  SurfaceModerateDefault: '--surface-moderate-default',
+  SurfaceModerateHover: '--surface-moderate-hover',
+  SurfaceModerateActive: '--surface-moderate-active',
+  SurfaceTertiaryHover: '--surface-tertiary-hover',
+  SurfaceTertiaryActive: '--surface-tertiary-active',
+  SurfaceTertiaryDisabled: '--surface-tertiary-disabled',
+  SurfaceFeedbackInfo: '--surface-feedback-info', // deprecated
+  SurfaceAccentEmphasisLowInfo: '--surface-accent-emphasis-low-info',
+  SurfaceFeedbackNegative: '--surface-feedback-negative', // deprecated
+  SurfaceAccentEmphasisLowNegative: '--surface-accent-emphasis-low-negative',
+  SurfaceFeedbackWarning: '--surface-feedback-warning', // deprecated
+  SurfaceAccentEmphasisLowWarning: '--surface-accent-emphasis-low-warning',
+  SurfaceFeedbackPositive: '--surface-feedback-positive', // deprecated
+  SurfaceAccentEmphasisLowPositive: '--surface-accent-emphasis-low-positive',
+  SurfaceAccentEmphasisLowPurple: '--surface-accent-emphasis-low-purple',
+  SurfaceAccentEmphasisMinInfo: '--surface-accent-emphasis-min-info',
+  SurfaceAccentEmphasisMinNegative: '--surface-accent-emphasis-min-negative',
+  SurfaceAccentEmphasisMinWarning: '--surface-accent-emphasis-min-warning',
+  SurfaceAccentEmphasisMinPositive: '--surface-accent-emphasis-min-positive',
+  SurfaceAccentEmphasisMinPurple: '--surface-accent-emphasis-min-purple',
+  SurfaceInvertDefault: '--surface-invert-default', // deprecated
+  SurfaceInvertPrimary: '--surface-invert-primary',
+  SurfaceInvertSubtle: '--surface-invert-subtle', // deprecated
+  SurfaceInvertSecondary: '--surface-invert-secondary',
   SurfaceInvertDisabled: '--surface-invert-disabled',
-  SurfaceOverlay: '--surface-overlay',
-  ContentDefault: '--content-default',
-  ContentSubtle: '--content-subtle',
-  ContentDisabled: '--content-disabled',
-  ContentWhiteLocked: '--content-white-locked',
-  ContentInvertDefault: '--content-invert-default',
-  ContentInvertSubtle: '--content-invert-subtle',
+  SurfaceLockedDefault: '--surface-locked-default',
+  SurfaceLockedHover: '--surface-locked-hover',
+  SurfaceLockedActive: '--surface-locked-active',
+  SurfaceLockedDisabled: '--surface-locked-disabled',
+  SurfaceLockedWhite: '--surface-locked-white',
+  SurfaceLockedBlack: '--surface-locked-black',
+  SurfaceAccentEmphasisHighInfo: '--surface-accent-emphasis-high-info',
+  SurfaceAccentEmphasisHighNegative: '--surface-accent-emphasis-high-negative',
+  SurfaceAccentEmphasisHighWarning: '--surface-accent-emphasis-high-warning',
+  SurfaceAccentEmphasisHighPositive: '--surface-accent-emphasis-high-positive',
+  SurfaceAccentEmphasisHighPurple: '--surface-accent-emphasis-high-purple',
+  SurfaceOverlay: '--surface-overlay', // deprecated
+  SurfaceOtherOverlay: '--surface-other-overlay',
+  SurfaceOtherAgent: '--surface-other-agent',
+  SurfaceOtherSkeleton: '--surface-other-skeleton',
+  ContentDefault: '--content-default', // deprecated
+  ContentBasicPrimary: '--content-basic-primary',
+  ContentSubtle: '--content-subtle', // deprecated
+  ContentBasicSecondary: '--content-basic-secondary',
+  ContentDisabled: '--content-disabled', // deprecated
+  ContentBasicDisabled: '--content-basic-disabled',
+  ContentBasicNegative: '--content-basic-negative',
+  ContentBasicWarning: '--content-basic-warning',
+  ContentBasicPositive: '--content-basic-positive',
+  ContentBasicInfo: '--content-basic-info',
+  ContentBasicPurple: '--content-basic-purple',
+  ContentWhiteLocked: '--content-white-locked', // deprecated
+  ContentLockedWhite: '--content-locked-white',
+  ContentBlackLocked: '--content-black-locked', // deprecated
+  ContentLockedBlack: '--content-locked-black',
+  ContentLockedDefault: '--content-locked-default',
+  ContentLockedHover: '--content-locked-hover',
+  ContentLockedActive: '--content-locked-active',
+  ContentLockedDisabled: '--content-locked-disabled',
+  ContentInvertDefault: '--content-invert-default', // deprecated
+  ContentInvertPrimary: '--content-invert-primary',
+  ContentInvertSubtle: '--content-invert-subtle', // deprecated
+  ContentInvertSecondary: '--content-invert-secondary',
   ContentInvertDisabled: '--content-invert-disabled',
-  BorderDefault: '--border-default',
-  BorderSubtle: '--border-subtle',
-  BorderHover: '--border-hover',
-  BorderDisabled: '--border-disabled',
-  BorderInvertDefault: '--border-invert-default',
-  BorderInvertSubtle: '--border-invert-subtle',
+  BorderDefault: '--border-default', // deprecated
+  BorderBasicPrimary: '--border-basic-primary',
+  BorderBasicSecondary: '--border-basic-secondary',
+  BorderSubtle: '--border-subtle', // deprecated
+  BorderBasicTertiary: '--border-basic-tertiary',
+  BorderHover: '--border-hover', // deprecated
+  BorderBasicHover: '--border-basic-hover',
+  BorderDisabled: '--border-disabled', // deprecated
+  BorderBasicDisabled: '--border-basic-disabled',
+  BorderBasicNegative: '--border-basic-negative',
+  BorderBasicWarning: '--border-basic-warning',
+  BorderBasicPositive: '--border-basic-positive',
+  BorderBasicInfo: '--border-basic-info',
+  BorderBasicPurple: '--border-basic-purple',
+  BorderInvertDefault: '--border-invert-default', // deprecated
+  BorderInvertPrimary: '--border-invert-primary',
+  BorderInvertSubtle: '--border-invert-subtle', // deprecated
+  BorderInvertSecondary: '--border-invert-secondary',
   BorderInvertHover: '--border-invert-hover',
   BorderInvertDisabled: '--border-invert-disabled',
-  ColorActionActive: '--color-action-active',
-  ColorActionHover: '--color-action-hover',
-  ColorActionDefault: '--color-action-default',
-  ColorActionDisabled: '--color-action-disabled',
-  ColorNegativeActive: '--color-negative-active',
-  ColorNegativeHover: '--color-negative-hover',
-  ColorNegativeDefault: '--color-negative-default',
-  ColorNegativeDisabled: '--color-negative-disabled',
-  ColorWarningDefault: '--color-warning-default',
-  ColorWarningHover: '--color-warning-hover',
-  ColorPositiveDefault: '--color-positive-default',
-  ColorPositiveHover: '--color-positive-hover',
-  ColorPositiveDisabled: '--color-positive-disabled',
-  ColorBot: '--color-bot',
+  ColorActionActive: '--color-action-active', // deprecated
+  ActionPrimaryActive: '--action-primary-active',
+  ColorActionHover: '--color-action-hover', // deprecated
+  ActionPrimaryHover: '--action-primary-hover',
+  ColorActionDefault: '--color-action-default', // deprecated
+  ActionPrimaryDefault: '--action-primary-default',
+  ColorActionDefaultRgb: '--color-action-default-rgb',
+  ColorActionDisabled: '--color-action-disabled', // deprecated
+  ActionPrimaryDisabled: '--action-primary-disabled',
+  ColorNegativeActive: '--color-negative-active', // deprecated
+  ActionNegativeActive: '--action-negative-active',
+  ColorNegativeHover: '--color-negative-hover', // deprecated
+  ActionNegativeHover: '--action-negative-hover',
+  ColorNegativeDefault: '--color-negative-default', // deprecated
+  ActionNegativeDefault: '--action-negative-default',
+  ColorNegativeDisabled: '--color-negative-disabled', // deprecated
+  ActionNegativeDisabled: '--action-negative-disabled',
+  ColorWarningDefault: '--color-warning-default', // deprecated
+  ActionWarningDefault: '--action-warning-default',
+  ColorWarningHover: '--color-warning-hover', // deprecated
+  ActionWarningHover: '--action-warning-hover',
+  ColorPositiveDefault: '--color-positive-default', // deprecated
+  ActionPositiveDefault: '--action-positive-default',
+  ColorPositiveHover: '--color-positive-hover', // deprecated
+  ActionPositiveHover: '--action-positive-hover',
+  ColorPositiveDisabled: '--color-positive-disabled', // deprecated
+  ActionPositiveDisabled: '--action-positive-disabled',
+  ActionNeutralDefault: '--action-neutral-default',
+  ActionNeutralHover: '--action-neutral-hover',
+  ActionNeutralDisabled: '--action-neutral-disabled',
+  ColorBot: '--color-bot', // deprecated
+  SurfaceOtherBot: '--surface-other-bot',
   ColorBlack: '--color-black',
   ColorWhite: '--color-white',
   DecorBlue900: '--decor-blue900',
@@ -123,4 +212,13 @@ export const DesignToken = {
   DecorPurple200: '--decor-purple200',
   DecorPurple100: '--decor-purple100',
   DecorPurple50: '--decor-purple50',
+  ProductsLivechat: '--products-livechat',
+  ProductsHelpdesk: '--products-helpdesk',
+  ProductsChatbot: '--products-chatbot',
+  ProductsKnowledgebase: '--products-knowledgebase',
+  IllustrationsPrimary: '--illustrations-primary',
+  IllustrationsSecondary: '--illustrations-secondary',
+  IllustrationsStroke: '--illustrations-stroke',
+  TagSurface01: '--tag-surface-01',
+  TagContent01: '--tag-content-01',
 };

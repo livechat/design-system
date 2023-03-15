@@ -86,11 +86,11 @@ $base-class: 'badge';
   }
 
   &--tertiary {
-    background-color: var(--surface-secondary-default);
+    background-color: var(--surface-tertiary-default);
     color: var(--content-default);
 
     &:hover {
-      background-color: var(--surface-secondary-hover);
+      background-color: var(--surface-tertiary-hover);
     }
 
     .#{$base-class}__dot {
