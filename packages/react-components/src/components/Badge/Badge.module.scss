@@ -19,7 +19,7 @@ $base-class: 'badge';
 
   &__dot {
     margin: 0 -2px;
-    background-color: var(--content-invert-default);
+    background-color: var(--content-invert-primary);
   }
 
   & + & {
@@ -60,41 +60,41 @@ $base-class: 'badge';
   }
 
   &--primary {
-    background-color: var(--color-negative-default);
-    color: var(--content-invert-default);
+    background-color: var(--action-negative-default);
+    color: var(--content-invert-primary);
 
     &:hover {
-      background-color: var(--color-negative-hover);
+      background-color: var(--action-negative-hover);
     }
 
     .#{$base-class}__dot {
-      background-color: var(--content-invert-default);
+      background-color: var(--content-invert-primary);
     }
   }
 
   &--secondary {
-    background-color: var(--color-action-default);
-    color: var(--content-invert-default);
+    background-color: var(--action-primary-default);
+    color: var(--content-invert-primary);
 
     &:hover {
-      background-color: var(--color-action-hover);
+      background-color: var(--action-primary-hover);
     }
 
     .#{$base-class}__dot {
-      background-color: var(--content-invert-default);
+      background-color: var(--content-invert-primary);
     }
   }
 
   &--tertiary {
     background-color: var(--surface-tertiary-default);
-    color: var(--content-default);
+    color: var(--content-basic-primary);
 
     &:hover {
       background-color: var(--surface-tertiary-hover);
     }
 
     .#{$base-class}__dot {
-      background-color: var(--content-default);
+      background-color: var(--content-basic-primary);
     }
   }
 }
