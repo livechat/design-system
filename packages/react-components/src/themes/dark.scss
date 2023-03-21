@@ -45,19 +45,19 @@
   --surface-invert-secondary: #c9c9cd;
   --surface-invert-disabled: #29292f;
   --surface-locked-default: #f6f6f7;
-  --surface-locked-hover: #ffffff;
+  --surface-locked-hover: #fff;
   --surface-locked-active: #36363b;
   --surface-locked-disabled: #333338;
-  --surface-locked-white: #ffffff;
-  --surface-locked-black: #000000;
-  --surface-accent-emphasis-high-info: #0066ff;
+  --surface-locked-white: #fff;
+  --surface-locked-black: #000;
+  --surface-accent-emphasis-high-info: #06f;
   --surface-accent-emphasis-high-negative: #ca0005;
   --surface-accent-emphasis-high-warning: #e8bb00;
   --surface-accent-emphasis-high-positive: #00893c;
   --surface-accent-emphasis-high-purple: #9146ff;
   --surface-overlay: rgb(19 19 23 / 90%); // deprecated
   --surface-other-overlay: rgb(19 19 23 / 90%);
-  --surface-other-agent: #0066ff;
+  --surface-other-agent: #06f;
   --surface-other-skeleton: #3b3b43;
   --content-default: rgb(255 255 255 / 80%); // deprecated
   --content-basic-primary: #eeeeef;
@@ -70,10 +70,15 @@
   --content-basic-positive: #4cbf80;
   --content-basic-info: #68afff;
   --content-basic-purple: #bf9cff;
+  --content-basic-gradient-01: linear-gradient(
+    254.49deg,
+    #8609ff -0.38%,
+    #004bc2 94.44%
+  );
   --content-white-locked: #fff; // deprecated
-  --content-locked-white: #ffffff;
+  --content-locked-white: #fff;
   --content-black-locked: #131317; // deprecated
-  --content-locked-black: #000000;
+  --content-locked-black: #000;
   --content-locked-default: #131317;
   --content-locked-hover: #131317;
   --content-locked-active: #68afff;
@@ -83,6 +88,11 @@
   --content-invert-subtle: rgb(19 19 23 / 70%); // deprecated
   --content-invert-secondary: rgb(19 19 23 / 70%);
   --content-invert-disabled: rgb(19 19 23 / 30%);
+  --content-invert-gradient-01: linear-gradient(
+    254.49deg,
+    #8609ff -0.38%,
+    #004bc2 94.44%
+  );
   --border-default: rgb(255 255 255 / 40%); // deprecated
   --border-basic-primary: rgb(255 255 255 / 20%);
   --border-basic-secondary: rgb(255 255 255 / 10%);
@@ -116,7 +126,7 @@
   --action-negative-active: #ffa6a6;
   --color-negative-hover: #ffb7b7; // deprecated
   --action-negative-hover: #ff7071;
-  --color-negative-default: #ff4c4d; // deprecated
+  --color-negative-default: #ff5354; // deprecated
   --action-negative-default: #ff4c4d;
   --color-negative-disabled: rgb(255 76 77 / 30%); // deprecated
   --action-negative-disabled: rgb(255 76 77 / 30%);
@@ -214,7 +224,7 @@
   --decor-purple50: #faf8ff;
   --products-livechat: #fe5100;
   --products-helpdesk: #00c057;
-  --products-chatbot: #0066ff;
+  --products-chatbot: #06f;
   --products-knowledgebase: #9146ff;
   --illustrations-primary: #3b3b43;
   --illustrations-secondary: #62626d;

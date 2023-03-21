@@ -70,6 +70,7 @@ export const DesignToken = {
   ContentBasicPositive: '--content-basic-positive',
   ContentBasicInfo: '--content-basic-info',
   ContentBasicPurple: '--content-basic-purple',
+  ContentBasicGradient01: '--content-basic-gradient-01',
   ContentWhiteLocked: '--content-white-locked', // deprecated
   ContentLockedWhite: '--content-locked-white',
   ContentBlackLocked: '--content-black-locked', // deprecated
@@ -83,6 +84,7 @@ export const DesignToken = {
   ContentInvertSubtle: '--content-invert-subtle', // deprecated
   ContentInvertSecondary: '--content-invert-secondary',
   ContentInvertDisabled: '--content-invert-disabled',
+  ContentInvertGradient01: '--content-invert-gradient-01',
   BorderDefault: '--border-default', // deprecated
   BorderBasicPrimary: '--border-basic-primary',
   BorderBasicSecondary: '--border-basic-secondary',
