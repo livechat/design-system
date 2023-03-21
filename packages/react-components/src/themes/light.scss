@@ -70,6 +70,11 @@
   --content-basic-positive: #005321;
   --content-basic-info: #003fa4;
   --content-basic-purple: #6100bd;
+  --content-basic-gradient-01: linear-gradient(
+    254.49deg,
+    #b99aff -0.38%,
+    #68afff 94.44%
+  );
   --content-white-locked: #fff; // deprecated
   --content-locked-white: #fff;
   --content-black-locked: #131317; // deprecated
@@ -83,6 +88,11 @@
   --content-invert-subtle: rgb(255 255 255 / 70%); // deprecated
   --content-invert-secondary: rgb(255 255 255 / 70%);
   --content-invert-disabled: rgb(255 255 255 / 50%);
+  --content-invert-gradient-01: linear-gradient(
+    254.49deg,
+    #b99aff -0.38%,
+    #68afff 94.44%
+  );
   --border-default: #c9c9cd; // deprecated
   --border-basic-primary: #c9c9cd;
   --border-basic-secondary: #e2e2e4;

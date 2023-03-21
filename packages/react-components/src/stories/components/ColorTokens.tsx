@@ -117,7 +117,7 @@ export const ColorTokensPallete: React.FC = () => (
             >
               <div
                 style={{
-                  backgroundColor: `var(${colorToken})`,
+                  background: `var(${colorToken})`,
                   border: '1px solid var(--border-subtle)',
                   borderRadius: '4px',
                   width: '50px',
