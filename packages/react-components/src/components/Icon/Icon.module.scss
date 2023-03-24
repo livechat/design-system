@@ -23,19 +23,19 @@
   }
 
   &--link {
-    color: var(--color-action-default);
+    color: var(--surface-accent-emphasis-high-info);
   }
 
   &--success {
-    color: var(--color-positive-default);
+    color: var(--surface-accent-emphasis-high-positive);
   }
 
   &--warning {
-    color: var(--color-warning-default);
+    color: var(--surface-accent-emphasis-high-warning);
   }
 
   &--error {
-    color: var(--color-negative-default);
+    color: var(--surface-accent-emphasis-high-negative);
   }
 
   &--disabled {

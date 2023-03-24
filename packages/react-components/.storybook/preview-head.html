@@ -3,11 +3,6 @@
 </script>
 
 <style>
-  body {
-    background-color: var(--background);
-    color: var(--content-default);
-  }
-
   .story-container {
     margin-bottom: 10px;
   }
@@ -24,11 +19,19 @@
     gap: 5px;
   }
 
-  .lc-dark-theme,
-  .lc-light-theme,
-  .lc-legacy-theme {
-    background-color: var(--background);
-    color: var(--content-default);
+  .lc-dark-theme .docs-story {
+    background-color: #131317;
+    color: rgb(255 255 255 / 80%);
+  }
+
+  .lc-light-theme .docs-story {
+    background-color: #fff;
+    color: #131317;
+  }
+
+  .lc-legacy-theme .docs-story {
+    background-color: #fff;
+    color: #424d57;
   }
 
   * {
