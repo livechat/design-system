@@ -5,7 +5,8 @@ $base-class: 'avatar';
   position: relative;
   align-items: center;
   justify-content: center;
-  background-color: var(--surface-basic-disabled);
+  background-color: var(--surface-secondary-default);
+  color: var(--content-basic-secondary);
   font-weight: 600;
 
   &__status {
@@ -14,15 +15,15 @@ $base-class: 'avatar';
     $rounded-square-class: #{$status-class}--rounded-square;
 
     position: absolute;
-    border: 1px solid var(--background);
+    border: 1px solid var(--background-01);
     border-radius: 50%;
 
     &--available {
-      background: var(--color-positive-default);
+      background: var(--surface-accent-emphasis-high-positive);
     }
 
     &--unavailable {
-      background: var(--color-negative-default);
+      background: var(--action-negative-default);
     }
 
     &--unknown {
@@ -111,7 +112,7 @@ $base-class: 'avatar';
     transform: translate(-50%, -50%);
     border-style: solid;
     border-radius: inherit;
-    border-color: var(--color-negative-default);
+    border-color: var(--action-negative-default);
     background: transparent;
 
     &--xxxsmall,
