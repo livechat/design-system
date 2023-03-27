@@ -23,20 +23,20 @@
   }
 
   &__bg-line--success {
-    stroke: var(--color-positive-disabled);
+    stroke: var(--action-positive-disabled);
   }
 
   &__bg-line--error {
-    stroke: var(--color-negative-disabled);
+    stroke: var(--action-negative-disabled);
   }
 
   &__indicator--normal {
-    stroke: var(--color-action-default);
+    stroke: var(--action-primary-default);
     transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
   }
 
   &__indicator--success {
-    stroke: var(--color-positive-default);
+    stroke: var(--action-positive-default);
     transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
   }
 
@@ -46,19 +46,19 @@
 
   &--error {
     .progress-circle__bg-line {
-      stroke: var(--color-negative-disabled);
+      stroke: var(--action-negative-disabled);
     }
   }
 
   &--success {
     .progress-circle__bg-line {
-      stroke: var(--color-positive-disabled);
+      stroke: var(--action-positive-disabled);
     }
   }
 
   &--normal {
     .progress-circle__bg-line {
-      stroke: var(--color-action-disabled);
+      stroke: var(--action-primary-disabled);
     }
   }
 }

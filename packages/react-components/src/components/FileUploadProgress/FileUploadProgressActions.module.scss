@@ -1,32 +1,36 @@
 $base-class: 'file-upload-progress-actions';
 
 .#{$base-class} {
-  align-items: center;
   display: inline-flex;
   flex: 1 0 auto;
   flex-wrap: nowrap;
+  align-items: center;
   margin-left: auto;
 
   &__close-button,
   &__retry-button {
-    align-items: center;
-    background-color: transparent;
-    border: 0;
-    border-radius: 4px;
-    color: var(--content-default);
     display: flex;
     flex: 0 1 auto;
+    align-items: center;
     justify-self: flex-end;
     margin: 0;
     margin-left: 8px;
+    border: 0;
+    border-radius: 4px;
+    background-color: transparent;
     padding: 0;
+    color: var(--content-basic-primary);
+
+    &:hover {
+      cursor: pointer;
+    }
 
     svg {
-      cursor: pointer;
       display: flex;
-      fill: currentColor;
-      height: 18px;
+      cursor: pointer;
       width: 18px;
+      height: 18px;
+      fill: currentcolor;
     }
   }
 }
