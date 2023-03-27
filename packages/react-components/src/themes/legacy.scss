@@ -1,3 +1,8 @@
+$surface-primary-disabled: #f9fafb;
+$surface-primary-hover: #f3f6f7;
+$surface-accent-emphasis-min-info: #f4faff;
+$surface-primary-default: #fff;
+
 :root,
 .lc-legacy-theme {
   --background: #fff; // deprecated
@@ -5,19 +10,19 @@
   --background-02: #fff;
   --background-03: #f1f1f2;
   --surface-basic-default: #fff; // deprecated
-  --surface-primary-default: #fff;
+  --surface-primary-default: #{$surface-primary-default};
   --surface-basic-subtle: #f1f6f8; // deprecated
   --surface-secondary-default: #f1f6f8;
   --surface-secondary-hover: #e0e8eb;
   --surface-secondary-active: #dae4eb;
   --surface-secondary-disabled: #eaedf0;
   --surface-basic-hover: #e0e8eb; // deprecated
-  --surface-primary-hover: #f3f6f7;
+  --surface-primary-hover: #{$surface-primary-hover};
   --surface-basic-active: #dae4eb; // deprecated
   --surface-primary-active: #ebf1f4;
   --surface-primary-active-colored: rgb(66 132 245 / 25%);
   --surface-basic-disabled: #eaedf0; // deprecated
-  --surface-primary-disabled: #f9fafb;
+  --surface-primary-disabled: #{$surface-primary-disabled};
   --surface-tertiary-default: #e4e8ec;
   --surface-secondary-subtle: #e4e8ec; // deprecated
   --surface-moderate-default: #bdc7d1;
@@ -35,7 +40,7 @@
   --surface-feedback-positive: #e6f4ec; // deprecated
   --surface-accent-emphasis-low-positive: #e6f4ec;
   --surface-accent-emphasis-low-purple: #eee8ff;
-  --surface-accent-emphasis-min-info: #f4faff;
+  --surface-accent-emphasis-min-info: #{$surface-accent-emphasis-min-info};
   --surface-accent-emphasis-min-negative: #fff8f8;
   --surface-accent-emphasis-min-warning: #fff9ed;
   --surface-accent-emphasis-min-positive: #f3fcf4;
@@ -232,4 +237,14 @@
   --illustrations-stroke: #1b1b20;
   --tag-surface-01: #e4e8ec;
   --tag-content-01: #424d57;
+  --btn-basic-background-enabled: #{$surface-primary-default};
+  --btn-basic-background-hover: #{$surface-primary-hover};
+  --btn-basic-background-disabled: #{$surface-primary-disabled};
+  --btn-basic-background-active: #{$surface-accent-emphasis-min-info};
+  --btn-basic-background-loading: #{$surface-primary-disabled};
+  --btn-secondary-background-enabled: #{$surface-primary-default};
+  --btn-secondary-background-hover: #{$surface-primary-hover};
+  --btn-secondary-background-disabled: #{$surface-primary-disabled};
+  --btn-secondary-background-active: #{$surface-accent-emphasis-min-info};
+  --btn-secondary-background-loading: #{$surface-primary-disabled};
 }

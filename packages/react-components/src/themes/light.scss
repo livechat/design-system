@@ -1,17 +1,21 @@
+$surface-primary-default: #fff;
+$surface-primary-hover: #f6f6f6;
+$surface-accent-emphasis-min-info: #f4faff;
+
 .lc-light-theme {
   --background: #fff; // deprecated
   --background-01: #fff;
   --background-02: #fff;
   --background-03: #f1f1f2;
   --surface-basic-default: #fff; // deprecated
-  --surface-primary-default: #fff;
+  --surface-primary-default: #{$surface-primary-default};
   --surface-basic-subtle: #f6f6f7; // deprecated
   --surface-secondary-default: #f1f1f2;
   --surface-secondary-hover: #e8e8ea;
   --surface-secondary-active: #dfdfe1;
   --surface-secondary-disabled: #f6f6f7;
   --surface-basic-hover: #e2e2e4; // deprecated
-  --surface-primary-hover: #f6f6f6;
+  --surface-primary-hover: #{$surface-primary-hover};
   --surface-basic-active: #c9c9cd; // deprecated
   --surface-primary-active: #ececec;
   --surface-primary-active-colored: rgb(0 102 255 / 25%);
@@ -34,7 +38,7 @@
   --surface-feedback-positive: #e4f4ed; // deprecated
   --surface-accent-emphasis-low-positive: #d1f4d5;
   --surface-accent-emphasis-low-purple: #eee8ff;
-  --surface-accent-emphasis-min-info: #f4faff;
+  --surface-accent-emphasis-min-info: #{$surface-accent-emphasis-min-info};
   --surface-accent-emphasis-min-negative: #fff8f8;
   --surface-accent-emphasis-min-warning: #fff9ed;
   --surface-accent-emphasis-min-positive: #f3fcf4;
@@ -231,4 +235,14 @@
   --illustrations-stroke: #1b1b20;
   --tag-surface-01: #e2e2e4;
   --tag-content-01: #131317;
+  --btn-basic-background-enabled: #{$surface-primary-default};
+  --btn-basic-background-hover: #{$surface-primary-hover};
+  --btn-basic-background-disabled: #{$surface-primary-default};
+  --btn-basic-background-active: #{$surface-accent-emphasis-min-info};
+  --btn-basic-background-loading: #{$surface-primary-default};
+  --btn-secondary-background-enabled: #{$surface-primary-default};
+  --btn-secondary-background-hover: #{$surface-primary-hover};
+  --btn-secondary-background-disabled: #{$surface-primary-default};
+  --btn-secondary-background-active: #{$surface-accent-emphasis-min-info};
+  --btn-secondary-background-loading: #{$surface-primary-default};
 }

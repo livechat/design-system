@@ -1,6 +1,7 @@
 $base-class: 'btn';
 
 .#{$base-class} {
+  box-sizing: border-box;
   display: inline-flex;
   position: relative;
   align-items: center;
@@ -46,25 +47,25 @@ $base-class: 'btn';
 
   &--basic {
     border-color: var(--border-basic-primary);
-    background-color: var(--surface-primary-default);
+    background-color: var(--btn-basic-background-enabled);
     color: var(--action-primary-default);
 
     &:hover {
       border-color: var(--action-primary-default);
-      background-color: var(--surface-primary-hover);
+      background-color: var(--btn-basic-background-hover);
       color: var(--action-primary-hover);
     }
 
     &:active,
     &:focus {
       border-color: var(--action-primary-default);
-      background-color: var(--surface-accent-emphasis-min-info);
+      background-color: var(--btn-basic-background-active);
       color: var(--action-primary-default);
     }
 
     &[aria-disabled='true'] {
       border-color: var(--action-primary-disabled);
-      background-color: var(--surface-primary-default);
+      background-color: var(--btn-basic-background-disabled);
       color: var(--action-primary-disabled);
     }
   }
@@ -94,25 +95,25 @@ $base-class: 'btn';
 
   &--secondary {
     border-color: var(--border-basic-primary);
-    background-color: var(--surface-basic-default);
+    background-color: var(--btn-secondary-background-enabled);
     color: var(--content-default);
 
     &:hover {
-      border-color: var(--surface-secondary-hover);
-      background-color: var(--surface-basic-hover);
+      border-color: var(--border-basic-hover);
+      background-color: var(--btn-secondary-background-hover);
     }
 
     &:active,
     &:focus {
-      border-color: var(--color-action-default);
-      background-color: var(--surface-feedback-info);
-      color: var(--color-action-default);
+      border-color: var(--action-primary-default);
+      background-color: var(--btn-secondary-background-active);
+      color: var(--action-primary-default);
     }
 
     &[aria-disabled='true'] {
-      border-color: var(--border-disabled);
-      background-color: inherit;
-      color: var(--content-disabled);
+      border-color: var(--border-basic-disabled);
+      background-color: var(--btn-secondary-background-disabled);
+      color: var(--content-basic-disabled);
     }
   }
 
