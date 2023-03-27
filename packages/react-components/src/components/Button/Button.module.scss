@@ -32,15 +32,6 @@ $base-class: 'btn';
     cursor: not-allowed;
   }
 
-  &--icon-only {
-    padding: 6px;
-
-    .#{$base-class}__icon--left,
-    .#{$base-class}__icon--right {
-      margin: 0;
-    }
-  }
-
   &--full-width {
     width: 100%;
   }
@@ -258,6 +249,25 @@ $base-class: 'btn';
       order: 1;
       margin-right: -4px;
       margin-left: 5px;
+    }
+  }
+
+  &--icon-only {
+    padding: 6px;
+
+    &:hover {
+      background-color: var(--btn-plain-icon-background-hover);
+    }
+
+    &:focus,
+    &:active {
+      background-color: var(--btn-plain-icon-background-active);
+      color: var(--content-invert-primary);
+    }
+
+    .#{$base-class}__icon--left,
+    .#{$base-class}__icon--right {
+      margin: 0;
     }
   }
 }

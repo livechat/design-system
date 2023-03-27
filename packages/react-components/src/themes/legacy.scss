@@ -2,6 +2,7 @@ $surface-primary-disabled: #f9fafb;
 $surface-primary-hover: #f3f6f7;
 $surface-accent-emphasis-min-info: #f4faff;
 $surface-primary-default: #fff;
+$action-primary-default: #4284f5;
 
 :root,
 .lc-legacy-theme {
@@ -124,7 +125,7 @@ $surface-primary-default: #fff;
   --color-action-hover: #4379d6; // deprecated
   --action-primary-hover: #4379d6;
   --color-action-default: #4284f5; // deprecated
-  --action-primary-default: #4284f5;
+  --action-primary-default: #{$action-primary-default};
   --color-action-default-rgb: 66, 132, 245;
   --color-action-disabled: #a3c3fa; // deprecated
   --action-primary-disabled: #a3c3fa;
@@ -247,4 +248,6 @@ $surface-primary-default: #fff;
   --btn-secondary-background-disabled: #{$surface-primary-disabled};
   --btn-secondary-background-active: #{$surface-accent-emphasis-min-info};
   --btn-secondary-background-loading: #{$surface-primary-disabled};
+  --btn-plain-icon-background-hover: #{$surface-accent-emphasis-min-info};
+  --btn-plain-icon-background-active: #{$action-primary-default};
 }

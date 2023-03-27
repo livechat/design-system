@@ -129,6 +129,25 @@ export const kindsAndStates = (args: ButtonProps): React.ReactElement => (
         Disabled
       </Button>
     </StoryDescriptor>
+    <StoryDescriptor title="Plain with icon only">
+      <Button
+        {...args}
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+        kind="plain"
+      />
+      <Button
+        {...args}
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+        disabled
+        kind="plain"
+      />
+      <Button
+        {...args}
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+        loading
+        kind="plain"
+      />
+    </StoryDescriptor>
   </div>
 );
 kindsAndStates.args = {};

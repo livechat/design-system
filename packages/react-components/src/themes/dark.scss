@@ -2,6 +2,8 @@ $surface-primary-disabled: #333338;
 $surface-primary-hover: #2b2b2f;
 $surface-accent-emphasis-min-info: #232a36;
 $surface-primary-default: #202024;
+$surface-accent-emphasis-low-info: #20324d;
+$action-primary-default: #68afff;
 
 .lc-dark-theme {
   --background: #131317; // deprecated
@@ -31,7 +33,7 @@ $surface-primary-default: #202024;
   --surface-tertiary-active: #4b4b52;
   --surface-tertiary-disabled: #3b3b43;
   --surface-feedback-info: #323640; // deprecated
-  --surface-accent-emphasis-low-info: #20324d;
+  --surface-accent-emphasis-low-info: #{$surface-accent-emphasis-low-info};
   --surface-feedback-negative: #3a3136; // deprecated
   --surface-accent-emphasis-low-negative: #492529;
   --surface-feedback-warning: #3a362b; // deprecated
@@ -123,7 +125,7 @@ $surface-primary-default: #202024;
   --color-action-hover: #8abbf9; // deprecated
   --action-primary-hover: #86bfff;
   --color-action-default: #6daaf8; // deprecated
-  --action-primary-default: #68afff;
+  --action-primary-default: #{$action-primary-default};
   --color-action-default-rgb: 157, 206, 255;
   --color-action-disabled: #6daaf8; // deprecated
   --action-primary-disabled: rgb(104 175 255 / 30%);
@@ -132,7 +134,7 @@ $surface-primary-default: #202024;
   --color-negative-hover: #ffb7b7; // deprecated
   --action-negative-hover: #ff7071;
   --color-negative-default: #ff5354; // deprecated
-  --action-negative-default: #ff4c4d;
+  --action-negative-default: #ff5354;
   --color-negative-disabled: rgb(255 76 77 / 30%); // deprecated
   --action-negative-disabled: rgb(255 76 77 / 30%);
   --color-warning-default: #fed65e; // deprecated
@@ -246,4 +248,6 @@ $surface-primary-default: #202024;
   --btn-secondary-background-disabled: #{$surface-primary-disabled};
   --btn-secondary-background-active: #{$surface-accent-emphasis-min-info};
   --btn-secondary-background-loading: #{$surface-primary-disabled};
+  --btn-plain-icon-background-hover: #{$surface-accent-emphasis-low-info};
+  --btn-plain-icon-background-active: #{$action-primary-default};
 }
