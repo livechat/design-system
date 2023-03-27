@@ -63,6 +63,38 @@ export const kindsAndStates = (args: ButtonProps): React.ReactElement => (
         Loading
       </Button>
     </StoryDescriptor>
+    <StoryDescriptor title="Basic with icon">
+      <Button {...args} icon={<Icon source={MaterialIcons.AddCircle} />}>
+        Basic
+      </Button>
+      <Button
+        {...args}
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+        disabled
+      >
+        Disabled
+      </Button>
+      <Button
+        {...args}
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+        loading
+      >
+        Loading
+      </Button>
+    </StoryDescriptor>
+    <StoryDescriptor title="Basic with icon only">
+      <Button {...args} icon={<Icon source={MaterialIcons.AddCircle} />} />
+      <Button
+        {...args}
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+        disabled
+      />
+      <Button
+        {...args}
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+        loading
+      />
+    </StoryDescriptor>
     <StoryDescriptor title="Primary">
       <Button {...args} kind="primary">
         Primary
@@ -73,6 +105,50 @@ export const kindsAndStates = (args: ButtonProps): React.ReactElement => (
       <Button {...args} loading kind="primary">
         Loading
       </Button>
+    </StoryDescriptor>
+    <StoryDescriptor title="Primary with icon">
+      <Button
+        {...args}
+        kind="primary"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Primary
+      </Button>
+      <Button
+        {...args}
+        disabled
+        kind="primary"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Disabled
+      </Button>
+      <Button
+        {...args}
+        loading
+        kind="primary"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Loading
+      </Button>
+    </StoryDescriptor>
+    <StoryDescriptor title="Primary with icon only">
+      <Button
+        {...args}
+        kind="primary"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+      <Button
+        {...args}
+        disabled
+        kind="primary"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+      <Button
+        {...args}
+        loading
+        kind="primary"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
     </StoryDescriptor>
     <StoryDescriptor title="Secondary">
       <Button {...args} kind="secondary">
@@ -85,6 +161,50 @@ export const kindsAndStates = (args: ButtonProps): React.ReactElement => (
         Disabled
       </Button>
     </StoryDescriptor>
+    <StoryDescriptor title="Secondary with icon">
+      <Button
+        {...args}
+        kind="secondary"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Secondary
+      </Button>
+      <Button
+        {...args}
+        disabled
+        kind="secondary"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Disabled
+      </Button>
+      <Button
+        {...args}
+        loading
+        kind="secondary"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Disabled
+      </Button>
+    </StoryDescriptor>
+    <StoryDescriptor title="Secondary with icon only">
+      <Button
+        {...args}
+        kind="secondary"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+      <Button
+        {...args}
+        disabled
+        kind="secondary"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+      <Button
+        {...args}
+        loading
+        kind="secondary"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+    </StoryDescriptor>
     <StoryDescriptor title="Destructive">
       <Button {...args} kind="destructive">
         Destructive
@@ -95,6 +215,50 @@ export const kindsAndStates = (args: ButtonProps): React.ReactElement => (
       <Button {...args} loading kind="destructive">
         Disabled
       </Button>
+    </StoryDescriptor>
+    <StoryDescriptor title="Destructive with icon">
+      <Button
+        {...args}
+        kind="destructive"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Destructive
+      </Button>
+      <Button
+        {...args}
+        disabled
+        kind="destructive"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Disabled
+      </Button>
+      <Button
+        {...args}
+        loading
+        kind="destructive"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Disabled
+      </Button>
+    </StoryDescriptor>
+    <StoryDescriptor title="Destructive with icon only">
+      <Button
+        {...args}
+        kind="destructive"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+      <Button
+        {...args}
+        disabled
+        kind="destructive"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+      <Button
+        {...args}
+        loading
+        kind="destructive"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
     </StoryDescriptor>
     <StoryDescriptor title="Text">
       <Button {...args} kind="text">
@@ -107,6 +271,50 @@ export const kindsAndStates = (args: ButtonProps): React.ReactElement => (
         Disabled
       </Button>
     </StoryDescriptor>
+    <StoryDescriptor title="Text with icon">
+      <Button
+        {...args}
+        kind="text"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Text
+      </Button>
+      <Button
+        {...args}
+        disabled
+        kind="text"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Disabled
+      </Button>
+      <Button
+        {...args}
+        loading
+        kind="text"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Disabled
+      </Button>
+    </StoryDescriptor>
+    <StoryDescriptor title="Text with icon only">
+      <Button
+        {...args}
+        kind="text"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+      <Button
+        {...args}
+        disabled
+        kind="text"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+      <Button
+        {...args}
+        loading
+        kind="text"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+    </StoryDescriptor>
     <StoryDescriptor title="Plain">
       <Button {...args} kind="plain">
         Plain
@@ -118,34 +326,48 @@ export const kindsAndStates = (args: ButtonProps): React.ReactElement => (
         Disabled
       </Button>
     </StoryDescriptor>
-    <StoryDescriptor title="Plain light">
-      <Button {...args} kind="plain-light">
-        Plain light
+    <StoryDescriptor title="Plain with icon">
+      <Button
+        {...args}
+        kind="plain"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Plain
       </Button>
-      <Button {...args} disabled kind="plain-light">
+      <Button
+        {...args}
+        disabled
+        kind="plain"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
         Disabled
       </Button>
-      <Button {...args} loading kind="plain-light">
+      <Button
+        {...args}
+        loading
+        kind="plain"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
         Disabled
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Plain with icon only">
       <Button
         {...args}
-        icon={<Icon source={MaterialIcons.AddCircle} />}
         kind="plain"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
       />
       <Button
         {...args}
-        icon={<Icon source={MaterialIcons.AddCircle} />}
         disabled
         kind="plain"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
       />
       <Button
         {...args}
-        icon={<Icon source={MaterialIcons.AddCircle} />}
         loading
         kind="plain"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
       />
     </StoryDescriptor>
   </div>

@@ -43,6 +43,9 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const isDisabled = loading || disabled;
+  const isIconOnly = !children && icon;
+  const isTextButton =
+    kind === 'text' || kind === 'plain' || kind === 'plain-light';
 
   const Component = href ? 'a' : 'button';
 
@@ -54,7 +57,8 @@ export const Button: React.FC<ButtonProps> = ({
     {
       [styles[`${baseClass}--loading`]]: loading,
       [styles[`${baseClass}--full-width`]]: fullWidth,
-      [styles[`${baseClass}--icon-only`]]: !children && icon,
+      [styles[`${baseClass}--icon-only`]]: isIconOnly,
+      [styles[`${baseClass}--icon-only--bg`]]: isIconOnly && isTextButton,
       [styles[`${baseClass}--disabled`]]: isDisabled,
     }
   );

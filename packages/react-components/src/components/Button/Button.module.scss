@@ -166,6 +166,12 @@ $base-class: 'btn';
 
     &[aria-disabled='true'] {
       color: var(--action-primary-disabled);
+
+      &:hover,
+      &:active,
+      &:focus {
+        text-decoration: none;
+      }
     }
   }
 
@@ -255,14 +261,16 @@ $base-class: 'btn';
   &--icon-only {
     padding: 6px;
 
-    &:hover {
-      background-color: var(--btn-plain-icon-background-hover);
-    }
+    &--bg {
+      &:hover {
+        background-color: var(--btn-plain-icon-background-hover);
+      }
 
-    &:focus,
-    &:active {
-      background-color: var(--btn-plain-icon-background-active);
-      color: var(--content-invert-primary);
+      &:focus,
+      &:active {
+        background-color: var(--btn-plain-icon-background-active);
+        color: var(--content-invert-primary);
+      }
     }
 
     .#{$base-class}__icon--left,
