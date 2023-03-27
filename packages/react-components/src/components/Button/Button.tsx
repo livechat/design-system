@@ -16,7 +16,6 @@ export type ButtonKind =
 export type ButtonProps = {
   kind?: ButtonKind;
   size?: Size;
-  disabled?: boolean;
   loading?: boolean;
   fullWidth?: boolean;
   loaderLabel?: string;
@@ -67,6 +66,7 @@ export const Button: React.FC<ButtonProps> = ({
       type={type}
       href={isDisabled ? undefined : href}
       onClick={isDisabled ? undefined : onClick}
+      disabled={isDisabled}
       {...props}
     >
       {loading && (

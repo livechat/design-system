@@ -27,10 +27,6 @@ $base-class: 'btn';
     outline: 0;
   }
 
-  &:focus {
-    filter: drop-shadow(0 0 1px 2px rgb(var(--color-action-default-rgb) 0.7));
-  }
-
   &--disabled {
     cursor: not-allowed;
   }
@@ -49,45 +45,50 @@ $base-class: 'btn';
   }
 
   &--basic {
-    border-color: var(--color-action-default);
-    background-color: var(--surface-basic-default);
-    color: var(--color-action-default);
+    border-color: var(--border-basic-primary);
+    background-color: var(--surface-primary-default);
+    color: var(--action-primary-default);
 
     &:hover {
-      background-color: var(--surface-basic-subtle);
-      color: var(--color-action-hover);
+      border-color: var(--action-primary-default);
+      background-color: var(--surface-primary-hover);
+      color: var(--action-primary-hover);
     }
 
-    &:active {
-      background-color: var(--surface-feedback-info);
-      color: var(--color-action-hover);
+    &:active,
+    &:focus {
+      border-color: var(--action-primary-default);
+      background-color: var(--surface-accent-emphasis-min-info);
+      color: var(--action-primary-default);
     }
 
     &[aria-disabled='true'] {
-      border-color: var(--color-action-disabled);
-      background-color: inherit;
-      color: var(--color-action-disabled);
+      border-color: var(--action-primary-disabled);
+      background-color: var(--surface-primary-default);
+      color: var(--action-primary-disabled);
     }
   }
 
   &--primary {
-    border-color: var(--color-action-default);
-    background-color: var(--color-action-default);
-    color: var(--content-invert-default);
+    border: 0;
+    border-color: var(--action-primary-default);
+    background-color: var(--action-primary-default);
+    color: var(--content-invert-primary);
 
     &:hover {
-      border-color: var(--color-action-hover);
-      background-color: var(--color-action-hover);
+      border-color: var(--action-primary-hover);
+      background-color: var(--action-primary-hover);
     }
 
-    &:active {
-      border-color: var(--color-action-active);
-      background-color: var(--color-action-active);
+    &:active,
+    &:focus {
+      border-color: var(--action-primary-active);
+      background-color: var(--action-primary-active);
     }
 
     &[aria-disabled='true'] {
-      border-color: var(--color-action-disabled);
-      background-color: var(--color-action-disabled);
+      border-color: var(--action-primary-disabled);
+      background-color: var(--action-primary-disabled);
     }
   }
 
@@ -101,7 +102,8 @@ $base-class: 'btn';
       background-color: var(--surface-basic-hover);
     }
 
-    &:active {
+    &:active,
+    &:focus {
       border-color: var(--color-action-default);
       background-color: var(--surface-feedback-info);
       color: var(--color-action-default);
@@ -115,23 +117,25 @@ $base-class: 'btn';
   }
 
   &--destructive {
-    border-color: var(--color-negative-default);
-    background-color: var(--color-negative-default);
-    color: var(--content-invert-default);
+    border: 0;
+    border-color: var(--action-negative-default);
+    background-color: var(--action-negative-default);
+    color: var(--content-invert-primary);
 
     &:hover {
-      border-color: var(--color-negative-hover);
-      background-color: var(--color-negative-hover);
+      border-color: var(--action-negative-hover);
+      background-color: var(--action-negative-hover);
     }
 
-    &:active {
-      border-color: var(--color-negative-active);
-      background-color: var(--color-negative-active);
+    &:active,
+    &:focus {
+      border-color: var(--action-negative-active);
+      background-color: var(--action-negative-active);
     }
 
     &[aria-disabled='true'] {
-      border-color: var(--color-negative-disabled);
-      background-color: var(--color-negative-disabled);
+      border-color: var(--action-negative-disabled);
+      background-color: var(--action-negative-disabled);
     }
   }
 
@@ -160,14 +164,16 @@ $base-class: 'btn';
   &--plain-light {
     border-color: transparent;
     background-color: transparent;
-    color: var(--color-action-default);
+    color: var(--action-primary-default);
 
-    &:hover {
-      color: var(--color-action-hover);
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: underline;
     }
 
     &[aria-disabled='true'] {
-      color: var(--color-action-disabled);
+      color: var(--action-primary-disabled);
     }
   }
 
@@ -230,7 +236,6 @@ $base-class: 'btn';
     }
   }
 
-  // TODO: Investigate
   &__content {
     margin-top: -2px;
   }
