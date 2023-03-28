@@ -7,19 +7,19 @@
   }
 
   &--primary {
-    color: var(--content-default);
+    color: var(--content-basic-primary);
   }
 
   &--subtle {
-    color: var(--content-subtle);
+    color: var(--content-basic-secondary);
   }
 
   &--inverted {
-    color: var(--content-invert-default);
+    color: var(--content-invert-primary);
   }
 
   &--inverted-subtle {
-    color: var(--content-invert-subtle);
+    color: var(--content-invert-secondary);
   }
 
   &--link {
@@ -40,11 +40,11 @@
 
   &--disabled {
     &--primary {
-      color: var(--content-disabled);
+      color: var(--content-basic-disabled);
     }
 
     &--subtle {
-      color: var(--content-disabled);
+      color: var(--content-basic-disabled);
     }
 
     &--inverted {
@@ -56,19 +56,19 @@
     }
 
     &--link {
-      color: var(--color-action-disabled);
+      color: var(--action-primary-disabled);
     }
 
     &--success {
-      color: var(--color-positive-disabled);
+      color: var(--action-positive-disabled);
     }
 
     &--warning {
-      color: var(--color-warning-default);
+      color: var(--action-warning-default);
     }
 
     &--error {
-      color: var(--color-negative-disabled);
+      color: var(--action-negative-disabled);
     }
   }
 }
