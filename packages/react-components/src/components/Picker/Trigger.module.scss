@@ -21,6 +21,12 @@ $base-class: 'picker-trigger';
     cursor: pointer;
   }
 
+  &:focus,
+  &:active {
+    outline: 0;
+    border-color: var(--color-action-default);
+  }
+
   &--compact {
     height: 32px;
   }

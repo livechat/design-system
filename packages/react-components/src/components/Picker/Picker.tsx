@@ -50,6 +50,7 @@ export const Picker: React.FC<IPickerProps> = ({
   type = 'single',
   searchDisabled = false,
   onSelect,
+  ...props
 }) => {
   const [isListOpen, setIsListOpen] = React.useState<boolean>(false);
   const [searchPhrase, setSearchPhrase] = React.useState<string | null>(null);
@@ -182,7 +183,7 @@ export const Picker: React.FC<IPickerProps> = ({
   }, [selected]);
 
   return (
-    <div ref={triggerRef} className={mergedClassNames}>
+    <div ref={triggerRef} className={mergedClassNames} {...props}>
       {label && (
         <div
           className={cx(styles[`${baseClass}__label`], {
