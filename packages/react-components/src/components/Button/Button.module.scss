@@ -55,7 +55,7 @@ $base-class: 'btn';
     }
 
     &[aria-disabled='true'] {
-      border-color: var(--action-primary-disabled);
+      border-color: var(--border-basic-disabled);
       background-color: var(--btn-basic-background-disabled);
       color: var(--action-primary-disabled);
     }
