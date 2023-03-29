@@ -1,7 +1,7 @@
 .segmented-control {
   display: inline-flex;
   flex-direction: row;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-basic-tertiary);
   border-radius: 4px;
   padding: 3px;
   vertical-align: middle;
@@ -10,7 +10,7 @@
     border-color: transparent;
 
     &--active {
-      background-color: var(--surface-basic-active);
+      background-color: var(--surface-primary-active);
     }
 
     &--compact {
