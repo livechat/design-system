@@ -32,14 +32,12 @@ export interface ToastProps extends React.HTMLAttributes<HTMLDivElement> {
 const iconConfig: Record<ToastKind, { source: IconSource; kind?: IconKind }> = {
   success: {
     source: CheckCircleSolid,
-    kind: 'inverted',
   },
   warning: {
     source: Warning,
   },
   error: {
     source: Block,
-    kind: 'inverted',
   },
   info: {
     source: Info,
@@ -91,16 +89,14 @@ export const Toast: React.FC<ToastProps> = ({
           )}
           {removable && (
             <div
-              className={styles[`${baseClass}__actions--close`]}
+              className={styles[`${baseClass}__actions`]}
               aria-label="Close toast"
               onClick={onClose}
             >
               <Icon
+                className={styles[`${baseClass}__actions__close`]}
                 source={Close}
                 size="medium"
-                kind={
-                  ['warning', 'info'].includes(kind) ? 'primary' : 'inverted'
-                }
               />
             </div>
           )}
