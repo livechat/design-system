@@ -60,10 +60,10 @@ export const States = (args: IPickerProps): React.ReactElement => (
       <PickerComponent {...args} disabled />
     </StoryDescriptor>
     <StoryDescriptor title="Error">
-      <PickerComponent {...args} error="Example text" />
+      <PickerComponent {...args} error />
     </StoryDescriptor>
     <StoryDescriptor title="Error + Disabled">
-      <PickerComponent {...args} disabled error="Example text" />
+      <PickerComponent {...args} disabled error />
     </StoryDescriptor>
     <StoryDescriptor title="Disabled + Selected option">
       <PickerComponent

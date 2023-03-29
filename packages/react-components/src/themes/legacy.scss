@@ -3,6 +3,8 @@ $surface-primary-hover: #f3f6f7;
 $surface-accent-emphasis-min-info: #f4faff;
 $surface-primary-default: #fff;
 $action-primary-default: #4284f5;
+$surface-secondary-default: #f1f6f8;
+$surface-primary-active: #ebf1f4;
 
 :root,
 .lc-legacy-theme {
@@ -13,14 +15,14 @@ $action-primary-default: #4284f5;
   --surface-basic-default: #fff; // deprecated
   --surface-primary-default: #{$surface-primary-default};
   --surface-basic-subtle: #f1f6f8; // deprecated
-  --surface-secondary-default: #f1f6f8;
+  --surface-secondary-default: #{$surface-secondary-default};
   --surface-secondary-hover: #e0e8eb;
   --surface-secondary-active: #dae4eb;
   --surface-secondary-disabled: #eaedf0;
   --surface-basic-hover: #e0e8eb; // deprecated
   --surface-primary-hover: #{$surface-primary-hover};
   --surface-basic-active: #dae4eb; // deprecated
-  --surface-primary-active: #ebf1f4;
+  --surface-primary-active: #{$surface-primary-active};
   --surface-primary-active-colored: rgb(66 132 245 / 25%);
   --surface-basic-disabled: #eaedf0; // deprecated
   --surface-primary-disabled: #{$surface-primary-disabled};
@@ -250,4 +252,9 @@ $action-primary-default: #4284f5;
   --btn-secondary-background-loading: #{$surface-primary-disabled};
   --btn-plain-icon-background-hover: #{$surface-accent-emphasis-min-info};
   --btn-plain-icon-background-active: #{$action-primary-default};
+  --picker-list-background: #{$surface-primary-default};
+  --picker-list-group-background: #{$surface-secondary-default};
+  --picker-list-option-background-hover: #{$surface-primary-hover};
+  --picker-list-option-background-focus: #{$surface-primary-hover};
+  --picker-list-option-background-active: #{$surface-primary-active};
 }

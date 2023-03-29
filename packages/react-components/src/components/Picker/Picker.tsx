@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { Error } from '@livechat/design-system-icons/react/material';
 import cx from 'clsx';
 
 import { Trigger } from './Trigger';
 import { IPickerListItem, PickerList } from './PickerList';
-import { Icon, IconSize } from '../Icon';
+import { IconSize } from '../Icon';
 import { KeyCodes } from '../../utils/keyCodes';
 
 import styles from './Picker.module.scss';
@@ -17,10 +16,10 @@ const baseClass = 'picker';
 export type PickerType = 'single' | 'multi';
 
 export interface IPickerProps {
+  id?: string;
   className?: string;
   disabled?: boolean;
-  label?: string;
-  error?: string;
+  error?: boolean;
   options: IPickerListItem[];
   selected?: IPickerListItem[] | null;
   size?: Size;
@@ -38,7 +37,6 @@ export const Picker: React.FC<IPickerProps> = ({
   className,
   disabled,
   error,
-  label,
   options,
   selected,
   size = 'medium',
@@ -184,19 +182,10 @@ export const Picker: React.FC<IPickerProps> = ({
 
   return (
     <div ref={triggerRef} className={mergedClassNames} {...props}>
-      {label && (
-        <div
-          className={cx(styles[`${baseClass}__label`], {
-            [styles[`${baseClass}__label--disabled`]]: disabled,
-          })}
-        >
-          {label}
-        </div>
-      )}
       <div className={styles[`${baseClass}__container`]}>
         <Trigger
           isSearchDisabled={searchDisabled}
-          isError={!!error}
+          isError={error}
           isOpen={isListOpen}
           isDisabled={disabled}
           isItemSelected={!!selected}
@@ -230,17 +219,6 @@ export const Picker: React.FC<IPickerProps> = ({
           onSelectAll={handleSelectAll}
         />
       </div>
-      {error && (
-        <div className={styles[`${baseClass}__error`]}>
-          <Icon
-            className={styles[`${baseClass}__error__icon`]}
-            source={Error}
-            kind="error"
-            size="small"
-          />
-          {error}
-        </div>
-      )}
     </div>
   );
 };

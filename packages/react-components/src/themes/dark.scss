@@ -4,6 +4,10 @@ $surface-accent-emphasis-min-info: #232a36;
 $surface-primary-default: #202024;
 $surface-accent-emphasis-low-info: #20324d;
 $action-primary-default: #68afff;
+$surface-secondary-default: #2d2d33;
+$surface-tertiary-default: #3b3b43;
+$surface-secondary-hover: #343439;
+$surface-secondary-active: #3a3a40;
 
 .lc-dark-theme {
   --background: #131317; // deprecated
@@ -13,9 +17,9 @@ $action-primary-default: #68afff;
   --surface-basic-default: #202024; // deprecated
   --surface-primary-default: #{$surface-primary-default};
   --surface-basic-subtle: #29292f; // deprecated
-  --surface-secondary-default: #2d2d33;
-  --surface-secondary-hover: #343439;
-  --surface-secondary-active: #3a3a40;
+  --surface-secondary-default: #{$surface-secondary-default};
+  --surface-secondary-hover: #{$surface-secondary-hover};
+  --surface-secondary-active: #{$surface-secondary-active};
   --surface-secondary-disabled: #2d2d32;
   --surface-basic-hover: rgb(255 255 255 / 10%); // deprecated
   --surface-primary-hover: #{$surface-primary-hover};
@@ -24,7 +28,7 @@ $action-primary-default: #68afff;
   --surface-primary-active-colored: rgb(0 102 255 / 25%);
   --surface-basic-disabled: #2d2d32; // deprecated
   --surface-primary-disabled: #{$surface-primary-disabled};
-  --surface-tertiary-default: #3b3b43;
+  --surface-tertiary-default: #{$surface-tertiary-default};
   --surface-secondary-subtle: #3b3b43; // deprecated
   --surface-moderate-default: #4e4e58;
   --surface-moderate-hover: #55555f;
@@ -250,4 +254,9 @@ $action-primary-default: #68afff;
   --btn-secondary-background-loading: #{$surface-primary-disabled};
   --btn-plain-icon-background-hover: #{$surface-accent-emphasis-low-info};
   --btn-plain-icon-background-active: #{$action-primary-default};
+  --picker-list-background: #{$surface-secondary-default};
+  --picker-list-group-background: #{$surface-tertiary-default};
+  --picker-list-option-background-hover: #{$surface-secondary-hover};
+  --picker-list-option-background-focus: #{$surface-secondary-hover};
+  --picker-list-option-background-active: #{$surface-secondary-active};
 }

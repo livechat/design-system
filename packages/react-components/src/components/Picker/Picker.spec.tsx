@@ -24,24 +24,6 @@ describe('<Picker> component', () => {
     expect(container.firstChild).toHaveClass('my-css-class');
   });
 
-  it('should render label if is set', () => {
-    const { getByText } = renderComponent({
-      ...defaultProps,
-      label: 'Example label',
-    });
-
-    expect(getByText('Example label')).toBeVisible();
-  });
-
-  it('should render error if is set', () => {
-    const { getByText } = renderComponent({
-      ...defaultProps,
-      error: 'Example error',
-    });
-
-    expect(getByText('Example error')).toBeVisible();
-  });
-
   it('should call onSelect with selected item', () => {
     const onSelect = vi.fn();
     const { getByText } = renderComponent({
