@@ -54,6 +54,12 @@ export const kinds = ({ children, ...args }: TagProps): React.ReactElement => {
       <TagComponent {...args} kind="error">
         {children}
       </TagComponent>
+      <TagComponent {...args} kind="purple">
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="black">
+        {children}
+      </TagComponent>
     </div>
   );
 };
@@ -81,6 +87,12 @@ export const kindsWithOutline = ({
         {children}
       </TagComponent>
       <TagComponent {...args} kind="error" outline>
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="purple" outline>
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="black" outline>
         {children}
       </TagComponent>
     </div>
@@ -112,6 +124,12 @@ export const kindsWithIcon = ({
       <TagComponent {...args} kind="error">
         {children}
       </TagComponent>
+      <TagComponent {...args} kind="purple">
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="black">
+        {children}
+      </TagComponent>
     </div>
   );
 };
@@ -140,6 +158,12 @@ export const kindsWithAvatar = ({
         {children}
       </TagComponent>
       <TagComponent {...args} kind="error" avatar={avatar}>
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="purple" avatar={avatar}>
+        {children}
+      </TagComponent>
+      <TagComponent {...args} kind="black" avatar={avatar}>
         {children}
       </TagComponent>
     </div>

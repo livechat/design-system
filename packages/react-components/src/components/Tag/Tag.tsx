@@ -11,7 +11,14 @@ import styles from './Tag.module.scss';
 const baseClass = 'tag';
 
 export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
-  kind?: 'default' | 'info' | 'warning' | 'success' | 'error';
+  kind?:
+    | 'default'
+    | 'info'
+    | 'warning'
+    | 'success'
+    | 'error'
+    | 'purple'
+    | 'black';
   size?: 'medium' | 'large';
   iconSize?: IconSize;
   customColor?: string;
