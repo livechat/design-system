@@ -3,41 +3,41 @@
   display: flex;
   align-items: center;
   outline: none;
-  border: 1px solid var(--border-default);
+  border: 1px solid var(--border-basic-primary);
   border-radius: 4px;
-  background: var(--surface-basic-default);
+  background: var(--surface-primary-default);
   padding: 5px 12px;
   line-height: 22px;
-  color: var(--content-default);
+  color: var(--content-basic-primary);
   font-size: 15px;
 
   &::placeholder {
-    color: var(--content-disabled);
+    color: var(--content-basic-disabled);
   }
 
   &:hover {
-    border-color: var(--border-hover);
+    border-color: var(--border-basic-hover);
   }
 
   &:focus {
-    border-color: var(--color-action-default);
+    border-color: var(--action-primary-default);
   }
 
   &:disabled {
-    border-color: var(--border-disabled);
-    background-color: var(--surface-basic-disabled);
-    color: var(--content-disabled);
+    border-color: var(--border-basic-disabled);
+    background-color: var(--surface-primary-disabled);
+    color: var(--content-basic-disabled);
   }
 
   &--focused,
   &--focused:hover {
-    border-color: var(--color-action-default);
+    border-color: var(--action-primary-default);
   }
 
   &--disabled,
   &--disabled:hover {
-    border-color: var(--border-disabled);
-    background-color: var(--surface-basic-disabled);
+    border-color: var(--border-basic-disabled);
+    background-color: var(--surface-primary-disabled);
   }
 
   input {
@@ -46,12 +46,12 @@
     background: none;
     padding: 0;
     width: 100%;
-    color: var(--content-default);
+    color: var(--content-basic-primary);
   }
 
   &--error,
   &--error:hover {
-    border-color: var(--color-negative-default);
+    border-color: var(--action-negative-default);
   }
 
   &--compact {
@@ -68,7 +68,7 @@
 
   &__icon {
     &--disabled {
-      color: var(--content-disabled);
+      color: var(--content-basic-disabled);
     }
 
     &--left {
