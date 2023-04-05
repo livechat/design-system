@@ -6,8 +6,8 @@ import { FC, MouseEvent } from 'react';
 
 const baseClass = 'tooltip';
 
-export const Info: FC<{
-  header: string;
+export const Info: React.FC<{
+  header?: string;
   text: string;
   closeWithX?: boolean;
   theme?: string;

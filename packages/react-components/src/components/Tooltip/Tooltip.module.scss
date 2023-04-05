@@ -126,6 +126,12 @@ $base-class: 'tooltip';
     font-weight: 400;
     font-style: normal;
   }
+
+  &-footer {
+    display: flex;
+    justify-content: space-between;
+    margin: 4px;
+  }
 }
 
 .guide-tooltip {

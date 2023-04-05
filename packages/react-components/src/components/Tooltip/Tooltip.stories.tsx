@@ -1,5 +1,5 @@
 import { ComponentMeta } from '@storybook/react';
-import { Button } from '../Button';
+import { Button, ButtonKind } from '../Button';
 import { ITooltipProps, Tooltip as TooltipComponent } from './Tooltip';
 import {
   DropDown,
@@ -206,9 +206,17 @@ const TooltipInteractiveExample: FC<ITooltipProps> = (props) => {
           }}
           theme={props.theme}
           text="Tooltip content is used to explain the details of elements or features."
-          handleClickPrimary={() => console.log('primary click handler')}
-          handleClickSecondary={() => console.log('secondary click handler')}
           closeWithX
+          primaryButton={{
+            handleClick: () => console.log('primary click handler'),
+            label: 'Primary Button',
+            kind: 'primary',
+          }}
+          secondaryButton={{
+            handleClick: () => console.log('secondary click handler'),
+            label: 'Secondary',
+            kind: 'secondary',
+          }}
         />
       </TooltipComponent>
     </div>
