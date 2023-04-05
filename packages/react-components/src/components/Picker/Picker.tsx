@@ -32,6 +32,7 @@ export interface IPickerProps {
   type?: PickerType;
   searchDisabled?: boolean;
   onSelect: (selectedItems: IPickerListItem[] | null) => void;
+  dataTestId?: string;
 }
 
 export const Picker: React.FC<IPickerProps> = ({
@@ -50,6 +51,7 @@ export const Picker: React.FC<IPickerProps> = ({
   type = 'single',
   searchDisabled = false,
   onSelect,
+  dataTestId = 'picker-trigger',
 }) => {
   const [isListOpen, setIsListOpen] = React.useState<boolean>(false);
   const [searchPhrase, setSearchPhrase] = React.useState<string | null>(null);
@@ -204,6 +206,7 @@ export const Picker: React.FC<IPickerProps> = ({
           size={size}
           onTrigger={handleTrigger}
           onClear={handleClear}
+          dataTestId={dataTestId}
         >
           <TriggerBody
             isOpen={isListOpen}

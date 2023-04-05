@@ -23,6 +23,7 @@ export interface ITriggerProps {
   size?: Size;
   onTrigger: (e: React.MouseEvent | KeyboardEvent) => void;
   onClear: () => void;
+  dataTestId: string;
 }
 
 export const Trigger: React.FC<ITriggerProps> = ({
@@ -37,6 +38,7 @@ export const Trigger: React.FC<ITriggerProps> = ({
   size = 'medium',
   onTrigger,
   onClear,
+  dataTestId,
 }) => {
   const triggerRef = React.useRef<HTMLDivElement>(null);
   const mergedClassNames = cx(
@@ -86,6 +88,7 @@ export const Trigger: React.FC<ITriggerProps> = ({
       className={mergedClassNames}
       onClick={handleTriggerClick}
       tabIndex={0}
+      data-testid={dataTestId}
     >
       <div className={styles[`${baseClass}__content`]}>{children}</div>
       <div
