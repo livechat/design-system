@@ -44,8 +44,7 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   const isDisabled = loading || disabled;
   const isIconOnly = !children && icon;
-  const isTextButton =
-    kind === 'text' || kind === 'plain' || kind === 'plain-light';
+  const isTextButton = ['text', 'plain', 'plain-light'].includes(kind);
 
   const Component = href ? 'a' : 'button';
 
