@@ -39,7 +39,7 @@ export default {
 } as ComponentMeta<typeof Button>;
 
 export const button = (args: ButtonProps): React.ReactElement => (
-  <Button {...args} {...args} />
+  <Button {...args} />
 );
 button.args = {
   loading: false,
@@ -412,13 +412,7 @@ export const sizes = (args: ButtonProps): React.ReactElement => (
 sizes.args = {};
 
 export const buttonAsLink = (args: ButtonProps): React.ReactElement => (
-  <Button
-    {...args}
-    href="https://livechat.com"
-    target="_blank"
-    kind="primary"
-    {...args}
-  >
+  <Button {...args} href="https://livechat.com" target="_blank" kind="primary">
     Button as an external link to livechat.com
   </Button>
 );
