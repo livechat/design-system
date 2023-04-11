@@ -1,5 +1,5 @@
-import * as React from 'react';
 import cx from 'clsx';
+import { HTMLAttributes, FC } from 'react';
 
 import { Text } from '../Typography';
 
@@ -8,7 +8,7 @@ import styles from './Loader.module.scss';
 const baseClass = 'loader';
 const spinnerClass = `${baseClass}__spinner`;
 
-export interface LoaderProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface LoaderProps extends HTMLAttributes<HTMLDivElement> {
   size?: 'small' | 'medium' | 'large';
   label?: string;
   /** Fragment circle color */
@@ -17,7 +17,7 @@ export interface LoaderProps extends React.HTMLAttributes<HTMLDivElement> {
   secondaryColor?: string;
 }
 
-export const Loader: React.FC<LoaderProps> = ({
+export const Loader: FC<LoaderProps> = ({
   primaryColor,
   secondaryColor,
   label,

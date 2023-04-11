@@ -1,5 +1,5 @@
-import * as React from 'react';
 import cx from 'clsx';
+import { createElement, FC } from 'react';
 
 import styles from './Typography.module.scss';
 
@@ -21,14 +21,14 @@ interface IProps {
   className?: string;
 }
 
-export const Heading: React.FC<IProps> = ({
+export const Heading: FC<IProps> = ({
   as,
   size = 'md',
   children,
   className,
   ...props
 }) => {
-  return React.createElement(
+  return createElement(
     as || SIZE_TO_ELEMENT_MAP[size],
     { className: cx(styles[`heading-${size}`], className), ...props },
     children

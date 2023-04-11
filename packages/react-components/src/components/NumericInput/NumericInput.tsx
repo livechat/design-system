@@ -1,4 +1,3 @@
-import * as React from 'react';
 import cx from 'clsx';
 import {
   ChevronUp,
@@ -8,6 +7,13 @@ import { Icon } from '../Icon';
 import { KeyCodes } from '../../utils/keyCodes';
 
 import styles from './NumericInput.module.scss';
+import {
+  InputHTMLAttributes,
+  FC,
+  useRef,
+  KeyboardEventHandler,
+  FormEvent,
+} from 'react';
 
 const baseClass = 'numeric-input';
 
@@ -22,10 +28,9 @@ interface Props {
   onChange: (value: string) => void;
 }
 
-export type NumericInputProps = React.InputHTMLAttributes<HTMLInputElement> &
-  Props;
+export type NumericInputProps = InputHTMLAttributes<HTMLInputElement> & Props;
 
-export const NumericInput: React.FC<NumericInputProps> = ({
+export const NumericInput: FC<NumericInputProps> = ({
   className,
   error,
   value,
@@ -37,7 +42,7 @@ export const NumericInput: React.FC<NumericInputProps> = ({
   onChange,
   ...restProps
 }) => {
-  const inputRef = React.useRef<null | HTMLInputElement>(null);
+  const inputRef = useRef<null | HTMLInputElement>(null);
 
   const mergedClassNames = cx(
     styles[baseClass],
@@ -69,7 +74,7 @@ export const NumericInput: React.FC<NumericInputProps> = ({
     return callOnChange(calcValue(newValue));
   };
 
-  const onKeyDown: React.KeyboardEventHandler<HTMLInputElement> = (e) => {
+  const onKeyDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key === KeyCodes.arrowDown) {
       e.preventDefault();
       updateValue(-1);
@@ -84,7 +89,7 @@ export const NumericInput: React.FC<NumericInputProps> = ({
   const hasReachedTheLimit = (value: string, margin?: number) =>
     margin !== undefined && parseInt(value, 10) === margin;
 
-  const handleOnChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const handleOnChange = (e: FormEvent<HTMLInputElement>) => {
     e.preventDefault();
     e.stopPropagation();
     const inputVal = e.currentTarget.value.replace(

@@ -1,12 +1,12 @@
-import * as React from 'react';
 import cx from 'clsx';
 import { FieldError } from '../FieldError';
 import { FieldDescription } from '../FieldDescription';
 
 import styles from './FieldGroup.module.scss';
+import { HTMLAttributes, ReactNode, FC } from 'react';
 
-export interface FieldGroupProps extends React.HTMLAttributes<HTMLDivElement> {
-  description?: React.ReactNode;
+export interface FieldGroupProps extends HTMLAttributes<HTMLDivElement> {
+  description?: ReactNode;
   error?: string;
   inline?: boolean;
   stretch?: boolean;
@@ -14,7 +14,7 @@ export interface FieldGroupProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const baseClass = 'field-group';
 
-export const FieldGroup: React.FC<FieldGroupProps> = ({
+export const FieldGroup: FC<FieldGroupProps> = ({
   className = '',
   children,
   description,

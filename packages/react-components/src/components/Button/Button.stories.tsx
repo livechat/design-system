@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 
 import * as MaterialIcons from '@livechat/design-system-icons/react/material';
@@ -7,6 +6,7 @@ import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
 import { Icon, IconSource } from '../Icon';
 import { Button, ButtonProps } from './Button';
+import { ReactElement } from 'react';
 
 const icons = Object.fromEntries(
   Object.entries(MaterialIcons).map(([key, source]) => [
@@ -38,9 +38,7 @@ export default {
   },
 } as ComponentMeta<typeof Button>;
 
-export const button = (args: ButtonProps): React.ReactElement => (
-  <Button {...args} />
-);
+export const button = (args: ButtonProps): ReactElement => <Button {...args} />;
 button.args = {
   loading: false,
   disabled: false,
@@ -52,7 +50,7 @@ button.args = {
   icon: 'None',
 };
 
-export const kindsAndStates = (args: ButtonProps): React.ReactElement => (
+export const kindsAndStates = (args: ButtonProps): ReactElement => (
   <div>
     <StoryDescriptor title="Basic">
       <Button {...args}>Basic</Button>
@@ -374,7 +372,7 @@ export const kindsAndStates = (args: ButtonProps): React.ReactElement => (
 );
 kindsAndStates.args = {};
 
-export const sizes = (args: ButtonProps): React.ReactElement => (
+export const sizes = (args: ButtonProps): ReactElement => (
   <>
     <div className="story-spacer">
       <Button {...args} size="compact" kind="primary">
@@ -411,7 +409,7 @@ export const sizes = (args: ButtonProps): React.ReactElement => (
 );
 sizes.args = {};
 
-export const buttonAsLink = (args: ButtonProps): React.ReactElement => (
+export const buttonAsLink = (args: ButtonProps): ReactElement => (
   <Button {...args} href="https://livechat.com" target="_blank" kind="primary">
     Button as an external link to livechat.com
   </Button>

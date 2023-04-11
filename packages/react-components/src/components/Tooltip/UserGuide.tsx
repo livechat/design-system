@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ModalPortalProps } from '../Modal/';
 import { ITooltipProps, Tooltip } from './Tooltip';
 import SpotlightOverlay from './SpotlightOverlay';
@@ -6,6 +5,7 @@ import cx from 'clsx';
 import styles from './Tooltip.module.scss';
 import { ClientRectObject } from '@floating-ui/core';
 import VirtualReference from './virtualElementReference';
+import { FC, useState, useEffect } from 'react';
 
 const spotlightPadding = 8;
 const baseClass = 'guide-tooltip';
@@ -23,7 +23,7 @@ interface IUserGuide
     ITooltipProps,
     Omit<ModalPortalProps, 'children'> {}
 
-export const UserGuide: React.FC<IUserGuide> = (props) => {
+export const UserGuide: FC<IUserGuide> = (props) => {
   const {
     className,
     parentElementName,
@@ -31,12 +31,10 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
     shouldSlide = true,
   } = props;
 
-  const [parentElement, setParentElement] = React.useState<Element | null>(
-    null
-  );
+  const [parentElement, setParentElement] = useState<Element | null>(null);
 
-  const [rect, setRect] = React.useState<DOMRect | null>(null);
-  const [isSliding, setIsSliding] = React.useState<boolean>(shouldSlide);
+  const [rect, setRect] = useState<DOMRect | null>(null);
+  const [isSliding, setIsSliding] = useState<boolean>(shouldSlide);
 
   const handleViewportChange = () => {
     if (parentElement) {
@@ -50,7 +48,7 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (parentElement !== null) {
       window.addEventListener('resize', handleViewportChange);
       window.addEventListener('scroll', handleViewportChange);
@@ -62,14 +60,14 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
     }
   }, [parentElement, parentElementName]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (parentElementName) {
       const element = document.querySelector(parentElementName);
       setParentElement(element);
     }
   }, [parentElementName]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     parentElement &&
       setRect(
         virtualReference(

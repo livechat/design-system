@@ -1,5 +1,5 @@
-import * as React from 'react';
 import cx from 'clsx';
+import { FC, SVGProps, ReactElement, createElement } from 'react';
 import styles from './Icon.module.scss';
 
 export type IconSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
@@ -36,8 +36,7 @@ const IconSizeMap: Record<IconSize, { width: number; height: number }> = {
   },
 };
 
-export type IconSource = React.FC<React.SVGProps<SVGSVGElement>> &
-  React.ReactElement;
+export type IconSource = FC<SVGProps<SVGSVGElement>> & ReactElement;
 export interface IconProps {
   source: IconSource;
   size?: IconSize;
@@ -49,7 +48,7 @@ export interface IconProps {
 
 const baseClass = 'icon';
 
-export const Icon: React.FC<IconProps> = (props) => {
+export const Icon: FC<IconProps> = (props) => {
   const {
     source,
     size = 'medium',
@@ -60,7 +59,7 @@ export const Icon: React.FC<IconProps> = (props) => {
     ...restProps
   } = props;
 
-  const GeneratedIcon = React.createElement(source, {
+  const GeneratedIcon = createElement(source, {
     ...IconSizeMap[size],
     color: customColor,
   });

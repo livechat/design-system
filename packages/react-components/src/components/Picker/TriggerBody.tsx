@@ -1,12 +1,10 @@
-import * as React from 'react';
-import cx from 'clsx';
-
 import { IPickerListItem } from './PickerList';
 import { Tag } from '../Tag';
 import { PickerType } from './Picker';
 
 import styles from './TriggerBody.module.scss';
 import { IconSize } from 'index';
+import { FC, ChangeEvent } from 'react';
 
 const baseClass = 'picker-trigger-body';
 
@@ -22,7 +20,7 @@ export interface ITriggerBodyProps {
   onFilter: (text: string) => void;
 }
 
-export const TriggerBody: React.FC<ITriggerBodyProps> = ({
+export const TriggerBody: FC<ITriggerBodyProps> = ({
   isOpen,
   isSearchDisabled,
   isDisabled,
@@ -51,7 +49,7 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
     return <div className={styles[`${baseClass}__item`]}>{item.name}</div>;
   };
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     onFilter(e.target.value);
   };
 

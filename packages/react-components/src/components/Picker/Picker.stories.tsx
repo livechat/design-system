@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
 
 import { IPickerProps, Picker } from './Picker';
@@ -7,6 +6,7 @@ import { IPickerListItem } from './PickerList';
 
 import './Picker.stories.css';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import { CSSProperties, useState, ReactElement, FC } from 'react';
 
 export default {
   title: 'Components/Picker',
@@ -19,12 +19,12 @@ export default {
   },
 } as ComponentMeta<typeof Picker>;
 
-const commonWidth: React.CSSProperties = { width: 300 };
+const commonWidth: CSSProperties = { width: 300 };
 
 const PickerComponent = (args: IPickerProps) => {
-  const [selectedItems, setSelectedItems] = React.useState<
-    IPickerListItem[] | null
-  >(args.selected || null);
+  const [selectedItems, setSelectedItems] = useState<IPickerListItem[] | null>(
+    args.selected || null
+  );
 
   return (
     <Picker
@@ -48,7 +48,7 @@ Default.args = {
   options: defaultPickerOptions,
 };
 
-export const States = (args: IPickerProps): React.ReactElement => (
+export const States = (args: IPickerProps): ReactElement => (
   <div style={{ ...commonWidth, marginBottom: 100 }}>
     <StoryDescriptor title="Basic">
       <PickerComponent {...args} />
@@ -90,9 +90,7 @@ States.args = {
   label: 'Example label',
 };
 
-export const PickerWithGroupedOptions = (
-  args: IPickerProps
-): React.ReactElement => (
+export const PickerWithGroupedOptions = (args: IPickerProps): ReactElement => (
   <div style={{ ...commonWidth, marginBottom: 320 }}>
     <PickerComponent {...args} />
   </div>
@@ -101,13 +99,13 @@ PickerWithGroupedOptions.args = {
   options: defaultExtendedOptions,
 };
 
-const CustomPickerOption: React.FC = ({ children }) => (
+const CustomPickerOption: FC = ({ children }) => (
   <div className="custom-picker-option">{children}</div>
 );
 
 export const PickerWithOptionsAsCustomElements = (
   args: IPickerProps
-): React.ReactElement => (
+): ReactElement => (
   <div style={{ ...commonWidth, marginBottom: 320 }}>
     <StoryDescriptor title="Single select">
       <PickerComponent {...args} />

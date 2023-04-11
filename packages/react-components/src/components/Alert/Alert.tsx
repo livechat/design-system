@@ -1,4 +1,3 @@
-import * as React from 'react';
 import cx from 'clsx';
 import {
   Close as CloseIcon,
@@ -13,6 +12,7 @@ import { Text } from '../Typography';
 import { Icon, IconSource, IconKind } from '../Icon';
 
 import styles from './Alert.module.scss';
+import { FC, useEffect, useRef, useState } from 'react';
 
 type AlertKind = 'info' | 'warning' | 'success' | 'error';
 
@@ -43,15 +43,15 @@ const IconConfig: Record<AlertKind, { source: IconSource; kind: IconKind }> = {
 
 const baseClass = 'alert';
 
-export const Alert: React.FC<AlertProps> = ({
+export const Alert: FC<AlertProps> = ({
   children,
   className,
   kind = 'info',
   onClose,
   ...props
 }) => {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const [isSmallContainer, setIsSmallContainer] = React.useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isSmallContainer, setIsSmallContainer] = useState(false);
 
   const mergedClassNames = cx(
     styles[baseClass],
@@ -60,7 +60,7 @@ export const Alert: React.FC<AlertProps> = ({
     className
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleResize = debounce(() => {
       if (containerRef.current && containerRef.current.offsetWidth <= 400) {
         return setIsSmallContainer(true);

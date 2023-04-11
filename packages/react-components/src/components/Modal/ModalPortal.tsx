@@ -1,19 +1,19 @@
-import * as React from 'react';
+import { HTMLAttributes, ReactNode, FC, useState, useEffect } from 'react';
 import * as ReactDOM from 'react-dom';
 
-export interface ModalPortalProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
+export interface ModalPortalProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
   zIndex: number;
   parentElementName?: string;
 }
 
-export const ModalPortal: React.FC<ModalPortalProps> = ({
+export const ModalPortal: FC<ModalPortalProps> = ({
   children,
   className = '',
   parentElementName = 'body',
   zIndex,
 }) => {
-  const [container] = React.useState(() => document.createElement('div'));
+  const [container] = useState(() => document.createElement('div'));
 
   if (className) {
     container.classList.add(className);
@@ -23,7 +23,7 @@ export const ModalPortal: React.FC<ModalPortalProps> = ({
     container.style.zIndex = zIndex.toString();
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.querySelector(parentElementName)?.appendChild(container);
     return () => {
       document.querySelector(parentElementName)?.removeChild(container);

@@ -1,13 +1,13 @@
-import * as React from 'react';
 import { Icon } from '../Icon';
 import { Close } from '@livechat/design-system-icons/react/material';
 import { Button } from '../Button';
 import { getIconType } from './helpers';
 import styles from './Tooltip.module.scss';
+import { FC, MouseEvent } from 'react';
 
 const baseClass = 'tooltip';
 
-export const Interactive: React.FC<{
+export const Interactive: FC<{
   header: string;
   text: string;
   image?: {
@@ -18,7 +18,7 @@ export const Interactive: React.FC<{
   theme?: 'invert' | 'important';
   handleClickPrimary: () => void;
   handleClickSecondary: () => void;
-  handleCloseAction?: (ev: React.MouseEvent) => void;
+  handleCloseAction?: (ev: MouseEvent) => void;
 }> = ({
   header,
   text,

@@ -1,10 +1,10 @@
-import * as React from 'react';
 import cx from 'clsx';
+import { HTMLAttributes, FC, useEffect, MouseEvent } from 'react';
 import { KeyCodes } from '../../utils/keyCodes';
 
 import styles from './Modal.module.scss';
 
-export interface ModalBaseProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ModalBaseProps extends HTMLAttributes<HTMLDivElement> {
   onClose(): void;
   closeOnEscPress?: boolean;
   closeOnOverlayPress?: boolean;
@@ -12,7 +12,7 @@ export interface ModalBaseProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const baseClass = 'modal-base';
 
-export const ModalBase: React.FC<ModalBaseProps> = ({
+export const ModalBase: FC<ModalBaseProps> = ({
   children,
   className = '',
   onClose,
@@ -22,7 +22,7 @@ export const ModalBase: React.FC<ModalBaseProps> = ({
 }) => {
   const mergedClassNames = cx(styles[baseClass], className);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!closeOnEscPress) {
       return;
     }
@@ -37,7 +37,7 @@ export const ModalBase: React.FC<ModalBaseProps> = ({
     return () => document.removeEventListener('keyup', onKeyUp, true);
   }, [closeOnEscPress]);
 
-  const onOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
+  const onOverlayClick = (event: MouseEvent<HTMLDivElement>) => {
     if (closeOnOverlayPress && event.target === event.currentTarget) {
       onClose();
     }

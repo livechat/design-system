@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { render, fireEvent, vi } from 'test-utils';
 import { Icon } from '../Icon';
 import * as MaterialIcons from '@livechat/design-system-icons/react/material';

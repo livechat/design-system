@@ -1,11 +1,11 @@
-import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
+import { CSSProperties, useState, ReactElement } from 'react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
 import { SearchInput, ISearchInputProps } from './Search';
 
-const commonWidth: React.CSSProperties = { width: 300 };
+const commonWidth: CSSProperties = { width: 300 };
 
 export default {
   title: 'Components/Search',
@@ -14,7 +14,7 @@ export default {
 } as ComponentMeta<typeof SearchInput>;
 
 const SearchInputComponent = (args: ISearchInputProps) => {
-  const [value, setValue] = React.useState(args.value || '');
+  const [value, setValue] = useState(args.value || '');
   return <SearchInput {...args} value={value} onChange={setValue} />;
 };
 
@@ -25,7 +25,7 @@ const StoryTemplate: Story<ISearchInputProps> = (args: ISearchInputProps) => {
 export const Search = StoryTemplate.bind({});
 Search.args = {};
 
-export const States = (args: ISearchInputProps): React.ReactElement => (
+export const States = (args: ISearchInputProps): ReactElement => (
   <div style={commonWidth}>
     <StoryDescriptor title="Basic">
       <SearchInputComponent {...args} />
@@ -49,7 +49,7 @@ export const States = (args: ISearchInputProps): React.ReactElement => (
 
 States.args = {};
 
-export const Sizes = (args: ISearchInputProps): React.ReactElement => (
+export const Sizes = (args: ISearchInputProps): ReactElement => (
   <div style={commonWidth}>
     <StoryDescriptor title="Compact">
       <SearchInputComponent {...args} size="compact" />
@@ -65,9 +65,7 @@ export const Sizes = (args: ISearchInputProps): React.ReactElement => (
 
 Sizes.args = {};
 
-export const CollapsableSearch = (
-  args: ISearchInputProps
-): React.ReactElement => (
+export const CollapsableSearch = (args: ISearchInputProps): ReactElement => (
   <div style={commonWidth}>
     <StoryDescriptor title="Collapsed">
       <SearchInputComponent {...args} isCollapsable />

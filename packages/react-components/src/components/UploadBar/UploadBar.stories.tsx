@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 
 import { UploadBar as UploadBarComponent } from './UploadBar';
@@ -7,6 +6,7 @@ import noop from '../../utils/noop';
 import { FileUploadProgress } from '../FileUploadProgress';
 import { ProgressStatus } from 'components/Progress/constants';
 import { PdfIcon } from '../../utils/PdfIcon';
+import { FC, useState } from 'react';
 
 const files = [
   {
@@ -61,8 +61,8 @@ export default {
   },
 } as ComponentMeta<typeof UploadBarComponent>;
 
-export const UploadBarWithSingleElement: React.FC = () => {
-  const [status, setStatus] = React.useState<'normal' | 'success' | 'error'>(
+export const UploadBarWithSingleElement: FC = () => {
+  const [status, setStatus] = useState<'normal' | 'success' | 'error'>(
     'normal'
   );
 
@@ -93,8 +93,8 @@ export const UploadBarWithSingleElement: React.FC = () => {
   );
 };
 
-export const UploadBarWithMultipleElements: React.FC = () => {
-  const [status, setStatus] = React.useState<'normal' | 'success' | 'error'>(
+export const UploadBarWithMultipleElements: FC = () => {
+  const [status, setStatus] = useState<'normal' | 'success' | 'error'>(
     'normal'
   );
 

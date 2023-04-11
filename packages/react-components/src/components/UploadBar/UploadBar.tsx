@@ -1,4 +1,3 @@
-import * as React from 'react';
 import cx from 'clsx';
 import {
   Check as CheckIcon,
@@ -17,6 +16,7 @@ import { ProgressCircle } from '../Progress';
 
 import styles from './UploadBar.module.scss';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { ReactNode, FC, useState } from 'react';
 
 const baseClass = 'upload-bar';
 const wrapperHeaderClass = `${baseClass}__wrapper__header`;
@@ -29,7 +29,7 @@ export interface UploadBarProps {
   isExpanded?: boolean;
   errorMessage?: string;
   status?: ProgressStatus;
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   size?: ProgressSize;
   mode?: 'single' | 'multiple';
   onCloseButtonClick?: () => void;
@@ -62,7 +62,7 @@ const getHeaderIcon = (status: ProgressStatus, progressValue: number) => {
   );
 };
 
-export const UploadBar: React.FC<UploadBarProps> = ({
+export const UploadBar: FC<UploadBarProps> = ({
   children,
   className,
   progressValue,
@@ -76,7 +76,7 @@ export const UploadBar: React.FC<UploadBarProps> = ({
   onCloseButtonClick,
   onRetryButtonClick,
 }) => {
-  const [expanded, setExpanded] = React.useState(isExpanded || false);
+  const [expanded, setExpanded] = useState(isExpanded || false);
   const withError = status === 'error';
   const withSuccess = status === 'success';
   const mergedClassNames = cx(styles[baseClass], className, {

@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
+import { ReactElement } from 'react';
 
 import {
   Modal as ModalComponent,
@@ -38,7 +38,7 @@ const defaultModalProps = {
 const StoryTemplate: Story<ModalProps> = ({
   children,
   ...args
-}: ModalProps): React.ReactElement => (
+}: ModalProps): ReactElement => (
   <ModalComponent {...args} title="Modal">
     {children}
   </ModalComponent>
@@ -73,7 +73,7 @@ ModalWithFullSpaceContent.args = {
 export const ModalPortal = ({
   children,
   ...args
-}: ModalPortalProps): React.ReactElement => (
+}: ModalPortalProps): ReactElement => (
   <ModalPortalComponent {...args}>{children}</ModalPortalComponent>
 );
 

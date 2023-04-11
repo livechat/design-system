@@ -1,4 +1,3 @@
-import * as React from 'react';
 import cx from 'clsx';
 import { LockBlack as LockIcon } from '@livechat/design-system-icons/react/material';
 
@@ -7,6 +6,7 @@ import noop from '../../utils/noop';
 
 import styles from './Switch.module.scss';
 import { Loader } from '../Loader';
+import { LegacyRef, FormEvent, FC, useState, useEffect } from 'react';
 
 export const baseClass = 'switch';
 
@@ -18,15 +18,15 @@ export interface SwitchProps {
   className?: string;
   defaultOn?: boolean;
   disabled?: boolean;
-  innerRef?: React.LegacyRef<HTMLInputElement> | undefined;
+  innerRef?: LegacyRef<HTMLInputElement> | undefined;
   name?: string;
   on?: boolean;
-  onChange?(e: React.FormEvent, value: boolean): void;
+  onChange?(e: FormEvent, value: boolean): void;
   size?: SwitchSize;
   state?: SwitchState;
 }
 
-export const Switch: React.FC<SwitchProps> = ({
+export const Switch: FC<SwitchProps> = ({
   className = '',
   defaultOn = false,
   disabled = false,
@@ -39,11 +39,11 @@ export const Switch: React.FC<SwitchProps> = ({
   ariaLabel,
   ...props
 }) => {
-  const [checked, setChecked] = React.useState(() =>
+  const [checked, setChecked] = useState(() =>
     on !== undefined ? on : defaultOn
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (on !== undefined) {
       setChecked(on);
     }
@@ -61,7 +61,7 @@ export const Switch: React.FC<SwitchProps> = ({
     className
   );
 
-  const handleChange = (e: React.FormEvent) => {
+  const handleChange = (e: FormEvent) => {
     const hasOnChangePassed = onChange !== noop;
     if (hasOnChangePassed) {
       onChange(e, checked);

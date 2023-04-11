@@ -1,26 +1,26 @@
-import * as React from 'react';
 import cx from 'clsx';
 import { Text } from '../Typography';
 import { FieldError } from '../FieldError';
 import { FieldDescription } from '../FieldDescription';
 
 import styles from './FormField.module.scss';
+import { ReactNode, FC, Fragment } from 'react';
 
 const baseClass = 'form-field';
 
 export interface FormFieldProps {
   labelText?: string;
-  labelAdornment?: React.ReactNode;
+  labelAdornment?: ReactNode;
   labelFor?: string;
   className?: string;
   inline?: boolean;
   error?: string;
-  description?: React.ReactNode;
-  children?: React.ReactNode;
-  labelRightNode?: React.ReactNode;
+  description?: ReactNode;
+  children?: ReactNode;
+  labelRightNode?: ReactNode;
 }
 
-export const FormField: React.FC<FormFieldProps> = ({
+export const FormField: FC<FormFieldProps> = ({
   inline,
   error,
   description,
@@ -42,7 +42,7 @@ export const FormField: React.FC<FormFieldProps> = ({
   return (
     <div className={mergedClassNames}>
       {labelRightNode && inline && (
-        <React.Fragment>
+        <Fragment>
           <div
             className={cx(
               styles[`${baseClass}__label-right-node`],
@@ -52,7 +52,7 @@ export const FormField: React.FC<FormFieldProps> = ({
             {labelRightNode}
           </div>
           <div className={styles[`${baseClass}__row-break`]} />
-        </React.Fragment>
+        </Fragment>
       )}
       <div
         className={cx(

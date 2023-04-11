@@ -1,12 +1,12 @@
-import * as React from 'react';
 import cx from 'clsx';
 
 import styles from './Badge.module.scss';
 import { formatCount } from './Badge.helpers';
+import { FC, HTMLAttributes } from 'react';
 
 const baseClass = 'badge';
 
-export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
+export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   count?: number;
   kind?: 'primary' | 'secondary' | 'tertiary';
   max?: number;
@@ -14,7 +14,7 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   type?: 'counter' | 'alert' | 'dot';
 }
 
-export const Badge: React.FC<BadgeProps> = ({
+export const Badge: FC<BadgeProps> = ({
   className,
   count = 0,
   max = 99,

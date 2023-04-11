@@ -1,4 +1,3 @@
-import * as React from 'react';
 import cx from 'clsx';
 import {
   useFloating,
@@ -9,18 +8,19 @@ import {
 } from '@floating-ui/react-dom';
 
 import cssStyles from './Popover.module.scss';
+import { ReactNode, FC, useState, useRef, useEffect } from 'react';
 
 export interface IPopoverProps {
-  children?: React.ReactNode;
+  children?: ReactNode;
   className?: string;
   placement?: Placement;
   isVisible?: boolean;
   flipOptions?: Parameters<typeof flip>[0];
-  triggerRenderer: () => React.ReactNode;
+  triggerRenderer: () => ReactNode;
   onClose?: () => void;
 }
 
-export const Popover: React.FC<IPopoverProps> = (props) => {
+export const Popover: FC<IPopoverProps> = (props) => {
   const {
     triggerRenderer,
     onClose,
@@ -30,8 +30,8 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
     flipOptions,
     isVisible = false,
   } = props;
-  const [visible, setVisibility] = React.useState(false);
-  const prevVisibleState = React.useRef(false);
+  const [visible, setVisibility] = useState(false);
+  const prevVisibleState = useRef(false);
 
   const {
     x,
@@ -47,18 +47,18 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
     placement: placement,
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     setVisibility(isVisible);
   }, [isVisible]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (onClose && prevVisibleState.current !== visible && !visible) {
       onClose();
     }
     prevVisibleState.current = visible;
   }, [visible]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!refs.reference.current || !refs.floating.current) {
       return;
     }
@@ -89,7 +89,7 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.addEventListener('keydown', handleHideOnEscape);
     document.addEventListener('mousedown', handleDocumentClick);
     return () => {

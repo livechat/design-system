@@ -1,8 +1,7 @@
-import * as React from 'react';
-
+import { ReactElement } from 'react';
 import './Spacing.css';
 
-export const Spacing = (): React.ReactElement => {
+export const Spacing = (): ReactElement => {
   return (
     <div>
       <table>

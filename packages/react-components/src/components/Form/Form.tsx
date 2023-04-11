@@ -1,19 +1,19 @@
-import * as React from 'react';
 import cx from 'clsx';
+import { HTMLAttributes, ReactNode, FC } from 'react';
 
 import { Text, Heading } from '../Typography';
 
 import styles from './Form.module.scss';
 
-export interface FormProps extends React.HTMLAttributes<HTMLFormElement> {
+export interface FormProps extends HTMLAttributes<HTMLFormElement> {
   labelText?: string;
   helperText?: string;
-  formFooter?: React.ReactNode;
+  formFooter?: ReactNode;
 }
 
 const baseClass = 'form';
 
-export const Form: React.FC<FormProps> = ({
+export const Form: FC<FormProps> = ({
   className,
   children,
   labelText,

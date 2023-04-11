@@ -1,8 +1,14 @@
-import * as React from 'react';
 import cx from 'clsx';
 import { Loader } from '../Loader';
 import { Size } from 'utils';
 import styles from './Button.module.scss';
+import {
+  ReactElement,
+  ButtonHTMLAttributes,
+  AnchorHTMLAttributes,
+  FC,
+  cloneElement,
+} from 'react';
 
 export type ButtonKind =
   | 'basic'
@@ -19,14 +25,14 @@ export type ButtonProps = {
   loading?: boolean;
   fullWidth?: boolean;
   loaderLabel?: string;
-  icon?: React.ReactElement;
+  icon?: ReactElement;
   iconPosition?: 'left' | 'right';
-} & React.ButtonHTMLAttributes<HTMLButtonElement> &
-  React.AnchorHTMLAttributes<HTMLAnchorElement>;
+} & ButtonHTMLAttributes<HTMLButtonElement> &
+  AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const baseClass = 'btn';
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button: FC<ButtonProps> = ({
   loading = false,
   disabled = false,
   type = 'button',
@@ -90,7 +96,7 @@ export const Button: React.FC<ButtonProps> = ({
         />
       )}
       {icon &&
-        React.cloneElement(icon, {
+        cloneElement(icon, {
           className: cx(
             styles[`${baseClass}__icon`],
             styles[`${baseClass}__icon--${iconPosition}`]

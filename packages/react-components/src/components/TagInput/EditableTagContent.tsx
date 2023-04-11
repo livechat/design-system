@@ -1,18 +1,18 @@
-import * as React from 'react';
 import { KeyCodes } from '../../utils/keyCodes';
 import escape from 'lodash.escape';
+import { RefObject, FC, useState, KeyboardEvent, ClipboardEvent } from 'react';
 
 export interface EditableTagContentProps {
   value: string;
   className?: string;
-  innerEditableRef: React.RefObject<HTMLDivElement>;
-  inputRef: React.RefObject<HTMLInputElement>;
+  innerEditableRef: RefObject<HTMLDivElement>;
+  inputRef: RefObject<HTMLInputElement>;
   change: (value: string) => void;
   remove: () => void;
   validator?: (value: string) => boolean;
 }
 
-export const EditableTagContent: React.FC<EditableTagContentProps> = ({
+export const EditableTagContent: FC<EditableTagContentProps> = ({
   className = '',
   innerEditableRef,
   inputRef,
@@ -20,7 +20,7 @@ export const EditableTagContent: React.FC<EditableTagContentProps> = ({
   remove,
   value,
 }) => {
-  const [removed, setRemoved] = React.useState(false);
+  const [removed, setRemoved] = useState(false);
 
   const getRef = () => innerEditableRef.current;
 
@@ -35,7 +35,7 @@ export const EditableTagContent: React.FC<EditableTagContentProps> = ({
     }
   };
 
-  const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+  const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === KeyCodes.enter) {
       e.preventDefault();
       focusInputRef();
@@ -61,7 +61,7 @@ export const EditableTagContent: React.FC<EditableTagContentProps> = ({
     change(ref.innerText);
   };
 
-  const onPaste = (e: React.ClipboardEvent<HTMLDivElement>) => {
+  const onPaste = (e: ClipboardEvent<HTMLDivElement>) => {
     e.preventDefault();
     const text = e.clipboardData.getData('text/plain');
     document.execCommand('insertHTML', false, escape(text));
