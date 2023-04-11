@@ -8,6 +8,10 @@ $base-class: 'file-upload-progress';
   &__icon {
     margin-right: 8px;
     height: 18px;
+
+    &--success {
+      color: var(--content-basic-positive);
+    }
   }
 
   &__wrapper {
@@ -49,7 +53,7 @@ $base-class: 'file-upload-progress';
         }
 
         &--error {
-          color: var(--action-negative-default);
+          color: var(--content-basic-negative);
         }
       }
 

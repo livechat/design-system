@@ -49,8 +49,13 @@ export const FileUploadProgress: React.ExoticComponent<
           <div className={styles[`${baseClass}__icon`]}>{icon}</div>
         )}
         {status === 'success' && (
-          <div className={styles[`${baseClass}__icon`]}>
-            <Icon source={CheckIcon} kind="success" />
+          <div
+            className={cx(
+              styles[`${baseClass}__icon`],
+              styles[`${baseClass}__icon--success`]
+            )}
+          >
+            <Icon source={CheckIcon} />
           </div>
         )}
         <div

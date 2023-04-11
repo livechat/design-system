@@ -6,6 +6,7 @@ $base-class: 'promo-banner';
   position: relative;
   align-items: center;
   justify-content: space-between;
+  border: 1px solid var(--border-basic-secondary);
   border-radius: 4px;
   background-color: var(--surface-secondary-default);
   padding: 20px;

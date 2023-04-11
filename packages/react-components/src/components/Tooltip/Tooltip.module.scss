@@ -4,7 +4,7 @@ $base-class: 'tooltip';
   z-index: 999999999;
   border-radius: 4px;
   border-color: var(--background-02);
-  box-shadow: 0 1px 10px 0 rgb(66 77 87 / 30%);
+  box-shadow: var(--shadow-tooltip);
   background-color: var(--background-02);
   padding: 12px;
   max-width: 320px;
@@ -48,7 +48,7 @@ $base-class: 'tooltip';
       &::after {
         border-top-color: inherit;
         border-right-color: inherit;
-        box-shadow: 8px -6px 10px -2px rgb(66 77 87 / 30%);
+        box-shadow: var(--shadow-tooltip-arrow-bottom);
       }
     }
 
@@ -58,7 +58,7 @@ $base-class: 'tooltip';
       &::after {
         border-bottom-color: inherit;
         border-left-color: inherit;
-        box-shadow: -7px 6px 5px -3px rgb(66 77 87 / 30%);
+        box-shadow: var(--shadow-tooltip-arrow-top);
       }
     }
 
@@ -69,7 +69,7 @@ $base-class: 'tooltip';
       &::after {
         border-top-color: inherit;
         border-left-color: inherit;
-        box-shadow: -5px -5px 10px -2px rgb(66 77 87 / 30%);
+        box-shadow: var(--shadow-tooltip-arrow-right);
       }
     }
 
@@ -82,7 +82,7 @@ $base-class: 'tooltip';
       &::after {
         border-right-color: inherit;
         border-bottom-color: inherit;
-        box-shadow: 6px 6px 10px -2px rgb(66 77 87 / 30%);
+        box-shadow: var(--shadow-tooltip-arrow-left);
       }
     }
   }

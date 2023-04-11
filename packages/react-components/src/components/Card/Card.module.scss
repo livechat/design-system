@@ -53,6 +53,7 @@ $base-class: 'card';
     gap: 10px;
     margin: 0;
     width: 100%;
+    color: var(--content-basic-primary);
   }
 
   &__actions {

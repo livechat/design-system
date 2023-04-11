@@ -46,12 +46,12 @@ $toast-exit-animation-timeout: 200ms;
 
   &--success {
     background: var(--surface-accent-emphasis-high-positive);
-    color: var(--content-invert-primary);
+    color: var(--content-locked-white);
   }
 
   &--warning {
     background: var(--surface-accent-emphasis-high-warning);
-    color: var(--content-basic-primary);
+    color: var(--content-locked-black);
   }
 
   &--error {

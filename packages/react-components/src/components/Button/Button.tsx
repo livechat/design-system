@@ -49,6 +49,15 @@ export const Button: React.FC<ButtonProps> = ({
 
   const Component = href ? 'a' : 'button';
 
+  const getSpinnerColors = () => {
+    if (kind === 'primary' || kind === 'destructive') {
+      return {
+        primaryColor: 'var(--action-primary-default)',
+        secondaryColor: 'var(--border-invert-primary)',
+      };
+    }
+  };
+
   const mergedClassNames = cx(
     className,
     styles[baseClass],
@@ -78,6 +87,7 @@ export const Button: React.FC<ButtonProps> = ({
           size="small"
           label={loaderLabel}
           className={styles[`${baseClass}__loader`]}
+          {...getSpinnerColors()}
         />
       )}
       {icon &&
