@@ -3,13 +3,13 @@ import { render, vi } from 'test-utils';
 import userEvent from '@testing-library/user-event';
 import noop from '../../utils/noop';
 import { IPickerProps, Picker, PickerType } from './Picker';
-import { defaultOptions } from './constants';
+import { defaultPickerOptions } from './constants';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 window.HTMLElement.prototype.scrollIntoView = () => {};
 
 const defaultProps = {
-  options: defaultOptions,
+  options: defaultPickerOptions,
   onSelect: () => noop,
 };
 
@@ -22,24 +22,6 @@ describe('<Picker> component', () => {
     const { container } = renderComponent({ ...defaultProps });
 
     expect(container.firstChild).toHaveClass('my-css-class');
-  });
-
-  it('should render label if is set', () => {
-    const { getByText } = renderComponent({
-      ...defaultProps,
-      label: 'Example label',
-    });
-
-    expect(getByText('Example label')).toBeVisible();
-  });
-
-  it('should render error if is set', () => {
-    const { getByText } = renderComponent({
-      ...defaultProps,
-      error: 'Example error',
-    });
-
-    expect(getByText('Example error')).toBeVisible();
   });
 
   it('should call onSelect with selected item', () => {

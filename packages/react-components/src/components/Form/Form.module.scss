@@ -1,7 +1,7 @@
 .form {
-  border: 0;
   box-sizing: border-box;
   margin: 0;
+  border: 0;
   padding: 0;
 
   &__header,
@@ -10,13 +10,13 @@
   }
 
   &__label {
-    color: var(--content-default);
     margin: 0;
     margin-bottom: 16px;
+    color: var(--content-basic-primary);
   }
 
   &__helper {
-    color: var(--content-default);
     margin: 0;
+    color: var(--content-basic-primary);
   }
 }

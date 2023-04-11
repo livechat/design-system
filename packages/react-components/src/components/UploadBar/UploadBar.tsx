@@ -40,7 +40,7 @@ const getHeaderIcon = (status: ProgressStatus, progressValue: number) => {
   if (status === 'success') {
     return (
       <div className={styles[`${wrapperHeaderClass}__success-icon`]}>
-        <Icon source={CheckIcon} kind="success" />
+        <Icon source={CheckIcon} />
       </div>
     );
   }
@@ -48,7 +48,7 @@ const getHeaderIcon = (status: ProgressStatus, progressValue: number) => {
   if (status === 'error') {
     return (
       <div className={styles[`${wrapperHeaderClass}__error-icon`]}>
-        <Icon source={ErrorIcon} kind="error" />
+        <Icon source={ErrorIcon} />
       </div>
     );
   }

@@ -122,7 +122,7 @@ export const PromoBanner: React.FC<PromoBannerProps> = ({
           className={styles[`${baseClass}__close-icon`]}
           onClick={onClose}
         >
-          <Icon source={CloseIcon} size="large" />
+          <Icon source={CloseIcon} size="large" kind="primary" />
         </button>
       )}
     </div>

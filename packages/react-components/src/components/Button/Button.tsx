@@ -16,7 +16,6 @@ export type ButtonKind =
 export type ButtonProps = {
   kind?: ButtonKind;
   size?: Size;
-  disabled?: boolean;
   loading?: boolean;
   fullWidth?: boolean;
   loaderLabel?: string;
@@ -44,8 +43,19 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const isDisabled = loading || disabled;
+  const isIconOnly = !children && icon;
+  const isTextButton = ['text', 'plain', 'plain-light'].includes(kind);
 
   const Component = href ? 'a' : 'button';
+
+  const getSpinnerColors = () => {
+    if (kind === 'primary' || kind === 'destructive') {
+      return {
+        primaryColor: 'var(--action-primary-default)',
+        secondaryColor: 'var(--border-invert-primary)',
+      };
+    }
+  };
 
   const mergedClassNames = cx(
     className,
@@ -55,7 +65,8 @@ export const Button: React.FC<ButtonProps> = ({
     {
       [styles[`${baseClass}--loading`]]: loading,
       [styles[`${baseClass}--full-width`]]: fullWidth,
-      [styles[`${baseClass}--icon-only`]]: !children && icon,
+      [styles[`${baseClass}--icon-only`]]: isIconOnly,
+      [styles[`${baseClass}--icon-only--bg`]]: isIconOnly && isTextButton,
       [styles[`${baseClass}--disabled`]]: isDisabled,
     }
   );
@@ -67,6 +78,7 @@ export const Button: React.FC<ButtonProps> = ({
       type={type}
       href={isDisabled ? undefined : href}
       onClick={isDisabled ? undefined : onClick}
+      disabled={isDisabled}
       {...props}
     >
       {loading && (
@@ -74,6 +86,7 @@ export const Button: React.FC<ButtonProps> = ({
           size="small"
           label={loaderLabel}
           className={styles[`${baseClass}__loader`]}
+          {...getSpinnerColors()}
         />
       )}
       {icon &&

@@ -8,6 +8,10 @@ $base-class: 'file-upload-progress';
   &__icon {
     margin-right: 8px;
     height: 18px;
+
+    &--success {
+      color: var(--content-basic-positive);
+    }
   }
 
   &__wrapper {
@@ -40,7 +44,7 @@ $base-class: 'file-upload-progress';
         text-overflow: ellipsis;
         line-height: 1.3;
         white-space: nowrap;
-        color: var(--content-default);
+        color: var(--content-basic-primary);
         font-size: 14px;
 
         &--success {
@@ -49,7 +53,7 @@ $base-class: 'file-upload-progress';
         }
 
         &--error {
-          color: var(--color-negative-default);
+          color: var(--content-basic-negative);
         }
       }
 

@@ -34,8 +34,6 @@ export interface AvatarProps {
 }
 
 const baseClass = 'avatar';
-const defaultBackgroundColor = 'var(--surface-basic-disabled)';
-const defaultFontColor = 'var(--content-subtle)';
 
 export const Avatar: React.FC<AvatarProps> = ({
   alt,
@@ -58,8 +56,7 @@ export const Avatar: React.FC<AvatarProps> = ({
   const shouldDisplayInitials = type === 'text';
   const letterCount = ['xxxsmall', 'xxsmall', 'xsmall'].includes(size) ? 1 : 2;
   const initials = getInitials(text, letterCount);
-  const backgroundColor = color || defaultBackgroundColor;
-  const fontColor = color ? getFontColor(color) : defaultFontColor;
+  const fontColor = color && getFontColor(color);
 
   const mergedClassNames = cx({
     [styles[baseClass]]: true,
@@ -91,7 +88,7 @@ export const Avatar: React.FC<AvatarProps> = ({
   }, [isImproperImageSetup]);
 
   return (
-    <div className={mergedClassNames} style={{ backgroundColor }}>
+    <div className={mergedClassNames} style={{ backgroundColor: color }}>
       {withRim && (
         <div
           data-testid={`${baseClass}__rim`}
@@ -120,7 +117,6 @@ export const Avatar: React.FC<AvatarProps> = ({
           data-testid={`${baseClass}__icon`}
           className={mergedIconClassNames}
           source={PersonIcon}
-          kind="primary"
         />
       )}
     </div>

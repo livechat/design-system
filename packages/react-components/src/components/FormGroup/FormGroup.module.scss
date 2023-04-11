@@ -1,20 +1,20 @@
 .form-group {
-  border-style: none;
   margin: 0 0 32px;
-  min-width: auto;
+  border-style: none;
   padding: 0;
+  min-width: auto;
 
   &__header {
     margin-bottom: 16px;
   }
 
   &__label {
-    color: var(--content-default);
     display: block;
     margin-bottom: 4px;
+    color: var(--content-basic-primary);
   }
 
   &__helper {
-    color: var(--content-subtle);
+    color: var(--content-basic-secondary);
   }
 }

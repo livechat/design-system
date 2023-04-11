@@ -10,7 +10,7 @@ $base-class: 'picker-list';
   margin: 0;
   border-radius: 4px;
   box-shadow: 0 6px 20px rgb(66 77 87 / 40%);
-  background-color: var(--surface-basic-default);
+  background-color: var(--picker-list-background);
   padding: 4px 0;
   width: 100%;
   max-height: 242px;
@@ -37,15 +37,20 @@ $base-class: 'picker-list';
     height: 36px;
 
     &:hover {
-      background-color: var(--surface-basic-hover);
+      background-color: var(--picker-list-option-background-hover);
+    }
+
+    &:focus,
+    &:active {
+      background-color: var(--picker-list-option-background-focus);
     }
 
     &[aria-current='true'] {
-      border-color: var(--color-action-default);
+      border-color: var(--action-primary-default);
     }
 
     &[aria-disabled='true'] {
-      color: var(--content-disabled);
+      color: var(--content-basic-disabled);
 
       &:hover {
         background-color: unset;
@@ -54,19 +59,19 @@ $base-class: 'picker-list';
     }
 
     &--select-all {
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-basic-tertiary);
     }
 
     &__header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background-color: var(--surface-basic-subtle);
+      background-color: var(--picker-list-group-background);
       cursor: auto;
       padding: 12px 12px 4px;
       height: 36px;
       text-transform: uppercase;
-      color: var(--content-subtle);
+      color: var(--content-basic-secondary);
       font-size: 12px;
       font-weight: 600;
     }

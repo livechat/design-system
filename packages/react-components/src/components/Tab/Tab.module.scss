@@ -11,7 +11,7 @@
   cursor: pointer;
   padding: 0 12px 1px;
   overflow: visible;
-  color: var(--content-default);
+  color: var(--content-basic-primary);
 
   &::before {
     display: block;
@@ -20,17 +20,17 @@
     bottom: 0;
     left: 0;
     z-index: 1;
-    background-color: var(--color-action-default);
+    background-color: var(--action-primary-default);
     height: 0;
     content: '';
   }
 
   &:hover {
     text-decoration: none;
-    color: var(--color-action-default);
+    color: var(--action-primary-default);
 
     .tab__count {
-      color: var(--color-action-default);
+      color: var(--action-primary-default);
     }
   }
 
@@ -50,7 +50,7 @@
     display: inline-block;
     transition: color 0.25s;
     padding-left: 3px;
-    color: var(--content-subtle);
+    color: var(--content-basic-secondary);
   }
 
   &__badge {
@@ -58,31 +58,31 @@
   }
 
   &--selected {
-    color: var(--color-action-default);
+    color: var(--action-primary-default);
 
     &::before {
       height: 3px;
     }
 
     .tab__count {
-      color: var(--color-action-default);
+      color: var(--action-primary-default);
     }
   }
 
   &--disabled {
     cursor: not-allowed;
-    color: var(--content-disabled);
+    color: var(--content-basic-disabled);
 
     &:hover {
-      color: var(--content-disabled);
+      color: var(--content-basic-disabled);
 
       .tab__count {
-        color: var(--content-disabled);
+        color: var(--content-basic-disabled);
       }
     }
 
     .tab__count {
-      color: var(--content-disabled);
+      color: var(--content-basic-disabled);
     }
   }
 }

@@ -7,9 +7,9 @@ $base-class: 'picker-trigger';
   align-items: center;
   justify-content: flex-end;
   transition: border 0.15s ease-in-out;
-  border: 1px solid var(--border-default);
+  border: 1px solid var(--border-basic-primary);
   border-radius: 4px;
-  background-color: var(--surface-basic-default);
+  background-color: var(--surface-primary-default);
   padding: 7px 12px;
   width: 100%;
   line-height: 22px;
@@ -17,8 +17,14 @@ $base-class: 'picker-trigger';
   font-weight: 400;
 
   &:hover {
-    border-color: var(--border-hover);
+    border-color: var(--border-basic-hover);
     cursor: pointer;
+  }
+
+  &:focus,
+  &:active {
+    outline: 0;
+    border-color: var(--action-primary-default);
   }
 
   &--compact {
@@ -64,7 +70,7 @@ $base-class: 'picker-trigger';
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background-color: var(--surface-secondary-subtle);
+    background-color: var(--surface-moderate-default);
     width: 20px;
     height: 20px;
   }
@@ -77,21 +83,21 @@ $base-class: 'picker-trigger';
 
   &--disabled {
     background-color: var(--surface-basic-disabled);
-    color: var(--content-disabled);
+    color: var(--content-basic-disabled);
 
     &:hover {
-      border-color: var(--border-default);
+      border-color: var(--border-basic-primary);
       cursor: auto;
     }
   }
 
   &--focused,
   &--focused:hover {
-    border-color: var(--color-action-default);
+    border-color: var(--action-primary-default);
   }
 
   &--error,
   &--error:hover {
-    border-color: var(--color-negative-default);
+    border-color: var(--action-negative-default);
   }
 }

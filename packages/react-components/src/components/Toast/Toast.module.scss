@@ -19,7 +19,6 @@ $toast-exit-animation-timeout: 200ms;
   &__content {
     width: 100%;
     min-width: 192px;
-    color: var(--content-default);
     font-weight: 600;
   }
 
@@ -29,16 +28,15 @@ $toast-exit-animation-timeout: 200ms;
     gap: 8px;
     align-items: center;
 
-    &--close svg {
+    &__close {
       cursor: pointer;
-      fill: var(--content-subtle);
     }
 
     &--custom,
     &--custom:hover {
       text-decoration: underline;
       white-space: nowrap;
-      color: var(--content-default);
+      color: inherit;
     }
 
     button {
@@ -47,35 +45,23 @@ $toast-exit-animation-timeout: 200ms;
   }
 
   &--success {
-    background: var(--color-positive-default);
+    background: var(--surface-accent-emphasis-high-positive);
+    color: var(--content-locked-white);
   }
 
   &--warning {
-    background: var(--color-warning-default);
-
-    .toast__content {
-      color: var(--content-default);
-    }
+    background: var(--surface-accent-emphasis-high-warning);
+    color: var(--content-locked-black);
   }
 
   &--error {
-    background: var(--color-negative-default);
+    background: var(--surface-accent-emphasis-high-negative);
+    color: var(--content-locked-white);
   }
 
   &--info {
-    background: var(--decor-blue200);
-
-    .toast__content {
-      color: var(--content-default);
-    }
-  }
-
-  &--success,
-  &--error {
-    .toast__content,
-    .toast__actions--custom {
-      color: var(--content-invert-default);
-    }
+    background: var(--surface-accent-emphasis-high-info);
+    color: var(--content-locked-white);
   }
 
   &-wrapper {

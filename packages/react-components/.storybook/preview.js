@@ -13,6 +13,9 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  backgrounds: {
+    disable: true,
+  },
   themes: {
     default: 'legacy',
     list: [

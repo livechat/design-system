@@ -3,14 +3,14 @@ import { render, vi } from 'test-utils';
 import userEvent from '@testing-library/user-event';
 import noop from '../../utils/noop';
 import { IPickerListProps, PickerList } from './PickerList';
-import { defaultOptions } from './constants';
+import { defaultPickerOptions } from './constants';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 window.HTMLElement.prototype.scrollIntoView = () => {};
 
 const defaultProps = {
   isOpen: false,
-  items: defaultOptions,
+  items: defaultPickerOptions,
   selectedItemsKeys: null,
   onClose: () => noop,
   onSelect: () => noop,

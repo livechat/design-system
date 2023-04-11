@@ -5,33 +5,9 @@ $base-class: 'picker';
   display: inline-block;
   position: relative;
   width: 100%;
-  color: var(--content-default);
+  color: var(--content-basic-primary);
 
   &__container {
     position: relative;
-  }
-
-  &__label {
-    margin-bottom: 4px;
-    line-height: 20px;
-    font-size: 14px;
-    font-weight: 400;
-
-    &--disabled {
-      color: var(--content-disabled);
-    }
-  }
-
-  &__error {
-    display: flex;
-    margin-top: 4px;
-    line-height: 20px;
-    color: var(--color-negative-default);
-    font-size: 14px;
-    font-weight: 400;
-
-    &__icon {
-      margin-right: 5px;
-    }
   }
 }

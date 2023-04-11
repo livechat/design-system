@@ -1,16 +1,33 @@
 .segmented-control {
   display: inline-flex;
   flex-direction: row;
-  border: 1px solid var(--border-subtle);
+  border: 1px solid var(--border-basic-secondary);
   border-radius: 4px;
+  background-color: var(--surface-primary-default);
   padding: 3px;
   vertical-align: middle;
 
   .btn {
     border-color: transparent;
 
+    &:last-of-type {
+      &::after {
+        display: none;
+      }
+    }
+
+    &[aria-pressed='false'][aria-disabled='false']::after {
+      position: absolute;
+      right: -4px;
+      background-color: var(--border-basic-secondary);
+      width: 1px;
+      height: 20px;
+      content: '';
+    }
+
     &--active {
-      background-color: var(--surface-basic-active);
+      background-color: var(--surface-primary-active);
+      color: var(--content-basic-primary);
     }
 
     &--compact {
@@ -27,6 +44,6 @@
   }
 
   .btn + .btn {
-    margin-left: 2px;
+    margin-left: 5px;
   }
 }

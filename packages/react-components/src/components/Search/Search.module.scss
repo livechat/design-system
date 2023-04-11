@@ -8,15 +8,15 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
   position: relative;
   align-items: center;
   transition: all 0.25s ease-in-out;
-  border: 1px solid var(--border-default);
+  border: 1px solid var(--border-basic-primary);
   border-radius: 4px;
-  background-color: var(--surface-basic-default);
+  background-color: var(--surface-primary-default);
   width: 100%;
   overflow: hidden;
-  color: var(--content-default);
+  color: var(--content-basic-primary);
 
   &:hover {
-    border-color: var(--border-hover);
+    border-color: var(--border-basic-hover);
     cursor: text;
   }
 
@@ -34,7 +34,7 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
 
   &--focused,
   &--focused:hover {
-    border-color: var(--color-action-default);
+    border-color: var(--action-primary-default);
   }
 
   &--disabled,
@@ -63,17 +63,17 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
     &--open {
       transition: border $transition, background $transition,
         width $transition-with-delay;
-      border-color: var(--border-default);
-      background-color: var(--surface-basic-default);
+      border-color: var(--border-basic-primary);
+      background-color: var(--surface-primary-default);
       width: 100%;
 
       &:hover {
-        border-color: var(--border-hover);
+        border-color: var(--border-basic-hover);
       }
 
       &.#{$base-class}--focused,
       &.#{$base-class}--focused:hover {
-        border-color: var(--color-action-default);
+        border-color: var(--action-primary-default);
       }
 
       .#{$base-class}__search-icon {
@@ -107,7 +107,7 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
     height: 100%;
 
     &:focus {
-      border-color: var(--color-action-default);
+      border-color: var(--action-primary-default);
     }
   }
 
@@ -117,7 +117,7 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
     margin-right: 16px;
     margin-left: 11px;
     border-radius: 50%;
-    background-color: var(--surface-basic-default);
+    background-color: var(--surface-primary-default);
     padding: 2px;
   }
 
@@ -133,7 +133,7 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
     font-weight: 400;
 
     &::placeholder {
-      color: var(--content-disabled);
+      color: var(--content-basic-disabled);
     }
 
     &:focus {

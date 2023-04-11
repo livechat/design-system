@@ -1,6 +1,7 @@
 $base-class: 'btn';
 
 .#{$base-class} {
+  box-sizing: border-box;
   display: inline-flex;
   position: relative;
   align-items: center;
@@ -27,21 +28,8 @@ $base-class: 'btn';
     outline: 0;
   }
 
-  &:focus {
-    filter: drop-shadow(0 0 1px 2px rgb(var(--color-action-default-rgb) 0.7));
-  }
-
   &--disabled {
     cursor: not-allowed;
-  }
-
-  &--icon-only {
-    padding: 6px;
-
-    .#{$base-class}__icon--left,
-    .#{$base-class}__icon--right {
-      margin: 0;
-    }
   }
 
   &--full-width {
@@ -49,89 +37,97 @@ $base-class: 'btn';
   }
 
   &--basic {
-    border-color: var(--color-action-default);
-    background-color: var(--surface-basic-default);
-    color: var(--color-action-default);
+    border-color: var(--border-basic-primary);
+    background-color: var(--btn-basic-background-enabled);
+    color: var(--action-primary-default);
 
     &:hover {
-      background-color: var(--surface-basic-subtle);
-      color: var(--color-action-hover);
+      border-color: var(--action-primary-default);
+      background-color: var(--btn-basic-background-hover);
+      color: var(--action-primary-hover);
     }
 
-    &:active {
-      background-color: var(--surface-feedback-info);
-      color: var(--color-action-hover);
+    &:active,
+    &:focus {
+      border-color: var(--action-primary-default);
+      background-color: var(--btn-basic-background-active);
+      color: var(--action-primary-default);
     }
 
     &[aria-disabled='true'] {
-      border-color: var(--color-action-disabled);
-      background-color: inherit;
-      color: var(--color-action-disabled);
+      border-color: var(--border-basic-disabled);
+      background-color: var(--btn-basic-background-disabled);
+      color: var(--action-primary-disabled);
     }
   }
 
   &--primary {
-    border-color: var(--color-action-default);
-    background-color: var(--color-action-default);
-    color: var(--content-invert-default);
+    border: 0;
+    border-color: var(--action-primary-default);
+    background-color: var(--action-primary-default);
+    color: var(--content-invert-primary);
 
     &:hover {
-      border-color: var(--color-action-hover);
-      background-color: var(--color-action-hover);
+      border-color: var(--action-primary-hover);
+      background-color: var(--action-primary-hover);
     }
 
-    &:active {
-      border-color: var(--color-action-active);
-      background-color: var(--color-action-active);
+    &:active,
+    &:focus {
+      border-color: var(--action-primary-active);
+      background-color: var(--action-primary-active);
     }
 
     &[aria-disabled='true'] {
-      border-color: var(--color-action-disabled);
-      background-color: var(--color-action-disabled);
+      border-color: var(--action-primary-disabled);
+      background-color: var(--action-primary-disabled);
     }
   }
 
   &--secondary {
     border-color: var(--border-basic-primary);
-    background-color: var(--surface-basic-default);
+    background-color: var(--btn-secondary-background-enabled);
     color: var(--content-default);
 
     &:hover {
-      border-color: var(--surface-secondary-hover);
-      background-color: var(--surface-basic-hover);
+      border-color: var(--border-basic-hover);
+      background-color: var(--btn-secondary-background-hover);
     }
 
-    &:active {
-      border-color: var(--color-action-default);
-      background-color: var(--surface-feedback-info);
-      color: var(--color-action-default);
+    &:active,
+    &:focus {
+      border-color: var(--action-primary-default);
+      background-color: var(--btn-secondary-background-active);
+      color: var(--action-primary-default);
     }
 
     &[aria-disabled='true'] {
-      border-color: var(--border-disabled);
-      background-color: inherit;
-      color: var(--content-disabled);
+      border-color: var(--border-basic-disabled);
+      background-color: var(--btn-secondary-background-disabled);
+      color: var(--content-basic-disabled);
     }
   }
 
   &--destructive {
-    border-color: var(--color-negative-default);
-    background-color: var(--color-negative-default);
-    color: var(--content-invert-default);
+    border: 0;
+    border-color: var(--action-negative-default);
+    background-color: var(--action-negative-default);
+    color: var(--content-invert-primary);
 
     &:hover {
-      border-color: var(--color-negative-hover);
-      background-color: var(--color-negative-hover);
+      border-color: var(--action-negative-hover);
+      background-color: var(--action-negative-hover);
     }
 
-    &:active {
-      border-color: var(--color-negative-active);
-      background-color: var(--color-negative-active);
+    &:active,
+    &:focus {
+      border-color: var(--action-negative-active);
+      background-color: var(--action-negative-active);
     }
 
     &[aria-disabled='true'] {
-      border-color: var(--color-negative-disabled);
-      background-color: var(--color-negative-disabled);
+      border-color: var(--action-negative-disabled);
+      background-color: var(--action-negative-disabled);
     }
   }
 
@@ -160,14 +156,22 @@ $base-class: 'btn';
   &--plain-light {
     border-color: transparent;
     background-color: transparent;
-    color: var(--color-action-default);
+    color: var(--action-primary-default);
 
-    &:hover {
-      color: var(--color-action-hover);
+    &:hover,
+    &:active,
+    &:focus {
+      text-decoration: underline;
     }
 
     &[aria-disabled='true'] {
-      color: var(--color-action-disabled);
+      color: var(--action-primary-disabled);
+
+      &:hover,
+      &:active,
+      &:focus {
+        text-decoration: none;
+      }
     }
   }
 
@@ -230,7 +234,6 @@ $base-class: 'btn';
     }
   }
 
-  // TODO: Investigate
   &__content {
     margin-top: -2px;
   }
@@ -252,6 +255,27 @@ $base-class: 'btn';
       order: 1;
       margin-right: -4px;
       margin-left: 5px;
+    }
+  }
+
+  &--icon-only {
+    padding: 6px;
+
+    &--bg {
+      &:hover {
+        background-color: var(--btn-plain-icon-background-hover);
+      }
+
+      &:focus,
+      &:active {
+        background-color: var(--btn-plain-icon-background-active);
+        color: var(--content-invert-primary);
+      }
+    }
+
+    .#{$base-class}__icon--left,
+    .#{$base-class}__icon--right {
+      margin: 0;
     }
   }
 }

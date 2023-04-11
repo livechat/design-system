@@ -48,3 +48,13 @@
 .full-space-button {
   width: 115px;
 }
+
+.example-field {
+  width: 100%;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}

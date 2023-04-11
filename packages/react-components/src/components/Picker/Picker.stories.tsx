@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
 
 import { IPickerProps, Picker } from './Picker';
-import { defaultExtendedOptions, defaultOptions } from './constants';
+import { defaultExtendedOptions, defaultPickerOptions } from './constants';
 import { IPickerListItem } from './PickerList';
 
 import './Picker.stories.css';
@@ -45,7 +45,7 @@ const StoryTemplate: Story<IPickerProps> = (args: IPickerProps) => {
 
 export const Default = StoryTemplate.bind({});
 Default.args = {
-  options: defaultOptions,
+  options: defaultPickerOptions,
 };
 
 export const States = (args: IPickerProps): React.ReactElement => (
@@ -60,10 +60,10 @@ export const States = (args: IPickerProps): React.ReactElement => (
       <PickerComponent {...args} disabled />
     </StoryDescriptor>
     <StoryDescriptor title="Error">
-      <PickerComponent {...args} error="Example text" />
+      <PickerComponent {...args} error />
     </StoryDescriptor>
     <StoryDescriptor title="Error + Disabled">
-      <PickerComponent {...args} disabled error="Example text" />
+      <PickerComponent {...args} disabled error />
     </StoryDescriptor>
     <StoryDescriptor title="Disabled + Selected option">
       <PickerComponent
@@ -86,7 +86,7 @@ export const States = (args: IPickerProps): React.ReactElement => (
   </div>
 );
 States.args = {
-  options: defaultOptions,
+  options: defaultPickerOptions,
   label: 'Example label',
 };
 

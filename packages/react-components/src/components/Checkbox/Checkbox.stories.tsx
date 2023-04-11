@@ -10,11 +10,18 @@ export default {
 } as ComponentMeta<typeof CheckboxComponent>;
 
 export const Checkbox = (args: CheckboxProps): React.ReactElement => {
-  return <CheckboxComponent {...args} />;
+  const [checked, setChecked] = React.useState(true);
+
+  return (
+    <CheckboxComponent
+      {...args}
+      checked={checked}
+      onChange={(e) => setChecked(e.currentTarget.checked)}
+    />
+  );
 };
 
 Checkbox.args = {
-  checked: false,
   disabled: false,
   description: 'Help text',
   children: 'Checkbox label',

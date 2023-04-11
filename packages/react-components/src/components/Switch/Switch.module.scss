@@ -27,7 +27,7 @@ $medium-move: $medium-width - $medium-size;
     $hovered-track: #{$base-class}__track;
 
     .#{$hovered-track}--enabled.#{$hovered-track}--on {
-      background-color: var(--color-positive-hover);
+      background-color: var(--action-positive-hover);
     }
 
     .#{$hovered-track}--enabled.#{$hovered-track}--off {
@@ -88,11 +88,11 @@ $medium-move: $medium-width - $medium-size;
     height: 100%;
 
     &--on#{&}--enabled {
-      background-color: var(--color-positive-default);
+      background-color: var(--action-positive-default);
     }
 
     &--on#{&}--disabled {
-      background-color: var(--color-positive-disabled);
+      background-color: var(--action-positive-disabled);
     }
 
     &--off#{&}--enabled {
@@ -100,7 +100,7 @@ $medium-move: $medium-width - $medium-size;
     }
 
     &--off#{&}--disabled {
-      background-color: var(--surface-secondary-disabled);
+      background-color: var(--surface-tertiary-disabled);
     }
   }
 
@@ -115,7 +115,7 @@ $medium-move: $medium-width - $medium-size;
     transition-property: left, right;
     transition-timing-function: $switch-transition-timing-function;
     border-radius: 50%;
-    background: var(--content-white-locked);
+    background: var(--content-locked-white);
 
     &--large {
       width: calc(#{$large-size});
@@ -190,6 +190,6 @@ $medium-move: $medium-width - $medium-size;
   }
 
   &__icon {
-    color: var(--content-black-locked);
+    color: var(--content-locked-black);
   }
 }

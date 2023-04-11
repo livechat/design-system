@@ -4,7 +4,12 @@ import { Button } from '../Button';
 import { Icon } from '../Icon';
 import './Modal.stories.css';
 import modalImage from './assets/modal-image.png';
-import { Heading } from '../Typography';
+import { Heading, Text } from '../Typography';
+import { FormField } from '../FormField';
+import { Input } from '../Input';
+import { defaultPickerOptions } from '../Picker/constants';
+import { Picker } from '../Picker';
+import noop from '../../utils/noop';
 
 interface ModalHeaderProps {
   color?: string;
@@ -30,14 +35,14 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({ color }) => {
 
 export const ModalFooter: React.FC = () => {
   return (
-    <React.Fragment>
+    <div className="footer">
       <Button size="medium" kind="secondary" style={{ marginRight: '8px' }}>
         Secondary
       </Button>
       <Button kind="primary" size="medium">
         Primary
       </Button>
-    </React.Fragment>
+    </div>
   );
 };
 
@@ -71,3 +76,29 @@ export const ModalFullSpaceContent: React.FC = () => {
     </div>
   );
 };
+
+export const ModalContent: React.FC = () => (
+  <div style={{ maxWidth: 400 }}>
+    <Heading size="lg" as="div">
+      Modal header
+    </Heading>
+    <Text size="sm">
+      Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
+      Velit officia consequat duis enim velit mollit. Exercitation veniam
+      consequat sunt nostrud amet.
+    </Text>
+    <FormField className="example-field" labelText="Options">
+      <Picker options={defaultPickerOptions} onSelect={noop} />
+    </FormField>
+    <FormField className="example-field" labelText="Name" labelFor="input-name">
+      <Input id="input-name" />
+    </FormField>
+    <FormField
+      className="example-field"
+      labelText="E-mail"
+      labelFor="input-email"
+    >
+      <Input id="input-email" type="email" />
+    </FormField>
+  </div>
+);

@@ -1,4 +1,4 @@
-export const defaultOptions = [
+export const defaultPickerOptions = [
   { key: 'one', name: 'Option one' },
   { key: 'two', name: 'Option two' },
   { key: 'three', name: 'Option three' },

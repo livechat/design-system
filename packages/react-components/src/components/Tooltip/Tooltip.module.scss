@@ -1,54 +1,54 @@
 $base-class: 'tooltip';
 
 .#{$base-class} {
-  background-color: var(--surface-basic-default);
-  border-color: var(--surface-basic-default);
-  border-radius: 4px;
-  box-shadow: 0 1px 10px 0 rgba(66, 77, 87, 0.3);
-  color: var(--content-default);
-  max-width: 320px;
-  padding: 12px;
   z-index: 999999999;
+  border-radius: 4px;
+  border-color: var(--background-02);
+  box-shadow: var(--shadow-tooltip);
+  background-color: var(--background-02);
+  padding: 12px;
+  max-width: 320px;
+  color: var(--content-basic-primary);
 
   &:focus {
     outline: none;
   }
 
   &--invert {
-    background-color: var(--surface-invert-default);
-    border-color: var(--surface-invert-default);
-    color: var(--content-invert-default);
+    border-color: var(--surface-invert-primary);
+    background-color: var(--surface-invert-primary);
+    color: var(--content-invert-primary);
   }
 
   &--important {
-    background-color: var(--color-warning-default);
-    border-color: var(--color-warning-default);
-    color: var(--content-default);
+    border-color: var(--surface-accent-emphasis-high-warning);
+    background-color: var(--surface-accent-emphasis-high-warning);
+    color: var(--content-locked-black);
   }
 
   &__arrow {
-    border-color: inherit;
-    color: inherit;
-    height: 6px;
-    margin: -6px 0;
     position: absolute;
+    margin: -6px 0;
+    border-color: inherit;
     width: 12px;
+    height: 6px;
+    color: inherit;
 
     &::after {
-      border: 6px solid transparent;
-      content: '';
       position: absolute;
       transform: rotate(-45deg);
+      border: 6px solid transparent;
+      content: '';
     }
 
     &[data-arrow-placement*='bottom'] {
-      height: 0;
       top: 1px;
+      height: 0;
 
       &::after {
-        border-right-color: inherit;
         border-top-color: inherit;
-        box-shadow: 8px -6px 10px -2px rgba(66, 77, 87, 0.3);
+        border-right-color: inherit;
+        box-shadow: var(--shadow-tooltip-arrow-bottom);
       }
     }
 
@@ -58,7 +58,7 @@ $base-class: 'tooltip';
       &::after {
         border-bottom-color: inherit;
         border-left-color: inherit;
-        box-shadow: -7px 6px 5px -3px rgb(66 77 87 / 0.3);
+        box-shadow: var(--shadow-tooltip-arrow-top);
       }
     }
 
@@ -67,64 +67,64 @@ $base-class: 'tooltip';
       margin: -3px -5px;
 
       &::after {
-        border-left-color: inherit;
         border-top-color: inherit;
-        box-shadow: -5px -5px 10px -2px rgba(66, 77, 87, 0.3);
+        border-left-color: inherit;
+        box-shadow: var(--shadow-tooltip-arrow-right);
       }
     }
 
     &[data-arrow-placement*='left'] {
-      height: 12px;
       left: 100%;
       margin: 0 -7px;
       width: 6px;
+      height: 12px;
 
       &::after {
-        border-bottom-color: inherit;
         border-right-color: inherit;
-        box-shadow: 6px 6px 10px -2px rgba(66, 77, 87, 0.3);
+        border-bottom-color: inherit;
+        box-shadow: var(--shadow-tooltip-arrow-left);
       }
     }
   }
 
   &-header {
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 24px;
+    margin-right: 4px;
     margin-bottom: 4px;
     margin-left: 4px;
-    margin-right: 4px;
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: 600;
   }
 
   &-image {
-    aspect-ratio: 16 / 9;
-    border-radius: 4px;
     margin-bottom: 12px;
-    max-height: 138px;
+    border-radius: 4px;
     width: 100%;
+    max-height: 138px;
+    aspect-ratio: 16 / 9;
   }
 
   &-text {
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 22px;
+    margin-right: 4px;
     margin-bottom: 12px;
     margin-left: 4px;
-    margin-right: 4px;
+    line-height: 22px;
+    font-size: 15px;
+    font-weight: 400;
   }
 
   &-close {
-    cursor: pointer;
     position: absolute;
-    right: -4px;
     top: -4px;
+    right: -4px;
+    cursor: pointer;
   }
 
   &-step {
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
     line-height: 20px;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
   }
 }
 
@@ -134,10 +134,10 @@ $base-class: 'tooltip';
   }
 
   &__overlay {
-    background-color: var(--surface-invert-default);
     display: none;
-    opacity: 0.5;
     position: fixed;
+    opacity: 0.5;
+    background-color: var(--surface-invert-primary);
 
     &--slide {
       transition-duration: 0.2s;

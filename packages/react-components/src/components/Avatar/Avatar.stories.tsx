@@ -15,7 +15,7 @@ export const Default: Story<AvatarProps> = (args: AvatarProps) => (
 );
 
 const defaultImage =
-  'https://cdn.livechatinc.com/cloud/?uri=https://livechat.s3.amazonaws.com/default/avatars/female_63.jpg';
+  'https://cdn-labs.livechat-files.com/api/file/lc/img/100019504/df59da4b5b0cdb6030efb08787fd255d.jpg';
 const defaultName = 'John Doe';
 
 Default.storyName = 'Avatar';

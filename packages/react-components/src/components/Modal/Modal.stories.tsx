@@ -9,6 +9,7 @@ import {
   ModalBase,
 } from './index';
 import {
+  ModalContent,
   ModalFooter,
   ModalFullSpaceContent,
   ModalHeader,
@@ -28,10 +29,9 @@ export default {
 } as ComponentMeta<typeof ModalComponent>;
 
 const defaultModalProps = {
-  children: 'Modal content',
+  children: <ModalContent />,
   closeOnEscPress: true,
   closeOnOverlayPress: true,
-  style: { width: '600px', height: '400px' },
   footer: <ModalFooter />,
 };
 
@@ -67,7 +67,6 @@ ModalWithFullSpaceContent.args = {
   ...defaultModalProps,
   children: <ModalFullSpaceContent />,
   fullSpaceContent: true,
-  style: { width: '600px' },
   footer: null,
 } as ModalProps;
 

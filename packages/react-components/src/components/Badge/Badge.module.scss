@@ -60,38 +60,26 @@ $base-class: 'badge';
   }
 
   &--primary {
-    background-color: var(--action-negative-default);
-    color: var(--content-invert-primary);
-
-    &:hover {
-      background-color: var(--action-negative-hover);
-    }
+    background-color: var(--surface-accent-emphasis-high-negative);
+    color: var(--content-locked-white);
 
     .#{$base-class}__dot {
-      background-color: var(--content-invert-primary);
+      background-color: var(--content-locked-white);
     }
   }
 
   &--secondary {
-    background-color: var(--action-primary-default);
-    color: var(--content-invert-primary);
-
-    &:hover {
-      background-color: var(--action-primary-hover);
-    }
+    background-color: var(--surface-accent-emphasis-high-info);
+    color: var(--content-locked-white);
 
     .#{$base-class}__dot {
-      background-color: var(--content-invert-primary);
+      background-color: var(--content-locked-white);
     }
   }
 
   &--tertiary {
     background-color: var(--surface-tertiary-default);
     color: var(--content-basic-primary);
-
-    &:hover {
-      background-color: var(--surface-tertiary-hover);
-    }
 
     .#{$base-class}__dot {
       background-color: var(--content-basic-primary);

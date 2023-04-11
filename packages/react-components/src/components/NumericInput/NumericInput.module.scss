@@ -1,25 +1,25 @@
 .numeric-input {
   display: inline-block;
-  height: 36px;
   position: relative;
   width: 64px;
+  height: 36px;
 
   &__increment,
   &__decrement {
-    align-items: center;
-    background: transparent;
-    border: 0;
-    border-left: 1px solid var(--border-default);
     box-sizing: border-box;
-    cursor: pointer;
     display: flex;
-    height: 50%;
-    justify-content: center;
-    padding: 0;
     position: absolute;
-    right: 1px;
     top: 1px;
+    right: 1px;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-left: 1px solid var(--border-basic-primary);
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
     width: 23px;
+    height: 50%;
 
     &:hover,
     &:focus {
@@ -29,35 +29,36 @@
 
   & &__increment {
     &:disabled {
-      border-color: var(--border-disabled);
+      border-color: var(--border-basic-disabled);
       cursor: not-allowed;
     }
   }
 
   & &__decrement {
-    border-top: 1px solid var(--border-default);
-    bottom: 1px;
     top: auto;
+    bottom: 1px;
+    border-top: 1px solid var(--border-basic-primary);
 
     &:disabled {
-      border-color: var(--border-disabled);
+      border-color: var(--border-basic-disabled);
       cursor: not-allowed;
     }
   }
 
   input {
     appearance: textfield;
-    background-clip: padding-box;
-    border: 1px solid var(--border-default);
-    border-radius: 4px;
     box-sizing: border-box;
-    color: var(--content-default);
-    height: 100%;
-    line-height: 36px;
-    padding: 0 28px 0 4px;
-    text-align: right;
     transition: border 0.25s ease-in-out;
+    border: 1px solid var(--border-basic-primary);
+    border-radius: 4px;
+    background-clip: padding-box;
+    background-color: var(--surface-primary-default);
+    padding: 0 28px 0 4px;
     width: 100%;
+    height: 100%;
+    text-align: right;
+    line-height: 36px;
+    color: var(--content-basic-primary);
     will-change: border-color;
 
     &::-webkit-outer-spin-button,
@@ -67,29 +68,29 @@
     }
 
     &:hover {
-      border-color: var(--border-hover);
       outline: 0;
+      border-color: var(--border-basic-hover);
     }
 
     &:focus {
-      border-color: var(--color-action-default);
       outline: 0;
+      border-color: var(--action-primary-default);
     }
 
     &:disabled {
-      color: var(--content-disabled);
       cursor: not-allowed;
+      color: var(--content-basic-disabled);
 
       &:hover {
-        border-color: var(--border-disabled);
+        border-color: var(--border-basic-disabled);
       }
     }
   }
 
   &--disabled {
-    background-color: var(--surface-basic-disabled);
-    color: var(--content-default);
+    background-color: var(--surface-primary-disabled);
     cursor: not-allowed;
+    color: var(--content-basic-primary);
   }
 
   &.numeric-input--no-controls {
@@ -103,7 +104,7 @@
       &,
       &:hover,
       &:focus {
-        border-color: var(--color-negative-default);
+        border-color: var(--border-basic-negative);
       }
     }
   }
