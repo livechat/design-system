@@ -108,9 +108,9 @@
   &__body {
     box-sizing: border-box;
     display: flex;
+    flex-direction: column;
     padding: 20px;
     width: 100%;
-    overflow-y: auto;
     color: var(--content-basic-primary);
 
     &--full-space {
