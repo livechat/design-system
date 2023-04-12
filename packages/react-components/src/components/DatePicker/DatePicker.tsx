@@ -1,10 +1,17 @@
-import * as React from 'react';
 import ReactDayPicker from 'react-day-picker';
 
 import DatePickerNavbar from './DatePickerNavbar';
 import { IDatePickerProps } from './types';
 import { getDatePickerClassNames, isDateWithinRange } from './helpers';
 import styles from './DatePicker.module.scss';
+import {
+  FC,
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+  forwardRef,
+} from 'react';
 
 const baseClass = 'date-picker';
 
@@ -18,7 +25,7 @@ const defaultDayRenderer = (day: Date): JSX.Element => {
   );
 };
 
-const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
+const DatePickerComponent: FC<IDatePickerProps> = (props) => {
   const {
     classNames,
     range,
@@ -33,15 +40,15 @@ const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
     ...restProps
   } = props;
 
-  const [currentMonth, setCurrentMonth] = React.useState(month || new Date());
+  const [currentMonth, setCurrentMonth] = useState(month || new Date());
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (month && month !== currentMonth) {
       setCurrentMonth(month);
     }
   }, [month, currentMonth]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (toMonth) {
       if (!isDateWithinRange(currentMonth, { from: fromMonth, to: toMonth })) {
         setCurrentMonth(toMonth);
@@ -49,7 +56,7 @@ const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
     }
   }, [currentMonth, props.toMonth, props.fromMonth]);
 
-  const handleMonthChange = React.useCallback(
+  const handleMonthChange = useCallback(
     (month: Date) => {
       if (props.onMonthChange && month) {
         props.onMonthChange(month);
@@ -70,7 +77,7 @@ const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
     firstDayOfWeek = propsFirstDayOfWeek;
   }
 
-  const datePickerClassNames = React.useMemo(
+  const datePickerClassNames = useMemo(
     () => getDatePickerClassNames(range, classNames),
     [range, classNames]
   );
@@ -102,7 +109,7 @@ const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
   );
 };
 
-export const DatePicker = React.forwardRef<ReactDayPicker, IDatePickerProps>(
+export const DatePicker = forwardRef<ReactDayPicker, IDatePickerProps>(
   (props, ref) => <DatePickerComponent innerRef={ref} {...props} />
 );
 

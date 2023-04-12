@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
+import { ReactElement } from 'react';
 
 import { Loader, LoaderProps } from './Loader';
 
@@ -8,7 +8,7 @@ export default {
   component: Loader,
 } as ComponentMeta<typeof Loader>;
 
-export const sizes = (): React.ReactElement => (
+export const sizes = (): ReactElement => (
   <div className="story-spacer">
     <Loader size="small" />
     <Loader size="medium" />
@@ -16,10 +16,10 @@ export const sizes = (): React.ReactElement => (
   </div>
 );
 
-export const labeled = (args: LoaderProps): React.ReactElement => (
+export const labeled = (args: LoaderProps): ReactElement => (
   <Loader size="small" label="Loading..." {...args} />
 );
 
-export const customColors = (args: LoaderProps): React.ReactElement => (
+export const customColors = (args: LoaderProps): ReactElement => (
   <Loader primaryColor="#d64646" secondaryColor="#eec4c5" {...args} />
 );

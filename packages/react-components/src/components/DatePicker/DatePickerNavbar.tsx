@@ -1,4 +1,3 @@
-import * as React from 'react';
 import {
   subMonths,
   addMonths,
@@ -16,10 +15,11 @@ import { Icon } from '../Icon';
 import { IDatePickerNavbarProps } from './types';
 import clsx from 'clsx';
 import styles from './DatePicker.module.scss';
+import { FC } from 'react';
 
 const baseClass = 'date-picker';
 
-const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
+const DatePickerNavbar: FC<IDatePickerNavbarProps> = (props) => {
   const {
     onPreviousClick,
     onMonthChange,

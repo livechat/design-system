@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { render } from 'test-utils';
 import { FieldGroup } from './FieldGroup';
 

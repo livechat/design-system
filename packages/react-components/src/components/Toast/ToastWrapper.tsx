@@ -1,5 +1,5 @@
-import * as React from 'react';
 import cx from 'clsx';
+import { ReactElement, FC } from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 import { ToastProps, Toast } from './Toast';
@@ -15,7 +15,7 @@ const baseClass = 'toast-wrapper';
 
 interface Toast extends ToastProps {
   id: string;
-  content: React.ReactElement | string;
+  content: ReactElement | string;
 }
 
 export interface ToastWrapperProps {
@@ -28,7 +28,7 @@ export interface ToastWrapperProps {
   horizontalPosition?: HorizontalPosition;
 }
 
-export const ToastWrapper: React.FC<ToastWrapperProps> = ({
+export const ToastWrapper: FC<ToastWrapperProps> = ({
   className,
   toasts = [],
   fixed = true,

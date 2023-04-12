@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
+import { ReactElement } from 'react';
 
 import {
   RadioButton as RadioButtonComponent,
@@ -20,7 +20,7 @@ export default {
 export const RadioButton = ({
   children,
   ...args
-}: RadioButtonProps): React.ReactElement => (
+}: RadioButtonProps): ReactElement => (
   <div>
     <RadioButtonComponent {...args}>{children}</RadioButtonComponent>
   </div>

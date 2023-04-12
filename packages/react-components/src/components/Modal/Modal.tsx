@@ -1,21 +1,21 @@
-import * as React from 'react';
 import cx from 'clsx';
 import { ModalBaseProps, ModalBase } from './ModalBase';
 import { Heading } from '../Typography';
 
 import styles from './Modal.module.scss';
 import { ModalCloseButton } from './ModalCloseButton';
+import { ReactNode, FC, MouseEvent } from 'react';
 
 export interface ModalProps extends ModalBaseProps {
-  heading?: React.ReactNode;
-  labelHeading?: React.ReactNode;
+  heading?: ReactNode;
+  labelHeading?: ReactNode;
   fullSpaceContent?: boolean;
-  footer?: React.ReactNode;
+  footer?: ReactNode;
 }
 
 const baseClass = 'modal';
 
-export const Modal: React.FC<ModalProps> = ({
+export const Modal: FC<ModalProps> = ({
   children,
   className = '',
   heading,
@@ -27,7 +27,7 @@ export const Modal: React.FC<ModalProps> = ({
 }) => {
   const mergedClassNames = cx(styles[baseClass], className);
 
-  const onCloseButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const onCloseButtonClick = (event: MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     event.stopPropagation();
     onClose();

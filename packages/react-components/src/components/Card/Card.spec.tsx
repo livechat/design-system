@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { render, fireEvent, vi } from 'test-utils';
 import { Card } from './Card';
 

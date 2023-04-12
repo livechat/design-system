@@ -1,5 +1,5 @@
+import { FC } from 'react';
 import { TagInputProps, TagInput } from './TagInput';
-import * as React from 'react';
 
 export type EmailTagInputProps = Omit<TagInputProps, 'validator'>;
 
@@ -11,7 +11,7 @@ const emailValidator = (value: string) => {
   return emailRegex.test(value);
 };
 
-export const EmailTagInput: React.FC<EmailTagInputProps> = ({
+export const EmailTagInput: FC<EmailTagInputProps> = ({
   id,
   tags,
   onChange,

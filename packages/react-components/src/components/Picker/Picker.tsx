@@ -1,4 +1,3 @@
-import * as React from 'react';
 import cx from 'clsx';
 
 import { Trigger } from './Trigger';
@@ -10,6 +9,7 @@ import styles from './Picker.module.scss';
 import { TriggerBody } from './TriggerBody';
 import { SELECT_ALL_OPTION_KEY } from './constants';
 import { Size } from 'utils';
+import { FC, useState, useRef, useEffect, useMemo } from 'react';
 
 const baseClass = 'picker';
 
@@ -33,7 +33,7 @@ export interface IPickerProps {
   onSelect: (selectedItems: IPickerListItem[] | null) => void;
 }
 
-export const Picker: React.FC<IPickerProps> = ({
+export const Picker: FC<IPickerProps> = ({
   className,
   disabled,
   error,
@@ -50,13 +50,13 @@ export const Picker: React.FC<IPickerProps> = ({
   onSelect,
   ...props
 }) => {
-  const [isListOpen, setIsListOpen] = React.useState<boolean>(false);
-  const [searchPhrase, setSearchPhrase] = React.useState<string | null>(null);
-  const triggerRef = React.useRef<HTMLDivElement>(null);
+  const [isListOpen, setIsListOpen] = useState<boolean>(false);
+  const [searchPhrase, setSearchPhrase] = useState<string | null>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
 
   const mergedClassNames = cx(styles[baseClass], className);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isListOpen) {
       const onDocumentClick = (e: MouseEvent) => {
         if (!triggerRef.current?.contains(e.target as Element)) {
@@ -156,7 +156,7 @@ export const Picker: React.FC<IPickerProps> = ({
     onSelect(newSelectedItems);
   };
 
-  const items = React.useMemo<IPickerListItem[]>(() => {
+  const items = useMemo<IPickerListItem[]>(() => {
     if (!searchPhrase) {
       return options;
     }
@@ -172,7 +172,7 @@ export const Picker: React.FC<IPickerProps> = ({
     });
   }, [searchPhrase]);
 
-  const selectedItemsKeys = React.useMemo(() => {
+  const selectedItemsKeys = useMemo(() => {
     if (!selected) {
       return null;
     }

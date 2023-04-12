@@ -1,8 +1,8 @@
-import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import * as MaterialIcons from '@livechat/design-system-icons/react/material';
 
 import { Icon as IconComponent, IconProps } from './Icon';
+import { ReactElement } from 'react';
 
 const iterator = Object.keys(MaterialIcons);
 
@@ -35,7 +35,7 @@ export default {
   },
 } as ComponentMeta<typeof IconComponent>;
 
-export const Icon = (args: IconProps): React.ReactElement => (
+export const Icon = (args: IconProps): ReactElement => (
   <div style={{ width: '300px' }}>
     <IconComponent {...args} />
   </div>

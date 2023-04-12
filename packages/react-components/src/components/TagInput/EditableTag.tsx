@@ -1,13 +1,13 @@
-import * as React from 'react';
 import { EditableTagContent } from './EditableTagContent';
 import { Tag } from '../Tag';
 
 import styles from './TagInput.module.scss';
+import { HTMLAttributes, RefObject, FC, useMemo, useRef } from 'react';
 
 const baseClass = 'tag-input__tag';
 
-export interface EditableTagProps extends React.HTMLAttributes<HTMLDivElement> {
-  inputRef: React.RefObject<HTMLInputElement>;
+export interface EditableTagProps extends HTMLAttributes<HTMLDivElement> {
+  inputRef: RefObject<HTMLInputElement>;
   index: number;
   update: (idx: number, value: string) => void;
   remove: (idx: number) => void;
@@ -16,7 +16,7 @@ export interface EditableTagProps extends React.HTMLAttributes<HTMLDivElement> {
   size: 'medium' | 'large';
 }
 
-export const EditableTag: React.FC<EditableTagProps> = ({
+export const EditableTag: FC<EditableTagProps> = ({
   children,
   index,
   remove,
@@ -25,11 +25,11 @@ export const EditableTag: React.FC<EditableTagProps> = ({
   update,
   size,
 }) => {
-  const isValid = React.useMemo(() => {
+  const isValid = useMemo(() => {
     return validator !== undefined ? validator(children) : true;
   }, [children, validator]);
 
-  const innerEditableRef = React.useRef<HTMLInputElement>(null);
+  const innerEditableRef = useRef<HTMLInputElement>(null);
 
   const removeTag = () => remove(index);
 

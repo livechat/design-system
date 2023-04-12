@@ -1,8 +1,8 @@
-import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import * as MaterialIcons from '@livechat/design-system-icons/react/material';
 
 import { Tag as TagComponent, TagProps } from './Tag';
+import { ReactElement } from 'react';
 
 const iterator = Object.keys(MaterialIcons);
 
@@ -21,7 +21,7 @@ export default {
   },
 } as ComponentMeta<typeof TagComponent>;
 
-export const Tag = ({ children, ...args }: TagProps): React.ReactElement => {
+export const Tag = ({ children, ...args }: TagProps): ReactElement => {
   return <TagComponent {...args}>{children}</TagComponent>;
 };
 
@@ -36,7 +36,7 @@ Tag.args = {
 const avatar =
   'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200';
 
-export const kinds = ({ children, ...args }: TagProps): React.ReactElement => {
+export const kinds = ({ children, ...args }: TagProps): ReactElement => {
   return (
     <div className="story-spacer" style={{ display: 'flex' }}>
       <TagComponent {...args} kind="default">
@@ -71,7 +71,7 @@ kinds.args = {
 export const kindsWithOutline = ({
   children,
   ...args
-}: TagProps): React.ReactElement => {
+}: TagProps): ReactElement => {
   return (
     <div className="story-spacer" style={{ display: 'flex' }}>
       <TagComponent {...args} kind="default" outline>
@@ -106,7 +106,7 @@ kindsWithOutline.args = {
 export const kindsWithIcon = ({
   children,
   ...args
-}: TagProps): React.ReactElement => {
+}: TagProps): ReactElement => {
   return (
     <div className="story-spacer" style={{ display: 'flex' }}>
       <TagComponent {...args} kind="default">
@@ -142,7 +142,7 @@ kindsWithIcon.args = {
 export const kindsWithAvatar = ({
   children,
   ...args
-}: TagProps): React.ReactElement => {
+}: TagProps): ReactElement => {
   return (
     <div className="story-spacer" style={{ display: 'flex' }}>
       <TagComponent {...args} kind="default" avatar={avatar}>

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
 import { subDays } from 'date-fns';
 
