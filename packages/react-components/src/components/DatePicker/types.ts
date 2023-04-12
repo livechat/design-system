@@ -1,5 +1,4 @@
-import { ReactElement } from 'react';
-import { Reducer, Ref } from 'react';
+import { ReactElement, Reducer, Ref } from 'react';
 import ReactDayPicker, { DayPickerProps } from 'react-day-picker';
 import { ClassNames } from 'react-day-picker/types/ClassNames';
 
