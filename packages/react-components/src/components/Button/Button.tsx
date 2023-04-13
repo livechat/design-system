@@ -8,7 +8,6 @@ import {
   AnchorHTMLAttributes,
   cloneElement,
   forwardRef,
-  ExoticComponent,
   RefAttributes,
 } from 'react';
 
@@ -34,9 +33,10 @@ export type ButtonProps = {
 
 const baseClass = 'btn';
 
-export const Button: ExoticComponent<
-  ButtonProps & RefAttributes<HTMLButtonElement & HTMLAnchorElement>
-> = forwardRef(
+export const Button = forwardRef<
+  RefAttributes<HTMLButtonElement & HTMLAnchorElement>,
+  ButtonProps
+>(
   (
     {
       loading = false,
