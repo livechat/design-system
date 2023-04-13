@@ -29,24 +29,14 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
         })}
       >
         <label className={styles[`${baseClass}__label`]}>
-          <div>
-            <input
-              {...restInputProps}
-              ref={ref}
-              checked={checked}
-              disabled={disabled}
-              className={styles[`${baseClass}__input`]}
-              type="checkbox"
-            />
-            <div className={styles[`${baseClass}__square`]}>
-              <Icon
-                source={Check}
-                kind="inverted"
-                size="xsmall"
-                className={styles[`${baseClass}__checkmark`]}
-              />
-            </div>
-          </div>
+          <input
+            {...restInputProps}
+            ref={ref}
+            checked={checked}
+            disabled={disabled}
+            className={styles[`${baseClass}__input`]}
+            type="checkbox"
+          />
           {children && (
             <Text as="div" size="md" className={styles[`${baseClass}__text`]}>
               {children}
