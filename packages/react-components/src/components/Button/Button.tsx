@@ -8,7 +8,6 @@ import {
   AnchorHTMLAttributes,
   cloneElement,
   forwardRef,
-  RefAttributes,
 } from 'react';
 
 export type ButtonKind =
@@ -34,7 +33,7 @@ export type ButtonProps = {
 const baseClass = 'btn';
 
 export const Button = forwardRef<
-  RefAttributes<HTMLButtonElement & HTMLAnchorElement>,
+  HTMLButtonElement & HTMLAnchorElement,
   ButtonProps
 >(
   (
