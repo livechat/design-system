@@ -63,6 +63,20 @@
     }
   }
 
+  &--selected {
+    &:hover {
+      .checkbox__input:checked+.checkbox__square {
+        border-color: var(--action-primary-hover);
+        background-color: var(--action-primary-hover);
+      }
+    }
+
+    .checkbox__square {
+      border-color: var(--action-primary-default);
+      background-color: var(--action-primary-default);
+    }
+  }
+
   &--disabled {
     .checkbox {
       &__input {
