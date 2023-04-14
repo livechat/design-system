@@ -1,7 +1,4 @@
 import cx from 'clsx';
-import { Check } from '@livechat/design-system-icons/react/material';
-
-import { Icon } from '../Icon';
 import { Text } from '../Typography';
 import { FieldDescription } from '../FieldDescription';
 
