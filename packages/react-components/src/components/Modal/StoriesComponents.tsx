@@ -35,7 +35,7 @@ export const ModalHeader: FC<ModalHeaderProps> = ({ color }) => {
 
 export const ModalFooter: FC = () => {
   return (
-    <div className="footer">
+    <div>
       <Button size="medium" kind="secondary" style={{ marginRight: '8px' }}>
         Secondary
       </Button>
