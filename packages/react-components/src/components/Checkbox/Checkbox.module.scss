@@ -35,7 +35,7 @@
       transition: opacity 0.2 ease;
       opacity: 0;
       z-index: 1;
-      background-color: var(--color-white);
+      background-color: var(--content-invert-primary);
       width: 24px;
       height: 24px;
       content: '';
@@ -65,7 +65,7 @@
 
   &--selected {
     &:hover {
-      .checkbox__input:checked+.checkbox__square {
+      .checkbox__input:checked + .checkbox__square {
         border-color: var(--action-primary-hover);
         background-color: var(--action-primary-hover);
       }
