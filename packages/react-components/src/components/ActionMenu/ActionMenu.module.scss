@@ -23,11 +23,13 @@ $base-class: 'action-menu';
     list-style: none;
 
     &__item {
+      display: flex;
+      align-items: center;
       outline: 0;
       border: 0;
       border-radius: 0;
       background: none;
-      padding: 0 13px;
+      padding: 7px 13px;
       width: 100%;
       min-height: 36px;
       text-align: left;
