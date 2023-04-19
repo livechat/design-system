@@ -30,6 +30,7 @@
     height: 16px;
 
     &::after {
+      content: '';
       display: inline-block;
       position: absolute;
       transition: opacity 0.2 ease;
@@ -38,8 +39,7 @@
       background-color: var(--content-invert-primary);
       width: 24px;
       height: 24px;
-      content: '';
-      mask: url('./check.svg') no-repeat 50% 50%;
+      -webkit-mask: url('./check.svg') no-repeat 50% 50%;
       mask: url('./check.svg') no-repeat 50% 50%;
       mask-size: cover;
     }
