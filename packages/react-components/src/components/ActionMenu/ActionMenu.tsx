@@ -13,7 +13,7 @@ import { KeyCodes } from '../../utils/keyCodes';
 
 export interface ActionMenuItemsProps {
   key: string;
-  element: ReactElement;
+  element: string | ReactElement;
   disabled?: boolean;
   withDivider?: boolean;
   onClick: () => void;
@@ -85,6 +85,7 @@ export const ActionMenu: FC<ActionMenuProps> = ({
       onClose={() => setIsVisible(false)}
       triggerRenderer={() => (
         <button
+          data-testid="action-menu-trigger-button"
           className={styles[`${baseClass}__trigger-button`]}
           onClick={handleTriggerClick}
         >
@@ -96,6 +97,7 @@ export const ActionMenu: FC<ActionMenuProps> = ({
         {...props}
         className={cx(styles[`${baseClass}__list`], className)}
         role="menu"
+        aria-hidden={!isVisible}
       >
         {options.map((o, i) => (
           <li key={o.key} role="none">

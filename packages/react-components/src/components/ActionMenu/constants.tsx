@@ -59,11 +59,11 @@ export const exampleOptions = [
 ];
 
 export const ActionMenuItemsDocumentationProps = `
-  {
-    key: string;
-    element: ReactElement;
-    disabled?: boolean;
-    withDivider?: boolean;
-    onClick: () => void;
-  }
+{
+  key: string;
+  element: string | ReactElement;
+  disabled?: boolean;
+  withDivider?: boolean;
+  onClick: () => void;
+}
 `;
