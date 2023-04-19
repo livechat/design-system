@@ -23,6 +23,7 @@
     align-items: center;
     justify-content: center;
     transition: all 0.2s ease;
+    margin:0;
     border: 1px solid var(--border-basic-primary);
     border-radius: 4px;
     background-color: var(--surface-primary-default);
@@ -30,7 +31,6 @@
     height: 16px;
 
     &::after {
-      content: '';
       display: inline-block;
       position: absolute;
       transition: opacity 0.2 ease;
@@ -39,7 +39,8 @@
       background-color: var(--content-invert-primary);
       width: 24px;
       height: 24px;
-      -webkit-mask: url('./check.svg') no-repeat 50% 50%;
+      content: '';
+      mask: url('./check.svg') no-repeat 50% 50%;
       mask: url('./check.svg') no-repeat 50% 50%;
       mask-size: cover;
     }
