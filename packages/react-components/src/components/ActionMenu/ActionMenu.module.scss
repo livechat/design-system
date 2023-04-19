@@ -1,0 +1,60 @@
+$base-class: 'action-menu';
+
+.#{$base-class} {
+  &__trigger-button {
+    border: 0;
+    background: none;
+    padding: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:focus {
+      outline: 2px solid var(--action-primary-default);
+      outline-offset: -2px;
+    }
+  }
+
+  &__list {
+    margin: 0;
+    background-color: var(--surface-primary-default);
+    padding: 0;
+    list-style: none;
+
+    &__item {
+      outline: 0;
+      border: 0;
+      border-radius: 0;
+      background: none;
+      padding: 0 13px;
+      width: 100%;
+      min-height: 36px;
+      text-align: left;
+      color: var(--content-basic-primary);
+
+      &:hover {
+        background-color: var(--surface-primary-hover);
+        cursor: pointer;
+      }
+
+      &:focus {
+        outline: 2px solid var(--action-primary-default);
+        outline-offset: -2px;
+      }
+
+      &--with-divider {
+        border-top: 1px solid var(--border-basic-secondary);
+      }
+
+      &--disabled {
+        color: var(--content-basic-disabled);
+
+        &:hover {
+          background: none;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}
