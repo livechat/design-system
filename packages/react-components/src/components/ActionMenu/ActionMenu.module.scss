@@ -18,7 +18,7 @@ $base-class: 'action-menu';
 
   &__list {
     margin: 0;
-    background-color: var(--surface-primary-default);
+    background-color: var(--picker-list-background);
     padding: 0;
     list-style: none;
 
@@ -36,7 +36,7 @@ $base-class: 'action-menu';
       color: var(--content-basic-primary);
 
       &:hover {
-        background-color: var(--surface-primary-hover);
+        background-color: var(--picker-list-option-background-hover);
         cursor: pointer;
       }
 
