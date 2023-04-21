@@ -10,6 +10,7 @@ import cx from 'clsx';
 import { Popover } from '../Popover';
 import styles from './ActionMenu.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
+import { Placement } from '@floating-ui/react-dom';
 
 export interface ActionMenuItemsProps {
   key: string;
@@ -23,6 +24,7 @@ export interface ActionMenuProps {
   className?: string;
   options: ActionMenuItemsProps[];
   triggerRenderer: ReactNode;
+  placement?: Placement;
 }
 
 const baseClass = 'action-menu';
@@ -31,6 +33,7 @@ export const ActionMenu: FC<ActionMenuProps> = ({
   className,
   options,
   triggerRenderer,
+  placement = 'bottom-end',
   ...props
 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -81,7 +84,7 @@ export const ActionMenu: FC<ActionMenuProps> = ({
   return (
     <Popover
       isVisible={isVisible}
-      placement="bottom-end"
+      placement={placement}
       onClose={() => setIsVisible(false)}
       triggerRenderer={() => (
         <button

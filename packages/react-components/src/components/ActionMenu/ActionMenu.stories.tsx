@@ -1,7 +1,7 @@
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story } from '@storybook/react';
 import { MoreHoriz } from '@livechat/design-system-icons/react/tabler';
 import { Icon } from '../Icon';
-import { ActionMenu } from './ActionMenu';
+import { ActionMenu, ActionMenuProps } from './ActionMenu';
 import { ActionMenuItemsDocumentationProps, exampleOptions } from './constants';
 
 import './ActionMenu.stories.css';
@@ -12,9 +12,6 @@ export default {
   argTypes: {
     className: {
       description: 'The CSS class for menu container',
-      control: {
-        disable: true,
-      },
     },
     options: {
       description: 'Array of menu options',
@@ -34,6 +31,9 @@ export default {
         disable: true,
       },
     },
+    placement: {
+      description: 'The menu placement',
+    },
     onClick: {
       table: {
         disable: true,
@@ -43,7 +43,7 @@ export default {
   },
 } as ComponentMeta<typeof ActionMenu>;
 
-export const Default = (): JSX.Element => (
+const StoryTemplate: Story<ActionMenuProps> = () => (
   <div style={{ marginLeft: 200, marginBottom: 220 }}>
     <ActionMenu
       options={exampleOptions}
@@ -51,3 +51,5 @@ export const Default = (): JSX.Element => (
     />
   </div>
 );
+
+export const Default = StoryTemplate.bind({});
