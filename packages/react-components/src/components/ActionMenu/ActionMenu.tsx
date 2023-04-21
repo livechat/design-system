@@ -5,18 +5,28 @@ import styles from './ActionMenu.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
 import { Placement } from '@floating-ui/react-dom';
 
-export interface ActionMenuItemsProps {
-  key: string;
-  element: string | React.ReactElement;
-  disabled?: boolean;
-  withDivider?: boolean;
-  onClick: () => void;
-}
-
 export interface ActionMenuProps {
+  /**
+   * The CSS class for menu container
+   */
   className?: string;
-  options: ActionMenuItemsProps[];
+  /**
+   * Array of menu options
+   */
+  options: Array<{
+    key: string;
+    element: string | React.ReactElement;
+    disabled?: boolean;
+    withDivider?: boolean;
+    onClick: () => void;
+  }>;
+  /**
+   * Trigger element
+   */
   triggerRenderer: React.ReactNode;
+  /**
+   * The menu placement
+   */
   placement?: Placement;
 }
 

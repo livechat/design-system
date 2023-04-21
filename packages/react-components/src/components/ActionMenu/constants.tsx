@@ -57,13 +57,3 @@ export const exampleOptions = [
     withDivider: true,
   },
 ];
-
-export const ActionMenuItemsDocumentationProps = `
-{
-  key: string;
-  element: string | ReactElement;
-  disabled?: boolean;
-  withDivider?: boolean;
-  onClick: () => void;
-}
-`;
