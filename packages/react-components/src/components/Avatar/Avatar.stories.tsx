@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';

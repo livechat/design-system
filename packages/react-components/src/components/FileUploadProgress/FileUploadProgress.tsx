@@ -1,3 +1,4 @@
+import * as React from 'react';
 import cx from 'clsx';
 import { Check as CheckIcon } from '@livechat/design-system-icons/react/material';
 
@@ -7,7 +8,6 @@ import { ProgressSize, ProgressStatus } from '../Progress/constants';
 import styles from './FileUploadProgress.module.scss';
 import { Icon } from '../Icon';
 import { FileUploadProgressActions } from './FileUploadProgressActions';
-import { ReactNode, ExoticComponent, RefAttributes, forwardRef } from 'react';
 
 export type UploadProgressActionState = 'visible' | 'hover' | 'hidden';
 
@@ -17,7 +17,7 @@ const wrapperHeaderTitleClass = `${baseClass}__wrapper__header__title`;
 export interface FileUploadProgressProps {
   actionsVisibility?: UploadProgressActionState;
   className?: string;
-  icon?: ReactNode;
+  icon?: React.ReactNode;
   title: string;
   progressValue: number;
   size?: ProgressSize;
@@ -26,9 +26,9 @@ export interface FileUploadProgressProps {
   onRetryButtonClick?: () => void;
 }
 
-export const FileUploadProgress: ExoticComponent<
-  FileUploadProgressProps & RefAttributes<HTMLInputElement>
-> = forwardRef(
+export const FileUploadProgress: React.ExoticComponent<
+  FileUploadProgressProps & React.RefAttributes<HTMLInputElement>
+> = React.forwardRef(
   (
     {
       actionsVisibility = 'hidden',

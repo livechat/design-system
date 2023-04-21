@@ -1,6 +1,6 @@
+import * as React from 'react';
 import { DesignToken } from '../../themes/design-token';
 import { Text } from '../../components/Typography';
-import { FC, Fragment } from 'react';
 
 interface TokensGroup {
   background: string[];
@@ -98,10 +98,10 @@ const CONTENT = {
   },
 };
 
-export const ColorTokensPallete: FC = () => (
-  <Fragment>
+export const ColorTokensPallete: React.FC = () => (
+  <React.Fragment>
     {Object.entries(CONTENT).map(([section, { heading, content }]) => (
-      <Fragment key={section}>
+      <React.Fragment key={section}>
         <h2>{heading}</h2>
         <Text as="p">{content}</Text>
         <ul style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr' }}>
@@ -129,7 +129,7 @@ export const ColorTokensPallete: FC = () => (
             </li>
           ))}
         </ul>
-      </Fragment>
+      </React.Fragment>
     ))}
-  </Fragment>
+  </React.Fragment>
 );

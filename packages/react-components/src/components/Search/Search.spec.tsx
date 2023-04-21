@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import * as React from 'react';
 import { render, userEvent, vi } from 'test-utils';
 import noop from '../../utils/noop';
 import { ISearchInputProps, SearchInput } from './Search';
@@ -174,7 +174,7 @@ describe('<Search> component', () => {
   it('should call onChange if input value change', () => {
     const onChangeFunction = vi.fn();
     const SearchWrapper = () => {
-      const [value, setValue] = useState('');
+      const [value, setValue] = React.useState('');
       return (
         <SearchInput
           value={value}

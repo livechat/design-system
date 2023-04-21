@@ -1,4 +1,5 @@
 import { within } from '@testing-library/react';
+import * as React from 'react';
 import { render, userEvent } from 'test-utils';
 import { vi } from 'vitest';
 import { DatePicker } from './DatePicker';

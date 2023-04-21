@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { render, fireEvent, vi } from 'test-utils';
 import noop from '../../utils/noop';
 import { ITriggerProps, Trigger } from './Trigger';

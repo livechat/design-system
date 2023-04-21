@@ -1,11 +1,12 @@
+import * as React from 'react';
 import cx from 'clsx';
-import { HTMLAttributes, forwardRef } from 'react';
 import { FieldDescription } from '../FieldDescription';
 import { Text } from '../Typography';
 
 import styles from './RadioButton.module.scss';
 
-export interface RadioButtonProps extends HTMLAttributes<HTMLInputElement> {
+export interface RadioButtonProps
+  extends React.HTMLAttributes<HTMLInputElement> {
   description?: string;
   checked?: boolean;
   disabled?: boolean;
@@ -13,7 +14,7 @@ export interface RadioButtonProps extends HTMLAttributes<HTMLInputElement> {
 
 const baseClass = 'radio-button';
 
-export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
+export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
   (
     { children, className = '', description, checked, disabled, ...props },
     ref

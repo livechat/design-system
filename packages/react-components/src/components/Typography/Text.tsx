@@ -1,5 +1,5 @@
+import * as React from 'react';
 import cx from 'clsx';
-import { createElement, FC } from 'react';
 
 import styles from './Typography.module.scss';
 
@@ -17,7 +17,7 @@ interface IProps {
   strike?: boolean;
 }
 
-export const Text: FC<IProps> = ({
+export const Text: React.FC<IProps> = ({
   as = 'p',
   size = 'md',
   caps = false,
@@ -30,7 +30,7 @@ export const Text: FC<IProps> = ({
 }) => {
   const baseClassPrefix = caps ? 'caps' : `paragraph-${size}`;
 
-  return createElement(
+  return React.createElement(
     as,
     {
       className: cx(
