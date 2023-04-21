@@ -1,11 +1,4 @@
-import {
-  FC,
-  ReactNode,
-  ReactElement,
-  useState,
-  useEffect,
-  useRef,
-} from 'react';
+import * as React from 'react';
 import cx from 'clsx';
 import { Popover } from '../Popover';
 import styles from './ActionMenu.module.scss';
@@ -14,7 +7,7 @@ import { Placement } from '@floating-ui/react-dom';
 
 export interface ActionMenuItemsProps {
   key: string;
-  element: string | ReactElement;
+  element: string | React.ReactElement;
   disabled?: boolean;
   withDivider?: boolean;
   onClick: () => void;
@@ -23,21 +16,21 @@ export interface ActionMenuItemsProps {
 export interface ActionMenuProps {
   className?: string;
   options: ActionMenuItemsProps[];
-  triggerRenderer: ReactNode;
+  triggerRenderer: React.ReactNode;
   placement?: Placement;
 }
 
 const baseClass = 'action-menu';
 
-export const ActionMenu: FC<ActionMenuProps> = ({
+export const ActionMenu: React.FC<ActionMenuProps> = ({
   className,
   options,
   triggerRenderer,
   placement = 'bottom-end',
   ...props
 }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const indexRef = useRef(-1);
+  const [isVisible, setIsVisible] = React.useState(false);
+  const indexRef = React.useRef(-1);
 
   const getIndex = (val: number) => {
     indexRef.current = indexRef.current + val;
@@ -63,7 +56,7 @@ export const ActionMenu: FC<ActionMenuProps> = ({
     }
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (isVisible) {
       document.addEventListener('keydown', onKeyDown);
       return () => document.removeEventListener('keydown', onKeyDown);
