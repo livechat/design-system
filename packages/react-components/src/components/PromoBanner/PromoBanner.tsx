@@ -1,3 +1,4 @@
+import * as React from 'react';
 import cx from 'clsx';
 import { Close as CloseIcon } from '@livechat/design-system-icons/react/material';
 import debounce from 'lodash.debounce';
@@ -6,7 +7,6 @@ import { Button } from '../Button';
 import { Icon } from '../Icon';
 
 import styles from './PromoBanner.module.scss';
-import { FC, useRef, useState, useEffect } from 'react';
 
 const SMALL_CONTAINER_WIDTH_TRESHOLD = 400;
 const LARGE_CONTAINER_WIDTH_TRESHOLD = 800;
@@ -26,7 +26,7 @@ export interface PromoBannerProps {
   onLinkClick?: () => void;
 }
 
-export const PromoBanner: FC<PromoBannerProps> = ({
+export const PromoBanner: React.FC<PromoBannerProps> = ({
   className,
   buttonText,
   children,
@@ -38,8 +38,8 @@ export const PromoBanner: FC<PromoBannerProps> = ({
   onClose,
   onLinkClick,
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [containerSize, setContainerSize] = useState<
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [containerSize, setContainerSize] = React.useState<
     'small' | 'medium' | 'large'
   >('medium');
 
@@ -53,7 +53,7 @@ export const PromoBanner: FC<PromoBannerProps> = ({
     className
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleResize = () => {
       if (
         containerRef.current &&

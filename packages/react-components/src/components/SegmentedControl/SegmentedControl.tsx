@@ -1,3 +1,4 @@
+import * as React from 'react';
 import cx from 'clsx';
 
 import { Button, ButtonProps } from '../Button';
@@ -5,7 +6,6 @@ import { Button, ButtonProps } from '../Button';
 import styles from './SegmentedControl.module.scss';
 
 import noop from '../../utils/noop';
-import { HTMLAttributes, FC, useState, useEffect, MouseEvent } from 'react';
 
 const baseClass = 'segmented-control';
 
@@ -16,17 +16,18 @@ type ButtonElement = {
   label: string;
 } & Pick<ButtonProps, 'disabled' | 'loading' | 'icon'>;
 
-export interface SegmentedControlProps extends HTMLAttributes<HTMLDivElement> {
+export interface SegmentedControlProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   buttons: ButtonElement[];
   fullWidth?: boolean;
   size?: ButtonSize;
   initialId?: string;
   currentId?: string;
-  onButtonClick?: (id: string, event: MouseEvent<HTMLElement>) => void;
+  onButtonClick?: (id: string, event: React.MouseEvent<HTMLElement>) => void;
 }
 
-export const SegmentedControl: FC<SegmentedControlProps> = ({
+export const SegmentedControl: React.FC<SegmentedControlProps> = ({
   size = 'medium',
   buttons,
   className,
@@ -36,11 +37,11 @@ export const SegmentedControl: FC<SegmentedControlProps> = ({
   onButtonClick = noop,
 }) => {
   const mergedClassName = cx(styles[baseClass], className);
-  const [currentStateId, setCurrentStateId] = useState(() => initialId);
+  const [currentStateId, setCurrentStateId] = React.useState(() => initialId);
 
   const isControlled = typeof currentId === 'string';
 
-  useEffect(() => {
+  React.useEffect(() => {
     isControlled && setCurrentStateId(currentId);
   }, [currentId]);
 
@@ -66,7 +67,7 @@ export const SegmentedControl: FC<SegmentedControlProps> = ({
         kind="secondary"
         icon={icon}
         className={cx(styles['btn'], styles[`btn--${size}`], activityStyles)}
-        onClick={(event: MouseEvent<HTMLElement>) => {
+        onClick={(event: React.MouseEvent<HTMLElement>) => {
           handleClick(id, event);
         }}
       >

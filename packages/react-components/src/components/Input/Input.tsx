@@ -1,3 +1,4 @@
+import * as React from 'react';
 import cx from 'clsx';
 
 import {
@@ -9,20 +10,14 @@ import { Size } from 'utils/constants';
 import styles from './Input.module.scss';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
-import {
-  cloneElement,
-  forwardRef,
-  InputHTMLAttributes,
-  ReactElement,
-  useState,
-} from 'react';
 
 interface InputIcon {
-  source: ReactElement;
+  source: React.ReactElement;
   place: 'left' | 'right';
 }
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
   inputSize?: Size;
   error?: boolean;
   disabled?: boolean;
@@ -32,7 +27,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 const baseClass = 'input';
 
 const renderIcon = (icon: InputIcon, disabled?: boolean) =>
-  cloneElement(icon.source, {
+  React.cloneElement(icon.source, {
     ['data-testid']: `input-icon-${icon.place}`,
     className: cx(
       styles[`${baseClass}__icon`],
@@ -43,7 +38,7 @@ const renderIcon = (icon: InputIcon, disabled?: boolean) =>
     ),
   });
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       inputSize = 'medium',
@@ -55,8 +50,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const [isFocused, setIsFocused] = useState(false);
-    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const [isFocused, setIsFocused] = React.useState(false);
+    const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
     const { type, onFocus, onBlur } = inputProps;
     const mergedClassNames = cx(
       className,

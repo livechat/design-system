@@ -1,3 +1,4 @@
+import * as React from 'react';
 import cx from 'clsx';
 import {
   ChevronDown,
@@ -8,7 +9,6 @@ import { Icon } from '../Icon';
 import styles from './Trigger.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
 import { Size } from 'utils';
-import { FC, useRef, useEffect, MouseEvent } from 'react';
 
 const baseClass = 'picker-trigger';
 
@@ -21,11 +21,11 @@ export interface ITriggerProps {
   isRequired?: boolean;
   isMultiSelect?: boolean;
   size?: Size;
-  onTrigger: (e: MouseEvent | KeyboardEvent) => void;
+  onTrigger: (e: React.MouseEvent | KeyboardEvent) => void;
   onClear: () => void;
 }
 
-export const Trigger: FC<ITriggerProps> = ({
+export const Trigger: React.FC<ITriggerProps> = ({
   children,
   isSearchDisabled,
   isDisabled,
@@ -38,7 +38,7 @@ export const Trigger: FC<ITriggerProps> = ({
   onTrigger,
   onClear,
 }) => {
-  const triggerRef = useRef<HTMLDivElement>(null);
+  const triggerRef = React.useRef<HTMLDivElement>(null);
   const mergedClassNames = cx(
     styles[baseClass],
     styles[`${baseClass}--${size}`],
@@ -51,7 +51,7 @@ export const Trigger: FC<ITriggerProps> = ({
     isError && styles[`${baseClass}--error`]
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       const isFocused = document.activeElement === triggerRef.current;
 
@@ -71,11 +71,11 @@ export const Trigger: FC<ITriggerProps> = ({
     };
   }, [isSearchDisabled]);
 
-  const handleTriggerClick = (e: MouseEvent) => {
+  const handleTriggerClick = (e: React.MouseEvent) => {
     onTrigger(e);
   };
 
-  const handleOnClearClick = (e: MouseEvent) => {
+  const handleOnClearClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     onClear();
   };

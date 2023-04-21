@@ -1,10 +1,10 @@
-import { FC } from 'react';
+import * as React from 'react';
 
 type StoryDescriptorProps = {
   title: string;
 };
 
-export const StoryDescriptor: FC<StoryDescriptorProps> = ({
+export const StoryDescriptor: React.FC<StoryDescriptorProps> = ({
   title,
   children,
 }) => (

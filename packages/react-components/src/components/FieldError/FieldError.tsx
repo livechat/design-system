@@ -1,14 +1,14 @@
+import * as React from 'react';
 import cx from 'clsx';
-import { HTMLAttributes, FC } from 'react';
 import { Text } from '../Typography';
 
 import styles from './FieldError.module.scss';
 
-export type FieldErrorProps = HTMLAttributes<HTMLSpanElement>;
+export type FieldErrorProps = React.HTMLAttributes<HTMLSpanElement>;
 
 const baseClass = 'field-error';
 
-export const FieldError: FC<FieldErrorProps> = ({
+export const FieldError: React.FC<FieldErrorProps> = ({
   children,
   className = '',
   ...props
