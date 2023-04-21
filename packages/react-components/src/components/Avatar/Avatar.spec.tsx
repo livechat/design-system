@@ -1,4 +1,5 @@
-import { render, fireEvent } from 'test-utils';
+import * as React from 'react';
+import { render, fireEvent, vi } from 'test-utils';
 import { Avatar, AvatarProps } from './Avatar';
 
 const renderComponent = (props: AvatarProps) => {

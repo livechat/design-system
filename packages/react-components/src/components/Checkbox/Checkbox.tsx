@@ -1,4 +1,5 @@
 import cx from 'clsx';
+import * as React from 'react';
 import { Check } from '@livechat/design-system-icons/react/material';
 
 import { Icon } from '../Icon';
@@ -6,9 +7,8 @@ import { Text } from '../Typography';
 import { FieldDescription } from '../FieldDescription';
 
 import styles from './Checkbox.module.scss';
-import { HTMLAttributes, forwardRef } from 'react';
 
-export interface CheckboxProps extends HTMLAttributes<HTMLInputElement> {
+export interface CheckboxProps extends React.HTMLAttributes<HTMLInputElement> {
   disabled?: boolean;
   checked?: boolean;
   description?: string;
@@ -16,7 +16,7 @@ export interface CheckboxProps extends HTMLAttributes<HTMLInputElement> {
 
 const baseClass = 'checkbox';
 
-export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
+export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (
     { checked, disabled, children, description, className, ...restInputProps },
     ref

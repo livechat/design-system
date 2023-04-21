@@ -1,13 +1,13 @@
+import * as React from 'react';
 import { Icon } from '../Icon';
 import { Close } from '@livechat/design-system-icons/react/material';
 import { Button } from '../Button';
 import { getIconType } from './helpers';
 import styles from './Tooltip.module.scss';
-import { FC, useEffect, MouseEvent } from 'react';
 
 const baseClass = 'tooltip';
 
-export const UserGuideStep: FC<{
+export const UserGuideStep: React.FC<{
   header: string;
   text: string;
   image?: {
@@ -19,7 +19,7 @@ export const UserGuideStep: FC<{
   closeWithX?: boolean;
   theme?: string;
   handleClickPrimary: () => void;
-  handleCloseAction?: (ev: KeyboardEvent | MouseEvent) => void;
+  handleCloseAction?: (ev: KeyboardEvent | React.MouseEvent) => void;
 }> = ({
   header,
   text,
@@ -31,7 +31,7 @@ export const UserGuideStep: FC<{
   handleCloseAction,
   handleClickPrimary,
 }) => {
-  useEffect(() => {
+  React.useEffect(() => {
     if (handleCloseAction) {
       document.addEventListener('keydown', handleCloseAction);
 

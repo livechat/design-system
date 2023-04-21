@@ -1,17 +1,17 @@
+import * as React from 'react';
 import cx from 'clsx';
 import { Close } from '@livechat/design-system-icons/react/material';
 import { Icon } from '../Icon';
 
 import styles from './Modal.module.scss';
-import { HTMLAttributes, FC } from 'react';
 
 export interface ModalCloseButtonProps
-  extends HTMLAttributes<HTMLButtonElement> {
+  extends React.HTMLAttributes<HTMLButtonElement> {
   labelType?: boolean;
   customColor?: string;
 }
 
-export const ModalCloseButton: FC<ModalCloseButtonProps> = ({
+export const ModalCloseButton: React.FC<ModalCloseButtonProps> = ({
   labelType,
   customColor,
   onClick,

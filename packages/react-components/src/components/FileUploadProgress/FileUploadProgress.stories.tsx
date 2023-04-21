@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
 import {
   FileUploadProgress as FileUploadProgressComponent,
@@ -6,7 +7,6 @@ import {
 import { Button } from '../Button';
 import noop from '../../utils/noop';
 import { PdfIcon } from '../../utils/PdfIcon';
-import { FC, useState } from 'react';
 
 export default {
   title: 'Components/Progress/FileUploadProgress',
@@ -43,11 +43,11 @@ FileUploadProgressWithIcon.args = {
   progressValue: 50,
 };
 
-export const FileUploadProgressStates: FC = () => {
-  const [status, setStatus] = useState<'normal' | 'success' | 'error'>(
+export const FileUploadProgressStates: React.FC = () => {
+  const [status, setStatus] = React.useState<'normal' | 'success' | 'error'>(
     'normal'
   );
-  const [actionsVisibility, setActionsVisibility] = useState<
+  const [actionsVisibility, setActionsVisibility] = React.useState<
     'hidden' | 'hover' | 'visible'
   >('hidden');
 

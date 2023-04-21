@@ -1,14 +1,14 @@
+import * as React from 'react';
 import cx from 'clsx';
 import { Text } from '../Typography';
 
 import styles from './Tab.module.scss';
 import { Badge } from '../Badge';
 import { Size } from 'utils';
-import { AnchorHTMLAttributes, ButtonHTMLAttributes, FC } from 'react';
 
 type HTMLProps =
-  | (AnchorHTMLAttributes<HTMLAnchorElement> & { href: string })
-  | (ButtonHTMLAttributes<HTMLButtonElement> & { href?: never });
+  | (React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string })
+  | (React.ButtonHTMLAttributes<HTMLButtonElement> & { href?: never });
 
 export type TabProps = HTMLProps & {
   count?: number;
@@ -19,7 +19,7 @@ export type TabProps = HTMLProps & {
 
 const baseClass = 'tab';
 
-export const Tab: FC<TabProps> = ({
+export const Tab: React.FC<TabProps> = ({
   children,
   className,
   count,
@@ -28,7 +28,8 @@ export const Tab: FC<TabProps> = ({
   size = 'medium',
   ...restProps
 }) => {
-  const { disabled } = restProps as ButtonHTMLAttributes<HTMLButtonElement>;
+  const { disabled } =
+    restProps as React.ButtonHTMLAttributes<HTMLButtonElement>;
   const shouldDisplayAsCounter = count !== undefined && !asBadge;
   const shouldDisplayAsBadge = count !== undefined && asBadge;
 

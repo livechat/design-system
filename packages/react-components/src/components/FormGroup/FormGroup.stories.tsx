@@ -1,9 +1,9 @@
+import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 
 import { FormGroup as FormGroupComponent, FormGroupProps } from './FormGroup';
 import { RadioButton } from '../RadioButton';
 import { FieldGroup } from '../FieldGroup';
-import { ReactElement } from 'react';
 
 export default {
   title: 'Forms/Form Group',
@@ -15,7 +15,7 @@ export default {
   },
 } as ComponentMeta<typeof FormGroupComponent>;
 
-export const FormGroup = ({ ...args }: FormGroupProps): ReactElement => (
+export const FormGroup = ({ ...args }: FormGroupProps): React.ReactElement => (
   <FormGroupComponent {...args}>
     <FieldGroup>
       <RadioButton id="field-group-example-1">Radio button label</RadioButton>

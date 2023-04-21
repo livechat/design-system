@@ -1,5 +1,5 @@
+import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
-import { ReactElement } from 'react';
 
 import {
   ToastWrapperProps,
@@ -16,7 +16,7 @@ export default {
   },
 } as ComponentMeta<typeof ToastWrapperComponent>;
 
-export const ToastWrapper = (args: ToastWrapperProps): ReactElement => (
+export const ToastWrapper = (args: ToastWrapperProps): React.ReactElement => (
   <div style={{ width: '100%', height: 700, position: 'relative' }}>
     <ToastWrapperComponent {...args} />
   </div>

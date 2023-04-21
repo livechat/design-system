@@ -1,8 +1,8 @@
+import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 
 import { TabsList, TabsWrapper as TabsWrapperComponenet } from './TabsWrapper';
 import { Tab } from './Tab';
-import { ReactElement, useState } from 'react';
 
 export default {
   title: 'Components/Tabs',
@@ -19,8 +19,8 @@ type ITabArgs = {
   }>;
 };
 
-export const TabsWrapper = ({ items }: ITabArgs): ReactElement => {
-  const [selectedTab, setSelectedTab] = useState(items[0].id);
+export const TabsWrapper = ({ items }: ITabArgs): React.ReactElement => {
+  const [selectedTab, setSelectedTab] = React.useState(items[0].id);
 
   return (
     <TabsWrapperComponenet>

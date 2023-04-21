@@ -1,3 +1,4 @@
+import * as React from 'react';
 import cx from 'clsx';
 import { Person as PersonIcon } from '@livechat/design-system-icons/react/material';
 
@@ -5,7 +6,6 @@ import { Icon } from '../Icon';
 
 import { getFontColor, getInitials } from './Avatar.helpers';
 import styles from './Avatar.module.scss';
-import { FC, ReactEventHandler, useCallback, useEffect, useState } from 'react';
 
 type AvatarShape = 'circle' | 'rounded-square';
 type AvatarSize =
@@ -35,7 +35,7 @@ export interface AvatarProps {
 
 const baseClass = 'avatar';
 
-export const Avatar: FC<AvatarProps> = ({
+export const Avatar: React.FC<AvatarProps> = ({
   alt,
   className,
   color,
@@ -49,7 +49,7 @@ export const Avatar: FC<AvatarProps> = ({
 }) => {
   const isImproperImageSetup = type === 'image' && !src;
   const [shouldDisplayFallbackAvatar, setShouldDisplayFallbackAvatar] =
-    useState(isImproperImageSetup);
+    React.useState(isImproperImageSetup);
 
   const shouldDisplayImage =
     type === 'image' && !!src && !shouldDisplayFallbackAvatar;
@@ -80,10 +80,10 @@ export const Avatar: FC<AvatarProps> = ({
     styles[`${baseClass}__rim--${size}`]
   );
 
-  const handleError: ReactEventHandler<HTMLImageElement> | undefined =
-    useCallback(() => setShouldDisplayFallbackAvatar(true), []);
+  const handleError: React.ReactEventHandler<HTMLImageElement> | undefined =
+    React.useCallback(() => setShouldDisplayFallbackAvatar(true), []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setShouldDisplayFallbackAvatar(isImproperImageSetup);
   }, [isImproperImageSetup]);
 

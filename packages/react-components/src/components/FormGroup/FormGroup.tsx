@@ -1,10 +1,10 @@
+import * as React from 'react';
 import cx from 'clsx';
-import { HTMLAttributes, FC } from 'react';
 import { Text, Heading } from '../Typography';
 
 import styles from './FormGroup.module.scss';
 
-export interface FormGroupProps extends HTMLAttributes<HTMLDivElement> {
+export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
   labelText?: string;
   helperText?: string;
@@ -12,7 +12,7 @@ export interface FormGroupProps extends HTMLAttributes<HTMLDivElement> {
 
 const baseClass = 'form-group';
 
-export const FormGroup: FC<FormGroupProps> = ({
+export const FormGroup: React.FC<FormGroupProps> = ({
   className = '',
   children,
   labelText,

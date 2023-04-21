@@ -1,8 +1,8 @@
+import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 
 import { Tab as TabComponent, TabProps } from './Tab';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
-import { ReactElement } from 'react';
 
 export default {
   title: 'Components/Tabs',
@@ -11,7 +11,7 @@ export default {
 
 type ITabArgs = TabProps;
 
-export const Tab = (args: ITabArgs): ReactElement => {
+export const Tab = (args: ITabArgs): React.ReactElement => {
   return <TabComponent {...args} />;
 };
 

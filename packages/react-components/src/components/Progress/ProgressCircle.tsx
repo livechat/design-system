@@ -1,5 +1,5 @@
+import * as React from 'react';
 import cx from 'clsx';
-import { ExoticComponent, RefAttributes, forwardRef, LegacyRef } from 'react';
 import { ProgressSize, ProgressStatus } from './constants';
 import { getPercentNumber, getProgressStatus } from './helpers';
 
@@ -26,9 +26,9 @@ export interface ProgressCircleProps {
   size?: ProgressSize;
 }
 
-export const ProgressCircle: ExoticComponent<
-  ProgressCircleProps & RefAttributes<HTMLInputElement>
-> = forwardRef(
+export const ProgressCircle: React.ExoticComponent<
+  ProgressCircleProps & React.RefAttributes<HTMLInputElement>
+> = React.forwardRef(
   (
     {
       status = 'normal',
@@ -37,7 +37,7 @@ export const ProgressCircle: ExoticComponent<
       size = 'medium',
       ...restProps
     },
-    ref: LegacyRef<HTMLInputElement>
+    ref: React.LegacyRef<HTMLInputElement>
   ) => {
     const progressStatus = getProgressStatus(status, progressValue);
     const percentNumber = getPercentNumber(progressStatus, progressValue);

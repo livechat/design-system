@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { Placement } from '@floating-ui/react-dom';
 import { Button } from '../Button';
@@ -14,7 +15,6 @@ import {
 import { Icon } from '../Icon';
 
 import './Popover.stories.css';
-import { ReactElement } from 'react';
 
 const placements = [
   'top',
@@ -82,7 +82,7 @@ export const Popover = ({
   placement: Placement;
   isVisible: boolean;
   flipOptions: Placement;
-}): ReactElement => (
+}): React.ReactElement => (
   <div className="wrap">
     <PopoverComponent
       placement={placement}
@@ -137,7 +137,7 @@ export const Actions = ({
   placement: Placement;
   isVisible: boolean;
   flipOptions: Placement;
-}): ReactElement => {
+}): React.ReactElement => {
   return (
     <div style={{ minHeight: '200px' }}>
       <PopoverComponent
