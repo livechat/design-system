@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { MoreHoriz } from '@livechat/design-system-icons/react/tabler';
 import { Icon } from '../Icon';

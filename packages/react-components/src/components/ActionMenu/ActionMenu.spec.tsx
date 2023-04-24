@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { render, userEvent } from 'test-utils';
 import noop from '../../utils/noop';
 import { vi } from 'vitest';
