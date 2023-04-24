@@ -370,6 +370,62 @@ export const kindsAndStates = (args: ButtonProps): React.ReactElement => (
         icon={<Icon source={MaterialIcons.AddCircle} />}
       />
     </StoryDescriptor>
+    <StoryDescriptor title="Subtle">
+      <Button {...args} kind="subtle">
+        Subtle
+      </Button>
+
+      <Button {...args} disabled kind="subtle">
+        Disabled
+      </Button>
+      <Button {...args} loading kind="subtle">
+        Loading
+      </Button>
+    </StoryDescriptor>
+    <StoryDescriptor title="Subtle with icon">
+      <Button
+        {...args}
+        kind="subtle"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Subtle
+      </Button>
+      <Button
+        {...args}
+        disabled
+        kind="subtle"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Disabled
+      </Button>
+      <Button
+        {...args}
+        loading
+        kind="subtle"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Loading
+      </Button>
+    </StoryDescriptor>
+    <StoryDescriptor title="Subtle with icon only">
+      <Button
+        {...args}
+        kind="subtle"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+      <Button
+        {...args}
+        disabled
+        kind="subtle"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+      <Button
+        {...args}
+        loading
+        kind="subtle"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+    </StoryDescriptor>
   </div>
 );
 kindsAndStates.args = {};

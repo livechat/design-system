@@ -278,4 +278,29 @@ $base-class: 'btn';
       margin: 0;
     }
   }
+
+  &--subtle {
+    border-color: transparent;
+    background-color: transparent;
+    color: var(--content-basic-primary);
+
+    &:hover {
+      border-color: transparent;
+      background-color: var(--surface-primary-hover);
+      color: var(--content-basic-primary);
+    }
+
+    &:active,
+    &:focus {
+      border-color: transparent;
+      background-color: var(--surface-primary-active);
+      color: var(--content-basic-primary);
+    }
+
+    &[aria-disabled='true'] {
+      border-color: transparent;
+      background-color: transparent;
+      color: var(--content-basic-disabled);
+    }
+  }
 }

@@ -11,7 +11,8 @@ export type ButtonKind =
   | 'destructive'
   | 'text'
   | 'plain'
-  | 'plain-light';
+  | 'plain-light'
+  | 'subtle';
 
 export type ButtonProps = {
   kind?: ButtonKind;
