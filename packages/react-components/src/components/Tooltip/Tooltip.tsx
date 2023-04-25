@@ -16,21 +16,69 @@ import styles from './Tooltip.module.scss';
 
 export interface ITooltipProps {
   children?: React.ReactNode;
+  /**
+   * The CSS class for component
+   */
   className?: string;
+  /**
+   * The kind of tooltip
+   */
   theme?: 'invert' | 'important' | undefined;
+  /**
+   * The tooltip placement
+   */
   placement?: Placement;
+  /**
+   * The tooltip visibility control
+   */
   isVisible?: boolean;
+  /**
+   * The tooltip animation control
+   */
   withFadeAnimation?: boolean;
+  /**
+   * The tooltip animation duration
+   */
   transitionDuration?: number;
+  /**
+   * The tooltip animation delay
+   */
   transitionDelay?: number;
+  /**
+   * The delay for animation start
+   */
   hoverOutDelayTimeout?: number;
+  /**
+   * Set the tooltip offset
+   */
   offsetMainAxis?: number;
+  /**
+   * Show the tooltip on click action
+   */
   triggerOnClick?: boolean;
+  /**
+   * Set the pointer Y offset
+   */
   arrowOffsetY?: number;
+  /**
+   * Set the pointer X offset
+   */
   arrowOffsetX?: number;
+  /**
+   * Trigger element
+   */
   triggerRenderer: () => React.ReactNode;
+  /**
+   * Reference element
+   */
   referenceElement?: VirtualElement;
+  /**
+   * The event handler on tooltip show
+   */
   onOpen?: () => void;
+  /**
+   * The event handler on tooltip hide
+   */
   onClose?: () => void;
 }
 
@@ -40,27 +88,25 @@ const sleep = (milliseconds: number) => {
 
 const baseClass = 'tooltip';
 
-export const Tooltip: React.FC<ITooltipProps> = (props) => {
-  const {
-    triggerRenderer,
-    referenceElement,
-    children,
-    className,
-    theme,
-    placement,
-    isVisible,
-    withFadeAnimation = true,
-    transitionDuration = 200,
-    transitionDelay = 0,
-    hoverOutDelayTimeout = 100,
-    offsetMainAxis = 8,
-    triggerOnClick = false,
-    arrowOffsetY,
-    arrowOffsetX,
-    onOpen,
-    onClose,
-  } = props;
-
+export const Tooltip: React.FC<ITooltipProps> = ({
+  triggerRenderer,
+  referenceElement,
+  children,
+  className,
+  theme,
+  placement,
+  isVisible,
+  withFadeAnimation = true,
+  transitionDuration = 200,
+  transitionDelay = 0,
+  hoverOutDelayTimeout = 100,
+  offsetMainAxis = 8,
+  triggerOnClick = false,
+  arrowOffsetY,
+  arrowOffsetX,
+  onOpen,
+  onClose,
+}) => {
   const isManaged = isVisible !== undefined;
   const arrowRef = React.useRef<HTMLDivElement | null>(null);
   const [visible, setVisibility] = React.useState(isVisible);

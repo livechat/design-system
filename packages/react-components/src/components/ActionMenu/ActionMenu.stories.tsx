@@ -4,7 +4,7 @@ import { MoreHoriz } from '@livechat/design-system-icons/react/tabler';
 import { Icon } from '../Icon';
 import { ActionMenu } from './ActionMenu';
 import { exampleOptions } from './constants';
-import docs from './ActionMenu.mdx';
+import docs from './docs/ActionMenu.mdx';
 
 import './ActionMenu.stories.css';
 

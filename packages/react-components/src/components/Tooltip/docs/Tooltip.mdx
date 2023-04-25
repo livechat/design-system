@@ -1,0 +1,214 @@
+import { Story, Props, Preview, Meta, Canvas } from '@storybook/addon-docs';
+
+import tooltipImage from './tooltip.png';
+import tooltipAnatomyImage from './tooltip-anatomy.png';
+import tooltipLightImage from './tooltip-light.png';
+import tooltipDarkImage from './tooltip-dark.png';
+import tooltipCase1 from './tooltip-case-1.png';
+import tooltipCase2 from './tooltip-case-2.png';
+import tooltipDMCase1 from './tooltip-dm-case-1.png';
+import tooltipDMCase2 from './tooltip-dm-case-2.png';
+
+import tooltipInteractiveImage from './tooltip-interactive.png';
+import tooltipInteractiveAnatomyImage from './tooltip-interactive-anatomy.png';
+import tooltipInteractiveLightImage from './tooltip-interactive-light.png';
+import tooltipInteractiveDarkImage from './tooltip-interactive-dark.png';
+import tooltipInteractiveCase from './tooltip-interactive-case.png';
+import tooltipInteractiveDMCase from './tooltip-interactive-dm-case.png';
+
+
+# Tooltip
+
+[Types](#Types) | [Default tooltip](#DefaultTooltip) | [Interactive tooltip](#InteractiveTooltip) | [Component API](#ComponentAPI)
+
+Tooltips provides contextual information when hover over, focus on, click or tap 
+on an element.
+
+<img src={tooltipImage} />
+<img src={tooltipInteractiveImage} />
+
+#
+## Types <a id="Types" />
+
+- Default tooltip
+- Interactive tooltip
+
+#### Default Tooltip
+<Canvas>
+  <Story 
+    id="components-tooltip--with-controlled-visibility" 
+    parameters={{ layout: "centered" }}
+  />
+</Canvas>
+
+<b>Default tooltip usage:</b>
+
+- Used to clarify the meaning of an icon button 
+- Short hint 
+- Contextual information 
+- Provide additional help or define an item or term
+
+#### Interactive tooltip
+<Canvas>
+  <Story 
+    id="components-tooltip--tooltip-interactive" 
+    parameters={{ layout: "centered" }}
+  />
+</Canvas>
+
+<b>Interactive tooltip usage:</b>
+
+- Promotion 
+- Upselling 
+- In cases of infotips, when we need to include unique information that is variable in a given component
+
+## Default tooltip <a id="DefaultTooltip" />
+<img src={tooltipAnatomyImage} />
+
+1. Content
+2. Pointer
+3. Trigger component
+
+### Usage
+#
+<b>Usage</b>
+
+- Used to clarify the meaning of an icon button 
+- Short hint
+- Contextual information
+- Provide additional help or define an item or term
+
+<b>Behavior on Hover</b>
+
+Tooltips should appear on hover, focus on, click or tap on an element. Providing users with contextual information without the need for additional clicks.
+
+<b>Content</b>
+
+Text only
+
+<b>Limitations</b>
+
+Max <b>140 characters</b> to prevent overwhelming users with too much information.
+
+<b>Size</b>
+
+The size of the tooltip should be proportional to the length of the content. For short tooltips, a smaller size should be used, while longer tooltips should be larger to accommodate more content.
+
+### Theming
+#
+
+<div style={{
+  display: 'flex',
+  flexFlow: 'row'
+}}>
+  <div style={{
+    display: 'flex',
+    flexFlow: 'column'
+  }}>
+    Light
+    <img src={tooltipLightImage} />
+  </div>
+  <div style={{
+    display: 'flex',
+    flexFlow: 'column'
+  }}>
+    Dark
+    <img src={tooltipDarkImage} />
+  </div>
+</div>
+
+<br />
+
+<b>Color tokens</b>
+
+Content: `--content-invert-primary` <br />
+Background: `--surface-invert-primary`
+
+### Real cases
+#
+
+Light theme
+<img src={tooltipCase1} />
+<img src={tooltipCase2} />
+
+Dark theme
+<img src={tooltipDMCase1} />
+<img src={tooltipDMCase2} />
+
+## Interactive tooltip <a id="InteractiveTooltip" />
+<img src={tooltipInteractiveAnatomyImage} />
+
+1. Image, illustration, Gif, Video (Optional)
+2. Title (Optional)
+3. Body text (Optional)
+4. CTA’s (2 max)
+5. Pointer
+6. Trigger component
+
+### Usage
+#
+<b>Usage</b>
+
+- Promotion
+- Upselling
+- In cases of infotips, when we need to include unique information that is variable in a given component 
+
+<b>Behavior on Hover</b>
+
+Tooltips should appear on hover, focus on, click or tap on an element. Providing users with contextual information 
+
+<b>Content</b>
+
+- Illustrations, icons, images, gifs, mp4
+- Title text
+- Description text 
+- CTA’s
+
+<b>Limitations</b>
+
+Need to clarify
+
+<b>Size</b>
+
+Need to clarify
+
+### Theming
+#
+
+<div style={{display: 'flex',flexFlow: 'row'}}>
+  <div style={{display: 'flex',flexFlow: 'column'}}>
+Light <br />
+<img src={tooltipInteractiveLightImage} /> 
+<br />
+
+<b>Color tokens</b>
+
+Surface: `--surface-primary-default` <br />
+Text: `--content-basic-primary` <br />
+CTA: `--action-primary-default`
+  </div>
+  <div style={{display: 'flex',flexFlow: 'column'}}>
+Dark <br />
+<img src={tooltipInteractiveDarkImage} />
+<br />
+
+<b>Color tokens</b>
+
+Surface: `--surface-secondary-default` <br />
+Text: `--content-basic-primary` <br />
+CTA: `--action-primary-default`
+  </div>
+</div>
+
+### Real cases
+#
+
+Light theme
+<img src={tooltipInteractiveCase} />
+
+Dark theme
+<img src={tooltipInteractiveDMCase} />
+
+## Component API <a id="ComponentAPI" />
+
+<Props />

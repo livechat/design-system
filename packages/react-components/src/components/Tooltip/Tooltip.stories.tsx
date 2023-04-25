@@ -1,130 +1,126 @@
 import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
-import { Button, ButtonKind } from '../Button';
+import { Button } from '../Button';
 import { ITooltipProps, Tooltip as TooltipComponent } from './Tooltip';
-import {
-  DropDown,
-  Smiles,
-  CannedResponse,
-  Attachment,
-} from '@livechat/design-system-icons/react/material';
+import { Help } from '@livechat/design-system-icons/react/material';
 
 import { Icon } from '../Icon';
 
 import './Tooltip.stories.css';
-import { Simple } from './Simple';
 import { Info as TooltipInfoComponent } from './Info';
 import { Interactive as TooltipInteractiveComponent } from './Interactive';
 import { UserGuide as TooltipUserGuideComponent } from './UserGuide';
 import { UserGuideStep } from './UserGuideStep';
-import beutifulImage from './placeholder.png';
+import interactiveImage from './docs/gift.svg';
+import docs from './docs/Tooltip.mdx';
+import noop from '../../utils/noop';
 
-const tooltipPlacements = [
-  'bottom',
-  'bottom-end',
-  'bottom-start',
-  'left',
-  'left-end',
-  'left-start',
-  'right',
-  'right-end',
-  'right-start',
-  'top',
-  'top-end',
-  'top-start',
-];
+export default {
+  title: 'Components/Tooltip',
+  component: TooltipComponent,
+  subcomponents: {
+    Interactive: TooltipInteractiveComponent,
+    Info: TooltipInfoComponent,
+  },
+  parameters: {
+    docs: {
+      page: docs,
+    },
+  },
+} as ComponentMeta<typeof TooltipComponent>;
 
-const isVisibleOptions = [true, false, undefined];
-
-const tooltipThemes = ['invert', 'important', 'default'];
-
-export const Tooltip = (args: ITooltipProps): React.ReactElement => (
-  <div
-    style={{
-      height: '100vh',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}
+export const Default = (args: ITooltipProps): React.ReactElement => (
+  <TooltipComponent
+    {...args}
+    triggerRenderer={() => (
+      <div>
+        <Icon source={Help}></Icon>
+      </div>
+    )}
   >
-    <span className={'tooltip-icon-wrap'}>
-      <TooltipSimpleExample {...args}></TooltipSimpleExample>
-    </span>
-    <span className={'tooltip-icon-wrap'}>
-      <Icon source={CannedResponse}></Icon>
-    </span>
-    <span className={'tooltip-icon-wrap'}>
-      <Icon source={Attachment}></Icon>
-    </span>
-  </div>
+    <div>Simple tooltip</div>
+  </TooltipComponent>
 );
-
-Tooltip.args = {
-  placement: 'bottom',
-  isVisible: true,
-  theme: 'default',
-  triggerOnClick: false,
-  arrowOffsetY: 0,
-  arrowOffsetX: 0,
-  offsetMainAxis: 8,
-  withFadeAnimation: true,
-  transitionDuration: 200,
-  transitionDelay: 0,
-  hoverOutDelayTimeout: 100,
+Default.argTypes = {
+  referenceElement: {
+    control: {
+      disable: true,
+    },
+  },
+};
+Default.parameters = {
+  layout: 'centered',
 };
 
-export const TooltipInfo = (args: ITooltipProps): JSX.Element => (
+export const WithControlledVisibility = (): React.ReactElement => (
   <div
     style={{
-      height: '100vh',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
+      marginTop: 50,
+      marginBottom: 30,
     }}
   >
-    <TooltipInfoExample {...args}></TooltipInfoExample>
+    <TooltipComponent
+      theme="invert"
+      placement="top"
+      isVisible
+      triggerRenderer={() => (
+        <div>
+          <Icon source={Help}></Icon>
+        </div>
+      )}
+    >
+      <div>Simple tooltip</div>
+    </TooltipComponent>
   </div>
 );
-
-TooltipInfo.args = {
-  placement: 'bottom',
+WithControlledVisibility.args = {
+  theme: 'invert',
+  placement: 'top',
   isVisible: true,
-  theme: 'default',
-  triggerOnClick: false,
-  arrowOffsetY: 0,
-  arrowOffsetX: 0,
-  offsetMainAxis: 8,
-  withFadeAnimation: true,
-  transitionDuration: 200,
-  transitionDelay: 0,
-  hoverOutDelayTimeout: 100,
+};
+WithControlledVisibility.parameters = {
+  layout: 'centered',
 };
 
-export const TooltipInteractive = (args: ITooltipProps): JSX.Element => (
+export const TooltipInteractive = (): React.ReactElement => (
   <div
     style={{
-      height: '100vh',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
+      marginTop: 250,
+      marginBottom: 250,
     }}
   >
-    <TooltipInteractiveExample {...args}></TooltipInteractiveExample>
+    <TooltipComponent
+      placement="top"
+      isVisible
+      triggerRenderer={() => (
+        <div>
+          <Icon source={Help}></Icon>
+        </div>
+      )}
+    >
+      <TooltipInteractiveComponent
+        header="Header - concise and clear"
+        image={{
+          src: interactiveImage,
+          alt: 'Gift image',
+        }}
+        text="Tooltip content is used to explain the details of elements or features"
+        primaryButton={{
+          handleClick: noop,
+          label: 'Primary Button',
+          kind: 'primary',
+        }}
+        secondaryButton={{
+          handleClick: noop,
+          label: 'Link',
+          kind: 'plain',
+        }}
+      />
+    </TooltipComponent>
   </div>
 );
-
-TooltipInteractive.args = {
-  placement: 'bottom',
-  isVisible: true,
-  theme: 'default',
-  triggerOnClick: false,
-  arrowOffsetY: 0,
-  arrowOffsetX: 0,
-  offsetMainAxis: 8,
-  withFadeAnimation: true,
-  transitionDuration: 200,
-  transitionDelay: 0,
-  hoverOutDelayTimeout: 100,
+TooltipInteractive.parameters = {
+  layout: 'centered',
 };
 
 export const TooltipUserGuide = (args: ITooltipProps): JSX.Element => (
@@ -152,75 +148,6 @@ TooltipUserGuide.args = {
   transitionDuration: 200,
   transitionDelay: 0,
   hoverOutDelayTimeout: 100,
-};
-
-const TooltipSimpleExample: React.FC<ITooltipProps> = (props) => {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <TooltipComponent
-        {...props}
-        triggerRenderer={() => <Icon source={Smiles}></Icon>}
-      >
-        <Simple text="Simple tooltip" />
-      </TooltipComponent>
-    </div>
-  );
-};
-
-const TooltipInteractiveExample: React.FC<ITooltipProps> = (props) => {
-  return (
-    <div
-      style={{
-        width: '500px',
-        height: '600px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <TooltipComponent
-        {...props}
-        className="tooltip-interactive"
-        triggerRenderer={() => (
-          <div>
-            <Button
-              icon={<Icon source={DropDown}></Icon>}
-              iconPosition={'right'}
-            >
-              Open Tooltip
-            </Button>
-          </div>
-        )}
-      >
-        <TooltipInteractiveComponent
-          header="Header - concise and clear"
-          image={{
-            src: beutifulImage,
-            alt: 'image',
-          }}
-          theme={props.theme}
-          text="Tooltip content is used to explain the details of elements or features."
-          closeWithX
-          primaryButton={{
-            handleClick: () => console.log('primary click handler'),
-            label: 'Primary Button',
-            kind: 'primary',
-          }}
-          secondaryButton={{
-            handleClick: () => console.log('secondary click handler'),
-            label: 'Secondary',
-            kind: 'secondary',
-          }}
-        />
-      </TooltipComponent>
-    </div>
-  );
 };
 
 const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
@@ -318,7 +245,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
             <UserGuideStep
               header="Header - concise and clear"
               image={{
-                src: beutifulImage,
+                src: interactiveImage,
                 alt: 'image',
               }}
               text="Tooltip content is used to explain the details of elements or features."
@@ -334,7 +261,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
             <UserGuideStep
               header="Header - concise and clear"
               image={{
-                src: beutifulImage,
+                src: interactiveImage,
                 alt: 'image',
               }}
               text="Tooltip content is used to explain the details of elements or features."
@@ -350,7 +277,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
             <UserGuideStep
               header="Header - concise and clear"
               image={{
-                src: beutifulImage,
+                src: interactiveImage,
                 alt: 'image',
               }}
               text="Tooltip content is used to explain the details of elements or features."
@@ -368,65 +295,3 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
     </div>
   );
 };
-
-const TooltipInfoExample: React.FC<ITooltipProps> = (props) => {
-  return (
-    <div
-      style={{
-        width: '500px',
-        height: '600px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <TooltipComponent
-        {...props}
-        triggerRenderer={() => (
-          <div>
-            <Button
-              icon={<Icon source={DropDown}></Icon>}
-              iconPosition={'right'}
-            >
-              Open Tooltip
-            </Button>
-          </div>
-        )}
-      >
-        <TooltipInfoComponent
-          header="Header - concise and clear"
-          text="Tooltip content is used to explain the details of elements or features."
-          closeWithX
-        />
-      </TooltipComponent>
-    </div>
-  );
-};
-
-export default {
-  title: 'Components/Tooltip',
-  component: TooltipSimpleExample,
-  argTypes: {
-    placement: {
-      options: tooltipPlacements,
-      control: {
-        type: 'select',
-        labels: 'Placement',
-      },
-    },
-    theme: {
-      options: tooltipThemes,
-      control: {
-        type: 'select',
-        labels: 'Theme',
-      },
-    },
-    isVisible: {
-      options: isVisibleOptions,
-      control: {
-        type: 'select',
-        labels: 'Visibility',
-      },
-    },
-  },
-} as ComponentMeta<typeof TooltipSimpleExample>;

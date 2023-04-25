@@ -99,7 +99,7 @@ $base-class: 'tooltip';
   &-image {
     margin-bottom: 12px;
     border-radius: 4px;
-    width: 100%;
+    max-width: 100%;
     max-height: 138px;
     aspect-ratio: 16 / 9;
   }
@@ -115,8 +115,8 @@ $base-class: 'tooltip';
 
   &-close {
     position: absolute;
-    top: -4px;
-    right: -4px;
+    top: 12px;
+    right: 12px;
     cursor: pointer;
   }
 
