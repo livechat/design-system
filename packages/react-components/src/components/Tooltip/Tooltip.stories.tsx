@@ -1,14 +1,13 @@
 import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { Button } from '../Button';
-import { ITooltipProps, Tooltip as TooltipComponent } from './Tooltip';
+import { ITooltipProps, Tooltip } from './Tooltip';
 import { Help } from '@livechat/design-system-icons/react/material';
 
 import { Icon } from '../Icon';
 
 import './Tooltip.stories.css';
-import { Info as TooltipInfoComponent } from './Info';
-import { Interactive as TooltipInteractiveComponent } from './Interactive';
+import { Interactive } from './Interactive';
 import { UserGuide as TooltipUserGuideComponent } from './UserGuide';
 import { UserGuideStep } from './UserGuideStep';
 import interactiveImage from './docs/gift.svg';
@@ -17,20 +16,16 @@ import noop from '../../utils/noop';
 
 export default {
   title: 'Components/Tooltip',
-  component: TooltipComponent,
-  subcomponents: {
-    Interactive: TooltipInteractiveComponent,
-    Info: TooltipInfoComponent,
-  },
+  component: Tooltip,
   parameters: {
     docs: {
       page: docs,
     },
   },
-} as ComponentMeta<typeof TooltipComponent>;
+} as ComponentMeta<typeof Tooltip>;
 
 export const Default = (args: ITooltipProps): React.ReactElement => (
-  <TooltipComponent
+  <Tooltip
     {...args}
     triggerRenderer={() => (
       <div>
@@ -39,7 +34,7 @@ export const Default = (args: ITooltipProps): React.ReactElement => (
     )}
   >
     <div>Simple tooltip</div>
-  </TooltipComponent>
+  </Tooltip>
 );
 Default.argTypes = {
   referenceElement: {
@@ -59,7 +54,7 @@ export const WithControlledVisibility = (): React.ReactElement => (
       marginBottom: 30,
     }}
   >
-    <TooltipComponent
+    <Tooltip
       theme="invert"
       placement="top"
       isVisible
@@ -70,7 +65,7 @@ export const WithControlledVisibility = (): React.ReactElement => (
       )}
     >
       <div>Simple tooltip</div>
-    </TooltipComponent>
+    </Tooltip>
   </div>
 );
 WithControlledVisibility.args = {
@@ -89,7 +84,7 @@ export const TooltipInteractive = (): React.ReactElement => (
       marginBottom: 250,
     }}
   >
-    <TooltipComponent
+    <Tooltip
       placement="top"
       isVisible
       triggerRenderer={() => (
@@ -98,7 +93,7 @@ export const TooltipInteractive = (): React.ReactElement => (
         </div>
       )}
     >
-      <TooltipInteractiveComponent
+      <Interactive
         header="Header - concise and clear"
         image={{
           src: interactiveImage,
@@ -116,7 +111,7 @@ export const TooltipInteractive = (): React.ReactElement => (
           kind: 'plain',
         }}
       />
-    </TooltipComponent>
+    </Tooltip>
   </div>
 );
 TooltipInteractive.parameters = {

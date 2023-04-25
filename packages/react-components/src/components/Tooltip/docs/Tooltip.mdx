@@ -1,4 +1,6 @@
-import { Story, Props, Preview, Meta, Canvas } from '@storybook/addon-docs';
+import { Story, Props, Canvas } from '@storybook/addon-docs';
+import { Interactive } from '../Interactive';
+import { Info } from '../Info';
 
 import tooltipImage from './tooltip.png';
 import tooltipAnatomyImage from './tooltip-anatomy.png';
@@ -19,7 +21,7 @@ import tooltipInteractiveDMCase from './tooltip-interactive-dm-case.png';
 
 # Tooltip
 
-[Types](#Types) | [Default tooltip](#DefaultTooltip) | [Interactive tooltip](#InteractiveTooltip) | [Component API](#ComponentAPI)
+[Types](#Types) | [Default tooltip](#DefaultTooltip) | [Interactive tooltip](#InteractiveTooltip) | [Component API](#ComponentAPI) | [Subcomponents API](#SubomponentsAPI)
 
 Tooltips provides contextual information when hover over, focus on, click or tap 
 on an element.
@@ -212,3 +214,13 @@ Dark theme
 ## Component API <a id="ComponentAPI" />
 
 <Props />
+
+## Subcomponents API <a id="SubomponentsAPI" />
+
+#### Interactive
+Child component for `Tooltip` content
+<Props of={Interactive} />
+
+#### Info
+Child component for `Tooltip` content
+<Props of={Info} />

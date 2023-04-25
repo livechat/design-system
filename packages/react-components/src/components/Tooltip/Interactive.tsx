@@ -8,20 +8,44 @@ import styles from './Tooltip.module.scss';
 const baseClass = 'tooltip';
 
 export const Interactive: React.FC<{
+  /**
+   * The header text
+   */
   header?: string;
+  /**
+   * The content text
+   */
   text: string;
+  /**
+   * Use it to show the image
+   */
   image?: {
     src: string;
     alt: string;
   };
+  /**
+   * Shows the close button with icon that triggers `handleCloseAction`
+   */
   closeWithX?: boolean;
+  /**
+   * The kind of tooltip
+   */
   theme?: 'invert' | 'important';
+  /**
+   * The event handler for close button
+   */
   handleCloseAction?: (ev: React.MouseEvent) => void;
+  /**
+   * Label and event handler for the primary button
+   */
   primaryButton: {
     handleClick: () => void;
     label: string;
     kind?: ButtonKind;
   };
+  /**
+   * Label and event handler for the secondary button
+   */
   secondaryButton: {
     handleClick: () => void;
     label: string;
