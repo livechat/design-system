@@ -219,8 +219,34 @@ Dark theme
 
 #### Interactive
 Child component for `Tooltip` content
+
+```jsx
+<Tooltip {...props}>
+  <Interactive
+    text="Text content"
+    primaryButton={{
+      handleClick: noop,
+      label: 'Button label',
+    }}
+    secondaryButton={{
+      handleClick: noop,
+      label: 'Button label',
+    }}
+  />
+</Tooltip>
+```
+
 <Props of={Interactive} />
 
 #### Info
 Child component for `Tooltip` content
+
+```jsx
+<Tooltip {...props}>
+  <Info
+    text="Text content"
+  />
+</Tooltip>
+```
+
 <Props of={Info} />
