@@ -15,6 +15,7 @@ interface IProps {
   bold?: boolean;
   underline?: boolean;
   strike?: boolean;
+  children?: React.ReactNode;
 }
 
 export const Text: React.FC<IProps> = ({

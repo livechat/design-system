@@ -20,6 +20,7 @@ export interface AlertProps {
   className?: string;
   kind?: AlertKind;
   onClose?: () => void;
+  children?: React.ReactNode;
 }
 
 const IconConfig: Record<AlertKind, { source: IconSource; kind: IconKind }> = {

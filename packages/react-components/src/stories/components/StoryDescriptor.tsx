@@ -2,6 +2,7 @@ import * as React from 'react';
 
 type StoryDescriptorProps = {
   title: string;
+  children?: React.ReactNode;
 };
 
 export const StoryDescriptor: React.FC<StoryDescriptorProps> = ({

@@ -27,6 +27,7 @@ export interface ToastProps extends React.HTMLAttributes<HTMLDivElement> {
   removable?: boolean;
   kind?: ToastKind;
   onClose?: () => void;
+  children?: React.ReactNode;
 }
 
 const iconConfig: Record<ToastKind, { source: IconSource; kind?: IconKind }> = {

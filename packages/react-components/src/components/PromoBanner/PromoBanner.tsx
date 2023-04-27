@@ -17,6 +17,7 @@ const baseClass = 'promo-banner';
 export interface PromoBannerProps {
   className?: string;
   buttonText?: string;
+  children?: React.ReactNode;
   header: string;
   img?: string;
   light?: boolean;

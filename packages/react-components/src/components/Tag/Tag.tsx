@@ -27,6 +27,7 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
   onRemove?(): void;
   icon?: IconSource;
   avatar?: string;
+  children?: React.ReactNode;
 }
 
 const getCustomTextClass = (customColor?: string) => {

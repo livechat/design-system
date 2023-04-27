@@ -9,6 +9,7 @@ export interface FormProps extends React.HTMLAttributes<HTMLFormElement> {
   labelText?: string;
   helperText?: string;
   formFooter?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const baseClass = 'form';

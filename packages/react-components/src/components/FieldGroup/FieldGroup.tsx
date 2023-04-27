@@ -10,6 +10,7 @@ export interface FieldGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   error?: string;
   inline?: boolean;
   stretch?: boolean;
+  children?: React.ReactNode;
 }
 
 const baseClass = 'field-group';

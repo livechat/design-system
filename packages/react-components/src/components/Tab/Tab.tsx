@@ -15,6 +15,7 @@ export type TabProps = HTMLProps & {
   isSelected?: boolean;
   asBadge?: boolean;
   size?: Size;
+  children?: React.ReactNode;
 };
 
 const baseClass = 'tab';

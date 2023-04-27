@@ -34,6 +34,7 @@ export interface UploadBarProps {
   mode?: 'single' | 'multiple';
   onCloseButtonClick?: () => void;
   onRetryButtonClick?: () => void;
+  children?: React.ReactNode;
 }
 
 const getHeaderIcon = (status: ProgressStatus, progressValue: number) => {

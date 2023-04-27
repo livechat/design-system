@@ -13,6 +13,7 @@ import { Size } from 'utils';
 const baseClass = 'picker-trigger';
 
 export interface ITriggerProps {
+  children?: React.ReactNode;
   isSearchDisabled: boolean;
   isDisabled?: boolean;
   isError?: boolean;
