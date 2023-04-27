@@ -27,7 +27,6 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
   onRemove?(): void;
   icon?: IconSource;
   avatar?: string;
-  children?: React.ReactNode;
 }
 
 const getCustomTextClass = (customColor?: string) => {
@@ -39,7 +38,7 @@ const getCustomTextClass = (customColor?: string) => {
     : 'text-black';
 };
 
-export const Tag: React.FC<TagProps> = ({
+export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   className = '',
   children,
   dismissible = false,

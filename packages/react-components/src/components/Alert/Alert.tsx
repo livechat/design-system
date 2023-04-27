@@ -20,7 +20,6 @@ export interface AlertProps {
   className?: string;
   kind?: AlertKind;
   onClose?: () => void;
-  children?: React.ReactNode;
 }
 
 const IconConfig: Record<AlertKind, { source: IconSource; kind: IconKind }> = {
@@ -44,7 +43,7 @@ const IconConfig: Record<AlertKind, { source: IconSource; kind: IconKind }> = {
 
 const baseClass = 'alert';
 
-export const Alert: React.FC<AlertProps> = ({
+export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
   children,
   className,
   kind = 'info',

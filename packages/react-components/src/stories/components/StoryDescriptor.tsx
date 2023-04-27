@@ -2,13 +2,11 @@ import * as React from 'react';
 
 type StoryDescriptorProps = {
   title: string;
-  children?: React.ReactNode;
 };
 
-export const StoryDescriptor: React.FC<StoryDescriptorProps> = ({
-  title,
-  children,
-}) => (
+export const StoryDescriptor: React.FC<
+  React.PropsWithChildren<StoryDescriptorProps>
+> = ({ title, children }) => (
   <div className="story-container">
     <div className="story-title">{title}</div>
     <div className="story-spacer">{children}</div>

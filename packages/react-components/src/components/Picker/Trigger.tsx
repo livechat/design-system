@@ -13,7 +13,6 @@ import { Size } from 'utils';
 const baseClass = 'picker-trigger';
 
 export interface ITriggerProps {
-  children?: React.ReactNode;
   isSearchDisabled: boolean;
   isDisabled?: boolean;
   isError?: boolean;
@@ -26,7 +25,7 @@ export interface ITriggerProps {
   onClear: () => void;
 }
 
-export const Trigger: React.FC<ITriggerProps> = ({
+export const Trigger: React.FC<React.PropsWithChildren<ITriggerProps>> = ({
   children,
   isSearchDisabled,
   isDisabled,

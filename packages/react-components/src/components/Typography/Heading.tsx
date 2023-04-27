@@ -19,10 +19,9 @@ interface IProps {
   as?: string;
   /** Optional custom className */
   className?: string;
-  children?: React.ReactNode;
 }
 
-export const Heading: React.FC<IProps> = ({
+export const Heading: React.FC<React.PropsWithChildren<IProps>> = ({
   as,
   size = 'md',
   children,

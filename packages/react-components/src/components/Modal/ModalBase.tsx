@@ -8,12 +8,11 @@ export interface ModalBaseProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose(): void;
   closeOnEscPress?: boolean;
   closeOnOverlayPress?: boolean;
-  children?: React.ReactNode;
 }
 
 const baseClass = 'modal-base';
 
-export const ModalBase: React.FC<ModalBaseProps> = ({
+export const ModalBase: React.FC<React.PropsWithChildren<ModalBaseProps>> = ({
   children,
   className = '',
   onClose,

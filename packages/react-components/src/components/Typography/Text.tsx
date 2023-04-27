@@ -15,10 +15,9 @@ interface IProps {
   bold?: boolean;
   underline?: boolean;
   strike?: boolean;
-  children?: React.ReactNode;
 }
 
-export const Text: React.FC<IProps> = ({
+export const Text: React.FC<React.PropsWithChildren<IProps>> = ({
   as = 'p',
   size = 'md',
   caps = false,

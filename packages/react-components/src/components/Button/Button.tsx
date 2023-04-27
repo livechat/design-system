@@ -22,7 +22,6 @@ export type ButtonProps = {
   loaderLabel?: string;
   icon?: React.ReactElement;
   iconPosition?: 'left' | 'right';
-  children?: React.ReactNode;
 } & React.ButtonHTMLAttributes<HTMLButtonElement> &
   React.AnchorHTMLAttributes<HTMLAnchorElement>;
 

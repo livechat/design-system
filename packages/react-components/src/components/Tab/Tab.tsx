@@ -15,12 +15,11 @@ export type TabProps = HTMLProps & {
   isSelected?: boolean;
   asBadge?: boolean;
   size?: Size;
-  children?: React.ReactNode;
 };
 
 const baseClass = 'tab';
 
-export const Tab: React.FC<TabProps> = ({
+export const Tab: React.FC<React.PropsWithChildren<TabProps>> = ({
   children,
   className,
   count,
