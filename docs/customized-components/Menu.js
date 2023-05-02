@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Styled from 'rsg-components/Styled'; // eslint-disable-line import/no-unresolved
-import { InputField } from '@livechat/design-system';
+import { InputField, ActionModal } from '@livechat/design-system';
 
 const styles = ({ fontFamily }) => ({
   root: {
@@ -22,8 +22,22 @@ const styles = ({ fontFamily }) => ({
 });
 
 export function Menu({ classes, children, searchTerm, onSearchTermChange }) {
+  const [isVisible, setIsVisible] = React.useState(true);
+
   return (
     <div>
+      {isVisible && (
+        <ActionModal 
+          onClose={() => setIsVisible(false)}
+          heading="Warning!"
+          icon={<AlertCircleIcon height={54} width={54} fill="#424d57" />}
+        >
+          A dark mode is coming to LiveChat and we’ve launched a new system of <a href="https://v1--613a8e945a5665003a05113b.chromatic.com/?path=/story/foundations-color-tokens--page" target="_blank">Color Tokens</a> in 
+          the <a href="https://github.com/livechat/design-system/tree/v1" target="_blank">V1 branch</a>. All V1 components now have color tokens applied. 
+          To support a dark or light theme, apps must use these tokens and components from V1. 
+          This version of the Design System becomes legacy and is no longer supported. Please use <a href="https://github.com/livechat/design-system/tree/v1" target="_blank">V1 branch</a>
+        </ActionModal>
+      )}
       <div className={classes.root}>
         <nav>
           <div className={classes.search}>
@@ -53,3 +67,4 @@ Menu.propTypes = {
 };
 
 export default Styled(styles)(Menu);
+
