@@ -46,7 +46,7 @@ const iconConfig: Record<ToastKind, { source: IconSource; kind?: IconKind }> = {
 
 const baseClass = 'toast';
 
-export const Toast: React.FC<ToastProps> = ({
+export const Toast: React.FC<React.PropsWithChildren<ToastProps>> = ({
   action,
   className,
   children,

@@ -13,7 +13,7 @@ export interface FormProps extends React.HTMLAttributes<HTMLFormElement> {
 
 const baseClass = 'form';
 
-export const Form: React.FC<FormProps> = ({
+export const Form: React.FC<React.PropsWithChildren<FormProps>> = ({
   className,
   children,
   labelText,

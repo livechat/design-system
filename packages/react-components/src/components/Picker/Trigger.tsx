@@ -25,7 +25,7 @@ export interface ITriggerProps {
   onClear: () => void;
 }
 
-export const Trigger: React.FC<ITriggerProps> = ({
+export const Trigger: React.FC<React.PropsWithChildren<ITriggerProps>> = ({
   children,
   isSearchDisabled,
   isDisabled,

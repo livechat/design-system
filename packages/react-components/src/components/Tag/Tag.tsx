@@ -38,7 +38,7 @@ const getCustomTextClass = (customColor?: string) => {
     : 'text-black';
 };
 
-export const Tag: React.FC<TagProps> = ({
+export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   className = '',
   children,
   dismissible = false,

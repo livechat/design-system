@@ -17,7 +17,7 @@ interface IProps {
   strike?: boolean;
 }
 
-export const Text: React.FC<IProps> = ({
+export const Text: React.FC<React.PropsWithChildren<IProps>> = ({
   as = 'p',
   size = 'md',
   caps = false,

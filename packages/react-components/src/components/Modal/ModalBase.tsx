@@ -12,7 +12,7 @@ export interface ModalBaseProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const baseClass = 'modal-base';
 
-export const ModalBase: React.FC<ModalBaseProps> = ({
+export const ModalBase: React.FC<React.PropsWithChildren<ModalBaseProps>> = ({
   children,
   className = '',
   onClose,

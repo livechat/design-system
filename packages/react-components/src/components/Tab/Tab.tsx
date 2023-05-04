@@ -19,7 +19,7 @@ export type TabProps = HTMLProps & {
 
 const baseClass = 'tab';
 
-export const Tab: React.FC<TabProps> = ({
+export const Tab: React.FC<React.PropsWithChildren<TabProps>> = ({
   children,
   className,
   count,

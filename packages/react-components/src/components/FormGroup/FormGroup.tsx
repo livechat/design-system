@@ -12,7 +12,7 @@ export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const baseClass = 'form-group';
 
-export const FormGroup: React.FC<FormGroupProps> = ({
+export const FormGroup: React.FC<React.PropsWithChildren<FormGroupProps>> = ({
   className = '',
   children,
   labelText,

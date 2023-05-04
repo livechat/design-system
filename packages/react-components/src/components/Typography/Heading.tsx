@@ -21,7 +21,7 @@ interface IProps {
   className?: string;
 }
 
-export const Heading: React.FC<IProps> = ({
+export const Heading: React.FC<React.PropsWithChildren<IProps>> = ({
   as,
   size = 'md',
   children,

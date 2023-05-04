@@ -62,7 +62,7 @@ const getHeaderIcon = (status: ProgressStatus, progressValue: number) => {
   );
 };
 
-export const UploadBar: React.FC<UploadBarProps> = ({
+export const UploadBar: React.FC<React.PropsWithChildren<UploadBarProps>> = ({
   children,
   className,
   progressValue,
