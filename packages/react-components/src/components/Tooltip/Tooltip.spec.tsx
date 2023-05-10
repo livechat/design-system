@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render, fireEvent, cleanup, act } from 'test-utils';
+import { render, fireEvent, cleanup, act, waitFor } from 'test-utils';
 import { vi } from 'vitest';
 
 import { Tooltip } from './Tooltip';
@@ -48,10 +48,11 @@ describe('<Tooltip> component', () => {
     cleanup();
   });
 
-  it.skip(`should hide the content if we doesn't hover the button`, () => {
-    const { container, getByRole, getByText } = render(
+  it(`should hide the content if we doesn't hover the button`, async () => {
+    const { container, getByRole, queryByText } = render(
       <Tooltip
         hoverOutDelayTimeout={0}
+        withFadeAnimation={false}
         triggerRenderer={() => <button>Open</button>}
       >
         <div style={{ width: '100px' }}> Test </div>
@@ -67,7 +68,14 @@ describe('<Tooltip> component', () => {
     act(() => {
       fireEvent.mouseOut(getByRole('button', { name: 'Open' }));
     });
-    expect(getByText('Test')).not.toBeVisible();
+
+    await waitFor(
+      () => {
+        expect(queryByText('Test')).not.toBeInTheDocument();
+      },
+      { timeout: 1000 }
+    );
+
     cleanup();
   });
 
