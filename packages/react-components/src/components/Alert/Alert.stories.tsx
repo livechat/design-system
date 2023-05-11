@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { ComponentMeta, Story } from '@storybook/react';
+import { ComponentMeta } from '@storybook/react';
 
 import { Alert as AlertComponent, AlertProps } from './Alert';
+import noop from '../../utils/noop';
+import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
 export default {
   title: 'Components/Alert',
@@ -12,10 +14,14 @@ export default {
     informations that require immediate action or attention.
     `,
   },
-  argTypes: { onClose: { defaultValue: null } },
+  argTypes: {
+    onClose: {
+      action: 'clicked',
+    },
+  },
 } as ComponentMeta<typeof AlertComponent>;
 
-const StoryTemplate: Story<AlertProps> = (args: AlertProps) => (
+export const Default = (args: AlertProps): JSX.Element => (
   <div>
     <AlertComponent {...args}>
       A description with a <b>maximum of 100 characters</b>. That usually means
@@ -24,30 +30,40 @@ const StoryTemplate: Story<AlertProps> = (args: AlertProps) => (
   </div>
 );
 
-export const Alert = StoryTemplate.bind({});
-Alert.args = {};
+export const Kinds = (): JSX.Element => (
+  <div>
+    <StoryDescriptor title="Info">
+      <AlertComponent>
+        A description with a <b>maximum of 100 characters</b>. That usually
+        means only one or two sentences.
+      </AlertComponent>
+    </StoryDescriptor>
+    <StoryDescriptor title="Warning">
+      <AlertComponent kind="warning">
+        A description with a <b>maximum of 100 characters</b>. That usually
+        means only one or two sentences.
+      </AlertComponent>
+    </StoryDescriptor>
+    <StoryDescriptor title="Success">
+      <AlertComponent kind="success">
+        A description with a <b>maximum of 100 characters</b>. That usually
+        means only one or two sentences.
+      </AlertComponent>
+    </StoryDescriptor>
+    <StoryDescriptor title="Error">
+      <AlertComponent kind="error">
+        A description with a <b>maximum of 100 characters</b>. That usually
+        means only one or two sentences.
+      </AlertComponent>
+    </StoryDescriptor>
+  </div>
+);
 
-export const InfoAlert = StoryTemplate.bind({});
-InfoAlert.args = {
-  kind: 'info',
-};
-
-export const WarningAlert = StoryTemplate.bind({});
-WarningAlert.args = {
-  kind: 'warning',
-};
-
-export const SuccessAlert = StoryTemplate.bind({});
-SuccessAlert.args = {
-  kind: 'success',
-};
-
-export const ErrorAlert = StoryTemplate.bind({});
-ErrorAlert.args = {
-  kind: 'error',
-};
-
-export const BannerWithClose = StoryTemplate.bind({});
-BannerWithClose.args = {
-  onClose: () => alert('onClose click'),
-};
+export const BannerWithClose = (): JSX.Element => (
+  <div>
+    <AlertComponent onClose={noop}>
+      A description with a <b>maximum of 100 characters</b>. That usually means
+      only one or two sentences.
+    </AlertComponent>
+  </div>
+);

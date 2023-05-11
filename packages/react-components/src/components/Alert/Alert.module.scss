@@ -52,6 +52,10 @@ $base-class: 'alert';
     width: 24px;
     height: 24px;
     overflow: hidden;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &--info {
