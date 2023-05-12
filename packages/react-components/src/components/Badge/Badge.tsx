@@ -7,10 +7,25 @@ import { formatCount } from './Badge.helpers';
 const baseClass = 'badge';
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
+  /**
+   * Value to display
+   */
   count?: number;
+  /**
+   * Specify the badge kind
+   */
   kind?: 'primary' | 'secondary' | 'tertiary';
+  /**
+   * The maximum value after which a "+" will be displayed next to the number
+   */
   max?: number;
+  /**
+   * Specify the badge size
+   */
   size?: 'large' | 'medium' | 'compact';
+  /**
+   * Specify the badge type
+   */
   type?: 'counter' | 'alert' | 'dot';
 }
 
