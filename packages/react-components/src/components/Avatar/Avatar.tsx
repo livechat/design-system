@@ -21,15 +21,45 @@ type AvatarStatus = 'available' | 'unavailable' | 'unknown';
 type AvatarType = 'image' | 'text';
 
 export interface AvatarProps {
+  /**
+   * Alternate text for an image avatar
+   */
   alt?: string;
+  /**
+   * The CSS class for container
+   */
   className?: string;
+  /**
+   * Specify the background color
+   */
   color?: string;
+  /**
+   * Specify the avatar shape
+   */
   shape?: AvatarShape;
+  /**
+   * Specify the avatar size
+   */
   size?: AvatarSize;
+  /**
+   * Image source for the image avatar
+   */
   src?: string;
+  /**
+   * Displays status dot
+   */
   status?: AvatarStatus;
+  /**
+   * Text for an text avatar
+   */
   text?: string;
+  /**
+   * Specify the avatar type
+   */
   type: AvatarType;
+  /**
+   * Displays rim
+   */
   withRim?: boolean;
 }
 

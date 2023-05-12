@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ComponentMeta, Story } from '@storybook/react';
+import { ComponentMeta } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
@@ -10,15 +10,12 @@ export default {
   component: Avatar,
 } as ComponentMeta<typeof Avatar>;
 
-export const Default: Story<AvatarProps> = (args: AvatarProps) => (
-  <Avatar {...args} />
-);
+export const Default = (args: AvatarProps): JSX.Element => <Avatar {...args} />;
 
 const defaultImage =
   'https://cdn-labs.livechat-files.com/api/file/lc/img/100019504/df59da4b5b0cdb6030efb08787fd255d.jpg';
 const defaultName = 'John Doe';
 
-Default.storyName = 'Avatar';
 Default.args = {
   type: 'text',
   text: defaultName,
