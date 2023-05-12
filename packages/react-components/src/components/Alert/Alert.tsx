@@ -17,8 +17,17 @@ import styles from './Alert.module.scss';
 type AlertKind = 'info' | 'warning' | 'success' | 'error';
 
 export interface AlertProps {
+  /**
+   * The CSS class for container
+   */
   className?: string;
+  /**
+   * Specify the kind of Alert
+   */
   kind?: AlertKind;
+  /**
+   * The optional event handler for close button
+   */
   onClose?: () => void;
 }
 
