@@ -15,12 +15,33 @@ export type ButtonKind =
   | 'subtle';
 
 export type ButtonProps = {
+  /**
+   * Specify the button kind
+   */
   kind?: ButtonKind;
+  /**
+   * Specify the button size
+   */
   size?: Size;
+  /**
+   * Set the loading state
+   */
   loading?: boolean;
+  /**
+   * Set the button for full width
+   */
   fullWidth?: boolean;
+  /**
+   * Text displayed in loading state
+   */
   loaderLabel?: string;
+  /**
+   * Renders given element
+   */
   icon?: React.ReactElement;
+  /**
+   * Specify the place to render element given in `icon` prop
+   */
   iconPosition?: 'left' | 'right';
 } & React.ButtonHTMLAttributes<HTMLButtonElement> &
   React.AnchorHTMLAttributes<HTMLAnchorElement>;
