@@ -19,6 +19,9 @@ export default {
     options: {
       control: false,
     },
+    selected: {
+      control: false,
+    },
     onSelect: { action: 'changed' },
   },
 } as ComponentMeta<typeof Picker>;
