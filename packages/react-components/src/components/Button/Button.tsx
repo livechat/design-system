@@ -12,7 +12,8 @@ export type ButtonKind =
   | 'text'
   | 'plain'
   | 'plain-light'
-  | 'subtle';
+  | 'subtle'
+  | 'float';
 
 export type ButtonProps = {
   kind?: ButtonKind;
