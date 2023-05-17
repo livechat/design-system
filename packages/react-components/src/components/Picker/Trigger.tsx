@@ -21,6 +21,7 @@ export interface ITriggerProps {
   isRequired?: boolean;
   isMultiSelect?: boolean;
   size?: Size;
+  hideClearButton?: boolean;
   onTrigger: (e: React.MouseEvent | KeyboardEvent) => void;
   onClear: () => void;
 }
@@ -35,6 +36,7 @@ export const Trigger: React.FC<React.PropsWithChildren<ITriggerProps>> = ({
   isRequired,
   isMultiSelect,
   size = 'medium',
+  hideClearButton,
   onTrigger,
   onClear,
 }) => {
@@ -80,6 +82,9 @@ export const Trigger: React.FC<React.PropsWithChildren<ITriggerProps>> = ({
     onClear();
   };
 
+  const shouldShowClearButton =
+    !hideClearButton && isItemSelected && !isDisabled && !isRequired;
+
   return (
     <div
       ref={triggerRef}
@@ -94,7 +99,7 @@ export const Trigger: React.FC<React.PropsWithChildren<ITriggerProps>> = ({
           styles[`${baseClass}__controls--${size}`]
         )}
       >
-        {isItemSelected && !isDisabled && !isRequired && (
+        {shouldShowClearButton && (
           <div
             data-testid={`${baseClass}__clear-icon`}
             className={styles[`${baseClass}__clear-icon`]}

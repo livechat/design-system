@@ -7,6 +7,7 @@ import { IPickerListItem } from './PickerList';
 
 import './Picker.stories.css';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import noop from '../../utils/noop';
 
 export default {
   title: 'Components/Picker',
@@ -15,6 +16,12 @@ export default {
     componentSubtitle: `TBD`,
   },
   argTypes: {
+    options: {
+      control: false,
+    },
+    selected: {
+      control: false,
+    },
     onSelect: { action: 'changed' },
   },
 } as ComponentMeta<typeof Picker>;
@@ -48,33 +55,48 @@ Default.args = {
   options: defaultPickerOptions,
 };
 
-export const States = (args: IPickerProps): React.ReactElement => (
+export const States = (): React.ReactElement => (
   <div style={{ ...commonWidth, marginBottom: 100 }}>
     <StoryDescriptor title="Basic">
-      <PickerComponent {...args} />
+      <PickerComponent options={defaultPickerOptions} onSelect={noop} />
     </StoryDescriptor>
     <StoryDescriptor title="Multi select + Basic">
-      <PickerComponent {...args} type="multi" />
+      <PickerComponent
+        options={defaultPickerOptions}
+        onSelect={noop}
+        type="multi"
+      />
     </StoryDescriptor>
     <StoryDescriptor title="Disabled">
-      <PickerComponent {...args} disabled />
+      <PickerComponent
+        options={defaultPickerOptions}
+        onSelect={noop}
+        disabled
+      />
     </StoryDescriptor>
     <StoryDescriptor title="Error">
-      <PickerComponent {...args} error />
+      <PickerComponent options={defaultPickerOptions} onSelect={noop} error />
     </StoryDescriptor>
     <StoryDescriptor title="Error + Disabled">
-      <PickerComponent {...args} disabled error />
+      <PickerComponent
+        options={defaultPickerOptions}
+        onSelect={noop}
+        disabled
+        error
+      />
     </StoryDescriptor>
     <StoryDescriptor title="Disabled + Selected option">
       <PickerComponent
-        {...args}
+        options={defaultPickerOptions}
+        onSelect={noop}
         disabled
         selected={[{ key: 'two', name: 'Option two' }]}
       />
     </StoryDescriptor>
     <StoryDescriptor title="Multi select + Disabled + Selected option">
       <PickerComponent
-        {...args}
+        options={defaultPickerOptions}
+        onSelect={noop}
         type="multi"
         disabled
         selected={[
@@ -85,93 +107,149 @@ export const States = (args: IPickerProps): React.ReactElement => (
     </StoryDescriptor>
   </div>
 );
-States.args = {
-  options: defaultPickerOptions,
-  label: 'Example label',
-};
 
-export const PickerWithGroupedOptions = (
-  args: IPickerProps
-): React.ReactElement => (
+export const PickerWithGroupedOptions = (): React.ReactElement => (
   <div style={{ ...commonWidth, marginBottom: 320 }}>
-    <PickerComponent {...args} />
+    <PickerComponent options={defaultExtendedOptions} onSelect={noop} />
   </div>
 );
-PickerWithGroupedOptions.args = {
-  options: defaultExtendedOptions,
-};
 
 const CustomPickerOption: React.FC = ({ children }) => (
   <div className="custom-picker-option">{children}</div>
 );
 
-export const PickerWithOptionsAsCustomElements = (
-  args: IPickerProps
-): React.ReactElement => (
+export const PickerWithOptionsAsCustomElements = (): React.ReactElement => (
   <div style={{ ...commonWidth, marginBottom: 320 }}>
     <StoryDescriptor title="Single select">
-      <PickerComponent {...args} />
+      <PickerComponent
+        options={[
+          {
+            key: 'one',
+            name: 'Example custom element one',
+            customElement: {
+              listItemBody: (
+                <CustomPickerOption>
+                  <img
+                    className="image"
+                    src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
+                  />
+                  <div>
+                    <div className="title">Example custom element one</div>
+                    <div className="description">Example custom element</div>
+                  </div>
+                </CustomPickerOption>
+              ),
+              selectedItemBody: (
+                <CustomPickerOption>
+                  <img
+                    className="image selected"
+                    src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
+                  />
+                  <div className="title selected">
+                    Example custom element one
+                  </div>
+                </CustomPickerOption>
+              ),
+            },
+          },
+          {
+            key: 'two',
+            name: 'Example custom element two',
+            customElement: {
+              listItemBody: (
+                <CustomPickerOption>
+                  <img
+                    className="image"
+                    src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
+                  />
+                  <div>
+                    <div className="title">Example custom element two</div>
+                    <div className="description">Example custom element</div>
+                  </div>
+                </CustomPickerOption>
+              ),
+              selectedItemBody: (
+                <CustomPickerOption>
+                  <img
+                    className="image selected"
+                    src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
+                  />
+                  <div className="title selected">
+                    Example custom element two
+                  </div>
+                </CustomPickerOption>
+              ),
+            },
+          },
+        ]}
+        onSelect={noop}
+      />
     </StoryDescriptor>
     <StoryDescriptor title="Multi select">
-      <PickerComponent {...args} type="multi" />
+      <PickerComponent
+        options={[
+          {
+            key: 'one',
+            name: 'Example custom element one',
+            customElement: {
+              listItemBody: (
+                <CustomPickerOption>
+                  <img
+                    className="image"
+                    src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
+                  />
+                  <div>
+                    <div className="title">Example custom element one</div>
+                    <div className="description">Example custom element</div>
+                  </div>
+                </CustomPickerOption>
+              ),
+              selectedItemBody: (
+                <CustomPickerOption>
+                  <img
+                    className="image selected"
+                    src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
+                  />
+                  <div className="title selected">
+                    Example custom element one
+                  </div>
+                </CustomPickerOption>
+              ),
+            },
+          },
+          {
+            key: 'two',
+            name: 'Example custom element two',
+            customElement: {
+              listItemBody: (
+                <CustomPickerOption>
+                  <img
+                    className="image"
+                    src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
+                  />
+                  <div>
+                    <div className="title">Example custom element two</div>
+                    <div className="description">Example custom element</div>
+                  </div>
+                </CustomPickerOption>
+              ),
+              selectedItemBody: (
+                <CustomPickerOption>
+                  <img
+                    className="image selected"
+                    src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
+                  />
+                  <div className="title selected">
+                    Example custom element two
+                  </div>
+                </CustomPickerOption>
+              ),
+            },
+          },
+        ]}
+        type="multi"
+        onSelect={noop}
+      />
     </StoryDescriptor>
   </div>
 );
-PickerWithOptionsAsCustomElements.args = {
-  options: [
-    {
-      key: 'one',
-      name: 'Example custom element one',
-      customElement: {
-        listItemBody: (
-          <CustomPickerOption>
-            <img
-              className="image"
-              src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
-            />
-            <div>
-              <div className="title">Example custom element one</div>
-              <div className="description">Example custom element</div>
-            </div>
-          </CustomPickerOption>
-        ),
-        selectedItemBody: (
-          <CustomPickerOption>
-            <img
-              className="image selected"
-              src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
-            />
-            <div className="title selected">Example custom element one</div>
-          </CustomPickerOption>
-        ),
-      },
-    },
-    {
-      key: 'two',
-      name: 'Example custom element two',
-      customElement: {
-        listItemBody: (
-          <CustomPickerOption>
-            <img
-              className="image"
-              src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
-            />
-            <div>
-              <div className="title">Example custom element two</div>
-              <div className="description">Example custom element</div>
-            </div>
-          </CustomPickerOption>
-        ),
-        selectedItemBody: (
-          <CustomPickerOption>
-            <img
-              className="image selected"
-              src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
-            />
-            <div className="title selected">Example custom element two</div>
-          </CustomPickerOption>
-        ),
-      },
-    },
-  ],
-};
