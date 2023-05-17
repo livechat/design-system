@@ -151,16 +151,6 @@ $base-class: 'btn';
     }
   }
 
-  &--small {
-    padding: 2px 12px;
-    min-width: 24px;
-    height: 24px;
-
-    &.#{$base-class}--icon-only {
-      padding: 4px;
-    }
-  }
-
   &--text,
   &--plain,
   &--plain-light {
@@ -256,6 +246,22 @@ $base-class: 'btn';
       box-shadow: none;
       background-color: transparent;
       color: var(--content-basic-disabled);
+    }
+
+    &.#{$base-class}--xsmall {
+      padding: 2px 12px;
+      min-width: 24px;
+      height: 24px;
+
+      &.#{$base-class}--icon-only {
+        padding: 4px;
+
+        svg,
+        span {
+          width: 16px;
+          height: 16px;
+        }
+      }
     }
   }
 
