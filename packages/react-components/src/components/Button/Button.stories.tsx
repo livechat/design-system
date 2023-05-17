@@ -481,12 +481,6 @@ export const kindsAndStates = (args: ButtonProps): React.ReactElement => (
         kind="float"
         icon={<Icon source={MaterialIcons.AddCircle} />}
       />
-      <Button
-        {...args}
-        icon={<Icon source={MaterialIcons.AddCircle} />}
-        size="xsmall"
-        kind="float"
-      />
     </StoryDescriptor>
   </div>
 );

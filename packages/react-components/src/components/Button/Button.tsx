@@ -2,6 +2,7 @@ import * as React from 'react';
 import cx from 'clsx';
 import { Loader } from '../Loader';
 import styles from './Button.module.scss';
+import { Size } from 'utils';
 
 export type ButtonKind =
   | 'basic'
@@ -14,11 +15,9 @@ export type ButtonKind =
   | 'subtle'
   | 'float';
 
-export type ButtonSize = 'xsmall' | 'compact' | 'medium' | 'large';
-
 export type ButtonProps = {
   kind?: ButtonKind;
-  size?: ButtonSize;
+  size?: Size;
   loading?: boolean;
   fullWidth?: boolean;
   loaderLabel?: string;
