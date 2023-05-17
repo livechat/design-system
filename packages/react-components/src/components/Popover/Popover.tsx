@@ -12,24 +12,46 @@ import cssStyles from './Popover.module.scss';
 
 export interface IPopoverProps {
   children?: React.ReactNode;
+  /**
+   * The CSS class for popover container
+   */
   className?: string;
+  /**
+   * The popover placement related to the trigger element
+   */
   placement?: Placement;
+  /**
+   * Set popover visibility
+   */
   isVisible?: boolean;
+  /**
+   * Set the popover placement to keep it in view
+   */
   flipOptions?: Parameters<typeof flip>[0];
+  /**
+   * Set `false` if the menu is not to be closed with a esc press
+   */
+  closeOnEsc?: boolean;
+  /**
+   * Trigger element
+   */
   triggerRenderer: () => React.ReactNode;
+  /**
+   * Optional callback called after popover close
+   */
   onClose?: () => void;
 }
 
-export const Popover: React.FC<IPopoverProps> = (props) => {
-  const {
-    triggerRenderer,
-    onClose,
-    children,
-    className,
-    placement,
-    flipOptions,
-    isVisible = false,
-  } = props;
+export const Popover: React.FC<IPopoverProps> = ({
+  triggerRenderer,
+  onClose,
+  children,
+  className,
+  placement,
+  flipOptions,
+  isVisible = false,
+  closeOnEsc = true,
+}) => {
   const [visible, setVisibility] = React.useState(false);
   const prevVisibleState = React.useRef(false);
 
@@ -90,8 +112,10 @@ export const Popover: React.FC<IPopoverProps> = (props) => {
   };
 
   React.useEffect(() => {
-    document.addEventListener('keydown', handleHideOnEscape);
     document.addEventListener('mousedown', handleDocumentClick);
+    if (closeOnEsc) {
+      document.addEventListener('keydown', handleHideOnEscape);
+    }
     return () => {
       document.removeEventListener('keydown', handleHideOnEscape);
       document.removeEventListener('mousedown', handleDocumentClick);
