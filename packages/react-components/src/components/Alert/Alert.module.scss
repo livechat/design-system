@@ -33,6 +33,7 @@ $base-class: 'alert';
   }
 
   &__close-icon {
+    flex-shrink: 0;
     margin-left: var(--spacing-14);
     border: 0;
     box-shadow: none;
