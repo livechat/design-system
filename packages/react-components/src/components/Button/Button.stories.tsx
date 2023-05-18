@@ -340,27 +340,20 @@ export const KindsAndStates = (): React.ReactElement => (
       />
     </StoryDescriptor>
     <StoryDescriptor title="Float">
-      <Button {...args} kind="float">
-        Float
-      </Button>
+      <Button kind="float">Float</Button>
 
-      <Button {...args} disabled kind="float">
+      <Button disabled kind="float">
         Disabled
       </Button>
-      <Button {...args} loading kind="float">
+      <Button loading kind="float">
         Loading
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Float with icon">
-      <Button
-        {...args}
-        kind="float"
-        icon={<Icon source={MaterialIcons.AddCircle} />}
-      >
+      <Button kind="float" icon={<Icon source={MaterialIcons.AddCircle} />}>
         Float
       </Button>
       <Button
-        {...args}
         disabled
         kind="float"
         icon={<Icon source={MaterialIcons.AddCircle} />}
@@ -368,7 +361,6 @@ export const KindsAndStates = (): React.ReactElement => (
         Disabled
       </Button>
       <Button
-        {...args}
         loading
         kind="float"
         icon={<Icon source={MaterialIcons.AddCircle} />}
@@ -377,19 +369,13 @@ export const KindsAndStates = (): React.ReactElement => (
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Float with icon only">
+      <Button kind="float" icon={<Icon source={MaterialIcons.AddCircle} />} />
       <Button
-        {...args}
-        kind="float"
-        icon={<Icon source={MaterialIcons.AddCircle} />}
-      />
-      <Button
-        {...args}
         disabled
         kind="float"
         icon={<Icon source={MaterialIcons.AddCircle} />}
       />
       <Button
-        {...args}
         loading
         kind="float"
         icon={<Icon source={MaterialIcons.AddCircle} />}
