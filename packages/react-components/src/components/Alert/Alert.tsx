@@ -77,9 +77,7 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
   ...props
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const [containerSize, setContainerSize] = React.useState<string | false>(
-    false
-  );
+  const [containerSize, setContainerSize] = React.useState<string | null>(null);
 
   const mergedClassNames = cx(
     styles[baseClass],
@@ -103,7 +101,7 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
         return setContainerSize('medium');
       }
 
-      return setContainerSize(false);
+      return setContainerSize(null);
     };
 
     const handleResize = debounce(() => {

@@ -68,8 +68,8 @@ $base-class: 'alert';
 
     .#{$base-class}__close-icon {
       position: absolute;
-      top: 20px;
-      right: 20px;
+      top: var(--spacing-5);
+      right: var(--spacing-5);
     }
   }
 
