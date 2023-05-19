@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 
-import { Alert as AlertComponent, AlertProps } from './Alert';
+import { Alert, AlertProps } from './Alert';
 import noop from '../../utils/noop';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
 export default {
   title: 'Components/Alert',
-  component: AlertComponent,
+  component: Alert,
   parameters: {
     componentSubtitle: `
     Alert banners are used to let users know about important 
@@ -15,55 +15,107 @@ export default {
     `,
   },
   argTypes: {
+    primaryButton: {
+      control: false,
+    },
+    secondaryButton: {
+      control: false,
+    },
     onClose: {
       action: 'clicked',
     },
   },
-} as ComponentMeta<typeof AlertComponent>;
+} as ComponentMeta<typeof Alert>;
 
 export const Default = (args: AlertProps): JSX.Element => (
-  <div>
-    <AlertComponent {...args}>
-      A description with a <b>maximum of 100 characters</b>. That usually means
-      only one or two sentences.
-    </AlertComponent>
-  </div>
+  <Alert {...args}>
+    A description with a <b>maximum of 100 characters</b>. That usually means
+    only one or two sentences.
+  </Alert>
 );
 
 export const Kinds = (): JSX.Element => (
   <div>
     <StoryDescriptor title="Info">
-      <AlertComponent>
+      <Alert>
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
-      </AlertComponent>
+      </Alert>
     </StoryDescriptor>
     <StoryDescriptor title="Warning">
-      <AlertComponent kind="warning">
+      <Alert kind="warning">
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
-      </AlertComponent>
+      </Alert>
     </StoryDescriptor>
     <StoryDescriptor title="Success">
-      <AlertComponent kind="success">
+      <Alert kind="success">
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
-      </AlertComponent>
+      </Alert>
     </StoryDescriptor>
     <StoryDescriptor title="Error">
-      <AlertComponent kind="error">
+      <Alert kind="error">
         A description with a <b>maximum of 100 characters</b>. That usually
         means only one or two sentences.
-      </AlertComponent>
+      </Alert>
     </StoryDescriptor>
   </div>
 );
 
-export const BannerWithClose = (): JSX.Element => (
+export const WithCTA = (): JSX.Element => (
   <div>
-    <AlertComponent onClose={noop}>
-      A description with a <b>maximum of 100 characters</b>. That usually means
-      only one or two sentences.
-    </AlertComponent>
+    <StoryDescriptor title="Space to 400px">
+      <div style={{ width: 400 }}>
+        <Alert
+          onClose={noop}
+          primaryButton={{
+            label: 'Primary button',
+            handleClick: noop,
+          }}
+          secondaryButton={{
+            label: 'Link button',
+            handleClick: noop,
+          }}
+        >
+          A description with a <b>maximum of 100 characters</b>. That usually
+          means only one or two sentences.
+        </Alert>
+      </div>
+    </StoryDescriptor>
+    <StoryDescriptor title="Space from 400px to 800px">
+      <div style={{ width: 800 }}>
+        <Alert
+          onClose={noop}
+          primaryButton={{
+            label: 'Primary button',
+            handleClick: noop,
+          }}
+          secondaryButton={{
+            label: 'Link button',
+            handleClick: noop,
+          }}
+        >
+          A description with a <b>maximum of 100 characters</b>. That usually
+          means only one or two sentences.
+        </Alert>
+      </div>
+    </StoryDescriptor>
+    <StoryDescriptor title="Space over 800px">
+      <Alert
+        onClose={noop}
+        primaryButton={{
+          label: 'Primary button',
+          handleClick: noop,
+        }}
+        secondaryButton={{
+          label: 'Link button',
+          handleClick: noop,
+        }}
+      >
+        A description with a <b>maximum of 100 characters</b>. That usually
+        means only one or two sentences.
+      </Alert>
+    </StoryDescriptor>
   </div>
 );
