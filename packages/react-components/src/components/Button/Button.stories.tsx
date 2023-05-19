@@ -339,6 +339,48 @@ export const KindsAndStates = (): React.ReactElement => (
         icon={<Icon source={MaterialIcons.AddCircle} />}
       />
     </StoryDescriptor>
+    <StoryDescriptor title="Float">
+      <Button kind="float">Float</Button>
+
+      <Button disabled kind="float">
+        Disabled
+      </Button>
+      <Button loading kind="float">
+        Loading
+      </Button>
+    </StoryDescriptor>
+    <StoryDescriptor title="Float with icon">
+      <Button kind="float" icon={<Icon source={MaterialIcons.AddCircle} />}>
+        Float
+      </Button>
+      <Button
+        disabled
+        kind="float"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Disabled
+      </Button>
+      <Button
+        loading
+        kind="float"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Loading
+      </Button>
+    </StoryDescriptor>
+    <StoryDescriptor title="Float with icon only">
+      <Button kind="float" icon={<Icon source={MaterialIcons.AddCircle} />} />
+      <Button
+        disabled
+        kind="float"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+      <Button
+        loading
+        kind="float"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+    </StoryDescriptor>
   </div>
 );
 

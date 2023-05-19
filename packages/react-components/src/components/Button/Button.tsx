@@ -1,8 +1,8 @@
 import * as React from 'react';
 import cx from 'clsx';
 import { Loader } from '../Loader';
-import { Size } from 'utils';
 import styles from './Button.module.scss';
+import { Size } from 'utils';
 
 export type ButtonKind =
   | 'basic'
@@ -12,7 +12,8 @@ export type ButtonKind =
   | 'text'
   | 'plain'
   | 'plain-light'
-  | 'subtle';
+  | 'subtle'
+  | 'float';
 
 export type ButtonProps = {
   /**
