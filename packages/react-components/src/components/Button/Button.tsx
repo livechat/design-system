@@ -13,7 +13,8 @@ export type ButtonKind =
   | 'plain'
   | 'plain-light'
   | 'subtle'
-  | 'float';
+  | 'float'
+  | 'dotted';
 
 export type ButtonProps = {
   /**
