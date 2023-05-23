@@ -5,6 +5,7 @@ export { SpacingToken } from './foundations/spacing-token';
 export { ShadowToken } from './foundations/shadow-token';
 export type { Size } from './utils';
 
+export * from './components/ActionMenu';
 export * from './components/Alert';
 export * from './components/Avatar';
 export * from './components/Badge';

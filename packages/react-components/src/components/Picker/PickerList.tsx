@@ -1,10 +1,10 @@
+import * as React from 'react';
 import cx from 'clsx';
 import { Check } from '@livechat/design-system-icons/react/material';
 import { Icon } from '../Icon';
 import styles from './PickerList.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
 import { SELECT_ALL_OPTION_KEY } from './constants';
-import { ReactElement, FC, useState, useRef, useEffect } from 'react';
 
 const baseClass = 'picker-list';
 const itemClassName = `${baseClass}__item`;
@@ -13,8 +13,8 @@ export interface IPickerListItem {
   key: string;
   name: string;
   customElement?: {
-    listItemBody: ReactElement;
-    selectedItemBody: ReactElement;
+    listItemBody: React.ReactElement;
+    selectedItemBody: React.ReactElement;
   };
   groupHeader?: boolean;
   disabled?: boolean;
@@ -32,7 +32,7 @@ export interface IPickerListProps {
   onSelectAll: () => void;
 }
 
-export const PickerList: FC<IPickerListProps> = ({
+export const PickerList: React.FC<IPickerListProps> = ({
   isOpen,
   items,
   selectedItemsKeys,
@@ -47,10 +47,12 @@ export const PickerList: FC<IPickerListProps> = ({
     [styles[`${baseClass}__no-results`]]: items.length === 0,
   });
 
-  const [currentItemKey, setCurrentItemKey] = useState<string | null>(null);
-  const indexRef = useRef(-1);
-  const lastIndexRef = useRef(0);
-  const listRef = useRef<HTMLUListElement>(null);
+  const [currentItemKey, setCurrentItemKey] = React.useState<string | null>(
+    null
+  );
+  const indexRef = React.useRef(-1);
+  const lastIndexRef = React.useRef(0);
+  const listRef = React.useRef<HTMLUListElement>(null);
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === KeyCodes.esc) {
@@ -85,7 +87,7 @@ export const PickerList: FC<IPickerListProps> = ({
     }
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (indexRef.current > -1 && items.length > 0) {
       setCurrentItemKey(items[indexRef.current].key);
     }

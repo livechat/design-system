@@ -201,6 +201,54 @@ $base-class: 'btn';
     }
   }
 
+  &--subtle {
+    border-color: transparent;
+    background-color: transparent;
+    color: var(--content-basic-primary);
+
+    &:hover {
+      border-color: transparent;
+      background-color: var(--surface-primary-hover);
+      color: var(--content-basic-primary);
+    }
+
+    &:active,
+    &:focus {
+      border-color: transparent;
+      background-color: var(--surface-primary-active);
+      color: var(--content-basic-primary);
+    }
+
+    &[aria-disabled='true'] {
+      border-color: transparent;
+      background-color: transparent;
+      color: var(--content-basic-disabled);
+    }
+  }
+
+  &--float {
+    border-radius: 100px;
+    border-color: transparent;
+    box-shadow: var(--shadow-float);
+    background-color: var(--surface-primary-default);
+    color: var(--content-basic-primary);
+
+    &:hover,
+    &:active,
+    &:focus {
+      border-color: transparent;
+      background-color: var(--surface-primary-hover);
+      color: var(--content-basic-primary);
+    }
+
+    &[aria-disabled='true'] {
+      border-color: transparent;
+      box-shadow: none;
+      background-color: transparent;
+      color: var(--content-basic-disabled);
+    }
+  }
+
   &--loading {
     transition: all 0.2s cubic-bezier(0.64, 0, 0.35, 1);
     cursor: progress;

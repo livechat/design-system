@@ -1,5 +1,5 @@
+import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
-import { ReactElement, useState } from 'react';
 
 import { Checkbox as CheckboxComponent, CheckboxProps } from './Checkbox';
 
@@ -9,8 +9,8 @@ export default {
   argTypes: { onChange: { action: 'changed' } },
 } as ComponentMeta<typeof CheckboxComponent>;
 
-export const Checkbox = (args: CheckboxProps): ReactElement => {
-  const [checked, setChecked] = useState(true);
+export const Checkbox = (args: CheckboxProps): React.ReactElement => {
+  const [checked, setChecked] = React.useState(true);
 
   return (
     <CheckboxComponent

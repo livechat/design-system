@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { render, fireEvent } from 'test-utils';
 import { Popover } from './Popover';
 import { vi } from 'vitest';

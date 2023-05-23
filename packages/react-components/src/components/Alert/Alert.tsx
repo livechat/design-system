@@ -1,3 +1,4 @@
+import * as React from 'react';
 import cx from 'clsx';
 import {
   Close as CloseIcon,
@@ -10,15 +11,38 @@ import debounce from 'lodash.debounce';
 
 import { Text } from '../Typography';
 import { Icon, IconSource, IconKind } from '../Icon';
+import { Button } from '../Button';
 
 import styles from './Alert.module.scss';
-import { FC, useEffect, useRef, useState } from 'react';
 
 type AlertKind = 'info' | 'warning' | 'success' | 'error';
 
 export interface AlertProps {
+  /**
+   * The CSS class for container
+   */
   className?: string;
+  /**
+   * Specify the kind of Alert
+   */
   kind?: AlertKind;
+  /**
+   * Shows the primary CTA button
+   */
+  primaryButton?: {
+    handleClick: () => void;
+    label: string;
+  };
+  /**
+   * Shows the secondary CTA button
+   */
+  secondaryButton?: {
+    handleClick: () => void;
+    label: string;
+  };
+  /**
+   * The optional event handler for close button
+   */
   onClose?: () => void;
 }
 
@@ -43,53 +67,78 @@ const IconConfig: Record<AlertKind, { source: IconSource; kind: IconKind }> = {
 
 const baseClass = 'alert';
 
-export const Alert: FC<AlertProps> = ({
+export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
   children,
   className,
+  primaryButton,
+  secondaryButton,
   kind = 'info',
   onClose,
   ...props
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isSmallContainer, setIsSmallContainer] = useState(false);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [containerSize, setContainerSize] = React.useState<string | null>(null);
 
   const mergedClassNames = cx(
     styles[baseClass],
     styles[`${baseClass}--${kind}`],
-    isSmallContainer && styles[`${baseClass}--small`],
+    containerSize === 'medium' && styles[`${baseClass}--medium`],
+    containerSize === 'small' && styles[`${baseClass}--small`],
     className
   );
 
-  useEffect(() => {
-    const handleResize = debounce(() => {
+  React.useEffect(() => {
+    const resize = () => {
       if (containerRef.current && containerRef.current.offsetWidth <= 400) {
-        return setIsSmallContainer(true);
+        return setContainerSize('small');
       }
-      return setIsSmallContainer(false);
+
+      if (
+        containerRef.current &&
+        containerRef.current.offsetWidth > 400 &&
+        containerRef.current.offsetWidth <= 800
+      ) {
+        return setContainerSize('medium');
+      }
+
+      return setContainerSize(null);
+    };
+
+    const handleResize = debounce(() => {
+      resize();
     }, 500);
 
     window.addEventListener('resize', handleResize);
+    resize();
 
     return () => window.removeEventListener('resize', handleResize);
   });
 
   return (
     <div ref={containerRef} className={mergedClassNames} {...props}>
+      <Icon
+        {...IconConfig[kind]}
+        size="large"
+        className={styles[`${baseClass}__icon`]}
+      />
       <div className={styles[`${baseClass}__content`]}>
-        <Icon
-          {...IconConfig[kind]}
-          size="large"
-          className={styles[`${baseClass}__content-icon`]}
-        />
-        <Text
-          as="div"
-          className={cx(
-            styles[`${baseClass}__content-text`],
-            onClose && styles[`${baseClass}__content-text--margin`]
-          )}
-        >
+        <Text as="div" className={styles[`${baseClass}__content__text`]}>
           {children}
         </Text>
+        {(primaryButton || secondaryButton) && (
+          <div className={styles[`${baseClass}__content__cta`]}>
+            {primaryButton && (
+              <Button kind="primary" onClick={primaryButton.handleClick}>
+                {primaryButton.label}
+              </Button>
+            )}
+            {secondaryButton && (
+              <Button kind="text" onClick={secondaryButton.handleClick}>
+                {secondaryButton.label}
+              </Button>
+            )}
+          </div>
+        )}
       </div>
       {onClose && (
         <button

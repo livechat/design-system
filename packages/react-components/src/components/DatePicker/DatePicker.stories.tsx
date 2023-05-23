@@ -1,5 +1,5 @@
+import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
-import { useState } from 'react';
 
 import { DatePicker as DatePickerComponent } from './DatePicker';
 import { IDatePickerProps } from './types';
@@ -68,7 +68,7 @@ const StoryTemplate: Story<IDatePickerProps> = (args: IDatePickerProps) => {
   const argsDisabledDays = args.disabledDays
     ? new Date(args.disabledDays as Date)
     : void 0;
-  const [selectedDate, setSelectedDate] = useState<
+  const [selectedDate, setSelectedDate] = React.useState<
     IDatePickerProps['selectedDays'] | undefined
   >(argsSelectedDate);
 

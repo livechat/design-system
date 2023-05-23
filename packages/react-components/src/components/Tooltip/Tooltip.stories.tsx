@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { Button, ButtonKind } from '../Button';
 import { ITooltipProps, Tooltip as TooltipComponent } from './Tooltip';
@@ -17,7 +18,6 @@ import { Interactive as TooltipInteractiveComponent } from './Interactive';
 import { UserGuide as TooltipUserGuideComponent } from './UserGuide';
 import { UserGuideStep } from './UserGuideStep';
 import beutifulImage from './placeholder.png';
-import { ReactElement, FC, useReducer } from 'react';
 
 const tooltipPlacements = [
   'bottom',
@@ -38,7 +38,7 @@ const isVisibleOptions = [true, false, undefined];
 
 const tooltipThemes = ['invert', 'important', 'default'];
 
-export const Tooltip = (args: ITooltipProps): ReactElement => (
+export const Tooltip = (args: ITooltipProps): React.ReactElement => (
   <div
     style={{
       height: '100vh',
@@ -154,7 +154,7 @@ TooltipUserGuide.args = {
   hoverOutDelayTimeout: 100,
 };
 
-const TooltipSimpleExample: FC<ITooltipProps> = (props) => {
+const TooltipSimpleExample: React.FC<ITooltipProps> = (props) => {
   return (
     <div
       style={{
@@ -173,7 +173,7 @@ const TooltipSimpleExample: FC<ITooltipProps> = (props) => {
   );
 };
 
-const TooltipInteractiveExample: FC<ITooltipProps> = (props) => {
+const TooltipInteractiveExample: React.FC<ITooltipProps> = (props) => {
   return (
     <div
       style={{
@@ -223,7 +223,7 @@ const TooltipInteractiveExample: FC<ITooltipProps> = (props) => {
   );
 };
 
-const TooltipUserGuideExample: FC<ITooltipProps> = (props) => {
+const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
   const reducer = (
     state: { isVisible: boolean; reference: string },
     action: { type: string }
@@ -255,7 +255,7 @@ const TooltipUserGuideExample: FC<ITooltipProps> = (props) => {
     return state;
   };
 
-  const [state, dispatch] = useReducer(reducer, {
+  const [state, dispatch] = React.useReducer(reducer, {
     reference: 'reference1',
     isVisible: false,
   });
@@ -369,7 +369,7 @@ const TooltipUserGuideExample: FC<ITooltipProps> = (props) => {
   );
 };
 
-const TooltipInfoExample: FC<ITooltipProps> = (props) => {
+const TooltipInfoExample: React.FC<ITooltipProps> = (props) => {
   return (
     <div
       style={{

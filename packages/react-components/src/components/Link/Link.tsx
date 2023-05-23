@@ -1,9 +1,10 @@
+import * as React from 'react';
 import cx from 'clsx';
-import { AnchorHTMLAttributes, FC } from 'react';
 
 import styles from './Link.module.scss';
 
-export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface LinkProps
+  extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   bold: boolean;
 }
 
@@ -18,7 +19,7 @@ const baseClass = 'link';
  *
  * Use `<Button href="">` to display as a `<Button>` - <a target="_self" href="/story/components-button--link">see the story</a>.
  */
-export const Link: FC<LinkProps> = ({
+export const Link: React.FC<LinkProps> = ({
   bold = false,
   className = '',
   ...rest

@@ -1,5 +1,5 @@
-import { FC } from 'react';
+import * as React from 'react';
 
-export const Simple: FC<{ text: string }> = ({ text }) => {
+export const Simple: React.FC<{ text: string }> = ({ text }) => {
   return <div>{text}</div>;
 };

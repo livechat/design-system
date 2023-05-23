@@ -1,10 +1,10 @@
-import { ReactElement, Reducer, Ref } from 'react';
+import { Reducer } from 'react';
 import ReactDayPicker, { DayPickerProps } from 'react-day-picker';
 import { ClassNames } from 'react-day-picker/types/ClassNames';
 
 export interface IDatePickerProps
   extends Omit<DayPickerProps, 'todayButton' | 'showWeekNumbers'> {
-  innerRef?: Ref<ReactDayPicker>;
+  innerRef?: React.Ref<ReactDayPicker>;
   range?: boolean;
 }
 
@@ -117,5 +117,5 @@ export interface IRangeDatePickerProps {
   initialToDate?: Date;
   toMonth?: Date;
   onChange: (selected: IRangeDatePickerOption | null) => void;
-  children(payload: IRangeDatePickerChildrenPayload): ReactElement;
+  children(payload: IRangeDatePickerChildrenPayload): React.ReactElement;
 }

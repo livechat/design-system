@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Close } from '@livechat/design-system-icons/react/material';
 import cx from 'clsx';
 import { getContrast } from 'polished';
@@ -6,11 +7,10 @@ import { Text } from '../Typography';
 import { Icon, IconSize, IconSource } from '../Icon';
 
 import styles from './Tag.module.scss';
-import { HTMLAttributes, FC } from 'react';
 
 const baseClass = 'tag';
 
-export interface TagProps extends HTMLAttributes<HTMLDivElement> {
+export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
   kind?:
     | 'default'
     | 'info'
@@ -38,7 +38,7 @@ const getCustomTextClass = (customColor?: string) => {
     : 'text-black';
 };
 
-export const Tag: FC<TagProps> = ({
+export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   className = '',
   children,
   dismissible = false,

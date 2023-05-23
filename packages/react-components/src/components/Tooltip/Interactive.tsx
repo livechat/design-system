@@ -1,9 +1,9 @@
+import * as React from 'react';
 import { Icon } from '../Icon';
 import { Close } from '@livechat/design-system-icons/react/material';
 import { Button, ButtonKind } from '../Button';
 import { getIconType } from './helpers';
 import styles from './Tooltip.module.scss';
-import { FC, MouseEvent } from 'react';
 
 const baseClass = 'tooltip';
 

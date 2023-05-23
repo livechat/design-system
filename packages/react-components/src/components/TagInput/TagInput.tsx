@@ -1,17 +1,10 @@
+import * as React from 'react';
 import cx from 'clsx';
 import { EditableTag } from './EditableTag';
 import { KeyCodes } from '../../utils/keyCodes';
 import { FieldError } from '../FieldError';
 
 import styles from './TagInput.module.scss';
-import {
-  FC,
-  useState,
-  useRef,
-  ChangeEvent,
-  KeyboardEvent,
-  ClipboardEvent,
-} from 'react';
 
 const baseClass = 'tag-input';
 
@@ -36,7 +29,7 @@ export interface TagInputProps {
   size?: 'medium' | 'large';
 }
 
-export const TagInput: FC<TagInputProps> = ({
+export const TagInput: React.FC<TagInputProps> = ({
   id,
   tags,
   onChange,
@@ -53,8 +46,8 @@ export const TagInput: FC<TagInputProps> = ({
     styles[`${baseClass}__input--${size}`]
   );
 
-  const [inputValue, setInputValue] = useState('');
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [inputValue, setInputValue] = React.useState('');
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   const addTag = (value: string) => {
     onChange([...(tags || []), value]);
@@ -67,10 +60,10 @@ export const TagInput: FC<TagInputProps> = ({
     onChange(newTags);
   };
 
-  const onInputChange = (e: ChangeEvent<HTMLInputElement>) =>
+  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setInputValue(e.target.value);
 
-  const onInputKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+  const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (tagSeparatorKeys.includes(e.key)) {
       e.preventDefault();
 
@@ -103,7 +96,7 @@ export const TagInput: FC<TagInputProps> = ({
     onChange(newTags);
   };
 
-  const onPaste = (e: ClipboardEvent<HTMLInputElement>) => {
+  const onPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
     e.preventDefault();
     const text = e.clipboardData.getData('text/plain');
     const newTags = text.split(/[\s,;\n]+/);
