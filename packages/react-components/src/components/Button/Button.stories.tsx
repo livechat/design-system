@@ -381,6 +381,47 @@ export const KindsAndStates = (): React.ReactElement => (
         icon={<Icon source={MaterialIcons.AddCircle} />}
       />
     </StoryDescriptor>
+    <StoryDescriptor title="Dotted">
+      <Button kind="dotted">Float</Button>
+      <Button disabled kind="dotted">
+        Disabled
+      </Button>
+      <Button loading kind="dotted">
+        Loading
+      </Button>
+    </StoryDescriptor>
+    <StoryDescriptor title="Dotted with icon">
+      <Button kind="dotted" icon={<Icon source={MaterialIcons.AddCircle} />}>
+        Float
+      </Button>
+      <Button
+        disabled
+        kind="dotted"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Disabled
+      </Button>
+      <Button
+        loading
+        kind="dotted"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Loading
+      </Button>
+    </StoryDescriptor>
+    <StoryDescriptor title="Dotted with icon only">
+      <Button kind="dotted" icon={<Icon source={MaterialIcons.AddCircle} />} />
+      <Button
+        disabled
+        kind="dotted"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+      <Button
+        loading
+        kind="dotted"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+    </StoryDescriptor>
   </div>
 );
 
