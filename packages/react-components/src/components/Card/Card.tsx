@@ -22,7 +22,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   alt?: string;
   /**
-   * Alternate text for an image card
+   * Array of card buttons
    */
   buttonsOptions?: CardButtonOptions[];
   /**
@@ -30,7 +30,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   description?: string;
   /**
-   * Element to display after card expand
+   * Element to display in the expandable area
    */
   expandableContent?: React.ReactNode;
   /**
