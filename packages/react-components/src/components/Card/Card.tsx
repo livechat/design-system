@@ -17,11 +17,29 @@ export type CardButtonOptions = Pick<
 >;
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Alternate text for an image card
+   */
   alt?: string;
+  /**
+   * Array of card buttons
+   */
   buttonsOptions?: CardButtonOptions[];
+  /**
+   * Card description
+   */
   description?: string;
+  /**
+   * Element to display in the expandable area
+   */
   expandableContent?: React.ReactNode;
+  /**
+   * Image source for the image card
+   */
   src?: string;
+  /**
+   * Card title
+   */
   title?: string;
 }
 
