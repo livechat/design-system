@@ -220,7 +220,7 @@ export const Picker: React.FC<IPickerProps> = ({
       const itemName = item.name.toLowerCase();
       return itemName.includes(search);
     });
-  }, [searchPhrase]);
+  }, [searchPhrase, options]);
 
   const selectedItemsKeys = React.useMemo(() => {
     if (!selected) {
