@@ -3,6 +3,7 @@ import { render } from 'test-utils';
 import noop from '../../utils/noop';
 import { Textarea, TextareaProps } from './Textarea';
 import styles from './Textarea.module.scss';
+import { vi } from 'vitest';
 
 const baseClass = 'textarea';
 
@@ -32,5 +33,22 @@ describe('<Textarea> component', () => {
     const { container } = renderComponent({ error: true });
 
     expect(container.firstChild).toHaveClass(styles[`${baseClass}--error`]);
+  });
+
+  it('should call custom onFocus and onBlur', () => {
+    const customOnFocus = vi.fn();
+    const customOnBlur = vi.fn();
+    const { container } = renderComponent({
+      onFocus: customOnFocus,
+      onBlur: customOnBlur,
+    });
+
+    const textarea = container.querySelector('textarea');
+    textarea?.focus();
+
+    expect(customOnFocus).toHaveBeenCalled();
+
+    textarea?.blur();
+    expect(customOnBlur).toHaveBeenCalled();
   });
 });
