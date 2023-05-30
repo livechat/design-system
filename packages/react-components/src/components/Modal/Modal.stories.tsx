@@ -35,21 +35,6 @@ const defaultModalProps = {
   children: <ModalContent />,
   closeOnEscPress: true,
   closeOnOverlayPress: true,
-  footerLabel: 'Footer label',
-  footerButtons: [
-    {
-      kind: 'secondary',
-      size: 'wide',
-      onClick: action('Secondary action clicked'),
-      children: 'Secondary',
-    },
-    {
-      kind: 'primary',
-      size: 'medium',
-      onClick: action('Primary action clicked'),
-      children: 'Primary',
-    },
-  ],
 };
 
 const StoryTemplate: Story<ModalProps> = ({
@@ -73,6 +58,21 @@ ModalWithCustomHeader.args = {
   headingType: 'labelHeading',
   headerTitle: 'Title',
   headerDescription: 'Description',
+  footerLabel: 'Footer label',
+  footerButtons: [
+    {
+      kind: 'secondary',
+      size: 'wide',
+      onClick: action('Secondary action clicked'),
+      children: 'Secondary',
+    },
+    {
+      kind: 'primary',
+      size: 'medium',
+      onClick: action('Primary action clicked'),
+      children: 'Primary',
+    },
+  ],
 } as ModalProps;
 
 export const ModalWithLabeledHeader = StoryTemplate.bind({});
@@ -82,6 +82,21 @@ ModalWithLabeledHeader.args = {
   headerTitle: 'Title',
   headerDescription: 'Description',
   icon: GreetingQuickReply,
+  footerLabel: 'Footer label',
+  footerButtons: [
+    {
+      kind: 'secondary',
+      size: 'wide',
+      onClick: action('Secondary action clicked'),
+      children: 'Secondary',
+    },
+    {
+      kind: 'primary',
+      size: 'medium',
+      onClick: action('Primary action clicked'),
+      children: 'Primary',
+    },
+  ],
 } as ModalProps;
 
 export const ModalWithFullSpaceContent = StoryTemplate.bind({});
@@ -89,7 +104,6 @@ ModalWithFullSpaceContent.args = {
   ...defaultModalProps,
   children: <ModalFullSpaceContent />,
   fullSpaceContent: true,
-  footer: null,
 } as ModalProps;
 
 export const ModalPortal = ({
