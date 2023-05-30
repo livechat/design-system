@@ -1,16 +1,24 @@
 import * as React from 'react';
 import cx from 'clsx';
 import { ModalBaseProps, ModalBase } from './ModalBase';
-import { Heading } from '../Typography';
+import { IModalFooterProps, NewModalFooter } from './ModalFooter';
 
 import styles from './Modal.module.scss';
 import { ModalCloseButton } from './ModalCloseButton';
+import { NewModalHeader } from './ModalHeader';
+import { IconSource } from 'components/Icon';
 
 export interface ModalProps extends ModalBaseProps {
+  headingType?: 'labelHeading' | 'heading';
   heading?: React.ReactNode;
   labelHeading?: React.ReactNode;
   fullSpaceContent?: boolean;
   footer?: React.ReactNode;
+  footerButtons?: IModalFooterProps['buttons'];
+  footerLabel?: React.ReactNode;
+  headerTitle?: string;
+  headerDescription?: string;
+  icon?: IconSource;
 }
 
 const baseClass = 'modal';
@@ -18,10 +26,13 @@ const baseClass = 'modal';
 export const Modal: React.FC<ModalProps> = ({
   children,
   className = '',
-  heading,
-  labelHeading,
+  headingType = 'heading',
+  headerTitle = '',
+  headerDescription = '',
   fullSpaceContent,
-  footer,
+  footerButtons,
+  footerLabel,
+  icon,
   onClose,
   ...props
 }) => {
@@ -35,34 +46,18 @@ export const Modal: React.FC<ModalProps> = ({
 
   return (
     <ModalBase className={mergedClassNames} onClose={onClose} {...props}>
-      {labelHeading && (
-        <div className={styles[`${baseClass}__label-header`]}>
-          <Heading
-            size="xs"
-            as="div"
-            className={styles[`${baseClass}__label-heading`]}
-          >
-            {labelHeading}
-          </Heading>
-          <ModalCloseButton
-            labelType={!!labelHeading}
-            customColor={`var(--color-white)`}
-            onClick={onCloseButtonClick}
-          />
-        </div>
+      {headingType === 'heading' || headingType === 'labelHeading' ? (
+        <NewModalHeader
+          headingType={headingType}
+          headerTitle={headerTitle}
+          headerDescription={headerDescription}
+          icon={icon}
+          onClose={onClose}
+        />
+      ) : null}
+      {headingType !== 'labelHeading' && (
+        <ModalCloseButton onClick={onCloseButtonClick} />
       )}
-      {!labelHeading && heading && (
-        <div className={styles[`${baseClass}__header`]}>
-          <Heading
-            size="sm"
-            as="div"
-            className={styles[`${baseClass}__heading`]}
-          >
-            {heading}
-          </Heading>
-        </div>
-      )}
-      {!labelHeading && <ModalCloseButton onClick={onCloseButtonClick} />}
       <div
         data-testid="modal-body"
         className={cx(
@@ -72,7 +67,9 @@ export const Modal: React.FC<ModalProps> = ({
       >
         {children}
       </div>
-      {footer && <div className={styles[`${baseClass}__footer`]}>{footer}</div>}
+      {footerButtons || footerLabel ? (
+        <NewModalFooter buttons={footerButtons}>{footerLabel}</NewModalFooter>
+      ) : null}
     </ModalBase>
   );
 };

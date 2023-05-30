@@ -10,10 +10,13 @@ import {
 } from './index';
 import {
   ModalContent,
-  ModalFooter,
   ModalFullSpaceContent,
   ModalHeader,
 } from './StoriesComponents';
+
+import { action } from '@storybook/addon-actions';
+import { NewModalHeader } from './ModalHeader';
+import { GreetingQuickReply } from '@livechat/design-system-icons/react/material';
 
 export default {
   title: 'Components/Modal',
@@ -32,7 +35,21 @@ const defaultModalProps = {
   children: <ModalContent />,
   closeOnEscPress: true,
   closeOnOverlayPress: true,
-  footer: <ModalFooter />,
+  footerLabel: 'Footer label',
+  footerButtons: [
+    {
+      kind: 'secondary',
+      size: 'wide',
+      onClick: action('Secondary action clicked'),
+      children: 'Secondary',
+    },
+    {
+      kind: 'primary',
+      size: 'medium',
+      onClick: action('Primary action clicked'),
+      children: 'Primary',
+    },
+  ],
 };
 
 const StoryTemplate: Story<ModalProps> = ({
@@ -53,13 +70,18 @@ Modal.args = {
 export const ModalWithCustomHeader = StoryTemplate.bind({});
 ModalWithCustomHeader.args = {
   ...defaultModalProps,
-  heading: <ModalHeader />,
+  headingType: 'labelHeading',
+  headerTitle: 'Title',
+  headerDescription: 'Description',
 } as ModalProps;
 
 export const ModalWithLabeledHeader = StoryTemplate.bind({});
 ModalWithLabeledHeader.args = {
   ...defaultModalProps,
-  labelHeading: <ModalHeader color="#fff" />,
+  headingType: 'heading',
+  headerTitle: 'Title',
+  headerDescription: 'Description',
+  icon: GreetingQuickReply,
 } as ModalProps;
 
 export const ModalWithFullSpaceContent = StoryTemplate.bind({});

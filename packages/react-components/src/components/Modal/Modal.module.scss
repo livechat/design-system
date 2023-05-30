@@ -122,11 +122,24 @@
   &__footer {
     box-sizing: border-box;
     display: flex;
-    flex: 0 0 64px;
-    justify-content: flex-end;
+    flex-direction: row;
+    justify-content: space-between;
     box-shadow: inset 0 1px 0 var(--border-basic-tertiary);
-    padding: 14px 20px;
+    padding: 16px 20px;
     width: 100%;
     height: 64px;
+  }
+
+  &__label-footer {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    padding-left: 8px;
+    width: auto;
   }
 }
