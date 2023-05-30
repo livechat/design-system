@@ -2,6 +2,8 @@ import * as React from 'react';
 import cx from 'clsx';
 import { ModalBaseProps, ModalBase } from './ModalBase';
 import { Heading } from '../Typography';
+import { ModalHeader } from './ModalHeader';
+import { ModalFooter } from './ModalFooter';
 
 import styles from './Modal.module.scss';
 import { ModalCloseButton } from './ModalCloseButton';
@@ -35,34 +37,11 @@ export const Modal: React.FC<ModalProps> = ({
 
   return (
     <ModalBase className={mergedClassNames} onClose={onClose} {...props}>
-      {labelHeading && (
-        <div className={styles[`${baseClass}__label-header`]}>
-          <Heading
-            size="xs"
-            as="div"
-            className={styles[`${baseClass}__label-heading`]}
-          >
-            {labelHeading}
-          </Heading>
-          <ModalCloseButton
-            labelType={!!labelHeading}
-            customColor={`var(--color-white)`}
-            onClick={onCloseButtonClick}
-          />
-        </div>
-      )}
-      {!labelHeading && heading && (
-        <div className={styles[`${baseClass}__header`]}>
-          <Heading
-            size="sm"
-            as="div"
-            className={styles[`${baseClass}__heading`]}
-          >
-            {heading}
-          </Heading>
-        </div>
-      )}
-      {!labelHeading && <ModalCloseButton onClick={onCloseButtonClick} />}
+      <ModalHeader
+        labelHeading={labelHeading}
+        heading={heading}
+        onClose={onClose}
+      />
       <div
         data-testid="modal-body"
         className={cx(
@@ -72,7 +51,7 @@ export const Modal: React.FC<ModalProps> = ({
       >
         {children}
       </div>
-      {footer && <div className={styles[`${baseClass}__footer`]}>{footer}</div>}
+      {footer && <ModalFooter>{footer}</ModalFooter>}
     </ModalBase>
   );
 };
