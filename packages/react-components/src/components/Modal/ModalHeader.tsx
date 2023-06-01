@@ -1,5 +1,4 @@
 import React from 'react';
-import cx from 'clsx';
 import { Heading } from '../Typography';
 import { ModalCloseButton } from './ModalCloseButton';
 import styles from './Modal.module.scss';
@@ -7,14 +6,18 @@ import styles from './Modal.module.scss';
 const baseClass = 'modal';
 
 interface ModalHeaderProps {
-  labelHeading?: React.ReactNode;
-  heading?: React.ReactNode;
+  headerType?: 'labelHeading' | 'heading';
+  title?: React.ReactNode;
+  icon?: React.ReactNode;
+  children?: React.ReactNode;
   onClose: () => void;
 }
 
 export const ModalHeader: React.FC<ModalHeaderProps> = ({
-  labelHeading,
-  heading,
+  headerType,
+  title,
+  icon,
+  children,
   onClose,
 }) => {
   const onCloseButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -23,7 +26,7 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
     onClose();
   };
 
-  if (labelHeading) {
+  if (headerType === 'labelHeading') {
     return (
       <div className={styles[`${baseClass}__label-header`]}>
         <Heading
@@ -31,10 +34,10 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
           as="div"
           className={styles[`${baseClass}__label-heading`]}
         >
-          {labelHeading}
+          {title}
         </Heading>
         <ModalCloseButton
-          labelType={!!labelHeading}
+          labelType={!!title}
           customColor={`var(--color-white)`}
           onClick={onCloseButtonClick}
         />
@@ -42,12 +45,16 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
     );
   }
 
-  if (heading) {
+  if (headerType === 'heading') {
     return (
       <div className={styles[`${baseClass}__header`]}>
-        <Heading size="sm" as="div" className={styles[`${baseClass}__heading`]}>
-          {heading}
-        </Heading>
+        <div className="heading-wrapper">
+          {icon && <div className="heading-icon">{icon}</div>}
+          <div className="heading">
+            <div>{title}</div>
+            {children && <div className="heading-description">{children}</div>}
+          </div>
+        </div>
         <ModalCloseButton onClick={onCloseButtonClick} />
       </div>
     );
