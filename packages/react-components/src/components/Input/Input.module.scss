@@ -54,6 +54,10 @@
     border-color: var(--border-basic-negative);
   }
 
+  &--xsmall {
+    height: 24px;
+  }
+
   &--compact {
     height: 32px;
   }
@@ -63,7 +67,7 @@
   }
 
   &--large {
-    height: 40px;
+    height: 44px;
   }
 
   &__icon {
@@ -72,15 +76,15 @@
     }
 
     &--left {
-      margin-right: 9px;
+      margin-right: 8px;
     }
 
     &--right {
-      margin-left: 9px;
+      margin-left: 8px;
     }
   }
 
   &__visibility-button {
-    margin-left: 9px;
+    margin-left: 8px;
   }
 }
