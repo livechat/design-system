@@ -3,6 +3,7 @@
 $base-class: 'picker-list';
 
 .#{$base-class} {
+  color-scheme: var(--color-scheme);
   box-sizing: border-box;
   position: absolute;
   top: calc(100% + 4px);
