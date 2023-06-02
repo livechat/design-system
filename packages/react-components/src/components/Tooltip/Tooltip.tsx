@@ -200,6 +200,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   function renderFloatingComponent() {
     if (withFadeAnimation) {
       const enter = css`
+        pointer-events: none;
         opacity: 0;
       `;
 
@@ -208,6 +209,10 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
         transition-property: opacity;
         transition-duration: ${transitionDuration}ms;
         transition-delay: ${transitionDelay}ms;
+      `;
+
+      const enterDone = css`
+        pointer-events: initial;
       `;
 
       const exit = css`
@@ -231,6 +236,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
           timeout={timeout}
           classNames={{
             enter: enter,
+            enterDone: enterDone,
             enterActive: enterActive,
             exit: exit,
             exitActive: exitActive,
