@@ -113,14 +113,22 @@ export const Popover: React.FC<IPopoverProps> = ({
 
   React.useEffect(() => {
     document.addEventListener('mousedown', handleDocumentClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleDocumentClick);
+    };
+  }, []);
+
+  React.useEffect(() => {
     if (closeOnEsc) {
       document.addEventListener('keydown', handleHideOnEscape);
     }
     return () => {
-      document.removeEventListener('keydown', handleHideOnEscape);
-      document.removeEventListener('mousedown', handleDocumentClick);
+      if (closeOnEsc) {
+        document.removeEventListener('keydown', handleHideOnEscape);
+      }
     };
-  }, []);
+  }, [closeOnEsc]);
 
   const mergedClassNames = cx(cssStyles['popover'], className, {
     [cssStyles['popover--visible']]: visible,
