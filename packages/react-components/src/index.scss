@@ -3,6 +3,7 @@
 @use './themes/dark';
 @use './foundations/spacing';
 @use './foundations/shadow';
+@use './foundations/color-scheme';
 
 *[class^='lc-'] {
   box-sizing: border-box;
