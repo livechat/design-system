@@ -17,15 +17,34 @@ const tagSeparatorKeys = [
 ];
 const tagRemoveKeys = [KeyCodes.backspace, KeyCodes.delete];
 
-type Tags = string[];
-
 export interface TagInputProps {
+  /**
+   * Set the id for input
+   */
   id?: string;
+  /**
+   * Set the error message
+   */
   error?: string;
-  tags?: Tags;
-  onChange: (tags: Tags) => void;
+  /**
+   * Array of defined tags
+   */
+  tags?: string[];
+  /**
+   * The event handler for modify tags array
+   */
+  onChange: (tags: string[]) => void;
+  /**
+   * Set the input placeholder
+   */
   placeholder?: string;
+  /**
+   * Set the custom validation for provided items
+   */
   validator?: (val: string) => boolean;
+  /**
+   * Specify the input size
+   */
   size?: 'medium' | 'large';
 }
 
