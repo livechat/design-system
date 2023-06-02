@@ -36,13 +36,6 @@ export const Modal: React.FC<ModalProps> = ({
     (child) => React.isValidElement(child) && child.type === ModalFooter
   ) as React.ReactElement;
 
-  const modalContent = React.Children.toArray(children).filter(
-    (child) =>
-      React.isValidElement(child) &&
-      child.type !== ModalHeader &&
-      child.type !== ModalFooter
-  );
-
   const hasModalHeader = !!modalHeader;
 
   return (
@@ -56,7 +49,7 @@ export const Modal: React.FC<ModalProps> = ({
           fullSpaceContent && styles[`${baseClass}__body--full-space`]
         )}
       >
-        {modalContent}
+        {children}
       </div>
       {modalFooter}
     </ModalBase>
