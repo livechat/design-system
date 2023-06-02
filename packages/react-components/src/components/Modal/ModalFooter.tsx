@@ -2,7 +2,7 @@ import React from 'react';
 import cx from 'clsx';
 import styles from './Modal.module.scss';
 
-const baseClass = 'modal';
+const baseClass = 'modal-footer';
 
 interface ModalFooterProps {
   children: React.ReactNode;

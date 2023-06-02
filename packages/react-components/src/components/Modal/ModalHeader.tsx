@@ -1,24 +1,27 @@
 import React from 'react';
+import cx from 'clsx';
 import { Heading } from '../Typography';
+import { Icon, IconSource } from '../Icon';
+
 import { ModalCloseButton } from './ModalCloseButton';
 import styles from './Modal.module.scss';
 
-const baseClass = 'modal';
+const baseClass = 'modal-header';
 
 interface ModalHeaderProps {
   headerType?: 'labelHeading' | 'heading';
   title?: React.ReactNode;
-  icon?: React.ReactNode;
-  children?: React.ReactNode;
+  icon?: IconSource;
   onClose: () => void;
+  children?: React.ReactNode;
 }
 
 export const ModalHeader: React.FC<ModalHeaderProps> = ({
   headerType,
   title,
   icon,
-  children,
   onClose,
+  children,
 }) => {
   const onCloseButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -34,7 +37,23 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
           as="div"
           className={styles[`${baseClass}__label-heading`]}
         >
-          {title}
+          <div className="heading-wrapper">
+            {icon && (
+              <Icon
+                className={styles[`${baseClass}__heading-icon`]}
+                source={icon}
+              />
+            )}
+            <div className={styles[`${baseClass}__heading-header`]}>
+              <div>{title}</div>
+
+              {children && (
+                <div className={styles[`${baseClass}__heading-description`]}>
+                  {children}
+                </div>
+              )}
+            </div>
+          </div>
         </Heading>
         <ModalCloseButton
           labelType={!!title}
@@ -48,17 +67,29 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
   if (headerType === 'heading') {
     return (
       <div className={styles[`${baseClass}__header`]}>
-        <div className="heading-wrapper">
-          {icon && <div className="heading-icon">{icon}</div>}
-          <div className="heading">
-            <div>{title}</div>
-            {children && <div className="heading-description">{children}</div>}
+        <Heading size="sm" as="div" className={styles[`${baseClass}__heading`]}>
+          <div className="heading-wrapper">
+            {icon && (
+              <Icon
+                className={styles[`${baseClass}__heading-icon`]}
+                source={icon}
+              />
+            )}
+            <div className={styles[`${baseClass}__heading-header`]}>
+              <div>{title}</div>
+
+              {children && (
+                <div className={styles[`${baseClass}__heading-description`]}>
+                  {children}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        </Heading>
         <ModalCloseButton onClick={onCloseButtonClick} />
       </div>
     );
   }
 
-  return <ModalCloseButton onClick={onCloseButtonClick} />;
+  return null;
 };
