@@ -57,7 +57,7 @@ $base-class: 'promo-banner';
   }
 
   .#{$base-class}__wrapper {
-    max-width: 680px;
+    max-width: 640px;
   }
 
   .#{$base-class}__footer {
@@ -90,7 +90,7 @@ $base-class: 'promo-banner';
 
     .#{$base-class}__wrapper {
       min-width: 180px;
-      max-width: 680px;
+      max-width: 720px;
     }
 
     .#{$base-class}__footer {

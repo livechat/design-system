@@ -15,14 +15,41 @@ const RESIZE_DEBOUNCE_TRESHOLD = 500;
 const baseClass = 'promo-banner';
 
 export interface PromoBannerProps {
+  /**
+   * Specify an optional className to be applied to the container node
+   */
   className?: string;
+  /**
+   * Set the primary button text
+   */
   buttonText?: string;
+  /**
+   * Set the header text
+   */
   header: string;
+  /**
+   * Set the image source to display it
+   */
   img?: string;
+  /**
+   * Specify the banner kind
+   */
   light?: boolean;
+  /**
+   * Set the link button text
+   */
   linkText?: string;
+  /**
+   * Event handler for primary button press
+   */
   onButtonClick?: () => void;
+  /**
+   * Event handler for close button press
+   */
   onClose?: () => void;
+  /**
+   * Event handler for link button press
+   */
   onLinkClick?: () => void;
 }
 
