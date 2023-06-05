@@ -32,7 +32,7 @@ $base-class: 'promo-banner';
   }
 
   &__header {
-    margin-bottom: 8px;
+    margin-bottom: var(--spacing-2);
     font-size: 16px;
     font-weight: 600;
   }
@@ -44,7 +44,7 @@ $base-class: 'promo-banner';
   }
 
   &__button-text {
-    margin-right: 24px;
+    margin-right: var(--spacing-6);
   }
 
   &--light {
@@ -53,7 +53,7 @@ $base-class: 'promo-banner';
   }
 
   .#{$base-class}__img {
-    margin-right: 20px;
+    margin-right: var(--spacing-5);
   }
 
   .#{$base-class}__wrapper {
@@ -63,7 +63,7 @@ $base-class: 'promo-banner';
   .#{$base-class}__footer {
     display: flex;
     flex-shrink: 0;
-    margin-top: 12px;
+    margin-top: var(--spacing-3);
   }
 
   &--small {
@@ -74,18 +74,18 @@ $base-class: 'promo-banner';
     }
 
     .#{$base-class}__img {
-      margin-bottom: 12px;
+      margin-bottom: var(--spacing-3);
     }
 
     .#{$base-class}__footer {
       display: flex;
-      margin-top: 12px;
+      margin-top: var(--spacing-3);
     }
   }
 
   &--large {
     .#{$base-class}__img {
-      margin-right: 20px;
+      margin-right: var(--spacing-5);
     }
 
     .#{$base-class}__wrapper {
