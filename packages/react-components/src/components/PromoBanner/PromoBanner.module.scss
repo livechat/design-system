@@ -9,7 +9,7 @@ $base-class: 'promo-banner';
   border: 1px solid var(--border-basic-secondary);
   border-radius: 4px;
   background-color: var(--surface-secondary-default);
-  padding: 20px;
+  padding: var(--spacing-5);
   width: 100%;
   min-width: 180px;
   word-break: break-word;

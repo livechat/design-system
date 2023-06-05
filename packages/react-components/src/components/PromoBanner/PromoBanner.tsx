@@ -7,6 +7,7 @@ import { Button } from '../Button';
 import { Icon } from '../Icon';
 
 import styles from './PromoBanner.module.scss';
+import { Text } from '../Typography';
 
 const SMALL_CONTAINER_WIDTH_TRESHOLD = 400;
 const LARGE_CONTAINER_WIDTH_TRESHOLD = 800;
@@ -139,7 +140,7 @@ export const PromoBanner: React.FC<React.PropsWithChildren<PromoBannerProps>> =
           {img && <img src={img} className={styles[`${baseClass}__img`]} />}
           <div className={styles[`${baseClass}__wrapper`]}>
             <div className={styles[`${baseClass}__header`]}>{header}</div>
-            <div>{children}</div>
+            <Text as="div">{children}</Text>
             {containerSize !== 'large' && footer}
           </div>
           {containerSize === 'large' && footer}
