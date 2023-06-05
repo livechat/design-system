@@ -106,19 +106,18 @@ export const Popover: React.FC<IPopoverProps> = ({
   }
 
   const handleHideOnEscape = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') {
+    if (closeOnEsc && event.key === 'Escape') {
       setVisibility(false);
     }
   };
 
   React.useEffect(() => {
     document.addEventListener('mousedown', handleDocumentClick);
-    if (closeOnEsc) {
-      document.addEventListener('keydown', handleHideOnEscape);
-    }
+    document.addEventListener('keydown', handleHideOnEscape);
+
     return () => {
-      document.removeEventListener('keydown', handleHideOnEscape);
       document.removeEventListener('mousedown', handleDocumentClick);
+      document.removeEventListener('keydown', handleHideOnEscape);
     };
   }, []);
 
