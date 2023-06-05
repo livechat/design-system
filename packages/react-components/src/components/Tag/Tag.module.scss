@@ -78,10 +78,12 @@
 
   &--medium {
     padding: 1px 8px;
+    height: 24px;
   }
 
   &--large {
     padding: 5px 12px;
+    height: 32px;
   }
 
   &--outline {
@@ -115,7 +117,7 @@
     }
 
     &.tag--large {
-      padding-left: 6px;
+      padding-left: 8px;
     }
   }
 
@@ -125,7 +127,7 @@
     }
 
     &.tag--large {
-      padding-right: 6px;
+      padding-right: 8px;
     }
   }
 
