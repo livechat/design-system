@@ -47,7 +47,7 @@ $base-class: 'date-picker';
     left: 50%;
     justify-content: space-between;
     transform: translateX(-50%);
-    width: calc(100% - 18px);
+    width: 100%;
   }
 
   &__nav-button {
@@ -294,5 +294,6 @@ $base-class: 'date-picker';
 
   .#{$base-class}__navbar-buttons-wrapper {
     display: flex;
+    gap: 4px;
   }
 }
