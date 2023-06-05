@@ -106,29 +106,20 @@ export const Popover: React.FC<IPopoverProps> = ({
   }
 
   const handleHideOnEscape = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') {
+    if (closeOnEsc && event.key === 'Escape') {
       setVisibility(false);
     }
   };
 
   React.useEffect(() => {
     document.addEventListener('mousedown', handleDocumentClick);
+    document.addEventListener('keydown', handleHideOnEscape);
 
     return () => {
       document.removeEventListener('mousedown', handleDocumentClick);
+      document.removeEventListener('keydown', handleHideOnEscape);
     };
   }, []);
-
-  React.useEffect(() => {
-    if (closeOnEsc) {
-      document.addEventListener('keydown', handleHideOnEscape);
-    }
-    return () => {
-      if (closeOnEsc) {
-        document.removeEventListener('keydown', handleHideOnEscape);
-      }
-    };
-  }, [closeOnEsc]);
 
   const mergedClassNames = cx(cssStyles['popover'], className, {
     [cssStyles['popover--visible']]: visible,
