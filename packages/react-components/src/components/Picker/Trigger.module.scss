@@ -43,6 +43,7 @@ $base-class: 'picker-trigger';
     overflow: hidden;
 
     &--with-items {
+      padding: 5px;
       height: auto;
     }
   }
