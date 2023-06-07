@@ -17,7 +17,11 @@ const tagSeparatorKeys = [
 ];
 const tagRemoveKeys = [KeyCodes.backspace, KeyCodes.delete];
 
-export interface TagInputProps {
+export interface TagInputProps
+  extends Omit<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    'size' | 'onChange'
+  > {
   /**
    * Set the id for input
    */
@@ -56,6 +60,7 @@ export const TagInput: React.FC<TagInputProps> = ({
   error,
   placeholder,
   size = 'medium',
+  ...props
 }) => {
   const mergedClassNames = cx(styles[baseClass], {
     [styles[`${baseClass}--error`]]: error,
@@ -139,6 +144,7 @@ export const TagInput: React.FC<TagInputProps> = ({
           </EditableTag>
         ))}
         <input
+          {...props}
           id={id}
           ref={inputRef}
           className={inputClassNames}
