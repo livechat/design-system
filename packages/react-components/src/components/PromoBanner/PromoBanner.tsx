@@ -33,7 +33,7 @@ export interface PromoBannerProps {
    */
   img?: string;
   /**
-   * Specify the banner kind
+   * Specify whether the banner should use a light-themed design
    */
   light?: boolean;
   /**
