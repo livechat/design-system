@@ -3,7 +3,6 @@
 $base-class: 'picker-list';
 
 .#{$base-class} {
-  color-scheme: var(--color-scheme);
   box-sizing: border-box;
   position: absolute;
   top: calc(100% + 4px);
@@ -15,10 +14,12 @@ $base-class: 'picker-list';
   padding: 4px 0;
   width: 100%;
   max-height: 242px;
-  overflow: scroll;
+  overflow-x: auto;
+  overflow-y: scroll;
   line-height: 22px;
   font-size: 15px;
   font-weight: 400;
+  color-scheme: var(--color-scheme);
 
   &__no-results {
     display: flex;
