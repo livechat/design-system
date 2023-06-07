@@ -1,8 +1,8 @@
+import * as React from 'react';
 import { Icon } from '../Icon';
 import { Close } from '@livechat/design-system-icons/react/material';
 import { getIconType } from './helpers';
 import styles from './Tooltip.module.scss';
-import { FC, MouseEvent } from 'react';
 
 const baseClass = 'tooltip';
 
@@ -11,7 +11,7 @@ export const Info: React.FC<{
   text: string;
   closeWithX?: boolean;
   theme?: string;
-  handleCloseAction?: (ev: MouseEvent) => void;
+  handleCloseAction?: (ev: React.MouseEvent) => void;
 }> = ({ header, text, closeWithX, theme, handleCloseAction }) => {
   return (
     <div style={{ position: 'relative' }}>

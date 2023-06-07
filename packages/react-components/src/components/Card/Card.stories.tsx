@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
 
 import { Card, CardProps } from '../Card';
@@ -6,6 +7,14 @@ import { action } from '@storybook/addon-actions';
 export default {
   title: 'Components/Card',
   component: Card,
+  argTypes: {
+    buttonsOptions: {
+      control: false,
+    },
+    expandableContent: {
+      control: false,
+    },
+  },
 } as ComponentMeta<typeof Card>;
 
 export const Default: Story<CardProps> = (args: CardProps) => (

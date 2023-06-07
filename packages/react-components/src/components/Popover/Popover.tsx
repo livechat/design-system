@@ -1,3 +1,4 @@
+import * as React from 'react';
 import cx from 'clsx';
 import {
   useFloating,
@@ -8,30 +9,51 @@ import {
 } from '@floating-ui/react-dom';
 
 import cssStyles from './Popover.module.scss';
-import { ReactNode, FC, useState, useRef, useEffect } from 'react';
 
 export interface IPopoverProps {
-  children?: ReactNode;
+  children?: React.ReactNode;
+  /**
+   * The CSS class for popover container
+   */
   className?: string;
+  /**
+   * The popover placement related to the trigger element
+   */
   placement?: Placement;
+  /**
+   * Set popover visibility
+   */
   isVisible?: boolean;
+  /**
+   * Set the popover placement to keep it in view
+   */
   flipOptions?: Parameters<typeof flip>[0];
-  triggerRenderer: () => ReactNode;
+  /**
+   * Set `false` if the menu is not to be closed with a esc press
+   */
+  closeOnEsc?: boolean;
+  /**
+   * Trigger element
+   */
+  triggerRenderer: () => React.ReactNode;
+  /**
+   * Optional callback called after popover close
+   */
   onClose?: () => void;
 }
 
-export const Popover: FC<IPopoverProps> = (props) => {
-  const {
-    triggerRenderer,
-    onClose,
-    children,
-    className,
-    placement,
-    flipOptions,
-    isVisible = false,
-  } = props;
-  const [visible, setVisibility] = useState(false);
-  const prevVisibleState = useRef(false);
+export const Popover: React.FC<IPopoverProps> = ({
+  triggerRenderer,
+  onClose,
+  children,
+  className,
+  placement,
+  flipOptions,
+  isVisible = false,
+  closeOnEsc = true,
+}) => {
+  const [visible, setVisibility] = React.useState(false);
+  const prevVisibleState = React.useRef(false);
 
   const {
     x,
@@ -47,18 +69,18 @@ export const Popover: FC<IPopoverProps> = (props) => {
     placement: placement,
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     setVisibility(isVisible);
   }, [isVisible]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (onClose && prevVisibleState.current !== visible && !visible) {
       onClose();
     }
     prevVisibleState.current = visible;
   }, [visible]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!refs.reference.current || !refs.floating.current) {
       return;
     }
@@ -84,17 +106,18 @@ export const Popover: FC<IPopoverProps> = (props) => {
   }
 
   const handleHideOnEscape = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') {
+    if (closeOnEsc && event.key === 'Escape') {
       setVisibility(false);
     }
   };
 
-  useEffect(() => {
-    document.addEventListener('keydown', handleHideOnEscape);
+  React.useEffect(() => {
     document.addEventListener('mousedown', handleDocumentClick);
+    document.addEventListener('keydown', handleHideOnEscape);
+
     return () => {
-      document.removeEventListener('keydown', handleHideOnEscape);
       document.removeEventListener('mousedown', handleDocumentClick);
+      document.removeEventListener('keydown', handleHideOnEscape);
     };
   }, []);
 

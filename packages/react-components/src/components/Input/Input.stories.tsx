@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
 import { AddCircle as AddCircleIcon } from '@livechat/design-system-icons/react/material';
 
@@ -11,7 +12,13 @@ export default {
   title: 'Forms/Input',
   component: Input,
   argTypes: {
-    onChange: { action: 'changed' },
+    onChange: {
+      description: 'The event handler for onChange',
+      action: 'changed',
+    },
+    icon: {
+      control: false,
+    },
   },
 } as ComponentMeta<typeof Input>;
 
@@ -27,6 +34,9 @@ Default.args = {
 
 export const Sizes = (): JSX.Element => (
   <>
+    <StoryDescriptor title="Xsmall">
+      <Input inputSize="xsmall" placeholder={placeholderText} />
+    </StoryDescriptor>
     <StoryDescriptor title="Compact">
       <Input inputSize="compact" placeholder={placeholderText} />
     </StoryDescriptor>

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import cx from 'clsx';
 
 import {
@@ -9,30 +10,36 @@ import { Size } from 'utils/constants';
 import styles from './Input.module.scss';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
-import {
-  cloneElement,
-  forwardRef,
-  InputHTMLAttributes,
-  ReactElement,
-  useState,
-} from 'react';
 
 interface InputIcon {
-  source: ReactElement;
+  source: React.ReactElement;
   place: 'left' | 'right';
 }
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  inputSize?: Size;
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  /**
+   * Specify the input size
+   */
+  inputSize?: 'xsmall' | 'compact' | 'medium' | 'large';
+  /**
+   * Specify whether the input should be in error state
+   */
   error?: boolean;
+  /**
+   * Specify whether the input should be disabled
+   */
   disabled?: boolean;
+  /**
+   * Set the icon and its position
+   */
   icon?: InputIcon;
 }
 
 const baseClass = 'input';
 
 const renderIcon = (icon: InputIcon, disabled?: boolean) =>
-  cloneElement(icon.source, {
+  React.cloneElement(icon.source, {
     ['data-testid']: `input-icon-${icon.place}`,
     className: cx(
       styles[`${baseClass}__icon`],
@@ -43,7 +50,7 @@ const renderIcon = (icon: InputIcon, disabled?: boolean) =>
     ),
   });
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       inputSize = 'medium',
@@ -55,8 +62,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const [isFocused, setIsFocused] = useState(false);
-    const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+    const [isFocused, setIsFocused] = React.useState(false);
+    const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
     const { type, onFocus, onBlur } = inputProps;
     const mergedClassNames = cx(
       className,
@@ -98,7 +105,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {type === 'password' && (
           <Button
             disabled={disabled}
-            kind="plain"
+            kind="subtle"
             icon={<Icon customColor={iconCustomColor} source={iconSource} />}
             onClick={() => setIsPasswordVisible((v) => !v)}
             className={styles[`${baseClass}__visibility-button`]}

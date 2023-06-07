@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 
 import {
@@ -5,7 +6,6 @@ import {
   FieldGroupProps,
 } from './FieldGroup';
 import { RadioButton } from '../RadioButton';
-import { ReactElement } from 'react';
 
 export default {
   title: 'Forms (WIP)/Field Group',
@@ -17,7 +17,9 @@ export default {
   },
 } as ComponentMeta<typeof FieldGroupComponent>;
 
-export const FieldGroup = ({ ...args }: FieldGroupProps): ReactElement => (
+export const FieldGroup = ({
+  ...args
+}: FieldGroupProps): React.ReactElement => (
   <FieldGroupComponent {...args}>
     <RadioButton id="field-group-example-1">Radio button label</RadioButton>
     <RadioButton id="field-group-example-2">Radio button label</RadioButton>

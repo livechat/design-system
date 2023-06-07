@@ -1,9 +1,9 @@
 $surface-primary-default: #fff;
-$surface-primary-hover: #f6f6f6;
+$surface-primary-hover: #f3f3f3;
 $surface-accent-emphasis-min-info: #f4faff;
-$action-primary-default: #06f;
-$surface-secondary-default: #f1f1f2;
-$surface-primary-active: #ececec;
+$action-primary-default: #0059e1;
+$surface-secondary-default: #f5f5f5;
+$surface-primary-active: #eeeeef;
 
 .lc-light-theme {
   --background: #fff; // deprecated
@@ -14,24 +14,24 @@ $surface-primary-active: #ececec;
   --surface-primary-default: #{$surface-primary-default};
   --surface-basic-subtle: #f6f6f7; // deprecated
   --surface-secondary-default: #{$surface-secondary-default};
-  --surface-secondary-hover: #e8e8ea;
-  --surface-secondary-active: #dfdfe1;
-  --surface-secondary-disabled: #f6f6f7;
+  --surface-secondary-hover: #ececec;
+  --surface-secondary-active: #e7e7e7;
+  --surface-secondary-disabled: #f0f0f1;
   --surface-basic-hover: #e2e2e4; // deprecated
   --surface-primary-hover: #{$surface-primary-hover};
   --surface-basic-active: #c9c9cd; // deprecated
   --surface-primary-active: #{$surface-primary-active};
   --surface-primary-active-colored: rgb(0 102 255 / 25%);
   --surface-basic-disabled: #f6f6f7; // deprecated
-  --surface-primary-disabled: #f6f6f7;
-  --surface-tertiary-default: #e2e2e4;
+  --surface-primary-disabled: #f6f6f6;
+  --surface-tertiary-default: #e6e6e7;
   --surface-secondary-subtle: #e4e8ec; // deprecated
-  --surface-moderate-default: #c9c9cd;
-  --surface-moderate-hover: #c2c2c6;
-  --surface-moderate-active: #bababe;
-  --surface-tertiary-hover: #dadadc;
-  --surface-tertiary-active: #d1d1d4;
-  --surface-tertiary-disabled: #eeeeef;
+  --surface-moderate-default: #d8d8da;
+  --surface-moderate-hover: #d1d1d4;
+  --surface-moderate-active: #cdcdcf;
+  --surface-tertiary-hover: #e4e4e5;
+  --surface-tertiary-active: #e2e2e3;
+  --surface-tertiary-disabled: #ebebec;
   --surface-feedback-info: #daedff; // deprecated
   --surface-accent-emphasis-low-info: #daedff;
   --surface-feedback-negative: #ffe5e5; // deprecated
@@ -57,14 +57,14 @@ $surface-primary-active: #ececec;
   --surface-locked-disabled: rgb(255 255 255 / 70%);
   --surface-locked-white: #fff;
   --surface-locked-black: #000;
-  --surface-accent-emphasis-high-info: #06f;
+  --surface-accent-emphasis-high-info: #0059e1;
   --surface-accent-emphasis-high-negative: #ca0005;
   --surface-accent-emphasis-high-warning: #e8bb00;
   --surface-accent-emphasis-high-positive: #00893c;
   --surface-accent-emphasis-high-purple: #9146ff;
   --surface-overlay: rgb(19 19 23 / 70%); // deprecated
   --surface-other-overlay: rgb(19 19 23 / 70%);
-  --surface-other-agent: #06f;
+  --surface-other-agent: #0059e1;
   --surface-other-skeleton: #e2e2e4;
   --content-default: #131317; // deprecated
   --content-basic-primary: #131317;
@@ -121,14 +121,14 @@ $surface-primary-active: #ececec;
   --border-invert-hover: #fff;
   --border-invert-disabled: rgb(255 255 255 / 50%);
   --color-action-active: #003fa4; // deprecated
-  --action-primary-active: #093c8b;
+  --action-primary-active: #09367c;
   --color-action-hover: #004bc2; // deprecated
-  --action-primary-hover: #064db9;
+  --action-primary-hover: #0644a4;
   --color-action-default: #06f; // deprecated
   --action-primary-default: #{$action-primary-default};
   --color-action-default-rgb: 0, 102, 255;
   --color-action-disabled: #9dceff; // deprecated
-  --action-primary-disabled: rgb(0 102 255 / 20%);
+  --action-primary-disabled: rgb(0 89 225 / 20%);
   --color-negative-active: #930002; // deprecated
   --action-negative-active: #6f090e;
   --color-negative-hover: #ae0003; // deprecated

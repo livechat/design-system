@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {
   Close,
   Info,
@@ -6,7 +7,6 @@ import {
   Block,
 } from '@livechat/design-system-icons/react/material';
 import cx from 'clsx';
-import { HTMLAttributes, FC } from 'react';
 
 import { Button } from '../Button';
 import { Icon, IconKind, IconSource } from '../Icon';
@@ -21,7 +21,7 @@ type ToastAction = {
   closesOnClick?: boolean;
 };
 
-export interface ToastProps extends HTMLAttributes<HTMLDivElement> {
+export interface ToastProps extends React.HTMLAttributes<HTMLDivElement> {
   action?: ToastAction;
   className?: string;
   removable?: boolean;
@@ -46,7 +46,7 @@ const iconConfig: Record<ToastKind, { source: IconSource; kind?: IconKind }> = {
 
 const baseClass = 'toast';
 
-export const Toast: FC<ToastProps> = ({
+export const Toast: React.FC<React.PropsWithChildren<ToastProps>> = ({
   action,
   className,
   children,

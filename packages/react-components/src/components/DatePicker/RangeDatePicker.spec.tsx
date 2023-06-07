@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { render, userEvent } from 'test-utils';
 import { vi } from 'vitest';
 import { RangeDatePicker } from './RangeDatePicker';

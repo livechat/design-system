@@ -1,14 +1,8 @@
+import * as React from 'react';
 import cx from 'clsx';
 import { Loader } from '../Loader';
-import { Size } from 'utils';
 import styles from './Button.module.scss';
-import {
-  ReactElement,
-  ButtonHTMLAttributes,
-  AnchorHTMLAttributes,
-  cloneElement,
-  forwardRef,
-} from 'react';
+import { Size } from 'utils';
 
 export type ButtonKind =
   | 'basic'
@@ -17,22 +11,46 @@ export type ButtonKind =
   | 'destructive'
   | 'text'
   | 'plain'
-  | 'plain-light';
+  | 'plain-light'
+  | 'subtle'
+  | 'float'
+  | 'dotted';
 
 export type ButtonProps = {
+  /**
+   * Specify the button kind
+   */
   kind?: ButtonKind;
+  /**
+   * Specify the button size
+   */
   size?: Size;
+  /**
+   * Set the loading state
+   */
   loading?: boolean;
+  /**
+   * Set the button for full width
+   */
   fullWidth?: boolean;
+  /**
+   * Text displayed in loading state
+   */
   loaderLabel?: string;
-  icon?: ReactElement;
+  /**
+   * Renders given element
+   */
+  icon?: React.ReactElement;
+  /**
+   * Specify the place to render element given in `icon` prop
+   */
   iconPosition?: 'left' | 'right';
-} & ButtonHTMLAttributes<HTMLButtonElement> &
-  AnchorHTMLAttributes<HTMLAnchorElement>;
+} & React.ButtonHTMLAttributes<HTMLButtonElement> &
+  React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const baseClass = 'btn';
 
-export const Button = forwardRef<
+export const Button = React.forwardRef<
   HTMLButtonElement & HTMLAnchorElement,
   ButtonProps
 >(
@@ -104,7 +122,7 @@ export const Button = forwardRef<
           />
         )}
         {icon &&
-          cloneElement(icon, {
+          React.cloneElement(icon, {
             className: cx(
               styles[`${baseClass}__icon`],
               styles[`${baseClass}__icon--${iconPosition}`]

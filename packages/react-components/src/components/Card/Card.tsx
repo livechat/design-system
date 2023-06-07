@@ -1,3 +1,4 @@
+import * as React from 'react';
 import cx from 'clsx';
 import {
   ChevronUp,
@@ -9,19 +10,36 @@ import { Button, ButtonProps } from '../Button';
 import { Icon } from '../Icon';
 
 import styles from './Card.module.scss';
-import { HTMLAttributes, ReactNode, FC, useState } from 'react';
 
 export type CardButtonOptions = Pick<
   ButtonProps,
   'children' | 'kind' | 'onClick'
 >;
 
-export interface CardProps extends HTMLAttributes<HTMLDivElement> {
+export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Alternate text for an image card
+   */
   alt?: string;
+  /**
+   * Array of card buttons
+   */
   buttonsOptions?: CardButtonOptions[];
+  /**
+   * Card description
+   */
   description?: string;
-  expandableContent?: ReactNode;
+  /**
+   * Element to display in the expandable area
+   */
+  expandableContent?: React.ReactNode;
+  /**
+   * Image source for the image card
+   */
   src?: string;
+  /**
+   * Card title
+   */
   title?: string;
 }
 
@@ -31,7 +49,7 @@ const headingClass = `${headerClass}__heading`;
 const actionsClass = `${baseClass}__actions`;
 const noImageClass = `${headerClass}__no-image`;
 
-export const Card: FC<CardProps> = ({
+export const Card: React.FC<CardProps> = ({
   alt,
   buttonsOptions = [],
   children,
@@ -42,7 +60,7 @@ export const Card: FC<CardProps> = ({
   title,
   ...divProps
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = React.useState(false);
   const expandIcon = isExpanded ? ChevronUp : ChevronDown;
   const expandButtonText = isExpanded ? 'Hide' : 'Show more';
   const shouldShowActionButtons = buttonsOptions?.length > 0;

@@ -1,9 +1,19 @@
 :root,
-.lc-legacy-theme,
+.lc-legacy-theme {
+  --shadow-float: 0 2px 6px 0 rgb(66 77 87 / 40%);
+  --shadow-pop-over: 0 6px 20px 0 rgb(66 77 87 / 40%);
+  --shadow-modal: 0 10px 50px 0 rgb(66 77 87 / 40%);
+  --shadow-tooltip: 0 1px 10px 0 rgb(66 77 87 / 30%);
+  --shadow-tooltip-arrow-bottom: 8px -6px 10px -2px rgb(66 77 87 / 30%);
+  --shadow-tooltip-arrow-top: -7px 6px 5px -3px rgb(66 77 87 / 30%);
+  --shadow-tooltip-arrow-right: -5px -5px 10px -2px rgb(66 77 87 / 30%);
+  --shadow-tooltip-arrow-left: 6px 6px 10px -2px rgb(66 77 87 / 30%);
+}
+
 .lc-light-theme {
-  --shadow-float: 0 2px 6px rgb(66 77 87 / 40%);
-  --shadow-pop-over: 0 6px 20px rgb(66 77 87 / 40%);
-  --shadow-modal: 0 10px 50px rgb(66 77 87 / 40%);
+  --shadow-float: 0 2px 6px 0 rgb(19 19 23 / 20%);
+  --shadow-pop-over: 0 6px 20px 0 rgb(19 19 23 / 30%);
+  --shadow-modal: 0 10px 50px 0 rgb(19 19 23 / 40%);
   --shadow-tooltip: 0 1px 10px 0 rgb(66 77 87 / 30%);
   --shadow-tooltip-arrow-bottom: 8px -6px 10px -2px rgb(66 77 87 / 30%);
   --shadow-tooltip-arrow-top: -7px 6px 5px -3px rgb(66 77 87 / 30%);
@@ -12,10 +22,12 @@
 }
 
 .lc-dark-theme {
-  --shadow-float: 0 2px 6px rgb(66 77 87 / 40%);
+  --shadow-float: 0 2px 12px 0 rgb(0 0 0 / 30%), 0 1px 4px 0 rgb(0 0 0 / 30%),
+    0 0 0 1px rgb(255 255 255 / 10%) inset;
   --shadow-pop-over: 0 0 2px 1px rgb(0 0 0 / 15%),
     0 4px 16px 1px rgb(1 1 1 / 50%), inset 0 0 0 1px rgb(255 255 255 / 15%);
-  --shadow-modal: 0 10px 50px rgb(66 77 87 / 40%);
+  --shadow-modal: 0 10px 50px 0 rgb(1 1 1 / 80%),
+    0 0 0 1px rgb(255 255 255 / 15%);
   --shadow-tooltip: 0 0 2px 1px rgb(0 0 0 / 15%),
     0 4px 16px 1px rgb(1 1 1 / 50%), inset 0 0 0 1px rgb(255 255 255 / 15%);
   --shadow-tooltip-arrow-bottom: unset;

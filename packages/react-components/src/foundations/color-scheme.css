@@ -1,0 +1,12 @@
+:root,
+.lc-legacy-theme {
+  --color-scheme: normal;
+}
+
+.lc-light-theme {
+  --color-scheme: normal;
+}
+
+.lc-dark-theme {
+  --color-scheme: dark;
+}

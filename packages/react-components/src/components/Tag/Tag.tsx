@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Close } from '@livechat/design-system-icons/react/material';
 import cx from 'clsx';
 import { getContrast } from 'polished';
@@ -6,11 +7,13 @@ import { Text } from '../Typography';
 import { Icon, IconSize, IconSource } from '../Icon';
 
 import styles from './Tag.module.scss';
-import { HTMLAttributes, FC } from 'react';
 
 const baseClass = 'tag';
 
-export interface TagProps extends HTMLAttributes<HTMLDivElement> {
+export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Specify the tag kind
+   */
   kind?:
     | 'default'
     | 'info'
@@ -19,13 +22,37 @@ export interface TagProps extends HTMLAttributes<HTMLDivElement> {
     | 'error'
     | 'purple'
     | 'black';
+  /**
+   * Specify the tag size
+   */
   size?: 'medium' | 'large';
+  /**
+   * Specify the tag icon size if used
+   */
   iconSize?: IconSize;
+  /**
+   * Set the tag custom color
+   */
   customColor?: string;
+  /**
+   * Set to show close icon
+   */
   dismissible?: boolean;
+  /**
+   * Outlined version of tag
+   */
   outline?: boolean;
+  /**
+   * The event handler for close icon click
+   */
   onRemove?(): void;
+  /**
+   * Pass the icon to show it
+   */
   icon?: IconSource;
+  /**
+   * Pass the image source to show it as avatar
+   */
   avatar?: string;
 }
 
@@ -38,7 +65,7 @@ const getCustomTextClass = (customColor?: string) => {
     : 'text-black';
 };
 
-export const Tag: FC<TagProps> = ({
+export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   className = '',
   children,
   dismissible = false,

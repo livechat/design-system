@@ -143,8 +143,8 @@ $base-class: 'btn';
 
   &--large {
     padding: 11px 16px;
-    min-width: 42px;
-    height: 42px;
+    min-width: 44px;
+    height: 44px;
 
     &.#{$base-class}--icon-only {
       padding: 9px;
@@ -201,6 +201,80 @@ $base-class: 'btn';
     }
   }
 
+  &--subtle {
+    border-color: transparent;
+    background-color: transparent;
+    color: var(--content-basic-primary);
+
+    &:hover {
+      border-color: transparent;
+      background-color: var(--surface-primary-hover);
+      color: var(--content-basic-primary);
+    }
+
+    &:active,
+    &:focus {
+      border-color: transparent;
+      background-color: var(--surface-primary-active);
+      color: var(--content-basic-primary);
+    }
+
+    &[aria-disabled='true'] {
+      border-color: transparent;
+      background-color: transparent;
+      color: var(--content-basic-disabled);
+    }
+  }
+
+  &--float {
+    border-radius: 100px;
+    border-color: transparent;
+    box-shadow: var(--shadow-float);
+    background-color: var(--surface-primary-default);
+    color: var(--content-basic-primary);
+
+    &:hover,
+    &:active,
+    &:focus {
+      border-color: transparent;
+      background-color: var(--surface-primary-hover);
+      color: var(--content-basic-primary);
+    }
+
+    &[aria-disabled='true'] {
+      border-color: transparent;
+      box-shadow: none;
+      background-color: transparent;
+      color: var(--content-basic-disabled);
+    }
+  }
+
+  &--dotted {
+    border-style: dotted;
+    border-color: var(--border-basic-primary);
+    background-color: var(--btn-basic-background-enabled);
+    color: var(--action-primary-default);
+
+    &:hover {
+      border-color: var(--border-basic-hover);
+      background-color: var(--surface-primary-active);
+      color: var(--action-primary-default);
+    }
+
+    &:active,
+    &:focus {
+      border-color: var(--border-basic-primary);
+      background-color: var(--surface-primary-active);
+      color: var(--action-primary-default);
+    }
+
+    &[aria-disabled='true'] {
+      border-color: var(--border-basic-disabled);
+      background-color: var(--btn-basic-background-enabled);
+      color: var(--action-primary-disabled);
+    }
+  }
+
   &--loading {
     transition: all 0.2s cubic-bezier(0.64, 0, 0.35, 1);
     cursor: progress;
@@ -247,14 +321,12 @@ $base-class: 'btn';
 
     &--left {
       order: -1;
-      margin-right: 5px;
-      margin-left: -4px;
+      margin-right: 4px;
     }
 
     &--right {
       order: 1;
-      margin-right: -4px;
-      margin-left: 5px;
+      margin-left: 4px;
     }
   }
 
@@ -270,6 +342,16 @@ $base-class: 'btn';
       &:active {
         background-color: var(--btn-plain-icon-background-active);
         color: var(--content-invert-primary);
+      }
+
+      &.#{$base-class} {
+        &--disabled {
+          &:focus,
+          &:active,
+          &:hover {
+            background-color: transparent;
+          }
+        }
       }
     }
 

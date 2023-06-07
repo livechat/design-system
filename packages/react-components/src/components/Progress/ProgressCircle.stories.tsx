@@ -1,5 +1,5 @@
+import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
-import { ReactElement } from 'react';
 
 import {
   ProgressCircle as ProgressCircleComponent,
@@ -11,7 +11,9 @@ export default {
   component: ProgressCircleComponent,
 } as ComponentMeta<typeof ProgressCircleComponent>;
 
-export const ProgressCircle = (args: ProgressCircleProps): ReactElement => {
+export const ProgressCircle = (
+  args: ProgressCircleProps
+): React.ReactElement => {
   return (
     <div>
       <ProgressCircleComponent {...args} />

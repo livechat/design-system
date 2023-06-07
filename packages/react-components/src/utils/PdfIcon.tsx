@@ -1,6 +1,6 @@
-import { FC } from 'react';
+import * as React from 'react';
 
-export const PdfIcon: FC = () => (
+export const PdfIcon: React.FC = () => (
   <div>
     <svg
       xmlns="http://www.w3.org/2000/svg"

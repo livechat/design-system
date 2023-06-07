@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import cx from 'clsx';
 import { css } from '@emotion/css';
@@ -12,20 +13,9 @@ import {
 } from '@floating-ui/react-dom';
 
 import styles from './Tooltip.module.scss';
-import {
-  ReactNode,
-  FC,
-  useRef,
-  useState,
-  useEffect,
-  Children,
-  isValidElement,
-  cloneElement,
-  MouseEvent,
-} from 'react';
 
 export interface ITooltipProps {
-  children?: ReactNode;
+  children?: React.ReactNode;
   className?: string;
   theme?: 'invert' | 'important' | undefined;
   placement?: Placement;
@@ -38,7 +28,7 @@ export interface ITooltipProps {
   triggerOnClick?: boolean;
   arrowOffsetY?: number;
   arrowOffsetX?: number;
-  triggerRenderer: () => ReactNode;
+  triggerRenderer: () => React.ReactNode;
   referenceElement?: VirtualElement;
   onOpen?: () => void;
   onClose?: () => void;
@@ -50,7 +40,7 @@ const sleep = (milliseconds: number) => {
 
 const baseClass = 'tooltip';
 
-export const Tooltip: FC<ITooltipProps> = (props) => {
+export const Tooltip: React.FC<ITooltipProps> = (props) => {
   const {
     triggerRenderer,
     referenceElement,
@@ -72,9 +62,9 @@ export const Tooltip: FC<ITooltipProps> = (props) => {
   } = props;
 
   const isManaged = isVisible !== undefined;
-  const arrowRef = useRef<HTMLDivElement | null>(null);
-  const [visible, setVisibility] = useState(isVisible);
-  const isHovered = useRef(false);
+  const arrowRef = React.useRef<HTMLDivElement | null>(null);
+  const [visible, setVisibility] = React.useState(isVisible);
+  const isHovered = React.useRef(false);
 
   const {
     x,
@@ -95,22 +85,22 @@ export const Tooltip: FC<ITooltipProps> = (props) => {
     placement: placement,
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     referenceElement && reference(referenceElement);
   }, [reference, referenceElement]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     setVisibility(isVisible);
   }, [isVisible]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     document.addEventListener('keydown', handleCloseAction);
     return () => {
       document.removeEventListener('keydown', handleCloseAction);
     };
   }, []);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!refs.reference.current || !refs.floating.current) {
       return;
     }
@@ -188,9 +178,9 @@ export const Tooltip: FC<ITooltipProps> = (props) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {Children.map(children, (child) => {
-        if (isValidElement(child)) {
-          return cloneElement(child, {
+      {React.Children.map(children, (child) => {
+        if (React.isValidElement(child)) {
+          return React.cloneElement(child, {
             handleCloseAction,
             theme,
             ...child.props,
@@ -210,6 +200,7 @@ export const Tooltip: FC<ITooltipProps> = (props) => {
   function renderFloatingComponent() {
     if (withFadeAnimation) {
       const enter = css`
+        pointer-events: none;
         opacity: 0;
       `;
 
@@ -218,6 +209,10 @@ export const Tooltip: FC<ITooltipProps> = (props) => {
         transition-property: opacity;
         transition-duration: ${transitionDuration}ms;
         transition-delay: ${transitionDelay}ms;
+      `;
+
+      const enterDone = css`
+        pointer-events: initial;
       `;
 
       const exit = css`
@@ -241,6 +236,7 @@ export const Tooltip: FC<ITooltipProps> = (props) => {
           timeout={timeout}
           classNames={{
             enter: enter,
+            enterDone: enterDone,
             enterActive: enterActive,
             exit: exit,
             exitActive: exitActive,

@@ -1,20 +1,35 @@
+import * as React from 'react';
 import cx from 'clsx';
 
 import styles from './Badge.module.scss';
 import { formatCount } from './Badge.helpers';
-import { FC, HTMLAttributes } from 'react';
 
 const baseClass = 'badge';
 
-export interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
+export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
+  /**
+   * Value to display
+   */
   count?: number;
+  /**
+   * Specify the badge kind
+   */
   kind?: 'primary' | 'secondary' | 'tertiary';
+  /**
+   * The maximum value after which a "+" will be displayed next to the number
+   */
   max?: number;
+  /**
+   * Specify the badge size
+   */
   size?: 'large' | 'medium' | 'compact';
+  /**
+   * Specify the badge type
+   */
   type?: 'counter' | 'alert' | 'dot';
 }
 
-export const Badge: FC<BadgeProps> = ({
+export const Badge: React.FC<BadgeProps> = ({
   className,
   count = 0,
   max = 99,

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { GreetingQuickReply } from '@livechat/design-system-icons/react/material';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
@@ -9,13 +10,12 @@ import { Input } from '../Input';
 import { defaultPickerOptions } from '../Picker/constants';
 import { Picker } from '../Picker';
 import noop from '../../utils/noop';
-import { FC } from 'react';
 
 interface ModalHeaderProps {
   color?: string;
 }
 
-export const ModalHeader: FC<ModalHeaderProps> = ({ color }) => {
+export const ModalHeader: React.FC<ModalHeaderProps> = ({ color }) => {
   return (
     <div className="heading-wrapper">
       <Icon
@@ -33,9 +33,9 @@ export const ModalHeader: FC<ModalHeaderProps> = ({ color }) => {
   );
 };
 
-export const ModalFooter: FC = () => {
+export const ModalFooter: React.FC = () => {
   return (
-    <div className="footer">
+    <div>
       <Button size="medium" kind="secondary" style={{ marginRight: '8px' }}>
         Secondary
       </Button>
@@ -46,7 +46,7 @@ export const ModalFooter: FC = () => {
   );
 };
 
-export const ModalFullSpaceContent: FC = () => {
+export const ModalFullSpaceContent: React.FC = () => {
   return (
     <div className="full-space-wrapper">
       <img src={modalImage} alt="modal image" />
@@ -77,7 +77,7 @@ export const ModalFullSpaceContent: FC = () => {
   );
 };
 
-export const ModalContent: FC = () => (
+export const ModalContent: React.FC = () => (
   <div style={{ maxWidth: 400 }}>
     <Heading size="lg" as="div">
       Modal header

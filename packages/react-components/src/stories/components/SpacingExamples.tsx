@@ -1,4 +1,5 @@
-import { ReactElement } from 'react';
+import * as React from 'react';
+
 import { Input } from '../../components/Input';
 
 import styles from './SpacingExamples.module.scss';
@@ -6,7 +7,7 @@ import { StoryDescriptor } from './StoryDescriptor';
 
 const baseClass = 'input';
 
-export const SpacingExamples = (): ReactElement => {
+export const SpacingExamples = (): React.ReactElement => {
   return (
     <div>
       <StoryDescriptor title="Spacing 0">

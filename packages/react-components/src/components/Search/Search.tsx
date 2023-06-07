@@ -1,3 +1,4 @@
+import * as React from 'react';
 import cx from 'clsx';
 import { Search, Close } from '@livechat/design-system-icons/react/material';
 import { Icon } from '../Icon';
@@ -5,30 +6,46 @@ import { Loader } from '../Loader';
 
 import styles from './Search.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
-import {
-  FC,
-  useState,
-  useRef,
-  useEffect,
-  FormEvent,
-  KeyboardEvent,
-} from 'react';
 
 const baseClass = 'search-input';
 const inputBaseClass = `${baseClass}__input`;
 
 export interface ISearchInputProps {
+  /**
+   * Makes search expandable after focusing the icon
+   */
   isCollapsable?: boolean;
+  /**
+   * Specify whether the search should be disabled
+   */
   isDisabled?: boolean;
+  /**
+   * Specify whether the search should have loader visible
+   */
   isLoading?: boolean;
+  /**
+   * Optional text for placeholder
+   */
   placeholder?: string;
+  /**
+   * Specify the search size
+   */
   size?: 'compact' | 'medium' | 'large';
+  /**
+   * Specify the search value
+   */
   value: string;
+  /**
+   * Specify an optional className to be applied to the container node
+   */
   className?: string;
+  /**
+   * The event handler for onChange
+   */
   onChange: (value: string) => void;
 }
 
-export const SearchInput: FC<ISearchInputProps> = ({
+export const SearchInput: React.FC<ISearchInputProps> = ({
   isCollapsable,
   isDisabled,
   isLoading,
@@ -38,9 +55,9 @@ export const SearchInput: FC<ISearchInputProps> = ({
   className,
   onChange,
 }) => {
-  const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
-  const [isFocused, setIsFocused] = useState<boolean>(false);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [isCollapsed, setIsCollapsed] = React.useState<boolean>(true);
+  const [isFocused, setIsFocused] = React.useState<boolean>(false);
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const isCloseIconVisible = !!value && !isDisabled && !isLoading;
   const ariaExpandedValue = isCollapsable && !isCollapsed && 'true';
 
@@ -54,13 +71,13 @@ export const SearchInput: FC<ISearchInputProps> = ({
     !isCollapsed && styles[`${baseClass}--collapsable--open`]
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (isCollapsable && !!value) {
       setIsCollapsed(false);
     }
   }, [isCollapsable]);
 
-  const handleOnChange = (e: FormEvent<HTMLInputElement>) => {
+  const handleOnChange = (e: React.FormEvent<HTMLInputElement>) => {
     const value = e.currentTarget.value;
     onChange(value);
   };
@@ -87,7 +104,7 @@ export const SearchInput: FC<ISearchInputProps> = ({
     setIsFocused(false);
   };
 
-  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === KeyCodes.enter) {
       e.preventDefault();
       onChange(value);

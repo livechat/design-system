@@ -1,14 +1,14 @@
+import * as React from 'react';
 import cx from 'clsx';
-import { HTMLAttributes, FC } from 'react';
 import { Text } from '../Typography';
 
 import styles from './FieldDescription.module.scss';
 
-export type FieldDescriptionProps = HTMLAttributes<HTMLSpanElement>;
+export type FieldDescriptionProps = React.HTMLAttributes<HTMLSpanElement>;
 
 const baseClass = 'field-description';
 
-export const FieldDescription: FC<FieldDescriptionProps> = ({
+export const FieldDescription: React.FC<FieldDescriptionProps> = ({
   children,
   className = '',
   ...props
