@@ -85,6 +85,17 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     placement: placement,
   });
 
+  const setVisibilityWithCallback = (
+    newVisibility: boolean | undefined
+  ): void => {
+    if (newVisibility) {
+      onOpen?.();
+    } else {
+      onClose?.();
+    }
+    setVisibility(newVisibility);
+  };
+
   React.useEffect(() => {
     referenceElement && reference(referenceElement);
   }, [reference, referenceElement]);
@@ -114,29 +125,27 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     isHovered.current = false;
     void sleep(hoverOutDelayTimeout).then(() => {
       if (!isHovered.current) {
-        setVisibility(false);
+        setVisibilityWithCallback(false);
       }
     });
   };
 
   const handleOpen = () => {
-    if (onOpen) onOpen();
     if (!isManaged) {
-      setVisibility(true);
+      setVisibilityWithCallback(true);
     }
   };
 
   const handleClose = () => {
-    if (onClose) onClose();
     if (!isManaged) {
-      setVisibility(false);
+      setVisibilityWithCallback(false);
     }
   };
 
   const handleMouseEnter = () => {
     if (triggerOnClick || isManaged) return;
     isHovered.current = true;
-    setVisibility(true);
+    setVisibilityWithCallback(true);
   };
 
   const handleCloseAction = (event: KeyboardEvent | MouseEvent) => {
