@@ -159,4 +159,46 @@ describe('<Tooltip> component', () => {
 
     cleanup();
   });
+
+  it('should call onOpen and onClose callbacks when visibility changes on hover action', async () => {
+    const onOpen = vi.fn();
+    const onClose = vi.fn();
+    const { getByRole, queryByText } = render(
+      <Tooltip
+        triggerRenderer={() => <button>Open</button>}
+        triggerOnClick={false}
+        withFadeAnimation={false}
+        hoverOutDelayTimeout={0}
+        transitionDuration={0}
+        onOpen={onOpen}
+        onClose={onClose}
+      >
+        <div style={{ width: '100px' }}>Test</div>
+      </Tooltip>
+    );
+
+    const button = getByRole('button', { name: 'Open' });
+
+    act(() => {
+      fireEvent.mouseEnter(button);
+    });
+
+    expect(queryByText('Test')).toBeInTheDocument();
+    expect(onOpen).toBeCalledTimes(1);
+    expect(onClose).not.toBeCalled();
+
+    act(() => {
+      fireEvent.mouseOut(button);
+    });
+
+    await waitFor(
+      () => {
+        expect(queryByText('Test')).not.toBeInTheDocument();
+        expect(onClose).toHaveBeenCalledTimes(1);
+      },
+      { timeout: 1000 }
+    );
+
+    cleanup();
+  });
 });
