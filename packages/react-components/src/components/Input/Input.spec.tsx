@@ -38,33 +38,37 @@ describe('<Input> component', () => {
   });
 
   it('should have disabled class and input should be disabled if "disabled" prop is set', () => {
-    const { container, getByTestId } = render(<Input disabled />);
+    const { container, getByRole } = render(<Input disabled />);
     expect(container.firstChild).toHaveClass(styles['input--disabled']);
     expect(container.firstChild).toHaveAttribute('aria-disabled', 'true');
-    expect(getByTestId('input')).toHaveAttribute('disabled');
+    expect(getByRole('textbox')).toHaveAttribute('disabled');
   });
 
   it('should have custom placeholder text if it is set', () => {
-    const { getByTestId } = render(<Input placeholder="Custom placeholder" />);
-    expect(getByTestId('input')).toHaveAttribute(
+    const { getByRole } = render(<Input placeholder="Custom placeholder" />);
+    expect(getByRole('textbox')).toHaveAttribute(
       'placeholder',
       'Custom placeholder'
     );
   });
 
   it('should have text type input as default', () => {
-    const { getByTestId } = render(<Input />);
-    expect(getByTestId('input')).toHaveAttribute('type', 'text');
+    const { getByRole } = render(<Input />);
+    expect(getByRole('textbox')).toHaveAttribute('type', 'text');
   });
 
   it('should have password type input if type "password" is set', () => {
-    const { getByTestId } = render(<Input type="password" />);
-    expect(getByTestId('input')).toHaveAttribute('type', 'password');
+    const { getByTestId } = render(
+      <Input type="password" data-testid="password-input" />
+    );
+    expect(getByTestId('password-input')).toHaveAttribute('type', 'password');
   });
 
   it('should change the input type if show password icon is clicked', () => {
-    const { getByTestId, getByRole } = render(<Input type="password" />);
-    const input = getByTestId('input');
+    const { getByRole, getByTestId } = render(
+      <Input type="password" data-testid="password-input" />
+    );
+    const input = getByTestId('password-input');
     const button = getByRole('button');
 
     expect(input).toHaveAttribute('type', 'password');

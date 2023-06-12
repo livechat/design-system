@@ -87,7 +87,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <div className={mergedClassNames} aria-disabled={disabled} tab-index="0">
         {shouldRenderLeftIcon && renderIcon(icon, disabled)}
         <input
-          data-testid="input"
           {...inputProps}
           ref={ref}
           onFocus={(e) => {
