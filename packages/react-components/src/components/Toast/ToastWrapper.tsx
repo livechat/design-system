@@ -13,7 +13,7 @@ export const ANIMATION_TIME = 200;
 
 const baseClass = 'toast-wrapper';
 
-interface Toast extends ToastProps {
+interface Toast extends Omit<ToastProps, 'content'> {
   id: string;
   content: React.ReactElement | string;
 }
