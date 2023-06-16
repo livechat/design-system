@@ -15,14 +15,41 @@ const baseClass = 'file-upload-progress';
 const wrapperHeaderTitleClass = `${baseClass}__wrapper__header__title`;
 
 export interface FileUploadProgressProps {
+  /**
+   * Define if buttons should be visible, visible on hover, or hidden
+   */
   actionsVisibility?: UploadProgressActionState;
+  /**
+   * The CSS class for progress bar
+   */
   className?: string;
+  /**
+   * Renders given element
+   */
   icon?: React.ReactNode;
+  /**
+   * Specify the uploading file name
+   */
   title: string;
+  /**
+   * Specify the value of current file upload progress (0-100)
+   */
   progressValue: number;
+  /**
+   * Specify the progress bar size
+   */
   size?: ProgressSize;
+  /**
+   * Specify the uploading file status
+   */
   status?: ProgressStatus;
+  /**
+   * The event handler for close icon click
+   */
   onCloseButtonClick?: () => void;
+  /**
+   * The event handler for retry icon click
+   */
   onRetryButtonClick?: () => void;
 }
 

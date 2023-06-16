@@ -22,7 +22,7 @@ export const ProgressCircle = (
 };
 
 ProgressCircle.args = {
-  percent: 10,
+  progressValue: 30,
   status: 'normal',
   size: 'medium',
 };
