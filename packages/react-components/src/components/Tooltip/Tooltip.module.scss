@@ -8,7 +8,7 @@ $base-class: 'tooltip';
   background-color: var(--background-02);
   padding: 12px;
   max-width: 320px;
-  color: var(--content-basic-secondary);
+  color: var(--content-basic-primary);
 
   &:focus {
     outline: none;
