@@ -17,7 +17,7 @@ interface ModalHeaderProps {
 }
 
 export const ModalHeader: React.FC<ModalHeaderProps> = ({
-  headerType,
+  headerType = 'heading',
   title,
   icon,
   onClose,

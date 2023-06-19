@@ -6,8 +6,13 @@ const baseClass = 'modal-footer';
 
 interface ModalFooterProps {
   children: React.ReactNode;
+  className?: string;
 }
 
-export const ModalFooter: React.FC<ModalFooterProps> = ({ children }) => {
-  return <div className={styles[`${baseClass}__footer`]}>{children}</div>;
+export const ModalFooter: React.FC<ModalFooterProps> = ({
+  children,
+  className = '',
+}) => {
+  const mergedClassNames = cx(styles[baseClass], className);
+  return <div className={mergedClassNames}>{children}</div>;
 };

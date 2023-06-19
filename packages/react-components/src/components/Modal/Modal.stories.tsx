@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
-import { GreetingQuickReply } from '@livechat/design-system-icons/react/material';
 
 import {
   Modal as ModalComponent,
@@ -10,8 +9,8 @@ import {
   ModalBase,
 } from './index';
 import { ModalContent, ModalFullSpaceContent } from './StoriesComponents';
-import { ModalHeader } from './ModalHeader';
 import { ModalFooter } from './ModalFooter';
+import { ModalHeader } from './ModalHeader';
 import { Button } from '../Button';
 
 export default {
@@ -27,30 +26,14 @@ export default {
   },
 } as ComponentMeta<typeof ModalComponent>;
 
-const defaultModalProps = {
-  // children: <ModalContent />,
-  closeOnEscPress: true,
-  closeOnOverlayPress: true,
-};
-
 function onClose() {
   console.log('onClose');
 }
-
-const StoryTemplate: Story<ModalProps> = ({
-  children,
-  ...args
-}: ModalProps): React.ReactElement => (
-  <ModalComponent {...args} title="Modal">
-    <ModalHeader
-      headerType="heading"
-      title="Header Title"
-      onClose={onClose}
-      icon={GreetingQuickReply}
-    >
-      Header description
-    </ModalHeader>
-    <ModalContent />
+const defaultModalProps = {
+  children: <ModalContent />,
+  closeOnEscPress: true,
+  closeOnOverlayPress: true,
+  footer: (
     <ModalFooter>
       <Button
         size="medium"
@@ -64,22 +47,39 @@ const StoryTemplate: Story<ModalProps> = ({
         Primary
       </Button>
     </ModalFooter>
+  ),
+};
+
+const StoryTemplate: Story<ModalProps> = ({
+  children,
+  ...args
+}: ModalProps): React.ReactElement => (
+  <ModalComponent {...args} title="Modal">
+    {children}
   </ModalComponent>
 );
 
 export const Modal = StoryTemplate.bind({});
 Modal.args = {
   ...defaultModalProps,
+  heading: 'Modal',
 } as ModalProps;
 
 export const ModalWithCustomHeader = StoryTemplate.bind({});
 ModalWithCustomHeader.args = {
   ...defaultModalProps,
+  heading: (
+    <ModalHeader onClose={onClose} title="Modal Header">
+      {' '}
+      Modal description{' '}
+    </ModalHeader>
+  ),
 } as ModalProps;
 
 export const ModalWithLabeledHeader = StoryTemplate.bind({});
 ModalWithLabeledHeader.args = {
   ...defaultModalProps,
+  labelHeading: <ModalHeader onClose={onClose} />,
 } as ModalProps;
 
 export const ModalWithFullSpaceContent = StoryTemplate.bind({});
@@ -87,6 +87,7 @@ ModalWithFullSpaceContent.args = {
   ...defaultModalProps,
   children: <ModalFullSpaceContent />,
   fullSpaceContent: true,
+  footer: null,
 } as ModalProps;
 
 export const ModalPortal = ({
