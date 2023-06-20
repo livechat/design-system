@@ -16,7 +16,7 @@ const wrapperHeaderTitleClass = `${baseClass}__wrapper__header__title`;
 
 export interface FileUploadProgressProps {
   /**
-   * Define if buttons should be visible, visible on hover, or hidden
+   * Define if action buttons should be visible, visible on hover, or hidden
    */
   actionsVisibility?: UploadProgressActionState;
   /**

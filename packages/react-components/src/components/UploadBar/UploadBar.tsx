@@ -32,7 +32,7 @@ export interface UploadBarProps {
    */
   progressValue: number;
   /**
-   * title
+   * Specify the upload bar title
    */
   title: string;
   /**
@@ -56,7 +56,7 @@ export interface UploadBarProps {
    */
   size?: ProgressSize;
   /**
-   * Set `multiple` to specify whether the upload bar should display multiple elements
+   * Set the component's mode to `multiple` to specify whether the upload bar should display multiple elements
    */
   mode?: 'single' | 'multiple';
   /**
