@@ -15,6 +15,9 @@ export default {
     componentSubtitle: `TBD`,
   },
   argTypes: {
+    icon: {
+      control: false,
+    },
     onCloseButtonClick: { action: 'changed' },
     onRetryButtonClick: { action: 'changed' },
   },

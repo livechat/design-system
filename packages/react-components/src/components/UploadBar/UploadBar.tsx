@@ -23,16 +23,49 @@ const wrapperHeaderClass = `${baseClass}__wrapper__header`;
 const TRANSITION_TIMEOUT = 300;
 
 export interface UploadBarProps {
+  /**
+   * The CSS class for container
+   */
   className?: string;
+  /**
+   * Specify the value of current progress circle (0-100)
+   */
   progressValue: number;
+  /**
+   * Specify the upload bar title
+   */
   title: string;
+  /**
+   * Define if upload bar should be open
+   */
   isExpanded?: boolean;
+  /**
+   * Specify the error message
+   */
   errorMessage?: string;
+  /**
+   * Specify the upload bar status
+   */
   status?: ProgressStatus;
+  /**
+   * Renders given element
+   */
   icon?: React.ReactNode;
+  /**
+   * Specify the upload bar size
+   */
   size?: ProgressSize;
+  /**
+   * Set the component's mode to `multiple` to specify whether the upload bar should display multiple elements
+   */
   mode?: 'single' | 'multiple';
+  /**
+   * The event handler for close icon click
+   */
   onCloseButtonClick?: () => void;
+  /**
+   * The event handler for retry icon click
+   */
   onRetryButtonClick?: () => void;
 }
 
@@ -55,9 +88,9 @@ const getHeaderIcon = (status: ProgressStatus, progressValue: number) => {
 
   return (
     <ProgressCircle
+      className={styles[`${wrapperHeaderClass}__loader`]}
       status={status}
       progressValue={progressValue}
-      size="small"
     />
   );
 };

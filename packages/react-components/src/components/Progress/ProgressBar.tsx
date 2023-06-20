@@ -9,9 +9,21 @@ import styles from './ProgressBar.module.scss';
 const baseClass = 'progress-bar';
 
 export interface ProgressBarProps {
+  /**
+   * The CSS class for container
+   */
   className?: string;
+  /**
+   * Specify the value of current progress bar (0-100)
+   */
   percent: number;
+  /**
+   * Specify the progress bar status
+   */
   status?: ProgressStatus;
+  /**
+   * Specify the progress bar size
+   */
   size?: ProgressSize;
 }
 
