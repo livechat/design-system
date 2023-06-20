@@ -38,18 +38,16 @@ export const Interactive: React.FC<{
   secondaryButton,
 }) => (
   <div style={{ width: '270px' }}>
-    <div style={{ position: 'relative', height: '25px', marginBottom: '10px' }}>
-      {closeWithX && (
-        <div className={styles[`${baseClass}-close`]}>
-          <div onClick={handleCloseAction}>
-            <Icon
-              source={Close}
-              kind={theme ? getIconType(theme) : 'primary'}
-            ></Icon>
-          </div>
-        </div>
-      )}
-    </div>
+    {closeWithX && (
+      <div className={styles[`${baseClass}-close`]}>
+        <button
+          className={styles[`${baseClass}-close-button`]}
+          onClick={handleCloseAction}
+        >
+          <Icon source={Close} kind={theme ? getIconType(theme) : 'primary'} />
+        </button>
+      </div>
+    )}
     {image && (
       <div style={{ margin: '0 4px' }}>
         <img

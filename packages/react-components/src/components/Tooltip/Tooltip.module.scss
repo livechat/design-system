@@ -6,7 +6,7 @@ $base-class: 'tooltip';
   border-color: var(--background-02);
   box-shadow: var(--shadow-tooltip);
   background-color: var(--background-02);
-  padding: 12px;
+  padding: var(--spacing-3);
   max-width: 320px;
   color: var(--content-basic-primary);
 
@@ -114,10 +114,22 @@ $base-class: 'tooltip';
   }
 
   &-close {
-    position: absolute;
-    top: -4px;
-    right: -4px;
-    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: var(--spacing-3);
+
+    &-button {
+      margin: 0;
+      border: 0;
+      background: none;
+      padding: 0;
+      width: 20px;
+      height: 20px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 
   &-step {
