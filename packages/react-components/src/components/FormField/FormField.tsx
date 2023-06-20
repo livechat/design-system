@@ -96,7 +96,11 @@ export const FormField: React.FC<FormFieldProps> = ({
           {children}
           {error && <FieldError>{error}</FieldError>}
           {!error && description && (
-            <FieldDescription>{description}</FieldDescription>
+            <FieldDescription
+              className={cx(styles[`${baseClass}__content__description`])}
+            >
+              {description}
+            </FieldDescription>
           )}
         </div>
       </div>
