@@ -40,5 +40,5 @@ export default defineConfig({
       'test-utils': path.resolve(__dirname, 'src/test/utils.ts'),
     },
   },
-  plugins: [dts(), react({ jsxRuntime: 'classic' })],
+  plugins: [dts({ logLevel: 'error' }), react({ jsxRuntime: 'classic' })],
 });
