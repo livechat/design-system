@@ -24,7 +24,8 @@
     }
 
     &--inline {
-      align-items: center;
+      flex-shrink: 0;
+      align-items: flex-start;
       justify-content: center;
       margin-right: var(--spacing-2);
       margin-bottom: 0;
@@ -39,6 +40,10 @@
   &__label-wrapper {
     display: flex;
     flex-grow: 1;
+
+    &--inline {
+      align-items: center;
+    }
   }
 
   &__label-adornment {
@@ -52,6 +57,10 @@
     height: 20px;
     overflow: hidden;
     line-height: 20px;
+
+    &--inline {
+      align-self: center;
+    }
   }
 
   &__label-left-node {

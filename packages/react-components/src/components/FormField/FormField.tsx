@@ -31,6 +31,8 @@ export const FormField: React.FC<FormFieldProps> = ({
   children,
   labelRightNode,
 }) => {
+  const childrenRef = React.useRef<HTMLDivElement>(null);
+  const [labelHeight, setLabelHeight] = React.useState('auto');
   const mergedClassNames = cx(
     styles[baseClass],
     {
@@ -38,6 +40,14 @@ export const FormField: React.FC<FormFieldProps> = ({
     },
     className
   );
+
+  React.useEffect(() => {
+    const div = childrenRef;
+
+    if (inline && div.current) {
+      setLabelHeight(`${div.current.clientHeight}px`);
+    }
+  });
 
   return (
     <div className={mergedClassNames}>
@@ -69,7 +79,15 @@ export const FormField: React.FC<FormFieldProps> = ({
             )}
           >
             {labelText && (
-              <div className={cx(styles[`${baseClass}__label-wrapper`])}>
+              <div
+                className={cx(
+                  styles[`${baseClass}__label-wrapper`],
+                  inline && styles[`${baseClass}__label-wrapper--inline`]
+                )}
+                style={{
+                  height: labelHeight,
+                }}
+              >
                 <label
                   className={styles[`${baseClass}__label-left-node`]}
                   htmlFor={labelFor}
@@ -79,7 +97,12 @@ export const FormField: React.FC<FormFieldProps> = ({
                   </Text>
                 </label>
                 {labelAdornment && (
-                  <div className={cx(styles[`${baseClass}__label-adornment`])}>
+                  <div
+                    className={cx(
+                      styles[`${baseClass}__label-adornment`],
+                      inline && styles[`${baseClass}__label-adornment--inline`]
+                    )}
+                  >
                     {labelAdornment}
                   </div>
                 )}
@@ -93,7 +116,7 @@ export const FormField: React.FC<FormFieldProps> = ({
           </div>
         )}
         <div className={cx(styles[`${baseClass}__content`])}>
-          {children}
+          <div ref={childrenRef}>{children}</div>
           {error && <FieldError>{error}</FieldError>}
           {!error && description && (
             <FieldDescription

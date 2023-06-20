@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
+import { SearchFilled } from '@livechat/design-system-icons/react/tabler';
 
 import { FormField as FormFieldComponent, FormFieldProps } from './FormField';
 import { Input } from '../Input';
 import { NumericInput } from '../NumericInput';
+import { Icon } from '../Icon';
+import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
 export default {
   title: 'Forms/FormField',
@@ -12,6 +15,13 @@ export default {
     controls: { exclude: ['children'] },
   },
 } as ComponentMeta<typeof FormFieldComponent>;
+
+const ExampleIcon = () => <Icon source={SearchFilled} />;
+
+const ExampleInput = () => <Input placeholder="Placeholder text" />;
+
+const LabelText = 'Example label text';
+const DescriptionText = 'Example description text';
 
 const StoryTemplate: Story<FormFieldProps> = (args: FormFieldProps) => (
   <div>
@@ -23,8 +33,8 @@ const StoryTemplate: Story<FormFieldProps> = (args: FormFieldProps) => (
   </div>
 );
 
-export const TextField = StoryTemplate.bind({});
-TextField.args = {
+export const Default = StoryTemplate.bind({});
+Default.args = {
   inline: false,
   labelText: '',
   labelRightNode: '',
@@ -33,42 +43,66 @@ TextField.args = {
   error: '',
 };
 
-export const TextFieldWithLabel = StoryTemplate.bind({});
-TextFieldWithLabel.args = {
-  labelText: 'Example label text',
-};
-
-export const TextFieldWithLabelInline = StoryTemplate.bind({});
-TextFieldWithLabelInline.args = {
-  labelText: 'Example label text',
-  inline: true,
-};
-
-export const TextFieldWithLabelAndLabelRightNode = StoryTemplate.bind({});
-TextFieldWithLabelAndLabelRightNode.args = {
-  labelText: 'Example label text',
-  labelRightNode: '10/100',
-};
-
-export const TextFieldWithLabelAdornment = StoryTemplate.bind({});
-TextFieldWithLabelAdornment.args = {
-  labelText: 'Example label text',
-  labelAdornment: <img src="https://via.placeholder.com/100" />,
+export const Examples = (): JSX.Element => {
+  return (
+    <div>
+      <StoryDescriptor title="With Label">
+        <FormFieldComponent labelText={LabelText} description={DescriptionText}>
+          <ExampleInput />
+        </FormFieldComponent>
+      </StoryDescriptor>
+      <StoryDescriptor title="With Inline Label">
+        <FormFieldComponent
+          labelText={LabelText}
+          inline
+          description={DescriptionText}
+        >
+          <ExampleInput />
+        </FormFieldComponent>
+      </StoryDescriptor>
+      <StoryDescriptor title="With Label and Right node">
+        <FormFieldComponent
+          labelText={LabelText}
+          labelRightNode={<ExampleIcon />}
+          description={DescriptionText}
+        >
+          <ExampleInput />
+        </FormFieldComponent>
+      </StoryDescriptor>
+      <StoryDescriptor title="With Inline Label and Right node">
+        <FormFieldComponent
+          labelText={LabelText}
+          labelRightNode={<ExampleIcon />}
+          inline
+          description={DescriptionText}
+        >
+          <ExampleInput />
+        </FormFieldComponent>
+      </StoryDescriptor>
+      <StoryDescriptor title="With Label and Label Adornment">
+        <FormFieldComponent
+          labelText={LabelText}
+          labelAdornment={<ExampleIcon />}
+          description={DescriptionText}
+        >
+          <ExampleInput />
+        </FormFieldComponent>
+      </StoryDescriptor>
+      <StoryDescriptor title="With Inline Label and Label Adornment">
+        <FormFieldComponent
+          labelText={LabelText}
+          labelAdornment={<ExampleIcon />}
+          inline
+          description={DescriptionText}
+        >
+          <ExampleInput />
+        </FormFieldComponent>
+      </StoryDescriptor>
+    </div>
+  );
 };
 
 export const TextFieldWithError = StoryTemplate.bind({});
 TextFieldWithError.args = {
   error: 'Error text',
-};
-
-export const TextFieldWithDescription = StoryTemplate.bind({});
-TextFieldWithDescription.args = {
-  description: 'Description text',
-};
-
-export const NumericField = StoryTemplate.bind({});
-NumericField.args = {
-  labelText: 'Label',
-  description: 'Description text',
-  children: <NumericInput value="1" onChange={() => 1} />,
 };
