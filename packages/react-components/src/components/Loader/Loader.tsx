@@ -18,11 +18,11 @@ export interface LoaderProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   label?: string;
   /**
-   * Primary circle color
+   * Set the loader highlight color
    */
   primaryColor?: string;
   /**
-   * Secondary circle color
+   * Set the loader color
    */
   secondaryColor?: string;
 }
