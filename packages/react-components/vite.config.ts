@@ -3,6 +3,7 @@
 
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+import turbosnap from 'vite-plugin-turbosnap';
 import react from '@vitejs/plugin-react';
 
 import * as path from 'path';
@@ -40,5 +41,9 @@ export default defineConfig({
       'test-utils': path.resolve(__dirname, 'src/test/utils.ts'),
     },
   },
-  plugins: [dts({ logLevel: 'error' }), react({ jsxRuntime: 'classic' })],
+  plugins: [
+    dts({ logLevel: 'error' }),
+    react({ jsxRuntime: 'classic' }),
+    turbosnap({ rootDir: process.cwd() }),
+  ],
 });
