@@ -9,14 +9,41 @@ import styles from './FormField.module.scss';
 const baseClass = 'form-field';
 
 export interface FormFieldProps {
+  /**
+   * Define label text
+   */
   labelText?: string;
+  /**
+   * Renders given element aligned to label, `inline` will affect
+   */
   labelAdornment?: React.ReactNode;
+  /**
+   * Define to associate the label with the field
+   */
   labelFor?: string;
+  /**
+   * The CSS class for field container
+   */
   className?: string;
+  /**
+   * Set the label to inline version
+   */
   inline?: boolean;
+  /**
+   * Define error text
+   */
   error?: string;
+  /**
+   * Define the description text
+   */
   description?: React.ReactNode;
+  /**
+   * Wrapped element
+   */
   children?: React.ReactNode;
+  /**
+   * Renders given element above the filed
+   */
   labelRightNode?: React.ReactNode;
 }
 
@@ -45,8 +72,10 @@ export const FormField: React.FC<FormFieldProps> = ({
     const div = childrenRef;
 
     if (inline && div.current) {
-      setLabelHeight(`${div.current.clientHeight}px`);
+      return setLabelHeight(`${div.current.clientHeight}px`);
     }
+
+    return setLabelHeight('auto');
   });
 
   return (

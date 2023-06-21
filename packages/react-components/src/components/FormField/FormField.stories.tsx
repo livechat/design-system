@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
-import { SearchFilled } from '@livechat/design-system-icons/react/tabler';
+import { Search } from '@livechat/design-system-icons/react/tabler';
 
 import { FormField as FormFieldComponent, FormFieldProps } from './FormField';
 import { Input } from '../Input';
-import { NumericInput } from '../NumericInput';
 import { Icon } from '../Icon';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
@@ -16,10 +15,8 @@ export default {
   },
 } as ComponentMeta<typeof FormFieldComponent>;
 
-const ExampleIcon = () => <Icon source={SearchFilled} />;
-
+const ExampleIcon = () => <Icon source={Search} />;
 const ExampleInput = () => <Input placeholder="Placeholder text" />;
-
 const LabelText = 'Example label text';
 const DescriptionText = 'Example description text';
 

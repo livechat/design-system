@@ -1,5 +1,9 @@
 .field-error {
-  display: block;
+  display: flex;
   margin: var(--spacing-1) 0 0;
   color: var(--content-basic-negative);
+
+  &__icon {
+    margin-right: 5px;
+  }
 }
