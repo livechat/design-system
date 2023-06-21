@@ -19,7 +19,11 @@ export const FieldError: React.FC<FieldErrorProps> = ({
 
   return (
     <Text as="span" size="sm" {...props} className={mergedClassNames}>
-      <Icon source={Info} className={styles[`${baseClass}__icon`]} />
+      <Icon
+        source={Info}
+        className={styles[`${baseClass}__icon`]}
+        size="small"
+      />
       {children}
     </Text>
   );
