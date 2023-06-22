@@ -4,13 +4,13 @@ $base-class: 'picker-trigger';
   box-sizing: border-box;
   display: flex;
   position: relative;
-  align-items: center;
-  justify-content: flex-end;
+  align-items: flex-start;
+  justify-content: center;
   transition: border 0.15s ease-in-out;
   border: 1px solid var(--border-basic-primary);
   border-radius: 4px;
   background-color: var(--surface-primary-default);
-  padding: 7px 12px;
+  padding: 0 var(--spacing-3);
   width: 100%;
   line-height: 22px;
   font-size: 15px;
@@ -27,42 +27,28 @@ $base-class: 'picker-trigger';
     border-color: var(--action-primary-default);
   }
 
-  &--compact {
-    height: 32px;
-  }
-
-  &--medium {
-    height: 36px;
-  }
-
-  &--large {
-    height: 42px;
-  }
-
   &--multi-select {
     overflow: hidden;
 
     &--with-items {
-      padding: 5px;
-      height: auto;
+      padding: 0 var(--spacing-3) 0 5px;
     }
   }
 
   &__controls {
     display: flex;
     align-items: center;
-    align-self: flex-start;
 
     &--compact {
-      height: 18px;
+      height: 32px;
     }
 
     &--medium {
-      height: 22px;
+      height: 36px;
     }
 
     &--large {
-      height: 28px;
+      height: 44px;
     }
   }
 
@@ -77,9 +63,29 @@ $base-class: 'picker-trigger';
   }
 
   &__content {
+    display: flex;
     flex-grow: 2;
+    align-items: center;
+    height: 100%;
     max-height: 96px;
     overflow-y: auto;
+
+    &--compact {
+      height: 32px;
+    }
+
+    &--medium {
+      height: 36px;
+    }
+
+    &--large {
+      height: 44px;
+    }
+
+    &--with-items {
+      padding: 5px 0;
+      height: auto;
+    }
   }
 
   &--disabled {

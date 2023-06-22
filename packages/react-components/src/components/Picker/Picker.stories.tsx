@@ -12,9 +12,6 @@ import noop from '../../utils/noop';
 export default {
   title: 'Components/Picker',
   component: Picker,
-  parameters: {
-    componentSubtitle: `TBD`,
-  },
   argTypes: {
     options: {
       control: false,
