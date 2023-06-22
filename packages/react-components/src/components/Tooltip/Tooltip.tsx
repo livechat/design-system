@@ -87,9 +87,9 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
 
   const handleVisibilityChange = (newVisibility: boolean | undefined): void => {
     if (newVisibility) {
-      onOpen?.();
+      !visible && onOpen?.();
     } else {
-      onClose?.();
+      visible && onClose?.();
     }
     setVisibility(newVisibility);
   };
