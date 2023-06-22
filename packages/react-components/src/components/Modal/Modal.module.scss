@@ -132,40 +132,6 @@
 }
 
 .modal-header {
-  &__header {
-    box-sizing: border-box;
-    display: flex;
-    flex: 0 0 64px;
-    align-items: center;
-    box-shadow: inset 0 -1px 0 var(--border-basic-tertiary);
-    padding: 0 20px;
-    width: 100%;
-    height: 64px;
-    color: var(--content-basic-primary);
-  }
-
-  &__label-header {
-    display: flex;
-    position: absolute;
-    top: -52px;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    height: 40px;
-  }
-
-  &__heading {
-    margin: 0;
-    padding: 0;
-    max-width: calc(100% - 32px);
-    text-align: left;
-    color: var(--content-basic-primary);
-  }
-
-  &__label-heading {
-    color: var(--color-white);
-  }
-
   &__heading-wrapper {
     display: flex;
     justify-content: flex-start;

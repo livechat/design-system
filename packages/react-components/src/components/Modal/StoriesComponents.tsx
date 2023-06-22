@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { GreetingQuickReply } from '@livechat/design-system-icons/react/material';
 import { Button } from '../Button';
-import { Icon } from '../Icon';
 import './Modal.stories.css';
 import modalImage from './assets/modal-image.png';
 import { Heading, Text } from '../Typography';

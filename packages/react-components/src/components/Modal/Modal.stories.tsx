@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
+import { GreetingQuickReply } from '@livechat/design-system-icons/react/material';
 
 import {
   Modal as ModalComponent,
@@ -26,9 +27,6 @@ export default {
   },
 } as ComponentMeta<typeof ModalComponent>;
 
-function onClose() {
-  console.log('onClose');
-}
 const defaultModalProps = {
   children: <ModalContent />,
   closeOnEscPress: true,
@@ -69,7 +67,7 @@ export const ModalWithCustomHeader = StoryTemplate.bind({});
 ModalWithCustomHeader.args = {
   ...defaultModalProps,
   heading: (
-    <ModalHeader onClose={onClose} title="Modal Header">
+    <ModalHeader title="Modal Header" icon={GreetingQuickReply}>
       {' '}
       Modal description{' '}
     </ModalHeader>
@@ -79,7 +77,12 @@ ModalWithCustomHeader.args = {
 export const ModalWithLabeledHeader = StoryTemplate.bind({});
 ModalWithLabeledHeader.args = {
   ...defaultModalProps,
-  labelHeading: <ModalHeader onClose={onClose} />,
+  labelHeading: (
+    <ModalHeader title="Modal Header" icon={GreetingQuickReply}>
+      {' '}
+      Modal description{' '}
+    </ModalHeader>
+  ),
 } as ModalProps;
 
 export const ModalWithFullSpaceContent = StoryTemplate.bind({});
