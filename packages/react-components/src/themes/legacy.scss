@@ -68,6 +68,16 @@ $surface-primary-active: #ebf1f4;
   --surface-other-overlay: rgb(0 0 0 / 70%);
   --surface-other-agent: #4284f5;
   --surface-other-skeleton: #e5e8ec;
+  --surface-gradient-01: linear-gradient(
+    107.08deg,
+    #8609ff 9.14%,
+    #ee0007 111.43%
+  );
+  --surface-gradient-02: linear-gradient(
+    107.08deg,
+    #8609ff 9.14%,
+    #0059e1 111.43%
+  );
   --content-default: #424d57; // deprecated
   --content-basic-primary: #424d57;
   --content-subtle: #677179; // deprecated
