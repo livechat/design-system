@@ -59,6 +59,8 @@ export const DesignToken = {
   SurfaceOtherOverlay: '--surface-other-overlay',
   SurfaceOtherAgent: '--surface-other-agent',
   SurfaceOtherSkeleton: '--surface-other-skeleton',
+  SurfaceGradient01: '--surface-gradient-01',
+  SurfaceGradient02: '--surface-gradient-02',
   ContentDefault: '--content-default', // deprecated
   ContentBasicPrimary: '--content-basic-primary',
   ContentSubtle: '--content-subtle', // deprecated
