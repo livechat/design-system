@@ -158,6 +158,14 @@ $base-class: 'btn';
     background-color: transparent;
     color: var(--action-primary-default);
 
+    &:hover {
+      color: var(--action-primary-hover);
+    }
+
+    &:active {
+      color: var(--action-primary-active);
+    }
+
     &:hover,
     &:active,
     &:focus {
