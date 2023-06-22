@@ -244,7 +244,13 @@ export const PickerList: React.FC<IPickerListProps> = ({
             <div className={styles[`${itemClassName}__content`]}>
               {getOptionContent(item)}
             </div>
-            {isItemSelected(item.key) && <Icon kind="link" source={Check} />}
+            {isItemSelected(item.key) && (
+              <Icon
+                kind="link"
+                source={Check}
+                customColor="var(--content-basic-info)"
+              />
+            )}
           </li>
         );
       })}
