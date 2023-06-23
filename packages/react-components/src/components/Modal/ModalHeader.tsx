@@ -23,7 +23,12 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
   return (
     <div className={mergedClassNames}>
       {icon && (
-        <Icon className={styles[`${baseClass}__heading-icon`]} source={icon} />
+        <Icon
+          className={styles[`${baseClass}__heading-icon`]}
+          source={icon}
+          kind="primary"
+          size="large"
+        />
       )}
       <div className={styles[`${baseClass}__heading-header`]}>
         <div>{title}</div>
