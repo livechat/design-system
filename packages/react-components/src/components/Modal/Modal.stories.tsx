@@ -67,7 +67,14 @@ export const ModalWithCustomHeader = StoryTemplate.bind({});
 ModalWithCustomHeader.args = {
   ...defaultModalProps,
   heading: (
-    <ModalHeader title="Modal Header" icon={GreetingQuickReply}>
+    <ModalHeader
+      title="Modal Header"
+      iconProps={{
+        source: GreetingQuickReply,
+        kind: 'primary',
+        size: 'large',
+      }}
+    >
       {' '}
       Modal description{' '}
     </ModalHeader>
@@ -78,7 +85,15 @@ export const ModalWithLabeledHeader = StoryTemplate.bind({});
 ModalWithLabeledHeader.args = {
   ...defaultModalProps,
   labelHeading: (
-    <ModalHeader title="Modal Header" icon={GreetingQuickReply}>
+    <ModalHeader
+      title="Modal Header"
+      iconProps={{
+        source: GreetingQuickReply,
+        kind: 'primary',
+        size: 'large',
+        customColor: '#fff',
+      }}
+    >
       {' '}
       Modal description{' '}
     </ModalHeader>

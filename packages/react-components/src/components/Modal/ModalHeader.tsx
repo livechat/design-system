@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, IconSource } from '../Icon';
+import { Icon, IconProps } from '../Icon';
 import styles from './Modal.module.scss';
 import { cx } from '@emotion/css';
 
@@ -7,14 +7,14 @@ const baseClass = 'modal-header';
 
 interface ModalHeaderProps {
   title?: React.ReactNode;
-  icon?: IconSource;
+  iconProps?: IconProps;
   children?: React.ReactNode;
   className?: 'string';
 }
 
 export const ModalHeader: React.FC<ModalHeaderProps> = ({
   title,
-  icon,
+  iconProps,
   children,
   className = '',
 }) => {
@@ -22,13 +22,8 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
 
   return (
     <div className={mergedClassNames}>
-      {icon && (
-        <Icon
-          className={styles[`${baseClass}__heading-icon`]}
-          source={icon}
-          kind="primary"
-          size="large"
-        />
+      {iconProps && (
+        <Icon className={styles[`${baseClass}__heading-icon`]} {...iconProps} />
       )}
       <div className={styles[`${baseClass}__heading-header`]}>
         <div>{title}</div>
