@@ -68,6 +68,17 @@
       }
     }
   }
+
+  &__footer {
+    box-sizing: border-box;
+    display: flex;
+    flex: 0 0 64px;
+    justify-content: flex-end;
+    box-shadow: inset 0 1px 0 var(--border-basic-tertiary);
+    padding: var(--spacing-4) var(--spacing-5);
+    width: 100%;
+    height: 64px;
+  }
 }
 
 .modal {
@@ -132,10 +143,8 @@
 }
 
 .modal-header {
-  &__heading-wrapper {
-    display: flex;
-    justify-content: flex-start;
-  }
+  display: flex;
+  justify-content: flex-start;
 
   &__heading-icon {
     margin-right: 15px;
@@ -149,18 +158,5 @@
   &__heading-description {
     font-size: 14px;
     font-weight: 400;
-  }
-}
-
-.modal-footer {
-  &__footer {
-    box-sizing: border-box;
-    display: flex;
-    flex: 0 0 64px;
-    justify-content: flex-end;
-    box-shadow: inset 0 1px 0 var(--border-basic-tertiary);
-    padding: var(--spacing-4) var(--spacing-5);
-    width: 100%;
-    height: 64px;
   }
 }
