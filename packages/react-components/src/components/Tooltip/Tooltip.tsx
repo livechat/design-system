@@ -91,7 +91,9 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     } else {
       visible && onClose?.();
     }
-    setVisibility(newVisibility);
+    if (!isManaged) {
+      setVisibility(newVisibility);
+    }
   };
 
   React.useEffect(() => {
@@ -129,15 +131,11 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   };
 
   const handleOpen = () => {
-    if (!isManaged) {
-      handleVisibilityChange(true);
-    }
+    handleVisibilityChange(true);
   };
 
   const handleClose = () => {
-    if (!isManaged) {
-      handleVisibilityChange(false);
-    }
+    handleVisibilityChange(false);
   };
 
   const handleMouseEnter = () => {
