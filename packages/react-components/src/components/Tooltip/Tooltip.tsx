@@ -60,7 +60,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     onOpen,
     onClose,
   } = props;
-
+  const isFirstRender = React.useRef(true);
   const isManaged = isVisible !== undefined;
   const arrowRef = React.useRef<HTMLDivElement | null>(null);
   const [visible, setVisibility] = React.useState(isVisible);
@@ -101,6 +101,13 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   }, [reference, referenceElement]);
 
   React.useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    if (isVisible === true) onOpen?.();
+    if (isVisible === false) onClose?.(); // we need to check if it's false, because it can be undefined
+
     setVisibility(isVisible);
   }, [isVisible]);
 
