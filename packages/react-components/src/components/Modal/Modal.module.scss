@@ -150,13 +150,19 @@
     margin-right: 15px;
   }
 
-  &__heading-header {
+  &__heading-body {
     display: flex;
     flex-direction: column;
   }
 
+  &__heading-title {
+    line-height: 24px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
   &__heading-description {
+    line-height: 24px;
     font-size: 14px;
-    font-weight: 400;
   }
 }

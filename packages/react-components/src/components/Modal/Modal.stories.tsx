@@ -33,15 +33,10 @@ const defaultModalProps = {
   closeOnOverlayPress: true,
   footer: (
     <ModalFooter>
-      <Button
-        size="medium"
-        kind="secondary"
-        style={{ marginRight: '8px' }}
-        className="full-space-button"
-      >
+      <Button size="medium" kind="secondary" style={{ marginRight: '8px' }}>
         Secondary
       </Button>
-      <Button kind="primary" size="medium" className="full-space-button ">
+      <Button kind="primary" size="medium">
         Primary
       </Button>
     </ModalFooter>
