@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'clsx';
-import { LockBlack as LockIcon } from '@livechat/design-system-icons/react/material';
+import { LockBlackFilled as LockIcon } from '@livechat/design-system-icons/react/tabler';
 
 import { Icon, IconSize } from '../../components/Icon';
 import noop from '../../utils/noop';

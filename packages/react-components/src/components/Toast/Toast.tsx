@@ -5,7 +5,7 @@ import {
   Warning,
   CheckCircleSolid,
   Block,
-} from '@livechat/design-system-icons/react/material';
+} from '@livechat/design-system-icons/react/tabler';
 import cx from 'clsx';
 
 import { Button } from '../Button';

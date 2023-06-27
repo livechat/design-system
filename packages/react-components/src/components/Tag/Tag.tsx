@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Close } from '@livechat/design-system-icons/react/material';
+import { Close } from '@livechat/design-system-icons/react/tabler';
 import cx from 'clsx';
 import { getContrast } from 'polished';
 
