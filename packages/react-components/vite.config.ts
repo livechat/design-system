@@ -42,7 +42,7 @@ export default defineConfig({
     },
   },
   plugins: [
-    dts({ logLevel: 'error' }),
+    dts(),
     react({ jsxRuntime: 'classic' }),
     turbosnap({ rootDir: process.cwd() }),
   ],

@@ -10,7 +10,7 @@
   "main": "./dist/dsrc.cjs.js",
   "module": "./dist/dsrc.es.js",
   "unpkg": "./dist/dsrc.umd.js",
-  "types": "./dist/src/index.d.ts",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -62,7 +62,7 @@
     "storybook-addon-themes": "^6.1.0",
     "typescript": "^4.5.4",
     "vite": "^4.3.9",
-    "vite-plugin-dts": "^2.3.0",
+    "vite-plugin-dts": "^3.0.0-beta.3",
     "vite-plugin-turbosnap": "^1.0.2",
     "vitest": "^0.31.0"
   },
