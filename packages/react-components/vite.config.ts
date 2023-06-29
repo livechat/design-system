@@ -5,6 +5,7 @@ import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import turbosnap from 'vite-plugin-turbosnap';
 import react from '@vitejs/plugin-react';
+import legacy from '@vitejs/plugin-legacy';
 
 import * as path from 'path';
 
@@ -45,5 +46,8 @@ export default defineConfig({
     dts(),
     react({ jsxRuntime: 'classic' }),
     turbosnap({ rootDir: process.cwd() }),
+    legacy({
+      targets: ['defaults', 'not IE 11'],
+    }),
   ],
 });
