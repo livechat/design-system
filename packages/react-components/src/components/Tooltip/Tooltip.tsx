@@ -183,8 +183,8 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
       ref={floating}
       style={{
         position: strategy,
-        top: y ?? '',
-        left: x ?? '',
+        top: y || '',
+        left: x || '',
       }}
       className={mergedClassNames}
       onMouseEnter={handleMouseEnter}
