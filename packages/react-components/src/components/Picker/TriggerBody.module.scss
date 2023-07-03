@@ -12,6 +12,7 @@ $base-class: 'picker-trigger-body';
     gap: 4px;
     max-height: 96px;
     overflow-y: auto;
+    color-scheme: var(--color-scheme);
   }
 
   &__item {
