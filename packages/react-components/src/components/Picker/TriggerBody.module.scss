@@ -6,6 +6,14 @@ $base-class: 'picker-trigger-body';
   gap: 4px;
   justify-content: flex-start;
 
+  &__item-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    max-height: 96px;
+    overflow-y: auto;
+  }
+
   &__item {
     flex: 1;
     overflow: hidden;

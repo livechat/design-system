@@ -40,15 +40,15 @@ $base-class: 'picker-trigger';
     align-items: center;
 
     &--compact {
-      height: 32px;
+      height: 30px;
     }
 
     &--medium {
-      height: 36px;
+      height: 34px;
     }
 
     &--large {
-      height: 44px;
+      height: 42px;
     }
   }
 
@@ -66,23 +66,21 @@ $base-class: 'picker-trigger';
     display: flex;
     flex-grow: 2;
     align-items: center;
-    height: 100%;
-    max-height: 96px;
-    overflow-y: auto;
 
     &--compact {
-      height: 32px;
+      height: 30px;
     }
 
     &--medium {
-      height: 36px;
+      height: 34px;
     }
 
     &--large {
-      height: 44px;
+      height: 42px;
     }
 
     &--with-items {
+      align-self: center;
       padding: 5px 0;
       height: auto;
     }
