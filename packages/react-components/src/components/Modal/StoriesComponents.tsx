@@ -65,3 +65,16 @@ export const ModalContent: React.FC = () => (
     </FormField>
   </div>
 );
+
+export const ModalFooter: React.FC = () => {
+  return (
+    <div>
+      <Button size="medium" kind="secondary" style={{ marginRight: '8px' }}>
+        Secondary
+      </Button>
+      <Button kind="primary" size="medium">
+        Primary
+      </Button>
+    </div>
+  );
+};

@@ -6,7 +6,7 @@ import { Text } from '../Typography';
 
 const baseClass = 'modal-header';
 
-interface ModalHeaderProps {
+export interface ModalHeaderProps {
   title?: React.ReactNode;
   iconProps?: IconProps;
   children?: React.ReactNode;

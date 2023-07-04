@@ -7,12 +7,14 @@ import {
   ModalProps,
   ModalPortal as ModalPortalComponent,
   ModalPortalProps,
+  ModalHeader,
   ModalBase,
 } from './index';
-import { ModalContent, ModalFullSpaceContent } from './StoriesComponents';
-import { ModalFooter } from './ModalFooter';
-import { ModalHeader } from './ModalHeader';
-import { Button } from '../Button';
+import {
+  ModalContent,
+  ModalFullSpaceContent,
+  ModalFooter,
+} from './StoriesComponents';
 
 export default {
   title: 'Components/Modal',
@@ -31,16 +33,7 @@ const defaultModalProps = {
   children: <ModalContent />,
   closeOnEscPress: true,
   closeOnOverlayPress: true,
-  footer: (
-    <ModalFooter>
-      <Button size="medium" kind="secondary" style={{ marginRight: '8px' }}>
-        Secondary
-      </Button>
-      <Button kind="primary" size="medium">
-        Primary
-      </Button>
-    </ModalFooter>
-  ),
+  footer: <ModalFooter />,
 };
 
 const StoryTemplate: Story<ModalProps> = ({
