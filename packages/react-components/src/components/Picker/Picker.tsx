@@ -77,6 +77,14 @@ export interface IPickerProps {
    */
   hideClearButton?: boolean;
   /**
+   * Will open picker on component initialization
+   */
+  openedOnInit?: boolean;
+  /**
+   * Test id passed to the picker trigger element
+   */
+  ['data-testid']?: string;
+  /**
    * Callback called after item selection
    */
   onSelect: (selectedItems: IPickerListItem[] | null) => void;
@@ -97,10 +105,11 @@ export const Picker: React.FC<IPickerProps> = ({
   type = 'single',
   searchDisabled = false,
   hideClearButton,
+  openedOnInit = false,
   onSelect,
   ...props
 }) => {
-  const [isListOpen, setIsListOpen] = React.useState<boolean>(false);
+  const [isListOpen, setIsListOpen] = React.useState<boolean>(openedOnInit);
   const [searchPhrase, setSearchPhrase] = React.useState<string | null>(null);
   const triggerRef = React.useRef<HTMLDivElement>(null);
 
@@ -231,9 +240,10 @@ export const Picker: React.FC<IPickerProps> = ({
   }, [selected]);
 
   return (
-    <div ref={triggerRef} className={mergedClassNames} {...props}>
+    <div ref={triggerRef} className={mergedClassNames} id={props.id}>
       <div className={styles[`${baseClass}__container`]}>
         <Trigger
+          testId={props['data-testid']}
           isSearchDisabled={searchDisabled}
           isError={error}
           isOpen={isListOpen}

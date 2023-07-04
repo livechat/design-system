@@ -60,7 +60,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     onOpen,
     onClose,
   } = props;
-
+  const isFirstRender = React.useRef(true);
   const isManaged = isVisible !== undefined;
   const arrowRef = React.useRef<HTMLDivElement | null>(null);
   const [visible, setVisibility] = React.useState(isVisible);
@@ -85,11 +85,29 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     placement: placement,
   });
 
+  const handleVisibilityChange = (newVisibility: boolean | undefined): void => {
+    if (newVisibility) {
+      !visible && onOpen?.();
+    } else {
+      visible && onClose?.();
+    }
+    if (!isManaged) {
+      setVisibility(newVisibility);
+    }
+  };
+
   React.useEffect(() => {
     referenceElement && reference(referenceElement);
   }, [reference, referenceElement]);
 
   React.useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    if (isVisible === true) onOpen?.();
+    if (isVisible === false) onClose?.(); // we need to check if it's false, because it can be undefined
+
     setVisibility(isVisible);
   }, [isVisible]);
 
@@ -114,29 +132,23 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     isHovered.current = false;
     void sleep(hoverOutDelayTimeout).then(() => {
       if (!isHovered.current) {
-        setVisibility(false);
+        handleVisibilityChange(false);
       }
     });
   };
 
   const handleOpen = () => {
-    if (onOpen) onOpen();
-    if (!isManaged) {
-      setVisibility(true);
-    }
+    handleVisibilityChange(true);
   };
 
   const handleClose = () => {
-    if (onClose) onClose();
-    if (!isManaged) {
-      setVisibility(false);
-    }
+    handleVisibilityChange(false);
   };
 
   const handleMouseEnter = () => {
     if (triggerOnClick || isManaged) return;
     isHovered.current = true;
-    setVisibility(true);
+    handleVisibilityChange(true);
   };
 
   const handleCloseAction = (event: KeyboardEvent | MouseEvent) => {
@@ -171,8 +183,8 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
       ref={floating}
       style={{
         position: strategy,
-        top: y ?? '',
-        left: x ?? '',
+        top: y !== null && y !== undefined ? y : '',
+        left: x !== null && x !== undefined ? x : '',
       }}
       className={mergedClassNames}
       onMouseEnter={handleMouseEnter}
@@ -200,6 +212,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   function renderFloatingComponent() {
     if (withFadeAnimation) {
       const enter = css`
+        pointer-events: none;
         opacity: 0;
       `;
 
@@ -208,6 +221,10 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
         transition-property: opacity;
         transition-duration: ${transitionDuration}ms;
         transition-delay: ${transitionDelay}ms;
+      `;
+
+      const enterDone = css`
+        pointer-events: initial;
       `;
 
       const exit = css`
@@ -231,6 +248,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
           timeout={timeout}
           classNames={{
             enter: enter,
+            enterDone: enterDone,
             enterActive: enterActive,
             exit: exit,
             exitActive: exitActive,

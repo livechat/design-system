@@ -20,9 +20,21 @@ const SIZE_VALUE_FROM_SIZE = {
 const baseClass = 'progress-circle';
 
 export interface ProgressCircleProps {
+  /**
+   * The CSS class for container
+   */
   className?: string;
+  /**
+   * Specify the value of current progress circle (0-100)
+   */
   progressValue: number;
+  /**
+   * Specify the progress circle status
+   */
   status?: ProgressStatus;
+  /**
+   * Specify the progress circle size
+   */
   size?: ProgressSize;
 }
 

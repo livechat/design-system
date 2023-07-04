@@ -47,7 +47,7 @@ $surface-primary-active: #eeeeef;
   --surface-accent-emphasis-min-positive: #f3fcf4;
   --surface-accent-emphasis-min-purple: #faf8ff;
   --surface-invert-default: #1b1b20; // deprecated
-  --surface-invert-primary: #1b1b20;
+  --surface-invert-primary: #131317;
   --surface-invert-subtle: #4e4e58; // deprecated
   --surface-invert-secondary: #3b3b43;
   --surface-invert-disabled: #8d8d95;
@@ -66,6 +66,16 @@ $surface-primary-active: #eeeeef;
   --surface-other-overlay: rgb(19 19 23 / 70%);
   --surface-other-agent: #0059e1;
   --surface-other-skeleton: #e2e2e4;
+  --surface-gradient-01: linear-gradient(
+    107.08deg,
+    #8609ff 9.14%,
+    #ee0007 111.43%
+  );
+  --surface-gradient-02: linear-gradient(
+    107.08deg,
+    #8609ff 9.14%,
+    #0059e1 111.43%
+  );
   --content-default: #131317; // deprecated
   --content-basic-primary: #131317;
   --content-subtle: #62626d; // deprecated

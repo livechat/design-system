@@ -12,7 +12,13 @@ export default {
   title: 'Forms/Input',
   component: Input,
   argTypes: {
-    onChange: { action: 'changed' },
+    onChange: {
+      description: 'The event handler for onChange',
+      action: 'changed',
+    },
+    icon: {
+      control: false,
+    },
   },
 } as ComponentMeta<typeof Input>;
 
@@ -28,6 +34,9 @@ Default.args = {
 
 export const Sizes = (): JSX.Element => (
   <>
+    <StoryDescriptor title="Xsmall">
+      <Input inputSize="xsmall" placeholder={placeholderText} />
+    </StoryDescriptor>
     <StoryDescriptor title="Compact">
       <Input inputSize="compact" placeholder={placeholderText} />
     </StoryDescriptor>

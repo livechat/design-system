@@ -7,6 +7,7 @@ import { Button } from '../Button';
 import { Icon } from '../Icon';
 
 import styles from './PromoBanner.module.scss';
+import { Text } from '../Typography';
 
 const SMALL_CONTAINER_WIDTH_TRESHOLD = 400;
 const LARGE_CONTAINER_WIDTH_TRESHOLD = 800;
@@ -15,14 +16,41 @@ const RESIZE_DEBOUNCE_TRESHOLD = 500;
 const baseClass = 'promo-banner';
 
 export interface PromoBannerProps {
+  /**
+   * Specify an optional className to be applied to the container node
+   */
   className?: string;
+  /**
+   * Set the primary button text
+   */
   buttonText?: string;
+  /**
+   * Set the header text
+   */
   header: string;
+  /**
+   * Set the image source to display it
+   */
   img?: string;
+  /**
+   * Specify whether the banner should use a light-themed design
+   */
   light?: boolean;
+  /**
+   * Set the link button text
+   */
   linkText?: string;
+  /**
+   * Event handler for primary button press
+   */
   onButtonClick?: () => void;
+  /**
+   * Event handler for close button press
+   */
   onClose?: () => void;
+  /**
+   * Event handler for link button press
+   */
   onLinkClick?: () => void;
 }
 
@@ -112,7 +140,7 @@ export const PromoBanner: React.FC<React.PropsWithChildren<PromoBannerProps>> =
           {img && <img src={img} className={styles[`${baseClass}__img`]} />}
           <div className={styles[`${baseClass}__wrapper`]}>
             <div className={styles[`${baseClass}__header`]}>{header}</div>
-            <div>{children}</div>
+            <Text as="div">{children}</Text>
             {containerSize !== 'large' && footer}
           </div>
           {containerSize === 'large' && footer}

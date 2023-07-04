@@ -3,6 +3,7 @@ import '../src/themes/light.scss';
 import '../src/themes/dark.scss';
 import '../src/foundations/spacing.css';
 import '../src/foundations/shadow.css';
+import '../src/foundations/color-scheme.css';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },

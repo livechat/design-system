@@ -18,12 +18,33 @@ type ButtonElement = {
 
 export interface SegmentedControlProps
   extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Specify an optional className to be applied to the container node
+   */
   className?: string;
+  /**
+   * Array of buttons
+   */
   buttons: ButtonElement[];
+  /**
+   * Set to make buttons fill the container if there is free space
+   */
   fullWidth?: boolean;
+  /**
+   * Specify the buttons size
+   */
   size?: ButtonSize;
+  /**
+   * Id of initially selected button
+   */
   initialId?: string;
+  /**
+   * Id of current selected button
+   */
   currentId?: string;
+  /**
+   * Handler for onClick on specific button
+   */
   onButtonClick?: (id: string, event: React.MouseEvent<HTMLElement>) => void;
 }
 

@@ -12,9 +12,6 @@ import noop from '../../utils/noop';
 export default {
   title: 'Components/Picker',
   component: Picker,
-  parameters: {
-    componentSubtitle: `TBD`,
-  },
   argTypes: {
     options: {
       control: false,
@@ -210,9 +207,7 @@ export const PickerWithOptionsAsCustomElements = (): React.ReactElement => (
                     className="image selected"
                     src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
                   />
-                  <div className="title selected">
-                    Example custom element one
-                  </div>
+                  <div className="title selected">Example element one</div>
                 </CustomPickerOption>
               ),
             },
@@ -239,9 +234,7 @@ export const PickerWithOptionsAsCustomElements = (): React.ReactElement => (
                     className="image selected"
                     src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
                   />
-                  <div className="title selected">
-                    Example custom element two
-                  </div>
+                  <div className="title selected">Example element two</div>
                 </CustomPickerOption>
               ),
             },

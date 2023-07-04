@@ -24,6 +24,7 @@ export interface ITriggerProps {
   hideClearButton?: boolean;
   onTrigger: (e: React.MouseEvent | KeyboardEvent) => void;
   onClear: () => void;
+  testId?: string;
 }
 
 export const Trigger: React.FC<React.PropsWithChildren<ITriggerProps>> = ({
@@ -39,6 +40,7 @@ export const Trigger: React.FC<React.PropsWithChildren<ITriggerProps>> = ({
   hideClearButton,
   onTrigger,
   onClear,
+  testId,
 }) => {
   const triggerRef = React.useRef<HTMLDivElement>(null);
   const mergedClassNames = cx(
@@ -91,8 +93,19 @@ export const Trigger: React.FC<React.PropsWithChildren<ITriggerProps>> = ({
       className={mergedClassNames}
       onClick={handleTriggerClick}
       tabIndex={0}
+      data-testid={testId}
     >
-      <div className={styles[`${baseClass}__content`]}>{children}</div>
+      <div
+        className={cx(
+          styles[`${baseClass}__content`],
+          styles[`${baseClass}__content--${size}`],
+          isMultiSelect &&
+            isItemSelected &&
+            styles[`${baseClass}__content--with-items`]
+        )}
+      >
+        {children}
+      </div>
       <div
         className={cx(
           styles[`${baseClass}__controls`],

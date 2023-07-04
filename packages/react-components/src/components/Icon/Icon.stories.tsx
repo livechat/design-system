@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
-import * as MaterialIcons from '@livechat/design-system-icons/react/material';
+import * as TablerIcons from '@livechat/design-system-icons/react/tabler';
 
 import { Icon as IconComponent, IconProps } from './Icon';
 
-const iterator = Object.keys(MaterialIcons);
+const iterator = Object.keys(TablerIcons);
 
 export default {
   title: 'Components/Icon',
@@ -12,7 +12,7 @@ export default {
   argTypes: {
     source: {
       options: iterator,
-      mapping: MaterialIcons,
+      mapping: TablerIcons,
       control: {
         type: 'select',
         labels: iterator,
@@ -42,7 +42,7 @@ export const Icon = (args: IconProps): React.ReactElement => (
 );
 
 Icon.args = {
-  source: MaterialIcons.Email,
+  source: TablerIcons.EmailLetter,
   size: 'medium',
   kind: 'primary',
   disabled: false,
