@@ -140,8 +140,8 @@ export const Popover: React.FC<IPopoverProps> = ({
         className={mergedClassNames}
         style={{
           position: strategy,
-          top: y ?? '',
-          left: x ?? '',
+          top: y !== null && y !== undefined ? y : '',
+          left: x !== null && x !== undefined ? x : '',
         }}
       >
         {children}
