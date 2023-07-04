@@ -30,6 +30,7 @@ export default defineConfig({
         },
       },
     },
+    target: ['esnext', 'es6'],
   },
   test: {
     globals: true,
