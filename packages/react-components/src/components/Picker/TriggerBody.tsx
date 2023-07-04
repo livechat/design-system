@@ -70,21 +70,23 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
 
   return (
     <div className={styles[baseClass]}>
-      {type === 'single'
-        ? getSingleItem(items[0])
-        : items.map((item) => {
-            return (
-              <Tag
-                key={item.name}
-                className={styles[`${baseClass}__tag`]}
-                iconSize={iconSize}
-                dismissible={!isDisabled}
-                onRemove={() => onItemRemove(item)}
-              >
-                {getSingleItem(item)}
-              </Tag>
-            );
-          })}
+      <div className={styles[`${baseClass}__item-container`]}>
+        {type === 'single'
+          ? getSingleItem(items[0])
+          : items.map((item) => {
+              return (
+                <Tag
+                  key={item.name}
+                  className={styles[`${baseClass}__tag`]}
+                  iconSize={iconSize}
+                  dismissible={!isDisabled}
+                  onRemove={() => onItemRemove(item)}
+                >
+                  {getSingleItem(item)}
+                </Tag>
+              );
+            })}
+      </div>
       {shouldDisplaySearch && getSearch()}
     </div>
   );
