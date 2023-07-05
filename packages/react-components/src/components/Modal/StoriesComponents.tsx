@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { GreetingQuickReply } from '@livechat/design-system-icons/react/material';
 import { Button } from '../Button';
-import { Icon } from '../Icon';
 import './Modal.stories.css';
 import modalImage from './assets/modal-image.png';
 import { Heading, Text } from '../Typography';
@@ -10,41 +8,6 @@ import { Input } from '../Input';
 import { defaultPickerOptions } from '../Picker/constants';
 import { Picker } from '../Picker';
 import noop from '../../utils/noop';
-
-interface ModalHeaderProps {
-  color?: string;
-}
-
-export const ModalHeader: React.FC<ModalHeaderProps> = ({ color }) => {
-  return (
-    <div className="heading-wrapper">
-      <Icon
-        source={GreetingQuickReply}
-        kind="primary"
-        size="large"
-        className="heading-icon"
-        customColor={color}
-      />
-      <div className="heading">
-        <div>Modal Header</div>
-        <div className="heading-description">Modal description</div>
-      </div>
-    </div>
-  );
-};
-
-export const ModalFooter: React.FC = () => {
-  return (
-    <div>
-      <Button size="medium" kind="secondary" style={{ marginRight: '8px' }}>
-        Secondary
-      </Button>
-      <Button kind="primary" size="medium">
-        Primary
-      </Button>
-    </div>
-  );
-};
 
 export const ModalFullSpaceContent: React.FC = () => {
   return (
@@ -102,3 +65,16 @@ export const ModalContent: React.FC = () => (
     </FormField>
   </div>
 );
+
+export const ModalFooter: React.FC = () => {
+  return (
+    <div>
+      <Button size="medium" kind="secondary" style={{ marginRight: '8px' }}>
+        Secondary
+      </Button>
+      <Button kind="primary" size="medium">
+        Primary
+      </Button>
+    </div>
+  );
+};
