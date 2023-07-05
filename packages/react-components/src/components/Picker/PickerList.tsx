@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'clsx';
-import { Check } from '@livechat/design-system-icons/react/material';
+import { Check } from '@livechat/design-system-icons/react/tabler';
 import { Icon } from '../Icon';
 import styles from './PickerList.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
@@ -244,7 +244,13 @@ export const PickerList: React.FC<IPickerListProps> = ({
             <div className={styles[`${itemClassName}__content`]}>
               {getOptionContent(item)}
             </div>
-            {isItemSelected(item.key) && <Icon kind="link" source={Check} />}
+            {isItemSelected(item.key) && (
+              <Icon
+                kind="link"
+                source={Check}
+                customColor="var(--content-basic-info)"
+              />
+            )}
           </li>
         );
       })}

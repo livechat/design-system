@@ -11,13 +11,37 @@ const baseClass = 'search-input';
 const inputBaseClass = `${baseClass}__input`;
 
 export interface ISearchInputProps {
+  /**
+   * Makes search expandable after focusing the icon
+   */
   isCollapsable?: boolean;
+  /**
+   * Specify whether the search should be disabled
+   */
   isDisabled?: boolean;
+  /**
+   * Specify whether the search should have loader visible
+   */
   isLoading?: boolean;
+  /**
+   * Optional text for placeholder
+   */
   placeholder?: string;
+  /**
+   * Specify the search size
+   */
   size?: 'compact' | 'medium' | 'large';
+  /**
+   * Specify the search value
+   */
   value: string;
+  /**
+   * Specify an optional className to be applied to the container node
+   */
   className?: string;
+  /**
+   * The event handler for onChange
+   */
   onChange: (value: string) => void;
 }
 

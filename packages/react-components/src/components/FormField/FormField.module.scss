@@ -1,6 +1,6 @@
 .form-field {
   display: inline-block;
-  margin-bottom: 20px;
+  margin-bottom: var(--spacing-5);
 
   &--inline {
     display: flex;
@@ -24,9 +24,10 @@
     }
 
     &--inline {
-      align-items: center;
+      flex-shrink: 0;
+      align-items: flex-start;
       justify-content: center;
-      margin-right: 10px;
+      margin-right: var(--spacing-2);
       margin-bottom: 0;
     }
 
@@ -39,6 +40,10 @@
   &__label-wrapper {
     display: flex;
     flex-grow: 1;
+
+    &--inline {
+      align-items: center;
+    }
   }
 
   &__label-adornment {
@@ -52,6 +57,10 @@
     height: 20px;
     overflow: hidden;
     line-height: 20px;
+
+    &--inline {
+      align-self: center;
+    }
   }
 
   &__label-left-node {
@@ -85,5 +94,9 @@
 
   &__content {
     flex-grow: 1;
+
+    &__description {
+      margin-top: var(--spacing-1);
+    }
   }
 }

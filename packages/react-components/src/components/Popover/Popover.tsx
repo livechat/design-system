@@ -81,6 +81,19 @@ export const Popover: React.FC<IPopoverProps> = ({
   }, [visible]);
 
   React.useEffect(() => {
+    const handleHideOnEscape = (event: KeyboardEvent) => {
+      if (closeOnEsc && event.key === 'Escape') {
+        setVisibility(false);
+      }
+    };
+    document.addEventListener('keydown', handleHideOnEscape);
+
+    return () => {
+      document.removeEventListener('keydown', handleHideOnEscape);
+    };
+  }, [closeOnEsc]);
+
+  React.useEffect(() => {
     if (!refs.reference.current || !refs.floating.current) {
       return;
     }
@@ -105,19 +118,10 @@ export const Popover: React.FC<IPopoverProps> = ({
     }
   }
 
-  const handleHideOnEscape = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') {
-      setVisibility(false);
-    }
-  };
-
   React.useEffect(() => {
     document.addEventListener('mousedown', handleDocumentClick);
-    if (closeOnEsc) {
-      document.addEventListener('keydown', handleHideOnEscape);
-    }
+
     return () => {
-      document.removeEventListener('keydown', handleHideOnEscape);
       document.removeEventListener('mousedown', handleDocumentClick);
     };
   }, []);
@@ -136,8 +140,8 @@ export const Popover: React.FC<IPopoverProps> = ({
         className={mergedClassNames}
         style={{
           position: strategy,
-          top: y ?? '',
-          left: x ?? '',
+          top: y !== null && y !== undefined ? y : '',
+          left: x !== null && x !== undefined ? x : '',
         }}
       >
         {children}

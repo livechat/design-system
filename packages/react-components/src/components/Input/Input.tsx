@@ -18,9 +18,21 @@ interface InputIcon {
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  inputSize?: Size;
+  /**
+   * Specify the input size
+   */
+  inputSize?: 'xsmall' | 'compact' | 'medium' | 'large';
+  /**
+   * Specify whether the input should be in error state
+   */
   error?: boolean;
+  /**
+   * Specify whether the input should be disabled
+   */
   disabled?: boolean;
+  /**
+   * Set the icon and its position
+   */
   icon?: InputIcon;
 }
 
@@ -75,7 +87,6 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       <div className={mergedClassNames} aria-disabled={disabled} tab-index="0">
         {shouldRenderLeftIcon && renderIcon(icon, disabled)}
         <input
-          data-testid="input"
           {...inputProps}
           ref={ref}
           onFocus={(e) => {
@@ -93,7 +104,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {type === 'password' && (
           <Button
             disabled={disabled}
-            kind="plain"
+            kind="subtle"
             icon={<Icon customColor={iconCustomColor} source={iconSource} />}
             onClick={() => setIsPasswordVisible((v) => !v)}
             className={styles[`${baseClass}__visibility-button`]}

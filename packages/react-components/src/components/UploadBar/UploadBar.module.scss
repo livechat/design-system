@@ -6,10 +6,15 @@ $base-class: 'upload-bar';
   border-radius: 8px;
   box-shadow: 0 2px 6px 0 rgb(0 0 0 / 20%);
   background-color: var(--surface-primary-default);
-  padding: 10px;
+  padding: var(--spacing-3);
   width: 100%;
   overflow: hidden;
   color: var(--content-basic-primary);
+
+  &__loader-test {
+    width: 20px;
+    height: 20px;
+  }
 
   &--error {
     color: var(--content-basic-negative);
@@ -29,7 +34,7 @@ $base-class: 'upload-bar';
       font-size: 15px;
 
       &__icon {
-        margin-right: 12px;
+        margin-right: var(--spacing-2);
       }
 
       &__title {
@@ -47,12 +52,12 @@ $base-class: 'upload-bar';
         flex: 0 1 auto;
         align-items: center;
         margin: 0;
-        margin-left: 8px;
+        margin-left: var(--spacing-2);
         border: 0;
         border-radius: 4px;
         background-color: transparent;
         cursor: pointer;
-        padding: 4px;
+        padding: var(--spacing-1);
         color: var(--content-basic-primary);
       }
 
@@ -68,6 +73,11 @@ $base-class: 'upload-bar';
 
       &__error-icon {
         color: var(--content-basic-negative);
+      }
+
+      &__loader {
+        width: 20px;
+        height: 20px;
       }
     }
   }
@@ -100,18 +110,18 @@ $base-class: 'upload-bar';
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
-      padding-top: 16px;
+      padding-top: var(--spacing-4);
       width: 100%;
       max-height: inherit;
     }
 
     &__list {
-      padding-right: 20px;
+      padding-right: var(--spacing-5);
       height: 100%;
       overflow-y: auto;
 
       > div:not(:last-child) {
-        margin-bottom: 16px;
+        margin-bottom: var(--spacing-4);
       }
     }
   }
