@@ -6,6 +6,15 @@ $base-class: 'picker-trigger-body';
   gap: 4px;
   justify-content: flex-start;
 
+  &__item-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    max-height: 96px;
+    overflow-y: auto;
+    color-scheme: var(--color-scheme);
+  }
+
   &__item {
     flex: 1;
     overflow: hidden;
@@ -17,12 +26,12 @@ $base-class: 'picker-trigger-body';
     display: flex;
     flex-grow: 2;
     align-items: center;
-    margin-left: 2px;
     outline: none;
     border: 0;
     background: none;
     padding: 0;
     height: 22px;
+    line-height: 22px;
     color: var(--content-basic-primary);
     font-size: 15px;
   }

@@ -88,12 +88,14 @@ $base-class: 'tooltip';
   }
 
   &-header {
-    margin-right: 4px;
-    margin-bottom: 4px;
-    margin-left: 4px;
+    margin-bottom: var(--spacing-1);
     line-height: 24px;
     font-size: 16px;
     font-weight: 600;
+
+    &--info {
+      padding-right: var(--spacing-5);
+    }
   }
 
   &-image {
@@ -105,9 +107,6 @@ $base-class: 'tooltip';
   }
 
   &-text {
-    margin-right: 4px;
-    margin-bottom: 12px;
-    margin-left: 4px;
     line-height: 22px;
     font-size: 15px;
     font-weight: 400;
@@ -129,6 +128,12 @@ $base-class: 'tooltip';
       &:hover {
         cursor: pointer;
       }
+    }
+
+    &--info {
+      position: absolute;
+      top: var(--spacing-2);
+      right: var(--spacing-2);
     }
   }
 
