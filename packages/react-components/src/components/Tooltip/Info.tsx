@@ -1,4 +1,5 @@
 import * as React from 'react';
+import cx from 'clsx';
 import { Icon } from '../Icon';
 import { Close } from '@livechat/design-system-icons/react/material';
 import { getIconType } from './helpers';
@@ -14,10 +15,13 @@ export const Info: React.FC<{
   handleCloseAction?: (ev: React.MouseEvent) => void;
 }> = ({ header, text, closeWithX, theme, handleCloseAction }) => {
   return (
-    <div style={{ position: 'relative' }}>
+    <div>
       {closeWithX && (
         <div
-          className={styles[`${baseClass}-close`]}
+          className={cx(
+            styles[`${baseClass}-close`],
+            styles[`${baseClass}-close--info`]
+          )}
           onClick={handleCloseAction}
         >
           <Icon
@@ -26,7 +30,16 @@ export const Info: React.FC<{
           ></Icon>
         </div>
       )}
-      {header && <div className={styles[`${baseClass}-header`]}>{header}</div>}
+      {header && (
+        <div
+          className={cx(
+            styles[`${baseClass}-header`],
+            styles[`${baseClass}-header--info`]
+          )}
+        >
+          {header}
+        </div>
+      )}
       <div className={styles[`${baseClass}-text`]}>{text}</div>
     </div>
   );
