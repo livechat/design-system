@@ -11,7 +11,15 @@ export type IconKind =
   | 'link'
   | 'success'
   | 'warning'
-  | 'error';
+  | 'error'
+  | 'negative'
+  | 'positive'
+  | 'warning'
+  | 'action-primary'
+  | 'action-negative'
+  | 'action-positive'
+  | 'action-warning'
+  | 'action-neutral';
 
 const IconSizeMap: Record<IconSize, { width: number; height: number }> = {
   xsmall: {

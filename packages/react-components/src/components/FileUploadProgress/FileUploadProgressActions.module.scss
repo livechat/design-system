@@ -24,13 +24,5 @@ $base-class: 'file-upload-progress-actions';
     &:hover {
       cursor: pointer;
     }
-
-    svg {
-      display: flex;
-      cursor: pointer;
-      width: 18px;
-      height: 18px;
-      fill: currentcolor;
-    }
   }
 }

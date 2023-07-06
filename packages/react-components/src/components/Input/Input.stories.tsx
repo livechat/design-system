@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
-import { AddCircle as AddCircleIcon } from '@livechat/design-system-icons/react/material';
+import { AddCircle as AddCircleIcon } from '@livechat/design-system-icons/react/tabler';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Icon } from '../Icon';

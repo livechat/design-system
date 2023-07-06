@@ -31,11 +31,43 @@
   }
 
   &--warning {
-    color: var(--surface-accent-emphasis-high-warning);
+    color: var(--content-basic-warning);
   }
 
   &--error {
     color: var(--surface-accent-emphasis-high-negative);
+  }
+
+  &--negative {
+    color: var(--content-basic-negative);
+  }
+
+  &--positive {
+    color: var(--content-basic-positive);
+  }
+
+  &--info {
+    color: var(--content-basic-info);
+  }
+
+  &--action-primary {
+    color: var(--action-primary-default);
+  }
+
+  &--action-negative {
+    color: var(--action-negative-default);
+  }
+
+  &--action-positive {
+    color: var(--action-positive-default);
+  }
+
+  &--action-warning {
+    color: var(--action-warning-default);
+  }
+
+  &--action-neutral {
+    color: var(--action-neutral-default);
   }
 
   &--disabled {
@@ -64,11 +96,43 @@
     }
 
     &--warning {
-      color: var(--action-warning-default);
+      color: var(--action-warning-disabled);
     }
 
     &--error {
       color: var(--action-negative-disabled);
+    }
+
+    &--negative {
+      color: var(--content-basic-disabled);
+    }
+
+    &--positive {
+      color: var(--content-basic-disabled);
+    }
+
+    &--info {
+      color: var(--content-basic-disabled);
+    }
+
+    &--action-primary {
+      color: var(--action-primary-disabled);
+    }
+
+    &--action-negative {
+      color: var(--action-negative-disabled);
+    }
+
+    &--action-positive {
+      color: var(--action-positive-disabled);
+    }
+
+    &--action-warning {
+      color: var(--action-warning-disabled);
+    }
+
+    &--action-neutral {
+      color: var(--action-neutral-disabled);
     }
   }
 }
