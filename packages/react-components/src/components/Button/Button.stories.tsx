@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 
-import * as MaterialIcons from '@livechat/design-system-icons/react/material';
+import * as MaterialIcons from '@livechat/design-system-icons/react/tabler';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 

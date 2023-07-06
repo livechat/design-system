@@ -3,7 +3,7 @@ import { ComponentMeta } from '@storybook/react';
 import { Button } from '../Button';
 import { Popover as PopoverComponent, IPopoverProps } from './Popover';
 
-import { DropDown } from '@livechat/design-system-icons/react/material';
+import { ChevronDown } from '@livechat/design-system-icons/react/tabler';
 
 import { Icon } from '../Icon';
 
@@ -46,7 +46,10 @@ export const Default = (args: IPopoverProps): React.ReactElement => (
     <PopoverComponent
       {...args}
       triggerRenderer={() => (
-        <Button icon={<Icon source={DropDown}></Icon>} iconPosition={'right'}>
+        <Button
+          icon={<Icon source={ChevronDown}></Icon>}
+          iconPosition={'right'}
+        >
           Open Popover
         </Button>
       )}

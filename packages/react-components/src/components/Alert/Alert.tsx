@@ -5,8 +5,8 @@ import {
   Warning as WarningIcon,
   Info as InfoIcon,
   Block as BlockIcon,
-  CheckCircleSolid as CheckIcon,
-} from '@livechat/design-system-icons/react/material';
+  CheckCircle as CheckIcon,
+} from '@livechat/design-system-icons/react/tabler';
 import debounce from 'lodash.debounce';
 
 import { Text } from '../Typography';

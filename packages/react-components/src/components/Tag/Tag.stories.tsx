@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
-import * as MaterialIcons from '@livechat/design-system-icons/react/material';
+import * as TablerIcons from '@livechat/design-system-icons/react/tabler';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
 import { Tag, TagProps } from './Tag';
 
-const iterator = Object.keys(MaterialIcons);
+const iterator = Object.keys(TablerIcons);
 
 export default {
   title: 'Components/Tag',
@@ -13,7 +13,7 @@ export default {
   argTypes: {
     icon: {
       options: iterator,
-      mapping: MaterialIcons,
+      mapping: TablerIcons,
       control: {
         type: 'select',
         labels: iterator,
@@ -230,7 +230,7 @@ export const Kinds = ({ children, ...args }: TagProps): React.ReactElement => {
 };
 Kinds.args = {
   children: 'Example tag',
-  icon: MaterialIcons.Smiles,
+  icon: TablerIcons.Smiles,
 };
 
 export const Sizes = ({ children, ...args }: TagProps): React.ReactElement => {
@@ -253,5 +253,5 @@ export const Sizes = ({ children, ...args }: TagProps): React.ReactElement => {
 };
 Sizes.args = {
   children: 'Example tag',
-  icon: MaterialIcons.Smiles,
+  icon: TablerIcons.Smiles,
 };

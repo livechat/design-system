@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'clsx';
-import { Search, Close } from '@livechat/design-system-icons/react/material';
+import { Search, Close } from '@livechat/design-system-icons/react/tabler';
 import { Icon } from '../Icon';
 import { Loader } from '../Loader';
 

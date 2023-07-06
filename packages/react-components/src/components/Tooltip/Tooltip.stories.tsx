@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
-import { Button, ButtonKind } from '../Button';
+import { Button } from '../Button';
 import { ITooltipProps, Tooltip as TooltipComponent } from './Tooltip';
 import {
-  DropDown,
+  ChevronDown,
   Smiles,
   CannedResponse,
   Attachment,
-} from '@livechat/design-system-icons/react/material';
+} from '@livechat/design-system-icons/react/tabler';
 
 import { Icon } from '../Icon';
 
@@ -190,7 +190,7 @@ const TooltipInteractiveExample: React.FC<ITooltipProps> = (props) => {
         triggerRenderer={() => (
           <div>
             <Button
-              icon={<Icon source={DropDown}></Icon>}
+              icon={<Icon source={ChevronDown}></Icon>}
               iconPosition={'right'}
             >
               Open Tooltip
@@ -385,7 +385,7 @@ const TooltipInfoExample: React.FC<ITooltipProps> = (props) => {
         triggerRenderer={() => (
           <div>
             <Button
-              icon={<Icon source={DropDown}></Icon>}
+              icon={<Icon source={ChevronDown}></Icon>}
               iconPosition={'right'}
             >
               Open Tooltip

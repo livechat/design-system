@@ -2,11 +2,11 @@ import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
 
 import { SegmentedControl, SegmentedControlProps } from './SegmentedControl';
-import * as MaterialIcons from '@livechat/design-system-icons/react/material';
+import * as TablerIcons from '@livechat/design-system-icons/react/tabler';
 import { Icon } from '../Icon';
 
 const buttonSizes = ['compact', 'medium', 'large'];
-const buttonIcon = <Icon source={MaterialIcons.AddCircle} />;
+const buttonIcon = <Icon source={TablerIcons.AddCircle} />;
 
 export default {
   title: 'Components/Segmented Control',

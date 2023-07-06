@@ -3,7 +3,7 @@ import cx from 'clsx';
 import {
   ChevronUp,
   ChevronDown,
-} from '@livechat/design-system-icons/react/material';
+} from '@livechat/design-system-icons/react/tabler';
 import { Icon } from '../Icon';
 import { KeyCodes } from '../../utils/keyCodes';
 
