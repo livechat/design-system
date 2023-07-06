@@ -49,7 +49,7 @@ export const Interactive: React.FC<{
       </div>
     )}
     {image && (
-      <div style={{ margin: '0 4px' }}>
+      <div className={styles[`${baseClass}-image-container`]}>
         <img
           className={styles[`${baseClass}-image`]}
           src={image.src}

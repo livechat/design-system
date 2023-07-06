@@ -14,7 +14,8 @@ $base-class: 'tooltip';
     outline: none;
   }
 
-  &__interactive {
+  &__interactive,
+  &__user-guide-step {
     padding: var(--spacing-1);
     width: 270px;
   }
@@ -103,6 +104,10 @@ $base-class: 'tooltip';
     }
   }
 
+  &-image-container {
+    margin-top: 20px;
+  }
+
   &-image {
     margin-bottom: 12px;
     border-radius: 4px;
@@ -118,9 +123,9 @@ $base-class: 'tooltip';
   }
 
   &-close {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: var(--spacing-3);
+    position: absolute;
+    top: var(--spacing-2);
+    right: var(--spacing-2);
 
     &-button {
       margin: 0;
@@ -133,12 +138,6 @@ $base-class: 'tooltip';
       &:hover {
         cursor: pointer;
       }
-    }
-
-    &--info {
-      position: absolute;
-      top: var(--spacing-2);
-      right: var(--spacing-2);
     }
   }
 
@@ -153,6 +152,10 @@ $base-class: 'tooltip';
     display: flex;
     justify-content: space-between;
     margin: var(--spacing-4) 0 0;
+
+    &--user-guide-step {
+      align-items: center;
+    }
   }
 }
 

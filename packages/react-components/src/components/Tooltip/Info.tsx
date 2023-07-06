@@ -18,10 +18,7 @@ export const Info: React.FC<{
     <div>
       {closeWithX && (
         <div
-          className={cx(
-            styles[`${baseClass}-close`],
-            styles[`${baseClass}-close--info`]
-          )}
+          className={styles[`${baseClass}-close`]}
           onClick={handleCloseAction}
         >
           <Icon
