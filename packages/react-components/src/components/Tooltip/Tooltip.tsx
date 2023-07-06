@@ -70,6 +70,12 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     };
   }, []);
 
+  const handleMouseEnter = () => {
+    if (triggerOnClick || isManaged) return;
+    isHovered.current = true;
+    handleVisibilityChange(true);
+  };
+
   const handleMouseLeave = () => {
     if (triggerOnClick || isManaged) return;
     isHovered.current = false;
@@ -80,50 +86,27 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     });
   };
 
-  const handleOpen = () => {
-    handleVisibilityChange(true);
-  };
-
-  const handleClose = () => {
-    handleVisibilityChange(false);
-  };
-
-  const handleMouseEnter = () => {
-    if (triggerOnClick || isManaged) return;
-    isHovered.current = true;
-    handleVisibilityChange(true);
-  };
-
   const handleCloseAction = (event: KeyboardEvent | MouseEvent) => {
     if (event instanceof KeyboardEvent && event.key === 'Escape') {
-      handleClose();
+      handleVisibilityChange(false);
     }
 
     if (event.type === 'click') {
-      handleClose();
-    }
-  };
-
-  const handleClick = () => {
-    if (isManaged) return;
-    if (visible) {
-      handleClose();
-    } else {
-      handleOpen();
+      handleVisibilityChange(false);
     }
   };
 
   const floatingComponent = (
     <FloatingComponent
-      floatingOptions={floatingOptions}
-      handleCloseAction={handleCloseAction}
-      arrowRef={arrowRef}
+      baseClass={baseClass}
       className={className}
       visible={visible}
-      handleMouseLeave={handleMouseLeave}
-      baseClass={baseClass}
-      childrenElements={children}
+      floatingOptions={floatingOptions}
+      arrowRef={arrowRef}
       handleMouseEnter={handleMouseEnter}
+      handleMouseLeave={handleMouseLeave}
+      handleCloseAction={handleCloseAction}
+      childrenElements={children}
       transitionDuration={transitionDuration}
       transitionDelay={transitionDelay}
       referenceElement={referenceElement}
@@ -137,6 +120,14 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   if (referenceElement) {
     return floatingComponent;
   }
+
+  const handleClick = () => {
+    if (visible) {
+      handleVisibilityChange(false);
+    } else {
+      handleVisibilityChange(true);
+    }
+  };
 
   const referenceOptions = () => {
     if (!isManaged) {
