@@ -42,6 +42,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   });
 
   const handleVisibilityChange = (newVisibility: boolean | undefined): void => {
+    // used when visibility changes inside the component
     if (newVisibility) {
       !visible && onOpen?.();
     } else {
@@ -53,6 +54,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   };
 
   React.useEffect(() => {
+    // handles visibility changes from outside the component
     if (isFirstRender.current) {
       isFirstRender.current = false;
       return;
@@ -87,11 +89,10 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   };
 
   const handleCloseAction = (event: KeyboardEvent | MouseEvent) => {
-    if (event instanceof KeyboardEvent && event.key === 'Escape') {
-      handleVisibilityChange(false);
-    }
-
-    if (event.type === 'click') {
+    if (
+      (event instanceof KeyboardEvent && event.key === 'Escape') ||
+      event.type === 'click'
+    ) {
       handleVisibilityChange(false);
     }
   };
