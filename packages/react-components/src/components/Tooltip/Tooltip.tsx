@@ -1,42 +1,8 @@
 import * as React from 'react';
-import { CSSTransition } from 'react-transition-group';
-import cx from 'clsx';
-import { css } from '@emotion/css';
-import {
-  useFloating,
-  arrow,
-  Placement,
-  autoUpdate,
-  flip,
-  offset,
-  VirtualElement,
-} from '@floating-ui/react-dom';
-
-import styles from './Tooltip.module.scss';
-
-export interface ITooltipProps {
-  children?: React.ReactNode;
-  className?: string;
-  theme?: 'invert' | 'important' | undefined;
-  placement?: Placement;
-  isVisible?: boolean;
-  withFadeAnimation?: boolean;
-  transitionDuration?: number;
-  transitionDelay?: number;
-  hoverOutDelayTimeout?: number;
-  offsetMainAxis?: number;
-  triggerOnClick?: boolean;
-  arrowOffsetY?: number;
-  arrowOffsetX?: number;
-  triggerRenderer: () => React.ReactNode;
-  referenceElement?: VirtualElement;
-  onOpen?: () => void;
-  onClose?: () => void;
-}
-
-const sleep = (milliseconds: number) => {
-  return new Promise((resolve) => setTimeout(resolve, milliseconds));
-};
+import { arrow, flip, offset, useFloating } from '@floating-ui/react-dom';
+import { sleep } from './helpers';
+import { ITooltipProps } from './types';
+import { FloatingComponent } from './components/FloatingComponent';
 
 const baseClass = 'tooltip';
 
@@ -66,17 +32,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   const [visible, setVisibility] = React.useState(isVisible);
   const isHovered = React.useRef(false);
 
-  const {
-    x,
-    y,
-    reference,
-    floating,
-    strategy,
-    update,
-    refs,
-    placement: updatedPlacement,
-    middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
-  } = useFloating({
+  const floatingOptions = useFloating({
     middleware: [
       offset({ mainAxis: offsetMainAxis }),
       arrow({ element: arrowRef }),
@@ -97,10 +53,6 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   };
 
   React.useEffect(() => {
-    referenceElement && reference(referenceElement);
-  }, [reference, referenceElement]);
-
-  React.useEffect(() => {
     if (isFirstRender.current) {
       isFirstRender.current = false;
       return;
@@ -117,15 +69,6 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
       document.removeEventListener('keydown', handleCloseAction);
     };
   }, []);
-
-  React.useEffect(() => {
-    if (!refs.reference.current || !refs.floating.current) {
-      return;
-    }
-
-    // Only call this when the floating element is rendered
-    return autoUpdate(refs.reference.current, refs.floating.current, update);
-  }, [refs.reference, refs.floating, update, updatedPlacement, visible]);
 
   const handleMouseLeave = () => {
     if (triggerOnClick || isManaged) return;
@@ -170,100 +113,29 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     }
   };
 
-  const top = arrowOffsetY && arrowY ? arrowY + arrowOffsetY : arrowY;
-  const left = arrowOffsetX && arrowX ? arrowX + arrowOffsetX : arrowX;
-
-  const mergedClassNames = cx(styles[baseClass], className, {
-    [styles[`${baseClass}--invert`]]: theme === 'invert',
-    [styles[`${baseClass}--important`]]: theme === 'important',
-  });
-
   const floatingComponent = (
-    <div
-      ref={floating}
-      style={{
-        position: strategy,
-        top: y !== null && y !== undefined ? y : '',
-        left: x !== null && x !== undefined ? x : '',
-      }}
-      className={mergedClassNames}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      {React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-          return React.cloneElement(child, {
-            handleCloseAction,
-            theme,
-            ...child.props,
-          });
-        }
-        return null;
-      })}
-      <div
-        ref={arrowRef}
-        className={cx([styles[`${baseClass}__arrow`]])}
-        data-arrow-placement={updatedPlacement}
-        style={{ top: top, left: left }}
-      />
-    </div>
+    <FloatingComponent
+      floatingOptions={floatingOptions}
+      handleCloseAction={handleCloseAction}
+      arrowRef={arrowRef}
+      className={className}
+      visible={visible}
+      handleMouseLeave={handleMouseLeave}
+      baseClass={baseClass}
+      childrenElements={children}
+      handleMouseEnter={handleMouseEnter}
+      transitionDuration={transitionDuration}
+      transitionDelay={transitionDelay}
+      referenceElement={referenceElement}
+      arrowOffsetX={arrowOffsetX}
+      arrowOffsetY={arrowOffsetY}
+      theme={theme}
+      withFadeAnimation={withFadeAnimation}
+    />
   );
 
-  function renderFloatingComponent() {
-    if (withFadeAnimation) {
-      const enter = css`
-        pointer-events: none;
-        opacity: 0;
-      `;
-
-      const enterActive = css`
-        opacity: 1;
-        transition-property: opacity;
-        transition-duration: ${transitionDuration}ms;
-        transition-delay: ${transitionDelay}ms;
-      `;
-
-      const enterDone = css`
-        pointer-events: initial;
-      `;
-
-      const exit = css`
-        opacity: 1;
-      `;
-
-      const exitActive = css`
-        opacity: 0;
-        transition-property: opacity;
-        transition-duration: ${transitionDuration}ms;
-        transition-delay: ${transitionDelay}ms;
-      `;
-
-      const timeout = transitionDuration + transitionDelay;
-
-      return (
-        <CSSTransition
-          in={visible}
-          mountOnEnter
-          unmountOnExit
-          timeout={timeout}
-          classNames={{
-            enter: enter,
-            enterDone: enterDone,
-            enterActive: enterActive,
-            exit: exit,
-            exitActive: exitActive,
-          }}
-        >
-          {floatingComponent}
-        </CSSTransition>
-      );
-    } else {
-      return visible && floatingComponent;
-    }
-  }
-
   if (referenceElement) {
-    return <>{renderFloatingComponent()}</>;
+    return floatingComponent;
   }
 
   const referenceOptions = () => {
@@ -281,16 +153,12 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     }
   };
 
-  const triggerElement = (
-    <div ref={reference} {...referenceOptions()}>
-      {triggerRenderer()}
-    </div>
-  );
-
   return (
     <>
-      {triggerElement}
-      {renderFloatingComponent()}
+      <div ref={floatingOptions.reference} {...referenceOptions()}>
+        {triggerRenderer()}
+      </div>
+      {floatingComponent}
     </>
   );
 };
