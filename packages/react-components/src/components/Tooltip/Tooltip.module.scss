@@ -6,7 +6,7 @@ $base-class: 'tooltip';
   border-color: var(--background-02);
   box-shadow: var(--shadow-tooltip);
   background-color: var(--background-02);
-  padding: var(--spacing-3);
+  padding: var(--spacing-4);
   max-width: 320px;
   color: var(--content-basic-primary);
 
@@ -147,7 +147,7 @@ $base-class: 'tooltip';
   &-footer {
     display: flex;
     justify-content: space-between;
-    margin: 4px;
+    margin: var(--spacing-4) 4px 4px;
   }
 }
 
