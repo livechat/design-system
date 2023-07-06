@@ -37,7 +37,7 @@ export const Interactive: React.FC<{
   primaryButton,
   secondaryButton,
 }) => (
-  <div style={{ width: '270px' }}>
+  <div className={styles[`${baseClass}__interactive`]}>
     {closeWithX && (
       <div className={styles[`${baseClass}-close`]}>
         <button

@@ -6,12 +6,17 @@ $base-class: 'tooltip';
   border-color: var(--background-02);
   box-shadow: var(--shadow-tooltip);
   background-color: var(--background-02);
-  padding: var(--spacing-4);
+  padding: var(--spacing-3);
   max-width: 320px;
   color: var(--content-basic-primary);
 
   &:focus {
     outline: none;
+  }
+
+  &__interactive {
+    padding: var(--spacing-1);
+    width: 270px;
   }
 
   &--invert {
@@ -147,7 +152,7 @@ $base-class: 'tooltip';
   &-footer {
     display: flex;
     justify-content: space-between;
-    margin: var(--spacing-4) 4px 4px;
+    margin: var(--spacing-4) 0 0;
   }
 }
 
