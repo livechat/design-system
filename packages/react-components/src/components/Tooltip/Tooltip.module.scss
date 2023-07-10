@@ -32,6 +32,13 @@ $base-class: 'tooltip';
     color: var(--content-locked-black);
   }
 
+  &--full-space {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    max-width: 540px;
+  }
+
   &__arrow {
     position: absolute;
     margin: -6px 0;
@@ -179,5 +186,28 @@ $base-class: 'tooltip';
 
   &__overlay--visible {
     display: block;
+  }
+}
+
+.reports-tooltip {
+  flex: 1 1 270px;
+  width: 270px;
+  
+  &__heading {
+    background-color: var(--surface-secondary-default);
+    padding: 5px var(--spacing-4);
+    text-align: center;
+
+    &__title {
+      color: var(--content-basic-primary);
+    }
+
+    &__description {
+      color: var(--content-basic-secondary);
+    }
+  }
+
+  &__content {
+    padding: var(--spacing-1);
   }
 }

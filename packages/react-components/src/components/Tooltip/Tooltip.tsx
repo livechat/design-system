@@ -28,6 +28,7 @@ export interface ITooltipProps {
   triggerOnClick?: boolean;
   arrowOffsetY?: number;
   arrowOffsetX?: number;
+  fullSpaceContent?: boolean;
   triggerRenderer: () => React.ReactNode;
   referenceElement?: VirtualElement;
   onOpen?: () => void;
@@ -57,6 +58,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     triggerOnClick = false,
     arrowOffsetY,
     arrowOffsetX,
+    fullSpaceContent,
     onOpen,
     onClose,
   } = props;
@@ -176,6 +178,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   const mergedClassNames = cx(styles[baseClass], className, {
     [styles[`${baseClass}--invert`]]: theme === 'invert',
     [styles[`${baseClass}--important`]]: theme === 'important',
+    [styles[`${baseClass}--full-space`]]: fullSpaceContent,
   });
 
   const floatingComponent = (

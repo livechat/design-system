@@ -18,6 +18,7 @@ import { Interactive as TooltipInteractiveComponent } from './Interactive';
 import { UserGuide as TooltipUserGuideComponent } from './UserGuide';
 import { UserGuideStep } from './UserGuideStep';
 import beutifulImage from './placeholder.png';
+import { Reports } from './Reports';
 
 const tooltipPlacements = [
   'bottom',
@@ -401,6 +402,95 @@ const TooltipInfoExample: React.FC<ITooltipProps> = (props) => {
       </TooltipComponent>
     </div>
   );
+};
+
+export const TooltipReports = (args: ITooltipProps): JSX.Element => (
+  <div
+    style={{
+      height: '100vh',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    <TooltipComponent
+      {...args}
+      triggerRenderer={() => (
+        <div>
+          <Button
+            icon={<Icon source={ChevronDown}></Icon>}
+            iconPosition={'right'}
+          >
+            Open Tooltip
+          </Button>
+        </div>
+      )}
+    >
+      <Reports title="Date or Series" description="Additional information">
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            border: '1px dashed var(--border-default)',
+            backgroundColor: 'var(--surface-basic-default)',
+            width: '100%',
+            height: '100px',
+            borderRadius: '4px',
+          }}
+        >
+          Reports content
+        </div>
+      </Reports>
+      <Reports title="Date or Series" description="Additional information">
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            border: '1px dashed var(--border-default)',
+            backgroundColor: 'var(--surface-basic-default)',
+            width: '100%',
+            height: '100px',
+            borderRadius: '4px',
+          }}
+        >
+          Reports content
+        </div>
+      </Reports>
+      <Reports title="Date or Series" description="Additional information">
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            border: '1px dashed var(--border-default)',
+            backgroundColor: 'var(--surface-basic-default)',
+            width: '100%',
+            height: '100px',
+            borderRadius: '4px',
+          }}
+        >
+          Reports content
+        </div>
+      </Reports>
+    </TooltipComponent>
+  </div>
+);
+
+TooltipReports.args = {
+  fullSpaceContent: true,
+  placement: 'bottom',
+  isVisible: true,
+  theme: 'default',
+  triggerOnClick: false,
+  arrowOffsetY: 0,
+  arrowOffsetX: 0,
+  offsetMainAxis: 8,
+  withFadeAnimation: true,
+  transitionDuration: 200,
+  transitionDelay: 0,
+  hoverOutDelayTimeout: 100,
 };
 
 export default {
