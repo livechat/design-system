@@ -18,12 +18,9 @@
     height: 56px;
   }
 
-  &__bg-line--normal {
-    stroke: var(--surface-tertiary-default);
-  }
-
+  &__bg-line--normal,
   &__bg-line--success {
-    stroke: var(--action-positive-disabled);
+    stroke: var(--surface-tertiary-default);
   }
 
   &__bg-line--error {
@@ -42,23 +39,5 @@
 
   &__indicator--error {
     transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
-  }
-
-  &--error {
-    .progress-circle__bg-line {
-      stroke: var(--action-negative-disabled);
-    }
-  }
-
-  &--success {
-    .progress-circle__bg-line {
-      stroke: var(--action-positive-disabled);
-    }
-  }
-
-  &--normal {
-    .progress-circle__bg-line {
-      stroke: var(--action-primary-disabled);
-    }
   }
 }

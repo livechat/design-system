@@ -22,10 +22,7 @@
     background-color: var(--action-negative-disabled);
   }
 
-  &--success {
-    background-color: var(--action-positive-disabled);
-  }
-
+  &--success,
   &--normal {
     background-color: var(--surface-tertiary-default);
   }
