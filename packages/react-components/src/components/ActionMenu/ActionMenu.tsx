@@ -15,7 +15,7 @@ export interface ActionMenuProps {
    */
   options: Array<{
     key: string;
-    element: string | React.ReactElement;
+    element: React.ReactNode;
     disabled?: boolean;
     withDivider?: boolean;
     onClick: () => void;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import cx from 'clsx';
 import { ModalBaseProps, ModalBase } from './ModalBase';
-import { Heading } from '../Typography';
+import { Heading, Text } from '../Typography';
 
 import styles from './Modal.module.scss';
 import { ModalCloseButton } from './ModalCloseButton';
@@ -70,7 +70,7 @@ export const Modal: React.FC<ModalProps> = ({
           fullSpaceContent && styles[`${baseClass}__body--full-space`]
         )}
       >
-        {children}
+        <Text as="div">{children}</Text>
       </div>
       {footer && <div className={styles[`${baseClass}__footer`]}>{footer}</div>}
     </ModalBase>

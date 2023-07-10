@@ -12,6 +12,7 @@ import { Button } from '../Button';
 import { Icon, IconKind, IconSource } from '../Icon';
 
 import styles from './Toast.module.scss';
+import { Text } from '../Typography';
 
 type ToastKind = 'success' | 'warning' | 'error' | 'info';
 
@@ -75,7 +76,9 @@ export const Toast: React.FC<React.PropsWithChildren<ToastProps>> = ({
       <div className={styles[`${baseClass}__icon`]}>
         <Icon {...iconConfig[kind]} size="medium" />
       </div>
-      <div className={styles[`${baseClass}__content`]}>{children}</div>
+      <div className={styles[`${baseClass}__content`]}>
+        <Text as="div">{children}</Text>
+      </div>
       {(action || removable) && (
         <div className={styles[`${baseClass}__actions`]}>
           {action && (

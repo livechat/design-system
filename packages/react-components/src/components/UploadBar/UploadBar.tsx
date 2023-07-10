@@ -14,6 +14,7 @@ import {
 import { ProgressStatus, ProgressSize } from '../Progress/constants';
 import { Icon } from '../Icon';
 import { ProgressCircle } from '../Progress';
+import { Text } from '../Typography';
 
 import styles from './UploadBar.module.scss';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -159,7 +160,9 @@ export const UploadBar: React.FC<React.PropsWithChildren<UploadBarProps>> = ({
             {getHeaderIcon(status, progressValue)}
           </div>
           <div className={styles[`${wrapperHeaderClass}__title`]}>
-            {withError ? errorMessage || title : title}
+            <Text size="sm" as="div">
+              {withError ? errorMessage || title : title}
+            </Text>
           </div>
           {shouldShowCollapseButton && (
             <button

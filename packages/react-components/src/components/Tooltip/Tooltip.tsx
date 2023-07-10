@@ -13,6 +13,7 @@ import {
 } from '@floating-ui/react-dom';
 
 import styles from './Tooltip.module.scss';
+import { Text } from '../Typography';
 
 export interface ITooltipProps {
   children?: React.ReactNode;
@@ -190,16 +191,18 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {React.Children.map(children, (child) => {
-        if (React.isValidElement(child)) {
-          return React.cloneElement(child, {
-            handleCloseAction,
-            theme,
-            ...child.props,
-          });
-        }
-        return null;
-      })}
+      <Text as="div">
+        {React.Children.map(children, (child) => {
+          if (React.isValidElement(child)) {
+            return React.cloneElement(child, {
+              handleCloseAction,
+              theme,
+              ...child.props,
+            });
+          }
+          return null;
+        })}
+      </Text>
       <div
         ref={arrowRef}
         className={cx([styles[`${baseClass}__arrow`]])}

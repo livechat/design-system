@@ -9,6 +9,7 @@ import {
 } from '@floating-ui/react-dom';
 
 import cssStyles from './Popover.module.scss';
+import { Text } from '../Typography';
 
 export interface IPopoverProps {
   children?: React.ReactNode;
@@ -144,7 +145,7 @@ export const Popover: React.FC<IPopoverProps> = ({
           left: x !== null && x !== undefined ? x : '',
         }}
       >
-        {children}
+        <Text as="div">{children}</Text>
       </div>
     </>
   );
