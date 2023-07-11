@@ -1,5 +1,5 @@
 export { Tooltip } from './Tooltip';
-export { Simple } from './Simple';
-export { Info } from './Info';
-export { Interactive } from './Interactive';
-export { UserGuide } from './UserGuide';
+export { Simple } from './components/Simple';
+export { Info } from './components/Info';
+export { Interactive } from './components/Interactive';
+export { UserGuide } from './components/UserGuide';
