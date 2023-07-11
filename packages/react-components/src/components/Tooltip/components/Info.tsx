@@ -1,9 +1,9 @@
 import * as React from 'react';
 import cx from 'clsx';
-import { Icon } from '../Icon';
+import { Icon } from '../../Icon';
 import { Close } from '@livechat/design-system-icons/react/material';
-import { getIconType } from './helpers';
-import styles from './Tooltip.module.scss';
+import { getIconType } from '../helpers';
+import styles from '../Tooltip.module.scss';
 
 const baseClass = 'tooltip';
 

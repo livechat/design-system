@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import styles from './Tooltip.module.scss';
-import { Text } from '../Typography';
+import styles from '../Tooltip.module.scss';
+import { Text } from '../../Typography';
 
 export interface IReportsProps {
   title: string;
