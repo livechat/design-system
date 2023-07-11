@@ -82,12 +82,11 @@ Any external contribution is welcome and teams mentioned above will help in the 
    the ticket should also contain an appropriate label, the contributor should be entered as an assignee, and should be added to the project (LiveChat Design System).
 2. In order to start work, first update branch `v1`, and then create a new branch from this branch in which future changes will be placed. We adopted the
    nomenclature for the branch `feature/[task_id]`.
-3. If changes require it, appropriate unit tests should also be included, and an additional case should be attached to the documentation.
+3. If changes require it, appropriate unit tests should also be included, and an additional case should be attached to the Storybook documentation (in the `.stories.tsx` file).
 4. After the work is completed, create a pull request directed to branch `v1`. In pull request, you should call `livechat/design-system` in the reviewers field.
    The merge template contains a checklist of things that need to be completed to meet the requirements, it will make the work easier for everyone.
 5. You will probably notice in your pull request under "Some checks haven't completed yet" Chromatic pending checks approval. Chromatic is a tool that we use
-   for visual regression testing, however, a check in this tool is not required for general approval of changes, at the moment it is primarily important to review
-   by the design system developers.
+   for visual regression testing. The check in this tool is required for general approval of changes and it's covered by design system team.
 6. After the work is completed and the reviewers accept it, the responsibility for the rest of the changes is on the design system team side, which will perform
    the merge and release the changes in the future. Design system team deals with determining the status of the task on the board side, they close it with an
    appropriate comment.
