@@ -42,7 +42,6 @@
       height: 24px;
       -webkit-mask: url('./check.svg') no-repeat 50% 50%;
       mask: url('./check.svg') no-repeat 50% 50%;
-      mask-size: cover;
     }
 
     &:checked::after {

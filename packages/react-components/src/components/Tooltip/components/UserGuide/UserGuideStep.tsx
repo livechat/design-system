@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { Icon } from '../Icon';
+import { Icon } from '../../../Icon';
+import cx from 'clsx';
 import { Close } from '@livechat/design-system-icons/react/material';
-import { Button } from '../Button';
-import { getIconType } from './helpers';
-import styles from './Tooltip.module.scss';
+import { Button } from '../../../Button';
+import { getIconType } from '../../helpers';
+import styles from '../../Tooltip.module.scss';
 
 const baseClass = 'tooltip';
 
@@ -42,23 +43,22 @@ export const UserGuideStep: React.FC<{
   }, []);
 
   return (
-    <div style={{ width: '270px' }}>
-      <div
-        style={{ position: 'relative', height: '25px', marginBottom: '10px' }}
-      >
-        {closeWithX && (
-          <div className={styles[`${baseClass}-close`]}>
-            <div onClick={handleCloseAction}>
-              <Icon
-                source={Close}
-                kind={theme ? getIconType(theme) : 'primary'}
-              ></Icon>
-            </div>
-          </div>
-        )}
-      </div>
+    <div className={styles[`${baseClass}__user-guide-step`]}>
+      {closeWithX && (
+        <div className={styles[`${baseClass}-close`]}>
+          <button
+            className={styles[`${baseClass}-close-button`]}
+            onClick={handleCloseAction}
+          >
+            <Icon
+              source={Close}
+              kind={theme ? getIconType(theme) : 'primary'}
+            ></Icon>
+          </button>
+        </div>
+      )}
       {image && (
-        <div style={{ margin: '0 4px' }}>
+        <div className={styles[`${baseClass}-image-container`]}>
           <img
             className={styles[`${baseClass}-image`]}
             src={image.src}
@@ -68,21 +68,18 @@ export const UserGuideStep: React.FC<{
       )}
       {header && <div className={styles[`${baseClass}-header`]}>{header}</div>}
       <div className={styles[`${baseClass}-text`]}>{text}</div>
-      <div style={{ margin: '4px' }}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-          }}
-        >
-          <span className={styles[`${baseClass}-step`]}>
-            Step {currentStep} of {stepMax}
-          </span>
-          <Button kind="primary" onClick={handleClickPrimary}>
-            Primary button
-          </Button>
-        </div>
+      <div
+        className={cx(
+          styles[`${baseClass}-footer`],
+          styles[`${baseClass}-footer--user-guide-step`]
+        )}
+      >
+        <span className={styles[`${baseClass}-step`]}>
+          Step {currentStep} of {stepMax}
+        </span>
+        <Button kind="primary" onClick={handleClickPrimary}>
+          Primary button
+        </Button>
       </div>
     </div>
   );

@@ -4,9 +4,8 @@ import cx from 'clsx';
 import {
   VisibilityOn as VisibilityOnIcon,
   VisibilityOff as VisibilityOffIcon,
-} from '@livechat/design-system-icons/react/material';
+} from '@livechat/design-system-icons/react/tabler';
 
-import { Size } from 'utils/constants';
 import styles from './Input.module.scss';
 import { Button } from '../Button';
 import { Icon } from '../Icon';

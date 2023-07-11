@@ -14,6 +14,12 @@ $base-class: 'tooltip';
     outline: none;
   }
 
+  &__interactive,
+  &__user-guide-step {
+    padding: var(--spacing-1);
+    width: 270px;
+  }
+
   &--invert {
     border-color: var(--surface-invert-primary);
     background-color: var(--surface-invert-primary);
@@ -88,12 +94,18 @@ $base-class: 'tooltip';
   }
 
   &-header {
-    margin-right: 4px;
-    margin-bottom: 4px;
-    margin-left: 4px;
+    margin-bottom: var(--spacing-1);
     line-height: 24px;
     font-size: 16px;
     font-weight: 600;
+
+    &--info {
+      padding-right: var(--spacing-5);
+    }
+  }
+
+  &-image-container {
+    margin-top: 20px;
   }
 
   &-image {
@@ -105,18 +117,15 @@ $base-class: 'tooltip';
   }
 
   &-text {
-    margin-right: 4px;
-    margin-bottom: 12px;
-    margin-left: 4px;
     line-height: 22px;
     font-size: 15px;
     font-weight: 400;
   }
 
   &-close {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: var(--spacing-3);
+    position: absolute;
+    top: var(--spacing-2);
+    right: var(--spacing-2);
 
     &-button {
       margin: 0;
@@ -142,7 +151,11 @@ $base-class: 'tooltip';
   &-footer {
     display: flex;
     justify-content: space-between;
-    margin: 4px;
+    margin: var(--spacing-4) 0 0;
+
+    &--user-guide-step {
+      align-items: center;
+    }
   }
 }
 

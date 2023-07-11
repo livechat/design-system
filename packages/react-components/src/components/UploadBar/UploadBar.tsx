@@ -5,7 +5,7 @@ import {
   Error as ErrorIcon,
   ChevronDown as ChevronDownIcon,
   ChevronUp as ChevronUpIcon,
-} from '@livechat/design-system-icons/react/material';
+} from '@livechat/design-system-icons/react/tabler';
 
 import {
   FileUploadProgress,

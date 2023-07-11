@@ -30,6 +30,7 @@ export default defineConfig({
         },
       },
     },
+    target: ['esnext', 'es6'],
   },
   test: {
     globals: true,
@@ -42,7 +43,7 @@ export default defineConfig({
     },
   },
   plugins: [
-    dts({ logLevel: 'error' }),
+    dts(),
     react({ jsxRuntime: 'classic' }),
     turbosnap({ rootDir: process.cwd() }),
   ],

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Icon } from '../Icon';
+import { Icon } from '../../Icon';
 import { Close } from '@livechat/design-system-icons/react/material';
-import { Button, ButtonKind } from '../Button';
-import { getIconType } from './helpers';
-import styles from './Tooltip.module.scss';
+import { Button, ButtonKind } from '../../Button';
+import { getIconType } from '../helpers';
+import styles from '../Tooltip.module.scss';
 
 const baseClass = 'tooltip';
 
@@ -37,7 +37,7 @@ export const Interactive: React.FC<{
   primaryButton,
   secondaryButton,
 }) => (
-  <div style={{ width: '270px' }}>
+  <div className={styles[`${baseClass}__interactive`]}>
     {closeWithX && (
       <div className={styles[`${baseClass}-close`]}>
         <button
@@ -49,7 +49,7 @@ export const Interactive: React.FC<{
       </div>
     )}
     {image && (
-      <div style={{ margin: '0 4px' }}>
+      <div className={styles[`${baseClass}-image-container`]}>
         <img
           className={styles[`${baseClass}-image`]}
           src={image.src}

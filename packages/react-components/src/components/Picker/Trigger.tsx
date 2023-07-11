@@ -4,7 +4,7 @@ import {
   ChevronDown,
   ChevronUp,
   Close,
-} from '@livechat/design-system-icons/react/material';
+} from '@livechat/design-system-icons/react/tabler';
 import { Icon } from '../Icon';
 import styles from './Trigger.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
@@ -95,7 +95,17 @@ export const Trigger: React.FC<React.PropsWithChildren<ITriggerProps>> = ({
       tabIndex={0}
       data-testid={testId}
     >
-      <div className={styles[`${baseClass}__content`]}>{children}</div>
+      <div
+        className={cx(
+          styles[`${baseClass}__content`],
+          styles[`${baseClass}__content--${size}`],
+          isMultiSelect &&
+            isItemSelected &&
+            styles[`${baseClass}__content--with-items`]
+        )}
+      >
+        {children}
+      </div>
       <div
         className={cx(
           styles[`${baseClass}__controls`],

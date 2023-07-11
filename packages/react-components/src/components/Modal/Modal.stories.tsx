@@ -1,18 +1,19 @@
 import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
+import { GreetingQuickReply } from '@livechat/design-system-icons/react/material';
 
 import {
   Modal as ModalComponent,
   ModalProps,
   ModalPortal as ModalPortalComponent,
   ModalPortalProps,
+  ModalHeader,
   ModalBase,
 } from './index';
 import {
   ModalContent,
-  ModalFooter,
   ModalFullSpaceContent,
-  ModalHeader,
+  ModalFooter,
 } from './StoriesComponents';
 
 export default {
@@ -53,13 +54,38 @@ Modal.args = {
 export const ModalWithCustomHeader = StoryTemplate.bind({});
 ModalWithCustomHeader.args = {
   ...defaultModalProps,
-  heading: <ModalHeader />,
+  heading: (
+    <ModalHeader
+      title="Modal Header"
+      iconProps={{
+        source: GreetingQuickReply,
+        kind: 'primary',
+        size: 'large',
+      }}
+    >
+      {' '}
+      Modal description{' '}
+    </ModalHeader>
+  ),
 } as ModalProps;
 
 export const ModalWithLabeledHeader = StoryTemplate.bind({});
 ModalWithLabeledHeader.args = {
   ...defaultModalProps,
-  labelHeading: <ModalHeader color="#fff" />,
+  labelHeading: (
+    <ModalHeader
+      title="Modal Header"
+      iconProps={{
+        source: GreetingQuickReply,
+        kind: 'primary',
+        size: 'large',
+        customColor: '#fff',
+      }}
+    >
+      {' '}
+      Modal description{' '}
+    </ModalHeader>
+  ),
 } as ModalProps;
 
 export const ModalWithFullSpaceContent = StoryTemplate.bind({});

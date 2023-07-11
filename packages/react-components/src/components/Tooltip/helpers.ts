@@ -4,9 +4,11 @@ export function getIconType(theme: string): IconKind {
   switch (theme) {
     case 'invert':
       return 'inverted';
-    case 'important':
-      return 'subtle';
     default:
       return 'primary';
   }
 }
+
+export const sleep = (milliseconds: number): Promise<void> => {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+};

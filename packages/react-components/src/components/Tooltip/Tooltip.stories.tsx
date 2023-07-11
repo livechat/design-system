@@ -1,23 +1,24 @@
 import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
-import { Button, ButtonKind } from '../Button';
-import { ITooltipProps, Tooltip as TooltipComponent } from './Tooltip';
+import { Button } from '../Button';
+import { Tooltip as TooltipComponent } from './Tooltip';
 import {
-  DropDown,
+  ChevronDown,
   Smiles,
   CannedResponse,
   Attachment,
-} from '@livechat/design-system-icons/react/material';
+} from '@livechat/design-system-icons/react/tabler';
 
 import { Icon } from '../Icon';
 
 import './Tooltip.stories.css';
-import { Simple } from './Simple';
-import { Info as TooltipInfoComponent } from './Info';
-import { Interactive as TooltipInteractiveComponent } from './Interactive';
-import { UserGuide as TooltipUserGuideComponent } from './UserGuide';
-import { UserGuideStep } from './UserGuideStep';
-import beutifulImage from './placeholder.png';
+import { Simple } from './components/Simple';
+import { Info as TooltipInfoComponent } from './components/Info';
+import { Interactive as TooltipInteractiveComponent } from './components/Interactive';
+import { UserGuide as TooltipUserGuideComponent } from './components/UserGuide/UserGuide';
+import { UserGuideStep } from './components/UserGuide/UserGuideStep';
+import beautifulImage from './placeholder.png';
+import { ITooltipProps } from './types';
 
 const tooltipPlacements = [
   'bottom',
@@ -190,7 +191,7 @@ const TooltipInteractiveExample: React.FC<ITooltipProps> = (props) => {
         triggerRenderer={() => (
           <div>
             <Button
-              icon={<Icon source={DropDown}></Icon>}
+              icon={<Icon source={ChevronDown}></Icon>}
               iconPosition={'right'}
             >
               Open Tooltip
@@ -201,7 +202,7 @@ const TooltipInteractiveExample: React.FC<ITooltipProps> = (props) => {
         <TooltipInteractiveComponent
           header="Header - concise and clear"
           image={{
-            src: beutifulImage,
+            src: beautifulImage,
             alt: 'image',
           }}
           theme={props.theme}
@@ -318,7 +319,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
             <UserGuideStep
               header="Header - concise and clear"
               image={{
-                src: beutifulImage,
+                src: beautifulImage,
                 alt: 'image',
               }}
               text="Tooltip content is used to explain the details of elements or features."
@@ -334,7 +335,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
             <UserGuideStep
               header="Header - concise and clear"
               image={{
-                src: beutifulImage,
+                src: beautifulImage,
                 alt: 'image',
               }}
               text="Tooltip content is used to explain the details of elements or features."
@@ -350,7 +351,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
             <UserGuideStep
               header="Header - concise and clear"
               image={{
-                src: beutifulImage,
+                src: beautifulImage,
                 alt: 'image',
               }}
               text="Tooltip content is used to explain the details of elements or features."
@@ -385,7 +386,7 @@ const TooltipInfoExample: React.FC<ITooltipProps> = (props) => {
         triggerRenderer={() => (
           <div>
             <Button
-              icon={<Icon source={DropDown}></Icon>}
+              icon={<Icon source={ChevronDown}></Icon>}
               iconPosition={'right'}
             >
               Open Tooltip

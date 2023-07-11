@@ -3,9 +3,9 @@ import {
   Close,
   Info,
   Warning,
-  CheckCircleSolid,
+  CheckCircle,
   Block,
-} from '@livechat/design-system-icons/react/material';
+} from '@livechat/design-system-icons/react/tabler';
 import cx from 'clsx';
 
 import { Button } from '../Button';
@@ -31,7 +31,7 @@ export interface ToastProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const iconConfig: Record<ToastKind, { source: IconSource; kind?: IconKind }> = {
   success: {
-    source: CheckCircleSolid,
+    source: CheckCircle,
   },
   warning: {
     source: Warning,

@@ -67,6 +67,16 @@ $surface-secondary-active: #3a3a40;
   --surface-accent-emphasis-high-positive: #00893c;
   --surface-accent-emphasis-high-purple: #9146ff;
   --surface-overlay: rgb(19 19 23 / 90%); // deprecated
+  --surface-gradient-01: linear-gradient(
+    107.08deg,
+    #8609ff 9.14%,
+    #ee0007 111.43%
+  );
+  --surface-gradient-02: linear-gradient(
+    107.08deg,
+    #8609ff 9.14%,
+    #0059e1 111.43%
+  );
   --surface-other-overlay: rgb(19 19 23 / 90%);
   --surface-other-agent: #0845a2;
   --surface-other-skeleton: #3b3b43;
@@ -145,6 +155,7 @@ $surface-secondary-active: #3a3a40;
   --action-warning-default: #e8bb00;
   --color-warning-hover: #fedc89; // deprecated
   --action-warning-hover: #efcf4c;
+  --action-warning-disabled: rgb(232 187 0 / 30%);
   --color-positive-default: #00c057; // deprecated
   --action-positive-default: #00a449;
   --color-positive-hover: #00e066; // deprecated

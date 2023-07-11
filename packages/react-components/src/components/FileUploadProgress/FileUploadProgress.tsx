@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'clsx';
-import { Check as CheckIcon } from '@livechat/design-system-icons/react/material';
+import { Check as CheckIcon } from '@livechat/design-system-icons/react/tabler';
 
 import { ProgressBar } from '../Progress';
 import { ProgressSize, ProgressStatus } from '../Progress/constants';
