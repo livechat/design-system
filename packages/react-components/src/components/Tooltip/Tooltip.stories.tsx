@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ComponentMeta } from '@storybook/react';
 import { Button } from '../Button';
-import { ITooltipProps, Tooltip } from './Tooltip';
+import { Tooltip } from './Tooltip';
 import {
   ChevronDown,
   Smiles,
@@ -12,9 +12,10 @@ import {
 import { Icon } from '../Icon';
 
 import './Tooltip.stories.css';
-import beutifulImage from './placeholder.png';
+import beautifulImage from './placeholder.png';
+import { ITooltipProps } from './types';
 import { Info, Interactive, Reports, Simple, UserGuide } from './components';
-import { UserGuideStep } from './components/UserGuideStep';
+import { UserGuideStep } from './components/UserGuide/UserGuideStep';
 
 const tooltipPlacements = [
   'bottom',
@@ -154,7 +155,7 @@ export const TooltipInteractive = (): JSX.Element => (
       <Interactive
         header="Header - concise and clear"
         image={{
-          src: beutifulImage,
+          src: beautifulImage,
           alt: 'image',
         }}
         text="Tooltip content is used to explain the details of elements or features."
@@ -318,7 +319,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
             <UserGuideStep
               header="Header - concise and clear"
               image={{
-                src: beutifulImage,
+                src: beautifulImage,
                 alt: 'image',
               }}
               text="Tooltip content is used to explain the details of elements or features."
@@ -334,7 +335,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
             <UserGuideStep
               header="Header - concise and clear"
               image={{
-                src: beutifulImage,
+                src: beautifulImage,
                 alt: 'image',
               }}
               text="Tooltip content is used to explain the details of elements or features."
@@ -350,7 +351,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
             <UserGuideStep
               header="Header - concise and clear"
               image={{
-                src: beutifulImage,
+                src: beautifulImage,
                 alt: 'image',
               }}
               text="Tooltip content is used to explain the details of elements or features."
