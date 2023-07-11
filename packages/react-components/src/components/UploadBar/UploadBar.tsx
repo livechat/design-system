@@ -161,7 +161,7 @@ export const UploadBar: React.FC<React.PropsWithChildren<UploadBarProps>> = ({
           </div>
           <div className={styles[`${wrapperHeaderClass}__title`]}>
             <Text size="sm" as="div">
-              {withError ? errorMessage || title : title}
+              {withError ? errorMessage : title}
             </Text>
           </div>
           {shouldShowCollapseButton && (
