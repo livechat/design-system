@@ -8,3 +8,7 @@ export function getIconType(theme: string): IconKind {
       return 'primary';
   }
 }
+
+export const sleep = (milliseconds: number): Promise<void> => {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+};
