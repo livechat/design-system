@@ -192,10 +192,10 @@ $base-class: 'tooltip';
 .reports-tooltip {
   flex: 1 1 270px;
   width: 270px;
-  
+
   &__heading {
     background-color: var(--surface-secondary-default);
-    padding: 5px var(--spacing-4);
+    padding: var(--spacing-2) var(--spacing-4);
     text-align: center;
 
     &__title {
