@@ -4,6 +4,7 @@ $base-class: 'alert';
   box-sizing: border-box;
   display: flex;
   position: relative;
+  border-radius: 8px;
   padding: var(--spacing-5);
   width: 100%;
   overflow: hidden;
@@ -74,22 +75,18 @@ $base-class: 'alert';
   }
 
   &--info {
-    box-shadow: inset 0 3px 0 0 var(--surface-accent-emphasis-high-info);
-    background-color: var(--surface-accent-emphasis-min-info);
+    background-color: var(--surface-accent-emphasis-low-info);
   }
 
   &--warning {
-    box-shadow: inset 0 3px 0 0 var(--surface-accent-emphasis-high-warning);
-    background-color: var(--surface-accent-emphasis-min-warning);
+    background-color: var(--surface-accent-emphasis-low-warning);
   }
 
   &--success {
-    box-shadow: inset 0 3px 0 0 var(--surface-accent-emphasis-high-positive);
-    background-color: var(--surface-accent-emphasis-min-positive);
+    background-color: var(--surface-accent-emphasis-low-positive);
   }
 
   &--error {
-    box-shadow: inset 0 3px 0 0 var(--surface-accent-emphasis-high-negative);
-    background-color: var(--surface-accent-emphasis-min-negative);
+    background-color: var(--surface-accent-emphasis-low-negative);
   }
 }
