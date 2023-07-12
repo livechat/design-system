@@ -1,0 +1,26 @@
+$base-class: 'action-menu-item';
+
+.#{$base-class} {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+
+  &__left-node,
+  &__right-node {
+    display: flex;
+    align-items: center;
+  }
+
+  &__left-node {
+    margin-right: var(--spacing-2);
+  }
+
+  &__right-node {
+    margin-left: var(--spacing-2);
+  }
+
+  &__label {
+    flex: 1;
+  }
+}

@@ -8,6 +8,7 @@ import { ProgressSize, ProgressStatus } from '../Progress/constants';
 import styles from './FileUploadProgress.module.scss';
 import { Icon } from '../Icon';
 import { FileUploadProgressActions } from './FileUploadProgressActions';
+import { Text } from '../Typography';
 
 export type UploadProgressActionState = 'visible' | 'hover' | 'hidden';
 
@@ -100,7 +101,10 @@ export const FileUploadProgress: React.ExoticComponent<
                     status === 'error',
                 })}
               >
-                {title}
+                <Text size="sm" as="div">
+                  {title}
+                </Text>
+                ={' '}
               </div>
             )}
             {actionsVisibility !== 'hidden' && (

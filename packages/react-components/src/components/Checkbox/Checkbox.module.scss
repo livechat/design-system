@@ -34,13 +34,13 @@
       display: inline-block;
       position: absolute;
       transition: opacity 0.2 ease;
-      content: '';
       opacity: 0;
       z-index: 1;
       background-color: var(--content-invert-primary);
       width: 24px;
       height: 24px;
-      -webkit-mask: url('./check.svg') no-repeat 50% 50%;
+      content: '';
+      mask: url('./check.svg') no-repeat 50% 50%;
       mask: url('./check.svg') no-repeat 50% 50%;
     }
 
