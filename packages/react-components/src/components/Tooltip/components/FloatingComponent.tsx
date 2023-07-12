@@ -27,6 +27,7 @@ type IProps = Pick<
   handleMouseLeave: (event: React.MouseEvent) => void;
   handleCloseAction: (event: MouseEvent | KeyboardEvent) => void;
   childrenElements: React.ReactNode;
+  fullSpaceContent?: boolean;
 };
 
 export const FloatingComponent: React.FC<IProps> = ({
@@ -46,6 +47,7 @@ export const FloatingComponent: React.FC<IProps> = ({
   handleCloseAction,
   arrowRef,
   childrenElements,
+  fullSpaceContent,
 }) => {
   const {
     x,
@@ -78,6 +80,7 @@ export const FloatingComponent: React.FC<IProps> = ({
   const mergedClassNames = cx(styles[baseClass], className, {
     [styles[`${baseClass}--invert`]]: theme === 'invert',
     [styles[`${baseClass}--important`]]: theme === 'important',
+    [styles[`${baseClass}--full-space`]]: fullSpaceContent,
   });
 
   const floatingComponent = (
