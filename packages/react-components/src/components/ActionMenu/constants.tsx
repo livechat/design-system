@@ -8,51 +8,52 @@ import {
 } from '@livechat/design-system-icons/react/tabler';
 import { Icon } from '../Icon';
 import noop from '../../utils/noop';
+import { ActionMenuItem } from './ActionMenuItem';
 
 export const exampleOptions = [
   {
     key: 'one',
     element: (
-      <>
-        <Icon source={AccountCircle} className="menu-item-icon" /> Option one
-      </>
+      <ActionMenuItem leftNode={<Icon source={ArrowForward} />}>
+        Option one
+      </ActionMenuItem>
     ),
     onClick: noop,
   },
   {
     key: 'two',
     element: (
-      <>
-        <Icon source={Add} className="menu-item-icon" /> Option two
-      </>
+      <ActionMenuItem leftNode={<Icon source={AccountCircle} />}>
+        Option two
+      </ActionMenuItem>
     ),
     onClick: noop,
   },
   {
     key: 'three',
     element: (
-      <>
-        <Icon source={ArrowForward} className="menu-item-icon" /> Option three
-      </>
+      <ActionMenuItem leftNode={<Icon source={Add} />}>
+        Option three
+      </ActionMenuItem>
     ),
     onClick: noop,
   },
   {
     key: 'four',
     element: (
-      <>
-        <Icon source={Block} className="menu-item-icon" /> Option four
-      </>
+      <ActionMenuItem leftNode={<Icon source={Block} />}>
+        Option four
+      </ActionMenuItem>
     ),
-    onClick: noop,
     disabled: true,
+    onClick: noop,
   },
   {
     key: 'five',
     element: (
-      <>
-        <Icon source={ChatDots} className="menu-item-icon" /> Option five
-      </>
+      <ActionMenuItem leftNode={<Icon source={ChatDots} />}>
+        Option five
+      </ActionMenuItem>
     ),
     onClick: noop,
     withDivider: true,
