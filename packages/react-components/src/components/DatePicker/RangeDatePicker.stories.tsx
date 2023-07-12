@@ -25,6 +25,9 @@ const options = [
 export default {
   title: 'Components/RangeDatePicker',
   component: RangeDatePickerComponent,
+  parameters: {
+    date: new Date('2023-07-01'),
+  },
   argTypes: {
     initialFromDate: {
       control: {
@@ -79,7 +82,8 @@ const StoryTemplate: Story<IRangeDatePickerProps> = (
 };
 
 export const RangeDatePicker = StoryTemplate.bind({});
+const date = new Date('2023-07-01');
 RangeDatePicker.args = {
-  initialFromDate: subDays(new Date(), 7),
-  initialToDate: new Date(),
+  initialFromDate: subDays(date, 7),
+  initialToDate: date,
 };
