@@ -28,6 +28,10 @@ export interface ActionMenuProps {
    * The menu placement
    */
   placement?: Placement;
+  /**
+   * Will open menu on component initialization
+   */
+  openedOnInit?: boolean;
 }
 
 const baseClass = 'action-menu';
@@ -37,9 +41,10 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   options,
   triggerRenderer,
   placement = 'bottom-end',
+  openedOnInit = false,
   ...props
 }) => {
-  const [isVisible, setIsVisible] = React.useState(false);
+  const [isVisible, setIsVisible] = React.useState(openedOnInit);
   const indexRef = React.useRef(-1);
 
   const getIndex = (val: number) => {
