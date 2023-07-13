@@ -1,16 +1,21 @@
-import { Meta, Title, Subtitle, Canvas, ArgTypes } from '@storybook/blocks';
+import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
 import { Figma } from "storybook-addon-designs/blocks"
-import * as stories from './Picker.stories';
+import * as Picker from './Picker.stories';
 
-<Meta of={stories} />
+<Meta of={Picker} />
 
 <Title>Picker</Title>
 
-<Subtitle>Description</Subtitle>
+[Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
 
-<Canvas of={stories.Default}/>
+## Intro <a id="Intro" />
 
-<ArgTypes of={stories.Default}/>
+<Canvas of={Picker.Default}/>
 
-<Figma showLink height="100%" url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=97-23185&mode=dev" />
+## Component API <a id="ComponentAPI" />
 
+<ArgTypes of={Picker.Default}/>
+
+## Content Spec <a id="ContentSpec" />
+
+<Figma showLink height="100%" url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=731-53240&mode=dev" />
