@@ -5,17 +5,31 @@ import styles from './ActionMenuItem.module.scss';
 import { Text } from '../Typography';
 
 export interface ActionMenuItemProps {
+  /**
+   * Renders given element on the left of element
+   */
   leftNode?: React.ReactNode;
+  /**
+   * Renders given element on the right of element
+   */
   rightNode?: React.ReactNode;
+  /**
+   * Specify the kind of menu item
+   */
+  kind?: 'warning' | undefined;
 }
 
 const baseClass = 'action-menu-item';
 
 export const ActionMenuItem: React.FC<
   React.PropsWithChildren<ActionMenuItemProps>
-> = ({ leftNode, rightNode, children }) => {
+> = ({ leftNode, rightNode, children, kind }) => {
   return (
-    <div className={styles[baseClass]}>
+    <div
+      className={cx(styles[baseClass], {
+        [styles[`${baseClass}--warning`]]: kind === 'warning',
+      })}
+    >
       {leftNode && (
         <div className={styles[`${baseClass}__left-node`]}>{leftNode}</div>
       )}

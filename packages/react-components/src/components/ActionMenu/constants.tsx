@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {
-  AccountCircle,
-  Add,
-  ArrowForward,
+  MoveTo,
+  Edit,
+  ContentCopy,
   Block,
-  ChatDots,
+  Delete,
 } from '@livechat/design-system-icons/react/tabler';
 import { Icon } from '../Icon';
 import noop from '../../utils/noop';
@@ -14,8 +14,8 @@ export const exampleOptions = [
   {
     key: 'one',
     element: (
-      <ActionMenuItem leftNode={<Icon source={ArrowForward} />}>
-        Option one
+      <ActionMenuItem leftNode={<Icon source={ContentCopy} />}>
+        Copy
       </ActionMenuItem>
     ),
     onClick: noop,
@@ -23,8 +23,8 @@ export const exampleOptions = [
   {
     key: 'two',
     element: (
-      <ActionMenuItem leftNode={<Icon source={AccountCircle} />}>
-        Option two
+      <ActionMenuItem leftNode={<Icon source={MoveTo} />}>
+        Move to...
       </ActionMenuItem>
     ),
     onClick: noop,
@@ -32,18 +32,14 @@ export const exampleOptions = [
   {
     key: 'three',
     element: (
-      <ActionMenuItem leftNode={<Icon source={Add} />}>
-        Option three
-      </ActionMenuItem>
+      <ActionMenuItem leftNode={<Icon source={Edit} />}>Edit</ActionMenuItem>
     ),
     onClick: noop,
   },
   {
     key: 'four',
     element: (
-      <ActionMenuItem leftNode={<Icon source={Block} />}>
-        Option four
-      </ActionMenuItem>
+      <ActionMenuItem leftNode={<Icon source={Block} />}>Block</ActionMenuItem>
     ),
     disabled: true,
     onClick: noop,
@@ -51,8 +47,8 @@ export const exampleOptions = [
   {
     key: 'five',
     element: (
-      <ActionMenuItem leftNode={<Icon source={ChatDots} />}>
-        Option five
+      <ActionMenuItem kind="warning" leftNode={<Icon source={Delete} />}>
+        Delete item
       </ActionMenuItem>
     ),
     onClick: noop,

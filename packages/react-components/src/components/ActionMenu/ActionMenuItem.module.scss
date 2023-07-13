@@ -23,4 +23,8 @@ $base-class: 'action-menu-item';
   &__label {
     flex: 1;
   }
+
+  &--warning {
+    color: var(--content-basic-negative);
+  }
 }

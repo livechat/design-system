@@ -1,0 +1,22 @@
+.block-columns-container {
+  display: flex;
+  gap: 16px;
+}
+
+.block-columns {
+  flex: 1;
+
+  &__label-container {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+
+    &__icon {
+      margin-right: var(--spacing-3) !important;
+    }
+
+    &__label {
+      margin-bottom: 0 !important;
+    }
+  }
+}
