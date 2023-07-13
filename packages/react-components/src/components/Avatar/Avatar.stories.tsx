@@ -4,10 +4,19 @@ import { ComponentMeta } from '@storybook/react';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
 import { Avatar, AvatarProps } from './Avatar';
+import docs from './Avatar.mdx';
 
 export default {
   title: 'Components/Avatar',
   component: Avatar,
+  parameters: {
+    docs: {
+      page: docs,
+      source: {
+        code: null,
+      },
+    },
+  },
 } as ComponentMeta<typeof Avatar>;
 
 export const Default = (args: AvatarProps): JSX.Element => <Avatar {...args} />;
