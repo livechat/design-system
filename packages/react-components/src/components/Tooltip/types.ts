@@ -15,6 +15,7 @@ export interface ITooltipProps {
   triggerOnClick?: boolean;
   arrowOffsetY?: number;
   arrowOffsetX?: number;
+  fullSpaceContent?: boolean;
   triggerRenderer: () => React.ReactNode;
   referenceElement?: VirtualElement;
   onOpen?: () => void;

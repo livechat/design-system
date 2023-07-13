@@ -23,6 +23,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     triggerOnClick = false,
     arrowOffsetY,
     arrowOffsetX,
+    fullSpaceContent,
     onOpen,
     onClose,
   } = props;
@@ -115,6 +116,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
       arrowOffsetY={arrowOffsetY}
       theme={theme}
       withFadeAnimation={withFadeAnimation}
+      fullSpaceContent={fullSpaceContent}
     />
   );
 
