@@ -4,7 +4,6 @@ import { Icon } from '../Icon';
 import { ActionMenu } from './ActionMenu';
 import { ActionMenuItem } from './ActionMenuItem';
 import { exampleOptions } from './constants';
-import docs from './ActionMenu.mdx';
 import './ActionMenu.stories.css';
 
 export default {
@@ -12,14 +11,6 @@ export default {
   component: ActionMenu,
   subcomponents: {
     ActionMenuItem,
-  },
-  parameters: {
-    docs: {
-      page: docs,
-      source: {
-        code: null,
-      },
-    },
   },
 };
 
