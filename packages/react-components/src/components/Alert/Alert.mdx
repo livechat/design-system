@@ -1,0 +1,42 @@
+import { Meta, Title, Subtitle, Canvas, ArgTypes } from '@storybook/blocks';
+import { Figma } from "storybook-addon-designs/blocks"
+import * as AlertStories from './Alert.stories';
+import { BlockColumnsContainer, BlockColumns } from '../../stories/components/BlockColumns';
+
+<Meta of={AlertStories} />
+
+<Title>Alert</Title>
+
+<Subtitle>Alerts are used to let users know about important informations that require immediate action or attention.</Subtitle>
+
+[Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+## Intro <a id="Intro" />
+
+The Alert component is used to provide feedback to users about a particular action or situation.
+
+<BlockColumnsContainer>
+    <BlockColumns>
+        It has three different sizes:
+        - Small
+        - Medium
+        - Large
+    </BlockColumns>
+    <BlockColumns>
+        And comes in four types:
+        - Info
+        - Error
+        - Warning
+        - Success
+    </BlockColumns>
+</BlockColumnsContainer>
+
+<Canvas of={AlertStories.Kinds}/>
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={AlertStories.Default}/>
+
+## Content Spec <a id="ContentSpec" />
+
+<Figma showLink height="100%" url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=97-23185&mode=dev" />
