@@ -10,7 +10,16 @@ import * as NumericInput from './NumericInput.stories';
 
 ## Intro <a id="Intro" />
 
-<Canvas of={NumericInput.NumericInput}/>
+<Canvas of={NumericInput.NumericInput} sourceState="none"/>
+
+#### Example implementation
+
+```jsx
+<NumericInput
+  value={value}
+  onChange={(v) => setValue(v)}
+/>
+```
 
 ## Component API <a id="ComponentAPI" />
 

@@ -10,7 +10,20 @@ import * as Picker from './Picker.stories';
 
 ## Intro <a id="Intro" />
 
-<Canvas of={Picker.Default}/>
+<Canvas of={Picker.Default} sourceState="none"/>
+
+#### Example implementation
+
+```jsx
+<Picker
+  options={[
+    { key: 'one', name: 'Option one' },
+    { key: 'two', name: 'Option two' },
+  ]}
+  selected={selectedItems}
+  onSelect={items => {}}
+/>
+```
 
 ## Component API <a id="ComponentAPI" />
 
