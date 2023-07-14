@@ -4,7 +4,7 @@ const foundations = ['Typography', 'ColorTokens', 'Icons', 'TablerIcons'].map(
 module.exports = {
   stories: [
     ...foundations,
-    '../src/**/*.stories.mdx',
+    '../src/**/*.mdx',
     '../src/**/*.stories.@(js|jsx|ts|tsx)',
   ],
   addons: [
@@ -12,7 +12,7 @@ module.exports = {
     '@storybook/addon-essentials',
     'storybook-addon-themes',
     '@storybook/addon-a11y',
-    'storybook-addon-designs',
+    '@storybook/addon-designs',
   ],
   framework: {
     name: '@storybook/react-vite',

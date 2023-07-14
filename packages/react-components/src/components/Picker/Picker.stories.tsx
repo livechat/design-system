@@ -50,6 +50,7 @@ const StoryTemplate: Story<IPickerProps> = (args: IPickerProps) => {
 export const Default = StoryTemplate.bind({});
 Default.args = {
   options: defaultPickerOptions,
+  openedOnInit: true,
 };
 
 export const States = (): React.ReactElement => (
