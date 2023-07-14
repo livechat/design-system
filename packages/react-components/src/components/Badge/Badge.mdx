@@ -1,0 +1,26 @@
+import { Canvas, Story, ArgsTable, Meta, Title } from '@storybook/blocks';
+import { Figma } from "@storybook/addon-designs/blocks";
+import * as BadgeStories from './Badge.stories';
+import { BlockColumnsContainer, BlockColumns } from '../../stories/components/BlockColumns';
+
+<Meta of={BadgeStories} />
+
+<Title>Badge</Title>
+
+[Content Spec](#ContentSpec) | [Component API](#ComponentAPI)
+
+<Canvas of={BadgeStories.Default} sourceState="none"/>
+
+#### Example implementation
+```jsx
+<Badge count={1} />
+```
+
+## Content Spec <a id="ContentSpec" />
+<Figma showLink height="100%" url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=731-59622&mode=dev" />
+
+## Component API <a id="ComponentAPI" />
+
+<ArgsTable />
+
+
