@@ -12,7 +12,7 @@ module.exports = {
     '@storybook/addon-essentials',
     'storybook-addon-themes',
     '@storybook/addon-a11y',
-    'storybook-addon-designs',
+    '@storybook/addon-designs',
   ],
   framework: {
     name: '@storybook/react-vite',
