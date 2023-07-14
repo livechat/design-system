@@ -1,0 +1,31 @@
+import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+import { Figma } from '@storybook/addon-designs/blocks';
+import * as ProgressBarStories from './ProgressBar.stories';
+
+<Meta of={ProgressBarStories} />
+
+<Title>Progress Bar</Title>
+
+[Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+## Intro <a id="Intro" />
+
+<Canvas of={ProgressBarStories.ProgressBar} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+<ProgressBar percent={10} status="normal" size="medium" />
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={ProgressBarStories.ProgressBar} />{' '}
+
+## Content Spec <a id="ContentSpec" />
+
+<Figma
+  showLink
+  height="100%"
+  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=763-61282&mode=design&t=KDLSWjzjyKjIorFY-0"
+/>

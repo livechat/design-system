@@ -1,5 +1,5 @@
 import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
-import { Figma } from "@storybook/addon-designs/blocks";
+import { Figma } from '@storybook/addon-designs/blocks';
 import * as PopoverStories from './Popover.stories';
 
 <Meta of={PopoverStories} />
@@ -10,12 +10,31 @@ import * as PopoverStories from './Popover.stories';
 
 ## Intro <a id="Intro" />
 
-<Canvas of={PopoverStories.Default}/>
+<Canvas of={PopoverStories.Default} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+<Popover
+  placement="bottom-start"
+  triggerRenderer={() => (
+    <Button icon={<Icon source={ChevronDown}></Icon>} iconPosition={'right'}>
+      Open Popover
+    </Button>
+  )}
+>
+  Popover content
+</Popover>
+```
 
 ## Component API <a id="ComponentAPI" />
 
-<ArgTypes of={PopoverStories.Default}/>
+<ArgTypes of={PopoverStories.Default} />
 
 ## Content Spec <a id="ContentSpec" />
 
-<Figma showLink height="100%" url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=654-41901&mode=dev" />
+<Figma
+  showLink
+  height="100%"
+  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=654-41901&mode=dev"
+/>
