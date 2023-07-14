@@ -1,31 +1,31 @@
 import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
 import { Figma } from '@storybook/addon-designs/blocks';
-import * as Stories from './ProgressCircle.stories';
+import * as Stories from './Search.stories';
 
 <Meta of={Stories} />
 
-<Title>ProgressCircle</Title>
+<Title>Search</Title>
 
 [Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
 
 ## Intro <a id="Intro" />
 
-<Canvas of={Stories.ProgressCircle} />
+<Canvas of={Stories.Search} sourceState="none" />
 
 #### Example implementation
 
 ```jsx
-<ProgressCircle progressValue={30} status="normal" size="medium" />
+<SearchInput value={value} onChange={setValue} />
 ```
 
 ## Component API <a id="ComponentAPI" />
 
-<ArgTypes of={Stories.ProgressCircle} />
+<ArgTypes of={Stories.Search} />
 
 ## Content Spec <a id="ContentSpec" />
 
 <Figma
   showLink
   height="100%"
-  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=763-61282&mode=design&t=KDLSWjzjyKjIorFY-0"
+  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=769-69771&mode=dev"
 />

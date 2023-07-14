@@ -21,9 +21,7 @@ export const RadioButton = ({
   children,
   ...args
 }: RadioButtonProps): React.ReactElement => (
-  <div>
-    <RadioButtonComponent {...args}>{children}</RadioButtonComponent>
-  </div>
+  <RadioButtonComponent {...args}>{children}</RadioButtonComponent>
 );
 
 RadioButton.args = {
