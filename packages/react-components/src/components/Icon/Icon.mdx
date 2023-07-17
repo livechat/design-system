@@ -1,0 +1,30 @@
+
+import { Canvas, Story, ArgsTable, Meta, Title } from '@storybook/blocks';
+import { Figma } from "@storybook/addon-designs/blocks";
+import * as IconStories from './Icon.stories';
+
+<Meta of={IconStories} />
+
+<Title>Icon</Title>
+
+[Content Spec](#ContentSpec) | [Component API](#ComponentAPI)
+
+<Canvas of={IconStories.Icon} sourceState="none"/>
+
+#### Example implementation
+```jsx
+import { ChevronUp } from '@livechat/design-system-icons/react/tabler';
+
+<Icon
+  source={ChevronUp}
+  size="medium"
+  kind="primary"
+/>
+```
+
+## Content Spec <a id="ContentSpec" />
+<Figma showLink height="100%" url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=641-38581&mode=dev" />
+
+## Component API <a id="ComponentAPI" />
+
+<ArgsTable />
