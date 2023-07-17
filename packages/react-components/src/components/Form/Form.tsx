@@ -6,8 +6,17 @@ import { Text, Heading } from '../Typography';
 import styles from './Form.module.scss';
 
 export interface FormProps extends React.HTMLAttributes<HTMLFormElement> {
+  /**
+   * Set form label
+   */
   labelText?: string;
+  /**
+   * Set form description
+   */
   helperText?: string;
+  /**
+   * Footer element
+   */
   formFooter?: React.ReactNode;
 }
 
