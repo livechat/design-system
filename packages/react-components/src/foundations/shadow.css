@@ -8,6 +8,7 @@
   --shadow-tooltip-arrow-top: -7px 6px 5px -3px rgb(66 77 87 / 30%);
   --shadow-tooltip-arrow-right: -5px -5px 10px -2px rgb(66 77 87 / 30%);
   --shadow-tooltip-arrow-left: 6px 6px 10px -2px rgb(66 77 87 / 30%);
+  --shadow-focus: 0 0 1px 2px #4284f5;
 }
 
 .lc-light-theme {
@@ -19,6 +20,7 @@
   --shadow-tooltip-arrow-top: -7px 6px 5px -3px rgb(66 77 87 / 30%);
   --shadow-tooltip-arrow-right: -5px -5px 10px -2px rgb(66 77 87 / 30%);
   --shadow-tooltip-arrow-left: 6px 6px 10px -2px rgb(66 77 87 / 30%);
+  --shadow-focus: 0 0 1px 2px #0059e1;
 }
 
 .lc-dark-theme {
@@ -34,4 +36,5 @@
   --shadow-tooltip-arrow-top: unset;
   --shadow-tooltip-arrow-right: unset;
   --shadow-tooltip-arrow-left: unset;
+  --shadow-focus: 0 0 1px 2px #68afff;
 }
