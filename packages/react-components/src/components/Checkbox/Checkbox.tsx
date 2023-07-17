@@ -7,8 +7,17 @@ import { FieldDescription } from '../FieldDescription';
 import styles from './Checkbox.module.scss';
 
 export interface CheckboxProps extends React.HTMLAttributes<HTMLInputElement> {
+  /**
+   * Specify whether the checkbox should be disabled
+   */
   disabled?: boolean;
+  /**
+   * Specify whether the checkbox should be checked
+   */
   checked?: boolean;
+  /**
+   * Set the checkbox description
+   */
   description?: string;
 }
 
