@@ -1,0 +1,40 @@
+import { Canvas, Story, ArgsTable, Meta, Title } from '@storybook/blocks';
+import { Figma } from "@storybook/addon-designs/blocks";
+import * as ButtonStories from './Button.stories';
+import { BlockColumnsContainer, BlockColumns } from '../../stories/components/BlockColumns';
+
+<Meta of={ButtonStories} />
+
+<Title>Button</Title>
+
+[Intro](#Intro) | [Content Spec](#ContentSpec) | [Component API](#ComponentAPI)
+
+## Intro <a id="Intro" />
+Button used to initialise user actions. Button labels clearly express the action that will occur when the user interacts with them.
+
+<Canvas of={ButtonStories.Default} sourceState="none"/>
+
+#### Example implementation
+```jsx
+<Button>
+  Button text
+</Button>
+```
+
+<BlockColumnsContainer>
+  <BlockColumns label="When to Use">
+    - Use buttons when you want users to perform an action or trigger a specific function.
+    - Buttons are suitable for primary call-to-action (CTA) elements, secondary actions, or supporting functions.
+  </BlockColumns>
+  <BlockColumns isNegative label="When Not to Use">
+    - Avoid using buttons when the action is purely informational and doesn't require user interaction.
+    - Don't use buttons for non-actionable elements or decorative purposes.
+  </BlockColumns>
+</BlockColumnsContainer>
+
+## Content Spec <a id="ContentSpec" />
+<Figma showLink height="100%" url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=613-36946&mode=dev" />
+
+## Component API <a id="ComponentAPI" />
+
+<ArgsTable />
