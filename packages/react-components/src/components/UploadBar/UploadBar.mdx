@@ -1,0 +1,51 @@
+import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+import { Figma } from '@storybook/addon-designs/blocks';
+import * as Stories from './UploadBar.stories';
+
+<Meta of={Stories} />
+
+<Title>UploadBar</Title>
+
+[Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+## Intro <a id="Intro" />
+
+<Canvas of={Stories.UploadBarWithSingleElement} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+<UploadBarComponent
+  errorMessage={status === 'error' ? 'Files upload failed' : undefined}
+  progressValue={70}
+  status={status}
+  title="Example UploadBar title"
+  onCloseButtonClick={noop}
+  onRetryButtonClick={noop}
+>
+  {files.map((file) => (
+    <FileUploadProgress
+      key={file.id}
+      title={file.name}
+      progressValue={file.percent}
+      status={status === 'normal' ? file.status : status}
+      icon={file.icon}
+      actionsVisibility={status === 'normal' ? 'visible' : 'hidden'}
+      onCloseButtonClick={file.status === 'error' ? noop : undefined}
+      onRetryButtonClick={file.status === 'error' ? noop : undefined}
+    />
+  ))}
+</UploadBarComponent>
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={Stories.UploadBarWithSingleElement} />
+
+## Content Spec <a id="ContentSpec" />
+
+<Figma
+  showLink
+  height="100%"
+  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=763-61282&mode=dev"
+/>

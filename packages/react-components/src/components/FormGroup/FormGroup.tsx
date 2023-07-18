@@ -5,8 +5,17 @@ import { Text, Heading } from '../Typography';
 import styles from './FormGroup.module.scss';
 
 export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * The CSS class for container
+   */
   className?: string;
+  /**
+   * Set form label
+   */
   labelText?: string;
+  /**
+   * Set form description
+   */
   helperText?: string;
 }
 

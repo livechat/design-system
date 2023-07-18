@@ -1,0 +1,40 @@
+import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+import { Figma } from '@storybook/addon-designs/blocks';
+import * as Stories from './PromoBanner.stories';
+
+<Meta of={Stories} />
+
+<Title>PromoBanner</Title>
+
+[Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+## Intro <a id="Intro" />
+
+<Canvas of={Stories.PromoBanner} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+<PromoBanner
+  buttonText="Example"
+  linkText="Example"
+  header="Header text"
+  onButtonClick={() => {}}
+  onLinkClick={() => {}}
+  onClose={() => {}}
+>
+  Banner text
+</PromoBanner>
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={Stories.PromoBanner} />
+
+## Content Spec <a id="ContentSpec" />
+
+<Figma
+  showLink
+  height="100%"
+  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=775-66627&mode=dev"
+/>

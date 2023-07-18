@@ -1,0 +1,57 @@
+import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+import { Figma } from '@storybook/addon-designs/blocks';
+import * as Stories from './TabsWrapper.stories';
+import * as TabStories from './Tab.stories';
+
+<Meta of={Stories} />
+
+<Title>Tabs</Title>
+
+[Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+## Intro <a id="Intro" />
+
+<Canvas of={Stories.TabsWrapper} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+const items = [
+  { id: 'agents', title: 'Agents', count: 1 },
+  { id: 'groups', title: 'Groups', count: 3 },
+  { id: 'bots', title: 'Bots', count: 2 },
+];
+
+<TabsWrapper>
+  <TabsList>
+    {items.map(({ id, title, count, asBadge, isDisabled }) => (
+      <Tab
+        key={id}
+        count={count}
+        isSelected={selectedTab === id}
+        disabled={isDisabled}
+        asBadge={asBadge}
+        onClick={() => !isDisabled && setSelectedTab(id)}
+      >
+        {title}
+      </Tab>
+    ))}
+  </TabsList>
+</TabsWrapper>;
+```
+
+## Tab API <a id="ComponentAPI" />
+
+<ArgTypes of={TabStories.Tab} />
+
+## TabsWrapper API
+
+<ArgTypes of={Stories.TabsWrapper} />
+
+## Content Spec <a id="ContentSpec" />
+
+<Figma
+  showLink
+  height="100%"
+  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=743-53948&mode=dev"
+/>
