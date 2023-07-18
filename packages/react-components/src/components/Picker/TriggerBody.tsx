@@ -18,6 +18,7 @@ export interface ITriggerBodyProps {
   items?: IPickerListItem[] | null;
   type: PickerType;
   iconSize?: IconSize;
+  clearSearchAfterSelection?: boolean;
   onItemRemove: (item: IPickerListItem) => void;
   onFilter: (text: string) => void;
 }
@@ -30,10 +31,22 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
   items,
   type,
   iconSize,
+  clearSearchAfterSelection,
   onItemRemove,
   onFilter,
 }) => {
   const shouldDisplaySearch = isOpen && !isSearchDisabled;
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    if (clearSearchAfterSelection) {
+      onFilter('');
+
+      if (inputRef.current) {
+        inputRef.current.value = '';
+      }
+    }
+  }, [items, clearSearchAfterSelection]);
 
   const getSingleItem = (item: IPickerListItem) => {
     if (type === 'single' && isOpen && !isSearchDisabled) {
@@ -57,6 +70,7 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
 
   const getSearch = () => (
     <input
+      ref={inputRef}
       className={styles[`${baseClass}__input`]}
       placeholder="Select option"
       onChange={handleOnChange}
