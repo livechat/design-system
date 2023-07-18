@@ -1,5 +1,4 @@
 import * as React from 'react';
-import cx from 'clsx';
 
 import { IPickerListItem } from './PickerList';
 import { Tag } from '../Tag';
@@ -44,6 +43,7 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
 
       if (inputRef.current) {
         inputRef.current.value = '';
+        inputRef.current.focus();
       }
     }
   }, [items, clearSearchAfterSelection]);
