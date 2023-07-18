@@ -5,8 +5,17 @@ import { KeyCodes } from '../../utils/keyCodes';
 import styles from './Modal.module.scss';
 
 export interface ModalBaseProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * The event handler for close button
+   */
   onClose(): void;
+  /**
+   * Triggers the onClose event on `esc` key press
+   */
   closeOnEscPress?: boolean;
+  /**
+   * Triggers the onClose event on overlay click
+   */
   closeOnOverlayPress?: boolean;
 }
 

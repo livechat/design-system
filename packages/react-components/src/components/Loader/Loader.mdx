@@ -1,0 +1,26 @@
+import { Canvas, Story, ArgsTable, Meta, Title } from '@storybook/blocks';
+import { Figma } from "@storybook/addon-designs/blocks";
+import * as LoaderStories from './Loader.stories';
+
+<Meta of={LoaderStories} />
+
+<Title>Loader</Title>
+
+[Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+<Canvas of={LoaderStories.Default} sourceState="none"/>
+
+#### Example implementation
+```jsx
+<Loader
+  size="small"
+  label="Loading..."
+/>
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgsTable />
+
+## Content Spec <a id="ContentSpec" />
+<Figma showLink height="100%" url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=763-81559&mode=dev" />

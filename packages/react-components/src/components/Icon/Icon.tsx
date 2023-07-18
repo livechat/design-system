@@ -47,11 +47,29 @@ const IconSizeMap: Record<IconSize, { width: number; height: number }> = {
 export type IconSource = React.FC<React.SVGProps<SVGSVGElement>> &
   React.ReactElement;
 export interface IconProps {
+  /**
+   * Specify the source of svg element
+   */
   source: IconSource;
+  /**
+   * Specify the icon size
+   */
   size?: IconSize;
+  /**
+   * Specify the icon kind
+   */
   kind?: IconKind;
+  /**
+   * Specify whether the icon should be disabled
+   */
   disabled?: boolean;
+  /**
+   * The CSS class for icon
+   */
   className?: string;
+  /**
+   * Set the icon custom color
+   */
   customColor?: string;
 }
 

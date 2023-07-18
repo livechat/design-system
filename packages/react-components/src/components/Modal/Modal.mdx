@@ -1,0 +1,49 @@
+import { Canvas, Story, ArgsTable, Meta, Title } from '@storybook/blocks';
+import { Figma } from "@storybook/addon-designs/blocks";
+import * as ModalStories from './Modal.stories';
+
+<Meta of={ModalStories} />
+
+<Title>Modal</Title>
+
+[Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+#### Example implementation
+```jsx
+import { GreetingQuickReply } from '@livechat/design-system-icons/react/material';
+
+<Modal
+  heading={
+    <ModalHeader
+      title="Modal Header"
+      iconProps={{
+        source: GreetingQuickReply,
+        kind: 'primary',
+        size: 'large',
+      }}
+    >
+      Modal description
+    </ModalHeader>
+  }
+  footer={
+    <div>
+      <Button size="medium" kind="secondary">
+        Secondary
+      </Button>
+      <Button kind="primary" size="medium">
+        Primary
+      </Button>
+    </div>
+  }
+  onClose={() => {}}
+>
+  Modal content
+</Modal>
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgsTable />
+
+## Content Spec <a id="ContentSpec" />
+<Figma showLink height="100%" url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=654-44124&mode=dev" />

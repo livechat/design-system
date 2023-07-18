@@ -7,9 +7,21 @@ import styles from './Modal.module.scss';
 import { ModalCloseButton } from './ModalCloseButton';
 
 export interface ModalProps extends ModalBaseProps {
+  /**
+   * Header element. For consistent UI use `<ModalHeader/>`
+   */
   heading?: React.ReactNode;
+  /**
+   * Header element outside the main container. For consistent UI use `<ModalHeader/>`
+   */
   labelHeading?: React.ReactNode;
+  /**
+   * Removes the spacing inside the main container
+   */
   fullSpaceContent?: boolean;
+  /**
+   * Footer element
+   */
   footer?: React.ReactNode;
 }
 

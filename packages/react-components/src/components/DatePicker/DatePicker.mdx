@@ -1,0 +1,26 @@
+import { Canvas, ArgTypes, Meta, Title } from '@storybook/blocks';
+import { Figma } from "@storybook/addon-designs/blocks";
+import * as DatePickerStories from './DatePicker.stories';
+
+<Meta of={DatePickerStories} />
+
+<Title>DatePicker</Title>
+
+[Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+<Canvas of={DatePickerStories.DatePicker} sourceState="none"/>
+
+#### Example implementation
+```jsx
+<DatePicker
+  fromMonth={new Date('06/20/2021')}
+  toMonth={new Date('09/20/2021')}
+  month={new Date('09/20/2021')}
+/>
+```
+
+## Component API <a id="ComponentAPI" />
+<ArgTypes />
+
+## Content Spec <a id="ContentSpec" />
+<Figma showLink height="100%" url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=777-80905&mode=dev" />
