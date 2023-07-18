@@ -7,18 +7,14 @@ import {
 } from './ProgressCircle';
 
 export default {
-  title: 'Components/Progress',
+  title: 'Components/Progress/ProgressCircle',
   component: ProgressCircleComponent,
 } as ComponentMeta<typeof ProgressCircleComponent>;
 
 export const ProgressCircle = (
   args: ProgressCircleProps
 ): React.ReactElement => {
-  return (
-    <div>
-      <ProgressCircleComponent {...args} />
-    </div>
-  );
+  return <ProgressCircleComponent {...args} />;
 };
 
 ProgressCircle.args = {

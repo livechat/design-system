@@ -1,0 +1,33 @@
+import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+import { Figma } from '@storybook/addon-designs/blocks';
+import * as Stories from './RadioButton.stories';
+
+<Meta of={Stories} />
+
+<Title>RadioButton</Title>
+
+[Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+## Intro <a id="Intro" />
+
+<Canvas of={Stories.RadioButton} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+<RadioButton checked={true} description="Description">
+  Radio label
+</RadioButton>
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={Stories.RadioButton} />
+
+## Content Spec <a id="ContentSpec" />
+
+<Figma
+  showLink
+  height="100%"
+  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=646-40122&mode=dev"
+/>

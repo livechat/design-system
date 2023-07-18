@@ -1,0 +1,31 @@
+import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+import { Figma } from '@storybook/addon-designs/blocks';
+import * as Stories from './Search.stories';
+
+<Meta of={Stories} />
+
+<Title>Search</Title>
+
+[Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+## Intro <a id="Intro" />
+
+<Canvas of={Stories.Search} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+<SearchInput value={value} onChange={setValue} />
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={Stories.Search} />
+
+## Content Spec <a id="ContentSpec" />
+
+<Figma
+  showLink
+  height="100%"
+  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=769-69771&mode=dev"
+/>

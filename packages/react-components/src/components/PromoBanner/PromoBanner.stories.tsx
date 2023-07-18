@@ -21,14 +21,12 @@ export default {
 } as ComponentMeta<typeof PromoBannerComponent>;
 
 const StoryTemplate: Story<PromoBannerProps> = (args: PromoBannerProps) => (
-  <div>
-    <PromoBannerComponent {...args}>
-      <>
-        A description with a <b>maximum of 100 characters</b>. That usually
-        means only one or two sentences.
-      </>
-    </PromoBannerComponent>
-  </div>
+  <PromoBannerComponent {...args}>
+    <>
+      A description with a <b>maximum of 100 characters</b>. That usually means
+      only one or two sentences.
+    </>
+  </PromoBannerComponent>
 );
 
 export const PromoBanner = StoryTemplate.bind({});
