@@ -32,10 +32,10 @@ export function Menu({ classes, children, searchTerm, onSearchTermChange }) {
           heading="Warning!"
           icon={<AlertCircleIcon height={54} width={54} fill="#424d57" />}
         >
-          A dark mode is coming to LiveChat and we’ve launched a new system of <a href="https://v1--613a8e945a5665003a05113b.chromatic.com/?path=/story/foundations-color-tokens--page" target="_blank">Color Tokens</a> in 
-          the <a href="https://github.com/livechat/design-system/tree/v1" target="_blank">V1 branch</a>. All V1 components now have color tokens applied. 
-          To support a dark or light theme, apps must use these tokens and components from V1. 
-          This version of the Design System becomes legacy and is no longer supported. Please use <a href="https://github.com/livechat/design-system/tree/v1" target="_blank">V1 branch</a>
+          A dark mode is coming to LiveChat and we’ve launched a new system of <a href="https://design.livechat.com/?path=/story/foundations-color-tokens--page" target="_blank">Color Tokens</a> in 
+          the <a href="https://github.com/livechat/design-system/tree/main" target="_blank">main branch</a>. All new components now have color tokens applied. 
+          To support a dark or light theme, apps must use these tokens and components from new DS version. 
+          This version of the Design System becomes legacy and is no longer supported. Please use <a href="https://github.com/livechat/design-system/tree/main" target="_blank">main branch</a>
         </ActionModal>
       )}
       <div className={classes.root}>
