@@ -1,7 +1,10 @@
 import { Canvas, Story, ArgsTable, Meta, Title } from '@storybook/blocks';
-import { Figma } from "@storybook/addon-designs/blocks";
+import { Figma } from '@storybook/addon-designs/blocks';
 import * as ActionMenuStories from './ActionMenu.stories';
-import { BlockColumnsContainer, BlockColumns } from '../../stories/components/BlockColumns';
+import {
+  BlockColumnsContainer,
+  BlockColumns,
+} from '../../stories/components/BlockColumns';
 
 <Meta of={ActionMenuStories} />
 
@@ -11,17 +14,26 @@ import { BlockColumnsContainer, BlockColumns } from '../../stories/components/Bl
 
 ## Intro <a id="Intro" />
 
-The Action Menu component presents a dropdown menu of related actions or options. It is typically 
+The Action Menu component presents a dropdown menu of related actions or options. It is typically
 used to group related actions together and save space on the screen.
 
-<Canvas of={ActionMenuStories.Default} sourceState="none"/>
+<Canvas of={ActionMenuStories.Default} sourceState="none" />
 
 #### Example implementation
+
 ```jsx
 <ActionMenu
   options={[
-    {key: 'one', element: (<ActionMenuItem>Option one</ActionMenuItem>), onClick: () => {}},
-    {key: 'two', element: (<ActionMenuItem>Option two</ActionMenuItem>), onClick: () => {}},
+    {
+      key: 'one',
+      element: <ActionMenuItem>Option one</ActionMenuItem>,
+      onClick: () => {},
+    },
+    {
+      key: 'two',
+      element: <ActionMenuItem>Option two</ActionMenuItem>,
+      onClick: () => {},
+    },
   ]}
   triggerRenderer={() => {}}
 />
@@ -29,19 +41,27 @@ used to group related actions together and save space on the screen.
 
 <BlockColumnsContainer>
   <BlockColumns label="When to Use">
-    - There are a set of related actions or options that the user may need to access quickly.
-    - You want to reduce clutter on the screen by hiding secondary actions or options behind a dropdown menu.
-    - You want to provide an alternative set of options to the user when a primary action is unavailable.
+    - There are a set of related actions or options that the user may need to
+    access quickly. - You want to reduce clutter on the screen by hiding
+    secondary actions or options behind a dropdown menu. - You want to provide
+    an alternative set of options to the user when a primary action is
+    unavailable.
   </BlockColumns>
   <BlockColumns isNegative label="When Not to Use">
-    - When there are only one or two actions that the user needs to perform.
-    - When the actions or options are unrelated or not clearly related.
-    - When the actions or options are essential to the user's task or workflow.
+    - When there are only one or two actions that the user needs to perform. -
+    When the actions or options are unrelated or not clearly related. - When the
+    actions or options are essential to the user's task or workflow.
   </BlockColumns>
 </BlockColumnsContainer>
 
 ## Component API <a id="ComponentAPI" />
+
 <ArgsTable />
 
 ## Content Spec <a id="ContentSpec" />
-<Figma showLink height="100%" url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=97-20299&mode=design&t=yMPgy8XRD1OTobuX-4" />
+
+<Figma
+  showLink
+  height="100%"
+  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=97-20299&mode=design&t=yMPgy8XRD1OTobuX-4"
+/>

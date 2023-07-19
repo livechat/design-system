@@ -1,7 +1,10 @@
 import { Canvas, Story, ArgsTable, Meta, Title } from '@storybook/blocks';
-import { Figma } from "@storybook/addon-designs/blocks";
+import { Figma } from '@storybook/addon-designs/blocks';
 import * as AvatarStories from './Avatar.stories';
-import { BlockColumnsContainer, BlockColumns } from '../../stories/components/BlockColumns';
+import {
+  BlockColumnsContainer,
+  BlockColumns,
+} from '../../stories/components/BlockColumns';
 
 <Meta of={AvatarStories} />
 
@@ -11,34 +14,43 @@ import { BlockColumnsContainer, BlockColumns } from '../../stories/components/Bl
 
 ## Intro <a id="Intro" />
 
-The Avatar component is a visual representation of a user, typically displayed as a small circular image or 
-icon. It comes in eight sizes and three types: Photo, Initials, and Fallback icon. This component helps to 
+The Avatar component is a visual representation of a user, typically displayed as a small circular image or
+icon. It comes in eight sizes and three types: Photo, Initials, and Fallback icon. This component helps to
 identify users and visually distinguish them in various contexts throughout an application.
 
-<Canvas of={AvatarStories.Default} sourceState="none"/>
+<Canvas of={AvatarStories.Default} sourceState="none" />
 
 #### Example implementation
+
 ```jsx
-<Avatar
-  type="text"
-  text="John Doe"
-/>
+<Avatar type="text" text="John Doe" />
 ```
 
 <BlockColumnsContainer>
   <BlockColumns label="When to Use">
-    - Use the Avatar component to represent users in areas like user profiles, comments, messages, or activity feeds.
-    - Display avatars alongside usernames or other user information to provide context and personalization.
-    - Use avatars in lists or tables where users need to be identified quickly and easily.
+    - Use the Avatar component to represent users in areas like user profiles,
+    comments, messages, or activity feeds. - Display avatars alongside usernames
+    or other user information to provide context and personalization. - Use
+    avatars in lists or tables where users need to be identified quickly and
+    easily.
   </BlockColumns>
   <BlockColumns isNegative label="When Not to Use">
-    - Avoid using avatars in situations where user identity is not necessary or relevant, as it may clutter the interface and provide no value.
-    - Do not use avatars as the sole means of identification, as it may not be sufficient for users with visual impairments or those unfamiliar with the represented users.
+    - Avoid using avatars in situations where user identity is not necessary or
+    relevant, as it may clutter the interface and provide no value. - Do not use
+    avatars as the sole means of identification, as it may not be sufficient for
+    users with visual impairments or those unfamiliar with the represented
+    users.
   </BlockColumns>
 </BlockColumnsContainer>
 
 ## Component API <a id="ComponentAPI" />
+
 <ArgsTable />
 
 ## Content Spec <a id="ContentSpec" />
-<Figma showLink height="100%" url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=131-10149&mode=dev" />
+
+<Figma
+  showLink
+  height="100%"
+  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=131-10149&mode=dev"
+/>

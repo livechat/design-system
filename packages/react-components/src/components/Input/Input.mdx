@@ -1,5 +1,5 @@
 import { Canvas, Story, ArgsTable, Meta, Title } from '@storybook/blocks';
-import { Figma } from "@storybook/addon-designs/blocks";
+import { Figma } from '@storybook/addon-designs/blocks';
 import * as InputStories from './Input.stories';
 
 <Meta of={InputStories} />
@@ -8,15 +8,12 @@ import * as InputStories from './Input.stories';
 
 [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
 
-<Canvas of={InputStories.Default} sourceState="none"/>
+<Canvas of={InputStories.Default} sourceState="none" />
 
 #### Example implementation
+
 ```jsx
-<Input
-  inputSize="large"
-  placeholder="Placeholder text"
-  onChange={(e) => {}}
-/>
+<Input inputSize="large" placeholder="Placeholder text" onChange={(e) => {}} />
 ```
 
 ## Component API <a id="ComponentAPI" />
@@ -24,4 +21,9 @@ import * as InputStories from './Input.stories';
 <ArgsTable />
 
 ## Content Spec <a id="ContentSpec" />
-<Figma showLink height="100%" url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=762-65501&mode=dev" />
+
+<Figma
+  showLink
+  height="100%"
+  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=762-65501&mode=dev"
+/>
