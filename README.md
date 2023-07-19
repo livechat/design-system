@@ -10,8 +10,8 @@
   <a href="https://www.npmjs.com/@livechat/design-system-icons">
     <img alt="npm version icons" src="https://img.shields.io/npm/v/@livechat/design-system-icons.svg?label=icons">
   </a>
-  <a href="https://v1--613a8e945a5665003a05113b.chromatic.com/">
-    <img src="https://img.shields.io/static/v1?label=examples&message=storybook&color=ff4685">
+  <a href="https://design.livechat.com/">
+    <img src="https://img.shields.io/static/v1?label=documentation&message=storybook&color=ff4685">
   </a>
   <a href="https://github.com/livechat/design-system/actions/workflows/tests.yml">
     <img src="https://img.shields.io/github/workflow/status/livechat/design-system/Tests/v1?label=tests">
@@ -53,7 +53,7 @@ import { Icon } from '@livechat/design-system-react-components';
 
 At this stage of the project we consider Storybook and Figma as parts of our documentation ecosystem.
 
-[Storybook](https://v1--613a8e945a5665003a05113b.chromatic.com/) - includes design system foundations, describes components API and allows to familiarize with the thier capabilities
+[Storybook](https://design.livechat.com/) - includes design system foundations, describes components API and allows to familiarize with the thier capabilities
 [Figma](https://www.figma.com/file/2pFu80PXO5A2tfyrAGnx91/Product-Components) - it's not an official documentation from design perspective but we follow a simple rule of working in public
 
 ## Contributing
@@ -80,10 +80,10 @@ Any external contribution is welcome and teams mentioned above will help in the 
    using one of the templates depending on if this is a feature request or bug report [here](https://github.com/livechat/design-system/issues/new/choose). If an
    issue turns out to be related to another which is already on the board, the DS team will take care of the appropriate connections. In addition to the description,
    the ticket should also contain an appropriate label, the contributor should be entered as an assignee, and should be added to the project (LiveChat Design System).
-2. In order to start work, first update branch `v1`, and then create a new branch from this branch in which future changes will be placed. We adopted the
+2. In order to start work, first update branch `main`, and then create a new branch from this branch in which future changes will be placed. We adopted the
    nomenclature for the branch `feature/[task_id]`.
 3. If changes require it, appropriate unit tests should also be included, and an additional case should be attached to the Storybook documentation (in the `.stories.tsx` file).
-4. After the work is completed, create a pull request directed to branch `v1`. In pull request, you should call `livechat/design-system` in the reviewers field.
+4. After the work is completed, create a pull request directed to branch `main`. In pull request, you should call `livechat/design-system` in the reviewers field.
    The merge template contains a checklist of things that need to be completed to meet the requirements, it will make the work easier for everyone.
 5. You will probably notice in your pull request under "Some checks haven't completed yet" Chromatic pending checks approval. Chromatic is a tool that we use
    for visual regression testing. The check in this tool is required for general approval of changes and it's covered by design system team.
