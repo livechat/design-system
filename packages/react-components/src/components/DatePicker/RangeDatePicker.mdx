@@ -1,7 +1,10 @@
 import { Canvas, Story, ArgsTable, Meta, Title } from '@storybook/blocks';
-import { Figma } from "@storybook/addon-designs/blocks";
+import { Figma } from '@storybook/addon-designs/blocks';
 import * as RangeDatePickerStories from './RangeDatePicker.stories';
-import { BlockColumnsContainer, BlockColumns } from '../../stories/components/BlockColumns';
+import {
+  BlockColumnsContainer,
+  BlockColumns,
+} from '../../stories/components/BlockColumns';
 
 <Meta of={RangeDatePickerStories} />
 
@@ -9,9 +12,10 @@ import { BlockColumnsContainer, BlockColumns } from '../../stories/components/Bl
 
 [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
 
-<Canvas of={RangeDatePickerStories.RangeDatePicker} sourceState="none"/>
+<Canvas of={RangeDatePickerStories.RangeDatePicker} sourceState="none" />
 
 #### Example implementation
+
 ```jsx
 <RangeDatePicker
   toMonth={new Date('06/20/2023')}
@@ -21,7 +25,13 @@ import { BlockColumnsContainer, BlockColumns } from '../../stories/components/Bl
 ```
 
 ## Component API <a id="ComponentAPI" />
+
 <ArgsTable />
 
 ## Content Spec <a id="ContentSpec" />
-<Figma showLink height="100%" url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=777-80905&mode=dev" />
+
+<Figma
+  showLink
+  height="100%"
+  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=777-80905&mode=dev"
+/>
