@@ -77,4 +77,32 @@ describe('<ActionMenu> component', () => {
     userEvent.click(getByText('Option two'));
     expect(onClick).toBeCalled();
   });
+
+  it('should keep menu open after option click if keepOpenOnClick is true', () => {
+    const onClick = vi.fn();
+    const { getByTestId, getByText } = renderComponent({
+      ...defaultProps,
+      keepOpenOnClick: true,
+      options: [
+        {
+          key: 'one',
+          element: 'Option one',
+          onClick: noop,
+        },
+        {
+          key: 'two',
+          element: 'Option two',
+          onClick: onClick,
+        },
+      ],
+    });
+    const trigger = getByTestId('action-menu-trigger-button');
+
+    userEvent.click(trigger);
+    userEvent.click(getByText('Option two'));
+    expect(getByTestId('action-menu-test')).toHaveAttribute(
+      'aria-hidden',
+      'false'
+    );
+  });
 });

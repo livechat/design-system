@@ -101,7 +101,6 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
     <Popover
       isVisible={isVisible}
       placement={placement}
-      onClose={() => setIsVisible(false)}
       triggerRenderer={() => (
         <button
           data-testid="action-menu-trigger-button"
