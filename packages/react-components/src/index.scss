@@ -4,6 +4,7 @@
 @use './foundations/spacing';
 @use './foundations/shadow';
 @use './foundations/color-scheme';
+@use './foundations/radius';
 
 *[class^='lc-'] {
   box-sizing: border-box;
