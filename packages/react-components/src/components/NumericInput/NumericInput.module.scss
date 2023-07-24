@@ -50,7 +50,7 @@
     box-sizing: border-box;
     transition: border 0.25s ease-in-out;
     border: 1px solid var(--border-basic-primary);
-    border-radius: 4px;
+    border-radius: var(--spacings-border-radius-md);
     background-clip: padding-box;
     background-color: var(--surface-primary-default);
     padding: 0 28px 0 4px;

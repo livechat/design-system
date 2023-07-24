@@ -9,7 +9,7 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
   align-items: center;
   transition: all 0.25s ease-in-out;
   border: 1px solid var(--border-basic-primary);
-  border-radius: 4px;
+  border-radius: var(--spacings-border-radius-md);
   background-color: var(--surface-primary-default);
   width: 100%;
   overflow: hidden;

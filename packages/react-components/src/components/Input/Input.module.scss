@@ -4,7 +4,7 @@
   align-items: center;
   outline: none;
   border: 1px solid var(--border-basic-primary);
-  border-radius: 4px;
+  border-radius: var(--spacings-border-radius-md);
   background: var(--surface-primary-default);
   padding: 5px 12px;
   line-height: 22px;
