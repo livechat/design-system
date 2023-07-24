@@ -1,0 +1,6 @@
+:root {
+  --spacings-border-radius-none: 0;
+  --spacings-border-radius-xs: 4px;
+  --spacings-border-radius-sm: 6px;
+  --spacings-border-radius-md: 8px;
+}
