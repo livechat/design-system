@@ -43,10 +43,10 @@ import { Button } from '@livechat/design-system-react-components';
 In case of icons there is a separate package to be used in conjunction:
 
 ```jsx
-import { Edit as EditIcon } from '@livechat/design-system-icons/react/material';
+import { Edit } from '@livechat/design-system-icons/react/tabler';
 import { Icon } from '@livechat/design-system-react-components';
 
-<Icon source={EditIcon} kind="primary" />;
+<Icon source={Edit} kind="primary" />;
 ```
 
 ## Documentation
