@@ -35,4 +35,8 @@ $base-class: 'picker-trigger-body';
     color: var(--content-basic-primary);
     font-size: 15px;
   }
+
+  &__tag {
+    border-radius: var(--spacings-border-radius-xs);
+  }
 }
