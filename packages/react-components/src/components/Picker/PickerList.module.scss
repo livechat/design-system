@@ -2,17 +2,22 @@
 
 $base-class: 'picker-list';
 
-.#{$base-class} {
-  box-sizing: border-box;
+.list-wrapper {
   position: absolute;
   top: calc(100% + 4px);
   z-index: $stacking-context-level-dropdown;
-  margin: 0;
+  border-radius: 200px;
   border-radius: var(--spacings-border-radius-md);
   box-shadow: var(--shadow-pop-over);
+  width: 100%;
+  overflow: auto;
+}
+
+.#{$base-class} {
+  box-sizing: border-box;
+  margin: 0;
   background-color: var(--picker-list-background);
   padding: var(--spacing-2);
-  width: 100%;
   max-height: 242px;
   overflow-x: auto;
   overflow-y: scroll;
@@ -20,10 +25,6 @@ $base-class: 'picker-list';
   font-size: 15px;
   font-weight: 400;
   color-scheme: var(--color-scheme);
-
-  &::-webkit-scrollbar-track {
-    border-radius: var(--spacings-border-radius-md);
-  }
 
   &__no-results {
     display: flex;

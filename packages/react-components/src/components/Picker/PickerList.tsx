@@ -207,53 +207,60 @@ export const PickerList: React.FC<IPickerListProps> = ({
   }
 
   return (
-    <ul ref={listRef} className={mergedClassNames} role="listbox" tabIndex={-1}>
-      {getSelectAllOption()}
-      {items.map((item) => {
-        if (item.groupHeader) {
+    <div className={styles[`list-wrapper`]}>
+      <ul
+        ref={listRef}
+        className={mergedClassNames}
+        role="listbox"
+        tabIndex={-1}
+      >
+        {getSelectAllOption()}
+        {items.map((item) => {
+          if (item.groupHeader) {
+            return (
+              <li
+                role="option"
+                key={item.key}
+                className={styles[`${itemClassName}__header`]}
+              >
+                {item.name}
+              </li>
+            );
+          }
+
           return (
             <li
+              data-testid={item.key}
+              ref={(element) => {
+                if (currentItemKey === item.key) {
+                  element?.scrollIntoView({ block: 'nearest' });
+                }
+              }}
               role="option"
+              aria-current={currentItemKey === item.key}
+              aria-selected={isItemSelected(item.key)}
+              aria-disabled={item.disabled}
+              id={item.key}
               key={item.key}
-              className={styles[`${itemClassName}__header`]}
+              className={cx(styles[itemClassName], {
+                [styles[`${itemClassName}__custom`]]: item?.customElement,
+              })}
+              onClick={() => !item.disabled && handleOnClick(item)}
             >
-              {item.name}
+              <div className={styles[`${itemClassName}__content`]}>
+                {getOptionContent(item)}
+              </div>
+              {isItemSelected(item.key) && (
+                <Icon
+                  kind="link"
+                  source={Check}
+                  customColor="var(--content-basic-info)"
+                />
+              )}
             </li>
           );
-        }
-
-        return (
-          <li
-            data-testid={item.key}
-            ref={(element) => {
-              if (currentItemKey === item.key) {
-                element?.scrollIntoView({ block: 'nearest' });
-              }
-            }}
-            role="option"
-            aria-current={currentItemKey === item.key}
-            aria-selected={isItemSelected(item.key)}
-            aria-disabled={item.disabled}
-            id={item.key}
-            key={item.key}
-            className={cx(styles[itemClassName], {
-              [styles[`${itemClassName}__custom`]]: item?.customElement,
-            })}
-            onClick={() => !item.disabled && handleOnClick(item)}
-          >
-            <div className={styles[`${itemClassName}__content`]}>
-              {getOptionContent(item)}
-            </div>
-            {isItemSelected(item.key) && (
-              <Icon
-                kind="link"
-                source={Check}
-                customColor="var(--content-basic-info)"
-              />
-            )}
-          </li>
-        );
-      })}
-    </ul>
+        })}
+      </ul>
+    </div>
   );
 };
