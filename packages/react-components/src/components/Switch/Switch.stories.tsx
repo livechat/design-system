@@ -9,12 +9,19 @@ import { Switch, SwitchProps } from './Switch';
 export default {
   title: 'Components/Switch',
   component: Switch,
+  argTypes: {
+    innerRef: {
+      control: false,
+    },
+    defaultOn: {
+      control: false,
+    },
+  },
 } as ComponentMeta<typeof Switch>;
 
 export const Default: Story<SwitchProps> = (args: SwitchProps) => (
   <Switch {...args} onChange={undefined} />
 );
-Default.storyName = 'Switch';
 
 export const States: Story = (): JSX.Element => (
   <>
