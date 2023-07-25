@@ -92,7 +92,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   const handleItemClick = (itemOnClick: () => void) => {
     itemOnClick();
 
-    if (keepOpenOnClick !== true) {
+    if (!keepOpenOnClick) {
       setIsVisible(false);
     }
   };
