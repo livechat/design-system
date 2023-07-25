@@ -14,15 +14,45 @@ export type SwitchSize = 'compact' | 'medium' | 'large';
 export type SwitchState = 'regular' | 'loading' | 'locked';
 
 export interface SwitchProps {
+  /**
+   * Specify the label for the switch input
+   */
   ariaLabel?: string;
+  /**
+   * The CSS class for switch container
+   */
   className?: string;
+  /**
+   * Will set the switch to "on" on component initialization
+   */
   defaultOn?: boolean;
+  /**
+   * Specify whether the switch should be disabled
+   */
   disabled?: boolean;
+  /**
+   * Ref object
+   */
   innerRef?: React.LegacyRef<HTMLInputElement> | undefined;
+  /**
+   * Specify the switch input name
+   */
   name?: string;
+  /**
+   * Define if switch is "on"
+   */
   on?: boolean;
+  /**
+   * The event handler for onChange
+   */
   onChange?(e: React.FormEvent, value: boolean): void;
+  /**
+   * Specify the switch size
+   */
   size?: SwitchSize;
+  /**
+   * Specify the switch state
+   */
   state?: SwitchState;
 }
 
