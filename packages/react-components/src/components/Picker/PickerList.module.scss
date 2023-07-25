@@ -55,7 +55,7 @@ $base-class: 'picker-list';
 
     &[aria-current='true'] {
       border-color: var(--action-primary-default);
-      background-color: var(--surface-primary-active);
+      background-color: var(--picker-list-option-background-focus);
     }
 
     &[aria-disabled='true'] {
@@ -68,7 +68,7 @@ $base-class: 'picker-list';
     }
 
     &[aria-selected='true'] {
-      background-color: var(--surface-primary-active);
+      background-color: var(--picker-list-option-background-active);
 
       &::after {
         position: absolute;
