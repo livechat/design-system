@@ -2,7 +2,8 @@ import * as React from 'react';
 import cx from 'clsx';
 
 import { Trigger } from './Trigger';
-import { IPickerListItem, PickerList } from './PickerList';
+import { PickerList } from './PickerList';
+import { IPickerListItemDetails } from './PickerListItem';
 import { IconSize } from '../Icon';
 import { KeyCodes } from '../../utils/keyCodes';
 
@@ -35,11 +36,11 @@ export interface IPickerProps {
   /**
    * Array of picker options
    */
-  options: IPickerListItem[];
+  options: IPickerListItemDetails[];
   /**
    * Array of picker selected options
    */
-  selected?: IPickerListItem[] | null;
+  selected?: IPickerListItemDetails[] | null;
   /**
    * Specify the picker size
    */
@@ -87,7 +88,7 @@ export interface IPickerProps {
   /**
    * Callback called after item selection
    */
-  onSelect: (selectedItems: IPickerListItem[] | null) => void;
+  onSelect: (selectedItems: IPickerListItemDetails[] | null) => void;
   /**
    * Clears the search input after item select
    */
@@ -160,7 +161,7 @@ export const Picker: React.FC<IPickerProps> = ({
     setIsListOpen(false);
   };
 
-  const handleSelect = (item: IPickerListItem) => {
+  const handleSelect = (item: IPickerListItemDetails) => {
     if (type === 'single') {
       setIsListOpen(false);
       return onSelect([item]);
@@ -190,7 +191,7 @@ export const Picker: React.FC<IPickerProps> = ({
     onSelect(newSelectedItems);
   };
 
-  const isItemSelectable = (item: IPickerListItem) =>
+  const isItemSelectable = (item: IPickerListItemDetails) =>
     !item.disabled && !item.groupHeader && item.key !== SELECT_ALL_OPTION_KEY;
 
   const handleSelectAll = () => {
@@ -208,7 +209,7 @@ export const Picker: React.FC<IPickerProps> = ({
 
   const handleOnFilter = (text: string) => setSearchPhrase(text);
 
-  const handleItemRemove = (item: IPickerListItem) => {
+  const handleItemRemove = (item: IPickerListItemDetails) => {
     const newSelectedItems = selected
       ? selected.filter((selectedItem) => selectedItem !== item)
       : null;
@@ -220,7 +221,7 @@ export const Picker: React.FC<IPickerProps> = ({
     onSelect(newSelectedItems);
   };
 
-  const items = React.useMemo<IPickerListItem[]>(() => {
+  const items = React.useMemo<IPickerListItemDetails[]>(() => {
     if (!searchPhrase) {
       return options;
     }
@@ -269,6 +270,7 @@ export const Picker: React.FC<IPickerProps> = ({
             iconSize={tagIconSize}
             items={selected}
             type={type}
+            size={size}
             clearSearchAfterSelection={clearSearchAfterSelection}
             onItemRemove={handleItemRemove}
             onFilter={handleOnFilter}

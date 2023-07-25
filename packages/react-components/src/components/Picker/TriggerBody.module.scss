@@ -34,9 +34,33 @@ $base-class: 'picker-trigger-body';
     line-height: 22px;
     color: var(--content-basic-primary);
     font-size: 15px;
+
+    &--compact {
+      height: 20px;
+    }
+
+    &--medium {
+      height: 24px;
+    }
+
+    &--large {
+      height: 32px;
+    }
   }
 
   &__tag {
     border-radius: var(--spacings-border-radius-xs);
+
+    &--compact {
+      height: 20px;
+    }
+
+    &--medium {
+      height: 24px;
+    }
+
+    &--large {
+      height: 32px;
+    }
   }
 }

@@ -91,6 +91,7 @@ $base-class: 'picker-list';
       position: relative;
       align-items: center;
       justify-content: space-between;
+      z-index: 1;
       background-color: var(--picker-list-group-background);
       cursor: auto;
       padding: 12px 12px 4px;

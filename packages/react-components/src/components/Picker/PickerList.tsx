@@ -1,34 +1,23 @@
 import * as React from 'react';
 import cx from 'clsx';
-import { Check } from '@livechat/design-system-icons/react/tabler';
-import { Icon } from '../Icon';
+
 import styles from './PickerList.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
 import { SELECT_ALL_OPTION_KEY } from './constants';
+import { IPickerListItemDetails, PickerListItem } from './PickerListItem';
 
 const baseClass = 'picker-list';
 const itemClassName = `${baseClass}__item`;
 
-export interface IPickerListItem {
-  key: string;
-  name: string;
-  customElement?: {
-    listItemBody: React.ReactElement;
-    selectedItemBody: React.ReactElement;
-  };
-  groupHeader?: boolean;
-  disabled?: boolean;
-}
-
 export interface IPickerListProps {
   isOpen: boolean;
-  items: IPickerListItem[];
+  items: IPickerListItemDetails[];
   selectedItemsKeys: string[] | null;
   emptyStateText?: string;
   selectAllOptionText?: string;
   isMultiSelect?: boolean;
   onClose: () => void;
-  onSelect: (item: IPickerListItem) => void;
+  onSelect: (item: IPickerListItemDetails) => void;
   onSelectAll: () => void;
 }
 
@@ -147,8 +136,6 @@ export const PickerList: React.FC<IPickerListProps> = ({
     return indexRef.current;
   };
 
-  const handleOnClick = (item: IPickerListItem) => onSelect(item);
-
   const handleOnSelectAllClick = () => onSelectAll();
 
   const isItemSelected = (key: string): boolean => {
@@ -186,24 +173,16 @@ export const PickerList: React.FC<IPickerListProps> = ({
     );
   };
 
-  const getOptionContent = (item: IPickerListItem) => {
-    if (item?.customElement) {
-      return (
-        <div className={styles[`${itemClassName}__custom`]}>
-          {item.customElement.listItemBody}
-        </div>
-      );
-    }
-
-    return item.name;
-  };
-
   if (!isOpen) {
     return null;
   }
 
   if (items.length === 0) {
-    return <div className={mergedClassNames}>{emptyStateText}</div>;
+    return (
+      <div className={styles[`list-wrapper`]}>
+        <div className={mergedClassNames}>{emptyStateText}</div>
+      </div>
+    );
   }
 
   return (
@@ -216,48 +195,13 @@ export const PickerList: React.FC<IPickerListProps> = ({
       >
         {getSelectAllOption()}
         {items.map((item) => {
-          if (item.groupHeader) {
-            return (
-              <li
-                role="option"
-                key={item.key}
-                className={styles[`${itemClassName}__header`]}
-              >
-                {item.name}
-              </li>
-            );
-          }
-
           return (
-            <li
-              data-testid={item.key}
-              ref={(element) => {
-                if (currentItemKey === item.key) {
-                  element?.scrollIntoView({ block: 'nearest' });
-                }
-              }}
-              role="option"
-              aria-current={currentItemKey === item.key}
-              aria-selected={isItemSelected(item.key)}
-              aria-disabled={item.disabled}
-              id={item.key}
-              key={item.key}
-              className={cx(styles[itemClassName], {
-                [styles[`${itemClassName}__custom`]]: item?.customElement,
-              })}
-              onClick={() => !item.disabled && handleOnClick(item)}
-            >
-              <div className={styles[`${itemClassName}__content`]}>
-                {getOptionContent(item)}
-              </div>
-              {isItemSelected(item.key) && (
-                <Icon
-                  kind="link"
-                  source={Check}
-                  customColor="var(--content-basic-info)"
-                />
-              )}
-            </li>
+            <PickerListItem
+              item={item}
+              isItemSelected={isItemSelected(item.key)}
+              currentItemKey={currentItemKey}
+              onSelect={onSelect}
+            />
           );
         })}
       </ul>
