@@ -148,4 +148,34 @@ describe('<TriggerBody> component', () => {
     expect(queryByText('Selected custom one')).toBeVisible();
     expect(queryByText('Selected custom two')).toBeVisible();
   });
+
+  it('should clear search input after item selection if clearSearchAfterSelection is passed', () => {
+    const onFilter = vi.fn();
+    const { getByRole, rerender } = renderComponent({
+      ...defaultProps,
+      isOpen: true,
+      onFilter,
+      clearSearchAfterSelection: true,
+    });
+
+    userEvent.type(getByRole('textbox'), 'Option one');
+    expect(onFilter).toBeCalledWith('Option one');
+
+    rerender(
+      <TriggerBody
+        {...defaultProps}
+        isOpen
+        clearSearchAfterSelection
+        items={[
+          {
+            key: 'one',
+            name: 'Option one',
+          },
+        ]}
+      />
+    );
+
+    expect(onFilter).toBeCalledWith('');
+    expect(getByRole('textbox')).toHaveValue('');
+  });
 });
