@@ -32,6 +32,10 @@ export interface ActionMenuProps {
    * Will open menu on component initialization
    */
   openedOnInit?: boolean;
+  /**
+   * Menu will stay open after option click
+   */
+  keepOpenOnClick?: boolean;
 }
 
 const baseClass = 'action-menu';
@@ -42,6 +46,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   triggerRenderer,
   placement = 'bottom-end',
   openedOnInit = false,
+  keepOpenOnClick,
   ...props
 }) => {
   const [isVisible, setIsVisible] = React.useState(openedOnInit);
@@ -86,14 +91,16 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
 
   const handleItemClick = (itemOnClick: () => void) => {
     itemOnClick();
-    setIsVisible(false);
+
+    if (!keepOpenOnClick) {
+      setIsVisible(false);
+    }
   };
 
   return (
     <Popover
       isVisible={isVisible}
       placement={placement}
-      onClose={() => setIsVisible(false)}
       triggerRenderer={() => (
         <button
           data-testid="action-menu-trigger-button"
