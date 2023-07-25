@@ -21,6 +21,10 @@ $base-class: 'picker-list';
   font-weight: 400;
   color-scheme: var(--color-scheme);
 
+  &::-webkit-scrollbar-track {
+    border-radius: var(--spacings-border-radius-md);
+  }
+
   &__no-results {
     display: flex;
     align-items: center;
@@ -50,6 +54,7 @@ $base-class: 'picker-list';
 
     &[aria-current='true'] {
       border-color: var(--action-primary-default);
+      background-color: var(--surface-primary-active);
     }
 
     &[aria-disabled='true'] {
@@ -62,6 +67,8 @@ $base-class: 'picker-list';
     }
 
     &[aria-selected='true'] {
+      background-color: var(--surface-primary-active);
+
       &::after {
         position: absolute;
         left: 0;
