@@ -88,6 +88,10 @@ export interface IPickerProps {
    * Callback called after item selection
    */
   onSelect: (selectedItems: IPickerListItem[] | null) => void;
+  /**
+   * Clears the search input after item select
+   */
+  clearSearchAfterSelection?: boolean;
 }
 
 export const Picker: React.FC<IPickerProps> = ({
@@ -106,6 +110,7 @@ export const Picker: React.FC<IPickerProps> = ({
   searchDisabled = false,
   hideClearButton,
   openedOnInit = false,
+  clearSearchAfterSelection,
   onSelect,
   ...props
 }) => {
@@ -264,6 +269,7 @@ export const Picker: React.FC<IPickerProps> = ({
             iconSize={tagIconSize}
             items={selected}
             type={type}
+            clearSearchAfterSelection={clearSearchAfterSelection}
             onItemRemove={handleItemRemove}
             onFilter={handleOnFilter}
           />
