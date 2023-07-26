@@ -35,7 +35,6 @@
   },
   "homepage": "https://github.com/livechat/design-system#readme",
   "devDependencies": {
-    "@storybook/addon-links": "^7.0.21",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
     "dotenv-cli": "^4.0.0",
