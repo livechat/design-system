@@ -6,7 +6,7 @@ $base-class: 'card';
   gap: 16px;
   align-items: center;
   border: solid 1px var(--border-basic-secondary);
-  border-radius: 4px;
+  border-radius: var(--radius-3);
   background-color: var(--surface-primary-default);
   padding: 16px;
 
