@@ -4,7 +4,7 @@ $base-class: 'alert';
   box-sizing: border-box;
   display: flex;
   position: relative;
-  border-radius: var(--spacings-border-radius-md);
+  border-radius: var(--radius-3);
   padding: var(--spacing-5);
   width: 100%;
   overflow: hidden;

@@ -1,5 +1,6 @@
 .radio-button {
-  display: inline-block;
+  display: flex;
+  flex-flow: column;
 
   &:focus {
     .radio-button__circle {

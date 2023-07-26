@@ -3,7 +3,7 @@
 .popover {
   display: none;
   z-index: $stacking-context-level-popover;
-  border-radius: var(--spacings-border-radius-md);
+  border-radius: var(--radius-3);
   box-shadow: var(--shadow-pop-over);
   background-color: var(--popover-background);
   min-width: 168px;

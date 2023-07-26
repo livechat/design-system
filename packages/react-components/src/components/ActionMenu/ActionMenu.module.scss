@@ -18,7 +18,7 @@ $base-class: 'action-menu';
 
   &__list {
     margin: 0;
-    border-radius: var(--spacings-border-radius-md);
+    border-radius: var(--radius-3);
     background-color: var(--picker-list-background);
     padding: 0;
     list-style: none;

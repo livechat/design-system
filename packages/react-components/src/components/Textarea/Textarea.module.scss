@@ -2,7 +2,7 @@
   box-sizing: border-box;
   display: inline-block;
   border: 1px solid var(--border-basic-primary);
-  border-radius: var(--spacings-border-radius-md);
+  border-radius: var(--radius-3);
   background: var(--surface-primary-default);
   line-height: 22px;
   color: var(--content-basic-primary);
@@ -34,7 +34,7 @@
     display: block;
     outline: none;
     border: 0;
-    border-radius: var(--spacings-border-radius-md);
+    border-radius: var(--radius-3);
     background: inherit;
     padding: 8px 12px;
     min-width: 125px;
