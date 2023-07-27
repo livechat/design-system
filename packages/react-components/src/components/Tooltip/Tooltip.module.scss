@@ -2,7 +2,7 @@ $base-class: 'tooltip';
 
 .#{$base-class} {
   z-index: 999999999;
-  border-radius: 4px;
+  border-radius: var(--radius-3);
   border-color: var(--background-02);
   box-shadow: var(--shadow-tooltip);
   background-color: var(--background-02);

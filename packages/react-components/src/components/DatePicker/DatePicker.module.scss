@@ -17,6 +17,7 @@ $base-class: 'date-picker';
     flex-direction: row;
     transition: 0.2s border-color ease-in-out;
     border: 1px solid transparent;
+    border-radius: var(--radius-3);
     padding-bottom: 10px;
     user-select: none;
 
