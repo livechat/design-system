@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import {
   MoveTo,
   Edit,
@@ -6,8 +7,10 @@ import {
   Block,
   Delete,
 } from '@livechat/design-system-icons/react/tabler';
-import { Icon } from '../Icon';
+
 import noop from '../../utils/noop';
+import { Icon } from '../Icon';
+
 import { ActionMenuItem } from './ActionMenuItem';
 
 export const exampleOptions = [

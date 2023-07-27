@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { ComponentMeta } from '@storybook/react';
 
 import * as MaterialIcons from '@livechat/design-system-icons/react/tabler';
+import { ComponentMeta } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
-
 import { Icon, IconSource } from '../Icon';
+
 import { Button, ButtonProps } from './Button';
 
 const icons = Object.fromEntries(

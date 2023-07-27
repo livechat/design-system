@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import { render, fireEvent, vi, userEvent } from 'test-utils';
+
 import { Alert, AlertProps } from './Alert';
 
 import styles from './Alert.module.scss';

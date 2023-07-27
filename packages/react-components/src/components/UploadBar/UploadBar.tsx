@@ -1,23 +1,24 @@
 import * as React from 'react';
-import cx from 'clsx';
+
 import {
   Check as CheckIcon,
   Error as ErrorIcon,
   ChevronDown as ChevronDownIcon,
   ChevronUp as ChevronUpIcon,
 } from '@livechat/design-system-icons/react/tabler';
+import cx from 'clsx';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import {
   FileUploadProgress,
   FileUploadProgressActions,
 } from '../FileUploadProgress';
-import { ProgressStatus, ProgressSize } from '../Progress/constants';
 import { Icon } from '../Icon';
 import { ProgressCircle } from '../Progress';
+import { ProgressStatus, ProgressSize } from '../Progress/constants';
 import { Text } from '../Typography';
 
 import styles from './UploadBar.module.scss';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const baseClass = 'upload-bar';
 const wrapperHeaderClass = `${baseClass}__wrapper__header`;

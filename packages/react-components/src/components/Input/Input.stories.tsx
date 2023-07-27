@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { ComponentMeta, Story } from '@storybook/react';
+
 import { AddCircle as AddCircleIcon } from '@livechat/design-system-icons/react/tabler';
+import { ComponentMeta, Story } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Icon } from '../Icon';
+
 import { Input, InputProps } from './Input';
 
 const placeholderText = 'Placeholder text';

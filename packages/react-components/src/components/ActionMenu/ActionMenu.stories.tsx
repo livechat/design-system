@@ -1,12 +1,16 @@
 import * as React from 'react';
+
 import { MoreHoriz } from '@livechat/design-system-icons/react/tabler';
+
 import { Icon } from '../Icon';
+import { RadioButton } from '../RadioButton';
+import { Switch } from '../Switch';
+
 import { ActionMenu } from './ActionMenu';
 import { ActionMenuItem } from './ActionMenuItem';
 import { exampleOptions } from './constants';
+
 import './ActionMenu.stories.css';
-import { RadioButton } from '../RadioButton';
-import { Switch } from '../Switch';
 
 export default {
   title: 'Components/ActionMenu',

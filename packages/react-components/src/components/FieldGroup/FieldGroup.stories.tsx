@@ -1,11 +1,13 @@
 import * as React from 'react';
+
 import { ComponentMeta } from '@storybook/react';
+
+import { RadioButton } from '../RadioButton';
 
 import {
   FieldGroup as FieldGroupComponent,
   FieldGroupProps,
 } from './FieldGroup';
-import { RadioButton } from '../RadioButton';
 
 export default {
   title: 'Forms (WIP)/Field Group',

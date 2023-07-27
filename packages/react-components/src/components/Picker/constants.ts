@@ -21,3 +21,4 @@ export const defaultExtendedOptions = [
 ];
 
 export const SELECT_ALL_OPTION_KEY = 'select-all';
+export type PickerType = 'single' | 'multi';

@@ -1,7 +1,11 @@
 import * as React from 'react';
-import { render, userEvent, vi } from 'test-utils';
+
 import * as MaterialIcons from '@livechat/design-system-icons/react/material';
+
+import { render, userEvent, vi } from 'test-utils';
+
 import noop from '../../utils/noop';
+
 import { Tag } from './Tag';
 
 import styles from './Tag.module.scss';

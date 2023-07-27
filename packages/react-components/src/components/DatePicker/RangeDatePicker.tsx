@@ -1,10 +1,12 @@
 import { ReactElement, useCallback, useEffect, useMemo, useRef } from 'react';
+
 import {
   isAfter,
   isSameDay,
   subMonths,
   differenceInCalendarDays,
 } from 'date-fns';
+
 import {
   calculateDatePickerMonth,
   getRangeDatePickerModifiers,
@@ -12,7 +14,6 @@ import {
   isDateWithinRange,
   isSelectingFirstDay,
 } from './helpers';
-
 import { useRangeDatePickerState } from './hooks';
 import {
   IRangeDatePickerChildrenPayload,

@@ -1,9 +1,13 @@
 import * as React from 'react';
-import { render, vi } from 'test-utils';
+
 import userEvent from '@testing-library/user-event';
+
+import { render, vi } from 'test-utils';
+
 import noop from '../../utils/noop';
-import { IPickerProps, Picker, PickerType } from './Picker';
-import { defaultPickerOptions } from './constants';
+
+import { defaultPickerOptions, PickerType } from './constants';
+import { IPickerProps, Picker } from './Picker';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 window.HTMLElement.prototype.scrollIntoView = () => {};

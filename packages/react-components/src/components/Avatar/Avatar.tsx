@@ -1,10 +1,12 @@
 import * as React from 'react';
-import cx from 'clsx';
+
 import { Person as PersonIcon } from '@livechat/design-system-icons/react/material';
+import cx from 'clsx';
 
 import { Icon } from '../Icon';
 
 import { getFontColor, getInitials } from './Avatar.helpers';
+
 import styles from './Avatar.module.scss';
 
 type AvatarShape = 'circle' | 'rounded-square';

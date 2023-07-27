@@ -1,8 +1,10 @@
 import * as React from 'react';
+
 import cx from 'clsx';
 
-import styles from './Badge.module.scss';
 import { formatCount } from './Badge.helpers';
+
+import styles from './Badge.module.scss';
 
 const baseClass = 'badge';
 

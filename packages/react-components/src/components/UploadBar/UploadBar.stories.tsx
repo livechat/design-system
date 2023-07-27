@@ -1,12 +1,15 @@
 import * as React from 'react';
+
 import { ComponentMeta } from '@storybook/react';
 
-import { UploadBar as UploadBarComponent } from './UploadBar';
-import { Button } from '../Button';
-import noop from '../../utils/noop';
-import { FileUploadProgress } from '../FileUploadProgress';
 import { ProgressStatus } from 'components/Progress/constants';
+
+import noop from '../../utils/noop';
 import { PdfIcon } from '../../utils/PdfIcon';
+import { Button } from '../Button';
+import { FileUploadProgress } from '../FileUploadProgress';
+
+import { UploadBar as UploadBarComponent } from './UploadBar';
 
 const files = [
   {

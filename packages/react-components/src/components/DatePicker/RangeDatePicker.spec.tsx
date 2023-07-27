@@ -1,13 +1,16 @@
 import * as React from 'react';
-import { render, userEvent } from 'test-utils';
+
 import { vi } from 'vitest';
-import { RangeDatePicker } from './RangeDatePicker';
+
+import { render, userEvent } from 'test-utils';
+
 import { DatePicker } from './DatePicker';
+import { DatePickerRangeCalendarsWrapper } from './DatePickerRangeCalendarsWrapper';
+import { RangeDatePicker } from './RangeDatePicker';
 import {
   IRangeDatePickerProps,
   IRangeDatePickerChildrenPayload,
 } from './types';
-import { DatePickerRangeCalendarsWrapper } from './DatePickerRangeCalendarsWrapper';
 
 describe('<DatePicker> component', () => {
   function renderComponent(props: IRangeDatePickerProps) {

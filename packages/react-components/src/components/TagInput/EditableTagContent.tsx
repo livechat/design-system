@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { KeyCodes } from '../../utils/keyCodes';
+
 import escape from 'lodash.escape';
+
+import { KeyCodes } from '../../utils/keyCodes';
 
 export interface EditableTagContentProps {
   value: string;

@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import { render, fireEvent, vi } from 'test-utils';
+
 import { PromoBannerProps, PromoBanner } from './PromoBanner';
 
 import styles from './PromoBanner.module.scss';

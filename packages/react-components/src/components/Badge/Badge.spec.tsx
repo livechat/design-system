@@ -1,7 +1,9 @@
 import * as React from 'react';
+
 import { render } from 'test-utils';
 
 import { Badge } from './Badge';
+
 import styles from './Badge.module.scss';
 
 describe('Badge', () => {

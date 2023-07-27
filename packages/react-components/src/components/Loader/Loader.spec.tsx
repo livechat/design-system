@@ -1,7 +1,9 @@
 import * as React from 'react';
+
 import { render } from 'test-utils';
 
 import { Loader } from './Loader';
+
 import styles from './Loader.module.scss';
 
 describe('<Loader> component', () => {

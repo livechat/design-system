@@ -1,13 +1,15 @@
 import * as React from 'react';
+
+import noop from '../../utils/noop';
 import { Button } from '../Button';
 import './Modal.stories.css';
-import modalImage from './assets/modal-image.png';
-import { Heading, Text } from '../Typography';
 import { FormField } from '../FormField';
 import { Input } from '../Input';
-import { defaultPickerOptions } from '../Picker/constants';
 import { Picker } from '../Picker';
-import noop from '../../utils/noop';
+import { defaultPickerOptions } from '../Picker/constants';
+import { Heading, Text } from '../Typography';
+
+import modalImage from './assets/modal-image.png';
 
 export const ModalFullSpaceContent: React.FC = () => {
   return (

@@ -1,3 +1,4 @@
+import { clsx } from 'clsx';
 import {
   isAfter,
   isSameDay,
@@ -6,16 +7,17 @@ import {
   differenceInCalendarDays,
 } from 'date-fns';
 import { Modifiers } from 'react-day-picker';
+import { ClassNames } from 'react-day-picker/types/ClassNames';
+
 import {
   IRangeDatePickerProps,
   IRangeDatePickerState,
   IRangeDatePickerOption,
 } from './types';
-import clsx from 'clsx';
-const baseClass = 'date-picker';
 
 import styles from './DatePicker.module.scss';
-import { ClassNames } from 'react-day-picker/types/ClassNames';
+
+const baseClass = 'date-picker';
 
 export const isDateWithinRange = (
   date: Date,

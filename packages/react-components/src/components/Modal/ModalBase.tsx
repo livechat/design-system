@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import cx from 'clsx';
+
 import { KeyCodes } from '../../utils/keyCodes';
 
 import styles from './Modal.module.scss';

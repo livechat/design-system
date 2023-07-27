@@ -1,8 +1,11 @@
 import * as React from 'react';
+
 import { render, userEvent, vi } from 'test-utils';
+
 import noop from '../../utils/noop';
+
+import { PickerType } from './constants';
 import { TriggerBody, ITriggerBodyProps } from './TriggerBody';
-import { PickerType } from './Picker';
 
 const defaultProps = {
   isOpen: false,

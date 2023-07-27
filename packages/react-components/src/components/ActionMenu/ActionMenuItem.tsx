@@ -1,8 +1,10 @@
 import * as React from 'react';
+
 import cx from 'clsx';
 
-import styles from './ActionMenuItem.module.scss';
 import { Text } from '../Typography';
+
+import styles from './ActionMenuItem.module.scss';
 
 export interface ActionMenuItemProps {
   /**

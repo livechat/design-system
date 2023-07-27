@@ -1,5 +1,5 @@
 import * as React from 'react';
-import cx from 'clsx';
+
 import {
   useFloating,
   Placement,
@@ -7,9 +7,11 @@ import {
   offset,
   autoUpdate,
 } from '@floating-ui/react-dom';
+import cx from 'clsx';
+
+import { Text } from '../Typography';
 
 import cssStyles from './Popover.module.scss';
-import { Text } from '../Typography';
 
 export interface IPopoverProps {
   children?: React.ReactNode;
