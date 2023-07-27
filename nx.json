@@ -1,0 +1,35 @@
+{
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "build:lib",
+          "build:js",
+          "build:ts",
+          "build:styles",
+          "lint",
+          "test"
+        ]
+      }
+    }
+  },
+  "targetDefaults": {
+    "build": {
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "build:lib": {
+      "outputs": ["{projectRoot}/dist", "{projectRoot}/lib"]
+    },
+    "build:js": {
+      "outputs": ["{projectRoot}/lib"]
+    },
+    "build:ts": {
+      "outputs": ["{projectRoot}/react"]
+    },
+    "build:styles": {
+      "outputs": ["{projectRoot}/dist"]
+    }
+  }
+}
