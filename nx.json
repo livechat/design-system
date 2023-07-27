@@ -17,7 +17,11 @@
   },
   "targetDefaults": {
     "build": {
-      "outputs": ["{projectRoot}/dist"]
+      "outputs": [
+        "{projectRoot}/dist",
+        "{projectRoot}/lib",
+        "{projectRoot}/react"
+      ]
     },
     "build:lib": {
       "outputs": ["{projectRoot}/dist", "{projectRoot}/lib"]
