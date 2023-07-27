@@ -2,7 +2,7 @@ import * as React from 'react';
 import cx from 'clsx';
 
 import { Trigger } from './Trigger';
-import { IPickerListItem, PickerList } from './PickerList';
+import { PickerList } from './PickerList';
 import { IconSize } from '../Icon';
 import { KeyCodes } from '../../utils/keyCodes';
 
@@ -10,6 +10,7 @@ import styles from './Picker.module.scss';
 import { TriggerBody } from './TriggerBody';
 import { SELECT_ALL_OPTION_KEY } from './constants';
 import { Size } from 'utils';
+import { IPickerListItem } from './types';
 
 const baseClass = 'picker';
 
@@ -269,6 +270,7 @@ export const Picker: React.FC<IPickerProps> = ({
             iconSize={tagIconSize}
             items={selected}
             type={type}
+            size={size}
             clearSearchAfterSelection={clearSearchAfterSelection}
             onItemRemove={handleItemRemove}
             onFilter={handleOnFilter}
