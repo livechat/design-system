@@ -11,7 +11,7 @@ import styles from './NumericInput.module.scss';
 
 const baseClass = 'numeric-input';
 
-interface Props {
+export type NumericInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   className?: string;
   error?: string;
   value: string;
@@ -20,10 +20,7 @@ interface Props {
   disabled?: boolean;
   noControls?: boolean;
   onChange: (value: string) => void;
-}
-
-export type NumericInputProps = React.InputHTMLAttributes<HTMLInputElement> &
-  Props;
+};
 
 export const NumericInput: React.FC<NumericInputProps> = ({
   className,
