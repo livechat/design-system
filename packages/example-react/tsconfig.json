@@ -16,6 +16,9 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src", "node_modules/@livechat/design-system-icons/index.d.ts"],
+  "include": [
+    "src",
+    "../../node_modules/@livechat/design-system-icons/index.d.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
