@@ -6,7 +6,7 @@ import { PickerType } from './Picker';
 
 import styles from './TriggerBody.module.scss';
 import { IconSize } from 'index';
-import { IPickerListItemDetails } from './PickerListItem';
+import { IPickerListItem } from './PickerListItem';
 import { Size } from 'utils';
 
 const baseClass = 'picker-trigger-body';
@@ -16,12 +16,12 @@ export interface ITriggerBodyProps {
   isSearchDisabled?: boolean;
   isDisabled?: boolean;
   placeholder: string;
-  items?: IPickerListItemDetails[] | null;
+  items?: IPickerListItem[] | null;
   type: PickerType;
   iconSize?: IconSize;
   clearSearchAfterSelection?: boolean;
   size?: Size;
-  onItemRemove: (item: IPickerListItemDetails) => void;
+  onItemRemove: (item: IPickerListItem) => void;
   onFilter: (text: string) => void;
 }
 
@@ -52,7 +52,7 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
     }
   }, [items, clearSearchAfterSelection]);
 
-  const getSingleItem = (item: IPickerListItemDetails) => {
+  const getSingleItem = (item: IPickerListItem) => {
     if (type === 'single' && isOpen && !isSearchDisabled) {
       return null;
     }

@@ -3,7 +3,6 @@ import cx from 'clsx';
 
 import { Trigger } from './Trigger';
 import { PickerList } from './PickerList';
-import { IPickerListItemDetails } from './PickerListItem';
 import { IconSize } from '../Icon';
 import { KeyCodes } from '../../utils/keyCodes';
 
@@ -11,6 +10,7 @@ import styles from './Picker.module.scss';
 import { TriggerBody } from './TriggerBody';
 import { SELECT_ALL_OPTION_KEY } from './constants';
 import { Size } from 'utils';
+import { IPickerListItem } from './types';
 
 const baseClass = 'picker';
 
@@ -36,11 +36,11 @@ export interface IPickerProps {
   /**
    * Array of picker options
    */
-  options: IPickerListItemDetails[];
+  options: IPickerListItem[];
   /**
    * Array of picker selected options
    */
-  selected?: IPickerListItemDetails[] | null;
+  selected?: IPickerListItem[] | null;
   /**
    * Specify the picker size
    */
@@ -88,7 +88,7 @@ export interface IPickerProps {
   /**
    * Callback called after item selection
    */
-  onSelect: (selectedItems: IPickerListItemDetails[] | null) => void;
+  onSelect: (selectedItems: IPickerListItem[] | null) => void;
   /**
    * Clears the search input after item select
    */
@@ -161,7 +161,7 @@ export const Picker: React.FC<IPickerProps> = ({
     setIsListOpen(false);
   };
 
-  const handleSelect = (item: IPickerListItemDetails) => {
+  const handleSelect = (item: IPickerListItem) => {
     if (type === 'single') {
       setIsListOpen(false);
       return onSelect([item]);
@@ -191,7 +191,7 @@ export const Picker: React.FC<IPickerProps> = ({
     onSelect(newSelectedItems);
   };
 
-  const isItemSelectable = (item: IPickerListItemDetails) =>
+  const isItemSelectable = (item: IPickerListItem) =>
     !item.disabled && !item.groupHeader && item.key !== SELECT_ALL_OPTION_KEY;
 
   const handleSelectAll = () => {
@@ -209,7 +209,7 @@ export const Picker: React.FC<IPickerProps> = ({
 
   const handleOnFilter = (text: string) => setSearchPhrase(text);
 
-  const handleItemRemove = (item: IPickerListItemDetails) => {
+  const handleItemRemove = (item: IPickerListItem) => {
     const newSelectedItems = selected
       ? selected.filter((selectedItem) => selectedItem !== item)
       : null;
@@ -221,7 +221,7 @@ export const Picker: React.FC<IPickerProps> = ({
     onSelect(newSelectedItems);
   };
 
-  const items = React.useMemo<IPickerListItemDetails[]>(() => {
+  const items = React.useMemo<IPickerListItem[]>(() => {
     if (!searchPhrase) {
       return options;
     }

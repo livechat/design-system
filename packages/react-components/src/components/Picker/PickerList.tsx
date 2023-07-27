@@ -4,20 +4,21 @@ import cx from 'clsx';
 import styles from './PickerList.module.scss';
 import { KeyCodes } from '../../utils/keyCodes';
 import { SELECT_ALL_OPTION_KEY } from './constants';
-import { IPickerListItemDetails, PickerListItem } from './PickerListItem';
+import { PickerListItem } from './PickerListItem';
+import { IPickerListItem } from './types';
 
 const baseClass = 'picker-list';
 const itemClassName = `${baseClass}__item`;
 
 export interface IPickerListProps {
   isOpen: boolean;
-  items: IPickerListItemDetails[];
+  items: IPickerListItem[];
   selectedItemsKeys: string[] | null;
   emptyStateText?: string;
   selectAllOptionText?: string;
   isMultiSelect?: boolean;
   onClose: () => void;
-  onSelect: (item: IPickerListItemDetails) => void;
+  onSelect: (item: IPickerListItem) => void;
   onSelectAll: () => void;
 }
 
@@ -194,16 +195,14 @@ export const PickerList: React.FC<IPickerListProps> = ({
         tabIndex={-1}
       >
         {getSelectAllOption()}
-        {items.map((item) => {
-          return (
-            <PickerListItem
-              item={item}
-              isItemSelected={isItemSelected(item.key)}
-              currentItemKey={currentItemKey}
-              onSelect={onSelect}
-            />
-          );
-        })}
+        {items.map((item) => (
+          <PickerListItem
+            item={item}
+            isItemSelected={isItemSelected(item.key)}
+            currentItemKey={currentItemKey}
+            onSelect={onSelect}
+          />
+        ))}
       </ul>
     </div>
   );

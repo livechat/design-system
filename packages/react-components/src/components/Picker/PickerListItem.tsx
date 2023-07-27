@@ -4,34 +4,24 @@ import { Check } from '@livechat/design-system-icons/react/tabler';
 import { Icon } from '../Icon';
 
 import styles from './PickerList.module.scss';
+import { IPickerListItem } from './types';
 
 const itemClassName = `picker-list__item`;
 
-export interface IPickerListItemDetails {
-  key: string;
-  name: string;
-  customElement?: {
-    listItemBody: React.ReactElement;
-    selectedItemBody: React.ReactElement;
-  };
-  groupHeader?: boolean;
-  disabled?: boolean;
-}
-
-interface IPickerListItem {
-  item: IPickerListItemDetails;
+interface IProps {
+  item: IPickerListItem;
   isItemSelected: boolean;
   currentItemKey: string | null;
-  onSelect: (item: IPickerListItemDetails) => void;
+  onSelect: (item: IPickerListItem) => void;
 }
 
-export const PickerListItem: React.FC<IPickerListItem> = ({
+export const PickerListItem: React.FC<IProps> = ({
   item,
   isItemSelected,
   currentItemKey,
   onSelect,
 }) => {
-  const getOptionContent = (item: IPickerListItemDetails) => {
+  const getOptionContent = (item: IPickerListItem) => {
     if (item?.customElement) {
       return (
         <div className={styles[`${itemClassName}__custom`]}>
@@ -43,7 +33,9 @@ export const PickerListItem: React.FC<IPickerListItem> = ({
     return item.name;
   };
 
-  const handleOnClick = (item: IPickerListItemDetails) => onSelect(item);
+  const handleOnClick = (item: IPickerListItem) => {
+    !item.disabled && onSelect(item);
+  };
 
   if (item.groupHeader) {
     return (
@@ -74,7 +66,7 @@ export const PickerListItem: React.FC<IPickerListItem> = ({
       className={cx(styles[itemClassName], {
         [styles[`${itemClassName}__custom`]]: item?.customElement,
       })}
-      onClick={() => !item.disabled && handleOnClick(item)}
+      onClick={() => handleOnClick(item)}
     >
       <div className={styles[`${itemClassName}__content`]}>
         {getOptionContent(item)}
