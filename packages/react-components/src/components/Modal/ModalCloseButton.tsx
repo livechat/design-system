@@ -25,6 +25,6 @@ export const ModalCloseButton: React.FC<ModalCloseButtonProps> = ({
     onClick={onClick}
     type="button"
   >
-    <Icon source={Close} size="large" customColor={customColor} />
+    <Icon source={Close} size="medium" customColor={customColor} />
   </button>
 );

@@ -3,12 +3,18 @@
   position: relative;
   flex-direction: column;
   margin: 10px;
-  border-radius: 4px;
+  border-radius: var(--radius-3);
   box-shadow: 0 20px 60px 0 rgb(0 0 0 / 30%);
   background-color: var(--surface-primary-default);
+  padding: var(--spacing-6) var(--spacing-7);
   max-width: 100%;
   max-height: 100%;
   color: var(--content-basic-primary);
+
+  &--full-space {
+    padding: 0;
+    overflow: hidden;
+  }
 
   &__overlay {
     display: none;
@@ -29,9 +35,6 @@
 
   &__close {
     display: flex;
-    position: absolute;
-    top: 18px;
-    right: 18px;
     align-items: center;
     justify-content: center;
     z-index: 1;
@@ -76,24 +79,19 @@
     display: flex;
     flex: 1;
     flex-direction: column;
-    padding: var(--spacing-5);
     width: 100%;
+    overflow: auto;
     color: var(--content-basic-primary);
-
-    &--full-space {
-      padding: 0;
-    }
   }
 
   &__header {
     box-sizing: border-box;
     display: flex;
-    flex: 0 0 64px;
+    position: relative;
     align-items: center;
-    box-shadow: inset 0 -1px 0 var(--border-basic-tertiary);
-    padding: var(--spacing-0) var(--spacing-5);
+    justify-content: space-between;
+    padding-bottom: var(--spacing-5);
     width: 100%;
-    height: 64px;
     color: var(--content-basic-primary);
   }
 
@@ -101,6 +99,7 @@
     display: flex;
     position: absolute;
     top: -52px;
+    left: 0;
     align-items: center;
     justify-content: space-between;
     width: 100%;
@@ -122,35 +121,8 @@
   &__footer {
     box-sizing: border-box;
     display: flex;
-    flex: 0 0 64px;
     justify-content: flex-end;
-    box-shadow: inset 0 1px 0 var(--border-basic-tertiary);
-    padding: var(--spacing-4) var(--spacing-5);
+    padding-top: var(--spacing-5);
     width: 100%;
-  }
-}
-
-.modal-header {
-  display: flex;
-  justify-content: flex-start;
-
-  &__heading-icon {
-    margin-right: 15px;
-  }
-
-  &__heading-body {
-    display: flex;
-    flex-direction: column;
-  }
-
-  &__heading-title {
-    line-height: 24px;
-    font-size: 18px;
-    font-weight: 600;
-  }
-
-  &__heading-description {
-    line-height: 24px;
-    font-size: 14px;
   }
 }
