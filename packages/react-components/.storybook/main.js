@@ -18,7 +18,7 @@ module.exports = {
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
     options: {
-      legacyRootApi: true,
+      legacyRootApi: true, // TODO: remove when local React will be migrated to v18
     },
   },
   docs: {
