@@ -2,7 +2,7 @@ import * as React from 'react';
 import cx from 'clsx';
 import { LockBlackFilled as LockIcon } from '@livechat/design-system-icons/react/tabler';
 
-import { Icon, IconSize } from '../../components/Icon';
+import { Icon, IconSize } from '../Icon';
 import noop from '../../utils/noop';
 
 import styles from './Switch.module.scss';
@@ -95,6 +95,7 @@ export const Switch: React.FC<SwitchProps> = ({
     const hasOnChangePassed = onChange !== noop;
     if (hasOnChangePassed) {
       onChange(e, checked);
+
       return;
     }
     e.stopPropagation();

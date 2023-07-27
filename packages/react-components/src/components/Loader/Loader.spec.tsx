@@ -7,6 +7,7 @@ import styles from './Loader.module.scss';
 describe('<Loader> component', () => {
   function renderLoader(props = {}) {
     const result = render(<Loader {...props} />);
+
     return {
       ...result,
       loaderEl: result.container.firstChild,

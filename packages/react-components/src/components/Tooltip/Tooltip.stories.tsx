@@ -16,6 +16,7 @@ import beautifulImage from './placeholder.png';
 import { ITooltipProps } from './types';
 import { Info, Interactive, Reports, Simple, UserGuide } from './components';
 import { UserGuideStep } from './components/UserGuide/UserGuideStep';
+import noop from '../../utils/noop';
 
 const tooltipPlacements = [
   'bottom',
@@ -161,12 +162,12 @@ export const TooltipInteractive = (): JSX.Element => (
         text="Tooltip content is used to explain the details of elements or features."
         closeWithX
         primaryButton={{
-          handleClick: () => console.log('primary click handler'),
+          handleClick: noop,
           label: 'Primary Button',
           kind: 'primary',
         }}
         secondaryButton={{
-          handleClick: () => console.log('secondary click handler'),
+          handleClick: noop,
           label: 'Secondary',
           kind: 'secondary',
         }}
@@ -253,6 +254,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
         isVisible: !state.isVisible,
       };
     }
+
     return state;
   };
 

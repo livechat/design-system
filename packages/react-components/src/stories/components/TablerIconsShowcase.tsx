@@ -13,6 +13,7 @@ const Icons = TablerIcons as IconsMap;
 export const TablerIconsShowcase = (): React.ReactElement => {
   const iconsGrid = Object.keys(Icons).map((item) => {
     const iconSource = Icons[item];
+
     return (
       <div className="icon-showcase-card">
         <Icon source={iconSource} size="xlarge"></Icon>

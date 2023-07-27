@@ -175,6 +175,7 @@ describe('<Search> component', () => {
     const onChangeFunction = vi.fn();
     const SearchWrapper = () => {
       const [value, setValue] = React.useState('');
+
       return (
         <SearchInput
           value={value}

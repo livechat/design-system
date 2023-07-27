@@ -26,6 +26,7 @@ export const EditableTagContent: React.FC<EditableTagContentProps> = ({
 
   const getValue = () => {
     const ref = getRef();
+
     return ref ? ref.innerText : '';
   };
 
@@ -39,6 +40,7 @@ export const EditableTagContent: React.FC<EditableTagContentProps> = ({
     if (e.key === KeyCodes.enter) {
       e.preventDefault();
       focusInputRef();
+
       return;
     }
 
@@ -56,6 +58,7 @@ export const EditableTagContent: React.FC<EditableTagContentProps> = ({
     }
     if (ref.innerText === '') {
       remove();
+
       return;
     }
     change(ref.innerText);

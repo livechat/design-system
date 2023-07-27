@@ -65,6 +65,7 @@ export const Toast: React.FC<React.PropsWithChildren<ToastProps>> = ({
   const onActionClick = (action: ToastAction) => {
     if (action && action.closesOnClick && onClose) {
       action.onClick();
+
       return onClose();
     }
 

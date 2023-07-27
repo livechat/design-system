@@ -51,6 +51,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
   const handlePrevYearClick = () => {
     if (!fromMonth) {
       const newMonth = subMonths(month, 12);
+
       return onMonthChange(newMonth);
     }
     const diff = Math.abs(differenceInCalendarMonths(month, fromMonth));
@@ -58,12 +59,14 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
       month,
       !Number.isNaN(diff) && diff > 12 ? 12 : diff
     );
+
     return onMonthChange(newMonth);
   };
 
   const handleNextYearClick = () => {
     if (!toMonth) {
       const newMonth = addMonths(month, 12);
+
       return onMonthChange(newMonth);
     }
     const diff = Math.abs(differenceInCalendarMonths(toMonth, month));
@@ -75,6 +78,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
     if (numberOfMonths === 2 && isSameMonth(newMonth, toMonth)) {
       return onMonthChange(subMonths(newMonth, 1));
     }
+
     return onMonthChange(newMonth);
   };
 

@@ -163,6 +163,7 @@ export const Picker: React.FC<IPickerProps> = ({
   const handleSelect = (item: IPickerListItem) => {
     if (type === 'single') {
       setIsListOpen(false);
+
       return onSelect([item]);
     }
 
@@ -232,6 +233,7 @@ export const Picker: React.FC<IPickerProps> = ({
 
       const search = searchPhrase.toLowerCase();
       const itemName = item.name.toLowerCase();
+
       return itemName.includes(search);
     });
   }, [searchPhrase, options]);

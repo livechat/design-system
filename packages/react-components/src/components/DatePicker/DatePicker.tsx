@@ -53,6 +53,7 @@ const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
     (month: Date) => {
       if (props.onMonthChange && month) {
         props.onMonthChange(month);
+
         return;
       }
 

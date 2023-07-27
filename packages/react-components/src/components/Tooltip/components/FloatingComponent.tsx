@@ -103,6 +103,7 @@ export const FloatingComponent: React.FC<IProps> = ({
             ...child.props,
           });
         }
+
         return null;
       })}
       <div

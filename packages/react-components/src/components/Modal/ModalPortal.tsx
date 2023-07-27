@@ -25,6 +25,7 @@ export const ModalPortal: React.FC<ModalPortalProps> = ({
 
   React.useEffect(() => {
     document.querySelector(parentElementName)?.appendChild(container);
+
     return () => {
       document.querySelector(parentElementName)?.removeChild(container);
     };

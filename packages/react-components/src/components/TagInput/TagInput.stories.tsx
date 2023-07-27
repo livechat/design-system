@@ -29,6 +29,7 @@ export const DefaultTagInput: Story<TagInputProps> = ({
   ...args
 }: TagInputProps) => {
   const [tags, setTags] = React.useState(['tag1', 'tag2']);
+
   return (
     <div>
       <TagInput {...args} tags={tags} onChange={setTags} />
@@ -45,6 +46,7 @@ export const DefaultEmailTagInput: Story<EmailTagInputProps> = ({
   ...args
 }: EmailTagInputProps) => {
   const [tags, setTags] = React.useState(['one@test.com', 'two@test.com']);
+
   return (
     <div>
       <EmailTagInput {...args} tags={tags} onChange={setTags} />

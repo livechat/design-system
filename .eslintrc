@@ -6,6 +6,7 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:eslint-comments/recommended",
     "prettier"
   ],
   "parser": "@typescript-eslint/parser",
@@ -15,11 +16,29 @@
   },
   "plugins": ["@typescript-eslint"],
   "rules": {
+    "eslint-comments/no-unused-disable": "error",
     "prefer-const": "error",
     "@typescript-eslint/no-unsafe-member-access": "off",
     "@typescript-eslint/no-unsafe-call": "off",
     "@typescript-eslint/no-unsafe-assignment": "off",
     "@typescript-eslint/no-unsafe-return": "off",
-    "@typescript-eslint/restrict-template-expressions": "off"
+    "@typescript-eslint/restrict-template-expressions": "off",
+    "no-console": "error",
+    "no-undef": "off",
+    "no-useless-escape": "off",
+    "no-param-reassign": "error",
+    "no-nested-ternary": "error",
+    "no-multi-assign": "error",
+    "no-invalid-this": "error",
+    "padding-line-between-statements": [
+      "warn",
+      {
+        "blankLine": "always",
+        "prev": ["const", "let", "var", "block", "block-like", "expression"],
+        "next": "return"
+      }
+    ],
+    "object-curly-spacing": ["error", "always"],
+    "no-unused-expressions": ["error", { "allowShortCircuit": true }]
   }
 }

@@ -94,6 +94,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
     if (isOpen) {
       document.addEventListener('keydown', onKeyDown);
+
       return () => document.removeEventListener('keydown', onKeyDown);
     } else {
       indexRef.current = -1;
@@ -117,6 +118,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
     }
 
     lastIndexRef.current = indexRef.current;
+
     return indexRef.current;
   };
 
@@ -125,6 +127,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
     if (!isHeaderOrDisabled(indexRef.current)) {
       lastIndexRef.current = indexRef.current;
+
       return indexRef.current;
     }
 
@@ -144,6 +147,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
     }
 
     lastIndexRef.current = indexRef.current;
+
     return indexRef.current;
   };
 

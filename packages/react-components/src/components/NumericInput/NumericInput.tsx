@@ -100,11 +100,13 @@ export const NumericInput: React.FC<NumericInputProps> = ({
 
   const handleIncrementClick = () => {
     inputRef.current?.focus();
+
     return updateValue(1);
   };
 
   const handleDecrementClick = () => {
     inputRef.current?.focus();
+
     return updateValue(-1);
   };
 

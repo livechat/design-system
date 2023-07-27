@@ -66,7 +66,7 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
     isControlled && setCurrentStateId(currentId);
   }, [currentId]);
 
-  const handleClick = (id: string, event: any) => {
+  const handleClick = (id: string, event: React.MouseEvent<HTMLElement>) => {
     if (!isControlled) {
       setCurrentStateId(id);
     }
