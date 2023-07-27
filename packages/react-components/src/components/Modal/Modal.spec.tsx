@@ -16,7 +16,11 @@ describe('<Modal /> component', () => {
 
   it('should call onClose method on close modal button press', () => {
     const onClose = vi.fn();
-    const { getByRole } = render(<Modal onClose={onClose}>test</Modal>);
+    const { getByRole } = render(
+      <Modal heading="Header" onClose={onClose}>
+        test
+      </Modal>
+    );
 
     userEvent.click(getByRole('button'));
     expect(onClose).toBeCalledTimes(1);
