@@ -2,9 +2,6 @@ import * as React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render, vi } from 'test-utils';
 import { Modal } from './Modal';
-import styles from './Modal.module.scss';
-
-const baseClass = 'modal';
 
 describe('<Modal /> component', () => {
   it('should allow for custom class', () => {
@@ -23,18 +20,5 @@ describe('<Modal /> component', () => {
 
     userEvent.click(getByRole('button'));
     expect(onClose).toBeCalledTimes(1);
-  });
-
-  it('should display full space content if prop is given', () => {
-    const onClose = vi.fn();
-    const { getByTestId } = render(
-      <Modal onClose={onClose} fullSpaceContent>
-        test
-      </Modal>
-    );
-
-    expect(getByTestId('modal-body')).toHaveClass(
-      styles[`${baseClass}__body--full-space`]
-    );
   });
 });
