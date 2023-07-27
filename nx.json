@@ -24,16 +24,36 @@
       ]
     },
     "build:lib": {
-      "outputs": ["{projectRoot}/dist", "{projectRoot}/lib"]
+      "outputs": [
+        "{projectRoot}/dist",
+        "{projectRoot}/lib"
+      ]
     },
     "build:js": {
-      "outputs": ["{projectRoot}/lib"]
+      "outputs": [
+        "{projectRoot}/lib"
+      ]
     },
     "build:ts": {
-      "outputs": ["{projectRoot}/react"]
+      "outputs": [
+        "{projectRoot}/react"
+      ]
     },
     "build:styles": {
-      "outputs": ["{projectRoot}/dist"]
+      "outputs": [
+        "{projectRoot}/dist"
+      ]
     }
+  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
+    "sharedGlobals": [],
+    "production": [
+      "default"
+    ]
   }
 }
