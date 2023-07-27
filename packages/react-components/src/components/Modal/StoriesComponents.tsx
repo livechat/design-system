@@ -15,7 +15,7 @@ export const ModalFullSpaceContent: React.FC = () => {
       <img src={modalImage} alt="modal image" />
       <div className="full-space-content">
         <Heading size="lg" as="div" className="full-space-header">
-          Modal header
+          Content header
         </Heading>
         <div className="full-space-text">
           Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
@@ -43,7 +43,7 @@ export const ModalFullSpaceContent: React.FC = () => {
 export const ModalContent: React.FC = () => (
   <div style={{ maxWidth: 400 }}>
     <Heading size="lg" as="div">
-      Modal header
+      Content header
     </Heading>
     <Text size="sm">
       Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.

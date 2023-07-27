@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ComponentMeta, Story } from '@storybook/react';
-import { GreetingQuickReply } from '@livechat/design-system-icons/react/material';
+import { GreetingQuickReply } from '@livechat/design-system-icons/react/tabler';
 
 import {
   Modal as ModalComponent,
@@ -48,7 +48,7 @@ const StoryTemplate: Story<ModalProps> = ({
 export const Modal = StoryTemplate.bind({});
 Modal.args = {
   ...defaultModalProps,
-  heading: 'Modal',
+  heading: 'Modal header',
 } as ModalProps;
 
 export const ModalWithCustomHeader = StoryTemplate.bind({});

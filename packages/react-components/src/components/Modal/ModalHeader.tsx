@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon, IconProps } from '../Icon';
-import styles from './Modal.module.scss';
+import styles from './ModalHeader.module.scss';
 import { cx } from '@emotion/css';
 import { Text } from '../Typography';
 
@@ -27,7 +27,7 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
         <Icon className={styles[`${baseClass}__heading-icon`]} {...iconProps} />
       )}
       <div className={styles[`${baseClass}__heading-body`]}>
-        <Text as="div" className={styles[`${baseClass}__heading-title`]}>
+        <Text as="div" bold className={styles[`${baseClass}__heading-title`]}>
           {title}
         </Text>
 
