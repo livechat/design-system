@@ -20,11 +20,11 @@
   "rules": {
     "eslint-comments/no-unused-disable": "error",
     "prefer-const": "error",
-    "@typescript-eslint/no-unsafe-member-access": "off",
-    "@typescript-eslint/no-unsafe-call": "off",
-    "@typescript-eslint/no-unsafe-assignment": "off",
-    "@typescript-eslint/no-unsafe-return": "off",
-    "@typescript-eslint/restrict-template-expressions": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off", // TODO: enable when design-system-icons will have proper types
+    "@typescript-eslint/no-unsafe-call": "warn",
+    "@typescript-eslint/no-unsafe-assignment": "off", // TODO: enable when design-system-icons will have proper types
+    "@typescript-eslint/no-unsafe-return": "warn",
+    "@typescript-eslint/restrict-template-expressions": "warn",
     "no-console": "error",
     "no-undef": "error",
     "no-useless-escape": "error",
