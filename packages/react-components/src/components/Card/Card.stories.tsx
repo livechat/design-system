@@ -1,8 +1,9 @@
 import * as React from 'react';
+
+import { action } from '@storybook/addon-actions';
 import { ComponentMeta, Story } from '@storybook/react';
 
 import { Card, CardProps } from '../Card';
-import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Components/Card',

@@ -1,22 +1,23 @@
 import * as React from 'react';
-import { ComponentMeta } from '@storybook/react';
-import { Button } from '../Button';
-import { Tooltip } from './Tooltip';
+
 import {
   ChevronDown,
   Smiles,
   CannedResponse,
   Attachment,
 } from '@livechat/design-system-icons/react/tabler';
+import { ComponentMeta } from '@storybook/react';
 
+import noop from '../../utils/noop';
+import { Button } from '../Button';
 import { Icon } from '../Icon';
 
 import './Tooltip.stories.css';
-import beautifulImage from './placeholder.png';
-import { ITooltipProps } from './types';
 import { Info, Interactive, Reports, Simple, UserGuide } from './components';
 import { UserGuideStep } from './components/UserGuide/UserGuideStep';
-import noop from '../../utils/noop';
+import beautifulImage from './placeholder.png';
+import { Tooltip } from './Tooltip';
+import { ITooltipProps } from './types';
 
 const tooltipPlacements = [
   'bottom',

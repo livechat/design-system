@@ -40,7 +40,9 @@
     "dotenv-cli": "^4.0.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^3.5.5",
     "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-import": "^2.27.5",
     "husky": "^7.0.2",
     "lerna": "^7.1.4",
     "lint-staged": "^11.1.2",
@@ -56,8 +58,5 @@
   },
   "volta": {
     "node": "16.13.2"
-  },
-  "dependencies": {
-    "clsx": "^1.1.1"
   }
 }

@@ -1,8 +1,11 @@
 import * as React from 'react';
+
 import cx from 'clsx';
-import { EditableTag } from './EditableTag';
+
 import { KeyCodes } from '../../utils/keyCodes';
 import { FieldError } from '../FieldError';
+
+import { EditableTag } from './EditableTag';
 
 import styles from './TagInput.module.scss';
 

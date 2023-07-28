@@ -1,5 +1,6 @@
-import clsx from 'clsx';
 import * as React from 'react';
+
+import { clsx } from 'clsx';
 
 import styles from './DatePicker.module.scss';
 

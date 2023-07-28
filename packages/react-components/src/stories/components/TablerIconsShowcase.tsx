@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import * as TablerIcons from '@livechat/design-system-icons/react/tabler';
+
 import { Icon, IconSource } from '../../components/Icon';
 import './iconsShowcase.css';
 

@@ -1,8 +1,10 @@
 import * as React from 'react';
+
 import { arrow, flip, offset, useFloating } from '@floating-ui/react-dom';
+
+import { FloatingComponent } from './components/FloatingComponent';
 import { sleep } from './helpers';
 import { ITooltipProps } from './types';
-import { FloatingComponent } from './components/FloatingComponent';
 
 const baseClass = 'tooltip';
 

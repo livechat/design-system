@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { CSSTransition } from 'react-transition-group';
-import cx from 'clsx';
+
 import { css } from '@emotion/css';
-import styles from '../Tooltip.module.scss';
 import { autoUpdate, UseFloatingReturn } from '@floating-ui/react-dom';
+import cx from 'clsx';
+import { CSSTransition } from 'react-transition-group';
+
+import styles from '../Tooltip.module.scss';
 import { ITooltipProps } from '../types';
 
 type IProps = Pick<

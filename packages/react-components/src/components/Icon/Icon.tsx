@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import cx from 'clsx';
+
 import styles from './Icon.module.scss';
 
 export type IconSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';

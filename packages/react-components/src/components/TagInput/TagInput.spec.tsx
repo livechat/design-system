@@ -1,8 +1,11 @@
 import * as React from 'react';
+
 import { render, fireEvent, userEvent, vi } from 'test-utils';
+
 import noop from '../../utils/noop';
 
 import { TagInput } from './TagInput';
+
 import styles from './TagInput.module.scss';
 
 const baseClass = 'tag-input';

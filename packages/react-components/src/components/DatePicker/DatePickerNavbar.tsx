@@ -1,20 +1,23 @@
 import * as React from 'react';
-import {
-  subMonths,
-  addMonths,
-  differenceInCalendarMonths,
-  isSameMonth,
-} from 'date-fns';
+
 import {
   ChevronLeft,
   ChevronRight,
   DoubleArrowLeft,
   DoubleArrowRight,
 } from '@livechat/design-system-icons/react/material';
+import { clsx } from 'clsx';
+import {
+  subMonths,
+  addMonths,
+  differenceInCalendarMonths,
+  isSameMonth,
+} from 'date-fns';
 
 import { Icon } from '../Icon';
+
 import { IDatePickerNavbarProps } from './types';
-import clsx from 'clsx';
+
 import styles from './DatePicker.module.scss';
 
 const baseClass = 'date-picker';

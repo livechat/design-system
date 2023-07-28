@@ -1,9 +1,11 @@
 import * as React from 'react';
+
 import { ComponentMeta } from '@storybook/react';
 
-import { Alert, AlertProps } from './Alert';
-import noop from '../../utils/noop';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import noop from '../../utils/noop';
+
+import { Alert, AlertProps } from './Alert';
 
 export default {
   title: 'Components/Alert',

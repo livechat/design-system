@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import { render } from 'test-utils';
+
 import { ToastWrapper } from './ToastWrapper';
 
 describe('<ToastWrapper> component', () => {

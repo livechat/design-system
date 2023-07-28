@@ -1,8 +1,12 @@
 import * as React from 'react';
-import { fireEvent, render } from 'test-utils';
+
 import { AddCircle as AddCircleIcon } from '@livechat/design-system-icons/react/material';
-import { Input } from './Input';
+
+import { fireEvent, render } from 'test-utils';
+
 import { Icon } from '../Icon';
+
+import { Input } from './Input';
 
 import styles from './Input.module.scss';
 

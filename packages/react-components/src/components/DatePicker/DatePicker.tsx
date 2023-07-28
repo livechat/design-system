@@ -1,9 +1,11 @@
 import * as React from 'react';
+
 import ReactDayPicker from 'react-day-picker';
 
 import DatePickerNavbar from './DatePickerNavbar';
-import { IDatePickerProps } from './types';
 import { getDatePickerClassNames, isDateWithinRange } from './helpers';
+import { IDatePickerProps } from './types';
+
 import styles from './DatePicker.module.scss';
 
 const baseClass = 'date-picker';

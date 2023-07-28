@@ -4,8 +4,22 @@
     "browser": true,
     "jest": true
   },
+  "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": [
+          "packages/react-components/tsconfig.json"
+        ]
+      }
+    }
+  },
   "extends": [
     "eslint:recommended",
+    "plugin:import/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:eslint-comments/recommended",
@@ -16,7 +30,7 @@
     "ecmaVersion": 12,
     "project": "tsconfig.json"
   },
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "import"],
   "rules": {
     "eslint-comments/no-unused-disable": "error",
     "prefer-const": "error",
@@ -41,6 +55,43 @@
       }
     ],
     "object-curly-spacing": ["error", "always"],
-    "no-unused-expressions": ["error", { "allowShortCircuit": true }]
+    "no-unused-expressions": ["error", { "allowShortCircuit": true }],
+    "import/no-unresolved": "error",
+    "import/named": "off",
+    "import/no-cycle": "error",
+    "import/extensions": ["error", "never"],
+    "import/order": [
+      "error",
+      {
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "./**.module.scss",
+            "group": "sibling",
+            "position": "after"
+          }
+        ],
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
   }
 }

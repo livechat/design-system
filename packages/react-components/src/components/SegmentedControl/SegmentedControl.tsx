@@ -1,11 +1,11 @@
 import * as React from 'react';
+
 import cx from 'clsx';
 
+import noop from '../../utils/noop';
 import { Button, ButtonProps } from '../Button';
 
 import styles from './SegmentedControl.module.scss';
-
-import noop from '../../utils/noop';
 
 const baseClass = 'segmented-control';
 

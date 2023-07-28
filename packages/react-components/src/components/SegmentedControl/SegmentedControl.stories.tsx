@@ -1,9 +1,11 @@
 import * as React from 'react';
+
+import * as TablerIcons from '@livechat/design-system-icons/react/tabler';
 import { ComponentMeta, Story } from '@storybook/react';
 
-import { SegmentedControl, SegmentedControlProps } from './SegmentedControl';
-import * as TablerIcons from '@livechat/design-system-icons/react/tabler';
 import { Icon } from '../Icon';
+
+import { SegmentedControl, SegmentedControlProps } from './SegmentedControl';
 
 const buttonSizes = ['compact', 'medium', 'large'];
 const buttonIcon = <Icon source={TablerIcons.AddCircle} />;

@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { ComponentMeta, Story } from '@storybook/react';
+
 import { Search } from '@livechat/design-system-icons/react/tabler';
+import { ComponentMeta, Story } from '@storybook/react';
+
+import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import { Icon } from '../Icon';
+import { Input } from '../Input';
 
 import { FormField as FormFieldComponent, FormFieldProps } from './FormField';
-import { Input } from '../Input';
-import { Icon } from '../Icon';
-import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
 export default {
   title: 'Forms/FormField',

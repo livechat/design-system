@@ -1,8 +1,9 @@
 import * as React from 'react';
+
 import { ComponentMeta, Story } from '@storybook/react';
 
-import noop from '../../utils/noop';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import noop from '../../utils/noop';
 
 import {
   TagInput,

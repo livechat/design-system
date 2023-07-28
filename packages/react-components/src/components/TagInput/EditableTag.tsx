@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { EditableTagContent } from './EditableTagContent';
+
 import { Tag } from '../Tag';
+
+import { EditableTagContent } from './EditableTagContent';
 
 import styles from './TagInput.module.scss';
 

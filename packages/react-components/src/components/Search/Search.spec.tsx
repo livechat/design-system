@@ -1,7 +1,11 @@
 import * as React from 'react';
+
 import { render, userEvent, vi } from 'test-utils';
+
 import noop from '../../utils/noop';
+
 import { ISearchInputProps, SearchInput } from './Search';
+
 import styles from './Search.module.scss';
 
 const baseClass = 'search-input';

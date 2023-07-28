@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import cx from 'clsx';
+
 import { ProgressSize, ProgressStatus } from './constants';
 import { getPercentNumber, getProgressStatus } from './helpers';
 

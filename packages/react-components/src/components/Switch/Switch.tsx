@@ -1,12 +1,13 @@
 import * as React from 'react';
-import cx from 'clsx';
-import { LockBlackFilled as LockIcon } from '@livechat/design-system-icons/react/tabler';
 
-import { Icon, IconSize } from '../Icon';
+import { LockBlackFilled as LockIcon } from '@livechat/design-system-icons/react/tabler';
+import cx from 'clsx';
+
 import noop from '../../utils/noop';
+import { Icon, IconSize } from '../Icon';
+import { Loader } from '../Loader';
 
 import styles from './Switch.module.scss';
-import { Loader } from '../Loader';
 
 export const baseClass = 'switch';
 

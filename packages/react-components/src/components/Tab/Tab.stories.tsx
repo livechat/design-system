@@ -1,8 +1,10 @@
 import * as React from 'react';
+
 import { ComponentMeta } from '@storybook/react';
 
-import { Tab as TabComponent, TabProps } from './Tab';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+
+import { Tab as TabComponent, TabProps } from './Tab';
 
 export default {
   title: 'Components/Tabs',

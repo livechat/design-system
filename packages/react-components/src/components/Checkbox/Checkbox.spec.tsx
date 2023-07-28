@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import { render, userEvent, vi } from 'test-utils';
+
 import { Checkbox } from './Checkbox';
 
 import styles from './Checkbox.module.scss';
