@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { render, userEvent } from 'test-utils';
+import { render, userEvent, fireEvent } from 'test-utils';
 import noop from '../../utils/noop';
 import { vi } from 'vitest';
 import { ActionMenu, ActionMenuProps } from './ActionMenu';
@@ -98,8 +98,8 @@ describe('<ActionMenu> component', () => {
     });
     const trigger = getByTestId('action-menu-trigger-button');
 
-    userEvent.click(trigger);
-    userEvent.click(getByText('Option two'));
+    fireEvent.click(trigger);
+    fireEvent.click(getByText('Option two'));
     expect(getByTestId('action-menu-test')).toHaveAttribute(
       'aria-hidden',
       'false'
