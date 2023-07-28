@@ -1,6 +1,6 @@
 import * as React from 'react';
 import cx from 'clsx';
-import { Person as PersonIcon } from '@livechat/design-system-icons/react/material';
+import { Person as PersonIcon } from '@livechat/design-system-icons/react/tabler';
 
 import { Icon } from '../Icon';
 
@@ -16,7 +16,8 @@ type AvatarSize =
   | 'medium'
   | 'large'
   | 'xlarge'
-  | 'xxlarge';
+  | 'xxlarge'
+  | 'xxxlarge';
 type AvatarStatus = 'available' | 'unavailable' | 'unknown';
 type AvatarType = 'image' | 'text';
 

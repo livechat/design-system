@@ -37,7 +37,8 @@ $base-class: 'avatar';
     &--medium#{$circle-class},
     &--large#{$circle-class},
     &--xlarge#{$circle-class},
-    &--xxlarge#{$circle-class} {
+    &--xxlarge#{$circle-class},
+    &--xxxlarge#{$circle-class} {
       bottom: 75%;
       left: 75%;
     }
@@ -49,7 +50,8 @@ $base-class: 'avatar';
     &--medium#{$rounded-square-class},
     &--large#{$rounded-square-class},
     &--xlarge#{$rounded-square-class},
-    &--xxlarge#{$rounded-square-class} {
+    &--xxlarge#{$rounded-square-class},
+    &--xxxlarge#{$rounded-square-class} {
       bottom: 81.25%;
       left: 81.25%;
     }
@@ -85,18 +87,24 @@ $base-class: 'avatar';
     }
 
     &--large {
+      border-width: calc(10px * 0.125);
+      width: 10px;
+      height: 10px;
+    }
+
+    &--xlarge {
       border-width: calc(12px * 0.125);
       width: 12px;
       height: 12px;
     }
 
-    &--xlarge {
+    &--xxlarge {
       border-width: calc(16px * 0.125);
       width: 16px;
       height: 16px;
     }
 
-    &--xxlarge {
+    &--xxxlarge {
       border-width: calc(24px * 0.125);
       width: 24px;
       height: 24px;
@@ -127,7 +135,8 @@ $base-class: 'avatar';
     &--medium,
     &--large,
     &--xlarge,
-    &--xxlarge {
+    &--xxlarge,
+    &--xxxlarge {
       border-width: 3px;
       width: calc(100% + 4px);
       height: calc(100% + 4px);
@@ -181,6 +190,11 @@ $base-class: 'avatar';
       width: 48px;
       height: 48px;
     }
+
+    &--xxxlarge svg {
+      width: 48px;
+      height: 48px;
+    }
   }
 
   &--circle {
@@ -201,7 +215,8 @@ $base-class: 'avatar';
   &--with-rim.#{$base-class}--medium,
   &--with-rim.#{$base-class}--large,
   &--with-rim.#{$base-class}--xlarge,
-  &--with-rim.#{$base-class}--xxlarge {
+  &--with-rim.#{$base-class}--xxlarge,
+  &--with-rim.#{$base-class}--xxxlarge {
     margin: 5px;
   }
 
@@ -241,20 +256,27 @@ $base-class: 'avatar';
   }
 
   &--large {
+    width: 40px;
+    height: 40px;
+    line-height: 24px;
+    font-size: 18px;
+  }
+
+  &--xlarge {
     width: 48px;
     height: 48px;
     line-height: 24px;
     font-size: 18px;
   }
 
-  &--xlarge {
+  &--xxlarge {
     width: 64px;
     height: 64px;
     line-height: 32px;
     font-size: 24px;
   }
 
-  &--xxlarge {
+  &--xxxlarge {
     width: 96px;
     height: 96px;
     line-height: 40px;
