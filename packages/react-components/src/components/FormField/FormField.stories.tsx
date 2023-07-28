@@ -40,7 +40,7 @@ Default.args = {
   error: '',
 };
 
-export const Examples = (): JSX.Element => {
+export const Examples = (): React.ReactElement => {
   return (
     <div>
       <StoryDescriptor title="With Label">

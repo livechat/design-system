@@ -19,7 +19,7 @@ Default.args = {
   count: 1,
 };
 
-export const Sizes = (): JSX.Element => (
+export const Sizes = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Compact">
       <Badge size="compact" count={1} />
@@ -33,7 +33,7 @@ export const Sizes = (): JSX.Element => (
   </>
 );
 
-export const Kinds = (): JSX.Element => (
+export const Kinds = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Primary">
       <Badge kind="primary" count={1} />
@@ -47,7 +47,7 @@ export const Kinds = (): JSX.Element => (
   </>
 );
 
-export const Types = (): JSX.Element => (
+export const Types = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Count">
       <Badge type="counter" count={1} />

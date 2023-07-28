@@ -32,7 +32,7 @@ Default.args = {
   placeholder: 'Placeholder text',
 };
 
-export const Sizes = (): JSX.Element => (
+export const Sizes = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Xsmall">
       <Input inputSize="xsmall" placeholder={placeholderText} />
@@ -49,7 +49,7 @@ export const Sizes = (): JSX.Element => (
   </>
 );
 
-export const States = (): JSX.Element => (
+export const States = (): React.ReactElement => (
   <>
     <StoryDescriptor title="With error">
       <Input error={true} placeholder={placeholderText} />
@@ -60,7 +60,7 @@ export const States = (): JSX.Element => (
   </>
 );
 
-export const Types = (): JSX.Element => (
+export const Types = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Text">
       <Input type="text" placeholder={placeholderText} />
@@ -71,7 +71,7 @@ export const Types = (): JSX.Element => (
   </>
 );
 
-export const WithIcons = (): JSX.Element => (
+export const WithIcons = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Left icon">
       <Input

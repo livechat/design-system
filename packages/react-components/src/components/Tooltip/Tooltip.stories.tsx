@@ -113,7 +113,7 @@ Default.args = {
   hoverOutDelayTimeout: 100,
 };
 
-export const TooltipInfo = (): JSX.Element => (
+export const TooltipInfo = (): React.ReactElement => (
   <div className="tooltip-preview-container">
     <Tooltip
       isVisible
@@ -137,7 +137,7 @@ export const TooltipInfo = (): JSX.Element => (
   </div>
 );
 
-export const TooltipInteractive = (): JSX.Element => (
+export const TooltipInteractive = (): React.ReactElement => (
   <div className="tooltip-preview-container">
     <Tooltip
       isVisible
@@ -176,7 +176,7 @@ export const TooltipInteractive = (): JSX.Element => (
   </div>
 );
 
-export const TooltipReports = (): JSX.Element => (
+export const TooltipReports = (): React.ReactElement => (
   <div className="tooltip-preview-container">
     <Tooltip
       fullSpaceContent
@@ -205,7 +205,7 @@ export const TooltipReports = (): JSX.Element => (
   </div>
 );
 
-export const TooltipUserGuide = (args: ITooltipProps): JSX.Element => (
+export const TooltipUserGuide = (args: ITooltipProps): React.ReactElement => (
   <div className="tooltip-preview-container">
     <TooltipUserGuideExample {...args}></TooltipUserGuideExample>
   </div>

@@ -8,7 +8,7 @@ import styles from './DatePicker.module.scss';
 
 const baseClass = 'date-picker';
 
-const defaultDayRenderer = (day: Date): JSX.Element => {
+const defaultDayRenderer = (day: Date): React.ReactElement => {
   const date = day.getDate();
 
   return (

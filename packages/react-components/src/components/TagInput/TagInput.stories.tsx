@@ -58,7 +58,7 @@ DefaultEmailTagInput.args = {
   placeholder: 'name@company.com',
 };
 
-export const Sizes = (): JSX.Element => (
+export const Sizes = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Medium">
       <TagInput size="medium" onChange={noop} placeholder={placeholderText} />

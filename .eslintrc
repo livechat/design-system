@@ -1,6 +1,8 @@
 {
   "env": {
-    "es2021": true
+    "es2021": true,
+    "browser": true,
+    "jest": true
   },
   "extends": [
     "eslint:recommended",
@@ -24,8 +26,8 @@
     "@typescript-eslint/no-unsafe-return": "off",
     "@typescript-eslint/restrict-template-expressions": "off",
     "no-console": "error",
-    "no-undef": "off",
-    "no-useless-escape": "off",
+    "no-undef": "warn",
+    "no-useless-escape": "warn",
     "no-param-reassign": "error",
     "no-nested-ternary": "error",
     "no-multi-assign": "error",

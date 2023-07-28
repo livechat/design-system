@@ -16,7 +16,7 @@ export default {
   },
 };
 
-export const Default = (): JSX.Element => (
+export const Default = (): React.ReactElement => (
   <div className="action-menu-preview">
     <ActionMenu
       options={exampleOptions}
@@ -26,7 +26,7 @@ export const Default = (): JSX.Element => (
   </div>
 );
 
-export const KeepOpenOnItemClick = (): JSX.Element => {
+export const KeepOpenOnItemClick = (): React.ReactElement => {
   const [checkboxValue, setCheckboxValue] = React.useState('one');
   const [switchOneValue, setSwitchOneValue] = React.useState(false);
   const [switchTwoValue, setSwitchTwoValue] = React.useState(false);
