@@ -25,9 +25,11 @@ export const isDateWithinRange = (
   if (to && !isSameDay(date, to) && isAfter(date, to)) {
     return false;
   }
+  // noinspection RedundantIfStatementJS
   if (from && !isSameDay(date, from) && !isAfter(date, from)) {
     return false;
   }
+
   return true;
 };
 
@@ -95,6 +97,7 @@ export const getSelectedOption = (
 
 export const isSelectingFirstDay = (from?: Date, to?: Date): boolean => {
   const isRangeSelected = from && to;
+
   return Boolean(!from || isRangeSelected);
 };
 
@@ -136,7 +139,7 @@ export const getInitialStateFromProps = (
 export const getDatePickerClassNames = (
   range?: boolean,
   classNames?: ClassNames
-) => ({
+): ClassNames & { start: string; end: string } => ({
   container: clsx({
     [styles[`${baseClass}`]]: true,
     [styles[`${baseClass}--range`]]: range,

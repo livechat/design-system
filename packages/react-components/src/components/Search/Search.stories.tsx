@@ -15,6 +15,7 @@ export default {
 
 const SearchInputComponent = (args: ISearchInputProps) => {
   const [value, setValue] = React.useState(args.value || '');
+
   return <SearchInput {...args} value={value} onChange={setValue} />;
 };
 

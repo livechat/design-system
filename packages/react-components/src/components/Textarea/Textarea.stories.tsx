@@ -27,7 +27,7 @@ Default.args = {
   placeholder: placeholderText,
 };
 
-export const States = (): JSX.Element => (
+export const States = (): React.ReactElement => (
   <>
     <StoryDescriptor title="With error">
       <Textarea error placeholder={placeholderText} />

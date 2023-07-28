@@ -58,6 +58,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     // handles visibility changes from outside the component
     if (isFirstRender.current) {
       isFirstRender.current = false;
+
       return;
     }
     if (isVisible === true) onOpen?.();
@@ -68,6 +69,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
 
   React.useEffect(() => {
     document.addEventListener('keydown', handleCloseAction);
+
     return () => {
       document.removeEventListener('keydown', handleCloseAction);
     };

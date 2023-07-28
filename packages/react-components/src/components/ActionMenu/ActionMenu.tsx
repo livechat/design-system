@@ -79,6 +79,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   React.useEffect(() => {
     if (isVisible) {
       document.addEventListener('keydown', onKeyDown);
+
       return () => document.removeEventListener('keydown', onKeyDown);
     } else {
       indexRef.current = -1;

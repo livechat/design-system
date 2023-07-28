@@ -60,6 +60,7 @@ const getCustomTextClass = (customColor?: string) => {
   if (!customColor) {
     return '';
   }
+
   return getContrast(customColor, '#FFFFFF') > 4.5
     ? 'text-white'
     : 'text-black';
@@ -106,6 +107,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
         },
       };
     }
+
     return { style: { backgroundColor: customColor } };
   };
 
@@ -116,6 +118,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
     if (outline) {
       return customColor;
     }
+
     return getContrast(customColor, '#FFFFFF') > 4.5 ? '#FFFFFF' : '#000000';
   };
 

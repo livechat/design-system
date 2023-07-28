@@ -84,14 +84,13 @@ export const RangeDatePicker = ({
 
     if (!selectedOption) return;
 
-    onChange &&
-      onChange({
-        ...selectedOption,
-        value: {
-          from: from,
-          to: to,
-        },
-      });
+    onChange?.({
+      ...selectedOption,
+      value: {
+        from: from,
+        to: to,
+      },
+    });
   }, [state.from, state.to, state.selectedItem, options, onChange]);
 
   // handle selected option change
@@ -104,6 +103,7 @@ export const RangeDatePicker = ({
 
     if (!selectedItem) {
       onChange(null);
+
       return;
     }
 
@@ -178,6 +178,7 @@ export const RangeDatePicker = ({
           type: RangeDatePickerAction.NEW_SELECTED_ITEM,
           payload: { selectedItem: null },
         });
+
         return;
       }
 

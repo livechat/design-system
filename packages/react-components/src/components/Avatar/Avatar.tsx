@@ -93,13 +93,13 @@ export const Avatar: React.FC<AvatarProps> = ({
     [styles[`${baseClass}--${shape}`]]: true,
     [styles[`${baseClass}--${size}`]]: true,
     [styles[`${baseClass}--with-rim`]]: withRim,
-    [`${className}`]: className,
+    ...(className ? { [`${className}`]: className } : {}),
   });
   const mergedStatusClassNames = cx(
     styles[`${baseClass}__status`],
     styles[`${baseClass}__status--${shape}`],
     styles[`${baseClass}__status--${size}`],
-    styles[`${baseClass}__status--${status}`]
+    ...(status ? [styles[`${baseClass}__status--${status}`]] : [])
   );
   const mergedIconClassNames = cx(
     styles[`${baseClass}__icon`],

@@ -30,7 +30,7 @@ Default.args = {
 } as CardProps;
 Default.storyName = 'Card';
 
-export const Expandable: Story = (): JSX.Element => (
+export const Expandable: Story = (): React.ReactElement => (
   <Card
     title="Expandable card"
     description="Click show more to expand"
@@ -42,7 +42,7 @@ export const Expandable: Story = (): JSX.Element => (
   </Card>
 );
 
-export const WithButtons: Story = (): JSX.Element => (
+export const WithButtons: Story = (): React.ReactElement => (
   <Card
     title="Expandable card"
     description="Click show more to expand"
@@ -65,7 +65,7 @@ export const WithButtons: Story = (): JSX.Element => (
   </Card>
 );
 
-export const ExpandableWithButtons: Story = (): JSX.Element => (
+export const ExpandableWithButtons: Story = (): React.ReactElement => (
   <Card
     title="Expandable card"
     description="Click show more to expand"

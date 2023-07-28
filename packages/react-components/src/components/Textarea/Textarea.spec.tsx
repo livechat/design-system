@@ -13,6 +13,7 @@ const renderComponent = (props: Partial<TextareaProps>) => {
     { onChange: noop },
     props
   ) as TextareaProps;
+
   return render(<Textarea {...finalProps} className="my-css-class" />);
 };
 

@@ -9,6 +9,7 @@ import styles from './Button.module.scss';
 describe('<Button> component', () => {
   function renderButton(props = {}) {
     const result = render(<Button {...props} />);
+
     return {
       ...result,
       btnEl: result.container.firstChild,

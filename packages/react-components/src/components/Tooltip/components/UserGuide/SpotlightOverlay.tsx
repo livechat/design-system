@@ -14,7 +14,7 @@ const SpotlightOverlay = ({
   isVisible: boolean;
   slide: boolean;
   disablePointerEvents: boolean;
-}): JSX.Element | null => {
+}): React.ReactElement | null => {
   if (!gap) return null;
   const overlayLeft = {
     top: `${gap.top}px`,

@@ -9,6 +9,7 @@ const renderComponent = (props: Partial<NumericInputProps>) => {
     { onChange: noop },
     props
   ) as NumericInputProps;
+
   return render(<NumericInput {...finalProps} className="my-css-class" />);
 };
 
