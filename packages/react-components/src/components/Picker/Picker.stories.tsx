@@ -3,11 +3,11 @@ import { ComponentMeta, Story } from '@storybook/react';
 
 import { IPickerProps, Picker } from './Picker';
 import { defaultExtendedOptions, defaultPickerOptions } from './constants';
-import { IPickerListItem } from './PickerList';
 
 import './Picker.stories.css';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import noop from '../../utils/noop';
+import { IPickerListItem } from './types';
 
 export default {
   title: 'Components/Picker',

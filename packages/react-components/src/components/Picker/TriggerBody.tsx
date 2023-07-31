@@ -6,8 +6,8 @@ import { PickerType } from './Picker';
 
 import styles from './TriggerBody.module.scss';
 import { IconSize } from 'index';
-import { IPickerListItem } from './PickerListItem';
 import { Size } from 'utils';
+import { IPickerListItem } from './types';
 
 const baseClass = 'picker-trigger-body';
 
