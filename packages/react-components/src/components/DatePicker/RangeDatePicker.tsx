@@ -1,10 +1,12 @@
 import { ReactElement, useCallback, useEffect, useMemo, useRef } from 'react';
+
 import {
   isAfter,
   isSameDay,
   subMonths,
   differenceInCalendarDays,
 } from 'date-fns';
+
 import {
   calculateDatePickerMonth,
   getRangeDatePickerModifiers,
@@ -12,7 +14,6 @@ import {
   isDateWithinRange,
   isSelectingFirstDay,
 } from './helpers';
-
 import { useRangeDatePickerState } from './hooks';
 import {
   IRangeDatePickerChildrenPayload,
@@ -84,14 +85,13 @@ export const RangeDatePicker = ({
 
     if (!selectedOption) return;
 
-    onChange &&
-      onChange({
-        ...selectedOption,
-        value: {
-          from: from,
-          to: to,
-        },
-      });
+    onChange?.({
+      ...selectedOption,
+      value: {
+        from: from,
+        to: to,
+      },
+    });
   }, [state.from, state.to, state.selectedItem, options, onChange]);
 
   // handle selected option change
@@ -104,6 +104,7 @@ export const RangeDatePicker = ({
 
     if (!selectedItem) {
       onChange(null);
+
       return;
     }
 
@@ -178,6 +179,7 @@ export const RangeDatePicker = ({
           type: RangeDatePickerAction.NEW_SELECTED_ITEM,
           payload: { selectedItem: null },
         });
+
         return;
       }
 

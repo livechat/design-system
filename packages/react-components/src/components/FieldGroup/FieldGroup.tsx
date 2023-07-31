@@ -1,7 +1,9 @@
 import * as React from 'react';
+
 import cx from 'clsx';
-import { FieldError } from '../FieldError';
+
 import { FieldDescription } from '../FieldDescription';
+import { FieldError } from '../FieldError';
 
 import styles from './FieldGroup.module.scss';
 

@@ -1,9 +1,14 @@
 import * as React from 'react';
-import { render } from 'test-utils';
-import noop from '../../utils/noop';
-import { Textarea, TextareaProps } from './Textarea';
-import styles from './Textarea.module.scss';
+
 import { vi } from 'vitest';
+
+import { render } from 'test-utils';
+
+import noop from '../../utils/noop';
+
+import { Textarea, TextareaProps } from './Textarea';
+
+import styles from './Textarea.module.scss';
 
 const baseClass = 'textarea';
 
@@ -13,6 +18,7 @@ const renderComponent = (props: Partial<TextareaProps>) => {
     { onChange: noop },
     props
   ) as TextareaProps;
+
   return render(<Textarea {...finalProps} className="my-css-class" />);
 };
 

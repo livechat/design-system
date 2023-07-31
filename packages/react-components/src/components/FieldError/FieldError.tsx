@@ -1,8 +1,10 @@
 import * as React from 'react';
-import cx from 'clsx';
+
 import { Info } from '@livechat/design-system-icons/react/tabler';
-import { Text } from '../Typography';
+import cx from 'clsx';
+
 import { Icon } from '../Icon';
+import { Text } from '../Typography';
 
 import styles from './FieldError.module.scss';
 

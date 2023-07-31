@@ -1,11 +1,12 @@
 import * as React from 'react';
 
-import { IPickerListItem } from './PickerList';
+import { IconSize } from '../Icon';
 import { Tag } from '../Tag';
-import { PickerType } from './Picker';
+
+import { PickerType } from './constants';
+import { IPickerListItem } from './PickerList';
 
 import styles from './TriggerBody.module.scss';
-import { IconSize } from 'index';
 
 const baseClass = 'picker-trigger-body';
 

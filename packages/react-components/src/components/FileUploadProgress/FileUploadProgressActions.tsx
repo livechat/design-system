@@ -1,11 +1,12 @@
 import * as React from 'react';
+
 import {
   Close as CloseIcon,
   Refresh as RefreshIcon,
 } from '@livechat/design-system-icons/react/tabler';
 
-import { ProgressStatus } from '../Progress/constants';
 import { Icon } from '../Icon';
+import { ProgressStatus } from '../Progress/constants';
 
 import styles from './FileUploadProgressActions.module.scss';
 

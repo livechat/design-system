@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import * as ReactDOM from 'react-dom';
 
 export interface ModalPortalProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -25,6 +26,7 @@ export const ModalPortal: React.FC<ModalPortalProps> = ({
 
   React.useEffect(() => {
     document.querySelector(parentElementName)?.appendChild(container);
+
     return () => {
       document.querySelector(parentElementName)?.removeChild(container);
     };

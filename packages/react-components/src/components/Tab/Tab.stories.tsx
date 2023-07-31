@@ -1,8 +1,10 @@
 import * as React from 'react';
+
 import { ComponentMeta } from '@storybook/react';
 
-import { Tab as TabComponent, TabProps } from './Tab';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+
+import { Tab as TabComponent, TabProps } from './Tab';
 
 export default {
   title: 'Components/Tabs',
@@ -20,7 +22,7 @@ Tab.args = {
   count: 1,
 } as ITabArgs;
 
-export const StatesAndVariants = (): JSX.Element => (
+export const StatesAndVariants = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Basic">
       <Tab>Tab</Tab>
@@ -50,7 +52,7 @@ export const StatesAndVariants = (): JSX.Element => (
   </>
 );
 
-export const Sizes = (): JSX.Element => (
+export const Sizes = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Compact">
       <Tab size="compact">Tab</Tab>

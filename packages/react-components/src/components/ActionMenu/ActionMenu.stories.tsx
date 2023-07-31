@@ -1,12 +1,16 @@
 import * as React from 'react';
+
 import { MoreHoriz } from '@livechat/design-system-icons/react/tabler';
+
 import { Icon } from '../Icon';
+import { RadioButton } from '../RadioButton';
+import { Switch } from '../Switch';
+
 import { ActionMenu } from './ActionMenu';
 import { ActionMenuItem } from './ActionMenuItem';
 import { exampleOptions } from './constants';
+
 import './ActionMenu.stories.css';
-import { RadioButton } from '../RadioButton';
-import { Switch } from '../Switch';
 
 export default {
   title: 'Components/ActionMenu',
@@ -16,7 +20,7 @@ export default {
   },
 };
 
-export const Default = (): JSX.Element => (
+export const Default = (): React.ReactElement => (
   <div className="action-menu-preview">
     <ActionMenu
       options={exampleOptions}
@@ -26,7 +30,7 @@ export const Default = (): JSX.Element => (
   </div>
 );
 
-export const KeepOpenOnItemClick = (): JSX.Element => {
+export const KeepOpenOnItemClick = (): React.ReactElement => {
   const [checkboxValue, setCheckboxValue] = React.useState('one');
   const [switchOneValue, setSwitchOneValue] = React.useState(false);
   const [switchTwoValue, setSwitchTwoValue] = React.useState(false);

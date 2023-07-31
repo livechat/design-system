@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { ComponentMeta, Story } from '@storybook/react';
 
 import {
@@ -20,6 +21,7 @@ export default {
 
 const StoryTemplate: Story<NumericInputProps> = (args: NumericInputProps) => {
   const [value, setValue] = React.useState('0');
+
   return (
     <div>
       <NumericInputComponent

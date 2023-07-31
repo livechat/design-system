@@ -1,8 +1,9 @@
 import * as React from 'react';
+
 import { ComponentMeta, Story } from '@storybook/react';
 
-import noop from '../../utils/noop';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import noop from '../../utils/noop';
 
 import {
   TagInput,
@@ -29,6 +30,7 @@ export const DefaultTagInput: Story<TagInputProps> = ({
   ...args
 }: TagInputProps) => {
   const [tags, setTags] = React.useState(['tag1', 'tag2']);
+
   return (
     <div>
       <TagInput {...args} tags={tags} onChange={setTags} />
@@ -45,6 +47,7 @@ export const DefaultEmailTagInput: Story<EmailTagInputProps> = ({
   ...args
 }: EmailTagInputProps) => {
   const [tags, setTags] = React.useState(['one@test.com', 'two@test.com']);
+
   return (
     <div>
       <EmailTagInput {...args} tags={tags} onChange={setTags} />
@@ -56,7 +59,7 @@ DefaultEmailTagInput.args = {
   placeholder: 'name@company.com',
 };
 
-export const Sizes = (): JSX.Element => (
+export const Sizes = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Medium">
       <TagInput size="medium" onChange={noop} placeholder={placeholderText} />

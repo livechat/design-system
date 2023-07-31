@@ -1,10 +1,13 @@
 import * as React from 'react';
+
 import cx from 'clsx';
+
+import { Size } from 'utils';
+
+import { Badge } from '../Badge';
 import { Text } from '../Typography';
 
 import styles from './Tab.module.scss';
-import { Badge } from '../Badge';
-import { Size } from 'utils';
 
 type HTMLProps =
   | (React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string })

@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { render, fireEvent, cleanup, act, waitFor } from 'test-utils';
+
 import { vi } from 'vitest';
+
+import { render, fireEvent, cleanup, act, waitFor } from 'test-utils';
 
 import { Tooltip } from './Tooltip';
 

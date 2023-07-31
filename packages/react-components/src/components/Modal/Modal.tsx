@@ -1,10 +1,13 @@
 import * as React from 'react';
+
 import cx from 'clsx';
-import { ModalBaseProps, ModalBase } from './ModalBase';
+
 import { Heading, Text } from '../Typography';
 
-import styles from './Modal.module.scss';
+import { ModalBaseProps, ModalBase } from './ModalBase';
 import { ModalCloseButton } from './ModalCloseButton';
+
+import styles from './Modal.module.scss';
 
 export interface ModalProps extends ModalBaseProps {
   /**

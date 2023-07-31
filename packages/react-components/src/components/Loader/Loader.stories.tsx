@@ -1,9 +1,10 @@
 import * as React from 'react';
+
 import { ComponentMeta } from '@storybook/react';
 
-import { Loader, LoaderProps } from './Loader';
-
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+
+import { Loader, LoaderProps } from './Loader';
 
 export default {
   title: 'Components/Loader',

@@ -1,7 +1,9 @@
 import * as React from 'react';
 
 import { render } from 'test-utils';
+
 import noop from '../../utils/noop';
+
 import { Form } from './Form';
 
 describe('<Form /> component', () => {

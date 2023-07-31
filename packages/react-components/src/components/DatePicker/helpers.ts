@@ -1,3 +1,4 @@
+import { clsx } from 'clsx';
 import {
   isAfter,
   isSameDay,
@@ -6,16 +7,17 @@ import {
   differenceInCalendarDays,
 } from 'date-fns';
 import { Modifiers } from 'react-day-picker';
+import { ClassNames } from 'react-day-picker/types/ClassNames';
+
 import {
   IRangeDatePickerProps,
   IRangeDatePickerState,
   IRangeDatePickerOption,
 } from './types';
-import clsx from 'clsx';
-const baseClass = 'date-picker';
 
 import styles from './DatePicker.module.scss';
-import { ClassNames } from 'react-day-picker/types/ClassNames';
+
+const baseClass = 'date-picker';
 
 export const isDateWithinRange = (
   date: Date,
@@ -25,9 +27,11 @@ export const isDateWithinRange = (
   if (to && !isSameDay(date, to) && isAfter(date, to)) {
     return false;
   }
+  // noinspection RedundantIfStatementJS
   if (from && !isSameDay(date, from) && !isAfter(date, from)) {
     return false;
   }
+
   return true;
 };
 
@@ -95,6 +99,7 @@ export const getSelectedOption = (
 
 export const isSelectingFirstDay = (from?: Date, to?: Date): boolean => {
   const isRangeSelected = from && to;
+
   return Boolean(!from || isRangeSelected);
 };
 
@@ -136,7 +141,7 @@ export const getInitialStateFromProps = (
 export const getDatePickerClassNames = (
   range?: boolean,
   classNames?: ClassNames
-) => ({
+): ClassNames & { start: string; end: string } => ({
   container: clsx({
     [styles[`${baseClass}`]]: true,
     [styles[`${baseClass}--range`]]: range,

@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { ComponentMeta } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
@@ -10,7 +11,9 @@ export default {
   component: Avatar,
 } as ComponentMeta<typeof Avatar>;
 
-export const Default = (args: AvatarProps): JSX.Element => <Avatar {...args} />;
+export const Default = (args: AvatarProps): React.ReactElement => (
+  <Avatar {...args} />
+);
 
 const defaultImage =
   'https://cdn-labs.livechat-files.com/api/file/lc/img/100019504/df59da4b5b0cdb6030efb08787fd255d.jpg';
@@ -21,7 +24,7 @@ Default.args = {
   text: defaultName,
 };
 
-export const Types = (): JSX.Element => (
+export const Types = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Image">
       <Avatar type="image" src={defaultImage} alt="User avatar" />
@@ -32,7 +35,7 @@ export const Types = (): JSX.Element => (
   </>
 );
 
-export const Shapes = (): JSX.Element => (
+export const Shapes = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Circle">
       <Avatar type="text" text={defaultName} shape="circle" />
@@ -43,7 +46,7 @@ export const Shapes = (): JSX.Element => (
   </>
 );
 
-export const Sizes = (): JSX.Element => (
+export const Sizes = (): React.ReactElement => (
   <>
     <StoryDescriptor title="XXXSmall">
       <Avatar type="text" text={defaultName} size="xxxsmall" />
@@ -75,7 +78,7 @@ export const Sizes = (): JSX.Element => (
   </>
 );
 
-export const Statuses = (): JSX.Element => (
+export const Statuses = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Available">
       <Avatar type="text" text={defaultName} status="available" />
@@ -89,7 +92,7 @@ export const Statuses = (): JSX.Element => (
   </>
 );
 
-export const Colors = (): JSX.Element => (
+export const Colors = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Light">
       <Avatar type="text" text={defaultName} color="#faf8ff" />
@@ -102,11 +105,11 @@ export const Colors = (): JSX.Element => (
   </>
 );
 
-export const FallbackAvatar = (): JSX.Element => (
+export const FallbackAvatar = (): React.ReactElement => (
   <Avatar type="image" src="https://example.com/not-a-proper-image.png" />
 );
 
-export const Rim = (): JSX.Element => (
+export const Rim = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Rim">
       <Avatar withRim type="image" src={defaultImage} />
@@ -117,7 +120,7 @@ export const Rim = (): JSX.Element => (
   </>
 );
 
-export const SizesWithStatus = (): JSX.Element => (
+export const SizesWithStatus = (): React.ReactElement => (
   <>
     <StoryDescriptor title="XXXSmall">
       <Avatar
@@ -247,7 +250,7 @@ export const SizesWithStatus = (): JSX.Element => (
   </>
 );
 
-export const SizesWithRim = (): JSX.Element => (
+export const SizesWithRim = (): React.ReactElement => (
   <>
     <StoryDescriptor title="XXXSmall">
       <Avatar type="image" src={defaultImage} size="xxxsmall" withRim />

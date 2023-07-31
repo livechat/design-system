@@ -1,9 +1,11 @@
 import * as React from 'react';
+
 import { ComponentMeta } from '@storybook/react';
 
-import { FormGroup as FormGroupComponent, FormGroupProps } from './FormGroup';
-import { RadioButton } from '../RadioButton';
 import { FieldGroup } from '../FieldGroup';
+import { RadioButton } from '../RadioButton';
+
+import { FormGroup as FormGroupComponent, FormGroupProps } from './FormGroup';
 
 export default {
   title: 'Forms/Form Group',

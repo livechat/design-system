@@ -1,11 +1,13 @@
 import * as React from 'react';
-import cx from 'clsx';
+
 import { Search, Close } from '@livechat/design-system-icons/react/tabler';
+import cx from 'clsx';
+
+import { KeyCodes } from '../../utils/keyCodes';
 import { Icon } from '../Icon';
 import { Loader } from '../Loader';
 
 import styles from './Search.module.scss';
-import { KeyCodes } from '../../utils/keyCodes';
 
 const baseClass = 'search-input';
 const inputBaseClass = `${baseClass}__input`;

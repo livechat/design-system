@@ -1,21 +1,23 @@
 import * as React from 'react';
-import { ComponentMeta } from '@storybook/react';
-import { Button } from '../Button';
-import { Tooltip } from './Tooltip';
+
 import {
   ChevronDown,
   Smiles,
   CannedResponse,
   Attachment,
 } from '@livechat/design-system-icons/react/tabler';
+import { ComponentMeta } from '@storybook/react';
 
+import noop from '../../utils/noop';
+import { Button } from '../Button';
 import { Icon } from '../Icon';
 
 import './Tooltip.stories.css';
-import beautifulImage from './placeholder.png';
-import { ITooltipProps } from './types';
 import { Info, Interactive, Reports, Simple, UserGuide } from './components';
 import { UserGuideStep } from './components/UserGuide/UserGuideStep';
+import beautifulImage from './placeholder.png';
+import { Tooltip } from './Tooltip';
+import { ITooltipProps } from './types';
 
 const tooltipPlacements = [
   'bottom',
@@ -112,7 +114,7 @@ Default.args = {
   hoverOutDelayTimeout: 100,
 };
 
-export const TooltipInfo = (): JSX.Element => (
+export const TooltipInfo = (): React.ReactElement => (
   <div className="tooltip-preview-container">
     <Tooltip
       isVisible
@@ -136,7 +138,7 @@ export const TooltipInfo = (): JSX.Element => (
   </div>
 );
 
-export const TooltipInteractive = (): JSX.Element => (
+export const TooltipInteractive = (): React.ReactElement => (
   <div className="tooltip-preview-container">
     <Tooltip
       isVisible
@@ -161,12 +163,12 @@ export const TooltipInteractive = (): JSX.Element => (
         text="Tooltip content is used to explain the details of elements or features."
         closeWithX
         primaryButton={{
-          handleClick: () => console.log('primary click handler'),
+          handleClick: noop,
           label: 'Primary Button',
           kind: 'primary',
         }}
         secondaryButton={{
-          handleClick: () => console.log('secondary click handler'),
+          handleClick: noop,
           label: 'Secondary',
           kind: 'secondary',
         }}
@@ -175,7 +177,7 @@ export const TooltipInteractive = (): JSX.Element => (
   </div>
 );
 
-export const TooltipReports = (): JSX.Element => (
+export const TooltipReports = (): React.ReactElement => (
   <div className="tooltip-preview-container">
     <Tooltip
       fullSpaceContent
@@ -204,7 +206,7 @@ export const TooltipReports = (): JSX.Element => (
   </div>
 );
 
-export const TooltipUserGuide = (args: ITooltipProps): JSX.Element => (
+export const TooltipUserGuide = (args: ITooltipProps): React.ReactElement => (
   <div className="tooltip-preview-container">
     <TooltipUserGuideExample {...args}></TooltipUserGuideExample>
   </div>
@@ -253,6 +255,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
         isVisible: !state.isVisible,
       };
     }
+
     return state;
   };
 

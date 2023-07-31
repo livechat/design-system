@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { render } from 'test-utils';
+
 import { ProgressBar } from './ProgressBar';
 
 import styles from './ProgressBar.module.scss';

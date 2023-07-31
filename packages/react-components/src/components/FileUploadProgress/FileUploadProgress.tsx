@@ -1,14 +1,16 @@
 import * as React from 'react';
-import cx from 'clsx';
-import { Check as CheckIcon } from '@livechat/design-system-icons/react/tabler';
 
+import { Check as CheckIcon } from '@livechat/design-system-icons/react/tabler';
+import cx from 'clsx';
+
+import { Icon } from '../Icon';
 import { ProgressBar } from '../Progress';
 import { ProgressSize, ProgressStatus } from '../Progress/constants';
+import { Text } from '../Typography';
+
+import { FileUploadProgressActions } from './FileUploadProgressActions';
 
 import styles from './FileUploadProgress.module.scss';
-import { Icon } from '../Icon';
-import { FileUploadProgressActions } from './FileUploadProgressActions';
-import { Text } from '../Typography';
 
 export type UploadProgressActionState = 'visible' | 'hover' | 'hidden';
 

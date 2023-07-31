@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import { render, fireEvent, vi, userEvent } from 'test-utils';
+
 import { Alert, AlertProps } from './Alert';
 
 import styles from './Alert.module.scss';
@@ -59,26 +61,27 @@ describe('<Alert> component', () => {
   });
 
   it('should render with CTA buttons and call handleClick function', () => {
-    const mockedFunction = vi.fn();
+    const primaryHandler = vi.fn();
+    const secondaryHandler = vi.fn();
     const { getByText } = renderComponent({
       primaryButton: {
         label: 'Primary',
-        handleClick: () => mockedFunction('primary'),
+        handleClick: primaryHandler,
       },
       secondaryButton: {
         label: 'Secondary',
-        handleClick: () => mockedFunction('secondary'),
+        handleClick: secondaryHandler,
       },
     });
 
     const primary = getByText('Primary');
     expect(primary).toBeVisible();
     userEvent.click(primary);
-    expect(mockedFunction).toHaveBeenCalledWith('primary');
+    expect(primaryHandler).toHaveBeenCalled();
 
     const secondary = getByText('Secondary');
     expect(secondary).toBeVisible();
     userEvent.click(secondary);
-    expect(mockedFunction).toHaveBeenCalledWith('secondary');
+    expect(secondaryHandler).toHaveBeenCalled();
   });
 });

@@ -1,12 +1,15 @@
 import * as React from 'react';
+
 import { ComponentMeta, Story } from '@storybook/react';
+
+import noop from '../../utils/noop';
+import { PdfIcon } from '../../utils/PdfIcon';
+import { Button } from '../Button';
+
 import {
   FileUploadProgress as FileUploadProgressComponent,
   FileUploadProgressProps,
 } from './FileUploadProgress';
-import { Button } from '../Button';
-import noop from '../../utils/noop';
-import { PdfIcon } from '../../utils/PdfIcon';
 
 export default {
   title: 'Components/Progress/FileUploadProgress',
