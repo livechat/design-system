@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { render, fireEvent } from 'test-utils';
-import { Popover } from './Popover';
+
 import { vi } from 'vitest';
+
+import { render, fireEvent } from 'test-utils';
+
+import { Popover } from './Popover';
 
 vi.mock('@floating-ui/react-dom', () => {
   return {

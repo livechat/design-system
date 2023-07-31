@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import * as MaterialIcons from '@livechat/design-system-icons/react/material';
+
 import { Icon, IconSource } from '../../components/Icon';
 import './iconsShowcase.css';
 
@@ -13,6 +14,7 @@ const Icons = MaterialIcons as IconsMap;
 export const IconsShowcase = (): React.ReactElement => {
   const iconsGrid = Object.keys(Icons).map((item) => {
     const iconSource = Icons[item];
+
     return (
       <div className="icon-showcase-card">
         <Icon source={iconSource} size="xlarge"></Icon>

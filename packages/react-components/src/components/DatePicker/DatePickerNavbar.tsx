@@ -1,20 +1,23 @@
 import * as React from 'react';
-import {
-  subMonths,
-  addMonths,
-  differenceInCalendarMonths,
-  isSameMonth,
-} from 'date-fns';
+
 import {
   ChevronLeft,
   ChevronRight,
   DoubleArrowLeft,
   DoubleArrowRight,
 } from '@livechat/design-system-icons/react/material';
+import { clsx } from 'clsx';
+import {
+  subMonths,
+  addMonths,
+  differenceInCalendarMonths,
+  isSameMonth,
+} from 'date-fns';
 
 import { Icon } from '../Icon';
+
 import { IDatePickerNavbarProps } from './types';
-import clsx from 'clsx';
+
 import styles from './DatePicker.module.scss';
 
 const baseClass = 'date-picker';
@@ -51,6 +54,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
   const handlePrevYearClick = () => {
     if (!fromMonth) {
       const newMonth = subMonths(month, 12);
+
       return onMonthChange(newMonth);
     }
     const diff = Math.abs(differenceInCalendarMonths(month, fromMonth));
@@ -58,12 +62,14 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
       month,
       !Number.isNaN(diff) && diff > 12 ? 12 : diff
     );
+
     return onMonthChange(newMonth);
   };
 
   const handleNextYearClick = () => {
     if (!toMonth) {
       const newMonth = addMonths(month, 12);
+
       return onMonthChange(newMonth);
     }
     const diff = Math.abs(differenceInCalendarMonths(toMonth, month));
@@ -75,6 +81,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
     if (numberOfMonths === 2 && isSameMonth(newMonth, toMonth)) {
       return onMonthChange(subMonths(newMonth, 1));
     }
+
     return onMonthChange(newMonth);
   };
 

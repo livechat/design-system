@@ -1,10 +1,12 @@
 import * as React from 'react';
-import cx from 'clsx';
+
 import { Person as PersonIcon } from '@livechat/design-system-icons/react/material';
+import cx from 'clsx';
 
 import { Icon } from '../Icon';
 
 import { getFontColor, getInitials } from './Avatar.helpers';
+
 import styles from './Avatar.module.scss';
 
 type AvatarShape = 'circle' | 'rounded-square';
@@ -93,13 +95,13 @@ export const Avatar: React.FC<AvatarProps> = ({
     [styles[`${baseClass}--${shape}`]]: true,
     [styles[`${baseClass}--${size}`]]: true,
     [styles[`${baseClass}--with-rim`]]: withRim,
-    [`${className}`]: className,
+    ...(className ? { [`${className}`]: className } : {}),
   });
   const mergedStatusClassNames = cx(
     styles[`${baseClass}__status`],
     styles[`${baseClass}__status--${shape}`],
     styles[`${baseClass}__status--${size}`],
-    styles[`${baseClass}__status--${status}`]
+    ...(status ? [styles[`${baseClass}__status--${status}`]] : [])
   );
   const mergedIconClassNames = cx(
     styles[`${baseClass}__icon`],

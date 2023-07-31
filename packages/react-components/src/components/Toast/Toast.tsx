@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import {
   Close,
   Info,
@@ -10,9 +11,9 @@ import cx from 'clsx';
 
 import { Button } from '../Button';
 import { Icon, IconKind, IconSource } from '../Icon';
+import { Text } from '../Typography';
 
 import styles from './Toast.module.scss';
-import { Text } from '../Typography';
 
 type ToastKind = 'success' | 'warning' | 'error' | 'info';
 
@@ -65,6 +66,7 @@ export const Toast: React.FC<React.PropsWithChildren<ToastProps>> = ({
   const onActionClick = (action: ToastAction) => {
     if (action && action.closesOnClick && onClose) {
       action.onClick();
+
       return onClose();
     }
 

@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { ComponentMeta, Story } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
@@ -27,7 +28,7 @@ Default.args = {
   placeholder: placeholderText,
 };
 
-export const States = (): JSX.Element => (
+export const States = (): React.ReactElement => (
   <>
     <StoryDescriptor title="With error">
       <Textarea error placeholder={placeholderText} />

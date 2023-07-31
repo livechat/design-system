@@ -1,7 +1,9 @@
 import * as React from 'react';
-import cx from 'clsx';
-import { Icon } from '../../Icon';
+
 import { Close } from '@livechat/design-system-icons/react/material';
+import cx from 'clsx';
+
+import { Icon } from '../../Icon';
 import { getIconType } from '../helpers';
 import styles from '../Tooltip.module.scss';
 

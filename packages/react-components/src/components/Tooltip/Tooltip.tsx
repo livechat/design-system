@@ -1,8 +1,10 @@
 import * as React from 'react';
+
 import { arrow, flip, offset, useFloating } from '@floating-ui/react-dom';
+
+import { FloatingComponent } from './components/FloatingComponent';
 import { sleep } from './helpers';
 import { ITooltipProps } from './types';
-import { FloatingComponent } from './components/FloatingComponent';
 
 const baseClass = 'tooltip';
 
@@ -58,6 +60,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     // handles visibility changes from outside the component
     if (isFirstRender.current) {
       isFirstRender.current = false;
+
       return;
     }
     if (isVisible === true) onOpen?.();
@@ -68,6 +71,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
 
   React.useEffect(() => {
     document.addEventListener('keydown', handleCloseAction);
+
     return () => {
       document.removeEventListener('keydown', handleCloseAction);
     };

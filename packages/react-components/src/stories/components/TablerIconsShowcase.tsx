@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import * as TablerIcons from '@livechat/design-system-icons/react/tabler';
+
 import { Icon, IconSource } from '../../components/Icon';
 import './iconsShowcase.css';
 
@@ -13,6 +14,7 @@ const Icons = TablerIcons as IconsMap;
 export const TablerIconsShowcase = (): React.ReactElement => {
   const iconsGrid = Object.keys(Icons).map((item) => {
     const iconSource = Icons[item];
+
     return (
       <div className="icon-showcase-card">
         <Icon source={iconSource} size="xlarge"></Icon>

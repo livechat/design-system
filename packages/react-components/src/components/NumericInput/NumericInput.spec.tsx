@@ -1,6 +1,9 @@
 import * as React from 'react';
+
 import { render, fireEvent, vi } from 'test-utils';
+
 import noop from '../../utils/noop';
+
 import { NumericInputProps, NumericInput } from './NumericInput';
 
 const renderComponent = (props: Partial<NumericInputProps>) => {
@@ -9,6 +12,7 @@ const renderComponent = (props: Partial<NumericInputProps>) => {
     { onChange: noop },
     props
   ) as NumericInputProps;
+
   return render(<NumericInput {...finalProps} className="my-css-class" />);
 };
 

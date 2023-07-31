@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import { render } from 'test-utils';
+
 import { Tab } from './Tab';
 
 import styles from './Tab.module.scss';

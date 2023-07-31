@@ -1,13 +1,14 @@
 import * as React from 'react';
-import cx from 'clsx';
+
 import {
   ChevronUp,
   ChevronDown,
 } from '@livechat/design-system-icons/react/tabler';
+import cx from 'clsx';
 
-import { Text, Heading } from '../Typography';
 import { Button, ButtonProps } from '../Button';
 import { Icon } from '../Icon';
+import { Text, Heading } from '../Typography';
 
 import styles from './Card.module.scss';
 

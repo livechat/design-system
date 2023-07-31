@@ -1,10 +1,14 @@
 import * as React from 'react';
-import cx from 'clsx';
+
 import { Check } from '@livechat/design-system-icons/react/tabler';
-import { Icon } from '../Icon';
-import styles from './PickerList.module.scss';
+import cx from 'clsx';
+
 import { KeyCodes } from '../../utils/keyCodes';
+import { Icon } from '../Icon';
+
 import { SELECT_ALL_OPTION_KEY } from './constants';
+
+import styles from './PickerList.module.scss';
 
 const baseClass = 'picker-list';
 const itemClassName = `${baseClass}__item`;
@@ -94,6 +98,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
     if (isOpen) {
       document.addEventListener('keydown', onKeyDown);
+
       return () => document.removeEventListener('keydown', onKeyDown);
     } else {
       indexRef.current = -1;
@@ -117,6 +122,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
     }
 
     lastIndexRef.current = indexRef.current;
+
     return indexRef.current;
   };
 
@@ -125,6 +131,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
     if (!isHeaderOrDisabled(indexRef.current)) {
       lastIndexRef.current = indexRef.current;
+
       return indexRef.current;
     }
 
@@ -144,6 +151,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
     }
 
     lastIndexRef.current = indexRef.current;
+
     return indexRef.current;
   };
 

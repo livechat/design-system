@@ -1,12 +1,15 @@
 import * as React from 'react';
+
 import { render } from 'test-utils';
 
 import { Loader } from './Loader';
+
 import styles from './Loader.module.scss';
 
 describe('<Loader> component', () => {
   function renderLoader(props = {}) {
     const result = render(<Loader {...props} />);
+
     return {
       ...result,
       loaderEl: result.container.firstChild,

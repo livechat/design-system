@@ -1,5 +1,6 @@
-import { TagInputProps, TagInput } from './TagInput';
 import * as React from 'react';
+
+import { TagInputProps, TagInput } from './TagInput';
 
 export type EmailTagInputProps = Omit<TagInputProps, 'validator'>;
 

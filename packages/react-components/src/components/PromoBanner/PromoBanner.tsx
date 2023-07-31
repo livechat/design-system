@@ -1,13 +1,14 @@
 import * as React from 'react';
-import cx from 'clsx';
+
 import { Close as CloseIcon } from '@livechat/design-system-icons/react/tabler';
+import cx from 'clsx';
 import debounce from 'lodash.debounce';
 
 import { Button } from '../Button';
 import { Icon } from '../Icon';
+import { Text } from '../Typography';
 
 import styles from './PromoBanner.module.scss';
-import { Text } from '../Typography';
 
 const SMALL_CONTAINER_WIDTH_TRESHOLD = 400;
 const LARGE_CONTAINER_WIDTH_TRESHOLD = 800;

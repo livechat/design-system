@@ -1,14 +1,16 @@
 import * as React from 'react';
+
 import ReactDayPicker from 'react-day-picker';
 
 import DatePickerNavbar from './DatePickerNavbar';
-import { IDatePickerProps } from './types';
 import { getDatePickerClassNames, isDateWithinRange } from './helpers';
+import { IDatePickerProps } from './types';
+
 import styles from './DatePicker.module.scss';
 
 const baseClass = 'date-picker';
 
-const defaultDayRenderer = (day: Date): JSX.Element => {
+const defaultDayRenderer = (day: Date): React.ReactElement => {
   const date = day.getDate();
 
   return (
@@ -53,6 +55,7 @@ const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
     (month: Date) => {
       if (props.onMonthChange && month) {
         props.onMonthChange(month);
+
         return;
       }
 
