@@ -1,10 +1,13 @@
 import * as React from 'react';
-import cx from 'clsx';
+
 import { Check } from '@livechat/design-system-icons/react/tabler';
+import cx from 'clsx';
+
 import { Icon } from '../Icon';
 
-import styles from './PickerList.module.scss';
 import { IPickerListItem } from './types';
+
+import styles from './PickerList.module.scss';
 
 const itemClassName = `picker-list__item`;
 
