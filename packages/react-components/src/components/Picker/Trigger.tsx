@@ -128,7 +128,7 @@ export const Trigger: React.FC<React.PropsWithChildren<ITriggerProps>> = ({
         <Icon
           className={styles[`${baseClass}__chevron-icon`]}
           source={!isOpen ? ChevronDown : ChevronUp}
-          size="large"
+          size="medium"
           disabled={isDisabled}
         />
       </div>
