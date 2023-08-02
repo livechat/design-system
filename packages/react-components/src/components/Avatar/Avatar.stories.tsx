@@ -72,6 +72,9 @@ export const Sizes = (): React.ReactElement => (
     <StoryDescriptor title="XXLarge">
       <Avatar type="text" text={defaultName} size="xxlarge" />
     </StoryDescriptor>
+    <StoryDescriptor title="XXXLarge">
+      <Avatar type="text" text={defaultName} size="xxxlarge" />
+    </StoryDescriptor>
   </>
 );
 
@@ -229,6 +232,21 @@ export const SizesWithStatus = (): React.ReactElement => (
         status="available"
       />
     </StoryDescriptor>
+    <StoryDescriptor title="XXXLarge">
+      <Avatar
+        type="image"
+        src={defaultImage}
+        size="xxxlarge"
+        status="available"
+      />
+      <Avatar
+        type="text"
+        text={defaultName}
+        shape="rounded-square"
+        size="xxxlarge"
+        status="available"
+      />
+    </StoryDescriptor>
   </>
 );
 
@@ -311,6 +329,16 @@ export const SizesWithRim = (): React.ReactElement => (
         text={defaultName}
         shape="rounded-square"
         size="xxlarge"
+        withRim
+      />
+    </StoryDescriptor>
+    <StoryDescriptor title="XXXLarge">
+      <Avatar type="image" src={defaultImage} size="xxxlarge" withRim />
+      <Avatar
+        type="text"
+        text={defaultName}
+        shape="rounded-square"
+        size="xxxlarge"
         withRim
       />
     </StoryDescriptor>
