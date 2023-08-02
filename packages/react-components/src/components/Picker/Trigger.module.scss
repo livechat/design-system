@@ -66,6 +66,7 @@ $base-class: 'picker-trigger';
     display: flex;
     flex-grow: 2;
     align-items: center;
+    overflow: hidden;
 
     &--compact {
       height: 30px;
@@ -81,7 +82,7 @@ $base-class: 'picker-trigger';
 
     &--with-items {
       align-self: center;
-      padding: 5px 0;
+      padding: 5px 5px 5px 0;
       height: auto;
     }
   }

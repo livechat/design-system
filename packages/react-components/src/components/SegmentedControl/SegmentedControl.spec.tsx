@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import { render, userEvent, vi } from 'test-utils';
+
 import { SegmentedControl, SegmentedControlProps } from './SegmentedControl';
 
 import styles from './SegmentedControl.module.scss';

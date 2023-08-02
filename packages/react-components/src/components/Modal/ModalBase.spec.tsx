@@ -1,7 +1,11 @@
 import * as React from 'react';
+
 import userEvent from '@testing-library/user-event';
+
 import { render, vi } from 'test-utils';
+
 import { ModalBase } from './ModalBase';
+
 import styles from './Modal.module.scss';
 
 const baseClass = 'modal-base';

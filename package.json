@@ -3,8 +3,10 @@
   "name": "@livechat/ds-workspace",
   "version": "1.0.0",
   "description": "LiveChat Design System",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "postinstall": "lerna bootstrap",
     "clean": "lerna exec rimraf dist",
     "prestart": "npm run clean",
     "start": "lerna run dev --parallel",
@@ -33,14 +35,16 @@
   },
   "homepage": "https://github.com/livechat/design-system#readme",
   "devDependencies": {
-    "@storybook/addon-links": "^7.0.21",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
     "dotenv-cli": "^4.0.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^3.5.5",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-import": "^2.27.5",
     "husky": "^7.0.2",
-    "lerna": "^4.0.0",
+    "lerna": "^7.1.4",
     "lint-staged": "^11.1.2",
     "npm-run-all": "^4.1.5",
     "prettier": "2.4.0",
@@ -54,8 +58,5 @@
   },
   "volta": {
     "node": "16.13.2"
-  },
-  "dependencies": {
-    "clsx": "^1.1.1"
   }
 }

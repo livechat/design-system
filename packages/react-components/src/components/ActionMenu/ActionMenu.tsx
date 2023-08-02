@@ -1,9 +1,12 @@
 import * as React from 'react';
-import cx from 'clsx';
-import { Popover } from '../Popover';
-import styles from './ActionMenu.module.scss';
-import { KeyCodes } from '../../utils/keyCodes';
+
 import { Placement } from '@floating-ui/react-dom';
+import cx from 'clsx';
+
+import { KeyCodes } from '../../utils/keyCodes';
+import { Popover } from '../Popover';
+
+import styles from './ActionMenu.module.scss';
 
 export interface ActionMenuProps {
   /**
@@ -79,6 +82,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   React.useEffect(() => {
     if (isVisible) {
       document.addEventListener('keydown', onKeyDown);
+
       return () => document.removeEventListener('keydown', onKeyDown);
     } else {
       indexRef.current = -1;
@@ -101,6 +105,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
     <Popover
       isVisible={isVisible}
       placement={placement}
+      onClose={() => setIsVisible(false)}
       triggerRenderer={() => (
         <button
           data-testid="action-menu-trigger-button"

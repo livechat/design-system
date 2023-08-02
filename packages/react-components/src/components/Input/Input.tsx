@@ -1,14 +1,15 @@
 import * as React from 'react';
-import cx from 'clsx';
 
 import {
   VisibilityOn as VisibilityOnIcon,
   VisibilityOff as VisibilityOffIcon,
 } from '@livechat/design-system-icons/react/tabler';
+import cx from 'clsx';
 
-import styles from './Input.module.scss';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
+
+import styles from './Input.module.scss';
 
 interface InputIcon {
   source: React.ReactElement;

@@ -1,13 +1,15 @@
 import * as React from 'react';
+
 import { ComponentMeta, Story } from '@storybook/react';
 
-import { IPickerProps, Picker } from './Picker';
-import { defaultExtendedOptions, defaultPickerOptions } from './constants';
-
-import './Picker.stories.css';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import noop from '../../utils/noop';
+
+import { defaultExtendedOptions, defaultPickerOptions } from './constants';
+import { IPickerProps, Picker } from './Picker';
 import { IPickerListItem } from './types';
+
+import './Picker.stories.css';
 
 export default {
   title: 'Components/Picker',

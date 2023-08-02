@@ -1,9 +1,11 @@
 import * as React from 'react';
+
 import { ComponentMeta } from '@storybook/react';
 
-import { Alert, AlertProps } from './Alert';
-import noop from '../../utils/noop';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import noop from '../../utils/noop';
+
+import { Alert, AlertProps } from './Alert';
 
 export default {
   title: 'Components/Alert',
@@ -27,14 +29,14 @@ export default {
   },
 } as ComponentMeta<typeof Alert>;
 
-export const Default = (args: AlertProps): JSX.Element => (
+export const Default = (args: AlertProps): React.ReactElement => (
   <Alert {...args}>
     A description with a <b>maximum of 100 characters</b>. That usually means
     only one or two sentences.
   </Alert>
 );
 
-export const Kinds = (): JSX.Element => (
+export const Kinds = (): React.ReactElement => (
   <div>
     <StoryDescriptor title="Info">
       <Alert>
@@ -63,7 +65,7 @@ export const Kinds = (): JSX.Element => (
   </div>
 );
 
-export const WithCTA = (): JSX.Element => (
+export const WithCTA = (): React.ReactElement => (
   <div>
     <StoryDescriptor title="Space to 400px">
       <div style={{ width: 400 }}>

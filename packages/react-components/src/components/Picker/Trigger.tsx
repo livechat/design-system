@@ -1,14 +1,18 @@
 import * as React from 'react';
-import cx from 'clsx';
+
 import {
   ChevronDown,
   ChevronUp,
   Close,
 } from '@livechat/design-system-icons/react/tabler';
-import { Icon } from '../Icon';
-import styles from './Trigger.module.scss';
-import { KeyCodes } from '../../utils/keyCodes';
+import cx from 'clsx';
+
 import { Size } from 'utils';
+
+import { KeyCodes } from '../../utils/keyCodes';
+import { Icon } from '../Icon';
+
+import styles from './Trigger.module.scss';
 
 const baseClass = 'picker-trigger';
 
@@ -124,7 +128,7 @@ export const Trigger: React.FC<React.PropsWithChildren<ITriggerProps>> = ({
         <Icon
           className={styles[`${baseClass}__chevron-icon`]}
           source={!isOpen ? ChevronDown : ChevronUp}
-          size="large"
+          size="medium"
           disabled={isDisabled}
         />
       </div>

@@ -1,7 +1,10 @@
 import * as React from 'react';
+
 import { render, fireEvent, vi } from 'test-utils';
-import { Switch } from './Switch';
+
 import loaderStyles from '../Loader/Loader.module.scss';
+
+import { Switch } from './Switch';
 
 describe('Switch', () => {
   it('should call onChange without changing state when custom handler is passed', () => {

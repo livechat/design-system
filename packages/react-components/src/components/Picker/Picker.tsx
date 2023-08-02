@@ -1,20 +1,21 @@
 import * as React from 'react';
+
 import cx from 'clsx';
 
-import { Trigger } from './Trigger';
-import { PickerList } from './PickerList';
-import { IconSize } from '../Icon';
-import { KeyCodes } from '../../utils/keyCodes';
-
-import styles from './Picker.module.scss';
-import { TriggerBody } from './TriggerBody';
-import { SELECT_ALL_OPTION_KEY } from './constants';
 import { Size } from 'utils';
+
+import { KeyCodes } from '../../utils/keyCodes';
+import { IconSize } from '../Icon';
+
+import { PickerType, SELECT_ALL_OPTION_KEY } from './constants';
+import { PickerList } from './PickerList';
+import { Trigger } from './Trigger';
+import { TriggerBody } from './TriggerBody';
 import { IPickerListItem } from './types';
 
-const baseClass = 'picker';
+import styles from './Picker.module.scss';
 
-export type PickerType = 'single' | 'multi';
+const baseClass = 'picker';
 
 export interface IPickerProps {
   /**
@@ -164,6 +165,7 @@ export const Picker: React.FC<IPickerProps> = ({
   const handleSelect = (item: IPickerListItem) => {
     if (type === 'single') {
       setIsListOpen(false);
+
       return onSelect([item]);
     }
 
@@ -233,6 +235,7 @@ export const Picker: React.FC<IPickerProps> = ({
 
       const search = searchPhrase.toLowerCase();
       const itemName = item.name.toLowerCase();
+
       return itemName.includes(search);
     });
   }, [searchPhrase, options]);

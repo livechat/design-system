@@ -2,8 +2,9 @@ import * as React from 'react';
 
 import { Input } from '../../components/Input';
 
-import styles from './SpacingExamples.module.scss';
 import { StoryDescriptor } from './StoryDescriptor';
+
+import styles from './SpacingExamples.module.scss';
 
 const baseClass = 'input';
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import cx from 'clsx';
+
 import {
   Close as CloseIcon,
   Warning as WarningIcon,
@@ -7,11 +7,12 @@ import {
   Block as BlockIcon,
   CheckCircle as CheckIcon,
 } from '@livechat/design-system-icons/react/tabler';
+import cx from 'clsx';
 import debounce from 'lodash.debounce';
 
-import { Text } from '../Typography';
-import { Icon, IconSource, IconKind } from '../Icon';
 import { Button } from '../Button';
+import { Icon, IconSource, IconKind } from '../Icon';
+import { Text } from '../Typography';
 
 import styles from './Alert.module.scss';
 

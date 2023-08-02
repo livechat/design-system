@@ -1,12 +1,15 @@
 import * as React from 'react';
+
+import { ClientRectObject } from '@floating-ui/core';
+import cx from 'clsx';
+
 import { ModalPortalProps } from '../../../Modal';
 import { Tooltip } from '../../Tooltip';
-import SpotlightOverlay from './SpotlightOverlay';
-import cx from 'clsx';
 import styles from '../../Tooltip.module.scss';
-import { ClientRectObject } from '@floating-ui/core';
-import VirtualReference from './virtualElementReference';
 import { ITooltipProps } from '../../types';
+
+import SpotlightOverlay from './SpotlightOverlay';
+import VirtualReference from './virtualElementReference';
 
 const spotlightPadding = 8;
 const baseClass = 'guide-tooltip';

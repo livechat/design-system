@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { Icon } from '../../../Icon';
-import cx from 'clsx';
+
 import { Close } from '@livechat/design-system-icons/react/material';
+import cx from 'clsx';
+
 import { Button } from '../../../Button';
+import { Icon } from '../../../Icon';
 import { getIconType } from '../../helpers';
 import styles from '../../Tooltip.module.scss';
 

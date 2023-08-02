@@ -1,17 +1,19 @@
 import * as React from 'react';
-import cx from 'clsx';
+
 import {
   ChevronUp,
   ChevronDown,
 } from '@livechat/design-system-icons/react/tabler';
-import { Icon } from '../Icon';
+import cx from 'clsx';
+
 import { KeyCodes } from '../../utils/keyCodes';
+import { Icon } from '../Icon';
 
 import styles from './NumericInput.module.scss';
 
 const baseClass = 'numeric-input';
 
-interface Props {
+export type NumericInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   className?: string;
   error?: string;
   value: string;
@@ -20,10 +22,7 @@ interface Props {
   disabled?: boolean;
   noControls?: boolean;
   onChange: (value: string) => void;
-}
-
-export type NumericInputProps = React.InputHTMLAttributes<HTMLInputElement> &
-  Props;
+};
 
 export const NumericInput: React.FC<NumericInputProps> = ({
   className,
@@ -103,11 +102,13 @@ export const NumericInput: React.FC<NumericInputProps> = ({
 
   const handleIncrementClick = () => {
     inputRef.current?.focus();
+
     return updateValue(1);
   };
 
   const handleDecrementClick = () => {
     inputRef.current?.focus();
+
     return updateValue(-1);
   };
 

@@ -37,7 +37,6 @@ export * from './components/Switch';
 export * from './components/Tab';
 export * from './components/Tag';
 export * from './components/TagInput';
-export * from './components/FormField';
 export * from './components/Toast';
 export * from './components/Tooltip';
 export * from './components/Typography';

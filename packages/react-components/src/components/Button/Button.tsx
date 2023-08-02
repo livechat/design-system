@@ -1,8 +1,12 @@
 import * as React from 'react';
+
 import cx from 'clsx';
-import { Loader } from '../Loader';
-import styles from './Button.module.scss';
+
 import { Size } from 'utils';
+
+import { Loader } from '../Loader';
+
+import styles from './Button.module.scss';
 
 export type ButtonKind =
   | 'basic'

@@ -4,6 +4,10 @@
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": false,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "skipLibCheck": false,
     "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
@@ -20,6 +24,9 @@
       "test-utils": ["test/utils.ts"]
     }
   },
-  "include": ["src", "./node_modules/@livechat/design-system-icons/index.d.ts"],
+  "include": [
+    "src",
+    "../../node_modules/@livechat/design-system-icons/index.d.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

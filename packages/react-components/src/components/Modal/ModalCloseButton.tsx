@@ -1,6 +1,8 @@
 import * as React from 'react';
-import cx from 'clsx';
+
 import { Close } from '@livechat/design-system-icons/react/tabler';
+import cx from 'clsx';
+
 import { Icon } from '../Icon';
 
 import styles from './Modal.module.scss';

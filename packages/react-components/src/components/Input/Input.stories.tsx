@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { ComponentMeta, Story } from '@storybook/react';
+
 import { AddCircle as AddCircleIcon } from '@livechat/design-system-icons/react/tabler';
+import { ComponentMeta, Story } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Icon } from '../Icon';
+
 import { Input, InputProps } from './Input';
 
 const placeholderText = 'Placeholder text';
@@ -32,7 +34,7 @@ Default.args = {
   placeholder: 'Placeholder text',
 };
 
-export const Sizes = (): JSX.Element => (
+export const Sizes = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Xsmall">
       <Input inputSize="xsmall" placeholder={placeholderText} />
@@ -49,7 +51,7 @@ export const Sizes = (): JSX.Element => (
   </>
 );
 
-export const States = (): JSX.Element => (
+export const States = (): React.ReactElement => (
   <>
     <StoryDescriptor title="With error">
       <Input error={true} placeholder={placeholderText} />
@@ -60,7 +62,7 @@ export const States = (): JSX.Element => (
   </>
 );
 
-export const Types = (): JSX.Element => (
+export const Types = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Text">
       <Input type="text" placeholder={placeholderText} />
@@ -71,7 +73,7 @@ export const Types = (): JSX.Element => (
   </>
 );
 
-export const WithIcons = (): JSX.Element => (
+export const WithIcons = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Left icon">
       <Input

@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import cx from 'clsx';
+
 import { KeyCodes } from '../../utils/keyCodes';
 
 import styles from './Modal.module.scss';
@@ -52,6 +54,7 @@ export const ModalBase: React.FC<React.PropsWithChildren<ModalBaseProps>> = ({
     };
 
     document.addEventListener('keyup', onKeyUp, true);
+
     return () => document.removeEventListener('keyup', onKeyUp, true);
   }, [closeOnEscPress]);
 

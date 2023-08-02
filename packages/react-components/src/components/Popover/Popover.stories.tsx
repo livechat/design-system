@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { ComponentMeta } from '@storybook/react';
-import { Button } from '../Button';
-import { Popover as PopoverComponent, IPopoverProps } from './Popover';
 
 import { ChevronDown } from '@livechat/design-system-icons/react/tabler';
+import { ComponentMeta } from '@storybook/react';
 
+import { Button } from '../Button';
 import { Icon } from '../Icon';
+
+import { Popover as PopoverComponent, IPopoverProps } from './Popover';
 
 import './Popover.stories.css';
 

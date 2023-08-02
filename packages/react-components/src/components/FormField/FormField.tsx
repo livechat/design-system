@@ -1,8 +1,10 @@
 import * as React from 'react';
+
 import cx from 'clsx';
-import { Text } from '../Typography';
-import { FieldError } from '../FieldError';
+
 import { FieldDescription } from '../FieldDescription';
+import { FieldError } from '../FieldError';
+import { Text } from '../Typography';
 
 import styles from './FormField.module.scss';
 

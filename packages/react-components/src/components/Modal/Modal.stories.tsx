@@ -1,6 +1,13 @@
 import * as React from 'react';
+
+import { GreetingQuickReply } from '@livechat/design-system-icons/react/material';
 import { ComponentMeta, Story } from '@storybook/react';
-import { GreetingQuickReply } from '@livechat/design-system-icons/react/tabler';
+
+import {
+  ModalContent,
+  ModalFullSpaceContent,
+  ModalFooter,
+} from './StoriesComponents';
 
 import {
   Modal as ModalComponent,
@@ -10,11 +17,6 @@ import {
   ModalHeader,
   ModalBase,
 } from './index';
-import {
-  ModalContent,
-  ModalFullSpaceContent,
-  ModalFooter,
-} from './StoriesComponents';
 
 export default {
   title: 'Components/Modal',

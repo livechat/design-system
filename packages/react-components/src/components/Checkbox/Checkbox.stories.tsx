@@ -1,8 +1,10 @@
 import * as React from 'react';
+
 import { ComponentMeta } from '@storybook/react';
 
-import { Checkbox as CheckboxComponent, CheckboxProps } from './Checkbox';
 import noop from '../../utils/noop';
+
+import { Checkbox as CheckboxComponent, CheckboxProps } from './Checkbox';
 
 export default {
   title: 'Forms/Checkbox',

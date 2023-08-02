@@ -1,5 +1,7 @@
 import * as React from 'react';
+
 import cx from 'clsx';
+
 import styles from '../../Tooltip.module.scss';
 
 const baseClass = 'guide-tooltip';
@@ -14,7 +16,7 @@ const SpotlightOverlay = ({
   isVisible: boolean;
   slide: boolean;
   disablePointerEvents: boolean;
-}): JSX.Element | null => {
+}): React.ReactElement | null => {
   if (!gap) return null;
   const overlayLeft = {
     top: `${gap.top}px`,

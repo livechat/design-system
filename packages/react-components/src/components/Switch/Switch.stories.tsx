@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { ComponentMeta, Story } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
@@ -23,7 +24,7 @@ export const Default: Story<SwitchProps> = (args: SwitchProps) => (
   <Switch {...args} onChange={undefined} />
 );
 
-export const States: Story = (): JSX.Element => (
+export const States: Story = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Regular">
       <Switch on={true} state="regular" />
@@ -41,7 +42,7 @@ export const States: Story = (): JSX.Element => (
 );
 States.parameters = DISABLED_CONTROLS;
 
-export const Availability: Story = (): JSX.Element => (
+export const Availability: Story = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Enabled">
       <Switch on={true} />
@@ -55,7 +56,7 @@ export const Availability: Story = (): JSX.Element => (
 );
 Availability.parameters = DISABLED_CONTROLS;
 
-export const Sizes: Story = (): JSX.Element => (
+export const Sizes: Story = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Compact">
       <Switch size="compact" />

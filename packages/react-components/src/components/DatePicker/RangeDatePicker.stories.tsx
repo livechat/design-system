@@ -1,11 +1,12 @@
 import * as React from 'react';
+
 import { ComponentMeta, Story } from '@storybook/react';
 import { subDays } from 'date-fns';
 
-import { RangeDatePicker as RangeDatePickerComponent } from './RangeDatePicker';
-import { IRangeDatePickerProps } from './types';
 import { DatePicker } from './DatePicker';
 import { DatePickerRangeCalendarsWrapper } from './DatePickerRangeCalendarsWrapper';
+import { RangeDatePicker as RangeDatePickerComponent } from './RangeDatePicker';
+import { IRangeDatePickerProps } from './types';
 
 const options = [
   { id: 'today', label: 'Today', value: { from: new Date(), to: new Date() } },

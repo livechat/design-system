@@ -1,7 +1,11 @@
 import * as React from 'react';
+
 import { render, fireEvent, vi } from 'test-utils';
+
 import noop from '../../utils/noop';
+
 import { ITriggerProps, Trigger } from './Trigger';
+
 import styles from './Trigger.module.scss';
 
 const baseClass = 'picker-trigger';

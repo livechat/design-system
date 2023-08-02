@@ -1,8 +1,9 @@
-import cx from 'clsx';
 import * as React from 'react';
 
-import { Text } from '../Typography';
+import cx from 'clsx';
+
 import { FieldDescription } from '../FieldDescription';
+import { Text } from '../Typography';
 
 import styles from './Checkbox.module.scss';
 
