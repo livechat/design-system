@@ -103,7 +103,7 @@ export const FloatingComponent: React.FC<IProps> = ({
             handleCloseAction,
             theme,
             ...child.props,
-          });
+          } as IProps);
         }
 
         return null;

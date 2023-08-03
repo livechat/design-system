@@ -16,7 +16,6 @@ export type IconKind =
   | 'error'
   | 'negative'
   | 'positive'
-  | 'warning'
   | 'action-primary'
   | 'action-negative'
   | 'action-positive'

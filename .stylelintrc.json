@@ -8,6 +8,7 @@
     "max-nesting-depth": null,
     "selector-class-pattern": null,
     "no-descending-specificity": null,
-    "order/properties-alphabetical-order": null
+    "order/properties-alphabetical-order": null,
+    "import-notation": "string"
   }
 }
