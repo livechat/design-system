@@ -1,50 +1,50 @@
 @mixin heading-xl {
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 600;
-  letter-spacing: 0;
   line-height: 40px;
+  letter-spacing: 0;
+  font-size: 32px;
+  font-weight: 600;
+  font-style: normal;
 }
 
 @mixin heading-lg {
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 600;
-  letter-spacing: 0;
   line-height: 32px;
+  letter-spacing: 0;
+  font-size: 24px;
+  font-weight: 600;
+  font-style: normal;
 }
 
 @mixin heading-md {
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 600;
-  letter-spacing: 0;
   line-height: 28px;
+  letter-spacing: 0;
+  font-size: 20px;
+  font-weight: 600;
+  font-style: normal;
 }
 
 @mixin heading-sm {
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 600;
-  letter-spacing: 0;
   line-height: 24px;
+  letter-spacing: 0;
+  font-size: 18px;
+  font-weight: 600;
+  font-style: normal;
 }
 
 @mixin heading-xs {
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  letter-spacing: 0;
   line-height: 24px;
+  letter-spacing: 0;
+  font-size: 16px;
+  font-weight: 600;
+  font-style: normal;
 }
 
 @mixin caps {
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0.2px;
-  line-height: 20px;
   text-transform: uppercase;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  font-size: 12px;
+  font-weight: 400;
+  font-style: normal;
 
   &--bold {
     font-weight: 600;
@@ -52,11 +52,11 @@
 }
 
 @mixin paragraph-md {
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0;
   line-height: 22px;
+  letter-spacing: 0;
+  font-size: 15px;
+  font-weight: 400;
+  font-style: normal;
 
   &--bold {
     font-weight: 600;
@@ -72,11 +72,11 @@
 }
 
 @mixin paragraph-sm {
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0;
   line-height: 20px;
+  letter-spacing: 0;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
 
   &--bold {
     font-weight: 600;
@@ -84,11 +84,11 @@
 }
 
 @mixin paragraph-xs {
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  letter-spacing: 0.2px;
   line-height: 16px;
+  letter-spacing: 0.2px;
+  font-size: 12px;
+  font-weight: 400;
+  font-style: normal;
 
   &--bold {
     font-weight: 600;

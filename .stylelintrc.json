@@ -2,7 +2,6 @@
   "extends": [
     "stylelint-config-standard",
     "stylelint-config-sass-guidelines",
-    "stylelint-config-prettier",
     "stylelint-config-concentric-order"
   ],
   "rules": {

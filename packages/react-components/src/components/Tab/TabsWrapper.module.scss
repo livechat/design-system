@@ -1,11 +1,11 @@
 .tabs {
-  border-bottom: 1px solid var(--border-subtle);
   position: relative;
+  border-bottom: 1px solid var(--border-subtle);
 
   &__list {
     display: flex;
+    position: relative;
     flex-direction: row;
     margin: 0 -8px;
-    position: relative;
   }
 }
