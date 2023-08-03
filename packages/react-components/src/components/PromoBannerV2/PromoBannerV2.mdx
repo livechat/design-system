@@ -1,0 +1,50 @@
+import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+import { Figma } from '@storybook/addon-designs/blocks';
+import * as Stories from './PromoBannerV2.stories';
+
+<Meta of={Stories} />
+
+<Title>PromoBannerV2</Title>
+
+[Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+## Intro <a id="Intro" />
+
+<Canvas of={Stories.Default} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+<PromoBannerV2
+  primaryButton={
+    label: 'Main CTA',
+    handleClick: () => {}
+  }
+  secondaryButton={
+    label: 'Secondary CTA',
+    handleClick: () => {}
+  }
+  additionalContent={<img src={imgSrc} />}
+  onClose={() => {}}
+>
+  <div style={{ marginBottom: 8 }}>
+    <Heading as="div" size="sm">
+      Title goes here, up 2 lines of text
+    </Heading>
+  </div>
+  A description with a <b>maximum of 100 characters</b>. That usually means
+  only one or two sentences.
+</PromoBannerV2>
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={Stories.Default} />
+
+## Content Spec <a id="ContentSpec" />
+
+<Figma
+  showLink
+  height="100%"
+  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=646-40122&mode=dev"
+/>
