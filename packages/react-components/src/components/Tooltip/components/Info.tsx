@@ -39,7 +39,14 @@ export const Info: React.FC<{
           {header}
         </div>
       )}
-      <div className={styles[`${baseClass}-text`]}>{text}</div>
+      <div
+        className={cx(
+          styles[`${baseClass}-text`],
+          styles[`${baseClass}-text--info`]
+        )}
+      >
+        {text}
+      </div>
     </div>
   );
 };

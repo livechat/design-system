@@ -127,6 +127,10 @@ $base-class: 'tooltip';
     line-height: 22px;
     font-size: 15px;
     font-weight: 400;
+
+    &--info {
+      padding-right: var(--spacing-5);
+    }
   }
 
   &-close {
