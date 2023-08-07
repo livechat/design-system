@@ -7,6 +7,7 @@ import { Heading } from '../Typography';
 
 import promoImage from './assets/promo-img.png';
 import { IPromoBannerV2Props, PromoBannerV2 } from './PromoBannerV2';
+import './PromoBannerV2.stories.css';
 
 export default {
   title: 'Components/PromoBannerV2',
@@ -51,5 +52,9 @@ Default.args = {
     label: 'Secondary CTA',
     handleClick: noop,
   },
-  additionalContent: <img src={promoImage} style={{ alignSelf: 'end' }} />,
+  additionalContent: (
+    <div className="doc-image">
+      <img src={promoImage} />
+    </div>
+  ),
 };

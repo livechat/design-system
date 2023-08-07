@@ -4,7 +4,6 @@ import { Close } from '@livechat/design-system-icons/react/tabler';
 import cx from 'clsx';
 import debounce from 'lodash.debounce';
 
-
 import { Button, ButtonKind } from '../Button';
 import { Icon } from '../Icon';
 import { Text } from '../Typography';
@@ -66,6 +65,7 @@ export const PromoBannerV2: React.FC<
     styles[baseClass],
     {
       [styles[`${baseClass}--small`]]: containerSize === 'small',
+      'promo-banner-size-small': containerSize === 'small',
     },
     className
   );

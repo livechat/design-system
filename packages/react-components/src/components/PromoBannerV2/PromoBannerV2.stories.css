@@ -1,0 +1,10 @@
+.doc-image {
+  display: flex;
+  flex: 1;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.promo-banner-size-small .doc-image {
+  justify-content: center;
+}
