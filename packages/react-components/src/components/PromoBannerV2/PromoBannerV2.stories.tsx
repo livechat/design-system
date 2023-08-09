@@ -1,12 +1,11 @@
 import * as React from 'react';
 
-import { StoryFn } from '@storybook/react';
-
 import noop from '../../utils/noop';
 import { Heading } from '../Typography';
 
+import imageDefault from './assets/image2.png';
 import promoImage from './assets/promo-img.png';
-import { IPromoBannerV2Props, PromoBannerV2 } from './PromoBannerV2';
+import { PromoBannerV2 } from './PromoBannerV2';
 import './PromoBannerV2.stories.css';
 
 export default {
@@ -28,22 +27,7 @@ export default {
   },
 };
 
-const StoryTemplate: StoryFn<IPromoBannerV2Props> = (
-  args: IPromoBannerV2Props
-) => (
-  <PromoBannerV2 {...args}>
-    <div style={{ marginBottom: 8 }}>
-      <Heading as="div" size="sm">
-        Title goes here, up 2 lines of text
-      </Heading>
-    </div>
-    A description with a <b>maximum of 100 characters</b>. That usually means
-    only one or two sentences.
-  </PromoBannerV2>
-);
-
-export const Default = StoryTemplate.bind({});
-Default.args = {
+const defaultProps = {
   primaryButton: {
     label: 'Main CTA',
     handleClick: noop,
@@ -52,9 +36,69 @@ Default.args = {
     label: 'Secondary CTA',
     handleClick: noop,
   },
-  additionalContent: (
-    <div className="doc-image">
-      <img src={promoImage} />
-    </div>
-  ),
+  onClose: noop,
 };
+
+export const Default = (): React.ReactElement => (
+  <PromoBannerV2
+    {...defaultProps}
+    additionalContent={<img src={imageDefault} />}
+  >
+    <div style={{ marginBottom: 8 }}>
+      <Heading as="div" size="sm" className="promo-header">
+        Title text up 2 lines
+      </Heading>
+    </div>
+    Description text up to 4 lines
+  </PromoBannerV2>
+);
+
+export const WithStyledAdditionalContent = (): React.ReactElement => (
+  <div>
+    <div>
+      <PromoBannerV2
+        {...defaultProps}
+        additionalContent={
+          <div className="image-position">
+            <img src={promoImage} />
+          </div>
+        }
+      >
+        <div style={{ marginBottom: 8 }}>
+          <Heading as="div" size="sm" className="promo-header">
+            Title text up 2 lines
+          </Heading>
+        </div>
+        Description text up to 4 lines
+      </PromoBannerV2>
+    </div>
+    <div style={{ width: 450, marginTop: 30 }}>
+      <PromoBannerV2
+        {...defaultProps}
+        additionalContent={
+          <div className="image-position">
+            <img src={promoImage} />
+          </div>
+        }
+      >
+        <div style={{ marginBottom: 8 }}>
+          <Heading as="div" size="sm" className="promo-header">
+            Title text up 2 lines
+          </Heading>
+        </div>
+        Description text up to 4 lines
+      </PromoBannerV2>
+    </div>
+  </div>
+);
+
+export const WithStyledMainContent = (): React.ReactElement => (
+  <div style={{ maxWidth: 1100 }}>
+    <PromoBannerV2 className="custom-background">
+      <div className="custom-text-position">
+        <span className="head">Feed Chip</span>
+        <span className="text">with knowledge...</span>
+      </div>
+    </PromoBannerV2>
+  </div>
+);
