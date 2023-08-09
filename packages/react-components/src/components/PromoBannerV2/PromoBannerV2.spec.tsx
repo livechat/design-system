@@ -13,11 +13,11 @@ const renderComponent = (props: IPromoBannerV2Props) => {
 
 describe('<PromoBanner> component', () => {
   it('should allow for custom class', () => {
-    const { container } = renderComponent({
+    const { getByRole } = renderComponent({
       className: 'my-css-class',
     });
 
-    expect(container.firstChild).toHaveClass('my-css-class');
+    expect(getByRole('banner')).toHaveClass('my-css-class');
   });
 
   it('should render given content', () => {

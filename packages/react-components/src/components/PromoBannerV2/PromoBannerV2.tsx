@@ -51,13 +51,11 @@ export const PromoBannerV2: React.FC<
   secondaryButton,
   onClose,
 }) => {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-
   const mergedClassNames = cx(styles[baseClass], className);
 
   return (
     <div className={styles[`main-wrapper`]}>
-      <div ref={containerRef} className={mergedClassNames}>
+      <div role="banner" className={mergedClassNames}>
         <div className={styles[`${baseClass}__content`]}>
           {children}
           {(primaryButton || secondaryButton) && (

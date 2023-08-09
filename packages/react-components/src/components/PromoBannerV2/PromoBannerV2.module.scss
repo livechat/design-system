@@ -10,6 +10,7 @@ $base-class: 'promo-banner-v2';
   flex-direction: row;
   border-radius: var(--radius-3);
   background-color: var(--surface-accent-emphasis-low-info);
+  color: var(--content-basic-primary);
 
   &__content {
     display: flex;
