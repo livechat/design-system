@@ -1,0 +1,1 @@
+export const SMALL_CONTAINER_WIDTH_TRESHOLD = 559;
