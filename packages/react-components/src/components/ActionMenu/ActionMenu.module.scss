@@ -21,6 +21,7 @@ $base-class: 'action-menu';
     border-radius: var(--radius-3);
     background-color: var(--picker-list-background);
     padding: 0;
+    overflow: hidden;
     list-style: none;
 
     &__item {

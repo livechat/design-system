@@ -35,6 +35,7 @@ $base-class: 'picker-list';
   &__item {
     box-sizing: border-box;
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: space-between;
     border: 1px solid transparent;
@@ -71,7 +72,7 @@ $base-class: 'picker-list';
 
       &::after {
         position: absolute;
-        left: 0;
+        left: -9px;
         border-top-right-radius: var(--radius-3);
         border-bottom-right-radius: var(--radius-3);
         background: var(--action-primary-default);

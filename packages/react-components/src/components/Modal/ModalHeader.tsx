@@ -5,7 +5,7 @@ import { cx } from '@emotion/css';
 import { Icon, IconProps } from '../Icon';
 import { Text } from '../Typography';
 
-import styles from './Modal.module.scss';
+import styles from './ModalHeader.module.scss';
 
 const baseClass = 'modal-header';
 

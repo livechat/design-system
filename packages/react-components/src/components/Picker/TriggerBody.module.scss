@@ -50,7 +50,7 @@ $base-class: 'picker-trigger-body';
   }
 
   &__tag {
-    border-radius: var(--spacings-border-radius-xs);
+    border-radius: var(--radius-1);
     max-width: 100%;
 
     &--compact {
