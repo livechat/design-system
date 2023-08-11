@@ -15,7 +15,7 @@ export type ButtonKind =
   | 'destructive'
   | 'text'
   | 'link'
-  | 'plain-light'
+  | 'link-light'
   | 'plain'
   | 'float'
   | 'dotted'
@@ -80,7 +80,7 @@ export const Button = React.forwardRef<
   ) => {
     const isDisabled = loading || disabled;
     const isIconOnly = !children && icon;
-    const isTextButton = ['text', 'plain', 'plain-light'].includes(kind);
+    const isTextButton = ['text', 'link', 'link-light'].includes(kind);
 
     const Component = href ? 'a' : 'button';
 

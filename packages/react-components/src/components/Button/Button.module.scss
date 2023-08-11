@@ -152,8 +152,10 @@ $base-class: 'btn';
   }
 
   &--text {
-    border-color: transparent;
+    border: 0;
     background-color: transparent;
+    padding: 0;
+    height: auto;
     text-decoration: underline;
     color: var(--action-high-contrast-default);
 
@@ -171,23 +173,32 @@ $base-class: 'btn';
   }
 
   &--link,
-  &--plain-light {
-    border-color: transparent;
-    background-color: transparent;
+  &--link-light {
+    border: 0;
+    background: none;
+    padding: 0;
+    min-width: auto;
+    height: auto;
     color: var(--action-primary-default);
 
     &:hover {
       color: var(--action-primary-hover);
     }
 
-    &:active {
+    &:active,
+    &:focus {
       color: var(--action-primary-active);
     }
 
     &:hover,
     &:active,
     &:focus {
+      box-shadow: none;
       text-decoration: underline;
+    }
+
+    &:disabled {
+      text-decoration: none;
     }
 
     &[aria-disabled='true'] {
@@ -201,30 +212,12 @@ $base-class: 'btn';
     }
   }
 
-  &--plain-light {
+  &--link-light {
     font-weight: 400;
   }
 
   &--link {
     font-weight: 600;
-  }
-
-  &--link,
-  &--plain-light {
-    border: 0;
-    padding: 0;
-    min-width: auto;
-    height: auto;
-
-    &:hover,
-    &:focus {
-      box-shadow: none;
-      text-decoration: underline;
-    }
-
-    &:disabled {
-      text-decoration: none;
-    }
   }
 
   &--plain {
@@ -241,6 +234,7 @@ $base-class: 'btn';
     &:active,
     &:focus {
       border-color: transparent;
+      box-shadow: var(--shadow-focus), 0 0 0 2px #fff;
       background-color: var(--surface-primary-active);
       color: var(--content-basic-primary);
     }
@@ -380,13 +374,12 @@ $base-class: 'btn';
 
     &--bg {
       &:hover {
-        background-color: var(--btn-plain-icon-background-hover);
+        background-color: var(--surface-primary-hover);
       }
 
       &:focus,
       &:active {
-        background-color: var(--btn-plain-icon-background-active);
-        color: var(--content-invert-primary);
+        background-color: var(--surface-primary-active);
       }
 
       &.#{$base-class} {
@@ -396,6 +389,52 @@ $base-class: 'btn';
           &:hover {
             background-color: transparent;
           }
+        }
+      }
+
+      &.#{$base-class}--text {
+        min-width: 36px;
+        height: 36px;
+
+        &:focus,
+        &:active {
+          background-color: var(--surface-primary-active);
+        }
+
+        &.#{$base-class}--compact {
+          min-width: 32px;
+          height: 32px;
+        }
+
+        &.#{$base-class}--large {
+          min-width: 44px;
+          height: 44px;
+        }
+      }
+
+      &.#{$base-class}--link {
+        min-width: 36px;
+        height: 36px;
+
+        &:hover {
+          background-color: var(--surface-accent-emphasis-min-info);
+          color: var(--action-primary-hover);
+        }
+
+        &:focus,
+        &:active {
+          background-color: var(--action-primary-default);
+          color: var(--content-invert-primary);
+        }
+
+        &.#{$base-class}--compact {
+          min-width: 32px;
+          height: 32px;
+        }
+
+        &.#{$base-class}--large {
+          min-width: 44px;
+          height: 44px;
         }
       }
     }

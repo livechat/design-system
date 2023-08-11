@@ -258,7 +258,7 @@ export const KindsAndStates = (): React.ReactElement => (
       />
     </StoryDescriptor>
     <StoryDescriptor title="Link">
-      <Button kind="link">link</Button>
+      <Button kind="link">Link</Button>
       <Button disabled kind="link">
         Disabled
       </Button>
@@ -268,7 +268,7 @@ export const KindsAndStates = (): React.ReactElement => (
     </StoryDescriptor>
     <StoryDescriptor title="Link with icon">
       <Button kind="link" icon={<Icon source={MaterialIcons.AddCircle} />}>
-        link
+        Link
       </Button>
       <Button
         disabled
@@ -424,22 +424,50 @@ export const KindsAndStates = (): React.ReactElement => (
     </StoryDescriptor>
     <StoryDescriptor title="High Contrast">
       <Button kind="high-contrast">High Contrast</Button>
-      <Button kind="high-contrast" disabled>Disabled</Button>
-      <Button kind="high-contrast" loading>Loading</Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="High Contrast with icon">
-      <Button kind="high-contrast" icon={<Icon source={MaterialIcons.AddCircle} />}>High Contrast</Button>
-      <Button kind="high-contrast" icon={<Icon source={MaterialIcons.AddCircle} />} disabled>
+      <Button kind="high-contrast" disabled>
         Disabled
       </Button>
-      <Button kind="high-contrast" icon={<Icon source={MaterialIcons.AddCircle} />} loading>
+      <Button kind="high-contrast" loading>
+        Loading
+      </Button>
+    </StoryDescriptor>
+    <StoryDescriptor title="High Contrast with icon">
+      <Button
+        kind="high-contrast"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        High Contrast
+      </Button>
+      <Button
+        kind="high-contrast"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+        disabled
+      >
+        Disabled
+      </Button>
+      <Button
+        kind="high-contrast"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+        loading
+      >
         Loading
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="High Contrast with icon only">
-      <Button kind="high-contrast" icon={<Icon source={MaterialIcons.AddCircle} />} />
-      <Button kind="high-contrast" icon={<Icon source={MaterialIcons.AddCircle} />} disabled />
-      <Button kind="high-contrast" icon={<Icon source={MaterialIcons.AddCircle} />} loading />
+      <Button
+        kind="high-contrast"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+      <Button
+        kind="high-contrast"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+        disabled
+      />
+      <Button
+        kind="high-contrast"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+        loading
+      />
     </StoryDescriptor>
   </div>
 );
