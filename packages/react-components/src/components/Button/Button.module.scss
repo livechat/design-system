@@ -96,9 +96,9 @@ $base-class: 'btn';
 
     &:active,
     &:focus {
-      border-color: var(--action-primary-default);
-      background-color: var(--btn-secondary-background-active);
-      color: var(--action-primary-default);
+      border-color: var(--border-basic-contrast);
+      background-color: var(--surface-primary-active);
+      color: var(--content-basic-primary);
     }
 
     &[aria-disabled='true'] {
@@ -151,8 +151,26 @@ $base-class: 'btn';
     }
   }
 
-  &--text,
-  &--plain,
+  &--text {
+    border-color: transparent;
+    background-color: transparent;
+    text-decoration: underline;
+    color: var(--action-high-contrast-default);
+
+    &:hover {
+      color: var(--action-high-contrast-hover);
+    }
+
+    &:active {
+      color: var(--action-high-contrast-active);
+    }
+
+    &[aria-disabled='true'] {
+      color: var(--action-high-contrast-disabled);
+    }
+  }
+
+  &--link,
   &--plain-light {
     border-color: transparent;
     background-color: transparent;
@@ -187,11 +205,11 @@ $base-class: 'btn';
     font-weight: 400;
   }
 
-  &--plain {
+  &--link {
     font-weight: 600;
   }
 
-  &--plain,
+  &--link,
   &--plain-light {
     border: 0;
     padding: 0;
@@ -209,7 +227,7 @@ $base-class: 'btn';
     }
   }
 
-  &--subtle {
+  &--plain {
     border-color: transparent;
     background-color: transparent;
     color: var(--content-basic-primary);
@@ -235,7 +253,7 @@ $base-class: 'btn';
   }
 
   &--float {
-    border-radius: 100px;
+    border-radius: var(--radius-3);
     border-color: transparent;
     box-shadow: var(--shadow-float);
     background-color: var(--surface-primary-default);
@@ -280,6 +298,25 @@ $base-class: 'btn';
       border-color: var(--border-basic-disabled);
       background-color: var(--btn-basic-background-enabled);
       color: var(--action-primary-disabled);
+    }
+  }
+
+  &--high-contrast {
+    border-color: transparent;
+    background-color: var(--action-high-contrast-default);
+    color: var(--content-invert-primary);
+
+    &:hover {
+      background-color: var(--action-high-contrast-hover);
+    }
+
+    &:active,
+    &:focus {
+      background-color: var(--action-high-contrast-active);
+    }
+
+    &[aria-disabled='true'] {
+      background-color: var(--action-high-contrast-disabled);
     }
   }
 

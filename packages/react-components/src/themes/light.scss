@@ -124,6 +124,7 @@ $surface-primary-active: #eeeeef;
   --border-basic-positive: #005321;
   --border-basic-info: #003fa4;
   --border-basic-purple: #6100bd;
+  --border-basic-contrast: #131317;
   --border-invert-default: rgb(255 255 255 / 70%); // deprecated
   --border-invert-primary: rgb(255 255 255 / 70%);
   --border-invert-subtle: rgb(255 255 255 / 30%); // deprecated
@@ -161,6 +162,10 @@ $surface-primary-active: #eeeeef;
   --action-neutral-default: #8d8d95;
   --action-neutral-hover: #68686f;
   --action-neutral-disabled: rgb(141 141 149 / 20%);
+  --action-high-contrast-default: #1B1B20;
+  --action-high-contrast-hover: #131317;
+  --action-high-contrast-active: #131317;
+  --action-high-contrast-disabled: rgb(27 27 32 / 20%);
   --color-bot: #50009c; // deprecated
   --surface-other-bot: #50009c;
   --color-black: #131317;

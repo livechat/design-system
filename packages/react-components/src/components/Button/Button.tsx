@@ -14,11 +14,12 @@ export type ButtonKind =
   | 'secondary'
   | 'destructive'
   | 'text'
-  | 'plain'
+  | 'link'
   | 'plain-light'
-  | 'subtle'
+  | 'plain'
   | 'float'
-  | 'dotted';
+  | 'dotted'
+  | 'high-contrast';
 
 export type ButtonProps = {
   /**
