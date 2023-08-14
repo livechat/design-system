@@ -131,7 +131,7 @@ export const PromoBanner: React.FC<React.PropsWithChildren<PromoBannerProps>> =
           </Button>
         )}
         {linkText && (
-          <Button size="compact" kind="text" onClick={onLinkClick}>
+          <Button size="compact" kind="link" onClick={onLinkClick}>
             {linkText}
           </Button>
         )}

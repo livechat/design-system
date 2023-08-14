@@ -62,7 +62,7 @@ export const PromoBannerV2: React.FC<
             <div className={styles[`${baseClass}__content__cta`]}>
               {primaryButton && (
                 <Button
-                  kind={primaryButton?.kind || 'primary'}
+                  kind={primaryButton?.kind || 'high-contrast'}
                   onClick={primaryButton.handleClick}
                 >
                   {primaryButton.label}
@@ -72,6 +72,7 @@ export const PromoBannerV2: React.FC<
                 <Button
                   kind={secondaryButton?.kind || 'text'}
                   onClick={secondaryButton.handleClick}
+                  className={styles[`${baseClass}__content__cta__secondary`]}
                 >
                   {secondaryButton.label}
                 </Button>
@@ -86,13 +87,13 @@ export const PromoBannerV2: React.FC<
         )}
         {onClose && (
           <div className={styles[`${baseClass}__close`]}>
-            <button
-              type="button"
+            <Button
               className={styles[`${baseClass}__close__btn`]}
               onClick={onClose}
-            >
-              <Icon source={Close} kind="primary" />
-            </button>
+              icon={<Icon source={Close} kind="primary" />}
+              kind="plain"
+              size="compact"
+            />
           </div>
         )}
       </div>

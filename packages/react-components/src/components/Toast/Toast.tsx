@@ -87,23 +87,24 @@ export const Toast: React.FC<React.PropsWithChildren<ToastProps>> = ({
             <Button
               className={styles[`${baseClass}__actions--custom`]}
               kind="plain"
+              size="compact"
               onClick={() => onActionClick(action)}
             >
               {action.label}
             </Button>
           )}
           {removable && (
-            <div
-              className={styles[`${baseClass}__actions`]}
+            <Button
+              className={cx(
+                styles[`${baseClass}__actions__button`],
+                styles[`${baseClass}__actions__button--${kind}`]
+              )}
               aria-label="Close toast"
+              kind="text"
+              size="compact"
               onClick={onClose}
-            >
-              <Icon
-                className={styles[`${baseClass}__actions__close`]}
-                source={Close}
-                size="medium"
-              />
-            </div>
+              icon={<Icon source={Close} size="medium" />}
+            />
           )}
         </div>
       )}

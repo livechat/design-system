@@ -382,7 +382,7 @@ export const KindsAndStates = (): React.ReactElement => (
       />
     </StoryDescriptor>
     <StoryDescriptor title="Dotted">
-      <Button kind="dotted">Float</Button>
+      <Button kind="dotted">Dotted</Button>
       <Button disabled kind="dotted">
         Disabled
       </Button>
@@ -392,7 +392,7 @@ export const KindsAndStates = (): React.ReactElement => (
     </StoryDescriptor>
     <StoryDescriptor title="Dotted with icon">
       <Button kind="dotted" icon={<Icon source={MaterialIcons.AddCircle} />}>
-        Float
+        Dotted
       </Button>
       <Button
         disabled

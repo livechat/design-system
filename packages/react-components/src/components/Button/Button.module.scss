@@ -159,7 +159,8 @@ $base-class: 'btn';
     text-decoration: underline;
     color: var(--action-high-contrast-default);
 
-    &:hover {
+    &:hover,
+    &:focus {
       color: var(--action-high-contrast-hover);
     }
 
