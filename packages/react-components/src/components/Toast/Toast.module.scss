@@ -46,8 +46,8 @@ $toast-exit-animation-timeout: 200ms;
       }
     }
 
-    &--custom {
-      text-decoration: underline;
+    &--custom,
+    &--custom:hover {
       white-space: nowrap;
       color: inherit;
     }

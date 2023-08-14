@@ -86,7 +86,7 @@ export const Toast: React.FC<React.PropsWithChildren<ToastProps>> = ({
           {action && (
             <Button
               className={styles[`${baseClass}__actions--custom`]}
-              kind="plain"
+              kind="text"
               size="compact"
               onClick={() => onActionClick(action)}
             >
