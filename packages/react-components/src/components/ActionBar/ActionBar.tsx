@@ -23,8 +23,13 @@ export interface IActionBarProps {
   options: Array<{
     key: string;
     element: React.ReactNode;
+    title?: string;
     onClick: () => void;
   }>;
+  /**
+   * Set 'scroll' to disable menu and enable scroll
+   */
+  type?: 'menu' | 'scroll';
 }
 
 const baseClass = 'action-bar';
@@ -32,9 +37,11 @@ const baseClass = 'action-bar';
 export const ActionBar: React.FC<IActionBarProps> = ({
   className,
   id = 'action-bar-area',
+  type = 'menu',
   options,
 }) => {
   const [menuItems, setMenuItems] = React.useState<string[]>([]);
+  const isScrollType = type === 'scroll';
   const mergedClassNames = cx(styles[baseClass], className);
   const observerOptions = {
     root: document.querySelector(`${id}`),
@@ -47,25 +54,29 @@ export const ActionBar: React.FC<IActionBarProps> = ({
         entry.target.classList.add(
           `${styles[`${baseClass}__items__button--hidden`]}`
         );
+        entry.target.setAttribute('tabindex', '-1');
 
-        const temp = menuItems;
+        const newMenuItems = menuItems;
 
-        if (!temp.includes(entry.target.id)) {
-          temp.push(entry.target.id);
-          setMenuItems([...temp]);
+        if (!newMenuItems.includes(entry.target.id)) {
+          newMenuItems.push(entry.target.id);
+          setMenuItems([...newMenuItems]);
         }
-      } else {
-        entry.target.classList.remove(
-          `${styles[`${baseClass}__items__button--hidden`]}`
-        );
 
-        const temp = menuItems;
+        return;
+      }
 
-        if (temp.includes(entry.target.id)) {
-          const index = temp.indexOf(entry.target.id);
-          temp.splice(index, 1);
-          setMenuItems([...temp]);
-        }
+      entry.target.classList.remove(
+        `${styles[`${baseClass}__items__button--hidden`]}`
+      );
+      entry.target.removeAttribute('tabindex');
+
+      const newMenuItems = menuItems;
+
+      if (newMenuItems.includes(entry.target.id)) {
+        const index = newMenuItems.indexOf(entry.target.id);
+        newMenuItems.splice(index, 1);
+        setMenuItems([...newMenuItems]);
       }
     });
   };
@@ -76,12 +87,16 @@ export const ActionBar: React.FC<IActionBarProps> = ({
   );
 
   React.useEffect(() => {
-    const target = document.querySelectorAll(
-      `.${styles[`${baseClass}__items__button`]}`
-    );
+    if (!isScrollType) {
+      const target = document.querySelectorAll(
+        `.${styles[`${baseClass}__items__button`]}`
+      );
 
-    target.forEach((e) => observer.observe(e));
-  }, [menuItems]);
+      target.forEach((e) => observer.observe(e));
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const getMenuItems = (items: string[]) => {
     return options.filter((row) => items.find((i) => i === row.key));
@@ -89,19 +104,25 @@ export const ActionBar: React.FC<IActionBarProps> = ({
 
   return (
     <div id={id} className={mergedClassNames}>
-      <div className={styles[`${baseClass}__items`]}>
+      <div
+        className={cx(styles[`${baseClass}__items`], {
+          [styles[`${baseClass}__items--scroll`]]: isScrollType,
+        })}
+      >
         {options.map((o) => (
           <button
             id={o.key}
             key={o.key}
+            title={o.title}
             type="button"
             className={styles[`${baseClass}__items__button`]}
+            onClick={o.onClick}
           >
             {o.element}
           </button>
         ))}
       </div>
-      {menuItems.length !== 0 && (
+      {!isScrollType && menuItems.length !== 0 && (
         <div className={styles[`${baseClass}__menu-wrapper`]}>
           <ActionMenu
             options={getMenuItems(menuItems)}

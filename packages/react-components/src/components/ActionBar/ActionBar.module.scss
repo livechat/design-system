@@ -9,6 +9,10 @@ $base-class: 'action-bar';
     width: 100%;
     overflow: hidden;
 
+    &--scroll {
+      overflow: auto;
+    }
+
     &__button {
       margin: 0;
       border: 0;
