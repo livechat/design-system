@@ -1,0 +1,33 @@
+$base-class: 'action-bar';
+
+.#{$base-class} {
+  display: flex;
+  width: 100%;
+
+  &__items {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+
+    &__button {
+      margin: 0;
+      border: 0;
+      padding: var(--spacing-2);
+
+      &:hover {
+        background-color: var(--surface-basic-hover);
+        cursor: pointer;
+      }
+
+      &--hidden {
+        opacity: 0;
+      }
+    }
+  }
+
+  &__menu-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: var(--spacing-3);
+  }
+}

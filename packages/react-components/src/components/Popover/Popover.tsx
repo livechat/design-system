@@ -20,6 +20,10 @@ export interface IPopoverProps {
    */
   className?: string;
   /**
+   * The CSS class for wrapper container
+   */
+  wrapperClassName?: string;
+  /**
    * The popover placement related to the trigger element
    */
   placement?: Placement;
@@ -50,6 +54,7 @@ export const Popover: React.FC<IPopoverProps> = ({
   onClose,
   children,
   className,
+  wrapperClassName,
   placement,
   flipOptions,
   isVisible = false,
@@ -135,7 +140,11 @@ export const Popover: React.FC<IPopoverProps> = ({
 
   return (
     <>
-      <div style={{ width: 'fit-content' }} ref={reference}>
+      <div
+        className={wrapperClassName}
+        style={{ width: 'fit-content' }}
+        ref={reference}
+      >
         {triggerRenderer()}
       </div>
       <div
