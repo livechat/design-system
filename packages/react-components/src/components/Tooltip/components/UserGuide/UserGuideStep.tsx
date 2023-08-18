@@ -80,7 +80,7 @@ export const UserGuideStep: React.FC<{
         <span className={styles[`${baseClass}-step`]}>
           Step {currentStep} of {stepMax}
         </span>
-        <Button kind="primary" onClick={handleClickPrimary}>
+        <Button kind="high-contrast" onClick={handleClickPrimary}>
           Primary button
         </Button>
       </div>

@@ -148,6 +148,7 @@ $base-class: 'tooltip';
 
   &-footer {
     display: flex;
+    justify-content: space-between;
     margin: var(--spacing-4) 0 0;
 
     &-secondary {
