@@ -75,7 +75,12 @@ export const Interactive: React.FC<{
       )}
       {header && <div className={styles[`${baseClass}-header`]}>{header}</div>}
       <div className={styles[`${baseClass}-text`]}>{text}</div>
-      <div className={styles[`${baseClass}-footer`]}>
+      <div
+        className={cx(
+          styles[`${baseClass}-footer`],
+          styles[`${baseClass}-footer--interactive`]
+        )}
+      >
         <Button
           kind={primaryButton.kind || getDefaultPrimaryButtonKind(theme)}
           onClick={primaryButton.handleClick}
