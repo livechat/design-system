@@ -4,6 +4,7 @@ import { Search, Close } from '@livechat/design-system-icons/react/tabler';
 import cx from 'clsx';
 
 import { KeyCodes } from '../../utils/keyCodes';
+import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { Loader } from '../Loader';
 
@@ -140,14 +141,15 @@ export const SearchInput: React.FC<ISearchInputProps> = ({
         disabled={isDisabled}
       />
       {isCloseIconVisible && (
-        <button
+        <Button
           aria-label="Clear search"
           title="Clear search"
           className={styles[`${baseClass}__clear-icon`]}
           onClick={handleClear}
-        >
-          <Icon source={Close} kind="primary" />
-        </button>
+          icon={<Icon source={Close} kind="primary" />}
+          kind="text"
+          size="compact"
+        />
       )}
       {isLoading && (
         <div

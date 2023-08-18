@@ -45,6 +45,7 @@
     cursor: pointer;
     padding: 0;
     width: 24px;
+    min-width: 24px;
     height: 24px;
     color: var(--content-basic-secondary);
 
@@ -61,13 +62,10 @@
       position: initial;
       color: var(--content-invert-primary);
 
-      &:hover {
-        color: var(--content-invert-secondary);
-      }
-
-      &:active,
-      &:focus {
-        border: 1px solid var(--surface-locked-white);
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: transparent;
       }
     }
   }

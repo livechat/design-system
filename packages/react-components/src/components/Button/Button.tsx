@@ -14,11 +14,12 @@ export type ButtonKind =
   | 'secondary'
   | 'destructive'
   | 'text'
+  | 'link'
+  | 'link-light'
   | 'plain'
-  | 'plain-light'
-  | 'subtle'
   | 'float'
-  | 'dotted';
+  | 'dotted'
+  | 'high-contrast';
 
 export type ButtonProps = {
   /**
@@ -79,7 +80,7 @@ export const Button = React.forwardRef<
   ) => {
     const isDisabled = loading || disabled;
     const isIconOnly = !children && icon;
-    const isTextButton = ['text', 'plain', 'plain-light'].includes(kind);
+    const isTextButton = ['text', 'link', 'link-light'].includes(kind);
 
     const Component = href ? 'a' : 'button';
 

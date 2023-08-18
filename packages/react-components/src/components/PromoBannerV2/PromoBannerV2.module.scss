@@ -24,6 +24,10 @@ $base-class: 'promo-banner-v2';
       display: flex;
       gap: var(--spacing-2);
       margin-top: var(--spacing-4);
+
+      &__secondary {
+        margin-left: var(--spacing-4);
+      }
     }
   }
 
@@ -48,13 +52,9 @@ $base-class: 'promo-banner-v2';
     padding-right: var(--spacing-4);
 
     &__btn {
-      border: 0;
-      background: 0;
-      padding: 0;
-
-      &:hover {
-        cursor: pointer;
-      }
+      width: 20px;
+      min-width: 20px;
+      height: 20px;
     }
   }
 

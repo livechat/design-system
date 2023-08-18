@@ -4,6 +4,7 @@ import { Placement } from '@floating-ui/react-dom';
 import cx from 'clsx';
 
 import { KeyCodes } from '../../utils/keyCodes';
+import { Button } from '../Button';
 import { Popover } from '../Popover';
 
 import styles from './ActionMenu.module.scss';
@@ -26,7 +27,7 @@ export interface ActionMenuProps {
   /**
    * Trigger element
    */
-  triggerRenderer: React.ReactNode;
+  triggerRenderer: React.ReactElement;
   /**
    * The menu placement
    */
@@ -107,13 +108,13 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
       placement={placement}
       onClose={() => setIsVisible(false)}
       triggerRenderer={() => (
-        <button
+        <Button
           data-testid="action-menu-trigger-button"
-          className={styles[`${baseClass}__trigger-button`]}
+          kind="plain"
+          size="compact"
+          icon={triggerRenderer}
           onClick={handleTriggerClick}
-        >
-          {triggerRenderer}
-        </button>
+        />
       )}
     >
       <ul

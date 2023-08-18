@@ -24,23 +24,32 @@ $toast-exit-animation-timeout: 200ms;
 
   &__actions {
     display: inline-flex;
-    flex-wrap: nowrap;
-    gap: 8px;
     align-items: center;
 
-    &__close {
-      cursor: pointer;
+    &__button {
+      margin-left: 8px;
+
+      &--success {
+        color: var(--content-locked-white);
+      }
+
+      &--warning {
+        color: var(--content-locked-black);
+      }
+
+      &--error {
+        color: var(--content-locked-white);
+      }
+
+      &--info {
+        color: var(--content-locked-white);
+      }
     }
 
     &--custom,
     &--custom:hover {
-      text-decoration: underline;
       white-space: nowrap;
       color: inherit;
-    }
-
-    button {
-      font-weight: 400;
     }
   }
 

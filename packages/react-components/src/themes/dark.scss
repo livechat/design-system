@@ -128,6 +128,7 @@ $surface-secondary-active: #3a3a40;
   --border-basic-positive: #33b66d;
   --border-basic-info: #5ba4ff;
   --border-basic-purple: #b58eff;
+  --border-basic-contrast: #EEEEEF;
   --border-invert-default: rgb(19 19 23 / 50%); // deprecated
   --border-invert-primary: rgb(19 19 23 / 60%);
   --border-invert-subtle: rgb(19 19 23 / 10%); // deprecated
@@ -165,6 +166,10 @@ $surface-secondary-active: #3a3a40;
   --action-neutral-default: #8d8d95;
   --action-neutral-hover: #afafb5;
   --action-neutral-disabled: rgb(141 141 149 / 20%);
+  --action-high-contrast-default: #E2E2E4;
+  --action-high-contrast-hover: #FFFFFF;
+  --action-high-contrast-active: #FFFFFF;
+  --action-high-contrast-disabled: rgb(226 226 228 / 30%);
   --color-bot: #50009c; // deprecated
   --surface-other-bot: #50009c;
   --color-black: #131317;

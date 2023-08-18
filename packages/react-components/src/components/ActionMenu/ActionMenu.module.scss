@@ -1,21 +1,6 @@
 $base-class: 'action-menu';
 
 .#{$base-class} {
-  &__trigger-button {
-    border: 0;
-    background: none;
-    padding: 0;
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    &:focus {
-      outline: 2px solid var(--action-primary-default);
-      outline-offset: -2px;
-    }
-  }
-
   &__list {
     margin: 0;
     border-radius: var(--radius-3);
