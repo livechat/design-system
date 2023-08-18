@@ -14,7 +14,7 @@ window.HTMLElement.prototype.scrollIntoView = () => {};
 
 const defaultProps = {
   options: defaultPickerOptions,
-  onSelect: () => noop,
+  onSelect: noop,
 };
 
 const renderComponent = (props: IPickerProps) => {

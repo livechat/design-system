@@ -16,9 +16,9 @@ const defaultProps = {
   isOpen: false,
   items: defaultPickerOptions,
   selectedItemsKeys: null,
-  onClose: () => noop,
-  onSelect: () => noop,
-  onSelectAll: () => noop,
+  onClose: noop,
+  onSelect: noop,
+  onSelectAll: noop,
 };
 
 const renderComponent = (props: IPickerListProps) => {
