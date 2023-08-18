@@ -129,14 +129,14 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
         {(primaryButton || secondaryButton) && (
           <div className={styles[`${baseClass}__content__cta`]}>
             {primaryButton && (
-              <Button kind="primary" onClick={primaryButton.handleClick}>
+              <Button kind="high-contrast" onClick={primaryButton.handleClick}>
                 {primaryButton.label}
               </Button>
             )}
             {secondaryButton && (
               <Button
                 className={styles[`${baseClass}__content__cta__link`]}
-                kind="link"
+                kind="text"
                 onClick={secondaryButton.handleClick}
               >
                 {secondaryButton.label}
