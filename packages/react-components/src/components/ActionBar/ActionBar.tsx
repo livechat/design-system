@@ -5,6 +5,7 @@ import cx from 'clsx';
 
 import { ActionMenu, ActionMenuItem } from '../ActionMenu';
 import { Icon } from '../Icon';
+import { Tooltip } from '../Tooltip';
 
 import styles from './ActionBar.module.scss';
 
@@ -23,7 +24,7 @@ export interface IActionBarProps {
   options: Array<{
     key: string;
     element: React.ReactNode;
-    title?: string;
+    label?: string;
     onClick: () => void;
   }>;
   /**
@@ -40,7 +41,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
   type = 'menu',
   options,
 }) => {
-  const [menuItems, setMenuItems] = React.useState<string[]>([]);
+  const [menuItemsKeys, setMenuItemsKeys] = React.useState<string[]>([]);
   const isScrollType = type === 'scroll';
   const mergedClassNames = cx(styles[baseClass], className);
   const observerOptions = {
@@ -56,11 +57,11 @@ export const ActionBar: React.FC<IActionBarProps> = ({
         );
         entry.target.setAttribute('tabindex', '-1');
 
-        const newMenuItems = menuItems;
+        const newMenuItems = menuItemsKeys;
 
         if (!newMenuItems.includes(entry.target.id)) {
           newMenuItems.push(entry.target.id);
-          setMenuItems([...newMenuItems]);
+          setMenuItemsKeys([...newMenuItems]);
         }
 
         return;
@@ -71,12 +72,12 @@ export const ActionBar: React.FC<IActionBarProps> = ({
       );
       entry.target.removeAttribute('tabindex');
 
-      const newMenuItems = menuItems;
+      const newMenuItems = menuItemsKeys;
 
       if (newMenuItems.includes(entry.target.id)) {
         const index = newMenuItems.indexOf(entry.target.id);
         newMenuItems.splice(index, 1);
-        setMenuItems([...newMenuItems]);
+        setMenuItemsKeys([...newMenuItems]);
       }
     });
   };
@@ -98,8 +99,56 @@ export const ActionBar: React.FC<IActionBarProps> = ({
     return () => observer.disconnect();
   }, []);
 
-  const getMenuItems = (items: string[]) => {
-    return options.filter((row) => items.find((i) => i === row.key));
+  const getMenuItems = (keys: string[]) => {
+    const filteredOptions = options.filter((row) =>
+      keys.find((i) => i === row.key)
+    );
+
+    return filteredOptions.map((o) => {
+      return {
+        key: o.key,
+        element: (
+          <ActionMenuItem leftNode={o.element}>{o.label}</ActionMenuItem>
+        ),
+        onClick: o.onClick,
+      };
+    });
+  };
+
+  const getItem = (option) => {
+    if (option.label) {
+      return (
+        <Tooltip
+          triggerRenderer={() => (
+            <button
+              id={option.key}
+              key={option.key}
+              title={option.label}
+              type="button"
+              className={styles[`${baseClass}__items__button`]}
+              onClick={option.onClick}
+            >
+              {option.element}
+            </button>
+          )}
+        >
+          <div>{option.label}</div>
+        </Tooltip>
+      );
+    }
+
+    return (
+      <button
+        id={option.key}
+        key={option.key}
+        title={option.label}
+        type="button"
+        className={styles[`${baseClass}__items__button`]}
+        onClick={option.onClick}
+      >
+        {option.element}
+      </button>
+    );
   };
 
   return (
@@ -109,23 +158,12 @@ export const ActionBar: React.FC<IActionBarProps> = ({
           [styles[`${baseClass}__items--scroll`]]: isScrollType,
         })}
       >
-        {options.map((o) => (
-          <button
-            id={o.key}
-            key={o.key}
-            title={o.title}
-            type="button"
-            className={styles[`${baseClass}__items__button`]}
-            onClick={o.onClick}
-          >
-            {o.element}
-          </button>
-        ))}
+        {options.map((o) => getItem(o))}
       </div>
-      {!isScrollType && menuItems.length !== 0 && (
+      {!isScrollType && menuItemsKeys.length !== 0 && (
         <div className={styles[`${baseClass}__menu-wrapper`]}>
           <ActionMenu
-            options={getMenuItems(menuItems)}
+            options={getMenuItems(menuItemsKeys)}
             triggerRenderer={<Icon source={MoreHoriz} kind="primary" />}
           />
         </div>
