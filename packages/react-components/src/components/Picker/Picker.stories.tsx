@@ -7,7 +7,7 @@ import noop from '../../utils/noop';
 
 import { defaultExtendedOptions, defaultPickerOptions } from './constants';
 import { IPickerProps, Picker } from './Picker';
-import { IPickerListItem } from './PickerList';
+import { IPickerListItem } from './types';
 
 import './Picker.stories.css';
 

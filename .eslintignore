@@ -1,5 +1,7 @@
 node_modules
 dist
+react
+lib
 .env
 *.log
 storybook-static

@@ -8,7 +8,7 @@ $toast-exit-animation-timeout: 200ms;
   gap: 8px;
   align-items: center;
   justify-content: flex-start;
-  border-radius: 4px;
+  border-radius: var(--radius-3);
   box-shadow: var(--shadow-pop-over);
   padding: var(--spacing-3);
   min-width: 300px;
@@ -24,23 +24,32 @@ $toast-exit-animation-timeout: 200ms;
 
   &__actions {
     display: inline-flex;
-    flex-wrap: nowrap;
-    gap: 8px;
     align-items: center;
 
-    &__close {
-      cursor: pointer;
+    &__button {
+      margin-left: 8px;
+
+      &--success {
+        color: var(--content-locked-white);
+      }
+
+      &--warning {
+        color: var(--content-locked-black);
+      }
+
+      &--error {
+        color: var(--content-locked-white);
+      }
+
+      &--info {
+        color: var(--content-locked-white);
+      }
     }
 
     &--custom,
     &--custom:hover {
-      text-decoration: underline;
       white-space: nowrap;
       color: inherit;
-    }
-
-    button {
-      font-weight: 400;
     }
   }
 

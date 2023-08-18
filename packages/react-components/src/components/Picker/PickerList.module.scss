@@ -2,17 +2,22 @@
 
 $base-class: 'picker-list';
 
-.#{$base-class} {
-  box-sizing: border-box;
+.list-wrapper {
   position: absolute;
   top: calc(100% + 4px);
   z-index: $stacking-context-level-dropdown;
-  margin: 0;
-  border-radius: 4px;
+  border-radius: 200px;
+  border-radius: var(--radius-3);
   box-shadow: var(--shadow-pop-over);
-  background-color: var(--picker-list-background);
-  padding: 4px 0;
   width: 100%;
+  overflow: auto;
+}
+
+.#{$base-class} {
+  box-sizing: border-box;
+  margin: 0;
+  background-color: var(--picker-list-background);
+  padding: var(--spacing-2);
   max-height: 242px;
   overflow: auto;
   line-height: 22px;
@@ -30,9 +35,11 @@ $base-class: 'picker-list';
   &__item {
     box-sizing: border-box;
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: space-between;
     border: 1px solid transparent;
+    border-radius: var(--radius-3);
     cursor: pointer;
     padding: 6px 11px;
     height: 36px;
@@ -48,6 +55,7 @@ $base-class: 'picker-list';
 
     &[aria-current='true'] {
       border-color: var(--action-primary-default);
+      background-color: var(--picker-list-option-background-focus);
     }
 
     &[aria-disabled='true'] {
@@ -59,14 +67,31 @@ $base-class: 'picker-list';
       }
     }
 
+    &[aria-selected='true'] {
+      background-color: var(--picker-list-option-background-active);
+
+      &::after {
+        position: absolute;
+        left: -9px;
+        border-top-right-radius: var(--radius-3);
+        border-bottom-right-radius: var(--radius-3);
+        background: var(--action-primary-default);
+        width: 3px;
+        height: 36px;
+        content: '';
+      }
+    }
+
     &--select-all {
       border-bottom: 1px solid var(--border-basic-tertiary);
     }
 
     &__header {
       display: flex;
+      position: relative;
       align-items: center;
       justify-content: space-between;
+      z-index: 1;
       background-color: var(--picker-list-group-background);
       cursor: auto;
       padding: 12px 12px 4px;
@@ -75,6 +100,17 @@ $base-class: 'picker-list';
       color: var(--content-basic-secondary);
       font-size: 12px;
       font-weight: 600;
+
+      &::after {
+        position: absolute;
+        top: 0;
+        right: -8px;
+        left: -8px;
+        z-index: -1;
+        background: var(--picker-list-group-background);
+        height: 36px;
+        content: '';
+      }
     }
 
     &__content {

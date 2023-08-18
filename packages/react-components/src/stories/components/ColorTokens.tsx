@@ -114,7 +114,9 @@ export const ColorTokensPallete: React.FC = () => (
                 cursor: 'pointer',
                 alignItems: 'center',
               }}
-              onClick={() => navigator.clipboard.writeText(colorToken)}
+              onClick={() => {
+                void navigator.clipboard.writeText(colorToken);
+              }}
             >
               <div
                 style={{

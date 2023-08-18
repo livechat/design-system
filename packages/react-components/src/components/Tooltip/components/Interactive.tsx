@@ -41,14 +41,15 @@ export const Interactive: React.FC<{
 }) => (
   <div className={styles[`${baseClass}__interactive`]}>
     {closeWithX && (
-      <div className={styles[`${baseClass}-close`]}>
-        <button
-          className={styles[`${baseClass}-close-button`]}
-          onClick={handleCloseAction}
-        >
+      <Button
+        className={styles[`${baseClass}-close`]}
+        size="compact"
+        kind="plain"
+        onClick={handleCloseAction}
+        icon={
           <Icon source={Close} kind={theme ? getIconType(theme) : 'primary'} />
-        </button>
-      </div>
+        }
+      />
     )}
     {image && (
       <div className={styles[`${baseClass}-image-container`]}>

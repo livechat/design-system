@@ -42,18 +42,25 @@ export const Modal: React.FC<ModalProps> = ({
 }) => {
   const mergedClassNames = cx(styles[baseClass], className);
 
-  const onCloseButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const onCloseButtonClick = (
+    event: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>
+  ) => {
     event.preventDefault();
     event.stopPropagation();
     onClose();
   };
 
   return (
-    <ModalBase className={mergedClassNames} onClose={onClose} {...props}>
+    <ModalBase
+      className={mergedClassNames}
+      fullSpaceContent={fullSpaceContent}
+      onClose={onClose}
+      {...props}
+    >
       {labelHeading && (
         <div className={styles[`${baseClass}__label-header`]}>
           <Heading
-            size="xs"
+            size="md"
             as="div"
             className={styles[`${baseClass}__label-heading`]}
           >
@@ -69,22 +76,16 @@ export const Modal: React.FC<ModalProps> = ({
       {!labelHeading && heading && (
         <div className={styles[`${baseClass}__header`]}>
           <Heading
-            size="sm"
+            size="md"
             as="div"
             className={styles[`${baseClass}__heading`]}
           >
             {heading}
           </Heading>
+          <ModalCloseButton onClick={onCloseButtonClick} />
         </div>
       )}
-      {!labelHeading && <ModalCloseButton onClick={onCloseButtonClick} />}
-      <div
-        data-testid="modal-body"
-        className={cx(
-          styles[`${baseClass}__body`],
-          fullSpaceContent && styles[`${baseClass}__body--full-space`]
-        )}
-      >
+      <div data-testid="modal-body" className={styles[`${baseClass}__body`]}>
         <Text as="div">{children}</Text>
       </div>
       {footer && <div className={styles[`${baseClass}__footer`]}>{footer}</div>}

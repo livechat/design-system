@@ -257,13 +257,54 @@ export const KindsAndStates = (): React.ReactElement => (
         icon={<Icon source={MaterialIcons.AddCircle} />}
       />
     </StoryDescriptor>
+    <StoryDescriptor title="Link">
+      <Button kind="link">Link</Button>
+      <Button disabled kind="link">
+        Disabled
+      </Button>
+      <Button loading kind="link">
+        Disabled
+      </Button>
+    </StoryDescriptor>
+    <StoryDescriptor title="Link with icon">
+      <Button kind="link" icon={<Icon source={MaterialIcons.AddCircle} />}>
+        Link
+      </Button>
+      <Button
+        disabled
+        kind="link"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Disabled
+      </Button>
+      <Button
+        loading
+        kind="link"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Disabled
+      </Button>
+    </StoryDescriptor>
+    <StoryDescriptor title="Link with icon only">
+      <Button kind="link" icon={<Icon source={MaterialIcons.AddCircle} />} />
+      <Button
+        disabled
+        kind="link"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+      <Button
+        loading
+        kind="link"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+    </StoryDescriptor>
     <StoryDescriptor title="Plain">
       <Button kind="plain">Plain</Button>
       <Button disabled kind="plain">
         Disabled
       </Button>
       <Button loading kind="plain">
-        Disabled
+        Loading
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Plain with icon">
@@ -282,7 +323,7 @@ export const KindsAndStates = (): React.ReactElement => (
         kind="plain"
         icon={<Icon source={MaterialIcons.AddCircle} />}
       >
-        Disabled
+        Loading
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Plain with icon only">
@@ -295,47 +336,6 @@ export const KindsAndStates = (): React.ReactElement => (
       <Button
         loading
         kind="plain"
-        icon={<Icon source={MaterialIcons.AddCircle} />}
-      />
-    </StoryDescriptor>
-    <StoryDescriptor title="Subtle">
-      <Button kind="subtle">Subtle</Button>
-      <Button disabled kind="subtle">
-        Disabled
-      </Button>
-      <Button loading kind="subtle">
-        Loading
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Subtle with icon">
-      <Button kind="subtle" icon={<Icon source={MaterialIcons.AddCircle} />}>
-        Subtle
-      </Button>
-      <Button
-        disabled
-        kind="subtle"
-        icon={<Icon source={MaterialIcons.AddCircle} />}
-      >
-        Disabled
-      </Button>
-      <Button
-        loading
-        kind="subtle"
-        icon={<Icon source={MaterialIcons.AddCircle} />}
-      >
-        Loading
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Subtle with icon only">
-      <Button kind="subtle" icon={<Icon source={MaterialIcons.AddCircle} />} />
-      <Button
-        disabled
-        kind="subtle"
-        icon={<Icon source={MaterialIcons.AddCircle} />}
-      />
-      <Button
-        loading
-        kind="subtle"
         icon={<Icon source={MaterialIcons.AddCircle} />}
       />
     </StoryDescriptor>
@@ -382,7 +382,7 @@ export const KindsAndStates = (): React.ReactElement => (
       />
     </StoryDescriptor>
     <StoryDescriptor title="Dotted">
-      <Button kind="dotted">Float</Button>
+      <Button kind="dotted">Dotted</Button>
       <Button disabled kind="dotted">
         Disabled
       </Button>
@@ -392,7 +392,7 @@ export const KindsAndStates = (): React.ReactElement => (
     </StoryDescriptor>
     <StoryDescriptor title="Dotted with icon">
       <Button kind="dotted" icon={<Icon source={MaterialIcons.AddCircle} />}>
-        Float
+        Dotted
       </Button>
       <Button
         disabled
@@ -420,6 +420,53 @@ export const KindsAndStates = (): React.ReactElement => (
         loading
         kind="dotted"
         icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+    </StoryDescriptor>
+    <StoryDescriptor title="High Contrast">
+      <Button kind="high-contrast">High Contrast</Button>
+      <Button kind="high-contrast" disabled>
+        Disabled
+      </Button>
+      <Button kind="high-contrast" loading>
+        Loading
+      </Button>
+    </StoryDescriptor>
+    <StoryDescriptor title="High Contrast with icon">
+      <Button
+        kind="high-contrast"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        High Contrast
+      </Button>
+      <Button
+        kind="high-contrast"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+        disabled
+      >
+        Disabled
+      </Button>
+      <Button
+        kind="high-contrast"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+        loading
+      >
+        Loading
+      </Button>
+    </StoryDescriptor>
+    <StoryDescriptor title="High Contrast with icon only">
+      <Button
+        kind="high-contrast"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+      <Button
+        kind="high-contrast"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+        disabled
+      />
+      <Button
+        kind="high-contrast"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+        loading
       />
     </StoryDescriptor>
   </div>

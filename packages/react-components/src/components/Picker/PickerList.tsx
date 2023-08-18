@@ -1,28 +1,17 @@
 import * as React from 'react';
 
-import { Check } from '@livechat/design-system-icons/react/tabler';
 import cx from 'clsx';
 
 import { KeyCodes } from '../../utils/keyCodes';
-import { Icon } from '../Icon';
 
 import { SELECT_ALL_OPTION_KEY } from './constants';
+import { PickerListItem } from './PickerListItem';
+import { IPickerListItem } from './types';
 
 import styles from './PickerList.module.scss';
 
 const baseClass = 'picker-list';
 const itemClassName = `${baseClass}__item`;
-
-export interface IPickerListItem {
-  key: string;
-  name: string;
-  customElement?: {
-    listItemBody: React.ReactElement;
-    selectedItemBody: React.ReactElement;
-  };
-  groupHeader?: boolean;
-  disabled?: boolean;
-}
 
 export interface IPickerListProps {
   isOpen: boolean;
@@ -155,8 +144,6 @@ export const PickerList: React.FC<IPickerListProps> = ({
     return indexRef.current;
   };
 
-  const handleOnClick = (item: IPickerListItem) => onSelect(item);
-
   const handleOnSelectAllClick = () => onSelectAll();
 
   const isItemSelected = (key: string): boolean => {
@@ -194,74 +181,36 @@ export const PickerList: React.FC<IPickerListProps> = ({
     );
   };
 
-  const getOptionContent = (item: IPickerListItem) => {
-    if (item?.customElement) {
-      return (
-        <div className={styles[`${itemClassName}__custom`]}>
-          {item.customElement.listItemBody}
-        </div>
-      );
-    }
-
-    return item.name;
-  };
-
   if (!isOpen) {
     return null;
   }
 
   if (items.length === 0) {
-    return <div className={mergedClassNames}>{emptyStateText}</div>;
+    return (
+      <div className={styles[`list-wrapper`]}>
+        <div className={mergedClassNames}>{emptyStateText}</div>
+      </div>
+    );
   }
 
   return (
-    <ul ref={listRef} className={mergedClassNames} role="listbox" tabIndex={-1}>
-      {getSelectAllOption()}
-      {items.map((item) => {
-        if (item.groupHeader) {
-          return (
-            <li
-              role="option"
-              key={item.key}
-              className={styles[`${itemClassName}__header`]}
-            >
-              {item.name}
-            </li>
-          );
-        }
-
-        return (
-          <li
-            data-testid={item.key}
-            ref={(element) => {
-              if (currentItemKey === item.key) {
-                element?.scrollIntoView({ block: 'nearest' });
-              }
-            }}
-            role="option"
-            aria-current={currentItemKey === item.key}
-            aria-selected={isItemSelected(item.key)}
-            aria-disabled={item.disabled}
-            id={item.key}
-            key={item.key}
-            className={cx(styles[itemClassName], {
-              [styles[`${itemClassName}__custom`]]: item?.customElement,
-            })}
-            onClick={() => !item.disabled && handleOnClick(item)}
-          >
-            <div className={styles[`${itemClassName}__content`]}>
-              {getOptionContent(item)}
-            </div>
-            {isItemSelected(item.key) && (
-              <Icon
-                kind="link"
-                source={Check}
-                customColor="var(--content-basic-info)"
-              />
-            )}
-          </li>
-        );
-      })}
-    </ul>
+    <div className={styles[`list-wrapper`]}>
+      <ul
+        ref={listRef}
+        className={mergedClassNames}
+        role="listbox"
+        tabIndex={-1}
+      >
+        {getSelectAllOption()}
+        {items.map((item) => (
+          <PickerListItem
+            item={item}
+            isItemSelected={isItemSelected(item.key)}
+            currentItemKey={currentItemKey}
+            onSelect={onSelect}
+          />
+        ))}
+      </ul>
+    </div>
   );
 };

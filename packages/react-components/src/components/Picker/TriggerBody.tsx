@@ -1,10 +1,14 @@
 import * as React from 'react';
 
+import cx from 'clsx';
+
+import { Size } from 'utils';
+
 import { IconSize } from '../Icon';
 import { Tag } from '../Tag';
 
 import { PickerType } from './constants';
-import { IPickerListItem } from './PickerList';
+import { IPickerListItem } from './types';
 
 import styles from './TriggerBody.module.scss';
 
@@ -19,6 +23,7 @@ export interface ITriggerBodyProps {
   type: PickerType;
   iconSize?: IconSize;
   clearSearchAfterSelection?: boolean;
+  size?: Size;
   onItemRemove: (item: IPickerListItem) => void;
   onFilter: (text: string) => void;
 }
@@ -32,6 +37,7 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
   type,
   iconSize,
   clearSearchAfterSelection,
+  size,
   onItemRemove,
   onFilter,
 }) => {
@@ -56,7 +62,7 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
 
     if (item?.customElement) {
       return (
-        <div className={styles[`${baseClass}__custom`]}>
+        <div className={styles[`${baseClass}__item`]}>
           {item.customElement.selectedItemBody}
         </div>
       );
@@ -72,7 +78,10 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
   const getSearch = () => (
     <input
       ref={inputRef}
-      className={styles[`${baseClass}__input`]}
+      className={cx(
+        styles[`${baseClass}__input`],
+        styles[`${baseClass}__input--${size}`]
+      )}
       placeholder="Select option"
       onChange={handleOnChange}
       autoFocus
@@ -92,7 +101,10 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
               return (
                 <Tag
                   key={item.name}
-                  className={styles[`${baseClass}__tag`]}
+                  className={cx(
+                    styles[`${baseClass}__tag`],
+                    styles[`${baseClass}__tag--${size}`]
+                  )}
                   iconSize={iconSize}
                   dismissible={!isDisabled}
                   onRemove={() => onItemRemove(item)}
