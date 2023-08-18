@@ -44,7 +44,7 @@ export const Default = (): React.ReactElement => (
     {...defaultProps}
     additionalContent={<img src={imageDefault} />}
   >
-    <div style={{ marginBottom: 8 }}>
+    <div style={{ marginBottom: 'var(--spacing-1)' }}>
       <Heading as="div" size="sm" className="promo-header">
         Title text up 2 lines
       </Heading>
@@ -64,7 +64,7 @@ export const WithStyledAdditionalContent = (): React.ReactElement => (
           </div>
         }
       >
-        <div style={{ marginBottom: 8 }}>
+        <div style={{ marginBottom: 'var(--spacing-1)' }}>
           <Heading as="div" size="sm" className="promo-header">
             Title text up 2 lines
           </Heading>
@@ -81,7 +81,7 @@ export const WithStyledAdditionalContent = (): React.ReactElement => (
           </div>
         }
       >
-        <div style={{ marginBottom: 8 }}>
+        <div style={{ marginBottom: 'var(--spacing-1)' }}>
           <Heading as="div" size="sm" className="promo-header">
             Title text up 2 lines
           </Heading>
