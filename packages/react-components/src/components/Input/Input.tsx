@@ -34,6 +34,10 @@ export interface InputProps
    * Set the icon and its position
    */
   icon?: InputIcon;
+  /**
+   * Set to enable ellipsis
+   */
+  cropOnBlur?: boolean;
 }
 
 const baseClass = 'input';
@@ -58,6 +62,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       disabled,
       icon = null,
       className,
+      cropOnBlur,
       ...inputProps
     },
     ref
@@ -73,6 +78,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         [styles[`${baseClass}--disabled`]]: disabled,
         [styles[`${baseClass}--focused`]]: isFocused,
         [styles[`${baseClass}--error`]]: error,
+        [styles[`${baseClass}--crop`]]: cropOnBlur,
       }
     );
     const iconCustomColor = !disabled
