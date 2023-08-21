@@ -14,6 +14,10 @@ $base-class: 'tooltip';
     outline: none;
   }
 
+  &__wrapper {
+    display: inherit;
+  }
+
   &__interactive,
   &__user-guide-step {
     padding: var(--spacing-1);
