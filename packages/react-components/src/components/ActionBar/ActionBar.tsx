@@ -4,10 +4,18 @@ import { MoreHoriz } from '@livechat/design-system-icons/react/tabler';
 import cx from 'clsx';
 
 import { ActionMenu, ActionMenuItem } from '../ActionMenu';
+import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { Tooltip } from '../Tooltip';
 
 import styles from './ActionBar.module.scss';
+
+type IActionBarOption = {
+  key: string;
+  element: React.ReactElement;
+  label?: string;
+  onClick: () => void;
+};
 
 export interface IActionBarProps {
   /**
@@ -21,12 +29,11 @@ export interface IActionBarProps {
   /**
    * Array of action bar options
    */
-  options: Array<{
-    key: string;
-    element: React.ReactNode;
-    label?: string;
-    onClick: () => void;
-  }>;
+  options: IActionBarOption[];
+  /**
+   * Set the key for active element
+   */
+  activeOptionKey?: string | null;
   /**
    * Set 'scroll' to disable menu and enable scroll
    */
@@ -40,6 +47,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
   id = 'action-bar-area',
   type = 'menu',
   options,
+  activeOptionKey,
 }) => {
   const [menuItemsKeys, setMenuItemsKeys] = React.useState<string[]>([]);
   const isScrollType = type === 'scroll';
@@ -52,9 +60,6 @@ export const ActionBar: React.FC<IActionBarProps> = ({
   const handleIntersection = (entries: IntersectionObserverEntry[]) => {
     entries.map((entry) => {
       if (!entry.isIntersecting) {
-        entry.target.classList.add(
-          `${styles[`${baseClass}__items__button--hidden`]}`
-        );
         entry.target.setAttribute('tabindex', '-1');
 
         const newMenuItems = menuItemsKeys;
@@ -67,9 +72,6 @@ export const ActionBar: React.FC<IActionBarProps> = ({
         return;
       }
 
-      entry.target.classList.remove(
-        `${styles[`${baseClass}__items__button--hidden`]}`
-      );
       entry.target.removeAttribute('tabindex');
 
       const newMenuItems = menuItemsKeys;
@@ -115,21 +117,36 @@ export const ActionBar: React.FC<IActionBarProps> = ({
     });
   };
 
-  const getItem = (option) => {
+  const getItem = (option: IActionBarOption) => {
+    const mergedButtonClassNames = cx(styles[`${baseClass}__items__button`], {
+      [styles[`${baseClass}__items__button--hidden`]]: menuItemsKeys.includes(
+        option.key
+      ),
+      [styles[`${baseClass}__items__button--active`]]:
+        option.key === activeOptionKey,
+    });
+
     if (option.label) {
+      const tooltipVisibility = menuItemsKeys.includes(option.key)
+        ? false
+        : undefined;
+
       return (
         <Tooltip
+          theme="invert"
+          placement="top"
+          isVisible={tooltipVisibility}
           triggerRenderer={() => (
-            <button
+            <Button
               id={option.key}
               key={option.key}
               title={option.label}
-              type="button"
-              className={styles[`${baseClass}__items__button`]}
+              kind="plain"
+              size="compact"
+              className={mergedButtonClassNames}
               onClick={option.onClick}
-            >
-              {option.element}
-            </button>
+              icon={option.element}
+            />
           )}
         >
           <div>{option.label}</div>
@@ -138,16 +155,16 @@ export const ActionBar: React.FC<IActionBarProps> = ({
     }
 
     return (
-      <button
+      <Button
         id={option.key}
         key={option.key}
         title={option.label}
-        type="button"
-        className={styles[`${baseClass}__items__button`]}
+        kind="plain"
+        className={mergedButtonClassNames}
         onClick={option.onClick}
       >
         {option.element}
-      </button>
+      </Button>
     );
   };
 

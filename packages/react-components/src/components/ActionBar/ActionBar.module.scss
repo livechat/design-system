@@ -6,6 +6,7 @@ $base-class: 'action-bar';
 
   &__items {
     display: flex;
+    padding: var(--spacing-2) var(--spacing-1);
     width: 100%;
     overflow: hidden;
 
@@ -14,17 +15,24 @@ $base-class: 'action-bar';
     }
 
     &__button {
-      margin: 0;
-      border: 0;
-      padding: var(--spacing-2);
+      margin-right: var(--spacing-1);
 
-      &:hover {
-        background-color: var(--surface-basic-hover);
-        cursor: pointer;
+      &--active {
+        &::after {
+          position: absolute;
+          bottom: -7px;
+          border-top-left-radius: var(--radius-3);
+          border-top-right-radius: var(--radius-3);
+          background-color: var(--action-primary-default);
+          width: 100%;
+          height: 3px;
+          content: '';
+        }
       }
 
       &--hidden {
         opacity: 0;
+        pointer-events: none;
       }
     }
   }
