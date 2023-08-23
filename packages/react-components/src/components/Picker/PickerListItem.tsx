@@ -33,7 +33,44 @@ export const PickerListItem: React.FC<IProps> = ({
       );
     }
 
-    return item.name;
+    return (
+      <>
+        {item.showCheckbox && (
+          <input
+            type="checkbox"
+            className={styles[`${itemClassName}__checkbox`]}
+          />
+        )}
+        {item.icon && (
+          <Icon
+            className={styles[`${itemClassName}__icon`]}
+            kind="link"
+            source={item.icon}
+          />
+        )}
+        {item.avatarSrc && (
+          <img
+            className={cx(styles[`${itemClassName}__avatar`])}
+            src={item.avatarSrc}
+            alt={item.name}
+          />
+        )}
+        <div className={styles[`${itemClassName}__label-container`]}>
+          <span
+            className={cx({
+              [styles[`${itemClassName}__main-label`]]: item.secondaryText,
+            })}
+          >
+            {item.name}
+          </span>
+          {item.secondaryText && (
+            <span className={styles[`${itemClassName}__secondary-label`]}>
+              {item.secondaryText}
+            </span>
+          )}
+        </div>
+      </>
+    );
   };
 
   const handleOnClick = (item: IPickerListItem) => {
@@ -68,6 +105,7 @@ export const PickerListItem: React.FC<IProps> = ({
       key={item.key}
       className={cx(styles[itemClassName], {
         [styles[`${itemClassName}__custom`]]: item?.customElement,
+        [styles[`${itemClassName}--two-line`]]: item.secondaryText,
       })}
       onClick={() => handleOnClick(item)}
     >

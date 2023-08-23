@@ -4,7 +4,7 @@ import cx from 'clsx';
 
 import { Size } from 'utils';
 
-import { IconSize } from '../Icon';
+import { Icon, IconSize } from '../Icon';
 import { Tag } from '../Tag';
 
 import { PickerType } from './constants';
@@ -68,7 +68,21 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
       );
     }
 
-    return <div className={styles[`${baseClass}__item`]}>{item.name}</div>;
+    return (
+      <div className={styles[`${baseClass}__item`]}>
+        {item.icon && (
+          <Icon source={item.icon} className={styles[`${baseClass}__icon`]} />
+        )}
+        {item.avatarSrc && (
+          <img
+            src={item.avatarSrc}
+            alt=""
+            className={styles[`${baseClass}__avatar`]}
+          />
+        )}
+        {item.name}
+      </div>
+    );
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {

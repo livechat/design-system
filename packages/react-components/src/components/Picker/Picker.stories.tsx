@@ -5,7 +5,11 @@ import { ComponentMeta, Story } from '@storybook/react';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import noop from '../../utils/noop';
 
-import { defaultExtendedOptions, defaultPickerOptions } from './constants';
+import {
+  defaultExtendedOptions,
+  defaultMorePickerOptions,
+  defaultPickerOptions,
+} from './constants';
 import { IPickerProps, Picker } from './Picker';
 import { IPickerListItem } from './types';
 
@@ -111,6 +115,21 @@ export const States = (): React.ReactElement => (
 export const PickerWithGroupedOptions = (): React.ReactElement => (
   <div style={{ ...commonWidth, marginBottom: 320 }}>
     <PickerComponent options={defaultExtendedOptions} onSelect={noop} />
+  </div>
+);
+
+export const PickerWithMoreOptions = (): React.ReactElement => (
+  <div style={{ ...commonWidth, marginBottom: 320 }}>
+    <StoryDescriptor title="Single select">
+      <PickerComponent options={defaultMorePickerOptions} onSelect={noop} />
+    </StoryDescriptor>
+    <StoryDescriptor title="Multi select">
+      <PickerComponent
+        options={defaultMorePickerOptions}
+        onSelect={noop}
+        type="multi"
+      />
+    </StoryDescriptor>
   </div>
 );
 

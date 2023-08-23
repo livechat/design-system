@@ -17,7 +17,9 @@ $base-class: 'picker-trigger-body';
   }
 
   &__item {
+    display: flex;
     flex: 1;
+    align-items: center;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -64,5 +66,14 @@ $base-class: 'picker-trigger-body';
     &--large {
       height: 32px;
     }
+  }
+
+  &__avatar,
+  &__icon {
+    align-self: center;
+    margin-right: var(--spacing-2);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
   }
 }
