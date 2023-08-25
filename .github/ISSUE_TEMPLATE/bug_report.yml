@@ -33,7 +33,7 @@ body:
       label: Expected Behavior
       description: A clear and concise description of what you expected to happen.
     validations:
-      required: false
+      required: true
   - type: textarea
     attributes:
       label: Screenshots
@@ -42,10 +42,18 @@ body:
       required: false
   - type: textarea
     attributes:
+      label: Design system package(s) version
+      description: Specify the version of the design system package(s).
+      value: |
+        examples:
+          - @livechat/design-system-react-components@1.0.0-beta.11
+    validations:
+      required: true
+  - type: textarea
+    attributes:
       label: Environment
       description: |
         examples:
-          - **Design system package(s) version**: [e.g. @livechat/design-system-react-components@1.0.0-beta.11]
           - **Device**: [e.g. iPhone6]
           - **OS**: [e.g. macOS]
           - **Browser**: [e.g. chrome, safari]
