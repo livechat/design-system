@@ -27,7 +27,7 @@ body:
         3. Scroll down to '....'
         4. See an error
     validations:
-      required: false
+      required: true
   - type: textarea
     attributes:
       label: Expected Behavior
