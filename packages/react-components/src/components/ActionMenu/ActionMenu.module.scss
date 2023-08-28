@@ -46,9 +46,11 @@ $base-class: 'action-menu';
       }
 
       &--with-divider {
+        margin-top: var(--spacing-2);
+
         &::after {
           position: absolute;
-          top: 0;
+          top: -5px;
           right: 0;
           left: 0;
           background-color: var(--border-basic-secondary);
