@@ -3,10 +3,11 @@ import * as React from 'react';
 import { Close } from '@livechat/design-system-icons/react/material';
 import cx from 'clsx';
 
-import { Button, ButtonKind } from '../../Button';
+import { Button } from '../../Button';
 import { Icon } from '../../Icon';
 import { getIconType } from '../helpers';
 import styles from '../Tooltip.module.scss';
+import { TooltipButton, TooltipTheme } from '../types';
 
 const baseClass = 'tooltip';
 
@@ -18,18 +19,10 @@ export const Interactive: React.FC<{
     alt: string;
   };
   closeWithX?: boolean;
-  theme?: 'invert' | 'important';
+  theme?: TooltipTheme;
   handleCloseAction?: (ev: React.MouseEvent) => void;
-  primaryButton: {
-    handleClick: () => void;
-    label: string;
-    kind?: ButtonKind;
-  };
-  secondaryButton: {
-    handleClick: () => void;
-    label: string;
-    kind?: ButtonKind;
-  };
+  primaryButton: TooltipButton;
+  secondaryButton: TooltipButton;
 }> = ({
   header,
   text,
@@ -40,7 +33,7 @@ export const Interactive: React.FC<{
   primaryButton,
   secondaryButton,
 }) => {
-  const getDefaultPrimaryButtonKind = (theme?: 'invert' | 'important') => {
+  const getDefaultPrimaryButtonKind = (theme?: TooltipTheme) => {
     if (theme === 'invert') {
       return 'secondary';
     }

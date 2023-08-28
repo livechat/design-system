@@ -7,6 +7,7 @@ import { Button } from '../../../Button';
 import { Icon } from '../../../Icon';
 import { getIconType } from '../../helpers';
 import styles from '../../Tooltip.module.scss';
+import { TooltipTheme } from '../../types';
 
 const baseClass = 'tooltip';
 
@@ -20,7 +21,7 @@ export const UserGuideStep: React.FC<{
   currentStep: number;
   stepMax: number;
   closeWithX?: boolean;
-  theme?: string;
+  theme?: TooltipTheme;
   handleClickPrimary: () => void;
   handleCloseAction?: (ev: KeyboardEvent | React.MouseEvent) => void;
 }> = ({
