@@ -62,7 +62,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       disabled,
       icon = null,
       className,
-      cropOnBlur,
+      cropOnBlur = true,
       ...inputProps
     },
     ref
