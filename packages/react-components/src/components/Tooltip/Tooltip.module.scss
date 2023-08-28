@@ -151,6 +151,18 @@ $base-class: 'tooltip';
     justify-content: space-between;
     margin: var(--spacing-4) 0 0;
 
+    &-secondary {
+      margin-left: var(--spacing-4);
+
+      &-invert {
+        color: var(--content-invert-primary);
+      }
+    }
+
+    &--interactive {
+      justify-content: flex-start;
+    }
+
     &--user-guide-step {
       align-items: center;
     }
