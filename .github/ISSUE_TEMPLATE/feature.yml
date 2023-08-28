@@ -1,0 +1,18 @@
+name: Feature
+description: Describe a feature plan
+title: "<title>"
+labels: ["feature"]
+projects: ["livechat/7"]
+body:
+  - type: textarea
+    attributes:
+      label: Description
+      description: A clear and concise description of what the feature is.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Design
+      description: Show or describe the design of the feature.
+    validations:
+      required: false
