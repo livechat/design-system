@@ -66,7 +66,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
 
         if (!newMenuItems.includes(entry.target.id)) {
           newMenuItems.push(entry.target.id);
-          setMenuItemsKeys([...newMenuItems]);
+          setMenuItemsKeys(newMenuItems);
         }
 
         return;

@@ -20,9 +20,9 @@ export interface IPopoverProps {
    */
   className?: string;
   /**
-   * The CSS class for wrapper container
+   * The CSS class for trigger container
    */
-  wrapperClassName?: string;
+  triggerClassName?: string;
   /**
    * The popover placement related to the trigger element
    */
@@ -54,7 +54,7 @@ export const Popover: React.FC<IPopoverProps> = ({
   onClose,
   children,
   className,
-  wrapperClassName,
+  triggerClassName,
   placement,
   flipOptions,
   isVisible = false,
@@ -138,13 +138,14 @@ export const Popover: React.FC<IPopoverProps> = ({
     [cssStyles['popover--visible']]: visible,
   });
 
+  const mergedTriggerClassNames = cx(
+    cssStyles['popover-trigger'],
+    triggerClassName
+  );
+
   return (
     <>
-      <div
-        className={wrapperClassName}
-        style={{ width: 'fit-content' }}
-        ref={reference}
-      >
+      <div className={mergedTriggerClassNames} ref={reference}>
         {triggerRenderer()}
       </div>
       <div

@@ -1,5 +1,9 @@
 @import '../../utils/StackingContextLevel';
 
+.popover-trigger {
+  width: fit-content;
+}
+
 .popover {
   display: none;
   z-index: $stacking-context-level-popover;
