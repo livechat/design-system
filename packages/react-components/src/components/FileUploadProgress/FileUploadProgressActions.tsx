@@ -18,30 +18,31 @@ interface FileUploadProgressActionsProps {
   onRetryButtonClick?: () => void;
 }
 
-export const FileUploadProgressActions: React.FC<FileUploadProgressActionsProps> =
-  ({ status, onCloseButtonClick, onRetryButtonClick }) => {
-    return (
-      <div className={styles[`${baseClass}`]}>
-        {onRetryButtonClick && status === 'error' && (
-          <button
-            type="button"
-            className={styles[`${baseClass}__retry-button`]}
-            aria-label="Retry"
-            onClick={onRetryButtonClick}
-          >
-            <Icon size="small" source={RefreshIcon} />
-          </button>
-        )}
-        {onCloseButtonClick && status !== 'success' && (
-          <button
-            type="button"
-            className={styles[`${baseClass}__close-button`]}
-            aria-label="Close"
-            onClick={onCloseButtonClick}
-          >
-            <Icon size="small" source={CloseIcon} />
-          </button>
-        )}
-      </div>
-    );
-  };
+export const FileUploadProgressActions: React.FC<
+  FileUploadProgressActionsProps
+> = ({ status, onCloseButtonClick, onRetryButtonClick }) => {
+  return (
+    <div className={styles[`${baseClass}`]}>
+      {onRetryButtonClick && status === 'error' && (
+        <button
+          type="button"
+          className={styles[`${baseClass}__retry-button`]}
+          aria-label="Retry"
+          onClick={onRetryButtonClick}
+        >
+          <Icon size="small" source={RefreshIcon} />
+        </button>
+      )}
+      {onCloseButtonClick && status !== 'success' && (
+        <button
+          type="button"
+          className={styles[`${baseClass}__close-button`]}
+          aria-label="Close"
+          onClick={onCloseButtonClick}
+        >
+          <Icon size="small" source={CloseIcon} />
+        </button>
+      )}
+    </div>
+  );
+};

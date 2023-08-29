@@ -13,7 +13,7 @@ export const useRangeDatePickerState = (
   props: IRangeDatePickerProps
 ): [
   ReducerState<RangeDatePickerReducer>,
-  Dispatch<ReducerAction<RangeDatePickerReducer>>
+  Dispatch<ReducerAction<RangeDatePickerReducer>>,
 ] => {
   const initialCurrentMonth = calculateDatePickerMonth(
     props.initialFromDate,
