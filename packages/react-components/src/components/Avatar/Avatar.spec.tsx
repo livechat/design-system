@@ -10,26 +10,7 @@ const renderComponent = (props: AvatarProps) => {
 
 const baseClass = 'avatar';
 
-let originalGetComputedStyle: Window['getComputedStyle'];
-
 describe('<Avatar> component', () => {
-  beforeAll(() => {
-    originalGetComputedStyle = window.getComputedStyle;
-
-    (window.getComputedStyle as any) = function () {
-      return {
-        getPropertyValue(variableName: string) {
-          if (variableName.startsWith('--surface-avatar')) return '#8609ff';
-          return '';
-        },
-      };
-    };
-  });
-
-  afterAll(() => {
-    window.getComputedStyle = originalGetComputedStyle;
-  });
-
   it('should allow for custom CSS class', () => {
     const customClass = 'custom-class';
     const { container } = renderComponent({
