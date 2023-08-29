@@ -1,6 +1,6 @@
 import { Meta, Canvas, ArgsTable } from '@storybook/addon-docs';
 
-import { Heading, Text } from '../components/Typography';
+import { Heading, Text, Display } from '../components/Typography';
 
 <Meta title="Foundations/Typography" />
 
@@ -72,4 +72,28 @@ You can modify the output element via `as` prop. For example if you want to rend
   <Text as="div" size="sm">
     Small text as div
   </Text>
+</Canvas>
+
+## Display
+
+`Display` component renders a div.
+
+```jsx
+<Display size="sm">
+  This text is a small div
+</Display>
+```
+
+<ArgsTable of={Display} />
+
+<Canvas
+  style={{
+    color: 'var(--content-default)',
+    backgroundColor: 'var(--background)',
+  }}
+>
+  <Display>Div Medium</Display>
+  <Display size="sm">Div Small</Display>
+  <Display as="p">Paragraph Medium</Display>
+  <Display as="p" size="sm">Paragraph Small</Display>
 </Canvas>
