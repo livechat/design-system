@@ -6,14 +6,14 @@ import {
 
 describe('getBackgroundColor', () => {
   it('should generate the same background color for the same initials', () => {
-    const color1 = getBackgroundColor('John Doe');
-    const color2 = getBackgroundColor('John Doe');
+    const color1 = getBackgroundColor('JD');
+    const color2 = getBackgroundColor('JD');
     expect(color1).toBe(color2);
   });
 
   it('should generate different background colors for different initials', () => {
-    const color1 = getBackgroundColor('John Doe');
-    const color2 = getBackgroundColor('Jane Doe');
+    const color1 = getBackgroundColor('JD');
+    const color2 = getBackgroundColor('AB');
     expect(color1).not.toBe(color2);
   });
 
