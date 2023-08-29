@@ -13,6 +13,7 @@ export type ButtonKind =
   | 'primary'
   | 'secondary'
   | 'destructive'
+  | 'destructive-outline'
   | 'text'
   | 'link'
   | 'link-light'
