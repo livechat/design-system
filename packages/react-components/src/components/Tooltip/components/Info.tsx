@@ -7,6 +7,7 @@ import { Button } from '../../Button';
 import { Icon } from '../../Icon';
 import { getIconType } from '../helpers';
 import styles from '../Tooltip.module.scss';
+import { TooltipTheme } from '../types';
 
 const baseClass = 'tooltip';
 
@@ -14,7 +15,7 @@ export const Info: React.FC<{
   header?: string;
   text: string;
   closeWithX?: boolean;
-  theme?: string;
+  theme?: TooltipTheme;
   handleCloseAction?: (ev: React.MouseEvent) => void;
 }> = ({ header, text, closeWithX, theme, handleCloseAction }) => {
   return (

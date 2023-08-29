@@ -165,12 +165,10 @@ export const TooltipInteractive = (): React.ReactElement => (
         primaryButton={{
           handleClick: noop,
           label: 'Primary Button',
-          kind: 'primary',
         }}
         secondaryButton={{
           handleClick: noop,
           label: 'Secondary',
-          kind: 'secondary',
         }}
       />
     </Tooltip>
