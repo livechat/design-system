@@ -49,6 +49,12 @@
     color: var(--content-basic-primary);
   }
 
+  &--crop {
+    input {
+      text-overflow: ellipsis;
+    }
+  }
+
   &--error,
   &--error:hover {
     border-color: var(--border-basic-negative);
