@@ -6,15 +6,19 @@ $base-class: 'action-menu';
     border-radius: var(--radius-3);
     background-color: var(--picker-list-background);
     padding: 0;
+    padding: var(--spacing-2);
     overflow: hidden;
     list-style: none;
 
     &__item {
       display: flex;
+      position: relative;
       align-items: center;
+      margin-bottom: var(--spacing-05);
       outline: 0;
       border: 0;
       border-radius: 0;
+      border-radius: var(--radius-3);
       background: none;
       padding: 7px var(--spacing-3);
       width: 100%;
@@ -27,13 +31,32 @@ $base-class: 'action-menu';
         cursor: pointer;
       }
 
+      &:focus,
+      &:active {
+        background-color: var(--picker-list-option-background-active);
+      }
+
       &:focus {
         outline: 2px solid var(--action-primary-default);
         outline-offset: -2px;
       }
 
+      > * {
+        pointer-events: none;
+      }
+
       &--with-divider {
-        border-top: 1px solid var(--border-basic-secondary);
+        margin-top: var(--spacing-2);
+
+        &::before {
+          position: absolute;
+          top: -4.5px;
+          right: -8px;
+          left: -8px;
+          background-color: var(--border-basic-secondary);
+          height: 1px;
+          content: '';
+        }
       }
 
       &--disabled {
@@ -42,6 +65,21 @@ $base-class: 'action-menu';
         &:hover {
           background: none;
           cursor: not-allowed;
+        }
+      }
+
+      &--active {
+        background-color: var(--picker-list-option-background-active);
+
+        &::after {
+          position: absolute;
+          left: -8px;
+          border-top-right-radius: var(--radius-3);
+          border-bottom-right-radius: var(--radius-3);
+          background: var(--action-primary-default);
+          width: 3px;
+          height: 36px;
+          content: '';
         }
       }
     }

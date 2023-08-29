@@ -44,6 +44,10 @@ export interface ActionMenuProps {
    * Menu will stay open after option click
    */
   keepOpenOnClick?: boolean;
+  /**
+   * Set the keys array for active elements
+   */
+  activeOptionKeys?: string[];
 }
 
 const baseClass = 'action-menu';
@@ -56,6 +60,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   placement = 'bottom-end',
   openedOnInit = false,
   keepOpenOnClick,
+  activeOptionKeys,
   ...props
 }) => {
   const [isVisible, setIsVisible] = React.useState(openedOnInit);
@@ -143,6 +148,8 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
                 [styles[`${baseClass}__list__item--disabled`]]: o.disabled,
                 [styles[`${baseClass}__list__item--with-divider`]]:
                   o.withDivider,
+                [styles[`${baseClass}__list__item--active`]]:
+                  activeOptionKeys?.includes(o.key),
               })}
             >
               {o.element}
