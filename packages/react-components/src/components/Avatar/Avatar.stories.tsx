@@ -97,10 +97,24 @@ export const Colors = (): React.ReactElement => (
     <StoryDescriptor title="Light">
       <Avatar type="text" text={defaultName} color="#faf8ff" />
       <Avatar type="text" text={defaultName} color="#eba3a3" />
+      <Avatar type="text" text={defaultName} color="var(--surface-avatar-3)" />
     </StoryDescriptor>
     <StoryDescriptor title="Dark">
       <Avatar type="text" text={defaultName} color="#424d57" />
       <Avatar type="text" text={defaultName} color="#6b5aba" />
+      <Avatar type="text" text={defaultName} color="var(--surface-avatar-1)" />
+    </StoryDescriptor>
+    <StoryDescriptor title="Default based on initials">
+      <Avatar type="text" text={'Albert'} />
+      <Avatar type="text" text={'Barbara'} />
+      <Avatar type="text" text={'Carl'} />
+      <Avatar type="text" text={'Diana'} />
+      <Avatar type="text" text={'Edward'} />
+      <Avatar type="text" text={'Francesca'} />
+      <Avatar type="text" text={'George'} />
+      <Avatar type="text" text={'Hannah'} />
+      <Avatar type="text" text={'Ivan'} />
+      <Avatar type="text" text={'Jessica'} />
     </StoryDescriptor>
   </>
 );
