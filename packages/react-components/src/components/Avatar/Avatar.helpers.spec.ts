@@ -37,7 +37,11 @@ describe('getInitials', () => {
   });
 
   it('should limit the initials to the given count', () => {
-    expect(getInitials('John Robert Doe', 3)).toBe('JRD');
+    expect(getInitials('John Robert Doe Kavinsky', 3)).toBe('JRD');
+  });
+
+  it('should limit the initials based on default limit of 2', () => {
+    expect(getInitials('John Robert Doe Kavinsky')).toBe('JR');
   });
 
   it('should convert initials to upper case', () => {
@@ -45,9 +49,9 @@ describe('getInitials', () => {
   });
 });
 
-let originalGetComputedStyle: Window['getComputedStyle'];
-
 describe('getFontColor', () => {
+  let originalGetComputedStyle: Window['getComputedStyle'];
+
   beforeAll(() => {
     originalGetComputedStyle = window.getComputedStyle;
 
