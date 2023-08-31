@@ -62,6 +62,7 @@ export const Toast: React.FC<React.PropsWithChildren<ToastProps>> = ({
     styles[`${baseClass}--${kind}`],
     className
   );
+  const isTextContent = typeof children === 'string';
 
   const onActionClick = (action: ToastAction) => {
     if (action && action.closesOnClick && onClose) {
@@ -79,7 +80,7 @@ export const Toast: React.FC<React.PropsWithChildren<ToastProps>> = ({
         <Icon {...iconConfig[kind]} size="medium" />
       </div>
       <div className={styles[`${baseClass}__content`]}>
-        <Text as="div">{children}</Text>
+        {isTextContent ? <Text as="div">{children}</Text> : children}
       </div>
       {(action || removable) && (
         <div className={styles[`${baseClass}__actions`]}>

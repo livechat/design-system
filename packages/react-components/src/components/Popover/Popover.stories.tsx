@@ -5,6 +5,7 @@ import { ComponentMeta } from '@storybook/react';
 
 import { Button } from '../Button';
 import { Icon } from '../Icon';
+import { Text } from '../Typography';
 
 import { Popover as PopoverComponent, IPopoverProps } from './Popover';
 
@@ -77,7 +78,7 @@ export const Default = (args: IPopoverProps): React.ReactElement => (
             borderRadius: '4px',
           }}
         >
-          Popover content
+          <Text>Popover content</Text>
         </div>
       </div>
     </PopoverComponent>
