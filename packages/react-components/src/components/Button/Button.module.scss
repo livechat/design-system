@@ -131,6 +131,31 @@ $base-class: 'btn';
     }
   }
 
+  &--destructive-outline {
+    border-color: var(--action-negative-default);
+    background-color: var(--surface-accent-emphasis-min-negative);
+    color: var(--action-negative-default);
+
+    &:hover {
+      border-color: var(--action-negative-hover);
+      background-color: var(--surface-accent-emphasis-low-negative);
+      color: var(--action-negative-hover);
+    }
+
+    &:active,
+    &:focus {
+      border-color: var(--action-negative-active);
+      background-color: var(--surface-accent-emphasis-low-negative);
+      color: var(--action-negative-active);
+    }
+
+    &[aria-disabled='true'] {
+      border-color: var(--action-negative-disabled);
+      background-color: var(--surface-primary-default);
+      color: var(--action-negative-disabled);
+    }
+  }
+
   &--compact {
     padding: 6px 16px;
     min-width: 32px;
