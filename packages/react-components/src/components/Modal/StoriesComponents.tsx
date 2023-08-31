@@ -20,9 +20,11 @@ export const ModalFullSpaceContent: React.FC = () => {
           Modal header
         </Heading>
         <div className="full-space-text">
-          Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
-          sint. Velit officia consequat duis enim velit mollit. Exercitation
-          veniam consequat sunt nostrud amet.
+          <Text size="md">
+            Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet
+            sint. Velit officia consequat duis enim velit mollit. Exercitation
+            veniam consequat sunt nostrud amet.
+          </Text>
         </div>
         <div className="full-space-buttons">
           <Button

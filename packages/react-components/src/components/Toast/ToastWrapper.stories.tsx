@@ -29,7 +29,7 @@ ToastWrapper.args = {
     {
       id: '1',
       kind: 'success',
-      content: <div>First toast with DOM element as content</div>,
+      content: 'First toast with DOM element as content',
     },
     {
       id: '2',
