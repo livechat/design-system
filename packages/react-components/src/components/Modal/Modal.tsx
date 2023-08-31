@@ -42,6 +42,8 @@ export const Modal: React.FC<ModalProps> = ({
 }) => {
   const mergedClassNames = cx(styles[baseClass], className);
 
+  const isTextContent = typeof children === 'string';
+
   const onCloseButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     event.stopPropagation();
@@ -85,7 +87,7 @@ export const Modal: React.FC<ModalProps> = ({
           fullSpaceContent && styles[`${baseClass}__body--full-space`]
         )}
       >
-        <Text as="div">{children}</Text>
+        {isTextContent ? <Text as="div">{children}</Text> : children}
       </div>
       {footer && <div className={styles[`${baseClass}__footer`]}>{footer}</div>}
     </ModalBase>
