@@ -14,7 +14,7 @@ import { Icon } from '../Icon';
 import { ActionBar } from './ActionBar';
 
 export default {
-  title: 'Components/ActionBar',
+  title: 'Experimental/ActionBar',
   component: ActionBar,
 };
 

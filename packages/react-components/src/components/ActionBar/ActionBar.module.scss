@@ -15,7 +15,7 @@ $base-class: 'action-bar';
     }
 
     &__button {
-      margin-right: var(--spacing-1);
+      margin-right: var(--spacing-2);
 
       &--active {
         &::after {
