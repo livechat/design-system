@@ -113,30 +113,35 @@
 
   &--with-icon {
     &.tag--medium {
-      padding-left: 4px;
+      padding-left: var(--spacing-1);
     }
 
     &.tag--large {
-      padding-left: 8px;
+      padding-left: var(--spacing-2);
     }
   }
 
   &--dismissible {
     &.tag--medium {
-      padding-right: 4px;
+      padding-right: var(--spacing-1);
     }
 
     &.tag--large {
-      padding-right: 8px;
+      padding-right: var(--spacing-2);
     }
   }
 
   &__icon {
-    margin-right: 4px;
+    margin-right: var(--spacing-1);
+
+    &--right {
+      margin-right: 0;
+      margin-left: var(--spacing-1);
+    }
   }
 
   &__avatar {
-    margin-right: 4px;
+    margin-right: var(--spacing-1);
     border-radius: 50%;
     width: 20px;
     height: 20px;
@@ -151,7 +156,7 @@
     box-shadow: none;
     background-color: transparent;
     cursor: pointer;
-    padding: 0 0 0 4px;
+    padding: 0 0 0 var(--spacing-1);
     color: var(--content-basic-secondary);
   }
 }
