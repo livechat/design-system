@@ -9,34 +9,22 @@ import { Tag, TagProps } from './Tag';
 
 const iterator = Object.keys(TablerIcons);
 
+const iconOptions = {
+  options: iterator,
+  mapping: TablerIcons,
+  control: {
+    type: 'select',
+    labels: iterator,
+  },
+};
+
 export default {
   title: 'Components/Tag',
   component: Tag,
   argTypes: {
-    icon: {
-      options: iterator,
-      mapping: TablerIcons,
-      control: {
-        type: 'select',
-        labels: iterator,
-      },
-    },
-    leftIcon: {
-      options: iterator,
-      mapping: TablerIcons,
-      control: {
-        type: 'select',
-        labels: iterator,
-      },
-    },
-    rightIcon: {
-      options: iterator,
-      mapping: TablerIcons,
-      control: {
-        type: 'select',
-        labels: iterator,
-      },
-    },
+    icon: iconOptions,
+    leftIcon: iconOptions,
+    rightIcon: iconOptions,
   },
 } as ComponentMeta<typeof Tag>;
 
