@@ -40,6 +40,10 @@ describe('getInitials', () => {
     expect(getInitials('John Doe Robert Stan Kavinsky', 3)).toBe('JSK');
   });
 
+  it('should handle change to upper-case', () => {
+    expect(getInitials('john doe')).toBe('JD');
+  });
+
   it('should handle empty input', () => {
     expect(getInitials('')).toBe('');
   });
