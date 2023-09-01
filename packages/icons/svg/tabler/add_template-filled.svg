@@ -1,8 +1,7 @@
 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M18 12V19C18 19.5304 17.7893 20.0391 17.4142 20.4142C17.0391 20.7893 16.5304 21 16 21H6C5.46957 21 4.96086 20.7893 4.58579 20.4142C4.21071 20.0391 4 19.5304 4 19V7C4 6.46957 4.21071 5.96086 4.58579 5.58579C4.96086 5.21071 5.46957 5 6 5C6 5 8.65685 5 11 5" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8 9H14" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8 13H14" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8 17H14" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M15 5H21" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M18 2V8" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19 2C19 1.44772 18.5523 1 18 1C17.4477 1 17 1.44772 17 2V4H15C14.4477 4 14 4.44772 14 5C14 5.55228 14.4477 6 15 6H17V8C17 8.55228 17.4477 9 18 9C18.5523 9 19 8.55228 19 8V6H21C21.5523 6 22 5.55228 22 5C22 4.44772 21.5523 4 21 4H19V2Z" fill="currentcolor"/>
+<path d="M5.29289 6.29289C5.48043 6.10536 5.73478 6 6 6H11C11.5523 6 12 5.55228 12 5C12 4.44772 11.5523 4 11 4H6.00003C5.20438 4 4.44129 4.31607 3.87868 4.87868C3.31607 5.44129 3 6.20435 3 7V19C3 19.7957 3.31607 20.5587 3.87868 21.1213C4.44129 21.6839 5.20435 22 6 22H16C16.7957 22 17.5587 21.6839 18.1213 21.1213C18.6839 20.5587 19 19.7957 19 19V12C19 11.4477 18.5523 11 18 11C17.4477 11 17 11.4477 17 12V19C17 19.2652 16.8946 19.5196 16.7071 19.7071C16.5196 19.8946 16.2652 20 16 20H6C5.73478 20 5.48043 19.8946 5.29289 19.7071C5.10536 19.5196 5 19.2652 5 19V7C5 6.73478 5.10536 6.48043 5.29289 6.29289Z" fill="currentcolor"/>
+<path d="M8 8C7.44772 8 7 8.44772 7 9C7 9.55229 7.44772 10 8 10H14C14.5523 10 15 9.55229 15 9C15 8.44772 14.5523 8 14 8H8Z" fill="currentcolor"/>
+<path d="M7 13C7 12.4477 7.44772 12 8 12H14C14.5523 12 15 12.4477 15 13C15 13.5523 14.5523 14 14 14H8C7.44772 14 7 13.5523 7 13Z" fill="currentcolor"/>
+<path d="M8 16C7.44772 16 7 16.4477 7 17C7 17.5523 7.44772 18 8 18H14C14.5523 18 15 17.5523 15 17C15 16.4477 14.5523 16 14 16H8Z" fill="currentcolor"/>
 </svg>
