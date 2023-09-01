@@ -21,6 +21,22 @@ export default {
         labels: iterator,
       },
     },
+    leftIcon: {
+      options: iterator,
+      mapping: TablerIcons,
+      control: {
+        type: 'select',
+        labels: iterator,
+      },
+    },
+    rightIcon: {
+      options: iterator,
+      mapping: TablerIcons,
+      control: {
+        type: 'select',
+        labels: iterator,
+      },
+    },
   },
 } as ComponentMeta<typeof Tag>;
 
