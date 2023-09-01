@@ -1,6 +1,6 @@
 import { DayMode } from '@livechat/design-system-icons/react/tabler';
 
-export const defaultPickerOptions = [
+export const DEFAULT_PICKER_OPTIONS = [
   { key: 'one', name: 'Option one' },
   { key: 'two', name: 'Option two' },
   { key: 'three', name: 'Option three' },
@@ -10,7 +10,7 @@ export const defaultPickerOptions = [
   { key: 'seven', name: 'Option seven' },
 ];
 
-export const defaultExtendedOptions = [
+export const DEFAULT_EXTENDED_OPTIONS = [
   { key: 'groupA', name: 'Group A title header', groupHeader: true },
   { key: 'one', name: 'Option one' },
   { key: 'two', name: 'Option two' },
@@ -22,7 +22,7 @@ export const defaultExtendedOptions = [
   { key: 'seven', name: 'Option seven', disabled: true },
 ];
 
-export const defaultMorePickerOptions = [
+export const DEFAULT_MORE_PICKER_OPTIONS = [
   {
     key: 'one',
     name: 'Option with 2 lines label',
@@ -38,4 +38,3 @@ export const defaultMorePickerOptions = [
 ];
 
 export const SELECT_ALL_OPTION_KEY = 'select-all';
-export type PickerType = 'single' | 'multi';

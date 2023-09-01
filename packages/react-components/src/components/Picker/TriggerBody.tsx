@@ -7,8 +7,7 @@ import { Size } from 'utils';
 import { Icon, IconSize } from '../Icon';
 import { Tag } from '../Tag';
 
-import { PickerType } from './constants';
-import { IPickerListItem } from './types';
+import { PickerType, IPickerListItem } from './types';
 
 import styles from './TriggerBody.module.scss';
 

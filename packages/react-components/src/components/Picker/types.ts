@@ -16,3 +16,5 @@ export interface IPickerListItem {
   secondaryText?: string;
   showCheckbox?: boolean;
 }
+
+export type PickerType = 'single' | 'multi';

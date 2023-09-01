@@ -15,6 +15,9 @@ $base-class: 'picker-list';
 
 .#{$base-class} {
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-05);
   margin: 0;
   background-color: var(--picker-list-background);
   padding: var(--spacing-2);
@@ -137,6 +140,7 @@ $base-class: 'picker-list';
       border-radius: var(--radius-3);
       width: 20px;
       height: 20px;
+      color: var(--content-basic-primary);
     }
 
     &__label-container {
@@ -157,7 +161,7 @@ $base-class: 'picker-list';
 
     &__secondary-label {
       color: var(--content-basic-secondary);
-      font-size: 0.8em;
+      font-size: 12px;
     }
   }
 }

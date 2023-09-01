@@ -39,6 +39,7 @@ export const PickerListItem: React.FC<IProps> = ({
           <input
             type="checkbox"
             className={styles[`${itemClassName}__checkbox`]}
+            checked={isItemSelected}
           />
         )}
         {item.icon && (
@@ -112,7 +113,7 @@ export const PickerListItem: React.FC<IProps> = ({
       <div className={styles[`${itemClassName}__content`]}>
         {getOptionContent(item)}
       </div>
-      {isItemSelected && (
+      {isItemSelected && !item.showCheckbox && (
         <Icon
           kind="link"
           source={Check}
