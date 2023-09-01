@@ -53,11 +53,16 @@ export const ActionBar: React.FC<IActionBarProps> = ({
 
   const handleIntersection = (entries: IntersectionObserverEntry[]) => {
     entries.map((entry) => {
+      const entryExistInMenu = menuItemsKeys.includes(entry.target.id);
+
       if (!entry.isIntersecting) {
         entry.target.setAttribute('tabindex', '-1');
 
-        if (!menuItemsKeys.includes(entry.target.id)) {
-          setMenuItemsKeys([...menuItemsKeys, entry.target.id]);
+        if (!entryExistInMenu) {
+          setMenuItemsKeys((prevItemKeys) => [
+            ...prevItemKeys,
+            entry.target.id,
+          ]);
         }
 
         return;
@@ -65,14 +70,16 @@ export const ActionBar: React.FC<IActionBarProps> = ({
 
       entry.target.removeAttribute('tabindex');
 
-      if (menuItemsKeys.includes(entry.target.id)) {
+      if (entryExistInMenu) {
         setMenuItemsKeys(menuItemsKeys.filter((i) => i !== entry.target.id));
       }
     });
   };
 
   React.useEffect(() => {
-    if (!isScrollType) {
+    const hasIOSupport = !!window.IntersectionObserver;
+
+    if (!isScrollType && hasIOSupport) {
       const target = document.querySelectorAll(
         `.${styles[`${baseClass}__items__button`]}`
       );
