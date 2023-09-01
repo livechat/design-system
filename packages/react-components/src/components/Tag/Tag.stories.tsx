@@ -47,7 +47,7 @@ export const Kinds = ({ children, ...args }: TagProps): React.ReactElement => {
     <div>
       <StoryDescriptor title="Default">
         <Tag kind="default">{children}</Tag>
-        <Tag icon={args.icon} kind="default">
+        <Tag leftIcon={args.leftIcon} kind="default">
           {children}
         </Tag>
         <Tag avatar={avatar} kind="default">
@@ -61,7 +61,7 @@ export const Kinds = ({ children, ...args }: TagProps): React.ReactElement => {
         <Tag kind="default" outline>
           {children}
         </Tag>
-        <Tag icon={args.icon} kind="default" outline>
+        <Tag leftIcon={args.leftIcon} kind="default" outline>
           {children}
         </Tag>
         <Tag avatar={avatar} kind="default" outline>
@@ -73,7 +73,7 @@ export const Kinds = ({ children, ...args }: TagProps): React.ReactElement => {
       </StoryDescriptor>
       <StoryDescriptor title="Info">
         <Tag kind="info">{children}</Tag>
-        <Tag icon={args.icon} kind="info">
+        <Tag leftIcon={args.leftIcon} kind="info">
           {children}
         </Tag>
         <Tag avatar={avatar} kind="info">
@@ -87,7 +87,7 @@ export const Kinds = ({ children, ...args }: TagProps): React.ReactElement => {
         <Tag kind="info" outline>
           {children}
         </Tag>
-        <Tag icon={args.icon} kind="info" outline>
+        <Tag leftIcon={args.leftIcon} kind="info" outline>
           {children}
         </Tag>
         <Tag avatar={avatar} kind="info" outline>
@@ -99,7 +99,7 @@ export const Kinds = ({ children, ...args }: TagProps): React.ReactElement => {
       </StoryDescriptor>
       <StoryDescriptor title="Warning">
         <Tag kind="warning">{children}</Tag>
-        <Tag icon={args.icon} kind="warning">
+        <Tag leftIcon={args.leftIcon} kind="warning">
           {children}
         </Tag>
         <Tag avatar={avatar} kind="warning">
@@ -113,7 +113,7 @@ export const Kinds = ({ children, ...args }: TagProps): React.ReactElement => {
         <Tag kind="warning" outline>
           {children}
         </Tag>
-        <Tag icon={args.icon} kind="warning" outline>
+        <Tag leftIcon={args.leftIcon} kind="warning" outline>
           {children}
         </Tag>
         <Tag avatar={avatar} kind="warning" outline>
@@ -125,7 +125,7 @@ export const Kinds = ({ children, ...args }: TagProps): React.ReactElement => {
       </StoryDescriptor>
       <StoryDescriptor title="Success">
         <Tag kind="success">{children}</Tag>
-        <Tag icon={args.icon} kind="success">
+        <Tag leftIcon={args.leftIcon} kind="success">
           {children}
         </Tag>
         <Tag avatar={avatar} kind="success">
@@ -139,7 +139,7 @@ export const Kinds = ({ children, ...args }: TagProps): React.ReactElement => {
         <Tag kind="success" outline>
           {children}
         </Tag>
-        <Tag icon={args.icon} kind="success" outline>
+        <Tag leftIcon={args.leftIcon} kind="success" outline>
           {children}
         </Tag>
         <Tag avatar={avatar} kind="success" outline>
@@ -151,7 +151,7 @@ export const Kinds = ({ children, ...args }: TagProps): React.ReactElement => {
       </StoryDescriptor>
       <StoryDescriptor title="Error">
         <Tag kind="error">{children}</Tag>
-        <Tag icon={args.icon} kind="error">
+        <Tag leftIcon={args.leftIcon} kind="error">
           {children}
         </Tag>
         <Tag avatar={avatar} kind="error">
@@ -165,7 +165,7 @@ export const Kinds = ({ children, ...args }: TagProps): React.ReactElement => {
         <Tag kind="error" outline>
           {children}
         </Tag>
-        <Tag icon={args.icon} kind="error" outline>
+        <Tag leftIcon={args.leftIcon} kind="error" outline>
           {children}
         </Tag>
         <Tag avatar={avatar} kind="error" outline>
@@ -177,7 +177,7 @@ export const Kinds = ({ children, ...args }: TagProps): React.ReactElement => {
       </StoryDescriptor>
       <StoryDescriptor title="Purple">
         <Tag kind="purple">{children}</Tag>
-        <Tag icon={args.icon} kind="purple">
+        <Tag leftIcon={args.leftIcon} kind="purple">
           {children}
         </Tag>
         <Tag avatar={avatar} kind="purple">
@@ -191,7 +191,7 @@ export const Kinds = ({ children, ...args }: TagProps): React.ReactElement => {
         <Tag kind="purple" outline>
           {children}
         </Tag>
-        <Tag icon={args.icon} kind="purple" outline>
+        <Tag leftIcon={args.leftIcon} kind="purple" outline>
           {children}
         </Tag>
         <Tag avatar={avatar} kind="purple" outline>
@@ -203,7 +203,7 @@ export const Kinds = ({ children, ...args }: TagProps): React.ReactElement => {
       </StoryDescriptor>
       <StoryDescriptor title="Black">
         <Tag kind="black">{children}</Tag>
-        <Tag icon={args.icon} kind="black">
+        <Tag leftIcon={args.leftIcon} kind="black">
           {children}
         </Tag>
         <Tag avatar={avatar} kind="black">
@@ -217,7 +217,7 @@ export const Kinds = ({ children, ...args }: TagProps): React.ReactElement => {
         <Tag kind="black" outline>
           {children}
         </Tag>
-        <Tag icon={args.icon} kind="black" outline>
+        <Tag leftIcon={args.leftIcon} kind="black" outline>
           {children}
         </Tag>
         <Tag avatar={avatar} kind="black" outline>
@@ -232,7 +232,7 @@ export const Kinds = ({ children, ...args }: TagProps): React.ReactElement => {
 };
 Kinds.args = {
   children: 'Example tag',
-  icon: TablerIcons.Smiles,
+  leftIcon: TablerIcons.Smiles,
 };
 
 export const Sizes = ({ children, ...args }: TagProps): React.ReactElement => {
@@ -240,13 +240,18 @@ export const Sizes = ({ children, ...args }: TagProps): React.ReactElement => {
     <div>
       <StoryDescriptor title="Medium">
         <Tag>{children}</Tag>
-        <Tag icon={args.icon} dismissible>
+        <Tag leftIcon={args.leftIcon} rightIcon={args.rightIcon} dismissible>
           {children}
         </Tag>
       </StoryDescriptor>
       <StoryDescriptor title="Large">
         <Tag size="large">{children}</Tag>
-        <Tag icon={args.icon} size="large" dismissible>
+        <Tag
+          leftIcon={args.leftIcon}
+          rightIcon={args.rightIcon}
+          size="large"
+          dismissible
+        >
           {children}
         </Tag>
       </StoryDescriptor>
@@ -255,5 +260,6 @@ export const Sizes = ({ children, ...args }: TagProps): React.ReactElement => {
 };
 Sizes.args = {
   children: 'Example tag',
-  icon: TablerIcons.Smiles,
+  leftIcon: TablerIcons.Smiles,
+  rightIcon: TablerIcons.Smiles,
 };

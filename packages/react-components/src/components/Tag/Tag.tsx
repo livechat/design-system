@@ -48,9 +48,14 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   onRemove?(): void;
   /**
-   * Pass the icon to show it
+   * Pass the icon to show it on the left
    */
-  icon?: IconSource;
+  leftIcon?: IconSource;
+  /**
+   * Pass the icon to show it on the right
+   */
+  rightIcon?: IconSource;
+  /**
   /**
    * Pass the image source to show it as avatar
    */
@@ -76,7 +81,8 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   kind = 'default',
   onRemove,
   outline = false,
-  icon,
+  leftIcon,
+  rightIcon,
   avatar,
   customColor,
   ...restProps
@@ -89,7 +95,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
     {
       [styles[`${baseClass}--dismissible`]]: dismissible,
       [styles[`${baseClass}--outline`]]: outline,
-      [styles[`${baseClass}--with-icon`]]: !!icon || !!avatar,
+      [styles[`${baseClass}--with-icon`]]: !!leftIcon || !!avatar,
       [styles[`${baseClass}--${getCustomTextClass(customColor)}`]]:
         !!customColor,
     }
@@ -140,16 +146,28 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
         />
       )}{' '}
       {/*TODO replace with Avatar component*/}
-      {icon && !avatar && (
+      {leftIcon && !avatar && (
         <Icon
-          data-testid="lc-tag-icon"
+          data-testid="lc-tag-left-icon"
           className={styles[`${baseClass}__icon`]}
-          source={icon}
+          source={leftIcon}
           size="small"
           customColor={getIconCustomColor()}
         />
       )}
       {children}
+      {rightIcon && (
+        <Icon
+          data-testid="lc-tag-right-icon"
+          className={cx(
+            styles[`${baseClass}__icon`],
+            styles[`${baseClass}__icon--right`]
+          )}
+          source={rightIcon}
+          size="small"
+          customColor={getIconCustomColor()}
+        />
+      )}
       {dismissible && (
         <button
           title="Remove"
