@@ -36,6 +36,10 @@ describe('getInitials', () => {
     expect(getInitials('John Michael Doe')).toBe('JD');
   });
 
+  it('should handle multiple spaces', () => {
+    expect(getInitials('John   Michael   Doe')).toBe('JD');
+  });
+
   it('should return the first, second last, and last initials for a multi-word name, ignoring the middle names', () => {
     expect(getInitials('John Doe Robert Stan Kavinsky', 3)).toBe('JSK');
   });
