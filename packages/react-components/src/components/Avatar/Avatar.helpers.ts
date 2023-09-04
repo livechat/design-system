@@ -18,7 +18,7 @@ export function getBackgroundColor(initials: string): string | undefined {
 }
 
 export function getInitials(name = '', count = 2): string {
-  const nameArray = name.split(' ');
+  const nameArray = name.split(/\s+/);
 
   if (count < 1) return '';
 
