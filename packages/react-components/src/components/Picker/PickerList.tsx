@@ -46,6 +46,9 @@ export const PickerList: React.FC<IPickerListProps> = ({
   const indexRef = React.useRef(-1);
   const lastIndexRef = React.useRef(0);
   const listRef = React.useRef<HTMLUListElement>(null);
+  const [adjacentItems, setAdjacentItems] = React.useState<
+    Record<string, 'top' | 'middle' | 'bottom'>
+  >({});
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === KeyCodes.esc) {
@@ -95,6 +98,45 @@ export const PickerList: React.FC<IPickerListProps> = ({
       setCurrentItemKey(null);
     }
   }, [items, isOpen, onKeyDown]);
+
+  React.useEffect(() => {
+    const newAdjacentItems: Record<string, 'top' | 'middle' | 'bottom'> = {};
+
+    if (selectedItemsKeys && selectedItemsKeys.length > 1) {
+      const sortedSelectedKeys = items
+        .map((item) => item.key)
+        .filter((key) => selectedItemsKeys.includes(key));
+
+      for (let i = 0; i < sortedSelectedKeys.length; i++) {
+        const currentKey = sortedSelectedKeys[i];
+        const nextKey = sortedSelectedKeys[i + 1];
+        const prevKey = sortedSelectedKeys[i - 1];
+
+        const isNextAdjacent =
+          nextKey &&
+          Math.abs(
+            items.findIndex((item) => item.key === nextKey) -
+              items.findIndex((item) => item.key === currentKey)
+          ) === 1;
+        const isPrevAdjacent =
+          prevKey &&
+          Math.abs(
+            items.findIndex((item) => item.key === prevKey) -
+              items.findIndex((item) => item.key === currentKey)
+          ) === 1;
+
+        if (isNextAdjacent && isPrevAdjacent) {
+          newAdjacentItems[currentKey] = 'middle';
+        } else if (isNextAdjacent) {
+          newAdjacentItems[currentKey] = 'top';
+        } else if (isPrevAdjacent) {
+          newAdjacentItems[currentKey] = 'bottom';
+        }
+      }
+    }
+
+    setAdjacentItems(newAdjacentItems);
+  }, [selectedItemsKeys, items]);
 
   const isHeaderOrDisabled = (i: number) =>
     !!items[i] && (items[i].disabled || items[i].groupHeader);
@@ -206,6 +248,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
           <PickerListItem
             item={item}
             isItemSelected={isItemSelected(item.key)}
+            isAdjacentStyleApplied={adjacentItems[item.key]}
             currentItemKey={currentItemKey}
             onSelect={onSelect}
           />

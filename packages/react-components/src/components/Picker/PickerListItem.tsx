@@ -15,6 +15,7 @@ interface IProps {
   item: IPickerListItem;
   isItemSelected: boolean;
   currentItemKey: string | null;
+  isAdjacentStyleApplied: 'top' | 'middle' | 'bottom';
   onSelect: (item: IPickerListItem) => void;
 }
 
@@ -22,6 +23,7 @@ export const PickerListItem: React.FC<IProps> = ({
   item,
   isItemSelected,
   currentItemKey,
+  isAdjacentStyleApplied,
   onSelect,
 }) => {
   const getOptionContent = (item: IPickerListItem) => {
@@ -104,9 +106,9 @@ export const PickerListItem: React.FC<IProps> = ({
       aria-disabled={item.disabled}
       id={item.key}
       key={item.key}
+      data-adjacent={isAdjacentStyleApplied}
       className={cx(styles[itemClassName], {
         [styles[`${itemClassName}__custom`]]: item?.customElement,
-        [styles[`${itemClassName}--two-line`]]: item.secondaryText,
       })}
       onClick={() => handleOnClick(item)}
     >
