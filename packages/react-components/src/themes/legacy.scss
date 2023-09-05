@@ -32,7 +32,7 @@ $surface-tertiary-hover: #d3dde3;
   --surface-moderate-default: #cad6dd;
   --surface-moderate-hover: #c3ced5;
   --surface-moderate-active: #bac7cf;
-  --surface-tertiary-hover: #d3dde3;
+  --surface-tertiary-hover: #{$surface-tertiary-hover};
   --surface-tertiary-active: #cdd8df;
   --surface-tertiary-disabled: #e4e8ec;
   --surface-feedback-info: #e5f3ff; // deprecated
