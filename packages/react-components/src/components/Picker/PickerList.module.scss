@@ -83,6 +83,10 @@ $base-class: 'picker-list';
         height: 100%;
         content: '';
       }
+
+      &:hover {
+        background-color: var(--picker-list-option-background-active-hover);
+      }
     }
 
     &[aria-selected='true'][data-adjacent='top'] {

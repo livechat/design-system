@@ -8,6 +8,7 @@ $surface-secondary-default: #2d2d33;
 $surface-tertiary-default: #3b3b43;
 $surface-secondary-hover: #343439;
 $surface-secondary-active: #3a3a40;
+$surface-tertiary-hover: #43434b;
 
 .lc-dark-theme {
   --background: #131317; // deprecated
@@ -33,7 +34,7 @@ $surface-secondary-active: #3a3a40;
   --surface-moderate-default: #4e4e58;
   --surface-moderate-hover: #55555f;
   --surface-moderate-active: #5c5c65;
-  --surface-tertiary-hover: #43434b;
+  --surface-tertiary-hover: #{$surface-tertiary-hover};
   --surface-tertiary-active: #4b4b52;
   --surface-tertiary-disabled: #3b3b43;
   --surface-feedback-info: #323640; // deprecated
@@ -128,7 +129,7 @@ $surface-secondary-active: #3a3a40;
   --border-basic-positive: #33b66d;
   --border-basic-info: #5ba4ff;
   --border-basic-purple: #b58eff;
-  --border-basic-contrast: #EEEEEF;
+  --border-basic-contrast: #eeeeef;
   --border-invert-default: rgb(19 19 23 / 50%); // deprecated
   --border-invert-primary: rgb(19 19 23 / 60%);
   --border-invert-subtle: rgb(19 19 23 / 10%); // deprecated
@@ -166,9 +167,9 @@ $surface-secondary-active: #3a3a40;
   --action-neutral-default: #8d8d95;
   --action-neutral-hover: #afafb5;
   --action-neutral-disabled: rgb(141 141 149 / 20%);
-  --action-high-contrast-default: #E2E2E4;
-  --action-high-contrast-hover: #FFFFFF;
-  --action-high-contrast-active: #FFFFFF;
+  --action-high-contrast-default: #e2e2e4;
+  --action-high-contrast-hover: #fff;
+  --action-high-contrast-active: #fff;
   --action-high-contrast-disabled: rgb(226 226 228 / 30%);
   --color-bot: #50009c; // deprecated
   --surface-other-bot: #50009c;
@@ -273,6 +274,7 @@ $surface-secondary-active: #3a3a40;
   --picker-list-background: #{$surface-secondary-default};
   --picker-list-group-background: #{$surface-tertiary-default};
   --picker-list-option-background-hover: #{$surface-secondary-hover};
+  --picker-list-option-background-active-hover: #{$surface-tertiary-hover};
   --picker-list-option-background-focus: #{$surface-secondary-hover};
   --picker-list-option-background-active: #{$surface-secondary-active};
   --popover-background: #{$surface-secondary-default};
