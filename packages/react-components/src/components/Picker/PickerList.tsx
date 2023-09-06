@@ -5,6 +5,7 @@ import cx from 'clsx';
 import { KeyCodes } from '../../utils/keyCodes';
 
 import { SELECT_ALL_OPTION_KEY } from './constants';
+import { getAdjacentItemPositions } from './helpers';
 import { PickerListItem } from './PickerListItem';
 import { IPickerListItem } from './types';
 
@@ -100,42 +101,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   }, [items, isOpen, onKeyDown]);
 
   React.useEffect(() => {
-    const newAdjacentItems: Record<string, 'top' | 'middle' | 'bottom'> = {};
-
-    if (selectedItemsKeys && selectedItemsKeys.length > 1) {
-      const sortedSelectedKeys = items
-        .map((item) => item.key)
-        .filter((key) => selectedItemsKeys.includes(key));
-
-      for (let i = 0; i < sortedSelectedKeys.length; i++) {
-        const currentKey = sortedSelectedKeys[i];
-        const nextKey = sortedSelectedKeys[i + 1];
-        const prevKey = sortedSelectedKeys[i - 1];
-
-        const isNextAdjacent =
-          nextKey &&
-          Math.abs(
-            items.findIndex((item) => item.key === nextKey) -
-              items.findIndex((item) => item.key === currentKey)
-          ) === 1;
-        const isPrevAdjacent =
-          prevKey &&
-          Math.abs(
-            items.findIndex((item) => item.key === prevKey) -
-              items.findIndex((item) => item.key === currentKey)
-          ) === 1;
-
-        if (isNextAdjacent && isPrevAdjacent) {
-          newAdjacentItems[currentKey] = 'middle';
-        } else if (isNextAdjacent) {
-          newAdjacentItems[currentKey] = 'top';
-        } else if (isPrevAdjacent) {
-          newAdjacentItems[currentKey] = 'bottom';
-        }
-      }
-    }
-
-    setAdjacentItems(newAdjacentItems);
+    setAdjacentItems(getAdjacentItemPositions(items, selectedItemsKeys));
   }, [selectedItemsKeys, items]);
 
   const isHeaderOrDisabled = (i: number) =>
