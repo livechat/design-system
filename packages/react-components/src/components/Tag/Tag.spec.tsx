@@ -76,7 +76,11 @@ describe('<Tag> component', () => {
 
   it('should show avatar when both avatar and icon are provided', () => {
     const { getByTestId, queryByTestId } = render(
-      <Tag {...props} avatar="http://test.img" icon={MaterialIcons.AddCircle}>
+      <Tag
+        {...props}
+        avatar="http://test.img"
+        leftIcon={MaterialIcons.AddCircle}
+      >
         tag1
       </Tag>
     );
