@@ -24,28 +24,40 @@ describe('getBackgroundColor', () => {
 });
 
 describe('getInitials', () => {
-  it('should return initials for a full name', () => {
-    expect(getInitials('John Doe')).toBe('JD');
-  });
-
-  it('should return initials for a single name', () => {
+  it('should return the first letter of a single word name', () => {
     expect(getInitials('John')).toBe('J');
   });
 
-  it('should handle empty names', () => {
+  it('should return the first and last initials for a two word name', () => {
+    expect(getInitials('John Doe')).toBe('JD');
+  });
+
+  it('should return the first and last initials for a multi-word name', () => {
+    expect(getInitials('John Michael Doe')).toBe('JD');
+  });
+
+  it('should handle multiple spaces', () => {
+    expect(getInitials('John   Michael   Doe')).toBe('JD');
+  });
+
+  it('should return the first, second last, and last initials for a multi-word name, ignoring the middle names', () => {
+    expect(getInitials('John Doe Robert Stan Kavinsky', 3)).toBe('JSK');
+  });
+
+  it('should handle change to upper-case', () => {
+    expect(getInitials('john doe')).toBe('JD');
+  });
+
+  it('should handle empty input', () => {
     expect(getInitials('')).toBe('');
   });
 
-  it('should limit the initials to the given count', () => {
-    expect(getInitials('John Robert Doe Kavinsky', 3)).toBe('JRD');
+  it('should handle undefined input', () => {
+    expect(getInitials(undefined)).toBe('');
   });
 
-  it('should limit the initials based on default limit of 2', () => {
-    expect(getInitials('John Robert Doe Kavinsky')).toBe('JR');
-  });
-
-  it('should convert initials to upper case', () => {
-    expect(getInitials('john doe')).toBe('JD');
+  it('should handle count less than 1', () => {
+    expect(getInitials('John Doe', 0)).toBe('');
   });
 });
 
