@@ -17,7 +17,7 @@ $base-class: 'promo-banner-v2';
     flex: 0 1 auto;
     flex-flow: column;
     justify-content: center;
-    padding: var(--spacing-5);
+    padding: var(--spacing-8);
     max-width: 720px;
 
     &__cta {
@@ -64,6 +64,7 @@ $base-class: 'promo-banner-v2';
     .#{$base-class}__content {
       flex: 0 1 auto;
       order: 2;
+      padding: var(--spacing-5);
     }
 
     .#{$base-class}__additional-content {

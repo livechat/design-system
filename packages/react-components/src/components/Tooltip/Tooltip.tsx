@@ -6,6 +6,8 @@ import { FloatingComponent } from './components/FloatingComponent';
 import { sleep } from './helpers';
 import { ITooltipProps } from './types';
 
+import styles from './Tooltip.module.scss';
+
 const baseClass = 'tooltip';
 
 export const Tooltip: React.FC<ITooltipProps> = (props) => {
@@ -153,7 +155,11 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
 
   return (
     <>
-      <div ref={floatingOptions.reference} {...referenceOptions()}>
+      <div
+        className={styles[`${baseClass}__wrapper`]}
+        ref={floatingOptions.reference}
+        {...referenceOptions()}
+      >
         {triggerRenderer()}
       </div>
       {floatingComponent}

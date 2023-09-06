@@ -46,7 +46,9 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
   }
 
   &--collapsable {
-    transition: width $transition, background $transition-with-delay,
+    transition:
+      width $transition,
+      background $transition-with-delay,
       border $transition-with-delay;
     border-color: transparent;
     background-color: transparent;
@@ -61,7 +63,9 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
     }
 
     &--open {
-      transition: border $transition, background $transition,
+      transition:
+        border $transition,
+        background $transition,
         width $transition-with-delay;
       border-color: var(--border-basic-primary);
       background-color: var(--surface-primary-default);

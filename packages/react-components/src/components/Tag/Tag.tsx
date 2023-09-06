@@ -26,7 +26,7 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Specify the tag size
    */
-  size?: 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large';
   /**
    * Specify the tag icon size if used
    */

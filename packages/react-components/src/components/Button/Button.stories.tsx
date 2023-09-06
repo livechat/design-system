@@ -216,6 +216,53 @@ export const KindsAndStates = (): React.ReactElement => (
         icon={<Icon source={MaterialIcons.AddCircle} />}
       />
     </StoryDescriptor>
+    <StoryDescriptor title="Destructive Outline">
+      <Button kind="destructive-outline">Destructive Outline</Button>
+      <Button disabled kind="destructive-outline">
+        Disabled
+      </Button>
+      <Button loading kind="destructive-outline">
+        Disabled
+      </Button>
+    </StoryDescriptor>
+    <StoryDescriptor title="Destructive Outline with icon">
+      <Button
+        kind="destructive-outline"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Destructive Outline
+      </Button>
+      <Button
+        disabled
+        kind="destructive-outline"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Disabled
+      </Button>
+      <Button
+        loading
+        kind="destructive-outline"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      >
+        Disabled
+      </Button>
+    </StoryDescriptor>
+    <StoryDescriptor title="Destructive Outline with icon only">
+      <Button
+        kind="destructive-outline"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+      <Button
+        disabled
+        kind="destructive-outline"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+      <Button
+        loading
+        kind="destructive-outline"
+        icon={<Icon source={MaterialIcons.AddCircle} />}
+      />
+    </StoryDescriptor>
     <StoryDescriptor title="Text">
       <Button kind="text">Text</Button>
       <Button disabled kind="text">

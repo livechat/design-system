@@ -3,7 +3,7 @@
   display: inline-flex;
   position: relative;
   align-items: center;
-  border-radius: 4px;
+  border-radius: var(--radius-3);
   border-color: var(--border-basic-primary);
   background-color: var(--surface-tertiary-default);
   color: var(--content-basic-primary);
@@ -74,6 +74,11 @@
         color: var(--content-basic-primary);
       }
     }
+  }
+
+  &--small {
+    padding: 1px 4px;
+    height: 20px;
   }
 
   &--medium {

@@ -5,7 +5,9 @@ $base-class: 'date-picker';
   color: var(--content-basic-primary);
 
   &:not(.#{$base-class}--interaction-disabled)
-    &__day:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--selected):not(.#{$base-class}__day--outside):hover {
+    &__day:not(.#{$base-class}__day--disabled):not(
+      .#{$base-class}__day--selected
+    ):not(.#{$base-class}__day--outside):hover {
     .#{$base-class}__day-content {
       border-radius: 2px;
       background-color: var(--surface-primary-hover);
@@ -206,7 +208,13 @@ $base-class: 'date-picker';
   &--range {
     .#{$base-class}__day {
       &--selected {
-        &:not(.#{$base-class}__day--disabled):not(.#{$base-class}__day--outside):not(.#{$base-class}__day--start):not(.#{$base-class}__day--end):not(.#{$base-class}__day--single):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday) {
+        &:not(.#{$base-class}__day--disabled):not(
+            .#{$base-class}__day--outside
+          ):not(.#{$base-class}__day--start):not(.#{$base-class}__day--end):not(
+            .#{$base-class}__day--single
+          ):not(.#{$base-class}__day--sunday):not(
+            .#{$base-class}__day--monday
+          ) {
           .#{$base-class}__day-wrapper {
             background-color: var(--surface-accent-emphasis-low-info);
           }
@@ -218,7 +226,9 @@ $base-class: 'date-picker';
         }
       }
 
-      &--start:not(.#{$base-class}__day--end):not(.#{$base-class}__day--sunday):not(.#{$base-class}__day--monday),
+      &--start:not(.#{$base-class}__day--end):not(
+          .#{$base-class}__day--sunday
+        ):not(.#{$base-class}__day--monday),
       &--monday.#{$base-class}__day--selected:not(.#{$base-class}__day--end) {
         .#{$base-class}__day-wrapper {
           background: linear-gradient(
@@ -231,7 +241,9 @@ $base-class: 'date-picker';
         }
       }
 
-      &--end:not(.#{$base-class}__day--start):not(.#{$base-class}__day--monday):not(.#{$base-class}__day--sunday),
+      &--end:not(.#{$base-class}__day--start):not(
+          .#{$base-class}__day--monday
+        ):not(.#{$base-class}__day--sunday),
       &--sunday.#{$base-class}__day--selected:not(.#{$base-class}__day--start) {
         .#{$base-class}__day-wrapper {
           background: linear-gradient(
@@ -244,8 +256,12 @@ $base-class: 'date-picker';
         }
       }
 
-      &--monday.#{$base-class}__day--selected:not(.#{$base-class}__day--start):not(.#{$base-class}__day--end),
-      &--sunday.#{$base-class}__day--selected:not(.#{$base-class}__day--start):not(.#{$base-class}__day--end) {
+      &--monday.#{$base-class}__day--selected:not(
+          .#{$base-class}__day--start
+        ):not(.#{$base-class}__day--end),
+      &--sunday.#{$base-class}__day--selected:not(
+          .#{$base-class}__day--start
+        ):not(.#{$base-class}__day--end) {
         .#{$base-class}__day-content {
           background-color: var(--surface-accent-emphasis-low-info);
         }

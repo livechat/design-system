@@ -14,6 +14,10 @@ $base-class: 'tooltip';
     outline: none;
   }
 
+  &__wrapper {
+    display: inherit;
+  }
+
   &__interactive,
   &__user-guide-step {
     padding: var(--spacing-1);
@@ -150,6 +154,18 @@ $base-class: 'tooltip';
     display: flex;
     justify-content: space-between;
     margin: var(--spacing-4) 0 0;
+
+    &-secondary {
+      margin-left: var(--spacing-4);
+
+      &-invert {
+        color: var(--content-invert-primary);
+      }
+    }
+
+    &--interactive {
+      justify-content: flex-start;
+    }
 
     &--user-guide-step {
       align-items: center;

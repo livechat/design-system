@@ -95,6 +95,18 @@
   }
 }
 
+@mixin display-md {
+  line-height: 32px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+@mixin display-sm {
+  line-height: 24px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
 .heading-xl {
   @include heading-xl;
 }
@@ -129,4 +141,12 @@
 
 .paragraph-xs {
   @include paragraph-xs;
+}
+
+.display-md {
+  @include display-md;
+}
+
+.display-sm {
+  @include display-sm;
 }
