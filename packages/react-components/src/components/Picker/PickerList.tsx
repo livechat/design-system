@@ -5,6 +5,7 @@ import cx from 'clsx';
 import { KeyCodes } from '../../utils/keyCodes';
 
 import { SELECT_ALL_OPTION_KEY } from './constants';
+import { getAdjacentItemPositions } from './helpers';
 import { PickerListItem } from './PickerListItem';
 import { IPickerListItem } from './types';
 
@@ -46,6 +47,9 @@ export const PickerList: React.FC<IPickerListProps> = ({
   const indexRef = React.useRef(-1);
   const lastIndexRef = React.useRef(0);
   const listRef = React.useRef<HTMLUListElement>(null);
+  const [adjacentItems, setAdjacentItems] = React.useState<
+    Record<string, 'top' | 'middle' | 'bottom'>
+  >({});
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === KeyCodes.esc) {
@@ -95,6 +99,10 @@ export const PickerList: React.FC<IPickerListProps> = ({
       setCurrentItemKey(null);
     }
   }, [items, isOpen, onKeyDown]);
+
+  React.useEffect(() => {
+    setAdjacentItems(getAdjacentItemPositions(items, selectedItemsKeys));
+  }, [selectedItemsKeys, items]);
 
   const isHeaderOrDisabled = (i: number) =>
     !!items[i] && (items[i].disabled || items[i].groupHeader);
@@ -206,6 +214,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
           <PickerListItem
             item={item}
             isItemSelected={isItemSelected(item.key)}
+            isAdjacentStyleApplied={adjacentItems[item.key]}
             currentItemKey={currentItemKey}
             onSelect={onSelect}
           />

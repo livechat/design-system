@@ -15,6 +15,9 @@ $base-class: 'picker-list';
 
 .#{$base-class} {
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-05);
   margin: 0;
   background-color: var(--picker-list-background);
   padding: var(--spacing-2);
@@ -42,7 +45,7 @@ $base-class: 'picker-list';
     border-radius: var(--radius-3);
     cursor: pointer;
     padding: 6px 11px;
-    height: 36px;
+    height: 100%;
 
     &:hover {
       background-color: var(--picker-list-option-background-hover);
@@ -77,8 +80,32 @@ $base-class: 'picker-list';
         border-bottom-right-radius: var(--radius-3);
         background: var(--action-primary-default);
         width: 3px;
-        height: 36px;
+        height: 100%;
         content: '';
+      }
+
+      &:hover {
+        background-color: var(--picker-list-option-background-active-hover);
+      }
+    }
+
+    &[aria-selected='true'][data-adjacent='top'] {
+      &::after {
+        top: 0;
+        height: 120%;
+      }
+    }
+
+    &[aria-selected='true'][data-adjacent='middle'] {
+      &::after {
+        height: 120%;
+      }
+    }
+
+    &[aria-selected='true'][data-adjacent='bottom'] {
+      &::after {
+        bottom: 0;
+        height: 120%;
       }
     }
 
@@ -114,15 +141,47 @@ $base-class: 'picker-list';
     }
 
     &__content {
+      display: flex;
       flex: 1;
+      align-items: center;
       overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
     }
 
     &__custom {
       width: 100%;
       height: auto;
+    }
+
+    &__checkbox {
+      align-self: center;
+      margin-right: var(--spacing-2);
+    }
+
+    &__avatar,
+    &__icon {
+      align-self: center;
+      margin-right: var(--spacing-2);
+      border-radius: var(--radius-3);
+      width: 20px;
+      height: 20px;
+      color: var(--content-basic-primary);
+    }
+
+    &__label-container {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    &__main-label {
+      font-weight: bold;
+    }
+
+    &__secondary-label {
+      color: var(--content-basic-secondary);
+      font-size: 12px;
     }
   }
 }

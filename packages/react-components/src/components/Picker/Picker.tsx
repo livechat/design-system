@@ -7,11 +7,11 @@ import { Size } from 'utils';
 import { KeyCodes } from '../../utils/keyCodes';
 import { IconSize } from '../Icon';
 
-import { PickerType, SELECT_ALL_OPTION_KEY } from './constants';
+import { SELECT_ALL_OPTION_KEY } from './constants';
 import { PickerList } from './PickerList';
 import { Trigger } from './Trigger';
 import { TriggerBody } from './TriggerBody';
-import { IPickerListItem } from './types';
+import { IPickerListItem, PickerType } from './types';
 
 import styles from './Picker.module.scss';
 

@@ -4,8 +4,8 @@ import { render, userEvent, vi } from 'test-utils';
 
 import noop from '../../utils/noop';
 
-import { PickerType } from './constants';
 import { TriggerBody, ITriggerBodyProps } from './TriggerBody';
+import { PickerType } from './types';
 
 const defaultProps = {
   isOpen: false,

@@ -15,6 +15,7 @@ interface IProps {
   item: IPickerListItem;
   isItemSelected: boolean;
   currentItemKey: string | null;
+  isAdjacentStyleApplied: 'top' | 'middle' | 'bottom';
   onSelect: (item: IPickerListItem) => void;
 }
 
@@ -22,6 +23,7 @@ export const PickerListItem: React.FC<IProps> = ({
   item,
   isItemSelected,
   currentItemKey,
+  isAdjacentStyleApplied,
   onSelect,
 }) => {
   const getOptionContent = (item: IPickerListItem) => {
@@ -33,7 +35,45 @@ export const PickerListItem: React.FC<IProps> = ({
       );
     }
 
-    return item.name;
+    return (
+      <>
+        {item.showCheckbox && (
+          <input
+            type="checkbox"
+            className={styles[`${itemClassName}__checkbox`]}
+            checked={isItemSelected}
+          />
+        )}
+        {item.icon && (
+          <Icon
+            className={styles[`${itemClassName}__icon`]}
+            kind="link"
+            source={item.icon}
+          />
+        )}
+        {item.avatarSrc && (
+          <img
+            className={cx(styles[`${itemClassName}__avatar`])}
+            src={item.avatarSrc}
+            alt={item.name}
+          />
+        )}
+        <div className={styles[`${itemClassName}__label-container`]}>
+          <span
+            className={cx({
+              [styles[`${itemClassName}__main-label`]]: item.secondaryText,
+            })}
+          >
+            {item.name}
+          </span>
+          {item.secondaryText && (
+            <span className={styles[`${itemClassName}__secondary-label`]}>
+              {item.secondaryText}
+            </span>
+          )}
+        </div>
+      </>
+    );
   };
 
   const handleOnClick = (item: IPickerListItem) => {
@@ -66,6 +106,7 @@ export const PickerListItem: React.FC<IProps> = ({
       aria-disabled={item.disabled}
       id={item.key}
       key={item.key}
+      data-adjacent={isAdjacentStyleApplied}
       className={cx(styles[itemClassName], {
         [styles[`${itemClassName}__custom`]]: item?.customElement,
       })}
@@ -74,7 +115,7 @@ export const PickerListItem: React.FC<IProps> = ({
       <div className={styles[`${itemClassName}__content`]}>
         {getOptionContent(item)}
       </div>
-      {isItemSelected && (
+      {isItemSelected && !item.showCheckbox && (
         <Icon
           kind="link"
           source={Check}
