@@ -93,7 +93,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
 
       return () => observer.disconnect();
     }
-  }, [menuItemsKeys]);
+  }, [menuItemsKeys, isScrollType]);
 
   const getMenuItems = (keys: string[]) => {
     const filteredOptions = options.filter((row) =>

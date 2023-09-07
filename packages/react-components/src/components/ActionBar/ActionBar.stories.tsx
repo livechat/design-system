@@ -16,6 +16,9 @@ import { ActionBar } from './ActionBar';
 export default {
   title: 'Experimental/ActionBar',
   component: ActionBar,
+  parameters: {
+    layout: 'centered',
+  },
 };
 
 export const Default = (): React.ReactElement => {
