@@ -58,6 +58,8 @@ $surface-tertiary-hover: #e4e4e5;
   --surface-locked-disabled: rgb(255 255 255 / 70%);
   --surface-locked-white: #fff;
   --surface-locked-black: #000;
+  --surface-accent-emphasis-medium-negative: #ffb7b7;
+  --surface-accent-emphasis-medium-positive: #7edd92;
   --surface-accent-emphasis-high-info: #0059e1;
   --surface-accent-emphasis-high-negative: #ca0005;
   --surface-accent-emphasis-high-warning: #e8bb00;
@@ -83,7 +85,7 @@ $surface-tertiary-hover: #e4e4e5;
   --content-basic-secondary: #4e4e58;
   --content-disabled: #8d8d95; // deprecated
   --content-basic-disabled: #8d8d95;
-  --content-basic-negative: #ca0005;
+  --content-basic-negative: #ae0003;
   --content-basic-warning: #755b00;
   --content-basic-positive: #005321;
   --content-basic-info: #003fa4;
@@ -120,7 +122,7 @@ $surface-tertiary-hover: #e4e4e5;
   --border-basic-hover: #ababb1;
   --border-disabled: #e2e2e4; // deprecated
   --border-basic-disabled: #e2e2e4;
-  --border-basic-negative: #ca0005;
+  --border-basic-negative: #ae0003;
   --border-basic-warning: #755b00;
   --border-basic-positive: #005321;
   --border-basic-info: #003fa4;

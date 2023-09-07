@@ -62,6 +62,7 @@ export const Popover: React.FC<IPopoverProps> = ({
 }) => {
   const [visible, setVisibility] = React.useState(false);
   const prevVisibleState = React.useRef(false);
+  const isTextContent = typeof children === 'string';
 
   const {
     x,
@@ -157,7 +158,7 @@ export const Popover: React.FC<IPopoverProps> = ({
           left: x !== null && x !== undefined ? x : '',
         }}
       >
-        <Text as="div">{children}</Text>
+        {isTextContent ? <Text as="div">{children}</Text> : children}
       </div>
     </>
   );

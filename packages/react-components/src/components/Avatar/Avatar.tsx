@@ -5,7 +5,11 @@ import cx from 'clsx';
 
 import { Icon } from '../Icon';
 
-import { getFontColor, getInitials } from './Avatar.helpers';
+import {
+  getBackgroundColor,
+  getFontColor,
+  getInitials,
+} from './Avatar.helpers';
 
 import styles from './Avatar.module.scss';
 
@@ -89,7 +93,8 @@ export const Avatar: React.FC<AvatarProps> = ({
   const shouldDisplayInitials = type === 'text';
   const letterCount = ['xxxsmall', 'xxsmall', 'xsmall'].includes(size) ? 1 : 2;
   const initials = getInitials(text, letterCount);
-  const fontColor = color && getFontColor(color);
+  const backgroundColor = color || getBackgroundColor(initials);
+  const fontColor = backgroundColor && getFontColor(backgroundColor);
 
   const mergedClassNames = cx({
     [styles[baseClass]]: true,
@@ -121,7 +126,7 @@ export const Avatar: React.FC<AvatarProps> = ({
   }, [isImproperImageSetup]);
 
   return (
-    <div className={mergedClassNames} style={{ backgroundColor: color }}>
+    <div className={mergedClassNames} style={{ backgroundColor }}>
       {withRim && (
         <div
           data-testid={`${baseClass}__rim`}
