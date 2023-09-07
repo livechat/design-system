@@ -155,7 +155,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
           customColor={getIconCustomColor()}
         />
       )}
-      {children}
+      <div className={styles[`${baseClass}__content`]}>{children}</div>
       {rightIcon && (
         <Icon
           data-testid="lc-tag-right-icon"

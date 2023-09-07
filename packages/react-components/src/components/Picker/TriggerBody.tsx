@@ -70,16 +70,19 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
     return (
       <div className={styles[`${baseClass}__item`]}>
         {item.icon && (
-          <Icon source={item.icon} className={styles[`${baseClass}__icon`]} />
+          <Icon
+            source={item.icon}
+            className={styles[`${baseClass}__item__icon`]}
+          />
         )}
         {item.avatarSrc && (
           <img
             src={item.avatarSrc}
             alt=""
-            className={styles[`${baseClass}__avatar`]}
+            className={styles[`${baseClass}__item__avatar`]}
           />
         )}
-        {item.name}
+        <div className={styles[`${baseClass}__item__content`]}>{item.name}</div>
       </div>
     );
   };
