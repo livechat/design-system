@@ -6,6 +6,7 @@ export { ShadowToken } from './foundations/shadow-token';
 export { RadiusToken } from './foundations/radius-token';
 export type { Size } from './utils';
 
+export * from './components/ActionBar';
 export * from './components/ActionMenu';
 export * from './components/Alert';
 export * from './components/Avatar';

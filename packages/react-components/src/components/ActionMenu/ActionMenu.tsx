@@ -15,6 +15,10 @@ export interface ActionMenuProps {
    */
   className?: string;
   /**
+   * The CSS class for wrapper container
+   */
+  wrapperClassName?: string;
+  /**
    * Array of menu options
    */
   options: Array<{
@@ -50,6 +54,7 @@ const baseClass = 'action-menu';
 
 export const ActionMenu: React.FC<ActionMenuProps> = ({
   className,
+  wrapperClassName,
   options,
   triggerRenderer,
   placement = 'bottom-end',
@@ -109,6 +114,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
 
   return (
     <Popover
+      wrapperClassName={wrapperClassName}
       isVisible={isVisible}
       placement={placement}
       onClose={() => setIsVisible(false)}
