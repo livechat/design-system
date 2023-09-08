@@ -114,7 +114,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
 
   return (
     <Popover
-      wrapperClassName={wrapperClassName}
+      triggerClassName={wrapperClassName}
       isVisible={isVisible}
       placement={placement}
       onClose={() => setIsVisible(false)}
