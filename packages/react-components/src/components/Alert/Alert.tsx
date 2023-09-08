@@ -129,12 +129,16 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
         {(primaryButton || secondaryButton) && (
           <div className={styles[`${baseClass}__content__cta`]}>
             {primaryButton && (
-              <Button kind="primary" onClick={primaryButton.handleClick}>
+              <Button kind="high-contrast" onClick={primaryButton.handleClick}>
                 {primaryButton.label}
               </Button>
             )}
             {secondaryButton && (
-              <Button kind="text" onClick={secondaryButton.handleClick}>
+              <Button
+                className={styles[`${baseClass}__content__cta__link`]}
+                kind="text"
+                onClick={secondaryButton.handleClick}
+              >
                 {secondaryButton.label}
               </Button>
             )}
@@ -142,13 +146,14 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
         )}
       </div>
       {onClose && (
-        <button
+        <Button
           type="button"
           className={styles[`${baseClass}__close-icon`]}
+          size="compact"
+          kind="plain"
+          icon={<Icon source={CloseIcon} />}
           onClick={onClose}
-        >
-          <Icon source={CloseIcon} kind="subtle" />
-        </button>
+        />
       )}
     </div>
   );

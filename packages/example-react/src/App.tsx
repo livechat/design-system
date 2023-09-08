@@ -1,5 +1,5 @@
-import { Badge, Icon } from '@livechat/design-system-react-components';
 import { Add } from '@livechat/design-system-icons/react/material';
+import { Badge, Icon } from '@livechat/design-system-react-components';
 
 function App() {
   return (

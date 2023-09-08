@@ -4,6 +4,7 @@ import { Placement } from '@floating-ui/react-dom';
 import cx from 'clsx';
 
 import { KeyCodes } from '../../utils/keyCodes';
+import { Button } from '../Button';
 import { Popover } from '../Popover';
 
 import styles from './ActionMenu.module.scss';
@@ -13,6 +14,10 @@ export interface ActionMenuProps {
    * The CSS class for menu container
    */
   className?: string;
+  /**
+   * The CSS class for wrapper container
+   */
+  wrapperClassName?: string;
   /**
    * Array of menu options
    */
@@ -26,7 +31,7 @@ export interface ActionMenuProps {
   /**
    * Trigger element
    */
-  triggerRenderer: React.ReactNode;
+  triggerRenderer: React.ReactElement;
   /**
    * The menu placement
    */
@@ -39,17 +44,23 @@ export interface ActionMenuProps {
    * Menu will stay open after option click
    */
   keepOpenOnClick?: boolean;
+  /**
+   * Set the keys array for active elements
+   */
+  activeOptionKeys?: string[];
 }
 
 const baseClass = 'action-menu';
 
 export const ActionMenu: React.FC<ActionMenuProps> = ({
   className,
+  wrapperClassName,
   options,
   triggerRenderer,
   placement = 'bottom-end',
   openedOnInit = false,
   keepOpenOnClick,
+  activeOptionKeys,
   ...props
 }) => {
   const [isVisible, setIsVisible] = React.useState(openedOnInit);
@@ -103,17 +114,18 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
 
   return (
     <Popover
+      wrapperClassName={wrapperClassName}
       isVisible={isVisible}
       placement={placement}
       onClose={() => setIsVisible(false)}
       triggerRenderer={() => (
-        <button
+        <Button
           data-testid="action-menu-trigger-button"
-          className={styles[`${baseClass}__trigger-button`]}
+          kind="plain"
+          size="compact"
+          icon={triggerRenderer}
           onClick={handleTriggerClick}
-        >
-          {triggerRenderer}
-        </button>
+        />
       )}
     >
       <ul
@@ -136,6 +148,8 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
                 [styles[`${baseClass}__list__item--disabled`]]: o.disabled,
                 [styles[`${baseClass}__list__item--with-divider`]]:
                   o.withDivider,
+                [styles[`${baseClass}__list__item--active`]]:
+                  activeOptionKeys?.includes(o.key),
               })}
             >
               {o.element}

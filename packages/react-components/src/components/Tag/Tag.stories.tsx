@@ -242,6 +242,12 @@ Kinds.args = {
 export const Sizes = ({ children, ...args }: TagProps): React.ReactElement => {
   return (
     <div>
+      <StoryDescriptor title="Small">
+        <Tag size="small">{children}</Tag>
+        <Tag icon={args.icon} size="small" dismissible>
+          {children}
+        </Tag>
+      </StoryDescriptor>
       <StoryDescriptor title="Medium">
         <Tag>{children}</Tag>
         <Tag leftIcon={args.leftIcon} rightIcon={args.rightIcon} dismissible>

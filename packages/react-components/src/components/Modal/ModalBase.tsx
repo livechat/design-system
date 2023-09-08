@@ -19,6 +19,10 @@ export interface ModalBaseProps extends React.HTMLAttributes<HTMLDivElement> {
    * Triggers the onClose event on overlay click
    */
   closeOnOverlayPress?: boolean;
+  /**
+   * Removes the spacing inside the main container
+   */
+  fullSpaceContent?: boolean;
 }
 
 const baseClass = 'modal-base';
@@ -29,9 +33,14 @@ export const ModalBase: React.FC<React.PropsWithChildren<ModalBaseProps>> = ({
   onClose,
   closeOnEscPress = true,
   closeOnOverlayPress = true,
+  fullSpaceContent,
   ...props
 }) => {
-  const mergedClassNames = cx(styles[baseClass], className);
+  const mergedClassNames = cx(
+    styles[baseClass],
+    className,
+    fullSpaceContent && styles[`${baseClass}--full-space`]
+  );
 
   React.useEffect(() => {
     if (!closeOnEscPress) {

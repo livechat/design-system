@@ -3,6 +3,8 @@ import * as React from 'react';
 import { GreetingQuickReply } from '@livechat/design-system-icons/react/material';
 import { ComponentMeta, Story } from '@storybook/react';
 
+import noop from '../../utils/noop';
+
 import {
   ModalContent,
   ModalFullSpaceContent,
@@ -36,6 +38,7 @@ const defaultModalProps = {
   closeOnEscPress: true,
   closeOnOverlayPress: true,
   footer: <ModalFooter />,
+  onClose: () => noop,
 };
 
 const StoryTemplate: Story<ModalProps> = ({
@@ -50,7 +53,7 @@ const StoryTemplate: Story<ModalProps> = ({
 export const Modal = StoryTemplate.bind({});
 Modal.args = {
   ...defaultModalProps,
-  heading: 'Modal',
+  heading: 'Modal header',
 } as ModalProps;
 
 export const ModalWithCustomHeader = StoryTemplate.bind({});

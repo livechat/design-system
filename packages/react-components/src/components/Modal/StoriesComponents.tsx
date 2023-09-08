@@ -6,7 +6,7 @@ import './Modal.stories.css';
 import { FormField } from '../FormField';
 import { Input } from '../Input';
 import { Picker } from '../Picker';
-import { defaultPickerOptions } from '../Picker/constants';
+import { DEFAULT_PICKER_OPTIONS } from '../Picker/constants';
 import { Heading, Text } from '../Typography';
 
 import modalImage from './assets/modal-image.png';
@@ -17,7 +17,7 @@ export const ModalFullSpaceContent: React.FC = () => {
       <img src={modalImage} alt="modal image" />
       <div className="full-space-content">
         <Heading size="lg" as="div" className="full-space-header">
-          Modal header
+          Content header
         </Heading>
         <div className="full-space-text">
           <Text size="md" as="div">
@@ -47,7 +47,7 @@ export const ModalFullSpaceContent: React.FC = () => {
 export const ModalContent: React.FC = () => (
   <div style={{ maxWidth: 400 }}>
     <Heading size="lg" as="div">
-      Modal header
+      Content header
     </Heading>
     <Text size="sm">
       Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
@@ -55,7 +55,7 @@ export const ModalContent: React.FC = () => (
       consequat sunt nostrud amet.
     </Text>
     <FormField className="example-field" labelText="Options">
-      <Picker options={defaultPickerOptions} onSelect={noop} />
+      <Picker options={DEFAULT_PICKER_OPTIONS} onSelect={noop} />
     </FormField>
     <FormField className="example-field" labelText="Name" labelFor="input-name">
       <Input id="input-name" />

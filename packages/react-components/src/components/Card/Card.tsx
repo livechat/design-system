@@ -119,7 +119,7 @@ export const Card: React.FC<CardProps> = ({
             {shouldShowExpandAction && (
               <Button
                 className={styles[`${actionsClass}__buttons-expander`]}
-                kind="plain"
+                kind="link"
                 iconPosition="right"
                 icon={<Icon source={expandIcon} />}
                 onClick={() => setIsExpanded(!isExpanded)}

@@ -26,7 +26,7 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Specify the tag size
    */
-  size?: 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large';
   /**
    * Specify the tag icon size if used
    */
@@ -155,7 +155,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
           customColor={getIconCustomColor()}
         />
       )}
-      {children}
+      <div className={styles[`${baseClass}__content`]}>{children}</div>
       {rightIcon && (
         <Icon
           data-testid="lc-tag-right-icon"

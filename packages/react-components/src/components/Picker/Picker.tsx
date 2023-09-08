@@ -7,10 +7,11 @@ import { Size } from 'utils';
 import { KeyCodes } from '../../utils/keyCodes';
 import { IconSize } from '../Icon';
 
-import { PickerType, SELECT_ALL_OPTION_KEY } from './constants';
-import { IPickerListItem, PickerList } from './PickerList';
+import { SELECT_ALL_OPTION_KEY } from './constants';
+import { PickerList } from './PickerList';
 import { Trigger } from './Trigger';
 import { TriggerBody } from './TriggerBody';
+import { IPickerListItem, PickerType } from './types';
 
 import styles from './Picker.module.scss';
 
@@ -272,6 +273,7 @@ export const Picker: React.FC<IPickerProps> = ({
             iconSize={tagIconSize}
             items={selected}
             type={type}
+            size={size}
             clearSearchAfterSelection={clearSearchAfterSelection}
             onItemRemove={handleItemRemove}
             onFilter={handleOnFilter}

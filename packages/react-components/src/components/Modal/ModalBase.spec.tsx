@@ -6,6 +6,10 @@ import { render, vi } from 'test-utils';
 
 import { ModalBase } from './ModalBase';
 
+import styles from './Modal.module.scss';
+
+const baseClass = 'modal-base';
+
 describe('<ModalBase /> component', () => {
   it('should allow for custom class', () => {
     const onClose = vi.fn();
@@ -57,5 +61,16 @@ describe('<ModalBase /> component', () => {
 
     userEvent.click(getByTestId('lc-modal-overlay'));
     expect(onClose).not.toBeCalled();
+  });
+
+  it('should display with full space content if prop is given', () => {
+    const onClose = vi.fn();
+    const { getByRole } = render(
+      <ModalBase onClose={onClose} fullSpaceContent>
+        test
+      </ModalBase>
+    );
+
+    expect(getByRole('dialog')).toHaveClass(styles[`${baseClass}--full-space`]);
   });
 });
