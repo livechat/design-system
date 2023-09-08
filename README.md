@@ -14,7 +14,7 @@
     <img src="https://img.shields.io/static/v1?label=documentation&message=storybook&color=ff4685">
   </a>
   <a href="https://github.com/livechat/design-system/actions/workflows/tests.yml">
-    <img src="https://img.shields.io/github/workflow/status/livechat/design-system/Tests/v1?label=tests">
+    <img src="https://github.com/livechat/design-system/actions/workflows/tests.yml/badge.svg" alt="Workflow status badge" loading="lazy">
   </a>
 </p>
 
