@@ -2,7 +2,7 @@ $base-class: 'tooltip';
 
 .#{$base-class} {
   z-index: 999999999;
-  border-radius: 4px;
+  border-radius: var(--radius-3);
   border-color: var(--background-02);
   box-shadow: var(--shadow-tooltip);
   background-color: var(--background-02);
@@ -116,7 +116,7 @@ $base-class: 'tooltip';
   }
 
   &-image-container {
-    margin-top: 20px;
+    margin-top: 30px;
   }
 
   &-image {
@@ -131,25 +131,16 @@ $base-class: 'tooltip';
     line-height: 22px;
     font-size: 15px;
     font-weight: 400;
+
+    &--info {
+      padding-right: var(--spacing-5);
+    }
   }
 
   &-close {
     position: absolute;
     top: var(--spacing-2);
     right: var(--spacing-2);
-
-    &-button {
-      margin: 0;
-      border: 0;
-      background: none;
-      padding: 0;
-      width: 20px;
-      height: 20px;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
   }
 
   &-step {
@@ -163,6 +154,18 @@ $base-class: 'tooltip';
     display: flex;
     justify-content: space-between;
     margin: var(--spacing-4) 0 0;
+
+    &-secondary {
+      margin-left: var(--spacing-4);
+
+      &-invert {
+        color: var(--content-invert-primary);
+      }
+    }
+
+    &--interactive {
+      justify-content: flex-start;
+    }
 
     &--user-guide-step {
       align-items: center;

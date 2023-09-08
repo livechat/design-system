@@ -8,7 +8,7 @@ import {
 } from './PromoBanner';
 
 export default {
-  title: 'Components/PromoBanner',
+  title: 'Deprecated/PromoBanner',
   component: PromoBannerComponent,
   parameters: {
     componentSubtitle: `

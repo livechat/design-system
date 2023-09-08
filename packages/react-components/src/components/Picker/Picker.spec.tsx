@@ -6,14 +6,15 @@ import { render, vi } from 'test-utils';
 
 import noop from '../../utils/noop';
 
-import { defaultPickerOptions, PickerType } from './constants';
+import { DEFAULT_PICKER_OPTIONS } from './constants';
 import { IPickerProps, Picker } from './Picker';
+import { PickerType } from './types';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 window.HTMLElement.prototype.scrollIntoView = () => {};
 
 const defaultProps = {
-  options: defaultPickerOptions,
+  options: DEFAULT_PICKER_OPTIONS,
   onSelect: noop,
 };
 

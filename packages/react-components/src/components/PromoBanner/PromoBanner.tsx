@@ -55,6 +55,9 @@ export interface PromoBannerProps {
   onLinkClick?: () => void;
 }
 
+/**
+ * @deprecated Since version 1.0.0. Will be deleted in future versions. Use {@link PromoBannerV2} instead.
+ */
 export const PromoBanner: React.FC<
   React.PropsWithChildren<PromoBannerProps>
 > = ({

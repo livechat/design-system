@@ -110,7 +110,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         {type === 'password' && (
           <Button
             disabled={disabled}
-            kind="subtle"
+            kind="text"
+            size="compact"
             icon={<Icon customColor={iconCustomColor} source={iconSource} />}
             onClick={() => setIsPasswordVisible((v) => !v)}
             className={styles[`${baseClass}__visibility-button`]}

@@ -5,6 +5,7 @@ $surface-primary-default: #fff;
 $action-primary-default: #4284f5;
 $surface-secondary-default: #f1f6f8;
 $surface-primary-active: #ebf1f4;
+$surface-tertiary-hover: #d3dde3;
 
 :root,
 .lc-legacy-theme {
@@ -31,7 +32,7 @@ $surface-primary-active: #ebf1f4;
   --surface-moderate-default: #cad6dd;
   --surface-moderate-hover: #c3ced5;
   --surface-moderate-active: #bac7cf;
-  --surface-tertiary-hover: #d3dde3;
+  --surface-tertiary-hover: #{$surface-tertiary-hover};
   --surface-tertiary-active: #cdd8df;
   --surface-tertiary-disabled: #e4e8ec;
   --surface-feedback-info: #e5f3ff; // deprecated
@@ -128,6 +129,7 @@ $surface-primary-active: #ebf1f4;
   --border-basic-positive: #005321;
   --border-basic-info: #003fa4;
   --border-basic-purple: #6100bd;
+  --border-basic-contrast: #131317;
   --border-invert-default: rgb(255 255 255 / 70%); // deprecated
   --border-invert-primary: rgb(255 255 255 / 70%);
   --border-invert-subtle: rgb(255 255 255 / 30%); // deprecated
@@ -165,6 +167,10 @@ $surface-primary-active: #ebf1f4;
   --action-neutral-default: #bdc7d1;
   --action-neutral-hover: #a0a6ab;
   --action-neutral-disabled: #dee3e8;
+  --action-high-contrast-default: #1b1b20;
+  --action-high-contrast-hover: #131317;
+  --action-high-contrast-active: #131317;
+  --action-high-contrast-disabled: rgb(27 27 32 / 20%);
   --color-bot: #6b5aba; // deprecated
   --surface-other-bot: #6b5aba;
   --color-black: #424d57;
@@ -268,6 +274,7 @@ $surface-primary-active: #ebf1f4;
   --picker-list-background: #{$surface-primary-default};
   --picker-list-group-background: #{$surface-secondary-default};
   --picker-list-option-background-hover: #{$surface-primary-hover};
+  --picker-list-option-background-active-hover: #{$surface-tertiary-hover};
   --picker-list-option-background-focus: #{$surface-primary-hover};
   --picker-list-option-background-active: #{$surface-primary-active};
   --popover-background: #{$surface-primary-default};

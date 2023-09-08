@@ -2,10 +2,20 @@ import * as React from 'react';
 
 import { Placement, VirtualElement } from '@floating-ui/react-dom';
 
+import { ButtonKind } from '../Button';
+
+export type TooltipTheme = 'invert' | 'important' | undefined;
+
+export type TooltipButton = {
+  handleClick: () => void;
+  label: string;
+  kind?: ButtonKind;
+};
+
 export interface ITooltipProps {
   children?: React.ReactNode;
   className?: string;
-  theme?: 'invert' | 'important' | undefined;
+  theme?: TooltipTheme;
   placement?: Placement;
   isVisible?: boolean;
   withFadeAnimation?: boolean;

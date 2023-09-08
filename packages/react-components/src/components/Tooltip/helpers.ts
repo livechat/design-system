@@ -1,6 +1,8 @@
 import { IconKind } from '../Icon';
 
-export function getIconType(theme: string): IconKind {
+import { TooltipTheme } from './types';
+
+export function getIconType(theme: TooltipTheme): IconKind {
   switch (theme) {
     case 'invert':
       return 'inverted';

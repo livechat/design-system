@@ -4,7 +4,7 @@ $base-class: 'alert';
   box-sizing: border-box;
   display: flex;
   position: relative;
-  border-radius: 8px;
+  border-radius: var(--radius-3);
   padding: var(--spacing-5);
   width: 100%;
   overflow: hidden;
@@ -30,23 +30,17 @@ $base-class: 'alert';
     &__cta {
       flex-shrink: 0;
       margin-right: var(--spacing-8);
+
+      &__link {
+        margin-left: var(--spacing-4);
+      }
     }
   }
 
   &__close-icon {
-    flex-shrink: 0;
-    margin-left: var(--spacing-14);
-    border: 0;
-    box-shadow: none;
-    background-color: transparent;
-    padding: 0;
     width: 20px;
+    min-width: 20px;
     height: 20px;
-    overflow: hidden;
-
-    &:hover {
-      cursor: pointer;
-    }
   }
 
   &--small,

@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { MoreHoriz } from '@livechat/design-system-icons/react/tabler';
 
+import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
 import { RadioButton } from '../RadioButton';
 import { Switch } from '../Switch';
@@ -31,35 +32,75 @@ export const Default = (): React.ReactElement => (
 );
 
 export const KeepOpenOnItemClick = (): React.ReactElement => {
-  const [checkboxValue, setCheckboxValue] = React.useState('one');
-  const [switchOneValue, setSwitchOneValue] = React.useState(false);
+  const [radioButtonValue, setRadioButtonValue] = React.useState('one');
+  const [switchOneValue, setSwitchOneValue] = React.useState(true);
   const [switchTwoValue, setSwitchTwoValue] = React.useState(false);
+  const [checkboxOneValue, setCheckboxOneValue] = React.useState(true);
+  const [checkboxTwoValue, setCheckboxTwoValue] = React.useState(true);
+  const [activeOptionsKeys, setActiveOptionsKeys] = React.useState([
+    'one',
+    'three',
+    'five',
+    'six',
+  ]);
+
+  const handleOptionSelect = (
+    key: string,
+    type: string,
+    optionHandler: void
+  ) => {
+    const newActiveOptions = activeOptionsKeys;
+
+    if (type === 'radio') {
+      if (!activeOptionsKeys.includes(key)) {
+        const keyToRemove = key === 'one' ? 'two' : 'one';
+        const index = activeOptionsKeys.indexOf(keyToRemove);
+        newActiveOptions.splice(index, 1);
+        setActiveOptionsKeys([...newActiveOptions, key]);
+      }
+    }
+
+    if (type === 'switch' || type === 'checkbox') {
+      if (activeOptionsKeys.includes(key)) {
+        const index = activeOptionsKeys.indexOf(key);
+        newActiveOptions.splice(index, 1);
+        setActiveOptionsKeys([...newActiveOptions]);
+      } else {
+        activeOptionsKeys.push(key);
+      }
+    }
+
+    return optionHandler;
+  };
 
   return (
     <div className="action-menu-preview">
       <ActionMenu
+        activeOptionKeys={activeOptionsKeys}
         options={[
           {
             key: 'one',
             element: (
               <ActionMenuItem>
-                <RadioButton checked={checkboxValue === 'one'}>
+                <RadioButton checked={radioButtonValue === 'one'}>
                   Radio label one
                 </RadioButton>
               </ActionMenuItem>
             ),
-            onClick: () => setCheckboxValue('one'),
+            onClick: () =>
+              handleOptionSelect('one', 'radio', setRadioButtonValue('one')),
           },
           {
             key: 'two',
             element: (
               <ActionMenuItem>
-                <RadioButton checked={checkboxValue === 'two'}>
+                <RadioButton checked={radioButtonValue === 'two'}>
                   Radio label two
                 </RadioButton>
               </ActionMenuItem>
             ),
-            onClick: () => setCheckboxValue('two'),
+            onClick: () =>
+              handleOptionSelect('two', 'radio', setRadioButtonValue('two')),
           },
           {
             key: 'three',
@@ -73,7 +114,12 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
                 Toggle label one
               </ActionMenuItem>
             ),
-            onClick: () => setSwitchOneValue((s) => !s),
+            onClick: () =>
+              handleOptionSelect(
+                'three',
+                'switch',
+                setSwitchOneValue((s) => !s)
+              ),
           },
           {
             key: 'four',
@@ -87,7 +133,49 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
                 Toggle label two
               </ActionMenuItem>
             ),
-            onClick: () => setSwitchTwoValue((s) => !s),
+            onClick: () =>
+              handleOptionSelect(
+                'four',
+                'switch',
+                setSwitchTwoValue((s) => !s)
+              ),
+          },
+          {
+            key: 'five',
+            withDivider: true,
+            element: (
+              <ActionMenuItem
+                leftNode={
+                  <Checkbox checked={checkboxOneValue}>
+                    Checkbox label one
+                  </Checkbox>
+                }
+              />
+            ),
+            onClick: () =>
+              handleOptionSelect(
+                'five',
+                'checkbox',
+                setCheckboxOneValue((s) => !s)
+              ),
+          },
+          {
+            key: 'six',
+            element: (
+              <ActionMenuItem
+                leftNode={
+                  <Checkbox checked={checkboxTwoValue}>
+                    Checkbox label two
+                  </Checkbox>
+                }
+              />
+            ),
+            onClick: () =>
+              handleOptionSelect(
+                'six',
+                'checkbox',
+                setCheckboxTwoValue((s) => !s)
+              ),
           },
         ]}
         triggerRenderer={<Icon source={MoreHoriz} kind="primary" />}

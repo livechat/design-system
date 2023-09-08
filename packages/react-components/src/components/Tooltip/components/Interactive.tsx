@@ -1,11 +1,13 @@
 import * as React from 'react';
 
 import { Close } from '@livechat/design-system-icons/react/material';
+import cx from 'clsx';
 
-import { Button, ButtonKind } from '../../Button';
+import { Button } from '../../Button';
 import { Icon } from '../../Icon';
 import { getIconType } from '../helpers';
 import styles from '../Tooltip.module.scss';
+import { TooltipButton, TooltipTheme } from '../types';
 
 const baseClass = 'tooltip';
 
@@ -17,18 +19,10 @@ export const Interactive: React.FC<{
     alt: string;
   };
   closeWithX?: boolean;
-  theme?: 'invert' | 'important';
+  theme?: TooltipTheme;
   handleCloseAction?: (ev: React.MouseEvent) => void;
-  primaryButton: {
-    handleClick: () => void;
-    label: string;
-    kind?: ButtonKind;
-  };
-  secondaryButton: {
-    handleClick: () => void;
-    label: string;
-    kind?: ButtonKind;
-  };
+  primaryButton: TooltipButton;
+  secondaryButton: TooltipButton;
 }> = ({
   header,
   text,
@@ -38,42 +32,65 @@ export const Interactive: React.FC<{
   handleCloseAction,
   primaryButton,
   secondaryButton,
-}) => (
-  <div className={styles[`${baseClass}__interactive`]}>
-    {closeWithX && (
-      <div className={styles[`${baseClass}-close`]}>
-        <button
-          className={styles[`${baseClass}-close-button`]}
+}) => {
+  const getDefaultPrimaryButtonKind = (theme?: TooltipTheme) => {
+    if (theme === 'invert') {
+      return 'secondary';
+    }
+
+    return 'high-contrast';
+  };
+
+  return (
+    <div className={styles[`${baseClass}__interactive`]}>
+      {closeWithX && (
+        <Button
+          className={styles[`${baseClass}-close`]}
+          size="compact"
+          kind="plain"
           onClick={handleCloseAction}
-        >
-          <Icon source={Close} kind={theme ? getIconType(theme) : 'primary'} />
-        </button>
-      </div>
-    )}
-    {image && (
-      <div className={styles[`${baseClass}-image-container`]}>
-        <img
-          className={styles[`${baseClass}-image`]}
-          src={image.src}
-          alt={image.alt}
+          icon={
+            <Icon
+              source={Close}
+              kind={theme ? getIconType(theme) : 'primary'}
+            />
+          }
         />
+      )}
+      {image && (
+        <div className={styles[`${baseClass}-image-container`]}>
+          <img
+            className={styles[`${baseClass}-image`]}
+            src={image.src}
+            alt={image.alt}
+          />
+        </div>
+      )}
+      {header && <div className={styles[`${baseClass}-header`]}>{header}</div>}
+      <div className={styles[`${baseClass}-text`]}>{text}</div>
+      <div
+        className={cx(
+          styles[`${baseClass}-footer`],
+          styles[`${baseClass}-footer--interactive`]
+        )}
+      >
+        <Button
+          kind={primaryButton.kind || getDefaultPrimaryButtonKind(theme)}
+          onClick={primaryButton.handleClick}
+        >
+          {primaryButton.label}
+        </Button>
+        <Button
+          className={cx(styles[`${baseClass}-footer-secondary`], {
+            [styles[`${baseClass}-footer-secondary-invert`]]:
+              theme === 'invert',
+          })}
+          kind={secondaryButton.kind || 'text'}
+          onClick={secondaryButton.handleClick}
+        >
+          {secondaryButton.label}
+        </Button>
       </div>
-    )}
-    {header && <div className={styles[`${baseClass}-header`]}>{header}</div>}
-    <div className={styles[`${baseClass}-text`]}>{text}</div>
-    <div className={styles[`${baseClass}-footer`]}>
-      <Button
-        kind={primaryButton.kind || 'primary'}
-        onClick={primaryButton.handleClick}
-      >
-        {primaryButton.label}
-      </Button>
-      <Button
-        kind={secondaryButton.kind || 'secondary'}
-        onClick={secondaryButton.handleClick}
-      >
-        {secondaryButton.label}
-      </Button>
     </div>
-  </div>
-);
+  );
+};

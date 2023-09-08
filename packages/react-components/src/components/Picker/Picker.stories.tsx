@@ -5,9 +5,13 @@ import { ComponentMeta, Story } from '@storybook/react';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import noop from '../../utils/noop';
 
-import { defaultExtendedOptions, defaultPickerOptions } from './constants';
+import {
+  DEFAULT_PICKER_OPTIONS,
+  DEFAULT_EXTENDED_OPTIONS,
+  DEFAULT_MORE_PICKER_OPTIONS,
+} from './constants';
 import { IPickerProps, Picker } from './Picker';
-import { IPickerListItem } from './PickerList';
+import { IPickerListItem } from './types';
 
 import './Picker.stories.css';
 
@@ -51,35 +55,35 @@ const StoryTemplate: Story<IPickerProps> = (args: IPickerProps) => {
 
 export const Default = StoryTemplate.bind({});
 Default.args = {
-  options: defaultPickerOptions,
+  options: DEFAULT_PICKER_OPTIONS,
   openedOnInit: true,
 };
 
 export const States = (): React.ReactElement => (
   <div style={{ ...commonWidth, marginBottom: 100 }}>
     <StoryDescriptor title="Basic">
-      <PickerComponent options={defaultPickerOptions} onSelect={noop} />
+      <PickerComponent options={DEFAULT_PICKER_OPTIONS} onSelect={noop} />
     </StoryDescriptor>
     <StoryDescriptor title="Multi select + Basic">
       <PickerComponent
-        options={defaultPickerOptions}
+        options={DEFAULT_PICKER_OPTIONS}
         onSelect={noop}
         type="multi"
       />
     </StoryDescriptor>
     <StoryDescriptor title="Disabled">
       <PickerComponent
-        options={defaultPickerOptions}
+        options={DEFAULT_PICKER_OPTIONS}
         onSelect={noop}
         disabled
       />
     </StoryDescriptor>
     <StoryDescriptor title="Error">
-      <PickerComponent options={defaultPickerOptions} onSelect={noop} error />
+      <PickerComponent options={DEFAULT_PICKER_OPTIONS} onSelect={noop} error />
     </StoryDescriptor>
     <StoryDescriptor title="Error + Disabled">
       <PickerComponent
-        options={defaultPickerOptions}
+        options={DEFAULT_PICKER_OPTIONS}
         onSelect={noop}
         disabled
         error
@@ -87,7 +91,7 @@ export const States = (): React.ReactElement => (
     </StoryDescriptor>
     <StoryDescriptor title="Disabled + Selected option">
       <PickerComponent
-        options={defaultPickerOptions}
+        options={DEFAULT_PICKER_OPTIONS}
         onSelect={noop}
         disabled
         selected={[{ key: 'two', name: 'Option two' }]}
@@ -95,7 +99,7 @@ export const States = (): React.ReactElement => (
     </StoryDescriptor>
     <StoryDescriptor title="Multi select + Disabled + Selected option">
       <PickerComponent
-        options={defaultPickerOptions}
+        options={DEFAULT_PICKER_OPTIONS}
         onSelect={noop}
         type="multi"
         disabled
@@ -110,7 +114,22 @@ export const States = (): React.ReactElement => (
 
 export const PickerWithGroupedOptions = (): React.ReactElement => (
   <div style={{ ...commonWidth, marginBottom: 320 }}>
-    <PickerComponent options={defaultExtendedOptions} onSelect={noop} />
+    <PickerComponent options={DEFAULT_EXTENDED_OPTIONS} onSelect={noop} />
+  </div>
+);
+
+export const PickerWithMoreOptions = (): React.ReactElement => (
+  <div style={{ ...commonWidth, marginBottom: 320 }}>
+    <StoryDescriptor title="Single select">
+      <PickerComponent options={DEFAULT_MORE_PICKER_OPTIONS} onSelect={noop} />
+    </StoryDescriptor>
+    <StoryDescriptor title="Multi select">
+      <PickerComponent
+        options={DEFAULT_MORE_PICKER_OPTIONS}
+        onSelect={noop}
+        type="multi"
+      />
+    </StoryDescriptor>
   </div>
 );
 

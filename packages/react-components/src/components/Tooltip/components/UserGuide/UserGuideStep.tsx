@@ -7,6 +7,7 @@ import { Button } from '../../../Button';
 import { Icon } from '../../../Icon';
 import { getIconType } from '../../helpers';
 import styles from '../../Tooltip.module.scss';
+import { TooltipTheme } from '../../types';
 
 const baseClass = 'tooltip';
 
@@ -20,7 +21,7 @@ export const UserGuideStep: React.FC<{
   currentStep: number;
   stepMax: number;
   closeWithX?: boolean;
-  theme?: string;
+  theme?: TooltipTheme;
   handleClickPrimary: () => void;
   handleCloseAction?: (ev: KeyboardEvent | React.MouseEvent) => void;
 }> = ({
@@ -47,17 +48,18 @@ export const UserGuideStep: React.FC<{
   return (
     <div className={styles[`${baseClass}__user-guide-step`]}>
       {closeWithX && (
-        <div className={styles[`${baseClass}-close`]}>
-          <button
-            className={styles[`${baseClass}-close-button`]}
-            onClick={handleCloseAction}
-          >
+        <Button
+          className={styles[`${baseClass}-close`]}
+          size="compact"
+          kind="plain"
+          onClick={handleCloseAction}
+          icon={
             <Icon
               source={Close}
               kind={theme ? getIconType(theme) : 'primary'}
-            ></Icon>
-          </button>
-        </div>
+            />
+          }
+        />
       )}
       {image && (
         <div className={styles[`${baseClass}-image-container`]}>
@@ -79,7 +81,7 @@ export const UserGuideStep: React.FC<{
         <span className={styles[`${baseClass}-step`]}>
           Step {currentStep} of {stepMax}
         </span>
-        <Button kind="primary" onClick={handleClickPrimary}>
+        <Button kind="high-contrast" onClick={handleClickPrimary}>
           Primary button
         </Button>
       </div>
