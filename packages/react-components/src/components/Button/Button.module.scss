@@ -260,7 +260,9 @@ $base-class: 'btn';
     &:active,
     &:focus {
       border-color: transparent;
-      box-shadow: var(--shadow-focus), 0 0 0 2px #fff;
+      box-shadow:
+        var(--shadow-focus),
+        0 0 0 2px #fff;
       background-color: var(--surface-primary-active);
       color: var(--content-basic-primary);
     }
