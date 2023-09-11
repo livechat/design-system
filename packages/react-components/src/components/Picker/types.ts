@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { IconSource } from 'components/Icon';
+import { IconSource } from '../Icon';
 
 export interface IPickerListItem {
   key: string;

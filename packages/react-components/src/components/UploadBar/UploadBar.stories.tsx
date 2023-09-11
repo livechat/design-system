@@ -2,12 +2,11 @@ import * as React from 'react';
 
 import { ComponentMeta } from '@storybook/react';
 
-import { ProgressStatus } from 'components/Progress/constants';
-
 import noop from '../../utils/noop';
 import { PdfIcon } from '../../utils/PdfIcon';
 import { Button } from '../Button';
 import { FileUploadProgress } from '../FileUploadProgress';
+import { ProgressStatus } from '../Progress/constants';
 
 import { UploadBar as UploadBarComponent } from './UploadBar';
 

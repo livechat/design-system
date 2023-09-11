@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
+import { IconSource } from './types';
+
 import styles from './Icon.module.scss';
 
 export type IconSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
@@ -45,8 +47,6 @@ const IconSizeMap: Record<IconSize, { width: number; height: number }> = {
   },
 };
 
-export type IconSource = React.FC<React.SVGProps<SVGSVGElement>> &
-  React.ReactElement;
 export interface IconProps {
   /**
    * Specify the source of svg element
