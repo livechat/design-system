@@ -4,8 +4,8 @@ import cx from 'clsx';
 
 import { Heading, Text } from '../Typography';
 
-import { ModalBaseProps, ModalBase } from './ModalBase';
-import { ModalCloseButton } from './ModalCloseButton';
+import { ModalBaseProps, ModalBase } from './components/ModalBase';
+import { ModalCloseButton } from './components/ModalCloseButton';
 
 import styles from './Modal.module.scss';
 
