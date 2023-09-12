@@ -1,6 +1,22 @@
 $base-class: 'action-menu';
 
 .#{$base-class} {
+  &__trigger-button {
+    border: 0;
+    border-radius: var(--radius-3);
+    background: none;
+    padding: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:focus {
+      outline: 2px solid var(--action-primary-default);
+      outline-offset: 0;
+    }
+  }
+
   &__list {
     margin: 0;
     border-radius: var(--radius-3);
@@ -9,6 +25,34 @@ $base-class: 'action-menu';
     padding: var(--spacing-2);
     overflow: hidden;
     list-style: none;
+
+    &__group-header {
+      display: flex;
+      position: relative;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 1;
+      margin-bottom: var(--spacing-05);
+      background-color: var(--picker-list-group-background);
+      cursor: auto;
+      padding: 12px 12px 4px;
+      height: 36px;
+      text-transform: uppercase;
+      color: var(--content-basic-secondary);
+      font-size: 12px;
+      font-weight: 600;
+
+      &::after {
+        position: absolute;
+        top: 0;
+        right: -8px;
+        left: -8px;
+        z-index: -1;
+        background: var(--picker-list-group-background);
+        height: 36px;
+        content: '';
+      }
+    }
 
     &__item {
       display: flex;
