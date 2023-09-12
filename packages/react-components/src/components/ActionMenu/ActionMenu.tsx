@@ -103,7 +103,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   };
 
   const handleItemClick = (itemOnClick?: () => void) => {
-    itemOnClick && itemOnClick();
+    itemOnClick?.();
 
     if (!keepOpenOnClick) {
       setIsVisible(false);
@@ -171,7 +171,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
         role="menu"
         aria-hidden={!isVisible}
       >
-        {options.map((o, i) => getOptionElement(o, i))}
+        {options.map(getOptionElement)}
       </ul>
     </Popover>
   );
