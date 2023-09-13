@@ -26,6 +26,10 @@ export interface ModalProps extends ModalBaseProps {
    * Footer element
    */
   footer?: React.ReactNode;
+  /**
+   * Class name for the content container
+   */
+  contentClassName?: string;
 }
 
 const baseClass = 'modal';
@@ -38,6 +42,7 @@ export const Modal: React.FC<ModalProps> = ({
   fullSpaceContent,
   footer,
   onClose,
+  contentClassName,
   ...props
 }) => {
   const mergedClassNames = cx(styles[baseClass], className);
@@ -91,7 +96,8 @@ export const Modal: React.FC<ModalProps> = ({
         data-testid="modal-body"
         className={cx(
           styles[`${baseClass}__body`],
-          fullSpaceContent && styles[`${baseClass}__body--full-space`]
+          fullSpaceContent && styles[`${baseClass}__body--full-space`],
+          contentClassName
         )}
       >
         {isTextContent ? <Text as="div">{children}</Text> : children}
