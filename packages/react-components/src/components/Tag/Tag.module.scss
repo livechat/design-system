@@ -117,16 +117,6 @@
     color: var(--color-black);
   }
 
-  &--with-icon {
-    &.tag--medium {
-      padding-left: var(--spacing-1);
-    }
-
-    &.tag--large {
-      padding-left: var(--spacing-2);
-    }
-  }
-
   &--dismissible {
     &.tag--medium {
       padding-right: var(--spacing-1);
@@ -137,20 +127,15 @@
     }
   }
 
-  &__icon {
+  &__node {
+    display: flex;
+    align-items: center;
     margin-right: var(--spacing-1);
 
     &--right {
       margin-right: 0;
       margin-left: var(--spacing-1);
     }
-  }
-
-  &__avatar {
-    margin-right: var(--spacing-1);
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
   }
 
   &__remove {
@@ -167,7 +152,7 @@
   }
 
   &__content {
-    text-wrap: nowrap;
+    text-wrap: none;
     overflow: hidden;
     text-overflow: ellipsis;
   }
