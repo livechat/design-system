@@ -4,9 +4,9 @@ import userEvent from '@testing-library/user-event';
 
 import { render, vi } from 'test-utils';
 
-import { ModalBase } from './ModalBase';
+import styles from '../Modal.module.scss';
 
-import styles from './Modal.module.scss';
+import { ModalBase } from './ModalBase';
 
 const baseClass = 'modal-base';
 

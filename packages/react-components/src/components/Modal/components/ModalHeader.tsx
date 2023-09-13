@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import { cx } from '@emotion/css';
 
-import { Icon, IconProps } from '../Icon';
-import { Heading, Text } from '../Typography';
+import { Icon, IconProps } from '../../Icon';
+import { Heading, Text } from '../../Typography';
 
 import styles from './ModalHeader.module.scss';
 

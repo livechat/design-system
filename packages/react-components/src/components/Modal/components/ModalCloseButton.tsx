@@ -3,10 +3,9 @@ import * as React from 'react';
 import { Close } from '@livechat/design-system-icons/react/tabler';
 import cx from 'clsx';
 
-import { Button, ButtonProps } from '../Button';
-import { Icon } from '../Icon';
-
-import styles from './Modal.module.scss';
+import { Button, ButtonProps } from '../../Button';
+import { Icon } from '../../Icon';
+import styles from '../Modal.module.scss';
 
 export interface ModalCloseButtonProps extends ButtonProps {
   labelType?: boolean;
