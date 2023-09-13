@@ -4,8 +4,9 @@ import { Placement } from '@floating-ui/react-dom';
 import cx from 'clsx';
 
 import { KeyCodes } from '../../utils/keyCodes';
-import { Button } from '../Button';
 import { Popover } from '../Popover';
+
+import { IActionMenuOption } from './types';
 
 import styles from './ActionMenu.module.scss';
 
@@ -15,19 +16,13 @@ export interface ActionMenuProps {
    */
   className?: string;
   /**
-   * The CSS class for wrapper container
+   * The CSS class for trigger element
    */
-  wrapperClassName?: string;
+  triggerClassName?: string;
   /**
    * Array of menu options
    */
-  options: Array<{
-    key: string;
-    element: React.ReactNode;
-    disabled?: boolean;
-    withDivider?: boolean;
-    onClick: () => void;
-  }>;
+  options: IActionMenuOption[];
   /**
    * Trigger element
    */
@@ -54,7 +49,7 @@ const baseClass = 'action-menu';
 
 export const ActionMenu: React.FC<ActionMenuProps> = ({
   className,
-  wrapperClassName,
+  triggerClassName,
   options,
   triggerRenderer,
   placement = 'bottom-end',
@@ -69,7 +64,10 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   const getIndex = (val: number) => {
     indexRef.current = indexRef.current + val;
 
-    while (options[indexRef.current].disabled) {
+    while (
+      options[indexRef.current].disabled ||
+      options[indexRef.current].groupHeader
+    ) {
       indexRef.current = indexRef.current + val;
     }
 
@@ -104,28 +102,67 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
     setIsVisible(true);
   };
 
-  const handleItemClick = (itemOnClick: () => void) => {
-    itemOnClick();
+  const handleItemClick = (itemOnClick?: () => void) => {
+    itemOnClick?.();
 
     if (!keepOpenOnClick) {
       setIsVisible(false);
     }
   };
 
+  const getOptionElement = (option: IActionMenuOption, index: number) => {
+    if (option.groupHeader) {
+      return (
+        <li
+          key={option.key}
+          role="none"
+          className={styles[`${baseClass}__list__group-header`]}
+        >
+          {option.element}
+        </li>
+      );
+    }
+
+    return (
+      <li key={option.key} role="none">
+        <button
+          id={`list-item-${index}`}
+          data-testid={option.key}
+          tabIndex={-1}
+          key={option.key}
+          disabled={option.disabled}
+          onClick={() => handleItemClick(option.onClick)}
+          role="menuitem"
+          className={cx(styles[`${baseClass}__list__item`], {
+            [styles[`${baseClass}__list__item--disabled`]]: option.disabled,
+            [styles[`${baseClass}__list__item--with-divider`]]:
+              option.withDivider,
+            [styles[`${baseClass}__list__item--active`]]:
+              activeOptionKeys?.includes(option.key),
+          })}
+        >
+          {option.element}
+        </button>
+      </li>
+    );
+  };
+
   return (
     <Popover
-      triggerClassName={wrapperClassName}
       isVisible={isVisible}
       placement={placement}
       onClose={() => setIsVisible(false)}
       triggerRenderer={() => (
-        <Button
+        <button
           data-testid="action-menu-trigger-button"
-          kind="plain"
-          size="compact"
-          icon={triggerRenderer}
+          className={cx(
+            styles[`${baseClass}__trigger-button`],
+            triggerClassName
+          )}
           onClick={handleTriggerClick}
-        />
+        >
+          {triggerRenderer}
+        </button>
       )}
     >
       <ul
@@ -134,28 +171,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
         role="menu"
         aria-hidden={!isVisible}
       >
-        {options.map((o, i) => (
-          <li key={o.key} role="none">
-            <button
-              id={`list-item-${i}`}
-              data-testid={o.key}
-              tabIndex={-1}
-              key={o.key}
-              disabled={o.disabled}
-              onClick={() => handleItemClick(o.onClick)}
-              role="menuitem"
-              className={cx(styles[`${baseClass}__list__item`], {
-                [styles[`${baseClass}__list__item--disabled`]]: o.disabled,
-                [styles[`${baseClass}__list__item--with-divider`]]:
-                  o.withDivider,
-                [styles[`${baseClass}__list__item--active`]]:
-                  activeOptionKeys?.includes(o.key),
-              })}
-            >
-              {o.element}
-            </button>
-          </li>
-        ))}
+        {options.map(getOptionElement)}
       </ul>
     </Popover>
   );

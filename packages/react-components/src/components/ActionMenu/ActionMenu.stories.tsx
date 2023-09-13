@@ -25,6 +25,7 @@ export const Default = (): React.ReactElement => (
   <div className="action-menu-preview">
     <ActionMenu
       options={exampleOptions}
+      triggerClassName="action-menu-button"
       triggerRenderer={<Icon source={MoreHoriz} kind="primary" />}
       openedOnInit
     />
@@ -77,7 +78,13 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
     <div className="action-menu-preview">
       <ActionMenu
         activeOptionKeys={activeOptionsKeys}
+        triggerClassName="action-menu-button"
         options={[
+          {
+            key: 'group-1',
+            element: 'Group 1',
+            groupHeader: true,
+          },
           {
             key: 'one',
             element: (
@@ -141,8 +148,12 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
               ),
           },
           {
+            key: 'group-2',
+            element: 'Group 2',
+            groupHeader: true,
+          },
+          {
             key: 'five',
-            withDivider: true,
             element: (
               <ActionMenuItem
                 leftNode={
