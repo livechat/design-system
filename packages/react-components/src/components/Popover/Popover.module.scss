@@ -1,6 +1,7 @@
 @import '../../utils/StackingContextLevel';
 
 .popover-trigger {
+  display: flex;
   width: fit-content;
 }
 

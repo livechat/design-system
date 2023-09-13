@@ -138,6 +138,17 @@ $base-class: 'picker-list';
         height: 36px;
         content: '';
       }
+
+      &:nth-of-type(1)::before {
+        position: absolute;
+        top: calc(var(--spacing-2) * -1);
+        right: -8px;
+        left: -8px;
+        z-index: -1;
+        background: var(--picker-list-group-background);
+        height: var(--spacing-2);
+        content: '';
+      }
     }
 
     &__content {
