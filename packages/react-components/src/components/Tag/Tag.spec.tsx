@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import * as MaterialIcons from '@livechat/design-system-icons/react/material';
 import * as TablerIcons from '@livechat/design-system-icons/react/tabler';
 
 import { render, userEvent, vi } from 'test-utils';
