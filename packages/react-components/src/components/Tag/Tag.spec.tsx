@@ -1,10 +1,11 @@
 import * as React from 'react';
 
-import * as MaterialIcons from '@livechat/design-system-icons/react/material';
+import * as TablerIcons from '@livechat/design-system-icons/react/tabler';
 
 import { render, userEvent, vi } from 'test-utils';
 
 import noop from '../../utils/noop';
+import { Icon } from '../Icon';
 
 import { Tag } from './Tag';
 
@@ -74,18 +75,23 @@ describe('<Tag> component', () => {
     expect(container.firstChild).toHaveStyle(`border-color: #ff0000`);
   });
 
-  it('should show avatar when both avatar and icon are provided', () => {
-    const { getByTestId, queryByTestId } = render(
-      <Tag
-        {...props}
-        avatar="http://test.img"
-        leftIcon={MaterialIcons.AddCircle}
-      >
+  it('should show left and right nodes when provided', () => {
+    const icon = <Icon source={TablerIcons.Apple} size="small" />;
+    const { getByTestId, queryByTestId, rerender } = render(
+      <Tag {...props}>tag1</Tag>
+    );
+
+    expect(queryByTestId('lc-tag-right-node')).not.toBeInTheDocument();
+    expect(queryByTestId('lc-tag-left-node')).not.toBeInTheDocument();
+
+    rerender(
+      <Tag {...props} leftNode={icon} rightNode={icon}>
         tag1
       </Tag>
     );
-    expect(getByTestId('lc-tag-avatar')).toBeDefined();
-    expect(queryByTestId('lc-tag-icon')).not.toBeInTheDocument();
+
+    expect(getByTestId('lc-tag-right-node')).toBeDefined();
+    expect(getByTestId('lc-tag-left-node')).toBeDefined();
   });
 
   it('should call remove method on remove button press', () => {

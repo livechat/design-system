@@ -93,6 +93,7 @@
   }
 
   &--outline {
+    border-width: 1px;
     border-style: solid;
     background-color: transparent;
 
@@ -117,7 +118,7 @@
     color: var(--color-black);
   }
 
-  &--with-icon {
+  &--with-node {
     &.tag--medium {
       padding-left: var(--spacing-1);
     }
@@ -137,20 +138,15 @@
     }
   }
 
-  &__icon {
+  &__node {
+    display: flex;
+    align-items: center;
     margin-right: var(--spacing-1);
 
     &--right {
       margin-right: 0;
       margin-left: var(--spacing-1);
     }
-  }
-
-  &__avatar {
-    margin-right: var(--spacing-1);
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
   }
 
   &__remove {
@@ -167,8 +163,8 @@
   }
 
   &__content {
-    text-wrap: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }

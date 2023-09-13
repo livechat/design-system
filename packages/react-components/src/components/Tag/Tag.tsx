@@ -4,7 +4,7 @@ import { Close } from '@livechat/design-system-icons/react/tabler';
 import cx from 'clsx';
 import { getContrast } from 'polished';
 
-import { Icon, IconSize, IconSource } from '../Icon';
+import { Icon, IconSize } from '../Icon';
 import { Text } from '../Typography';
 
 import styles from './Tag.module.scss';
@@ -48,18 +48,13 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   onRemove?(): void;
   /**
-   * Pass the icon to show it on the left
+   * React node element to show on the left
    */
-  leftIcon?: IconSource;
+  leftNode?: React.ReactElement;
   /**
-   * Pass the icon to show it on the right
+   * React node element to show on the right
    */
-  rightIcon?: IconSource;
-  /**
-  /**
-   * Pass the image source to show it as avatar
-   */
-  avatar?: string;
+  rightNode?: React.ReactElement;
 }
 
 const getCustomTextClass = (customColor?: string) => {
@@ -81,9 +76,8 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   kind = 'default',
   onRemove,
   outline = false,
-  leftIcon,
-  rightIcon,
-  avatar,
+  leftNode,
+  rightNode,
   customColor,
   ...restProps
 }) => {
@@ -95,7 +89,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
     {
       [styles[`${baseClass}--dismissible`]]: dismissible,
       [styles[`${baseClass}--outline`]]: outline,
-      [styles[`${baseClass}--with-icon`]]: !!leftIcon || !!avatar,
+      [styles[`${baseClass}--with-node`]]: !!leftNode || !!rightNode,
       [styles[`${baseClass}--${getCustomTextClass(customColor)}`]]:
         !!customColor,
     }
@@ -137,36 +131,24 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
       as="div"
       size="md"
     >
-      {avatar && (
-        <img
-          className={styles[`${baseClass}__avatar`]}
-          src={avatar}
-          alt="tag-avatar"
-          data-testid="lc-tag-avatar"
-        />
-      )}{' '}
-      {/*TODO replace with Avatar component*/}
-      {leftIcon && !avatar && (
-        <Icon
-          data-testid="lc-tag-left-icon"
-          className={styles[`${baseClass}__icon`]}
-          source={leftIcon}
-          size="small"
-          customColor={getIconCustomColor()}
-        />
+      {leftNode && (
+        <div
+          data-testid="lc-tag-left-node"
+          className={styles[`${baseClass}__node`]}
+          style={{ color: getIconCustomColor() }}
+        >
+          {leftNode}
+        </div>
       )}
       <div className={styles[`${baseClass}__content`]}>{children}</div>
-      {rightIcon && (
-        <Icon
-          data-testid="lc-tag-right-icon"
-          className={cx(
-            styles[`${baseClass}__icon`],
-            styles[`${baseClass}__icon--right`]
-          )}
-          source={rightIcon}
-          size="small"
-          customColor={getIconCustomColor()}
-        />
+      {rightNode && (
+        <div
+          data-testid="lc-tag-right-node"
+          className={cx(styles[`${baseClass}__node--right`])}
+          style={{ color: getIconCustomColor() }}
+        >
+          {rightNode}
+        </div>
       )}
       {dismissible && (
         <button
