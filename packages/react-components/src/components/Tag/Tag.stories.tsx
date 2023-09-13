@@ -55,9 +55,11 @@ export const Kinds = ({ children, ...args }: TagProps): React.ReactElement => {
           {children}
         </Tag>
         <Tag kind="default">{children}</Tag>
-        <Tag kind="default" dismissible>
-          {children}
-        </Tag>
+        <div style={{ maxWidth: '150px', display: 'flex' }}>
+          <Tag kind="default" dismissible>
+            Example tag with long name
+          </Tag>
+        </div>
       </StoryDescriptor>
       <StoryDescriptor title="Default with outline">
         <Tag kind="default" outline>
