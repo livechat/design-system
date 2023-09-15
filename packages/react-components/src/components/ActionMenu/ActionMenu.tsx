@@ -61,17 +61,20 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   const [isVisible, setIsVisible] = React.useState(openedOnInit);
   const indexRef = React.useRef(-1);
 
-  const getIndex = (val: number) => {
-    indexRef.current = indexRef.current + val;
+  const getIndex = (val: number): number => {
+    const currentValue = indexRef.current;
+    let newValue = currentValue + val;
 
-    while (
-      options[indexRef.current].disabled ||
-      options[indexRef.current].groupHeader
-    ) {
-      indexRef.current = indexRef.current + val;
+    while (options[newValue]?.disabled || options[newValue]?.groupHeader) {
+      newValue += val;
+
+      if (newValue === -1) {
+        newValue = currentValue;
+        break;
+      }
     }
 
-    return indexRef.current;
+    return newValue;
   };
 
   const onKeyDown = (e: KeyboardEvent) => {
