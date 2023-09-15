@@ -63,10 +63,10 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
 
   const getIndex = (val: number): number => {
     const currentValue = indexRef.current;
-    let newValue = indexRef.current + val;
+    let newValue = currentValue + val;
 
     while (options[newValue]?.disabled || options[newValue]?.groupHeader) {
-      newValue = newValue + val;
+      newValue += val;
 
       if (newValue === -1) {
         newValue = currentValue;
