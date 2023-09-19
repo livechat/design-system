@@ -5,15 +5,15 @@ import {
 } from './Avatar.helpers';
 
 describe('getBackgroundColor', () => {
-  it('should generate the same background color for the same initials', () => {
-    const color1 = getBackgroundColor('JD');
-    const color2 = getBackgroundColor('JD');
+  it('should generate the same background color for the same text', () => {
+    const color1 = getBackgroundColor('John Doe');
+    const color2 = getBackgroundColor('John Doe');
     expect(color1).toBe(color2);
   });
 
-  it('should generate different background colors for different initials', () => {
-    const color1 = getBackgroundColor('JD');
-    const color2 = getBackgroundColor('AB');
+  it('should generate different background colors for different text', () => {
+    const color1 = getBackgroundColor('John Doe');
+    const color2 = getBackgroundColor('Agatha Berg');
     expect(color1).not.toBe(color2);
   });
 

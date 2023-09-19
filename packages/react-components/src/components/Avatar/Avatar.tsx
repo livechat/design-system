@@ -91,10 +91,13 @@ export const Avatar: React.FC<AvatarProps> = ({
   const shouldDisplayImage =
     type === 'image' && !!src && !shouldDisplayFallbackAvatar;
   const shouldDisplayInitials = type === 'text';
+
   const letterCount = ['xxxsmall', 'xxsmall', 'xsmall'].includes(size) ? 1 : 2;
   const initials = getInitials(text, letterCount);
-  const backgroundColor = color || getBackgroundColor(initials);
-  const fontColor = backgroundColor && getFontColor(backgroundColor);
+
+  const backgroundColor = color || getBackgroundColor(text);
+  const fontColor = backgroundColor ? getFontColor(backgroundColor) : undefined;
+  const backgroundStyle = shouldDisplayInitials ? { backgroundColor } : {};
 
   const mergedClassNames = cx({
     [styles[baseClass]]: true,
@@ -126,7 +129,7 @@ export const Avatar: React.FC<AvatarProps> = ({
   }, [isImproperImageSetup]);
 
   return (
-    <div className={mergedClassNames} style={{ backgroundColor }}>
+    <div className={mergedClassNames} style={backgroundStyle}>
       {withRim && (
         <div
           data-testid={`${baseClass}__rim`}

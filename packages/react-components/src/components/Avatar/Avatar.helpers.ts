@@ -5,12 +5,12 @@ const colors = Array.from(
   (_, i) => `--surface-avatar-${i + 1}`
 );
 
-export function getBackgroundColor(initials: string): string | undefined {
-  if (!initials) {
+export function getBackgroundColor(text?: string): string | undefined {
+  if (!text) {
     return;
   }
 
-  const index = initials
+  const index = text
     .split('')
     .reduce((acc, char) => acc + char.charCodeAt(0), 0);
 
