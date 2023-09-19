@@ -109,7 +109,11 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
   }
 
   return (
-    <div className={styles[baseClass]}>
+    <div
+      className={cx(styles[baseClass], {
+        [styles[`${baseClass}--single`]]: type === 'single',
+      })}
+    >
       <div className={styles[`${baseClass}__item-container`]}>
         {type === 'single'
           ? getSingleItem(items[0])
