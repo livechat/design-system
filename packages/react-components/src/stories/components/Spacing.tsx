@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import './Spacing.css';
+import './Table.css';
 
 export const Spacing = (): React.ReactElement => {
   return (
