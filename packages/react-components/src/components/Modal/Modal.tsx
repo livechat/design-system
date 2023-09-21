@@ -94,11 +94,7 @@ export const Modal: React.FC<ModalProps> = ({
       )}
       <div
         data-testid="modal-body"
-        className={cx(
-          styles[`${baseClass}__body`],
-          fullSpaceContent && styles[`${baseClass}__body--full-space`],
-          contentClassName
-        )}
+        className={cx(styles[`${baseClass}__body`], contentClassName)}
       >
         {isTextContent ? <Text as="div">{children}</Text> : children}
       </div>
