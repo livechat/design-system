@@ -36,6 +36,10 @@ $base-class: 'action-bar';
         pointer-events: none;
       }
     }
+
+    &__tooltip {
+      display: grid;
+    }
   }
 
   &__menu-wrapper {

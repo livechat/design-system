@@ -10,7 +10,8 @@ import styles from './ActionBar.module.scss';
 export type IActionBarOption = {
   key: string;
   element: React.ReactElement;
-  label?: string;
+  label: string;
+  showTooltip?: boolean;
   onClick: () => void;
 };
 
@@ -34,7 +35,7 @@ export const ActionBarItem: React.FC<ActionBarItem> = ({
     [styles[`${baseClass}__button--active`]]: option.key === activeOptionKey,
   });
 
-  if (option.label) {
+  if (option.showTooltip) {
     const tooltipVisibility = menuItemsKeys.includes(option.key) && {
       isVisible: false,
     };
@@ -43,13 +44,14 @@ export const ActionBarItem: React.FC<ActionBarItem> = ({
       <Tooltip
         theme="invert"
         placement="top"
+        triggerClassName={styles[`${baseClass}__tooltip`]}
         triggerRenderer={() => (
           <Button
             id={option.key}
             key={option.key}
             title={option.label}
             kind="plain"
-            size="compact"
+            size="large"
             className={mergedButtonClassNames}
             onClick={option.onClick}
             icon={option.element}
@@ -68,10 +70,10 @@ export const ActionBarItem: React.FC<ActionBarItem> = ({
       key={option.key}
       title={option.label}
       kind="plain"
+      size="large"
       className={mergedButtonClassNames}
       onClick={option.onClick}
-    >
-      {option.element}
-    </Button>
+      icon={option.element}
+    />
   );
 };
