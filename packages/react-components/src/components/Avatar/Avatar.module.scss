@@ -205,21 +205,6 @@ $base-class: 'avatar';
     border-radius: 4px;
   }
 
-  &--with-rim.#{$base-class}--xxxsmall,
-  &--with-rim.#{$base-class}--xxsmall,
-  &--with-rim.#{$base-class}--xsmall {
-    margin: 3px;
-  }
-
-  &--with-rim.#{$base-class}--small,
-  &--with-rim.#{$base-class}--medium,
-  &--with-rim.#{$base-class}--large,
-  &--with-rim.#{$base-class}--xlarge,
-  &--with-rim.#{$base-class}--xxlarge,
-  &--with-rim.#{$base-class}--xxxlarge {
-    margin: 5px;
-  }
-
   &--xxxsmall {
     width: 16px;
     height: 16px;
