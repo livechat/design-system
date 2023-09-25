@@ -35,12 +35,14 @@ export const Default = (): React.ReactElement => {
       key: 'two',
       element: <Icon source={AddTemplate} kind="primary" />,
       label: 'Two test',
+      showTooltip: true,
       onClick: () => setActiveKey('two'),
     },
     {
       key: 'three',
       element: <Icon source={Adjust} kind="primary" />,
       label: 'Three test',
+      howTooltip: true,
       onClick: () => setActiveKey('three'),
     },
     {
