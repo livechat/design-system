@@ -81,6 +81,15 @@ $surface-tertiary-hover: #d3dde3;
     #8609ff 9.14%,
     #0059e1 111.43%
   );
+  --surface-gradient-03: linear-gradient(84deg, #ca0005 38%, #f3c600 140%);
+  --surface-gradient-04: linear-gradient(95deg, #ffe9bc, #fffdf8 112%);
+  --surface-gradient-05: linear-gradient(95deg, #daedff, #fbfdff 112%);
+  --surface-gradient-06: linear-gradient(95deg, #eee8ff, #fdfdff 112%);
+  --surface-gradient-07: linear-gradient(95deg, #d1f4d5, #e6f6ed 112%);
+  --surface-gradient-08: linear-gradient(95deg, #ffe5e5, #fffcfc 112%);
+  --surface-gradient-09: linear-gradient(95deg, #d1f4d5, #fff9ee 112%);
+  --surface-gradient-10: linear-gradient(95deg, #eee8ff, #f4faff 112%);
+  --surface-gradient-11: linear-gradient(95deg, #eee8ff, #fff4dd 112%);
   --content-default: #424d57; // deprecated
   --content-basic-primary: #424d57;
   --content-subtle: #677179; // deprecated
