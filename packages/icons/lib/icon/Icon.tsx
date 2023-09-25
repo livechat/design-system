@@ -1,8 +1,12 @@
 import { HTMLAttributes, useMemo, Suspense, FC, createElement } from 'react';
 
-import { IconSizeMap } from './constants';
+import cx from 'clsx';
+
+import { BASE_CLASS, IconSizeMap } from './constants';
 import { icons } from './icons';
 import { IconSize, IconKind } from './types';
+
+import styles from './Icon.module.scss';
 
 export type IconSet = keyof typeof icons;
 export type IconName = keyof (typeof icons)[IconSet];
@@ -45,11 +49,11 @@ export const Icon: FC<Props> = ({
   const SvgIcon = useMemo(() => icons[set][icon], [set, icon]);
   if (!SvgIcon) return null;
 
-  // const mergedClassNames = cx(
-  //   className,
-  //   styles[baseClass],
-  //   kind && styles[`${baseClass}--${disabled ? 'disabled--' : ''}${kind}`]
-  // );
+  const mergedClassNames = cx(
+    className,
+    styles[BASE_CLASS],
+    kind && styles[`${BASE_CLASS}--${disabled ? 'disabled--' : ''}${kind}`]
+  );
 
   const GeneratedIcon = createElement(SvgIcon, {
     ...IconSizeMap[size],
@@ -57,7 +61,7 @@ export const Icon: FC<Props> = ({
   });
 
   return (
-    <span {...rest}>
+    <span {...rest} className={mergedClassNames}>
       <Suspense fallback={<div>icon is loading...</div>}>
         {GeneratedIcon}
       </Suspense>

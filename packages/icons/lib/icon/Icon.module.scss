@@ -1,0 +1,138 @@
+.icon {
+  display: flex;
+  align-items: center;
+
+  svg {
+    pointer-events: none;
+  }
+
+  &--primary {
+    color: var(--content-basic-primary);
+  }
+
+  &--subtle {
+    color: var(--content-basic-secondary);
+  }
+
+  &--inverted {
+    color: var(--content-invert-primary);
+  }
+
+  &--inverted-subtle {
+    color: var(--content-invert-secondary);
+  }
+
+  &--link {
+    color: var(--surface-accent-emphasis-high-info);
+  }
+
+  &--success {
+    color: var(--surface-accent-emphasis-high-positive);
+  }
+
+  &--warning {
+    color: var(--content-basic-warning);
+  }
+
+  &--error {
+    color: var(--surface-accent-emphasis-high-negative);
+  }
+
+  &--negative {
+    color: var(--content-basic-negative);
+  }
+
+  &--positive {
+    color: var(--content-basic-positive);
+  }
+
+  &--info {
+    color: var(--content-basic-info);
+  }
+
+  &--action-primary {
+    color: var(--action-primary-default);
+  }
+
+  &--action-negative {
+    color: var(--action-negative-default);
+  }
+
+  &--action-positive {
+    color: var(--action-positive-default);
+  }
+
+  &--action-warning {
+    color: var(--action-warning-default);
+  }
+
+  &--action-neutral {
+    color: var(--action-neutral-default);
+  }
+
+  &--disabled {
+    &--primary {
+      color: var(--content-basic-disabled);
+    }
+
+    &--subtle {
+      color: var(--content-basic-disabled);
+    }
+
+    &--inverted {
+      color: var(--content-invert-disabled);
+    }
+
+    &--inverted-subtle {
+      color: var(--content-invert-disabled);
+    }
+
+    &--link {
+      color: var(--action-primary-disabled);
+    }
+
+    &--success {
+      color: var(--action-positive-disabled);
+    }
+
+    &--warning {
+      color: var(--action-warning-disabled);
+    }
+
+    &--error {
+      color: var(--action-negative-disabled);
+    }
+
+    &--negative {
+      color: var(--content-basic-disabled);
+    }
+
+    &--positive {
+      color: var(--content-basic-disabled);
+    }
+
+    &--info {
+      color: var(--content-basic-disabled);
+    }
+
+    &--action-primary {
+      color: var(--action-primary-disabled);
+    }
+
+    &--action-negative {
+      color: var(--action-negative-disabled);
+    }
+
+    &--action-positive {
+      color: var(--action-positive-disabled);
+    }
+
+    &--action-warning {
+      color: var(--action-warning-disabled);
+    }
+
+    &--action-neutral {
+      color: var(--action-neutral-disabled);
+    }
+  }
+}

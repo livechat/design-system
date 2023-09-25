@@ -1,5 +1,7 @@
 import { IconSize } from './types';
 
+export const BASE_CLASS = 'icon';
+
 export const IconSizeMap: Record<IconSize, { width: number; height: number }> =
   {
     xsmall: {
