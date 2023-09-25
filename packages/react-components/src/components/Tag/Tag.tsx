@@ -28,10 +28,6 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   size?: 'small' | 'medium' | 'large';
   /**
-   * Specify the tag icon size if used
-   */
-  iconSize?: IconSize;
-  /**
    * Set the tag custom color
    */
   customColor?: string;
@@ -72,7 +68,6 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   children,
   dismissible = false,
   size = 'medium',
-  iconSize = 'medium',
   kind = 'default',
   onRemove,
   outline = false,
@@ -94,6 +89,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
         !!customColor,
     }
   );
+  const closeIconSize = size === 'small' ? 'small' : 'medium';
 
   const getCustomColorStyles = () => {
     if (!customColor) {
@@ -160,7 +156,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
           <Icon
             data-dismiss-icon
             source={Close}
-            size={iconSize}
+            size={closeIconSize}
             customColor={getIconCustomColor()}
           />
         </button>
