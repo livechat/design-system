@@ -18,7 +18,7 @@ $base-class: 'btn';
   height: 36px;
   text-align: center;
   text-decoration: none;
-  line-height: 36px;
+  line-height: 20px;
   font-size: 15px;
   font-weight: 600;
   user-select: none;
@@ -183,7 +183,6 @@ $base-class: 'btn';
     padding: 0;
     height: auto;
     text-decoration: underline;
-    line-height: unset;
     color: var(--action-high-contrast-default);
 
     &:hover,
@@ -207,7 +206,6 @@ $base-class: 'btn';
     padding: 0;
     min-width: auto;
     height: auto;
-    line-height: unset;
     color: var(--action-primary-default);
 
     &:hover {
