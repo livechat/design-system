@@ -4,7 +4,7 @@ import { Close } from '@livechat/design-system-icons/react/tabler';
 import cx from 'clsx';
 import { getContrast } from 'polished';
 
-import { Icon, IconSize } from '../Icon';
+import { Icon } from '../Icon';
 import { Text } from '../Typography';
 
 import styles from './Tag.module.scss';
@@ -27,10 +27,6 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
    * Specify the tag size
    */
   size?: 'small' | 'medium' | 'large';
-  /**
-   * Specify the tag icon size if used
-   */
-  iconSize?: IconSize;
   /**
    * Set the tag custom color
    */
@@ -72,7 +68,6 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   children,
   dismissible = false,
   size = 'medium',
-  iconSize = 'medium',
   kind = 'default',
   onRemove,
   outline = false,
@@ -94,6 +89,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
         !!customColor,
     }
   );
+  const closeIconSize = size === 'small' ? 'small' : 'medium';
 
   const getCustomColorStyles = () => {
     if (!customColor) {
@@ -160,7 +156,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
           <Icon
             data-dismiss-icon
             source={Close}
-            size={iconSize}
+            size={closeIconSize}
             customColor={getIconCustomColor()}
           />
         </button>
