@@ -183,6 +183,7 @@ $base-class: 'btn';
     padding: 0;
     height: auto;
     text-decoration: underline;
+    line-height: unset;
     color: var(--action-high-contrast-default);
 
     &:hover,
@@ -206,6 +207,7 @@ $base-class: 'btn';
     padding: 0;
     min-width: auto;
     height: auto;
+    line-height: unset;
     color: var(--action-primary-default);
 
     &:hover {
