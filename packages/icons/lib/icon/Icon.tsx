@@ -1,6 +1,8 @@
-import { HTMLAttributes, useMemo, Suspense } from 'react';
+import { HTMLAttributes, useMemo, Suspense, FC, createElement } from 'react';
 
+import { IconSizeMap } from './constants';
 import { icons } from './icons';
+import { IconSize, IconKind } from './types';
 
 export type IconSet = keyof typeof icons;
 export type IconName = keyof (typeof icons)[IconSet];
@@ -8,37 +10,57 @@ export type IconName = keyof (typeof icons)[IconSet];
 interface Props extends HTMLAttributes<HTMLDivElement> {
   set?: IconSet;
   icon: IconName;
+  /**
+   * Specify the icon size
+   */
+  size?: IconSize;
+  /**
+   * Specify the icon kind
+   */
+  kind?: IconKind;
+  /**
+   * Specify whether the icon should be disabled
+   */
+  disabled?: boolean;
+  /**
+   * The CSS class for icon
+   */
   className?: string;
-  rotate?: number;
+  /**
+   * Set the icon custom color
+   */
+  customColor?: string;
 }
 
-/**
- *
- * @param set string set of icons
- * @param icon string key icon name
- * @param className string classes for styling
- * @param rotate optional number rotation of the icon
- * @returns Icon react component
- */
-export const Icon = ({ set = 'tabler', icon, className, ...rest }: Props) => {
+export const Icon: FC<Props> = ({
+  set = 'tabler',
+  icon,
+  className,
+  kind,
+  disabled,
+  size = 'medium',
+  customColor,
+  ...rest
+}: Props) => {
   const SvgIcon = useMemo(() => icons[set][icon], [set, icon]);
   if (!SvgIcon) return null;
 
+  // const mergedClassNames = cx(
+  //   className,
+  //   styles[baseClass],
+  //   kind && styles[`${baseClass}--${disabled ? 'disabled--' : ''}${kind}`]
+  // );
+
+  const GeneratedIcon = createElement(SvgIcon, {
+    ...IconSizeMap[size],
+    color: customColor,
+  });
+
   return (
-    <div
-      className={className}
-      aria-label={icon}
-      role="img"
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-      {...rest}
-    >
+    <span {...rest}>
       <Suspense fallback={<div>icon is loading...</div>}>
-        <SvgIcon />
+        {GeneratedIcon}
       </Suspense>
-    </div>
+    </span>
   );
 };
