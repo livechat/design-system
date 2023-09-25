@@ -4,7 +4,7 @@ import { Close } from '@livechat/design-system-icons/react/tabler';
 import cx from 'clsx';
 import { getContrast } from 'polished';
 
-import { Icon, IconSize } from '../Icon';
+import { Icon } from '../Icon';
 import { Text } from '../Typography';
 
 import styles from './Tag.module.scss';
