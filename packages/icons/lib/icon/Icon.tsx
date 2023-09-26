@@ -8,12 +8,20 @@ import { IconSize, IconKind } from './types';
 
 import styles from './Icon.module.scss';
 
-export type IconSet = keyof typeof icons;
-export type IconName = keyof (typeof icons)[IconSet];
+export type Tabler = keyof (typeof icons)['tabler'];
+export type Material = keyof (typeof icons)['material'];
 
-interface Props extends HTMLAttributes<HTMLDivElement> {
-  set?: IconSet;
-  icon: IconName;
+type IconSet =
+  | {
+      set: 'tabler';
+      icon: Tabler;
+    }
+  | {
+      set: 'material';
+      icon: Material;
+    };
+
+interface OwnProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Specify the icon size
    */
@@ -36,8 +44,10 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   customColor?: string;
 }
 
+type Props = IconSet & OwnProps;
+
 export const Icon: FC<Props> = ({
-  set = 'tabler',
+  set,
   icon,
   className,
   kind,
@@ -46,7 +56,16 @@ export const Icon: FC<Props> = ({
   customColor,
   ...rest
 }: Props) => {
-  const SvgIcon = useMemo(() => icons[set][icon], [set, icon]);
+  const SvgIcon = useMemo(() => {
+    switch (set) {
+      case 'tabler':
+        return icons[set][icon];
+      case 'material':
+        return icons[set][icon];
+      default:
+        return null; // Or some default icon if needed
+    }
+  }, [set, icon]);
   if (!SvgIcon) return null;
 
   const mergedClassNames = cx(

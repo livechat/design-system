@@ -1,7 +1,7 @@
 node_modules
 dist
 react
-packages/icons/lib
+lib
 .env
 *.log
 storybook-static

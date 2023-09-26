@@ -3,7 +3,12 @@ import { Icon } from '../';
 function App() {
   return (
     <>
-      <Icon icon="AccountCircle" size="xlarge" customColor="#0000ff" />
+      <Icon
+        set="tabler"
+        icon="AccountCircle"
+        size="xlarge"
+        customColor="#0000ff"
+      />
       <div>Hello icon components library!</div>
     </>
   );
