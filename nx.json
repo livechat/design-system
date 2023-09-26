@@ -6,8 +6,6 @@
         "cacheableOperations": [
           "build",
           "build:lib",
-          "build:js",
-          "build:ts",
           "build:styles",
           "lint",
           "test"
@@ -24,36 +22,16 @@
       ]
     },
     "build:lib": {
-      "outputs": [
-        "{projectRoot}/dist",
-        "{projectRoot}/lib"
-      ]
-    },
-    "build:js": {
-      "outputs": [
-        "{projectRoot}/lib"
-      ]
-    },
-    "build:ts": {
-      "outputs": [
-        "{projectRoot}/react"
-      ]
+      "outputs": ["{projectRoot}/dist"]
     },
     "build:styles": {
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
+      "outputs": ["{projectRoot}/dist"]
     }
   },
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "sharedGlobals": [],
-    "production": [
-      "default"
-    ]
+    "production": ["default"]
   }
 }
