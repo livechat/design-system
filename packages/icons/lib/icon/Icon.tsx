@@ -63,7 +63,7 @@ export const Icon: FC<Props> = ({
       case 'material':
         return icons[set][icon];
       default:
-        return null; // Or some default icon if needed
+        return null;
     }
   }, [set, icon]);
   if (!SvgIcon) return null;
