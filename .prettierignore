@@ -5,4 +5,4 @@ build
 *.log
 *.mdx
 storybook-static
-lib/icon/icons.ts
+icons.ts
