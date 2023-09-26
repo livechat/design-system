@@ -20,7 +20,7 @@ export default defineConfig({
     }),
     libInjectCss(),
     react(),
-    dts({ include: ['lib'], exclude: ['lib/icon/icons.ts'] }),
+    dts({ include: ['lib'] }),
   ],
   build: {
     copyPublicDir: false,
