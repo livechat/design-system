@@ -81,9 +81,7 @@ export const Icon: FC<Props> = ({
 
   return (
     <span {...rest} className={mergedClassNames}>
-      <Suspense fallback={<div>icon is loading...</div>}>
-        {GeneratedIcon}
-      </Suspense>
+      <Suspense fallback={null}>{GeneratedIcon}</Suspense>
     </span>
   );
 };

@@ -10,7 +10,18 @@ import svgr from 'vite-plugin-svgr';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [svgr(), libInjectCss(), react(), dts({ include: ['lib'] })],
+  plugins: [
+    svgr({
+      svgrOptions: {
+        replaceAttrValues: {
+          '#424D57': 'currentColor',
+        },
+      },
+    }),
+    libInjectCss(),
+    react(),
+    dts({ include: ['lib'], exclude: ['lib/icon/icons.ts'] }),
+  ],
   build: {
     copyPublicDir: false,
     lib: {
