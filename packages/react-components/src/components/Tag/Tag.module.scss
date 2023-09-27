@@ -92,6 +92,11 @@
     height: 32px;
   }
 
+  &--xlarge {
+    padding: 5px 16px;
+    height: 36px;
+  }
+
   &--outline {
     border-width: 1px;
     border-style: solid;
@@ -103,6 +108,10 @@
 
     &.tag--large {
       padding: 4px 11px;
+    }
+
+    &.tag--xlarge {
+      padding: 4px 15px;
     }
 
     .icon {

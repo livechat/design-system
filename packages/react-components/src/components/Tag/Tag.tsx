@@ -26,7 +26,7 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Specify the tag size
    */
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large' | 'xlarge';
   /**
    * Set the tag custom color
    */
