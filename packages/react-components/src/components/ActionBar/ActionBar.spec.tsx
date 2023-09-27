@@ -77,6 +77,7 @@ describe('<ActionBar> component', () => {
         {
           key: 'four',
           element: <div>Four</div>,
+          label: 'Four test',
           onClick: onClick,
         },
       ],
