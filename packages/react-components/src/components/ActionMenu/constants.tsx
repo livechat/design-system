@@ -1,15 +1,8 @@
 import * as React from 'react';
 
-import {
-  MoveTo,
-  Edit,
-  ContentCopy,
-  Block,
-  Delete,
-} from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 
 import noop from '../../utils/noop';
-import { Icon } from '../Icon';
 
 import { ActionMenuItem } from './ActionMenuItem';
 
@@ -17,7 +10,7 @@ export const exampleOptions = [
   {
     key: 'one',
     element: (
-      <ActionMenuItem leftNode={<Icon source={ContentCopy} />}>
+      <ActionMenuItem leftNode={<Icon set="tabler" name="ContentCopy" />}>
         Copy
       </ActionMenuItem>
     ),
@@ -26,7 +19,7 @@ export const exampleOptions = [
   {
     key: 'two',
     element: (
-      <ActionMenuItem leftNode={<Icon source={MoveTo} />}>
+      <ActionMenuItem leftNode={<Icon set="tabler" name="MoveTo" />}>
         Move to...
       </ActionMenuItem>
     ),
@@ -35,14 +28,18 @@ export const exampleOptions = [
   {
     key: 'three',
     element: (
-      <ActionMenuItem leftNode={<Icon source={Edit} />}>Edit</ActionMenuItem>
+      <ActionMenuItem leftNode={<Icon set="tabler" name="Edit" />}>
+        Edit
+      </ActionMenuItem>
     ),
     onClick: noop,
   },
   {
     key: 'four',
     element: (
-      <ActionMenuItem leftNode={<Icon source={Block} />}>Block</ActionMenuItem>
+      <ActionMenuItem leftNode={<Icon set="tabler" name="Block" />}>
+        Block
+      </ActionMenuItem>
     ),
     disabled: true,
     onClick: noop,
@@ -50,7 +47,10 @@ export const exampleOptions = [
   {
     key: 'five',
     element: (
-      <ActionMenuItem kind="warning" leftNode={<Icon source={Delete} />}>
+      <ActionMenuItem
+        kind="warning"
+        leftNode={<Icon set="tabler" name="Delete" />}
+      >
         Delete item
       </ActionMenuItem>
     ),

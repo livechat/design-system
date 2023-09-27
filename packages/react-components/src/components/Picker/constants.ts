@@ -1,5 +1,3 @@
-import { DayMode } from '@livechat/design-system-icons/react/tabler';
-
 export const DEFAULT_PICKER_OPTIONS = [
   { key: 'one', name: 'Option one' },
   { key: 'two', name: 'Option two' },
@@ -29,7 +27,7 @@ export const DEFAULT_MORE_PICKER_OPTIONS = [
     secondaryText: 'Secondary text',
   },
   { key: 'two', name: 'Option with checkbox', showCheckbox: true },
-  { key: 'three', name: 'Option with icon', icon: DayMode },
+  { key: 'three', name: 'Option with icon', icon: 'DayMode' },
   {
     key: 'four',
     name: 'Option with avatar',

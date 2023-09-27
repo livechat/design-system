@@ -1,9 +1,8 @@
 import * as React from 'react';
 
-import { MoreHoriz } from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 
 import { Checkbox } from '../Checkbox';
-import { Icon } from '../Icon';
 import { RadioButton } from '../RadioButton';
 import { Switch } from '../Switch';
 
@@ -26,7 +25,7 @@ export const Default = (): React.ReactElement => (
     <ActionMenu
       options={exampleOptions}
       triggerClassName="action-menu-button"
-      triggerRenderer={<Icon source={MoreHoriz} kind="primary" />}
+      triggerRenderer={<Icon set="tabler" name="MoreHoriz" kind="primary" />}
       openedOnInit
     />
   </div>
@@ -189,7 +188,7 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
               ),
           },
         ]}
-        triggerRenderer={<Icon source={MoreHoriz} kind="primary" />}
+        triggerRenderer={<Icon set="tabler" name="MoreHoriz" kind="primary" />}
         openedOnInit
         keepOpenOnClick
       />

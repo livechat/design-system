@@ -1,13 +1,9 @@
 import * as React from 'react';
 
-import {
-  ChevronUp,
-  ChevronDown,
-} from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { KeyCodes } from '../../utils/keyCodes';
-import { Icon } from '../Icon';
 
 import styles from './NumericInput.module.scss';
 
@@ -136,7 +132,8 @@ export const NumericInput: React.FC<NumericInputProps> = ({
             type="button"
           >
             <Icon
-              source={ChevronUp}
+              name="ChevronUp"
+              set="tabler"
               disabled={disabled || hasReachedTheLimit(value, max)}
               kind="primary"
             />
@@ -150,7 +147,8 @@ export const NumericInput: React.FC<NumericInputProps> = ({
             type="button"
           >
             <Icon
-              source={ChevronDown}
+              name="ChevronDown"
+              set="tabler"
               kind="primary"
               disabled={disabled || hasReachedTheLimit(value, min)}
             />

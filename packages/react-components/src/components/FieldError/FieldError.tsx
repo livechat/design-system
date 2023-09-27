@@ -1,9 +1,8 @@
 import * as React from 'react';
 
-import { Info } from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
-import { Icon } from '../Icon';
 import { Text } from '../Typography';
 
 import styles from './FieldError.module.scss';
@@ -22,7 +21,8 @@ export const FieldError: React.FC<FieldErrorProps> = ({
   return (
     <Text as="span" size="sm" {...props} className={mergedClassNames}>
       <Icon
-        source={Info}
+        set="tabler"
+        name="Info"
         className={styles[`${baseClass}__icon`]}
         size="small"
       />

@@ -1,10 +1,9 @@
 import * as React from 'react';
 
-import { LockBlackFilled as LockIcon } from '@livechat/design-system-icons/react/tabler';
+import { Icon, IconSize } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import noop from '../../utils/noop';
-import { Icon, IconSize } from '../Icon';
 import { Loader } from '../Loader';
 
 import styles from './Switch.module.scss';
@@ -147,7 +146,8 @@ export const Switch: React.FC<SwitchProps> = ({
               className={styles[`${baseClass}__icon`]}
               data-testid="lock-icon"
               size={iconSize}
-              source={LockIcon}
+              set="tabler"
+              name="LockBlackFilled"
               kind="primary"
             />
           )}

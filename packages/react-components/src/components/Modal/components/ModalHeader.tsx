@@ -1,13 +1,25 @@
 import * as React from 'react';
 
 import { cx } from '@emotion/css';
+import {
+  Icon,
+  IconSize,
+  IconKind,
+  Tabler,
+} from '@livechat/design-system-icons';
 
-import { Icon, IconProps } from '../../Icon';
 import { Heading, Text } from '../../Typography';
 
 import styles from './ModalHeader.module.scss';
 
 const baseClass = 'modal-header';
+
+export interface IconProps {
+  name: Tabler;
+  kind?: IconKind;
+  size?: IconSize;
+  customColor?: string;
+}
 
 export interface ModalHeaderProps {
   title?: React.ReactNode;
@@ -27,7 +39,12 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
   return (
     <div className={mergedClassNames}>
       {iconProps && (
-        <Icon className={styles[`${baseClass}__heading-icon`]} {...iconProps} />
+        <Icon
+          set="tabler"
+          {...iconProps}
+          name={iconProps.name}
+          className={styles[`${baseClass}__heading-icon`]}
+        />
       )}
       <div className={styles[`${baseClass}__heading-body`]}>
         <Heading

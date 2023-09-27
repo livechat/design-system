@@ -1,16 +1,9 @@
 import * as React from 'react';
 
-import {
-  Close,
-  Info,
-  Warning,
-  CheckCircle,
-  Block,
-} from '@livechat/design-system-icons/react/tabler';
+import { Icon, Tabler } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Button } from '../Button';
-import { Icon, IconKind, IconSource } from '../Icon';
 import { Text } from '../Typography';
 
 import styles from './Toast.module.scss';
@@ -31,18 +24,18 @@ export interface ToastProps extends React.HTMLAttributes<HTMLDivElement> {
   onClose?: () => void;
 }
 
-const iconConfig: Record<ToastKind, { source: IconSource; kind?: IconKind }> = {
+const iconConfig: Record<ToastKind, { name: string }> = {
   success: {
-    source: CheckCircle,
+    name: 'CheckCircle' as Tabler,
   },
   warning: {
-    source: Warning,
+    name: 'Warning' as Tabler,
   },
   error: {
-    source: Block,
+    name: 'Block' as Tabler,
   },
   info: {
-    source: Info,
+    name: 'Info' as Tabler,
   },
 };
 
@@ -77,7 +70,11 @@ export const Toast: React.FC<React.PropsWithChildren<ToastProps>> = ({
   return (
     <div className={mergedClassNames} {...divProps}>
       <div className={styles[`${baseClass}__icon`]}>
-        <Icon {...iconConfig[kind]} size="medium" />
+        <Icon
+          set="tabler"
+          name={iconConfig[kind].name as Tabler}
+          size="medium"
+        />
       </div>
       <div className={styles[`${baseClass}__content`]}>
         {isTextContent ? <Text as="div">{children}</Text> : children}
@@ -104,7 +101,7 @@ export const Toast: React.FC<React.PropsWithChildren<ToastProps>> = ({
               kind="text"
               size="compact"
               onClick={onClose}
-              icon={<Icon source={Close} size="medium" />}
+              icon={<Icon set="tabler" name="Close" size="medium" />}
             />
           )}
         </div>

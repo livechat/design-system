@@ -1,10 +1,9 @@
 import * as React from 'react';
 
-import { Close } from '@livechat/design-system-icons/react/material';
+import { Icon } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Button } from '../../Button';
-import { Icon } from '../../Icon';
 import { getIconType } from '../helpers';
 import styles from '../Tooltip.module.scss';
 import { TooltipTheme } from '../types';
@@ -28,7 +27,8 @@ export const Info: React.FC<{
           onClick={handleCloseAction}
           icon={
             <Icon
-              source={Close}
+              set="tabler"
+              name="Close"
               kind={theme ? getIconType(theme) : 'primary'}
             />
           }

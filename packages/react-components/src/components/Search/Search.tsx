@@ -1,11 +1,10 @@
 import * as React from 'react';
 
-import { Search, Close } from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { KeyCodes } from '../../utils/keyCodes';
 import { Button } from '../Button';
-import { Icon } from '../Icon';
 import { Loader } from '../Loader';
 
 import styles from './Search.module.scss';
@@ -123,7 +122,8 @@ export const SearchInput: React.FC<ISearchInputProps> = ({
     >
       <Icon
         className={styles[`${baseClass}__search-icon`]}
-        source={Search}
+        name="Search"
+        set="tabler"
         disabled={isDisabled}
         kind="primary"
       />
@@ -146,7 +146,7 @@ export const SearchInput: React.FC<ISearchInputProps> = ({
           title="Clear search"
           className={styles[`${baseClass}__clear-icon`]}
           onClick={handleClear}
-          icon={<Icon source={Close} kind="primary" />}
+          icon={<Icon name="Close" set="tabler" kind="primary" />}
           kind="text"
           size="compact"
         />

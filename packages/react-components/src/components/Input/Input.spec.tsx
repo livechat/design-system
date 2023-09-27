@@ -1,10 +1,8 @@
 import * as React from 'react';
 
-import { AddCircle as AddCircleIcon } from '@livechat/design-system-icons/react/material';
+import { Icon } from '@livechat/design-system-icons';
 
 import { fireEvent, render } from 'test-utils';
-
-import { Icon } from '../Icon';
 
 import { Input } from './Input';
 
@@ -86,7 +84,7 @@ describe('<Input> component', () => {
     const { getByTestId } = render(
       <Input
         icon={{
-          source: <Icon source={AddCircleIcon} />,
+          source: <Icon set="tabler" name="AddCircle" />,
           place: 'left',
         }}
       />
@@ -99,7 +97,7 @@ describe('<Input> component', () => {
     const { getByTestId } = render(
       <Input
         icon={{
-          source: <Icon source={AddCircleIcon} />,
+          source: <Icon set="tabler" name="AddCircle" />,
           place: 'right',
         }}
       />
@@ -113,7 +111,7 @@ describe('<Input> component', () => {
       <Input
         type="password"
         icon={{
-          source: <Icon source={AddCircleIcon} />,
+          source: <Icon set="tabler" name="AddCircle" />,
           place: 'right',
         }}
       />

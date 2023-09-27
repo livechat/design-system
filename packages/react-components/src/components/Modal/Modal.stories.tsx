@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { GreetingQuickReply } from '@livechat/design-system-icons/react/material';
 import { ComponentMeta, Story } from '@storybook/react';
 
 import noop from '../../utils/noop';
@@ -63,7 +62,7 @@ ModalWithCustomHeader.args = {
     <ModalHeader
       title="Modal Header"
       iconProps={{
-        source: GreetingQuickReply,
+        name: 'GreetingQuickReply',
         kind: 'primary',
         size: 'large',
       }}
@@ -81,7 +80,7 @@ ModalWithLabeledHeader.args = {
     <ModalHeader
       title="Modal Header"
       iconProps={{
-        source: GreetingQuickReply,
+        name: 'GreetingQuickReply',
         kind: 'primary',
         size: 'large',
         customColor: '#fff',

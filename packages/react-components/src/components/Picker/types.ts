@@ -1,7 +1,5 @@
 import * as React from 'react';
 
-import { IconSource } from '../Icon';
-
 export interface IPickerListItem {
   key: string;
   name: string;
@@ -11,7 +9,7 @@ export interface IPickerListItem {
   };
   groupHeader?: boolean;
   disabled?: boolean;
-  icon?: IconSource;
+  icon?: string;
   avatarSrc?: string;
   secondaryText?: string;
   showCheckbox?: boolean;

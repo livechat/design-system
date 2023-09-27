@@ -1,9 +1,8 @@
 import * as React from 'react';
 
-import { Check as CheckIcon } from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
-import { Icon } from '../Icon';
 import { ProgressBar } from '../Progress';
 import { ProgressSize, ProgressStatus } from '../Progress/constants';
 import { Text } from '../Typography';
@@ -85,7 +84,7 @@ export const FileUploadProgress: React.ExoticComponent<
               styles[`${baseClass}__icon--success`]
             )}
           >
-            <Icon source={CheckIcon} />
+            <Icon set="tabler" name="Check" />
           </div>
         )}
         <div

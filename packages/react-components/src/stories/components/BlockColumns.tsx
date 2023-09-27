@@ -1,11 +1,7 @@
 import * as React from 'react';
 
-import {
-  CheckCircle,
-  CloseCircle,
-} from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 
-import { Icon } from '../../components/Icon';
 import { Heading } from '../../components/Typography';
 
 import styles from './BlockColumns.module.scss';
@@ -29,7 +25,8 @@ export const BlockColumns: React.FC<
       <div className={styles[`${baseClass}__label-container`]}>
         <div className={styles[`${baseClass}__label-container__icon`]}>
           <Icon
-            source={isNegative ? CloseCircle : CheckCircle}
+            set="tabler"
+            name={isNegative ? 'CloseCircle' : 'CheckCircle'}
             kind={isNegative ? 'negative' : 'positive'}
             size="large"
           />

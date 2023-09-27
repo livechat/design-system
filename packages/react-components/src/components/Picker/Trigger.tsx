@@ -1,16 +1,11 @@
 import * as React from 'react';
 
-import {
-  ChevronDown,
-  ChevronUp,
-  Close,
-} from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Size } from 'utils';
 
 import { KeyCodes } from '../../utils/keyCodes';
-import { Icon } from '../Icon';
 
 import styles from './Trigger.module.scss';
 
@@ -122,12 +117,13 @@ export const Trigger: React.FC<React.PropsWithChildren<ITriggerProps>> = ({
             className={styles[`${baseClass}__clear-icon`]}
             onClick={handleOnClearClick}
           >
-            <Icon kind="primary" size="small" source={Close} />
+            <Icon kind="primary" size="small" set="tabler" name="Close" />
           </div>
         )}
         <Icon
           className={styles[`${baseClass}__chevron-icon`]}
-          source={!isOpen ? ChevronDown : ChevronUp}
+          set="tabler"
+          name={!isOpen ? 'ChevronDown' : 'ChevronUp'}
           size="medium"
           disabled={isDisabled}
         />

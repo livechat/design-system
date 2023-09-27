@@ -1,13 +1,9 @@
 import * as React from 'react';
 
-import {
-  VisibilityOn as VisibilityOnIcon,
-  VisibilityOff as VisibilityOffIcon,
-} from '@livechat/design-system-icons/react/tabler';
+import { Icon, Tabler } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Button } from '../Button';
-import { Icon } from '../Icon';
 
 import styles from './Input.module.scss';
 
@@ -84,7 +80,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const iconCustomColor = !disabled
       ? 'var(--content-default)'
       : 'var(--content-disabled)';
-    const iconSource = isPasswordVisible ? VisibilityOnIcon : VisibilityOffIcon;
+    const iconName = isPasswordVisible ? 'VisibilityOn' : 'VisibilityOff';
     const shouldRenderLeftIcon = icon && icon.place === 'left';
     const shouldRenderRightIcon =
       icon && type !== 'password' && icon.place === 'right';
@@ -112,7 +108,13 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             disabled={disabled}
             kind="text"
             size="compact"
-            icon={<Icon customColor={iconCustomColor} source={iconSource} />}
+            icon={
+              <Icon
+                customColor={iconCustomColor}
+                set="tabler"
+                name={iconName as Tabler}
+              />
+            }
             onClick={() => setIsPasswordVisible((v) => !v)}
             className={styles[`${baseClass}__visibility-button`]}
           />

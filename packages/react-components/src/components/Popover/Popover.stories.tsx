@@ -1,10 +1,9 @@
 import * as React from 'react';
 
-import { ChevronDown } from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 import { ComponentMeta } from '@storybook/react';
 
 import { Button } from '../Button';
-import { Icon } from '../Icon';
 import { Text } from '../Typography';
 
 import { Popover as PopoverComponent, IPopoverProps } from './Popover';
@@ -49,7 +48,7 @@ export const Default = (args: IPopoverProps): React.ReactElement => (
       {...args}
       triggerRenderer={() => (
         <Button
-          icon={<Icon source={ChevronDown}></Icon>}
+          icon={<Icon set="tabler" name="ChevronDown"></Icon>}
           iconPosition={'right'}
         >
           Open Popover

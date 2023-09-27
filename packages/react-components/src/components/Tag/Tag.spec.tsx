@@ -1,11 +1,10 @@
 import * as React from 'react';
 
-import * as TablerIcons from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 
 import { render, userEvent, vi } from 'test-utils';
 
 import noop from '../../utils/noop';
-import { Icon } from '../Icon';
 
 import { Tag } from './Tag';
 
@@ -76,7 +75,7 @@ describe('<Tag> component', () => {
   });
 
   it('should show left and right nodes when provided', () => {
-    const icon = <Icon source={TablerIcons.Apple} size="small" />;
+    const icon = <Icon set="tabler" name="Apple" size="small" />;
     const { getByTestId, queryByTestId, rerender } = render(
       <Tag {...props}>tag1</Tag>
     );

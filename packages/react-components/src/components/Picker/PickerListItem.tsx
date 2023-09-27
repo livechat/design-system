@@ -1,9 +1,7 @@
 import * as React from 'react';
 
-import { Check } from '@livechat/design-system-icons/react/tabler';
+import { Icon, Tabler } from '@livechat/design-system-icons';
 import cx from 'clsx';
-
-import { Icon } from '../Icon';
 
 import { IPickerListItem } from './types';
 
@@ -48,7 +46,8 @@ export const PickerListItem: React.FC<IProps> = ({
           <Icon
             className={styles[`${itemClassName}__icon`]}
             kind="link"
-            source={item.icon}
+            set="tabler"
+            name={item.icon as Tabler}
           />
         )}
         {item.avatarSrc && (
@@ -118,7 +117,8 @@ export const PickerListItem: React.FC<IProps> = ({
       {isItemSelected && !item.showCheckbox && (
         <Icon
           kind="link"
-          source={Check}
+          set="tabler"
+          name="Check"
           customColor="var(--content-basic-info)"
         />
       )}

@@ -1,17 +1,10 @@
 import * as React from 'react';
 
-import {
-  Close as CloseIcon,
-  Warning as WarningIcon,
-  Info as InfoIcon,
-  Block as BlockIcon,
-  CheckCircle as CheckIcon,
-} from '@livechat/design-system-icons/react/tabler';
+import { Icon, IconKind, Tabler } from '@livechat/design-system-icons';
 import cx from 'clsx';
 import debounce from 'lodash.debounce';
 
 import { Button } from '../Button';
-import { Icon, IconSource, IconKind } from '../Icon';
 import { Text } from '../Typography';
 
 import styles from './Alert.module.scss';
@@ -47,21 +40,21 @@ export interface AlertProps {
   onClose?: () => void;
 }
 
-const IconConfig: Record<AlertKind, { source: IconSource; kind: IconKind }> = {
+const IconConfig: Record<AlertKind, { name: string; kind: IconKind }> = {
   info: {
-    source: InfoIcon,
+    name: 'InfoIcon',
     kind: 'link',
   },
   warning: {
-    source: WarningIcon,
+    name: 'WarningIcon',
     kind: 'warning',
   },
   success: {
-    source: CheckIcon,
+    name: 'CheckIcon',
     kind: 'success',
   },
   error: {
-    source: BlockIcon,
+    name: 'BlockIcon',
     kind: 'error',
   },
 };
@@ -118,7 +111,9 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
   return (
     <div ref={containerRef} className={mergedClassNames} {...props}>
       <Icon
+        set="tabler"
         {...IconConfig[kind]}
+        name={IconConfig[kind].name as Tabler}
         size="large"
         className={styles[`${baseClass}__icon`]}
       />
@@ -151,7 +146,7 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
           className={styles[`${baseClass}__close-icon`]}
           size="compact"
           kind="plain"
-          icon={<Icon source={CloseIcon} />}
+          icon={<Icon set="tabler" name="Close" />}
           onClick={onClose}
         />
       )}

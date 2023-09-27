@@ -1,14 +1,12 @@
 import * as React from 'react';
 
-import * as TablerIcons from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 import { ComponentMeta, Story } from '@storybook/react';
-
-import { Icon } from '../Icon';
 
 import { SegmentedControl, SegmentedControlProps } from './SegmentedControl';
 
 const buttonSizes = ['compact', 'medium', 'large'];
-const buttonIcon = <Icon source={TablerIcons.AddCircle} />;
+const buttonIcon = <Icon set="tabler" name="AddCircle" />;
 
 export default {
   title: 'Components/Segmented Control',

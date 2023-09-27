@@ -1,10 +1,9 @@
 import * as React from 'react';
 
-import { ChevronDown } from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { ActionMenu, ActionMenuItem } from '../ActionMenu';
-import { Icon } from '../Icon';
 
 import { ActionBarItem, IActionBarOption } from './ActionBarItem';
 
@@ -130,7 +129,9 @@ export const ActionBar: React.FC<IActionBarProps> = ({
         <div className={styles[`${baseClass}__menu-wrapper`]}>
           <ActionMenu
             options={getMenuItems(menuItemsKeys)}
-            triggerRenderer={<Icon source={ChevronDown} kind="primary" />}
+            triggerRenderer={
+              <Icon set="tabler" name="ChevronDown" kind="primary" />
+            }
           />
         </div>
       )}

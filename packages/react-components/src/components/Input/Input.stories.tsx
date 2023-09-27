@@ -1,10 +1,9 @@
 import * as React from 'react';
 
-import { AddCircle as AddCircleIcon } from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 import { ComponentMeta, Story } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
-import { Icon } from '../Icon';
 
 import { Input, InputProps } from './Input';
 
@@ -78,7 +77,7 @@ export const WithIcons = (): React.ReactElement => (
     <StoryDescriptor title="Left icon">
       <Input
         icon={{
-          source: <Icon source={AddCircleIcon} />,
+          source: <Icon name="AddCircle" set="tabler" />,
           place: 'left',
         }}
         placeholder={placeholderText}
@@ -87,7 +86,7 @@ export const WithIcons = (): React.ReactElement => (
     <StoryDescriptor title="Right icon">
       <Input
         icon={{
-          source: <Icon source={AddCircleIcon} />,
+          source: <Icon name="AddCircle" set="tabler" />,
           place: 'right',
         }}
         placeholder={placeholderText}
@@ -96,7 +95,7 @@ export const WithIcons = (): React.ReactElement => (
     <StoryDescriptor title="Left icon with password type">
       <Input
         icon={{
-          source: <Icon source={AddCircleIcon} />,
+          source: <Icon name="AddCircle" set="tabler" />,
           place: 'left',
         }}
         placeholder={placeholderText}

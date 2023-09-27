@@ -1,10 +1,9 @@
 import * as React from 'react';
 
-import { Search } from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 import { ComponentMeta, Story } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
-import { Icon } from '../Icon';
 import { Input } from '../Input';
 
 import { FormField as FormFieldComponent, FormFieldProps } from './FormField';
@@ -17,7 +16,7 @@ export default {
   },
 } as ComponentMeta<typeof FormFieldComponent>;
 
-const ExampleIcon = () => <Icon source={Search} />;
+const ExampleIcon = () => <Icon name="Search" set="tabler" />;
 const ExampleInput = () => <Input placeholder="Placeholder text" />;
 const LabelText = 'Example label text';
 const DescriptionText = 'Example description text';

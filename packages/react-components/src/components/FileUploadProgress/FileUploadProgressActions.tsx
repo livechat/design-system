@@ -1,11 +1,7 @@
 import * as React from 'react';
 
-import {
-  Close as CloseIcon,
-  Refresh as RefreshIcon,
-} from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 
-import { Icon } from '../Icon';
 import { ProgressStatus } from '../Progress/constants';
 
 import styles from './FileUploadProgressActions.module.scss';
@@ -30,7 +26,7 @@ export const FileUploadProgressActions: React.FC<
           aria-label="Retry"
           onClick={onRetryButtonClick}
         >
-          <Icon size="small" source={RefreshIcon} />
+          <Icon size="small" name="Refresh" set="tabler" />
         </button>
       )}
       {onCloseButtonClick && status !== 'success' && (
@@ -40,7 +36,7 @@ export const FileUploadProgressActions: React.FC<
           aria-label="Close"
           onClick={onCloseButtonClick}
         >
-          <Icon size="small" source={CloseIcon} />
+          <Icon size="small" name="Close" set="tabler" />
         </button>
       )}
     </div>

@@ -1,16 +1,10 @@
 import * as React from 'react';
 
-import {
-  ChevronDown,
-  Smiles,
-  CannedResponse,
-  Attachment,
-} from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 import { ComponentMeta } from '@storybook/react';
 
 import noop from '../../utils/noop';
 import { Button } from '../Button';
-import { Icon } from '../Icon';
 
 import './Tooltip.stories.css';
 import { Info, Interactive, Reports, Simple, UserGuide } from './components';
@@ -85,17 +79,17 @@ export const Default = (args: ITooltipProps): React.ReactElement => (
       >
         <Tooltip
           {...args}
-          triggerRenderer={() => <Icon source={Smiles}></Icon>}
+          triggerRenderer={() => <Icon set="tabler" name="Smiles" />}
         >
           <Simple text="Simple tooltip" />
         </Tooltip>
       </div>
     </span>
     <span className={'tooltip-icon-wrap'}>
-      <Icon source={CannedResponse}></Icon>
+      <Icon set="tabler" name="CannedResponse" />
     </span>
     <span className={'tooltip-icon-wrap'}>
-      <Icon source={Attachment}></Icon>
+      <Icon set="tabler" name="Attachment" />
     </span>
   </div>
 );
@@ -121,7 +115,7 @@ export const TooltipInfo = (): React.ReactElement => (
       triggerRenderer={() => (
         <div>
           <Button
-            icon={<Icon source={ChevronDown}></Icon>}
+            icon={<Icon set="tabler" name="ChevronDown" />}
             iconPosition={'right'}
           >
             Open Tooltip
@@ -146,7 +140,7 @@ export const TooltipInteractive = (): React.ReactElement => (
       triggerRenderer={() => (
         <div>
           <Button
-            icon={<Icon source={ChevronDown}></Icon>}
+            icon={<Icon set="tabler" name="ChevronDown" />}
             iconPosition={'right'}
           >
             Open Tooltip
@@ -183,7 +177,7 @@ export const TooltipReports = (): React.ReactElement => (
       triggerRenderer={() => (
         <div>
           <Button
-            icon={<Icon source={ChevronDown}></Icon>}
+            icon={<Icon set="tabler" name="ChevronDown" />}
             iconPosition={'right'}
           >
             Open Tooltip

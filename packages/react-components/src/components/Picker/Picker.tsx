@@ -1,11 +1,11 @@
 import * as React from 'react';
 
+import { IconSize } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Size } from 'utils';
 
 import { KeyCodes } from '../../utils/keyCodes';
-import { IconSize } from '../Icon';
 
 import { SELECT_ALL_OPTION_KEY } from './constants';
 import { PickerList } from './PickerList';

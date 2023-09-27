@@ -1,14 +1,13 @@
 import * as React from 'react';
 
-import * as TablerIcons from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 import { ComponentMeta } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
-import { Icon } from '../Icon';
 
 import { Tag, TagProps } from './Tag';
 
-const exampleIcon = <Icon source={TablerIcons.Smiles} size="small" />;
+const exampleIcon = <Icon set="tabler" name="Smiles" size="small" />;
 const exampleAvatar = (
   <img
     style={{ borderRadius: '50%', width: '20px', height: '20px' }}
@@ -42,8 +41,8 @@ Default.args = {
   size: 'medium',
   children: 'Example tag',
   dismissible: true,
-  leftNode: <Icon source={TablerIcons.Apple} size="small" />,
-  rightNode: <Icon source={TablerIcons.Android} size="small" />,
+  leftNode: <Icon set="tabler" name="Apple" size="small" />,
+  rightNode: <Icon set="tabler" name="Android" size="small" />,
 } as TagProps;
 
 export const Kinds = ({ children, ...args }: TagProps): React.ReactElement => {

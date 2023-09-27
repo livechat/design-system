@@ -1,4 +1,4 @@
-import { IconKind } from '../Icon';
+import { IconKind } from '@livechat/design-system-icons';
 
 import { TooltipTheme } from './types';
 

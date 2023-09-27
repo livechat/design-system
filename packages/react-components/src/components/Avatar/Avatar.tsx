@@ -1,9 +1,7 @@
 import * as React from 'react';
 
-import { Person as PersonIcon } from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 import cx from 'clsx';
-
-import { Icon } from '../Icon';
 
 import {
   getBackgroundColor,
@@ -157,7 +155,8 @@ export const Avatar: React.FC<AvatarProps> = ({
         <Icon
           data-testid={`${baseClass}__icon`}
           className={mergedIconClassNames}
-          source={PersonIcon}
+          name="Person"
+          set="tabler"
         />
       )}
     </div>

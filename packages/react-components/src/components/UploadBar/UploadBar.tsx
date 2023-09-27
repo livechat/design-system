@@ -1,11 +1,6 @@
 import * as React from 'react';
 
-import {
-  Check as CheckIcon,
-  Error as ErrorIcon,
-  ChevronDown as ChevronDownIcon,
-  ChevronUp as ChevronUpIcon,
-} from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 import cx from 'clsx';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
@@ -13,7 +8,6 @@ import {
   FileUploadProgress,
   FileUploadProgressActions,
 } from '../FileUploadProgress';
-import { Icon } from '../Icon';
 import { ProgressCircle } from '../Progress';
 import { ProgressStatus, ProgressSize } from '../Progress/constants';
 import { Text } from '../Typography';
@@ -75,7 +69,7 @@ const getHeaderIcon = (status: ProgressStatus, progressValue: number) => {
   if (status === 'success') {
     return (
       <div className={styles[`${wrapperHeaderClass}__success-icon`]}>
-        <Icon source={CheckIcon} />
+        <Icon set="tabler" name="Check" />
       </div>
     );
   }
@@ -83,7 +77,7 @@ const getHeaderIcon = (status: ProgressStatus, progressValue: number) => {
   if (status === 'error') {
     return (
       <div className={styles[`${wrapperHeaderClass}__error-icon`]}>
-        <Icon source={ErrorIcon} />
+        <Icon set="tabler" name="Error" />
       </div>
     );
   }
@@ -172,9 +166,9 @@ export const UploadBar: React.FC<React.PropsWithChildren<UploadBarProps>> = ({
               onClick={handleOnWrapperClick}
             >
               {expanded ? (
-                <Icon source={ChevronUpIcon} />
+                <Icon set="tabler" name="ChevronUp" />
               ) : (
-                <Icon source={ChevronDownIcon} />
+                <Icon set="tabler" name="ChevronDown" />
               )}
             </button>
           )}

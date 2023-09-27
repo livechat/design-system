@@ -1,10 +1,9 @@
 import * as React from 'react';
 
-import { Close } from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Button, ButtonKind } from '../Button';
-import { Icon } from '../Icon';
 
 import styles from './PromoBannerV2.module.scss';
 
@@ -90,7 +89,7 @@ export const PromoBannerV2: React.FC<
             <Button
               className={styles[`${baseClass}__close__btn`]}
               onClick={onClose}
-              icon={<Icon source={Close} kind="primary" />}
+              icon={<Icon set="tabler" name="Close" kind="primary" />}
               kind="plain"
               size="compact"
             />

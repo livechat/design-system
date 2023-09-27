@@ -1,15 +1,6 @@
 import * as React from 'react';
 
-import {
-  AccountCircle,
-  AddTemplate,
-  Adjust,
-  Apps,
-  Calendar,
-  Contact,
-} from '@livechat/design-system-icons/react/tabler';
-
-import { Icon } from '../Icon';
+import { Icon } from '@livechat/design-system-icons';
 
 import { ActionBar } from './ActionBar';
 
@@ -27,37 +18,37 @@ export const Default = (): React.ReactElement => {
   const defaultOptions = [
     {
       key: 'one',
-      element: <Icon source={AccountCircle} kind="primary" />,
+      element: <Icon set="tabler" name="AccountCircle" kind="primary" />,
       label: 'One test',
       onClick: () => setActiveKey('one'),
     },
     {
       key: 'two',
-      element: <Icon source={AddTemplate} kind="primary" />,
+      element: <Icon set="tabler" name="AddTemplate" kind="primary" />,
       label: 'Two test',
       onClick: () => setActiveKey('two'),
     },
     {
       key: 'three',
-      element: <Icon source={Adjust} kind="primary" />,
+      element: <Icon set="tabler" name="Adjust" kind="primary" />,
       label: 'Three test',
       onClick: () => setActiveKey('three'),
     },
     {
       key: 'four',
-      element: <Icon source={Apps} kind="primary" />,
+      element: <Icon set="tabler" name="Apps" kind="primary" />,
       label: 'Four test',
       onClick: () => setActiveKey('four'),
     },
     {
       key: 'five',
-      element: <Icon source={Calendar} kind="primary" />,
+      element: <Icon set="tabler" name="Calendar" kind="primary" />,
       label: 'Five test',
       onClick: () => setActiveKey('five'),
     },
     {
       key: 'six',
-      element: <Icon source={Contact} kind="primary" />,
+      element: <Icon set="tabler" name="Contact" kind="primary" />,
       label: 'Six test',
       onClick: () => setActiveKey('six'),
     },

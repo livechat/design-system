@@ -1,10 +1,10 @@
 import * as React from 'react';
 
+import { Icon, IconSize, Tabler } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Size } from 'utils';
 
-import { Icon, IconSize } from '../Icon';
 import { Tag } from '../Tag';
 
 import { PickerType, IPickerListItem } from './types';
@@ -71,7 +71,8 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
       <div className={styles[`${baseClass}__item`]}>
         {item.icon && (
           <Icon
-            source={item.icon}
+            set="tabler"
+            name={item.icon as Tabler}
             className={styles[`${baseClass}__item__icon`]}
           />
         )}

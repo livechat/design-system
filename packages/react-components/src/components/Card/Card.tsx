@@ -1,13 +1,9 @@
 import * as React from 'react';
 
-import {
-  ChevronUp,
-  ChevronDown,
-} from '@livechat/design-system-icons/react/tabler';
+import { Icon } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Button, ButtonProps } from '../Button';
-import { Icon } from '../Icon';
 import { Text, Heading } from '../Typography';
 
 import styles from './Card.module.scss';
@@ -62,7 +58,7 @@ export const Card: React.FC<CardProps> = ({
   ...divProps
 }) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
-  const expandIcon = isExpanded ? ChevronUp : ChevronDown;
+  const expandIcon = isExpanded ? 'ChevronUp' : 'ChevronDown';
   const expandButtonText = isExpanded ? 'Hide' : 'Show more';
   const shouldShowActionButtons = buttonsOptions?.length > 0;
   const shouldShowExpandAction = !!expandableContent;
@@ -121,7 +117,7 @@ export const Card: React.FC<CardProps> = ({
                 className={styles[`${actionsClass}__buttons-expander`]}
                 kind="link"
                 iconPosition="right"
-                icon={<Icon source={expandIcon} />}
+                icon={<Icon set="tabler" name={expandIcon} />}
                 onClick={() => setIsExpanded(!isExpanded)}
               >
                 {expandButtonText}

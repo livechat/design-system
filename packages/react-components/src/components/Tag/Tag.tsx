@@ -1,10 +1,9 @@
 import * as React from 'react';
 
-import { Close } from '@livechat/design-system-icons/react/tabler';
+import { Icon, IconSize } from '@livechat/design-system-icons';
 import cx from 'clsx';
 import { getContrast } from 'polished';
 
-import { Icon, IconSize } from '../Icon';
 import { Text } from '../Typography';
 
 import styles from './Tag.module.scss';
@@ -159,7 +158,8 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
         >
           <Icon
             data-dismiss-icon
-            source={Close}
+            set="tabler"
+            name="Close"
             size={iconSize}
             customColor={getIconCustomColor()}
           />
