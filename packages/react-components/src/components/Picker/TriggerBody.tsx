@@ -4,7 +4,7 @@ import cx from 'clsx';
 
 import { Size } from 'utils';
 
-import { Icon, IconSize } from '../Icon';
+import { Icon } from '../Icon';
 import { Tag } from '../Tag';
 
 import { PickerType, IPickerListItem } from './types';
