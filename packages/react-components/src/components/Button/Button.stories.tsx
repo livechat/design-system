@@ -32,9 +32,6 @@ export default {
 export const Default = (args: ButtonProps): React.ReactElement => (
   <Button {...args} />
 );
-Default.argTypes = {
-  icon: null, // TODO: fix this
-};
 Default.args = {
   loading: false,
   disabled: false,
@@ -43,7 +40,7 @@ Default.args = {
   children: 'Button Text',
   fullWidth: false,
   iconPosition: 'left',
-  icon: 'None',
+  icon: <Icon set="tabler" name="Smiles" />,
 };
 
 export const KindsAndStates = (): React.ReactElement => (
