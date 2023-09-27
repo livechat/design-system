@@ -31,6 +31,9 @@
     },
     "prebuild": {
       "outputs": ["{projectRoot}/lib/icon/icons.ts"]
+    },
+    "test": {
+      "dependsOn": ["^build"]
     }
   },
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
