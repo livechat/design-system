@@ -12,7 +12,7 @@
     "dist"
   ],
   "scripts": {
-    "dev": "vite",
+    "dev": "npm run build",
     "genarateIconsList": "node generate-icons-list.js",
     "prebuild": "rimraf dist && npm run genarateIconsList",
     "build": "tsc --p ./tsconfig-build.json && vite build",

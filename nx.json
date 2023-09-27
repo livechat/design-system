@@ -7,6 +7,7 @@
           "build",
           "build:lib",
           "build:styles",
+          "prebuild",
           "lint",
           "test"
         ]
@@ -15,6 +16,7 @@
   },
   "targetDefaults": {
     "build": {
+      "dependsOn": ["^build", "prebuild"],
       "outputs": [
         "{projectRoot}/dist",
         "{projectRoot}/lib",
@@ -26,6 +28,9 @@
     },
     "build:styles": {
       "outputs": ["{projectRoot}/dist"]
+    },
+    "prebuild": {
+      "outputs": ["{projectRoot}/lib/icon/icons.ts"]
     }
   },
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
