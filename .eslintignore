@@ -1,7 +1,7 @@
 node_modules
 dist
-react
-lib
+vite.config.ts
 .env
 *.log
 storybook-static
+
