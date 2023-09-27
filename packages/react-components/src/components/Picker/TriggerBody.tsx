@@ -20,7 +20,6 @@ export interface ITriggerBodyProps {
   placeholder: string;
   items?: IPickerListItem[] | null;
   type: PickerType;
-  iconSize?: IconSize;
   clearSearchAfterSelection?: boolean;
   size?: Size;
   onItemRemove: (item: IPickerListItem) => void;
@@ -34,7 +33,6 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
   placeholder,
   items,
   type,
-  iconSize,
   clearSearchAfterSelection,
   size,
   onItemRemove,
@@ -125,7 +123,6 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
                     styles[`${baseClass}__tag`],
                     styles[`${baseClass}__tag--${size}`]
                   )}
-                  iconSize={iconSize}
                   dismissible={!isDisabled}
                   onRemove={() => onItemRemove(item)}
                 >
