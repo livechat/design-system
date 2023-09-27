@@ -1,11 +1,11 @@
-import { Add } from '@livechat/design-system-icons/react/material';
-import { Badge, Icon } from '@livechat/design-system-react-components';
+import { Icon } from '@livechat/design-system-icons';
+import { Badge } from '@livechat/design-system-react-components';
 
 function App() {
   return (
     <div>
       Hello world <Badge kind="secondary">my badge</Badge>
-      <Icon source={Add} />
+      <Icon set="tabler" name="Activities" />
     </div>
   );
 }

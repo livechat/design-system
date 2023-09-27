@@ -4,21 +4,30 @@ import cx from 'clsx';
 
 import { BASE_CLASS, IconSizeMap } from './constants';
 import { icons } from './icons';
-import { IconSize, IconKind } from './types';
+import { IconSize, IconKind, Tabler, Material } from './types';
 
 import styles from './Icon.module.scss';
 
-export type Tabler = keyof (typeof icons)['tabler'];
-export type Material = keyof (typeof icons)['material'];
-
 type IconSet =
   | {
+      /**
+       * Specify the icon set
+       */
       set: 'tabler';
-      icon: Tabler;
+      /**
+       * Specify the icon name
+       */
+      name: Tabler;
     }
   | {
+      /**
+       * Specify the icon set
+       */
       set: 'material';
-      icon: Material;
+      /**
+       * Specify the icon name
+       */
+      name: Material;
     };
 
 interface OwnProps extends HTMLAttributes<HTMLDivElement> {
@@ -48,7 +57,7 @@ type Props = IconSet & OwnProps;
 
 export const Icon: FC<Props> = ({
   set,
-  icon,
+  name,
   className,
   kind,
   disabled,
@@ -59,13 +68,14 @@ export const Icon: FC<Props> = ({
   const SvgIcon = useMemo(() => {
     switch (set) {
       case 'tabler':
-        return icons[set][icon];
+        return icons[set][name];
       case 'material':
-        return icons[set][icon];
+        return icons[set][name];
       default:
         return null;
     }
-  }, [set, icon]);
+  }, [set, name]);
+
   if (!SvgIcon) return null;
 
   const mergedClassNames = cx(
