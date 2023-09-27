@@ -140,7 +140,6 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
       {rightNode && (
         <div
           data-testid="lc-tag-right-node"
-          className={cx(styles[`${baseClass}__node--right`])}
           style={{ color: getIconCustomColor() }}
         >
           {rightNode}

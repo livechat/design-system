@@ -83,17 +83,17 @@
   }
 
   &--medium {
-    padding: 1px 8px;
+    padding: 1px 4px;
     height: 24px;
   }
 
   &--large {
-    padding: 5px 12px;
+    padding: 5px 8px;
     height: 32px;
   }
 
   &--xlarge {
-    padding: 5px 16px;
+    padding: 5px 12px;
     height: 36px;
   }
 
@@ -150,12 +150,6 @@
   &__node {
     display: flex;
     align-items: center;
-    margin-right: var(--spacing-1);
-
-    &--right {
-      margin-right: 0;
-      margin-left: var(--spacing-1);
-    }
   }
 
   &__remove {
@@ -172,6 +166,8 @@
   }
 
   &__content {
+    margin-right: var(--spacing-1);
+    margin-left: var(--spacing-1);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
