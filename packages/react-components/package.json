@@ -7,9 +7,7 @@
   },
   "author": "",
   "license": "ISC",
-  "main": "./dist/dsrc.cjs.js",
   "module": "./dist/dsrc.es.js",
-  "unpkg": "./dist/dsrc.umd.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
