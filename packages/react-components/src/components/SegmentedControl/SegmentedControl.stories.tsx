@@ -6,7 +6,7 @@ import { ComponentMeta, Story } from '@storybook/react';
 import { SegmentedControl, SegmentedControlProps } from './SegmentedControl';
 
 const buttonSizes = ['compact', 'medium', 'large'];
-const buttonIcon = <Icon set="tabler" name="AddCircle" />;
+const buttonIcon = <Icon name="AddCircle" />;
 
 export default {
   title: 'Components/Segmented Control',

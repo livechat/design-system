@@ -69,7 +69,7 @@ const getHeaderIcon = (status: ProgressStatus, progressValue: number) => {
   if (status === 'success') {
     return (
       <div className={styles[`${wrapperHeaderClass}__success-icon`]}>
-        <Icon set="tabler" name="Check" />
+        <Icon name="Check" />
       </div>
     );
   }
@@ -77,7 +77,7 @@ const getHeaderIcon = (status: ProgressStatus, progressValue: number) => {
   if (status === 'error') {
     return (
       <div className={styles[`${wrapperHeaderClass}__error-icon`]}>
-        <Icon set="tabler" name="Error" />
+        <Icon name="Error" />
       </div>
     );
   }
@@ -166,9 +166,9 @@ export const UploadBar: React.FC<React.PropsWithChildren<UploadBarProps>> = ({
               onClick={handleOnWrapperClick}
             >
               {expanded ? (
-                <Icon set="tabler" name="ChevronUp" />
+                <Icon name="ChevronUp" />
               ) : (
-                <Icon set="tabler" name="ChevronDown" />
+                <Icon name="ChevronDown" />
               )}
             </button>
           )}

@@ -75,7 +75,7 @@ describe('<Tag> component', () => {
   });
 
   it('should show left and right nodes when provided', () => {
-    const icon = <Icon set="tabler" name="Apple" size="small" />;
+    const icon = <Icon name="Apple" size="small" />;
     const { getByTestId, queryByTestId, rerender } = render(
       <Tag {...props}>tag1</Tag>
     );

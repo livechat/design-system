@@ -13,7 +13,7 @@ type IconSet =
       /**
        * Specify the icon set
        */
-      set: 'tabler';
+      set?: 'tabler';
       /**
        * Specify the icon name
        */
@@ -72,7 +72,7 @@ export const Icon: FC<Props> = ({
       case 'material':
         return icons[set][name];
       default:
-        return null;
+        return icons['tabler'][name];
     }
   }, [set, name]);
 

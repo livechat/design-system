@@ -47,10 +47,7 @@ export const Default = (args: IPopoverProps): React.ReactElement => (
     <PopoverComponent
       {...args}
       triggerRenderer={() => (
-        <Button
-          icon={<Icon set="tabler" name="ChevronDown"></Icon>}
-          iconPosition={'right'}
-        >
+        <Button icon={<Icon name="ChevronDown"></Icon>} iconPosition={'right'}>
           Open Popover
         </Button>
       )}

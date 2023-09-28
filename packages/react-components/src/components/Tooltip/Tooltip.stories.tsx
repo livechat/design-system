@@ -77,19 +77,16 @@ export const Default = (args: ITooltipProps): React.ReactElement => (
           justifyContent: 'center',
         }}
       >
-        <Tooltip
-          {...args}
-          triggerRenderer={() => <Icon set="tabler" name="Smiles" />}
-        >
+        <Tooltip {...args} triggerRenderer={() => <Icon name="Smiles" />}>
           <Simple text="Simple tooltip" />
         </Tooltip>
       </div>
     </span>
     <span className={'tooltip-icon-wrap'}>
-      <Icon set="tabler" name="CannedResponse" />
+      <Icon name="CannedResponse" />
     </span>
     <span className={'tooltip-icon-wrap'}>
-      <Icon set="tabler" name="Attachment" />
+      <Icon name="Attachment" />
     </span>
   </div>
 );
@@ -114,10 +111,7 @@ export const TooltipInfo = (): React.ReactElement => (
       isVisible
       triggerRenderer={() => (
         <div>
-          <Button
-            icon={<Icon set="tabler" name="ChevronDown" />}
-            iconPosition={'right'}
-          >
+          <Button icon={<Icon name="ChevronDown" />} iconPosition={'right'}>
             Open Tooltip
           </Button>
         </div>
@@ -139,10 +133,7 @@ export const TooltipInteractive = (): React.ReactElement => (
       className="tooltip-interactive"
       triggerRenderer={() => (
         <div>
-          <Button
-            icon={<Icon set="tabler" name="ChevronDown" />}
-            iconPosition={'right'}
-          >
+          <Button icon={<Icon name="ChevronDown" />} iconPosition={'right'}>
             Open Tooltip
           </Button>
         </div>
@@ -176,10 +167,7 @@ export const TooltipReports = (): React.ReactElement => (
       isVisible
       triggerRenderer={() => (
         <div>
-          <Button
-            icon={<Icon set="tabler" name="ChevronDown" />}
-            iconPosition={'right'}
-          >
+          <Button icon={<Icon name="ChevronDown" />} iconPosition={'right'}>
             Open Tooltip
           </Button>
         </div>

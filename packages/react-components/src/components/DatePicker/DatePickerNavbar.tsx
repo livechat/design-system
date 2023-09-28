@@ -89,7 +89,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
           })}
           onClick={handlePrevYearClick}
         >
-          <Icon set="tabler" name="DoubleArrowLeft" kind="subtle" />
+          <Icon name="DoubleArrowLeft" kind="subtle" />
         </button>
         <button
           data-testid="date-picker-prev-month-button"
@@ -99,7 +99,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
           })}
           onClick={handlePrevClick}
         >
-          <Icon set="tabler" name="ChevronLeft" kind="subtle" />
+          <Icon name="ChevronLeft" kind="subtle" />
         </button>
       </div>
       <div className={styles[`${baseClass}__navbar-buttons-wrapper`]}>
@@ -111,7 +111,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
           })}
           onClick={handleNextClick}
         >
-          <Icon set="tabler" name="ChevronRight" kind="subtle" />
+          <Icon name="ChevronRight" kind="subtle" />
         </button>
         <button
           data-testid="date-picker-next-year-button"
@@ -121,7 +121,7 @@ const DatePickerNavbar: React.FC<IDatePickerNavbarProps> = (props) => {
           })}
           onClick={handleNextYearClick}
         >
-          <Icon set="tabler" name="DoubleArrowRight" kind="subtle" />
+          <Icon name="DoubleArrowRight" kind="subtle" />
         </button>
       </div>
     </div>

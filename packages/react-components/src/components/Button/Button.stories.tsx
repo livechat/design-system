@@ -40,7 +40,7 @@ Default.args = {
   children: 'Button Text',
   fullWidth: false,
   iconPosition: 'left',
-  icon: <Icon set="tabler" name="Smiles" />,
+  icon: <Icon name="Smiles" />,
 };
 
 export const KindsAndStates = (): React.ReactElement => (

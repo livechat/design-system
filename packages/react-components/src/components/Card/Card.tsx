@@ -117,7 +117,7 @@ export const Card: React.FC<CardProps> = ({
                 className={styles[`${actionsClass}__buttons-expander`]}
                 kind="link"
                 iconPosition="right"
-                icon={<Icon set="tabler" name={expandIcon} />}
+                icon={<Icon name={expandIcon} />}
                 onClick={() => setIsExpanded(!isExpanded)}
               >
                 {expandButtonText}

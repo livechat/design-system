@@ -10,7 +10,7 @@ export const exampleOptions = [
   {
     key: 'one',
     element: (
-      <ActionMenuItem leftNode={<Icon set="tabler" name="ContentCopy" />}>
+      <ActionMenuItem leftNode={<Icon name="ContentCopy" />}>
         Copy
       </ActionMenuItem>
     ),
@@ -19,7 +19,7 @@ export const exampleOptions = [
   {
     key: 'two',
     element: (
-      <ActionMenuItem leftNode={<Icon set="tabler" name="MoveTo" />}>
+      <ActionMenuItem leftNode={<Icon name="MoveTo" />}>
         Move to...
       </ActionMenuItem>
     ),
@@ -28,18 +28,14 @@ export const exampleOptions = [
   {
     key: 'three',
     element: (
-      <ActionMenuItem leftNode={<Icon set="tabler" name="Edit" />}>
-        Edit
-      </ActionMenuItem>
+      <ActionMenuItem leftNode={<Icon name="Edit" />}>Edit</ActionMenuItem>
     ),
     onClick: noop,
   },
   {
     key: 'four',
     element: (
-      <ActionMenuItem leftNode={<Icon set="tabler" name="Block" />}>
-        Block
-      </ActionMenuItem>
+      <ActionMenuItem leftNode={<Icon name="Block" />}>Block</ActionMenuItem>
     ),
     disabled: true,
     onClick: noop,
@@ -47,10 +43,7 @@ export const exampleOptions = [
   {
     key: 'five',
     element: (
-      <ActionMenuItem
-        kind="warning"
-        leftNode={<Icon set="tabler" name="Delete" />}
-      >
+      <ActionMenuItem kind="warning" leftNode={<Icon name="Delete" />}>
         Delete item
       </ActionMenuItem>
     ),

@@ -3,7 +3,7 @@ import { Icon } from '../';
 function App() {
   return (
     <>
-      <Icon set="tabler" icon="People" size="xlarge" customColor="#0000ff" />
+      <Icon name="WoocommerceColored" size="xlarge" customColor="#0000ff" />
       <div>Hello icon components library!</div>
     </>
   );

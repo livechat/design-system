@@ -25,7 +25,7 @@ export const Default = (): React.ReactElement => (
     <ActionMenu
       options={exampleOptions}
       triggerClassName="action-menu-button"
-      triggerRenderer={<Icon set="tabler" name="MoreHoriz" kind="primary" />}
+      triggerRenderer={<Icon name="MoreHoriz" kind="primary" />}
       openedOnInit
     />
   </div>
@@ -188,7 +188,7 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
               ),
           },
         ]}
-        triggerRenderer={<Icon set="tabler" name="MoreHoriz" kind="primary" />}
+        triggerRenderer={<Icon name="MoreHoriz" kind="primary" />}
         openedOnInit
         keepOpenOnClick
       />

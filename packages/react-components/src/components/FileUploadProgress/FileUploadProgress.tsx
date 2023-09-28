@@ -84,7 +84,7 @@ export const FileUploadProgress: React.ExoticComponent<
               styles[`${baseClass}__icon--success`]
             )}
           >
-            <Icon set="tabler" name="Check" />
+            <Icon name="Check" />
           </div>
         )}
         <div

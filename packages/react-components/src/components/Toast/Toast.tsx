@@ -101,7 +101,7 @@ export const Toast: React.FC<React.PropsWithChildren<ToastProps>> = ({
               kind="text"
               size="compact"
               onClick={onClose}
-              icon={<Icon set="tabler" name="Close" size="medium" />}
+              icon={<Icon name="Close" size="medium" />}
             />
           )}
         </div>

@@ -7,7 +7,7 @@ import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
 import { Tag, TagProps } from './Tag';
 
-const exampleIcon = <Icon set="tabler" name="Smiles" size="small" />;
+const exampleIcon = <Icon name="Smiles" size="small" />;
 const exampleAvatar = (
   <img
     style={{ borderRadius: '50%', width: '20px', height: '20px' }}
@@ -41,8 +41,8 @@ Default.args = {
   size: 'medium',
   children: 'Example tag',
   dismissible: true,
-  leftNode: <Icon set="tabler" name="Apple" size="small" />,
-  rightNode: <Icon set="tabler" name="Android" size="small" />,
+  leftNode: <Icon name="Apple" size="small" />,
+  rightNode: <Icon name="Android" size="small" />,
 } as TagProps;
 
 export const Kinds = ({ children, ...args }: TagProps): React.ReactElement => {

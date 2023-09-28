@@ -146,7 +146,7 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
           className={styles[`${baseClass}__close-icon`]}
           size="compact"
           kind="plain"
-          icon={<Icon set="tabler" name="Close" />}
+          icon={<Icon name="Close" />}
           onClick={onClose}
         />
       )}

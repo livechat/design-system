@@ -84,7 +84,7 @@ describe('<Input> component', () => {
     const { getByTestId } = render(
       <Input
         icon={{
-          source: <Icon set="tabler" name="AddCircle" />,
+          source: <Icon name="AddCircle" />,
           place: 'left',
         }}
       />
@@ -97,7 +97,7 @@ describe('<Input> component', () => {
     const { getByTestId } = render(
       <Input
         icon={{
-          source: <Icon set="tabler" name="AddCircle" />,
+          source: <Icon name="AddCircle" />,
           place: 'right',
         }}
       />
@@ -111,7 +111,7 @@ describe('<Input> component', () => {
       <Input
         type="password"
         icon={{
-          source: <Icon set="tabler" name="AddCircle" />,
+          source: <Icon name="AddCircle" />,
           place: 'right',
         }}
       />

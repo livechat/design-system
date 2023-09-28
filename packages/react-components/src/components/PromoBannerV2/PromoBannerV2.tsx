@@ -89,7 +89,7 @@ export const PromoBannerV2: React.FC<
             <Button
               className={styles[`${baseClass}__close__btn`]}
               onClick={onClose}
-              icon={<Icon set="tabler" name="Close" kind="primary" />}
+              icon={<Icon name="Close" kind="primary" />}
               kind="plain"
               size="compact"
             />

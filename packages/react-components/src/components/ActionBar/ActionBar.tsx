@@ -129,9 +129,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
         <div className={styles[`${baseClass}__menu-wrapper`]}>
           <ActionMenu
             options={getMenuItems(menuItemsKeys)}
-            triggerRenderer={
-              <Icon set="tabler" name="ChevronDown" kind="primary" />
-            }
+            triggerRenderer={<Icon name="ChevronDown" kind="primary" />}
           />
         </div>
       )}

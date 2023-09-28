@@ -66,7 +66,7 @@ describe('<Button> component', () => {
 
   it('should show icon component when "icon" prop has been passed', () => {
     const { container } = renderButton({
-      icon: <Icon set="tabler" name="AddCircle" />,
+      icon: <Icon name="AddCircle" />,
     });
 
     const iconEl = container.querySelector(`.${styles['btn__icon']}`);
@@ -77,7 +77,7 @@ describe('<Button> component', () => {
 
   it('should show icon component on right side', () => {
     const { container } = renderButton({
-      icon: <Icon set="tabler" name="AddCircle" />,
+      icon: <Icon name="AddCircle" />,
       iconPosition: 'right',
     });
 
@@ -96,7 +96,7 @@ describe('<Button> component', () => {
   it('should allow for "icon-only" content', () => {
     const { btnEl } = renderButton({
       children: null,
-      icon: <Icon set="tabler" name="AddCircle" />,
+      icon: <Icon name="AddCircle" />,
     });
 
     expect(btnEl).toHaveClass(styles['btn--icon-only']);

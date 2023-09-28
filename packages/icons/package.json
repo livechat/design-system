@@ -17,7 +17,7 @@
     "prebuild": "rimraf dist && npm run genarateIconsList",
     "build": "tsc --p ./tsconfig-build.json && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives",
-    "preview": "vite preview",
+    "preview": "vite",
     "prepublishOnly": "npm run build"
   },
   "sideEffects": [
