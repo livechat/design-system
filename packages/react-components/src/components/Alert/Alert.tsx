@@ -42,19 +42,19 @@ export interface AlertProps {
 
 const IconConfig: Record<AlertKind, { name: string; kind: IconKind }> = {
   info: {
-    name: 'InfoIcon',
+    name: 'Info',
     kind: 'link',
   },
   warning: {
-    name: 'WarningIcon',
+    name: 'Warning',
     kind: 'warning',
   },
   success: {
-    name: 'CheckIcon',
+    name: 'Check',
     kind: 'success',
   },
   error: {
-    name: 'BlockIcon',
+    name: 'Block',
     kind: 'error',
   },
 };
