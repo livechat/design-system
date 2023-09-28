@@ -77,7 +77,7 @@ export const WithIcons = (): React.ReactElement => (
     <StoryDescriptor title="Left icon">
       <Input
         icon={{
-          source: <Icon name="AddCircle" set="tabler" />,
+          source: <Icon name="AddCircle" />,
           place: 'left',
         }}
         placeholder={placeholderText}
@@ -86,7 +86,7 @@ export const WithIcons = (): React.ReactElement => (
     <StoryDescriptor title="Right icon">
       <Input
         icon={{
-          source: <Icon name="AddCircle" set="tabler" />,
+          source: <Icon name="AddCircle" />,
           place: 'right',
         }}
         placeholder={placeholderText}
@@ -95,7 +95,7 @@ export const WithIcons = (): React.ReactElement => (
     <StoryDescriptor title="Left icon with password type">
       <Input
         icon={{
-          source: <Icon name="AddCircle" set="tabler" />,
+          source: <Icon name="AddCircle" />,
           place: 'left',
         }}
         placeholder={placeholderText}

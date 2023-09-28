@@ -24,8 +24,6 @@ export const ModalCloseButton: React.FC<ModalCloseButtonProps> = ({
       labelType && styles['modal-base__close--label-type']
     )}
     onClick={onClick}
-    icon={
-      <Icon name="Close" set="tabler" size="medium" customColor={customColor} />
-    }
+    icon={<Icon name="Close" size="medium" customColor={customColor} />}
   />
 );

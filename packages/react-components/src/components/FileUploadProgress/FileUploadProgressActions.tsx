@@ -26,7 +26,7 @@ export const FileUploadProgressActions: React.FC<
           aria-label="Retry"
           onClick={onRetryButtonClick}
         >
-          <Icon size="small" name="Refresh" set="tabler" />
+          <Icon size="small" name="Refresh" />
         </button>
       )}
       {onCloseButtonClick && status !== 'success' && (
@@ -36,7 +36,7 @@ export const FileUploadProgressActions: React.FC<
           aria-label="Close"
           onClick={onCloseButtonClick}
         >
-          <Icon size="small" name="Close" set="tabler" />
+          <Icon size="small" name="Close" />
         </button>
       )}
     </div>

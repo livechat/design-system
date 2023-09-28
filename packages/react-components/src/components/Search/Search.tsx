@@ -146,7 +146,7 @@ export const SearchInput: React.FC<ISearchInputProps> = ({
           title="Clear search"
           className={styles[`${baseClass}__clear-icon`]}
           onClick={handleClear}
-          icon={<Icon name="Close" set="tabler" kind="primary" />}
+          icon={<Icon name="Close" kind="primary" />}
           kind="text"
           size="compact"
         />

@@ -117,7 +117,7 @@ export const Trigger: React.FC<React.PropsWithChildren<ITriggerProps>> = ({
             className={styles[`${baseClass}__clear-icon`]}
             onClick={handleOnClearClick}
           >
-            <Icon kind="primary" size="small" set="tabler" name="Close" />
+            <Icon kind="primary" size="small" name="Close" />
           </div>
         )}
         <Icon

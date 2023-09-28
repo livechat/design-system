@@ -16,7 +16,7 @@ export default {
   },
 } as ComponentMeta<typeof FormFieldComponent>;
 
-const ExampleIcon = () => <Icon name="Search" set="tabler" />;
+const ExampleIcon = () => <Icon name="Search" />;
 const ExampleInput = () => <Input placeholder="Placeholder text" />;
 const LabelText = 'Example label text';
 const DescriptionText = 'Example description text';

@@ -51,18 +51,18 @@ export const KindsAndStates = (): React.ReactElement => (
       <Button loading>Loading</Button>
     </StoryDescriptor>
     <StoryDescriptor title="Basic with icon">
-      <Button icon={<Icon name="AddCircle" set="tabler" />}>Basic</Button>
-      <Button icon={<Icon name="AddCircle" set="tabler" />} disabled>
+      <Button icon={<Icon name="AddCircle" />}>Basic</Button>
+      <Button icon={<Icon name="AddCircle" />} disabled>
         Disabled
       </Button>
-      <Button icon={<Icon name="AddCircle" set="tabler" />} loading>
+      <Button icon={<Icon name="AddCircle" />} loading>
         Loading
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Basic with icon only">
-      <Button icon={<Icon name="AddCircle" set="tabler" />} />
-      <Button icon={<Icon name="AddCircle" set="tabler" />} disabled />
-      <Button icon={<Icon name="AddCircle" set="tabler" />} loading />
+      <Button icon={<Icon name="AddCircle" />} />
+      <Button icon={<Icon name="AddCircle" />} disabled />
+      <Button icon={<Icon name="AddCircle" />} loading />
     </StoryDescriptor>
     <StoryDescriptor title="Primary">
       <Button kind="primary">Primary</Button>
@@ -74,36 +74,20 @@ export const KindsAndStates = (): React.ReactElement => (
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Primary with icon">
-      <Button kind="primary" icon={<Icon name="AddCircle" set="tabler" />}>
+      <Button kind="primary" icon={<Icon name="AddCircle" />}>
         Primary
       </Button>
-      <Button
-        disabled
-        kind="primary"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      >
+      <Button disabled kind="primary" icon={<Icon name="AddCircle" />}>
         Disabled
       </Button>
-      <Button
-        loading
-        kind="primary"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      >
+      <Button loading kind="primary" icon={<Icon name="AddCircle" />}>
         Loading
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Primary with icon only">
-      <Button kind="primary" icon={<Icon name="AddCircle" set="tabler" />} />
-      <Button
-        disabled
-        kind="primary"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      />
-      <Button
-        loading
-        kind="primary"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      />
+      <Button kind="primary" icon={<Icon name="AddCircle" />} />
+      <Button disabled kind="primary" icon={<Icon name="AddCircle" />} />
+      <Button loading kind="primary" icon={<Icon name="AddCircle" />} />
     </StoryDescriptor>
     <StoryDescriptor title="Secondary">
       <Button kind="secondary">Secondary</Button>
@@ -115,36 +99,20 @@ export const KindsAndStates = (): React.ReactElement => (
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Secondary with icon">
-      <Button kind="secondary" icon={<Icon name="AddCircle" set="tabler" />}>
+      <Button kind="secondary" icon={<Icon name="AddCircle" />}>
         Secondary
       </Button>
-      <Button
-        disabled
-        kind="secondary"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      >
+      <Button disabled kind="secondary" icon={<Icon name="AddCircle" />}>
         Disabled
       </Button>
-      <Button
-        loading
-        kind="secondary"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      >
+      <Button loading kind="secondary" icon={<Icon name="AddCircle" />}>
         Disabled
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Secondary with icon only">
-      <Button kind="secondary" icon={<Icon name="AddCircle" set="tabler" />} />
-      <Button
-        disabled
-        kind="secondary"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      />
-      <Button
-        loading
-        kind="secondary"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      />
+      <Button kind="secondary" icon={<Icon name="AddCircle" />} />
+      <Button disabled kind="secondary" icon={<Icon name="AddCircle" />} />
+      <Button loading kind="secondary" icon={<Icon name="AddCircle" />} />
     </StoryDescriptor>
     <StoryDescriptor title="Destructive">
       <Button kind="destructive">Destructive</Button>
@@ -156,39 +124,20 @@ export const KindsAndStates = (): React.ReactElement => (
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Destructive with icon">
-      <Button kind="destructive" icon={<Icon name="AddCircle" set="tabler" />}>
+      <Button kind="destructive" icon={<Icon name="AddCircle" />}>
         Destructive
       </Button>
-      <Button
-        disabled
-        kind="destructive"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      >
+      <Button disabled kind="destructive" icon={<Icon name="AddCircle" />}>
         Disabled
       </Button>
-      <Button
-        loading
-        kind="destructive"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      >
+      <Button loading kind="destructive" icon={<Icon name="AddCircle" />}>
         Disabled
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Destructive with icon only">
-      <Button
-        kind="destructive"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      />
-      <Button
-        disabled
-        kind="destructive"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      />
-      <Button
-        loading
-        kind="destructive"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      />
+      <Button kind="destructive" icon={<Icon name="AddCircle" />} />
+      <Button disabled kind="destructive" icon={<Icon name="AddCircle" />} />
+      <Button loading kind="destructive" icon={<Icon name="AddCircle" />} />
     </StoryDescriptor>
     <StoryDescriptor title="Destructive Outline">
       <Button kind="destructive-outline">Destructive Outline</Button>
@@ -200,41 +149,35 @@ export const KindsAndStates = (): React.ReactElement => (
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Destructive Outline with icon">
-      <Button
-        kind="destructive-outline"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      >
+      <Button kind="destructive-outline" icon={<Icon name="AddCircle" />}>
         Destructive Outline
       </Button>
       <Button
         disabled
         kind="destructive-outline"
-        icon={<Icon name="AddCircle" set="tabler" />}
+        icon={<Icon name="AddCircle" />}
       >
         Disabled
       </Button>
       <Button
         loading
         kind="destructive-outline"
-        icon={<Icon name="AddCircle" set="tabler" />}
+        icon={<Icon name="AddCircle" />}
       >
         Disabled
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Destructive Outline with icon only">
-      <Button
-        kind="destructive-outline"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      />
+      <Button kind="destructive-outline" icon={<Icon name="AddCircle" />} />
       <Button
         disabled
         kind="destructive-outline"
-        icon={<Icon name="AddCircle" set="tabler" />}
+        icon={<Icon name="AddCircle" />}
       />
       <Button
         loading
         kind="destructive-outline"
-        icon={<Icon name="AddCircle" set="tabler" />}
+        icon={<Icon name="AddCircle" />}
       />
     </StoryDescriptor>
     <StoryDescriptor title="Text">
@@ -247,32 +190,20 @@ export const KindsAndStates = (): React.ReactElement => (
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Text with icon">
-      <Button kind="text" icon={<Icon name="AddCircle" set="tabler" />}>
+      <Button kind="text" icon={<Icon name="AddCircle" />}>
         Text
       </Button>
-      <Button
-        disabled
-        kind="text"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      >
+      <Button disabled kind="text" icon={<Icon name="AddCircle" />}>
         Disabled
       </Button>
-      <Button loading kind="text" icon={<Icon name="AddCircle" set="tabler" />}>
+      <Button loading kind="text" icon={<Icon name="AddCircle" />}>
         Disabled
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Text with icon only">
-      <Button kind="text" icon={<Icon name="AddCircle" set="tabler" />} />
-      <Button
-        disabled
-        kind="text"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      />
-      <Button
-        loading
-        kind="text"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      />
+      <Button kind="text" icon={<Icon name="AddCircle" />} />
+      <Button disabled kind="text" icon={<Icon name="AddCircle" />} />
+      <Button loading kind="text" icon={<Icon name="AddCircle" />} />
     </StoryDescriptor>
     <StoryDescriptor title="Link">
       <Button kind="link">Link</Button>
@@ -284,32 +215,20 @@ export const KindsAndStates = (): React.ReactElement => (
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Link with icon">
-      <Button kind="link" icon={<Icon name="AddCircle" set="tabler" />}>
+      <Button kind="link" icon={<Icon name="AddCircle" />}>
         Link
       </Button>
-      <Button
-        disabled
-        kind="link"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      >
+      <Button disabled kind="link" icon={<Icon name="AddCircle" />}>
         Disabled
       </Button>
-      <Button loading kind="link" icon={<Icon name="AddCircle" set="tabler" />}>
+      <Button loading kind="link" icon={<Icon name="AddCircle" />}>
         Disabled
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Link with icon only">
-      <Button kind="link" icon={<Icon name="AddCircle" set="tabler" />} />
-      <Button
-        disabled
-        kind="link"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      />
-      <Button
-        loading
-        kind="link"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      />
+      <Button kind="link" icon={<Icon name="AddCircle" />} />
+      <Button disabled kind="link" icon={<Icon name="AddCircle" />} />
+      <Button loading kind="link" icon={<Icon name="AddCircle" />} />
     </StoryDescriptor>
     <StoryDescriptor title="Plain">
       <Button kind="plain">Plain</Button>
@@ -321,36 +240,20 @@ export const KindsAndStates = (): React.ReactElement => (
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Plain with icon">
-      <Button kind="plain" icon={<Icon name="AddCircle" set="tabler" />}>
+      <Button kind="plain" icon={<Icon name="AddCircle" />}>
         Plain
       </Button>
-      <Button
-        disabled
-        kind="plain"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      >
+      <Button disabled kind="plain" icon={<Icon name="AddCircle" />}>
         Disabled
       </Button>
-      <Button
-        loading
-        kind="plain"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      >
+      <Button loading kind="plain" icon={<Icon name="AddCircle" />}>
         Loading
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Plain with icon only">
-      <Button kind="plain" icon={<Icon name="AddCircle" set="tabler" />} />
-      <Button
-        disabled
-        kind="plain"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      />
-      <Button
-        loading
-        kind="plain"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      />
+      <Button kind="plain" icon={<Icon name="AddCircle" />} />
+      <Button disabled kind="plain" icon={<Icon name="AddCircle" />} />
+      <Button loading kind="plain" icon={<Icon name="AddCircle" />} />
     </StoryDescriptor>
     <StoryDescriptor title="Float">
       <Button kind="float">Float</Button>
@@ -363,36 +266,20 @@ export const KindsAndStates = (): React.ReactElement => (
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Float with icon">
-      <Button kind="float" icon={<Icon name="AddCircle" set="tabler" />}>
+      <Button kind="float" icon={<Icon name="AddCircle" />}>
         Float
       </Button>
-      <Button
-        disabled
-        kind="float"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      >
+      <Button disabled kind="float" icon={<Icon name="AddCircle" />}>
         Disabled
       </Button>
-      <Button
-        loading
-        kind="float"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      >
+      <Button loading kind="float" icon={<Icon name="AddCircle" />}>
         Loading
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Float with icon only">
-      <Button kind="float" icon={<Icon name="AddCircle" set="tabler" />} />
-      <Button
-        disabled
-        kind="float"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      />
-      <Button
-        loading
-        kind="float"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      />
+      <Button kind="float" icon={<Icon name="AddCircle" />} />
+      <Button disabled kind="float" icon={<Icon name="AddCircle" />} />
+      <Button loading kind="float" icon={<Icon name="AddCircle" />} />
     </StoryDescriptor>
     <StoryDescriptor title="Dotted">
       <Button kind="dotted">Dotted</Button>
@@ -404,36 +291,20 @@ export const KindsAndStates = (): React.ReactElement => (
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Dotted with icon">
-      <Button kind="dotted" icon={<Icon name="AddCircle" set="tabler" />}>
+      <Button kind="dotted" icon={<Icon name="AddCircle" />}>
         Dotted
       </Button>
-      <Button
-        disabled
-        kind="dotted"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      >
+      <Button disabled kind="dotted" icon={<Icon name="AddCircle" />}>
         Disabled
       </Button>
-      <Button
-        loading
-        kind="dotted"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      >
+      <Button loading kind="dotted" icon={<Icon name="AddCircle" />}>
         Loading
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="Dotted with icon only">
-      <Button kind="dotted" icon={<Icon name="AddCircle" set="tabler" />} />
-      <Button
-        disabled
-        kind="dotted"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      />
-      <Button
-        loading
-        kind="dotted"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      />
+      <Button kind="dotted" icon={<Icon name="AddCircle" />} />
+      <Button disabled kind="dotted" icon={<Icon name="AddCircle" />} />
+      <Button loading kind="dotted" icon={<Icon name="AddCircle" />} />
     </StoryDescriptor>
     <StoryDescriptor title="High Contrast">
       <Button kind="high-contrast">High Contrast</Button>
@@ -445,42 +316,20 @@ export const KindsAndStates = (): React.ReactElement => (
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="High Contrast with icon">
-      <Button
-        kind="high-contrast"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      >
+      <Button kind="high-contrast" icon={<Icon name="AddCircle" />}>
         High Contrast
       </Button>
-      <Button
-        kind="high-contrast"
-        icon={<Icon name="AddCircle" set="tabler" />}
-        disabled
-      >
+      <Button kind="high-contrast" icon={<Icon name="AddCircle" />} disabled>
         Disabled
       </Button>
-      <Button
-        kind="high-contrast"
-        icon={<Icon name="AddCircle" set="tabler" />}
-        loading
-      >
+      <Button kind="high-contrast" icon={<Icon name="AddCircle" />} loading>
         Loading
       </Button>
     </StoryDescriptor>
     <StoryDescriptor title="High Contrast with icon only">
-      <Button
-        kind="high-contrast"
-        icon={<Icon name="AddCircle" set="tabler" />}
-      />
-      <Button
-        kind="high-contrast"
-        icon={<Icon name="AddCircle" set="tabler" />}
-        disabled
-      />
-      <Button
-        kind="high-contrast"
-        icon={<Icon name="AddCircle" set="tabler" />}
-        loading
-      />
+      <Button kind="high-contrast" icon={<Icon name="AddCircle" />} />
+      <Button kind="high-contrast" icon={<Icon name="AddCircle" />} disabled />
+      <Button kind="high-contrast" icon={<Icon name="AddCircle" />} loading />
     </StoryDescriptor>
   </div>
 );
@@ -499,21 +348,9 @@ export const Sizes = (): React.ReactElement => (
       </Button>
     </div>
     <div className="story-spacer">
-      <Button
-        icon={<Icon name="AddCircle" set="tabler" />}
-        size="compact"
-        kind="primary"
-      />
-      <Button
-        icon={<Icon name="AddCircle" set="tabler" />}
-        size="medium"
-        kind="primary"
-      />
-      <Button
-        icon={<Icon name="AddCircle" set="tabler" />}
-        size="large"
-        kind="primary"
-      />
+      <Button icon={<Icon name="AddCircle" />} size="compact" kind="primary" />
+      <Button icon={<Icon name="AddCircle" />} size="medium" kind="primary" />
+      <Button icon={<Icon name="AddCircle" />} size="large" kind="primary" />
     </div>
   </>
 );
