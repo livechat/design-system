@@ -953,6 +953,9 @@ export const Tabler = {
   FacebookColored: lazy(
     async () => import('../assets/tabler/facebook-colored.svg?react')
   ),
+  Facebook: lazy(
+    async () => import('../assets/tabler/facebook.svg?react')
+  ),
   FileCopyFilled: lazy(
     async () => import('../assets/tabler/file_copy-filled.svg?react')
   ),
