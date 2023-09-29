@@ -500,6 +500,12 @@ export const Tabler = {
   Adjust: lazy(
     async () => import('../assets/tabler/adjust.svg?react')
   ),
+  AlertSpamFilled: lazy(
+    async () => import('../assets/tabler/alert-spam-filled.svg?react')
+  ),
+  AlertSpam: lazy(
+    async () => import('../assets/tabler/alert-spam.svg?react')
+  ),
   AndroidColored: lazy(
     async () => import('../assets/tabler/android-colored.svg?react')
   ),
@@ -947,12 +953,6 @@ export const Tabler = {
   FacebookColored: lazy(
     async () => import('../assets/tabler/facebook-colored.svg?react')
   ),
-  FacebookFilled: lazy(
-    async () => import('../assets/tabler/facebook-filled.svg?react')
-  ),
-  Facebook: lazy(
-    async () => import('../assets/tabler/facebook.svg?react')
-  ),
   FileCopyFilled: lazy(
     async () => import('../assets/tabler/file_copy-filled.svg?react')
   ),
@@ -1190,6 +1190,18 @@ export const Tabler = {
   MagentoColored: lazy(
     async () => import('../assets/tabler/magento-colored.svg?react')
   ),
+  MessagesFilled: lazy(
+    async () => import('../assets/tabler/messages-filled.svg?react')
+  ),
+  Messages: lazy(
+    async () => import('../assets/tabler/messages.svg?react')
+  ),
+  MessengerColored: lazy(
+    async () => import('../assets/tabler/messenger-colored.svg?react')
+  ),
+  Messenger: lazy(
+    async () => import('../assets/tabler/messenger.svg?react')
+  ),
   MoodEmpty: lazy(
     async () => import('../assets/tabler/mood_empty.svg?react')
   ),
@@ -1354,6 +1366,12 @@ export const Tabler = {
   ),
   Reply: lazy(
     async () => import('../assets/tabler/reply.svg?react')
+  ),
+  ReportFilled: lazy(
+    async () => import('../assets/tabler/report-filled.svg?react')
+  ),
+  Report: lazy(
+    async () => import('../assets/tabler/report.svg?react')
   ),
   SafariColored: lazy(
     async () => import('../assets/tabler/safari-colored.svg?react')
