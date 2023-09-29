@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Icon, Tabler } from '@livechat/design-system-icons';
+import { Icon, TablerIcon } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Button } from '../Button';
@@ -112,7 +112,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               <Icon
                 customColor={iconCustomColor}
                 set="tabler"
-                name={iconName as Tabler}
+                name={iconName as TablerIcon}
               />
             }
             onClick={() => setIsPasswordVisible((v) => !v)}

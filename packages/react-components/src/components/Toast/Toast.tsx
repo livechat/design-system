@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Icon, Tabler } from '@livechat/design-system-icons';
+import { Icon, TablerIcon } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Button } from '../Button';
@@ -26,16 +26,16 @@ export interface ToastProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const iconConfig: Record<ToastKind, { name: string }> = {
   success: {
-    name: 'CheckCircle' as Tabler,
+    name: 'CheckCircle' as TablerIcon,
   },
   warning: {
-    name: 'Warning' as Tabler,
+    name: 'Warning' as TablerIcon,
   },
   error: {
-    name: 'Block' as Tabler,
+    name: 'Block' as TablerIcon,
   },
   info: {
-    name: 'Info' as Tabler,
+    name: 'Info' as TablerIcon,
   },
 };
 
@@ -72,7 +72,7 @@ export const Toast: React.FC<React.PropsWithChildren<ToastProps>> = ({
       <div className={styles[`${baseClass}__icon`]}>
         <Icon
           set="tabler"
-          name={iconConfig[kind].name as Tabler}
+          name={iconConfig[kind].name as TablerIcon}
           size="medium"
         />
       </div>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Icon, IconKind, Tabler } from '@livechat/design-system-icons';
+import { Icon, IconKind, TablerIcon } from '@livechat/design-system-icons';
 import cx from 'clsx';
 import debounce from 'lodash.debounce';
 
@@ -113,7 +113,7 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
       <Icon
         set="tabler"
         {...IconConfig[kind]}
-        name={IconConfig[kind].name as Tabler}
+        name={IconConfig[kind].name as TablerIcon}
         size="large"
         className={styles[`${baseClass}__icon`]}
       />

@@ -5,7 +5,7 @@ import {
   Icon,
   IconSize,
   IconKind,
-  Tabler,
+  TablerIcon,
 } from '@livechat/design-system-icons';
 
 import { Avatar, AvatarProps } from '../../Avatar';
@@ -16,7 +16,7 @@ import styles from './ModalHeader.module.scss';
 const baseClass = 'modal-header';
 
 export interface IconProps {
-  name: Tabler;
+  name: TablerIcon;
   kind?: IconKind;
   size?: IconSize;
   customColor?: string;

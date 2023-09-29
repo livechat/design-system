@@ -1,4 +1,5 @@
-import { IconSize } from './types';
+import { icons } from './icons';
+import { IconSize, MaterialIcon, TablerIcon } from './types';
 
 export const BASE_CLASS = 'icon';
 
@@ -25,3 +26,7 @@ export const IconSizeMap: Record<IconSize, { width: number; height: number }> =
       height: 32,
     },
   };
+export const TablerIconsList = Object.keys(icons.tabler) as Array<TablerIcon>;
+export const MaterialIconsList = Object.keys(
+  icons.material
+) as Array<MaterialIcon>;

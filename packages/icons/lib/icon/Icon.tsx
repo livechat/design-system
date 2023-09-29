@@ -4,7 +4,7 @@ import cx from 'clsx';
 
 import { BASE_CLASS, IconSizeMap } from './constants';
 import { icons } from './icons';
-import { IconSize, IconKind, Tabler, Material } from './types';
+import { IconSize, IconKind, TablerIcon, MaterialIcon } from './types';
 
 import styles from './Icon.module.scss';
 
@@ -17,7 +17,7 @@ type IconSet =
       /**
        * Specify the icon name
        */
-      name: Tabler;
+      name: TablerIcon;
     }
   | {
       /**
@@ -27,7 +27,7 @@ type IconSet =
       /**
        * Specify the icon name
        */
-      name: Material;
+      name: MaterialIcon;
     };
 
 interface OwnProps extends HTMLAttributes<HTMLDivElement> {
@@ -53,9 +53,9 @@ interface OwnProps extends HTMLAttributes<HTMLDivElement> {
   customColor?: string;
 }
 
-type Props = IconSet & OwnProps;
+export type IconProps = IconSet & OwnProps;
 
-export const Icon: FC<Props> = ({
+export const Icon: FC<IconProps> = ({
   set,
   name,
   className,
@@ -64,7 +64,7 @@ export const Icon: FC<Props> = ({
   size = 'medium',
   customColor,
   ...rest
-}: Props) => {
+}) => {
   const SvgIcon = useMemo(() => {
     switch (set) {
       case 'tabler':

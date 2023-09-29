@@ -17,5 +17,5 @@ export type IconKind =
   | 'action-positive'
   | 'action-warning'
   | 'action-neutral';
-export type Tabler = keyof (typeof icons)['tabler'];
-export type Material = keyof (typeof icons)['material'];
+export type TablerIcon = keyof (typeof icons)['tabler'];
+export type MaterialIcon = keyof (typeof icons)['material'];
