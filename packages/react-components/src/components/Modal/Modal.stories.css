@@ -24,6 +24,11 @@
   width: 100%;
 }
 
+.full-space-wrapper img {
+  border-top-left-radius: var(--radius-3);
+  border-top-right-radius: var(--radius-3);
+}
+
 .full-space-content {
   display: flex;
   flex-direction: column;

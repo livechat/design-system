@@ -47,10 +47,6 @@ export interface IPickerProps {
    */
   size?: Size;
   /**
-   * Set the dismiss icon size in tags when `multi` type is enabled
-   */
-  tagIconSize?: IconSize;
-  /**
    * Specify the placeholder for search input
    */
   placeholder?: string;
@@ -103,7 +99,6 @@ export const Picker: React.FC<IPickerProps> = ({
   options,
   selected,
   size = 'medium',
-  tagIconSize = 'medium',
   placeholder = 'Select option',
   isRequired,
   noSearchResultText = 'No results found',
@@ -270,7 +265,6 @@ export const Picker: React.FC<IPickerProps> = ({
             isSearchDisabled={searchDisabled}
             isDisabled={disabled}
             placeholder={placeholder}
-            iconSize={tagIconSize}
             items={selected}
             type={type}
             size={size}

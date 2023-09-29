@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { arrow, flip, offset, useFloating } from '@floating-ui/react-dom';
+import cx from 'clsx';
 
 import { FloatingComponent } from './components/FloatingComponent';
 import { sleep } from './helpers';
@@ -16,6 +17,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     referenceElement,
     children,
     className,
+    triggerClassName,
     theme,
     placement,
     isVisible,
@@ -156,7 +158,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
   return (
     <>
       <div
-        className={styles[`${baseClass}__wrapper`]}
+        className={cx(styles[`${baseClass}__wrapper`], triggerClassName)}
         ref={floatingOptions.reference}
         {...referenceOptions()}
       >

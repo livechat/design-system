@@ -1,8 +1,9 @@
 .modal-header {
   display: flex;
+  align-items: center;
   justify-content: flex-start;
 
-  &__heading-icon {
+  &__heading-left-node {
     margin-right: 12px;
   }
 

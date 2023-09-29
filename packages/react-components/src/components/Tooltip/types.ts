@@ -15,6 +15,7 @@ export type TooltipButton = {
 export interface ITooltipProps {
   children?: React.ReactNode;
   className?: string;
+  triggerClassName?: string;
   theme?: TooltipTheme;
   placement?: Placement;
   isVisible?: boolean;

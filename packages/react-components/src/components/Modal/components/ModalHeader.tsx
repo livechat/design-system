@@ -8,6 +8,7 @@ import {
   Tabler,
 } from '@livechat/design-system-icons';
 
+import { Avatar, AvatarProps } from '../../Avatar';
 import { Heading, Text } from '../../Typography';
 
 import styles from './ModalHeader.module.scss';
@@ -22,15 +23,32 @@ export interface IconProps {
 }
 
 export interface ModalHeaderProps {
+  /**
+   * Set the header title
+   */
   title?: React.ReactNode;
+  /**
+   * Set to display the icon
+   */
   iconProps?: IconProps;
+  /**
+   * Set to display avatar
+   */
+  avatarProps?: AvatarProps;
+  /**
+   * Children element
+   */
   children?: React.ReactNode;
+  /**
+   * Define class name for container
+   */
   className?: 'string';
 }
 
 export const ModalHeader: React.FC<ModalHeaderProps> = ({
   title,
   iconProps,
+  avatarProps,
   children,
   className = '',
 }) => {
@@ -40,10 +58,16 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
     <div className={mergedClassNames}>
       {iconProps && (
         <Icon
+          className={styles[`${baseClass}__heading-left-node`]}
           set="tabler"
           {...iconProps}
           name={iconProps.name}
-          className={styles[`${baseClass}__heading-icon`]}
+        />
+      )}
+      {avatarProps && (
+        <Avatar
+          className={styles[`${baseClass}__heading-left-node`]}
+          {...avatarProps}
         />
       )}
       <div className={styles[`${baseClass}__heading-body`]}>

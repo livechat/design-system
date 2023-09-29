@@ -248,15 +248,19 @@ export const Sizes = ({ children, ...args }: TagProps): React.ReactElement => {
       </StoryDescriptor>
       <StoryDescriptor title="Medium">
         <Tag>{children}</Tag>
-        <Tag leftNode={args.leftNode} rightNode={args.rightNode} dismissible>
+        <Tag
+          leftNode={<Icon name="Smiles" />}
+          rightNode={<Icon name="Smiles" />}
+          dismissible
+        >
           {children}
         </Tag>
       </StoryDescriptor>
       <StoryDescriptor title="Large">
         <Tag size="large">{children}</Tag>
         <Tag
-          leftNode={args.leftNode}
-          rightNode={args.rightNode}
+          leftNode={<Icon name="Smiles" />}
+          rightNode={<Icon name="Smiles" />}
           size="large"
           dismissible
         >

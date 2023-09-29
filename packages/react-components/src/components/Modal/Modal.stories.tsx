@@ -22,6 +22,7 @@ import {
 export default {
   title: 'Components/Modal',
   component: ModalComponent,
+  subcomponents: { ModalHeader },
   parameters: {
     viewMode: 'story',
     previewTabs: {
@@ -95,6 +96,19 @@ ModalWithLabeledHeader.args = {
 export const ModalWithFullSpaceContent = StoryTemplate.bind({});
 ModalWithFullSpaceContent.args = {
   ...defaultModalProps,
+  labelHeading: (
+    <ModalHeader
+      title="Modal Header"
+      avatarProps={{
+        type: 'image',
+        size: 'small',
+        src: 'https://cdn-labs.livechat-files.com/api/file/lc/img/100019504/df59da4b5b0cdb6030efb08787fd255d.jpg',
+      }}
+    >
+      {' '}
+      Modal description{' '}
+    </ModalHeader>
+  ),
   children: <ModalFullSpaceContent />,
   fullSpaceContent: true,
   footer: null,
