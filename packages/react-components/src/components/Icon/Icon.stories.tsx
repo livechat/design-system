@@ -2,7 +2,9 @@ import * as React from 'react';
 
 import {
   Icon as IconComponent,
+  IconKind,
   IconProps,
+  IconSize,
   TablerIcon,
   TablerIconsList,
 } from '@livechat/design-system-icons';
@@ -19,6 +21,7 @@ export default {
       control: {
         type: 'select',
       },
+      description: 'Icon set',
     },
     name: {
       options: iterator,
@@ -26,6 +29,49 @@ export default {
         type: 'select',
         labels: iterator,
       },
+      description: 'Icon name',
+    },
+    size: {
+      options: ['xsmall', 'small', 'medium', 'large', 'xlarge'] as IconSize[],
+      control: {
+        type: 'select',
+      },
+      description: 'Icon size',
+    },
+    kind: {
+      options: [
+        'primary',
+        'subtle',
+        'inverted',
+        'inverted-subtle',
+        'link',
+        'success',
+        'warning',
+        'error',
+        'negative',
+        'positive',
+        'action-primary',
+        'action-negative',
+        'action-positive',
+        'action-warning',
+        'action-neutral',
+      ] as IconKind[],
+      control: {
+        type: 'select',
+      },
+      description: 'Icon kind',
+    },
+    disabled: {
+      control: {
+        type: 'boolean',
+      },
+      description: 'Icon disabled',
+    },
+    customColor: {
+      control: {
+        type: 'color',
+      },
+      description: 'Custom icon color',
     },
   },
 } as Meta<IconProps>;
@@ -42,5 +88,4 @@ Icon.args = {
   size: 'medium',
   kind: 'primary',
   disabled: false,
-  customColor: '#000000',
 };
