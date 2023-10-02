@@ -1,7 +1,21 @@
 import * as React from 'react';
 
 import './iconsShowcase.css';
+import {
+  Icon,
+  TablerIcon,
+  TablerIconsList,
+} from '@livechat/design-system-icons';
 
 export const TablerIconsShowcase = (): React.ReactElement => {
-  return <div className="icons-showcase-wrapper">Place for icons map</div>; // TODO: add icons map
+  const iconGrid = TablerIconsList.sort().map((iconName) => {
+    return (
+      <div className="icon-showcase-card" key={iconName}>
+        <Icon name={iconName } size="xlarge"></Icon>
+        <p>{iconName}</p>
+      </div>
+    );
+  });
+
+  return <div className="icons-showcase-wrapper">{iconGrid}</div>;
 };
