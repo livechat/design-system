@@ -40,13 +40,12 @@ You can import components directly from the npm package:
 import { Button } from '@livechat/design-system-react-components';
 ```
 
-In case of icons there is a separate package to be used in conjunction:
+In case of icons there is a separate package to be used:
 
 ```jsx
-import { Edit } from '@livechat/design-system-icons/react/tabler';
-import { Icon } from '@livechat/design-system-react-components';
+import { Icon } from '@livechat/design-system-icons';
 
-<Icon source={Edit} kind="primary" />;
+<Icon set="tabler" name="Edit" kind="primary" />;
 ```
 
 ## Documentation
