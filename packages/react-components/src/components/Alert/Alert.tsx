@@ -50,7 +50,7 @@ const IconConfig: Record<AlertKind, { name: string; kind: IconKind }> = {
     kind: 'warning',
   },
   success: {
-    name: 'Check',
+    name: 'CheckCircle',
     kind: 'success',
   },
   error: {
