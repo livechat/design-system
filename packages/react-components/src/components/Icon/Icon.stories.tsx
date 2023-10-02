@@ -38,8 +38,9 @@ export const Icon = (args: IconProps): React.ReactElement => (
 
 Icon.args = {
   set: 'tabler' as const,
-  name: 'EmailLetter' as TablerIcon,
+  name: 'AccountCircle' as TablerIcon,
   size: 'medium',
   kind: 'primary',
   disabled: false,
+  customColor: '#000000',
 };
