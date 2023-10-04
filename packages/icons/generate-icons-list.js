@@ -21,21 +21,24 @@ fs.readdir(SVG_DIRECTORY, (err, items) => {
     return;
   }
 
-  let outputContent = '/// <reference types="vite-plugin-svgr/client" />\n';
-  outputContent += "import { lazy } from 'react';\n\n";
-
   const folders = items.filter((item) => {
     const fullPath = path.join(SVG_DIRECTORY, item);
 
     return fs.statSync(fullPath).isDirectory();
   });
 
+  // Header
+  let outputContent = '/// <reference types="vite-plugin-svgr/client" />\n';
+  outputContent += "import { lazy } from 'react';\n\n";
+
+  // Iterate through each folder in the directory
   folders.forEach((folder) => {
     const constantName = toPascalCase(folder);
-
     let folderContent = `export const ${constantName} = {\n`;
 
     const filesInFolder = fs.readdirSync(path.join(SVG_DIRECTORY, folder));
+
+    const iconNamesForFolder = [];
 
     filesInFolder.forEach((file) => {
       if (path.extname(file) === '.svg') {
@@ -43,13 +46,21 @@ fs.readdir(SVG_DIRECTORY, (err, items) => {
         folderContent += `  ${fileNameWithoutExt}: lazy(
     async () => import('../assets/${folder}/${file}?react')
   ),\n`;
+
+        iconNamesForFolder.push(fileNameWithoutExt);
       }
     });
 
     folderContent += '};\n\n';
     outputContent += folderContent;
+
+    // Array of icon names for the current folder
+    outputContent += `export const ${constantName}Names = [${iconNamesForFolder
+      .map((name) => `'${name}'`)
+      .join(', ')}];\n\n`;
   });
 
+  // Footer
   outputContent += 'export const icons = {\n';
   outputContent += '  tabler: Tabler,\n';
   outputContent += '};\n';
@@ -61,7 +72,7 @@ fs.readdir(SVG_DIRECTORY, (err, items) => {
       return;
     }
 
-    console.log(`Icons list generated into ${OUTPUT_FILE}`);
+    console.log(`Constants generated in ${OUTPUT_FILE}`);
   });
 });
 /* eslint-enable no-console */
