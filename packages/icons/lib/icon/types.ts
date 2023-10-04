@@ -18,4 +18,3 @@ export type IconKind =
   | 'action-warning'
   | 'action-neutral';
 export type TablerIcon = keyof (typeof icons)['tabler'];
-export type MaterialIcon = keyof (typeof icons)['material'];

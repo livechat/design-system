@@ -20,9 +20,7 @@
     "preview": "vite",
     "prepublishOnly": "npm run build"
   },
-  "sideEffects": [
-    "**/*.css"
-  ],
+  "sideEffects": false,
   "peerDependencies": {
     "react": ">= 17.0.2",
     "react-dom": ">= 17.0.2"

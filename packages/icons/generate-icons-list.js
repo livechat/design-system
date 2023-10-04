@@ -52,7 +52,6 @@ fs.readdir(SVG_DIRECTORY, (err, items) => {
 
   outputContent += 'export const icons = {\n';
   outputContent += '  tabler: Tabler,\n';
-  outputContent += '  material: Material,\n';
   outputContent += '};\n';
 
   fs.writeFile(OUTPUT_FILE, outputContent, (writeErr) => {

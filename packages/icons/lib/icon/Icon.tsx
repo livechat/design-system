@@ -4,33 +4,19 @@ import cx from 'clsx';
 
 import { BASE_CLASS, IconSizeMap } from './constants';
 import { icons } from './icons';
-import { IconSize, IconKind, TablerIcon, MaterialIcon } from './types';
+import { IconSize, IconKind, TablerIcon } from './types';
 
 import styles from './Icon.module.scss';
 
-type IconSet =
-  | {
-      /**
-       * Specify the icon set
-       */
-      set?: 'tabler';
-      /**
-       * Specify the icon name
-       */
-      name: TablerIcon;
-    }
-  | {
-      /**
-       * Specify the icon set
-       */
-      set: 'material';
-      /**
-       * Specify the icon name
-       */
-      name: MaterialIcon;
-    };
-
-interface OwnProps extends HTMLAttributes<HTMLDivElement> {
+export interface IconProps extends HTMLAttributes<HTMLDivElement> {
+  /**
+   * Specify the icon set
+   */
+  set?: 'tabler';
+  /**
+   * Specify the icon name
+   */
+  name: TablerIcon;
   /**
    * Specify the icon size
    */
@@ -53,10 +39,8 @@ interface OwnProps extends HTMLAttributes<HTMLDivElement> {
   customColor?: string;
 }
 
-export type IconProps = IconSet & OwnProps;
-
 export const Icon: FC<IconProps> = ({
-  set,
+  set = 'tabler',
   name,
   className,
   kind,
@@ -66,14 +50,7 @@ export const Icon: FC<IconProps> = ({
   ...rest
 }) => {
   const SvgIcon = useMemo(() => {
-    switch (set) {
-      case 'tabler':
-        return icons[set][name];
-      case 'material':
-        return icons[set][name];
-      default:
-        return icons['tabler'][name];
-    }
+    return icons[set][name];
   }, [set, name]);
 
   if (!SvgIcon) return null;
