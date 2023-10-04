@@ -5,7 +5,7 @@ function App() {
   return (
     <div>
       Hello world <Badge kind="secondary">my badge</Badge>
-      <Icon name="WoocommerceColored" />
+      <Icon name="TextLogo" />
     </div>
   );
 }

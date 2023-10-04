@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { IconSize } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Size } from 'utils';
