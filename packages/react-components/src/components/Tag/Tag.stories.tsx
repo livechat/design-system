@@ -268,6 +268,17 @@ export const Sizes = ({ children, ...args }: TagProps): React.ReactElement => {
           {children}
         </Tag>
       </StoryDescriptor>
+      <StoryDescriptor title="XLarge">
+        <Tag size="xlarge">{children}</Tag>
+        <Tag
+          leftNode={<Icon source={TablerIcons.Smiles} />}
+          rightNode={<Icon source={TablerIcons.Smiles} />}
+          size="xlarge"
+          dismissible
+        >
+          {children}
+        </Tag>
+      </StoryDescriptor>
     </div>
   );
 };
