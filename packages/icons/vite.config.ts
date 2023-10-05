@@ -31,6 +31,8 @@ export default defineConfig({
     rollupOptions: {
       external: ['react', 'react/jsx-runtime', 'react-dom'],
       output: {
+        preserveModules: true,
+        preserveModulesRoot: 'lib',
         chunkFileNames: 'chunks/[name].[hash].js',
         assetFileNames: 'assets/[name][extname]',
         entryFileNames: '[name].js',
