@@ -5,35 +5,23 @@
   "publishConfig": {
     "access": "public"
   },
-  "types": "./index.d.ts",
-  "typings": "./index.d.ts",
-  "scripts": {
-    "prebuild": "rimraf react lib",
-    "build": "run-s build:lib build:js",
-    "build:lib": "svgr --replace-attr-values '#424D57=currentcolor' --typescript --no-dimensions -d ./lib/react ./svg ",
-    "build:js": "babel ./lib/react --out-dir react --extensions '.tsx,.ts'",
-    "build:ts": "rimraf react && svgr --replace-attr-values '#424D57=currentcolor' --typescript --no-dimensions -d ./react ./svg ",
-    "dev": "npm run build:ts"
-  },
-  "author": "",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "react",
-    "svg",
-    "lib",
-    "index.d.ts"
+    "dist"
   ],
-  "license": "ISC",
-  "devDependencies": {
-    "@babel/cli": "^7.17.6",
-    "@babel/core": "^7.17.8",
-    "@babel/plugin-transform-modules-commonjs": "^7.17.9",
-    "@babel/plugin-transform-runtime": "^7.17.0",
-    "@babel/preset-react": "^7.16.7",
-    "@babel/preset-typescript": "^7.16.7",
-    "@svgr/cli": "^6.2.1",
-    "@types/react": "^17.0.40"
+  "scripts": {
+    "dev": "vite",
+    "prebuild": "rimraf dist & rimraf lib & npm run prepareIcons",
+    "build": "tsc && vite build",
+    "prepareIcons": "svgr --replace-attr-values '#424D57=currentcolor' --typescript --no-dimensions -d ./lib ./svg ",
+    "preview": "vite preview"
   },
-  "peerDependencies": {
-    "react": ">= 16"
+  "devDependencies": {
+    "@svgr/cli": "^8.1.0",
+    "typescript": "^4.5.4",
+    "vite": "^4.4.5",
+    "vite-plugin-dts": "^3.5.4"
   }
 }
