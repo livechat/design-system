@@ -26,7 +26,7 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Specify the tag size
    */
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large' | 'xlarge';
   /**
    * Set the tag custom color
    */
@@ -84,7 +84,6 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
     {
       [styles[`${baseClass}--dismissible`]]: dismissible,
       [styles[`${baseClass}--outline`]]: outline,
-      [styles[`${baseClass}--with-node`]]: !!leftNode || !!rightNode,
       [styles[`${baseClass}--${getCustomTextClass(customColor)}`]]:
         !!customColor,
     }
@@ -140,7 +139,6 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
       {rightNode && (
         <div
           data-testid="lc-tag-right-node"
-          className={cx(styles[`${baseClass}__node--right`])}
           style={{ color: getIconCustomColor() }}
         >
           {rightNode}
