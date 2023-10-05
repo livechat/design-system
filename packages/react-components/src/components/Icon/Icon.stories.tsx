@@ -17,7 +17,7 @@ export default {
   component: IconComponent,
   argTypes: {
     set: {
-      options: ['tabler', 'material'],
+      options: ['tabler'],
       control: {
         type: 'select',
       },
