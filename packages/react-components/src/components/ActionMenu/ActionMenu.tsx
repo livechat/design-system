@@ -12,6 +12,10 @@ import styles from './ActionMenu.module.scss';
 
 export interface ActionMenuProps {
   /**
+   * Set the unique id for every `ActionMenu` visible on the same view
+   */
+  id: string;
+  /**
    * The CSS class for menu container
    */
   className?: string;
@@ -48,6 +52,7 @@ export interface ActionMenuProps {
 const baseClass = 'action-menu';
 
 export const ActionMenu: React.FC<ActionMenuProps> = ({
+  id,
   className,
   triggerClassName,
   options,
@@ -81,13 +86,13 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
     if (e.key === KeyCodes.arrowUp && indexRef.current > 0) {
       e.preventDefault();
       indexRef.current = getIndex(-1);
-      document.getElementById(`list-item-${indexRef.current}`)?.focus();
+      document.getElementById(`${id}-${indexRef.current}`)?.focus();
     }
 
     if (e.key === KeyCodes.arrowDown && indexRef.current + 1 < options.length) {
       e.preventDefault();
       indexRef.current = getIndex(+1);
-      document.getElementById(`list-item-${indexRef.current}`)?.focus();
+      document.getElementById(`${id}-${indexRef.current}`)?.focus();
     }
   };
 
@@ -105,7 +110,8 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
     setIsVisible(true);
   };
 
-  const handleItemClick = (itemOnClick?: () => void) => {
+  const handleItemClick = (index: number, itemOnClick?: () => void) => {
+    indexRef.current = index;
     itemOnClick?.();
 
     if (!keepOpenOnClick) {
@@ -129,12 +135,12 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
     return (
       <li key={option.key} role="none">
         <button
-          id={`list-item-${index}`}
+          id={`${id}-${index}`}
           data-testid={option.key}
           tabIndex={-1}
           key={option.key}
           disabled={option.disabled}
-          onClick={() => handleItemClick(option.onClick)}
+          onClick={() => handleItemClick(index, option.onClick)}
           role="menuitem"
           className={cx(styles[`${baseClass}__list__item`], {
             [styles[`${baseClass}__list__item--disabled`]]: option.disabled,
@@ -170,6 +176,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
     >
       <ul
         {...props}
+        id={id}
         className={cx(styles[`${baseClass}__list`], className)}
         role="menu"
         aria-hidden={!isVisible}
