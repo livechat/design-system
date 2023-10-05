@@ -114,21 +114,6 @@ $base-class: 'action-menu';
           cursor: not-allowed;
         }
       }
-
-      &--active {
-        background-color: var(--picker-list-option-background-active);
-
-        &::after {
-          position: absolute;
-          left: -8px;
-          border-top-right-radius: var(--radius-3);
-          border-bottom-right-radius: var(--radius-3);
-          background: var(--action-primary-default);
-          width: 3px;
-          height: 36px;
-          content: '';
-        }
-      }
     }
   }
 }
