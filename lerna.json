@@ -1,5 +1,5 @@
 {
   "packages": ["packages/*"],
-  "version": "1.0.0-alpha.icons.2",
+  "version": "1.0.0-alpha.icons.3",
   "$schema": "node_modules/lerna/schemas/lerna-schema.json"
 }
