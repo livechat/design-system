@@ -102,16 +102,20 @@
     border-style: solid;
     background-color: transparent;
 
+    &.tag--small {
+      padding: 0 calc(var(--spacing-1) - 1px);
+    }
+
     &.tag--medium {
-      padding: 0 calc(var(--spacing-2) - 1px);
+      padding: 0 calc(var(--spacing-1) - 1px);
     }
 
     &.tag--large {
-      padding: 4px calc(var(--spacing-3) - 1px);
+      padding: 4px calc(var(--spacing-2) - 1px);
     }
 
     &.tag--xlarge {
-      padding: 4px calc(var(--spacing-4) - 1px);
+      padding: 4px calc(var(--spacing-3) - 1px);
     }
 
     .icon {
@@ -127,15 +131,15 @@
     color: var(--color-black);
   }
 
-  &--with-node {
-    &.tag--medium {
-      padding-left: var(--spacing-1);
-    }
+  // &--with-node {
+  //   &.tag--medium {
+  //     padding-left: var(--spacing-1);
+  //   }
 
-    &.tag--large {
-      padding-left: var(--spacing-2);
-    }
-  }
+  //   &.tag--large {
+  //     padding-left: var(--spacing-2);
+  //   }
+  // }
 
   &--dismissible {
     &.tag--medium {
