@@ -84,7 +84,6 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
     {
       [styles[`${baseClass}--dismissible`]]: dismissible,
       [styles[`${baseClass}--outline`]]: outline,
-      [styles[`${baseClass}--with-node`]]: !!leftNode || !!rightNode,
       [styles[`${baseClass}--${getCustomTextClass(customColor)}`]]:
         !!customColor,
     }
