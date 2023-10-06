@@ -7,7 +7,7 @@ function updateExports() {
 
   // Initialize the exports object with the default entry
   const exports = {
-    '.': './dist/index.js',
+    '.': './dist/index.es.js',
   };
 
   // Create a Set to store the module names (to prevent duplicate entries)
