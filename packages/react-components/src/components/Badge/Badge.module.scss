@@ -49,10 +49,10 @@ $base-class: 'badge';
   }
 
   &--compact {
-    border-radius: 24px;
+    border-radius: 16px;
     padding: 1px 5px;
-    min-width: 18px;
-    height: 18px;
+    min-width: 16px;
+    height: 16px;
 
     .#{$base-class}__dot {
       @include dot(6px);
