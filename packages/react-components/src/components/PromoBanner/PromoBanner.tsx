@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Close as CloseIcon } from '@livechat/design-system-icons/react/tabler';
+import { Close as CloseIcon } from '@livechat/design-system-icons';
 import cx from 'clsx';
 import debounce from 'lodash.debounce';
 

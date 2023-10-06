@@ -5,7 +5,7 @@ import {
   Smiles,
   CannedResponse,
   Attachment,
-} from '@livechat/design-system-icons/react/tabler';
+} from '@livechat/design-system-icons';
 import { ComponentMeta } from '@storybook/react';
 
 import noop from '../../utils/noop';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ChevronDown } from '@livechat/design-system-icons/react/tabler';
+import { ChevronDown } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { ActionMenu, ActionMenuItem } from '../ActionMenu';
