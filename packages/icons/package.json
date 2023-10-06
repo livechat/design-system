@@ -13,8 +13,11 @@
   ],
   "scripts": {
     "dev": "vite",
-    "prebuild": "rimraf dist & rimraf lib & npm run prepareIcons",
+    "prebuild": "rimraf dist && rimraf lib && npm run prepareIcons && npm run createEntryConfig",
     "build": "tsc && vite build",
+    "prepublishOnly": "npm run build && npm run updateExports",
+    "updateExports": "node ./scripts/updateExports.js",
+    "createEntryConfig": "node ./scripts/createEntryConfig.js",
     "prepareIcons": "svgr --replace-attr-values '#424D57=currentcolor' --typescript --no-dimensions -d ./lib ./svg ",
     "preview": "vite preview"
   },
@@ -23,5 +26,1600 @@
     "typescript": "^4.5.4",
     "vite": "^4.4.5",
     "vite-plugin-dts": "^3.5.4"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./AccountCircle": {
+      "import": "./dist/AccountCircle.es.js",
+      "require": "./dist/AccountCircle.cjs.js"
+    },
+    "./AccountCircleFilled": {
+      "import": "./dist/AccountCircleFilled.es.js",
+      "require": "./dist/AccountCircleFilled.cjs.js"
+    },
+    "./Activities": {
+      "import": "./dist/Activities.es.js",
+      "require": "./dist/Activities.cjs.js"
+    },
+    "./ActivitiesFilled": {
+      "import": "./dist/ActivitiesFilled.es.js",
+      "require": "./dist/ActivitiesFilled.cjs.js"
+    },
+    "./Add": {
+      "import": "./dist/Add.es.js",
+      "require": "./dist/Add.cjs.js"
+    },
+    "./AddCircle": {
+      "import": "./dist/AddCircle.es.js",
+      "require": "./dist/AddCircle.cjs.js"
+    },
+    "./AddCircleFilled": {
+      "import": "./dist/AddCircleFilled.es.js",
+      "require": "./dist/AddCircleFilled.cjs.js"
+    },
+    "./AddFilled": {
+      "import": "./dist/AddFilled.es.js",
+      "require": "./dist/AddFilled.cjs.js"
+    },
+    "./AddTemplate": {
+      "import": "./dist/AddTemplate.es.js",
+      "require": "./dist/AddTemplate.cjs.js"
+    },
+    "./AddTemplateFilled": {
+      "import": "./dist/AddTemplateFilled.es.js",
+      "require": "./dist/AddTemplateFilled.cjs.js"
+    },
+    "./Adjust": {
+      "import": "./dist/Adjust.es.js",
+      "require": "./dist/Adjust.cjs.js"
+    },
+    "./AdjustFilled": {
+      "import": "./dist/AdjustFilled.es.js",
+      "require": "./dist/AdjustFilled.cjs.js"
+    },
+    "./AlertSpam": {
+      "import": "./dist/AlertSpam.es.js",
+      "require": "./dist/AlertSpam.cjs.js"
+    },
+    "./AlertSpamFilled": {
+      "import": "./dist/AlertSpamFilled.es.js",
+      "require": "./dist/AlertSpamFilled.cjs.js"
+    },
+    "./Android": {
+      "import": "./dist/Android.es.js",
+      "require": "./dist/Android.cjs.js"
+    },
+    "./AndroidColored": {
+      "import": "./dist/AndroidColored.es.js",
+      "require": "./dist/AndroidColored.cjs.js"
+    },
+    "./Animals": {
+      "import": "./dist/Animals.es.js",
+      "require": "./dist/Animals.cjs.js"
+    },
+    "./AnimalsFilled": {
+      "import": "./dist/AnimalsFilled.es.js",
+      "require": "./dist/AnimalsFilled.cjs.js"
+    },
+    "./AppSettings": {
+      "import": "./dist/AppSettings.es.js",
+      "require": "./dist/AppSettings.cjs.js"
+    },
+    "./AppSettingsFilled": {
+      "import": "./dist/AppSettingsFilled.es.js",
+      "require": "./dist/AppSettingsFilled.cjs.js"
+    },
+    "./Apple": {
+      "import": "./dist/Apple.es.js",
+      "require": "./dist/Apple.cjs.js"
+    },
+    "./AppleMessagesForBusinessColored": {
+      "import": "./dist/AppleMessagesForBusinessColored.es.js",
+      "require": "./dist/AppleMessagesForBusinessColored.cjs.js"
+    },
+    "./Apps": {
+      "import": "./dist/Apps.es.js",
+      "require": "./dist/Apps.cjs.js"
+    },
+    "./AppsFilled": {
+      "import": "./dist/AppsFilled.es.js",
+      "require": "./dist/AppsFilled.cjs.js"
+    },
+    "./Archives": {
+      "import": "./dist/Archives.es.js",
+      "require": "./dist/Archives.cjs.js"
+    },
+    "./ArchivesFilled": {
+      "import": "./dist/ArchivesFilled.es.js",
+      "require": "./dist/ArchivesFilled.cjs.js"
+    },
+    "./ArrowBack": {
+      "import": "./dist/ArrowBack.es.js",
+      "require": "./dist/ArrowBack.cjs.js"
+    },
+    "./ArrowBackFilled": {
+      "import": "./dist/ArrowBackFilled.es.js",
+      "require": "./dist/ArrowBackFilled.cjs.js"
+    },
+    "./ArrowDownward": {
+      "import": "./dist/ArrowDownward.es.js",
+      "require": "./dist/ArrowDownward.cjs.js"
+    },
+    "./ArrowDownwardFilled": {
+      "import": "./dist/ArrowDownwardFilled.es.js",
+      "require": "./dist/ArrowDownwardFilled.cjs.js"
+    },
+    "./ArrowForward": {
+      "import": "./dist/ArrowForward.es.js",
+      "require": "./dist/ArrowForward.cjs.js"
+    },
+    "./ArrowForwardFilled": {
+      "import": "./dist/ArrowForwardFilled.es.js",
+      "require": "./dist/ArrowForwardFilled.cjs.js"
+    },
+    "./ArrowReverse": {
+      "import": "./dist/ArrowReverse.es.js",
+      "require": "./dist/ArrowReverse.cjs.js"
+    },
+    "./ArrowReverseFilled": {
+      "import": "./dist/ArrowReverseFilled.es.js",
+      "require": "./dist/ArrowReverseFilled.cjs.js"
+    },
+    "./ArrowUpward": {
+      "import": "./dist/ArrowUpward.es.js",
+      "require": "./dist/ArrowUpward.cjs.js"
+    },
+    "./ArrowUpwardFilled": {
+      "import": "./dist/ArrowUpwardFilled.es.js",
+      "require": "./dist/ArrowUpwardFilled.cjs.js"
+    },
+    "./ArrowsDiagonalCollapse": {
+      "import": "./dist/ArrowsDiagonalCollapse.es.js",
+      "require": "./dist/ArrowsDiagonalCollapse.cjs.js"
+    },
+    "./ArrowsDiagonalCollapseFilled": {
+      "import": "./dist/ArrowsDiagonalCollapseFilled.es.js",
+      "require": "./dist/ArrowsDiagonalCollapseFilled.cjs.js"
+    },
+    "./ArrowsVertical": {
+      "import": "./dist/ArrowsVertical.es.js",
+      "require": "./dist/ArrowsVertical.cjs.js"
+    },
+    "./Assessment": {
+      "import": "./dist/Assessment.es.js",
+      "require": "./dist/Assessment.cjs.js"
+    },
+    "./AssessmentFilled": {
+      "import": "./dist/AssessmentFilled.es.js",
+      "require": "./dist/AssessmentFilled.cjs.js"
+    },
+    "./Assignment": {
+      "import": "./dist/Assignment.es.js",
+      "require": "./dist/Assignment.cjs.js"
+    },
+    "./AssignmentFilled": {
+      "import": "./dist/AssignmentFilled.es.js",
+      "require": "./dist/AssignmentFilled.cjs.js"
+    },
+    "./Attachment": {
+      "import": "./dist/Attachment.es.js",
+      "require": "./dist/Attachment.cjs.js"
+    },
+    "./AttachmentFilled": {
+      "import": "./dist/AttachmentFilled.es.js",
+      "require": "./dist/AttachmentFilled.cjs.js"
+    },
+    "./Audiotrack": {
+      "import": "./dist/Audiotrack.es.js",
+      "require": "./dist/Audiotrack.cjs.js"
+    },
+    "./AudiotrackFilled": {
+      "import": "./dist/AudiotrackFilled.es.js",
+      "require": "./dist/AudiotrackFilled.cjs.js"
+    },
+    "./Automation": {
+      "import": "./dist/Automation.es.js",
+      "require": "./dist/Automation.cjs.js"
+    },
+    "./AutomationFilled": {
+      "import": "./dist/AutomationFilled.es.js",
+      "require": "./dist/AutomationFilled.cjs.js"
+    },
+    "./Ballpen": {
+      "import": "./dist/Ballpen.es.js",
+      "require": "./dist/Ballpen.cjs.js"
+    },
+    "./BallpenFilled": {
+      "import": "./dist/BallpenFilled.es.js",
+      "require": "./dist/BallpenFilled.cjs.js"
+    },
+    "./BellExclamation": {
+      "import": "./dist/BellExclamation.es.js",
+      "require": "./dist/BellExclamation.cjs.js"
+    },
+    "./BellExclamationFilled": {
+      "import": "./dist/BellExclamationFilled.es.js",
+      "require": "./dist/BellExclamationFilled.cjs.js"
+    },
+    "./BigCommerceColored": {
+      "import": "./dist/BigCommerceColored.es.js",
+      "require": "./dist/BigCommerceColored.cjs.js"
+    },
+    "./Block": {
+      "import": "./dist/Block.es.js",
+      "require": "./dist/Block.cjs.js"
+    },
+    "./BlockFilled": {
+      "import": "./dist/BlockFilled.es.js",
+      "require": "./dist/BlockFilled.cjs.js"
+    },
+    "./Bold": {
+      "import": "./dist/Bold.es.js",
+      "require": "./dist/Bold.cjs.js"
+    },
+    "./BoldFilled": {
+      "import": "./dist/BoldFilled.es.js",
+      "require": "./dist/BoldFilled.cjs.js"
+    },
+    "./Bot": {
+      "import": "./dist/Bot.es.js",
+      "require": "./dist/Bot.cjs.js"
+    },
+    "./BotFilled": {
+      "import": "./dist/BotFilled.es.js",
+      "require": "./dist/BotFilled.cjs.js"
+    },
+    "./Briefcase": {
+      "import": "./dist/Briefcase.es.js",
+      "require": "./dist/Briefcase.cjs.js"
+    },
+    "./BriefcaseFilled": {
+      "import": "./dist/BriefcaseFilled.es.js",
+      "require": "./dist/BriefcaseFilled.cjs.js"
+    },
+    "./BugReport": {
+      "import": "./dist/BugReport.es.js",
+      "require": "./dist/BugReport.cjs.js"
+    },
+    "./BugReportFilled": {
+      "import": "./dist/BugReportFilled.es.js",
+      "require": "./dist/BugReportFilled.cjs.js"
+    },
+    "./Calendar": {
+      "import": "./dist/Calendar.es.js",
+      "require": "./dist/Calendar.cjs.js"
+    },
+    "./CalendarFilled": {
+      "import": "./dist/CalendarFilled.es.js",
+      "require": "./dist/CalendarFilled.cjs.js"
+    },
+    "./Call": {
+      "import": "./dist/Call.es.js",
+      "require": "./dist/Call.cjs.js"
+    },
+    "./CallFilled": {
+      "import": "./dist/CallFilled.es.js",
+      "require": "./dist/CallFilled.cjs.js"
+    },
+    "./Callout": {
+      "import": "./dist/Callout.es.js",
+      "require": "./dist/Callout.cjs.js"
+    },
+    "./CalloutFilled": {
+      "import": "./dist/CalloutFilled.es.js",
+      "require": "./dist/CalloutFilled.cjs.js"
+    },
+    "./Camera": {
+      "import": "./dist/Camera.es.js",
+      "require": "./dist/Camera.cjs.js"
+    },
+    "./CameraFilled": {
+      "import": "./dist/CameraFilled.es.js",
+      "require": "./dist/CameraFilled.cjs.js"
+    },
+    "./CannedResponse": {
+      "import": "./dist/CannedResponse.es.js",
+      "require": "./dist/CannedResponse.cjs.js"
+    },
+    "./CannedResponseFilled": {
+      "import": "./dist/CannedResponseFilled.es.js",
+      "require": "./dist/CannedResponseFilled.cjs.js"
+    },
+    "./Channels": {
+      "import": "./dist/Channels.es.js",
+      "require": "./dist/Channels.cjs.js"
+    },
+    "./ChannelsFilled": {
+      "import": "./dist/ChannelsFilled.es.js",
+      "require": "./dist/ChannelsFilled.cjs.js"
+    },
+    "./Chart": {
+      "import": "./dist/Chart.es.js",
+      "require": "./dist/Chart.cjs.js"
+    },
+    "./ChartFilled": {
+      "import": "./dist/ChartFilled.es.js",
+      "require": "./dist/ChartFilled.cjs.js"
+    },
+    "./ChatBotColored": {
+      "import": "./dist/ChatBotColored.es.js",
+      "require": "./dist/ChatBotColored.cjs.js"
+    },
+    "./ChatDots": {
+      "import": "./dist/ChatDots.es.js",
+      "require": "./dist/ChatDots.cjs.js"
+    },
+    "./ChatDotsFilled": {
+      "import": "./dist/ChatDotsFilled.es.js",
+      "require": "./dist/ChatDotsFilled.cjs.js"
+    },
+    "./ChatMissed": {
+      "import": "./dist/ChatMissed.es.js",
+      "require": "./dist/ChatMissed.cjs.js"
+    },
+    "./ChatMissedFilled": {
+      "import": "./dist/ChatMissedFilled.es.js",
+      "require": "./dist/ChatMissedFilled.cjs.js"
+    },
+    "./ChatTakeover": {
+      "import": "./dist/ChatTakeover.es.js",
+      "require": "./dist/ChatTakeover.cjs.js"
+    },
+    "./ChatTakeoverFilled": {
+      "import": "./dist/ChatTakeoverFilled.es.js",
+      "require": "./dist/ChatTakeoverFilled.cjs.js"
+    },
+    "./Chats": {
+      "import": "./dist/Chats.es.js",
+      "require": "./dist/Chats.cjs.js"
+    },
+    "./ChatsFilled": {
+      "import": "./dist/ChatsFilled.es.js",
+      "require": "./dist/ChatsFilled.cjs.js"
+    },
+    "./Check": {
+      "import": "./dist/Check.es.js",
+      "require": "./dist/Check.cjs.js"
+    },
+    "./CheckBox": {
+      "import": "./dist/CheckBox.es.js",
+      "require": "./dist/CheckBox.cjs.js"
+    },
+    "./CheckBoxFilled": {
+      "import": "./dist/CheckBoxFilled.es.js",
+      "require": "./dist/CheckBoxFilled.cjs.js"
+    },
+    "./CheckCircle": {
+      "import": "./dist/CheckCircle.es.js",
+      "require": "./dist/CheckCircle.cjs.js"
+    },
+    "./CheckCircleFilled": {
+      "import": "./dist/CheckCircleFilled.es.js",
+      "require": "./dist/CheckCircleFilled.cjs.js"
+    },
+    "./CheckFilled": {
+      "import": "./dist/CheckFilled.es.js",
+      "require": "./dist/CheckFilled.cjs.js"
+    },
+    "./ChevronDown": {
+      "import": "./dist/ChevronDown.es.js",
+      "require": "./dist/ChevronDown.cjs.js"
+    },
+    "./ChevronDownFilled": {
+      "import": "./dist/ChevronDownFilled.es.js",
+      "require": "./dist/ChevronDownFilled.cjs.js"
+    },
+    "./ChevronLeft": {
+      "import": "./dist/ChevronLeft.es.js",
+      "require": "./dist/ChevronLeft.cjs.js"
+    },
+    "./ChevronLeftFilled": {
+      "import": "./dist/ChevronLeftFilled.es.js",
+      "require": "./dist/ChevronLeftFilled.cjs.js"
+    },
+    "./ChevronRight": {
+      "import": "./dist/ChevronRight.es.js",
+      "require": "./dist/ChevronRight.cjs.js"
+    },
+    "./ChevronRightFilled": {
+      "import": "./dist/ChevronRightFilled.es.js",
+      "require": "./dist/ChevronRightFilled.cjs.js"
+    },
+    "./ChevronUp": {
+      "import": "./dist/ChevronUp.es.js",
+      "require": "./dist/ChevronUp.cjs.js"
+    },
+    "./ChevronUpFilled": {
+      "import": "./dist/ChevronUpFilled.es.js",
+      "require": "./dist/ChevronUpFilled.cjs.js"
+    },
+    "./ChipCopilotColored": {
+      "import": "./dist/ChipCopilotColored.es.js",
+      "require": "./dist/ChipCopilotColored.cjs.js"
+    },
+    "./Close": {
+      "import": "./dist/Close.es.js",
+      "require": "./dist/Close.cjs.js"
+    },
+    "./CloseCircle": {
+      "import": "./dist/CloseCircle.es.js",
+      "require": "./dist/CloseCircle.cjs.js"
+    },
+    "./CloseCircleFilled": {
+      "import": "./dist/CloseCircleFilled.es.js",
+      "require": "./dist/CloseCircleFilled.cjs.js"
+    },
+    "./CloseFilled": {
+      "import": "./dist/CloseFilled.es.js",
+      "require": "./dist/CloseFilled.cjs.js"
+    },
+    "./CloudflareColored": {
+      "import": "./dist/CloudflareColored.es.js",
+      "require": "./dist/CloudflareColored.cjs.js"
+    },
+    "./Code": {
+      "import": "./dist/Code.es.js",
+      "require": "./dist/Code.cjs.js"
+    },
+    "./CodeBlack": {
+      "import": "./dist/CodeBlack.es.js",
+      "require": "./dist/CodeBlack.cjs.js"
+    },
+    "./CodeBlackFilled": {
+      "import": "./dist/CodeBlackFilled.es.js",
+      "require": "./dist/CodeBlackFilled.cjs.js"
+    },
+    "./CodeFilled": {
+      "import": "./dist/CodeFilled.es.js",
+      "require": "./dist/CodeFilled.cjs.js"
+    },
+    "./Columns": {
+      "import": "./dist/Columns.es.js",
+      "require": "./dist/Columns.cjs.js"
+    },
+    "./ColumnsFilled": {
+      "import": "./dist/ColumnsFilled.es.js",
+      "require": "./dist/ColumnsFilled.cjs.js"
+    },
+    "./Contact": {
+      "import": "./dist/Contact.es.js",
+      "require": "./dist/Contact.cjs.js"
+    },
+    "./ContactFilled": {
+      "import": "./dist/ContactFilled.es.js",
+      "require": "./dist/ContactFilled.cjs.js"
+    },
+    "./ContentCopy": {
+      "import": "./dist/ContentCopy.es.js",
+      "require": "./dist/ContentCopy.cjs.js"
+    },
+    "./ContentCopyFilled": {
+      "import": "./dist/ContentCopyFilled.es.js",
+      "require": "./dist/ContentCopyFilled.cjs.js"
+    },
+    "./CreditCardOutline": {
+      "import": "./dist/CreditCardOutline.es.js",
+      "require": "./dist/CreditCardOutline.cjs.js"
+    },
+    "./CreditCardOutlineFilled": {
+      "import": "./dist/CreditCardOutlineFilled.es.js",
+      "require": "./dist/CreditCardOutlineFilled.cjs.js"
+    },
+    "./DayMode": {
+      "import": "./dist/DayMode.es.js",
+      "require": "./dist/DayMode.cjs.js"
+    },
+    "./DayModeFilled": {
+      "import": "./dist/DayModeFilled.es.js",
+      "require": "./dist/DayModeFilled.cjs.js"
+    },
+    "./Delete": {
+      "import": "./dist/Delete.es.js",
+      "require": "./dist/Delete.cjs.js"
+    },
+    "./DeleteFilled": {
+      "import": "./dist/DeleteFilled.es.js",
+      "require": "./dist/DeleteFilled.cjs.js"
+    },
+    "./Description": {
+      "import": "./dist/Description.es.js",
+      "require": "./dist/Description.cjs.js"
+    },
+    "./DescriptionFilled": {
+      "import": "./dist/DescriptionFilled.es.js",
+      "require": "./dist/DescriptionFilled.cjs.js"
+    },
+    "./DeviceDesktop": {
+      "import": "./dist/DeviceDesktop.es.js",
+      "require": "./dist/DeviceDesktop.cjs.js"
+    },
+    "./DeviceDesktopFilled": {
+      "import": "./dist/DeviceDesktopFilled.es.js",
+      "require": "./dist/DeviceDesktopFilled.cjs.js"
+    },
+    "./DeviceLaptop": {
+      "import": "./dist/DeviceLaptop.es.js",
+      "require": "./dist/DeviceLaptop.cjs.js"
+    },
+    "./DeviceLaptopFilled": {
+      "import": "./dist/DeviceLaptopFilled.es.js",
+      "require": "./dist/DeviceLaptopFilled.cjs.js"
+    },
+    "./DeviceMobile": {
+      "import": "./dist/DeviceMobile.es.js",
+      "require": "./dist/DeviceMobile.cjs.js"
+    },
+    "./DeviceMobileCheck": {
+      "import": "./dist/DeviceMobileCheck.es.js",
+      "require": "./dist/DeviceMobileCheck.cjs.js"
+    },
+    "./DeviceMobileCheckFilled": {
+      "import": "./dist/DeviceMobileCheckFilled.es.js",
+      "require": "./dist/DeviceMobileCheckFilled.cjs.js"
+    },
+    "./DeviceMobileCog": {
+      "import": "./dist/DeviceMobileCog.es.js",
+      "require": "./dist/DeviceMobileCog.cjs.js"
+    },
+    "./DeviceMobileCogFilled": {
+      "import": "./dist/DeviceMobileCogFilled.es.js",
+      "require": "./dist/DeviceMobileCogFilled.cjs.js"
+    },
+    "./DeviceMobileFilled": {
+      "import": "./dist/DeviceMobileFilled.es.js",
+      "require": "./dist/DeviceMobileFilled.cjs.js"
+    },
+    "./Devices": {
+      "import": "./dist/Devices.es.js",
+      "require": "./dist/Devices.cjs.js"
+    },
+    "./DevicesFilled": {
+      "import": "./dist/DevicesFilled.es.js",
+      "require": "./dist/DevicesFilled.cjs.js"
+    },
+    "./Directions": {
+      "import": "./dist/Directions.es.js",
+      "require": "./dist/Directions.cjs.js"
+    },
+    "./DirectionsFilled": {
+      "import": "./dist/DirectionsFilled.es.js",
+      "require": "./dist/DirectionsFilled.cjs.js"
+    },
+    "./DismissChat": {
+      "import": "./dist/DismissChat.es.js",
+      "require": "./dist/DismissChat.cjs.js"
+    },
+    "./DismissChatFilled": {
+      "import": "./dist/DismissChatFilled.es.js",
+      "require": "./dist/DismissChatFilled.cjs.js"
+    },
+    "./DoubleArrowLeft": {
+      "import": "./dist/DoubleArrowLeft.es.js",
+      "require": "./dist/DoubleArrowLeft.cjs.js"
+    },
+    "./DoubleArrowLeftFilled": {
+      "import": "./dist/DoubleArrowLeftFilled.es.js",
+      "require": "./dist/DoubleArrowLeftFilled.cjs.js"
+    },
+    "./DoubleArrowRight": {
+      "import": "./dist/DoubleArrowRight.es.js",
+      "require": "./dist/DoubleArrowRight.cjs.js"
+    },
+    "./DoubleArrowRightFilled": {
+      "import": "./dist/DoubleArrowRightFilled.es.js",
+      "require": "./dist/DoubleArrowRightFilled.cjs.js"
+    },
+    "./DragIndicator": {
+      "import": "./dist/DragIndicator.es.js",
+      "require": "./dist/DragIndicator.cjs.js"
+    },
+    "./DragIndicatorFilled": {
+      "import": "./dist/DragIndicatorFilled.es.js",
+      "require": "./dist/DragIndicatorFilled.cjs.js"
+    },
+    "./DropDown": {
+      "import": "./dist/DropDown.es.js",
+      "require": "./dist/DropDown.cjs.js"
+    },
+    "./DropDownFilled": {
+      "import": "./dist/DropDownFilled.es.js",
+      "require": "./dist/DropDownFilled.cjs.js"
+    },
+    "./DrupalColored": {
+      "import": "./dist/DrupalColored.es.js",
+      "require": "./dist/DrupalColored.cjs.js"
+    },
+    "./EdgeColored": {
+      "import": "./dist/EdgeColored.es.js",
+      "require": "./dist/EdgeColored.cjs.js"
+    },
+    "./Edit": {
+      "import": "./dist/Edit.es.js",
+      "require": "./dist/Edit.cjs.js"
+    },
+    "./EditFilled": {
+      "import": "./dist/EditFilled.es.js",
+      "require": "./dist/EditFilled.cjs.js"
+    },
+    "./EmailAt": {
+      "import": "./dist/EmailAt.es.js",
+      "require": "./dist/EmailAt.cjs.js"
+    },
+    "./EmailAtFilled": {
+      "import": "./dist/EmailAtFilled.es.js",
+      "require": "./dist/EmailAtFilled.cjs.js"
+    },
+    "./EmailLetter": {
+      "import": "./dist/EmailLetter.es.js",
+      "require": "./dist/EmailLetter.cjs.js"
+    },
+    "./EmailLetterFilled": {
+      "import": "./dist/EmailLetterFilled.es.js",
+      "require": "./dist/EmailLetterFilled.cjs.js"
+    },
+    "./Emoji": {
+      "import": "./dist/Emoji.es.js",
+      "require": "./dist/Emoji.cjs.js"
+    },
+    "./EmojiFilled": {
+      "import": "./dist/EmojiFilled.es.js",
+      "require": "./dist/EmojiFilled.cjs.js"
+    },
+    "./Error": {
+      "import": "./dist/Error.es.js",
+      "require": "./dist/Error.cjs.js"
+    },
+    "./ErrorFilled": {
+      "import": "./dist/ErrorFilled.es.js",
+      "require": "./dist/ErrorFilled.cjs.js"
+    },
+    "./Extension": {
+      "import": "./dist/Extension.es.js",
+      "require": "./dist/Extension.cjs.js"
+    },
+    "./ExtensionFilled": {
+      "import": "./dist/ExtensionFilled.es.js",
+      "require": "./dist/ExtensionFilled.cjs.js"
+    },
+    "./Facebook": {
+      "import": "./dist/Facebook.es.js",
+      "require": "./dist/Facebook.cjs.js"
+    },
+    "./FacebookColored": {
+      "import": "./dist/FacebookColored.es.js",
+      "require": "./dist/FacebookColored.cjs.js"
+    },
+    "./FileCopy": {
+      "import": "./dist/FileCopy.es.js",
+      "require": "./dist/FileCopy.cjs.js"
+    },
+    "./FileCopyFilled": {
+      "import": "./dist/FileCopyFilled.es.js",
+      "require": "./dist/FileCopyFilled.cjs.js"
+    },
+    "./FileDownload": {
+      "import": "./dist/FileDownload.es.js",
+      "require": "./dist/FileDownload.cjs.js"
+    },
+    "./FileDownloadFilled": {
+      "import": "./dist/FileDownloadFilled.es.js",
+      "require": "./dist/FileDownloadFilled.cjs.js"
+    },
+    "./FileUpload": {
+      "import": "./dist/FileUpload.es.js",
+      "require": "./dist/FileUpload.cjs.js"
+    },
+    "./FileUploadFilled": {
+      "import": "./dist/FileUploadFilled.es.js",
+      "require": "./dist/FileUploadFilled.cjs.js"
+    },
+    "./FiletypeExe": {
+      "import": "./dist/FiletypeExe.es.js",
+      "require": "./dist/FiletypeExe.cjs.js"
+    },
+    "./FiletypeHtml": {
+      "import": "./dist/FiletypeHtml.es.js",
+      "require": "./dist/FiletypeHtml.cjs.js"
+    },
+    "./FiletypeJpg": {
+      "import": "./dist/FiletypeJpg.es.js",
+      "require": "./dist/FiletypeJpg.cjs.js"
+    },
+    "./FiletypeMp3": {
+      "import": "./dist/FiletypeMp3.es.js",
+      "require": "./dist/FiletypeMp3.cjs.js"
+    },
+    "./FiletypeOther": {
+      "import": "./dist/FiletypeOther.es.js",
+      "require": "./dist/FiletypeOther.cjs.js"
+    },
+    "./FiletypePdf": {
+      "import": "./dist/FiletypePdf.es.js",
+      "require": "./dist/FiletypePdf.cjs.js"
+    },
+    "./FiletypePpt": {
+      "import": "./dist/FiletypePpt.es.js",
+      "require": "./dist/FiletypePpt.cjs.js"
+    },
+    "./FiletypeTxt": {
+      "import": "./dist/FiletypeTxt.es.js",
+      "require": "./dist/FiletypeTxt.cjs.js"
+    },
+    "./FiletypeVideo": {
+      "import": "./dist/FiletypeVideo.es.js",
+      "require": "./dist/FiletypeVideo.cjs.js"
+    },
+    "./FiletypeXls": {
+      "import": "./dist/FiletypeXls.es.js",
+      "require": "./dist/FiletypeXls.cjs.js"
+    },
+    "./FiletypeZip": {
+      "import": "./dist/FiletypeZip.es.js",
+      "require": "./dist/FiletypeZip.cjs.js"
+    },
+    "./Filter": {
+      "import": "./dist/Filter.es.js",
+      "require": "./dist/Filter.cjs.js"
+    },
+    "./FilterFilled": {
+      "import": "./dist/FilterFilled.es.js",
+      "require": "./dist/FilterFilled.cjs.js"
+    },
+    "./FirefoxColored": {
+      "import": "./dist/FirefoxColored.es.js",
+      "require": "./dist/FirefoxColored.cjs.js"
+    },
+    "./Flags": {
+      "import": "./dist/Flags.es.js",
+      "require": "./dist/Flags.cjs.js"
+    },
+    "./FlagsFilled": {
+      "import": "./dist/FlagsFilled.es.js",
+      "require": "./dist/FlagsFilled.cjs.js"
+    },
+    "./Folder": {
+      "import": "./dist/Folder.es.js",
+      "require": "./dist/Folder.cjs.js"
+    },
+    "./FolderFilled": {
+      "import": "./dist/FolderFilled.es.js",
+      "require": "./dist/FolderFilled.cjs.js"
+    },
+    "./Foods": {
+      "import": "./dist/Foods.es.js",
+      "require": "./dist/Foods.cjs.js"
+    },
+    "./FoodsFilled": {
+      "import": "./dist/FoodsFilled.es.js",
+      "require": "./dist/FoodsFilled.cjs.js"
+    },
+    "./FrequentlyUsed": {
+      "import": "./dist/FrequentlyUsed.es.js",
+      "require": "./dist/FrequentlyUsed.cjs.js"
+    },
+    "./FrequentlyUsedFilled": {
+      "import": "./dist/FrequentlyUsedFilled.es.js",
+      "require": "./dist/FrequentlyUsedFilled.cjs.js"
+    },
+    "./Glasses": {
+      "import": "./dist/Glasses.es.js",
+      "require": "./dist/Glasses.cjs.js"
+    },
+    "./GlassesFilled": {
+      "import": "./dist/GlassesFilled.es.js",
+      "require": "./dist/GlassesFilled.cjs.js"
+    },
+    "./GoogleChromeColored": {
+      "import": "./dist/GoogleChromeColored.es.js",
+      "require": "./dist/GoogleChromeColored.cjs.js"
+    },
+    "./GoogleDarkModeColored": {
+      "import": "./dist/GoogleDarkModeColored.es.js",
+      "require": "./dist/GoogleDarkModeColored.cjs.js"
+    },
+    "./GoogleLightModeColored": {
+      "import": "./dist/GoogleLightModeColored.es.js",
+      "require": "./dist/GoogleLightModeColored.cjs.js"
+    },
+    "./GoogleTagManagerColored": {
+      "import": "./dist/GoogleTagManagerColored.es.js",
+      "require": "./dist/GoogleTagManagerColored.cjs.js"
+    },
+    "./GreetingCard": {
+      "import": "./dist/GreetingCard.es.js",
+      "require": "./dist/GreetingCard.cjs.js"
+    },
+    "./GreetingCardFilled": {
+      "import": "./dist/GreetingCardFilled.es.js",
+      "require": "./dist/GreetingCardFilled.cjs.js"
+    },
+    "./GreetingPlainText": {
+      "import": "./dist/GreetingPlainText.es.js",
+      "require": "./dist/GreetingPlainText.cjs.js"
+    },
+    "./GreetingPlainTextFilled": {
+      "import": "./dist/GreetingPlainTextFilled.es.js",
+      "require": "./dist/GreetingPlainTextFilled.cjs.js"
+    },
+    "./GreetingQuickReply": {
+      "import": "./dist/GreetingQuickReply.es.js",
+      "require": "./dist/GreetingQuickReply.cjs.js"
+    },
+    "./GreetingQuickReplyFilled": {
+      "import": "./dist/GreetingQuickReplyFilled.es.js",
+      "require": "./dist/GreetingQuickReplyFilled.cjs.js"
+    },
+    "./GridDots": {
+      "import": "./dist/GridDots.es.js",
+      "require": "./dist/GridDots.cjs.js"
+    },
+    "./GridDotsFilled": {
+      "import": "./dist/GridDotsFilled.es.js",
+      "require": "./dist/GridDotsFilled.cjs.js"
+    },
+    "./Group": {
+      "import": "./dist/Group.es.js",
+      "require": "./dist/Group.cjs.js"
+    },
+    "./GroupFilled": {
+      "import": "./dist/GroupFilled.es.js",
+      "require": "./dist/GroupFilled.cjs.js"
+    },
+    "./H1": {
+      "import": "./dist/H1.es.js",
+      "require": "./dist/H1.cjs.js"
+    },
+    "./H1Filled": {
+      "import": "./dist/H1Filled.es.js",
+      "require": "./dist/H1Filled.cjs.js"
+    },
+    "./H2": {
+      "import": "./dist/H2.es.js",
+      "require": "./dist/H2.cjs.js"
+    },
+    "./H2Filled": {
+      "import": "./dist/H2Filled.es.js",
+      "require": "./dist/H2Filled.cjs.js"
+    },
+    "./H3": {
+      "import": "./dist/H3.es.js",
+      "require": "./dist/H3.cjs.js"
+    },
+    "./H3Filled": {
+      "import": "./dist/H3Filled.es.js",
+      "require": "./dist/H3Filled.cjs.js"
+    },
+    "./HandWave": {
+      "import": "./dist/HandWave.es.js",
+      "require": "./dist/HandWave.cjs.js"
+    },
+    "./HandWaveFilled": {
+      "import": "./dist/HandWaveFilled.es.js",
+      "require": "./dist/HandWaveFilled.cjs.js"
+    },
+    "./Help": {
+      "import": "./dist/Help.es.js",
+      "require": "./dist/Help.cjs.js"
+    },
+    "./HelpFilled": {
+      "import": "./dist/HelpFilled.es.js",
+      "require": "./dist/HelpFilled.cjs.js"
+    },
+    "./HelpdeskColored": {
+      "import": "./dist/HelpdeskColored.es.js",
+      "require": "./dist/HelpdeskColored.cjs.js"
+    },
+    "./Home": {
+      "import": "./dist/Home.es.js",
+      "require": "./dist/Home.cjs.js"
+    },
+    "./HomeFilled": {
+      "import": "./dist/HomeFilled.es.js",
+      "require": "./dist/HomeFilled.cjs.js"
+    },
+    "./Hourglass": {
+      "import": "./dist/Hourglass.es.js",
+      "require": "./dist/Hourglass.cjs.js"
+    },
+    "./HourglassFilled": {
+      "import": "./dist/HourglassFilled.es.js",
+      "require": "./dist/HourglassFilled.cjs.js"
+    },
+    "./HourglassLow": {
+      "import": "./dist/HourglassLow.es.js",
+      "require": "./dist/HourglassLow.cjs.js"
+    },
+    "./HourglassLowFilled": {
+      "import": "./dist/HourglassLowFilled.es.js",
+      "require": "./dist/HourglassLowFilled.cjs.js"
+    },
+    "./Image": {
+      "import": "./dist/Image.es.js",
+      "require": "./dist/Image.cjs.js"
+    },
+    "./ImageFilled": {
+      "import": "./dist/ImageFilled.es.js",
+      "require": "./dist/ImageFilled.cjs.js"
+    },
+    "./Info": {
+      "import": "./dist/Info.es.js",
+      "require": "./dist/Info.cjs.js"
+    },
+    "./InfoFilled": {
+      "import": "./dist/InfoFilled.es.js",
+      "require": "./dist/InfoFilled.cjs.js"
+    },
+    "./InternetExplorerColored": {
+      "import": "./dist/InternetExplorerColored.es.js",
+      "require": "./dist/InternetExplorerColored.cjs.js"
+    },
+    "./Italic": {
+      "import": "./dist/Italic.es.js",
+      "require": "./dist/Italic.cjs.js"
+    },
+    "./ItalicFilled": {
+      "import": "./dist/ItalicFilled.es.js",
+      "require": "./dist/ItalicFilled.cjs.js"
+    },
+    "./JoomlaColored": {
+      "import": "./dist/JoomlaColored.es.js",
+      "require": "./dist/JoomlaColored.cjs.js"
+    },
+    "./Keyboard": {
+      "import": "./dist/Keyboard.es.js",
+      "require": "./dist/Keyboard.cjs.js"
+    },
+    "./KeyboardFilled": {
+      "import": "./dist/KeyboardFilled.es.js",
+      "require": "./dist/KeyboardFilled.cjs.js"
+    },
+    "./KnowledgebaseColored": {
+      "import": "./dist/KnowledgebaseColored.es.js",
+      "require": "./dist/KnowledgebaseColored.cjs.js"
+    },
+    "./Link": {
+      "import": "./dist/Link.es.js",
+      "require": "./dist/Link.cjs.js"
+    },
+    "./LinkFilled": {
+      "import": "./dist/LinkFilled.es.js",
+      "require": "./dist/LinkFilled.cjs.js"
+    },
+    "./Linux": {
+      "import": "./dist/Linux.es.js",
+      "require": "./dist/Linux.cjs.js"
+    },
+    "./List": {
+      "import": "./dist/List.es.js",
+      "require": "./dist/List.cjs.js"
+    },
+    "./ListFilled": {
+      "import": "./dist/ListFilled.es.js",
+      "require": "./dist/ListFilled.cjs.js"
+    },
+    "./LivechatColored": {
+      "import": "./dist/LivechatColored.es.js",
+      "require": "./dist/LivechatColored.cjs.js"
+    },
+    "./LockBlack": {
+      "import": "./dist/LockBlack.es.js",
+      "require": "./dist/LockBlack.cjs.js"
+    },
+    "./LockBlackFilled": {
+      "import": "./dist/LockBlackFilled.es.js",
+      "require": "./dist/LockBlackFilled.cjs.js"
+    },
+    "./LockOpen": {
+      "import": "./dist/LockOpen.es.js",
+      "require": "./dist/LockOpen.cjs.js"
+    },
+    "./LockOpenFilled": {
+      "import": "./dist/LockOpenFilled.es.js",
+      "require": "./dist/LockOpenFilled.cjs.js"
+    },
+    "./Logout": {
+      "import": "./dist/Logout.es.js",
+      "require": "./dist/Logout.cjs.js"
+    },
+    "./LogoutFilled": {
+      "import": "./dist/LogoutFilled.es.js",
+      "require": "./dist/LogoutFilled.cjs.js"
+    },
+    "./MagentoColored": {
+      "import": "./dist/MagentoColored.es.js",
+      "require": "./dist/MagentoColored.cjs.js"
+    },
+    "./Messages": {
+      "import": "./dist/Messages.es.js",
+      "require": "./dist/Messages.cjs.js"
+    },
+    "./MessagesFilled": {
+      "import": "./dist/MessagesFilled.es.js",
+      "require": "./dist/MessagesFilled.cjs.js"
+    },
+    "./Messenger": {
+      "import": "./dist/Messenger.es.js",
+      "require": "./dist/Messenger.cjs.js"
+    },
+    "./MessengerColored": {
+      "import": "./dist/MessengerColored.es.js",
+      "require": "./dist/MessengerColored.cjs.js"
+    },
+    "./MoodEmpty": {
+      "import": "./dist/MoodEmpty.es.js",
+      "require": "./dist/MoodEmpty.cjs.js"
+    },
+    "./MoodNeutral": {
+      "import": "./dist/MoodNeutral.es.js",
+      "require": "./dist/MoodNeutral.cjs.js"
+    },
+    "./MoodSad": {
+      "import": "./dist/MoodSad.es.js",
+      "require": "./dist/MoodSad.cjs.js"
+    },
+    "./MoodVerySad": {
+      "import": "./dist/MoodVerySad.es.js",
+      "require": "./dist/MoodVerySad.cjs.js"
+    },
+    "./MoreHoriz": {
+      "import": "./dist/MoreHoriz.es.js",
+      "require": "./dist/MoreHoriz.cjs.js"
+    },
+    "./MoreHorizFilled": {
+      "import": "./dist/MoreHorizFilled.es.js",
+      "require": "./dist/MoreHorizFilled.cjs.js"
+    },
+    "./MoveTo": {
+      "import": "./dist/MoveTo.es.js",
+      "require": "./dist/MoveTo.cjs.js"
+    },
+    "./MoveToFilled": {
+      "import": "./dist/MoveToFilled.es.js",
+      "require": "./dist/MoveToFilled.cjs.js"
+    },
+    "./NightMode": {
+      "import": "./dist/NightMode.es.js",
+      "require": "./dist/NightMode.cjs.js"
+    },
+    "./NightModeFilled": {
+      "import": "./dist/NightModeFilled.es.js",
+      "require": "./dist/NightModeFilled.cjs.js"
+    },
+    "./NoteAdd": {
+      "import": "./dist/NoteAdd.es.js",
+      "require": "./dist/NoteAdd.cjs.js"
+    },
+    "./NoteAddFilled": {
+      "import": "./dist/NoteAddFilled.es.js",
+      "require": "./dist/NoteAddFilled.cjs.js"
+    },
+    "./Notifications": {
+      "import": "./dist/Notifications.es.js",
+      "require": "./dist/Notifications.cjs.js"
+    },
+    "./NotificationsFilled": {
+      "import": "./dist/NotificationsFilled.es.js",
+      "require": "./dist/NotificationsFilled.cjs.js"
+    },
+    "./NumberedList": {
+      "import": "./dist/NumberedList.es.js",
+      "require": "./dist/NumberedList.cjs.js"
+    },
+    "./NumberedListFilled": {
+      "import": "./dist/NumberedListFilled.es.js",
+      "require": "./dist/NumberedListFilled.cjs.js"
+    },
+    "./Objects": {
+      "import": "./dist/Objects.es.js",
+      "require": "./dist/Objects.cjs.js"
+    },
+    "./ObjectsFilled": {
+      "import": "./dist/ObjectsFilled.es.js",
+      "require": "./dist/ObjectsFilled.cjs.js"
+    },
+    "./OktaColored": {
+      "import": "./dist/OktaColored.es.js",
+      "require": "./dist/OktaColored.cjs.js"
+    },
+    "./OpenInNew": {
+      "import": "./dist/OpenInNew.es.js",
+      "require": "./dist/OpenInNew.cjs.js"
+    },
+    "./OpenInNewFilled": {
+      "import": "./dist/OpenInNewFilled.es.js",
+      "require": "./dist/OpenInNewFilled.cjs.js"
+    },
+    "./OpenwidgetColored": {
+      "import": "./dist/OpenwidgetColored.es.js",
+      "require": "./dist/OpenwidgetColored.cjs.js"
+    },
+    "./OperaColored": {
+      "import": "./dist/OperaColored.es.js",
+      "require": "./dist/OperaColored.cjs.js"
+    },
+    "./Palette": {
+      "import": "./dist/Palette.es.js",
+      "require": "./dist/Palette.cjs.js"
+    },
+    "./PaletteFilled": {
+      "import": "./dist/PaletteFilled.es.js",
+      "require": "./dist/PaletteFilled.cjs.js"
+    },
+    "./Paw": {
+      "import": "./dist/Paw.es.js",
+      "require": "./dist/Paw.cjs.js"
+    },
+    "./PawFilled": {
+      "import": "./dist/PawFilled.es.js",
+      "require": "./dist/PawFilled.cjs.js"
+    },
+    "./People": {
+      "import": "./dist/People.es.js",
+      "require": "./dist/People.cjs.js"
+    },
+    "./PeopleFilled": {
+      "import": "./dist/PeopleFilled.es.js",
+      "require": "./dist/PeopleFilled.cjs.js"
+    },
+    "./Person": {
+      "import": "./dist/Person.es.js",
+      "require": "./dist/Person.cjs.js"
+    },
+    "./PersonAdd": {
+      "import": "./dist/PersonAdd.es.js",
+      "require": "./dist/PersonAdd.cjs.js"
+    },
+    "./PersonAddFilled": {
+      "import": "./dist/PersonAddFilled.es.js",
+      "require": "./dist/PersonAddFilled.cjs.js"
+    },
+    "./PersonFilled": {
+      "import": "./dist/PersonFilled.es.js",
+      "require": "./dist/PersonFilled.cjs.js"
+    },
+    "./Pinned": {
+      "import": "./dist/Pinned.es.js",
+      "require": "./dist/Pinned.cjs.js"
+    },
+    "./PinnedFilled": {
+      "import": "./dist/PinnedFilled.es.js",
+      "require": "./dist/PinnedFilled.cjs.js"
+    },
+    "./Place": {
+      "import": "./dist/Place.es.js",
+      "require": "./dist/Place.cjs.js"
+    },
+    "./PlaceFilled": {
+      "import": "./dist/PlaceFilled.es.js",
+      "require": "./dist/PlaceFilled.cjs.js"
+    },
+    "./PlayArrow": {
+      "import": "./dist/PlayArrow.es.js",
+      "require": "./dist/PlayArrow.cjs.js"
+    },
+    "./PlayArrowFilled": {
+      "import": "./dist/PlayArrowFilled.es.js",
+      "require": "./dist/PlayArrowFilled.cjs.js"
+    },
+    "./PlayCircle": {
+      "import": "./dist/PlayCircle.es.js",
+      "require": "./dist/PlayCircle.cjs.js"
+    },
+    "./PlayCircleFilled": {
+      "import": "./dist/PlayCircleFilled.es.js",
+      "require": "./dist/PlayCircleFilled.cjs.js"
+    },
+    "./PlayerRecord": {
+      "import": "./dist/PlayerRecord.es.js",
+      "require": "./dist/PlayerRecord.cjs.js"
+    },
+    "./PlayerRecordFilled": {
+      "import": "./dist/PlayerRecordFilled.es.js",
+      "require": "./dist/PlayerRecordFilled.cjs.js"
+    },
+    "./Position": {
+      "import": "./dist/Position.es.js",
+      "require": "./dist/Position.cjs.js"
+    },
+    "./PositionFilled": {
+      "import": "./dist/PositionFilled.es.js",
+      "require": "./dist/PositionFilled.cjs.js"
+    },
+    "./PowerSettings": {
+      "import": "./dist/PowerSettings.es.js",
+      "require": "./dist/PowerSettings.cjs.js"
+    },
+    "./PowerSettingsFilled": {
+      "import": "./dist/PowerSettingsFilled.es.js",
+      "require": "./dist/PowerSettingsFilled.cjs.js"
+    },
+    "./Quote": {
+      "import": "./dist/Quote.es.js",
+      "require": "./dist/Quote.cjs.js"
+    },
+    "./QuoteFilled": {
+      "import": "./dist/QuoteFilled.es.js",
+      "require": "./dist/QuoteFilled.cjs.js"
+    },
+    "./Refresh": {
+      "import": "./dist/Refresh.es.js",
+      "require": "./dist/Refresh.cjs.js"
+    },
+    "./RefreshFilled": {
+      "import": "./dist/RefreshFilled.es.js",
+      "require": "./dist/RefreshFilled.cjs.js"
+    },
+    "./Remove": {
+      "import": "./dist/Remove.es.js",
+      "require": "./dist/Remove.cjs.js"
+    },
+    "./RemoveFilled": {
+      "import": "./dist/RemoveFilled.es.js",
+      "require": "./dist/RemoveFilled.cjs.js"
+    },
+    "./Reply": {
+      "import": "./dist/Reply.es.js",
+      "require": "./dist/Reply.cjs.js"
+    },
+    "./ReplyFilled": {
+      "import": "./dist/ReplyFilled.es.js",
+      "require": "./dist/ReplyFilled.cjs.js"
+    },
+    "./Report": {
+      "import": "./dist/Report.es.js",
+      "require": "./dist/Report.cjs.js"
+    },
+    "./ReportFilled": {
+      "import": "./dist/ReportFilled.es.js",
+      "require": "./dist/ReportFilled.cjs.js"
+    },
+    "./SafariColored": {
+      "import": "./dist/SafariColored.es.js",
+      "require": "./dist/SafariColored.cjs.js"
+    },
+    "./Search": {
+      "import": "./dist/Search.es.js",
+      "require": "./dist/Search.cjs.js"
+    },
+    "./SearchFilled": {
+      "import": "./dist/SearchFilled.es.js",
+      "require": "./dist/SearchFilled.cjs.js"
+    },
+    "./SegmentColored": {
+      "import": "./dist/SegmentColored.es.js",
+      "require": "./dist/SegmentColored.cjs.js"
+    },
+    "./Send": {
+      "import": "./dist/Send.es.js",
+      "require": "./dist/Send.cjs.js"
+    },
+    "./SendFilled": {
+      "import": "./dist/SendFilled.es.js",
+      "require": "./dist/SendFilled.cjs.js"
+    },
+    "./Settings": {
+      "import": "./dist/Settings.es.js",
+      "require": "./dist/Settings.cjs.js"
+    },
+    "./SettingsFilled": {
+      "import": "./dist/SettingsFilled.es.js",
+      "require": "./dist/SettingsFilled.cjs.js"
+    },
+    "./Share": {
+      "import": "./dist/Share.es.js",
+      "require": "./dist/Share.cjs.js"
+    },
+    "./ShareFilled": {
+      "import": "./dist/ShareFilled.es.js",
+      "require": "./dist/ShareFilled.cjs.js"
+    },
+    "./ShopifyColored": {
+      "import": "./dist/ShopifyColored.es.js",
+      "require": "./dist/ShopifyColored.cjs.js"
+    },
+    "./ShoppingCart": {
+      "import": "./dist/ShoppingCart.es.js",
+      "require": "./dist/ShoppingCart.cjs.js"
+    },
+    "./ShoppingCartFilled": {
+      "import": "./dist/ShoppingCartFilled.es.js",
+      "require": "./dist/ShoppingCartFilled.cjs.js"
+    },
+    "./Smiles": {
+      "import": "./dist/Smiles.es.js",
+      "require": "./dist/Smiles.cjs.js"
+    },
+    "./SmilesFilled": {
+      "import": "./dist/SmilesFilled.es.js",
+      "require": "./dist/SmilesFilled.cjs.js"
+    },
+    "./SoundOff": {
+      "import": "./dist/SoundOff.es.js",
+      "require": "./dist/SoundOff.cjs.js"
+    },
+    "./SoundOffFilled": {
+      "import": "./dist/SoundOffFilled.es.js",
+      "require": "./dist/SoundOffFilled.cjs.js"
+    },
+    "./SoundOn": {
+      "import": "./dist/SoundOn.es.js",
+      "require": "./dist/SoundOn.cjs.js"
+    },
+    "./SoundOnFilled": {
+      "import": "./dist/SoundOnFilled.es.js",
+      "require": "./dist/SoundOnFilled.cjs.js"
+    },
+    "./Spy": {
+      "import": "./dist/Spy.es.js",
+      "require": "./dist/Spy.cjs.js"
+    },
+    "./SpyFilled": {
+      "import": "./dist/SpyFilled.es.js",
+      "require": "./dist/SpyFilled.cjs.js"
+    },
+    "./Strikethrough": {
+      "import": "./dist/Strikethrough.es.js",
+      "require": "./dist/Strikethrough.cjs.js"
+    },
+    "./StrikethroughFilled": {
+      "import": "./dist/StrikethroughFilled.es.js",
+      "require": "./dist/StrikethroughFilled.cjs.js"
+    },
+    "./Symbols": {
+      "import": "./dist/Symbols.es.js",
+      "require": "./dist/Symbols.cjs.js"
+    },
+    "./SymbolsFilled": {
+      "import": "./dist/SymbolsFilled.es.js",
+      "require": "./dist/SymbolsFilled.cjs.js"
+    },
+    "./Table": {
+      "import": "./dist/Table.es.js",
+      "require": "./dist/Table.cjs.js"
+    },
+    "./TableFilled": {
+      "import": "./dist/TableFilled.es.js",
+      "require": "./dist/TableFilled.cjs.js"
+    },
+    "./Tag": {
+      "import": "./dist/Tag.es.js",
+      "require": "./dist/Tag.cjs.js"
+    },
+    "./TagFilled": {
+      "import": "./dist/TagFilled.es.js",
+      "require": "./dist/TagFilled.cjs.js"
+    },
+    "./TargetArrow": {
+      "import": "./dist/TargetArrow.es.js",
+      "require": "./dist/TargetArrow.cjs.js"
+    },
+    "./TargetArrowFilled": {
+      "import": "./dist/TargetArrowFilled.es.js",
+      "require": "./dist/TargetArrowFilled.cjs.js"
+    },
+    "./TextBlock": {
+      "import": "./dist/TextBlock.es.js",
+      "require": "./dist/TextBlock.cjs.js"
+    },
+    "./TextBlockFilled": {
+      "import": "./dist/TextBlockFilled.es.js",
+      "require": "./dist/TextBlockFilled.cjs.js"
+    },
+    "./TextFields": {
+      "import": "./dist/TextFields.es.js",
+      "require": "./dist/TextFields.cjs.js"
+    },
+    "./TextFieldsFilled": {
+      "import": "./dist/TextFieldsFilled.es.js",
+      "require": "./dist/TextFieldsFilled.cjs.js"
+    },
+    "./TextFormatting": {
+      "import": "./dist/TextFormatting.es.js",
+      "require": "./dist/TextFormatting.cjs.js"
+    },
+    "./TextFormattingFilled": {
+      "import": "./dist/TextFormattingFilled.es.js",
+      "require": "./dist/TextFormattingFilled.cjs.js"
+    },
+    "./TextLogo": {
+      "import": "./dist/TextLogo.es.js",
+      "require": "./dist/TextLogo.cjs.js"
+    },
+    "./ThumbDown": {
+      "import": "./dist/ThumbDown.es.js",
+      "require": "./dist/ThumbDown.cjs.js"
+    },
+    "./ThumbDownFilled": {
+      "import": "./dist/ThumbDownFilled.es.js",
+      "require": "./dist/ThumbDownFilled.cjs.js"
+    },
+    "./ThumbUp": {
+      "import": "./dist/ThumbUp.es.js",
+      "require": "./dist/ThumbUp.cjs.js"
+    },
+    "./ThumbUpFilled": {
+      "import": "./dist/ThumbUpFilled.es.js",
+      "require": "./dist/ThumbUpFilled.cjs.js"
+    },
+    "./Tickets": {
+      "import": "./dist/Tickets.es.js",
+      "require": "./dist/Tickets.cjs.js"
+    },
+    "./TicketsFilled": {
+      "import": "./dist/TicketsFilled.es.js",
+      "require": "./dist/TicketsFilled.cjs.js"
+    },
+    "./Time": {
+      "import": "./dist/Time.es.js",
+      "require": "./dist/Time.cjs.js"
+    },
+    "./TimeFilled": {
+      "import": "./dist/TimeFilled.es.js",
+      "require": "./dist/TimeFilled.cjs.js"
+    },
+    "./Timeline": {
+      "import": "./dist/Timeline.es.js",
+      "require": "./dist/Timeline.cjs.js"
+    },
+    "./TimelineFilled": {
+      "import": "./dist/TimelineFilled.es.js",
+      "require": "./dist/TimelineFilled.cjs.js"
+    },
+    "./TipsAndUpdates": {
+      "import": "./dist/TipsAndUpdates.es.js",
+      "require": "./dist/TipsAndUpdates.cjs.js"
+    },
+    "./TipsAndUpdatesFilled": {
+      "import": "./dist/TipsAndUpdatesFilled.es.js",
+      "require": "./dist/TipsAndUpdatesFilled.cjs.js"
+    },
+    "./ToggleLeft": {
+      "import": "./dist/ToggleLeft.es.js",
+      "require": "./dist/ToggleLeft.cjs.js"
+    },
+    "./ToggleLeftFilled": {
+      "import": "./dist/ToggleLeftFilled.es.js",
+      "require": "./dist/ToggleLeftFilled.cjs.js"
+    },
+    "./Tools": {
+      "import": "./dist/Tools.es.js",
+      "require": "./dist/Tools.cjs.js"
+    },
+    "./ToolsFilled": {
+      "import": "./dist/ToolsFilled.es.js",
+      "require": "./dist/ToolsFilled.cjs.js"
+    },
+    "./Traffic": {
+      "import": "./dist/Traffic.es.js",
+      "require": "./dist/Traffic.cjs.js"
+    },
+    "./TrafficFilled": {
+      "import": "./dist/TrafficFilled.es.js",
+      "require": "./dist/TrafficFilled.cjs.js"
+    },
+    "./Travels": {
+      "import": "./dist/Travels.es.js",
+      "require": "./dist/Travels.cjs.js"
+    },
+    "./TravelsFilled": {
+      "import": "./dist/TravelsFilled.es.js",
+      "require": "./dist/TravelsFilled.cjs.js"
+    },
+    "./Underline": {
+      "import": "./dist/Underline.es.js",
+      "require": "./dist/Underline.cjs.js"
+    },
+    "./UnderlineFilled": {
+      "import": "./dist/UnderlineFilled.es.js",
+      "require": "./dist/UnderlineFilled.cjs.js"
+    },
+    "./Undo": {
+      "import": "./dist/Undo.es.js",
+      "require": "./dist/Undo.cjs.js"
+    },
+    "./UndoFilled": {
+      "import": "./dist/UndoFilled.es.js",
+      "require": "./dist/UndoFilled.cjs.js"
+    },
+    "./UsersGroup": {
+      "import": "./dist/UsersGroup.es.js",
+      "require": "./dist/UsersGroup.cjs.js"
+    },
+    "./UsersGroupFilled": {
+      "import": "./dist/UsersGroupFilled.es.js",
+      "require": "./dist/UsersGroupFilled.cjs.js"
+    },
+    "./VerifiedUser": {
+      "import": "./dist/VerifiedUser.es.js",
+      "require": "./dist/VerifiedUser.cjs.js"
+    },
+    "./VerifiedUserFilled": {
+      "import": "./dist/VerifiedUserFilled.es.js",
+      "require": "./dist/VerifiedUserFilled.cjs.js"
+    },
+    "./Video": {
+      "import": "./dist/Video.es.js",
+      "require": "./dist/Video.cjs.js"
+    },
+    "./VideoFilled": {
+      "import": "./dist/VideoFilled.es.js",
+      "require": "./dist/VideoFilled.cjs.js"
+    },
+    "./ViewSidebar": {
+      "import": "./dist/ViewSidebar.es.js",
+      "require": "./dist/ViewSidebar.cjs.js"
+    },
+    "./ViewSidebarFilled": {
+      "import": "./dist/ViewSidebarFilled.es.js",
+      "require": "./dist/ViewSidebarFilled.cjs.js"
+    },
+    "./VisibilityOff": {
+      "import": "./dist/VisibilityOff.es.js",
+      "require": "./dist/VisibilityOff.cjs.js"
+    },
+    "./VisibilityOffFilled": {
+      "import": "./dist/VisibilityOffFilled.es.js",
+      "require": "./dist/VisibilityOffFilled.cjs.js"
+    },
+    "./VisibilityOn": {
+      "import": "./dist/VisibilityOn.es.js",
+      "require": "./dist/VisibilityOn.cjs.js"
+    },
+    "./VisibilityOnFilled": {
+      "import": "./dist/VisibilityOnFilled.es.js",
+      "require": "./dist/VisibilityOnFilled.cjs.js"
+    },
+    "./Waiting": {
+      "import": "./dist/Waiting.es.js",
+      "require": "./dist/Waiting.cjs.js"
+    },
+    "./WaitingFilled": {
+      "import": "./dist/WaitingFilled.es.js",
+      "require": "./dist/WaitingFilled.cjs.js"
+    },
+    "./Warning": {
+      "import": "./dist/Warning.es.js",
+      "require": "./dist/Warning.cjs.js"
+    },
+    "./WarningFilled": {
+      "import": "./dist/WarningFilled.es.js",
+      "require": "./dist/WarningFilled.cjs.js"
+    },
+    "./WeeblyColored": {
+      "import": "./dist/WeeblyColored.es.js",
+      "require": "./dist/WeeblyColored.cjs.js"
+    },
+    "./Windows": {
+      "import": "./dist/Windows.es.js",
+      "require": "./dist/Windows.cjs.js"
+    },
+    "./WindowsColored": {
+      "import": "./dist/WindowsColored.es.js",
+      "require": "./dist/WindowsColored.cjs.js"
+    },
+    "./WoocommerceColored": {
+      "import": "./dist/WoocommerceColored.es.js",
+      "require": "./dist/WoocommerceColored.cjs.js"
+    },
+    "./WordpressColored": {
+      "import": "./dist/WordpressColored.es.js",
+      "require": "./dist/WordpressColored.cjs.js"
+    },
+    "./World": {
+      "import": "./dist/World.es.js",
+      "require": "./dist/World.cjs.js"
+    },
+    "./WorldFilled": {
+      "import": "./dist/WorldFilled.es.js",
+      "require": "./dist/WorldFilled.cjs.js"
+    },
+    "./XApp": {
+      "import": "./dist/XApp.es.js",
+      "require": "./dist/XApp.cjs.js"
+    },
+    "./index": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js"
+    }
   }
 }
