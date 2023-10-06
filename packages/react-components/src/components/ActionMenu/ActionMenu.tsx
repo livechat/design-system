@@ -59,7 +59,8 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   ...props
 }) => {
   const [isVisible, setIsVisible] = React.useState(openedOnInit);
-  const indexRef = React.useRef(-1);
+  const indexRef = React.useRef<number>(-1);
+  const ref = React.useRef<HTMLUListElement | null>(null);
 
   const getIndex = (val: number): number => {
     const currentValue = indexRef.current;
@@ -77,17 +78,24 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
     return newValue;
   };
 
+  const focusElement = (val: number) => {
+    indexRef.current = getIndex(val);
+    const elements = ref.current?.children;
+    const elementToFocus =
+      elements && (elements[indexRef.current].children[0] as HTMLButtonElement);
+
+    return elementToFocus && elementToFocus.focus();
+  };
+
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === KeyCodes.arrowUp && indexRef.current > 0) {
       e.preventDefault();
-      indexRef.current = getIndex(-1);
-      document.getElementById(`${id}-${indexRef.current}`)?.focus();
+      focusElement(-1);
     }
 
     if (e.key === KeyCodes.arrowDown && indexRef.current + 1 < options.length) {
       e.preventDefault();
-      indexRef.current = getIndex(+1);
-      document.getElementById(`${id}-${indexRef.current}`)?.focus();
+      focusElement(+1);
     }
   };
 
@@ -173,6 +181,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
         className={cx(styles[`${baseClass}__list`], className)}
         role="menu"
         aria-hidden={!isVisible}
+        ref={ref}
       >
         {options.map(getOptionElement)}
       </ul>
