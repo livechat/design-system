@@ -1,0 +1,46 @@
+$base-class: 'details-card';
+
+.#{$base-class} {
+  background-color: var(--surface-primary-default);
+  padding: var(--spacing-6);
+  width: 100%;
+
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    width: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &__title {
+      margin: 0;
+    }
+
+    &__icon {
+      transition: all 0.2s ease;
+
+      &--open {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  &__content {
+    transition: all 0.2s ease;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+
+    &--open {
+      opacity: 1;
+      margin-top: var(--spacing-6);
+      max-height: 500px;
+    }
+  }
+}
