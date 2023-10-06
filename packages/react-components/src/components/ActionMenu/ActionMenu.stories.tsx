@@ -24,7 +24,6 @@ export default {
 export const Default = (): React.ReactElement => (
   <div className="action-menu-preview">
     <ActionMenu
-      id="default-example"
       options={exampleOptions}
       triggerClassName="action-menu-button"
       triggerRenderer={<Icon source={MoreHoriz} kind="primary" />}
@@ -43,7 +42,6 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
   return (
     <div className="action-menu-preview">
       <ActionMenu
-        id="keep-open-example"
         triggerClassName="action-menu-button"
         options={[
           {

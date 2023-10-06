@@ -12,10 +12,6 @@ import styles from './ActionMenu.module.scss';
 
 export interface ActionMenuProps {
   /**
-   * Set the unique id for every `ActionMenu` visible on the same view
-   */
-  id: string;
-  /**
    * The CSS class for menu container
    */
   className?: string;
@@ -48,7 +44,6 @@ export interface ActionMenuProps {
 const baseClass = 'action-menu';
 
 export const ActionMenu: React.FC<ActionMenuProps> = ({
-  id,
   className,
   triggerClassName,
   options,
@@ -138,7 +133,6 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
     return (
       <li key={option.key} role="none">
         <button
-          id={`${id}-${index}`}
           data-testid={option.key}
           tabIndex={-1}
           key={option.key}
@@ -177,7 +171,6 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
     >
       <ul
         {...props}
-        id={id}
         className={cx(styles[`${baseClass}__list`], className)}
         role="menu"
         aria-hidden={!isVisible}
