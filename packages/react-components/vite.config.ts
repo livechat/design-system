@@ -1,12 +1,13 @@
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
 
+import * as path from 'path';
+
+import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import turbosnap from 'vite-plugin-turbosnap';
-import react from '@vitejs/plugin-react';
 
-import * as path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,7 +20,7 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       name: 'dsrc',
-      formats: ['es', 'umd', 'cjs'],
+      formats: ['es', 'cjs'],
       fileName: (format) => `dsrc.${format}.js`,
     },
     rollupOptions: {
