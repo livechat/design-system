@@ -12,7 +12,6 @@
     "dist"
   ],
   "scripts": {
-    "dev": "vite",
     "prebuild": "rimraf dist && rimraf lib && npm run prepareIcons && npm run createEntryConfig",
     "build": "tsc && vite build",
     "prepublishOnly": "npm run build && npm run updateExports",
