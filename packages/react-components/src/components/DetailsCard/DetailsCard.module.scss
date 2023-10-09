@@ -2,8 +2,11 @@ $base-class: 'details-card';
 
 .#{$base-class} {
   background-color: var(--surface-primary-default);
-  padding: var(--spacing-6);
   width: 100%;
+
+  &--with-divider {
+    border-top: 1px solid var(--border-basic-tertiary);
+  }
 
   &__button {
     display: flex;
@@ -12,6 +15,7 @@ $base-class: 'details-card';
     border: 0;
     background-color: transparent;
     padding: 0;
+    padding: var(--spacing-6);
     width: 100%;
 
     &:hover {
@@ -31,7 +35,7 @@ $base-class: 'details-card';
     }
   }
 
-  &__content {
+  &__content-wrapper {
     transition: all 0.2s ease;
     opacity: 0;
     max-height: 0;
@@ -39,8 +43,15 @@ $base-class: 'details-card';
 
     &--open {
       opacity: 1;
-      margin-top: var(--spacing-6);
       max-height: 500px;
+    }
+  }
+
+  &__content {
+    padding: 0 var(--spacing-6) var(--spacing-6);
+
+    &--full-space {
+      padding: 0;
     }
   }
 }

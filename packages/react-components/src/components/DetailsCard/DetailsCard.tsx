@@ -17,6 +17,18 @@ export interface IDetailsCardProps {
    * Set the label
    */
   label: string;
+  /**
+   * Define if divider should be visible
+   */
+  withDivider?: boolean;
+  /**
+   * Removes the spacing inside the main container
+   */
+  fullSpaceContent?: boolean;
+  /**
+   * Set if card should be open by default
+   */
+  openOnInit?: boolean;
 }
 
 const baseClass = 'details-card';
@@ -25,9 +37,16 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
   children,
   className,
   label,
+  withDivider,
+  fullSpaceContent,
+  openOnInit = false,
 }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const mergedClassNames = cx(styles[baseClass], className);
+  const [isOpen, setIsOpen] = React.useState(openOnInit);
+  const mergedClassNames = cx(
+    styles[baseClass],
+    withDivider && styles[`${baseClass}--with-divider`],
+    className
+  );
 
   return (
     <div className={mergedClassNames}>
@@ -48,11 +67,18 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
       </button>
       <div
         className={cx(
-          styles[`${baseClass}__content`],
-          isOpen && styles[`${baseClass}__content--open`]
+          styles[`${baseClass}__content-wrapper`],
+          isOpen && styles[`${baseClass}__content-wrapper--open`]
         )}
       >
-        {children}
+        <div
+          className={cx(
+            styles[`${baseClass}__content`],
+            fullSpaceContent && styles[`${baseClass}__content--full-space`]
+          )}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );
