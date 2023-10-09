@@ -27,7 +27,11 @@
     "vite-plugin-dts": "^3.5.4"
   },
   "exports": {
-    ".": "./dist/index.es.js",
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
+    },
     "./AccountCircle": {
       "import": "./dist/AccountCircle.es.js",
       "require": "./dist/AccountCircle.cjs.js",
