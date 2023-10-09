@@ -16,7 +16,8 @@ function updateExports() {
   // Loop through the files, collecting module names and filtering out non-JS files
   for (const file of files) {
     const ext = path.extname(file);
-    if (ext === '.js') {
+    if (ext === '.js' || ext === '.d.ts') {
+      // Include .d.ts files to collect module names
       const moduleName = path.basename(file, ext);
       // Separate the module name and the module format (es/cjs)
       const [name, format] = moduleName.split('.');
@@ -30,6 +31,7 @@ function updateExports() {
     exports[`./${name}`] = {
       import: `./dist/${name}.es.js`,
       require: `./dist/${name}.cjs.js`,
+      types: `./dist/${name}.d.ts`,
     };
   }
 
