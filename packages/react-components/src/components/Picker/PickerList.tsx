@@ -75,7 +75,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
     if (
       e.key === KeyCodes.enter &&
-      !!items[indexRef.current] &&
+      items[indexRef.current] &&
       !items[indexRef.current].disabled
     ) {
       e.preventDefault();
