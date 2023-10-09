@@ -7,6 +7,7 @@
           "build",
           "build:lib",
           "build:styles",
+          "build:icons",
           "prebuild",
           "lint",
           "test"
@@ -27,6 +28,9 @@
     },
     "prebuild": {
       "outputs": ["{projectRoot}/lib", "{projectRoot}/entryConfig.ts"]
+    },
+    "build:icons": {
+      "outputs": ["{projectRoot}/dist", "{projectRoot}/lib"]
     },
     "test": {
       "dependsOn": ["^build"]
