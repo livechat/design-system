@@ -77,9 +77,10 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
     indexRef.current = getIndex(val);
     const elements = ref.current?.children;
     const elementToFocus =
-      elements && (elements[indexRef.current].children[0] as HTMLButtonElement);
+      elements &&
+      (elements[indexRef.current]?.children[0] as HTMLButtonElement);
 
-    return elementToFocus && elementToFocus.focus();
+    return elementToFocus?.focus();
   };
 
   const onKeyDown = (e: KeyboardEvent) => {
