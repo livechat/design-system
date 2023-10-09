@@ -6,9 +6,8 @@
         "cacheableOperations": [
           "build",
           "build:lib",
-          "build:js",
-          "build:ts",
           "build:styles",
+          "prebuild",
           "lint",
           "test"
         ]
@@ -17,43 +16,26 @@
   },
   "targetDefaults": {
     "build": {
-      "outputs": [
-        "{projectRoot}/dist",
-        "{projectRoot}/lib",
-        "{projectRoot}/react"
-      ]
+      "dependsOn": ["^build", "prebuild"],
+      "outputs": ["{projectRoot}/dist", "{projectRoot}/lib"]
     },
     "build:lib": {
-      "outputs": [
-        "{projectRoot}/dist",
-        "{projectRoot}/lib"
-      ]
-    },
-    "build:js": {
-      "outputs": [
-        "{projectRoot}/lib"
-      ]
-    },
-    "build:ts": {
-      "outputs": [
-        "{projectRoot}/react"
-      ]
+      "outputs": ["{projectRoot}/dist", "{projectRoot}/lib"]
     },
     "build:styles": {
-      "outputs": [
-        "{projectRoot}/dist"
-      ]
+      "outputs": ["{projectRoot}/dist"]
+    },
+    "prebuild": {
+      "outputs": ["{projectRoot}/lib", "{projectRoot}/entryConfig.ts"]
+    },
+    "test": {
+      "dependsOn": ["^build"]
     }
   },
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "sharedGlobals": [],
-    "production": [
-      "default"
-    ]
+    "production": ["default"]
   }
 }
