@@ -18,7 +18,7 @@ export default {
   component: DetailsCard,
 };
 
-export const Default = () => {
+export const Default = (): React.ReactElement => {
   return (
     <div
       style={{

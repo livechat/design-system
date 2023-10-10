@@ -65,6 +65,9 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
           hideLabelOnOpen && isOpen && styles[`${baseClass}__button--hide`]
         )}
         onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+        aria-hidden={hideLabelOnOpen && isOpen}
+        data-testid="details-card-button"
       >
         <Heading size="xs" className={styles[`${baseClass}__button__title`]}>
           {label}
@@ -83,6 +86,8 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
           icon={<Icon source={ChevronDown} />}
           className={styles[`${baseClass}__float-button`]}
           onClick={() => setIsOpen(!isOpen)}
+          aria-expanded={isOpen}
+          data-testid="details-card-floating-button"
         />
       )}
       <div
