@@ -1,11 +1,17 @@
 import * as React from 'react';
 
+import noop from '../../utils/noop';
 import { Avatar } from '../Avatar';
 import { Button } from '../Button';
+import { PromoBannerV2 } from '../PromoBannerV2';
 import { Tag } from '../Tag';
+import { Heading } from '../Typography';
 
+import image from './assets/clock-light.svg';
 import { DetailsCard } from './DetailsCard';
 import { DetailsCardInfo } from './DetailsCardInfo';
+
+import './DetailsCard.stories.css';
 
 export default {
   title: 'Components/DetailsCard',
@@ -19,7 +25,7 @@ export const Default = () => {
         width: 500,
       }}
     >
-      <DetailsCard label="Card with text">
+      <DetailsCard label="Simple text">
         <div>
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -30,7 +36,7 @@ export const Default = () => {
           culpa qui officia deserunt mollit anim id est laborum."
         </div>
       </DetailsCard>
-      <DetailsCard label="Card with Info components" withDivider openOnInit>
+      <DetailsCard label="With Info components" withDivider openOnInit>
         <DetailsCardInfo label="Groups">
           <Avatar
             type="text"
@@ -58,16 +64,23 @@ export const Default = () => {
           View more
         </Button>
       </DetailsCard>
-      <DetailsCard label="Test label" withDivider>
-        <div>
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum."
-        </div>
+      <DetailsCard
+        label="With hidden label when open"
+        withDivider
+        hideLabelOnOpen
+      >
+        <PromoBannerV2
+          primaryButton={{
+            label: 'Add working hours',
+            handleClick: noop,
+          }}
+        >
+          <img src={image} className="promo-image" />
+          <Heading as="div" size="sm" className="promo-card">
+            Set working hours
+          </Heading>
+          To better manage staffing
+        </PromoBannerV2>
       </DetailsCard>
     </div>
   );

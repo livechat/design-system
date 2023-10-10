@@ -1,8 +1,12 @@
 import * as React from 'react';
 
-import { ChevronRight } from '@livechat/design-system-icons/react/tabler';
+import {
+  ChevronRight,
+  ChevronDown,
+} from '@livechat/design-system-icons/react/tabler';
 import cx from 'clsx';
 
+import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { Heading } from '../Typography';
 
@@ -29,6 +33,10 @@ export interface IDetailsCardProps {
    * Set if card should be open by default
    */
   openOnInit?: boolean;
+  /**
+   * Set to hide the label on card open
+   */
+  hideLabelOnOpen?: boolean;
 }
 
 const baseClass = 'details-card';
@@ -40,6 +48,7 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
   withDivider,
   fullSpaceContent,
   openOnInit = false,
+  hideLabelOnOpen,
 }) => {
   const [isOpen, setIsOpen] = React.useState(openOnInit);
   const mergedClassNames = cx(
@@ -51,7 +60,10 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
   return (
     <div className={mergedClassNames}>
       <button
-        className={styles[`${baseClass}__button`]}
+        className={cx(
+          styles[`${baseClass}__button`],
+          hideLabelOnOpen && isOpen && styles[`${baseClass}__button--hide`]
+        )}
         onClick={() => setIsOpen(!isOpen)}
       >
         <Heading size="xs" className={styles[`${baseClass}__button__title`]}>
@@ -65,6 +77,14 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
           source={ChevronRight}
         />
       </button>
+      {hideLabelOnOpen && isOpen && (
+        <Button
+          kind="float"
+          icon={<Icon source={ChevronDown} />}
+          className={styles[`${baseClass}__float-button`]}
+          onClick={() => setIsOpen(!isOpen)}
+        />
+      )}
       <div
         className={cx(
           styles[`${baseClass}__content-wrapper`],
@@ -74,7 +94,8 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
         <div
           className={cx(
             styles[`${baseClass}__content`],
-            fullSpaceContent && styles[`${baseClass}__content--full-space`]
+            fullSpaceContent && styles[`${baseClass}__content--full-space`],
+            hideLabelOnOpen && styles[`${baseClass}__content--spacing`]
           )}
         >
           {children}

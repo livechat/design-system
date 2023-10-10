@@ -1,6 +1,7 @@
 $base-class: 'details-card';
 
 .#{$base-class} {
+  position: relative;
   background-color: var(--surface-primary-default);
   width: 100%;
 
@@ -33,6 +34,17 @@ $base-class: 'details-card';
         transform: rotate(90deg);
       }
     }
+
+    &--hide {
+      display: none;
+    }
+  }
+
+  &__float-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
   }
 
   &__content-wrapper {
@@ -52,6 +64,10 @@ $base-class: 'details-card';
 
     &--full-space {
       padding: 0;
+    }
+
+    &--spacing {
+      padding-top: var(--spacing-6);
     }
   }
 }
