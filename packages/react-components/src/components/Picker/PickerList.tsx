@@ -91,6 +91,10 @@ export const PickerList: React.FC<IPickerListProps> = ({
   React.useEffect(() => {
     if (indexRef.current > -1 && items.length > 0 && items[indexRef.current]) {
       setCurrentItemKey(items[indexRef.current].key);
+    } else {
+      indexRef.current = -1;
+      lastIndexRef.current = 0;
+      setCurrentItemKey(null);
     }
 
     if (isOpen) {
