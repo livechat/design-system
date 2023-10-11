@@ -322,6 +322,16 @@
       "require": "./dist/BoldFilled.cjs.js",
       "types": "./dist/BoldFilled.d.ts"
     },
+    "./Bookmark": {
+      "import": "./dist/Bookmark.es.js",
+      "require": "./dist/Bookmark.cjs.js",
+      "types": "./dist/Bookmark.d.ts"
+    },
+    "./BookmarkFilled": {
+      "import": "./dist/BookmarkFilled.es.js",
+      "require": "./dist/BookmarkFilled.cjs.js",
+      "types": "./dist/BookmarkFilled.d.ts"
+    },
     "./Bot": {
       "import": "./dist/Bot.es.js",
       "require": "./dist/Bot.cjs.js",
@@ -426,6 +436,11 @@
       "import": "./dist/ChatBotColored.es.js",
       "require": "./dist/ChatBotColored.cjs.js",
       "types": "./dist/ChatBotColored.d.ts"
+    },
+    "./ChatBotMono": {
+      "import": "./dist/ChatBotMono.es.js",
+      "require": "./dist/ChatBotMono.cjs.js",
+      "types": "./dist/ChatBotMono.d.ts"
     },
     "./ChatDots": {
       "import": "./dist/ChatDots.es.js",
@@ -541,6 +556,11 @@
       "import": "./dist/ChipCopilotColored.es.js",
       "require": "./dist/ChipCopilotColored.cjs.js",
       "types": "./dist/ChipCopilotColored.d.ts"
+    },
+    "./ChipCopilotMono": {
+      "import": "./dist/ChipCopilotMono.es.js",
+      "require": "./dist/ChipCopilotMono.cjs.js",
+      "types": "./dist/ChipCopilotMono.d.ts"
     },
     "./Close": {
       "import": "./dist/Close.es.js",
@@ -1122,15 +1142,20 @@
       "require": "./dist/Help.cjs.js",
       "types": "./dist/Help.d.ts"
     },
+    "./HelpDeskColored": {
+      "import": "./dist/HelpDeskColored.es.js",
+      "require": "./dist/HelpDeskColored.cjs.js",
+      "types": "./dist/HelpDeskColored.d.ts"
+    },
+    "./HelpDeskMono": {
+      "import": "./dist/HelpDeskMono.es.js",
+      "require": "./dist/HelpDeskMono.cjs.js",
+      "types": "./dist/HelpDeskMono.d.ts"
+    },
     "./HelpFilled": {
       "import": "./dist/HelpFilled.es.js",
       "require": "./dist/HelpFilled.cjs.js",
       "types": "./dist/HelpFilled.d.ts"
-    },
-    "./HelpdeskColored": {
-      "import": "./dist/HelpdeskColored.es.js",
-      "require": "./dist/HelpdeskColored.cjs.js",
-      "types": "./dist/HelpdeskColored.d.ts"
     },
     "./Home": {
       "import": "./dist/Home.es.js",
@@ -1212,10 +1237,15 @@
       "require": "./dist/KeyboardFilled.cjs.js",
       "types": "./dist/KeyboardFilled.d.ts"
     },
-    "./KnowledgebaseColored": {
-      "import": "./dist/KnowledgebaseColored.es.js",
-      "require": "./dist/KnowledgebaseColored.cjs.js",
-      "types": "./dist/KnowledgebaseColored.d.ts"
+    "./KnowledgeBaseColored": {
+      "import": "./dist/KnowledgeBaseColored.es.js",
+      "require": "./dist/KnowledgeBaseColored.cjs.js",
+      "types": "./dist/KnowledgeBaseColored.d.ts"
+    },
+    "./KnowledgeBaseMono": {
+      "import": "./dist/KnowledgeBaseMono.es.js",
+      "require": "./dist/KnowledgeBaseMono.cjs.js",
+      "types": "./dist/KnowledgeBaseMono.d.ts"
     },
     "./Link": {
       "import": "./dist/Link.es.js",
@@ -1242,10 +1272,15 @@
       "require": "./dist/ListFilled.cjs.js",
       "types": "./dist/ListFilled.d.ts"
     },
-    "./LivechatColored": {
-      "import": "./dist/LivechatColored.es.js",
-      "require": "./dist/LivechatColored.cjs.js",
-      "types": "./dist/LivechatColored.d.ts"
+    "./LiveChatColored": {
+      "import": "./dist/LiveChatColored.es.js",
+      "require": "./dist/LiveChatColored.cjs.js",
+      "types": "./dist/LiveChatColored.d.ts"
+    },
+    "./LiveChatMono": {
+      "import": "./dist/LiveChatMono.es.js",
+      "require": "./dist/LiveChatMono.cjs.js",
+      "types": "./dist/LiveChatMono.d.ts"
     },
     "./LockBlack": {
       "import": "./dist/LockBlack.es.js",
@@ -1301,6 +1336,11 @@
       "import": "./dist/MessengerColored.es.js",
       "require": "./dist/MessengerColored.cjs.js",
       "types": "./dist/MessengerColored.d.ts"
+    },
+    "./MoodAngry": {
+      "import": "./dist/MoodAngry.es.js",
+      "require": "./dist/MoodAngry.cjs.js",
+      "types": "./dist/MoodAngry.d.ts"
     },
     "./MoodEmpty": {
       "import": "./dist/MoodEmpty.es.js",
@@ -1407,10 +1447,15 @@
       "require": "./dist/OpenInNewFilled.cjs.js",
       "types": "./dist/OpenInNewFilled.d.ts"
     },
-    "./OpenwidgetColored": {
-      "import": "./dist/OpenwidgetColored.es.js",
-      "require": "./dist/OpenwidgetColored.cjs.js",
-      "types": "./dist/OpenwidgetColored.d.ts"
+    "./OpenWidgetColored": {
+      "import": "./dist/OpenWidgetColored.es.js",
+      "require": "./dist/OpenWidgetColored.cjs.js",
+      "types": "./dist/OpenWidgetColored.d.ts"
+    },
+    "./OpenWidgetMono": {
+      "import": "./dist/OpenWidgetMono.es.js",
+      "require": "./dist/OpenWidgetMono.cjs.js",
+      "types": "./dist/OpenWidgetMono.d.ts"
     },
     "./OperaColored": {
       "import": "./dist/OperaColored.es.js",
@@ -1966,6 +2011,16 @@
       "import": "./dist/WaitingFilled.es.js",
       "require": "./dist/WaitingFilled.cjs.js",
       "types": "./dist/WaitingFilled.d.ts"
+    },
+    "./Wand": {
+      "import": "./dist/Wand.es.js",
+      "require": "./dist/Wand.cjs.js",
+      "types": "./dist/Wand.d.ts"
+    },
+    "./WandFilled": {
+      "import": "./dist/WandFilled.es.js",
+      "require": "./dist/WandFilled.cjs.js",
+      "types": "./dist/WandFilled.d.ts"
     },
     "./Warning": {
       "import": "./dist/Warning.es.js",
