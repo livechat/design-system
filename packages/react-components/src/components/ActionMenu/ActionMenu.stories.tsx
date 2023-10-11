@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { MoreHoriz } from '@livechat/design-system-icons/react/tabler';
+import { MoreHoriz } from '@livechat/design-system-icons';
 
 import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';

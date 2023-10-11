@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Check as CheckIcon } from '@livechat/design-system-icons/react/tabler';
+import { Check as CheckIcon } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Icon } from '../Icon';

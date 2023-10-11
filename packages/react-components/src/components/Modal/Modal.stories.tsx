@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { GreetingQuickReply } from '@livechat/design-system-icons/react/material';
+import { GreetingQuickReply } from '@livechat/design-system-icons';
 import { ComponentMeta, Story } from '@storybook/react';
 
 import noop from '../../utils/noop';

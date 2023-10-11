@@ -5,7 +5,7 @@ import {
   ChevronRight,
   DoubleArrowLeft,
   DoubleArrowRight,
-} from '@livechat/design-system-icons/react/material';
+} from '@livechat/design-system-icons';
 import { clsx } from 'clsx';
 import {
   subMonths,

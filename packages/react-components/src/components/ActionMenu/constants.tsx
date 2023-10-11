@@ -6,7 +6,7 @@ import {
   ContentCopy,
   Block,
   Delete,
-} from '@livechat/design-system-icons/react/tabler';
+} from '@livechat/design-system-icons';
 
 import noop from '../../utils/noop';
 import { Icon } from '../Icon';

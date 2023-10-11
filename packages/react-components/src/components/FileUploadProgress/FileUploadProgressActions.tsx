@@ -3,7 +3,7 @@ import * as React from 'react';
 import {
   Close as CloseIcon,
   Refresh as RefreshIcon,
-} from '@livechat/design-system-icons/react/tabler';
+} from '@livechat/design-system-icons';
 
 import { Icon } from '../Icon';
 import { ProgressStatus } from '../Progress/constants';

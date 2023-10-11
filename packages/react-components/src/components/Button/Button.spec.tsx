@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import * as MaterialIcons from '@livechat/design-system-icons/react/material';
+import * as Icons from '@livechat/design-system-icons';
 
 import { render, fireEvent, vi } from 'test-utils';
 
@@ -68,7 +68,7 @@ describe('<Button> component', () => {
 
   it('should show icon component when "icon" prop has been passed', () => {
     const { container } = renderButton({
-      icon: <Icon source={MaterialIcons.AddCircle} />,
+      icon: <Icon source={Icons.AddCircle} />,
     });
 
     const iconEl = container.querySelector(`.${styles['btn__icon']}`);
@@ -79,7 +79,7 @@ describe('<Button> component', () => {
 
   it('should show icon component on right side', () => {
     const { container } = renderButton({
-      icon: <Icon source={MaterialIcons.AddCircle} />,
+      icon: <Icon source={Icons.AddCircle} />,
       iconPosition: 'right',
     });
 
@@ -98,7 +98,7 @@ describe('<Button> component', () => {
   it('should allow for "icon-only" content', () => {
     const { btnEl } = renderButton({
       children: null,
-      icon: <Icon source={MaterialIcons.AddCircle} />,
+      icon: <Icon source={Icons.AddCircle} />,
     });
 
     expect(btnEl).toHaveClass(styles['btn--icon-only']);
