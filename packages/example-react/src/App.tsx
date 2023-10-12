@@ -1,4 +1,4 @@
-import { Add } from '@livechat/design-system-icons/react/material';
+import { Add } from '@livechat/design-system-icons';
 import { Badge, Icon } from '@livechat/design-system-react-components';
 
 function App() {
