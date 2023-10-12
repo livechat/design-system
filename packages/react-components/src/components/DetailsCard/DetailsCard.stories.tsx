@@ -9,16 +9,42 @@ import { PromoBannerV2 } from '../PromoBannerV2';
 import { Tag } from '../Tag';
 import { Heading } from '../Typography';
 
-import { DetailsCard } from './DetailsCard';
+import { DetailsCard, IDetailsCardProps } from './DetailsCard';
 
 import './DetailsCard.stories.css';
 
 export default {
   title: 'Components/DetailsCard',
   component: DetailsCard,
+  subcomponents: {
+    DetailsCardInfo,
+  },
 };
 
-export const Default = (): React.ReactElement => {
+export const Default = (args: IDetailsCardProps): React.ReactElement => {
+  return (
+    <div
+      style={{
+        width: 500,
+      }}
+    >
+      <DetailsCard {...args}>
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+        mollit anim id est laborum."
+      </DetailsCard>
+    </div>
+  );
+};
+Default.args = {
+  label: 'Example label',
+};
+
+export const ExampleUsage = (): React.ReactElement => {
   return (
     <div
       style={{

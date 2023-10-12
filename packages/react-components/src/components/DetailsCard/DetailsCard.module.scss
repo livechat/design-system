@@ -4,9 +4,10 @@ $base-class: 'details-card';
   position: relative;
   background-color: var(--surface-primary-default);
   width: 100%;
+  color: var(--content-basic-primary);
 
   &:hover {
-    .#{$base-class}__float-button {
+    .#{$base-class}__float-button--open {
       opacity: 1;
     }
   }
@@ -17,13 +18,17 @@ $base-class: 'details-card';
 
   &__button {
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: space-between;
+    transition: all 0.2s ease;
+    opacity: 1;
     border: 0;
     background-color: transparent;
     padding: 0;
     padding: var(--spacing-6);
     width: 100%;
+    color: var(--content-basic-primary);
 
     &:hover {
       cursor: pointer;
@@ -45,16 +50,36 @@ $base-class: 'details-card';
     }
 
     &--hide {
-      display: none;
+      opacity: 0;
+      padding: 0 var(--spacing-6);
+      height: 0;
     }
   }
 
   &__float-button {
     position: absolute;
-    top: var(--spacing-1);
-    right: var(--spacing-1);
+    top: 18px;
+    right: 16px;
+    transition: all 0.2s ease;
     opacity: 0;
     z-index: 1;
+
+    &--closed {
+      opacity: 1;
+    }
+
+    &--open {
+      top: var(--spacing-1);
+      right: var(--spacing-1);
+    }
+
+    &__icon {
+      transition: all 0.2s ease;
+
+      &--open {
+        transform: rotate(90deg);
+      }
+    }
   }
 
   &__content-wrapper {

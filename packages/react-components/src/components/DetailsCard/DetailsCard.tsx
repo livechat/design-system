@@ -1,9 +1,6 @@
 import * as React from 'react';
 
-import {
-  ChevronRight,
-  ChevronDown,
-} from '@livechat/design-system-icons/react/tabler';
+import { ChevronRight } from '@livechat/design-system-icons/react/tabler';
 import cx from 'clsx';
 
 import { Button } from '../Button';
@@ -75,19 +72,33 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
         <Heading size="xs" className={styles[`${baseClass}__button__title`]}>
           {label}
         </Heading>
-        <Icon
-          className={cx(
-            styles[`${baseClass}__button__icon`],
-            isOpen && styles[`${baseClass}__button__icon--open`]
-          )}
-          source={ChevronRight}
-        />
+        {!hideLabelOnOpen && (
+          <Icon
+            className={cx(
+              styles[`${baseClass}__button__icon`],
+              isOpen && styles[`${baseClass}__button__icon--open`]
+            )}
+            source={ChevronRight}
+          />
+        )}
       </button>
-      {isMainButtonHidden && (
+      {hideLabelOnOpen && (
         <Button
-          kind="float"
-          icon={<Icon source={ChevronDown} />}
-          className={styles[`${baseClass}__float-button`]}
+          kind={isOpen ? 'float' : 'text'}
+          icon={
+            <Icon
+              source={ChevronRight}
+              className={cx(
+                styles[`${baseClass}__float-button__icon`],
+                isOpen && styles[`${baseClass}__float-button__icon--open`]
+              )}
+            />
+          }
+          className={cx(
+            styles[`${baseClass}__float-button`],
+            !isOpen && styles[`${baseClass}__float-button--closed`],
+            isOpen && styles[`${baseClass}__float-button--open`]
+          )}
           onClick={handleButtonClick}
           aria-expanded={isOpen}
           data-testid="details-card-floating-button"
