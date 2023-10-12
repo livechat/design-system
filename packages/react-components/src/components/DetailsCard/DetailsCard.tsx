@@ -56,17 +56,20 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
     withDivider && styles[`${baseClass}--with-divider`],
     className
   );
+  const isMainButtonHidden = hideLabelOnOpen && isOpen;
+
+  const handleButtonClick = () => setIsOpen((prevValue) => !prevValue);
 
   return (
     <div className={mergedClassNames}>
       <button
         className={cx(
           styles[`${baseClass}__button`],
-          hideLabelOnOpen && isOpen && styles[`${baseClass}__button--hide`]
+          isMainButtonHidden && styles[`${baseClass}__button--hide`]
         )}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleButtonClick}
         aria-expanded={isOpen}
-        aria-hidden={hideLabelOnOpen && isOpen}
+        aria-hidden={isMainButtonHidden}
         data-testid="details-card-button"
       >
         <Heading size="xs" className={styles[`${baseClass}__button__title`]}>
@@ -80,12 +83,12 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
           source={ChevronRight}
         />
       </button>
-      {hideLabelOnOpen && isOpen && (
+      {isMainButtonHidden && (
         <Button
           kind="float"
           icon={<Icon source={ChevronDown} />}
           className={styles[`${baseClass}__float-button`]}
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={handleButtonClick}
           aria-expanded={isOpen}
           data-testid="details-card-floating-button"
         />

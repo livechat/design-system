@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { render, userEvent } from 'test-utils';
 
-import { DetailsCard, IDetailsCardProps } from '../DetailsCard';
+import { DetailsCard, IDetailsCardProps } from './DetailsCard';
 
 const label = 'Test label';
 const text = 'Test text';
@@ -17,14 +17,14 @@ const renderComponent = (props: IDetailsCardProps) => {
 };
 
 describe('<DetailsCard> component', () => {
-  it('should render closed card with label', () => {
+  it('should render closed card with label by default', () => {
     const { getByText, getByRole } = renderComponent(defaultProps);
 
     expect(getByText(label)).toBeVisible();
     expect(getByRole('button')).toHaveAttribute('aria-expanded', 'false');
   });
 
-  it('should open and close the card after button click', () => {
+  it('should toggle the card on button click', () => {
     const { getByRole } = renderComponent(defaultProps);
     const button = getByRole('button');
 

@@ -1,15 +1,15 @@
 import * as React from 'react';
 
+import image from '../../stories/assets/clock-light.svg';
 import noop from '../../utils/noop';
 import { Avatar } from '../Avatar';
 import { Button } from '../Button';
+import { DetailsCardInfo } from '../DetailsCardInfo';
 import { PromoBannerV2 } from '../PromoBannerV2';
 import { Tag } from '../Tag';
 import { Heading } from '../Typography';
 
-import image from './assets/clock-light.svg';
 import { DetailsCard } from './DetailsCard';
-import { DetailsCardInfo } from './DetailsCardInfo';
 
 import './DetailsCard.stories.css';
 
