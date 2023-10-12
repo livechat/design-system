@@ -67,6 +67,11 @@
       "require": "./dist/AddCircleFilled.cjs.js",
       "types": "./dist/AddCircleFilled.d.ts"
     },
+    "./AddEmoji": {
+      "import": "./dist/AddEmoji.es.js",
+      "require": "./dist/AddEmoji.cjs.js",
+      "types": "./dist/AddEmoji.d.ts"
+    },
     "./AddFilled": {
       "import": "./dist/AddFilled.es.js",
       "require": "./dist/AddFilled.cjs.js",
@@ -91,6 +96,16 @@
       "import": "./dist/AdjustFilled.es.js",
       "require": "./dist/AdjustFilled.cjs.js",
       "types": "./dist/AdjustFilled.d.ts"
+    },
+    "./AiSummary": {
+      "import": "./dist/AiSummary.es.js",
+      "require": "./dist/AiSummary.cjs.js",
+      "types": "./dist/AiSummary.d.ts"
+    },
+    "./AiSummaryFilled": {
+      "import": "./dist/AiSummaryFilled.es.js",
+      "require": "./dist/AiSummaryFilled.cjs.js",
+      "types": "./dist/AiSummaryFilled.d.ts"
     },
     "./AlertSpam": {
       "import": "./dist/AlertSpam.es.js",
@@ -1207,6 +1222,16 @@
       "require": "./dist/InfoFilled.cjs.js",
       "types": "./dist/InfoFilled.d.ts"
     },
+    "./Instagram": {
+      "import": "./dist/Instagram.es.js",
+      "require": "./dist/Instagram.cjs.js",
+      "types": "./dist/Instagram.d.ts"
+    },
+    "./InstagramColored": {
+      "import": "./dist/InstagramColored.es.js",
+      "require": "./dist/InstagramColored.cjs.js",
+      "types": "./dist/InstagramColored.d.ts"
+    },
     "./InternetExplorerColored": {
       "import": "./dist/InternetExplorerColored.es.js",
       "require": "./dist/InternetExplorerColored.cjs.js",
@@ -1246,6 +1271,16 @@
       "import": "./dist/KnowledgeBaseMono.es.js",
       "require": "./dist/KnowledgeBaseMono.cjs.js",
       "types": "./dist/KnowledgeBaseMono.d.ts"
+    },
+    "./Line": {
+      "import": "./dist/Line.es.js",
+      "require": "./dist/Line.cjs.js",
+      "types": "./dist/Line.d.ts"
+    },
+    "./LineColored": {
+      "import": "./dist/LineColored.es.js",
+      "require": "./dist/LineColored.cjs.js",
+      "types": "./dist/LineColored.d.ts"
     },
     "./Link": {
       "import": "./dist/Link.es.js",
@@ -1611,6 +1646,16 @@
       "import": "./dist/RemoveFilled.es.js",
       "require": "./dist/RemoveFilled.cjs.js",
       "types": "./dist/RemoveFilled.d.ts"
+    },
+    "./Repeat": {
+      "import": "./dist/Repeat.es.js",
+      "require": "./dist/Repeat.cjs.js",
+      "types": "./dist/Repeat.d.ts"
+    },
+    "./Replace": {
+      "import": "./dist/Replace.es.js",
+      "require": "./dist/Replace.cjs.js",
+      "types": "./dist/Replace.d.ts"
     },
     "./Reply": {
       "import": "./dist/Reply.es.js",
