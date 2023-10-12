@@ -1,9 +1,6 @@
 import * as React from 'react';
 
-import {
-  CheckCircle,
-  CloseCircle,
-} from '@livechat/design-system-icons/react/tabler';
+import { CheckCircle, CloseCircle } from '@livechat/design-system-icons';
 
 import { Icon } from '../../components/Icon';
 import { Heading } from '../../components/Typography';

@@ -5,7 +5,7 @@ import {
   Error as ErrorIcon,
   ChevronDown as ChevronDownIcon,
   ChevronUp as ChevronUpIcon,
-} from '@livechat/design-system-icons/react/tabler';
+} from '@livechat/design-system-icons';
 import cx from 'clsx';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 

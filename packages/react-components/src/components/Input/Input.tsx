@@ -3,7 +3,7 @@ import * as React from 'react';
 import {
   VisibilityOn as VisibilityOnIcon,
   VisibilityOff as VisibilityOffIcon,
-} from '@livechat/design-system-icons/react/tabler';
+} from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Button } from '../Button';

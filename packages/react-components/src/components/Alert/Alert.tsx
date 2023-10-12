@@ -6,7 +6,7 @@ import {
   Info as InfoIcon,
   Block as BlockIcon,
   CheckCircle as CheckIcon,
-} from '@livechat/design-system-icons/react/tabler';
+} from '@livechat/design-system-icons';
 import cx from 'clsx';
 import debounce from 'lodash.debounce';
 

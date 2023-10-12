@@ -7,7 +7,7 @@ import {
   Apps,
   Calendar,
   Contact,
-} from '@livechat/design-system-icons/react/tabler';
+} from '@livechat/design-system-icons';
 
 import { Icon } from '../Icon';
 

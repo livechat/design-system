@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { LockBlackFilled as LockIcon } from '@livechat/design-system-icons/react/tabler';
+import { LockBlackFilled as LockIcon } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Icon, IconSize } from '../Icon';

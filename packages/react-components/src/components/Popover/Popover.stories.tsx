@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ChevronDown } from '@livechat/design-system-icons/react/tabler';
+import { ChevronDown } from '@livechat/design-system-icons';
 import { ComponentMeta } from '@storybook/react';
 
 import { Button } from '../Button';

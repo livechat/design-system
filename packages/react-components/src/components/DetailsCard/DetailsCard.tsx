@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ChevronRight } from '@livechat/design-system-icons/react/tabler';
+import { ChevronRight } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Button } from '../Button';

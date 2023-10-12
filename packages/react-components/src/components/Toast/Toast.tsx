@@ -6,7 +6,7 @@ import {
   Warning,
   CheckCircle,
   Block,
-} from '@livechat/design-system-icons/react/tabler';
+} from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Button } from '../Button';

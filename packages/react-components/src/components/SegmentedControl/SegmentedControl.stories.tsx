@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import * as TablerIcons from '@livechat/design-system-icons/react/tabler';
+import * as TablerIcons from '@livechat/design-system-icons';
 import { ComponentMeta, Story } from '@storybook/react';
 
 import { Icon } from '../Icon';
