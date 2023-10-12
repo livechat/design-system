@@ -36,20 +36,20 @@ describe('<DetailsCard> component', () => {
   });
 
   it('should hide the label if card is open when hideLabelOnOpen is set', () => {
-    const { getByRole, queryByTestId } = renderComponent({
+    const { queryByTestId, getByTestId } = renderComponent({
       ...defaultProps,
       hideLabelOnOpen: true,
     });
-    const button = getByRole('button');
+    const button = getByTestId('details-card-button');
+    const floatButton = queryByTestId('details-card-floating-button');
 
     expect(button).toHaveAttribute('aria-hidden', 'false');
-    expect(
-      queryByTestId('details-card-floating-button')
-    ).not.toBeInTheDocument();
+    expect(floatButton).toBeInTheDocument();
+    expect(floatButton).toHaveAttribute('aria-expanded', 'false');
     userEvent.click(button);
     expect(button).toHaveAttribute('aria-expanded', 'true');
     expect(button).toHaveAttribute('aria-hidden', 'true');
-    expect(queryByTestId('details-card-floating-button')).toBeInTheDocument();
+    expect(floatButton).toHaveAttribute('aria-expanded', 'true');
   });
 
   it('should be open if openOnInit is set to true', () => {
