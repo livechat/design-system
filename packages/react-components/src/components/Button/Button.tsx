@@ -130,6 +130,7 @@ export const Button = React.forwardRef<
         {icon &&
           React.cloneElement(icon, {
             className: cx(
+              icon.props.className,
               styles[`${baseClass}__icon`],
               styles[`${baseClass}__icon--${iconPosition}`]
             ),

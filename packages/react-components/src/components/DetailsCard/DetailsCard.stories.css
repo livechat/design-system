@@ -1,0 +1,9 @@
+.promo-card {
+  margin-bottom: var(--spacing-1);
+  font-weight: 700;
+}
+
+.promo-image {
+  margin-bottom: var(--spacing-2);
+  width: 48px;
+}
