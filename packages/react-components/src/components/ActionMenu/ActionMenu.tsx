@@ -1,10 +1,14 @@
 import * as React from 'react';
 
-import { Placement } from '@floating-ui/react-dom';
-import cx from 'clsx';
+import {
+  useFloating,
+  Placement,
+  flip,
+  offset,
+  autoUpdate,
+} from '@floating-ui/react-dom';import cx from 'clsx';
 
 import { KeyCodes } from '../../utils/keyCodes';
-import { Popover } from '../Popover';
 
 import { IActionMenuOption } from './types';
 
@@ -15,10 +19,6 @@ export interface ActionMenuProps {
    * The CSS class for menu container
    */
   className?: string;
-  /**
-   * The CSS class for trigger element
-   */
-  triggerClassName?: string;
   /**
    * Array of menu options
    */
@@ -39,23 +39,98 @@ export interface ActionMenuProps {
    * Menu will stay open after option click
    */
   keepOpenOnClick?: boolean;
+  /**
+   * Set the menu placement to keep it in view
+   */
+  flipOptions?: Parameters<typeof flip>[0];
+  /**
+   * Set to control the menu visibility
+   */
+  visible?: boolean;
+  /**
+   * Optional handler called on menu close
+   */
+  onClose?: () => void;
+  /**
+   * Optional handler called on menu open
+   */
+  onOpen?: () => void
 }
 
 const baseClass = 'action-menu';
 
 export const ActionMenu: React.FC<ActionMenuProps> = ({
   className,
-  triggerClassName,
   options,
   triggerRenderer,
   placement = 'bottom-end',
   openedOnInit = false,
   keepOpenOnClick,
+  flipOptions,
+  visible,
+  onClose,
+  onOpen,
   ...props
 }) => {
+  const isControlled = visible !== undefined;
   const [isVisible, setIsVisible] = React.useState(openedOnInit);
   const indexRef = React.useRef<number>(-1);
   const ref = React.useRef<HTMLUListElement | null>(null);
+  const currentVisibility = isControlled ? visible : isVisible;
+  const mergedClasNames = cx(
+    styles[baseClass],
+    currentVisibility && styles[`${baseClass}--visible`]
+  );
+  const {
+    x,
+    y,
+    reference,
+    floating,
+    strategy,
+    refs,
+    update,
+    placement: updatedPlacement,
+  } = useFloating({
+    middleware: [offset(4), flip(flipOptions)],
+    placement: placement,
+  });
+
+  function handleDocumentClick(event: MouseEvent) {
+    const isListElementClick = refs.floating.current && (refs.floating.current as Node).contains(event.target as Node);
+    const isTriggerElementClick = refs.reference.current && (refs.reference.current as Node).contains(event.target as Node);
+
+    if (isListElementClick) {
+      return;
+    } else if (isTriggerElementClick) {
+      if (currentVisibility) {
+        onClose?.();
+        !isControlled && setIsVisible(false);
+      } else {
+        onOpen?.();
+        !isControlled &&  setIsVisible(true);
+      }
+    } else {
+      onClose?.();
+      !isControlled && setIsVisible(false);
+    }
+  }
+
+  React.useEffect(() => {
+    document.addEventListener('mousedown', handleDocumentClick);
+
+    return () => {
+      document.removeEventListener('mousedown', handleDocumentClick);
+    };
+  }, [isVisible, visible]);
+
+  React.useEffect(() => {
+    if (!refs.reference.current || !refs.floating.current) {
+      return;
+    }
+
+    // Only call this when the floating element is rendered
+    return autoUpdate(refs.reference.current, refs.floating.current, update);
+  }, [refs.reference, refs.floating, update, updatedPlacement, isVisible, visible]);
 
   const getIndex = (val: number): number => {
     const currentValue = indexRef.current;
@@ -96,25 +171,22 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   };
 
   React.useEffect(() => {
-    if (isVisible) {
+    if (currentVisibility) {
       document.addEventListener('keydown', onKeyDown);
 
       return () => document.removeEventListener('keydown', onKeyDown);
     } else {
       indexRef.current = -1;
     }
-  }, [isVisible, onKeyDown]);
-
-  const handleTriggerClick = () => {
-    setIsVisible(true);
-  };
+  }, [isVisible, visible, onKeyDown]);
 
   const handleItemClick = (index: number, itemOnClick?: () => void) => {
     indexRef.current = index;
     itemOnClick?.();
 
-    if (!keepOpenOnClick) {
+    if (!isControlled && !keepOpenOnClick) {
       setIsVisible(false);
+      onClose?.();
     }
   };
 
@@ -153,32 +225,29 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   };
 
   return (
-    <Popover
-      isVisible={isVisible}
-      placement={placement}
-      onClose={() => setIsVisible(false)}
-      triggerRenderer={() => (
-        <button
-          data-testid="action-menu-trigger-button"
-          className={cx(
-            styles[`${baseClass}__trigger-button`],
-            triggerClassName
-          )}
-          onClick={handleTriggerClick}
-        >
-          {triggerRenderer}
-        </button>
-      )}
-    >
-      <ul
-        {...props}
-        className={cx(styles[`${baseClass}__list`], className)}
-        role="menu"
-        aria-hidden={!isVisible}
-        ref={ref}
+    <>
+      <div ref={reference}>
+        {triggerRenderer}
+      </div>
+      <div
+        ref={floating}
+        className={mergedClasNames}
+        style={{
+          position: strategy,
+          top: y !== null && y !== undefined ? y : '',
+          left: x !== null && x !== undefined ? x : '',
+        }}
       >
-        {options.map(getOptionElement)}
-      </ul>
-    </Popover>
-  );
+        <ul
+          {...props}
+          className={cx(styles[`${baseClass}__list`], className)}
+          role="menu"
+          aria-hidden={!isVisible}
+          ref={ref}
+        >
+          {options.map(getOptionElement)}
+        </ul>
+      </div>
+    </>
+  )
 };

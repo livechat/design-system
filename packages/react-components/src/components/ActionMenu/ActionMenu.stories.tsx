@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { MoreHoriz } from '@livechat/design-system-icons';
 
+import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
 import { RadioButton } from '../RadioButton';
@@ -21,16 +22,22 @@ export default {
   },
 };
 
-export const Default = (): React.ReactElement => (
-  <div className="action-menu-preview">
-    <ActionMenu
-      options={exampleOptions}
-      triggerClassName="action-menu-button"
-      triggerRenderer={<Icon source={MoreHoriz} kind="primary" />}
-      openedOnInit
-    />
-  </div>
-);
+export const Default = (): React.ReactElement => {
+  return (
+    <div className="action-menu-preview">
+      <ActionMenu
+        options={exampleOptions}
+        triggerRenderer={
+          <Button 
+            icon={<Icon source={MoreHoriz} kind="primary" />} 
+            onClick={() => console.log('WIP test')}
+          />
+        }
+        openedOnInit
+      />
+    </div>
+  )
+}
 
 export const KeepOpenOnItemClick = (): React.ReactElement => {
   const [radioButtonValue, setRadioButtonValue] = React.useState('one');
