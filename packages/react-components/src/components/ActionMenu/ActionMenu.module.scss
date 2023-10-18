@@ -9,11 +9,6 @@ $base-class: 'action-menu';
   background-color: var(--popover-background);
   min-width: 168px;
   max-width: 336px;
-  display: none;
-
-  &--visible {
-    display: block;
-  }
 
   &__trigger-button {
     border: 0;

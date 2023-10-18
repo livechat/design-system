@@ -6,7 +6,11 @@ import {
   flip,
   offset,
   autoUpdate,
-} from '@floating-ui/react-dom';import cx from 'clsx';
+  useClick,
+  useInteractions,
+  useDismiss
+} from '@floating-ui/react';
+import cx from 'clsx';
 
 import { KeyCodes } from '../../utils/keyCodes';
 
@@ -76,61 +80,39 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   const [isVisible, setIsVisible] = React.useState(openedOnInit);
   const indexRef = React.useRef<number>(-1);
   const ref = React.useRef<HTMLUListElement | null>(null);
-  const currentVisibility = isControlled ? visible : isVisible;
-  const mergedClasNames = cx(
-    styles[baseClass],
-    currentVisibility && styles[`${baseClass}--visible`]
-  );
-  const {
-    x,
-    y,
-    reference,
-    floating,
-    strategy,
-    refs,
-    update,
-    placement: updatedPlacement,
-  } = useFloating({
-    middleware: [offset(4), flip(flipOptions)],
-    placement: placement,
-  });
+  const currentlyVisible = isControlled ? visible : isVisible;
 
-  function handleDocumentClick(event: MouseEvent) {
-    const isListElementClick = refs.floating.current && (refs.floating.current as Node).contains(event.target as Node);
-    const isTriggerElementClick = refs.reference.current && (refs.reference.current as Node).contains(event.target as Node);
-
-    if (isListElementClick) {
-      return;
-    } else if (isTriggerElementClick) {
-      if (currentVisibility) {
-        onClose?.();
-        !isControlled && setIsVisible(false);
-      } else {
-        onOpen?.();
-        !isControlled &&  setIsVisible(true);
-      }
-    } else {
+  const handleMenuStateChange = () => {
+    if (currentlyVisible) {
       onClose?.();
       !isControlled && setIsVisible(false);
+    } else {
+      onOpen?.();
+      !isControlled && setIsVisible(true);
     }
   }
 
-  React.useEffect(() => {
-    document.addEventListener('mousedown', handleDocumentClick);
-
-    return () => {
-      document.removeEventListener('mousedown', handleDocumentClick);
-    };
-  }, [isVisible, visible]);
-
-  React.useEffect(() => {
-    if (!refs.reference.current || !refs.floating.current) {
-      return;
-    }
-
-    // Only call this when the floating element is rendered
-    return autoUpdate(refs.reference.current, refs.floating.current, update);
-  }, [refs.reference, refs.floating, update, updatedPlacement, isVisible, visible]);
+  const {
+    x,
+    y,
+    strategy,
+    refs,
+    context
+  } = useFloating({
+    middleware: [offset(4), flip(flipOptions)],
+    placement: placement,
+    open: currentlyVisible,
+    onOpenChange: handleMenuStateChange,
+    whileElementsMounted: autoUpdate,
+  });
+  const click = useClick(context);
+  const dismiss = useDismiss(context, {
+    enabled: currentlyVisible
+  });
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    click,
+    dismiss
+  ]);
 
   const getIndex = (val: number): number => {
     const currentValue = indexRef.current;
@@ -171,18 +153,19 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   };
 
   React.useEffect(() => {
-    if (currentVisibility) {
+    if (currentlyVisible) {
       document.addEventListener('keydown', onKeyDown);
 
       return () => document.removeEventListener('keydown', onKeyDown);
     } else {
       indexRef.current = -1;
     }
-  }, [isVisible, visible, onKeyDown]);
+  }, [currentlyVisible, onKeyDown]);
 
   const handleItemClick = (index: number, itemOnClick?: () => void) => {
     indexRef.current = index;
     itemOnClick?.();
+    console.log('==> handleItemClick');
 
     if (!isControlled && !keepOpenOnClick) {
       setIsVisible(false);
@@ -226,28 +209,31 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
 
   return (
     <>
-      <div ref={reference}>
+      <div ref={refs.setReference} {...getReferenceProps()}>
         {triggerRenderer}
       </div>
-      <div
-        ref={floating}
-        className={mergedClasNames}
-        style={{
-          position: strategy,
-          top: y !== null && y !== undefined ? y : '',
-          left: x !== null && x !== undefined ? x : '',
-        }}
-      >
-        <ul
-          {...props}
-          className={cx(styles[`${baseClass}__list`], className)}
-          role="menu"
-          aria-hidden={!isVisible}
-          ref={ref}
+      {currentlyVisible && (
+        <div
+          ref={refs.setFloating}
+          className={styles[baseClass]}
+          style={{
+            position: strategy,
+            top: y !== null && y !== undefined ? y : '',
+            left: x !== null && x !== undefined ? x : '',
+          }}
+          {...getFloatingProps()}
         >
-          {options.map(getOptionElement)}
-        </ul>
-      </div>
+          <ul
+            {...props}
+            className={cx(styles[`${baseClass}__list`], className)}
+            role="menu"
+            aria-hidden={!isVisible}
+            ref={ref}
+          >
+            {options.map(getOptionElement)}
+          </ul>
+        </div>
+      )}
     </>
   )
 };
