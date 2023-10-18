@@ -28,16 +28,13 @@ export const Default = (): React.ReactElement => {
       <ActionMenu
         options={exampleOptions}
         triggerRenderer={
-          <Button 
-            icon={<Icon source={MoreHoriz} kind="primary" />} 
-            onClick={() => console.log('WIP test')}
-          />
+          <Button icon={<Icon source={MoreHoriz} kind="primary" />} />
         }
         openedOnInit
       />
     </div>
-  )
-}
+  );
+};
 
 export const KeepOpenOnItemClick = (): React.ReactElement => {
   const [radioButtonValue, setRadioButtonValue] = React.useState('one');
@@ -49,7 +46,6 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
   return (
     <div className="action-menu-preview">
       <ActionMenu
-        triggerClassName="action-menu-button"
         options={[
           {
             key: 'group-1',
@@ -138,7 +134,9 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
             onClick: () => setCheckboxTwoValue((s) => !s),
           },
         ]}
-        triggerRenderer={<Icon source={MoreHoriz} kind="primary" />}
+        triggerRenderer={
+          <Button icon={<Icon source={MoreHoriz} kind="primary" />} />
+        }
         openedOnInit
         keepOpenOnClick
       />

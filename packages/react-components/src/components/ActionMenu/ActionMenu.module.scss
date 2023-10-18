@@ -32,7 +32,6 @@ $base-class: 'action-menu';
     background-color: var(--picker-list-background);
     padding: 0;
     padding: var(--spacing-2);
-    overflow: hidden;
     list-style: none;
 
     &__group-header {

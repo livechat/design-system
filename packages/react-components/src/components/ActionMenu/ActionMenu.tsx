@@ -8,7 +8,7 @@ import {
   autoUpdate,
   useClick,
   useInteractions,
-  useDismiss
+  useDismiss,
 } from '@floating-ui/react';
 import cx from 'clsx';
 
@@ -58,7 +58,7 @@ export interface ActionMenuProps {
   /**
    * Optional handler called on menu open
    */
-  onOpen?: () => void
+  onOpen?: () => void;
 }
 
 const baseClass = 'action-menu';
@@ -90,15 +90,9 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
       onOpen?.();
       !isControlled && setIsVisible(true);
     }
-  }
+  };
 
-  const {
-    x,
-    y,
-    strategy,
-    refs,
-    context
-  } = useFloating({
+  const { x, y, strategy, refs, context } = useFloating({
     middleware: [offset(4), flip(flipOptions)],
     placement: placement,
     open: currentlyVisible,
@@ -107,11 +101,11 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   });
   const click = useClick(context);
   const dismiss = useDismiss(context, {
-    enabled: currentlyVisible
+    enabled: currentlyVisible,
   });
   const { getReferenceProps, getFloatingProps } = useInteractions([
     click,
-    dismiss
+    dismiss,
   ]);
 
   const getIndex = (val: number): number => {
@@ -165,7 +159,6 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   const handleItemClick = (index: number, itemOnClick?: () => void) => {
     indexRef.current = index;
     itemOnClick?.();
-    console.log('==> handleItemClick');
 
     if (!isControlled && !keepOpenOnClick) {
       setIsVisible(false);
@@ -209,7 +202,11 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
 
   return (
     <>
-      <div ref={refs.setReference} {...getReferenceProps()}>
+      <div
+        data-testid="action-menu-trigger-button"
+        ref={refs.setReference}
+        {...getReferenceProps()}
+      >
         {triggerRenderer}
       </div>
       {currentlyVisible && (
@@ -227,7 +224,6 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
             {...props}
             className={cx(styles[`${baseClass}__list`], className)}
             role="menu"
-            aria-hidden={!isVisible}
             ref={ref}
           >
             {options.map(getOptionElement)}
@@ -235,5 +231,5 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
         </div>
       )}
     </>
-  )
+  );
 };
