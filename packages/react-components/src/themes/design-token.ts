@@ -38,6 +38,8 @@ export const DesignToken = {
   SurfaceAccentEmphasisMinNegative: '--surface-accent-emphasis-min-negative',
   SurfaceAccentEmphasisMinWarning: '--surface-accent-emphasis-min-warning',
   SurfaceAccentEmphasisMinPositive: '--surface-accent-emphasis-min-positive',
+  SurfaceAccentEmphasisMediumPositive:
+    '--surface-accent-emphasis-medium-positive',
   SurfaceAccentEmphasisMinPurple: '--surface-accent-emphasis-min-purple',
   SurfaceInvertDefault: '--surface-invert-default', // deprecated
   SurfaceInvertPrimary: '--surface-invert-primary',
