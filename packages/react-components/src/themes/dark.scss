@@ -67,7 +67,7 @@ $surface-tertiary-hover: #43434b;
   --surface-accent-emphasis-high-info: #06f;
   --surface-accent-emphasis-high-negative: #ca0005;
   --surface-accent-emphasis-high-warning: #e8bb00;
-  --surface-accent-emphasis-high-positive: #00893c;
+  --surface-accent-emphasis-high-positive: #01833a;
   --surface-accent-emphasis-high-purple: #9146ff;
   --surface-overlay: rgb(19 19 23 / 90%); // deprecated
   --surface-gradient-01: linear-gradient(
@@ -91,11 +91,12 @@ $surface-tertiary-hover: #43434b;
   --surface-gradient-11: linear-gradient(95deg, #513e79, #423a1b 112%);
   --surface-other-overlay: rgb(19 19 23 / 90%);
   --surface-other-agent: #0845a2;
+  --surface-other-agent-hover: #2158ab;
   --surface-other-skeleton: #3b3b43;
   --content-default: rgb(255 255 255 / 80%); // deprecated
-  --content-basic-primary: #eeeeef;
+  --content-basic-primary: #f6f6f7;
   --content-subtle: rgb(255 255 255 / 60%); // deprecated
-  --content-basic-secondary: #ababb1;
+  --content-basic-secondary: #bcbcc0;
   --content-disabled: rgb(255 255 255 / 40%); // deprecated
   --content-basic-disabled: #767680;
   --content-basic-negative: #ff8282;
@@ -178,12 +179,13 @@ $surface-tertiary-hover: #43434b;
   --action-neutral-default: #8d8d95;
   --action-neutral-hover: #afafb5;
   --action-neutral-disabled: rgb(141 141 149 / 20%);
-  --action-high-contrast-default: #e2e2e4;
+  --action-high-contrast-default: #fcfcfc;
   --action-high-contrast-hover: #fff;
   --action-high-contrast-active: #fff;
-  --action-high-contrast-disabled: rgb(226 226 228 / 30%);
+  --action-high-contrast-disabled: rgb(252 252 252 / 20%);
   --color-bot: #50009c; // deprecated
   --surface-other-bot: #50009c;
+  --surface-other-bot-hover: #6119a6;
   --color-black: #131317;
   --color-white: #fff;
   --decor-blue900: #003288;
@@ -284,10 +286,10 @@ $surface-tertiary-hover: #43434b;
   --btn-plain-icon-background-active: #{$action-primary-default};
   --picker-list-background: #{$surface-secondary-default};
   --picker-list-group-background: #{$surface-tertiary-default};
-  --picker-list-option-background-hover: #{$surface-secondary-hover};
-  --picker-list-option-background-active-hover: #{$surface-tertiary-hover};
-  --picker-list-option-background-focus: #{$surface-secondary-hover};
-  --picker-list-option-background-active: #{$surface-secondary-active};
+  --picker-list-option-background-hover: #43434b;
+  --picker-list-option-background-active-hover: #4e4e58;
+  --picker-list-option-background-focus: #43434b;
+  --picker-list-option-background-active: #4b4b52;
   --popover-background: #{$surface-secondary-default};
   --surface-avatar-1: #8609ff;
   --surface-avatar-2: #ca0005;
