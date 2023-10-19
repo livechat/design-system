@@ -83,8 +83,15 @@ Any external contribution is welcome and teams mentioned above will help in the 
 2. In order to start work, first update branch `main`, and then create a new branch from this branch in which future changes will be placed. We adopted the
    nomenclature for the branch `feature/[task_id]`.
 3. If changes require it, appropriate unit tests should also be included, and an additional case should be attached to the Storybook documentation (in the `.stories.tsx` file).
-4. After the work is completed, create a pull request directed to branch `main`. In pull request, you should call `livechat/design-system` in the reviewers field.
-   The merge template contains a checklist of things that need to be completed to meet the requirements, it will make the work easier for everyone.
+4. After the work is completed, create a pull request directed to branch `main`.
+   1. **Conventional PR Naming**: Ensure your pull request title follows the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) naming pattern `type(scope): description`. This is crucial as, post squash merging, Git will use the PR name as the commit message.
+      <br/>To mark changes as a **breaking change**, include a `!` after the type and scope, followed by a colon and a space, like so: `type(scope)!: description`.
+      <br/>For now we will use the following types:
+      - `feat` - for new features
+      - `fix` - for bug fixes
+      - `docs` - for documentation changes
+   2. **Review**: In pull request, you should call `livechat/design-system` in the reviewers field.
+   3. **Template**: The merge template contains a checklist of things that need to be completed to meet the requirements, it will make the work easier for everyone.
 5. You will probably notice in your pull request under "Some checks haven't completed yet" Chromatic pending checks approval. Chromatic is a tool that we use
    for visual regression testing. The check in this tool is required for general approval of changes and it's covered by design system team.
 6. After the work is completed and the reviewers accept it, the responsibility for the rest of the changes is on the design system team side, which will perform
