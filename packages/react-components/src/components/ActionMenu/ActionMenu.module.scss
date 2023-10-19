@@ -1,6 +1,15 @@
+@import '../../utils/StackingContextLevel';
+
 $base-class: 'action-menu';
 
 .#{$base-class} {
+  z-index: $stacking-context-level-popover;
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-pop-over);
+  background-color: var(--popover-background);
+  min-width: 168px;
+  max-width: 336px;
+
   &__trigger-button {
     border: 0;
     border-radius: var(--radius-3);
@@ -23,7 +32,6 @@ $base-class: 'action-menu';
     background-color: var(--picker-list-background);
     padding: 0;
     padding: var(--spacing-2);
-    overflow: hidden;
     list-style: none;
 
     &__group-header {

@@ -9,26 +9,6 @@ import noop from '../../utils/noop';
 import { ActionMenu, ActionMenuProps } from './ActionMenu';
 import { exampleOptions } from './constants';
 
-vi.mock('@floating-ui/react-dom', () => {
-  return {
-    useFloating: vi.fn(() => {
-      return {
-        x: 0,
-        y: 0,
-        placement: 'bottom',
-        refs: {
-          floating: 0,
-          reference: 0,
-        },
-      };
-    }),
-    autoUpdate: vi.fn(),
-    flip: vi.fn(),
-    offset: vi.fn(),
-    x: 0,
-  };
-});
-
 const defaultProps = {
   options: exampleOptions,
   triggerRenderer: <div>Open menu</div>,
@@ -48,14 +28,12 @@ describe('<ActionMenu> component', () => {
   });
 
   it('should show the menu list after trigger click', () => {
-    const { getByTestId } = renderComponent(defaultProps);
+    const { getByTestId, queryByTestId } = renderComponent(defaultProps);
     const trigger = getByTestId('action-menu-trigger-button');
 
+    expect(queryByTestId('action-menu-test')).not.toBeInTheDocument();
     userEvent.click(trigger);
-    expect(getByTestId('action-menu-test')).toHaveAttribute(
-      'aria-hidden',
-      'false'
-    );
+    expect(queryByTestId('action-menu-test')).toBeInTheDocument();
   });
 
   it('should call defined onClick function after menu item click', () => {
@@ -104,9 +82,33 @@ describe('<ActionMenu> component', () => {
 
     fireEvent.click(trigger);
     fireEvent.click(getByText('Option two'));
-    expect(getByTestId('action-menu-test')).toHaveAttribute(
-      'aria-hidden',
-      'false'
-    );
+    expect(getByTestId('action-menu-test')).toBeInTheDocument();
+  });
+
+  it('should call onOpen and onClose actions on menu visibility change', () => {
+    const onOpen = vi.fn();
+    const onClose = vi.fn();
+    const { getByTestId } = renderComponent({
+      ...defaultProps,
+      onOpen: onOpen,
+      onClose: onClose,
+    });
+    const trigger = getByTestId('action-menu-trigger-button');
+
+    fireEvent.click(trigger);
+    expect(onOpen).toHaveBeenCalled();
+    fireEvent.click(trigger);
+    expect(onClose).toHaveBeenCalled();
+  });
+  it('should not change menu visibility in controlled state', () => {
+    const { getByTestId, queryByTestId } = renderComponent({
+      ...defaultProps,
+      visible: false,
+    });
+    const trigger = getByTestId('action-menu-trigger-button');
+
+    expect(queryByTestId('action-menu-test')).not.toBeInTheDocument();
+    fireEvent.click(trigger);
+    expect(queryByTestId('action-menu-test')).not.toBeInTheDocument();
   });
 });
