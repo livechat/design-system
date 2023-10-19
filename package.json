@@ -22,7 +22,7 @@
     "prettier": "prettier --write packages",
     "check": "run-s lint test",
     "predeploy": "npm run check && npm run prettier && npm run build",
-    "deploy": "lerna version && lerna publish from-package"
+    "deploy": "lerna version --conventional-commits --no-changelog && lerna publish from-package"
   },
   "repository": {
     "type": "git",
