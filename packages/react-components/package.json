@@ -70,6 +70,7 @@
   },
   "dependencies": {
     "@emotion/css": "^11.9.0",
+    "@floating-ui/react": "^0.26.1",
     "@floating-ui/react-dom": "^0.7.0",
     "@floating-ui/react-dom-interactions": "^0.6.1",
     "@livechat/data-utils": "^0.2.16",

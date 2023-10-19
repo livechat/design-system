@@ -141,6 +141,13 @@ $base-class: 'tooltip';
     position: absolute;
     top: var(--spacing-2);
     right: var(--spacing-2);
+    border: 0;
+    background: none;
+    padding: var(--spacing-1);
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &-step {

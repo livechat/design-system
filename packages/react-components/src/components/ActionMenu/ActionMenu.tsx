@@ -1,10 +1,19 @@
 import * as React from 'react';
 
-import { Placement } from '@floating-ui/react-dom';
+import {
+  useFloating,
+  Placement,
+  flip,
+  offset,
+  autoUpdate,
+  useClick,
+  useInteractions,
+  useDismiss,
+  useRole,
+} from '@floating-ui/react';
 import cx from 'clsx';
 
 import { KeyCodes } from '../../utils/keyCodes';
-import { Popover } from '../Popover';
 
 import { IActionMenuOption } from './types';
 
@@ -16,7 +25,7 @@ export interface ActionMenuProps {
    */
   className?: string;
   /**
-   * The CSS class for trigger element
+   * The CSS class for trigger container
    */
   triggerClassName?: string;
   /**
@@ -39,6 +48,22 @@ export interface ActionMenuProps {
    * Menu will stay open after option click
    */
   keepOpenOnClick?: boolean;
+  /**
+   * Set the menu placement to keep it in view
+   */
+  flipOptions?: Parameters<typeof flip>[0];
+  /**
+   * Set to control the menu visibility
+   */
+  visible?: boolean;
+  /**
+   * Optional handler called on menu close
+   */
+  onClose?: () => void;
+  /**
+   * Optional handler called on menu open
+   */
+  onOpen?: () => void;
 }
 
 const baseClass = 'action-menu';
@@ -51,11 +76,45 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   placement = 'bottom-end',
   openedOnInit = false,
   keepOpenOnClick,
+  flipOptions,
+  visible,
+  onClose,
+  onOpen,
   ...props
 }) => {
+  const isControlled = visible !== undefined;
   const [isVisible, setIsVisible] = React.useState(openedOnInit);
   const indexRef = React.useRef<number>(-1);
   const ref = React.useRef<HTMLUListElement | null>(null);
+  const currentlyVisible = isControlled ? visible : isVisible;
+
+  const handleMenuStateChange = () => {
+    if (currentlyVisible) {
+      onClose?.();
+      !isControlled && setIsVisible(false);
+    } else {
+      onOpen?.();
+      !isControlled && setIsVisible(true);
+    }
+  };
+
+  const { x, y, strategy, refs, context } = useFloating({
+    middleware: [offset(4), flip(flipOptions)],
+    placement: placement,
+    open: currentlyVisible,
+    onOpenChange: handleMenuStateChange,
+    whileElementsMounted: autoUpdate,
+  });
+  const click = useClick(context);
+  const dismiss = useDismiss(context, {
+    enabled: currentlyVisible,
+  });
+  const role = useRole(context);
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    click,
+    dismiss,
+    role,
+  ]);
 
   const getIndex = (val: number): number => {
     const currentValue = indexRef.current;
@@ -96,25 +155,22 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   };
 
   React.useEffect(() => {
-    if (isVisible) {
+    if (currentlyVisible) {
       document.addEventListener('keydown', onKeyDown);
 
       return () => document.removeEventListener('keydown', onKeyDown);
     } else {
       indexRef.current = -1;
     }
-  }, [isVisible, onKeyDown]);
-
-  const handleTriggerClick = () => {
-    setIsVisible(true);
-  };
+  }, [currentlyVisible, onKeyDown]);
 
   const handleItemClick = (index: number, itemOnClick?: () => void) => {
     indexRef.current = index;
     itemOnClick?.();
 
-    if (!keepOpenOnClick) {
+    if (!isControlled && !keepOpenOnClick) {
       setIsVisible(false);
+      onClose?.();
     }
   };
 
@@ -153,32 +209,36 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   };
 
   return (
-    <Popover
-      isVisible={isVisible}
-      placement={placement}
-      onClose={() => setIsVisible(false)}
-      triggerRenderer={() => (
-        <button
-          data-testid="action-menu-trigger-button"
-          className={cx(
-            styles[`${baseClass}__trigger-button`],
-            triggerClassName
-          )}
-          onClick={handleTriggerClick}
-        >
-          {triggerRenderer}
-        </button>
-      )}
-    >
-      <ul
-        {...props}
-        className={cx(styles[`${baseClass}__list`], className)}
-        role="menu"
-        aria-hidden={!isVisible}
-        ref={ref}
+    <>
+      <div
+        data-testid="action-menu-trigger-button"
+        ref={refs.setReference}
+        {...getReferenceProps()}
+        className={triggerClassName}
       >
-        {options.map(getOptionElement)}
-      </ul>
-    </Popover>
+        {triggerRenderer}
+      </div>
+      {currentlyVisible && (
+        <div
+          ref={refs.setFloating}
+          className={styles[baseClass]}
+          style={{
+            position: strategy,
+            top: y !== null && y !== undefined ? y : '',
+            left: x !== null && x !== undefined ? x : '',
+          }}
+          {...getFloatingProps()}
+        >
+          <ul
+            {...props}
+            className={cx(styles[`${baseClass}__list`], className)}
+            role="menu"
+            ref={ref}
+          >
+            {options.map(getOptionElement)}
+          </ul>
+        </div>
+      )}
+    </>
   );
 };
