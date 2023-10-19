@@ -9,6 +9,7 @@ import {
   useClick,
   useInteractions,
   useDismiss,
+  useRole,
 } from '@floating-ui/react';
 import cx from 'clsx';
 
@@ -23,6 +24,10 @@ export interface ActionMenuProps {
    * The CSS class for menu container
    */
   className?: string;
+  /**
+   * The CSS class for trigger container
+   */
+  triggerClassName?: string;
   /**
    * Array of menu options
    */
@@ -65,6 +70,7 @@ const baseClass = 'action-menu';
 
 export const ActionMenu: React.FC<ActionMenuProps> = ({
   className,
+  triggerClassName,
   options,
   triggerRenderer,
   placement = 'bottom-end',
@@ -103,9 +109,11 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   const dismiss = useDismiss(context, {
     enabled: currentlyVisible,
   });
+  const role = useRole(context);
   const { getReferenceProps, getFloatingProps } = useInteractions([
     click,
     dismiss,
+    role,
   ]);
 
   const getIndex = (val: number): number => {
@@ -206,6 +214,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
         data-testid="action-menu-trigger-button"
         ref={refs.setReference}
         {...getReferenceProps()}
+        className={triggerClassName}
       >
         {triggerRenderer}
       </div>
