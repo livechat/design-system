@@ -48,18 +48,12 @@ export const UserGuideStep: React.FC<{
   return (
     <div className={styles[`${baseClass}__user-guide-step`]}>
       {closeWithX && (
-        <Button
+        <button
           className={styles[`${baseClass}-close`]}
-          size="compact"
-          kind="plain"
           onClick={handleCloseAction}
-          icon={
-            <Icon
-              source={Close}
-              kind={theme ? getIconType(theme) : 'primary'}
-            />
-          }
-        />
+        >
+          <Icon source={Close} kind={theme ? getIconType(theme) : 'primary'} />
+        </button>
       )}
       {image && (
         <div className={styles[`${baseClass}-image-container`]}>
