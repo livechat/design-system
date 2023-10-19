@@ -11,21 +11,6 @@
     border-radius: var(--radius-2);
     border-color: transparent;
 
-    &:last-of-type {
-      &::after {
-        display: none;
-      }
-    }
-
-    &[aria-pressed='false'][aria-disabled='false']::after {
-      position: absolute;
-      right: -4px;
-      background-color: var(--border-basic-secondary);
-      width: 1px;
-      height: 20px;
-      content: '';
-    }
-
     &--active {
       background-color: var(--surface-primary-active);
       color: var(--content-basic-primary);
