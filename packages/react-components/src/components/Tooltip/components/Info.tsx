@@ -3,7 +3,6 @@ import * as React from 'react';
 import { Close } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
-import { Button } from '../../Button';
 import { Icon } from '../../Icon';
 import { getIconType } from '../helpers';
 import styles from '../Tooltip.module.scss';
@@ -21,18 +20,12 @@ export const Info: React.FC<{
   return (
     <div>
       {closeWithX && (
-        <Button
-          size="compact"
-          kind="plain"
+        <button
           className={styles[`${baseClass}-close`]}
           onClick={handleCloseAction}
-          icon={
-            <Icon
-              source={Close}
-              kind={theme ? getIconType(theme) : 'primary'}
-            />
-          }
-        />
+        >
+          <Icon source={Close} kind={theme ? getIconType(theme) : 'primary'} />
+        </button>
       )}
       {header && (
         <div
