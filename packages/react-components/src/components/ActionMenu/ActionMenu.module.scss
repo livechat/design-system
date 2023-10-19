@@ -101,12 +101,12 @@ $base-class: 'action-menu';
       }
 
       &--with-divider {
-        margin-top: var(--spacing-2);
+        margin-bottom: var(--spacing-2);
 
-        &::before {
+        &::after {
           position: absolute;
-          top: -4.5px;
           right: -8px;
+          bottom: -4.5px;
           left: -8px;
           background-color: var(--border-basic-secondary);
           height: 1px;
