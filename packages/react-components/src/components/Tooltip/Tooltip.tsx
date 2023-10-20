@@ -1,6 +1,12 @@
 import * as React from 'react';
 
-import { arrow, flip, offset, useFloating } from '@floating-ui/react-dom';
+import {
+  arrow,
+  autoUpdate,
+  flip,
+  offset,
+  useFloating,
+} from '@floating-ui/react';
 import cx from 'clsx';
 
 import { FloatingComponent } from './components/FloatingComponent';
@@ -46,6 +52,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
       flip(),
     ],
     placement: placement,
+    whileElementsMounted: autoUpdate,
   });
 
   const handleVisibilityChange = (newVisibility: boolean | undefined): void => {
@@ -159,7 +166,7 @@ export const Tooltip: React.FC<ITooltipProps> = (props) => {
     <>
       <div
         className={cx(styles[`${baseClass}__wrapper`], triggerClassName)}
-        ref={floatingOptions.reference}
+        ref={floatingOptions.refs.setReference}
         {...referenceOptions()}
       >
         {triggerRenderer()}
