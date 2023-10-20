@@ -45,6 +45,7 @@ export const exampleOptions = [
       <ActionMenuItem leftNode={<Icon source={Block} />}>Block</ActionMenuItem>
     ),
     disabled: true,
+    withDivider: true,
     onClick: noop,
   },
   {
@@ -55,6 +56,5 @@ export const exampleOptions = [
       </ActionMenuItem>
     ),
     onClick: noop,
-    withDivider: true,
   },
 ];
