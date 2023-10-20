@@ -23,6 +23,7 @@
     "build:styles": "sass src/themes:dist/themes; sass src/foundations:dist/spacing; sass src/foundations:dist/shadow",
     "build-storybook": "export SET NODE_OPTIONS=--openssl-legacy-provider && storybook build",
     "chromatic": "dotenv -e ../../.env chromatic -- --exit-zero-on-changes --only-changed --skip 'dependabot/**'",
+    "generateDesignTokenEnum": "node scripts/generateDesignTokenEnum.js",
     "lint": "eslint src --ext js,jsx,ts,tsx",
     "test": "vitest run",
     "test:watch": "vitest watch",

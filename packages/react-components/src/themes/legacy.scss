@@ -70,6 +70,7 @@ $surface-tertiary-hover: #d3dde3;
   --surface-overlay: rgb(0 0 0 / 70%); // deprecated
   --surface-other-overlay: rgb(0 0 0 / 70%);
   --surface-other-agent: #4284f5;
+  --surface-other-agent-hover: #034fc3;
   --surface-other-skeleton: #e5e8ec;
   --surface-gradient-01: linear-gradient(
     107.08deg,
@@ -182,6 +183,7 @@ $surface-tertiary-hover: #d3dde3;
   --action-high-contrast-disabled: rgb(27 27 32 / 20%);
   --color-bot: #6b5aba; // deprecated
   --surface-other-bot: #6b5aba;
+  --surface-other-bot-hover: #41057b;
   --color-black: #424d57;
   --color-white: #fff;
   --decor-blue900: #003288;

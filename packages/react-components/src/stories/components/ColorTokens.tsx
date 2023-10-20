@@ -14,6 +14,9 @@ interface TokensGroup {
   products: string[];
   illustrations: string[];
   tag: string[];
+  btn: string[];
+  picker: string[];
+  popover: string[];
 }
 
 type TokenGroupName =
@@ -26,6 +29,9 @@ type TokenGroupName =
   | 'decor'
   | 'products'
   | 'illustrations'
+  | 'btn'
+  | 'picker'
+  | 'popover'
   | 'tag';
 
 const Tokens: TokensGroup = Object.values(
@@ -33,7 +39,7 @@ const Tokens: TokensGroup = Object.values(
 ).reduce(
   (acc: TokensGroup, value) => {
     const groupName = value.split('-').filter(Boolean)[0] as TokenGroupName;
-    acc[groupName].push(value);
+    acc[groupName]?.push(value);
 
     return acc;
   },
@@ -48,6 +54,9 @@ const Tokens: TokensGroup = Object.values(
     products: [],
     illustrations: [],
     tag: [],
+    btn: [],
+    picker: [],
+    popover: [],
   }
 );
 
@@ -95,6 +104,18 @@ const CONTENT = {
   },
   tag: {
     heading: 'Tag',
+    content: '',
+  },
+  btn: {
+    heading: 'Button',
+    content: '',
+  },
+  picker: {
+    heading: 'Picker',
+    content: '',
+  },
+  popover: {
+    heading: 'Popover',
     content: '',
   },
 };
