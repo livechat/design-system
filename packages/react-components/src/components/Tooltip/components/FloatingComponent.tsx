@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { css } from '@emotion/css';
-import { autoUpdate, UseFloatingReturn } from '@floating-ui/react-dom';
+import { autoUpdate, UseFloatingReturn } from '@floating-ui/react';
 import cx from 'clsx';
 import { CSSTransition } from 'react-transition-group';
 
@@ -54,8 +54,6 @@ export const FloatingComponent: React.FC<IProps> = ({
   const {
     x,
     y,
-    reference,
-    floating,
     strategy,
     update,
     refs,
@@ -73,8 +71,8 @@ export const FloatingComponent: React.FC<IProps> = ({
   }, [refs.reference, refs.floating, update, updatedPlacement, visible]);
 
   React.useEffect(() => {
-    referenceElement && reference(referenceElement);
-  }, [reference, referenceElement]);
+    referenceElement && refs.setReference(referenceElement);
+  }, [refs.setReference, referenceElement]);
 
   const top = arrowOffsetY && arrowY ? arrowY + arrowOffsetY : arrowY;
   const left = arrowOffsetX && arrowX ? arrowX + arrowOffsetX : arrowX;
@@ -87,7 +85,7 @@ export const FloatingComponent: React.FC<IProps> = ({
 
   const floatingComponent = (
     <div
-      ref={floating}
+      ref={refs.setFloating}
       style={{
         position: strategy,
         top: y !== null && y !== undefined ? y : '',
