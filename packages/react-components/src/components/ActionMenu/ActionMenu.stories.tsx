@@ -65,6 +65,7 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
           },
           {
             key: 'two',
+            withDivider: true,
             element: (
               <ActionMenuItem>
                 <RadioButton checked={radioButtonValue === 'two'}>
@@ -90,7 +91,6 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
           },
           {
             key: 'four',
-            withDivider: true,
             element: (
               <ActionMenuItem
                 rightNode={
