@@ -71,8 +71,8 @@ export const FloatingComponent: React.FC<IProps> = ({
   }, [refs.reference, refs.floating, update, updatedPlacement, visible]);
 
   React.useEffect(() => {
-    referenceElement && refs.reference(referenceElement);
-  }, [refs.reference, referenceElement]);
+    referenceElement && refs.setReference(referenceElement);
+  }, [refs.setReference, referenceElement]);
 
   const top = arrowOffsetY && arrowY ? arrowY + arrowOffsetY : arrowY;
   const left = arrowOffsetX && arrowX ? arrowX + arrowOffsetX : arrowX;
