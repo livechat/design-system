@@ -597,6 +597,16 @@
       "require": "./dist/CloseFilled.cjs.js",
       "types": "./dist/CloseFilled.d.ts"
     },
+    "./Cloud": {
+      "import": "./dist/Cloud.es.js",
+      "require": "./dist/Cloud.cjs.js",
+      "types": "./dist/Cloud.d.ts"
+    },
+    "./CloudFilled": {
+      "import": "./dist/CloudFilled.es.js",
+      "require": "./dist/CloudFilled.cjs.js",
+      "types": "./dist/CloudFilled.d.ts"
+    },
     "./CloudflareColored": {
       "import": "./dist/CloudflareColored.es.js",
       "require": "./dist/CloudflareColored.cjs.js",
@@ -1252,6 +1262,11 @@
       "require": "./dist/JoomlaColored.cjs.js",
       "types": "./dist/JoomlaColored.d.ts"
     },
+    "./Key": {
+      "import": "./dist/Key.es.js",
+      "require": "./dist/Key.cjs.js",
+      "types": "./dist/Key.d.ts"
+    },
     "./Keyboard": {
       "import": "./dist/Keyboard.es.js",
       "require": "./dist/Keyboard.cjs.js",
@@ -1727,6 +1742,16 @@
       "require": "./dist/ShareFilled.cjs.js",
       "types": "./dist/ShareFilled.d.ts"
     },
+    "./ShieldLock": {
+      "import": "./dist/ShieldLock.es.js",
+      "require": "./dist/ShieldLock.cjs.js",
+      "types": "./dist/ShieldLock.d.ts"
+    },
+    "./ShieldLockFilled": {
+      "import": "./dist/ShieldLockFilled.es.js",
+      "require": "./dist/ShieldLockFilled.cjs.js",
+      "types": "./dist/ShieldLockFilled.d.ts"
+    },
     "./ShopifyColored": {
       "import": "./dist/ShopifyColored.es.js",
       "require": "./dist/ShopifyColored.cjs.js",
@@ -1771,6 +1796,11 @@
       "import": "./dist/SoundOnFilled.es.js",
       "require": "./dist/SoundOnFilled.cjs.js",
       "types": "./dist/SoundOnFilled.d.ts"
+    },
+    "./SourceCode": {
+      "import": "./dist/SourceCode.es.js",
+      "require": "./dist/SourceCode.cjs.js",
+      "types": "./dist/SourceCode.d.ts"
     },
     "./Spy": {
       "import": "./dist/Spy.es.js",
@@ -1831,6 +1861,16 @@
       "import": "./dist/TargetArrowFilled.es.js",
       "require": "./dist/TargetArrowFilled.cjs.js",
       "types": "./dist/TargetArrowFilled.d.ts"
+    },
+    "./TelegramColored": {
+      "import": "./dist/TelegramColored.es.js",
+      "require": "./dist/TelegramColored.cjs.js",
+      "types": "./dist/TelegramColored.d.ts"
+    },
+    "./TelegramMono": {
+      "import": "./dist/TelegramMono.es.js",
+      "require": "./dist/TelegramMono.cjs.js",
+      "types": "./dist/TelegramMono.d.ts"
     },
     "./TextBlock": {
       "import": "./dist/TextBlock.es.js",
