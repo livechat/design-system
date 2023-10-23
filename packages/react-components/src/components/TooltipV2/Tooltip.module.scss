@@ -1,0 +1,45 @@
+@import '../../utils/StackingContextLevel';
+
+$base-class: 'tooltip';
+
+.#{$base-class} {
+  z-index: $stacking-context-level-tooltip;
+  border-radius: var(--radius-3);
+  border-color: var(--background-02);
+  box-shadow: var(--shadow-tooltip);
+  background-color: var(--background-02);
+  padding: var(--spacing-3);
+  max-width: 320px;
+  color: var(--content-basic-primary);
+
+  &__arrow {
+    fill: var(--background-02);
+  }
+
+  &--invert {
+    border-color: var(--surface-invert-primary);
+    background-color: var(--surface-invert-primary);
+    color: var(--content-invert-primary);
+
+    .#{$base-class}__arrow {
+      fill: var(--surface-invert-primary);
+    }
+  }
+
+  &--important {
+    border-color: var(--surface-accent-emphasis-high-warning);
+    background-color: var(--surface-accent-emphasis-high-warning);
+    color: var(--content-locked-black);
+
+    .#{$base-class}__arrow {
+      fill: var(--surface-accent-emphasis-high-warning);
+    }
+  }
+
+  &--full-space {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    max-width: 540px;
+  }
+}
