@@ -31,7 +31,7 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
   const {
     className,
     parentElementName,
-    isVisible = false,
+    visible = false,
     shouldSlide = true,
   } = props;
 
@@ -84,11 +84,11 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
     setIsSliding(true);
   }, [parentElement]);
 
-  return parentElement && isVisible ? (
+  return parentElement && visible ? (
     <div>
       <SpotlightOverlay
         gap={rect}
-        isVisible={isVisible}
+        isVisible={visible}
         slide={isSliding}
         disablePointerEvents={true}
       />

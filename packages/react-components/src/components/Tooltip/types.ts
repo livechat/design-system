@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Placement, VirtualElement } from '@floating-ui/react-dom';
+import { Placement, VirtualElement } from '@floating-ui/react';
 
 import { ButtonKind } from '../Button';
 
@@ -13,23 +13,85 @@ export type TooltipButton = {
 };
 
 export interface ITooltipProps {
-  children?: React.ReactNode;
+  /**
+   * The CSS class for tooltip
+   */
   className?: string;
+  /**
+   * The CSS class for trigger wrapper
+   */
   triggerClassName?: string;
-  theme?: TooltipTheme;
+  /**
+   * Trigger element
+   */
+  triggerRenderer: React.ReactElement;
+  /**
+   * Specify the tooltip kind
+   * @deprecated we are changing the nomenclature to `kind` in order to maintain the constant naming of props
+   */
+  theme?: 'invert' | 'important' | undefined;
+  /**
+   * Specify the tooltip kind
+   */
+  kind?: 'invert' | 'important' | undefined;
+  /**
+   * The tooltip placement
+   */
   placement?: Placement;
-  isVisible?: boolean;
-  withFadeAnimation?: boolean;
-  transitionDuration?: number;
-  transitionDelay?: number;
-  hoverOutDelayTimeout?: number;
-  offsetMainAxis?: number;
-  triggerOnClick?: boolean;
-  arrowOffsetY?: number;
-  arrowOffsetX?: number;
+  /**
+   * Set to control the menu visibility
+   */
+  visible?: boolean;
+  /**
+   * Removes the spacing inside the tooltip
+   */
   fullSpaceContent?: boolean;
-  triggerRenderer: () => React.ReactNode;
-  referenceElement?: VirtualElement;
-  onOpen?: () => void;
+  /**
+   * Optional handler called on tooltip hide
+   */
   onClose?: () => void;
+  /**
+   * Optional handler called on tooltip show
+   */
+  onOpen?: () => void;
+  /**
+   * Set to enable/disable transition
+   */
+  withFadeAnimation?: boolean;
+  /**
+   * Set to define transition duration for showing and hiding tooltip
+   */
+  transitionDuration?: number;
+  /**
+   * Set to define transition duration for showing tooltip
+   */
+  hoverOnDuration?: number;
+  /**
+   * Set to define transition duration for hiding tooltip
+   */
+  hoverOffDuration?: number;
+  /**
+   * Set to define delay before transition start for showing and hiding tooltip
+   */
+  transitionDelay?: number;
+  /**
+   * Set to define delay before transition start for showing tooltip
+   */
+  hoverOnDelay?: number;
+  /**
+   * Set to define delay before transition start for hiding tooltip
+   */
+  hoverOffDelay?: number;
+  /**
+   * Set if you want to show tooltip after trigger click if state is not managed
+   */
+  triggerOnClick?: boolean;
+  /**
+   * Set the tooltip distance from the trigger
+   */
+  offsetMainAxis?: number;
+  /**
+   * Set custom reference object for the tooltip
+   */
+  referenceElement?: VirtualElement;
 }

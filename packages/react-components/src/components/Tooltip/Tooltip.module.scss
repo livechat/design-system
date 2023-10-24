@@ -1,7 +1,9 @@
+@import '../../utils/StackingContextLevel';
+
 $base-class: 'tooltip';
 
 .#{$base-class} {
-  z-index: 999999999;
+  z-index: $stacking-context-level-tooltip;
   border-radius: var(--radius-3);
   border-color: var(--background-02);
   box-shadow: var(--shadow-tooltip);
@@ -10,30 +12,28 @@ $base-class: 'tooltip';
   max-width: 320px;
   color: var(--content-basic-primary);
 
-  &:focus {
-    outline: none;
-  }
-
-  &__wrapper {
-    display: inherit;
-  }
-
-  &__interactive,
-  &__user-guide-step {
-    padding: var(--spacing-1);
-    width: 270px;
+  &__arrow {
+    fill: var(--background-02);
   }
 
   &--invert {
     border-color: var(--surface-invert-primary);
     background-color: var(--surface-invert-primary);
     color: var(--content-invert-primary);
+
+    .#{$base-class}__arrow {
+      fill: var(--surface-invert-primary);
+    }
   }
 
   &--important {
     border-color: var(--surface-accent-emphasis-high-warning);
     background-color: var(--surface-accent-emphasis-high-warning);
     color: var(--content-locked-black);
+
+    .#{$base-class}__arrow {
+      fill: var(--surface-accent-emphasis-high-warning);
+    }
   }
 
   &--full-space {
@@ -41,67 +41,6 @@ $base-class: 'tooltip';
     flex-wrap: wrap;
     padding: 0;
     max-width: 540px;
-  }
-
-  &__arrow {
-    position: absolute;
-    margin: -6px 0;
-    border-color: inherit;
-    width: 12px;
-    height: 6px;
-    color: inherit;
-
-    &::after {
-      position: absolute;
-      transform: rotate(-45deg);
-      border: 6px solid transparent;
-      content: '';
-    }
-
-    &[data-arrow-placement*='bottom'] {
-      top: 1px;
-      height: 0;
-
-      &::after {
-        border-top-color: inherit;
-        border-right-color: inherit;
-        box-shadow: var(--shadow-tooltip-arrow-bottom);
-      }
-    }
-
-    &[data-arrow-placement*='top'] {
-      top: 100%;
-
-      &::after {
-        border-bottom-color: inherit;
-        border-left-color: inherit;
-        box-shadow: var(--shadow-tooltip-arrow-top);
-      }
-    }
-
-    &[data-arrow-placement*='right'] {
-      left: 0;
-      margin: -3px -5px;
-
-      &::after {
-        border-top-color: inherit;
-        border-left-color: inherit;
-        box-shadow: var(--shadow-tooltip-arrow-right);
-      }
-    }
-
-    &[data-arrow-placement*='left'] {
-      left: 100%;
-      margin: 0 -7px;
-      width: 6px;
-      height: 12px;
-
-      &::after {
-        border-right-color: inherit;
-        border-bottom-color: inherit;
-        box-shadow: var(--shadow-tooltip-arrow-left);
-      }
-    }
   }
 
   &-header {

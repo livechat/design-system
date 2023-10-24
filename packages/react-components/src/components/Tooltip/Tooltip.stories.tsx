@@ -1,16 +1,9 @@
 import * as React from 'react';
 
-import {
-  ChevronDown,
-  Smiles,
-  CannedResponse,
-  Attachment,
-} from '@livechat/design-system-icons';
 import { ComponentMeta } from '@storybook/react';
 
 import noop from '../../utils/noop';
 import { Button } from '../Button';
-import { Icon } from '../Icon';
 
 import './Tooltip.stories.css';
 import { Info, Interactive, Reports, Simple, UserGuide } from './components';
@@ -19,50 +12,31 @@ import beautifulImage from './placeholder.png';
 import { Tooltip } from './Tooltip';
 import { ITooltipProps } from './types';
 
-const tooltipPlacements = [
-  'bottom',
-  'bottom-end',
-  'bottom-start',
-  'left',
-  'left-end',
-  'left-start',
-  'right',
-  'right-end',
-  'right-start',
-  'top',
-  'top-end',
-  'top-start',
-];
-
-const isVisibleOptions = [true, false, undefined];
-
-const tooltipThemes = ['invert', 'important', 'default'];
-
 export default {
   title: 'Components/Tooltip',
   component: Tooltip,
   argTypes: {
-    placement: {
-      options: tooltipPlacements,
+    triggerRenderer: {
+      control: false,
+    },
+    kind: {
+      options: ['invert', 'important', undefined],
       control: {
         type: 'select',
-        labels: 'Placement',
+        labels: 'Kind',
       },
     },
-    theme: {
-      options: tooltipThemes,
+    visible: {
+      options: [true, false, undefined],
       control: {
         type: 'select',
-        labels: 'Theme',
+        labels: 'Visible',
       },
     },
-    isVisible: {
-      options: isVisibleOptions,
-      control: {
-        type: 'select',
-        labels: 'Visibility',
-      },
-    },
+  },
+  parameters: {
+    layout: 'centered',
+    controls: { expanded: true },
   },
   subcomponents: {
     Info,
@@ -74,135 +48,69 @@ export default {
 } as ComponentMeta<typeof Tooltip>;
 
 export const Default = (args: ITooltipProps): React.ReactElement => (
-  <div className="tooltip-preview-container">
-    <span className={'tooltip-icon-wrap'}>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Tooltip
-          {...args}
-          triggerRenderer={() => <Icon source={Smiles}></Icon>}
-        >
-          <Simple text="Simple tooltip" />
-        </Tooltip>
-      </div>
-    </span>
-    <span className={'tooltip-icon-wrap'}>
-      <Icon source={CannedResponse}></Icon>
-    </span>
-    <span className={'tooltip-icon-wrap'}>
-      <Icon source={Attachment}></Icon>
-    </span>
-  </div>
+  <Tooltip {...args} triggerRenderer={<Button>Trigger</Button>}>
+    Simple text content
+  </Tooltip>
 );
-
 Default.args = {
-  placement: 'bottom',
-  isVisible: true,
-  theme: 'default',
-  triggerOnClick: false,
-  arrowOffsetY: 0,
-  arrowOffsetX: 0,
-  offsetMainAxis: 8,
-  withFadeAnimation: true,
-  transitionDuration: 200,
-  transitionDelay: 0,
-  hoverOutDelayTimeout: 100,
+  visible: true,
 };
 
-export const TooltipInfo = (): React.ReactElement => (
-  <div className="tooltip-preview-container">
-    <Tooltip
-      isVisible
-      triggerRenderer={() => (
-        <div>
-          <Button
-            icon={<Icon source={ChevronDown}></Icon>}
-            iconPosition={'right'}
-          >
-            Open Tooltip
-          </Button>
-        </div>
-      )}
-    >
-      <Info
-        header="Header - concise and clear"
-        text="Tooltip content is used to explain the details of elements or features."
-        closeWithX
-      />
-    </Tooltip>
-  </div>
+export const TooltipInfo = (args: ITooltipProps): React.ReactElement => (
+  <Tooltip {...args} triggerRenderer={<Button>Trigger</Button>}>
+    <Info
+      header="Header - concise and clear"
+      text="Tooltip content is used to explain the details of elements or features."
+      closeWithX
+    />
+  </Tooltip>
 );
+TooltipInfo.args = {
+  visible: true,
+};
 
-export const TooltipInteractive = (): React.ReactElement => (
-  <div className="tooltip-preview-container">
-    <Tooltip
-      isVisible
-      className="tooltip-interactive"
-      triggerRenderer={() => (
-        <div>
-          <Button
-            icon={<Icon source={ChevronDown}></Icon>}
-            iconPosition={'right'}
-          >
-            Open Tooltip
-          </Button>
-        </div>
-      )}
-    >
-      <Interactive
-        header="Header - concise and clear"
-        image={{
-          src: beautifulImage,
-          alt: 'image',
-        }}
-        text="Tooltip content is used to explain the details of elements or features."
-        closeWithX
-        primaryButton={{
-          handleClick: noop,
-          label: 'Primary Button',
-        }}
-        secondaryButton={{
-          handleClick: noop,
-          label: 'Secondary',
-        }}
-      />
-    </Tooltip>
-  </div>
+export const TooltipInteractive = (args: ITooltipProps): React.ReactElement => (
+  <Tooltip {...args} triggerRenderer={<Button>Trigger</Button>}>
+    <Interactive
+      header="Header - concise and clear"
+      image={{
+        src: beautifulImage,
+        alt: 'image',
+      }}
+      text="Tooltip content is used to explain the details of elements or features."
+      closeWithX
+      primaryButton={{
+        handleClick: noop,
+        label: 'Primary Button',
+      }}
+      secondaryButton={{
+        handleClick: noop,
+        label: 'Secondary',
+      }}
+    />
+  </Tooltip>
 );
+TooltipInteractive.args = {
+  visible: true,
+};
 
-export const TooltipReports = (): React.ReactElement => (
-  <div className="tooltip-preview-container">
-    <Tooltip
-      fullSpaceContent
-      isVisible
-      triggerRenderer={() => (
-        <div>
-          <Button
-            icon={<Icon source={ChevronDown}></Icon>}
-            iconPosition={'right'}
-          >
-            Open Tooltip
-          </Button>
-        </div>
-      )}
-    >
-      <Reports title="Date or Series" description="Additional information">
-        <div className="tooltip-preview-reports">Reports content</div>
-      </Reports>
-      <Reports title="Date or Series" description="Additional information">
-        <div className="tooltip-preview-reports">Reports content</div>
-      </Reports>
-      <Reports title="Date or Series" description="Additional information">
-        <div className="tooltip-preview-reports">Reports content</div>
-      </Reports>
-    </Tooltip>
-  </div>
+export const TooltipReports = (args: ITooltipProps): React.ReactElement => (
+  <Tooltip {...args} triggerRenderer={<Button>Trigger</Button>}>
+    <Reports title="Date or Series" description="Additional information">
+      <div className="tooltip-preview-reports">Reports component content</div>
+    </Reports>
+    <Reports title="Date or Series" description="Additional information">
+      <div className="tooltip-preview-reports">Reports component content</div>
+    </Reports>
+    <Reports title="Date or Series" description="Additional information">
+      <div className="tooltip-preview-reports">Reports component content</div>
+    </Reports>
+  </Tooltip>
 );
+TooltipReports.args = {
+  visible: true,
+  fullSpaceContent: true,
+};
 
 export const TooltipUserGuide = (args: ITooltipProps): React.ReactElement => (
   <div className="tooltip-preview-container">
@@ -311,7 +219,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
 
         <UserGuide
           {...props}
-          isVisible={state.isVisible}
+          visible={state.isVisible}
           parentElementName={`#${state.reference}`}
           zIndex={1000}
           shouldSlide={true}
