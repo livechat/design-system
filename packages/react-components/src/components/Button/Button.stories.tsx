@@ -290,7 +290,7 @@ export const KindsAndStates = (): React.ReactElement => (
     </StoryDescriptor>
     <StoryDescriptor
       style={{
-        background: 'black',
+        background: 'var(--surface-invert-primary)',
         padding: '10px 10px 10px 0',
       }}
       title="Link inverted"
@@ -305,7 +305,7 @@ export const KindsAndStates = (): React.ReactElement => (
     </StoryDescriptor>
     <StoryDescriptor
       style={{
-        background: 'black',
+        background: 'var(--surface-invert-primary)',
         padding: '10px 10px 10px 0',
       }}
       title="Link inverted with icon"
