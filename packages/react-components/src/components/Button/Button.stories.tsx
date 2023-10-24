@@ -288,6 +288,46 @@ export const KindsAndStates = (): React.ReactElement => (
       <Button disabled kind="link" icon={<Icon source={Icons.AddCircle} />} />
       <Button loading kind="link" icon={<Icon source={Icons.AddCircle} />} />
     </StoryDescriptor>
+    <StoryDescriptor
+      style={{
+        background: 'black',
+        padding: '10px 10px 10px 0',
+      }}
+      title="Link inverted"
+    >
+      <Button kind="link-inverted">Link inverted</Button>
+      <Button disabled kind="link-inverted">
+        Disabled
+      </Button>
+      <Button loading kind="link-inverted">
+        Disabled
+      </Button>
+    </StoryDescriptor>
+    <StoryDescriptor
+      style={{
+        background: 'black',
+        padding: '10px 10px 10px 0',
+      }}
+      title="Link inverted with icon"
+    >
+      <Button kind="link-inverted" icon={<Icon source={Icons.AddCircle} />}>
+        Link inverted
+      </Button>
+      <Button
+        disabled
+        kind="link-inverted"
+        icon={<Icon source={Icons.AddCircle} />}
+      >
+        Disabled
+      </Button>
+      <Button
+        loading
+        kind="link-inverted"
+        icon={<Icon source={Icons.AddCircle} />}
+      >
+        Disabled
+      </Button>
+    </StoryDescriptor>
     <StoryDescriptor title="Plain">
       <Button kind="plain">Plain</Button>
       <Button disabled kind="plain">
