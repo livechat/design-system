@@ -10,36 +10,15 @@ import beautifulImage from '../Tooltip/placeholder.png';
 import './Tooltip.stories.css';
 import { ITooltipV2Props, TooltipV2 } from './TooltipV2';
 
-const tooltipPlacements = [
-  'bottom',
-  'bottom-end',
-  'bottom-start',
-  'left',
-  'left-end',
-  'left-start',
-  'right',
-  'right-end',
-  'right-start',
-  'top',
-  'top-end',
-  'top-start',
-];
-
-const tooltipKinds = ['invert', 'important', undefined];
-
 export default {
   title: 'Components/TooltipV2',
   component: TooltipV2,
   argTypes: {
-    placement: {
-      options: tooltipPlacements,
-      control: {
-        type: 'select',
-        labels: 'Placement',
-      },
+    triggerRenderer: {
+      control: false,
     },
     kind: {
-      options: tooltipKinds,
+      options: ['invert', 'important', undefined],
       control: {
         type: 'select',
         labels: 'Kind',
@@ -55,6 +34,7 @@ export default {
   },
   parameters: {
     layout: 'centered',
+    controls: { expanded: true },
   },
 } as ComponentMeta<typeof TooltipV2>;
 
@@ -63,7 +43,9 @@ export const Default = (args: ITooltipV2Props): React.ReactElement => (
     Simple text content
   </TooltipV2>
 );
-Default.args = {};
+Default.args = {
+  visible: true,
+};
 
 export const TooltipInfo = (args: ITooltipV2Props): React.ReactElement => (
   <TooltipV2 {...args} triggerRenderer={<Button>Trigger</Button>}>

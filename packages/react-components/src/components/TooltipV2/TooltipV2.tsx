@@ -11,9 +11,12 @@ import {
   useDismiss,
   useFocus,
   useHover,
+  useClick,
   useInteractions,
   useRole,
   FloatingArrow,
+  useTransitionStyles,
+  useTransitionStatus,
 } from '@floating-ui/react';
 import cx from 'clsx';
 
@@ -26,6 +29,10 @@ export interface ITooltipV2Props {
    * The CSS class for tooltip
    */
   className?: string;
+  /**
+   * The CSS class for trigger wrapper
+   */
+  triggerClassName?: string;
   /**
    * Trigger element
    */
@@ -59,23 +66,48 @@ export interface ITooltipV2Props {
    * Optional handler called on tooltip show
    */
   onOpen?: () => void;
-
-  // withFadeAnimation?: boolean;
-  // transitionDuration?: number;
-  // transitionDelay?: number;
-  // hoverOutDelayTimeout?: number;
-  // offsetMainAxis?: number;
-  // triggerOnClick?: boolean;
-  // arrowOffsetY?: number;
-  // arrowOffsetX?: number;
-  // fullSpaceContent?: boolean;
-  // triggerRenderer: () => React.ReactNode;
-  // referenceElement?: VirtualElement;
+  /**
+   * Set to enable/disable transition
+   */
+  withFadeAnimation?: boolean;
+  /**
+   * Set to define transition duration for showing and hiding tooltip
+   */
+  transitionDuration?: number;
+  /**
+   * Set to define transition duration for showing tooltip
+   */
+  hoverOnDuration?: number;
+  /**
+   * Set to define transition duration for hiding tooltip
+   */
+  hoverOffDuration?: number;
+  /**
+   * Set to define delay before transition start for showing and hiding tooltip
+   */
+  transitionDelay?: number;
+  /**
+   * Set to define delay before transition start for showing tooltip
+   */
+  hoverOnDelay?: number;
+  /**
+   * Set to define delay before transition start for hiding tooltip
+   */
+  hoverOffDelay?: number;
+  /**
+   * Set if you want to show tooltip after trigger click if state is not managed
+   */
+  triggerOnClick?: boolean;
+  /**
+   * Set the tooltip distance from the trigger
+   */
+  offsetMainAxis?: number;
 }
 
 export const TooltipV2: React.FC<ITooltipV2Props> = ({
   children,
   className,
+  triggerClassName,
   triggerRenderer,
   theme,
   kind,
@@ -84,6 +116,15 @@ export const TooltipV2: React.FC<ITooltipV2Props> = ({
   fullSpaceContent,
   onClose,
   onOpen,
+  withFadeAnimation = true,
+  transitionDuration = 200,
+  hoverOnDuration,
+  hoverOffDuration,
+  transitionDelay = 0,
+  hoverOnDelay,
+  hoverOffDelay,
+  triggerOnClick = false,
+  offsetMainAxis = 8,
 }) => {
   const isControlled = visible !== undefined;
   const [isVisible, setIsVisible] = React.useState(false);
@@ -107,39 +148,76 @@ export const TooltipV2: React.FC<ITooltipV2Props> = ({
     }
   };
 
+  const getTransitionValue = (value?: number) => {
+    if (!withFadeAnimation) {
+      return 0;
+    }
+
+    return value ? value : transitionDuration;
+  };
+
+  const getTransitionDelayValue = (value?: number) => {
+    return value ? value : transitionDelay;
+  };
+
   const { floatingStyles, refs, context } = useFloating({
-    middleware: [offset(8), shift(), flip(), arrow({ element: arrowRef })],
+    middleware: [
+      offset({ mainAxis: offsetMainAxis }),
+      shift(),
+      flip(),
+      arrow({ element: arrowRef }),
+    ],
     placement: placement,
     open: currentlyVisible,
     onOpenChange: handleMenuStateChange,
     whileElementsMounted: autoUpdate,
   });
-
-  const hover = useHover(context, { move: false });
+  const hover = useHover(context, {
+    move: false,
+    delay: {
+      open: getTransitionDelayValue(hoverOnDelay),
+      close: getTransitionDelayValue(hoverOffDelay),
+    },
+    enabled: !triggerOnClick,
+  });
   const focus = useFocus(context);
   const dismiss = useDismiss(context);
   const role = useRole(context, { role: 'tooltip' });
-
+  const click = useClick(context);
+  const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
+    duration: {
+      open: getTransitionValue(hoverOnDuration),
+      close: getTransitionValue(hoverOffDuration),
+    },
+  });
+  const { status } = useTransitionStatus(context);
   const { getReferenceProps, getFloatingProps } = useInteractions([
     hover,
     focus,
     dismiss,
     role,
+    click,
   ]);
 
   return (
     <>
-      {React.cloneElement(triggerRenderer, {
-        ref: refs.setReference,
-        ...getReferenceProps(),
-        ...triggerRenderer.props,
-      })}
-      {currentlyVisible && (
+      <div
+        ref={refs.setReference}
+        {...getReferenceProps()}
+        className={triggerClassName}
+      >
+        {triggerRenderer}
+      </div>
+      {isMounted && (
         <div
           ref={refs.setFloating}
-          style={floatingStyles}
+          style={{
+            ...floatingStyles,
+            ...transitionStyles,
+          }}
           className={mergedClassNames}
           {...getFloatingProps()}
+          data-status={status}
         >
           {children}
           <FloatingArrow
