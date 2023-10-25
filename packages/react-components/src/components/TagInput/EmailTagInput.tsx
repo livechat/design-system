@@ -19,9 +19,11 @@ export const EmailTagInput: React.FC<EmailTagInputProps> = ({
   error,
   placeholder = defaultPlaceholder,
   size,
+  ...props
 }) => {
   return (
     <TagInput
+      {...props}
       id={id}
       tags={tags}
       error={error}
