@@ -53,6 +53,10 @@ export interface TagInputProps
    * Specify the input size
    */
   size?: 'medium' | 'large';
+  /**
+   * Set the input custom class
+   */
+  inputClassName?: string;
 }
 
 export const TagInput: React.FC<TagInputProps> = ({
@@ -63,12 +67,19 @@ export const TagInput: React.FC<TagInputProps> = ({
   error,
   placeholder,
   size = 'medium',
+  className,
+  inputClassName,
   ...props
 }) => {
-  const mergedClassNames = cx(styles[baseClass], {
-    [styles[`${baseClass}--error`]]: error,
-  });
+  const mergedClassNames = cx(
+    styles[baseClass],
+    {
+      [styles[`${baseClass}--error`]]: error,
+    },
+    className
+  );
   const inputClassNames = cx(
+    inputClassName,
     styles[`${baseClass}__input`],
     styles[`${baseClass}__input--${size}`]
   );
