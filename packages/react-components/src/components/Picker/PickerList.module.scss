@@ -6,7 +6,6 @@ $base-class: 'picker-list';
   position: absolute;
   top: calc(100% + 4px);
   z-index: $stacking-context-level-dropdown;
-  border-radius: 200px;
   border-radius: var(--radius-3);
   box-shadow: var(--shadow-pop-over);
   width: 100%;
@@ -73,39 +72,8 @@ $base-class: 'picker-list';
     &[aria-selected='true'] {
       background-color: var(--picker-list-option-background-active);
 
-      &::after {
-        position: absolute;
-        left: -9px;
-        border-top-right-radius: var(--radius-3);
-        border-bottom-right-radius: var(--radius-3);
-        background: var(--action-primary-default);
-        width: 3px;
-        height: 100%;
-        content: '';
-      }
-
       &:hover {
         background-color: var(--picker-list-option-background-active-hover);
-      }
-    }
-
-    &[aria-selected='true'][data-adjacent='top'] {
-      &::after {
-        top: 0;
-        height: 120%;
-      }
-    }
-
-    &[aria-selected='true'][data-adjacent='middle'] {
-      &::after {
-        height: 120%;
-      }
-    }
-
-    &[aria-selected='true'][data-adjacent='bottom'] {
-      &::after {
-        bottom: 0;
-        height: 120%;
       }
     }
 
