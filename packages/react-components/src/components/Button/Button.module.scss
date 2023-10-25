@@ -200,7 +200,8 @@ $base-class: 'btn';
   }
 
   &--link,
-  &--link-light {
+  &--link-light,
+  &--link-inverted {
     border: 0;
     background: none;
     padding: 0;
@@ -245,6 +246,23 @@ $base-class: 'btn';
 
   &--link {
     font-weight: 600;
+  }
+
+  &--link-inverted {
+    color: var(--content-invert-primary);
+
+    &:hover {
+      color: var(--content-invert-primary);
+    }
+
+    &:active,
+    &:focus {
+      color: var(--content-invert-primary);
+    }
+
+    &[aria-disabled='true'] {
+      color: var(--content-invert-disabled);
+    }
   }
 
   &--plain {
