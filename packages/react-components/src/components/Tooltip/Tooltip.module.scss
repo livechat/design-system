@@ -36,6 +36,12 @@ $base-class: 'tooltip';
     }
   }
 
+  &__interactive,
+  &__user-guide-step {
+    padding: var(--spacing-1);
+    width: 270px;
+  }
+
   &--full-space {
     display: flex;
     flex-wrap: wrap;

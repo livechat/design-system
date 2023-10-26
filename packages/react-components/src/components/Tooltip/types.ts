@@ -116,4 +116,9 @@ export interface ITooltipProps {
    * Set to move the arrow along the X axis from default position (top and bottom possition)
    */
   arrowOffsetX?: number;
+  /**
+   * Set to close the tooltip after leaving trigger area in uncontrolled state.
+   * Be default, moving the curson from trigger to tooltip will keep it open.
+   */
+  closeOnTriggerBlur?: boolean;
 }

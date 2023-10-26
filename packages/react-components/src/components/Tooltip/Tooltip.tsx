@@ -16,6 +16,7 @@ import {
   FloatingArrow,
   useTransitionStyles,
   useTransitionStatus,
+  safePolygon,
 } from '@floating-ui/react';
 import cx from 'clsx';
 
@@ -52,6 +53,7 @@ export const Tooltip: React.FC<ITooltipProps> = ({
   hoverOutDelayTimeout = 100,
   arrowOffsetY,
   arrowOffsetX,
+  closeOnTriggerBlur = false,
 }) => {
   const isControlled = isVisible !== undefined;
   const [visible, setVisible] = React.useState(false);
@@ -111,6 +113,7 @@ export const Tooltip: React.FC<ITooltipProps> = ({
       close: getTransitionDelay(hoverOffDelay || hoverOutDelayTimeout),
     },
     enabled: !triggerOnClick,
+    handleClose: closeOnTriggerBlur ? null : safePolygon(),
   });
   const focus = useFocus(context);
   const dismiss = useDismiss(context, useDismissHookProps);
