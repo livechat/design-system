@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Placement, VirtualElement } from '@floating-ui/react';
+import { Placement, VirtualElement, UseDismissProps } from '@floating-ui/react';
 
 import { ButtonKind } from '../Button';
 
@@ -24,7 +24,7 @@ export interface ITooltipProps {
   /**
    * Trigger element
    */
-  triggerRenderer: React.ReactElement;
+  triggerRenderer: React.ReactElement | (() => React.ReactNode);
   /**
    * Specify the tooltip kind
    * @deprecated we are changing the nomenclature to `kind` in order to maintain the constant naming of props
@@ -41,7 +41,7 @@ export interface ITooltipProps {
   /**
    * Set to control the menu visibility
    */
-  visible?: boolean;
+  isVisible?: boolean;
   /**
    * Removes the spacing inside the tooltip
    */
@@ -80,6 +80,11 @@ export interface ITooltipProps {
   hoverOnDelay?: number;
   /**
    * Set to define delay before transition start for hiding tooltip
+   * @deprecated This prop will be removed in the future. Use `hoverOffDelay`.
+   */
+  hoverOutDelayTimeout?: number;
+  /**
+   * Set to define delay before transition start for hiding tooltip
    */
   hoverOffDelay?: number;
   /**
@@ -94,4 +99,21 @@ export interface ITooltipProps {
    * Set custom reference object for the tooltip
    */
   referenceElement?: VirtualElement;
+  /**
+   * Waits until cursor is at “rest” over the trigger to change the state
+   */
+  activationThreshold?: number;
+  /**
+   * Set the `floating-ui` useDismiss hook paramns if you need more control
+   * https://floating-ui.com/docs/usedismiss
+   */
+  useDismissHookProps?: UseDismissProps;
+  /**
+   * Set to move the arrow along the Y axis from default position (left and right possition)
+   */
+  arrowOffsetY?: number;
+  /**
+   * Set to move the arrow along the X axis from default position (top and bottom possition)
+   */
+  arrowOffsetX?: number;
 }

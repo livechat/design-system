@@ -33,7 +33,7 @@ export const Tooltip: React.FC<ITooltipProps> = ({
   theme,
   kind,
   placement = 'bottom',
-  visible,
+  isVisible,
   fullSpaceContent,
   onClose,
   onOpen,
@@ -47,11 +47,16 @@ export const Tooltip: React.FC<ITooltipProps> = ({
   triggerOnClick = false,
   offsetMainAxis = 8,
   referenceElement,
+  activationThreshold = 0,
+  useDismissHookProps,
+  hoverOutDelayTimeout = 100,
+  arrowOffsetY,
+  arrowOffsetX,
 }) => {
-  const isControlled = visible !== undefined;
-  const [isVisible, setIsVisible] = React.useState(false);
+  const isControlled = isVisible !== undefined;
+  const [visible, setVisible] = React.useState(false);
   const arrowRef = React.useRef(null);
-  const currentlyVisible = isControlled ? visible : isVisible;
+  const currentlyVisible = isControlled ? isVisible : visible;
   const tooltipStyle = kind || theme;
   const mergedClassNames = cx(
     styles[baseClass],
@@ -60,29 +65,33 @@ export const Tooltip: React.FC<ITooltipProps> = ({
     fullSpaceContent && styles[`${baseClass}--full-space`]
   );
 
-  const handleMenuStateChange = () => {
-    if (currentlyVisible) {
-      onClose?.();
-      !isControlled && setIsVisible(false);
-    } else {
+  const handleMenuStateChange = (isOpen: boolean) => {
+    if (isOpen) {
       onOpen?.();
-      !isControlled && setIsVisible(true);
+    } else {
+      onClose?.();
     }
+    !isControlled && setVisible(isOpen);
   };
 
-  const getTransitionValue = (value?: number) => {
+  const getTransitionDuration = (value?: number) => {
     if (!withFadeAnimation) {
       return 0;
     }
 
-    return value ? value : transitionDuration;
+    return value ?? transitionDuration;
   };
 
-  const getTransitionDelayValue = (value?: number) => {
-    return value ? value : transitionDelay;
+  const getTransitionDelay = (value?: number) => {
+    return value ?? transitionDelay;
   };
 
-  const { floatingStyles, refs, context } = useFloating({
+  const {
+    floatingStyles,
+    refs,
+    context,
+    middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
+  } = useFloating({
     middleware: [
       offset({ mainAxis: offsetMainAxis }),
       shift(),
@@ -96,20 +105,21 @@ export const Tooltip: React.FC<ITooltipProps> = ({
   });
   const hover = useHover(context, {
     move: false,
+    restMs: activationThreshold,
     delay: {
-      open: getTransitionDelayValue(hoverOnDelay),
-      close: getTransitionDelayValue(hoverOffDelay),
+      open: getTransitionDelay(hoverOnDelay),
+      close: getTransitionDelay(hoverOffDelay || hoverOutDelayTimeout),
     },
     enabled: !triggerOnClick,
   });
   const focus = useFocus(context);
-  const dismiss = useDismiss(context);
+  const dismiss = useDismiss(context, useDismissHookProps);
   const role = useRole(context, { role: 'tooltip' });
   const click = useClick(context);
   const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
     duration: {
-      open: getTransitionValue(hoverOnDuration),
-      close: getTransitionValue(hoverOffDuration),
+      open: getTransitionDuration(hoverOnDuration),
+      close: getTransitionDuration(hoverOffDuration),
     },
   });
   const { status } = useTransitionStatus(context);
@@ -124,6 +134,26 @@ export const Tooltip: React.FC<ITooltipProps> = ({
   React.useEffect(() => {
     referenceElement && refs.setReference(referenceElement);
   }, [refs.setReference, referenceElement]);
+
+  const getArrowStyles = () => {
+    if (arrowOffsetY && arrowY) {
+      const arrowYPosition = arrowY + arrowOffsetY;
+
+      return {
+        top: arrowYPosition,
+      };
+    }
+
+    if (arrowOffsetX && arrowX) {
+      const arrowXPosition = arrowX + arrowOffsetX;
+
+      return {
+        left: arrowXPosition,
+      };
+    }
+
+    return;
+  };
 
   return (
     <>
@@ -150,6 +180,7 @@ export const Tooltip: React.FC<ITooltipProps> = ({
             className={styles[`${baseClass}__arrow`]}
             ref={arrowRef}
             context={context}
+            style={getArrowStyles()}
           />
         </div>
       )}

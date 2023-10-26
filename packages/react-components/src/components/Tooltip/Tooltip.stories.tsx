@@ -19,6 +19,9 @@ export default {
     triggerRenderer: {
       control: false,
     },
+    useDismissHookProps: {
+      control: false,
+    },
     kind: {
       options: ['invert', 'important', undefined],
       control: {
@@ -26,7 +29,7 @@ export default {
         labels: 'Kind',
       },
     },
-    visible: {
+    isVisible: {
       options: [true, false, undefined],
       control: {
         type: 'select',
@@ -53,7 +56,7 @@ export const Default = (args: ITooltipProps): React.ReactElement => (
   </Tooltip>
 );
 Default.args = {
-  visible: true,
+  isVisible: true,
 };
 
 export const TooltipInfo = (args: ITooltipProps): React.ReactElement => (
@@ -66,7 +69,7 @@ export const TooltipInfo = (args: ITooltipProps): React.ReactElement => (
   </Tooltip>
 );
 TooltipInfo.args = {
-  visible: true,
+  isVisible: true,
 };
 
 export const TooltipInteractive = (args: ITooltipProps): React.ReactElement => (
@@ -91,7 +94,7 @@ export const TooltipInteractive = (args: ITooltipProps): React.ReactElement => (
   </Tooltip>
 );
 TooltipInteractive.args = {
-  visible: true,
+  isVisible: true,
 };
 
 export const TooltipReports = (args: ITooltipProps): React.ReactElement => (
@@ -108,7 +111,7 @@ export const TooltipReports = (args: ITooltipProps): React.ReactElement => (
   </Tooltip>
 );
 TooltipReports.args = {
-  visible: true,
+  isVisible: true,
   fullSpaceContent: true,
 };
 
@@ -219,7 +222,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
 
         <UserGuide
           {...props}
-          visible={state.isVisible}
+          isVisible={state.isVisible}
           parentElementName={`#${state.reference}`}
           zIndex={1000}
           shouldSlide={true}
