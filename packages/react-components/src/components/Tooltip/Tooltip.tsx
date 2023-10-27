@@ -68,11 +68,16 @@ export const Tooltip: React.FC<ITooltipProps> = ({
   );
 
   const handleMenuStateChange = (isOpen: boolean) => {
+    if (isOpen === currentlyVisible) {
+      return;
+    }
+
     if (isOpen) {
       onOpen?.();
     } else {
       onClose?.();
     }
+
     !isControlled && setVisible(isOpen);
   };
 

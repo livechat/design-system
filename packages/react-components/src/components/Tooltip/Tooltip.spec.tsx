@@ -2,47 +2,29 @@ import * as React from 'react';
 
 import { vi } from 'vitest';
 
-import { render, fireEvent, cleanup, act, waitFor } from 'test-utils';
+import {
+  render,
+  fireEvent,
+  cleanup,
+  act,
+  waitFor,
+  userEvent,
+} from 'test-utils';
 
 import { Tooltip } from './Tooltip';
 
-vi.mock('@floating-ui/react-dom', () => {
-  return {
-    useFloating: vi.fn(() => {
-      return {
-        x: 0,
-        y: 0,
-        placement: 'bottom',
-        middlewareData: {
-          arrow: {
-            x: 0,
-            y: 0,
-          },
-        },
-        refs: {
-          floating: 0,
-          reference: 0,
-        },
-      };
-    }),
-    arrow: vi.fn(),
-    autoUpdate: vi.fn(),
-    flip: vi.fn(),
-    offset: vi.fn(),
-    x: 0,
-  };
-});
+import styles from './Tooltip.module.scss';
 
 describe('<Tooltip> component', () => {
-  it('should show content on mouse over', () => {
+  it('should show content on mouse over', async () => {
     const { container, getByRole } = render(
-      <Tooltip triggerRenderer={() => <button>Open</button>}>
+      <Tooltip triggerRenderer={<button>Open</button>}>
         <div style={{ width: '100px' }}> Test </div>
       </Tooltip>
     );
 
-    act(() => {
-      fireEvent.mouseOver(getByRole('button', { name: 'Open' }));
+    await act(() => {
+      userEvent.hover(getByRole('button', { name: 'Open' }));
     });
 
     expect(container).toHaveTextContent('Test');
@@ -55,20 +37,20 @@ describe('<Tooltip> component', () => {
       <Tooltip
         hoverOutDelayTimeout={0}
         withFadeAnimation={false}
-        triggerRenderer={() => <button>Open</button>}
+        triggerRenderer={<button>Open</button>}
       >
         <div style={{ width: '100px' }}> Test </div>
       </Tooltip>
     );
 
-    act(() => {
-      fireEvent.mouseOver(getByRole('button', { name: 'Open' }));
+    await act(() => {
+      userEvent.hover(getByRole('button', { name: 'Open' }));
     });
 
     expect(container).toHaveTextContent('Test');
 
-    act(() => {
-      fireEvent.mouseOut(getByRole('button', { name: 'Open' }));
+    await act(() => {
+      userEvent.unhover(getByRole('button', { name: 'Open' }));
     });
 
     await waitFor(
@@ -81,15 +63,15 @@ describe('<Tooltip> component', () => {
     cleanup();
   });
 
-  it(`shouldn't show content on mouse over when we set isVisible=false`, () => {
+  it(`shouldn't show content on mouse over when we set isVisible=false`, async () => {
     const { container, getByRole } = render(
-      <Tooltip isVisible={false} triggerRenderer={() => <button>Open</button>}>
+      <Tooltip isVisible={false} triggerRenderer={<button>Open</button>}>
         <div style={{ width: '100px' }}> Test </div>
       </Tooltip>
     );
 
-    act(() => {
-      fireEvent.mouseOver(getByRole('button', { name: 'Open' }));
+    await act(() => {
+      userEvent.hover(getByRole('button', { name: 'Open' }));
     });
 
     expect(container).not.toHaveTextContent('Test');
@@ -109,34 +91,31 @@ describe('<Tooltip> component', () => {
     cleanup();
   });
 
-  it(`should show content after click and disappear after second click`, () => {
+  it(`should show content after click and disappear after second click`, async () => {
     const buttonClick = () =>
       act(() => {
         fireEvent.click(getByRole('button', { name: 'Open' }));
       });
 
     const { container, getByRole, getByText } = render(
-      <Tooltip
-        triggerOnClick={true}
-        triggerRenderer={() => <button>Open</button>}
-      >
+      <Tooltip triggerOnClick={true} triggerRenderer={<button>Open</button>}>
         <div style={{ width: '100px' }}> Test </div>
       </Tooltip>
     );
 
-    act(() => {
-      fireEvent.mouseOver(getByRole('button', { name: 'Open' }));
+    await act(() => {
+      userEvent.hover(getByRole('button', { name: 'Open' }));
     });
     expect(container).not.toHaveTextContent('Test');
 
     buttonClick();
     expect(container).toHaveTextContent('Test');
 
-    buttonClick();
+    await buttonClick();
     expect(getByText('Test')).not.toBeVisible();
 
-    buttonClick();
-    act(() => {
+    await buttonClick();
+    await act(() => {
       fireEvent.keyDown(getByText('Test'), { key: 'Escape', code: 'Escape' });
     });
     expect(getByText('Test')).not.toBeVisible();
@@ -145,19 +124,18 @@ describe('<Tooltip> component', () => {
   });
 
   it('should have proper theme atribute for important theme', () => {
-    const { getByTestId } = render(
+    const { getByRole } = render(
       <Tooltip
-        isVisible={true}
-        theme="important"
-        triggerRenderer={() => <button>Open</button>}
+        isVisible
+        kind="important"
+        triggerRenderer={<button>Open</button>}
       >
-        <div data-testid="import-tooltip" style={{ width: '100px' }}>
-          Color Test
-        </div>
+        <div style={{ width: '100px' }}>Color Test</div>
       </Tooltip>
     );
 
-    expect(getByTestId('import-tooltip')).toHaveAttribute('theme', 'important');
+    const tooltip = getByRole('tooltip');
+    expect(tooltip).toHaveClass(styles['tooltip--important']);
 
     cleanup();
   });
@@ -167,11 +145,7 @@ describe('<Tooltip> component', () => {
     const onClose = vi.fn();
     const { getByRole, queryByText } = render(
       <Tooltip
-        triggerRenderer={() => <button>Open</button>}
-        triggerOnClick={false}
-        withFadeAnimation={false}
-        hoverOutDelayTimeout={0}
-        transitionDuration={0}
+        triggerRenderer={<button>Open</button>}
         onOpen={onOpen}
         onClose={onClose}
       >
@@ -181,16 +155,16 @@ describe('<Tooltip> component', () => {
 
     const button = getByRole('button', { name: 'Open' });
 
-    act(() => {
-      fireEvent.mouseEnter(button);
+    await act(() => {
+      userEvent.hover(button);
     });
 
     expect(queryByText('Test')).toBeInTheDocument();
     expect(onOpen).toBeCalledTimes(1);
     expect(onClose).not.toBeCalled();
 
-    act(() => {
-      fireEvent.mouseOut(button);
+    await act(() => {
+      userEvent.unhover(button);
     });
 
     await waitFor(
@@ -204,16 +178,12 @@ describe('<Tooltip> component', () => {
     cleanup();
   });
 
-  it('should not call onOpen callback redundantly when hovering from trigger element to tooltip', () => {
+  it('should not call onOpen callback redundantly when hovering from trigger element to tooltip', async () => {
     const onOpen = vi.fn();
     const onClose = vi.fn();
     const { getByRole, queryByText } = render(
       <Tooltip
-        triggerRenderer={() => <button>Open</button>}
-        triggerOnClick={false}
-        withFadeAnimation={false}
-        hoverOutDelayTimeout={0}
-        transitionDuration={0}
+        triggerRenderer={<button>Open</button>}
         onOpen={onOpen}
         onClose={onClose}
       >
@@ -223,15 +193,15 @@ describe('<Tooltip> component', () => {
 
     const button = getByRole('button', { name: 'Open' });
 
-    act(() => {
-      fireEvent.mouseEnter(button);
+    await act(() => {
+      userEvent.hover(button);
     });
 
     expect(queryByText('Test')).toBeInTheDocument();
 
-    act(() => {
-      fireEvent.mouseEnter(queryByText('Test') as HTMLElement);
-      fireEvent.mouseEnter(button);
+    await act(async () => {
+      await userEvent.hover(queryByText('Test') as HTMLElement);
+      await userEvent.hover(button);
     });
 
     expect(onOpen).toBeCalledTimes(1);
