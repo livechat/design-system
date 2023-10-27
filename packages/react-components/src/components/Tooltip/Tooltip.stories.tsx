@@ -58,6 +58,13 @@ export const Default = (args: ITooltipProps): React.ReactElement => (
 Default.args = {
   isVisible: true,
 };
+Default.decorators = [
+  (Story) => (
+    <div className="tooltip-story default">
+      <Story />
+    </div>
+  ),
+];
 
 export const TooltipInfo = (args: ITooltipProps): React.ReactElement => (
   <Tooltip {...args} triggerRenderer={<Button>Trigger</Button>}>
@@ -65,12 +72,20 @@ export const TooltipInfo = (args: ITooltipProps): React.ReactElement => (
       header="Header - concise and clear"
       text="Tooltip content is used to explain the details of elements or features."
       closeWithX
+      handleCloseAction={noop}
     />
   </Tooltip>
 );
 TooltipInfo.args = {
   isVisible: true,
 };
+TooltipInfo.decorators = [
+  (Story) => (
+    <div className="tooltip-story info">
+      <Story />
+    </div>
+  ),
+];
 
 export const TooltipInteractive = (args: ITooltipProps): React.ReactElement => (
   <Tooltip {...args} triggerRenderer={<Button>Trigger</Button>}>
@@ -96,6 +111,13 @@ export const TooltipInteractive = (args: ITooltipProps): React.ReactElement => (
 TooltipInteractive.args = {
   isVisible: true,
 };
+TooltipInteractive.decorators = [
+  (Story) => (
+    <div className="tooltip-story interactive">
+      <Story />
+    </div>
+  ),
+];
 
 export const TooltipReports = (args: ITooltipProps): React.ReactElement => (
   <Tooltip {...args} triggerRenderer={<Button>Trigger</Button>}>
@@ -114,6 +136,13 @@ TooltipReports.args = {
   isVisible: true,
   fullSpaceContent: true,
 };
+TooltipReports.decorators = [
+  (Story) => (
+    <div className="tooltip-story reports">
+      <Story />
+    </div>
+  ),
+];
 
 export const TooltipUserGuide = (args: ITooltipProps): React.ReactElement => (
   <div className="tooltip-preview-container">

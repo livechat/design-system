@@ -29,3 +29,27 @@
   width: 100%;
   height: 100px;
 }
+
+.tooltip-story {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  width: 700px;
+}
+
+.tooltip-story.default {
+  min-block-size: 150px;
+}
+
+.tooltip-story.info {
+  min-block-size: 250px;
+}
+
+.tooltip-story.interactive {
+  min-block-size: 730px;
+}
+
+.tooltip-story.reports {
+  min-block-size: 730px;
+}

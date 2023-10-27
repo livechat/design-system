@@ -1,4 +1,4 @@
-import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+import { Meta, Title, Canvas, ArgsTable, Story } from '@storybook/blocks';
 import { Figma } from '@storybook/addon-designs/blocks';
 import * as Stories from './Tooltip.stories';
 
@@ -10,19 +10,21 @@ import * as Stories from './Tooltip.stories';
 
 ## Intro <a id="Intro" />
 
-<Canvas of={Stories.Default} sourceState="none" />
+### Simple Tooltip
+<Canvas of={Stories.Default} />
 
-#### Example implementation
+### Info Tooltip
+<Canvas of={Stories.TooltipInfo} />
 
-```jsx
-<Tooltip triggerRenderer={<Button>Trigger</Button>}>
-  Simple tooltip
-</Tooltip>
-```
+### Interactive Tooltip
+<Canvas of={Stories.TooltipInteractive} />
+
+### Reports Tooltip
+<Canvas of={Stories.TooltipReports} />
 
 ## Component API <a id="ComponentAPI" />
 
-<ArgTypes of={Stories.Default} />
+<ArgsTable />
 
 ## Content Spec <a id="ContentSpec" />
 
