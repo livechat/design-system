@@ -1,4 +1,4 @@
-import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+import { Meta, Title, Canvas, ArgTypes, Unstyled } from '@storybook/blocks';
 import { Figma } from '@storybook/addon-designs/blocks';
 import * as Stories from './PromoBanner.stories';
 import { Alert } from '../Alert';
@@ -10,7 +10,7 @@ import { linkTo } from '@storybook/addon-links';
 
 [Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
 
-<div style={{ width: '600px' }}>
+<Unstyled>
   <Alert
     kind="warning"
     primaryButton={{
@@ -22,7 +22,7 @@ import { linkTo } from '@storybook/addon-links';
     the version <b>2.0.0</b> will be removed. <br />
     We strongly recommend you to start using <b>PromoBannerV2</b> component.
   </Alert>
-</div>
+</Unstyled>
 
 ## Intro <a id="Intro" />
 
