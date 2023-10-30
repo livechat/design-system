@@ -1,35 +1,11 @@
 @use './styles/kind';
+@use './styles/base';
+@use './styles/size';
 
 $base-class: 'btn';
 
 .#{$base-class} {
-  box-sizing: border-box;
-  display: inline-flex;
-  position: relative;
-  align-items: center;
-  justify-content: center;
-  transition-duration: 200ms;
-  transition-property: opacity, border, color, background-color, box-shadow;
-  transition-timing-function: cubic-bezier(0.64, 0, 0.35, 1);
-  border-width: 1px;
-  border-style: solid;
-  border-radius: var(--radius-3);
-  cursor: pointer;
-  padding: 8px 16px;
-  min-width: 36px;
-  height: 36px;
-  text-align: center;
-  text-decoration: none;
-  line-height: 20px;
-  font-size: 15px;
-  font-weight: 600;
-  user-select: none;
-
-  &:focus,
-  &:hover,
-  &:active {
-    outline: 0;
-  }
+  @include base.default();
 
   &--disabled {
     cursor: not-allowed;
@@ -40,23 +16,11 @@ $base-class: 'btn';
   }
 
   &--compact {
-    padding: 6px 16px;
-    min-width: 32px;
-    height: 32px;
-
-    &.#{$base-class}--icon-only {
-      padding: 4px;
-    }
+    @include size.button-size($base-class, 6px 16px, 32px, 32px);
   }
 
   &--large {
-    padding: 11px 16px;
-    min-width: 44px;
-    height: 44px;
-
-    &.#{$base-class}--icon-only {
-      padding: 9px;
-    }
+    @include size.button-size($base-class, 11px 16px, 44px, 44px);
   }
 
   &--basic {
