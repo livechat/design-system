@@ -20,6 +20,7 @@ import {
 } from '@floating-ui/react';
 import cx from 'clsx';
 
+import { getArrowStyles } from './helpers';
 import { ITooltipProps } from './types';
 
 import styles from './Tooltip.module.scss';
@@ -143,26 +144,6 @@ export const Tooltip: React.FC<ITooltipProps> = ({
     referenceElement && refs.setReference(referenceElement);
   }, [refs.setReference, referenceElement]);
 
-  const getArrowStyles = () => {
-    if (arrowOffsetY && arrowY) {
-      const arrowYPosition = arrowY + arrowOffsetY;
-
-      return {
-        top: arrowYPosition,
-      };
-    }
-
-    if (arrowOffsetX && arrowX) {
-      const arrowXPosition = arrowX + arrowOffsetX;
-
-      return {
-        left: arrowXPosition,
-      };
-    }
-
-    return;
-  };
-
   return (
     <>
       <div
@@ -188,7 +169,7 @@ export const Tooltip: React.FC<ITooltipProps> = ({
             className={styles[`${baseClass}__arrow`]}
             ref={arrowRef}
             context={context}
-            style={getArrowStyles()}
+            style={getArrowStyles(arrowOffsetY, arrowOffsetX, arrowY, arrowX)}
           />
         </div>
       )}
