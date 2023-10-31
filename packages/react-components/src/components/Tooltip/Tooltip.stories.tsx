@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta } from '@storybook/react';
+import { ComponentMeta, Story, StoryFn } from '@storybook/react';
 
 import noop from '../../utils/noop';
 import { Button } from '../Button';
@@ -59,7 +59,7 @@ Default.args = {
   isVisible: true,
 };
 Default.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div className="tooltip-story default">
       <Story />
     </div>
@@ -80,7 +80,7 @@ TooltipInfo.args = {
   isVisible: true,
 };
 TooltipInfo.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div className="tooltip-story info">
       <Story />
     </div>
@@ -112,7 +112,7 @@ TooltipInteractive.args = {
   isVisible: true,
 };
 TooltipInteractive.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div className="tooltip-story interactive">
       <Story />
     </div>
@@ -137,7 +137,7 @@ TooltipReports.args = {
   fullSpaceContent: true,
 };
 TooltipReports.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div className="tooltip-story reports">
       <Story />
     </div>

@@ -2,14 +2,7 @@ import * as React from 'react';
 
 import { vi } from 'vitest';
 
-import {
-  render,
-  fireEvent,
-  cleanup,
-  act,
-  waitFor,
-  userEvent,
-} from 'test-utils';
+import { render, cleanup, waitFor, userEvent } from 'test-utils';
 
 import { Tooltip } from './Tooltip';
 import { ITooltipProps } from './types';
