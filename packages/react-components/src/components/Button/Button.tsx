@@ -94,9 +94,8 @@ export const Button = React.forwardRef<
         className={mergedClassNames}
         aria-disabled={isDisabled}
         type={type}
-        href={isDisabled ? undefined : href}
-        onClick={isDisabled ? undefined : onClick}
         disabled={isDisabled}
+        {...(!isDisabled && { href, onClick })}
         {...props}
       >
         {loading && (
