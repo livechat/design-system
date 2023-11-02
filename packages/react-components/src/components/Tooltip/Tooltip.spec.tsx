@@ -20,7 +20,7 @@ const renderComponent = (props: ITooltipProps) => {
 };
 
 describe('<Tooltip> component', () => {
-  it('should show tooltip on mouse hover and hide it after unhover', async () => {
+  it('should show tooltip on mouse hover and hide it on mouse leave', async () => {
     const { queryByRole, getByRole } = renderComponent(defaultProps);
 
     const button = getByRole('button');
