@@ -1,0 +1,29 @@
+@mixin default() {
+  box-sizing: border-box;
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  transition-duration: 200ms;
+  transition-property: opacity, border, color, background-color, box-shadow;
+  transition-timing-function: cubic-bezier(0.64, 0, 0.35, 1);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: var(--radius-3);
+  cursor: pointer;
+  padding: 8px 16px;
+  min-width: 36px;
+  height: 36px;
+  text-align: center;
+  text-decoration: none;
+  line-height: 20px;
+  font-size: 15px;
+  font-weight: 600;
+  user-select: none;
+
+  &:focus,
+  &:hover,
+  &:active {
+    outline: 0;
+  }
+}

@@ -8,6 +8,7 @@ $base-class: 'avatar';
   background-color: var(--surface-secondary-default);
   color: var(--content-basic-secondary);
   font-weight: 600;
+  user-select: none;
 
   &__status {
     $status-class: &;

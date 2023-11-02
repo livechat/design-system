@@ -6,21 +6,10 @@ import { Size } from 'utils';
 
 import { Loader } from '../Loader';
 
-import styles from './Button.module.scss';
+import { getSpinnerColors } from './helpers';
+import { ButtonKind } from './types';
 
-export type ButtonKind =
-  | 'basic'
-  | 'primary'
-  | 'secondary'
-  | 'destructive'
-  | 'destructive-outline'
-  | 'text'
-  | 'link'
-  | 'link-light'
-  | 'plain'
-  | 'float'
-  | 'dotted'
-  | 'high-contrast';
+import styles from './Button.module.scss';
 
 export type ButtonProps = {
   /**
@@ -85,15 +74,6 @@ export const Button = React.forwardRef<
 
     const Component = href ? 'a' : 'button';
 
-    const getSpinnerColors = () => {
-      if (kind === 'primary' || kind === 'destructive') {
-        return {
-          primaryColor: 'var(--action-primary-default)',
-          secondaryColor: 'var(--border-invert-primary)',
-        };
-      }
-    };
-
     const mergedClassNames = cx(
       className,
       styles[baseClass],
@@ -114,9 +94,8 @@ export const Button = React.forwardRef<
         className={mergedClassNames}
         aria-disabled={isDisabled}
         type={type}
-        href={isDisabled ? undefined : href}
-        onClick={isDisabled ? undefined : onClick}
         disabled={isDisabled}
+        {...(!isDisabled && { href, onClick })}
         {...props}
       >
         {loading && (
@@ -124,7 +103,7 @@ export const Button = React.forwardRef<
             size="small"
             label={loaderLabel}
             className={styles[`${baseClass}__loader`]}
-            {...getSpinnerColors()}
+            {...getSpinnerColors(kind)}
           />
         )}
         {icon &&

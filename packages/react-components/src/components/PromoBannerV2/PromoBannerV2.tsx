@@ -51,11 +51,11 @@ export const PromoBannerV2: React.FC<
   secondaryButton,
   onClose,
 }) => {
-  const mergedClassNames = cx(styles[baseClass], className);
+  const mergedClassNames = cx(styles[`main-wrapper`], className);
 
   return (
-    <div className={styles[`main-wrapper`]}>
-      <div role="banner" className={mergedClassNames}>
+    <div role="banner" className={mergedClassNames}>
+      <div className={styles[baseClass]}>
         <div className={styles[`${baseClass}__content`]}>
           {children}
           {(primaryButton || secondaryButton) && (
