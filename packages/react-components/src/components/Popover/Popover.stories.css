@@ -21,10 +21,3 @@
   margin-left: 5px;
   line-height: 20px;
 }
-
-.wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-}
