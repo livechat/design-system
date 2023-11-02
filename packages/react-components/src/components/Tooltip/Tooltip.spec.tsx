@@ -59,7 +59,7 @@ describe('<Tooltip> component', () => {
     cleanup();
   });
 
-  it(`should show tooltip after trigger click and hide after second click`, async () => {
+  it(`should show tooltip on trigger click and hide it on second click`, async () => {
     const { queryByRole, getByRole } = renderComponent({
       ...defaultProps,
       triggerOnClick: true,
