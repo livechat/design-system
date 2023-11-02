@@ -36,7 +36,7 @@ describe('<Tooltip> component', () => {
     cleanup();
   });
 
-  it(`shouldn't show tooltip after hover when controlled state is set to false`, () => {
+  it(`shouldn't show tooltip on hover when isVisible prop is set to false`, () => {
     const { queryByRole, getByRole } = renderComponent({
       ...defaultProps,
       isVisible: false,
