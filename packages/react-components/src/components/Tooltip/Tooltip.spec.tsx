@@ -48,7 +48,7 @@ describe('<Tooltip> component', () => {
     cleanup();
   });
 
-  it(`should show tooltip when controlled state is set to true`, () => {
+  it(`should show tooltip when isVisible prop is set to true`, () => {
     const { getByRole } = renderComponent({
       ...defaultProps,
       isVisible: true,
