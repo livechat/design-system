@@ -67,6 +67,7 @@ export const Tooltip: React.FC<ITooltipProps> = ({
     tooltipStyle && styles[`${baseClass}--${tooltipStyle}`],
     fullSpaceContent && styles[`${baseClass}--full-space`]
   );
+  const isTriggerAsFunction = typeof triggerRenderer === 'function';
 
   const handleMenuStateChange = (isOpen: boolean) => {
     if (isOpen === currentlyVisible) {
@@ -151,7 +152,7 @@ export const Tooltip: React.FC<ITooltipProps> = ({
         {...getReferenceProps()}
         className={triggerClassName}
       >
-        {triggerRenderer}
+        {isTriggerAsFunction ? triggerRenderer() : triggerRenderer}
       </div>
       {isMounted && (
         <div

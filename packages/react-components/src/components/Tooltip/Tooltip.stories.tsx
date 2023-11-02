@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta, Story, StoryFn } from '@storybook/react';
+import { ComponentMeta, StoryFn } from '@storybook/react';
 
 import noop from '../../utils/noop';
 import { Button } from '../Button';
