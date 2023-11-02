@@ -58,28 +58,8 @@ export const Default = (args: IPopoverProps): React.ReactElement => (
       </Button>
     )}
   >
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: '12px',
-        width: '308px',
-        height: '308px',
-      }}
-    >
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          border: '1px dashed var(--border-default)',
-          backgroundColor: 'var(--surface-basic-default)',
-          width: '100%',
-          height: '100%',
-          borderRadius: '4px',
-        }}
-      >
+    <div className="content-wrapper">
+      <div className="content">
         <Text>Popover content</Text>
       </div>
     </div>
