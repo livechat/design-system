@@ -42,6 +42,16 @@ export default {
     flipOptions: {
       control: false,
     },
+    isVisible: {
+      options: [true, false, undefined],
+      control: {
+        type: 'select',
+        labels: 'Visible',
+      },
+    },
+    triggerRenderer: { control: false },
+    useDismissHookProps: { control: false },
+    useClickHookProps: { control: false },
   },
   parameters: {
     layout: 'centered',
