@@ -11,14 +11,15 @@ import { TooltipTheme } from '../types';
 const baseClass = 'tooltip';
 
 export const Info: React.FC<{
+  className?: string;
   header?: string;
   text: string;
   closeWithX?: boolean;
   theme?: TooltipTheme;
   handleCloseAction?: (ev: React.MouseEvent) => void;
-}> = ({ header, text, closeWithX, theme, handleCloseAction }) => {
+}> = ({ className, header, text, closeWithX, theme, handleCloseAction }) => {
   return (
-    <div>
+    <div className={className}>
       {closeWithX && (
         <button
           className={styles[`${baseClass}-close`]}
