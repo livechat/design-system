@@ -29,6 +29,7 @@ export const Popover: React.FC<IPopoverProps> = ({
   triggerClassName,
   placement,
   flipOptions,
+  offsetSize = 4,
   isVisible,
   openedOnInit,
   closeOnEsc = true,
@@ -39,6 +40,7 @@ export const Popover: React.FC<IPopoverProps> = ({
   const isControlled = isVisible !== undefined;
   const currentlyVisible = isControlled ? isVisible : visible;
   const isTextContent = typeof children === 'string';
+  const isTriggerAsFunction = typeof triggerRenderer === 'function';
 
   const handleVisibilityChange = (isOpen: boolean) => {
     if (isOpen) {
@@ -53,7 +55,7 @@ export const Popover: React.FC<IPopoverProps> = ({
   const { refs, context, floatingStyles } = useFloating({
     open: currentlyVisible,
     onOpenChange: handleVisibilityChange,
-    middleware: [offset(4), flip(flipOptions), shift()],
+    middleware: [offset(offsetSize), flip(flipOptions), shift()],
     placement: placement,
     whileElementsMounted: autoUpdate,
   });
@@ -76,11 +78,12 @@ export const Popover: React.FC<IPopoverProps> = ({
   return (
     <>
       <div
-        className={triggerClassName}
+        data-testid="popover-trigger-button"
         ref={refs.setReference}
         {...getReferenceProps()}
+        className={triggerClassName}
       >
-        {triggerRenderer()}
+        {isTriggerAsFunction ? triggerRenderer() : triggerRenderer}
       </div>
       {currentlyVisible && (
         <FloatingFocusManager context={context} modal={false}>

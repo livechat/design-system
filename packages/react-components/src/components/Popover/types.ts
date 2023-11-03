@@ -42,13 +42,17 @@ export interface IPopoverProps {
    */
   flipOptions?: FlipOptions;
   /**
+   * Set the popover offset
+   */
+  offsetSize?: number;
+  /**
    * Set `false` if the menu is not to be closed with an esc press
    */
   closeOnEsc?: boolean;
   /**
    * Trigger element
    */
-  triggerRenderer: () => React.ReactNode;
+  triggerRenderer: React.ReactElement | (() => React.ReactNode);
   /**
    * Set the `floating-ui` useDismiss hook params if you need more control
    * https://floating-ui.com/docs/usedismiss
