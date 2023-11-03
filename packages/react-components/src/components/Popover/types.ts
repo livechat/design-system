@@ -1,10 +1,10 @@
 import * as React from 'react';
 
 import {
-  flip,
   Placement,
   UseClickProps,
   UseDismissProps,
+  FlipOptions,
 } from '@floating-ui/react';
 
 export interface IPopoverProps {
@@ -40,9 +40,9 @@ export interface IPopoverProps {
   /**
    * Set the popover placement to keep it in view
    */
-  flipOptions?: Parameters<typeof flip>[0];
+  flipOptions?: FlipOptions;
   /**
-   * Set `false` if the menu is not to be closed with a esc press
+   * Set `false` if the menu is not to be closed with an esc press
    */
   closeOnEsc?: boolean;
   /**
@@ -50,12 +50,12 @@ export interface IPopoverProps {
    */
   triggerRenderer: () => React.ReactNode;
   /**
-   * Set the `floating-ui` useDismiss hook paramns if you need more control
+   * Set the `floating-ui` useDismiss hook params if you need more control
    * https://floating-ui.com/docs/usedismiss
    */
   useDismissHookProps?: UseDismissProps;
   /**
-   * Set the `floating-ui` useClick hook paramns if you need more control
+   * Set the `floating-ui` useClick hook params if you need more control
    * https://floating-ui.com/docs/useclick
    */
   useClickHookProps?: UseClickProps;
