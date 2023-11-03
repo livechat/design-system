@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { ChevronDown } from '@livechat/design-system-icons';
-import { Meta } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 
 import { Button } from '../Button';
 import { Icon } from '../Icon';
@@ -65,6 +65,13 @@ export const Default = (args: IPopoverProps): React.ReactElement => (
     </div>
   </PopoverComponent>
 );
+Default.decorators = [
+  (Story: StoryFn) => (
+    <div className="popper-story default">
+      <Story />
+    </div>
+  ),
+];
 Default.args = {
   placement: 'bottom-start',
   isVisible: undefined,
