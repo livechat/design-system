@@ -14,18 +14,13 @@ import {
   useListNavigation,
   useRole,
   useTypeahead,
-  FloatingFocusManager,
 } from '@floating-ui/react';
-import { useVirtualizer } from '@tanstack/react-virtual';
 import * as ReactDOM from 'react-dom';
 
+import { PickerList } from './components/PickerList';
 import { IPickerProps } from './types';
 
-import styles from './Picker.module.scss';
-
 const overflowPadding = 10;
-const ITEM_HEIGHT = 35;
-const ITEMS_COUNT = 35;
 
 export const Picker: React.FC<IPickerProps> = ({
   // id,
@@ -89,13 +84,6 @@ export const Picker: React.FC<IPickerProps> = ({
       ],
     });
 
-  const rowVirtualizer = useVirtualizer({
-    count: options.length,
-    getScrollElement: () => refs.floating.current,
-    estimateSize: () => ITEM_HEIGHT,
-    overscan: 5,
-  });
-
   const click = useClick(context);
   const role = useRole(context, { role: 'listbox' });
   const dismiss = useDismiss(context);
@@ -121,22 +109,6 @@ export const Picker: React.FC<IPickerProps> = ({
     [click, role, dismiss, listNavigation, typeahead]
   );
 
-  React.useLayoutEffect(() => {
-    if (isPositioned && !pointer) {
-      // Nothing has been selected, reset scrolling upon open
-      if (activeIndex === null && selectedIndex === null) {
-        rowVirtualizer.scrollToIndex(0);
-      }
-
-      // Scrolling is restored, but the item will be scrolled
-      // into view when necessary
-      if (activeIndex !== null) {
-        wrapperRef.current?.focus({ preventScroll: true });
-        rowVirtualizer.scrollToIndex(activeIndex);
-      }
-    }
-  }, [rowVirtualizer, isPositioned, activeIndex, selectedIndex, pointer, refs]);
-
   const handleSelect = () => {
     if (activeIndex !== null) {
       setSelectedIndex(activeIndex);
@@ -151,85 +123,25 @@ export const Picker: React.FC<IPickerProps> = ({
       </button>
       <FloatingPortal>
         {open && (
-          <FloatingFocusManager context={context} modal={false}>
-            <div
-              ref={refs.setFloating}
-              tabIndex={-1}
-              className={styles['listbox']}
-              style={{
-                ...floatingStyles,
-                maxHeight,
-              }}
-            >
-              <div
-                className={styles['listbox-wrapper']}
-                style={{
-                  height: `${rowVirtualizer.getTotalSize()}px`,
-                }}
-                ref={wrapperRef}
-                // Some screen readers do not like any wrapper tags inside
-                // of the element with the role, so we spread it onto the
-                // virtualizer wrapper.
-                {...getFloatingProps({
-                  onKeyDown(e) {
-                    setPointer(false);
-
-                    if (e.key === 'Enter' && activeIndex !== null) {
-                      handleSelect();
-                    }
-
-                    if (e.key === ' ' && !isTypingRef.current) {
-                      e.preventDefault();
-                    }
-                  },
-                  onKeyUp(e) {
-                    if (e.key === ' ' && !isTypingRef.current) {
-                      handleSelect();
-                    }
-                  },
-                  onPointerMove() {
-                    setPointer(true);
-                  },
-                })}
-                // Ensure this element receives focus upon open so keydowning works.
-                tabIndex={0}
-              >
-                {rowVirtualizer.getVirtualItems().map((virtualItem) => (
-                  <div
-                    id={`item-${virtualItem.index}`}
-                    key={virtualItem.key}
-                    className={styles['listbox-option']}
-                    tabIndex={-1}
-                    ref={(node) => {
-                      listElementsRef.current[virtualItem.index] = node;
-                    }}
-                    role="option"
-                    aria-selected={activeIndex === virtualItem.index}
-                    // As the list is virtualized, this lets the assistive tech know
-                    // how many options there are total without looking at the DOM.
-                    aria-setsize={ITEMS_COUNT} // TODO
-                    aria-posinset={virtualItem.index + 1}
-                    style={{
-                      height: `${virtualItem.size}px`,
-                      transform: `translateY(${virtualItem.start}px)`,
-                      background:
-                        activeIndex === virtualItem.index
-                          ? 'rgba(0, 200, 255, 0.3)'
-                          : 'none',
-                    }}
-                    {...getItemProps({
-                      onClick: handleSelect,
-                    })}
-                  >
-                    List item {virtualItem.index + 1}
-                    <span>
-                      {virtualItem.index === selectedIndex ? '✔' : ''}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </FloatingFocusManager>
+          <PickerList
+            options={options}
+            context={context}
+            setFloating={refs.setFloating}
+            floatingStyles={floatingStyles}
+            maxHeight={maxHeight}
+            floatingRef={refs.floating}
+            wrapperRef={wrapperRef}
+            isPositioned={isPositioned}
+            pointer={pointer}
+            activeIndex={activeIndex}
+            selectedIndex={selectedIndex}
+            listElementsRef={listElementsRef}
+            isTypingRef={isTypingRef}
+            setPointer={setPointer}
+            handleSelect={handleSelect}
+            getFloatingProps={getFloatingProps}
+            getItemProps={getItemProps}
+          />
         )}
       </FloatingPortal>
     </>
