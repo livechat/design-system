@@ -28,7 +28,9 @@ $base-class: 'alert';
     }
 
     &__cta {
+      display: flex;
       flex-shrink: 0;
+      align-items: center;
       margin-right: var(--spacing-8);
 
       &__link {
