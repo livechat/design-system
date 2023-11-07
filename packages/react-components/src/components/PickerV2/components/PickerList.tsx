@@ -6,6 +6,8 @@ import { useVirtualizer } from '@tanstack/react-virtual';
 import styles from '../Picker.module.scss';
 import { IPickerListItem } from '../types';
 
+import { PickerListItem } from './PickerListItem';
+
 interface IPickerListProps {
   options: IPickerListItem[];
   context: FloatingContext<HTMLButtonElement>;
@@ -31,7 +33,6 @@ interface IPickerListProps {
 }
 
 const ITEM_HEIGHT = 35;
-const ITEMS_COUNT = 35;
 
 export const PickerList: React.FC<IPickerListProps> = ({
   context,
@@ -120,35 +121,14 @@ export const PickerList: React.FC<IPickerListProps> = ({
           tabIndex={0}
         >
           {rowVirtualizer.getVirtualItems().map((virtualItem) => (
-            <div
-              id={`item-${virtualItem.index}`}
-              key={virtualItem.key}
-              className={styles['listbox-option']}
-              tabIndex={-1}
-              ref={(node) => {
-                listElementsRef.current[virtualItem.index] = node;
-              }}
-              role="option"
-              aria-selected={activeIndex === virtualItem.index}
-              // As the list is virtualized, this lets the assistive tech know
-              // how many options there are total without looking at the DOM.
-              aria-setsize={ITEMS_COUNT} // TODO
-              aria-posinset={virtualItem.index + 1}
-              style={{
-                height: `${virtualItem.size}px`,
-                transform: `translateY(${virtualItem.start}px)`,
-                background:
-                  activeIndex === virtualItem.index
-                    ? 'rgba(0, 200, 255, 0.3)'
-                    : 'none',
-              }}
-              {...getItemProps({
-                onClick: handleSelect,
-              })}
-            >
-              List item {virtualItem.index + 1}
-              <span>{virtualItem.index === selectedIndex ? '✔' : ''}</span>
-            </div>
+            <PickerListItem
+              virtualItem={virtualItem}
+              getItemProps={getItemProps}
+              listElementsRef={listElementsRef}
+              activeIndex={activeIndex}
+              selectedIndex={selectedIndex}
+              handleSelect={handleSelect}
+            />
           ))}
         </div>
       </div>
