@@ -1,0 +1,25 @@
+.listbox {
+  border: 1px solid rgb(0 0 0 / 20%);
+  border-radius: 10px;
+  background: #fff;
+  width: 150px;
+  overflow: auto;
+}
+
+.listbox-wrapper {
+  position: relative;
+  outline: 0;
+  width: 100%;
+}
+
+.listbox-option {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+  width: 100%;
+}
