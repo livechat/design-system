@@ -1,25 +1,22 @@
 .listbox {
-  border: 1px solid rgb(0 0 0 / 20%);
-  border-radius: 10px;
-  background: #fff;
-  width: 150px;
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-pop-over);
+  width: 100%;
   overflow: auto;
 }
 
 .listbox-wrapper {
-  position: relative;
-  outline: 0;
-  width: 100%;
-}
-
-.listbox-option {
+  box-sizing: border-box;
   display: flex;
-  position: absolute;
-  top: 0;
-  left: 0;
-  gap: 5px;
-  align-items: center;
-  justify-content: center;
-  cursor: default;
-  width: 100%;
+  flex-direction: column;
+  gap: var(--spacing-05);
+  margin: 0;
+  background-color: var(--picker-list-background);
+  padding: var(--spacing-2);
+  max-height: 242px;
+  overflow: auto;
+  line-height: 22px;
+  font-size: 15px;
+  font-weight: 400;
+  color-scheme: var(--color-scheme);
 }

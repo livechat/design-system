@@ -18,6 +18,7 @@ import {
 import * as ReactDOM from 'react-dom';
 
 import { PickerList } from './components/PickerList';
+import { PickerTrigger } from './components/PickerTrigger';
 import { IPickerProps } from './types';
 
 const overflowPadding = 10;
@@ -46,9 +47,6 @@ export const Picker: React.FC<IPickerProps> = ({
   const [selectedIndex, setSelectedIndex] = React.useState<number | null>(null);
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
 
-  // The initial max-height is what `react-virtual` uses to know how many
-  // items to render. This needs to be a smaller value so it doesn't try
-  // to render every single item on mount.
   const [maxHeight, setMaxHeight] = React.useState(400);
 
   const listElementsRef = React.useRef<Array<HTMLElement | null>>([]); // TODO ?
@@ -73,8 +71,6 @@ export const Picker: React.FC<IPickerProps> = ({
         shift(),
         floatingSize({
           apply({ availableHeight }) {
-            // Use state instead of directly mutating so that `react-virtual`
-            // scrollToIndex() function works in the layout effect.
             ReactDOM.flushSync(() => {
               setMaxHeight(availableHeight);
             });
@@ -118,9 +114,10 @@ export const Picker: React.FC<IPickerProps> = ({
 
   return (
     <>
-      <button ref={refs.setReference} {...getReferenceProps()}>
-        Trigger
-      </button>
+      <PickerTrigger
+        getReferenceProps={getReferenceProps}
+        setReference={refs.setReference}
+      />
       <FloatingPortal>
         {open && (
           <PickerList
