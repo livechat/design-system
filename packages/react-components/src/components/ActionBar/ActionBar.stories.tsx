@@ -27,46 +27,44 @@ export const Default = (): React.ReactElement => {
   const defaultOptions = [
     {
       key: 'one',
-      element: <Icon source={AccountCircle} kind="primary" />,
+      element: <Icon source={AccountCircle} kind="primary" size="large" />,
       label: 'One test',
       onClick: () => setActiveKey('one'),
     },
     {
       key: 'two',
-      element: <Icon source={AddTemplate} kind="primary" />,
+      element: <Icon source={AddTemplate} kind="primary" size="large" />,
       label: 'Two test',
-      showTooltip: true,
       onClick: () => setActiveKey('two'),
     },
     {
       key: 'three',
-      element: <Icon source={Adjust} kind="primary" />,
+      element: <Icon source={Adjust} kind="primary" size="large" />,
       label: 'Three test',
-      howTooltip: true,
       onClick: () => setActiveKey('three'),
     },
     {
       key: 'four',
-      element: <Icon source={Apps} kind="primary" />,
+      element: <Icon source={Apps} kind="primary" size="large" />,
       label: 'Four test',
       onClick: () => setActiveKey('four'),
     },
     {
       key: 'five',
-      element: <Icon source={Calendar} kind="primary" />,
+      element: <Icon source={Calendar} kind="primary" size="large" />,
       label: 'Five test',
       onClick: () => setActiveKey('five'),
     },
     {
       key: 'six',
-      element: <Icon source={Contact} kind="primary" />,
+      element: <Icon source={Contact} kind="primary" size="large" />,
       label: 'Six test',
       onClick: () => setActiveKey('six'),
     },
   ];
 
   return (
-    <div style={{ width: 155, height: 300 }}>
+    <div style={{ width: 200, height: 200 }}>
       <ActionBar activeOptionKey={activeKey} options={defaultOptions} />
     </div>
   );

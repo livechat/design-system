@@ -5,28 +5,17 @@ import cx from 'clsx';
 import { Button } from '../Button';
 import { Tooltip } from '../Tooltip';
 
+import { IActionBarItem } from './types';
+
 import styles from './ActionBar.module.scss';
-
-export type IActionBarOption = {
-  key: string;
-  element: React.ReactElement;
-  label: string;
-  showTooltip?: boolean;
-  onClick: () => void;
-};
-
-interface ActionBarItem {
-  option: IActionBarOption;
-  menuItemsKeys: string[];
-  activeOptionKey?: string | null;
-}
 
 const baseClass = 'action-bar__items';
 
-export const ActionBarItem: React.FC<ActionBarItem> = ({
+export const ActionBarItem: React.FC<IActionBarItem> = ({
   option,
   menuItemsKeys,
   activeOptionKey,
+  vertical,
 }) => {
   const mergedButtonClassNames = cx(styles[`${baseClass}__button`], {
     [styles[`${baseClass}__button--hidden`]]: menuItemsKeys.includes(
@@ -42,8 +31,8 @@ export const ActionBarItem: React.FC<ActionBarItem> = ({
 
     return (
       <Tooltip
-        theme="invert"
-        placement="top"
+        kind="invert"
+        placement={vertical ? 'left' : 'bottom'}
         triggerClassName={styles[`${baseClass}__tooltip`]}
         triggerRenderer={() => (
           <Button
