@@ -1,2 +1,2 @@
 export { ActionBar } from './ActionBar';
-export type { IActionBarProps } from './ActionBar';
+export type { IActionBarProps } from './types';

@@ -64,7 +64,7 @@ export const Default = (): React.ReactElement => {
   ];
 
   return (
-    <div style={{ width: 200, height: 200 }}>
+    <div style={{ width: 205, height: 205 }}>
       <ActionBar activeOptionKey={activeKey} options={defaultOptions} />
     </div>
   );

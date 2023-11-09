@@ -51,10 +51,17 @@ $base-class: 'action-bar';
 
   &__menu-wrapper {
     display: flex;
+    flex: 0 0 70px;
     padding: var(--spacing-2) var(--spacing-1);
 
     &__button {
       padding: 6px;
+    }
+
+    &__trigger-vertical {
+      display: flex;
+      align-items: start;
+      height: 70px;
     }
   }
 
@@ -83,14 +90,16 @@ $base-class: 'action-bar';
 
     .#{$base-class}__menu-wrapper {
       padding: var(--spacing-1) var(--spacing-2);
+      height: 70px;
 
       &__button {
         flex-direction: column;
         height: auto;
         min-height: 36px;
 
-        span {
-          margin: 0;
+        > span {
+          margin-top: 4px;
+          margin-left: 0;
         }
       }
     }

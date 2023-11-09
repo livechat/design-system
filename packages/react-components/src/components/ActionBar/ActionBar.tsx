@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ChevronDown } from '@livechat/design-system-icons';
+import { ChevronDown, ChevronLeft } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { ActionMenu, ActionMenuItem } from '../ActionMenu';
@@ -120,11 +120,19 @@ export const ActionBar: React.FC<IActionBarProps> = ({
           <ActionMenu
             placement={vertical ? 'left-end' : 'bottom-end'}
             options={getMenuItems(menuItemsKeys)}
+            triggerClassName={cx(
+              vertical && styles[`${baseClass}__menu-wrapper__trigger-vertical`]
+            )}
             triggerRenderer={
               <Button
                 className={styles[`${baseClass}__menu-wrapper__button`]}
                 kind="plain"
-                icon={<Icon source={ChevronDown} kind="primary" />}
+                icon={
+                  <Icon
+                    source={vertical ? ChevronLeft : ChevronDown}
+                    kind="primary"
+                  />
+                }
                 iconPosition="right"
               >
                 {buttonElement?.element}
