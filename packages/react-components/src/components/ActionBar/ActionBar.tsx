@@ -29,6 +29,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
     className,
     vertical && styles[`${baseClass}--vertical`]
   );
+  const menuWrapperClass = `${baseClass}__menu-wrapper`;
   const observerOptions = {
     root: document.querySelector(`${id}`),
     threshold: 1,
@@ -116,16 +117,19 @@ export const ActionBar: React.FC<IActionBarProps> = ({
         ))}
       </div>
       {shouldDisplayMenu && (
-        <div className={styles[`${baseClass}__menu-wrapper`]}>
+        <div className={styles[menuWrapperClass]}>
           <ActionMenu
             placement={vertical ? 'left-end' : 'bottom-end'}
             options={getMenuItems(menuItemsKeys)}
             triggerClassName={cx(
-              vertical && styles[`${baseClass}__menu-wrapper__trigger-vertical`]
+              vertical && styles[`${menuWrapperClass}__trigger-vertical`]
             )}
             triggerRenderer={
               <Button
-                className={styles[`${baseClass}__menu-wrapper__button`]}
+                className={cx(
+                  styles[`${menuWrapperClass}__button`],
+                  buttonElement && styles[`${menuWrapperClass}__button--active`]
+                )}
                 kind="plain"
                 icon={
                   <Icon
@@ -135,7 +139,15 @@ export const ActionBar: React.FC<IActionBarProps> = ({
                 }
                 iconPosition="right"
               >
-                {buttonElement?.element}
+                {buttonElement && (
+                  <div
+                    className={cx(
+                      styles[`${menuWrapperClass}__button__with-item`]
+                    )}
+                  >
+                    {buttonElement.element}
+                  </div>
+                )}
               </Button>
             }
           />
