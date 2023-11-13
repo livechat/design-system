@@ -65,17 +65,20 @@ $base-class: 'promo-banner-v2';
     .#{$base-class}__content {
       flex: 0 1 auto;
       order: 2;
-      padding: var(--spacing-5);
+      padding: var(--spacing-4) var(--spacing-5) var(--spacing-5);
     }
 
     .#{$base-class}__additional-content {
       justify-content: left;
       order: 1;
+      padding-top: var(--spacing-5);
     }
 
     .#{$base-class}__close {
-      padding-top: var(--spacing-3);
-      padding-right: var(--spacing-3);
+      position: absolute;
+      top: var(--spacing-3);
+      right: var(--spacing-3);
+      padding: 0;
     }
   }
 }
