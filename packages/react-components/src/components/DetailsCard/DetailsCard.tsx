@@ -67,7 +67,8 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
       <button
         className={cx(
           styles[`${baseClass}__button`],
-          isMainButtonHidden && styles[`${baseClass}__button--hide`]
+          isMainButtonHidden && styles[`${baseClass}__button--hide`],
+          isOpen && styles[`${baseClass}__button--open`]
         )}
         onClick={handleButtonClick}
         aria-expanded={isOpen}
