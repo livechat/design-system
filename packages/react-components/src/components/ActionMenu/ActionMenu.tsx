@@ -10,6 +10,7 @@ import {
   useInteractions,
   useDismiss,
   useRole,
+  useTransitionStyles,
 } from '@floating-ui/react';
 import cx from 'clsx';
 
@@ -115,6 +116,23 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
     dismiss,
     role,
   ]);
+  const { styles: transitionStyles } = useTransitionStyles(context, {
+    initial: ({ side }) => ({
+      opacity: 0,
+      ...((side === 'bottom' && {
+        marginTop: -10,
+      }) ||
+        (side === 'top' && {
+          marginTop: 10,
+        }) ||
+        (side === 'left' && {
+          marginLeft: 10,
+        }) ||
+        (side === 'right' && {
+          marginLeft: -10,
+        })),
+    }),
+  });
 
   const getIndex = (val: number): number => {
     const currentValue = indexRef.current;
@@ -226,6 +244,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
             position: strategy,
             top: y !== null && y !== undefined ? y : '',
             left: x !== null && x !== undefined ? x : '',
+            ...transitionStyles,
           }}
           {...getFloatingProps()}
         >
