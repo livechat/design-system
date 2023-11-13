@@ -11,28 +11,34 @@ $base-class: 'alert';
   word-break: break-word;
 
   &__icon {
-    display: flex;
-    align-items: flex-start;
     margin-right: var(--spacing-5);
   }
 
   &__content {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     width: 100%;
 
-    &__text {
-      margin-right: var(--spacing-8);
-      max-width: 720px;
-      color: var(--content-basic-primary);
-    }
+    &__wrapper {
+      display: flex;
+      align-items: flex-start;
 
-    &__cta {
-      flex-shrink: 0;
-      margin-right: var(--spacing-8);
+      &__text {
+        margin-right: var(--spacing-8);
+        max-width: 720px;
+        color: var(--content-basic-primary);
+      }
 
-      &__link {
-        margin-left: var(--spacing-4);
+      &__cta {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        margin-right: var(--spacing-8);
+
+        &__link {
+          margin-left: var(--spacing-4);
+        }
       }
     }
   }
@@ -48,14 +54,24 @@ $base-class: 'alert';
     .#{$base-class}__content {
       flex-direction: column;
 
-      &__text {
-        margin-bottom: var(--spacing-3);
+      &__wrapper {
+        &__text {
+          margin-bottom: var(--spacing-3);
+        }
       }
     }
   }
 
   &--small {
     flex-direction: column;
+
+    .#{$base-class}__content {
+      align-items: flex-start;
+
+      &__wrapper {
+        flex-direction: column;
+      }
+    }
 
     .#{$base-class}__icon {
       margin-bottom: var(--spacing-3);
@@ -65,6 +81,13 @@ $base-class: 'alert';
       position: absolute;
       top: var(--spacing-5);
       right: var(--spacing-5);
+    }
+  }
+
+  &--medium {
+    .#{$base-class}__content__wrapper__cta {
+      align-self: flex-start;
+      margin-left: 44px;
     }
   }
 
