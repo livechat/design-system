@@ -27,13 +27,13 @@ export interface IActionBarProps {
   vertical?: boolean;
 }
 
-export type IActionBarOption = {
+export interface IActionBarOption {
   key: string;
   element: React.ReactElement;
   label: string;
   showTooltip?: boolean;
   onClick: () => void;
-};
+}
 
 export interface IActionBarItem {
   option: IActionBarOption;

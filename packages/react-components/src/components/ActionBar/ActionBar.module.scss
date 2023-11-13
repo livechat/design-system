@@ -58,7 +58,7 @@ $base-class: 'action-bar';
       padding: 6px;
 
       &__with-item {
-        animation: fade-in 0.3s forwards;
+        animation: fade-in 0.6s forwards;
       }
 
       &--active {
@@ -118,7 +118,7 @@ $base-class: 'action-bar';
         min-height: 36px;
 
         > span {
-          margin-top: 4px;
+          margin-top: var(--spacing-1);
           margin-left: 0;
         }
 
@@ -139,20 +139,18 @@ $base-class: 'action-bar';
 
 @keyframes fade-in {
   0% {
-    transform: scale(0);
+    opacity: 0;
     width: 0;
     height: 0;
   }
 
-  50% {
-    transform: scale(0);
+  30% {
+    opacity: 0;
     width: 24px;
     height: 24px;
   }
 
   100% {
-    transform: scale(1);
-    width: 24px;
-    height: 24px;
+    opacity: 1;
   }
 }
