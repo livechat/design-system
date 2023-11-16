@@ -1,7 +1,7 @@
 {
   "name": "example-react",
   "private": true,
-  "version": "1.6.1",
+  "version": "1.6.2",
   "scripts": {
     "start": "vite --open",
     "build": "tsc && vite build",
@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@livechat/design-system-icons": "^1.6.1",
-    "@livechat/design-system-react-components": "^1.6.1",
+    "@livechat/design-system-react-components": "^1.6.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
