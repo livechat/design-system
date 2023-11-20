@@ -1,22 +1,19 @@
 .listbox {
+  margin: 0;
   border-radius: var(--radius-3);
   box-shadow: var(--shadow-pop-over);
-  width: 100%;
-  overflow: auto;
-}
-
-.listbox-wrapper {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-05);
-  margin: 0;
   background-color: var(--picker-list-background);
   padding: var(--spacing-2);
-  max-height: 242px;
+  width: 100%;
   overflow: auto;
   line-height: 22px;
   font-size: 15px;
   font-weight: 400;
   color-scheme: var(--color-scheme);
+}
+
+.listbox-wrapper {
+  position: relative;
+  outline: 0;
+  width: 100%;
 }

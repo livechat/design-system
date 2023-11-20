@@ -3,6 +3,7 @@ import * as React from 'react';
 import { FloatingFocusManager, FloatingContext } from '@floating-ui/react';
 import { useVirtualizer } from '@tanstack/react-virtual';
 
+import { ITEM_HEIGHT } from '../constants';
 import styles from '../Picker.module.scss';
 import { IPickerListItem } from '../types';
 
@@ -31,8 +32,6 @@ interface IPickerListProps {
     userProps?: React.HTMLProps<HTMLElement> | undefined
   ) => Record<string, unknown>;
 }
-
-const ITEM_HEIGHT = 35;
 
 export const PickerList: React.FC<IPickerListProps> = ({
   context,
