@@ -38,13 +38,13 @@ export const Picker: React.FC<IPickerProps> = ({
   // type = 'single',
   // searchDisabled = false,
   // hideClearButton,
-  // openedOnInit = false,
+  openedOnInit = false,
   // clearSearchAfterSelection,
   // onSelect,
 }) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(openedOnInit);
   const [pointer, setPointer] = React.useState(false);
-  const [selectedIndex, setSelectedIndex] = React.useState<number | null>(null);
+  const [selectedIndices, setSelectedIndices] = React.useState<number[]>([]);
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
 
   const [maxHeight, setMaxHeight] = React.useState(400);
@@ -86,16 +86,27 @@ export const Picker: React.FC<IPickerProps> = ({
   const listNavigation = useListNavigation(context, {
     listRef: listElementsRef,
     activeIndex,
-    selectedIndex,
+    selectedIndex: selectedIndices[selectedIndices.length - 1],
     onNavigate: setActiveIndex,
     virtual: true,
     loop: true,
     disabledIndices: [],
   });
+
+  const handleSelect = (index: number) => {
+    if (activeIndex !== null) {
+      setSelectedIndices((prev) =>
+        prev.includes(index)
+          ? prev.filter((i) => i !== index)
+          : [...prev, index]
+      );
+    }
+  };
+
   const typeahead = useTypeahead(context, {
     listRef: listContentRef,
     activeIndex,
-    onMatch: open ? setActiveIndex : setSelectedIndex,
+    onMatch: open ? setActiveIndex : handleSelect,
     onTypingChange(isTyping) {
       isTypingRef.current = isTyping;
     },
@@ -104,13 +115,6 @@ export const Picker: React.FC<IPickerProps> = ({
   const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
     [click, role, dismiss, listNavigation, typeahead]
   );
-
-  const handleSelect = () => {
-    if (activeIndex !== null) {
-      setSelectedIndex(activeIndex);
-      setOpen(false);
-    }
-  };
 
   return (
     <>
@@ -131,7 +135,7 @@ export const Picker: React.FC<IPickerProps> = ({
             isPositioned={isPositioned}
             pointer={pointer}
             activeIndex={activeIndex}
-            selectedIndex={selectedIndex}
+            selectedIndices={selectedIndices}
             listElementsRef={listElementsRef}
             isTypingRef={isTypingRef}
             setPointer={setPointer}

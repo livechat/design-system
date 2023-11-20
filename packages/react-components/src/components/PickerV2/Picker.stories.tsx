@@ -37,7 +37,7 @@ const PickerComponent = (args: IPickerProps) => {
 
 const StoryTemplate: Story<IPickerProps> = (args: IPickerProps) => {
   return (
-    <div style={{ height: 320 }}>
+    <div style={{ height: 320, width: 300 }}>
       <PickerComponent {...args} />
     </div>
   );

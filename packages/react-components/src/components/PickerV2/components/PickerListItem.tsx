@@ -10,9 +10,9 @@ import styles from './PickerListItem.module.scss';
 interface IPickerListItemProps {
   virtualItem: VirtualItem;
   activeIndex: number | null;
-  selectedIndex: number | null;
+  selectedIndices: number[];
   listElementsRef: React.MutableRefObject<(HTMLElement | null)[]>;
-  handleSelect: () => void;
+  handleSelect: (index: number) => void;
   getItemProps: (
     userProps?: React.HTMLProps<HTMLElement> | undefined
   ) => Record<string, unknown>;
@@ -25,12 +25,15 @@ const itemClassName = `picker-list__item`;
 export const PickerListItem: React.FC<IPickerListItemProps> = ({
   virtualItem,
   activeIndex,
-  selectedIndex,
+  selectedIndices,
   listElementsRef,
   handleSelect,
   getItemProps,
   item,
 }) => {
+  const isSelected = selectedIndices.includes(virtualItem.index);
+  const isActive = activeIndex === virtualItem.index;
+
   return (
     <div
       id={`item-${virtualItem.index}`}
@@ -40,8 +43,8 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
         listElementsRef.current[virtualItem.index] = node;
       }}
       role="option"
-      aria-selected={selectedIndex === virtualItem.index}
-      aria-current={activeIndex === virtualItem.index}
+      aria-selected={isSelected}
+      aria-current={isActive}
       aria-setsize={ITEMS_COUNT} // TODO
       aria-posinset={virtualItem.index + 1}
       style={{
@@ -54,11 +57,11 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
         [styles[`${itemClassName}__custom`]]: item?.customElement,
       })}
       {...getItemProps({
-        onClick: handleSelect,
+        onClick: () => handleSelect(virtualItem.index),
       })}
     >
       List item {virtualItem.index + 1}
-      <span>{virtualItem.index === selectedIndex ? '✔' : ''}</span>
+      <span>{isSelected ? '✔' : ''}</span>
     </div>
   );
 };

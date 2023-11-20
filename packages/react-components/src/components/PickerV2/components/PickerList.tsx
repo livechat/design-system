@@ -21,9 +21,9 @@ interface IPickerListProps {
   isPositioned: boolean;
   pointer: boolean;
   activeIndex: number | null;
-  selectedIndex: number | null;
+  selectedIndices: number[];
   setPointer: (pointer: boolean) => void;
-  handleSelect: () => void;
+  handleSelect: (index: number) => void;
   getFloatingProps: (
     userProps?: React.HTMLProps<HTMLElement> | undefined
   ) => Record<string, unknown>;
@@ -44,7 +44,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   isPositioned,
   pointer,
   activeIndex,
-  selectedIndex,
+  selectedIndices,
   wrapperRef,
   isTypingRef,
   listElementsRef,
@@ -63,7 +63,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   React.useLayoutEffect(() => {
     if (isPositioned && !pointer) {
       // Nothing has been selected, reset scrolling upon open
-      if (activeIndex === null && selectedIndex === null) {
+      if (activeIndex === null && selectedIndices.length === 0) {
         rowVirtualizer.scrollToIndex(0);
       }
 
@@ -74,7 +74,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
         rowVirtualizer.scrollToIndex(activeIndex);
       }
     }
-  }, [rowVirtualizer, isPositioned, activeIndex, selectedIndex, pointer]); // todo refs
+  }, [rowVirtualizer, isPositioned, activeIndex, selectedIndices, pointer]); // todo refs
 
   return (
     <FloatingFocusManager context={context} modal={false}>
@@ -101,7 +101,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
               setPointer(false);
 
               if (e.key === 'Enter' && activeIndex !== null) {
-                handleSelect();
+                handleSelect(activeIndex);
               }
 
               if (e.key === ' ' && !isTypingRef.current) {
@@ -110,7 +110,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
             },
             onKeyUp(e: React.KeyboardEvent<HTMLDivElement>) {
               if (e.key === ' ' && !isTypingRef.current) {
-                handleSelect();
+                // handleSelect(); TODO
               }
             },
             onPointerMove() {
@@ -126,7 +126,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
               getItemProps={getItemProps}
               listElementsRef={listElementsRef}
               activeIndex={activeIndex}
-              selectedIndex={selectedIndex}
+              selectedIndices={selectedIndices}
               handleSelect={handleSelect}
               item={options[virtualItem.index]}
             />
