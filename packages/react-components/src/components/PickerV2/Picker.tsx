@@ -93,12 +93,12 @@ export const Picker: React.FC<IPickerProps> = ({
     disabledIndices: [],
   });
 
-  const handleSelect = (index: number) => {
+  const handleSelect = () => {
     if (activeIndex !== null) {
       setSelectedIndices((prev) =>
-        prev.includes(index)
-          ? prev.filter((i) => i !== index)
-          : [...prev, index]
+        prev.includes(activeIndex)
+          ? prev.filter((i) => i !== activeIndex)
+          : [...prev, activeIndex]
       );
     }
   };

@@ -12,7 +12,7 @@ interface IPickerListItemProps {
   activeIndex: number | null;
   selectedIndices: number[];
   listElementsRef: React.MutableRefObject<(HTMLElement | null)[]>;
-  handleSelect: (index: number) => void;
+  handleSelect: () => void;
   getItemProps: (
     userProps?: React.HTMLProps<HTMLElement> | undefined
   ) => Record<string, unknown>;
@@ -57,7 +57,7 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
         [styles[`${itemClassName}__custom`]]: item?.customElement,
       })}
       {...getItemProps({
-        onClick: () => handleSelect(virtualItem.index),
+        onClick: handleSelect,
       })}
     >
       List item {virtualItem.index + 1}

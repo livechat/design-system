@@ -23,7 +23,7 @@ interface IPickerListProps {
   activeIndex: number | null;
   selectedIndices: number[];
   setPointer: (pointer: boolean) => void;
-  handleSelect: (index: number) => void;
+  handleSelect: () => void;
   getFloatingProps: (
     userProps?: React.HTMLProps<HTMLElement> | undefined
   ) => Record<string, unknown>;
@@ -101,7 +101,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
               setPointer(false);
 
               if (e.key === 'Enter' && activeIndex !== null) {
-                handleSelect(activeIndex);
+                handleSelect();
               }
 
               if (e.key === ' ' && !isTypingRef.current) {
@@ -110,7 +110,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
             },
             onKeyUp(e: React.KeyboardEvent<HTMLDivElement>) {
               if (e.key === ' ' && !isTypingRef.current) {
-                // handleSelect(); TODO
+                handleSelect();
               }
             },
             onPointerMove() {
