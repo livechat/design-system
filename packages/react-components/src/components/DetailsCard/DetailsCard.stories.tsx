@@ -1,10 +1,13 @@
 import * as React from 'react';
 
+import { ChipCopilotColored } from '@livechat/design-system-icons';
+
 import image from '../../stories/assets/clock-light.svg';
 import noop from '../../utils/noop';
 import { Avatar } from '../Avatar';
 import { Button } from '../Button';
 import { DetailsCardInfo } from '../DetailsCardInfo';
+import { Icon } from '../Icon';
 import { PromoBannerV2 } from '../PromoBannerV2';
 import { Tag } from '../Tag';
 import { Heading } from '../Typography';
@@ -51,7 +54,11 @@ export const ExampleUsage = (): React.ReactElement => {
         width: 500,
       }}
     >
-      <DetailsCard label="Simple text">
+      <DetailsCard
+        leftNode={<Icon source={ChipCopilotColored} />}
+        label="Simple text"
+        withDivider
+      >
         <div>
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -62,7 +69,12 @@ export const ExampleUsage = (): React.ReactElement => {
           culpa qui officia deserunt mollit anim id est laborum."
         </div>
       </DetailsCard>
-      <DetailsCard label="With Info components" withDivider openOnInit>
+      <DetailsCard
+        leftNode={<Icon source={ChipCopilotColored} />}
+        label="With Info components"
+        withDivider
+        openOnInit
+      >
         <DetailsCardInfo label="Groups">
           <Avatar
             type="text"
@@ -91,8 +103,8 @@ export const ExampleUsage = (): React.ReactElement => {
         </Button>
       </DetailsCard>
       <DetailsCard
+        leftNode={<Icon source={ChipCopilotColored} />}
         label="With hidden label when open"
-        withDivider
         hideLabelOnOpen
       >
         <PromoBannerV2

@@ -117,17 +117,22 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
 
   return (
     <div ref={containerRef} className={mergedClassNames} {...props}>
-      <Icon
-        {...IconConfig[kind]}
-        size="large"
-        className={styles[`${baseClass}__icon`]}
-      />
       <div className={styles[`${baseClass}__content`]}>
-        <Text as="div" className={styles[`${baseClass}__content__text`]}>
-          {children}
-        </Text>
+        <div className={styles[`${baseClass}__content__wrapper`]}>
+          <Icon
+            {...IconConfig[kind]}
+            size="large"
+            className={styles[`${baseClass}__icon`]}
+          />
+          <Text
+            as="div"
+            className={styles[`${baseClass}__content__wrapper__text`]}
+          >
+            {children}
+          </Text>
+        </div>
         {(primaryButton || secondaryButton) && (
-          <div className={styles[`${baseClass}__content__cta`]}>
+          <div className={styles[`${baseClass}__content__wrapper__cta`]}>
             {primaryButton && (
               <Button kind="high-contrast" onClick={primaryButton.handleClick}>
                 {primaryButton.label}
@@ -135,7 +140,7 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
             )}
             {secondaryButton && (
               <Button
-                className={styles[`${baseClass}__content__cta__link`]}
+                className={styles[`${baseClass}__content__wrapper__cta__link`]}
                 kind="text"
                 onClick={secondaryButton.handleClick}
               >

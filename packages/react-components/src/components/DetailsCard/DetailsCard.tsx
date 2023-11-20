@@ -11,9 +11,13 @@ import styles from './DetailsCard.module.scss';
 
 export interface IDetailsCardProps {
   /**
-   * The CSS class for accordion container
+   * The CSS class for card container
    */
   className?: string;
+  /**
+   * Additional element for the label
+   */
+  leftNode?: React.ReactNode;
   /**
    * Set the label
    */
@@ -41,6 +45,7 @@ const baseClass = 'details-card';
 export const DetailsCard: React.FC<IDetailsCardProps> = ({
   children,
   className,
+  leftNode,
   label,
   withDivider,
   fullSpaceContent,
@@ -62,16 +67,29 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
       <button
         className={cx(
           styles[`${baseClass}__button`],
-          isMainButtonHidden && styles[`${baseClass}__button--hide`]
+          isMainButtonHidden && styles[`${baseClass}__button--hide`],
+          isOpen && styles[`${baseClass}__button--open`]
         )}
         onClick={handleButtonClick}
         aria-expanded={isOpen}
         aria-hidden={isMainButtonHidden}
         data-testid="details-card-button"
       >
-        <Heading size="xs" className={styles[`${baseClass}__button__title`]}>
-          {label}
-        </Heading>
+        <div
+          className={cx(
+            styles[`${baseClass}__label`],
+            hideLabelOnOpen && styles[`${baseClass}__label--with-margin`]
+          )}
+        >
+          {leftNode && (
+            <div className={styles[`${baseClass}__label__left-node`]}>
+              {leftNode}
+            </div>
+          )}
+          <Heading size="xs" className={styles[`${baseClass}__label__text`]}>
+            {label}
+          </Heading>
+        </div>
         {!hideLabelOnOpen && (
           <Icon
             className={cx(

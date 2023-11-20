@@ -13,7 +13,7 @@ $base-class: 'details-card';
   }
 
   &--with-divider {
-    border-top: 1px solid var(--border-basic-tertiary);
+    border-bottom: 1px solid var(--border-basic-tertiary);
   }
 
   &__button {
@@ -28,17 +28,16 @@ $base-class: 'details-card';
     padding: 0;
     padding: var(--spacing-6);
     width: 100%;
+    max-height: 72px;
+    overflow: hidden;
     color: var(--content-basic-primary);
 
     &:hover {
       cursor: pointer;
     }
 
-    &__title {
-      margin: 0;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+    &--open {
+      padding-bottom: var(--spacing-5);
     }
 
     &__icon {
@@ -53,6 +52,27 @@ $base-class: 'details-card';
       opacity: 0;
       padding: 0 var(--spacing-6);
       height: 0;
+    }
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+
+    &--with-margin {
+      margin-right: 36px;
+    }
+
+    &__left-node {
+      margin-right: var(--spacing-2);
+    }
+
+    &__text {
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
   }
 
@@ -97,12 +117,12 @@ $base-class: 'details-card';
   &__content {
     padding: 0 var(--spacing-6) var(--spacing-6);
 
-    &--full-space {
-      padding: 0;
-    }
-
     &--spacing {
       padding-top: var(--spacing-6);
+    }
+
+    &--full-space {
+      padding: 0;
     }
   }
 }
