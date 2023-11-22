@@ -9,6 +9,7 @@ import { Button } from '../Button';
 import { DetailsCardInfo } from '../DetailsCardInfo';
 import { Icon } from '../Icon';
 import { PromoBannerV2 } from '../PromoBannerV2';
+import { Switch } from '../Switch';
 import { Tag } from '../Tag';
 import { Heading } from '../Typography';
 
@@ -71,6 +72,7 @@ export const ExampleUsage = (): React.ReactElement => {
       </DetailsCard>
       <DetailsCard
         leftNode={<Icon source={ChipCopilotColored} />}
+        rightNode={<Switch size="compact" />}
         label="With Info components"
         withDivider
         openOnInit

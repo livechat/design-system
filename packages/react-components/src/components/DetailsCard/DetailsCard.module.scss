@@ -64,8 +64,18 @@ $base-class: 'details-card';
       margin-right: 36px;
     }
 
+    &__left-node,
+    &__right-node {
+      display: flex;
+    }
+
     &__left-node {
       margin-right: var(--spacing-2);
+    }
+
+    &__right-node {
+      margin-right: var(--spacing-2);
+      margin-left: var(--spacing-2);
     }
 
     &__text {

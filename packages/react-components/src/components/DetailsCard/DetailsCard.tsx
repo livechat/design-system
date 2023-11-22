@@ -15,9 +15,13 @@ export interface IDetailsCardProps {
    */
   className?: string;
   /**
-   * Additional element for the label
+   * Additional element for the label on the left
    */
   leftNode?: React.ReactNode;
+  /**
+   * Additional element for the label on the right
+   */
+  rightNode?: React.ReactNode;
   /**
    * Set the label
    */
@@ -46,6 +50,7 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
   children,
   className,
   leftNode,
+  rightNode,
   label,
   withDivider,
   fullSpaceContent,
@@ -89,6 +94,11 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
           <Heading size="xs" className={styles[`${baseClass}__label__text`]}>
             {label}
           </Heading>
+          {rightNode && (
+            <div className={styles[`${baseClass}__label__right-node`]}>
+              {rightNode}
+            </div>
+          )}
         </div>
         {!hideLabelOnOpen && (
           <Icon
