@@ -41,6 +41,7 @@ export const Picker: React.FC<IPickerProps> = ({
   openedOnInit = false,
   // clearSearchAfterSelection,
   // onSelect,
+  ...props
 }) => {
   const [open, setOpen] = React.useState(openedOnInit);
   const [pointer, setPointer] = React.useState(false);
@@ -121,6 +122,7 @@ export const Picker: React.FC<IPickerProps> = ({
       <PickerTrigger
         getReferenceProps={getReferenceProps}
         setReference={refs.setReference}
+        testId={props['data-testid']}
       />
       <FloatingPortal>
         {open && (
