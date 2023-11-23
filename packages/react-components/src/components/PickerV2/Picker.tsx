@@ -13,7 +13,6 @@ import {
   useInteractions,
   useListNavigation,
   useRole,
-  useTypeahead,
 } from '@floating-ui/react';
 import * as ReactDOM from 'react-dom';
 
@@ -54,11 +53,7 @@ export const Picker: React.FC<IPickerProps> = ({
   const [maxHeight, setMaxHeight] = React.useState(400);
 
   const listElementsRef = React.useRef<Array<HTMLElement | null>>([]); // TODO ?
-  const listContentRef = React.useRef<Array<string | null>>(
-    options.map((item) => item?.name || 'noname')
-  ); // TODO
   const wrapperRef = React.useRef<HTMLDivElement>(null);
-  const isTypingRef = React.useRef(false);
 
   if (!open && pointer) {
     setPointer(false);
@@ -97,17 +92,8 @@ export const Picker: React.FC<IPickerProps> = ({
     disabledIndices: [],
   });
 
-  const typeahead = useTypeahead(context, {
-    listRef: listContentRef,
-    activeIndex,
-    onMatch: setActiveIndex,
-    onTypingChange(isTyping) {
-      isTypingRef.current = isTyping;
-    },
-  });
-
   const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
-    [click, dismiss, role, listNavigation, typeahead]
+    [click, dismiss, role, listNavigation]
   );
 
   const handleSelect = (index: number) => {
@@ -169,13 +155,11 @@ export const Picker: React.FC<IPickerProps> = ({
             maxHeight={maxHeight}
             floatingRef={refs.floating}
             wrapperRef={wrapperRef}
-            contentRef={listContentRef}
             isPositioned={isPositioned}
             pointer={pointer}
             activeIndex={activeIndex}
             selectedIndices={selectedIndices}
             listElementsRef={listElementsRef}
-            isTypingRef={isTypingRef}
             setPointer={setPointer}
             handleSelect={handleSelect}
             getFloatingProps={getFloatingProps}

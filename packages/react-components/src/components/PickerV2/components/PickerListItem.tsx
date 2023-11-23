@@ -14,7 +14,6 @@ interface IPickerListItemProps {
   activeIndex: number | null;
   selectedIndices: number[];
   listElementsRef: React.MutableRefObject<(HTMLElement | null)[]>;
-  contentRef: React.MutableRefObject<(string | null)[]>;
   handleSelect: (index: number) => void;
   getItemProps: (
     userProps?: React.HTMLProps<HTMLElement> | undefined
@@ -30,7 +29,6 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
   activeIndex,
   selectedIndices,
   listElementsRef,
-  contentRef,
   handleSelect,
   getItemProps,
   item,
@@ -107,7 +105,6 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
       tabIndex={activeIndex === virtualItem.index ? 0 : -1}
       ref={(node) => {
         listElementsRef.current[virtualItem.index] = node;
-        contentRef.current[virtualItem.index] = item.name;
       }}
       role="option"
       aria-selected={isSelected}

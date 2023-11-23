@@ -17,8 +17,6 @@ interface IPickerListProps {
   maxHeight: number;
   floatingRef: React.MutableRefObject<HTMLElement | null>;
   wrapperRef: React.MutableRefObject<HTMLDivElement | null>;
-  contentRef: React.MutableRefObject<(string | null)[]>;
-  isTypingRef: React.MutableRefObject<boolean>;
   listElementsRef: React.MutableRefObject<(HTMLElement | null)[]>;
   isPositioned: boolean;
   pointer: boolean;
@@ -46,9 +44,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   activeIndex,
   selectedIndices,
   wrapperRef,
-  isTypingRef,
   listElementsRef,
-  contentRef,
   setPointer,
   handleSelect,
   getFloatingProps,
@@ -106,16 +102,12 @@ export const PickerList: React.FC<IPickerListProps> = ({
                 handleSelect(activeIndex);
               }
 
-              if (e.key === ' ' && !isTypingRef.current) {
+              if (e.key === ' ') {
                 e.preventDefault();
               }
             },
             onKeyUp(e: React.KeyboardEvent<HTMLDivElement>) {
-              if (
-                e.key === ' ' &&
-                !isTypingRef.current &&
-                activeIndex !== null
-              ) {
+              if (e.key === ' ' && activeIndex !== null) {
                 handleSelect(activeIndex);
               }
             },
@@ -131,7 +123,6 @@ export const PickerList: React.FC<IPickerListProps> = ({
               virtualItem={virtualItem}
               getItemProps={getItemProps}
               listElementsRef={listElementsRef}
-              contentRef={contentRef}
               activeIndex={activeIndex}
               selectedIndices={selectedIndices}
               handleSelect={handleSelect}
