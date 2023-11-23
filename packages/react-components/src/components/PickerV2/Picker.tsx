@@ -91,8 +91,10 @@ export const Picker: React.FC<IPickerProps> = ({
   const listNavigation = useListNavigation(context, {
     listRef: listElementsRef,
     activeIndex,
-    selectedIndex: selectedIndices[selectedIndices.length - 1],
     onNavigate: setActiveIndex,
+    virtual: true,
+    loop: true,
+    disabledIndices: [],
   });
 
   const typeahead = useTypeahead(context, {
@@ -104,16 +106,15 @@ export const Picker: React.FC<IPickerProps> = ({
     },
   });
 
+  const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
+    [click, dismiss, role, listNavigation, typeahead]
+  );
+
   const handleSelect = (index: number) => {
-    console.log('handleSelect', activeIndex, options[index]);
     setSelectedIndices((prev) =>
       prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
     );
   };
-
-  const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
-    [click, role, dismiss, listNavigation, typeahead]
-  );
 
   const handleOnFilter = (text: string) => setSearchPhrase(text);
 

@@ -78,12 +78,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   }, [rowVirtualizer, isPositioned, activeIndex, pointer]); // todo refs
 
   return (
-    <FloatingFocusManager
-      context={context}
-      modal={false}
-      returnFocus={false}
-      initialFocus={-1}
-    >
+    <FloatingFocusManager context={context} modal={false}>
       <div
         ref={setFloating}
         tabIndex={-1}
