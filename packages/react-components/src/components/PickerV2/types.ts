@@ -1,5 +1,7 @@
 import { ReactElement } from 'react';
 
+import { Strategy } from '@floating-ui/react';
+
 import { Size } from '../../utils';
 import { IconSource } from '../Icon';
 
@@ -93,4 +95,8 @@ export interface IPickerProps {
    * Clears the search input after item select
    */
   clearSearchAfterSelection?: boolean;
+  /**
+   * Floating strategy for the picker component from @floating-ui/react
+   */
+  floatingStrategy?: Strategy;
 }

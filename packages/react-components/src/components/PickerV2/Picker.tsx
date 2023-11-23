@@ -19,34 +19,37 @@ import * as ReactDOM from 'react-dom';
 
 import { PickerList } from './components/PickerList';
 import { PickerTrigger } from './components/PickerTrigger';
-import { IPickerProps } from './types';
+import { PickerTriggerBody } from './components/PickerTriggerBody';
+import { IPickerListItem, IPickerProps } from './types';
 
 const overflowPadding = 10;
 
 export const Picker: React.FC<IPickerProps> = ({
-  // id,
-  // className,
-  // disabled,
-  // error,
+  id,
+  className,
+  disabled,
+  error,
   options,
-  // selected,
-  // size = 'medium',
-  // placeholder = 'Select option',
-  // isRequired,
-  // noSearchResultText = 'No results found',
-  // selectAllOptionText,
-  // type = 'single',
-  // searchDisabled = false,
-  // hideClearButton,
+  selected,
+  size = 'medium',
+  placeholder = 'Select option',
+  isRequired,
+  noSearchResultText = 'No results found',
+  selectAllOptionText,
+  type = 'single',
+  searchDisabled = false,
+  hideClearButton,
   openedOnInit = false,
-  // clearSearchAfterSelection,
-  // onSelect,
+  clearSearchAfterSelection,
+  onSelect,
+  floatingStrategy,
   ...props
 }) => {
   const [open, setOpen] = React.useState(openedOnInit);
   const [pointer, setPointer] = React.useState(false);
   const [selectedIndices, setSelectedIndices] = React.useState<number[]>([]);
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
+  const [_searchPhrase, setSearchPhrase] = React.useState<string | null>(null);
 
   const [maxHeight, setMaxHeight] = React.useState(400);
 
@@ -64,6 +67,7 @@ export const Picker: React.FC<IPickerProps> = ({
   const { refs, floatingStyles, context, isPositioned } =
     useFloating<HTMLButtonElement>({
       open,
+      strategy: floatingStrategy,
       onOpenChange: setOpen,
       whileElementsMounted: autoUpdate,
       middleware: [
@@ -117,13 +121,45 @@ export const Picker: React.FC<IPickerProps> = ({
     [click, role, dismiss, listNavigation, typeahead]
   );
 
+  const handleOnFilter = (text: string) => setSearchPhrase(text);
+
+  const handleItemRemove = (item: IPickerListItem) => {
+    const newSelectedItems = selected
+      ? selected.filter((selectedItem) => selectedItem !== item)
+      : null;
+
+    if (newSelectedItems?.length === 0) {
+      return onSelect(null);
+    }
+
+    onSelect(newSelectedItems);
+  };
+
   return (
     <>
       <PickerTrigger
         getReferenceProps={getReferenceProps}
         setReference={refs.setReference}
         testId={props['data-testid']}
-      />
+        isItemSelected={false}
+        isOpen={false}
+        onClear={function (): void {
+          throw new Error('Function not implemented.');
+        }}
+      >
+        <PickerTriggerBody
+          isOpen={open}
+          isSearchDisabled={searchDisabled}
+          isDisabled={disabled}
+          placeholder={placeholder}
+          selectedItems={selected}
+          type={type}
+          size={size}
+          clearSearchAfterSelection={clearSearchAfterSelection}
+          onItemRemove={handleItemRemove}
+          onFilter={handleOnFilter}
+        />
+      </PickerTrigger>
       <FloatingPortal>
         {open && (
           <PickerList
