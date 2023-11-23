@@ -35,7 +35,7 @@ export const Popover: React.FC<IPopoverProps> = ({
   closeOnEsc = true,
   useDismissHookProps,
   useClickHookProps,
-  floatingStrategy = 'absolute',
+  floatingStrategy,
 }) => {
   const [visible, setVisible] = React.useState(openedOnInit);
   const isControlled = isVisible !== undefined;

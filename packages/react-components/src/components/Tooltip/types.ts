@@ -4,7 +4,7 @@ import {
   Placement,
   VirtualElement,
   UseDismissProps,
-  UseFloatingOptions,
+  Strategy,
 } from '@floating-ui/react';
 
 import { ButtonKind } from '../Button';
@@ -128,6 +128,7 @@ export interface ITooltipProps {
   closeOnTriggerBlur?: boolean;
   /**
    * Set the type of CSS position property to use
+   * https://floating-ui.com/docs/usefloating#strategy
    */
-  floatingStrategy?: UseFloatingOptions['strategy'];
+  floatingStrategy?: Strategy;
 }

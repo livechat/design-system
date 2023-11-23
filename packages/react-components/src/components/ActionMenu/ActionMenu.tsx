@@ -11,7 +11,7 @@ import {
   useDismiss,
   useRole,
   useTransitionStyles,
-  UseFloatingOptions,
+  Strategy,
 } from '@floating-ui/react';
 import cx from 'clsx';
 
@@ -68,8 +68,9 @@ export interface ActionMenuProps {
   onOpen?: () => void;
   /**
    * Set the type of CSS position property to use
+   * https://floating-ui.com/docs/usefloating#strategy
    */
-  floatingStrategy?: UseFloatingOptions['strategy'];
+  floatingStrategy?: Strategy;
 }
 
 const baseClass = 'action-menu';
@@ -86,7 +87,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   visible,
   onClose,
   onOpen,
-  floatingStrategy = 'absolute',
+  floatingStrategy,
   ...props
 }) => {
   const isControlled = visible !== undefined;
