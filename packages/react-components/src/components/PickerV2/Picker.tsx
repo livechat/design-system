@@ -93,29 +93,23 @@ export const Picker: React.FC<IPickerProps> = ({
     activeIndex,
     selectedIndex: selectedIndices[selectedIndices.length - 1],
     onNavigate: setActiveIndex,
-    virtual: true,
-    loop: true,
-    disabledIndices: [],
   });
-
-  const handleSelect = () => {
-    if (activeIndex !== null) {
-      setSelectedIndices((prev) =>
-        prev.includes(activeIndex)
-          ? prev.filter((i) => i !== activeIndex)
-          : [...prev, activeIndex]
-      );
-    }
-  };
 
   const typeahead = useTypeahead(context, {
     listRef: listContentRef,
     activeIndex,
-    onMatch: open ? setActiveIndex : handleSelect,
+    onMatch: setActiveIndex,
     onTypingChange(isTyping) {
       isTypingRef.current = isTyping;
     },
   });
+
+  const handleSelect = (index: number) => {
+    console.log('handleSelect', activeIndex, options[index]);
+    setSelectedIndices((prev) =>
+      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
+    );
+  };
 
   const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
     [click, role, dismiss, listNavigation, typeahead]
@@ -135,17 +129,21 @@ export const Picker: React.FC<IPickerProps> = ({
     onSelect(newSelectedItems);
   };
 
+  const handleClear = () => {
+    setOpen(false);
+    setSelectedIndices([]);
+    onSelect(null);
+  };
+
   return (
     <>
       <PickerTrigger
         getReferenceProps={getReferenceProps}
         setReference={refs.setReference}
         testId={props['data-testid']}
-        isItemSelected={false}
-        isOpen={false}
-        onClear={function (): void {
-          throw new Error('Function not implemented.');
-        }}
+        isItemSelected={selectedIndices.length > 0}
+        isOpen={open}
+        onClear={handleClear}
       >
         <PickerTriggerBody
           isOpen={open}
@@ -170,6 +168,7 @@ export const Picker: React.FC<IPickerProps> = ({
             maxHeight={maxHeight}
             floatingRef={refs.floating}
             wrapperRef={wrapperRef}
+            contentRef={listContentRef}
             isPositioned={isPositioned}
             pointer={pointer}
             activeIndex={activeIndex}

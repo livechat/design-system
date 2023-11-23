@@ -47,4 +47,5 @@ export const Default = StoryTemplate.bind({});
 Default.args = {
   options: DEFAULT_PICKER_OPTIONS,
   openedOnInit: true,
+  type: 'multi',
 };

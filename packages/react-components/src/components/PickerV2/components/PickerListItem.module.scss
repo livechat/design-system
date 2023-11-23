@@ -20,11 +20,6 @@ $base-class: 'picker-list';
       background-color: var(--picker-list-option-background-hover);
     }
 
-    &:focus,
-    &:active {
-      background-color: var(--picker-list-option-background-focus);
-    }
-
     &[aria-current='true'] {
       border-color: var(--action-primary-default);
       background-color: var(--picker-list-option-background-focus);
