@@ -1,6 +1,11 @@
 import * as React from 'react';
 
-import { Placement, VirtualElement, UseDismissProps } from '@floating-ui/react';
+import {
+  Placement,
+  VirtualElement,
+  UseDismissProps,
+  Strategy,
+} from '@floating-ui/react';
 
 import { ButtonKind } from '../Button';
 
@@ -121,4 +126,9 @@ export interface ITooltipProps {
    * Be default, moving the curson from trigger to tooltip will keep it open.
    */
   closeOnTriggerBlur?: boolean;
+  /**
+   * Set the type of CSS position property to use
+   * https://floating-ui.com/docs/usefloating#strategy
+   */
+  floatingStrategy?: Strategy;
 }

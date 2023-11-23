@@ -55,6 +55,7 @@ export const Tooltip: React.FC<ITooltipProps> = ({
   arrowOffsetY,
   arrowOffsetX,
   closeOnTriggerBlur = false,
+  floatingStrategy,
 }) => {
   const isControlled = isVisible !== undefined;
   const [visible, setVisible] = React.useState(false);
@@ -109,6 +110,7 @@ export const Tooltip: React.FC<ITooltipProps> = ({
     ],
     placement: placement,
     open: currentlyVisible,
+    strategy: floatingStrategy,
     onOpenChange: handleMenuStateChange,
     whileElementsMounted: autoUpdate,
   });

@@ -5,6 +5,7 @@ import {
   UseClickProps,
   UseDismissProps,
   FlipOptions,
+  Strategy,
 } from '@floating-ui/react';
 
 export interface IPopoverProps {
@@ -63,4 +64,9 @@ export interface IPopoverProps {
    * https://floating-ui.com/docs/useclick
    */
   useClickHookProps?: UseClickProps;
+  /**
+   * Set the type of CSS position property to use
+   * https://floating-ui.com/docs/usefloating#strategy
+   */
+  floatingStrategy?: Strategy;
 }
