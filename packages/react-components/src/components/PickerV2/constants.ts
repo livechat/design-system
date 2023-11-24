@@ -10,6 +10,10 @@ export const DEFAULT_PICKER_OPTIONS = [
   { key: 'five', name: 'Option five' },
   { key: 'six', name: 'Option six', disabled: true },
   { key: 'seven', name: 'Option seven', disabled: true },
+  ...[...Array(100)].map((_, index) => ({
+    key: `option${index + 8}`,
+    name: `Option #${index + 8}`,
+  })),
 ];
 
 export const SELECTED_OPTIONS = [

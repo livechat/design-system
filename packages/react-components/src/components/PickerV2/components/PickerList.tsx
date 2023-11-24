@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { FloatingFocusManager, FloatingContext } from '@floating-ui/react';
 import { useVirtualizer } from '@tanstack/react-virtual';
+import cx from 'clsx';
 
 import { ITEM_HEIGHT } from '../constants';
 import styles from '../Picker.module.scss';
@@ -30,7 +31,11 @@ interface IPickerListProps {
   getItemProps: (
     userProps?: React.HTMLProps<HTMLElement> | undefined
   ) => Record<string, unknown>;
+  emptyStateText?: string;
+  selectAllOptionText?: string;
 }
+
+const baseClass = 'picker-list';
 
 export const PickerList: React.FC<IPickerListProps> = ({
   context,
@@ -49,7 +54,13 @@ export const PickerList: React.FC<IPickerListProps> = ({
   handleSelect,
   getFloatingProps,
   getItemProps,
+  emptyStateText,
+  // selectAllOptionText,
 }) => {
+  const mergedClassNames = cx(styles[baseClass], {
+    [styles[`${baseClass}__no-results`]]: options.length === 0,
+  });
+
   const rowVirtualizer = useVirtualizer({
     count: options.length,
     getScrollElement: () => floatingRef.current,
@@ -72,6 +83,14 @@ export const PickerList: React.FC<IPickerListProps> = ({
       }
     }
   }, [rowVirtualizer, isPositioned, activeIndex, pointer]); // todo refs
+
+  if (options.length === 0) {
+    return (
+      <div className={styles[`list-wrapper`]}>
+        <div className={mergedClassNames}>{emptyStateText}</div>
+      </div>
+    );
+  }
 
   return (
     <FloatingFocusManager context={context} modal={false}>

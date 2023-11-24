@@ -146,6 +146,12 @@ export const Picker: React.FC<IPickerProps> = ({
         isItemSelected={selectedIndices.length > 0}
         isOpen={open}
         onClear={handleClear}
+        hideClearButton={hideClearButton}
+        isDisabled={disabled}
+        isError={error}
+        isRequired={isRequired}
+        isMultiSelect={type === 'multi'}
+        size={size}
       >
         <PickerTriggerBody
           isOpen={open}
@@ -179,6 +185,8 @@ export const Picker: React.FC<IPickerProps> = ({
             handleSelect={handleSelect}
             getFloatingProps={getFloatingProps}
             getItemProps={getItemProps}
+            emptyStateText={noSearchResultText}
+            selectAllOptionText={selectAllOptionText}
           />
         )}
       </FloatingPortal>

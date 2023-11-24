@@ -22,7 +22,6 @@ interface PickerTriggerProps {
   isDisabled?: boolean;
   isRequired?: boolean;
   isError?: boolean;
-
   isOpen: boolean;
   onClear: () => void;
 }
