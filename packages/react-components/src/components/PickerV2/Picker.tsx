@@ -79,9 +79,12 @@ export const Picker: React.FC<IPickerProps> = ({
         flip({ padding: 10 }),
         shift(),
         floatingSize({
-          apply({ availableHeight }) {
+          apply({ availableHeight, rects, elements }) {
             ReactDOM.flushSync(() => {
               setMaxHeight(availableHeight);
+            });
+            Object.assign(elements.floating.style, {
+              width: `${rects.reference.width}px`,
             });
           },
           padding: overflowPadding,
