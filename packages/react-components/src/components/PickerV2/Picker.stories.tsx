@@ -2,8 +2,7 @@ import * as React from 'react';
 
 import { ComponentMeta, Story } from '@storybook/react';
 
-import { DEFAULT_PICKER_OPTIONS } from '../Picker/constants';
-
+import { DEFAULT_PICKER_OPTIONS, SELECTED_OPTIONS } from './constants';
 import { Picker } from './Picker';
 import { IPickerListItem, IPickerProps } from './types';
 
@@ -46,6 +45,7 @@ const StoryTemplate: Story<IPickerProps> = (args: IPickerProps) => {
 export const Default = StoryTemplate.bind({});
 Default.args = {
   options: DEFAULT_PICKER_OPTIONS,
+  selected: SELECTED_OPTIONS,
   openedOnInit: true,
   type: 'multi',
 };

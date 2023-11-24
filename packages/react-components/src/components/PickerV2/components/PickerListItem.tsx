@@ -11,8 +11,8 @@ import styles from './PickerListItem.module.scss';
 
 interface IPickerListItemProps {
   virtualItem: VirtualItem;
-  activeIndex: number | null;
-  selectedIndices: number[];
+  isActive: boolean;
+  isSelected: boolean;
   listElementsRef: React.MutableRefObject<(HTMLElement | null)[]>;
   handleSelect: (index: number) => void;
   getItemProps: (
@@ -26,16 +26,13 @@ const itemClassName = `picker-list__item`;
 
 export const PickerListItem: React.FC<IPickerListItemProps> = ({
   virtualItem,
-  activeIndex,
-  selectedIndices,
+  isActive,
+  isSelected,
   listElementsRef,
   handleSelect,
   getItemProps,
   item,
 }) => {
-  const isSelected = selectedIndices.includes(virtualItem.index);
-  const isActive = activeIndex === virtualItem.index;
-
   const getOptionContent = (item: IPickerListItem) => {
     if (item?.customElement) {
       return (
@@ -88,13 +85,19 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
 
   if (item.groupHeader) {
     return (
-      <li
-        role="option"
-        key={item.key}
+      <div
+        id={`item-${virtualItem.index}`}
+        key={virtualItem.key}
+        role="group"
         className={styles[`${itemClassName}__header`]}
+        style={{
+          height: `${virtualItem.size}px`, // 2px gap between items
+          transform: `translateY(${virtualItem.start}px)`,
+        }}
+        {...getItemProps()}
       >
         {item.name}
-      </li>
+      </div>
     );
   }
 
@@ -102,7 +105,7 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
     <div
       id={`item-${virtualItem.index}`}
       key={virtualItem.key}
-      tabIndex={activeIndex === virtualItem.index ? 0 : -1}
+      tabIndex={isActive ? 0 : -1}
       ref={(node) => {
         listElementsRef.current[virtualItem.index] = node;
       }}

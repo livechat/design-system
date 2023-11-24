@@ -19,6 +19,7 @@ import * as ReactDOM from 'react-dom';
 import { PickerList } from './components/PickerList';
 import { PickerTrigger } from './components/PickerTrigger';
 import { PickerTriggerBody } from './components/PickerTriggerBody';
+import { findIndicesWhere } from './helpers';
 import { IPickerListItem, IPickerProps } from './types';
 
 const overflowPadding = 10;
@@ -46,7 +47,15 @@ export const Picker: React.FC<IPickerProps> = ({
 }) => {
   const [open, setOpen] = React.useState(openedOnInit);
   const [pointer, setPointer] = React.useState(false);
-  const [selectedIndices, setSelectedIndices] = React.useState<number[]>([]);
+  const [selectedIndices, setSelectedIndices] = React.useState<number[]>(() => {
+    if (selected) {
+      return selected.map((selectedItem) =>
+        options.findIndex((item) => item.key === selectedItem.key)
+      );
+    }
+
+    return [];
+  });
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
   const [_searchPhrase, setSearchPhrase] = React.useState<string | null>(null);
 
@@ -89,7 +98,10 @@ export const Picker: React.FC<IPickerProps> = ({
     onNavigate: setActiveIndex,
     virtual: true,
     loop: true,
-    disabledIndices: [],
+    disabledIndices: findIndicesWhere(
+      options,
+      (item) => !!item.disabled || !!item.groupHeader
+    ),
   });
 
   const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(

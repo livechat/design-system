@@ -48,40 +48,19 @@ $base-class: 'picker-list';
 
     &__header {
       display: flex;
-      position: relative;
+      position: absolute;
+      top: 0;
+      left: 0;
       align-items: center;
       justify-content: space-between;
       z-index: 1;
       background-color: var(--picker-list-group-background);
-      cursor: auto;
       padding: 12px 12px 4px;
       height: 36px;
       text-transform: uppercase;
       color: var(--content-basic-secondary);
       font-size: 12px;
       font-weight: 600;
-
-      &::after {
-        position: absolute;
-        top: 0;
-        right: -8px;
-        left: -8px;
-        z-index: -1;
-        background: var(--picker-list-group-background);
-        height: 36px;
-        content: '';
-      }
-
-      &:nth-of-type(1)::before {
-        position: absolute;
-        top: calc(var(--spacing-2) * -1);
-        right: -8px;
-        left: -8px;
-        z-index: -1;
-        background: var(--picker-list-group-background);
-        height: var(--spacing-2);
-        content: '';
-      }
     }
 
     &__content {
