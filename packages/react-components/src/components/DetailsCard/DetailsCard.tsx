@@ -73,7 +73,7 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
     if (divRef.current) {
       setSize(divRef.current.offsetHeight);
     }
-  }, [divRef]);
+  }, [divRef, isOpen]);
 
   return (
     <div className={mergedClassNames}>
