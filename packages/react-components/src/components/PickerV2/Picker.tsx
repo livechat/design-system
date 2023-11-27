@@ -20,7 +20,7 @@ import { PickerList } from './components/PickerList';
 import { PickerTrigger } from './components/PickerTrigger';
 import { PickerTriggerBody } from './components/PickerTriggerBody';
 import { findIndicesWhere } from './helpers';
-import { IPickerListItem, IPickerProps } from './types';
+import { IPickerProps } from './types';
 
 const overflowPadding = 10;
 
@@ -125,16 +125,9 @@ export const Picker: React.FC<IPickerProps> = ({
 
   const handleOnFilter = (text: string) => setSearchPhrase(text);
 
-  const handleItemRemove = (item: IPickerListItem) => {
-    const newSelectedItems = selected
-      ? selected.filter((selectedItem) => selectedItem !== item)
-      : null;
-
-    if (newSelectedItems?.length === 0) {
-      return onSelect(null);
-    }
-
-    onSelect(newSelectedItems);
+  const handleItemRemove = (itemKey: string) => {
+    const index = options.findIndex((item) => item.key === itemKey);
+    handleSelect(index);
   };
 
   const handleClear = () => {

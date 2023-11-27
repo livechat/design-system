@@ -21,7 +21,7 @@ export interface ITriggerBodyProps {
   type: PickerType;
   clearSearchAfterSelection?: boolean;
   size?: Size;
-  onItemRemove: (item: IPickerListItem) => void;
+  onItemRemove: (key: string) => void;
   onFilter: (text: string) => void;
 }
 
@@ -125,7 +125,7 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
                   dismissible={!isDisabled}
                   onRemove={(e) => {
                     e.stopPropagation();
-                    onItemRemove(item);
+                    onItemRemove(item.key);
                   }}
                 >
                   {getSingleItem(item)}
