@@ -42,7 +42,7 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * The event handler for close icon click
    */
-  onRemove?(): void;
+  onRemove?(e: React.MouseEvent): void;
   /**
    * React node element to show on the left
    */

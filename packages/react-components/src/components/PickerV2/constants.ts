@@ -19,4 +19,8 @@ export const DEFAULT_PICKER_OPTIONS = [
 export const SELECTED_OPTIONS = [
   { key: 'two', name: 'Option two' },
   { key: 'five', name: 'Option five' },
+  {
+    key: `option107`,
+    name: `Option #107`,
+  },
 ];

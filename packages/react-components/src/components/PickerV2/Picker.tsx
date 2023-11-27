@@ -112,9 +112,15 @@ export const Picker: React.FC<IPickerProps> = ({
   );
 
   const handleSelect = (index: number) => {
-    setSelectedIndices((prev) =>
-      prev.includes(index) ? prev.filter((i) => i !== index) : [...prev, index]
-    );
+    setSelectedIndices((prev) => {
+      const newSelectedIndices = prev.includes(index)
+        ? prev.filter((i) => i !== index)
+        : [...prev, index];
+
+      onSelect(newSelectedIndices.map((i) => options[i]));
+
+      return newSelectedIndices;
+    });
   };
 
   const handleOnFilter = (text: string) => setSearchPhrase(text);

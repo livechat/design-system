@@ -123,7 +123,10 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
                     styles[`${baseClass}__tag--${size}`]
                   )}
                   dismissible={!isDisabled}
-                  onRemove={() => onItemRemove(item)}
+                  onRemove={(e) => {
+                    e.stopPropagation();
+                    onItemRemove(item);
+                  }}
                 >
                   {getSingleItem(item)}
                 </Tag>
