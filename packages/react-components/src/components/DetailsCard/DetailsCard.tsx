@@ -69,11 +69,17 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
 
   const handleButtonClick = () => setIsOpen((prevValue) => !prevValue);
 
-  React.useEffect(() => {
-    if (divRef.current) {
+  const resizeObserver = new ResizeObserver(() => {
+    if (divRef.current && size !== divRef.current.offsetHeight) {
       setSize(divRef.current.offsetHeight);
     }
-  }, [divRef, isOpen]);
+  });
+
+  React.useEffect(() => {
+    if (divRef.current) {
+      resizeObserver.observe(divRef.current);
+    }
+  }, [divRef]);
 
   return (
     <div className={mergedClassNames}>
