@@ -58,6 +58,8 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
   hideLabelOnOpen,
 }) => {
   const [isOpen, setIsOpen] = React.useState(openOnInit);
+  const [size, setSize] = React.useState(0);
+  const divRef = React.useRef<HTMLDivElement>(null);
   const mergedClassNames = cx(
     styles[baseClass],
     withDivider && styles[`${baseClass}--with-divider`],
@@ -66,6 +68,12 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
   const isMainButtonHidden = hideLabelOnOpen && isOpen;
 
   const handleButtonClick = () => setIsOpen((prevValue) => !prevValue);
+
+  React.useEffect(() => {
+    if (divRef.current) {
+      setSize(divRef.current.offsetHeight);
+    }
+  }, [divRef]);
 
   return (
     <div className={mergedClassNames}>
@@ -132,20 +140,26 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
           data-testid="details-card-floating-button"
         />
       )}
-      <div
-        className={cx(
-          styles[`${baseClass}__content-wrapper`],
-          isOpen && styles[`${baseClass}__content-wrapper--open`]
-        )}
-      >
+      <div>
         <div
           className={cx(
-            styles[`${baseClass}__content`],
-            fullSpaceContent && styles[`${baseClass}__content--full-space`],
-            hideLabelOnOpen && styles[`${baseClass}__content--spacing`]
+            styles[`${baseClass}__content-wrapper`],
+            isOpen && styles[`${baseClass}__content-wrapper--open`]
           )}
+          style={{
+            maxHeight: isOpen ? size : 0,
+          }}
         >
-          {children}
+          <div
+            ref={divRef}
+            className={cx(
+              styles[`${baseClass}__content`],
+              fullSpaceContent && styles[`${baseClass}__content--full-space`],
+              hideLabelOnOpen && styles[`${baseClass}__content--spacing`]
+            )}
+          >
+            {children}
+          </div>
         </div>
       </div>
     </div>

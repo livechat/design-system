@@ -115,12 +115,10 @@ $base-class: 'details-card';
   &__content-wrapper {
     transition: all 0.2s ease;
     opacity: 0;
-    max-height: 0;
     overflow: hidden;
 
     &--open {
       opacity: 1;
-      max-height: 500px;
     }
   }
 
