@@ -69,15 +69,19 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
 
   const handleButtonClick = () => setIsOpen((prevValue) => !prevValue);
 
-  const resizeObserver = new ResizeObserver(() => {
-    if (divRef.current && size !== divRef.current.offsetHeight) {
-      setSize(divRef.current.offsetHeight);
-    }
-  });
-
   React.useEffect(() => {
-    if (divRef.current) {
+    const hasIOSupport = !!window.IntersectionObserver;
+
+    if (divRef.current && hasIOSupport) {
+      const resizeObserver = new ResizeObserver(() => {
+        if (divRef.current && size !== divRef.current.offsetHeight) {
+          setSize(divRef.current.offsetHeight);
+        }
+      });
+
       resizeObserver.observe(divRef.current);
+
+      return () => resizeObserver.disconnect();
     }
   }, [divRef]);
 
