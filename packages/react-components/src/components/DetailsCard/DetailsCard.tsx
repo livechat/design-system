@@ -42,6 +42,10 @@ export interface IDetailsCardProps {
    * Set to hide the label on card open
    */
   hideLabelOnOpen?: boolean;
+  /**
+   * Callback function called when the card label is clicked
+   */
+  onClick?: () => void;
 }
 
 const baseClass = 'details-card';
@@ -56,6 +60,7 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
   fullSpaceContent,
   openOnInit = false,
   hideLabelOnOpen,
+  onClick,
 }) => {
   const [isOpen, setIsOpen] = React.useState(openOnInit);
   const [size, setSize] = React.useState(0);
@@ -67,7 +72,10 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
   );
   const isMainButtonHidden = hideLabelOnOpen && isOpen;
 
-  const handleButtonClick = () => setIsOpen((prevValue) => !prevValue);
+  const handleButtonClick = () => {
+    setIsOpen((prevValue) => !prevValue);
+    onClick?.();
+  };
 
   React.useEffect(() => {
     const hasIOSupport = !!window.IntersectionObserver;

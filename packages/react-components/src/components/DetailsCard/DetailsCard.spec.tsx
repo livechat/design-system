@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { vi } from 'vitest';
+
 import { render, userEvent } from 'test-utils';
 
 import { DetailsCard, IDetailsCardProps } from './DetailsCard';
@@ -60,5 +62,16 @@ describe('<DetailsCard> component', () => {
     const button = getByRole('button');
 
     expect(button).toHaveAttribute('aria-expanded', 'true');
+  });
+
+  it('should call onClick handler on label click', () => {
+    const handler = vi.fn();
+    const { getByRole } = renderComponent({
+      ...defaultProps,
+      onClick: handler,
+    });
+    const button = getByRole('button');
+    userEvent.click(button);
+    expect(handler).toHaveBeenCalledTimes(1);
   });
 });
