@@ -16,6 +16,8 @@ import {
 } from '@floating-ui/react';
 import * as ReactDOM from 'react-dom';
 
+import { IPickerListItem } from '../Picker';
+
 import { PickerList } from './components/PickerList';
 import { PickerTrigger } from './components/PickerTrigger';
 import { PickerTriggerBody } from './components/PickerTriggerBody';
@@ -57,7 +59,7 @@ export const Picker: React.FC<IPickerProps> = ({
     return [];
   });
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
-  const [_searchPhrase, setSearchPhrase] = React.useState<string | null>(null);
+  const [searchPhrase, setSearchPhrase] = React.useState<string | null>(null);
 
   const [maxHeight, setMaxHeight] = React.useState(400);
 
@@ -72,7 +74,10 @@ export const Picker: React.FC<IPickerProps> = ({
     useFloating<HTMLButtonElement>({
       open,
       strategy: floatingStrategy,
-      onOpenChange: setOpen,
+      onOpenChange: (open) => {
+        setOpen(open);
+        setSearchPhrase(null);
+      },
       whileElementsMounted: autoUpdate,
       middleware: [
         offset(8),
@@ -92,7 +97,7 @@ export const Picker: React.FC<IPickerProps> = ({
       ],
     });
 
-  const click = useClick(context);
+  const click = useClick(context, { toggle: false });
   const role = useRole(context, { role: 'listbox' });
   const dismiss = useDismiss(context);
   const listNavigation = useListNavigation(context, {
@@ -136,6 +141,23 @@ export const Picker: React.FC<IPickerProps> = ({
     onSelect(null);
   };
 
+  const items = React.useMemo<IPickerListItem[]>(() => {
+    if (!searchPhrase) {
+      return options;
+    }
+
+    return options.filter((item) => {
+      if (item.groupHeader) {
+        return false;
+      }
+
+      const search = searchPhrase.toLowerCase();
+      const itemName = item.name.toLowerCase();
+
+      return itemName.includes(search);
+    });
+  }, [searchPhrase, options]);
+
   return (
     <>
       <PickerTrigger
@@ -168,7 +190,7 @@ export const Picker: React.FC<IPickerProps> = ({
       <FloatingPortal>
         {open && (
           <PickerList
-            options={options}
+            options={items}
             context={context}
             setFloating={refs.setFloating}
             floatingStyles={floatingStyles}

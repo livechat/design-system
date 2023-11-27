@@ -66,6 +66,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
     getScrollElement: () => floatingRef.current,
     estimateSize: () => ITEM_HEIGHT, // TODO
     overscan: 5,
+    getItemKey: (index) => options[index].key,
   });
 
   React.useLayoutEffect(() => {
@@ -93,7 +94,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   }
 
   return (
-    <FloatingFocusManager context={context} modal={false}>
+    <FloatingFocusManager context={context} modal={false} initialFocus={-1}>
       <div
         ref={setFloating}
         tabIndex={-1}
