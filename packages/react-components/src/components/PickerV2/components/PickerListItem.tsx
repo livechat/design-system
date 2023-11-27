@@ -14,7 +14,7 @@ interface IPickerListItemProps {
   isActive: boolean;
   isSelected: boolean;
   listElementsRef: React.MutableRefObject<(HTMLElement | null)[]>;
-  handleSelect: (key: string) => void;
+  onSelect: (key: string) => void;
   getItemProps: (
     userProps?: React.HTMLProps<HTMLElement> | undefined
   ) => Record<string, unknown>;
@@ -29,7 +29,7 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
   isActive,
   isSelected,
   listElementsRef,
-  handleSelect,
+  onSelect,
   getItemProps,
   item,
 }) => {
@@ -101,6 +101,10 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
     );
   }
 
+  const handleOnClick = (key: string) => {
+    !item.disabled && onSelect(key);
+  };
+
   return (
     <div
       id={`item-${virtualItem.index}`}
@@ -111,6 +115,7 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
       }}
       role="option"
       aria-selected={isSelected}
+      aria-disabled={item.disabled}
       aria-current={isActive}
       aria-setsize={ITEMS_COUNT} // TODO
       aria-posinset={virtualItem.index + 1}
@@ -122,7 +127,7 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
         [styles[`${itemClassName}__custom`]]: item?.customElement,
       })}
       {...getItemProps({
-        onClick: () => handleSelect(virtualItem.key.toString()),
+        onClick: () => handleOnClick(virtualItem.key.toString()),
       })}
     >
       <div className={styles[`${itemClassName}__content`]}>

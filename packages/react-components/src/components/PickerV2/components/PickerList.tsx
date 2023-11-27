@@ -145,7 +145,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
               listElementsRef={listElementsRef}
               isActive={activeIndex === virtualItem.index}
               isSelected={selectedKeys.includes(virtualItem.key.toString())}
-              handleSelect={handleSelect}
+              onSelect={handleSelect}
               item={options[virtualItem.index]}
             />
           ))}

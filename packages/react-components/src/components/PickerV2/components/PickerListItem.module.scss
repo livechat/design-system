@@ -23,6 +23,10 @@ $base-class: 'picker-list';
     &[aria-current='true'] {
       border-color: var(--action-primary-default);
       background-color: var(--picker-list-option-background-focus);
+
+      &:hover {
+        border-color: transparent;
+      }
     }
 
     &[aria-disabled='true'] {

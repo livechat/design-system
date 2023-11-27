@@ -54,14 +54,8 @@ export const Picker: React.FC<IPickerProps> = ({
   );
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
   const [searchPhrase, setSearchPhrase] = React.useState<string | null>(null);
-
   const [maxHeight, setMaxHeight] = React.useState(400);
-
   const listElementsRef = React.useRef<Array<HTMLElement | null>>([]); // TODO ?
-
-  if (!open && pointer) {
-    setPointer(false);
-  }
 
   const { refs, floatingStyles, context, isPositioned } =
     useFloating<HTMLButtonElement>({
@@ -136,6 +130,10 @@ export const Picker: React.FC<IPickerProps> = ({
     setSelectedKeys([]);
     onSelect(null);
   };
+
+  if (!open && pointer) {
+    setPointer(false);
+  }
 
   const items = React.useMemo<IPickerListItem[]>(() => {
     if (!searchPhrase) {
