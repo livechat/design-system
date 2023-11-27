@@ -6,6 +6,7 @@ import cx from 'clsx';
 
 import { Icon } from '../../Icon';
 import { IPickerListItem } from '../../Picker';
+import { ITEM_GAP_HEIGHT } from '../constants';
 
 import styles from './PickerListItem.module.scss';
 
@@ -13,6 +14,7 @@ interface IPickerListItemProps {
   virtualItem: VirtualItem;
   isActive: boolean;
   isSelected: boolean;
+  numberOfItems: number;
   listElementsRef: React.MutableRefObject<(HTMLElement | null)[]>;
   onSelect: (key: string) => void;
   getItemProps: (
@@ -21,7 +23,6 @@ interface IPickerListItemProps {
   item: IPickerListItem;
 }
 
-const ITEMS_COUNT = 7;
 const itemClassName = `picker-list__item`;
 
 export const PickerListItem: React.FC<IPickerListItemProps> = ({
@@ -32,6 +33,7 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
   onSelect,
   getItemProps,
   item,
+  numberOfItems,
 }) => {
   const getOptionContent = (item: IPickerListItem) => {
     if (item?.customElement) {
@@ -91,7 +93,7 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
         role="group"
         className={styles[`${itemClassName}__header`]}
         style={{
-          height: `${virtualItem.size}px`, // 2px gap between items
+          height: `${virtualItem.size}px`,
           transform: `translateY(${virtualItem.start}px)`,
         }}
         {...getItemProps()}
@@ -117,15 +119,15 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
       aria-selected={isSelected}
       aria-disabled={item.disabled}
       aria-current={isActive}
-      aria-setsize={ITEMS_COUNT} // TODO
+      aria-setsize={numberOfItems}
       aria-posinset={virtualItem.index + 1}
-      style={{
-        height: `${virtualItem.size - 2}px`, // 2px gap between items
-        transform: `translateY(${virtualItem.start}px)`,
-      }}
       className={cx(styles[itemClassName], {
         [styles[`${itemClassName}__custom`]]: item?.customElement,
       })}
+      style={{
+        height: `${virtualItem.size - ITEM_GAP_HEIGHT}px`,
+        transform: `translateY(${virtualItem.start}px)`,
+      }}
       {...getItemProps({
         onClick: () => handleOnClick(virtualItem.key.toString()),
       })}

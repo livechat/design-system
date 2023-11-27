@@ -1,4 +1,6 @@
-export const ITEM_HEIGHT = 37; // 35 + 2 gap
+export const ITEM_ROW_HEIGHT = 35;
+export const ITEM_GAP_HEIGHT = 2;
+export const ITEM_HEIGHT = ITEM_ROW_HEIGHT + ITEM_GAP_HEIGHT;
 
 export const DEFAULT_PICKER_OPTIONS = [
   { key: 'groupA', name: 'Group A title header', groupHeader: true },

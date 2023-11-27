@@ -56,6 +56,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   // selectAllOptionText,
 }) => {
   const wrapperRef = React.useRef<HTMLDivElement>(null);
+  const numberOfItems = options.length;
 
   const mergedClassNames = cx(styles[baseClass], {
     [styles[`${baseClass}__no-results`]]: options.length === 0,
@@ -64,7 +65,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   const rowVirtualizer = useVirtualizer({
     count: options.length,
     getScrollElement: () => floatingRef.current,
-    estimateSize: () => ITEM_HEIGHT, // TODO
+    estimateSize: () => ITEM_HEIGHT, // TODO for a custom element, we need to get the height of the custom element
     overscan: 5,
     getItemKey: (index) => options[index].key,
   });
@@ -83,7 +84,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
         rowVirtualizer.scrollToIndex(activeIndex);
       }
     }
-  }, [rowVirtualizer, isPositioned, activeIndex, pointer]); // todo refs
+  }, [rowVirtualizer, isPositioned, activeIndex, pointer, wrapperRef]);
 
   if (options.length === 0) {
     return (
@@ -105,6 +106,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
         }}
       >
         <div
+          tabIndex={0}
           aria-multiselectable="true"
           className={styles['listbox-wrapper']}
           style={{
@@ -112,7 +114,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
           }}
           ref={wrapperRef}
           // Some screen readers do not like any wrapper tags inside
-          // of the element with the role, so we spread it onto the
+          // the element with the role, so we spread it onto the
           // virtualizer wrapper.
           {...getFloatingProps({
             onKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
@@ -135,8 +137,6 @@ export const PickerList: React.FC<IPickerListProps> = ({
               setPointer(true);
             },
           })}
-          // Ensure this element receives focus upon open so keydowning works.
-          tabIndex={0}
         >
           {rowVirtualizer.getVirtualItems().map((virtualItem) => (
             <PickerListItem
@@ -147,6 +147,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
               isSelected={selectedKeys.includes(virtualItem.key.toString())}
               onSelect={handleSelect}
               item={options[virtualItem.index]}
+              numberOfItems={numberOfItems}
             />
           ))}
         </div>
