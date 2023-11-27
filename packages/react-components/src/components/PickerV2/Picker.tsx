@@ -49,15 +49,9 @@ export const Picker: React.FC<IPickerProps> = ({
 }) => {
   const [open, setOpen] = React.useState(openedOnInit);
   const [pointer, setPointer] = React.useState(false);
-  const [selectedIndices, setSelectedIndices] = React.useState<number[]>(() => {
-    if (selected) {
-      return selected.map((selectedItem) =>
-        options.findIndex((item) => item.key === selectedItem.key)
-      );
-    }
-
-    return [];
-  });
+  const [selectedKeys, setSelectedKeys] = React.useState<string[]>(
+    () => selected?.map(({ key }) => key) || []
+  );
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
   const [searchPhrase, setSearchPhrase] = React.useState<string | null>(null);
 
@@ -116,13 +110,17 @@ export const Picker: React.FC<IPickerProps> = ({
     [click, dismiss, role, listNavigation]
   );
 
-  const handleSelect = (index: number) => {
-    setSelectedIndices((prev) => {
-      const newSelectedIndices = prev.includes(index)
-        ? prev.filter((i) => i !== index)
-        : [...prev, index];
+  const handleSelect = (key: string) => {
+    setSelectedKeys((prev) => {
+      const newSelectedIndices = prev.includes(key)
+        ? prev.filter((i) => i !== key)
+        : [...prev, key];
 
-      onSelect(newSelectedIndices.map((i) => options[i]));
+      const newSelectedItems = options.filter((item) =>
+        newSelectedIndices.includes(item.key)
+      );
+
+      onSelect(newSelectedItems);
 
       return newSelectedIndices;
     });
@@ -131,13 +129,12 @@ export const Picker: React.FC<IPickerProps> = ({
   const handleOnFilter = (text: string) => setSearchPhrase(text);
 
   const handleItemRemove = (itemKey: string) => {
-    const index = options.findIndex((item) => item.key === itemKey);
-    handleSelect(index);
+    handleSelect(itemKey);
   };
 
   const handleClear = () => {
     setOpen(false);
-    setSelectedIndices([]);
+    setSelectedKeys([]);
     onSelect(null);
   };
 
@@ -164,7 +161,7 @@ export const Picker: React.FC<IPickerProps> = ({
         getReferenceProps={getReferenceProps}
         setReference={refs.setReference}
         testId={props['data-testid']}
-        isItemSelected={selectedIndices.length > 0}
+        isItemSelected={selectedKeys.length > 0}
         isOpen={open}
         onClear={handleClear}
         hideClearButton={hideClearButton}
@@ -200,7 +197,7 @@ export const Picker: React.FC<IPickerProps> = ({
             isPositioned={isPositioned}
             pointer={pointer}
             activeIndex={activeIndex}
-            selectedIndices={selectedIndices}
+            selectedKeys={selectedKeys}
             listElementsRef={listElementsRef}
             setPointer={setPointer}
             handleSelect={handleSelect}

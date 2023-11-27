@@ -22,9 +22,9 @@ interface IPickerListProps {
   isPositioned: boolean;
   pointer: boolean;
   activeIndex: number | null;
-  selectedIndices: number[];
+  selectedKeys: string[];
   setPointer: (pointer: boolean) => void;
-  handleSelect: (index: number) => void;
+  handleSelect: (key: string) => void;
   getFloatingProps: (
     userProps?: React.HTMLProps<HTMLElement> | undefined
   ) => Record<string, unknown>;
@@ -47,7 +47,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   isPositioned,
   pointer,
   activeIndex,
-  selectedIndices,
+  selectedKeys,
   wrapperRef,
   listElementsRef,
   setPointer,
@@ -72,7 +72,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   React.useLayoutEffect(() => {
     if (isPositioned && !pointer) {
       // Nothing has been selected, reset scrolling upon open
-      if (activeIndex === null && selectedIndices.length === 0) {
+      if (activeIndex === null && selectedKeys.length === 0) {
         rowVirtualizer.scrollToIndex(0);
       }
 
@@ -119,7 +119,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
               setPointer(false);
 
               if (e.key === 'Enter' && activeIndex !== null) {
-                handleSelect(activeIndex);
+                handleSelect(options[activeIndex].key);
               }
 
               if (e.key === ' ') {
@@ -128,7 +128,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
             },
             onKeyUp(e: React.KeyboardEvent<HTMLDivElement>) {
               if (e.key === ' ' && activeIndex !== null) {
-                handleSelect(activeIndex);
+                handleSelect(options[activeIndex].key);
               }
             },
             onPointerMove() {
@@ -144,7 +144,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
               getItemProps={getItemProps}
               listElementsRef={listElementsRef}
               isActive={activeIndex === virtualItem.index}
-              isSelected={selectedIndices.includes(virtualItem.index)}
+              isSelected={selectedKeys.includes(virtualItem.key.toString())}
               handleSelect={handleSelect}
               item={options[virtualItem.index]}
             />
