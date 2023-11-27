@@ -17,7 +17,6 @@ interface IPickerListProps {
   floatingStyles: React.CSSProperties;
   maxHeight: number;
   floatingRef: React.MutableRefObject<HTMLElement | null>;
-  wrapperRef: React.MutableRefObject<HTMLDivElement | null>;
   listElementsRef: React.MutableRefObject<(HTMLElement | null)[]>;
   isPositioned: boolean;
   pointer: boolean;
@@ -48,7 +47,6 @@ export const PickerList: React.FC<IPickerListProps> = ({
   pointer,
   activeIndex,
   selectedKeys,
-  wrapperRef,
   listElementsRef,
   setPointer,
   handleSelect,
@@ -57,6 +55,8 @@ export const PickerList: React.FC<IPickerListProps> = ({
   emptyStateText,
   // selectAllOptionText,
 }) => {
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
+
   const mergedClassNames = cx(styles[baseClass], {
     [styles[`${baseClass}__no-results`]]: options.length === 0,
   });

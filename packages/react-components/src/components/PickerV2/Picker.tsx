@@ -58,7 +58,6 @@ export const Picker: React.FC<IPickerProps> = ({
   const [maxHeight, setMaxHeight] = React.useState(400);
 
   const listElementsRef = React.useRef<Array<HTMLElement | null>>([]); // TODO ?
-  const wrapperRef = React.useRef<HTMLDivElement>(null);
 
   if (!open && pointer) {
     setPointer(false);
@@ -156,7 +155,7 @@ export const Picker: React.FC<IPickerProps> = ({
   }, [searchPhrase, options]);
 
   return (
-    <>
+    <div id={id} className={className}>
       <PickerTrigger
         getReferenceProps={getReferenceProps}
         setReference={refs.setReference}
@@ -193,7 +192,6 @@ export const Picker: React.FC<IPickerProps> = ({
             floatingStyles={floatingStyles}
             maxHeight={maxHeight}
             floatingRef={refs.floating}
-            wrapperRef={wrapperRef}
             isPositioned={isPositioned}
             pointer={pointer}
             activeIndex={activeIndex}
@@ -208,6 +206,6 @@ export const Picker: React.FC<IPickerProps> = ({
           />
         )}
       </FloatingPortal>
-    </>
+    </div>
   );
 };
