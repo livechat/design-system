@@ -64,7 +64,7 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
 }) => {
   const [isOpen, setIsOpen] = React.useState(openOnInit);
   const [size, setSize] = React.useState(0);
-  const divRef = React.useRef<HTMLDivElement>(null);
+  const contentRef = React.useRef<HTMLDivElement>(null);
   const mergedClassNames = cx(
     styles[baseClass],
     withDivider && styles[`${baseClass}--with-divider`],
@@ -80,18 +80,18 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
   React.useEffect(() => {
     const hasIOSupport = !!window.IntersectionObserver;
 
-    if (divRef.current && hasIOSupport) {
+    if (contentRef.current && hasIOSupport) {
       const resizeObserver = new ResizeObserver(() => {
-        if (divRef.current && size !== divRef.current.offsetHeight) {
-          setSize(divRef.current.offsetHeight);
+        if (contentRef.current && size !== contentRef.current.offsetHeight) {
+          setSize(contentRef.current.offsetHeight);
         }
       });
 
-      resizeObserver.observe(divRef.current);
+      resizeObserver.observe(contentRef.current);
 
       return () => resizeObserver.disconnect();
     }
-  }, [divRef]);
+  }, [contentRef]);
 
   return (
     <div className={mergedClassNames}>
@@ -169,7 +169,7 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
           }}
         >
           <div
-            ref={divRef}
+            ref={contentRef}
             className={cx(
               styles[`${baseClass}__content`],
               fullSpaceContent && styles[`${baseClass}__content--full-space`],
