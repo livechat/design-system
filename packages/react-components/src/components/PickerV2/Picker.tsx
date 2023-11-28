@@ -57,6 +57,24 @@ export const Picker: React.FC<IPickerProps> = ({
   const [maxHeight, setMaxHeight] = React.useState(400);
   const listElementsRef = React.useRef<Array<HTMLElement | null>>([]); // TODO ?
 
+  const items = React.useMemo<IPickerListItem[]>(() => {
+    if (!searchPhrase) {
+      return options;
+    }
+
+    return options.filter((item) => {
+      if (item.groupHeader) {
+        return false;
+      }
+
+      const search = searchPhrase.toLowerCase();
+      const itemName = item.name.toLowerCase();
+
+      return itemName.includes(search);
+    });
+  }, [searchPhrase, options]);
+  const hasItems = items.length > 0;
+
   const { refs, floatingStyles, context, isPositioned } =
     useFloating<HTMLButtonElement>({
       open,
@@ -88,6 +106,7 @@ export const Picker: React.FC<IPickerProps> = ({
   const role = useRole(context, { role: 'listbox' });
   const dismiss = useDismiss(context);
   const listNavigation = useListNavigation(context, {
+    enabled: hasItems,
     listRef: listElementsRef,
     activeIndex,
     onNavigate: setActiveIndex,
@@ -134,23 +153,6 @@ export const Picker: React.FC<IPickerProps> = ({
   if (!open && pointer) {
     setPointer(false);
   }
-
-  const items = React.useMemo<IPickerListItem[]>(() => {
-    if (!searchPhrase) {
-      return options;
-    }
-
-    return options.filter((item) => {
-      if (item.groupHeader) {
-        return false;
-      }
-
-      const search = searchPhrase.toLowerCase();
-      const itemName = item.name.toLowerCase();
-
-      return itemName.includes(search);
-    });
-  }, [searchPhrase, options]);
 
   return (
     <div id={id} className={className}>

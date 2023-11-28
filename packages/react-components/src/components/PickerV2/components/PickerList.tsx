@@ -5,10 +5,11 @@ import { useVirtualizer } from '@tanstack/react-virtual';
 import cx from 'clsx';
 
 import { ITEM_HEIGHT } from '../constants';
-import styles from '../Picker.module.scss';
 import { IPickerListItem } from '../types';
 
 import { PickerListItem } from './PickerListItem';
+
+import styles from './PickerList.module.scss';
 
 interface IPickerListProps {
   options: IPickerListItem[];
@@ -88,9 +89,16 @@ export const PickerList: React.FC<IPickerListProps> = ({
 
   if (options.length === 0) {
     return (
-      <div className={styles[`list-wrapper`]}>
-        <div className={mergedClassNames}>{emptyStateText}</div>
-      </div>
+      <FloatingFocusManager context={context} modal={false} initialFocus={-1}>
+        <div
+          className={styles[`listbox`]}
+          ref={setFloating}
+          tabIndex={-1}
+          style={floatingStyles}
+        >
+          <div className={mergedClassNames}>{emptyStateText}</div>
+        </div>
+      </FloatingFocusManager>
     );
   }
 
