@@ -146,6 +146,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
       )}
       {dismissible && (
         <button
+          tabIndex={-1}
           title="Remove"
           onClick={onRemove}
           type="button"
