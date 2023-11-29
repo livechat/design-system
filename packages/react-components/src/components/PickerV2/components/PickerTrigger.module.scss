@@ -91,7 +91,9 @@ $base-class: 'picker-trigger';
     background-color: var(--surface-basic-disabled);
     color: var(--content-basic-disabled);
 
-    &:hover {
+    &:hover,
+    &:focus,
+    &:active {
       border-color: var(--border-basic-primary);
       cursor: auto;
     }

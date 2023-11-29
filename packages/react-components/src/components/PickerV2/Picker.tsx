@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { cx } from '@emotion/css';
 import {
   autoUpdate,
   flip,
@@ -13,6 +14,7 @@ import {
   useInteractions,
   useListNavigation,
   useRole,
+  useFocus,
 } from '@floating-ui/react';
 import * as ReactDOM from 'react-dom';
 
@@ -23,6 +25,8 @@ import { PickerTrigger } from './components/PickerTrigger';
 import { PickerTriggerBody } from './components/PickerTriggerBody';
 import { findIndicesWhere } from './helpers';
 import { IPickerProps } from './types';
+
+import styles from './Picker.module.scss';
 
 const overflowPadding = 10;
 
@@ -102,40 +106,49 @@ export const Picker: React.FC<IPickerProps> = ({
       ],
     });
 
-  const click = useClick(context, { toggle: false });
+  const click = useClick(context, { enabled: !disabled });
+  const focus = useFocus(context, { enabled: !disabled });
   const role = useRole(context, { role: 'listbox' });
   const dismiss = useDismiss(context);
   const listNavigation = useListNavigation(context, {
-    enabled: hasItems,
+    enabled: hasItems && !disabled,
     listRef: listElementsRef,
     activeIndex,
     onNavigate: setActiveIndex,
     virtual: true,
-    loop: true,
     disabledIndices: findIndicesWhere(
-      options,
+      items,
       (item) => !!item.disabled || !!item.groupHeader
     ),
   });
 
   const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
-    [click, dismiss, role, listNavigation]
+    [click, dismiss, focus, role, listNavigation]
   );
 
   const handleSelect = (key: string) => {
-    setSelectedKeys((prev) => {
-      const newSelectedIndices = prev.includes(key)
-        ? prev.filter((i) => i !== key)
-        : [...prev, key];
+    if (type === 'single') {
+      setOpen(false);
+      setSelectedKeys(() => {
+        onSelect(options.filter((item) => item.key === key));
 
-      const newSelectedItems = options.filter((item) =>
-        newSelectedIndices.includes(item.key)
-      );
+        return [key];
+      });
+    } else {
+      setSelectedKeys((prev) => {
+        const newSelectedIndices = prev.includes(key)
+          ? prev.filter((i) => i !== key)
+          : [...prev, key];
 
-      onSelect(newSelectedItems);
+        const newSelectedItems = options.filter((item) =>
+          newSelectedIndices.includes(item.key)
+        );
 
-      return newSelectedIndices;
-    });
+        onSelect(newSelectedItems);
+
+        return newSelectedIndices;
+      });
+    }
   };
 
   const handleOnFilter = (text: string) => setSearchPhrase(text);
@@ -155,7 +168,7 @@ export const Picker: React.FC<IPickerProps> = ({
   }
 
   return (
-    <div id={id} className={className}>
+    <div id={id} className={cx(styles['picker-wrapper'], className)}>
       <PickerTrigger
         getReferenceProps={getReferenceProps}
         setReference={refs.setReference}
