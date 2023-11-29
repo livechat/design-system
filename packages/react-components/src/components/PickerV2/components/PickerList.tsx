@@ -12,6 +12,7 @@ import { PickerListItem } from './PickerListItem';
 import styles from './PickerList.module.scss';
 
 interface IPickerListProps {
+  pickerType: 'single' | 'multi';
   options: IPickerListItem[];
   context: FloatingContext<HTMLButtonElement>;
   setFloating: (node: HTMLElement | null) => void;
@@ -54,6 +55,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   getFloatingProps,
   getItemProps,
   emptyStateText,
+  pickerType,
   // selectAllOptionText,
 }) => {
   const wrapperRef = React.useRef<HTMLDivElement>(null);
@@ -115,7 +117,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
       >
         <div
           tabIndex={0}
-          aria-multiselectable="true"
+          aria-multiselectable={pickerType === 'multi'}
           className={styles['listbox-wrapper']}
           style={{
             height: `${rowVirtualizer.getTotalSize()}px`,

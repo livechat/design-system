@@ -14,7 +14,6 @@ import {
   useInteractions,
   useListNavigation,
   useRole,
-  useFocus,
 } from '@floating-ui/react';
 import * as ReactDOM from 'react-dom';
 
@@ -60,6 +59,10 @@ export const Picker: React.FC<IPickerProps> = ({
   const [searchPhrase, setSearchPhrase] = React.useState<string | null>(null);
   const [maxHeight, setMaxHeight] = React.useState(400);
   const listElementsRef = React.useRef<Array<HTMLElement | null>>([]); // TODO ?
+
+  if (!open && pointer) {
+    setPointer(false);
+  }
 
   const items = React.useMemo<IPickerListItem[]>(() => {
     if (!searchPhrase) {
@@ -107,7 +110,6 @@ export const Picker: React.FC<IPickerProps> = ({
     });
 
   const click = useClick(context, { enabled: !disabled });
-  const focus = useFocus(context, { enabled: !disabled });
   const role = useRole(context, { role: 'listbox' });
   const dismiss = useDismiss(context);
   const listNavigation = useListNavigation(context, {
@@ -123,7 +125,7 @@ export const Picker: React.FC<IPickerProps> = ({
   });
 
   const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
-    [click, dismiss, focus, role, listNavigation]
+    [click, dismiss, role, listNavigation]
   );
 
   const handleSelect = (key: string) => {
@@ -163,10 +165,6 @@ export const Picker: React.FC<IPickerProps> = ({
     onSelect(null);
   };
 
-  if (!open && pointer) {
-    setPointer(false);
-  }
-
   return (
     <div id={id} className={cx(styles['picker-wrapper'], className)}>
       <PickerTrigger
@@ -199,6 +197,7 @@ export const Picker: React.FC<IPickerProps> = ({
       <FloatingPortal>
         {open && (
           <PickerList
+            pickerType={type}
             options={items}
             context={context}
             setFloating={refs.setFloating}
