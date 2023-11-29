@@ -7,6 +7,7 @@ import '../src/foundations/spacing.css';
 import '../src/foundations/shadow.css';
 import '../src/foundations/color-scheme.css';
 import '../src/foundations/radius.css';
+import '../src/foundations/transition.css';
 
 export const decorators = [mockDateDecorator];
 
