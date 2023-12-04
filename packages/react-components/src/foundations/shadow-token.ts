@@ -14,4 +14,5 @@ export const ShadowToken = {
   DividerTopLeft: '--shadow-divider-top-left',
   DividerTopRight: '--shadow-divider-top-right',
   DividerBottomRight: '--shadow-divider-bottom-right',
+  MessageBox: '--shadow-message-box',
 };
