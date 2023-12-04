@@ -15,6 +15,7 @@
   --shadow-divider-top-left: 1px 1px 0 0 #eeeeef inset;
   --shadow-divider-top-right: -1px 1px 0 0 #eeeeef inset;
   --shadow-divider-bottom-right: -1px -1px 0 0 #eeeeef inset;
+  --shadow-message-box: 0 0 8px 0 rgb(19 19 23 / 12%);
 }
 
 .lc-light-theme {
@@ -33,6 +34,7 @@
   --shadow-divider-top-left: 1px 1px 0 0 #eeeeef inset;
   --shadow-divider-top-right: -1px 1px 0 0 #eeeeef inset;
   --shadow-divider-bottom-right: -1px -1px 0 0 #eeeeef inset;
+  --shadow-message-box: 0 0 8px 0 rgb(19 19 23 / 12%);
 }
 
 .lc-dark-theme {
@@ -55,4 +57,5 @@
   --shadow-divider-top-left: 1px 1px 0 0 #3b3b43 inset;
   --shadow-divider-top-right: -1px 1px 0 0 #3b3b43 inset;
   --shadow-divider-bottom-right: -1px -1px 0 0 #3b3b43 inset;
+  --shadow-message-box: 0 0 8px 0 rgb(0 0 0 / 60%);
 }
