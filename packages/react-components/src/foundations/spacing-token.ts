@@ -8,6 +8,7 @@ export const SpacingToken = {
   Spacing5: '--spacing-5',
   Spacing6: '--spacing-6',
   Spacing8: '--spacing-8',
+  Spacing10: '--spacing-10',
   Spacing12: '--spacing-12',
   Spacing14: '--spacing-14',
   Spacing16: '--spacing-16',
