@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { FloatingFocusManager, FloatingContext } from '@floating-ui/react';
 import cx from 'clsx';
+import { Virtuoso } from 'react-virtuoso';
 
 import { IPickerListItem } from '../types';
 
@@ -123,18 +124,26 @@ export const PickerList: React.FC<IPickerListProps> = ({
             },
           })}
         >
-          {options.map((item, index) => (
-            <PickerListItem
-              index={index}
-              getItemProps={getItemProps}
-              listElementsRef={listElementsRef}
-              isActive={activeIndex === index}
-              isSelected={selectedKeys.includes(item.key)}
-              onSelect={handleSelect}
-              item={item}
-              numberOfItems={numberOfItems}
-            />
-          ))}
+          <Virtuoso
+            style={{ height: '400px' }}
+            totalCount={options.length}
+            itemContent={(index) => {
+              const item = options[index];
+
+              return (
+                <PickerListItem
+                  index={index}
+                  getItemProps={getItemProps}
+                  listElementsRef={listElementsRef}
+                  isActive={activeIndex === index}
+                  isSelected={selectedKeys.includes(item.key)}
+                  onSelect={handleSelect}
+                  item={item}
+                  numberOfItems={numberOfItems}
+                />
+              );
+            }}
+          />
         </div>
       </div>
     </FloatingFocusManager>
