@@ -4,9 +4,6 @@ $base-class: 'picker-list';
   &__item {
     box-sizing: border-box;
     display: flex;
-    position: absolute;
-    top: 0;
-    left: 0;
     align-items: center;
     justify-content: center;
     margin-bottom: var(--spacing-05);
@@ -52,14 +49,14 @@ $base-class: 'picker-list';
 
     &__header {
       display: flex;
-      position: absolute;
-      top: 0;
-      left: 0;
+      position: relative;
       align-items: center;
       justify-content: space-between;
       z-index: 1;
+      margin-bottom: var(--spacing-05);
+      background-color: var(--picker-list-group-background);
+      cursor: auto;
       padding: 12px 12px 4px;
-      width: 100%;
       height: 36px;
       text-transform: uppercase;
       color: var(--content-basic-secondary);

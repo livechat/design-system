@@ -1,17 +1,15 @@
 import * as React from 'react';
 
 import { Check } from '@livechat/design-system-icons';
-import { VirtualItem } from '@tanstack/react-virtual';
 import cx from 'clsx';
 
 import { Icon } from '../../Icon';
 import { IPickerListItem } from '../../Picker';
-import { ITEM_GAP_HEIGHT } from '../constants';
 
 import styles from './PickerListItem.module.scss';
 
 interface IPickerListItemProps {
-  virtualItem: VirtualItem;
+  index: number;
   isActive: boolean;
   isSelected: boolean;
   numberOfItems: number;
@@ -26,7 +24,7 @@ interface IPickerListItemProps {
 const itemClassName = `picker-list__item`;
 
 export const PickerListItem: React.FC<IPickerListItemProps> = ({
-  virtualItem,
+  index,
   isActive,
   isSelected,
   listElementsRef,
@@ -88,14 +86,10 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
   if (item.groupHeader) {
     return (
       <div
-        id={`item-${virtualItem.index}`}
-        key={virtualItem.key}
+        id={`item-${index}`}
+        key={item.key}
         role="group"
         className={styles[`${itemClassName}__header`]}
-        style={{
-          height: `${virtualItem.size}px`,
-          transform: `translateY(${virtualItem.start}px)`,
-        }}
         {...getItemProps()}
       >
         {item.name}
@@ -109,27 +103,23 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
 
   return (
     <div
-      id={`item-${virtualItem.index}`}
-      key={virtualItem.key}
+      id={`item-${index}`}
+      key={item.key}
       tabIndex={isActive ? 0 : -1}
       ref={(node) => {
-        listElementsRef.current[virtualItem.index] = node;
+        listElementsRef.current[index] = node;
       }}
       role="option"
       aria-selected={isSelected}
       aria-disabled={item.disabled}
       aria-current={isActive}
       aria-setsize={numberOfItems}
-      aria-posinset={virtualItem.index + 1}
+      aria-posinset={index + 1}
       className={cx(styles[itemClassName], {
         [styles[`${itemClassName}__custom`]]: item?.customElement,
       })}
-      style={{
-        height: `${virtualItem.size - ITEM_GAP_HEIGHT}px`,
-        transform: `translateY(${virtualItem.start}px)`,
-      }}
       {...getItemProps({
-        onClick: () => handleOnClick(virtualItem.key.toString()),
+        onClick: () => handleOnClick(item.key),
       })}
     >
       <div className={styles[`${itemClassName}__content`]}>

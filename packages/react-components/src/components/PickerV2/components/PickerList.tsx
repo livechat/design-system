@@ -1,10 +1,8 @@
 import * as React from 'react';
 
 import { FloatingFocusManager, FloatingContext } from '@floating-ui/react';
-import { useVirtualizer } from '@tanstack/react-virtual';
 import cx from 'clsx';
 
-import { ITEM_HEIGHT } from '../constants';
 import { IPickerListItem } from '../types';
 
 import { PickerListItem } from './PickerListItem';
@@ -18,7 +16,6 @@ interface IPickerListProps {
   setFloating: (node: HTMLElement | null) => void;
   floatingStyles: React.CSSProperties;
   maxHeight: number;
-  floatingRef: React.MutableRefObject<HTMLElement | null>;
   listElementsRef: React.MutableRefObject<(HTMLElement | null)[]>;
   isPositioned: boolean;
   pointer: boolean;
@@ -44,7 +41,6 @@ export const PickerList: React.FC<IPickerListProps> = ({
   floatingStyles,
   maxHeight,
   options,
-  floatingRef,
   isPositioned,
   pointer,
   activeIndex,
@@ -65,29 +61,11 @@ export const PickerList: React.FC<IPickerListProps> = ({
     [styles[`${baseClass}__no-results`]]: options.length === 0,
   });
 
-  const rowVirtualizer = useVirtualizer({
-    count: options.length,
-    getScrollElement: () => floatingRef.current,
-    estimateSize: () => ITEM_HEIGHT, // TODO for a custom element, we need to get the height of the custom element
-    overscan: 5,
-    getItemKey: (index) => options[index].key,
-  });
-
   React.useLayoutEffect(() => {
-    if (isPositioned && !pointer) {
-      // Nothing has been selected, reset scrolling upon open
-      if (activeIndex === null && selectedKeys.length === 0) {
-        rowVirtualizer.scrollToIndex(0);
-      }
-
-      // Scrolling is restored, but the item will be scrolled
-      // into view when necessary
-      if (activeIndex !== null) {
-        wrapperRef.current?.focus({ preventScroll: true });
-        rowVirtualizer.scrollToIndex(activeIndex);
-      }
+    if (isPositioned && !pointer && activeIndex !== null) {
+      wrapperRef.current?.focus({ preventScroll: true });
     }
-  }, [rowVirtualizer, isPositioned, activeIndex, pointer, wrapperRef]);
+  }, [isPositioned, activeIndex, pointer, wrapperRef]);
 
   if (options.length === 0) {
     return (
@@ -119,9 +97,6 @@ export const PickerList: React.FC<IPickerListProps> = ({
           tabIndex={0}
           aria-multiselectable={pickerType === 'multi'}
           className={styles['listbox-wrapper']}
-          style={{
-            height: `${rowVirtualizer.getTotalSize()}px`,
-          }}
           ref={wrapperRef}
           // Some screen readers do not like any wrapper tags inside
           // the element with the role, so we spread it onto the
@@ -148,15 +123,15 @@ export const PickerList: React.FC<IPickerListProps> = ({
             },
           })}
         >
-          {rowVirtualizer.getVirtualItems().map((virtualItem) => (
+          {options.map((item, index) => (
             <PickerListItem
-              virtualItem={virtualItem}
+              index={index}
               getItemProps={getItemProps}
               listElementsRef={listElementsRef}
-              isActive={activeIndex === virtualItem.index}
-              isSelected={selectedKeys.includes(virtualItem.key.toString())}
+              isActive={activeIndex === index}
+              isSelected={selectedKeys.includes(item.key)}
               onSelect={handleSelect}
-              item={options[virtualItem.index]}
+              item={item}
               numberOfItems={numberOfItems}
             />
           ))}

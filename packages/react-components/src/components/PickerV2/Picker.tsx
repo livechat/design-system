@@ -203,7 +203,6 @@ export const Picker: React.FC<IPickerProps> = ({
             setFloating={refs.setFloating}
             floatingStyles={floatingStyles}
             maxHeight={maxHeight}
-            floatingRef={refs.floating}
             isPositioned={isPositioned}
             pointer={pointer}
             activeIndex={activeIndex}
