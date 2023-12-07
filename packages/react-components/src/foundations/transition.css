@@ -1,0 +1,10 @@
+:root {
+  /* Duration */
+  --transition-duration-fast-1: 100ms;
+  --transition-duration-fast-2: 200ms;
+  --transition-duration-moderate-1: 300ms;
+
+  /* Timing */
+  --transition-timing-ease-in: ease-in;
+  --transition-timing-ease-out: ease-out;
+}

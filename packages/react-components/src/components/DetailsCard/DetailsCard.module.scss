@@ -64,8 +64,18 @@ $base-class: 'details-card';
       margin-right: 36px;
     }
 
+    &__left-node,
+    &__right-node {
+      display: flex;
+    }
+
     &__left-node {
       margin-right: var(--spacing-2);
+    }
+
+    &__right-node {
+      margin-right: var(--spacing-2);
+      margin-left: var(--spacing-2);
     }
 
     &__text {
@@ -105,12 +115,10 @@ $base-class: 'details-card';
   &__content-wrapper {
     transition: all 0.2s ease;
     opacity: 0;
-    max-height: 0;
     overflow: hidden;
 
     &--open {
       opacity: 1;
-      max-height: 500px;
     }
   }
 

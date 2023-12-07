@@ -35,6 +35,7 @@ export const Popover: React.FC<IPopoverProps> = ({
   closeOnEsc = true,
   useDismissHookProps,
   useClickHookProps,
+  floatingStrategy,
 }) => {
   const [visible, setVisible] = React.useState(openedOnInit);
   const isControlled = isVisible !== undefined;
@@ -57,6 +58,7 @@ export const Popover: React.FC<IPopoverProps> = ({
     onOpenChange: handleVisibilityChange,
     middleware: [offset(offsetSize), flip(flipOptions), shift()],
     placement: placement,
+    strategy: floatingStrategy,
     whileElementsMounted: autoUpdate,
   });
 

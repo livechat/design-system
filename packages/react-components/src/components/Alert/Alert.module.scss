@@ -23,6 +23,7 @@ $base-class: 'alert';
     &__wrapper {
       display: flex;
       align-items: flex-start;
+      width: 100%;
 
       &__text {
         margin-right: var(--spacing-8);

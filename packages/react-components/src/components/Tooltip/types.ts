@@ -1,6 +1,12 @@
 import * as React from 'react';
 
-import { Placement, VirtualElement, UseDismissProps } from '@floating-ui/react';
+import {
+  Placement,
+  VirtualElement,
+  UseDismissProps,
+  Strategy,
+  UseClickProps,
+} from '@floating-ui/react';
 
 import { ButtonKind } from '../Button';
 
@@ -109,6 +115,11 @@ export interface ITooltipProps {
    */
   useDismissHookProps?: UseDismissProps;
   /**
+   * Set the `floating-ui` useClick hook paramns if you need more control
+   * https://floating-ui.com/docs/useclick
+   */
+  useClickHookProps?: UseClickProps;
+  /**
    * Set to move the arrow along the Y axis from default position (left and right possition)
    */
   arrowOffsetY?: number;
@@ -121,4 +132,9 @@ export interface ITooltipProps {
    * Be default, moving the curson from trigger to tooltip will keep it open.
    */
   closeOnTriggerBlur?: boolean;
+  /**
+   * Set the type of CSS position property to use
+   * https://floating-ui.com/docs/usefloating#strategy
+   */
+  floatingStrategy?: Strategy;
 }

@@ -51,10 +51,12 @@ export const Tooltip: React.FC<ITooltipProps> = ({
   referenceElement,
   activationThreshold = 0,
   useDismissHookProps,
+  useClickHookProps,
   hoverOutDelayTimeout = 100,
   arrowOffsetY,
   arrowOffsetX,
   closeOnTriggerBlur = false,
+  floatingStrategy,
 }) => {
   const isControlled = isVisible !== undefined;
   const [visible, setVisible] = React.useState(false);
@@ -109,6 +111,7 @@ export const Tooltip: React.FC<ITooltipProps> = ({
     ],
     placement: placement,
     open: currentlyVisible,
+    strategy: floatingStrategy,
     onOpenChange: handleMenuStateChange,
     whileElementsMounted: autoUpdate,
   });
@@ -125,7 +128,7 @@ export const Tooltip: React.FC<ITooltipProps> = ({
   const focus = useFocus(context);
   const dismiss = useDismiss(context, useDismissHookProps);
   const role = useRole(context, { role: 'tooltip' });
-  const click = useClick(context);
+  const click = useClick(context, useClickHookProps);
   const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
     duration: {
       open: getTransitionDuration(hoverOnDuration),

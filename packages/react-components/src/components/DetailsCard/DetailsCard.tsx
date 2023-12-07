@@ -15,9 +15,13 @@ export interface IDetailsCardProps {
    */
   className?: string;
   /**
-   * Additional element for the label
+   * Additional element for the label on the left
    */
   leftNode?: React.ReactNode;
+  /**
+   * Additional element for the label on the right
+   */
+  rightNode?: React.ReactNode;
   /**
    * Set the label
    */
@@ -38,6 +42,10 @@ export interface IDetailsCardProps {
    * Set to hide the label on card open
    */
   hideLabelOnOpen?: boolean;
+  /**
+   * Callback function called when the card label is clicked
+   */
+  onClick?: () => void;
 }
 
 const baseClass = 'details-card';
@@ -46,13 +54,17 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
   children,
   className,
   leftNode,
+  rightNode,
   label,
   withDivider,
   fullSpaceContent,
   openOnInit = false,
   hideLabelOnOpen,
+  onClick,
 }) => {
   const [isOpen, setIsOpen] = React.useState(openOnInit);
+  const [size, setSize] = React.useState(0);
+  const contentRef = React.useRef<HTMLDivElement>(null);
   const mergedClassNames = cx(
     styles[baseClass],
     withDivider && styles[`${baseClass}--with-divider`],
@@ -60,7 +72,26 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
   );
   const isMainButtonHidden = hideLabelOnOpen && isOpen;
 
-  const handleButtonClick = () => setIsOpen((prevValue) => !prevValue);
+  const handleButtonClick = () => {
+    setIsOpen((prevValue) => !prevValue);
+    onClick?.();
+  };
+
+  React.useEffect(() => {
+    const hasIOSupport = !!window.IntersectionObserver;
+
+    if (contentRef.current && hasIOSupport) {
+      const resizeObserver = new ResizeObserver(() => {
+        if (contentRef.current && size !== contentRef.current.offsetHeight) {
+          setSize(contentRef.current.offsetHeight);
+        }
+      });
+
+      resizeObserver.observe(contentRef.current);
+
+      return () => resizeObserver.disconnect();
+    }
+  }, [contentRef]);
 
   return (
     <div className={mergedClassNames}>
@@ -89,6 +120,11 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
           <Heading size="xs" className={styles[`${baseClass}__label__text`]}>
             {label}
           </Heading>
+          {rightNode && (
+            <div className={styles[`${baseClass}__label__right-node`]}>
+              {rightNode}
+            </div>
+          )}
         </div>
         {!hideLabelOnOpen && (
           <Icon
@@ -122,20 +158,26 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
           data-testid="details-card-floating-button"
         />
       )}
-      <div
-        className={cx(
-          styles[`${baseClass}__content-wrapper`],
-          isOpen && styles[`${baseClass}__content-wrapper--open`]
-        )}
-      >
+      <div>
         <div
           className={cx(
-            styles[`${baseClass}__content`],
-            fullSpaceContent && styles[`${baseClass}__content--full-space`],
-            hideLabelOnOpen && styles[`${baseClass}__content--spacing`]
+            styles[`${baseClass}__content-wrapper`],
+            isOpen && styles[`${baseClass}__content-wrapper--open`]
           )}
+          style={{
+            maxHeight: isOpen ? size : 0,
+          }}
         >
-          {children}
+          <div
+            ref={contentRef}
+            className={cx(
+              styles[`${baseClass}__content`],
+              fullSpaceContent && styles[`${baseClass}__content--full-space`],
+              hideLabelOnOpen && styles[`${baseClass}__content--spacing`]
+            )}
+          >
+            {children}
+          </div>
         </div>
       </div>
     </div>

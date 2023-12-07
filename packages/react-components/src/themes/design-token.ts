@@ -276,4 +276,5 @@ export const DesignToken = {
   SurfaceAvatar8: '--surface-avatar-8',
   SurfaceAvatar9: '--surface-avatar-9',
   SurfaceAvatar10: '--surface-avatar-10',
+  NavbarBackground: '--navbar-background',
 };
