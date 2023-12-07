@@ -115,7 +115,11 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
       {...getItemProps({
         onClick: () => handleOnClick(item.key),
       })}
-      className={styles[`item-wrapper`]}
+      className={cx(styles[`item-wrapper`], {
+        [styles[`item-wrapper__first`]]: index === 0 && !item.groupHeader,
+        [styles[`item-wrapper__last`]]:
+          index === numberOfItems - 1 && !item.groupHeader,
+      })}
     >
       <div
         aria-selected={isSelected}
