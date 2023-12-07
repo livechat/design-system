@@ -110,28 +110,32 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
         listElementsRef.current[index] = node;
       }}
       role="option"
-      aria-selected={isSelected}
-      aria-disabled={item.disabled}
-      aria-current={isActive}
       aria-setsize={numberOfItems}
       aria-posinset={index + 1}
-      className={cx(styles[itemClassName], {
-        [styles[`${itemClassName}__custom`]]: item?.customElement,
-      })}
       {...getItemProps({
         onClick: () => handleOnClick(item.key),
       })}
+      className={styles[`item-wrapper`]}
     >
-      <div className={styles[`${itemClassName}__content`]}>
-        {getOptionContent(item)}
+      <div
+        aria-selected={isSelected}
+        aria-disabled={item.disabled}
+        aria-current={isActive}
+        className={cx(styles[itemClassName], {
+          [styles[`${itemClassName}__custom`]]: item?.customElement,
+        })}
+      >
+        <div className={styles[`${itemClassName}__content`]}>
+          {getOptionContent(item)}
+        </div>
+        {isSelected && !item.showCheckbox && (
+          <Icon
+            kind="link"
+            source={Check}
+            customColor="var(--content-basic-info)"
+          />
+        )}
       </div>
-      {isSelected && !item.showCheckbox && (
-        <Icon
-          kind="link"
-          source={Check}
-          customColor="var(--content-basic-info)"
-        />
-      )}
     </div>
   );
 };
