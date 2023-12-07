@@ -6,6 +6,10 @@ $base-class: 'picker-list';
   &__first {
     padding-top: var(--spacing-2);
   }
+
+  &__last {
+    padding-bottom: var(--spacing-2);
+  }
 }
 
 .#{$base-class} {
