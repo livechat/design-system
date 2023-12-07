@@ -12,7 +12,10 @@
 }
 
 .no-results {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
 }
 
 .listbox-wrapper {

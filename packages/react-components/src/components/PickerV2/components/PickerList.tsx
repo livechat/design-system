@@ -125,7 +125,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
           })}
         >
           <Virtuoso
-            style={{ height: '400px' }}
+            style={{ height: '300px', maxHeight }}
             totalCount={options.length}
             data={options}
             itemContent={(index, item) => (
