@@ -127,22 +127,19 @@ export const PickerList: React.FC<IPickerListProps> = ({
           <Virtuoso
             style={{ height: '400px' }}
             totalCount={options.length}
-            itemContent={(index) => {
-              const item = options[index];
-
-              return (
-                <PickerListItem
-                  index={index}
-                  getItemProps={getItemProps}
-                  listElementsRef={listElementsRef}
-                  isActive={activeIndex === index}
-                  isSelected={selectedKeys.includes(item.key)}
-                  onSelect={handleSelect}
-                  item={item}
-                  numberOfItems={numberOfItems}
-                />
-              );
-            }}
+            data={options}
+            itemContent={(index, item) => (
+              <PickerListItem
+                index={index}
+                getItemProps={getItemProps}
+                listElementsRef={listElementsRef}
+                isActive={activeIndex === index}
+                isSelected={selectedKeys.includes(item.key)}
+                onSelect={handleSelect}
+                item={item}
+                numberOfItems={numberOfItems}
+              />
+            )}
           />
         </div>
       </div>
