@@ -4,6 +4,7 @@ import { FloatingFocusManager, FloatingContext } from '@floating-ui/react';
 import cx from 'clsx';
 import { Virtuoso } from 'react-virtuoso';
 
+import { DEFAULT_LIST_HEIGHT, ITEM_GAP_HEIGHT } from '../constants';
 import { IPickerListItem } from '../types';
 
 import { PickerListItem } from './PickerListItem';
@@ -56,6 +57,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   // selectAllOptionText,
 }) => {
   const wrapperRef = React.useRef<HTMLDivElement>(null);
+  const [listHeight, setListHeight] = React.useState(DEFAULT_LIST_HEIGHT);
   const numberOfItems = options.length;
 
   const mergedClassNames = cx(styles[baseClass], {
@@ -67,6 +69,17 @@ export const PickerList: React.FC<IPickerListProps> = ({
       wrapperRef.current?.focus({ preventScroll: true });
     }
   }, [isPositioned, activeIndex, pointer, wrapperRef]);
+
+  const handleListHeightChange = React.useCallback(
+    (height: number) => {
+      if (height < DEFAULT_LIST_HEIGHT) {
+        setListHeight(height + numberOfItems * ITEM_GAP_HEIGHT);
+      } else {
+        setListHeight(DEFAULT_LIST_HEIGHT);
+      }
+    },
+    [numberOfItems]
+  );
 
   if (options.length === 0) {
     return (
@@ -125,7 +138,8 @@ export const PickerList: React.FC<IPickerListProps> = ({
           })}
         >
           <Virtuoso
-            style={{ height: '300px', maxHeight }}
+            totalListHeightChanged={handleListHeightChange}
+            style={{ height: `${listHeight}px`, maxHeight }}
             totalCount={options.length}
             data={options}
             itemContent={(index, item) => (

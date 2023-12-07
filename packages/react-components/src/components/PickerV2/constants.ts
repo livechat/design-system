@@ -3,6 +3,7 @@ import { DayMode } from '@livechat/design-system-icons';
 export const ITEM_ROW_HEIGHT = 35;
 export const ITEM_GAP_HEIGHT = 2;
 export const ITEM_HEIGHT = ITEM_ROW_HEIGHT + ITEM_GAP_HEIGHT;
+export const DEFAULT_LIST_HEIGHT = 400;
 
 export const DEFAULT_PICKER_OPTIONS = [
   { key: 'groupA', name: 'Group A title header', groupHeader: true },

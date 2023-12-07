@@ -58,7 +58,7 @@ export const Picker: React.FC<IPickerProps> = ({
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
   const [searchPhrase, setSearchPhrase] = React.useState<string | null>(null);
   const [maxHeight, setMaxHeight] = React.useState(400);
-  const listElementsRef = React.useRef<Array<HTMLElement | null>>([]); // TODO ?
+  const listElementsRef = React.useRef<Array<HTMLElement | null>>([]);
 
   if (!open && pointer) {
     setPointer(false);

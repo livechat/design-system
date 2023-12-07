@@ -124,7 +124,7 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
       <div
         aria-selected={isSelected}
         aria-disabled={item.disabled}
-        aria-current={isActive}
+        aria-current={isActive && !item.disabled}
         className={cx(styles[itemClassName], {
           [styles[`${itemClassName}__custom`]]: item?.customElement,
         })}
