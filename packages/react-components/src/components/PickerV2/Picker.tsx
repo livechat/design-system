@@ -49,6 +49,8 @@ export const Picker: React.FC<IPickerProps> = ({
   clearSearchAfterSelection,
   onSelect,
   floatingStrategy,
+  useDismissHookProps,
+  useClickHookProps,
   ...props
 }) => {
   const [open, setOpen] = React.useState(openedOnInit);
@@ -110,9 +112,9 @@ export const Picker: React.FC<IPickerProps> = ({
       ],
     });
 
-  const click = useClick(context, { enabled: !disabled });
+  const click = useClick(context, { enabled: !disabled, ...useClickHookProps });
   const role = useRole(context, { role: 'listbox' });
-  const dismiss = useDismiss(context);
+  const dismiss = useDismiss(context, useDismissHookProps);
   const listNavigation = useListNavigation(context, {
     enabled: hasItems && !disabled,
     listRef: listElementsRef,

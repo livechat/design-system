@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 
-import { Strategy } from '@floating-ui/react';
+import { Strategy, UseClickProps, UseDismissProps } from '@floating-ui/react';
 
 import { Size } from '../../utils';
 import { IconSource } from '../Icon';
@@ -103,4 +103,14 @@ export interface IPickerProps {
    * Floating strategy for the picker component from @floating-ui/react
    */
   floatingStrategy?: Strategy;
+  /**
+   * Set the `floating-ui` useDismiss hook params if you need more control
+   * https://floating-ui.com/docs/usedismiss
+   */
+  useDismissHookProps?: UseDismissProps;
+  /**
+   * Set the `floating-ui` useClick hook params if you need more control
+   * https://floating-ui.com/docs/useclick
+   */
+  useClickHookProps?: UseClickProps;
 }
