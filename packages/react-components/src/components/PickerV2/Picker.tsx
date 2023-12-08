@@ -14,6 +14,8 @@ import {
   useInteractions,
   useListNavigation,
   useRole,
+  FloatingNode,
+  useFloatingNodeId,
 } from '@floating-ui/react';
 import * as ReactDOM from 'react-dom';
 
@@ -62,6 +64,7 @@ export const Picker: React.FC<IPickerProps> = ({
   const [searchPhrase, setSearchPhrase] = React.useState<string | null>(null);
   const [maxHeight, setMaxHeight] = React.useState(400);
   const listElementsRef = React.useRef<Array<HTMLElement | null>>([]);
+  const nodeId = useFloatingNodeId();
 
   if (!open && pointer) {
     setPointer(false);
@@ -87,6 +90,7 @@ export const Picker: React.FC<IPickerProps> = ({
 
   const { refs, floatingStyles, context, isPositioned } =
     useFloating<HTMLButtonElement>({
+      nodeId,
       open,
       strategy: floatingStrategy,
       onOpenChange: (open) => {
@@ -197,30 +201,32 @@ export const Picker: React.FC<IPickerProps> = ({
           onFilter={handleOnFilter}
         />
       </PickerTrigger>
-      <FloatingPortal>
+      <FloatingNode id={nodeId}>
         {open && (
-          <PickerList
-            pickerType={type}
-            options={items}
-            listClassName={listClassName}
-            context={context}
-            setFloating={refs.setFloating}
-            floatingStyles={floatingStyles}
-            maxHeight={maxHeight}
-            isPositioned={isPositioned}
-            pointer={pointer}
-            activeIndex={activeIndex}
-            selectedKeys={selectedKeys}
-            listElementsRef={listElementsRef}
-            setPointer={setPointer}
-            onSelect={handleSelect}
-            getFloatingProps={getFloatingProps}
-            getItemProps={getItemProps}
-            emptyStateText={noSearchResultText}
-            selectAllOptionText={selectAllOptionText}
-          />
+          <FloatingPortal>
+            <PickerList
+              pickerType={type}
+              options={items}
+              listClassName={listClassName}
+              context={context}
+              setFloating={refs.setFloating}
+              floatingStyles={floatingStyles}
+              maxHeight={maxHeight}
+              isPositioned={isPositioned}
+              pointer={pointer}
+              activeIndex={activeIndex}
+              selectedKeys={selectedKeys}
+              listElementsRef={listElementsRef}
+              setPointer={setPointer}
+              onSelect={handleSelect}
+              getFloatingProps={getFloatingProps}
+              getItemProps={getItemProps}
+              emptyStateText={noSearchResultText}
+              selectAllOptionText={selectAllOptionText}
+            />
+          </FloatingPortal>
         )}
-      </FloatingPortal>
+      </FloatingNode>
     </div>
   );
 };
