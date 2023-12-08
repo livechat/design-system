@@ -24,7 +24,7 @@ interface IPickerListProps {
   activeIndex: number | null;
   selectedKeys: string[];
   setPointer: (pointer: boolean) => void;
-  handleSelect: (key: string) => void;
+  onSelect: (key: string) => void;
   getFloatingProps: (
     userProps?: React.HTMLProps<HTMLElement> | undefined
   ) => Record<string, unknown>;
@@ -50,7 +50,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   selectedKeys,
   listElementsRef,
   setPointer,
-  handleSelect,
+  onSelect,
   getFloatingProps,
   getItemProps,
   emptyStateText,
@@ -125,7 +125,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
               setPointer(false);
 
               if (e.key === 'Enter' && activeIndex !== null) {
-                handleSelect(options[activeIndex].key);
+                onSelect(options[activeIndex].key);
               }
 
               if (e.key === ' ') {
@@ -134,7 +134,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
             },
             onKeyUp(e: React.KeyboardEvent<HTMLDivElement>) {
               if (e.key === ' ' && activeIndex !== null) {
-                handleSelect(options[activeIndex].key);
+                onSelect(options[activeIndex].key);
               }
             },
             onPointerMove() {
@@ -154,7 +154,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
                 listElementsRef={listElementsRef}
                 isActive={activeIndex === index}
                 isSelected={selectedKeys.includes(item.key)}
-                onSelect={handleSelect}
+                onSelect={onSelect}
                 item={item}
                 numberOfItems={numberOfItems}
               />
