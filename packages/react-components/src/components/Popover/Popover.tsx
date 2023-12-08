@@ -43,11 +43,11 @@ export const Popover: React.FC<IPopoverProps> = ({
   const isTextContent = typeof children === 'string';
   const isTriggerAsFunction = typeof triggerRenderer === 'function';
 
-  const handleVisibilityChange = (isOpen: boolean) => {
+  const handleVisibilityChange = (isOpen: boolean, event?: Event) => {
     if (isOpen) {
-      onOpen?.();
+      onOpen?.(event);
     } else {
-      onClose?.();
+      onClose?.(event);
     }
 
     !isControlled && setVisible(isOpen);
