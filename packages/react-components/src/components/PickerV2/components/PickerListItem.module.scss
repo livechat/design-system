@@ -9,6 +9,10 @@ $base-class: 'picker-list';
 
   &__last {
     padding-bottom: var(--spacing-2);
+
+    > div {
+      margin-bottom: 0;
+    }
   }
 }
 

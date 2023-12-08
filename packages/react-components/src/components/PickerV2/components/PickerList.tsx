@@ -74,7 +74,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
         return;
       }
       if (height < DEFAULT_LIST_HEIGHT) {
-        setListHeight(height + numberOfItems * ITEM_GAP_HEIGHT);
+        setListHeight(height + (numberOfItems - 1) * ITEM_GAP_HEIGHT);
       } else {
         setListHeight(DEFAULT_LIST_HEIGHT);
       }
