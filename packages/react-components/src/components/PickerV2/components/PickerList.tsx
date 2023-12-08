@@ -33,6 +33,7 @@ interface IPickerListProps {
   ) => Record<string, unknown>;
   emptyStateText?: string;
   selectAllOptionText?: string;
+  listClassName?: string;
 }
 
 const baseClass = 'picker-list';
@@ -54,15 +55,12 @@ export const PickerList: React.FC<IPickerListProps> = ({
   getItemProps,
   emptyStateText,
   pickerType,
+  listClassName,
   // selectAllOptionText,
 }) => {
   const wrapperRef = React.useRef<HTMLDivElement>(null);
   const [listHeight, setListHeight] = React.useState(DEFAULT_LIST_HEIGHT);
   const numberOfItems = options.length;
-
-  const mergedClassNames = cx(styles[baseClass], {
-    [styles[`${baseClass}__no-results`]]: options.length === 0,
-  });
 
   React.useLayoutEffect(() => {
     if (isPositioned && !pointer && activeIndex !== null) {
@@ -85,6 +83,10 @@ export const PickerList: React.FC<IPickerListProps> = ({
   );
 
   if (options.length === 0) {
+    const noResultsStyle = cx(styles[baseClass], {
+      [styles[`${baseClass}__no-results`]]: options.length === 0,
+    });
+
     return (
       <FloatingFocusManager context={context} modal={false} initialFocus={-1}>
         <div
@@ -93,7 +95,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
           tabIndex={-1}
           style={floatingStyles}
         >
-          <div className={mergedClassNames}>{emptyStateText}</div>
+          <div className={noResultsStyle}>{emptyStateText}</div>
         </div>
       </FloatingFocusManager>
     );
@@ -104,7 +106,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
       <div
         ref={setFloating}
         tabIndex={-1}
-        className={styles['listbox']}
+        className={cx(styles['listbox'], listClassName)}
         style={{
           ...floatingStyles,
           maxHeight,

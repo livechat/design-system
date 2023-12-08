@@ -32,6 +32,7 @@ const overflowPadding = 10;
 export const Picker: React.FC<IPickerProps> = ({
   id,
   className,
+  listClassName,
   disabled,
   error,
   options,
@@ -199,6 +200,7 @@ export const Picker: React.FC<IPickerProps> = ({
           <PickerList
             pickerType={type}
             options={items}
+            listClassName={listClassName}
             context={context}
             setFloating={refs.setFloating}
             floatingStyles={floatingStyles}

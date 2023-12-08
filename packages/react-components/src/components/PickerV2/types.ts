@@ -32,6 +32,10 @@ export interface IPickerProps {
    */
   className?: string;
   /**
+   * The CSS class for picker list
+   */
+  listClassName?: string;
+  /**
    * Specify whether the picker should be disabled
    */
   disabled?: boolean;
