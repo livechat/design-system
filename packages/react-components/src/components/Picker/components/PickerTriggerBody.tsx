@@ -2,8 +2,7 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import { Size } from 'utils';
-
+import { Size } from '../../../utils';
 import { Icon } from '../../Icon';
 import { Tag } from '../../Tag';
 import { PickerType, IPickerListItem } from '../types';

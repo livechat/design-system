@@ -3,8 +3,7 @@ import * as React from 'react';
 import { ChevronDown, ChevronUp, Close } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
-import { Size } from 'utils';
-
+import { Size } from '../../../utils';
 import { Icon } from '../../Icon';
 
 import styles from './PickerTrigger.module.scss';

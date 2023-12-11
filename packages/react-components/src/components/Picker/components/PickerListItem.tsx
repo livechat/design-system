@@ -4,7 +4,7 @@ import { Check } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Icon } from '../../Icon';
-import { IPickerListItem } from '../../Picker';
+import { IPickerListItem } from '../types';
 
 import styles from './PickerListItem.module.scss';
 
