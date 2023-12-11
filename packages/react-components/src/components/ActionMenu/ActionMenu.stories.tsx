@@ -143,3 +143,44 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
     </div>
   );
 };
+
+export const WithSelectedOptions = (): React.ReactElement => {
+  const [selectedOptions, setSelectedOptions] = React.useState(['one']);
+  const handleSelectOption = (key: string) => {
+    if (selectedOptions.includes(key)) {
+      return setSelectedOptions((s) => s.filter((o) => o !== key));
+    }
+
+    return setSelectedOptions((s) => [...s, key]);
+  };
+
+  return (
+    <div className="action-menu-preview">
+      <ActionMenu
+        selectedOptions={selectedOptions}
+        options={[
+          {
+            key: 'one',
+            element: <ActionMenuItem>Option one</ActionMenuItem>,
+            onClick: () => handleSelectOption('one'),
+          },
+          {
+            key: 'two',
+            element: <ActionMenuItem>Option two</ActionMenuItem>,
+            onClick: () => handleSelectOption('two'),
+          },
+          {
+            key: 'three',
+            element: <ActionMenuItem>Option three</ActionMenuItem>,
+            onClick: () => handleSelectOption('three'),
+          },
+        ]}
+        triggerRenderer={
+          <Button icon={<Icon source={MoreHoriz} kind="primary" />} />
+        }
+        openedOnInit
+        keepOpenOnClick
+      />
+    </div>
+  );
+};
