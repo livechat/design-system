@@ -1,7 +1,8 @@
 import * as React from 'react';
 
 import userEvent from '@testing-library/user-event';
-import { VirtuosoMockContext } from 'react-virtuoso';
+import { VirtuosoProps } from 'react-virtuoso';
+import { vitest } from 'vitest';
 
 import { render, vi } from 'test-utils';
 
@@ -19,14 +20,22 @@ const defaultProps = {
   onSelect: noop,
 };
 
+vitest.mock('react-virtuoso', () => {
+  function Virtuoso(props: VirtuosoProps<unknown, unknown>) {
+    return (
+      <>
+        {props.data?.map(
+          (value, index) => props.itemContent?.(index, value, undefined)
+        )}
+      </>
+    );
+  }
+
+  return { ...vitest.importActual('react-virtuoso'), Virtuoso };
+});
+
 const renderComponent = (props: IPickerProps) => {
-  return render(
-    <VirtuosoMockContext.Provider
-      value={{ viewportHeight: 300, itemHeight: 100 }}
-    >
-      <Picker {...props} className="my-css-class" />
-    </VirtuosoMockContext.Provider>
-  );
+  return render(<Picker {...props} className="my-css-class" />);
 };
 
 describe('<Picker> component', () => {
@@ -44,11 +53,11 @@ describe('<Picker> component', () => {
     });
 
     userEvent.click(getByText('Select option'));
-    userEvent.click(getByText('Option two'));
+    userEvent.click(getByText('Option three'));
     expect(onSelect).toHaveBeenCalledWith([
       {
-        key: 'two',
-        name: 'Option two',
+        key: 'three',
+        name: 'Option three',
       },
     ]);
   });
@@ -85,7 +94,7 @@ describe('<Picker> component', () => {
     const { getByText, rerender } = renderComponent(props);
 
     userEvent.click(getByText('Select option'));
-    userEvent.click(getByText('Option three'));
+    userEvent.click(getByText('Option two'));
     expect(onSelect).toHaveBeenCalledWith(stepOneState);
 
     rerender(<Picker {...props} selected={stepOneState} />);
