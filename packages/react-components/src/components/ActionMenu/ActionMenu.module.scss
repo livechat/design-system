@@ -122,6 +122,14 @@ $base-class: 'action-menu';
           cursor: not-allowed;
         }
       }
+
+      &--selected {
+        background-color: var(--picker-list-option-background-active);
+      }
+
+      &__icon {
+        margin-left: var(--spacing-2);
+      }
     }
   }
 }

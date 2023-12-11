@@ -13,9 +13,11 @@ import {
   useTransitionStyles,
   Strategy,
 } from '@floating-ui/react';
+import { Check } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { KeyCodes } from '../../utils/keyCodes';
+import { Icon } from '../Icon';
 
 import { IActionMenuOption } from './types';
 
@@ -34,6 +36,10 @@ export interface ActionMenuProps {
    * Array of menu options
    */
   options: IActionMenuOption[];
+  /**
+   * Array of selected menu options keys
+   */
+  selectedOptions?: string[];
   /**
    * Trigger element
    */
@@ -88,6 +94,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   onClose,
   onOpen,
   floatingStrategy,
+  selectedOptions,
   ...props
 }) => {
   const isControlled = visible !== undefined;
@@ -226,9 +233,16 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
             [styles[`${baseClass}__list__item--disabled`]]: option.disabled,
             [styles[`${baseClass}__list__item--with-divider`]]:
               option.withDivider,
+            [styles[`${baseClass}__list__item--selected`]]:
+              selectedOptions?.includes(option.key),
           })}
         >
           {option.element}
+          {selectedOptions?.includes(option.key) && (
+            <div className={styles[`${baseClass}__list__item__icon`]}>
+              <Icon source={Check} kind="action-primary" />
+            </div>
+          )}
         </button>
       </li>
     );
