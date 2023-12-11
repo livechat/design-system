@@ -12,7 +12,7 @@ import { PickerListItem } from './PickerListItem';
 import styles from './PickerList.module.scss';
 
 export interface IPickerListProps {
-  pickerType: 'single' | 'multi';
+  pickerType?: 'single' | 'multi';
   options: IPickerListItem[];
   context: FloatingContext<HTMLButtonElement>;
   setFloating: (node: HTMLElement | null) => void;
@@ -53,8 +53,8 @@ export const PickerList: React.FC<IPickerListProps> = ({
   onSelect,
   getFloatingProps,
   getItemProps,
-  emptyStateText,
-  pickerType,
+  emptyStateText = 'No results found',
+  pickerType = 'single',
   listClassName,
   // selectAllOptionText,
 }) => {
