@@ -11,7 +11,7 @@ import { PickerListItem } from './PickerListItem';
 
 import styles from './PickerList.module.scss';
 
-interface IPickerListProps {
+export interface IPickerListProps {
   pickerType: 'single' | 'multi';
   options: IPickerListItem[];
   context: FloatingContext<HTMLButtonElement>;

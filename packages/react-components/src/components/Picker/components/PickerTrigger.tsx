@@ -8,7 +8,7 @@ import { Icon } from '../../Icon';
 
 import styles from './PickerTrigger.module.scss';
 
-interface PickerTriggerProps {
+export interface PickerTriggerProps {
   setReference: (element: HTMLElement | null) => void;
   getReferenceProps: (
     userProps?: React.HTMLProps<HTMLElement> | undefined
