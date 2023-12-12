@@ -60,7 +60,18 @@ $base-class: 'picker-list';
     }
 
     &--select-all {
-      border-bottom: 1px solid var(--border-basic-tertiary);
+      position: relative;
+      margin-bottom: 5px;
+
+      &::after {
+        position: absolute;
+        bottom: -4px;
+        z-index: -1;
+        background-color: var(--border-basic-tertiary);
+        width: 100%;
+        height: 1px;
+        content: '';
+      }
     }
 
     &__header {
