@@ -155,6 +155,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
             style={{ height: `${listHeight}px`, maxHeight }}
             totalCount={options.length}
             data={options}
+            increaseViewportBy={200}
             itemContent={(index, item) => (
               <PickerListItem
                 index={index}
