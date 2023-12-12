@@ -60,7 +60,7 @@ export const Picker: React.FC<IPickerProps> = ({
     () => selected?.map(({ key }) => key) || []
   );
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
-  const [searchPhrase, setSearchPhrase] = React.useState<string | null>(null);
+  const [searchPhrase, setSearchPhrase] = React.useState<string>();
   const [maxHeight, setMaxHeight] = React.useState(400);
   const listElementsRef = React.useRef<Array<HTMLElement | null>>([]);
   const nodeId = useFloatingNodeId();
@@ -82,7 +82,7 @@ export const Picker: React.FC<IPickerProps> = ({
         const search = searchPhrase.toLowerCase();
         const itemName = item.name.toLowerCase();
 
-        return itemName.includes(search) || item.key === SELECT_ALL_OPTION_KEY;
+        return itemName.includes(search);
       });
     }
 
@@ -108,7 +108,6 @@ export const Picker: React.FC<IPickerProps> = ({
       strategy: floatingStrategy,
       onOpenChange: (open) => {
         setOpen(open);
-        setSearchPhrase(null);
       },
       whileElementsMounted: autoUpdate,
       middleware: [
@@ -128,7 +127,12 @@ export const Picker: React.FC<IPickerProps> = ({
         }),
       ],
     });
-  const click = useClick(context, { enabled: !disabled, ...useClickHookProps });
+  const click = useClick(context, {
+    enabled: !disabled,
+    keyboardHandlers: false,
+    toggle: false,
+    ...useClickHookProps,
+  });
   const role = useRole(context, { role: 'listbox' });
   const dismiss = useDismiss(context, useDismissHookProps);
   const listNavigation = useListNavigation(context, {
@@ -186,14 +190,13 @@ export const Picker: React.FC<IPickerProps> = ({
 
   const handleOnFilter = (text: string) => setSearchPhrase(text);
 
-  const handleItemRemove = (itemKey: string) => {
-    handleSelect(itemKey);
-  };
+  const handleItemRemove = (itemKey: string) => handleSelect(itemKey);
 
   const handleClear = () => {
     setOpen(false);
     setSelectedKeys([]);
     onSelect(null);
+    setSearchPhrase(undefined);
   };
 
   return (
@@ -223,6 +226,7 @@ export const Picker: React.FC<IPickerProps> = ({
           clearSearchAfterSelection={clearSearchAfterSelection}
           onItemRemove={handleItemRemove}
           onFilter={handleOnFilter}
+          searchPhrase={searchPhrase}
         />
       </PickerTrigger>
       <FloatingNode id={nodeId}>

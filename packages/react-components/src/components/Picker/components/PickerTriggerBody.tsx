@@ -16,6 +16,7 @@ export interface ITriggerBodyProps {
   isSearchDisabled?: boolean;
   isDisabled?: boolean;
   placeholder: string;
+  searchPhrase?: string;
   selectedItems?: IPickerListItem[] | null;
   type: PickerType;
   clearSearchAfterSelection?: boolean;
@@ -35,6 +36,7 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
   size = 'medium',
   onItemRemove,
   onFilter,
+  searchPhrase,
 }) => {
   const shouldDisplaySearch = isOpen && !isSearchDisabled;
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -83,9 +85,8 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
     );
   };
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     onFilter(e.target.value);
-  };
 
   const getSearch = () => (
     <input
@@ -97,6 +98,7 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
       placeholder="Select option"
       onChange={handleOnChange}
       autoFocus
+      value={searchPhrase}
     />
   );
 
