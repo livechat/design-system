@@ -64,15 +64,29 @@ export const Picker: React.FC<IPickerProps> = ({
   const [maxHeight, setMaxHeight] = React.useState(400);
   const listElementsRef = React.useRef<Array<HTMLElement | null>>([]);
   const nodeId = useFloatingNodeId();
-  const shouldShowSelectAll = type === 'multi' && selectAllOptionText;
 
   if (!open && pointer) {
     setPointer(false);
   }
 
   const items = React.useMemo<IPickerListItem[]>(() => {
+    const shouldShowSelectAll = type === 'multi' && selectAllOptionText;
     let items = options;
-    if (shouldShowSelectAll) {
+
+    if (searchPhrase) {
+      items = items.filter((item) => {
+        if (item.groupHeader) {
+          return false;
+        }
+
+        const search = searchPhrase.toLowerCase();
+        const itemName = item.name.toLowerCase();
+
+        return itemName.includes(search) || item.key === SELECT_ALL_OPTION_KEY;
+      });
+    }
+
+    if (shouldShowSelectAll && items.length > 1) {
       items = [
         {
           key: SELECT_ALL_OPTION_KEY,
@@ -81,20 +95,8 @@ export const Picker: React.FC<IPickerProps> = ({
         ...items,
       ];
     }
-    if (!searchPhrase) {
-      return items;
-    }
 
-    return items.filter((item) => {
-      if (item.groupHeader) {
-        return false;
-      }
-
-      const search = searchPhrase.toLowerCase();
-      const itemName = item.name.toLowerCase();
-
-      return itemName.includes(search) || item.key === SELECT_ALL_OPTION_KEY;
-    });
+    return items;
   }, [searchPhrase, options, type, selectAllOptionText]);
 
   const hasItems = items.length > 0;
