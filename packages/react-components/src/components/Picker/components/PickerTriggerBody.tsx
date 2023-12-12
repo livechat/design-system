@@ -101,7 +101,11 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
   );
 
   if (!selectedItems || selectedItems.length === 0) {
-    return shouldDisplaySearch ? getSearch() : <div>{placeholder}</div>;
+    return shouldDisplaySearch ? (
+      getSearch()
+    ) : (
+      <div className={styles[`${baseClass}__placeholder`]}>{placeholder}</div>
+    );
   }
 
   return (

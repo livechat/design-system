@@ -44,6 +44,10 @@ $base-class: 'picker-trigger-body';
     }
   }
 
+  &__placeholder {
+    color: var(--content-basic-secondary);
+  }
+
   &__input {
     display: flex;
     flex-grow: 2;
