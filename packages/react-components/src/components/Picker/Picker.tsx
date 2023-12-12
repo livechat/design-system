@@ -166,7 +166,8 @@ export const Picker: React.FC<IPickerProps> = ({
         } else {
           setSelectedKeys(() => {
             const newItems = items.filter(
-              ({ key }) => key !== SELECT_ALL_OPTION_KEY
+              ({ key, disabled, groupHeader }) =>
+                !(key === SELECT_ALL_OPTION_KEY || disabled || groupHeader)
             );
             onSelect(newItems);
 
