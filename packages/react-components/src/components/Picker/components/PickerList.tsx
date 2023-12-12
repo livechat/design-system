@@ -9,6 +9,7 @@ import {
   ITEM_GAP_HEIGHT,
   SELECT_ALL_OPTION_KEY,
 } from '../constants';
+import { getNormalizedItems } from '../helpers';
 import { IPickerListItem } from '../types';
 
 import { PickerListItem } from './PickerListItem';
@@ -106,8 +107,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   const checkIfSelected = (key: string) =>
     selectedKeys.includes(key) ||
     (key === SELECT_ALL_OPTION_KEY &&
-      selectedKeys.length ===
-        options.filter(({ key }) => key !== SELECT_ALL_OPTION_KEY).length);
+      selectedKeys.length === getNormalizedItems(options).length);
 
   return (
     <FloatingFocusManager context={context} modal={false} initialFocus={-1}>

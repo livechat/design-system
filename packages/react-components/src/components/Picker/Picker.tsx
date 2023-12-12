@@ -23,7 +23,7 @@ import { PickerList } from './components/PickerList';
 import { PickerTrigger } from './components/PickerTrigger';
 import { PickerTriggerBody } from './components/PickerTriggerBody';
 import { SELECT_ALL_OPTION_KEY } from './constants';
-import { findIndicesWhere } from './helpers';
+import { findIndicesWhere, getNormalizedItems } from './helpers';
 import { IPickerListItem, IPickerProps } from './types';
 
 import styles from './Picker.module.scss';
@@ -157,7 +157,7 @@ export const Picker: React.FC<IPickerProps> = ({
       });
     } else {
       if (key === SELECT_ALL_OPTION_KEY) {
-        if (selectedKeys.length === items.length - 1) {
+        if (selectedKeys.length === getNormalizedItems(items).length) {
           setSelectedKeys(() => {
             onSelect(null);
 
@@ -165,10 +165,7 @@ export const Picker: React.FC<IPickerProps> = ({
           });
         } else {
           setSelectedKeys(() => {
-            const newItems = items.filter(
-              ({ key, disabled, groupHeader }) =>
-                !(key === SELECT_ALL_OPTION_KEY || disabled || groupHeader)
-            );
+            const newItems = getNormalizedItems(items);
             onSelect(newItems);
 
             return newItems.map(({ key }) => key);
