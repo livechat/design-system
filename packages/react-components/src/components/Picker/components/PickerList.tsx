@@ -1,10 +1,14 @@
 import * as React from 'react';
 
-import { FloatingFocusManager, FloatingContext } from '@floating-ui/react';
+import { FloatingContext, FloatingFocusManager } from '@floating-ui/react';
 import cx from 'clsx';
 import { Virtuoso } from 'react-virtuoso';
 
-import { DEFAULT_LIST_HEIGHT, ITEM_GAP_HEIGHT } from '../constants';
+import {
+  DEFAULT_LIST_HEIGHT,
+  ITEM_GAP_HEIGHT,
+  SELECT_ALL_OPTION_KEY,
+} from '../constants';
 import { IPickerListItem } from '../types';
 
 import { PickerListItem } from './PickerListItem';
@@ -32,7 +36,6 @@ export interface IPickerListProps {
     userProps?: React.HTMLProps<HTMLElement> | undefined
   ) => Record<string, unknown>;
   emptyStateText?: string;
-  selectAllOptionText?: string;
   listClassName?: string;
 }
 
@@ -56,7 +59,6 @@ export const PickerList: React.FC<IPickerListProps> = ({
   emptyStateText = 'No results found',
   pickerType = 'single',
   listClassName,
-  // selectAllOptionText,
 }) => {
   const wrapperRef = React.useRef<HTMLDivElement>(null);
   const [listHeight, setListHeight] = React.useState(DEFAULT_LIST_HEIGHT);
@@ -100,6 +102,12 @@ export const PickerList: React.FC<IPickerListProps> = ({
       </FloatingFocusManager>
     );
   }
+
+  const checkIfSelected = (key: string) =>
+    selectedKeys.includes(key) ||
+    (key === SELECT_ALL_OPTION_KEY &&
+      selectedKeys.length ===
+        options.filter(({ key }) => key !== SELECT_ALL_OPTION_KEY).length);
 
   return (
     <FloatingFocusManager context={context} modal={false} initialFocus={-1}>
@@ -153,7 +161,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
                 getItemProps={getItemProps}
                 listElementsRef={listElementsRef}
                 isActive={activeIndex === index}
-                isSelected={selectedKeys.includes(item.key)}
+                isSelected={checkIfSelected(item.key)}
                 onSelect={onSelect}
                 item={item}
                 numberOfItems={numberOfItems}

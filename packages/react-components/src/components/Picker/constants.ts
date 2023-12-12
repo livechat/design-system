@@ -18,7 +18,7 @@ export const DEFAULT_PICKER_OPTIONS = [
   ...[...Array(100)].map((_, index) => ({
     key: `option${index + 8}`,
     name: `Option #${index + 8}`,
-    disabled: index % 3 === 0,
+    disabled: index % 4 === 0,
   })),
 ];
 

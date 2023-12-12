@@ -4,6 +4,7 @@ import { Check } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Icon } from '../../Icon';
+import { SELECT_ALL_OPTION_KEY } from '../constants';
 import { IPickerListItem } from '../types';
 
 import styles from './PickerListItem.module.scss';
@@ -126,7 +127,9 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
         aria-disabled={item.disabled}
         aria-current={isActive && !item.disabled}
         className={cx(styles[itemClassName], {
-          [styles[`${itemClassName}__custom`]]: item?.customElement,
+          [styles[`${itemClassName}__custom`]]: item.customElement,
+          [styles[`${itemClassName}--select-all`]]:
+            item.key === SELECT_ALL_OPTION_KEY,
         })}
       >
         <div className={styles[`${itemClassName}__content`]}>

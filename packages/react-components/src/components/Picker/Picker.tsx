@@ -4,24 +4,25 @@ import { cx } from '@emotion/css';
 import {
   autoUpdate,
   flip,
-  shift,
+  FloatingNode,
   FloatingPortal,
   offset,
+  shift,
   size as floatingSize,
   useClick,
   useDismiss,
   useFloating,
+  useFloatingNodeId,
   useInteractions,
   useListNavigation,
   useRole,
-  FloatingNode,
-  useFloatingNodeId,
 } from '@floating-ui/react';
 import * as ReactDOM from 'react-dom';
 
 import { PickerList } from './components/PickerList';
 import { PickerTrigger } from './components/PickerTrigger';
 import { PickerTriggerBody } from './components/PickerTriggerBody';
+import { SELECT_ALL_OPTION_KEY } from './constants';
 import { findIndicesWhere } from './helpers';
 import { IPickerListItem, IPickerProps } from './types';
 
@@ -63,17 +64,28 @@ export const Picker: React.FC<IPickerProps> = ({
   const [maxHeight, setMaxHeight] = React.useState(400);
   const listElementsRef = React.useRef<Array<HTMLElement | null>>([]);
   const nodeId = useFloatingNodeId();
+  const shouldShowSelectAll = type === 'multi' && selectAllOptionText;
 
   if (!open && pointer) {
     setPointer(false);
   }
 
   const items = React.useMemo<IPickerListItem[]>(() => {
+    let items = options;
+    if (shouldShowSelectAll) {
+      items = [
+        {
+          key: SELECT_ALL_OPTION_KEY,
+          name: selectAllOptionText,
+        },
+        ...items,
+      ];
+    }
     if (!searchPhrase) {
-      return options;
+      return items;
     }
 
-    return options.filter((item) => {
+    return items.filter((item) => {
       if (item.groupHeader) {
         return false;
       }
@@ -81,9 +93,10 @@ export const Picker: React.FC<IPickerProps> = ({
       const search = searchPhrase.toLowerCase();
       const itemName = item.name.toLowerCase();
 
-      return itemName.includes(search);
+      return itemName.includes(search) || item.key === SELECT_ALL_OPTION_KEY;
     });
-  }, [searchPhrase, options]);
+  }, [searchPhrase, options, type, selectAllOptionText]);
+
   const hasItems = items.length > 0;
 
   const { refs, floatingStyles, context, isPositioned } =
@@ -113,7 +126,6 @@ export const Picker: React.FC<IPickerProps> = ({
         }),
       ],
     });
-
   const click = useClick(context, { enabled: !disabled, ...useClickHookProps });
   const role = useRole(context, { role: 'listbox' });
   const dismiss = useDismiss(context, useDismissHookProps);
@@ -142,19 +154,33 @@ export const Picker: React.FC<IPickerProps> = ({
         return [key];
       });
     } else {
-      setSelectedKeys((prev) => {
-        const newSelectedIndices = prev.includes(key)
-          ? prev.filter((i) => i !== key)
-          : [...prev, key];
+      if (key === SELECT_ALL_OPTION_KEY) {
+        if (selectedKeys.length === items.length - 1) {
+          setSelectedKeys(() => {
+            onSelect(null);
 
-        const newSelectedItems = options.filter((item) =>
-          newSelectedIndices.includes(item.key)
-        );
+            return [];
+          });
+        } else {
+          setSelectedKeys(() => {
+            const newItems = items.filter(
+              ({ key }) => key !== SELECT_ALL_OPTION_KEY
+            );
+            onSelect(newItems);
 
-        onSelect(newSelectedItems);
+            return newItems.map(({ key }) => key);
+          });
+        }
+      } else {
+        setSelectedKeys((prev) => {
+          const newIndexes = prev.includes(key)
+            ? prev.filter((i) => i !== key)
+            : [...prev, key];
+          onSelect(options.filter(({ key }) => newIndexes.includes(key)));
 
-        return newSelectedIndices;
-      });
+          return newIndexes;
+        });
+      }
     }
   };
 
@@ -220,7 +246,6 @@ export const Picker: React.FC<IPickerProps> = ({
               getFloatingProps={getFloatingProps}
               getItemProps={getItemProps}
               emptyStateText={noSearchResultText}
-              selectAllOptionText={selectAllOptionText}
             />
           </FloatingPortal>
         )}
