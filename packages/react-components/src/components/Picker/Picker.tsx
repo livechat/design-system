@@ -60,7 +60,7 @@ export const Picker: React.FC<IPickerProps> = ({
     () => selected?.map(({ key }) => key) || []
   );
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
-  const [searchPhrase, setSearchPhrase] = React.useState<string>();
+  const [searchPhrase, setSearchPhrase] = React.useState<string>('');
   const [maxHeight, setMaxHeight] = React.useState(400);
   const listElementsRef = React.useRef<Array<HTMLElement | null>>([]);
   const nodeId = useFloatingNodeId();
@@ -152,10 +152,15 @@ export const Picker: React.FC<IPickerProps> = ({
   );
 
   const handleSelect = (key: string) => {
+    const item = items.find((item) => item.key === key);
+    if (!item || item.disabled) {
+      return;
+    }
+
     if (type === 'single') {
       setOpen(false);
       setSelectedKeys(() => {
-        onSelect(options.filter((item) => item.key === key));
+        onSelect([item]);
 
         return [key];
       });
@@ -196,7 +201,14 @@ export const Picker: React.FC<IPickerProps> = ({
     setOpen(false);
     setSelectedKeys([]);
     onSelect(null);
-    setSearchPhrase(undefined);
+    setSearchPhrase('');
+  };
+
+  const handleSearchEnterPressed = () => {
+    if (items.length === 1) {
+      handleSelect(items[0].key);
+      setSearchPhrase('');
+    }
   };
 
   return (
@@ -226,6 +238,7 @@ export const Picker: React.FC<IPickerProps> = ({
           clearSearchAfterSelection={clearSearchAfterSelection}
           onItemRemove={handleItemRemove}
           onFilter={handleOnFilter}
+          onEnterPressed={handleSearchEnterPressed}
           searchPhrase={searchPhrase}
         />
       </PickerTrigger>

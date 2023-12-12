@@ -23,6 +23,7 @@ export interface ITriggerBodyProps {
   size?: Size;
   onItemRemove: (key: string) => void;
   onFilter: (text: string) => void;
+  onEnterPressed: () => void;
 }
 
 export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
@@ -37,6 +38,7 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
   onItemRemove,
   onFilter,
   searchPhrase,
+  onEnterPressed,
 }) => {
   const shouldDisplaySearch = isOpen && !isSearchDisabled;
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -85,6 +87,12 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
     );
   };
 
+  const handleSearchKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      onEnterPressed();
+    }
+  };
+
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     onFilter(e.target.value);
 
@@ -97,6 +105,7 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
       )}
       placeholder="Select option"
       onChange={handleOnChange}
+      onKeyUp={handleSearchKeyUp}
       autoFocus
       value={searchPhrase}
     />
@@ -106,7 +115,14 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
     return shouldDisplaySearch ? (
       getSearch()
     ) : (
-      <div className={styles[`${baseClass}__placeholder`]}>{placeholder}</div>
+      <div
+        className={cx({
+          [styles[`${baseClass}__placeholder`]]: true,
+          [styles[`${baseClass}__placeholder--disabled`]]: isDisabled,
+        })}
+      >
+        {placeholder}
+      </div>
     );
   }
 
