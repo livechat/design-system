@@ -46,6 +46,9 @@ $base-class: 'picker-trigger-body';
 
   &__placeholder {
     color: var(--content-basic-secondary);
+    &--disabled {
+      color: var(--content-basic-disabled);
+    }
   }
 
   &__input {
