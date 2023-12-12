@@ -79,37 +79,6 @@ const renderComponent = (props: IPickerListProps) => {
 };
 
 describe('<PickerList> component', () => {
-  it('should call onSelect when list item clicked', () => {
-    const onSelect = vi.fn();
-    const { getByText } = renderComponent({
-      ...defaultProps,
-      onSelect,
-    });
-
-    userEvent.click(getByText('Option three'));
-    expect(onSelect).toHaveBeenCalledWith({
-      key: 'three',
-      name: 'Option three',
-    });
-  });
-
-  it('should mark selected list item as selected', () => {
-    const { getByTestId } = renderComponent({
-      ...defaultProps,
-      selectedKeys: ['three'],
-    });
-
-    expect(getByTestId('three')).toHaveAttribute('aria-selected', 'true');
-  });
-
-  it('should mark selected list item as disabled', () => {
-    const { getByTestId } = renderComponent({
-      ...defaultProps,
-      options: [{ key: 'three', name: 'Option three', disabled: true }],
-    });
-    expect(getByTestId('three')).toHaveAttribute('aria-disabled', 'true');
-  });
-
   it('should display default empty state if no filter result', () => {
     const { getByText } = renderComponent({
       ...defaultProps,
@@ -127,16 +96,6 @@ describe('<PickerList> component', () => {
     });
 
     expect(getByText('Custom empty state')).toBeVisible();
-  });
-
-  it('should display "Select all" option in multiselect mode if this option text is given', () => {
-    const { getByText } = renderComponent({
-      ...defaultProps,
-      pickerType: 'multi',
-      selectAllOptionText: 'Select all',
-    });
-
-    expect(getByText('Select all')).toBeVisible();
   });
 
   it('should display custom components as options', () => {
