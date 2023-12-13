@@ -108,7 +108,9 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
       key={item.key}
       tabIndex={isActive ? 0 : -1}
       ref={(node) => {
-        listElementsRef.current[index] = node;
+        if (node) {
+          listElementsRef.current[index] = node;
+        }
       }}
       role="option"
       aria-setsize={numberOfItems}

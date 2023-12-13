@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 
 import { FloatingContext, FloatingFocusManager } from '@floating-ui/react';
 import cx from 'clsx';
@@ -84,6 +85,10 @@ export const PickerList: React.FC<IPickerListProps> = ({
     },
     [numberOfItems]
   );
+
+  useEffect(() => {
+    listElementsRef.current = new Array(options.length);
+  }, [options.length]);
 
   if (options.length === 0) {
     const noResultsStyle = cx(styles[baseClass], {

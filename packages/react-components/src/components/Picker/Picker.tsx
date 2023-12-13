@@ -99,8 +99,6 @@ export const Picker: React.FC<IPickerProps> = ({
     return items;
   }, [searchPhrase, options, type, selectAllOptionText]);
 
-  listElementsRef.current = new Array(items.length);
-
   const hasItems = items.length > 0;
 
   const { refs, floatingStyles, context, isPositioned } =

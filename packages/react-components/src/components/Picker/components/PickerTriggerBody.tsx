@@ -38,7 +38,6 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
   onItemRemove,
   onFilter,
   searchPhrase,
-  onEnterPressed,
 }) => {
   const shouldDisplaySearch = isOpen && !isSearchDisabled;
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -87,15 +86,6 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
     );
   };
 
-  const handleSearchKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      onEnterPressed();
-    }
-    if (e.key === 'ArrowUp') {
-      inputRef.current?.blur();
-    }
-  };
-
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     onFilter(e.target.value);
 
@@ -108,7 +98,6 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
       )}
       placeholder="Select option"
       onChange={handleOnChange}
-      onKeyUp={handleSearchKeyUp}
       autoFocus
       value={searchPhrase}
     />
