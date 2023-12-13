@@ -63,6 +63,7 @@ export const Picker: React.FC<IPickerProps> = ({
   const [searchPhrase, setSearchPhrase] = React.useState<string>('');
   const [maxHeight, setMaxHeight] = React.useState(400);
   const listElementsRef = React.useRef<Array<HTMLElement | null>>([]);
+  const virtualItemRef = React.useRef(null);
   const nodeId = useFloatingNodeId();
 
   if (!open && pointer) {
@@ -141,6 +142,7 @@ export const Picker: React.FC<IPickerProps> = ({
     activeIndex,
     onNavigate: setActiveIndex,
     virtual: true,
+    virtualItemRef,
     disabledIndices: findIndicesWhere(
       items,
       (item) => !!item.disabled || !!item.groupHeader
@@ -237,9 +239,11 @@ export const Picker: React.FC<IPickerProps> = ({
           size={size}
           clearSearchAfterSelection={clearSearchAfterSelection}
           onItemRemove={handleItemRemove}
+          onSelect={handleSelect}
           onFilter={handleOnFilter}
           onEnterPressed={handleSearchEnterPressed}
           searchPhrase={searchPhrase}
+          virtualItemRef={virtualItemRef}
         />
       </PickerTrigger>
       <FloatingNode id={nodeId}>

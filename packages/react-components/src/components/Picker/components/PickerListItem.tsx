@@ -104,7 +104,7 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
 
   return (
     <div
-      id={`item-${index}`}
+      id={item.key}
       key={item.key}
       tabIndex={isActive ? 0 : -1}
       ref={(node) => {

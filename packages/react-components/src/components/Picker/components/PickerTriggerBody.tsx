@@ -22,8 +22,10 @@ export interface ITriggerBodyProps {
   clearSearchAfterSelection?: boolean;
   size?: Size;
   onItemRemove: (key: string) => void;
+  onSelect: (key: string) => void;
   onFilter: (text: string) => void;
   onEnterPressed: () => void;
+  virtualItemRef: React.MutableRefObject<HTMLElement | null>;
 }
 
 export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
@@ -36,8 +38,10 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
   clearSearchAfterSelection,
   size = 'medium',
   onItemRemove,
+  onSelect,
   onFilter,
   searchPhrase,
+  virtualItemRef,
 }) => {
   const shouldDisplaySearch = isOpen && !isSearchDisabled;
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -90,6 +94,9 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
     onFilter(e.target.value);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (virtualItemRef.current?.id && e.key === 'Enter') {
+      onSelect(virtualItemRef.current?.id);
+    }
     if (
       type === 'multi' &&
       (e.key === 'Backspace' || e.key === 'Delete') &&
