@@ -89,6 +89,17 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     onFilter(e.target.value);
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (
+      type === 'multi' &&
+      (e.key === 'Backspace' || e.key === 'Delete') &&
+      !searchPhrase &&
+      selectedItems
+    ) {
+      onItemRemove(selectedItems[selectedItems.length - 1].key);
+    }
+  };
+
   const getSearch = () => (
     <input
       ref={inputRef}
@@ -98,6 +109,7 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
       )}
       placeholder="Select option"
       onChange={handleOnChange}
+      onKeyDown={handleKeyDown}
       autoFocus
       value={searchPhrase}
     />
