@@ -1,0 +1,51 @@
+import { Meta, Canvas } from '@storybook/addon-docs';
+
+import { TransitionTable } from './components/Transition/TransitionTable';
+import {
+  delayEntries,
+  delayUseCases,
+} from './components/Transition/transitionDelay';
+import {
+  timingEntries,
+  timingUseCases,
+} from './components/Transition/transitionTiming';
+import {
+  durationEntries,
+  durationUseCases,
+} from './components/Transition/transitionDuration';
+
+<Meta title="Foundations/Transition" />
+
+# Transition Tokens
+
+<br />
+
+## Transition Duration Token
+
+<Canvas>
+  <TransitionTable
+    enumName="TransitionDurationToken"
+    entries={durationEntries}
+    useCases={durationUseCases}
+  />
+</Canvas>
+
+## Transition Timing Token
+
+<Canvas>
+  <TransitionTable
+    enumName="TransitionTimingToken"
+    entries={timingEntries}
+    useCases={timingUseCases}
+  />
+</Canvas>
+
+## Transition Delay
+
+<Canvas>
+  <TransitionTable
+    enumName="TransitionDelayToken"
+    entries={delayEntries}
+    useCases={delayUseCases}
+  />
+</Canvas>
