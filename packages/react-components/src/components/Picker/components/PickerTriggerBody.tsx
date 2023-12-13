@@ -91,6 +91,9 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
     if (e.key === 'Enter') {
       onEnterPressed();
     }
+    if (e.key === 'ArrowUp') {
+      inputRef.current?.blur();
+    }
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) =>
