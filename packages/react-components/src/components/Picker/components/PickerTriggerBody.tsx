@@ -94,7 +94,8 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
       type === 'multi' &&
       (e.key === 'Backspace' || e.key === 'Delete') &&
       !searchPhrase &&
-      selectedItems
+      selectedItems &&
+      selectedItems?.length > 0
     ) {
       onItemRemove(selectedItems[selectedItems.length - 1].key);
     }
