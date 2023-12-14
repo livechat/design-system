@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { cx } from '@emotion/css';
 import {
   autoUpdate,
   flip,
@@ -17,6 +16,7 @@ import {
   useListNavigation,
   useRole,
 } from '@floating-ui/react';
+import cx from 'clsx';
 import * as ReactDOM from 'react-dom';
 
 import { PickerList } from './components/PickerList';
