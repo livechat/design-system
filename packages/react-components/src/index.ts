@@ -7,6 +7,7 @@ export { RadiusToken } from './foundations/radius-token';
 export {
   TransitionDurationToken,
   TransitionTimingToken,
+  TransitionDelayToken,
 } from './foundations/transition-token';
 export type { Size } from './utils';
 export { getDesignTokenWithOpacity } from './utils';
