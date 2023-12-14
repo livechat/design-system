@@ -24,7 +24,6 @@ export interface ITriggerBodyProps {
   onItemRemove: (key: string) => void;
   onSelect: (key: string) => void;
   onFilter: (text: string) => void;
-  onEnterPressed: () => void;
   virtualItemRef: React.MutableRefObject<HTMLElement | null>;
 }
 

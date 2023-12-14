@@ -206,13 +206,6 @@ export const Picker: React.FC<IPickerProps> = ({
     setSearchPhrase('');
   };
 
-  const handleSearchEnterPressed = () => {
-    if (items.length === 1) {
-      handleSelect(items[0].key);
-      setSearchPhrase('');
-    }
-  };
-
   return (
     <div id={id} className={cx(styles['picker-wrapper'], className)}>
       <PickerTrigger
@@ -241,7 +234,6 @@ export const Picker: React.FC<IPickerProps> = ({
           onItemRemove={handleItemRemove}
           onSelect={handleSelect}
           onFilter={handleOnFilter}
-          onEnterPressed={handleSearchEnterPressed}
           searchPhrase={searchPhrase}
           virtualItemRef={virtualItemRef}
         />

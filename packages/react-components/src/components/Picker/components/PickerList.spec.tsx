@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import userEvent from '@testing-library/user-event';
 import { VirtuosoProps } from 'react-virtuoso';
 import { vitest } from 'vitest';
 
@@ -71,7 +70,7 @@ const defaultProps: IPickerListProps = {
   setPointer: vi.fn(),
   options: DEFAULT_PICKER_OPTIONS,
   selectedKeys: [],
-  onSelect: noop, // onSelectAll: noop,
+  onSelect: noop,
 };
 
 const renderComponent = (props: IPickerListProps) => {

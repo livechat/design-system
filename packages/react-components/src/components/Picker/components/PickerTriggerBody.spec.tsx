@@ -13,6 +13,8 @@ const defaultProps = {
   type: 'single' as PickerType,
   onItemRemove: () => noop,
   onFilter: () => noop,
+  onSelect: () => noop,
+  virtualItemRef: { current: null },
 };
 
 const renderComponent = (props: ITriggerBodyProps) => {
