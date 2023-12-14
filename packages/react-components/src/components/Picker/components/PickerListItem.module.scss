@@ -121,8 +121,15 @@ $base-class: 'picker-list';
     }
 
     &__checkbox {
+      display: inline-flex;
       align-self: center;
       margin-right: var(--spacing-2);
+
+      input {
+        margin-left: var(--spacing-1);
+        width: 13px;
+        height: 13px;
+      }
     }
 
     &__avatar,

@@ -112,7 +112,7 @@ export const Picker: React.FC<IPickerProps> = ({
       },
       whileElementsMounted: autoUpdate,
       middleware: [
-        offset(8),
+        offset(4),
         flip({ padding: 10 }),
         shift(),
         floatingSize({

@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Check } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
+import { Checkbox } from '../../Checkbox';
 import { Icon } from '../../Icon';
 import { SELECT_ALL_OPTION_KEY } from '../constants';
 import { IPickerListItem } from '../types';
@@ -46,8 +47,7 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
     return (
       <>
         {item.showCheckbox && (
-          <input
-            type="checkbox"
+          <Checkbox
             className={styles[`${itemClassName}__checkbox`]}
             checked={isSelected}
           />
