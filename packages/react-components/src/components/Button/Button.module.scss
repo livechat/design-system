@@ -8,6 +8,7 @@ $base-class: 'btn';
 
 .#{$base-class} {
   @include base.default();
+  @include size.button-size($base-class, false);
 
   &--disabled {
     cursor: not-allowed;
@@ -15,18 +16,6 @@ $base-class: 'btn';
 
   &--full-width {
     width: 100%;
-  }
-
-  &--compact {
-    @include size.button-compact();
-  }
-
-  &--medium {
-    @include size.button-medium();
-  }
-
-  &--large {
-    @include size.button-large();
   }
 
   &--basic {
