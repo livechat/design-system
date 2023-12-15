@@ -1,4 +1,4 @@
-@mixin button-size($paddingV, $paddingH, $min-width, $height) {
+@mixin size($paddingV, $paddingH, $min-width, $height) {
   padding: $paddingV $paddingH;
   min-width: $min-width;
   min-height: $height;
@@ -6,30 +6,44 @@
 
 @mixin button-compact($with-border: false) {
   @if ($with-border) {
-    @include button-size(5px, 16px, 32px, 32px);
+    @include size(5px, 16px, 32px, 32px);
   }
 
  @else {
-    @include button-size(6px, 16px, 32px, 32px);
+    @include size(6px, 16px, 32px, 32px);
   }
 }
 
 @mixin button-medium($with-border: false) {
   @if ($with-border) {
-    @include button-size(var(--spacing-2) - 1px, 16px, 32px, 32px);
+    @include size(calc(var(--spacing-2) - 1px), 16px, 32px, 32px);
   }
 
  @else {
-    @include button-size(var(--spacing-2), 16px, 36px, 36px);
+    @include size(var(--spacing-2), 16px, 36px, 36px);
   }
 }
 
 @mixin button-large($with-border: false) {
   @if ($with-border) {
-    @include button-size(var(--spacing-3) - 1px, 16px, 44px, 44px);
+    @include size(calc(var(--spacing-3) - 1px), 16px, 44px, 44px);
   }
 
  @else {
-    @include button-size(var(--spacing-3), 16px, 44px, 44px);
+    @include size(var(--spacing-3), 16px, 44px, 44px);
+  }
+}
+
+@mixin button-size($base-class, $with-border: false) {
+  &.#{$base-class}--compact {
+    @include button-compact($with-border);
+  }
+
+  &.#{$base-class}--medium {
+    @include button-medium($with-border);
+  }
+
+  &.#{$base-class}--large {
+    @include button-large($with-border);
   }
 }

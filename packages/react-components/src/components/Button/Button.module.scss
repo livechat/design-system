@@ -31,6 +31,7 @@ $base-class: 'btn';
 
   &--basic {
     @include kind.basic();
+    @include size.button-size($base-class, true);
   }
 
   &--primary {
@@ -39,6 +40,7 @@ $base-class: 'btn';
 
   &--secondary {
     @include kind.secondary();
+    @include size.button-size($base-class, true);
   }
 
   &--destructive {
@@ -47,6 +49,7 @@ $base-class: 'btn';
 
   &--destructive-outline {
     @include kind.destructive-outline();
+    @include size.button-size($base-class, true);
   }
 
   &--text {
@@ -73,18 +76,22 @@ $base-class: 'btn';
 
   &--plain {
     @include kind.plain();
+    @include size.button-size($base-class, true);
   }
 
   &--float {
     @include kind.float();
+    @include size.button-size($base-class, true);
   }
 
   &--dotted {
     @include kind.dotted();
+    @include size.button-size($base-class, true);
   }
 
   &--high-contrast {
     @include kind.high-contrast();
+    @include size.button-size($base-class, true);
   }
 
   &--loading {
