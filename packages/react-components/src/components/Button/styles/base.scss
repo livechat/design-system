@@ -1,8 +1,6 @@
 @use './size';
 
 @mixin default() {
-  @include size.button-medium();
-
   box-sizing: border-box;
   display: inline-flex;
   position: relative;

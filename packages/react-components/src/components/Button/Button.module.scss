@@ -21,6 +21,10 @@ $base-class: 'btn';
     @include size.button-compact();
   }
 
+  &--medium {
+    @include size.button-medium();
+  }
+
   &--large {
     @include size.button-large();
   }
