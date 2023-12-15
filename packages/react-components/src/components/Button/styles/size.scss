@@ -1,5 +1,17 @@
-@mixin button-size($base-class, $paddingV, $paddingH, $min-width, $height) {
+@mixin button-size($paddingV, $paddingH, $min-width, $height) {
   padding: $paddingV $paddingH;
   min-width: $min-width;
   min-height: $height;
+}
+
+@mixin button-compact() {
+  @include button-size(6px, 16px, 32px, 32px);
+}
+
+@mixin button-medium() {
+  @include button-size(var(--spacing-2), 16px, 36px, 36px);
+}
+
+@mixin button-large() {
+  @include button-size(var(--spacing-3), 16px, 44px, 44px);
 }
