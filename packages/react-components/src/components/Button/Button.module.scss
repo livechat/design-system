@@ -18,11 +18,11 @@ $base-class: 'btn';
   }
 
   &--compact {
-    @include size.button-size($base-class, 6px 16px, 32px, 32px);
+    @include size.button-size($base-class, 6px, 16px, 32px, 32px);
   }
 
   &--large {
-    @include size.button-size($base-class, 11px 16px, 44px, 44px);
+    @include size.button-size($base-class, var(--spacing-3), 16px, 44px, 44px);
   }
 
   &--basic {

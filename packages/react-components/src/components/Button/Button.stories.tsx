@@ -451,32 +451,44 @@ export const KindsAndStates = (): React.ReactElement => (
 export const Sizes = (): React.ReactElement => (
   <>
     <div className="story-spacer">
-      <Button size="compact" kind="primary">
-        Compact
-      </Button>
-      <Button size="medium" kind="primary">
-        Medium (default)
-      </Button>
-      <Button size="large" kind="primary">
-        Large
-      </Button>
+      <div>
+        <Button size="compact" kind="primary">
+          Compact
+        </Button>
+      </div>
+      <div>
+        <Button size="medium" kind="primary">
+          Medium (default)
+        </Button>
+      </div>
+      <div>
+        <Button size="large" kind="primary">
+          Large
+        </Button>
+      </div>
     </div>
     <div className="story-spacer">
-      <Button
-        icon={<Icon source={Icons.AddCircle} />}
-        size="compact"
-        kind="primary"
-      />
-      <Button
-        icon={<Icon source={Icons.AddCircle} />}
-        size="medium"
-        kind="primary"
-      />
-      <Button
-        icon={<Icon source={Icons.AddCircle} />}
-        size="large"
-        kind="primary"
-      />
+      <div>
+        <Button
+          icon={<Icon source={Icons.AddCircle} />}
+          size="compact"
+          kind="primary"
+        />
+      </div>
+      <div>
+        <Button
+          icon={<Icon source={Icons.AddCircle} />}
+          size="medium"
+          kind="primary"
+        />
+      </div>
+      <div>
+        <Button
+          icon={<Icon source={Icons.AddCircle} />}
+          size="large"
+          kind="primary"
+        />
+      </div>
     </div>
   </>
 );

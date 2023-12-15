@@ -11,9 +11,9 @@
   border-style: solid;
   border-radius: var(--radius-3);
   cursor: pointer;
-  padding: 8px 16px;
+  padding: var(--spacing-2) 16px;
   min-width: 36px;
-  height: 36px;
+  min-height: 36px;
   text-align: center;
   text-decoration: none;
   line-height: 20px;
