@@ -46,4 +46,8 @@
   &.#{$base-class}--large {
     @include button-large($with-border);
   }
+
+  &.#{$base-class}--icon-only {
+    padding: 6px;
+  }
 }
