@@ -8,7 +8,7 @@ $base-class: 'btn';
 
 .#{$base-class} {
   @include base.default();
-  @include size.button-size($base-class, false);
+  @include size.button-size-group($base-class, false);
 
   &--disabled {
     cursor: not-allowed;
@@ -20,7 +20,7 @@ $base-class: 'btn';
 
   &--basic {
     @include kind.basic();
-    @include size.button-size($base-class, true);
+    @include size.button-size-group($base-class, true);
   }
 
   &--primary {
@@ -29,7 +29,7 @@ $base-class: 'btn';
 
   &--secondary {
     @include kind.secondary();
-    @include size.button-size($base-class, true);
+    @include size.button-size-group($base-class, true);
   }
 
   &--destructive {
@@ -38,7 +38,7 @@ $base-class: 'btn';
 
   &--destructive-outline {
     @include kind.destructive-outline();
-    @include size.button-size($base-class, true);
+    @include size.button-size-group($base-class, true);
   }
 
   &--text {
@@ -64,23 +64,23 @@ $base-class: 'btn';
   }
 
   &--plain {
+    @include size.button-size-group($base-class, true);
     @include kind.plain();
-    @include size.button-size($base-class, true);
   }
 
   &--float {
+    @include size.button-size-group($base-class, true);
     @include kind.float();
-    @include size.button-size($base-class, true);
   }
 
   &--dotted {
+    @include size.button-size-group($base-class, true);
     @include kind.dotted();
-    @include size.button-size($base-class, true);
   }
 
   &--high-contrast {
+    @include size.button-size-group($base-class, true);
     @include kind.high-contrast();
-    @include size.button-size($base-class, true);
   }
 
   &--loading {
