@@ -21,20 +21,28 @@ $large-size: 44px;
  @else {
     @include _element-size($padding-vertical, 16px, $size);
   }
+}
 
-  &.#{$base-class}--icon-only {
-    padding: 6px;
-    width: $size;
-    height: $size;
+@mixin default-button-size($base-class) {
+  &--compact:not(&--icon-only) {
+    @include _button-size($base-class, 6px, $compact-size, false);
+  }
+
+  &--medium:not(&--icon-only) {
+    @include _button-size($base-class, var(--spacing-2), $medium-size, false);
+  }
+
+  &--large:not(&--icon-only) {
+    @include _button-size($base-class, var(--spacing-3), $large-size, false);
   }
 }
 
 @mixin button-size-group($base-class, $with-border: false) {
-  &.#{$base-class}--compact {
+  &.#{$base-class}--compact:not(&.#{$base-class}--icon-only) {
     @include _button-size($base-class, 6px, $compact-size, $with-border);
   }
 
-  &.#{$base-class}--medium {
+  &.#{$base-class}--medium:not(&.#{$base-class}--icon-only) {
     @include _button-size(
       $base-class,
       var(--spacing-2),
@@ -43,7 +51,7 @@ $large-size: 44px;
     );
   }
 
-  &.#{$base-class}--large {
+  &.#{$base-class}--large:not(&.#{$base-class}--icon-only) {
     @include _button-size(
       $base-class,
       var(--spacing-3),

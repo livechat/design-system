@@ -8,7 +8,7 @@ $base-class: 'btn';
 
 .#{$base-class} {
   @include base.default();
-  @include size.button-size-group($base-class, false);
+  @include size.default-button-size($base-class);
 
   &--disabled {
     cursor: not-allowed;
@@ -64,23 +64,23 @@ $base-class: 'btn';
   }
 
   &--plain {
-    @include size.button-size-group($base-class, true);
     @include kind.plain();
+    @include size.button-size-group($base-class, true);
   }
 
   &--float {
-    @include size.button-size-group($base-class, true);
     @include kind.float();
+    @include size.button-size-group($base-class, true);
   }
 
   &--dotted {
-    @include size.button-size-group($base-class, true);
     @include kind.dotted();
+    @include size.button-size-group($base-class, true);
   }
 
   &--high-contrast {
-    @include size.button-size-group($base-class, true);
     @include kind.high-contrast();
+    @include size.button-size-group($base-class, true);
   }
 
   &--loading {
