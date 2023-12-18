@@ -24,15 +24,15 @@ $large-size: 44px;
 }
 
 @mixin default-button-size($base-class) {
-  &--compact:not(&--icon-only) {
+  &--compact {
     @include _button-size($base-class, 6px, $compact-size, false);
   }
 
-  &--medium:not(&--icon-only) {
+  &--medium {
     @include _button-size($base-class, var(--spacing-2), $medium-size, false);
   }
 
-  &--large:not(&--icon-only) {
+  &--large {
     @include _button-size($base-class, var(--spacing-3), $large-size, false);
   }
 }
