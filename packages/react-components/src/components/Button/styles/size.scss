@@ -41,14 +41,29 @@ $large-size: 44px;
 @mixin button-size($base-class, $with-border: false) {
   &.#{$base-class}--compact {
     @include button-compact($with-border);
+
+    &.#{$base-class}--icon-only {
+      width: $compact-size;
+      height: $compact-size;
+    }
   }
 
   &.#{$base-class}--medium {
     @include button-medium($with-border);
+
+    &.#{$base-class}--icon-only {
+      width: $medium-size;
+      height: $medium-size;
+    }
   }
 
   &.#{$base-class}--large {
     @include button-large($with-border);
+
+    &.#{$base-class}--icon-only {
+      width: $large-size;
+      height: $large-size;
+    }
   }
 
   &.#{$base-class}--icon-only {
