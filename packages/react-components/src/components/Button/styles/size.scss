@@ -6,10 +6,6 @@ $large-size: 44px;
   padding: $paddingV $paddingH;
   min-width: $element-size;
   min-height: $element-size;
-
-  &.#{$base-class}--icon-only {
-    padding: 6px;
-  }
 }
 
 @mixin button-compact($with-border: false) {
@@ -53,5 +49,9 @@ $large-size: 44px;
 
   &.#{$base-class}--large {
     @include button-large($with-border);
+  }
+
+  &.#{$base-class}--icon-only {
+    padding: 6px;
   }
 }
