@@ -1,9 +1,9 @@
-@mixin button-size($base-class, $padding, $min-width, $height) {
-  padding: $padding;
+@mixin button-size($base-class, $padding-v, $padding-h, $min-width, $height) {
+  padding: $padding-v $padding-h;
   min-width: $min-width;
   height: $height;
 
   &.#{$base-class}--icon-only {
-    padding: $padding - 2;
+    padding: 6px;
   }
 }
