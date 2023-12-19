@@ -1,7 +1,7 @@
 name: Update PR Description
 on:
   pull_request:
-    types: [opened]
+    types: [opened, edited]
 jobs:
   update-description:
     runs-on: ubuntu-latest
@@ -31,6 +31,7 @@ jobs:
             });
             
             let body = prData.body.replace(/{issue-number}/g, issueNumber);
+            body = body.replace(/<!--- Issue number will be inserted automatically -->/g, '');
             
             await github.pulls.update({
               owner: owner,
