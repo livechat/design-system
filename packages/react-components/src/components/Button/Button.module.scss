@@ -17,6 +17,10 @@ $base-class: 'btn';
     width: 100%;
   }
 
+  &--xcompact {
+    @include size.button-size($base-class, 2px, 6px, 24px, 24px);
+  }
+
   &--compact {
     @include size.button-size($base-class, 6px, 16px, 32px, 32px);
   }

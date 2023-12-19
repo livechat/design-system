@@ -18,6 +18,16 @@
 @mixin icon-only($base-class) {
   padding: 6px;
 
+  &.#{$base-class} {
+    &--xcompact {
+      padding: 4px;
+      .#{$base-class}__icon {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
   &--bg {
     &:hover {
       background-color: var(--surface-primary-hover);
