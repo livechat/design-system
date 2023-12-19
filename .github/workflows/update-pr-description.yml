@@ -1,7 +1,7 @@
 name: Update PR Description
 on:
   pull_request:
-    types: [opened, edited]
+    types: [opened]
 jobs:
   update-description:
     runs-on: ubuntu-latest
