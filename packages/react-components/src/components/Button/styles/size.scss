@@ -2,8 +2,4 @@
   padding: $padding-v $padding-h;
   min-width: $min-width;
   height: $height;
-
-  &.#{$base-class}--icon-only {
-    padding: 6px;
-  }
 }
