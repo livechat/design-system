@@ -65,10 +65,10 @@ export const ExampleUsage = (): React.ReactElement => {
               shape="circle"
             />
             <div className="custom-label-content">
-              <Heading size="xs" className="custom-label-content-label-1">
+              <Heading size="xs" className="custom-label-content-label">
                 John Whale
               </Heading>
-              <span className="custom-label-content-label-2">
+              <span className="custom-label-content-label">
                 john.whale.porato@gmail.com
               </span>
             </div>

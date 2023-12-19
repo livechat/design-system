@@ -15,15 +15,20 @@
 }
 
 .custom-label-avatar {
+  flex-shrink: 0;
   margin-right: var(--spacing-4);
 }
 
 .custom-label-content {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
-.custom-label-content-label-1 {
+.custom-label-content-label {
   margin: 0;
+  overflow: hidden;
   text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

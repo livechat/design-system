@@ -25,7 +25,7 @@ export interface IDetailsCardProps {
   /**
    * Set the label
    */
-  label: string | React.ReactNode;
+  label: React.ReactNode;
   /**
    * Define if divider should be visible
    */
