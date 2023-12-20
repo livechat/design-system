@@ -101,7 +101,7 @@ export const KindsAndStates = (): React.ReactElement => {
             </StoryDescriptor>
             <StoryDescriptor title={`${title} with icon`} inverted={isInverted}>
               <Button kind={kind} icon={exampleIcon}>
-                Basic
+                {title}
               </Button>
               <Button kind={kind} icon={exampleIcon} disabled>
                 Disabled

@@ -82,7 +82,8 @@ export const Button = React.forwardRef<
       {
         [styles[`${baseClass}--loading`]]: loading,
         [styles[`${baseClass}--full-width`]]: fullWidth,
-        [styles[`${baseClass}--with-icon`]]: icon && !isIconOnly,
+        [styles[`${baseClass}--with-icon`]]:
+          icon && !isIconOnly && !isTextButton,
         [styles[`${baseClass}--icon-only`]]: isIconOnly,
         [styles[`${baseClass}--icon-only--bg`]]: isIconOnly && isTextButton,
         [styles[`${baseClass}--disabled`]]: isDisabled,
