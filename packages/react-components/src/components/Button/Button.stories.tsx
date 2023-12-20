@@ -7,6 +7,7 @@ import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Icon, IconSource } from '../Icon';
 
 import { Button, ButtonProps } from './Button';
+import { ButtonKind } from './types';
 
 const icons = Object.fromEntries(
   Object.entries(Icons).map(([key, source]) => [
@@ -63,390 +64,66 @@ Default.args = {
   icon: 'None',
 };
 
-export const KindsAndStates = (): React.ReactElement => (
-  <div>
-    <StoryDescriptor title="Basic">
-      <Button>Basic</Button>
-      <Button disabled>Disabled</Button>
-      <Button loading>Loading</Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Basic with icon">
-      <Button icon={<Icon source={Icons.AddCircle} />}>Basic</Button>
-      <Button icon={<Icon source={Icons.AddCircle} />} disabled>
-        Disabled
-      </Button>
-      <Button icon={<Icon source={Icons.AddCircle} />} loading>
-        Loading
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Basic with icon only">
-      <Button icon={<Icon source={Icons.AddCircle} />} />
-      <Button icon={<Icon source={Icons.AddCircle} />} disabled />
-      <Button icon={<Icon source={Icons.AddCircle} />} loading />
-    </StoryDescriptor>
-    <StoryDescriptor title="Primary">
-      <Button kind="primary">Primary</Button>
-      <Button disabled kind="primary">
-        Disabled
-      </Button>
-      <Button loading kind="primary">
-        Loading
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Primary with icon">
-      <Button kind="primary" icon={<Icon source={Icons.AddCircle} />}>
-        Primary
-      </Button>
-      <Button disabled kind="primary" icon={<Icon source={Icons.AddCircle} />}>
-        Disabled
-      </Button>
-      <Button loading kind="primary" icon={<Icon source={Icons.AddCircle} />}>
-        Loading
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Primary with icon only">
-      <Button kind="primary" icon={<Icon source={Icons.AddCircle} />} />
-      <Button
-        disabled
-        kind="primary"
-        icon={<Icon source={Icons.AddCircle} />}
-      />
-      <Button loading kind="primary" icon={<Icon source={Icons.AddCircle} />} />
-    </StoryDescriptor>
-    <StoryDescriptor title="Secondary">
-      <Button kind="secondary">Secondary</Button>
-      <Button disabled kind="secondary">
-        Disabled
-      </Button>
-      <Button loading kind="secondary">
-        Disabled
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Secondary with icon">
-      <Button kind="secondary" icon={<Icon source={Icons.AddCircle} />}>
-        Secondary
-      </Button>
-      <Button
-        disabled
-        kind="secondary"
-        icon={<Icon source={Icons.AddCircle} />}
-      >
-        Disabled
-      </Button>
-      <Button loading kind="secondary" icon={<Icon source={Icons.AddCircle} />}>
-        Disabled
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Secondary with icon only">
-      <Button kind="secondary" icon={<Icon source={Icons.AddCircle} />} />
-      <Button
-        disabled
-        kind="secondary"
-        icon={<Icon source={Icons.AddCircle} />}
-      />
-      <Button
-        loading
-        kind="secondary"
-        icon={<Icon source={Icons.AddCircle} />}
-      />
-    </StoryDescriptor>
-    <StoryDescriptor title="Destructive">
-      <Button kind="destructive">Destructive</Button>
-      <Button disabled kind="destructive">
-        Disabled
-      </Button>
-      <Button loading kind="destructive">
-        Disabled
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Destructive with icon">
-      <Button kind="destructive" icon={<Icon source={Icons.AddCircle} />}>
-        Destructive
-      </Button>
-      <Button
-        disabled
-        kind="destructive"
-        icon={<Icon source={Icons.AddCircle} />}
-      >
-        Disabled
-      </Button>
-      <Button
-        loading
-        kind="destructive"
-        icon={<Icon source={Icons.AddCircle} />}
-      >
-        Disabled
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Destructive with icon only">
-      <Button kind="destructive" icon={<Icon source={Icons.AddCircle} />} />
-      <Button
-        disabled
-        kind="destructive"
-        icon={<Icon source={Icons.AddCircle} />}
-      />
-      <Button
-        loading
-        kind="destructive"
-        icon={<Icon source={Icons.AddCircle} />}
-      />
-    </StoryDescriptor>
-    <StoryDescriptor title="Destructive Outline">
-      <Button kind="destructive-outline">Destructive Outline</Button>
-      <Button disabled kind="destructive-outline">
-        Disabled
-      </Button>
-      <Button loading kind="destructive-outline">
-        Disabled
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Destructive Outline with icon">
-      <Button
-        kind="destructive-outline"
-        icon={<Icon source={Icons.AddCircle} />}
-      >
-        Destructive Outline
-      </Button>
-      <Button
-        disabled
-        kind="destructive-outline"
-        icon={<Icon source={Icons.AddCircle} />}
-      >
-        Disabled
-      </Button>
-      <Button
-        loading
-        kind="destructive-outline"
-        icon={<Icon source={Icons.AddCircle} />}
-      >
-        Disabled
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Destructive Outline with icon only">
-      <Button
-        kind="destructive-outline"
-        icon={<Icon source={Icons.AddCircle} />}
-      />
-      <Button
-        disabled
-        kind="destructive-outline"
-        icon={<Icon source={Icons.AddCircle} />}
-      />
-      <Button
-        loading
-        kind="destructive-outline"
-        icon={<Icon source={Icons.AddCircle} />}
-      />
-    </StoryDescriptor>
-    <StoryDescriptor title="Text">
-      <Button kind="text">Text</Button>
-      <Button disabled kind="text">
-        Disabled
-      </Button>
-      <Button loading kind="text">
-        Disabled
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Text with icon">
-      <Button kind="text" icon={<Icon source={Icons.AddCircle} />}>
-        Text
-      </Button>
-      <Button disabled kind="text" icon={<Icon source={Icons.AddCircle} />}>
-        Disabled
-      </Button>
-      <Button loading kind="text" icon={<Icon source={Icons.AddCircle} />}>
-        Disabled
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Text with icon only">
-      <Button kind="text" icon={<Icon source={Icons.AddCircle} />} />
-      <Button disabled kind="text" icon={<Icon source={Icons.AddCircle} />} />
-      <Button loading kind="text" icon={<Icon source={Icons.AddCircle} />} />
-    </StoryDescriptor>
-    <StoryDescriptor title="Link">
-      <Button kind="link">Link</Button>
-      <Button disabled kind="link">
-        Disabled
-      </Button>
-      <Button loading kind="link">
-        Disabled
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Link with icon">
-      <Button kind="link" icon={<Icon source={Icons.AddCircle} />}>
-        Link
-      </Button>
-      <Button disabled kind="link" icon={<Icon source={Icons.AddCircle} />}>
-        Disabled
-      </Button>
-      <Button loading kind="link" icon={<Icon source={Icons.AddCircle} />}>
-        Disabled
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Link with icon only">
-      <Button kind="link" icon={<Icon source={Icons.AddCircle} />} />
-      <Button disabled kind="link" icon={<Icon source={Icons.AddCircle} />} />
-      <Button loading kind="link" icon={<Icon source={Icons.AddCircle} />} />
-    </StoryDescriptor>
-    <StoryDescriptor
-      style={{
-        background: 'var(--surface-invert-primary)',
-        padding: '10px 10px 10px 0',
-      }}
-      title="Link inverted"
-    >
-      <Button kind="link-inverted">Link inverted</Button>
-      <Button disabled kind="link-inverted">
-        Disabled
-      </Button>
-      <Button loading kind="link-inverted">
-        Disabled
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor
-      style={{
-        background: 'var(--surface-invert-primary)',
-        padding: '10px 10px 10px 0',
-      }}
-      title="Link inverted with icon"
-    >
-      <Button kind="link-inverted" icon={<Icon source={Icons.AddCircle} />}>
-        Link inverted
-      </Button>
-      <Button
-        disabled
-        kind="link-inverted"
-        icon={<Icon source={Icons.AddCircle} />}
-      >
-        Disabled
-      </Button>
-      <Button
-        loading
-        kind="link-inverted"
-        icon={<Icon source={Icons.AddCircle} />}
-      >
-        Disabled
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Plain">
-      <Button kind="plain">Plain</Button>
-      <Button disabled kind="plain">
-        Disabled
-      </Button>
-      <Button loading kind="plain">
-        Loading
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Plain with icon">
-      <Button kind="plain" icon={<Icon source={Icons.AddCircle} />}>
-        Plain
-      </Button>
-      <Button disabled kind="plain" icon={<Icon source={Icons.AddCircle} />}>
-        Disabled
-      </Button>
-      <Button loading kind="plain" icon={<Icon source={Icons.AddCircle} />}>
-        Loading
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Plain with icon only">
-      <Button kind="plain" icon={<Icon source={Icons.AddCircle} />} />
-      <Button disabled kind="plain" icon={<Icon source={Icons.AddCircle} />} />
-      <Button loading kind="plain" icon={<Icon source={Icons.AddCircle} />} />
-    </StoryDescriptor>
-    <StoryDescriptor title="Float">
-      <Button kind="float">Float</Button>
+export const KindsAndStates = (): React.ReactElement => {
+  const kinds: Array<ButtonKind> = [
+    'basic',
+    'primary',
+    'secondary',
+    'destructive',
+    'destructive-outline',
+    'text',
+    'link',
+    'link-light',
+    'link-inverted',
+    'plain',
+    'float',
+    'dotted',
+    'high-contrast',
+  ];
 
-      <Button disabled kind="float">
-        Disabled
-      </Button>
-      <Button loading kind="float">
-        Loading
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Float with icon">
-      <Button kind="float" icon={<Icon source={Icons.AddCircle} />}>
-        Float
-      </Button>
-      <Button disabled kind="float" icon={<Icon source={Icons.AddCircle} />}>
-        Disabled
-      </Button>
-      <Button loading kind="float" icon={<Icon source={Icons.AddCircle} />}>
-        Loading
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Float with icon only">
-      <Button kind="float" icon={<Icon source={Icons.AddCircle} />} />
-      <Button disabled kind="float" icon={<Icon source={Icons.AddCircle} />} />
-      <Button loading kind="float" icon={<Icon source={Icons.AddCircle} />} />
-    </StoryDescriptor>
-    <StoryDescriptor title="Dotted">
-      <Button kind="dotted">Dotted</Button>
-      <Button disabled kind="dotted">
-        Disabled
-      </Button>
-      <Button loading kind="dotted">
-        Loading
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Dotted with icon">
-      <Button kind="dotted" icon={<Icon source={Icons.AddCircle} />}>
-        Dotted
-      </Button>
-      <Button disabled kind="dotted" icon={<Icon source={Icons.AddCircle} />}>
-        Disabled
-      </Button>
-      <Button loading kind="dotted" icon={<Icon source={Icons.AddCircle} />}>
-        Loading
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="Dotted with icon only">
-      <Button kind="dotted" icon={<Icon source={Icons.AddCircle} />} />
-      <Button disabled kind="dotted" icon={<Icon source={Icons.AddCircle} />} />
-      <Button loading kind="dotted" icon={<Icon source={Icons.AddCircle} />} />
-    </StoryDescriptor>
-    <StoryDescriptor title="High Contrast">
-      <Button kind="high-contrast">High Contrast</Button>
-      <Button kind="high-contrast" disabled>
-        Disabled
-      </Button>
-      <Button kind="high-contrast" loading>
-        Loading
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="High Contrast with icon">
-      <Button kind="high-contrast" icon={<Icon source={Icons.AddCircle} />}>
-        High Contrast
-      </Button>
-      <Button
-        kind="high-contrast"
-        icon={<Icon source={Icons.AddCircle} />}
-        disabled
-      >
-        Disabled
-      </Button>
-      <Button
-        kind="high-contrast"
-        icon={<Icon source={Icons.AddCircle} />}
-        loading
-      >
-        Loading
-      </Button>
-    </StoryDescriptor>
-    <StoryDescriptor title="High Contrast with icon only">
-      <Button kind="high-contrast" icon={<Icon source={Icons.AddCircle} />} />
-      <Button
-        kind="high-contrast"
-        icon={<Icon source={Icons.AddCircle} />}
-        disabled
-      />
-      <Button
-        kind="high-contrast"
-        icon={<Icon source={Icons.AddCircle} />}
-        loading
-      />
-    </StoryDescriptor>
-  </div>
-);
+  return (
+    <div>
+      {kinds.map((kind) => {
+        const title = kind.charAt(0).toUpperCase() + kind.slice(1);
+        const exampleIcon = <Icon source={Icons.AddCircle} />;
+        const isInverted = kind === 'link-inverted';
+
+        return (
+          <>
+            <StoryDescriptor title={title} inverted={isInverted}>
+              <Button kind={kind}>{title}</Button>
+              <Button kind={kind} disabled>
+                Disabled
+              </Button>
+              <Button kind={kind} loading>
+                Loading
+              </Button>
+            </StoryDescriptor>
+            <StoryDescriptor title={`${title} with icon`} inverted={isInverted}>
+              <Button kind={kind} icon={exampleIcon}>
+                Basic
+              </Button>
+              <Button kind={kind} icon={exampleIcon} disabled>
+                Disabled
+              </Button>
+              <Button kind={kind} icon={exampleIcon} loading>
+                Loading
+              </Button>
+            </StoryDescriptor>
+            <StoryDescriptor
+              title={`${title} with icon only`}
+              inverted={isInverted}
+            >
+              <Button kind={kind} icon={exampleIcon} />
+              <Button kind={kind} icon={exampleIcon} disabled />
+              <Button kind={kind} icon={exampleIcon} loading />
+            </StoryDescriptor>
+          </>
+        );
+      })}
+    </div>
+  );
+};
 
 const ExampleIcon = <Icon source={Icons.AddCircle} />;
 
