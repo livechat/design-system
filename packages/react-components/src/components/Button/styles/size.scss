@@ -4,8 +4,12 @@
   height: $height;
 
   &.#{$base-class} {
-    &--with-icon {
+    &--with-left-icon {
       padding-left: calc($padding-h - 4px);
+    }
+
+    &--with-right-icon {
+      padding-right: calc($padding-h - 4px);
     }
   }
 }
