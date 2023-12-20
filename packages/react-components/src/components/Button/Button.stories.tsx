@@ -7,7 +7,7 @@ import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Icon, IconSource } from '../Icon';
 
 import { Button, ButtonProps } from './Button';
-import { ButtonKind } from './types';
+import { ButtonKind, ButtonSize } from './types';
 
 const icons = Object.fromEntries(
   Object.entries(Icons).map(([key, source]) => [
@@ -17,6 +17,25 @@ const icons = Object.fromEntries(
 );
 
 const iterator = Object.keys(icons);
+
+const kinds: Array<ButtonKind> = [
+  'basic',
+  'primary',
+  'secondary',
+  'destructive',
+  'destructive-outline',
+  'text',
+  'link',
+  'link-light',
+  'link-inverted',
+  'plain',
+  'float',
+  'dotted',
+  'high-contrast',
+];
+const sizes: ButtonSize[] = ['xcompact', 'compact', 'medium', 'large'];
+
+const ExampleIcon = <Icon source={Icons.AddCircle} />;
 
 export default {
   title: 'Components/Button',
@@ -64,137 +83,74 @@ Default.args = {
   icon: 'None',
 };
 
-export const KindsAndStates = (): React.ReactElement => {
-  const kinds: Array<ButtonKind> = [
-    'basic',
-    'primary',
-    'secondary',
-    'destructive',
-    'destructive-outline',
-    'text',
-    'link',
-    'link-light',
-    'link-inverted',
-    'plain',
-    'float',
-    'dotted',
-    'high-contrast',
-  ];
+export const KindsAndStates = (): React.ReactElement => (
+  <div>
+    {kinds.map((kind) => {
+      const title = kind.charAt(0).toUpperCase() + kind.slice(1);
+      const isInverted = kind === 'link-inverted';
 
+      return (
+        <>
+          <StoryDescriptor title={title} inverted={isInverted}>
+            <Button kind={kind}>{title}</Button>
+            <Button kind={kind} disabled>
+              Disabled
+            </Button>
+            <Button kind={kind} loading>
+              Loading
+            </Button>
+          </StoryDescriptor>
+          <StoryDescriptor title={`${title} with icon`} inverted={isInverted}>
+            <Button kind={kind} icon={ExampleIcon}>
+              {title}
+            </Button>
+            <Button kind={kind} icon={ExampleIcon} disabled>
+              Disabled
+            </Button>
+            <Button kind={kind} icon={ExampleIcon} loading>
+              Loading
+            </Button>
+          </StoryDescriptor>
+          <StoryDescriptor
+            title={`${title} with icon only`}
+            inverted={isInverted}
+          >
+            <Button kind={kind} icon={ExampleIcon} />
+            <Button kind={kind} icon={ExampleIcon} disabled />
+            <Button kind={kind} icon={ExampleIcon} loading />
+          </StoryDescriptor>
+        </>
+      );
+    })}
+  </div>
+);
+
+export const Sizes = (): React.ReactElement => {
   return (
-    <div>
+    <>
       {kinds.map((kind) => {
-        const title = kind.charAt(0).toUpperCase() + kind.slice(1);
-        const exampleIcon = <Icon source={Icons.AddCircle} />;
+        const kindName = kind.charAt(0).toUpperCase() + kind.slice(1);
         const isInverted = kind === 'link-inverted';
 
         return (
-          <>
-            <StoryDescriptor title={title} inverted={isInverted}>
-              <Button kind={kind}>{title}</Button>
-              <Button kind={kind} disabled>
-                Disabled
-              </Button>
-              <Button kind={kind} loading>
-                Loading
-              </Button>
-            </StoryDescriptor>
-            <StoryDescriptor title={`${title} with icon`} inverted={isInverted}>
-              <Button kind={kind} icon={exampleIcon}>
-                {title}
-              </Button>
-              <Button kind={kind} icon={exampleIcon} disabled>
-                Disabled
-              </Button>
-              <Button kind={kind} icon={exampleIcon} loading>
-                Loading
-              </Button>
-            </StoryDescriptor>
-            <StoryDescriptor
-              title={`${title} with icon only`}
-              inverted={isInverted}
-            >
-              <Button kind={kind} icon={exampleIcon} />
-              <Button kind={kind} icon={exampleIcon} disabled />
-              <Button kind={kind} icon={exampleIcon} loading />
-            </StoryDescriptor>
-          </>
+          <StoryDescriptor title={`${kindName} kind`} inverted={isInverted}>
+            <div className="story-spacer">
+              {sizes.map((size) => {
+                const sizeName = size.charAt(0).toUpperCase() + size.slice(1);
+
+                return (
+                  <Button size={size} kind={kind} icon={ExampleIcon}>
+                    {sizeName}
+                  </Button>
+                );
+              })}
+            </div>
+          </StoryDescriptor>
         );
       })}
-    </div>
+    </>
   );
 };
-
-const ExampleIcon = <Icon source={Icons.AddCircle} />;
-
-export const Sizes = (): React.ReactElement => (
-  <>
-    <div className="story-spacer">
-      <Button size="xcompact" kind="primary" icon={ExampleIcon}>
-        XCompact
-      </Button>
-      <Button size="compact" kind="primary" icon={ExampleIcon}>
-        Compact
-      </Button>
-      <Button size="medium" kind="primary" icon={ExampleIcon}>
-        Medium (default)
-      </Button>
-      <Button size="large" kind="primary" icon={ExampleIcon}>
-        Large
-      </Button>
-    </div>
-    <div className="story-spacer">
-      <Button size="xcompact" kind="secondary" icon={ExampleIcon}>
-        XCompact
-      </Button>
-      <Button size="compact" kind="secondary" icon={ExampleIcon}>
-        Compact
-      </Button>
-      <Button size="medium" kind="secondary" icon={ExampleIcon}>
-        Medium (default)
-      </Button>
-      <Button size="large" kind="secondary" icon={ExampleIcon}>
-        Large
-      </Button>
-    </div>
-    <div className="story-spacer">
-      <Button size="xcompact" kind="primary">
-        XCompact
-      </Button>
-      <Button size="compact" kind="primary">
-        Compact
-      </Button>
-      <Button size="medium" kind="primary">
-        Medium (default)
-      </Button>
-      <Button size="large" kind="primary">
-        Large
-      </Button>
-    </div>
-    <div className="story-spacer">
-      <Button
-        icon={<Icon source={Icons.AddCircle} />}
-        size="xcompact"
-        kind="primary"
-      />
-      <Button
-        icon={<Icon source={Icons.AddCircle} />}
-        size="compact"
-        kind="primary"
-      />
-      <Button
-        icon={<Icon source={Icons.AddCircle} />}
-        size="medium"
-        kind="primary"
-      />
-      <Button
-        icon={<Icon source={Icons.AddCircle} />}
-        size="large"
-        kind="primary"
-      />
-    </div>
-  </>
-);
 
 export const ButtonAsLink = (): React.ReactElement => (
   <Button href="https://livechat.com" target="_blank" kind="primary">

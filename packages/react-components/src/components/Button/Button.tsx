@@ -2,12 +2,10 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import { Size } from 'utils';
-
 import { Loader } from '../Loader';
 
 import { getSpinnerColors } from './helpers';
-import { ButtonKind } from './types';
+import { ButtonKind, ButtonSize } from './types';
 
 import styles from './Button.module.scss';
 
@@ -19,7 +17,7 @@ export type ButtonProps = {
   /**
    * Specify the button size
    */
-  size?: Size;
+  size?: ButtonSize;
   /**
    * Set the loading state
    */

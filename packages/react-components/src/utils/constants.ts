@@ -1,1 +1,1 @@
-export type Size = 'xcompact' | 'compact' | 'medium' | 'large';
+export type Size = 'compact' | 'medium' | 'large';
