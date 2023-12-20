@@ -10,6 +10,7 @@ export const DesignToken = {
   SurfaceSecondaryHover: '--surface-secondary-hover',
   SurfaceSecondaryActive: '--surface-secondary-active',
   SurfaceSecondaryDisabled: '--surface-secondary-disabled',
+  SurfacePrimaryHoverOpacity: '--surface-primary-hover-opacity',
   SurfaceBasicHover: '--surface-basic-hover',
   SurfacePrimaryHover: '--surface-primary-hover',
   SurfaceBasicActive: '--surface-basic-active',
