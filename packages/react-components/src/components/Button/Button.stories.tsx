@@ -133,19 +133,26 @@ export const Sizes = (): React.ReactElement => {
         const isInverted = kind === 'link-inverted';
 
         return (
-          <StoryDescriptor title={`${kindName} kind`} inverted={isInverted}>
-            <div className="story-spacer">
-              {sizes.map((size) => {
-                const sizeName = size.charAt(0).toUpperCase() + size.slice(1);
+          <>
+            <StoryDescriptor title={`${kindName} kind`} inverted={isInverted}>
+              <div className="story-spacer">
+                {sizes.map((size) => {
+                  const sizeName = size.charAt(0).toUpperCase() + size.slice(1);
 
-                return (
-                  <Button size={size} kind={kind} icon={ExampleIcon}>
-                    {sizeName}
-                  </Button>
-                );
-              })}
-            </div>
-          </StoryDescriptor>
+                  return (
+                    <Button size={size} kind={kind} icon={ExampleIcon}>
+                      {sizeName}
+                    </Button>
+                  );
+                })}
+              </div>
+              <div className="story-spacer" style={{ marginLeft: '20px' }}>
+                {sizes.map((size) => (
+                  <Button icon={ExampleIcon} size={size} kind={kind} />
+                ))}
+              </div>
+            </StoryDescriptor>
+          </>
         );
       })}
     </>
