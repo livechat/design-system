@@ -36,10 +36,6 @@ $base-class: 'details-card';
       cursor: pointer;
     }
 
-    &--open {
-      padding-bottom: var(--spacing-5);
-    }
-
     &__icon {
       transition: all 0.2s ease;
 
@@ -78,7 +74,7 @@ $base-class: 'details-card';
       margin-left: var(--spacing-2);
     }
 
-    &__text {
+    &__content {
       margin: 0;
       overflow: hidden;
       text-overflow: ellipsis;
