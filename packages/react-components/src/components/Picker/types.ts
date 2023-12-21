@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 
 import { Strategy, UseClickProps, UseDismissProps } from '@floating-ui/react';
+import { VirtuosoProps } from 'react-virtuoso';
 
 import { Size } from '../../utils';
 import { IconSource } from '../Icon';
@@ -113,4 +114,9 @@ export interface IPickerProps {
    * https://floating-ui.com/docs/useclick
    */
   useClickHookProps?: UseClickProps;
+  /**
+   * Props for the Virtuoso component
+   * https://virtuoso.dev/virtuoso-api-reference/
+   */
+  virtuosoProps?: VirtuosoProps<IPickerListItem, unknown>;
 }

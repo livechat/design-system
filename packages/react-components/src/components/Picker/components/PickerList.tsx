@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 
 import { FloatingContext, FloatingFocusManager } from '@floating-ui/react';
 import cx from 'clsx';
-import { Virtuoso } from 'react-virtuoso';
+import { Virtuoso, VirtuosoProps } from 'react-virtuoso';
 
 import {
   DEFAULT_LIST_HEIGHT,
@@ -39,6 +39,7 @@ export interface IPickerListProps {
   ) => Record<string, unknown>;
   emptyStateText?: string;
   listClassName?: string;
+  virtuosoProps?: VirtuosoProps<IPickerListItem, unknown>;
 }
 
 const baseClass = 'picker-list';
@@ -61,6 +62,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   emptyStateText = 'No results found',
   pickerType = 'single',
   listClassName,
+  virtuosoProps,
 }) => {
   const wrapperRef = React.useRef<HTMLDivElement>(null);
   const [listHeight, setListHeight] = React.useState(DEFAULT_LIST_HEIGHT);
@@ -161,6 +163,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
             totalCount={options.length}
             data={options}
             increaseViewportBy={200}
+            {...virtuosoProps}
             itemContent={(index, item) => (
               <PickerListItem
                 index={index}

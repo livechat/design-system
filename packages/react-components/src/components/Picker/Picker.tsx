@@ -52,6 +52,7 @@ export const Picker: React.FC<IPickerProps> = ({
   floatingStrategy,
   useDismissHookProps,
   useClickHookProps,
+  virtuosoProps,
   ...props
 }) => {
   const [open, setOpen] = React.useState(openedOnInit);
@@ -259,6 +260,7 @@ export const Picker: React.FC<IPickerProps> = ({
               getFloatingProps={getFloatingProps}
               getItemProps={getItemProps}
               emptyStateText={noSearchResultText}
+              virtuosoProps={virtuosoProps}
             />
           </FloatingPortal>
         )}
