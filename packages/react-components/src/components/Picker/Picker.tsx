@@ -37,12 +37,32 @@ export const Picker: React.FC<IPickerProps> = ({
   virtuosoProps,
   ...props
 }) => {
-  const [open, setOpen] = React.useState(openedOnInit);
-  const [pointer, setPointer] = React.useState(false);
-  const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
-  const [maxHeight, setMaxHeight] = React.useState(400);
-  const listElementsRef = React.useRef<Array<HTMLElement | null>>([]);
-  const virtualItemRef = React.useRef(null);
+  const {
+    context,
+    nodeId,
+    getReferenceProps,
+    setReference,
+    getFloatingProps,
+    getItemProps,
+    isPositioned,
+    setFloating,
+    floatingStyles,
+    listElementsRef,
+    virtualItemRef,
+    activeIndex,
+    open,
+    setOpen,
+    maxHeight,
+    pointer,
+    setPointer,
+  } = useFloatingPicker({
+    disabled,
+    items: options,
+    floatingStrategy,
+    useClickHookProps,
+    useDismissHookProps,
+  });
+
   const {
     selectedKeys,
     items,
@@ -59,34 +79,6 @@ export const Picker: React.FC<IPickerProps> = ({
     onSelect,
     setOpen,
   });
-  const {
-    context,
-    nodeId,
-    getReferenceProps,
-    setReference,
-    getFloatingProps,
-    getItemProps,
-    isPositioned,
-    setFloating,
-    floatingStyles,
-  } = useFloatingPicker({
-    disabled,
-    items: options,
-    activeIndex,
-    setActiveIndex,
-    listElementsRef,
-    virtualItemRef,
-    floatingStrategy,
-    open,
-    setOpen,
-    setMaxHeight,
-    useClickHookProps,
-    useDismissHookProps,
-  });
-
-  if (!open && pointer) {
-    setPointer(false);
-  }
 
   return (
     <div id={id} className={cx(styles['picker-wrapper'], className)}>

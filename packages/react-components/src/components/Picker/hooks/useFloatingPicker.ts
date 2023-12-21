@@ -28,16 +28,10 @@ const overflowPadding = 10;
 interface UseFloatingPickerProps {
   disabled?: boolean;
   items: IPickerListItem[];
-  activeIndex: number | null;
-  setActiveIndex: (index: number | null) => void;
-  listElementsRef: React.MutableRefObject<(HTMLElement | null)[]>;
-  virtualItemRef: React.RefObject<HTMLDivElement>;
   floatingStrategy?: Strategy;
-  open: boolean;
-  setOpen: (opened: boolean) => void;
-  setMaxHeight: (height: number) => void;
   useClickHookProps?: UseClickProps;
   useDismissHookProps?: UseDismissProps;
+  openedOnInit?: boolean;
 }
 
 interface IUseFloatingPicker {
@@ -56,23 +50,31 @@ interface IUseFloatingPicker {
   context: FloatingContext<HTMLButtonElement>;
   nodeId: string;
   setFloating: (node: HTMLElement | null) => void;
+  open: boolean;
+  activeIndex: number | null;
+  listElementsRef: React.MutableRefObject<(HTMLElement | null)[]>;
+  virtualItemRef: React.RefObject<HTMLDivElement>;
+  maxHeight: number;
+  setOpen: (opened: boolean) => void;
+  pointer: boolean;
+  setPointer: (pointer: boolean) => void;
 }
 
 export const useFloatingPicker = ({
   disabled,
   items,
-  activeIndex,
-  setActiveIndex,
-  listElementsRef,
-  virtualItemRef,
   floatingStrategy,
-  open,
-  setOpen,
-  setMaxHeight,
   useDismissHookProps,
   useClickHookProps,
+  openedOnInit = false,
 }: UseFloatingPickerProps): IUseFloatingPicker => {
   const nodeId = useFloatingNodeId();
+  const [open, setOpen] = React.useState(openedOnInit);
+  const [pointer, setPointer] = React.useState(false);
+  const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
+  const [maxHeight, setMaxHeight] = React.useState(400);
+  const listElementsRef = React.useRef<Array<HTMLElement | null>>([]);
+  const virtualItemRef = React.useRef(null);
   const { refs, floatingStyles, context, isPositioned } =
     useFloating<HTMLButtonElement>({
       nodeId,
@@ -124,6 +126,10 @@ export const useFloatingPicker = ({
     [click, dismiss, role, listNavigation]
   );
 
+  if (!open && pointer) {
+    setPointer(false);
+  }
+
   return {
     getReferenceProps,
     getFloatingProps,
@@ -134,5 +140,13 @@ export const useFloatingPicker = ({
     context,
     nodeId,
     setFloating: refs.setFloating,
+    open,
+    activeIndex,
+    listElementsRef,
+    virtualItemRef,
+    maxHeight,
+    pointer,
+    setPointer,
+    setOpen,
   };
 };
