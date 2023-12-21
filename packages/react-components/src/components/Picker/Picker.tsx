@@ -1,34 +1,17 @@
 import * as React from 'react';
 
-import {
-  autoUpdate,
-  flip,
-  FloatingNode,
-  FloatingPortal,
-  offset,
-  shift,
-  size as floatingSize,
-  useClick,
-  useDismiss,
-  useFloating,
-  useFloatingNodeId,
-  useInteractions,
-  useListNavigation,
-  useRole,
-} from '@floating-ui/react';
+import { FloatingNode, FloatingPortal } from '@floating-ui/react';
 import cx from 'clsx';
-import * as ReactDOM from 'react-dom';
 
 import { PickerList } from './components/PickerList';
 import { PickerTrigger } from './components/PickerTrigger';
 import { PickerTriggerBody } from './components/PickerTriggerBody';
 import { SELECT_ALL_OPTION_KEY } from './constants';
-import { findIndicesWhere, getNormalizedItems } from './helpers';
+import { getNormalizedItems } from './helpers';
+import { useFloatingPicker } from './hooks/useFloatingPicker';
 import { IPickerListItem, IPickerProps } from './types';
 
 import styles from './Picker.module.scss';
-
-const overflowPadding = 10;
 
 export const Picker: React.FC<IPickerProps> = ({
   id,
@@ -65,8 +48,30 @@ export const Picker: React.FC<IPickerProps> = ({
   const [maxHeight, setMaxHeight] = React.useState(400);
   const listElementsRef = React.useRef<Array<HTMLElement | null>>([]);
   const virtualItemRef = React.useRef(null);
-  const nodeId = useFloatingNodeId();
-
+  const {
+    context,
+    nodeId,
+    getReferenceProps,
+    setReference,
+    getFloatingProps,
+    getItemProps,
+    isPositioned,
+    setFloating,
+    floatingStyles,
+  } = useFloatingPicker({
+    disabled,
+    items: options,
+    activeIndex,
+    setActiveIndex,
+    listElementsRef,
+    virtualItemRef,
+    floatingStrategy,
+    open,
+    setOpen,
+    setMaxHeight,
+    useClickHookProps,
+    useDismissHookProps,
+  });
   if (!open && pointer) {
     setPointer(false);
   }
@@ -100,59 +105,6 @@ export const Picker: React.FC<IPickerProps> = ({
 
     return items;
   }, [searchPhrase, options, type, selectAllOptionText]);
-
-  const hasItems = items.length > 0;
-
-  const { refs, floatingStyles, context, isPositioned } =
-    useFloating<HTMLButtonElement>({
-      nodeId,
-      open,
-      strategy: floatingStrategy,
-      onOpenChange: (open) => {
-        setOpen(open);
-      },
-      whileElementsMounted: autoUpdate,
-      middleware: [
-        offset(4),
-        flip({ padding: 10 }),
-        shift(),
-        floatingSize({
-          apply({ availableHeight, rects, elements }) {
-            ReactDOM.flushSync(() => {
-              setMaxHeight(availableHeight);
-            });
-            Object.assign(elements.floating.style, {
-              width: `${rects.reference.width}px`,
-            });
-          },
-          padding: overflowPadding,
-        }),
-      ],
-    });
-  const click = useClick(context, {
-    enabled: !disabled,
-    keyboardHandlers: false,
-    toggle: false,
-    ...useClickHookProps,
-  });
-  const role = useRole(context, { role: 'listbox' });
-  const dismiss = useDismiss(context, useDismissHookProps);
-  const listNavigation = useListNavigation(context, {
-    enabled: hasItems && !disabled,
-    listRef: listElementsRef,
-    activeIndex,
-    onNavigate: setActiveIndex,
-    virtual: true,
-    virtualItemRef,
-    disabledIndices: findIndicesWhere(
-      items,
-      (item) => !!item.disabled || !!item.groupHeader
-    ),
-  });
-
-  const { getReferenceProps, getFloatingProps, getItemProps } = useInteractions(
-    [click, dismiss, role, listNavigation]
-  );
 
   const handleSelect = (key: string) => {
     const item = items.find((item) => item.key === key);
@@ -211,7 +163,7 @@ export const Picker: React.FC<IPickerProps> = ({
     <div id={id} className={cx(styles['picker-wrapper'], className)}>
       <PickerTrigger
         getReferenceProps={getReferenceProps}
-        setReference={refs.setReference}
+        setReference={setReference}
         testId={props['data-testid']}
         isItemSelected={selectedKeys.length > 0}
         isOpen={open}
@@ -247,7 +199,7 @@ export const Picker: React.FC<IPickerProps> = ({
               options={items}
               listClassName={listClassName}
               context={context}
-              setFloating={refs.setFloating}
+              setFloating={setFloating}
               floatingStyles={floatingStyles}
               maxHeight={maxHeight}
               isPositioned={isPositioned}
