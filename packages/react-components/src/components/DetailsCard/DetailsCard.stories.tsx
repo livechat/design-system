@@ -56,8 +56,24 @@ export const ExampleUsage = (): React.ReactElement => {
       }}
     >
       <DetailsCard
-        leftNode={<Icon source={ChipCopilotColored} />}
-        label="Simple text"
+        label={
+          <div className="custom-label">
+            <Avatar
+              className="custom-label-avatar"
+              type="text"
+              text="Test Avatar"
+              shape="circle"
+            />
+            <div className="custom-label-content">
+              <Heading size="xs" className="custom-label-content-label">
+                John Whale
+              </Heading>
+              <span className="custom-label-content-label">
+                john.whale.porato@gmail.com
+              </span>
+            </div>
+          </div>
+        }
         withDivider
       >
         <div>

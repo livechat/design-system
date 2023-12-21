@@ -8,3 +8,9 @@ export const TransitionTimingToken = {
   EaseIn: '--transition-timing-ease-in',
   EaseOut: '--transition-timing-ease-out',
 };
+
+export const TransitionDelayToken = {
+  Instant: '--delay-instant',
+  Moderate: '--delay-moderate',
+  Slow: '--delay-slow',
+};
