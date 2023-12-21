@@ -6,10 +6,9 @@ import cx from 'clsx';
 import { PickerList } from './components/PickerList';
 import { PickerTrigger } from './components/PickerTrigger';
 import { PickerTriggerBody } from './components/PickerTriggerBody';
-import { SELECT_ALL_OPTION_KEY } from './constants';
-import { getNormalizedItems } from './helpers';
 import { useFloatingPicker } from './hooks/useFloatingPicker';
-import { IPickerListItem, IPickerProps } from './types';
+import { usePickerItems } from './hooks/usePickerItems';
+import { IPickerProps } from './types';
 
 import styles from './Picker.module.scss';
 
@@ -40,14 +39,26 @@ export const Picker: React.FC<IPickerProps> = ({
 }) => {
   const [open, setOpen] = React.useState(openedOnInit);
   const [pointer, setPointer] = React.useState(false);
-  const [selectedKeys, setSelectedKeys] = React.useState<string[]>(
-    () => selected?.map(({ key }) => key) || []
-  );
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
-  const [searchPhrase, setSearchPhrase] = React.useState<string>('');
   const [maxHeight, setMaxHeight] = React.useState(400);
   const listElementsRef = React.useRef<Array<HTMLElement | null>>([]);
   const virtualItemRef = React.useRef(null);
+  const {
+    selectedKeys,
+    items,
+    searchPhrase,
+    handleSelect,
+    handleOnFilter,
+    handleItemRemove,
+    handleClear,
+  } = usePickerItems({
+    selected,
+    options,
+    type,
+    selectAllOptionText,
+    onSelect,
+    setOpen,
+  });
   const {
     context,
     nodeId,
@@ -72,92 +83,10 @@ export const Picker: React.FC<IPickerProps> = ({
     useClickHookProps,
     useDismissHookProps,
   });
+
   if (!open && pointer) {
     setPointer(false);
   }
-
-  const items = React.useMemo<IPickerListItem[]>(() => {
-    const shouldShowSelectAll = type === 'multi' && selectAllOptionText;
-    let items = options;
-
-    if (searchPhrase) {
-      items = items.filter((item) => {
-        if (item.groupHeader) {
-          return false;
-        }
-
-        const search = searchPhrase.toLowerCase();
-        const itemName = item.name.toLowerCase();
-
-        return itemName.includes(search);
-      });
-    }
-
-    if (shouldShowSelectAll && items.length > 1) {
-      items = [
-        {
-          key: SELECT_ALL_OPTION_KEY,
-          name: selectAllOptionText,
-        },
-        ...items,
-      ];
-    }
-
-    return items;
-  }, [searchPhrase, options, type, selectAllOptionText]);
-
-  const handleSelect = (key: string) => {
-    const item = items.find((item) => item.key === key);
-    if (!item || item.disabled) {
-      return;
-    }
-
-    if (type === 'single') {
-      setOpen(false);
-      setSelectedKeys(() => {
-        onSelect([item]);
-
-        return [key];
-      });
-    } else {
-      if (key === SELECT_ALL_OPTION_KEY) {
-        if (selectedKeys.length === getNormalizedItems(items).length) {
-          setSelectedKeys(() => {
-            onSelect(null);
-
-            return [];
-          });
-        } else {
-          setSelectedKeys(() => {
-            const newItems = getNormalizedItems(items);
-            onSelect(newItems);
-
-            return newItems.map(({ key }) => key);
-          });
-        }
-      } else {
-        setSelectedKeys((prev) => {
-          const newIndexes = prev.includes(key)
-            ? prev.filter((i) => i !== key)
-            : [...prev, key];
-          onSelect(options.filter(({ key }) => newIndexes.includes(key)));
-
-          return newIndexes;
-        });
-      }
-    }
-  };
-
-  const handleOnFilter = (text: string) => setSearchPhrase(text);
-
-  const handleItemRemove = (itemKey: string) => handleSelect(itemKey);
-
-  const handleClear = () => {
-    setOpen(false);
-    setSelectedKeys([]);
-    onSelect(null);
-    setSearchPhrase('');
-  };
 
   return (
     <div id={id} className={cx(styles['picker-wrapper'], className)}>
