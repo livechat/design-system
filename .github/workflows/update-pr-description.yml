@@ -24,7 +24,7 @@ jobs:
             const owner = context.repo.owner;
             const repo = context.repo.repo;
             
-            const { data: prData } = await github.pulls.get({
+            const { data: prData } = await github.rest.pulls.get({
               owner: owner,
               repo: repo,
               pull_number: prNumber

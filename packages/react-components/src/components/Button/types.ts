@@ -12,3 +12,5 @@ export type ButtonKind =
   | 'float'
   | 'dotted'
   | 'high-contrast';
+
+export type ButtonSize = 'xcompact' | 'compact' | 'medium' | 'large';

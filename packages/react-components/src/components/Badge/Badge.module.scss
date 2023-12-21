@@ -79,7 +79,7 @@ $base-class: 'badge';
 
   &--tertiary {
     background-color: var(--surface-tertiary-default);
-    color: var(--content-basic-primary);
+    color: var(--content-basic-secondary);
 
     .#{$base-class}__dot {
       background-color: var(--content-basic-primary);
