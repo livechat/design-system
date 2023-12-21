@@ -33,7 +33,7 @@ jobs:
             let body = prData.body.replace(/{issue-number}/g, issueNumber);
             body = body.replace(/<!--- Issue number will be inserted automatically -->/g, '');
             
-            await github.pulls.update({
+            await github.rest.pulls.update({
               owner: owner,
               repo: repo,
               pull_number: prNumber,
