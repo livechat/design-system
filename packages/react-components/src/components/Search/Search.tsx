@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Search, Close } from '@livechat/design-system-icons/react/tabler';
+import { Search, Close } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { KeyCodes } from '../../utils/keyCodes';

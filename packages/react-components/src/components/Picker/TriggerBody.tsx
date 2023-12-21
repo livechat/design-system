@@ -4,7 +4,7 @@ import cx from 'clsx';
 
 import { Size } from 'utils';
 
-import { Icon, IconSize } from '../Icon';
+import { Icon } from '../Icon';
 import { Tag } from '../Tag';
 
 import { PickerType, IPickerListItem } from './types';
@@ -20,7 +20,6 @@ export interface ITriggerBodyProps {
   placeholder: string;
   items?: IPickerListItem[] | null;
   type: PickerType;
-  iconSize?: IconSize;
   clearSearchAfterSelection?: boolean;
   size?: Size;
   onItemRemove: (item: IPickerListItem) => void;
@@ -34,7 +33,6 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
   placeholder,
   items,
   type,
-  iconSize,
   clearSearchAfterSelection,
   size,
   onItemRemove,
@@ -109,7 +107,11 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
   }
 
   return (
-    <div className={styles[baseClass]}>
+    <div
+      className={cx(styles[baseClass], {
+        [styles[`${baseClass}--single`]]: type === 'single',
+      })}
+    >
       <div className={styles[`${baseClass}__item-container`]}>
         {type === 'single'
           ? getSingleItem(items[0])
@@ -121,7 +123,6 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
                     styles[`${baseClass}__tag`],
                     styles[`${baseClass}__tag--${size}`]
                   )}
-                  iconSize={iconSize}
                   dismissible={!isDisabled}
                   onRemove={() => onItemRemove(item)}
                 >

@@ -1,0 +1,92 @@
+@mixin icon-styles() {
+  width: 20px;
+  height: 20px;
+  line-height: 1;
+  color: inherit;
+
+  &--left {
+    order: -1;
+    margin-right: 4px;
+  }
+
+  &--right {
+    order: 1;
+    margin-left: 4px;
+  }
+}
+
+@mixin icon-only($base-class) {
+  padding: 6px;
+
+  &--bg {
+    &:hover {
+      background-color: var(--surface-primary-hover);
+    }
+
+    &:focus,
+    &:active {
+      background-color: var(--surface-primary-active);
+    }
+
+    &.#{$base-class} {
+      &--disabled {
+        &:focus,
+        &:active,
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+
+    &.#{$base-class}--text {
+      min-width: 36px;
+      height: 36px;
+
+      &:focus,
+      &:active {
+        background-color: var(--surface-primary-active);
+      }
+
+      &.#{$base-class}--compact {
+        min-width: 32px;
+        height: 32px;
+      }
+
+      &.#{$base-class}--large {
+        min-width: 44px;
+        height: 44px;
+      }
+    }
+
+    &.#{$base-class}--link {
+      min-width: 36px;
+      height: 36px;
+
+      &:hover {
+        background-color: var(--surface-accent-emphasis-min-info);
+        color: var(--action-primary-hover);
+      }
+
+      &:focus,
+      &:active {
+        background-color: var(--action-primary-default);
+        color: var(--content-invert-primary);
+      }
+
+      &.#{$base-class}--compact {
+        min-width: 32px;
+        height: 32px;
+      }
+
+      &.#{$base-class}--large {
+        min-width: 44px;
+        height: 44px;
+      }
+    }
+  }
+
+  .#{$base-class}__icon--left,
+  .#{$base-class}__icon--right {
+    margin: 0;
+  }
+}

@@ -1,0 +1,5 @@
+@mixin button-size($base-class, $padding-v, $padding-h, $min-width, $height) {
+  padding: $padding-v $padding-h;
+  min-width: $min-width;
+  height: $height;
+}

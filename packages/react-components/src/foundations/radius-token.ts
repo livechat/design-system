@@ -3,4 +3,5 @@ export const RadiusToken = {
   1: '--radius-1',
   2: '--radius-2',
   3: '--radius-3',
+  4: '--radius-4',
 };

@@ -1,16 +1,40 @@
 $base-class: 'promo-banner-v2';
 
+@mixin verticalStyles {
+  flex-direction: column;
+
+  .#{$base-class}__content {
+    flex: 0 1 auto;
+    order: 2;
+    padding: var(--spacing-4) var(--spacing-5) var(--spacing-5);
+  }
+
+  .#{$base-class}__additional-content {
+    justify-content: left;
+    order: 1;
+    padding-top: var(--spacing-5);
+  }
+
+  .#{$base-class}__close {
+    position: absolute;
+    top: var(--spacing-3);
+    right: var(--spacing-3);
+    padding: 0;
+  }
+}
+
 .main-wrapper {
   container-type: inline-size;
+  border-radius: var(--radius-3);
+  background-color: var(--surface-accent-emphasis-low-info);
+  color: var(--content-basic-primary);
 }
 
 .#{$base-class} {
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
-  border-radius: var(--radius-3);
-  background-color: var(--surface-accent-emphasis-low-info);
-  color: var(--content-basic-primary);
+  height: 100%;
 
   &__content {
     display: flex;
@@ -58,23 +82,11 @@ $base-class: 'promo-banner-v2';
     }
   }
 
+  &--vertical {
+    @include verticalStyles;
+  }
+
   @container (max-width: 559px) {
-    flex-direction: column;
-
-    .#{$base-class}__content {
-      flex: 0 1 auto;
-      order: 2;
-      padding: var(--spacing-5);
-    }
-
-    .#{$base-class}__additional-content {
-      justify-content: left;
-      order: 1;
-    }
-
-    .#{$base-class}__close {
-      padding-top: var(--spacing-3);
-      padding-right: var(--spacing-3);
-    }
+    @include verticalStyles;
   }
 }

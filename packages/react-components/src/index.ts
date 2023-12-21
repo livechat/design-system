@@ -4,7 +4,13 @@ export { DesignToken } from './themes/design-token';
 export { SpacingToken } from './foundations/spacing-token';
 export { ShadowToken } from './foundations/shadow-token';
 export { RadiusToken } from './foundations/radius-token';
+export {
+  TransitionDurationToken,
+  TransitionTimingToken,
+  TransitionDelayToken,
+} from './foundations/transition-token';
 export type { Size } from './utils';
+export { getDesignTokenWithOpacity } from './utils';
 
 export * from './components/ActionBar';
 export * from './components/ActionMenu';
@@ -16,6 +22,8 @@ export * from './components/SegmentedControl';
 export * from './components/Card';
 export * from './components/Checkbox';
 export * from './components/DatePicker';
+export * from './components/DetailsCard';
+export * from './components/DetailsCardInfo';
 export * from './components/FieldDescription';
 export * from './components/FieldError';
 export * from './components/FieldGroup';

@@ -1,37 +1,38 @@
 export const DesignToken = {
-  Background: '--background', // deprecated
+  Background: '--background',
   Background01: '--background-01',
   Background02: '--background-02',
   Background03: '--background-03',
-  SurfaceBasicDefault: '--surface-basic-default', // deprecated
+  SurfaceBasicDefault: '--surface-basic-default',
   SurfacePrimaryDefault: '--surface-primary-default',
-  SurfaceBasicSubtle: '--surface-basic-subtle', // deprecated
+  SurfaceBasicSubtle: '--surface-basic-subtle',
   SurfaceSecondaryDefault: '--surface-secondary-default',
   SurfaceSecondaryHover: '--surface-secondary-hover',
   SurfaceSecondaryActive: '--surface-secondary-active',
   SurfaceSecondaryDisabled: '--surface-secondary-disabled',
-  SurfaceBasicHover: '--surface-basic-hover', // deprecated
+  SurfacePrimaryHoverOpacity: '--surface-primary-hover-opacity',
+  SurfaceBasicHover: '--surface-basic-hover',
   SurfacePrimaryHover: '--surface-primary-hover',
-  SurfaceBasicActive: '--surface-basic-active', // deprecated
+  SurfaceBasicActive: '--surface-basic-active',
   SurfacePrimaryActive: '--surface-primary-active',
   SurfacePrimaryActiveColored: '--surface-primary-active-colored',
-  SurfaceBasicDisabled: '--surface-basic-disabled', // deprecated
+  SurfaceBasicDisabled: '--surface-basic-disabled',
   SurfacePrimaryDisabled: '--surface-primary-disabled',
   SurfaceTertiaryDefault: '--surface-tertiary-default',
-  SurfaceSecondarySubtle: '--surface-secondary-subtle', // deprecated
+  SurfaceSecondarySubtle: '--surface-secondary-subtle',
   SurfaceModerateDefault: '--surface-moderate-default',
   SurfaceModerateHover: '--surface-moderate-hover',
   SurfaceModerateActive: '--surface-moderate-active',
   SurfaceTertiaryHover: '--surface-tertiary-hover',
   SurfaceTertiaryActive: '--surface-tertiary-active',
   SurfaceTertiaryDisabled: '--surface-tertiary-disabled',
-  SurfaceFeedbackInfo: '--surface-feedback-info', // deprecated
+  SurfaceFeedbackInfo: '--surface-feedback-info',
   SurfaceAccentEmphasisLowInfo: '--surface-accent-emphasis-low-info',
-  SurfaceFeedbackNegative: '--surface-feedback-negative', // deprecated
+  SurfaceFeedbackNegative: '--surface-feedback-negative',
   SurfaceAccentEmphasisLowNegative: '--surface-accent-emphasis-low-negative',
-  SurfaceFeedbackWarning: '--surface-feedback-warning', // deprecated
+  SurfaceFeedbackWarning: '--surface-feedback-warning',
   SurfaceAccentEmphasisLowWarning: '--surface-accent-emphasis-low-warning',
-  SurfaceFeedbackPositive: '--surface-feedback-positive', // deprecated
+  SurfaceFeedbackPositive: '--surface-feedback-positive',
   SurfaceAccentEmphasisLowPositive: '--surface-accent-emphasis-low-positive',
   SurfaceAccentEmphasisLowPurple: '--surface-accent-emphasis-low-purple',
   SurfaceAccentEmphasisMinInfo: '--surface-accent-emphasis-min-info',
@@ -39,9 +40,9 @@ export const DesignToken = {
   SurfaceAccentEmphasisMinWarning: '--surface-accent-emphasis-min-warning',
   SurfaceAccentEmphasisMinPositive: '--surface-accent-emphasis-min-positive',
   SurfaceAccentEmphasisMinPurple: '--surface-accent-emphasis-min-purple',
-  SurfaceInvertDefault: '--surface-invert-default', // deprecated
+  SurfaceInvertDefault: '--surface-invert-default',
   SurfaceInvertPrimary: '--surface-invert-primary',
-  SurfaceInvertSubtle: '--surface-invert-subtle', // deprecated
+  SurfaceInvertSubtle: '--surface-invert-subtle',
   SurfaceInvertSecondary: '--surface-invert-secondary',
   SurfaceInvertDisabled: '--surface-invert-disabled',
   SurfaceLockedDefault: '--surface-locked-default',
@@ -50,22 +51,36 @@ export const DesignToken = {
   SurfaceLockedDisabled: '--surface-locked-disabled',
   SurfaceLockedWhite: '--surface-locked-white',
   SurfaceLockedBlack: '--surface-locked-black',
+  SurfaceAccentEmphasisMediumNegative:
+    '--surface-accent-emphasis-medium-negative',
+  SurfaceAccentEmphasisMediumPositive:
+    '--surface-accent-emphasis-medium-positive',
   SurfaceAccentEmphasisHighInfo: '--surface-accent-emphasis-high-info',
   SurfaceAccentEmphasisHighNegative: '--surface-accent-emphasis-high-negative',
   SurfaceAccentEmphasisHighWarning: '--surface-accent-emphasis-high-warning',
   SurfaceAccentEmphasisHighPositive: '--surface-accent-emphasis-high-positive',
   SurfaceAccentEmphasisHighPurple: '--surface-accent-emphasis-high-purple',
-  SurfaceOverlay: '--surface-overlay', // deprecated
-  SurfaceOtherOverlay: '--surface-other-overlay',
-  SurfaceOtherAgent: '--surface-other-agent',
-  SurfaceOtherSkeleton: '--surface-other-skeleton',
+  SurfaceOverlay: '--surface-overlay',
   SurfaceGradient01: '--surface-gradient-01',
   SurfaceGradient02: '--surface-gradient-02',
-  ContentDefault: '--content-default', // deprecated
+  SurfaceGradient03: '--surface-gradient-03',
+  SurfaceGradient04: '--surface-gradient-04',
+  SurfaceGradient05: '--surface-gradient-05',
+  SurfaceGradient06: '--surface-gradient-06',
+  SurfaceGradient07: '--surface-gradient-07',
+  SurfaceGradient08: '--surface-gradient-08',
+  SurfaceGradient09: '--surface-gradient-09',
+  SurfaceGradient10: '--surface-gradient-10',
+  SurfaceGradient11: '--surface-gradient-11',
+  SurfaceOtherOverlay: '--surface-other-overlay',
+  SurfaceOtherAgent: '--surface-other-agent',
+  SurfaceOtherAgentHover: '--surface-other-agent-hover',
+  SurfaceOtherSkeleton: '--surface-other-skeleton',
+  ContentDefault: '--content-default',
   ContentBasicPrimary: '--content-basic-primary',
-  ContentSubtle: '--content-subtle', // deprecated
+  ContentSubtle: '--content-subtle',
   ContentBasicSecondary: '--content-basic-secondary',
-  ContentDisabled: '--content-disabled', // deprecated
+  ContentDisabled: '--content-disabled',
   ContentBasicDisabled: '--content-basic-disabled',
   ContentBasicNegative: '--content-basic-negative',
   ContentBasicWarning: '--content-basic-warning',
@@ -73,72 +88,79 @@ export const DesignToken = {
   ContentBasicInfo: '--content-basic-info',
   ContentBasicPurple: '--content-basic-purple',
   ContentBasicGradient01: '--content-basic-gradient-01',
-  ContentWhiteLocked: '--content-white-locked', // deprecated
+  ContentWhiteLocked: '--content-white-locked',
   ContentLockedWhite: '--content-locked-white',
-  ContentBlackLocked: '--content-black-locked', // deprecated
+  ContentBlackLocked: '--content-black-locked',
   ContentLockedBlack: '--content-locked-black',
   ContentLockedDefault: '--content-locked-default',
   ContentLockedHover: '--content-locked-hover',
   ContentLockedActive: '--content-locked-active',
   ContentLockedDisabled: '--content-locked-disabled',
-  ContentInvertDefault: '--content-invert-default', // deprecated
+  ContentInvertDefault: '--content-invert-default',
   ContentInvertPrimary: '--content-invert-primary',
-  ContentInvertSubtle: '--content-invert-subtle', // deprecated
+  ContentInvertSubtle: '--content-invert-subtle',
   ContentInvertSecondary: '--content-invert-secondary',
   ContentInvertDisabled: '--content-invert-disabled',
   ContentInvertGradient01: '--content-invert-gradient-01',
-  BorderDefault: '--border-default', // deprecated
+  BorderDefault: '--border-default',
   BorderBasicPrimary: '--border-basic-primary',
   BorderBasicSecondary: '--border-basic-secondary',
-  BorderSubtle: '--border-subtle', // deprecated
+  BorderSubtle: '--border-subtle',
   BorderBasicTertiary: '--border-basic-tertiary',
-  BorderHover: '--border-hover', // deprecated
+  BorderHover: '--border-hover',
   BorderBasicHover: '--border-basic-hover',
-  BorderDisabled: '--border-disabled', // deprecated
+  BorderDisabled: '--border-disabled',
   BorderBasicDisabled: '--border-basic-disabled',
   BorderBasicNegative: '--border-basic-negative',
   BorderBasicWarning: '--border-basic-warning',
   BorderBasicPositive: '--border-basic-positive',
   BorderBasicInfo: '--border-basic-info',
   BorderBasicPurple: '--border-basic-purple',
-  BorderInvertDefault: '--border-invert-default', // deprecated
+  BorderBasicContrast: '--border-basic-contrast',
+  BorderInvertDefault: '--border-invert-default',
   BorderInvertPrimary: '--border-invert-primary',
-  BorderInvertSubtle: '--border-invert-subtle', // deprecated
+  BorderInvertSubtle: '--border-invert-subtle',
   BorderInvertSecondary: '--border-invert-secondary',
   BorderInvertHover: '--border-invert-hover',
   BorderInvertDisabled: '--border-invert-disabled',
-  ColorActionActive: '--color-action-active', // deprecated
+  ColorActionActive: '--color-action-active',
   ActionPrimaryActive: '--action-primary-active',
-  ColorActionHover: '--color-action-hover', // deprecated
+  ColorActionHover: '--color-action-hover',
   ActionPrimaryHover: '--action-primary-hover',
-  ColorActionDefault: '--color-action-default', // deprecated
+  ColorActionDefault: '--color-action-default',
   ActionPrimaryDefault: '--action-primary-default',
   ColorActionDefaultRgb: '--color-action-default-rgb',
-  ColorActionDisabled: '--color-action-disabled', // deprecated
+  ColorActionDisabled: '--color-action-disabled',
   ActionPrimaryDisabled: '--action-primary-disabled',
-  ColorNegativeActive: '--color-negative-active', // deprecated
+  ColorNegativeActive: '--color-negative-active',
   ActionNegativeActive: '--action-negative-active',
-  ColorNegativeHover: '--color-negative-hover', // deprecated
+  ColorNegativeHover: '--color-negative-hover',
   ActionNegativeHover: '--action-negative-hover',
-  ColorNegativeDefault: '--color-negative-default', // deprecated
+  ColorNegativeDefault: '--color-negative-default',
   ActionNegativeDefault: '--action-negative-default',
-  ColorNegativeDisabled: '--color-negative-disabled', // deprecated
+  ColorNegativeDisabled: '--color-negative-disabled',
   ActionNegativeDisabled: '--action-negative-disabled',
-  ColorWarningDefault: '--color-warning-default', // deprecated
+  ColorWarningDefault: '--color-warning-default',
   ActionWarningDefault: '--action-warning-default',
-  ColorWarningHover: '--color-warning-hover', // deprecated
+  ColorWarningHover: '--color-warning-hover',
   ActionWarningHover: '--action-warning-hover',
-  ColorPositiveDefault: '--color-positive-default', // deprecated
+  ActionWarningDisabled: '--action-warning-disabled',
+  ColorPositiveDefault: '--color-positive-default',
   ActionPositiveDefault: '--action-positive-default',
-  ColorPositiveHover: '--color-positive-hover', // deprecated
+  ColorPositiveHover: '--color-positive-hover',
   ActionPositiveHover: '--action-positive-hover',
-  ColorPositiveDisabled: '--color-positive-disabled', // deprecated
+  ColorPositiveDisabled: '--color-positive-disabled',
   ActionPositiveDisabled: '--action-positive-disabled',
   ActionNeutralDefault: '--action-neutral-default',
   ActionNeutralHover: '--action-neutral-hover',
   ActionNeutralDisabled: '--action-neutral-disabled',
-  ColorBot: '--color-bot', // deprecated
+  ActionHighContrastDefault: '--action-high-contrast-default',
+  ActionHighContrastHover: '--action-high-contrast-hover',
+  ActionHighContrastActive: '--action-high-contrast-active',
+  ActionHighContrastDisabled: '--action-high-contrast-disabled',
+  ColorBot: '--color-bot',
   SurfaceOtherBot: '--surface-other-bot',
+  SurfaceOtherBotHover: '--surface-other-bot-hover',
   ColorBlack: '--color-black',
   ColorWhite: '--color-white',
   DecorBlue900: '--decor-blue900',
@@ -225,4 +247,35 @@ export const DesignToken = {
   IllustrationsStroke: '--illustrations-stroke',
   TagSurface01: '--tag-surface-01',
   TagContent01: '--tag-content-01',
+  BtnBasicBackgroundEnabled: '--btn-basic-background-enabled',
+  BtnBasicBackgroundHover: '--btn-basic-background-hover',
+  BtnBasicBackgroundDisabled: '--btn-basic-background-disabled',
+  BtnBasicBackgroundActive: '--btn-basic-background-active',
+  BtnBasicBackgroundLoading: '--btn-basic-background-loading',
+  BtnSecondaryBackgroundEnabled: '--btn-secondary-background-enabled',
+  BtnSecondaryBackgroundHover: '--btn-secondary-background-hover',
+  BtnSecondaryBackgroundDisabled: '--btn-secondary-background-disabled',
+  BtnSecondaryBackgroundActive: '--btn-secondary-background-active',
+  BtnSecondaryBackgroundLoading: '--btn-secondary-background-loading',
+  BtnPlainIconBackgroundHover: '--btn-plain-icon-background-hover',
+  BtnPlainIconBackgroundActive: '--btn-plain-icon-background-active',
+  PickerListBackground: '--picker-list-background',
+  PickerListGroupBackground: '--picker-list-group-background',
+  PickerListOptionBackgroundHover: '--picker-list-option-background-hover',
+  PickerListOptionBackgroundActiveHover:
+    '--picker-list-option-background-active-hover',
+  PickerListOptionBackgroundFocus: '--picker-list-option-background-focus',
+  PickerListOptionBackgroundActive: '--picker-list-option-background-active',
+  PopoverBackground: '--popover-background',
+  SurfaceAvatar1: '--surface-avatar-1',
+  SurfaceAvatar2: '--surface-avatar-2',
+  SurfaceAvatar3: '--surface-avatar-3',
+  SurfaceAvatar4: '--surface-avatar-4',
+  SurfaceAvatar5: '--surface-avatar-5',
+  SurfaceAvatar6: '--surface-avatar-6',
+  SurfaceAvatar7: '--surface-avatar-7',
+  SurfaceAvatar8: '--surface-avatar-8',
+  SurfaceAvatar9: '--surface-avatar-9',
+  SurfaceAvatar10: '--surface-avatar-10',
+  NavbarBackground: '--navbar-background',
 };

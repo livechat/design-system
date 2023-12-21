@@ -1,37 +1,16 @@
 import * as React from 'react';
 
-import { ChevronDown } from '@livechat/design-system-icons/react/tabler';
+import { ChevronDown, ChevronLeft } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { ActionMenu, ActionMenuItem } from '../ActionMenu';
+import { Button } from '../Button';
 import { Icon } from '../Icon';
 
-import { ActionBarItem, IActionBarOption } from './ActionBarItem';
+import { ActionBarItem } from './ActionBarItem';
+import { IActionBarProps } from './types';
 
 import styles from './ActionBar.module.scss';
-
-export interface IActionBarProps {
-  /**
-   * The CSS class for menu container
-   */
-  className?: string;
-  /**
-   * The unique id key
-   */
-  id?: string;
-  /**
-   * Array of action bar options
-   */
-  options: IActionBarOption[];
-  /**
-   * Set the key for active element
-   */
-  activeOptionKey?: string | null;
-  /**
-   * Set 'scroll' to disable menu and enable scroll
-   */
-  type?: 'menu' | 'scroll';
-}
 
 const baseClass = 'action-bar';
 
@@ -41,10 +20,16 @@ export const ActionBar: React.FC<IActionBarProps> = ({
   type = 'menu',
   options,
   activeOptionKey,
+  vertical,
 }) => {
   const [menuItemsKeys, setMenuItemsKeys] = React.useState<string[]>([]);
   const isScrollType = type === 'scroll';
-  const mergedClassNames = cx(styles[baseClass], className);
+  const mergedClassNames = cx(
+    styles[baseClass],
+    className,
+    vertical && styles[`${baseClass}--vertical`]
+  );
+  const menuWrapperClass = `${baseClass}__menu-wrapper`;
   const observerOptions = {
     root: document.querySelector(`${id}`),
     threshold: 1,
@@ -111,6 +96,10 @@ export const ActionBar: React.FC<IActionBarProps> = ({
     });
   };
 
+  const buttonElement = options
+    .filter((row) => menuItemsKeys.find((i) => i === row.key))
+    .find((o) => o.key === activeOptionKey);
+
   return (
     <div id={id} className={mergedClassNames}>
       <div
@@ -123,14 +112,44 @@ export const ActionBar: React.FC<IActionBarProps> = ({
             option={o}
             menuItemsKeys={menuItemsKeys}
             activeOptionKey={activeOptionKey}
+            vertical={vertical}
           />
         ))}
       </div>
       {shouldDisplayMenu && (
-        <div className={styles[`${baseClass}__menu-wrapper`]}>
+        <div className={styles[menuWrapperClass]}>
           <ActionMenu
+            placement={vertical ? 'left-end' : 'bottom-end'}
             options={getMenuItems(menuItemsKeys)}
-            triggerRenderer={<Icon source={ChevronDown} kind="primary" />}
+            triggerClassName={cx(
+              vertical && styles[`${menuWrapperClass}__trigger-vertical`]
+            )}
+            triggerRenderer={
+              <Button
+                className={cx(
+                  styles[`${menuWrapperClass}__button`],
+                  buttonElement && styles[`${menuWrapperClass}__button--active`]
+                )}
+                kind="plain"
+                icon={
+                  <Icon
+                    source={vertical ? ChevronLeft : ChevronDown}
+                    kind="primary"
+                  />
+                }
+                iconPosition="right"
+              >
+                {buttonElement && (
+                  <div
+                    className={cx(
+                      styles[`${menuWrapperClass}__button__with-item`]
+                    )}
+                  >
+                    {buttonElement.element}
+                  </div>
+                )}
+              </Button>
+            }
           />
         </div>
       )}

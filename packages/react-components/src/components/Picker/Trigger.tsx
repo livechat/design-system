@@ -1,10 +1,6 @@
 import * as React from 'react';
 
-import {
-  ChevronDown,
-  ChevronUp,
-  Close,
-} from '@livechat/design-system-icons/react/tabler';
+import { ChevronDown, ChevronUp, Close } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Size } from 'utils';

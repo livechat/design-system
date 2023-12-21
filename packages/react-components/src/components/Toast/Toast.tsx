@@ -6,7 +6,7 @@ import {
   Warning,
   CheckCircle,
   Block,
-} from '@livechat/design-system-icons/react/tabler';
+} from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Button } from '../Button';
@@ -95,17 +95,16 @@ export const Toast: React.FC<React.PropsWithChildren<ToastProps>> = ({
             </Button>
           )}
           {removable && (
-            <Button
+            <button
               className={cx(
                 styles[`${baseClass}__actions__button`],
                 styles[`${baseClass}__actions__button--${kind}`]
               )}
               aria-label="Close toast"
-              kind="text"
-              size="compact"
               onClick={onClose}
-              icon={<Icon source={Close} size="medium" />}
-            />
+            >
+              <Icon source={Close} size="medium" />
+            </button>
           )}
         </div>
       )}

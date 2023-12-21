@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import { Close } from '@livechat/design-system-icons/react/tabler';
+import { Close } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
-import { Icon, IconSize } from '../Icon';
-import { Simple, Tooltip } from '../Tooltip';
+import { Icon } from '../Icon';
+import { Tooltip } from '../Tooltip';
 import { Text } from '../Typography';
 
 import {
@@ -33,11 +33,7 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Specify the tag size
    */
-  size?: 'small' | 'medium' | 'large';
-  /**
-   * Specify the tag icon size if used
-   */
-  iconSize?: IconSize;
+  size?: 'small' | 'medium' | 'large' | 'xlarge';
   /**
    * Set the tag custom color
    */
@@ -73,7 +69,6 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   children,
   dismissible = false,
   size = 'medium',
-  iconSize = 'medium',
   kind = 'default',
   onRemove,
   outline = false,
@@ -95,13 +90,13 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
     {
       [styles[`${baseClass}--dismissible`]]: dismissible,
       [styles[`${baseClass}--outline`]]: outline,
-      [styles[`${baseClass}--with-node`]]: !!leftNode || !!rightNode,
       [styles[`${baseClass}--${getCustomTextClass(customColor)}`]]:
         !!customColor,
     }
   );
   const iconCustomColor = getIconCustomColor(customColor, outline);
   const iconCustomColorStyles = { color: iconCustomColor };
+  const closeIconSize = size === 'small' ? 'small' : 'medium';
 
   return (
     <Text
@@ -129,11 +124,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
             )}
             theme="invert"
           >
-            {typeof children === 'string' ? (
-              <Simple text={children} />
-            ) : (
-              children
-            )}
+            {children}
           </Tooltip>
         )}
       </div>
@@ -156,7 +147,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
           <Icon
             data-dismiss-icon
             source={Close}
-            size={iconSize}
+            size={closeIconSize}
             customColor={iconCustomColor}
           />
         </button>

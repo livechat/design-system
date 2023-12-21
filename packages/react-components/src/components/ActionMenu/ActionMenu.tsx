@@ -1,10 +1,23 @@
 import * as React from 'react';
 
-import { Placement } from '@floating-ui/react-dom';
+import {
+  useFloating,
+  Placement,
+  flip,
+  offset,
+  autoUpdate,
+  useClick,
+  useInteractions,
+  useDismiss,
+  useRole,
+  useTransitionStyles,
+  Strategy,
+} from '@floating-ui/react';
+import { Check } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { KeyCodes } from '../../utils/keyCodes';
-import { Popover } from '../Popover';
+import { Icon } from '../Icon';
 
 import { IActionMenuOption } from './types';
 
@@ -16,13 +29,17 @@ export interface ActionMenuProps {
    */
   className?: string;
   /**
-   * The CSS class for trigger element
+   * The CSS class for trigger container
    */
   triggerClassName?: string;
   /**
    * Array of menu options
    */
   options: IActionMenuOption[];
+  /**
+   * Array of selected menu options keys
+   */
+  selectedOptions?: string[];
   /**
    * Trigger element
    */
@@ -40,9 +57,26 @@ export interface ActionMenuProps {
    */
   keepOpenOnClick?: boolean;
   /**
-   * Set the keys array for active elements
+   * Set the menu placement to keep it in view
    */
-  activeOptionKeys?: string[];
+  flipOptions?: Parameters<typeof flip>[0];
+  /**
+   * Set to control the menu visibility
+   */
+  visible?: boolean;
+  /**
+   * Optional handler called on menu close
+   */
+  onClose?: () => void;
+  /**
+   * Optional handler called on menu open
+   */
+  onOpen?: () => void;
+  /**
+   * Set the type of CSS position property to use
+   * https://floating-ui.com/docs/usefloating#strategy
+   */
+  floatingStrategy?: Strategy;
 }
 
 const baseClass = 'action-menu';
@@ -55,58 +89,121 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   placement = 'bottom-end',
   openedOnInit = false,
   keepOpenOnClick,
-  activeOptionKeys,
+  flipOptions,
+  visible,
+  onClose,
+  onOpen,
+  floatingStrategy,
+  selectedOptions,
   ...props
 }) => {
+  const isControlled = visible !== undefined;
   const [isVisible, setIsVisible] = React.useState(openedOnInit);
-  const indexRef = React.useRef(-1);
+  const indexRef = React.useRef<number>(-1);
+  const ref = React.useRef<HTMLUListElement | null>(null);
+  const currentlyVisible = isControlled ? visible : isVisible;
 
-  const getIndex = (val: number) => {
-    indexRef.current = indexRef.current + val;
+  const handleMenuStateChange = () => {
+    if (currentlyVisible) {
+      onClose?.();
+      !isControlled && setIsVisible(false);
+    } else {
+      onOpen?.();
+      !isControlled && setIsVisible(true);
+    }
+  };
 
-    while (
-      options[indexRef.current].disabled ||
-      options[indexRef.current].groupHeader
-    ) {
-      indexRef.current = indexRef.current + val;
+  const { x, y, strategy, refs, context } = useFloating({
+    middleware: [offset(4), flip(flipOptions)],
+    placement: placement,
+    open: currentlyVisible,
+    strategy: floatingStrategy,
+    onOpenChange: handleMenuStateChange,
+    whileElementsMounted: autoUpdate,
+  });
+  const click = useClick(context);
+  const dismiss = useDismiss(context, {
+    enabled: currentlyVisible,
+  });
+  const role = useRole(context);
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    click,
+    dismiss,
+    role,
+  ]);
+  const { styles: transitionStyles } = useTransitionStyles(context, {
+    initial: ({ side }) => ({
+      opacity: 0,
+      ...((side === 'bottom' && {
+        marginTop: -10,
+      }) ||
+        (side === 'top' && {
+          marginTop: 10,
+        }) ||
+        (side === 'left' && {
+          marginLeft: 10,
+        }) ||
+        (side === 'right' && {
+          marginLeft: -10,
+        })),
+    }),
+  });
+
+  const getIndex = (val: number): number => {
+    const currentValue = indexRef.current;
+    let newValue = currentValue + val;
+
+    while (options[newValue]?.disabled || options[newValue]?.groupHeader) {
+      newValue += val;
+
+      if (newValue === -1) {
+        newValue = currentValue;
+        break;
+      }
     }
 
-    return indexRef.current;
+    return newValue;
+  };
+
+  const focusElement = (val: number) => {
+    indexRef.current = getIndex(val);
+    const elements = ref.current?.children;
+    const elementToFocus =
+      elements &&
+      (elements[indexRef.current]?.children[0] as HTMLButtonElement);
+
+    return elementToFocus?.focus();
   };
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === KeyCodes.arrowUp && indexRef.current > 0) {
       e.preventDefault();
-      indexRef.current = getIndex(-1);
-      document.getElementById(`list-item-${indexRef.current}`)?.focus();
+      focusElement(-1);
     }
 
     if (e.key === KeyCodes.arrowDown && indexRef.current + 1 < options.length) {
       e.preventDefault();
-      indexRef.current = getIndex(+1);
-      document.getElementById(`list-item-${indexRef.current}`)?.focus();
+      focusElement(+1);
     }
   };
 
   React.useEffect(() => {
-    if (isVisible) {
+    if (currentlyVisible) {
       document.addEventListener('keydown', onKeyDown);
 
       return () => document.removeEventListener('keydown', onKeyDown);
     } else {
       indexRef.current = -1;
     }
-  }, [isVisible, onKeyDown]);
+  }, [currentlyVisible, onKeyDown]);
 
-  const handleTriggerClick = () => {
-    setIsVisible(true);
-  };
-
-  const handleItemClick = (itemOnClick?: () => void) => {
+  const handleItemClick = (index: number, itemOnClick?: () => void) => {
+    indexRef.current = index;
     itemOnClick?.();
 
-    if (!keepOpenOnClick) {
+    if (!isControlled && !keepOpenOnClick) {
       setIsVisible(false);
+      onClose?.();
     }
   };
 
@@ -126,53 +223,63 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
     return (
       <li key={option.key} role="none">
         <button
-          id={`list-item-${index}`}
           data-testid={option.key}
           tabIndex={-1}
           key={option.key}
           disabled={option.disabled}
-          onClick={() => handleItemClick(option.onClick)}
+          onClick={() => handleItemClick(index, option.onClick)}
           role="menuitem"
           className={cx(styles[`${baseClass}__list__item`], {
             [styles[`${baseClass}__list__item--disabled`]]: option.disabled,
             [styles[`${baseClass}__list__item--with-divider`]]:
               option.withDivider,
-            [styles[`${baseClass}__list__item--active`]]:
-              activeOptionKeys?.includes(option.key),
+            [styles[`${baseClass}__list__item--selected`]]:
+              selectedOptions?.includes(option.key),
           })}
         >
           {option.element}
+          {selectedOptions?.includes(option.key) && (
+            <div className={styles[`${baseClass}__list__item__icon`]}>
+              <Icon source={Check} kind="action-primary" />
+            </div>
+          )}
         </button>
       </li>
     );
   };
 
   return (
-    <Popover
-      isVisible={isVisible}
-      placement={placement}
-      onClose={() => setIsVisible(false)}
-      triggerRenderer={() => (
-        <button
-          data-testid="action-menu-trigger-button"
-          className={cx(
-            styles[`${baseClass}__trigger-button`],
-            triggerClassName
-          )}
-          onClick={handleTriggerClick}
-        >
-          {triggerRenderer}
-        </button>
-      )}
-    >
-      <ul
-        {...props}
-        className={cx(styles[`${baseClass}__list`], className)}
-        role="menu"
-        aria-hidden={!isVisible}
+    <>
+      <div
+        data-testid="action-menu-trigger-button"
+        ref={refs.setReference}
+        {...getReferenceProps()}
+        className={triggerClassName}
       >
-        {options.map(getOptionElement)}
-      </ul>
-    </Popover>
+        {triggerRenderer}
+      </div>
+      {currentlyVisible && (
+        <div
+          ref={refs.setFloating}
+          className={styles[baseClass]}
+          style={{
+            position: strategy,
+            top: y !== null && y !== undefined ? y : '',
+            left: x !== null && x !== undefined ? x : '',
+            ...transitionStyles,
+          }}
+          {...getFloatingProps()}
+        >
+          <ul
+            {...props}
+            className={cx(styles[`${baseClass}__list`], className)}
+            role="menu"
+            ref={ref}
+          >
+            {options.map(getOptionElement)}
+          </ul>
+        </div>
+      )}
+    </>
   );
 };

@@ -7,14 +7,22 @@ import loaderStyles from '../Loader/Loader.module.scss';
 import { Switch } from './Switch';
 
 describe('Switch', () => {
-  it('should call onChange without changing state when custom handler is passed', () => {
+  it('should not change internal state when controlled (on) prop is passed', () => {
+    const { getByRole } = render(<Switch on={true} />);
+    const checkbox = getByRole('checkbox') as HTMLInputElement;
+    expect(checkbox.checked).toEqual(true);
+    fireEvent.click(checkbox);
+    expect(checkbox.checked).toEqual(true);
+  });
+
+  it('should call onChange and change internal state when no controlled (on) prop is passed', () => {
     const toggleFn = vi.fn();
     const { getByRole } = render(<Switch onChange={toggleFn} />);
     const checkbox = getByRole('checkbox') as HTMLInputElement;
     expect(checkbox.checked).toEqual(false);
     fireEvent.click(checkbox);
     expect(toggleFn).toHaveBeenCalled();
-    expect(checkbox.checked).toEqual(false);
+    expect(checkbox.checked).toEqual(true);
   });
 
   it('should change state to checked (on) when user clicks on unchecked (off) switch', () => {
@@ -25,12 +33,12 @@ describe('Switch', () => {
     expect(checkbox.checked).toEqual(true);
   });
 
-  it('should change state to unchecked (off) when user clicks on checked (on) switch', () => {
+  it('should not change state to unchecked (off) when user clicks on checked (on) switch', () => {
     const { getByRole } = render(<Switch on={true} />);
     const checkbox = getByRole('checkbox') as HTMLInputElement;
     expect(checkbox.checked).toEqual(true);
     fireEvent.click(checkbox);
-    expect(checkbox.checked).toEqual(false);
+    expect(checkbox.checked).toEqual(true);
   });
 
   it('should be checked (on) if defaultOn is set to true', () => {

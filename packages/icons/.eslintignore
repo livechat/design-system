@@ -1,0 +1,8 @@
+node_modules
+scripts
+dist
+lib
+.env
+*.log
+storybook-static
+vite.config.js

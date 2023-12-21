@@ -4,7 +4,8 @@ import { vi } from 'vitest';
 
 import { render, userEvent } from 'test-utils';
 
-import { ActionBar, IActionBarProps } from './ActionBar';
+import { ActionBar } from './ActionBar';
+import { IActionBarProps } from './types';
 
 vi.mock('@floating-ui/react-dom', () => {
   return {
@@ -77,6 +78,7 @@ describe('<ActionBar> component', () => {
         {
           key: 'four',
           element: <div>Four</div>,
+          label: 'Four test',
           onClick: onClick,
         },
       ],

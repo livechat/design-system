@@ -6,7 +6,7 @@ import {
   ContentCopy,
   Block,
   Delete,
-} from '@livechat/design-system-icons/react/tabler';
+} from '@livechat/design-system-icons';
 
 import noop from '../../utils/noop';
 import { Icon } from '../Icon';
@@ -45,6 +45,7 @@ export const exampleOptions = [
       <ActionMenuItem leftNode={<Icon source={Block} />}>Block</ActionMenuItem>
     ),
     disabled: true,
+    withDivider: true,
     onClick: noop,
   },
   {
@@ -55,6 +56,5 @@ export const exampleOptions = [
       </ActionMenuItem>
     ),
     onClick: noop,
-    withDivider: true,
   },
 ];

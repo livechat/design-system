@@ -5,7 +5,7 @@ import { Display, Heading } from '../Typography';
 
 import imageDefault from './assets/image2.png';
 import promoImage from './assets/promo-img.png';
-import { PromoBannerV2 } from './PromoBannerV2';
+import { IPromoBannerV2Props, PromoBannerV2 } from './PromoBannerV2';
 import './PromoBannerV2.stories.css';
 
 export default {
@@ -39,11 +39,8 @@ const defaultProps = {
   onClose: noop,
 };
 
-export const Default = (): React.ReactElement => (
-  <PromoBannerV2
-    {...defaultProps}
-    additionalContent={<img src={imageDefault} />}
-  >
+export const Default = (args: IPromoBannerV2Props): React.ReactElement => (
+  <PromoBannerV2 {...args} additionalContent={<img src={imageDefault} />}>
     <div style={{ marginBottom: 'var(--spacing-1)' }}>
       <Heading as="div" size="sm" className="promo-header">
         Title text up 2 lines
@@ -52,12 +49,17 @@ export const Default = (): React.ReactElement => (
     Description text up to 4 lines
   </PromoBannerV2>
 );
+Default.args = {
+  ...defaultProps,
+};
 
-export const WithStyledAdditionalContent = (): React.ReactElement => (
+export const WithStyledAdditionalContent = (
+  args: IPromoBannerV2Props
+): React.ReactElement => (
   <div>
     <div>
       <PromoBannerV2
-        {...defaultProps}
+        {...args}
         additionalContent={
           <div className="image-position">
             <img src={promoImage} />
@@ -87,6 +89,9 @@ export const WithStyledAdditionalContent = (): React.ReactElement => (
     </div>
   </div>
 );
+WithStyledAdditionalContent.args = {
+  ...defaultProps,
+};
 
 export const WithStyledMainContent = (): React.ReactElement => (
   <div style={{ maxWidth: 1100 }}>

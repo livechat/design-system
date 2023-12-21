@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Close } from '@livechat/design-system-icons/react/tabler';
+import { Close } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Button, ButtonKind } from '../Button';
@@ -36,6 +36,18 @@ export interface IPromoBannerV2Props {
     kind?: ButtonKind;
   };
   /**
+   * Set to true to display the banner vertically
+   */
+  vertical?: boolean;
+  /**
+   * Specify an optional className to be applied to the content node
+   */
+  contentClassName?: string;
+  /**
+   * Specify an optional className to be applied to the additional content node
+   */
+  additionalContentClassName?: string;
+  /**
    * Event handler for close button press
    */
   onClose?: () => void;
@@ -49,14 +61,22 @@ export const PromoBannerV2: React.FC<
   additionalContent,
   primaryButton,
   secondaryButton,
+  vertical,
+  contentClassName,
+  additionalContentClassName,
   onClose,
 }) => {
-  const mergedClassNames = cx(styles[baseClass], className);
+  const mergedClassNames = cx(styles[`main-wrapper`], className);
 
   return (
-    <div className={styles[`main-wrapper`]}>
-      <div role="banner" className={mergedClassNames}>
-        <div className={styles[`${baseClass}__content`]}>
+    <div role="banner" className={mergedClassNames}>
+      <div
+        className={cx(
+          styles[baseClass],
+          vertical && styles[`${baseClass}--vertical`]
+        )}
+      >
+        <div className={cx(styles[`${baseClass}__content`], contentClassName)}>
           {children}
           {(primaryButton || secondaryButton) && (
             <div className={styles[`${baseClass}__content__cta`]}>
@@ -81,7 +101,12 @@ export const PromoBannerV2: React.FC<
           )}
         </div>
         {additionalContent && (
-          <div className={styles[`${baseClass}__additional-content`]}>
+          <div
+            className={cx(
+              styles[`${baseClass}__additional-content`],
+              additionalContentClassName
+            )}
+          >
             {additionalContent}
           </div>
         )}

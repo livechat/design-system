@@ -1,6 +1,15 @@
+@import '../../utils/StackingContextLevel';
+
 $base-class: 'action-menu';
 
 .#{$base-class} {
+  z-index: $stacking-context-level-popover;
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-pop-over);
+  background-color: var(--popover-background);
+  min-width: 168px;
+  max-width: 336px;
+
   &__trigger-button {
     border: 0;
     border-radius: var(--radius-3);
@@ -11,7 +20,7 @@ $base-class: 'action-menu';
       cursor: pointer;
     }
 
-    &:focus {
+    &:focus-visible {
       outline: 2px solid var(--action-primary-default);
       outline-offset: 0;
     }
@@ -23,7 +32,6 @@ $base-class: 'action-menu';
     background-color: var(--picker-list-background);
     padding: 0;
     padding: var(--spacing-2);
-    overflow: hidden;
     list-style: none;
 
     &__group-header {
@@ -53,15 +61,8 @@ $base-class: 'action-menu';
         content: '';
       }
 
-      &:nth-of-type(1)::before {
-        position: absolute;
-        top: calc(var(--spacing-2) * -1);
-        right: -8px;
-        left: -8px;
-        z-index: -1;
-        background: var(--picker-list-group-background);
-        height: var(--spacing-2);
-        content: '';
+      &:nth-of-type(1) {
+        margin-top: calc(var(--spacing-2) * -1);
       }
     }
 
@@ -86,12 +87,11 @@ $base-class: 'action-menu';
         cursor: pointer;
       }
 
-      &:focus,
       &:active {
         background-color: var(--picker-list-option-background-active);
       }
 
-      &:focus {
+      &:focus-visible {
         outline: 2px solid var(--action-primary-default);
         outline-offset: -2px;
       }
@@ -101,12 +101,12 @@ $base-class: 'action-menu';
       }
 
       &--with-divider {
-        margin-top: var(--spacing-2);
+        margin-bottom: var(--spacing-2);
 
-        &::before {
+        &::after {
           position: absolute;
-          top: -4.5px;
           right: -8px;
+          bottom: -4.5px;
           left: -8px;
           background-color: var(--border-basic-secondary);
           height: 1px;
@@ -123,19 +123,12 @@ $base-class: 'action-menu';
         }
       }
 
-      &--active {
+      &--selected {
         background-color: var(--picker-list-option-background-active);
+      }
 
-        &::after {
-          position: absolute;
-          left: -8px;
-          border-top-right-radius: var(--radius-3);
-          border-bottom-right-radius: var(--radius-3);
-          background: var(--action-primary-default);
-          width: 3px;
-          height: 36px;
-          content: '';
-        }
+      &__icon {
+        margin-left: var(--spacing-2);
       }
     }
   }

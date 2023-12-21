@@ -1,168 +1,182 @@
 import * as React from 'react';
 
-import { arrow, flip, offset, useFloating } from '@floating-ui/react-dom';
+import {
+  useFloating,
+  offset,
+  arrow,
+  shift,
+  flip,
+  autoUpdate,
+  useDismiss,
+  useFocus,
+  useHover,
+  useClick,
+  useInteractions,
+  useRole,
+  FloatingArrow,
+  useTransitionStyles,
+  useTransitionStatus,
+  safePolygon,
+} from '@floating-ui/react';
+import cx from 'clsx';
 
-import { FloatingComponent } from './components/FloatingComponent';
-import { sleep } from './helpers';
+import { getArrowStyles } from './helpers';
 import { ITooltipProps } from './types';
 
 import styles from './Tooltip.module.scss';
 
 const baseClass = 'tooltip';
 
-export const Tooltip: React.FC<ITooltipProps> = (props) => {
-  const {
-    triggerRenderer,
-    referenceElement,
-    children,
+export const Tooltip: React.FC<ITooltipProps> = ({
+  children,
+  className,
+  triggerClassName,
+  triggerRenderer,
+  theme,
+  kind,
+  placement = 'bottom',
+  isVisible,
+  fullSpaceContent,
+  onClose,
+  onOpen,
+  withFadeAnimation = true,
+  transitionDuration = 200,
+  hoverOnDuration,
+  hoverOffDuration,
+  transitionDelay = 0,
+  hoverOnDelay,
+  hoverOffDelay,
+  triggerOnClick = false,
+  offsetMainAxis = 8,
+  referenceElement,
+  activationThreshold = 0,
+  useDismissHookProps,
+  useClickHookProps,
+  hoverOutDelayTimeout = 100,
+  arrowOffsetY,
+  arrowOffsetX,
+  closeOnTriggerBlur = false,
+  floatingStrategy,
+}) => {
+  const isControlled = isVisible !== undefined;
+  const [visible, setVisible] = React.useState(false);
+  const arrowRef = React.useRef(null);
+  const currentlyVisible = isControlled ? isVisible : visible;
+  const tooltipStyle = kind || theme;
+  const mergedClassNames = cx(
+    styles[baseClass],
     className,
-    theme,
-    placement,
-    isVisible,
-    withFadeAnimation = true,
-    transitionDuration = 200,
-    transitionDelay = 0,
-    hoverOutDelayTimeout = 100,
-    offsetMainAxis = 8,
-    triggerOnClick = false,
-    arrowOffsetY,
-    arrowOffsetX,
-    fullSpaceContent,
-    onOpen,
-    onClose,
-  } = props;
-  const isFirstRender = React.useRef(true);
-  const isManaged = isVisible !== undefined;
-  const arrowRef = React.useRef<HTMLDivElement | null>(null);
-  const [visible, setVisibility] = React.useState(isVisible);
-  const isHovered = React.useRef(false);
+    tooltipStyle && styles[`${baseClass}--${tooltipStyle}`],
+    fullSpaceContent && styles[`${baseClass}--full-space`]
+  );
+  const isTriggerAsFunction = typeof triggerRenderer === 'function';
 
-  const floatingOptions = useFloating({
-    middleware: [
-      offset({ mainAxis: offsetMainAxis }),
-      arrow({ element: arrowRef }),
-      flip(),
-    ],
-    placement: placement,
-  });
-
-  const handleVisibilityChange = (newVisibility: boolean | undefined): void => {
-    // used when visibility changes inside the component
-    if (newVisibility) {
-      !visible && onOpen?.();
-    } else {
-      visible && onClose?.();
-    }
-    if (!isManaged) {
-      setVisibility(newVisibility);
-    }
-  };
-
-  React.useEffect(() => {
-    // handles visibility changes from outside the component
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-
+  const handleMenuStateChange = (isOpen: boolean) => {
+    if (isOpen === currentlyVisible) {
       return;
     }
-    if (isVisible === true) onOpen?.();
-    if (isVisible === false) onClose?.(); // we need to check if it's false, because it can be undefined
 
-    setVisibility(isVisible);
-  }, [isVisible]);
+    if (isOpen) {
+      onOpen?.();
+    } else {
+      onClose?.();
+    }
+
+    !isControlled && setVisible(isOpen);
+  };
+
+  const getTransitionDuration = (value?: number) => {
+    if (!withFadeAnimation) {
+      return 0;
+    }
+
+    return value ?? transitionDuration;
+  };
+
+  const getTransitionDelay = (value?: number) => {
+    return value ?? transitionDelay;
+  };
+
+  const {
+    floatingStyles,
+    refs,
+    context,
+    middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
+  } = useFloating({
+    middleware: [
+      offset({ mainAxis: offsetMainAxis }),
+      shift(),
+      flip(),
+      arrow({ element: arrowRef }),
+    ],
+    placement: placement,
+    open: currentlyVisible,
+    strategy: floatingStrategy,
+    onOpenChange: handleMenuStateChange,
+    whileElementsMounted: autoUpdate,
+  });
+  const hover = useHover(context, {
+    move: false,
+    restMs: activationThreshold,
+    delay: {
+      open: getTransitionDelay(hoverOnDelay),
+      close: getTransitionDelay(hoverOffDelay || hoverOutDelayTimeout),
+    },
+    enabled: !triggerOnClick,
+    handleClose: closeOnTriggerBlur ? null : safePolygon(),
+  });
+  const focus = useFocus(context);
+  const dismiss = useDismiss(context, useDismissHookProps);
+  const role = useRole(context, { role: 'tooltip' });
+  const click = useClick(context, useClickHookProps);
+  const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
+    duration: {
+      open: getTransitionDuration(hoverOnDuration),
+      close: getTransitionDuration(hoverOffDuration),
+    },
+  });
+  const { status } = useTransitionStatus(context);
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    hover,
+    focus,
+    dismiss,
+    role,
+    click,
+  ]);
 
   React.useEffect(() => {
-    document.addEventListener('keydown', handleCloseAction);
-
-    return () => {
-      document.removeEventListener('keydown', handleCloseAction);
-    };
-  }, []);
-
-  const handleMouseEnter = () => {
-    if (triggerOnClick || isManaged) return;
-    isHovered.current = true;
-    handleVisibilityChange(true);
-  };
-
-  const handleMouseLeave = () => {
-    if (triggerOnClick || isManaged) return;
-    isHovered.current = false;
-    void sleep(hoverOutDelayTimeout).then(() => {
-      if (!isHovered.current) {
-        handleVisibilityChange(false);
-      }
-    });
-  };
-
-  const handleCloseAction = (event: KeyboardEvent | MouseEvent) => {
-    if (
-      (event instanceof KeyboardEvent && event.key === 'Escape') ||
-      event.type === 'click'
-    ) {
-      handleVisibilityChange(false);
-    }
-  };
-
-  const floatingComponent = (
-    <FloatingComponent
-      baseClass={baseClass}
-      className={className}
-      visible={visible}
-      floatingOptions={floatingOptions}
-      arrowRef={arrowRef}
-      handleMouseEnter={handleMouseEnter}
-      handleMouseLeave={handleMouseLeave}
-      handleCloseAction={handleCloseAction}
-      childrenElements={children}
-      transitionDuration={transitionDuration}
-      transitionDelay={transitionDelay}
-      referenceElement={referenceElement}
-      arrowOffsetX={arrowOffsetX}
-      arrowOffsetY={arrowOffsetY}
-      theme={theme}
-      withFadeAnimation={withFadeAnimation}
-      fullSpaceContent={fullSpaceContent}
-    />
-  );
-
-  if (referenceElement) {
-    return floatingComponent;
-  }
-
-  const handleClick = () => {
-    if (visible) {
-      handleVisibilityChange(false);
-    } else {
-      handleVisibilityChange(true);
-    }
-  };
-
-  const referenceOptions = () => {
-    if (!isManaged) {
-      if (triggerOnClick) {
-        return {
-          onClick: handleClick,
-        };
-      } else {
-        return {
-          onMouseEnter: handleMouseEnter,
-          onMouseLeave: handleMouseLeave,
-        };
-      }
-    }
-  };
+    referenceElement && refs.setReference(referenceElement);
+  }, [refs.setReference, referenceElement]);
 
   return (
     <>
       <div
-        className={styles[`${baseClass}__wrapper`]}
-        ref={floatingOptions.reference}
-        {...referenceOptions()}
+        ref={refs.setReference}
+        {...getReferenceProps()}
+        className={triggerClassName}
       >
-        {triggerRenderer()}
+        {isTriggerAsFunction ? triggerRenderer() : triggerRenderer}
       </div>
-      {floatingComponent}
+      {isMounted && (
+        <div
+          ref={refs.setFloating}
+          style={{
+            ...floatingStyles,
+            ...transitionStyles,
+          }}
+          className={mergedClassNames}
+          {...getFloatingProps()}
+          data-status={status}
+        >
+          {children}
+          <FloatingArrow
+            className={styles[`${baseClass}__arrow`]}
+            ref={arrowRef}
+            context={context}
+            style={getArrowStyles(arrowOffsetY, arrowOffsetX, arrowY, arrowX)}
+          />
+        </div>
+      )}
     </>
   );
 };

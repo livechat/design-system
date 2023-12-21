@@ -1,7 +1,8 @@
 import * as React from 'react';
 
-import { MoreHoriz } from '@livechat/design-system-icons/react/tabler';
+import { MoreHoriz } from '@livechat/design-system-icons';
 
+import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
 import { RadioButton } from '../RadioButton';
@@ -21,16 +22,19 @@ export default {
   },
 };
 
-export const Default = (): React.ReactElement => (
-  <div className="action-menu-preview">
-    <ActionMenu
-      options={exampleOptions}
-      triggerClassName="action-menu-button"
-      triggerRenderer={<Icon source={MoreHoriz} kind="primary" />}
-      openedOnInit
-    />
-  </div>
-);
+export const Default = (): React.ReactElement => {
+  return (
+    <div className="action-menu-preview">
+      <ActionMenu
+        options={exampleOptions}
+        triggerRenderer={
+          <Button icon={<Icon source={MoreHoriz} kind="primary" />} />
+        }
+        openedOnInit
+      />
+    </div>
+  );
+};
 
 export const KeepOpenOnItemClick = (): React.ReactElement => {
   const [radioButtonValue, setRadioButtonValue] = React.useState('one');
@@ -38,47 +42,10 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
   const [switchTwoValue, setSwitchTwoValue] = React.useState(false);
   const [checkboxOneValue, setCheckboxOneValue] = React.useState(true);
   const [checkboxTwoValue, setCheckboxTwoValue] = React.useState(true);
-  const [activeOptionsKeys, setActiveOptionsKeys] = React.useState([
-    'one',
-    'three',
-    'five',
-    'six',
-  ]);
-
-  const handleOptionSelect = (
-    key: string,
-    type: string,
-    optionHandler: void
-  ) => {
-    const newActiveOptions = activeOptionsKeys;
-
-    if (type === 'radio') {
-      if (!activeOptionsKeys.includes(key)) {
-        const keyToRemove = key === 'one' ? 'two' : 'one';
-        const index = activeOptionsKeys.indexOf(keyToRemove);
-        newActiveOptions.splice(index, 1);
-        setActiveOptionsKeys([...newActiveOptions, key]);
-      }
-    }
-
-    if (type === 'switch' || type === 'checkbox') {
-      if (activeOptionsKeys.includes(key)) {
-        const index = activeOptionsKeys.indexOf(key);
-        newActiveOptions.splice(index, 1);
-        setActiveOptionsKeys([...newActiveOptions]);
-      } else {
-        activeOptionsKeys.push(key);
-      }
-    }
-
-    return optionHandler;
-  };
 
   return (
     <div className="action-menu-preview">
       <ActionMenu
-        activeOptionKeys={activeOptionsKeys}
-        triggerClassName="action-menu-button"
         options={[
           {
             key: 'group-1',
@@ -94,11 +61,11 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
                 </RadioButton>
               </ActionMenuItem>
             ),
-            onClick: () =>
-              handleOptionSelect('one', 'radio', setRadioButtonValue('one')),
+            onClick: () => setRadioButtonValue('one'),
           },
           {
             key: 'two',
+            withDivider: true,
             element: (
               <ActionMenuItem>
                 <RadioButton checked={radioButtonValue === 'two'}>
@@ -106,8 +73,7 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
                 </RadioButton>
               </ActionMenuItem>
             ),
-            onClick: () =>
-              handleOptionSelect('two', 'radio', setRadioButtonValue('two')),
+            onClick: () => setRadioButtonValue('two'),
           },
           {
             key: 'three',
@@ -121,16 +87,10 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
                 Toggle label one
               </ActionMenuItem>
             ),
-            onClick: () =>
-              handleOptionSelect(
-                'three',
-                'switch',
-                setSwitchOneValue((s) => !s)
-              ),
+            onClick: () => setSwitchOneValue((s) => !s),
           },
           {
             key: 'four',
-            withDivider: true,
             element: (
               <ActionMenuItem
                 rightNode={
@@ -140,12 +100,7 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
                 Toggle label two
               </ActionMenuItem>
             ),
-            onClick: () =>
-              handleOptionSelect(
-                'four',
-                'switch',
-                setSwitchTwoValue((s) => !s)
-              ),
+            onClick: () => setSwitchTwoValue((s) => !s),
           },
           {
             key: 'group-2',
@@ -163,12 +118,7 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
                 }
               />
             ),
-            onClick: () =>
-              handleOptionSelect(
-                'five',
-                'checkbox',
-                setCheckboxOneValue((s) => !s)
-              ),
+            onClick: () => setCheckboxOneValue((s) => !s),
           },
           {
             key: 'six',
@@ -181,15 +131,53 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
                 }
               />
             ),
-            onClick: () =>
-              handleOptionSelect(
-                'six',
-                'checkbox',
-                setCheckboxTwoValue((s) => !s)
-              ),
+            onClick: () => setCheckboxTwoValue((s) => !s),
           },
         ]}
-        triggerRenderer={<Icon source={MoreHoriz} kind="primary" />}
+        triggerRenderer={
+          <Button icon={<Icon source={MoreHoriz} kind="primary" />} />
+        }
+        openedOnInit
+        keepOpenOnClick
+      />
+    </div>
+  );
+};
+
+export const WithSelectedOptions = (): React.ReactElement => {
+  const [selectedOptions, setSelectedOptions] = React.useState(['one']);
+  const handleSelectOption = (key: string) => {
+    if (selectedOptions.includes(key)) {
+      return setSelectedOptions((s) => s.filter((o) => o !== key));
+    }
+
+    return setSelectedOptions((s) => [...s, key]);
+  };
+
+  return (
+    <div className="action-menu-preview">
+      <ActionMenu
+        selectedOptions={selectedOptions}
+        options={[
+          {
+            key: 'one',
+            element: <ActionMenuItem>Option one</ActionMenuItem>,
+            onClick: () => handleSelectOption('one'),
+          },
+          {
+            key: 'two',
+            element: <ActionMenuItem>Option two</ActionMenuItem>,
+            onClick: () => handleSelectOption('two'),
+          },
+          {
+            key: 'three',
+            element: <ActionMenuItem>Option three</ActionMenuItem>,
+            onClick: () => handleSelectOption('three'),
+          },
+        ]}
+        triggerRenderer={
+          <Button icon={<Icon source={MoreHoriz} kind="primary" />} />
+        }
         openedOnInit
         keepOpenOnClick
       />

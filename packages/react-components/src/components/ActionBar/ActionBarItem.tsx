@@ -5,27 +5,17 @@ import cx from 'clsx';
 import { Button } from '../Button';
 import { Tooltip } from '../Tooltip';
 
+import { IActionBarItem } from './types';
+
 import styles from './ActionBar.module.scss';
-
-export type IActionBarOption = {
-  key: string;
-  element: React.ReactElement;
-  label?: string;
-  onClick: () => void;
-};
-
-interface ActionBarItem {
-  option: IActionBarOption;
-  menuItemsKeys: string[];
-  activeOptionKey?: string | null;
-}
 
 const baseClass = 'action-bar__items';
 
-export const ActionBarItem: React.FC<ActionBarItem> = ({
+export const ActionBarItem: React.FC<IActionBarItem> = ({
   option,
   menuItemsKeys,
   activeOptionKey,
+  vertical,
 }) => {
   const mergedButtonClassNames = cx(styles[`${baseClass}__button`], {
     [styles[`${baseClass}__button--hidden`]]: menuItemsKeys.includes(
@@ -34,22 +24,22 @@ export const ActionBarItem: React.FC<ActionBarItem> = ({
     [styles[`${baseClass}__button--active`]]: option.key === activeOptionKey,
   });
 
-  if (option.label) {
+  if (option.showTooltip) {
     const tooltipVisibility = menuItemsKeys.includes(option.key) && {
       isVisible: false,
     };
 
     return (
       <Tooltip
-        theme="invert"
-        placement="top"
+        kind="invert"
+        placement={vertical ? 'left' : 'bottom'}
+        triggerClassName={styles[`${baseClass}__tooltip`]}
         triggerRenderer={() => (
           <Button
             id={option.key}
             key={option.key}
             title={option.label}
             kind="plain"
-            size="compact"
             className={mergedButtonClassNames}
             onClick={option.onClick}
             icon={option.element}
@@ -70,8 +60,7 @@ export const ActionBarItem: React.FC<ActionBarItem> = ({
       kind="plain"
       className={mergedButtonClassNames}
       onClick={option.onClick}
-    >
-      {option.element}
-    </Button>
+      icon={option.element}
+    />
   );
 };

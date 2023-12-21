@@ -1,7 +1,8 @@
 node_modules
 dist
-react
+scripts
 lib
 .env
 *.log
 storybook-static
+vite.config.js

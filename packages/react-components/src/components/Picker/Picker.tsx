@@ -5,7 +5,6 @@ import cx from 'clsx';
 import { Size } from 'utils';
 
 import { KeyCodes } from '../../utils/keyCodes';
-import { IconSize } from '../Icon';
 
 import { SELECT_ALL_OPTION_KEY } from './constants';
 import { PickerList } from './PickerList';
@@ -46,10 +45,6 @@ export interface IPickerProps {
    * Specify the picker size
    */
   size?: Size;
-  /**
-   * Set the dismiss icon size in tags when `multi` type is enabled
-   */
-  tagIconSize?: IconSize;
   /**
    * Specify the placeholder for search input
    */
@@ -103,7 +98,6 @@ export const Picker: React.FC<IPickerProps> = ({
   options,
   selected,
   size = 'medium',
-  tagIconSize = 'medium',
   placeholder = 'Select option',
   isRequired,
   noSearchResultText = 'No results found',
@@ -270,7 +264,6 @@ export const Picker: React.FC<IPickerProps> = ({
             isSearchDisabled={searchDisabled}
             isDisabled={disabled}
             placeholder={placeholder}
-            iconSize={tagIconSize}
             items={selected}
             type={type}
             size={size}

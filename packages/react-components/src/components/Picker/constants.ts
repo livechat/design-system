@@ -1,4 +1,4 @@
-import { DayMode } from '@livechat/design-system-icons/react/tabler';
+import { DayMode } from '@livechat/design-system-icons';
 
 export const DEFAULT_PICKER_OPTIONS = [
   { key: 'one', name: 'Option one' },

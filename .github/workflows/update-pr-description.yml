@@ -1,0 +1,41 @@
+name: Update PR Description
+on:
+  pull_request:
+    types: [opened]
+jobs:
+  update-description:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update PR Description
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const branchName = context.payload.pull_request.head.ref;
+            const issueNumberMatch = branchName.match(/feature\/(\d+)/);
+            const issueNumber = issueNumberMatch ? issueNumberMatch[1] : '';
+            
+            if (!issueNumber) {
+              console.log('No issue number found in branch name');
+              return;
+            }
+            
+            const prNumber = context.payload.pull_request.number;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            
+            const { data: prData } = await github.pulls.get({
+              owner: owner,
+              repo: repo,
+              pull_number: prNumber
+            });
+            
+            let body = prData.body.replace(/{issue-number}/g, issueNumber);
+            body = body.replace(/<!--- Issue number will be inserted automatically -->/g, '');
+            
+            await github.pulls.update({
+              owner: owner,
+              repo: repo,
+              pull_number: prNumber,
+              body: body
+            });

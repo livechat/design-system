@@ -1,9 +1,8 @@
 import * as React from 'react';
 
-import { LockBlackFilled as LockIcon } from '@livechat/design-system-icons/react/tabler';
+import { LockBlackFilled as LockIcon } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
-import noop from '../../utils/noop';
 import { Icon, IconSize } from '../Icon';
 import { Loader } from '../Loader';
 
@@ -63,27 +62,23 @@ export const Switch: React.FC<SwitchProps> = ({
   disabled = false,
   name = baseClass,
   on,
-  onChange = noop,
+  onChange,
   size = 'large',
   state = 'regular',
   innerRef,
   ariaLabel,
   ...props
 }) => {
+  const isControlled = on !== undefined;
   const [checked, setChecked] = React.useState(() =>
-    on !== undefined ? on : defaultOn
+    isControlled ? on : defaultOn
   );
-
-  React.useEffect(() => {
-    if (on !== undefined) {
-      setChecked(on);
-    }
-  }, [on]);
+  const controllingValue = isControlled ? on : checked;
 
   const isLoading = state === 'loading';
   const isLocked = state === 'locked';
   const iconSize: IconSize = size === 'large' ? 'small' : 'xsmall';
-  const toggleStyles = checked ? 'on' : 'off';
+  const toggleStyles = controllingValue ? 'on' : 'off';
   const shouldBehaveAsDisabled = disabled || isLoading || isLocked;
   const availabilityStyles = shouldBehaveAsDisabled ? 'disabled' : 'enabled';
   const mergedClassNames = cx(
@@ -93,14 +88,12 @@ export const Switch: React.FC<SwitchProps> = ({
   );
 
   const handleChange = (e: React.FormEvent) => {
-    const hasOnChangePassed = onChange !== noop;
-    if (hasOnChangePassed) {
-      onChange(e, checked);
+    onChange?.(e, !controllingValue);
 
-      return;
+    if (!isControlled) {
+      e.stopPropagation();
+      setChecked((prevEnabled) => !prevEnabled);
     }
-    e.stopPropagation();
-    setChecked((prevEnabled) => !prevEnabled);
   };
 
   return (
@@ -112,7 +105,7 @@ export const Switch: React.FC<SwitchProps> = ({
           styles[`${baseClass}__input--${availabilityStyles}`]
         )}
         onChange={handleChange}
-        checked={checked}
+        checked={controllingValue}
         name={name}
         ref={innerRef}
         disabled={shouldBehaveAsDisabled}

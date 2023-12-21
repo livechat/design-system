@@ -7,6 +7,10 @@ $base-class: 'picker-trigger-body';
   justify-content: flex-start;
   max-width: 100%;
 
+  &--single {
+    flex-wrap: nowrap;
+  }
+
   &__item-container {
     display: flex;
     flex-wrap: wrap;

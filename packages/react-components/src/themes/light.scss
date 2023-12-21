@@ -20,6 +20,7 @@ $surface-tertiary-hover: #e4e4e5;
   --surface-secondary-disabled: #f0f0f1;
   --surface-basic-hover: #e2e2e4; // deprecated
   --surface-primary-hover: #{$surface-primary-hover};
+  --surface-primary-hover-opacity: rgb(19 19 23 / 10%);
   --surface-basic-active: #c9c9cd; // deprecated
   --surface-primary-active: #{$surface-primary-active};
   --surface-primary-active-colored: rgb(0 102 255 / 25%);
@@ -68,6 +69,7 @@ $surface-tertiary-hover: #e4e4e5;
   --surface-overlay: rgb(19 19 23 / 70%); // deprecated
   --surface-other-overlay: rgb(19 19 23 / 70%);
   --surface-other-agent: #0059e1;
+  --surface-other-agent-hover: #034fc3;
   --surface-other-skeleton: #e2e2e4;
   --surface-gradient-01: linear-gradient(
     107.08deg,
@@ -79,6 +81,15 @@ $surface-tertiary-hover: #e4e4e5;
     #8609ff 9.14%,
     #0059e1 111.43%
   );
+  --surface-gradient-03: linear-gradient(84deg, #ca0005 38%, #f3c600 140%);
+  --surface-gradient-04: linear-gradient(95deg, #ffe9bc, #fffdf8 112%);
+  --surface-gradient-05: linear-gradient(95deg, #daedff, #fbfdff 112%);
+  --surface-gradient-06: linear-gradient(95deg, #eee8ff, #fdfdff 112%);
+  --surface-gradient-07: linear-gradient(95deg, #d1f4d5, #e6f6ed 112%);
+  --surface-gradient-08: linear-gradient(95deg, #ffe5e5, #fffcfc 112%);
+  --surface-gradient-09: linear-gradient(95deg, #d1f4d5, #fff9ee 112%);
+  --surface-gradient-10: linear-gradient(95deg, #eee8ff, #f4faff 112%);
+  --surface-gradient-11: linear-gradient(95deg, #eee8ff, #fff4dd 112%);
   --content-default: #131317; // deprecated
   --content-basic-primary: #131317;
   --content-subtle: #62626d; // deprecated
@@ -171,6 +182,7 @@ $surface-tertiary-hover: #e4e4e5;
   --action-high-contrast-disabled: rgb(27 27 32 / 20%);
   --color-bot: #50009c; // deprecated
   --surface-other-bot: #50009c;
+  --surface-other-bot-hover: #41057b;
   --color-black: #131317;
   --color-white: #fff;
   --decor-blue900: #003288;
@@ -271,19 +283,20 @@ $surface-tertiary-hover: #e4e4e5;
   --btn-plain-icon-background-active: #{$action-primary-default};
   --picker-list-background: #{$surface-primary-default};
   --picker-list-group-background: #{$surface-secondary-default};
-  --picker-list-option-background-hover: #{$surface-primary-hover};
-  --picker-list-option-background-active-hover: #{$surface-tertiary-hover};
-  --picker-list-option-background-focus: #{$surface-primary-hover};
-  --picker-list-option-background-active: #{$surface-primary-active};
+  --picker-list-option-background-hover: #ececec;
+  --picker-list-option-background-active-hover: #e2e2e3;
+  --picker-list-option-background-focus: #ececec;
+  --picker-list-option-background-active: #e7e7e7;
   --popover-background: #{$surface-primary-default};
   --surface-avatar-1: #8609ff;
   --surface-avatar-2: #ca0005;
-  --surface-avatar-3: #e8bb00;
+  --surface-avatar-3: #328dff;
   --surface-avatar-4: #00893c;
-  --surface-avatar-5: #06f;
+  --surface-avatar-5: #9146ff;
   --surface-avatar-6: #ff5100;
-  --surface-avatar-7: #328dff;
+  --surface-avatar-7: #06f;
   --surface-avatar-8: #a372ff;
-  --surface-avatar-9: #ffd000;
-  --surface-avatar-10: #00c057;
+  --surface-avatar-9: #b08c00;
+  --surface-avatar-10: #00a449;
+  --navbar-background: #101014;
 }

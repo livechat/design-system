@@ -73,7 +73,11 @@ export const PickerList: React.FC<IPickerListProps> = ({
       setCurrentItemKey(items[indexRef.current].key);
     }
 
-    if (e.key === KeyCodes.enter && !items[indexRef.current].disabled) {
+    if (
+      e.key === KeyCodes.enter &&
+      items[indexRef.current] &&
+      !items[indexRef.current].disabled
+    ) {
       e.preventDefault();
 
       if (items[indexRef.current].key === SELECT_ALL_OPTION_KEY) {
@@ -87,6 +91,10 @@ export const PickerList: React.FC<IPickerListProps> = ({
   React.useEffect(() => {
     if (indexRef.current > -1 && items.length > 0 && items[indexRef.current]) {
       setCurrentItemKey(items[indexRef.current].key);
+    } else {
+      indexRef.current = -1;
+      lastIndexRef.current = 0;
+      setCurrentItemKey(null);
     }
 
     if (isOpen) {

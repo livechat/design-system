@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Close as CloseIcon } from '@livechat/design-system-icons/react/tabler';
+import { Close as CloseIcon } from '@livechat/design-system-icons';
 import cx from 'clsx';
 import debounce from 'lodash.debounce';
 
@@ -56,7 +56,7 @@ export interface PromoBannerProps {
 }
 
 /**
- * @deprecated Since version 1.0.0. Will be deleted in future versions. Use {@link PromoBannerV2} instead.
+ * @deprecated Since version 1.0.0. Will be deleted in version 2.0.0. Use {@link PromoBannerV2} instead.
  */
 export const PromoBanner: React.FC<
   React.PropsWithChildren<PromoBannerProps>

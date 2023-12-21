@@ -1,4 +1,4 @@
-import { clsx } from 'clsx';
+import cx from 'clsx';
 import {
   isAfter,
   isSameDay,
@@ -142,7 +142,7 @@ export const getDatePickerClassNames = (
   range?: boolean,
   classNames?: ClassNames
 ): ClassNames & { start: string; end: string } => ({
-  container: clsx({
+  container: cx({
     [styles[`${baseClass}`]]: true,
     [styles[`${baseClass}--range`]]: range,
   }),
@@ -151,11 +151,11 @@ export const getDatePickerClassNames = (
   months: styles[`${baseClass}__months`],
   month: styles[`${baseClass}__month`],
   navBar: styles[`${baseClass}__nav-bar`],
-  navButtonPrev: clsx(
+  navButtonPrev: cx(
     styles[`${baseClass}__nav-button`],
     styles[`${baseClass}__nav-button--prev`]
   ),
-  navButtonNext: clsx(
+  navButtonNext: cx(
     styles[`${baseClass}__nav-button`],
     styles[`${baseClass}__nav-button--next`]
   ),

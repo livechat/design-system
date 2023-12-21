@@ -1,12 +1,6 @@
 @import '../../utils/StackingContextLevel';
 
-.popover-trigger {
-  display: flex;
-  width: fit-content;
-}
-
 .popover {
-  display: none;
   z-index: $stacking-context-level-popover;
   border-radius: var(--radius-3);
   box-shadow: var(--shadow-pop-over);
@@ -14,11 +8,7 @@
   min-width: 168px;
   max-width: 336px;
 
-  &:focus {
+  &:focus-visible {
     outline: none;
-  }
-
-  &--visible {
-    display: block;
   }
 }

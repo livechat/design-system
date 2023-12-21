@@ -1,0 +1,27 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  border-bottom: 1px solid var(--border-default);
+  padding: 15px 0;
+  text-align: left;
+}
+
+table td {
+  font-size: 14px;
+}
+
+.enum-column {
+  width: 25%;
+}
+
+.first-column {
+  width: 20%;
+}
+
+.second-column {
+  width: 12%;
+}

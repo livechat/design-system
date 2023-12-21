@@ -7,13 +7,13 @@
     "packages/*"
   ],
   "scripts": {
-    "clean": "lerna exec rimraf dist",
-    "prestart": "npm run clean",
-    "start": "lerna run dev --parallel",
+    "clean": "lerna exec rimraf dist lib",
+    "prestart": "npm run clean && npm run build:icons",
+    "start": "lerna run dev",
     "start:example": "lerna run start --scope example-react --stream",
     "prebuild": "npm run clean",
     "build": "lerna run build --ignore example-*",
-    "build:icons": "lerna run build:ts --scope @livechat/design-system-icons",
+    "build:icons": "lerna run build --scope @livechat/design-system-icons",
     "chromatic": "lerna run chromatic --stream",
     "prepare": "husky install",
     "lint": "lerna run lint --stream",
@@ -22,7 +22,7 @@
     "prettier": "prettier --write packages",
     "check": "run-s lint test",
     "predeploy": "npm run check && npm run prettier && npm run build",
-    "deploy": "lerna version && lerna publish from-package"
+    "deploy": "lerna version --conventional-commits --no-changelog && lerna publish from-package"
   },
   "repository": {
     "type": "git",

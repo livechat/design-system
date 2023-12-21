@@ -77,18 +77,23 @@
   }
 
   &--small {
-    padding: 1px 4px;
+    padding: 1px var(--spacing-1);
     height: 20px;
   }
 
   &--medium {
-    padding: 1px 8px;
+    padding: 1px var(--spacing-1);
     height: 24px;
   }
 
   &--large {
-    padding: 5px 12px;
+    padding: 5px var(--spacing-2);
     height: 32px;
+  }
+
+  &--xlarge {
+    padding: 5px var(--spacing-3);
+    height: 36px;
   }
 
   &--outline {
@@ -96,12 +101,20 @@
     border-style: solid;
     background-color: transparent;
 
+    &.tag--small {
+      padding: 0 calc(var(--spacing-1) - 1px);
+    }
+
     &.tag--medium {
-      padding: 0 7px;
+      padding: 0 calc(var(--spacing-1) - 1px);
     }
 
     &.tag--large {
-      padding: 4px 11px;
+      padding: 4px calc(var(--spacing-2) - 1px);
+    }
+
+    &.tag--xlarge {
+      padding: 4px calc(var(--spacing-3) - 1px);
     }
 
     .icon {
@@ -117,16 +130,6 @@
     color: var(--color-black);
   }
 
-  &--with-node {
-    &.tag--medium {
-      padding-left: var(--spacing-1);
-    }
-
-    &.tag--large {
-      padding-left: var(--spacing-2);
-    }
-  }
-
   &--dismissible {
     &.tag--medium {
       padding-right: var(--spacing-1);
@@ -140,12 +143,6 @@
   &__node {
     display: flex;
     align-items: center;
-    margin-right: var(--spacing-1);
-
-    &--right {
-      margin-right: 0;
-      margin-left: var(--spacing-1);
-    }
   }
 
   &__remove {
@@ -162,6 +159,8 @@
   }
 
   &__content {
+    margin-right: var(--spacing-1);
+    margin-left: var(--spacing-1);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

@@ -1,165 +1,104 @@
 import * as React from 'react';
 
 import {
-  useFloating,
-  Placement,
-  flip,
-  offset,
   autoUpdate,
-} from '@floating-ui/react-dom';
+  flip,
+  FloatingFocusManager,
+  offset,
+  shift,
+  useClick,
+  useDismiss,
+  useFloating,
+  useInteractions,
+  useRole,
+} from '@floating-ui/react';
 import cx from 'clsx';
 
 import { Text } from '../Typography';
 
-import cssStyles from './Popover.module.scss';
+import { IPopoverProps } from './types';
 
-export interface IPopoverProps {
-  children?: React.ReactNode;
-  /**
-   * The CSS class for popover container
-   */
-  className?: string;
-  /**
-   * The CSS class for trigger container
-   */
-  triggerClassName?: string;
-  /**
-   * The popover placement related to the trigger element
-   */
-  placement?: Placement;
-  /**
-   * Set popover visibility
-   */
-  isVisible?: boolean;
-  /**
-   * Set the popover placement to keep it in view
-   */
-  flipOptions?: Parameters<typeof flip>[0];
-  /**
-   * Set `false` if the menu is not to be closed with a esc press
-   */
-  closeOnEsc?: boolean;
-  /**
-   * Trigger element
-   */
-  triggerRenderer: () => React.ReactNode;
-  /**
-   * Optional callback called after popover close
-   */
-  onClose?: () => void;
-}
+import styles from './Popover.module.scss';
 
 export const Popover: React.FC<IPopoverProps> = ({
   triggerRenderer,
   onClose,
+  onOpen,
   children,
   className,
   triggerClassName,
   placement,
   flipOptions,
-  isVisible = false,
+  offsetSize = 4,
+  isVisible,
+  openedOnInit,
   closeOnEsc = true,
+  useDismissHookProps,
+  useClickHookProps,
+  floatingStrategy,
 }) => {
-  const [visible, setVisibility] = React.useState(false);
-  const prevVisibleState = React.useRef(false);
+  const [visible, setVisible] = React.useState(openedOnInit);
+  const isControlled = isVisible !== undefined;
+  const currentlyVisible = isControlled ? isVisible : visible;
   const isTextContent = typeof children === 'string';
+  const isTriggerAsFunction = typeof triggerRenderer === 'function';
 
-  const {
-    x,
-    y,
-    reference,
-    floating,
-    strategy,
-    refs,
-    update,
-    placement: updatedPlacement,
-  } = useFloating({
-    middleware: [offset(4), flip(flipOptions)],
-    placement: placement,
-  });
-
-  React.useEffect(() => {
-    setVisibility(isVisible);
-  }, [isVisible]);
-
-  React.useEffect(() => {
-    if (onClose && prevVisibleState.current !== visible && !visible) {
-      onClose();
-    }
-    prevVisibleState.current = visible;
-  }, [visible]);
-
-  React.useEffect(() => {
-    const handleHideOnEscape = (event: KeyboardEvent) => {
-      if (closeOnEsc && event.key === 'Escape') {
-        setVisibility(false);
-      }
-    };
-    document.addEventListener('keydown', handleHideOnEscape);
-
-    return () => {
-      document.removeEventListener('keydown', handleHideOnEscape);
-    };
-  }, [closeOnEsc]);
-
-  React.useEffect(() => {
-    if (!refs.reference.current || !refs.floating.current) {
-      return;
-    }
-
-    // Only call this when the floating element is rendered
-    return autoUpdate(refs.reference.current, refs.floating.current, update);
-  }, [refs.reference, refs.floating, update, updatedPlacement, visible]);
-
-  function handleDocumentClick(event: MouseEvent) {
-    if (
-      refs.floating.current &&
-      (refs.floating.current as Node).contains(event.target as Node)
-    ) {
-      return;
-    } else if (
-      refs.reference.current &&
-      (refs.reference.current as Node).contains(event.target as Node)
-    ) {
-      setVisibility((prevVisible) => !prevVisible);
+  const handleVisibilityChange = (isOpen: boolean) => {
+    if (isOpen) {
+      onOpen?.();
     } else {
-      setVisibility(false);
+      onClose?.();
     }
-  }
 
-  React.useEffect(() => {
-    document.addEventListener('mousedown', handleDocumentClick);
+    !isControlled && setVisible(isOpen);
+  };
 
-    return () => {
-      document.removeEventListener('mousedown', handleDocumentClick);
-    };
-  }, []);
-
-  const mergedClassNames = cx(cssStyles['popover'], className, {
-    [cssStyles['popover--visible']]: visible,
+  const { refs, context, floatingStyles } = useFloating({
+    open: currentlyVisible,
+    onOpenChange: handleVisibilityChange,
+    middleware: [offset(offsetSize), flip(flipOptions), shift()],
+    placement: placement,
+    strategy: floatingStrategy,
+    whileElementsMounted: autoUpdate,
   });
 
-  const mergedTriggerClassNames = cx(
-    cssStyles['popover-trigger'],
-    triggerClassName
-  );
+  const click = useClick(context, useClickHookProps);
+  const dismiss = useDismiss(context, {
+    escapeKey: closeOnEsc,
+    ...useDismissHookProps,
+  });
+  const role = useRole(context);
+
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    click,
+    dismiss,
+    role,
+  ]);
+
+  const mergedClassNames = cx(styles['popover'], className);
 
   return (
     <>
-      <div className={mergedTriggerClassNames} ref={reference}>
-        {triggerRenderer()}
-      </div>
       <div
-        ref={floating}
-        className={mergedClassNames}
-        style={{
-          position: strategy,
-          top: y !== null && y !== undefined ? y : '',
-          left: x !== null && x !== undefined ? x : '',
-        }}
+        data-testid="popover-trigger-button"
+        ref={refs.setReference}
+        {...getReferenceProps()}
+        className={triggerClassName}
       >
-        {isTextContent ? <Text as="div">{children}</Text> : children}
+        {isTriggerAsFunction ? triggerRenderer() : triggerRenderer}
       </div>
+      {currentlyVisible && (
+        <FloatingFocusManager context={context} modal={false}>
+          <div
+            className={mergedClassNames}
+            ref={refs.setFloating}
+            style={floatingStyles}
+            {...getFloatingProps()}
+          >
+            {isTextContent ? <Text as="div">{children}</Text> : children}
+          </div>
+        </FloatingFocusManager>
+      )}
     </>
   );
 };

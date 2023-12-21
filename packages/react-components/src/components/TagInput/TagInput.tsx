@@ -53,6 +53,14 @@ export interface TagInputProps
    * Specify the input size
    */
   size?: 'medium' | 'large';
+  /**
+   * Set the input custom class
+   */
+  inputClassName?: string;
+  /**
+   * Add Tag on blur
+   */
+  addOnBlur?: boolean;
 }
 
 export const TagInput: React.FC<TagInputProps> = ({
@@ -63,12 +71,21 @@ export const TagInput: React.FC<TagInputProps> = ({
   error,
   placeholder,
   size = 'medium',
+  className,
+  inputClassName,
+  onBlur,
+  addOnBlur = true,
   ...props
 }) => {
-  const mergedClassNames = cx(styles[baseClass], {
-    [styles[`${baseClass}--error`]]: error,
-  });
+  const mergedClassNames = cx(
+    styles[baseClass],
+    {
+      [styles[`${baseClass}--error`]]: error,
+    },
+    className
+  );
   const inputClassNames = cx(
+    inputClassName,
     styles[`${baseClass}__input`],
     styles[`${baseClass}__input--${size}`]
   );
@@ -87,10 +104,10 @@ export const TagInput: React.FC<TagInputProps> = ({
     onChange(newTags);
   };
 
-  const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setInputValue(e.target.value);
 
-  const onInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (tagSeparatorKeys.includes(e.key)) {
       e.preventDefault();
 
@@ -108,6 +125,11 @@ export const TagInput: React.FC<TagInputProps> = ({
     }
   };
 
+  const handleBlur = (ev: React.FocusEvent<HTMLInputElement>) => {
+    addOnBlur && addTag(inputValue);
+    onBlur?.(ev);
+  };
+
   const updateTag = (i: number, value: string) => {
     const newTags = [...(tags || [])];
     const numOccurrencesOfValue = newTags.reduce(
@@ -123,7 +145,7 @@ export const TagInput: React.FC<TagInputProps> = ({
     onChange(newTags);
   };
 
-  const onPaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+  const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
     e.preventDefault();
     const text = e.clipboardData.getData('text/plain');
     const newTags = text.split(/[\s,;\n]+/);
@@ -153,9 +175,10 @@ export const TagInput: React.FC<TagInputProps> = ({
           className={inputClassNames}
           placeholder={placeholder}
           value={inputValue}
-          onChange={onInputChange}
-          onKeyDown={onInputKeyDown}
-          onPaste={onPaste}
+          onChange={handleInputChange}
+          onKeyDown={handleInputKeyDown}
+          onPaste={handlePaste}
+          onBlur={handleBlur}
         />
       </div>
       {error && <FieldError>{error}</FieldError>}
