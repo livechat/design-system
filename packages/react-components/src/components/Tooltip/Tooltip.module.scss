@@ -6,7 +6,6 @@ $base-class: 'tooltip';
   z-index: $stacking-context-level-tooltip;
   border: 1px solid var(--tooltip-border);
   border-radius: var(--radius-3);
-  border-color: var(--background-02);
   box-shadow: var(--shadow-tooltip);
   background-color: var(--background-02);
   padding: var(--spacing-3);
@@ -17,7 +16,8 @@ $base-class: 'tooltip';
   &__arrow {
     position: absolute;
     border: 1px solid;
-    border-color: var(--tooltip-border) var(--background-02) var(--background-02) var(--tooltip-border);
+    border-color: var(--tooltip-border) var(--background-02)
+      var(--background-02) var(--tooltip-border);
     box-shadow: var(--shadow-tooltip-arrow);
     background: var(--background-02);
     width: 10px;
