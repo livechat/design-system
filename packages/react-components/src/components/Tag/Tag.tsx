@@ -42,7 +42,7 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * The event handler for close icon click
    */
-  onRemove?(): void;
+  onRemove?(e: React.MouseEvent): void;
   /**
    * React node element to show on the left
    */
@@ -146,6 +146,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
       )}
       {dismissible && (
         <button
+          tabIndex={-1}
           title="Remove"
           onClick={onRemove}
           type="button"

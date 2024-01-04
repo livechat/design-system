@@ -2,27 +2,27 @@ import * as React from 'react';
 
 import { render, fireEvent, vi } from 'test-utils';
 
-import noop from '../../utils/noop';
+import noop from '../../../utils/noop';
 
-import { ITriggerProps, Trigger } from './Trigger';
+import { PickerTriggerProps, PickerTrigger } from './PickerTrigger';
 
-import styles from './Trigger.module.scss';
+import styles from './PickerTrigger.module.scss';
 
 const baseClass = 'picker-trigger';
 
-const defaultProps = {
-  isSearchDisabled: false,
+const defaultProps: PickerTriggerProps = {
+  getReferenceProps: vi.fn(),
+  setReference: vi.fn(),
   isItemSelected: false,
   isOpen: false,
-  onTrigger: () => noop,
   onClear: () => noop,
 };
 
-const renderComponent = (props: ITriggerProps) => {
-  return render(<Trigger {...props}>Example text</Trigger>);
+const renderComponent = (props: PickerTriggerProps) => {
+  return render(<PickerTrigger {...props}>Example text</PickerTrigger>);
 };
 
-describe('<Trigger> component', () => {
+describe('<PickerTrigger> component', () => {
   it('should render Trigger with given content', () => {
     const { getByText } = renderComponent(defaultProps);
 
@@ -62,17 +62,6 @@ describe('<Trigger> component', () => {
     expect(container.firstChild).toHaveClass(styles[`${baseClass}--error`]);
   });
 
-  it('should call onClick when Trigger clicked', () => {
-    const onTrigger = vi.fn();
-    const { getByText } = renderComponent({
-      ...defaultProps,
-      onTrigger,
-    });
-
-    fireEvent.click(getByText('Example text'));
-    expect(onTrigger).toHaveBeenCalled();
-  });
-
   it('should call onClearClick when clear button clicked', () => {
     const onClear = vi.fn();
     const { getByTestId } = renderComponent({
@@ -110,7 +99,6 @@ describe('<Trigger> component', () => {
     const { queryByRole } = renderComponent({
       ...defaultProps,
       isOpen: true,
-      isSearchDisabled: true,
     });
 
     expect(queryByRole('textbox')).toBeNull();

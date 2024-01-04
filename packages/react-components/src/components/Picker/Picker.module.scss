@@ -1,13 +1,3 @@
-$base-class: 'picker';
-
-.#{$base-class} {
-  box-sizing: border-box;
-  display: inline-block;
-  position: relative;
+.picker-wrapper {
   width: 100%;
-  color: var(--content-basic-primary);
-
-  &__container {
-    position: relative;
-  }
 }

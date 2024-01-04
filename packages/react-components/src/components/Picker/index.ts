@@ -1,3 +1,3 @@
 export * from './Picker';
-export * from './PickerList';
-export type { PickerType, IPickerListItem } from './types';
+export * from './components/PickerList';
+export type { PickerType, IPickerListItem, IPickerProps } from './types';

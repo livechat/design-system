@@ -1,63 +1,45 @@
-@import '../../utils/StackingContextLevel';
-
 $base-class: 'picker-list';
 
-.list-wrapper {
-  position: absolute;
-  top: calc(100% + 4px);
-  z-index: $stacking-context-level-dropdown;
-  border-radius: var(--radius-3);
-  box-shadow: var(--shadow-pop-over);
-  width: 100%;
-  overflow: auto;
+.item-wrapper {
+  padding: 0 var(--spacing-2);
+
+  &__first {
+    padding-top: var(--spacing-2);
+  }
+
+  &__last {
+    padding-bottom: var(--spacing-2);
+
+    > div {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .#{$base-class} {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-05);
-  margin: 0;
-  background-color: var(--picker-list-background);
-  padding: var(--spacing-2);
-  max-height: 242px;
-  overflow: auto;
-  line-height: 22px;
-  font-size: 15px;
-  font-weight: 400;
-  color-scheme: var(--color-scheme);
-
-  &__no-results {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 36px;
-  }
-
   &__item {
     box-sizing: border-box;
     display: flex;
-    position: relative;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    margin-bottom: var(--spacing-05);
     border: 1px solid transparent;
     border-radius: var(--radius-3);
     cursor: pointer;
     padding: 6px 11px;
-    height: 100%;
+    width: 100%;
 
     &:hover {
       background-color: var(--picker-list-option-background-hover);
     }
 
-    &:focus,
-    &:active {
-      background-color: var(--picker-list-option-background-focus);
-    }
-
     &[aria-current='true'] {
       border-color: var(--action-primary-default);
       background-color: var(--picker-list-option-background-focus);
+
+      &:hover {
+        border-color: transparent;
+      }
     }
 
     &[aria-disabled='true'] {
@@ -78,7 +60,18 @@ $base-class: 'picker-list';
     }
 
     &--select-all {
-      border-bottom: 1px solid var(--border-basic-tertiary);
+      position: relative;
+      margin-bottom: 5px;
+
+      &::after {
+        position: absolute;
+        bottom: -4px;
+        z-index: -1;
+        background-color: var(--border-basic-tertiary);
+        width: 100%;
+        height: 1px;
+        content: '';
+      }
     }
 
     &__header {
@@ -87,6 +80,7 @@ $base-class: 'picker-list';
       align-items: center;
       justify-content: space-between;
       z-index: 1;
+      margin-bottom: var(--spacing-05);
       background-color: var(--picker-list-group-background);
       cursor: auto;
       padding: 12px 12px 4px;
@@ -99,8 +93,6 @@ $base-class: 'picker-list';
       &::after {
         position: absolute;
         top: 0;
-        right: -8px;
-        left: -8px;
         z-index: -1;
         background: var(--picker-list-group-background);
         height: 36px;
@@ -109,9 +101,6 @@ $base-class: 'picker-list';
 
       &:nth-of-type(1)::before {
         position: absolute;
-        top: calc(var(--spacing-2) * -1);
-        right: -8px;
-        left: -8px;
         z-index: -1;
         background: var(--picker-list-group-background);
         height: var(--spacing-2);
@@ -132,8 +121,15 @@ $base-class: 'picker-list';
     }
 
     &__checkbox {
+      display: inline-flex;
       align-self: center;
       margin-right: var(--spacing-2);
+
+      input {
+        margin-left: var(--spacing-1);
+        width: 13px;
+        height: 13px;
+      }
     }
 
     &__avatar,
