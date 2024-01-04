@@ -4,6 +4,7 @@ $base-class: 'tooltip';
 
 .#{$base-class} {
   z-index: $stacking-context-level-tooltip;
+  border: 1px solid var(--tooltip-border);
   border-radius: var(--radius-3);
   border-color: var(--background-02);
   box-shadow: var(--shadow-tooltip);
@@ -14,7 +15,33 @@ $base-class: 'tooltip';
   font-size: 15px;
 
   &__arrow {
-    fill: var(--background-02);
+    position: absolute;
+    border: 1px solid;
+    border-color: var(--tooltip-border) var(--background-02) var(--background-02) var(--tooltip-border);
+    box-shadow: var(--shadow-tooltip-arrow);
+    background: var(--background-02);
+    width: 10px;
+    height: 10px;
+
+    &[aria-placement^='left'] {
+      left: calc(100% - 5px);
+      transform: rotate(135deg);
+    }
+
+    &[aria-placement^='right'] {
+      left: calc(0% - 5px);
+      transform: rotate(-45deg);
+    }
+
+    &[aria-placement^='bottom'] {
+      top: calc(0% - 5px);
+      transform: rotate(45deg);
+    }
+
+    &[aria-placement^='top'] {
+      top: calc(100% - 5px);
+      transform: rotate(-135deg);
+    }
   }
 
   &--invert {
