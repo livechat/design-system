@@ -71,6 +71,7 @@ export const PickerTrigger: React.FC<
       className={mergedClassNames}
       data-testid={testId}
       ref={setReference}
+      type="button"
       {...getReferenceProps()}
     >
       <div
