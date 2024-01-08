@@ -82,10 +82,15 @@ $base-class: 'picker-trigger';
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 4px;
     border-radius: 50%;
     background-color: var(--surface-moderate-default);
     width: 20px;
     height: 20px;
+  }
+
+  &__chevron-icon {
+    margin-left: 4px;
   }
 
   &--disabled {
