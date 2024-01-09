@@ -62,6 +62,7 @@ export const Modal: React.FC<ModalProps> = ({
       className={mergedClassNames}
       fullSpaceContent={fullSpaceContent}
       onClose={onClose}
+      isLabelled={!!labelHeading}
       {...props}
     >
       {labelHeading && (
