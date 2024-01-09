@@ -120,11 +120,11 @@ export interface ITooltipProps {
    */
   useClickHookProps?: UseClickProps;
   /**
-   * Set to move the arrow along the Y axis from default position (left and right possition)
+   * Set to move the arrow along the Y axis from default position (left and right position)
    */
   arrowOffsetY?: number;
   /**
-   * Set to move the arrow along the X axis from default position (top and bottom possition)
+   * Set to move the arrow along the X axis from default position (top and bottom position)
    */
   arrowOffsetX?: number;
   /**
