@@ -112,6 +112,7 @@ const entryConfig = {
   ChevronUpFilled: './lib/ChevronUpFilled.tsx',
   ChipCopilotColored: './lib/ChipCopilotColored.tsx',
   ChipCopilotMono: './lib/ChipCopilotMono.tsx',
+  ChipCopilotOutlined: './lib/ChipCopilotOutlined.tsx',
   CircleMinus: './lib/CircleMinus.tsx',
   ClipboardCheck: './lib/ClipboardCheck.tsx',
   ClipboardX: './lib/ClipboardX.tsx',

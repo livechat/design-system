@@ -14,7 +14,7 @@
   "scripts": {
     "prebuild": "rimraf dist && rimraf lib && npm run prepareIcons && npm run createEntryConfig",
     "build": "tsc && vite build",
-    "prepublishOnly": "npm run build && npm run updateExports",
+    "postbuild": "npm run updateExports",
     "updateExports": "node ./scripts/updateExports.js",
     "createEntryConfig": "node ./scripts/createEntryConfig.js",
     "prepareIcons": "svgr ./svg ",
@@ -596,6 +596,11 @@
       "import": "./dist/ChipCopilotMono.es.js",
       "require": "./dist/ChipCopilotMono.cjs.js",
       "types": "./dist/ChipCopilotMono.d.ts"
+    },
+    "./ChipCopilotOutlined": {
+      "import": "./dist/ChipCopilotOutlined.es.js",
+      "require": "./dist/ChipCopilotOutlined.cjs.js",
+      "types": "./dist/ChipCopilotOutlined.d.ts"
     },
     "./CircleMinus": {
       "import": "./dist/CircleMinus.es.js",
