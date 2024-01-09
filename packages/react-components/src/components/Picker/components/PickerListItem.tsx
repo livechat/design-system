@@ -71,6 +71,7 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
             className={cx({
               [styles[`${itemClassName}__main-label`]]: item.secondaryText,
             })}
+            aria-disabled={item.disabled}
           >
             {item.name}
           </span>

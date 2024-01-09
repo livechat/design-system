@@ -14,6 +14,14 @@ $base-class: 'picker-list';
       margin-bottom: 0;
     }
   }
+
+  &:hover {
+    > div {
+      &[aria-current='true'] {
+        border-color: transparent;
+      }
+    }
+  }
 }
 
 .#{$base-class} {
@@ -28,6 +36,7 @@ $base-class: 'picker-list';
     cursor: pointer;
     padding: 6px 11px;
     width: 100%;
+    color: var(--content-basic-primary);
 
     &:hover {
       background-color: var(--picker-list-option-background-hover);
