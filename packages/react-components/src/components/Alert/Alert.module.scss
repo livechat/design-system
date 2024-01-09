@@ -64,8 +64,6 @@ $base-class: 'alert';
   }
 
   &--small {
-    flex-direction: column;
-
     .#{$base-class}__content {
       align-items: flex-start;
 
@@ -77,18 +75,19 @@ $base-class: 'alert';
     .#{$base-class}__icon {
       margin-bottom: var(--spacing-3);
     }
-
-    .#{$base-class}__close-icon {
-      position: absolute;
-      top: var(--spacing-5);
-      right: var(--spacing-5);
-    }
   }
 
   &--medium {
     .#{$base-class}__content__wrapper__cta {
       align-self: flex-start;
       margin-left: 44px;
+    }
+  }
+
+  &--large {
+    .#{$base-class}__close-icon {
+      margin-top: auto;
+      margin-bottom: auto;
     }
   }
 
