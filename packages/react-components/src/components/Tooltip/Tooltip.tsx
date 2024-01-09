@@ -26,7 +26,7 @@ import styles from './Tooltip.module.scss';
 
 const baseClass = 'tooltip';
 
-export const Tooltip: React.FC<ITooltipProps> = ({
+export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
   children,
   className,
   triggerClassName,

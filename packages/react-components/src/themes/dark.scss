@@ -22,6 +22,7 @@ $surface-tertiary-hover: #43434b;
   --surface-secondary-hover: #{$surface-secondary-hover};
   --surface-secondary-active: #{$surface-secondary-active};
   --surface-secondary-disabled: #2d2d32;
+  --surface-primary-hover-opacity: rgb(255 255 255 / 10%);
   --surface-basic-hover: rgb(255 255 255 / 10%); // deprecated
   --surface-primary-hover: #{$surface-primary-hover};
   --surface-basic-active: rgb(255 255 255 / 20%); // deprecated

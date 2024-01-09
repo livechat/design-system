@@ -79,6 +79,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
         [styles[`${baseClass}--focused`]]: isFocused,
         [styles[`${baseClass}--error`]]: error,
         [styles[`${baseClass}--crop`]]: cropOnBlur,
+        [styles[`${baseClass}--read-only`]]: inputProps.readOnly,
       }
     );
     const iconCustomColor = !disabled

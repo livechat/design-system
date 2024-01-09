@@ -21,6 +21,9 @@ export default {
     icon: {
       control: false,
     },
+    readOnly: {
+      type: 'boolean',
+    },
   },
 } as ComponentMeta<typeof Input>;
 

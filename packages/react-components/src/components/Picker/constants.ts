@@ -1,13 +1,34 @@
 import { DayMode } from '@livechat/design-system-icons';
 
+export const ITEM_ROW_HEIGHT = 35;
+export const ITEM_GAP_HEIGHT = 2;
+export const ITEM_HEIGHT = ITEM_ROW_HEIGHT + ITEM_GAP_HEIGHT;
+export const DEFAULT_LIST_HEIGHT = 400;
+
 export const DEFAULT_PICKER_OPTIONS = [
   { key: 'one', name: 'Option one' },
+  { key: 'groupA', name: 'Group A title header', groupHeader: true },
   { key: 'two', name: 'Option two' },
   { key: 'three', name: 'Option three' },
+  { key: 'groupB', name: 'Group B title header', groupHeader: true },
   { key: 'four', name: 'Option four' },
   { key: 'five', name: 'Option five' },
   { key: 'six', name: 'Option six' },
   { key: 'seven', name: 'Option seven' },
+  ...[...Array(100)].map((_, index) => ({
+    key: `option${index + 8}`,
+    name: `Option #${index + 8}`,
+    disabled: index % 4 === 0,
+  })),
+];
+
+export const SELECTED_OPTIONS = [
+  { key: 'two', name: 'Option two' },
+  { key: 'five', name: 'Option five' },
+  {
+    key: `option107`,
+    name: `Option #107`,
+  },
 ];
 
 export const DEFAULT_EXTENDED_OPTIONS = [

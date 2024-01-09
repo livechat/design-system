@@ -83,6 +83,7 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
   const mergedClassNames = cx(
     styles[baseClass],
     styles[`${baseClass}--${kind}`],
+    containerSize === 'large' && styles[`${baseClass}--large`],
     containerSize === 'medium' && styles[`${baseClass}--medium`],
     containerSize === 'small' && styles[`${baseClass}--small`],
     className
@@ -102,7 +103,7 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
         return setContainerSize('medium');
       }
 
-      return setContainerSize(null);
+      return setContainerSize('large');
     };
 
     const handleResize = debounce(() => {

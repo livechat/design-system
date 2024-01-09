@@ -25,11 +25,11 @@ export interface IPopoverProps {
   /**
    * Optional handler called on tooltip hide
    */
-  onClose?: () => void;
+  onClose?: (event?: Event) => void;
   /**
    * Optional handler called on tooltip show
    */
-  onOpen?: () => void;
+  onOpen?: (event?: Event) => void;
   /**
    * Set popover visibility
    */
