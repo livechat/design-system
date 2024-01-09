@@ -14,7 +14,7 @@
   "scripts": {
     "prebuild": "rimraf dist && rimraf lib && npm run prepareIcons && npm run createEntryConfig",
     "build": "tsc && vite build",
-    "prepublishOnly": "npm run build && npm run updateExports",
+    "postbuild": "npm run updateExports",
     "updateExports": "node ./scripts/updateExports.js",
     "createEntryConfig": "node ./scripts/createEntryConfig.js",
     "prepareIcons": "svgr ./svg ",
