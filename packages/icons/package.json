@@ -597,6 +597,11 @@
       "require": "./dist/ChipCopilotMono.cjs.js",
       "types": "./dist/ChipCopilotMono.d.ts"
     },
+    "./ChipCopilotOutlined": {
+      "import": "./dist/ChipCopilotOutlined.es.js",
+      "require": "./dist/ChipCopilotOutlined.cjs.js",
+      "types": "./dist/ChipCopilotOutlined.d.ts"
+    },
     "./CircleMinus": {
       "import": "./dist/CircleMinus.es.js",
       "require": "./dist/CircleMinus.cjs.js",
