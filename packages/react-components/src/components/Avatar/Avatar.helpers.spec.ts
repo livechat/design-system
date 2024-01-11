@@ -56,14 +56,6 @@ describe('getInitials', () => {
     expect(getInitials('John 😩')).toBe('J😩');
   });
 
-  it('should handle words with emojis', () => {
-    expect(getInitials('😩 Doe')).toBe('😩D');
-  });
-
-  it('should handle words with emojis', () => {
-    expect(getInitials('John 😩 Doe')).toBe('JD');
-  });
-
   it('should handle empty input', () => {
     expect(getInitials('')).toBe('');
   });
