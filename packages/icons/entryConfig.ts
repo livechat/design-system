@@ -156,6 +156,8 @@ const entryConfig = {
   DevicesFilled: './lib/DevicesFilled.tsx',
   Directions: './lib/Directions.tsx',
   DirectionsFilled: './lib/DirectionsFilled.tsx',
+  Discount: './lib/Discount.tsx',
+  DiscountFilled: './lib/DiscountFilled.tsx',
   DismissChat: './lib/DismissChat.tsx',
   DismissChatFilled: './lib/DismissChatFilled.tsx',
   DoubleArrowLeft: './lib/DoubleArrowLeft.tsx',

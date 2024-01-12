@@ -817,6 +817,16 @@
       "require": "./dist/DirectionsFilled.cjs.js",
       "types": "./dist/DirectionsFilled.d.ts"
     },
+    "./Discount": {
+      "import": "./dist/Discount.es.js",
+      "require": "./dist/Discount.cjs.js",
+      "types": "./dist/Discount.d.ts"
+    },
+    "./DiscountFilled": {
+      "import": "./dist/DiscountFilled.es.js",
+      "require": "./dist/DiscountFilled.cjs.js",
+      "types": "./dist/DiscountFilled.d.ts"
+    },
     "./DismissChat": {
       "import": "./dist/DismissChat.es.js",
       "require": "./dist/DismissChat.cjs.js",
