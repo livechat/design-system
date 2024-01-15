@@ -14,6 +14,7 @@ module.exports = {
     getAbsolutePath('storybook-addon-themes'),
     getAbsolutePath('@storybook/addon-a11y'),
     getAbsolutePath('@storybook/addon-designs'),
+    getAbsolutePath('@storybook/addon-mdx-gfm'),
   ],
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
