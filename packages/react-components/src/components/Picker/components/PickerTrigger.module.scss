@@ -13,6 +13,7 @@ $base-class: 'picker-trigger';
   padding: 0 var(--spacing-3);
   width: 100%;
   line-height: 22px;
+  color: var(--content-basic-primary);
   font-size: 15px;
   font-weight: 400;
 
@@ -81,10 +82,15 @@ $base-class: 'picker-trigger';
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 4px;
     border-radius: 50%;
     background-color: var(--surface-moderate-default);
     width: 20px;
     height: 20px;
+  }
+
+  &__chevron-icon {
+    margin-left: 4px;
   }
 
   &--disabled {

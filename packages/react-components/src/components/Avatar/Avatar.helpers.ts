@@ -18,24 +18,22 @@ export function getBackgroundColor(text?: string): string | undefined {
 }
 
 export function getInitials(name = '', count = 2): string {
-  const nameArray = name.split(/\s+/);
+  const nameArray = name.trim().split(/\s+/);
+  const initialsArray = nameArray.map((name) => [...name][0]);
 
   if (count < 1) return '';
 
   // If the name has fewer words than count, return initials for all the words
   if (nameArray.length <= count) {
-    return nameArray
-      .map((el) => el.charAt(0))
-      .join('')
-      .toUpperCase();
+    return initialsArray.join('').toUpperCase();
   }
 
-  // Take the first initial from the first name
-  const initials = [nameArray[0].charAt(0)];
+  // Take the first initial
+  const initials = [initialsArray[0]];
 
   // Take the remaining initials from the last (count - 1) names
   for (let i = nameArray.length - count + 1; i < nameArray.length; i++) {
-    initials.push(nameArray[i].charAt(0));
+    initials.push(initialsArray[i]);
   }
 
   return initials.join('').toUpperCase();

@@ -17,22 +17,22 @@ export const sleep = (milliseconds: number): Promise<void> => {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 };
 
-export function getArrowStyles(
+export function getArrowPositionStyles(
   arrowOffsetY?: number,
   arrowOffsetX?: number,
   arrowY?: number,
   arrowX?: number
 ): CSSProperties | undefined {
-  if (arrowOffsetY && arrowY) {
-    const arrowYPosition = arrowY + arrowOffsetY;
+  if (arrowY) {
+    const arrowYPosition = arrowOffsetY ? arrowY + arrowOffsetY : arrowY;
 
     return {
       top: arrowYPosition,
     };
   }
 
-  if (arrowOffsetX && arrowX) {
-    const arrowXPosition = arrowX + arrowOffsetX;
+  if (arrowX) {
+    const arrowXPosition = arrowOffsetX ? arrowX + arrowOffsetX : arrowX;
 
     return {
       left: arrowXPosition,
