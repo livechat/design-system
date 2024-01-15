@@ -50,7 +50,8 @@ $base-class: 'tooltip';
     color: var(--content-invert-primary);
 
     .#{$base-class}__arrow {
-      fill: var(--surface-invert-primary);
+      border-color: var(--surface-invert-primary);
+      background: var(--surface-invert-primary);
     }
   }
 
@@ -60,7 +61,8 @@ $base-class: 'tooltip';
     color: var(--content-locked-black);
 
     .#{$base-class}__arrow {
-      fill: var(--surface-accent-emphasis-high-warning);
+      border-color: var(--surface-accent-emphasis-high-warning);
+      background: var(--surface-accent-emphasis-high-warning);
     }
   }
 
