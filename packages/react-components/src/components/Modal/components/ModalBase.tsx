@@ -22,6 +22,10 @@ export interface ModalBaseProps extends React.HTMLAttributes<HTMLDivElement> {
    * Removes the spacing inside the main container
    */
   fullSpaceContent?: boolean;
+  /**
+   * Put extra margin on the top of the modal for the label
+   */
+  isLabelled?: boolean;
 }
 
 const baseClass = 'modal-base';
@@ -33,6 +37,7 @@ export const ModalBase: React.FC<React.PropsWithChildren<ModalBaseProps>> = ({
   closeOnEscPress = true,
   closeOnOverlayPress = true,
   fullSpaceContent,
+  isLabelled,
   ...props
 }) => {
   const mergedClassNames = cx(
@@ -69,7 +74,8 @@ export const ModalBase: React.FC<React.PropsWithChildren<ModalBaseProps>> = ({
       onMouseDown={onOverlayClick}
       className={cx(
         styles[`${baseClass}__overlay`],
-        styles[`${baseClass}__overlay--visible`]
+        styles[`${baseClass}__overlay--visible`],
+        isLabelled && styles[`${baseClass}__overlay--labelled`]
       )}
     >
       <div

@@ -7,33 +7,6 @@ import { render, userEvent } from 'test-utils';
 import { ActionBar } from './ActionBar';
 import { IActionBarProps } from './types';
 
-vi.mock('@floating-ui/react-dom', () => {
-  return {
-    useFloating: vi.fn(() => {
-      return {
-        x: 0,
-        y: 0,
-        placement: 'bottom',
-        middlewareData: {
-          arrow: {
-            x: 0,
-            y: 0,
-          },
-        },
-        refs: {
-          floating: 0,
-          reference: 0,
-        },
-      };
-    }),
-    arrow: vi.fn(),
-    autoUpdate: vi.fn(),
-    flip: vi.fn(),
-    offset: vi.fn(),
-    x: 0,
-  };
-});
-
 const defaultOptions = [
   {
     key: 'one',

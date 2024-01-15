@@ -4,11 +4,15 @@ import {
   autoUpdate,
   flip,
   FloatingFocusManager,
+  FloatingNode,
+  FloatingTree,
   offset,
   shift,
   useClick,
   useDismiss,
   useFloating,
+  useFloatingNodeId,
+  useFloatingParentNodeId,
   useInteractions,
   useRole,
 } from '@floating-ui/react';
@@ -38,22 +42,25 @@ export const Popover: React.FC<IPopoverProps> = ({
   floatingStrategy,
 }) => {
   const [visible, setVisible] = React.useState(openedOnInit);
+  const parentId = useFloatingParentNodeId();
+  const nodeId = useFloatingNodeId();
   const isControlled = isVisible !== undefined;
   const currentlyVisible = isControlled ? isVisible : visible;
   const isTextContent = typeof children === 'string';
   const isTriggerAsFunction = typeof triggerRenderer === 'function';
 
-  const handleVisibilityChange = (isOpen: boolean) => {
+  const handleVisibilityChange = (isOpen: boolean, event?: Event) => {
     if (isOpen) {
-      onOpen?.();
+      onOpen?.(event);
     } else {
-      onClose?.();
+      onClose?.(event);
     }
 
     !isControlled && setVisible(isOpen);
   };
 
   const { refs, context, floatingStyles } = useFloating({
+    nodeId,
     open: currentlyVisible,
     onOpenChange: handleVisibilityChange,
     middleware: [offset(offsetSize), flip(flipOptions), shift()],
@@ -77,7 +84,7 @@ export const Popover: React.FC<IPopoverProps> = ({
 
   const mergedClassNames = cx(styles['popover'], className);
 
-  return (
+  const PopoverComponent = (
     <>
       <div
         data-testid="popover-trigger-button"
@@ -87,18 +94,26 @@ export const Popover: React.FC<IPopoverProps> = ({
       >
         {isTriggerAsFunction ? triggerRenderer() : triggerRenderer}
       </div>
-      {currentlyVisible && (
-        <FloatingFocusManager context={context} modal={false}>
-          <div
-            className={mergedClassNames}
-            ref={refs.setFloating}
-            style={floatingStyles}
-            {...getFloatingProps()}
-          >
-            {isTextContent ? <Text as="div">{children}</Text> : children}
-          </div>
-        </FloatingFocusManager>
-      )}
+      <FloatingNode id={nodeId}>
+        {currentlyVisible && (
+          <FloatingFocusManager context={context} modal={false}>
+            <div
+              className={mergedClassNames}
+              ref={refs.setFloating}
+              style={floatingStyles}
+              {...getFloatingProps()}
+            >
+              {isTextContent ? <Text as="div">{children}</Text> : children}
+            </div>
+          </FloatingFocusManager>
+        )}
+      </FloatingNode>
     </>
   );
+
+  if (parentId === null) {
+    return <FloatingTree>{PopoverComponent}</FloatingTree>;
+  }
+
+  return PopoverComponent;
 };
