@@ -2,14 +2,12 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import { Size } from 'utils';
+import { Size } from '../../../utils';
+import { Icon } from '../../Icon';
+import { Tag } from '../../Tag';
+import { PickerType, IPickerListItem } from '../types';
 
-import { Icon } from '../Icon';
-import { Tag } from '../Tag';
-
-import { PickerType, IPickerListItem } from './types';
-
-import styles from './TriggerBody.module.scss';
+import styles from './PickerTriggerBody.module.scss';
 
 const baseClass = 'picker-trigger-body';
 
@@ -18,25 +16,31 @@ export interface ITriggerBodyProps {
   isSearchDisabled?: boolean;
   isDisabled?: boolean;
   placeholder: string;
-  items?: IPickerListItem[] | null;
+  searchPhrase?: string;
+  selectedItems?: IPickerListItem[] | null;
   type: PickerType;
   clearSearchAfterSelection?: boolean;
   size?: Size;
-  onItemRemove: (item: IPickerListItem) => void;
+  onItemRemove: (key: string) => void;
+  onSelect: (key: string) => void;
   onFilter: (text: string) => void;
+  virtualItemRef: React.MutableRefObject<HTMLElement | null>;
 }
 
-export const TriggerBody: React.FC<ITriggerBodyProps> = ({
+export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
   isOpen,
   isSearchDisabled,
   isDisabled,
   placeholder,
-  items,
+  selectedItems,
   type,
   clearSearchAfterSelection,
-  size,
+  size = 'medium',
   onItemRemove,
+  onSelect,
   onFilter,
+  searchPhrase,
+  virtualItemRef,
 }) => {
   const shouldDisplaySearch = isOpen && !isSearchDisabled;
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -50,7 +54,7 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
         inputRef.current.focus();
       }
     }
-  }, [items, clearSearchAfterSelection]);
+  }, [selectedItems, clearSearchAfterSelection]);
 
   const getSingleItem = (item: IPickerListItem) => {
     if (type === 'single' && isOpen && !isSearchDisabled) {
@@ -85,8 +89,22 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
     );
   };
 
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     onFilter(e.target.value);
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (virtualItemRef.current?.id && e.key === 'Enter') {
+      onSelect(virtualItemRef.current?.id);
+    }
+    if (
+      type === 'multi' &&
+      (e.key === 'Backspace' || e.key === 'Delete') &&
+      !searchPhrase &&
+      selectedItems &&
+      selectedItems?.length > 0
+    ) {
+      onItemRemove(selectedItems[selectedItems.length - 1].key);
+    }
   };
 
   const getSearch = () => (
@@ -98,12 +116,25 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
       )}
       placeholder="Select option"
       onChange={handleOnChange}
+      onKeyDown={handleKeyDown}
       autoFocus
+      value={searchPhrase}
     />
   );
 
-  if (!items || items.length === 0) {
-    return shouldDisplaySearch ? getSearch() : <div>{placeholder}</div>;
+  if (!selectedItems || selectedItems.length === 0) {
+    return shouldDisplaySearch ? (
+      getSearch()
+    ) : (
+      <div
+        className={cx({
+          [styles[`${baseClass}__placeholder`]]: true,
+          [styles[`${baseClass}__placeholder--disabled`]]: isDisabled,
+        })}
+      >
+        {placeholder}
+      </div>
+    );
   }
 
   return (
@@ -114,8 +145,8 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
     >
       <div className={styles[`${baseClass}__item-container`]}>
         {type === 'single'
-          ? getSingleItem(items[0])
-          : items.map((item) => {
+          ? getSingleItem(selectedItems[0])
+          : selectedItems.map((item) => {
               return (
                 <Tag
                   key={item.name}
@@ -124,7 +155,10 @@ export const TriggerBody: React.FC<ITriggerBodyProps> = ({
                     styles[`${baseClass}__tag--${size}`]
                   )}
                   dismissible={!isDisabled}
-                  onRemove={() => onItemRemove(item)}
+                  onRemove={(e) => {
+                    e.stopPropagation();
+                    onItemRemove(item.key);
+                  }}
                 >
                   {getSingleItem(item)}
                 </Tag>

@@ -25,7 +25,7 @@ export interface IDetailsCardProps {
   /**
    * Set the label
    */
-  label: string;
+  label: React.ReactNode;
   /**
    * Define if divider should be visible
    */
@@ -71,6 +71,7 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
     className
   );
   const isMainButtonHidden = hideLabelOnOpen && isOpen;
+  const isTextContent = typeof label === 'string';
 
   const handleButtonClick = () => {
     setIsOpen((prevValue) => !prevValue);
@@ -117,9 +118,18 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
               {leftNode}
             </div>
           )}
-          <Heading size="xs" className={styles[`${baseClass}__label__text`]}>
-            {label}
-          </Heading>
+          {isTextContent ? (
+            <Heading
+              size="xs"
+              className={styles[`${baseClass}__label__content`]}
+            >
+              {label}
+            </Heading>
+          ) : (
+            <div className={styles[`${baseClass}__label__content`]}>
+              {label}
+            </div>
+          )}
           {rightNode && (
             <div className={styles[`${baseClass}__label__right-node`]}>
               {rightNode}

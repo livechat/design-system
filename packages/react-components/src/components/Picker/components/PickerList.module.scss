@@ -1,0 +1,26 @@
+.listbox {
+  z-index: 13001;
+  margin: 0;
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-pop-over);
+  background-color: var(--picker-list-background);
+  width: 100%;
+  overflow: auto;
+  line-height: 22px;
+  font-size: 15px;
+  font-weight: 400;
+  color-scheme: var(--color-scheme);
+}
+
+.no-results {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+}
+
+.listbox-wrapper {
+  position: relative;
+  outline: 0;
+  width: 100%;
+}

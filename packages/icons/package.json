@@ -1,6 +1,6 @@
 {
   "name": "@livechat/design-system-icons",
-  "version": "1.6.1",
+  "version": "1.16.2",
   "description": "",
   "publishConfig": {
     "access": "public"
@@ -14,10 +14,10 @@
   "scripts": {
     "prebuild": "rimraf dist && rimraf lib && npm run prepareIcons && npm run createEntryConfig",
     "build": "tsc && vite build",
-    "prepublishOnly": "npm run build && npm run updateExports",
+    "postbuild": "npm run updateExports",
     "updateExports": "node ./scripts/updateExports.js",
     "createEntryConfig": "node ./scripts/createEntryConfig.js",
-    "prepareIcons": "svgr --replace-attr-values '#424D57=currentcolor' --typescript --no-dimensions -d ./lib ./svg ",
+    "prepareIcons": "svgr ./svg ",
     "preview": "vite preview"
   },
   "devDependencies": {
@@ -187,6 +187,16 @@
       "require": "./dist/ArrowBackFilled.cjs.js",
       "types": "./dist/ArrowBackFilled.d.ts"
     },
+    "./ArrowBarLeft": {
+      "import": "./dist/ArrowBarLeft.es.js",
+      "require": "./dist/ArrowBarLeft.cjs.js",
+      "types": "./dist/ArrowBarLeft.d.ts"
+    },
+    "./ArrowBarRight": {
+      "import": "./dist/ArrowBarRight.es.js",
+      "require": "./dist/ArrowBarRight.cjs.js",
+      "types": "./dist/ArrowBarRight.d.ts"
+    },
     "./ArrowDownward": {
       "import": "./dist/ArrowDownward.es.js",
       "require": "./dist/ArrowDownward.cjs.js",
@@ -196,6 +206,11 @@
       "import": "./dist/ArrowDownwardFilled.es.js",
       "require": "./dist/ArrowDownwardFilled.cjs.js",
       "types": "./dist/ArrowDownwardFilled.d.ts"
+    },
+    "./ArrowFork": {
+      "import": "./dist/ArrowFork.es.js",
+      "require": "./dist/ArrowFork.cjs.js",
+      "types": "./dist/ArrowFork.d.ts"
     },
     "./ArrowForward": {
       "import": "./dist/ArrowForward.es.js",
@@ -336,6 +351,11 @@
       "import": "./dist/BoldFilled.es.js",
       "require": "./dist/BoldFilled.cjs.js",
       "types": "./dist/BoldFilled.d.ts"
+    },
+    "./Book": {
+      "import": "./dist/Book.es.js",
+      "require": "./dist/Book.cjs.js",
+      "types": "./dist/Book.d.ts"
     },
     "./Bookmark": {
       "import": "./dist/Bookmark.es.js",
@@ -577,6 +597,26 @@
       "require": "./dist/ChipCopilotMono.cjs.js",
       "types": "./dist/ChipCopilotMono.d.ts"
     },
+    "./ChipCopilotOutlined": {
+      "import": "./dist/ChipCopilotOutlined.es.js",
+      "require": "./dist/ChipCopilotOutlined.cjs.js",
+      "types": "./dist/ChipCopilotOutlined.d.ts"
+    },
+    "./CircleMinus": {
+      "import": "./dist/CircleMinus.es.js",
+      "require": "./dist/CircleMinus.cjs.js",
+      "types": "./dist/CircleMinus.d.ts"
+    },
+    "./ClipboardCheck": {
+      "import": "./dist/ClipboardCheck.es.js",
+      "require": "./dist/ClipboardCheck.cjs.js",
+      "types": "./dist/ClipboardCheck.d.ts"
+    },
+    "./ClipboardX": {
+      "import": "./dist/ClipboardX.es.js",
+      "require": "./dist/ClipboardX.cjs.js",
+      "types": "./dist/ClipboardX.d.ts"
+    },
     "./Close": {
       "import": "./dist/Close.es.js",
       "require": "./dist/Close.cjs.js",
@@ -671,6 +711,11 @@
       "import": "./dist/CreditCardOutlineFilled.es.js",
       "require": "./dist/CreditCardOutlineFilled.cjs.js",
       "types": "./dist/CreditCardOutlineFilled.d.ts"
+    },
+    "./CurrencyDollar": {
+      "import": "./dist/CurrencyDollar.es.js",
+      "require": "./dist/CurrencyDollar.cjs.js",
+      "types": "./dist/CurrencyDollar.d.ts"
     },
     "./DayMode": {
       "import": "./dist/DayMode.es.js",
@@ -771,6 +816,16 @@
       "import": "./dist/DirectionsFilled.es.js",
       "require": "./dist/DirectionsFilled.cjs.js",
       "types": "./dist/DirectionsFilled.d.ts"
+    },
+    "./Discount": {
+      "import": "./dist/Discount.es.js",
+      "require": "./dist/Discount.cjs.js",
+      "types": "./dist/Discount.d.ts"
+    },
+    "./DiscountFilled": {
+      "import": "./dist/DiscountFilled.es.js",
+      "require": "./dist/DiscountFilled.cjs.js",
+      "types": "./dist/DiscountFilled.d.ts"
     },
     "./DismissChat": {
       "import": "./dist/DismissChat.es.js",
@@ -1692,6 +1747,11 @@
       "require": "./dist/ReportFilled.cjs.js",
       "types": "./dist/ReportFilled.d.ts"
     },
+    "./Rocket": {
+      "import": "./dist/Rocket.es.js",
+      "require": "./dist/Rocket.cjs.js",
+      "types": "./dist/Rocket.d.ts"
+    },
     "./SafariColored": {
       "import": "./dist/SafariColored.es.js",
       "require": "./dist/SafariColored.cjs.js",
@@ -1907,6 +1967,11 @@
       "require": "./dist/TextLogo.cjs.js",
       "types": "./dist/TextLogo.d.ts"
     },
+    "./TextLogoFilled": {
+      "import": "./dist/TextLogoFilled.es.js",
+      "require": "./dist/TextLogoFilled.cjs.js",
+      "types": "./dist/TextLogoFilled.d.ts"
+    },
     "./ThumbDown": {
       "import": "./dist/ThumbDown.es.js",
       "require": "./dist/ThumbDown.cjs.js",
@@ -2116,6 +2181,11 @@
       "import": "./dist/WarningFilled.es.js",
       "require": "./dist/WarningFilled.cjs.js",
       "types": "./dist/WarningFilled.d.ts"
+    },
+    "./Webhook": {
+      "import": "./dist/Webhook.es.js",
+      "require": "./dist/Webhook.cjs.js",
+      "types": "./dist/Webhook.d.ts"
     },
     "./WeeblyColored": {
       "import": "./dist/WeeblyColored.es.js",

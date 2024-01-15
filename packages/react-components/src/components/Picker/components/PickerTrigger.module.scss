@@ -13,6 +13,7 @@ $base-class: 'picker-trigger';
   padding: 0 var(--spacing-3);
   width: 100%;
   line-height: 22px;
+  color: var(--content-basic-primary);
   font-size: 15px;
   font-weight: 400;
 
@@ -33,33 +34,6 @@ $base-class: 'picker-trigger';
     &--with-items {
       padding: 0 var(--spacing-3) 0 5px;
     }
-  }
-
-  &__controls {
-    display: flex;
-    align-items: center;
-
-    &--compact {
-      height: 30px;
-    }
-
-    &--medium {
-      height: 34px;
-    }
-
-    &--large {
-      height: 42px;
-    }
-  }
-
-  &__clear-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background-color: var(--surface-moderate-default);
-    width: 20px;
-    height: 20px;
   }
 
   &__content {
@@ -87,11 +61,45 @@ $base-class: 'picker-trigger';
     }
   }
 
+  &__controls {
+    display: flex;
+    align-items: center;
+
+    &--compact {
+      height: 30px;
+    }
+
+    &--medium {
+      height: 34px;
+    }
+
+    &--large {
+      height: 42px;
+    }
+  }
+
+  &__clear-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 4px;
+    border-radius: 50%;
+    background-color: var(--surface-moderate-default);
+    width: 20px;
+    height: 20px;
+  }
+
+  &__chevron-icon {
+    margin-left: 4px;
+  }
+
   &--disabled {
     background-color: var(--surface-basic-disabled);
     color: var(--content-basic-disabled);
 
-    &:hover {
+    &:hover,
+    &:focus,
+    &:active {
       border-color: var(--border-basic-primary);
       cursor: auto;
     }

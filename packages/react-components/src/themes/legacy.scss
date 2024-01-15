@@ -20,6 +20,7 @@ $surface-tertiary-hover: #d3dde3;
   --surface-secondary-hover: #e0e8eb;
   --surface-secondary-active: #dae4eb;
   --surface-secondary-disabled: #eaedf0;
+  --surface-primary-hover-opacity: rgb(19 19 23 / 10%);
   --surface-basic-hover: #e0e8eb; // deprecated
   --surface-primary-hover: #{$surface-primary-hover};
   --surface-basic-active: #dae4eb; // deprecated
@@ -300,4 +301,5 @@ $surface-tertiary-hover: #d3dde3;
   --surface-avatar-9: #b08c00;
   --surface-avatar-10: #00a449;
   --navbar-background: #101014;
+  --tooltip-border: transparent;
 }

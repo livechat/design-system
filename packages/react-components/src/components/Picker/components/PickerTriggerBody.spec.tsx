@@ -2,10 +2,10 @@ import * as React from 'react';
 
 import { render, userEvent, vi } from 'test-utils';
 
-import noop from '../../utils/noop';
+import noop from '../../../utils/noop';
+import { PickerType } from '../types';
 
-import { TriggerBody, ITriggerBodyProps } from './TriggerBody';
-import { PickerType } from './types';
+import { PickerTriggerBody, ITriggerBodyProps } from './PickerTriggerBody';
 
 const defaultProps = {
   isOpen: false,
@@ -13,13 +13,15 @@ const defaultProps = {
   type: 'single' as PickerType,
   onItemRemove: () => noop,
   onFilter: () => noop,
+  onSelect: () => noop,
+  virtualItemRef: { current: null },
 };
 
 const renderComponent = (props: ITriggerBodyProps) => {
-  return render(<TriggerBody {...props}>Example text</TriggerBody>);
+  return render(<PickerTriggerBody {...props}>Example text</PickerTriggerBody>);
 };
 
-describe('<TriggerBody> component', () => {
+describe('<PickerTriggerBody> component', () => {
   it('should display placeholder if there is no selected items and not isOpen', () => {
     const { getByText } = renderComponent(defaultProps);
 
@@ -50,7 +52,7 @@ describe('<TriggerBody> component', () => {
   it('should show only one item in single mode', () => {
     const { queryByText } = renderComponent({
       ...defaultProps,
-      items: [
+      selectedItems: [
         { key: 'one', name: 'Option one' },
         { key: 'two', name: 'Option two' },
         { key: 'three', name: 'Option three' },
@@ -66,7 +68,7 @@ describe('<TriggerBody> component', () => {
     const { queryByText } = renderComponent({
       ...defaultProps,
       type: 'multi',
-      items: [
+      selectedItems: [
         { key: 'one', name: 'Option one' },
         { key: 'two', name: 'Option two' },
         { key: 'three', name: 'Option three' },
@@ -83,7 +85,7 @@ describe('<TriggerBody> component', () => {
     const { queryAllByRole } = renderComponent({
       ...defaultProps,
       type: 'multi',
-      items: [
+      selectedItems: [
         { key: 'one', name: 'Option one' },
         { key: 'two', name: 'Option two' },
         { key: 'three', name: 'Option three' },
@@ -93,21 +95,15 @@ describe('<TriggerBody> component', () => {
     const removeButtons = queryAllByRole('button');
 
     userEvent.click(removeButtons[0]);
-    expect(onItemRemove).toHaveBeenCalledWith({
-      key: 'one',
-      name: 'Option one',
-    });
+    expect(onItemRemove).toHaveBeenCalledWith('one');
     userEvent.click(removeButtons[2]);
-    expect(onItemRemove).toHaveBeenCalledWith({
-      key: 'three',
-      name: 'Option three',
-    });
+    expect(onItemRemove).toHaveBeenCalledWith('three');
   });
 
   it('should show custom component as selected item in single mode', () => {
     const { queryByText } = renderComponent({
       ...defaultProps,
-      items: [
+      selectedItems: [
         {
           key: 'custom-one',
           name: 'Custom one',
@@ -126,7 +122,7 @@ describe('<TriggerBody> component', () => {
     const { queryByText } = renderComponent({
       ...defaultProps,
       type: 'multi',
-      items: [
+      selectedItems: [
         {
           key: 'custom-one',
           name: 'Custom one',
@@ -163,11 +159,11 @@ describe('<TriggerBody> component', () => {
     expect(onFilter).toBeCalledWith('Option one');
 
     rerender(
-      <TriggerBody
+      <PickerTriggerBody
         {...defaultProps}
         isOpen
         clearSearchAfterSelection
-        items={[
+        selectedItems={[
           {
             key: 'one',
             name: 'Option one',

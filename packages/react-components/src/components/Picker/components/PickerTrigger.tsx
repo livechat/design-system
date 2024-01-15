@@ -3,46 +3,47 @@ import * as React from 'react';
 import { ChevronDown, ChevronUp, Close } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
-import { Size } from 'utils';
+import { Size } from '../../../utils';
+import { Icon } from '../../Icon';
 
-import { KeyCodes } from '../../utils/keyCodes';
-import { Icon } from '../Icon';
+import styles from './PickerTrigger.module.scss';
 
-import styles from './Trigger.module.scss';
+export interface PickerTriggerProps {
+  setReference: (element: HTMLElement | null) => void;
+  getReferenceProps: (
+    userProps?: React.HTMLProps<HTMLElement> | undefined
+  ) => Record<string, unknown>;
+  testId?: string;
+  size?: Size;
+  isMultiSelect?: boolean;
+  isItemSelected: boolean;
+  hideClearButton?: boolean;
+  isDisabled?: boolean;
+  isRequired?: boolean;
+  isError?: boolean;
+  isOpen: boolean;
+  onClear: () => void;
+}
 
 const baseClass = 'picker-trigger';
 
-export interface ITriggerProps {
-  isSearchDisabled: boolean;
-  isDisabled?: boolean;
-  isError?: boolean;
-  isItemSelected: boolean;
-  isOpen: boolean;
-  isRequired?: boolean;
-  isMultiSelect?: boolean;
-  size?: Size;
-  hideClearButton?: boolean;
-  onTrigger: (e: React.MouseEvent | KeyboardEvent) => void;
-  onClear: () => void;
-  testId?: string;
-}
-
-export const Trigger: React.FC<React.PropsWithChildren<ITriggerProps>> = ({
-  children,
-  isSearchDisabled,
-  isDisabled,
-  isError,
-  isItemSelected,
-  isOpen,
-  isRequired,
-  isMultiSelect,
-  size = 'medium',
-  hideClearButton,
-  onTrigger,
-  onClear,
+export const PickerTrigger: React.FC<
+  React.PropsWithChildren<PickerTriggerProps>
+> = ({
+  setReference,
+  getReferenceProps,
   testId,
+  size = 'medium',
+  isMultiSelect,
+  isItemSelected,
+  hideClearButton,
+  isDisabled,
+  isRequired,
+  isOpen,
+  isError,
+  onClear,
+  children,
 }) => {
-  const triggerRef = React.useRef<HTMLDivElement>(null);
   const mergedClassNames = cx(
     styles[baseClass],
     styles[`${baseClass}--${size}`],
@@ -55,45 +56,23 @@ export const Trigger: React.FC<React.PropsWithChildren<ITriggerProps>> = ({
     isError && styles[`${baseClass}--error`]
   );
 
-  React.useEffect(() => {
-    const onKeyDown = (e: KeyboardEvent) => {
-      const isFocused = document.activeElement === triggerRef.current;
-
-      if (isFocused && e.key !== KeyCodes.tab) {
-        onTrigger(e);
-      }
-    };
-
-    if (!isSearchDisabled) {
-      document.addEventListener('keydown', onKeyDown);
-    }
-
-    return () => {
-      if (!isSearchDisabled) {
-        document.removeEventListener('keydown', onKeyDown);
-      }
-    };
-  }, [isSearchDisabled]);
-
-  const handleTriggerClick = (e: React.MouseEvent) => {
-    onTrigger(e);
-  };
+  const shouldShowClearButton =
+    !hideClearButton && isItemSelected && !isDisabled && !isRequired;
 
   const handleOnClearClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     onClear();
   };
 
-  const shouldShowClearButton =
-    !hideClearButton && isItemSelected && !isDisabled && !isRequired;
-
   return (
-    <div
-      ref={triggerRef}
+    <button
+      tabIndex={isDisabled ? -1 : 0}
+      aria-disabled={isDisabled}
       className={mergedClassNames}
-      onClick={handleTriggerClick}
-      tabIndex={0}
       data-testid={testId}
+      ref={setReference}
+      type="button"
+      {...getReferenceProps()}
     >
       <div
         className={cx(
@@ -128,6 +107,6 @@ export const Trigger: React.FC<React.PropsWithChildren<ITriggerProps>> = ({
           disabled={isDisabled}
         />
       </div>
-    </div>
+    </button>
   );
 };

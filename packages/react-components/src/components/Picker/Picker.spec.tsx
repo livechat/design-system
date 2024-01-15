@@ -1,14 +1,16 @@
 import * as React from 'react';
 
 import userEvent from '@testing-library/user-event';
+import { VirtuosoProps } from 'react-virtuoso';
+import { vitest } from 'vitest';
 
 import { render, vi } from 'test-utils';
 
 import noop from '../../utils/noop';
 
 import { DEFAULT_PICKER_OPTIONS } from './constants';
-import { IPickerProps, Picker } from './Picker';
-import { PickerType } from './types';
+import { Picker } from './Picker';
+import { PickerType, IPickerProps } from './types';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 window.HTMLElement.prototype.scrollIntoView = () => {};
@@ -17,6 +19,20 @@ const defaultProps = {
   options: DEFAULT_PICKER_OPTIONS,
   onSelect: noop,
 };
+
+vitest.mock('react-virtuoso', () => {
+  function Virtuoso(props: VirtuosoProps<unknown, unknown>) {
+    return (
+      <>
+        {props.data?.map(
+          (value, index) => props.itemContent?.(index, value, undefined)
+        )}
+      </>
+    );
+  }
+
+  return { ...vitest.importActual('react-virtuoso'), Virtuoso };
+});
 
 const renderComponent = (props: IPickerProps) => {
   return render(<Picker {...props} className="my-css-class" />);

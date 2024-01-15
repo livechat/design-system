@@ -22,6 +22,7 @@ $surface-tertiary-hover: #43434b;
   --surface-secondary-hover: #{$surface-secondary-hover};
   --surface-secondary-active: #{$surface-secondary-active};
   --surface-secondary-disabled: #2d2d32;
+  --surface-primary-hover-opacity: rgb(255 255 255 / 10%);
   --surface-basic-hover: rgb(255 255 255 / 10%); // deprecated
   --surface-primary-hover: #{$surface-primary-hover};
   --surface-basic-active: rgb(255 255 255 / 20%); // deprecated
@@ -302,4 +303,5 @@ $surface-tertiary-hover: #43434b;
   --surface-avatar-9: #b08c00;
   --surface-avatar-10: #00a449;
   --navbar-background: #101014;
+  --tooltip-border: rgb(255 255 255 / 15%);
 }
