@@ -49,6 +49,8 @@ export const UserGuideStep: React.FC<{
     <div className={styles[`${baseClass}__user-guide-step`]}>
       {closeWithX && (
         <button
+          type="button"
+          aria-label="Close tooltip"
           className={styles[`${baseClass}-close`]}
           onClick={handleCloseAction}
         >
