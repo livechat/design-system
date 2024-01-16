@@ -153,6 +153,7 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
       </div>
       {onClose && (
         <Button
+          aria-label="Close alert"
           type="button"
           className={styles[`${baseClass}__close-icon`]}
           size="compact"

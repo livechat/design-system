@@ -22,6 +22,8 @@ export const Info: React.FC<{
     <div className={className}>
       {closeWithX && (
         <button
+          type="button"
+          aria-label="Close tooltip"
           className={styles[`${baseClass}-close`]}
           onClick={handleCloseAction}
         >

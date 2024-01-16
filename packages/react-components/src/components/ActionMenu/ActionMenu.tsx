@@ -251,6 +251,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   return (
     <>
       <div
+        aria-label="Toggle menu"
         data-testid="action-menu-trigger-button"
         ref={refs.setReference}
         {...getReferenceProps()}

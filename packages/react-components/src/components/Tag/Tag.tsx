@@ -150,6 +150,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
           title="Remove"
           onClick={onRemove}
           type="button"
+          aria-label="Remove tag"
           className={styles[`${baseClass}__remove`]}
         >
           <Icon
