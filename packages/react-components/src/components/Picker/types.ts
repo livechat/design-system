@@ -4,6 +4,7 @@ import { Strategy, UseClickProps, UseDismissProps } from '@floating-ui/react';
 import { VirtuosoProps } from 'react-virtuoso';
 
 import { Size } from '../../utils';
+import { ComponentCoreProps } from '../../utils/types';
 import { IconSource } from '../Icon';
 
 export interface IPickerListItem {
@@ -23,7 +24,7 @@ export interface IPickerListItem {
 
 export type PickerType = 'single' | 'multi';
 
-export interface IPickerProps {
+export interface IPickerProps extends ComponentCoreProps {
   /**
    * Specify the custom id
    */
@@ -88,10 +89,6 @@ export interface IPickerProps {
    * Will open picker on component initialization
    */
   openedOnInit?: boolean;
-  /**
-   * Test id passed to the picker trigger element
-   */
-  ['data-testid']?: string;
   /**
    * Callback called after item selection
    */
