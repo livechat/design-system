@@ -10,6 +10,7 @@ import {
 import cx from 'clsx';
 import debounce from 'lodash.debounce';
 
+import { ComponentCoreProps } from '../../utils/types';
 import { Button } from '../Button';
 import { Icon, IconSource, IconKind } from '../Icon';
 import { Text } from '../Typography';
@@ -18,11 +19,7 @@ import styles from './Alert.module.scss';
 
 type AlertKind = 'info' | 'warning' | 'success' | 'error';
 
-export interface AlertProps {
-  /**
-   * The CSS class for container
-   */
-  className?: string;
+export interface AlertProps extends ComponentCoreProps {
   /**
    * Specify the kind of Alert
    */
@@ -45,10 +42,6 @@ export interface AlertProps {
    * The optional event handler for close button
    */
   onClose?: () => void;
-  /**
-   * Test id passed to the wrapper element
-   */
-  ['data-testid']?: string;
 }
 
 const IconConfig: Record<AlertKind, { source: IconSource; kind: IconKind }> = {

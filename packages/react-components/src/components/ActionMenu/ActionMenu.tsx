@@ -17,17 +17,14 @@ import { Check } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { KeyCodes } from '../../utils/keyCodes';
+import { ComponentCoreProps } from '../../utils/types';
 import { Icon } from '../Icon';
 
 import { IActionMenuOption } from './types';
 
 import styles from './ActionMenu.module.scss';
 
-export interface ActionMenuProps {
-  /**
-   * The CSS class for menu container
-   */
-  className?: string;
+export interface ActionMenuProps extends ComponentCoreProps {
   /**
    * The CSS class for trigger container
    */
@@ -77,10 +74,6 @@ export interface ActionMenuProps {
    * https://floating-ui.com/docs/usefloating#strategy
    */
   floatingStrategy?: Strategy;
-  /**
-   * Test id passed to the wrapper element
-   */
-  ['data-testid']?: string;
 }
 
 const baseClass = 'action-menu';
@@ -99,7 +92,6 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   onOpen,
   floatingStrategy,
   selectedOptions,
-  ['data-testid']: testId = 'action-menu-trigger-button',
   ...props
 }) => {
   const isControlled = visible !== undefined;
@@ -257,7 +249,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
     <>
       <div
         aria-label="Toggle menu"
-        data-testid={testId}
+        data-testid="action-menu-trigger-button"
         ref={refs.setReference}
         {...getReferenceProps()}
         className={triggerClassName}
