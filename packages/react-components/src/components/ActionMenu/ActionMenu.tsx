@@ -77,6 +77,10 @@ export interface ActionMenuProps {
    * https://floating-ui.com/docs/usefloating#strategy
    */
   floatingStrategy?: Strategy;
+  /**
+   * Test id passed to the wrapper element
+   */
+  ['data-testid']?: string;
 }
 
 const baseClass = 'action-menu';
@@ -95,6 +99,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   onOpen,
   floatingStrategy,
   selectedOptions,
+  ['data-testid']: testId = 'action-menu-trigger-button',
   ...props
 }) => {
   const isControlled = visible !== undefined;
@@ -252,7 +257,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
     <>
       <div
         aria-label="Toggle menu"
-        data-testid="action-menu-trigger-button"
+        data-testid={testId}
         ref={refs.setReference}
         {...getReferenceProps()}
         className={triggerClassName}
