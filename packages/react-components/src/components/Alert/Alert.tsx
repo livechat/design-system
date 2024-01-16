@@ -45,6 +45,10 @@ export interface AlertProps {
    * The optional event handler for close button
    */
   onClose?: () => void;
+  /**
+   * Test id passed to the wrapper element
+   */
+  ['data-testid']?: string;
 }
 
 const IconConfig: Record<AlertKind, { source: IconSource; kind: IconKind }> = {

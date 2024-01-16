@@ -68,6 +68,10 @@ export interface AvatarProps {
    * Displays rim
    */
   withRim?: boolean;
+  /**
+   * Test id passed to the wrapper element
+   */
+  ['data-testid']?: string;
 }
 
 const baseClass = 'avatar';
@@ -83,6 +87,7 @@ export const Avatar: React.FC<AvatarProps> = ({
   text,
   type,
   withRim = false,
+  ...props
 }) => {
   const isImproperImageSetup = type === 'image' && !src;
   const [shouldDisplayFallbackAvatar, setShouldDisplayFallbackAvatar] =
@@ -129,7 +134,7 @@ export const Avatar: React.FC<AvatarProps> = ({
   }, [isImproperImageSetup]);
 
   return (
-    <div className={mergedClassNames} style={backgroundStyle}>
+    <div className={mergedClassNames} style={backgroundStyle} {...props}>
       {withRim && (
         <div
           data-testid={`${baseClass}__rim`}
