@@ -45,6 +45,8 @@ export const Interactive: React.FC<{
     <div className={styles[`${baseClass}__interactive`]}>
       {closeWithX && (
         <button
+          type="button"
+          aria-label="Close tooltip"
           className={styles[`${baseClass}-close`]}
           onClick={handleCloseAction}
         >
