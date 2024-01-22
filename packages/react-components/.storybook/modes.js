@@ -1,10 +1,10 @@
 export const allModes = {
   dark: {
     backgrounds: { value: '#131317' },
-    theme: 'dark',
+    theme: 'lc-dark-theme',
   },
   light: {
     backgrounds: { value: '#fff' },
-    theme: 'light',
+    theme: 'lc-light-theme',
   },
 };

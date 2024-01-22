@@ -41,6 +41,7 @@
     "@storybook/addon-essentials": "^7.6.8",
     "@storybook/addon-links": "^7.6.8",
     "@storybook/addon-mdx-gfm": "^7.6.8",
+    "@storybook/addon-themes": "^7.6.10",
     "@storybook/blocks": "^7.6.8",
     "@storybook/core-common": "^7.6.8",
     "@storybook/react": "^7.6.8",
