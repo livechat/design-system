@@ -30,15 +30,10 @@ export const parameters = {
     },
     expanded: true,
   },
-  // backgrounds: {
-  //   disable: true,
-  // },
   backgrounds: {
-    values: [
-      { name: 'light', value: '#fff' },
-      { name: 'dark', value: '#131317' },
-    ],
+    disable: true,
   },
+
   // themes: {
   //   default: 'light',
   //   list: [
