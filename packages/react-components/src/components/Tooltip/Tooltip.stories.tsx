@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import { ComponentMeta, StoryFn } from '@storybook/react';
 
-import { allModes } from '../../../.storybook/modes';
 import noop from '../../utils/noop';
 import { Button } from '../Button';
 
@@ -44,8 +43,8 @@ export default {
     chromatic: {
       //🔶 Test each story for ArticleCard in two modes
       modes: {
-        light: allModes['light'],
-        dark: allModes['dark'],
+        light: 'light',
+        dark: 'dark',
       },
     },
   },
