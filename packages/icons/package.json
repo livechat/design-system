@@ -1,6 +1,6 @@
 {
   "name": "@livechat/design-system-icons",
-  "version": "1.15.0",
+  "version": "1.16.3",
   "description": "",
   "publishConfig": {
     "access": "public"
@@ -14,7 +14,7 @@
   "scripts": {
     "prebuild": "rimraf dist && rimraf lib && npm run prepareIcons && npm run createEntryConfig",
     "build": "tsc && vite build",
-    "prepublishOnly": "npm run build && npm run updateExports",
+    "postbuild": "npm run updateExports",
     "updateExports": "node ./scripts/updateExports.js",
     "createEntryConfig": "node ./scripts/createEntryConfig.js",
     "prepareIcons": "svgr ./svg ",
@@ -597,6 +597,11 @@
       "require": "./dist/ChipCopilotMono.cjs.js",
       "types": "./dist/ChipCopilotMono.d.ts"
     },
+    "./ChipCopilotOutlined": {
+      "import": "./dist/ChipCopilotOutlined.es.js",
+      "require": "./dist/ChipCopilotOutlined.cjs.js",
+      "types": "./dist/ChipCopilotOutlined.d.ts"
+    },
     "./CircleMinus": {
       "import": "./dist/CircleMinus.es.js",
       "require": "./dist/CircleMinus.cjs.js",
@@ -811,6 +816,16 @@
       "import": "./dist/DirectionsFilled.es.js",
       "require": "./dist/DirectionsFilled.cjs.js",
       "types": "./dist/DirectionsFilled.d.ts"
+    },
+    "./Discount": {
+      "import": "./dist/Discount.es.js",
+      "require": "./dist/Discount.cjs.js",
+      "types": "./dist/Discount.d.ts"
+    },
+    "./DiscountFilled": {
+      "import": "./dist/DiscountFilled.es.js",
+      "require": "./dist/DiscountFilled.cjs.js",
+      "types": "./dist/DiscountFilled.d.ts"
     },
     "./DismissChat": {
       "import": "./dist/DismissChat.es.js",

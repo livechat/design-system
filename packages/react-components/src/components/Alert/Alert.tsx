@@ -10,6 +10,7 @@ import {
 import cx from 'clsx';
 import debounce from 'lodash.debounce';
 
+import { ComponentCoreProps } from '../../utils/types';
 import { Button } from '../Button';
 import { Icon, IconSource, IconKind } from '../Icon';
 import { Text } from '../Typography';
@@ -18,11 +19,7 @@ import styles from './Alert.module.scss';
 
 type AlertKind = 'info' | 'warning' | 'success' | 'error';
 
-export interface AlertProps {
-  /**
-   * The CSS class for container
-   */
-  className?: string;
+export interface AlertProps extends ComponentCoreProps {
   /**
    * Specify the kind of Alert
    */
@@ -83,6 +80,7 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
   const mergedClassNames = cx(
     styles[baseClass],
     styles[`${baseClass}--${kind}`],
+    containerSize === 'large' && styles[`${baseClass}--large`],
     containerSize === 'medium' && styles[`${baseClass}--medium`],
     containerSize === 'small' && styles[`${baseClass}--small`],
     className
@@ -102,7 +100,7 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
         return setContainerSize('medium');
       }
 
-      return setContainerSize(null);
+      return setContainerSize('large');
     };
 
     const handleResize = debounce(() => {
@@ -152,6 +150,7 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
       </div>
       {onClose && (
         <Button
+          aria-label="Close alert"
           type="button"
           className={styles[`${baseClass}__close-icon`]}
           size="compact"

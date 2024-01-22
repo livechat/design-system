@@ -7,6 +7,7 @@ export const ShadowToken = {
   TooltipArrowTop: '--shadow-tooltip-arrow-top',
   TooltipArrowRight: '--shadow-tooltip-arrow-right',
   TooltipArrowLeft: '--shadow-tooltip-arrow-left',
+  TooltipArrow: '--shadow-tooltip-arrow',
   Focus: '--shadow-focus',
   DividerBottom: '--shadow-divider-bottom',
   DividerTop: '--shadow-divider-top',

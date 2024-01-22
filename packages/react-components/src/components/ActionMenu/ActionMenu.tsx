@@ -17,17 +17,14 @@ import { Check } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { KeyCodes } from '../../utils/keyCodes';
+import { ComponentCoreProps } from '../../utils/types';
 import { Icon } from '../Icon';
 
 import { IActionMenuOption } from './types';
 
 import styles from './ActionMenu.module.scss';
 
-export interface ActionMenuProps {
-  /**
-   * The CSS class for menu container
-   */
-  className?: string;
+export interface ActionMenuProps extends ComponentCoreProps {
   /**
    * The CSS class for trigger container
    */
@@ -251,6 +248,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   return (
     <>
       <div
+        aria-label="Toggle menu"
         data-testid="action-menu-trigger-button"
         ref={refs.setReference}
         {...getReferenceProps()}

@@ -16,11 +16,14 @@
 }
 
 @mixin icon-only($base-class) {
-  padding: 6px;
+  padding: 4px;
 
   &.#{$base-class} {
     &--xcompact {
       padding: 4px;
+      width: 24px;
+      height: 24px;
+
       .#{$base-class}__icon {
         width: 16px;
         height: 16px;
@@ -57,6 +60,11 @@
         background-color: var(--surface-primary-active);
       }
 
+      &.#{$base-class}--xcompact {
+        min-width: 24px;
+        height: 24px;
+      }
+
       &.#{$base-class}--compact {
         min-width: 32px;
         height: 32px;
@@ -81,6 +89,11 @@
       &:active {
         background-color: var(--action-primary-default);
         color: var(--content-invert-primary);
+      }
+
+      &.#{$base-class}--xcompact {
+        min-width: 24px;
+        height: 24px;
       }
 
       &.#{$base-class}--compact {

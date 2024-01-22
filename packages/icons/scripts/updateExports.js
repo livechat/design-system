@@ -35,7 +35,7 @@ function updateExports() {
   packageJson.exports = exports;
   fs.writeFileSync(
     packageJsonPath,
-    JSON.stringify(packageJson, null, 2),
+    JSON.stringify(packageJson, null, 2) + '\n',
     'utf8'
   );
 }
