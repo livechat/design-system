@@ -8,7 +8,6 @@ import '../src/foundations/shadow.css';
 import '../src/foundations/color-scheme.css';
 import '../src/foundations/radius.css';
 import '../src/foundations/transition.css';
-import { allModes } from './modes';
 
 export const decorators = [mockDateDecorator];
 
@@ -30,14 +29,5 @@ export const parameters = {
       { name: 'light', class: 'lc-light-theme', color: '#06f' },
       { name: 'dark', class: 'lc-dark-theme', color: '#000' },
     ],
-  },
-  parameters: {
-    chromatic: {
-      //🔶 Test each story for ArticleCard in two modes
-      modes: {
-        light: allModes['light'],
-        dark: allModes['dark'],
-      },
-    },
   },
 };

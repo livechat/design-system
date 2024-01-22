@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { ComponentMeta, StoryFn } from '@storybook/react';
 
+import { allModes } from '../../../.storybook/modes';
 import noop from '../../utils/noop';
 import { Button } from '../Button';
 
@@ -40,6 +41,13 @@ export default {
   parameters: {
     layout: 'centered',
     controls: { expanded: true },
+    chromatic: {
+      //🔶 Test each story for ArticleCard in two modes
+      modes: {
+        light: allModes['light'],
+        dark: allModes['dark'],
+      },
+    },
   },
   subcomponents: {
     Info,
