@@ -42,4 +42,11 @@ export const parameters = {
   backgrounds: {
     disable: true,
   },
+  options: {
+    storySort: {
+      method: 'alphabetical',
+      order: ['Documentation', ['Welcome', '*'], 'Foundations', 'Components'],
+      locales: 'en-US',
+    },
+  },
 };
