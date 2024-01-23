@@ -40,13 +40,6 @@ export default {
   parameters: {
     layout: 'centered',
     controls: { expanded: true },
-    chromatic: {
-      //🔶 Test each story for ArticleCard in two modes
-      modes: {
-        light: 'light',
-        dark: 'dark',
-      },
-    },
   },
   subcomponents: {
     Info,
