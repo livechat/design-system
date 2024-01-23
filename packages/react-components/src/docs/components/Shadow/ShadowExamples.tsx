@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { StoryDescriptor } from './StoryDescriptor';
+import { StoryDescriptor } from '../StoryDescriptor';
 
 import styles from './ShadowExamples.module.scss';
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import * as TablerIcons from '@livechat/design-system-icons';
 
-import { Icon, IconSource } from '../../components/Icon';
+import { Icon, IconSource } from '../../../components/Icon';
 import './iconsShowcase.css';
 
 export type IconsMap = {

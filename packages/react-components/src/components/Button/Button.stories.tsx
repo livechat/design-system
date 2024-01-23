@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as Icons from '@livechat/design-system-icons';
 import { ComponentMeta } from '@storybook/react';
 
-import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import { StoryDescriptor } from '../../docs/components/StoryDescriptor';
 import { Icon, IconSource } from '../Icon';
 
 import { Button, ButtonProps } from './Button';
