@@ -31,7 +31,7 @@ export const parameters = {
     },
     expanded: true,
   },
-  // Test each story for ArticleCard in two modes
+  // Test each story in two modes
   chromatic: {
     modes: {
       light: allModes['light'],
