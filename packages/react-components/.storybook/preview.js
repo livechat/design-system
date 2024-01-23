@@ -31,29 +31,15 @@ export const parameters = {
     },
     expanded: true,
   },
-
+  // Test each story for ArticleCard in two modes
   chromatic: {
-    //🔶 Test each story for ArticleCard in two modes
     modes: {
       light: allModes['light'],
       dark: allModes['dark'],
     },
   },
-  // backgrounds: {
-  //   disable: true,
-  // },
-
-  // themes: {
-  //   default: 'light',
-  //   list: [
-  //     { name: 'light', class: 'lc-light-theme', color: '#06f' },
-  //     { name: 'dark', class: 'lc-dark-theme', color: '#000' },
-  //   ],
-  // },
-  // chromatic: {
-  //   modes: {
-  //     light: allModes["light"],
-  //     dark: allModes["dark"],
-  //   },
-  // },
+  // Disabled for daily Storybook usage, the background addon is enabled only for Chromatic tests
+  backgrounds: {
+    disable: true,
+  },
 };
