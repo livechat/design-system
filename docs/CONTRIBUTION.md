@@ -1,10 +1,10 @@
-## Contributing
+# Contribution
 
 Design System is maintained by LiveChat Design System team.
 
 Any external contribution is welcome and DS team will help in the process of development or [reporting problems or ideas](https://github.com/livechat/design-system/issues/new/choose). Design system is a [proposed solution](https://developers.livechat.com/docs/monetization/app-review-process#design-system) for authors building application targeting [LiveChat Marketplace](https://www.livechat.com/marketplace/), therefore, we're open for any feedback from 3rd party developers.
 
-### Rules of contribution
+## Rules of contribution
 
 1. In order to start working on changes, you must first create an issue on our [board](https://github.com/orgs/livechat/projects/7/views/1?filterQuery=),
    using one of the templates depending on if this is a feature request or bug report [here](https://github.com/livechat/design-system/issues/new/choose). If an
