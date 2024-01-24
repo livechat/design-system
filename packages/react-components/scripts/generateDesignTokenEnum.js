@@ -39,6 +39,10 @@ if (allKeysPresent) {
   const output = `export const DesignToken = {
   ${keys.map((key) => `${pascalCase(key.slice(2))}: '${key}',`).join('\n  ')}
 };
+
+export type DesignTokenKey = ${keys
+    .map((key) => `'${pascalCase(key.slice(2))}'`)
+    .join(' | ')};
 `;
 
   fs.writeFileSync('./src/themes/design-token.ts', output);

@@ -1,0 +1,31 @@
+import { Meta, Canvas } from '@storybook/addon-docs';
+import { ColorTokensPallete } from './ColorTokens';
+
+<Meta title="Foundations/Color" />
+
+# Colors
+
+List of available color tokens. Click on token to copy it's value to clipboard.
+
+## Usage
+
+To use color tokens in your project, you need to import the `DesignToken` constant from `@livechat/design-system-react-components`:
+
+```jsx
+import { DesignToken } from '@livechat/design-system-react-components';
+```
+
+<hr />
+
+## Content
+
+Content color tokens in a design system help organize information visually. By assigning specific colors to different elements, like using primary colors for main content and secondary colors for less important ones, designers create a clear hierarchy, improving user experience and overall design aesthetics.
+
+<Canvas
+  style={{
+    color: 'var(--content-default)',
+    backgroundColor: 'var(--background)',
+  }}
+>
+  <ColorTokensPallete />
+</Canvas>

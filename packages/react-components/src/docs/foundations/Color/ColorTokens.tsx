@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { Text } from '../../components/Typography';
-import { DesignToken } from '../../themes/design-token';
+import { Text } from '../../../components/Typography';
+import { DesignToken } from '../../../themes/design-token';
 
 interface TokensGroup {
   background: string[];
