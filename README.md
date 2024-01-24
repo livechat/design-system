@@ -1,6 +1,6 @@
 <h1 align="center">
   <img src="./docs/assets/logo.png" alt="livechat design-system logo" /><br />
-  LiveChat Design System
+  LiveChat Design System Monorepo
 </h1>
 
 <p align="center">
@@ -18,46 +18,29 @@
   </a>
 </p>
 
-## Installation
+Welcome to the Design System Monorepo! This repository houses a collection of packages and tools related to our design system. We use the [Lerna](https://lerna.js.org/) tool and [NPM workspaces](https://docs.npmjs.com/cli/v8/using-npm/workspaces) to manage these packages efficiently. Below is an overview of the packages included in this monorepo:
 
-Run the following command using [npm](https://www.npmjs.com/) (or with you other favorite package manager, eg. [yarn](https://yarnpkg.com/)):
+## Packages
 
-```
-npm install @livechat/design-system-react-components @livechat/design-system-icons --save
-```
+### 1. React Components
 
-## Basic usage
+- **Package Name**: `react-components`
+- **Description**: This package contains a library of reusable React components designed to be used in various projects. These components are the building blocks of our design system and can be easily integrated into your applications.
+- **Usage**: To install and use these components in your project, follow the installation and usage instructions in the `react-components` package documentation.
 
-It is required to import the `CSS` directly into your project so it could be applied to components:
+### 2. Icons
 
-```js
-import '@livechat/design-system-react-components/dist/style.css';
-```
+- **Package Name**: `icons`
+- **Description**: The `icons` package provides a collection of icons that can be used to enhance the visual appeal of your applications. These icons are designed to be customizable and easy to incorporate into your projects.
+- **Usage**: To use these icons, refer to the documentation provided within the `icons` package.
 
-You can import components directly from the npm package:
+### 3. Example React Project
 
-```jsx
-import { Button } from '@livechat/design-system-react-components';
-```
+- **Package Name**: `example-react`
+- **Description**: This package serves as a playground React project that demonstrates how to utilize the components and icons from our design system. It's an excellent resource for testing and experimenting with our packages.
+- **Usage**: To run the example React project, follow the instructions in the `example-react` package documentation.
 
-In case of icons there is a separate package to be used in conjunction:
-
-```jsx
-import { Edit } from '@livechat/design-system-icons/react/tabler';
-import { Icon } from '@livechat/design-system-react-components';
-
-<Icon source={Edit} kind="primary" />;
-```
-
-## Documentation
-
-At this stage of the project we consider Storybook and Figma as parts of our documentation ecosystem.
-
-[Storybook](https://design.livechat.com/) - includes design system foundations, describes components API and allows to familiarize with the thier capabilities
-[Figma](https://www.figma.com/file/2pFu80PXO5A2tfyrAGnx91/Product-Components) - it's not an official documentation from design perspective but we follow a simple rule of working in public
-
-
-### Development
+## Getting Started
 
 Required version of `node.js` is `16.13.2`.
 
@@ -77,14 +60,14 @@ npm start
 
 If `Storybook` is not enough, you can additionaly run `npm start:example` which will run `example-react` package in `watch` mode. `example-react` is a simple [React](https://reactjs.org/) app based on [vite-react boilterplate](https://github.com/vitejs/vite/tree/main/packages/create-vite). It has a direct dependency on `react-components` package, so every change should be reflected in the app via auto-reload.
 
-### Contributing
+## Contributing
 
 The guide that describes the contribution process is available [here](./docs/CONTRIBUTION.md).
 
-### Testing
+## Testing
 
 We have prepared a document describing testing process and core principles in the area of quality [here](./docs/TESTING.md).
 
-### Releasing
+## Releasing
 
 The package releasing and related documentation is available [here](./docs/RELEASE.md).
