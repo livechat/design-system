@@ -164,7 +164,10 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
             !isOpen && styles[`${baseClass}__float-button--closed`],
             isOpen && styles[`${baseClass}__float-button--open`]
           )}
-          onClick={handleButtonClick}
+          onClick={(e) => {
+            handleButtonClick();
+            e.currentTarget.blur();
+          }}
           aria-expanded={isOpen}
           data-testid="details-card-floating-button"
         />
