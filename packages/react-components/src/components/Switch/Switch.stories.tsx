@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { ComponentMeta, Story } from '@storybook/react';
 
-import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import { StoryDescriptor } from '../../docs/components/StoryDescriptor';
 import { DISABLED_CONTROLS } from '../../utils/story-parameters';
 
 import { Switch, SwitchProps } from './Switch';

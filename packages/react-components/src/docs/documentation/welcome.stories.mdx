@@ -1,0 +1,106 @@
+import { Meta } from '@storybook/addon-docs';
+
+<Meta title="Documentation/Welcome" />
+
+<h1 align="center">LiveChat Design System</h1>
+
+<p align="center">
+  <a href="https://www.npmjs.com/@livechat/design-system-react-components">
+    <img
+      alt="npm version react-components"
+      src="https://img.shields.io/npm/v/@livechat/design-system-react-components.svg?label=react-components"
+    />
+  </a>
+  <a href="https://www.npmjs.com/@livechat/design-system-icons">
+    <img
+      alt="npm version icons"
+      src="https://img.shields.io/npm/v/@livechat/design-system-icons.svg?label=icons"
+    />
+  </a>
+  <a href="https://github.com/livechat/design-system/actions/workflows/tests.yml">
+    <img
+      src="https://github.com/livechat/design-system/actions/workflows/tests.yml/badge.svg"
+      alt="Workflow status badge"
+      loading="lazy"
+    />
+  </a>
+</p>
+
+# Introduction
+
+Welcome to the <b>LiveChat Design System</b> – an open-source library of React components for building LiveChat products and applications. It was originally created to help our teams work faster together, but it can be easily adapted to create applications with the look and feel of LiveChat experience.<br/>
+
+We created this Design System with several goals in mind:
+
+<ul>
+  <li>
+    to document components, patterns, and design guidelines, all in one place,
+  </li>
+  <li>to ensure consistency in our code and design,</li>
+  <li>
+    to standardize the visual language and experience of LiveChat products and
+    apps,
+  </li>
+  <li>to provide guidance on correct usage of the patterns,</li>
+  <li>to streamline our design and development.</li>
+</ul>
+
+<hr />
+
+# 🕹️ For developers
+
+## Installation
+
+Run the following command using [npm](https://www.npmjs.com/) (or with you other favorite package manager, eg. [yarn](https://yarnpkg.com/)):
+
+```
+npm install @livechat/design-system-react-components @livechat/design-system-icons --save
+```
+
+## Basic usage
+
+It is required to import the `CSS` directly into your project so it could be applied to components:
+
+```js
+import '@livechat/design-system-react-components/dist/style.css';
+```
+
+You can import components directly from the npm package:
+
+```jsx
+import { Button } from '@livechat/design-system-react-components';
+```
+
+In case of icons there is a separate package to be used in conjunction:
+
+```jsx
+import { Edit } from '@livechat/design-system-icons';
+import { Icon } from '@livechat/design-system-react-components';
+
+<Icon source={Edit} kind="primary" />;
+```
+
+<hr />
+
+# 🎨 For designers
+
+Every component in LiveChat Design System includes a documentation, code, and working examples. Build your design with help of our design documentation (See Resources)
+
+<b>Resources:</b>
+
+[<ins>Product components</ins>](https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=15264-100505&mode=design&t=C8l69JQSQPjmAIon-4) - All design system components, System Icons (Figma)
+
+[<ins>Design usage guidelines</ins>](https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=69-27852&mode=design&t=C8l69JQSQPjmAIon-0) - main documentation with a usage rules (Figma)
+
+[<ins>Light theme</ins>](https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=15264-100505&mode=design&t=wlWE8ufe3eA3zj0n-4) - Light theme library with tokens (colors, typography, spacing, etc)
+
+[<ins>Dark theme</ins>](https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=15264-100505&mode=design&t=wlWE8ufe3eA3zj0n-4) - Dark theme library (color tokens)
+
+For more information please check our [Product Design and UX](https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=15264-100505&mode=design&t=wlWE8ufe3eA3zj0n-4)
+
+<hr />
+
+# How to contribute
+
+Design System is always open for direct contributions. Contributions can be in the form of design suggestions, documentation improvements, new component suggestions, code improvements, adding new features or fixing problems.
+For more information please check our [Contributing Guide](/docs/documentation-contribution--docs)

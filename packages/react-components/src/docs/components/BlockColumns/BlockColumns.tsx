@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import { CheckCircle, CloseCircle } from '@livechat/design-system-icons';
 
-import { Icon } from '../../components/Icon';
-import { Heading } from '../../components/Typography';
+import { Icon } from '../../../components/Icon';
+import { Heading } from '../../../components/Typography';
 
 import styles from './BlockColumns.module.scss';
 

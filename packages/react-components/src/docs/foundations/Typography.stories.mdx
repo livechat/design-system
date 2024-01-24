@@ -1,6 +1,6 @@
 import { Meta, Canvas, ArgsTable } from '@storybook/addon-docs';
 
-import { Heading, Text, Display } from '../components/Typography';
+import { Heading, Text, Display } from '../../components/Typography';
 
 <Meta title="Foundations/Typography" />
 
@@ -79,9 +79,7 @@ You can modify the output element via `as` prop. For example if you want to rend
 `Display` component renders a div.
 
 ```jsx
-<Display size="sm">
-  This text is a small div
-</Display>
+<Display size="sm">This text is a small div</Display>
 ```
 
 <ArgsTable of={Display} />
@@ -95,5 +93,7 @@ You can modify the output element via `as` prop. For example if you want to rend
   <Display>Div Medium</Display>
   <Display size="sm">Div Small</Display>
   <Display as="p">Paragraph Medium</Display>
-  <Display as="p" size="sm">Paragraph Small</Display>
+  <Display as="p" size="sm">
+    Paragraph Small
+  </Display>
 </Canvas>

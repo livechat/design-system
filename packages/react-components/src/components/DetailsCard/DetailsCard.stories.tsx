@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { ChipCopilotColored } from '@livechat/design-system-icons';
 
-import image from '../../stories/assets/clock-light.svg';
+import image from '../../docs/assets/clock-light.svg';
 import noop from '../../utils/noop';
 import { Avatar } from '../Avatar';
 import { Button } from '../Button';
