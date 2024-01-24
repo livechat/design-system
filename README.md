@@ -42,6 +42,15 @@ Welcome to the Design System Monorepo! This repository houses a collection of pa
 
 ## Getting Started
 
+#### Clone this repository to your local machine:
+
+```bash
+git clone git@github.com:livechat/design-system.git
+```
+
+#### Install the necessary dependencies for the entire monorepo using Lerna:
+
+
 Required version of `node.js` is `16.13.2`.
 
 If you're a [volta](https://volta.sh/) user, the project maintains node version entry within `package.json`.
