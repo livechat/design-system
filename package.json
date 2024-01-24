@@ -35,6 +35,8 @@
   },
   "homepage": "https://github.com/livechat/design-system#readme",
   "devDependencies": {
+    "@commitlint/cli": "^18.5.0",
+    "@commitlint/config-conventional": "^18.5.0",
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
     "dotenv-cli": "^4.0.0",
