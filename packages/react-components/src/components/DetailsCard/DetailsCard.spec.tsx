@@ -20,48 +20,50 @@ const renderComponent = (props: IDetailsCardProps) => {
 
 describe('<DetailsCard> component', () => {
   it('should render closed card with label by default', () => {
-    const { getByText, getByRole } = renderComponent(defaultProps);
+    const { getByText, getByTestId } = renderComponent(defaultProps);
 
     expect(getByText(label)).toBeVisible();
-    expect(getByRole('button')).toHaveAttribute('aria-expanded', 'false');
+    expect(getByTestId('details-card-label')).toHaveAttribute(
+      'aria-expanded',
+      'false'
+    );
   });
 
   it('should toggle the card on button click', () => {
-    const { getByRole } = renderComponent(defaultProps);
+    const { getByRole, getByTestId } = renderComponent(defaultProps);
     const button = getByRole('button');
+    const label = getByTestId('details-card-label');
 
     userEvent.click(button);
-    expect(button).toHaveAttribute('aria-expanded', 'true');
+    expect(label).toHaveAttribute('aria-expanded', 'true');
 
     userEvent.click(button);
-    expect(button).toHaveAttribute('aria-expanded', 'false');
+    expect(label).toHaveAttribute('aria-expanded', 'false');
   });
 
   it('should hide the label if card is open when hideLabelOnOpen is set', () => {
-    const { queryByTestId, getByTestId } = renderComponent({
+    const { getByRole, getByTestId } = renderComponent({
       ...defaultProps,
       hideLabelOnOpen: true,
     });
-    const button = getByTestId('details-card-button');
-    const floatButton = queryByTestId('details-card-floating-button');
+    const label = getByTestId('details-card-label');
+    const button = getByRole('button');
 
-    expect(button).toHaveAttribute('aria-hidden', 'false');
-    expect(floatButton).toBeInTheDocument();
-    expect(floatButton).toHaveAttribute('aria-expanded', 'false');
+    expect(label).toHaveAttribute('aria-hidden', 'false');
+    expect(label).toHaveAttribute('aria-expanded', 'false');
     userEvent.click(button);
-    expect(button).toHaveAttribute('aria-expanded', 'true');
-    expect(button).toHaveAttribute('aria-hidden', 'true');
-    expect(floatButton).toHaveAttribute('aria-expanded', 'true');
+    expect(label).toHaveAttribute('aria-expanded', 'true');
+    expect(label).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('should be open if openOnInit is set to true', () => {
-    const { getByRole } = renderComponent({
+    const { getByTestId } = renderComponent({
       ...defaultProps,
       openOnInit: true,
     });
-    const button = getByRole('button');
+    const label = getByTestId('details-card-label');
 
-    expect(button).toHaveAttribute('aria-expanded', 'true');
+    expect(label).toHaveAttribute('aria-expanded', 'true');
   });
 
   it('should call onClick handler on label click', () => {

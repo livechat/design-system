@@ -70,11 +70,14 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
     withDivider && styles[`${baseClass}--with-divider`],
     className
   );
-  const isMainButtonHidden = hideLabelOnOpen && isOpen;
+  const isLabelHidden = hideLabelOnOpen && isOpen;
   const isTextContent = typeof label === 'string';
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (
+    e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>
+  ) => {
     setIsOpen((prevValue) => !prevValue);
+    e.currentTarget.blur();
     onClick?.();
   };
 
@@ -96,17 +99,16 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
 
   return (
     <div className={mergedClassNames}>
-      <button
+      <div
         className={cx(
-          styles[`${baseClass}__button`],
-          isMainButtonHidden && styles[`${baseClass}__button--hide`],
-          isOpen && styles[`${baseClass}__button--open`],
-          hideLabelOnOpen && styles[`${baseClass}__button--float`]
+          styles[`${baseClass}__label-wrapper`],
+          hideLabelOnOpen && styles[`${baseClass}__label-wrapper--fading`],
+          isLabelHidden && styles[`${baseClass}__label-wrapper--hide`],
+          isOpen && styles[`${baseClass}__label-wrapper--open`]
         )}
-        onClick={handleButtonClick}
         aria-expanded={isOpen}
-        aria-hidden={isMainButtonHidden}
-        data-testid="details-card-button"
+        aria-hidden={isLabelHidden}
+        data-testid="details-card-label"
       >
         <div
           className={cx(
@@ -137,41 +139,27 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
             </div>
           )}
         </div>
-        {!hideLabelOnOpen && (
+      </div>
+      <Button
+        kind={isOpen && hideLabelOnOpen ? 'float' : 'text'}
+        icon={
           <Icon
+            source={ChevronRight}
             className={cx(
               styles[`${baseClass}__button__icon`],
               isOpen && styles[`${baseClass}__button__icon--open`]
             )}
-            source={ChevronRight}
           />
+        }
+        className={cx(
+          styles[`${baseClass}__button`],
+          !isOpen && styles[`${baseClass}__button--closed`],
+          isOpen && styles[`${baseClass}__button--open`],
+          hideLabelOnOpen && styles[`${baseClass}__button--fading`]
         )}
-      </button>
-      {hideLabelOnOpen && (
-        <Button
-          kind={isOpen ? 'float' : 'text'}
-          icon={
-            <Icon
-              source={ChevronRight}
-              className={cx(
-                styles[`${baseClass}__float-button__icon`],
-                isOpen && styles[`${baseClass}__float-button__icon--open`]
-              )}
-            />
-          }
-          className={cx(
-            styles[`${baseClass}__float-button`],
-            !isOpen && styles[`${baseClass}__float-button--closed`],
-            isOpen && styles[`${baseClass}__float-button--open`]
-          )}
-          onClick={(e) => {
-            handleButtonClick();
-            e.currentTarget.blur();
-          }}
-          aria-expanded={isOpen}
-          data-testid="details-card-floating-button"
-        />
-      )}
+        onClick={handleButtonClick}
+        aria-expanded={isOpen}
+      />
       <div>
         <div
           className={cx(

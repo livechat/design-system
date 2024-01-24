@@ -9,7 +9,7 @@ $min-card-height: 72px;
   color: var(--content-basic-primary);
 
   &:hover {
-    .#{$base-class}__float-button--open {
+    .#{$base-class}__button--fading {
       opacity: 1;
     }
   }
@@ -18,7 +18,7 @@ $min-card-height: 72px;
     border-bottom: 1px solid var(--border-basic-tertiary);
   }
 
-  &__button {
+  &__label-wrapper {
     display: flex;
     position: relative;
     align-items: center;
@@ -38,18 +38,6 @@ $min-card-height: 72px;
     overflow: hidden;
     color: var(--content-basic-primary);
 
-    &:hover {
-      cursor: pointer;
-    }
-
-    &__icon {
-      transition: all 0.2s ease;
-
-      &--open {
-        transform: rotate(90deg);
-      }
-    }
-
     &--hide {
       transition:
         opacity var(--transition-duration-fast-1) ease-out,
@@ -61,7 +49,7 @@ $min-card-height: 72px;
       max-height: 0;
     }
 
-    &--float {
+    &--fading {
       position: absolute;
     }
   }
@@ -97,13 +85,16 @@ $min-card-height: 72px;
     }
   }
 
-  &__float-button {
+  &__button {
     position: absolute;
     top: 18px;
     right: 16px;
     transition: all 0.2s ease;
-    opacity: 0;
     z-index: 1;
+
+    &--fading {
+      opacity: 0;
+    }
 
     &--closed {
       opacity: 1;
