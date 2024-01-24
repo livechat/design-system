@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import './Table.css';
+import '../Table/Table.css';
 
 export const Radius = (): React.ReactElement => {
   return (
