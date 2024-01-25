@@ -31,13 +31,13 @@ export enum ColorGroup {
   Deprecated, // ???
 }
 
-export type ColorsShape = Record<
-  DesignTokenKey,
-  {
-    enum: DesignTokenKey;
-    variable: string;
-    desc: string;
-    group: ColorGroup | string; // todo remove string type
-    deprecated?: boolean;
-  }
->;
+export type ColorBaseBody = {
+  enum: DesignTokenKey;
+  value: string;
+};
+
+export type ColorShape = ColorBaseBody & {
+  desc: string;
+  group: ColorGroup | string; // todo remove string type
+  deprecated?: boolean;
+};

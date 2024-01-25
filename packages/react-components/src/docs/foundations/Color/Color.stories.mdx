@@ -1,5 +1,6 @@
 import { Meta, Canvas } from '@storybook/addon-docs';
-import { ColorTokensPallete } from './ColorTokens';
+import { ColorTable } from './ColorTable';
+import { ColorsTokens } from './constants';
 
 <Meta title="Foundations/Color" />
 
@@ -27,5 +28,5 @@ Content color tokens in a design system help organize information visually. By a
     backgroundColor: 'var(--background)',
   }}
 >
-  <ColorTokensPallete />
+  <ColorTable data={ColorsTokens}></ColorTable>
 </Canvas>
