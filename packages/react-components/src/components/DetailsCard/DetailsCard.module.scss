@@ -1,13 +1,15 @@
 $base-class: 'details-card';
+$min-card-height: 72px;
 
 .#{$base-class} {
   position: relative;
   background-color: var(--surface-primary-default);
   width: 100%;
+  min-height: $min-card-height;
   color: var(--content-basic-primary);
 
   &:hover {
-    .#{$base-class}__float-button--open {
+    .#{$base-class}__button--fading {
       opacity: 1;
     }
   }
@@ -16,38 +18,39 @@ $base-class: 'details-card';
     border-bottom: 1px solid var(--border-basic-tertiary);
   }
 
-  &__button {
+  &__label-wrapper {
     display: flex;
     position: relative;
     align-items: center;
     justify-content: space-between;
-    transition: all 0.2s ease;
+    transition:
+      opacity var(--transition-duration-fast-1) ease-out
+        var(--transition-duration-moderate-1),
+      padding 0s ease-out var(--transition-duration-moderate-1),
+      max-height 0s ease-out;
     opacity: 1;
     border: 0;
     background-color: transparent;
     padding: 0;
     padding: var(--spacing-6);
     width: 100%;
-    max-height: 72px;
+    max-height: $min-card-height;
     overflow: hidden;
     color: var(--content-basic-primary);
 
-    &:hover {
-      cursor: pointer;
-    }
-
-    &__icon {
-      transition: all 0.2s ease;
-
-      &--open {
-        transform: rotate(90deg);
-      }
-    }
-
     &--hide {
+      transition:
+        opacity var(--transition-duration-fast-1) ease-out,
+        padding var(--transition-duration-fast-1) ease-out
+          var(--transition-duration-fast-1),
+        max-height 0s ease-out var(--transition-duration-fast-1);
       opacity: 0;
       padding: 0 var(--spacing-6);
-      height: 0;
+      max-height: 0;
+    }
+
+    &--fading {
+      position: absolute;
     }
   }
 
@@ -82,21 +85,19 @@ $base-class: 'details-card';
     }
   }
 
-  &__float-button {
+  &__button {
     position: absolute;
     top: 18px;
     right: 16px;
     transition: all 0.2s ease;
-    opacity: 0;
     z-index: 1;
+
+    &--fading {
+      opacity: 0;
+    }
 
     &--closed {
       opacity: 1;
-    }
-
-    &--open {
-      top: var(--spacing-1);
-      right: var(--spacing-1);
     }
 
     &__icon {
@@ -109,11 +110,18 @@ $base-class: 'details-card';
   }
 
   &__content-wrapper {
-    transition: all 0.2s ease;
+    transition:
+      opacity var(--transition-duration-moderate-1) ease-out,
+      max-height var(--transition-duration-fast-1) ease-out
+        var(--transition-duration-moderate-1);
     opacity: 0;
     overflow: hidden;
 
     &--open {
+      transition:
+        max-height var(--transition-duration-fast-1) ease-out,
+        opacity var(--transition-duration-moderate-1) ease-out
+          var(--transition-duration-fast-1);
       opacity: 1;
     }
   }
