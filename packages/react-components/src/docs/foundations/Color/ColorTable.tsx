@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { handleCopyText } from '../../helpers';
+
 import { ColorShape } from './types';
 
 import '../../components/Table/Table.css';
@@ -9,11 +11,6 @@ interface IColorTableProps {
 }
 
 export const ColorTable: React.FC<IColorTableProps> = ({ data }) => {
-  const handleCopyText = (text: string): void => {
-    void navigator.clipboard.writeText(text);
-    alert(`"${text}" copied to clipboard`);
-  };
-
   return (
     <table className="sb-unstyled">
       <thead>
