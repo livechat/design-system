@@ -1,0 +1,32 @@
+import { Meta, Canvas } from '@storybook/addon-docs';
+
+import { Radius } from '../../components/Radius/Radius';
+import { RadiusExamples } from '../../components/Radius/RadiusExamples';
+import { RadiusTable } from './RadiusTable';
+import { RadiusTokens } from './constants';
+
+<Meta title="Foundations/Radius" />
+
+# Radius
+
+Radius tokens are used to define the border radius of elements.
+
+## Usage
+
+To use radius tokens in your project, you need to import the `RadiusToken` constant from `@livechat/design-system-react-components`:
+
+```jsx
+import { RadiusToken } from '@livechat/design-system-react-components';
+```
+
+`RadiusToken` contains all the radius tokens available in the design system. You can use them in your project by using the `var()` function in CSS:
+
+```css
+.my-element {
+  border-radius: var(${RadiusToken.Radius3});
+}
+```
+
+## Tokens
+
+<RadiusTable data={RadiusTokens} />

@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import './Table.css';
+import { handleCopyText } from '../../helpers';
 
 interface ITable<T> {
   data: T[];
@@ -28,7 +29,7 @@ export const Table: React.FC<ITable<Record<string, unknown>>> = ({
             {Object.values(row).map((value, cellIndex) => {
               if (cellIndex === 0) {
                 return (
-                  <td>
+                  <td onClick={() => handleCopyText(value as string)}>
                     {renderExample && renderExample(row['value'] as string)}
                     {row['enum']}
                   </td>
