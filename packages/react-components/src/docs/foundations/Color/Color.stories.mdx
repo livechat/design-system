@@ -16,7 +16,13 @@ To use color tokens in your project, you need to import the `DesignToken` consta
 import { DesignToken } from '@livechat/design-system-react-components';
 ```
 
-<hr />
+`DesignToken` contains all the color tokens available in the design system. You can use them in your project by using the `var()` function in CSS:
+
+```css
+.my-element {
+  background-color: var(DesignToken.SurfaceBasicSubtle);
+}
+```
 
 ## Content
 

@@ -2,14 +2,6 @@ import { ShadowToken, ShadowTokenKey } from '../../../foundations/shadow-token';
 
 import { ShadowShape } from './types';
 
-export const ShadowTokens: ShadowShape[] = Object.entries(ShadowToken).map(
-  ([key, value]) => ({
-    enum: key,
-    value,
-    desc: ShadowDescription[key as ShadowTokenKey],
-  })
-);
-
 const ShadowDescription: Record<ShadowTokenKey, string> = {
   Float: 'Float sample description',
   PopOver: 'PopOver sample description',
@@ -29,3 +21,11 @@ const ShadowDescription: Record<ShadowTokenKey, string> = {
   DividerBottomRight: 'DividerBottomRight sample description',
   MessageBox: 'MessageBox sample description',
 };
+
+export const ShadowTokens: ShadowShape[] = Object.entries(ShadowToken).map(
+  ([key, value]) => ({
+    enum: key as ShadowTokenKey,
+    value,
+    desc: ShadowDescription[key as ShadowTokenKey],
+  })
+);

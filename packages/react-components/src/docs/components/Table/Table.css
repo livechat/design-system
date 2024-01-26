@@ -45,3 +45,10 @@ table tr:not(:last-of-type) td {
   width: 32px;
   height: 32px;
 }
+
+.shadow-example {
+  border-radius: var(--radius-4);
+  background: var(--surface-primary-default);
+  width: 48px;
+  height: 48px;
+}

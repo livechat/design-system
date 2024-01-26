@@ -25,8 +25,8 @@ export const ShadowTable: React.FC<IColorTableProps> = ({ data }) => {
           <tr>
             <td onClick={() => handleCopyText(shadow.enum)}>
               <div
-                className="color-example"
-                style={{ backgroundColor: `var(${shadow.value})` }}
+                className="shadow-example"
+                style={{ boxShadow: `var(${shadow.value})` }}
               />
               {shadow.enum}
             </td>
