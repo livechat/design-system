@@ -1,4 +1,4 @@
-import { DesignTokenKey } from '../../../themes/design-token';
+import { DesignTokenKey } from '../../../foundations/design-token';
 
 export enum ColorGroup {
   ContentBasic,
