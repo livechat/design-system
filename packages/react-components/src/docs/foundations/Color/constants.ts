@@ -11,4 +11,4 @@ export const ColorsTokens: ColorShape[] = ColorBaseVariants.map((color) => ({
   ...color,
   desc: 'Temporary description',
   group: ColorGroup.Other,
-}));
+})).sort((a, b) => a.enum.localeCompare(b.enum));
