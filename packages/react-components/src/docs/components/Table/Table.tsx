@@ -5,7 +5,7 @@ import './Table.css';
 interface ITable<T> {
   data: T[];
   columnNames: string[];
-  renderExample: (token: string) => React.ReactNode;
+  renderExample?: (token: string) => React.ReactNode;
 }
 
 export const Table: React.FC<ITable<Record<string, unknown>>> = ({
@@ -29,7 +29,7 @@ export const Table: React.FC<ITable<Record<string, unknown>>> = ({
               if (cellIndex === 0) {
                 return (
                   <td>
-                    {renderExample(row['value'] as string)}
+                    {renderExample && renderExample(row['value'] as string)}
                     {row['enum']}
                   </td>
                 );
