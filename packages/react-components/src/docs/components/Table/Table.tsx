@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import './Table.css';
+
 interface ITable<T> {
   data: T[];
   columnNames: string[];

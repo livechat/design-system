@@ -3,7 +3,8 @@ import * as React from 'react';
 import { Table } from '../../components/Table/Table';
 
 import { ColorShape } from './types';
-import '../../components/Table/Table.css';
+
+import styles from './ColorTable.module.scss';
 
 interface IColorTableProps {
   data: ColorShape[];
@@ -15,7 +16,7 @@ export const ColorTable: React.FC<IColorTableProps> = ({ data }) => {
       data={data}
       renderExample={(token) => (
         <div
-          className="color-example"
+          className={styles['color-example']}
           style={{ backgroundColor: `var(${token})` }}
         />
       )}

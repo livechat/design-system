@@ -1,10 +1,10 @@
 import * as React from 'react';
 
-import { handleCopyText } from '../../helpers';
+import { Table } from '../../components/Table/Table';
 
 import { ShadowShape } from './types';
 
-import '../../components/Table/Table.css';
+import styles from './ShadowTable.module.scss';
 
 interface IColorTableProps {
   data: ShadowShape[];
@@ -12,29 +12,15 @@ interface IColorTableProps {
 
 export const ShadowTable: React.FC<IColorTableProps> = ({ data }) => {
   return (
-    <table className="sb-unstyled">
-      <thead>
-        <tr>
-          <th>Enum</th>
-          <th>Token</th>
-          <th>Usage</th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((shadow) => (
-          <tr>
-            <td onClick={() => handleCopyText(shadow.enum)}>
-              <div
-                className="shadow-example"
-                style={{ boxShadow: `var(${shadow.value})` }}
-              />
-              {shadow.enum}
-            </td>
-            <td>{shadow.value}</td>
-            <td>{shadow.desc}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <Table
+      data={data}
+      renderExample={(token) => (
+        <div
+          className={styles['shadow-example']}
+          style={{ boxShadow: `var(${token})` }}
+        />
+      )}
+      columnNames={['Enum', 'Token', 'Usage']}
+    />
   );
 };
