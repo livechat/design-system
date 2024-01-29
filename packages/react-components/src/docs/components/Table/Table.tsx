@@ -32,8 +32,8 @@ export const Table: React.FC<ITable> = ({
       <tbody>
         {data.map((row, rowIndex) => (
           <tr key={rowIndex}>
-            {Object.values(row).map((value, cellIndex) => {
-              if (cellIndex === 0) {
+            {Object.entries(row).map(([key, value], cellIndex) => {
+              if (key === 'enum') {
                 return (
                   <td onClick={() => handleCopyText(value as string)}>
                     {renderExample && renderExample(row['value'])}
@@ -44,7 +44,14 @@ export const Table: React.FC<ITable> = ({
               }
 
               if (typeof value === 'string') {
-                return <td key={cellIndex}>{value}</td>;
+                return (
+                  <td
+                    key={cellIndex}
+                    className={key === 'value' ? 'no-wrap' : undefined}
+                  >
+                    {value}
+                  </td>
+                );
               }
             })}
           </tr>

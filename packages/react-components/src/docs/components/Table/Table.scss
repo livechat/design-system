@@ -39,3 +39,7 @@ table td {
 table tr:not(:last-of-type) td {
   border-bottom: 1px solid var(--border-basic-secondary);
 }
+
+.no-wrap {
+  white-space: nowrap;
+}
