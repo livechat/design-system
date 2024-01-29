@@ -4,8 +4,8 @@ import './Table.scss';
 import { handleCopyText } from '../../helpers';
 
 type BasicTableData = Record<string, unknown> & {
-  enum: string;
-  value: string;
+  enum: string | number;
+  token: string;
   deprecated?: boolean;
 };
 
@@ -40,7 +40,7 @@ export const Table: React.FC<ITable> = ({
                     onClick={() => handleCopyText(value as string)}
                   >
                     <div className="example-field copy-text">
-                      {renderExample && renderExample(row['value'])}
+                      {renderExample && renderExample(row['token'])}
                       {row['enum']}
                       {row['deprecated'] && <i> (deprecated)</i>}
                     </div>
@@ -48,7 +48,7 @@ export const Table: React.FC<ITable> = ({
                 );
               }
 
-              if (key === 'value') {
+              if (key === 'token') {
                 return (
                   <td
                     key={cellIndex}

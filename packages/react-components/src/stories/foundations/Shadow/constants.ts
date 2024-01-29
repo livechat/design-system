@@ -25,9 +25,9 @@ const ShadowDescription: Record<ShadowTokenKey, string> = {
 };
 
 export const ShadowTokens: ShadowShape[] = Object.entries(ShadowToken).map(
-  ([key, value]) => ({
+  ([key, token]) => ({
     enum: key as ShadowTokenKey,
-    value,
+    token,
     desc: ShadowDescription[key as ShadowTokenKey],
   })
 );

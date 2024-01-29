@@ -2,9 +2,9 @@ import { DesignToken, DesignTokenKey } from '../../../foundations/design-token';
 
 import { ColorGroup, ColorShape } from './types';
 
-const ColorBaseVariants = Object.entries(DesignToken).map(([key, value]) => ({
+const ColorBaseVariants = Object.entries(DesignToken).map(([key, token]) => ({
   enum: key as DesignTokenKey,
-  value,
+  token,
 }));
 
 // TODO: change group and desc to match the design system

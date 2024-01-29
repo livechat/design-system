@@ -33,7 +33,7 @@ export enum ColorGroup {
 
 export type ColorBaseBody = {
   enum: DesignTokenKey;
-  value: string;
+  token: string;
 };
 
 export type ColorShape = ColorBaseBody & {

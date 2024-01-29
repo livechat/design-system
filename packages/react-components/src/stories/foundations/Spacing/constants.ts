@@ -70,9 +70,9 @@ const SpacingDescription: Record<
 };
 
 export const SpacingTokens: SpacingShape[] = Object.entries(SpacingToken).map(
-  ([key, value]) => ({
+  ([key, token]) => ({
     enum: key as SpacingTokenKey,
-    value,
+    token: token,
     size: SpacingDescription[key as SpacingTokenKey]?.size,
     desc: SpacingDescription[key as SpacingTokenKey]?.desc,
   })

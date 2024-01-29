@@ -2,7 +2,7 @@ import { RadiusTokenKey } from '../../../foundations/radius-token';
 
 export type RadiusShape = {
   enum: RadiusTokenKey;
-  value: string;
+  token: string;
   size: string;
   desc: string;
   deprecated?: boolean;

@@ -48,9 +48,9 @@ const RadiusDescription: Record<
 };
 
 export const RadiusTokens: RadiusShape[] = Object.entries(RadiusToken)
-  .map(([key, value]) => ({
+  .map(([key, token]) => ({
     enum: key as RadiusTokenKey,
-    value,
+    token,
     size: RadiusDescription[key as RadiusTokenKey]?.size,
     desc: RadiusDescription[key as RadiusTokenKey]?.desc,
     deprecated: RadiusDescription[key as RadiusTokenKey]?.deprecated,
