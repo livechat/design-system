@@ -16,3 +16,5 @@ export const SpacingToken = {
   Spacing20: '--spacing-20',
   Spacing24: '--spacing-24',
 };
+
+export type SpacingTokenKey = keyof typeof SpacingToken;
