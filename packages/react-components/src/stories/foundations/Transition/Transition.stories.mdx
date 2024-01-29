@@ -1,0 +1,53 @@
+import { Meta, Canvas } from '@storybook/addon-docs';
+
+import { TransitionTable } from '../../components/Transition/TransitionTable';
+import {
+  delayEntries,
+  delayUseCases,
+} from '../../components/Transition/transitionDelay';
+import {
+  timingEntries,
+  timingUseCases,
+} from '../../components/Transition/transitionTiming';
+import {
+  durationEntries,
+  durationUseCases,
+} from '../../components/Transition/transitionDuration';
+
+<Meta title="Foundations/Transition" />
+
+# Transition
+
+Transitions are used to animate changes in an element's style. They are often used to make elements appear more smoothly or to create a visual effect.
+
+## Usage
+
+To use spacing tokens in your project, you need to import the specific transition constant from `@livechat/design-system-react-components`:
+
+Currently, the following transition tokens are available:
+
+- TransitionDurationToken
+- TransitionTimingToken
+- TransitionDelayToken
+
+```jsx
+import {
+  TransitionDurationToken,
+  TransitionTimingToken,
+  TransitionDelayToken,
+} from '@livechat/design-system-react-components';
+```
+
+```css
+.my-element {
+  transition: var(${TransitionDurationToken.Fast1}) var(
+      ${TransitionTimingToken.EaseIn}
+    );
+}
+```
+
+## Duration
+
+## Timing
+
+## Delay
