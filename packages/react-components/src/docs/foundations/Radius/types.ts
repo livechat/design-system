@@ -5,4 +5,5 @@ export type RadiusShape = {
   value: string;
   size: string;
   desc: string;
+  deprecated?: boolean;
 };

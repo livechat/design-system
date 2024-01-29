@@ -32,6 +32,7 @@ export const Table: React.FC<ITable<Record<string, unknown>>> = ({
                   <td onClick={() => handleCopyText(value as string)}>
                     {renderExample && renderExample(row['value'] as string)}
                     {row['enum']}
+                    {row['deprecated'] && <i> (deprecated)</i>}
                   </td>
                 );
               }
