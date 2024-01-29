@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../Table/Table.css';
+import '../Table/Table.scss';
 import { FC } from 'react';
 
 export const TransitionTable: FC<{

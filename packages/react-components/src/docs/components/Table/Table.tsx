@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import './Table.css';
+import './Table.scss';
 import { handleCopyText } from '../../helpers';
 
 type BasicTableData = Record<string, unknown> & {
