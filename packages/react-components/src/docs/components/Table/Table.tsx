@@ -3,13 +3,19 @@ import * as React from 'react';
 import './Table.css';
 import { handleCopyText } from '../../helpers';
 
-interface ITable<T> {
-  data: T[];
+type BasicTableData = Record<string, unknown> & {
+  enum: string;
+  value: string;
+  deprecated?: boolean;
+};
+
+interface ITable {
+  data: BasicTableData[];
   columnNames: string[];
   renderExample?: (token: string) => React.ReactNode;
 }
 
-export const Table: React.FC<ITable<Record<string, unknown>>> = ({
+export const Table: React.FC<ITable> = ({
   data,
   columnNames,
   renderExample,
@@ -30,7 +36,7 @@ export const Table: React.FC<ITable<Record<string, unknown>>> = ({
               if (cellIndex === 0) {
                 return (
                   <td onClick={() => handleCopyText(value as string)}>
-                    {renderExample && renderExample(row['value'] as string)}
+                    {renderExample && renderExample(row['value'])}
                     {row['enum']}
                     {row['deprecated'] && <i> (deprecated)</i>}
                   </td>
