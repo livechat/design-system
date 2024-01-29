@@ -3,23 +3,25 @@ import { ShadowToken, ShadowTokenKey } from '../../../foundations/shadow-token';
 import { ShadowShape } from './types';
 
 const ShadowDescription: Record<ShadowTokenKey, string> = {
-  Float: 'Float sample description',
-  PopOver: 'PopOver sample description',
-  Modal: 'Modal sample description',
-  Tooltip: 'Tooltip sample description',
-  TooltipArrowBottom: 'TooltipArrowBottom sample description',
-  TooltipArrowTop: 'TooltipArrowTop sample description',
-  TooltipArrowRight: 'TooltipArrowRight sample description',
-  TooltipArrowLeft: 'TooltipArrowLeft sample description',
-  TooltipArrow: 'TooltipArrow sample description',
-  Focus: 'Focus sample description',
-  DividerBottom: 'DividerBottom sample description',
-  DividerTop: 'DividerTop sample description',
-  DividerBottomLeft: 'DividerBottomLeft sample description',
-  DividerTopLeft: 'DividerTopLeft sample description',
-  DividerTopRight: 'DividerTopRight sample description',
-  DividerBottomRight: 'DividerBottomRight sample description',
-  MessageBox: 'MessageBox sample description',
+  Float: 'Cards, buttons, other elevated elements',
+  PopOver: 'Popovers',
+  Modal: 'Modals',
+  Tooltip: 'Tooltips',
+  TooltipArrowBottom: 'Specifically for tooltips with arrow on bottom',
+  TooltipArrowTop: 'Specifically for tooltips with arrow on top',
+  TooltipArrowRight: 'Specifically for tooltips with arrow on right',
+  TooltipArrowLeft: 'Specifically for tooltips with arrow on left',
+  TooltipArrow: 'Specifically for tooltips with arrow',
+  Focus: 'Focus state on elements',
+  DividerBottom: 'Separator on bottom of the element',
+  DividerTop: 'Separator on top of the element',
+  DividerBottomLeft:
+    'Suited for subtle exits, like fading out elements or collapsing menus/details panel',
+  DividerTopLeft: 'Separator on top left of the element',
+  DividerTopRight: 'Separator on top right of the element',
+  DividerBottomRight:
+    'Suited for subtle exits, like fading out elements or collapsing menus/details panel',
+  MessageBox: 'MessageBox on Chats',
 };
 
 export const ShadowTokens: ShadowShape[] = Object.entries(ShadowToken).map(

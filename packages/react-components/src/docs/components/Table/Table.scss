@@ -30,14 +30,16 @@ table {
       display: flex;
       column-gap: var(--spacing-3);
       align-items: center;
-
-      &:hover {
-        cursor: pointer;
-      }
     }
   }
 }
 
 .no-wrap {
   white-space: nowrap;
+}
+
+.copy-text {
+  &:hover {
+    cursor: pointer;
+  }
 }

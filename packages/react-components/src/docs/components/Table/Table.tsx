@@ -35,8 +35,11 @@ export const Table: React.FC<ITable> = ({
             {Object.entries(row).map(([key, value], cellIndex) => {
               if (key === 'enum') {
                 return (
-                  <td onClick={() => handleCopyText(value as string)}>
-                    <div className="example-field">
+                  <td
+                    key={cellIndex}
+                    onClick={() => handleCopyText(value as string)}
+                  >
+                    <div className="example-field copy-text">
                       {renderExample && renderExample(row['value'])}
                       {row['enum']}
                       {row['deprecated'] && <i> (deprecated)</i>}
@@ -45,15 +48,20 @@ export const Table: React.FC<ITable> = ({
                 );
               }
 
-              if (typeof value === 'string') {
+              if (key === 'value') {
                 return (
                   <td
                     key={cellIndex}
-                    className={key === 'value' ? 'no-wrap' : undefined}
+                    className="no-wrap copy-text"
+                    onClick={() => handleCopyText(value as string)}
                   >
                     {value}
                   </td>
                 );
+              }
+
+              if (typeof value === 'string') {
+                return <td key={cellIndex}>{value}</td>;
               }
             })}
           </tr>
