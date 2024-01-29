@@ -11,8 +11,7 @@ export const TransitionDelayExample: React.FC = () => {
     <div className={cx(styles['container'])}>
       <div className={cx(styles['row'])}>
         <Text className={styles['hint']}>
-          ℹ️ Hover your mouse cursor over the box to see the transition in
-          action.
+          ℹ️ Hover your mouse over the box to see the transition in action.
         </Text>
       </div>
       <div className={cx(styles['row'])}>

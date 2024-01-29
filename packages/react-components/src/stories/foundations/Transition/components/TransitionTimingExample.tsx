@@ -11,16 +11,15 @@ export const TransitionTimingExample: React.FC = () => {
     <div className={cx(styles['container'])}>
       <div className={cx(styles['row'])}>
         <Text className={styles['hint']}>
-          ℹ️ Hover your mouse cursor over the box to see the transition in
-          action.
+          ℹ️ Hover your mouse over the box to see the transition in action.
         </Text>
       </div>
       <div className={cx(styles['row'])}>
-        <Text>Fast1</Text>
+        <Text>Ease In</Text>
         <div className={cx(styles['example-box'], styles['timing-ease-in'])} />
       </div>
       <div className={cx(styles['row'])}>
-        <Text>Fast2</Text>
+        <Text>Ease Out</Text>
         <div className={cx(styles['example-box'], styles['timing-ease-out'])} />
       </div>
     </div>
