@@ -7,6 +7,8 @@ import {
 } from './constants';
 import { TransitionDurationExample } from './components/TransitionDurationExample';
 import { Canvas } from '@storybook/blocks';
+import { TransitionTimingExample } from './components/TransitionTimingExample';
+import { TransitionDelayExample } from './components/TransitionDelayExample';
 
 <Meta title="Foundations/Transition" />
 
@@ -54,10 +56,18 @@ Animation with **Ease-in** - start slow and speed up towards the end.
 
 Animation with **Ease-out** - fast start and slow end.
 
+<Canvas>
+  <TransitionTimingExample />
+</Canvas>
+
 <TransitionTable data={TransitionTimingTokens} />
 
 ## Delay
 
 Use it to determine the time it takes to start an animation or trigger a component
+
+<Canvas>
+  <TransitionDelayExample />
+</Canvas>
 
 <TransitionTable data={TransitionDelayTokens} />

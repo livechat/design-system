@@ -6,7 +6,7 @@ import { Text } from '../../../../components/Typography';
 
 import styles from './TransitionExample.module.scss';
 
-export const TransitionDurationExample: React.FC = () => {
+export const TransitionDelayExample: React.FC = () => {
   return (
     <div className={cx(styles['container'])}>
       <div className={cx(styles['row'])}>
@@ -16,18 +16,16 @@ export const TransitionDurationExample: React.FC = () => {
         </Text>
       </div>
       <div className={cx(styles['row'])}>
-        <Text>Fast1</Text>
-        <div className={cx(styles['example-box'], styles['duration-fast1'])} />
+        <Text>Instant</Text>
+        <div className={cx(styles['example-box'], styles['delay-instant'])} />
       </div>
       <div className={cx(styles['row'])}>
-        <Text>Fast2</Text>
-        <div className={cx(styles['example-box'], styles['duration-fast2'])} />
+        <Text>Moderate</Text>
+        <div className={cx(styles['example-box'], styles['delay-moderate'])} />
       </div>
       <div className={cx(styles['row'])}>
-        <Text>Moderate1</Text>
-        <div
-          className={cx(styles['example-box'], styles['duration-moderate1'])}
-        />
+        <Text>Slow</Text>
+        <div className={cx(styles['example-box'], styles['delay-slow'])} />
       </div>
     </div>
   );

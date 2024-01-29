@@ -6,7 +6,7 @@
   height: 100%;
 
   &:hover {
-    .duration-example {
+    .example-box {
       width: 300px;
     }
   }
@@ -28,22 +28,42 @@
   margin-top: 0;
 }
 
-.duration-example {
+.example-box {
   position: relative;
-  transition: width 300ms;
+  transition: width 1s;
   background-color: var(--action-primary-default);
   width: 50px;
   height: 50px;
 }
 
-.fast1 {
+.duration-fast1 {
   transition-duration: var(--transition-duration-fast-1);
 }
 
-.fast2 {
+.duration-fast2 {
   transition-duration: var(--transition-duration-fast-2);
 }
 
-.moderate1 {
+.duration-moderate1 {
   transition-duration: var(--transition-duration-moderate-1);
+}
+
+.timing-ease-in {
+  transition-timing-function: var(--transition-timing-ease-in);
+}
+
+.timing-ease-out {
+  transition-timing-function: var(--transition-timing-ease-out);
+}
+
+.delay-instant {
+  transition-delay: var(--delay-instant);
+}
+
+.delay-moderate {
+  transition-delay: var(--delay-moderate);
+}
+
+.delay-slow {
+  transition-delay: var(--delay-slow);
 }
