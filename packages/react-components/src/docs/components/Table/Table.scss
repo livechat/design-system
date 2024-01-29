@@ -5,39 +5,37 @@ table {
   overflow: hidden;
   border-collapse: separate;
   border-spacing: 0;
-}
 
-table thead {
-  background-color: var(--surface-secondary-default);
-}
+  thead {
+    background-color: var(--surface-secondary-default);
 
-table td:first-of-type {
-  display: flex;
-  column-gap: var(--spacing-3);
-  align-items: center;
-}
+    th {
+      padding: 16px 20px;
+      text-align: left;
+    }
+  }
 
-table td:first-of-type:hover {
-  cursor: pointer;
-}
+  tr {
+    &:not(:last-of-type) > td {
+      border-bottom: 1px solid var(--border-basic-secondary);
+    }
+  }
 
-table tr {
-  border-top: 1px solid var(--border-basic-secondary);
-}
+  td {
+    background: var(--color-white);
+    padding: 16px 20px;
+    font-size: 14px;
 
-table tr th {
-  padding: 16px 20px;
-  text-align: left;
-}
+    .example-field {
+      display: flex;
+      column-gap: var(--spacing-3);
+      align-items: center;
 
-table td {
-  background: var(--color-white);
-  padding: 16px 20px;
-  font-size: 14px;
-}
-
-table tr:not(:last-of-type) td {
-  border-bottom: 1px solid var(--border-basic-secondary);
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 .no-wrap {

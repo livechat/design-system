@@ -36,9 +36,11 @@ export const Table: React.FC<ITable> = ({
               if (key === 'enum') {
                 return (
                   <td onClick={() => handleCopyText(value as string)}>
-                    {renderExample && renderExample(row['value'])}
-                    {row['enum']}
-                    {row['deprecated'] && <i> (deprecated)</i>}
+                    <div className="example-field">
+                      {renderExample && renderExample(row['value'])}
+                      {row['enum']}
+                      {row['deprecated'] && <i> (deprecated)</i>}
+                    </div>
                   </td>
                 );
               }
