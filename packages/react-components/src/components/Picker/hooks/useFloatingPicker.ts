@@ -31,7 +31,7 @@ interface UseFloatingPickerProps {
   floatingStrategy?: Strategy;
   useClickHookProps?: UseClickProps;
   useDismissHookProps?: UseDismissProps;
-  openedOnInit?: boolean;
+  openedOnInit: boolean;
 }
 
 interface IUseFloatingPicker {

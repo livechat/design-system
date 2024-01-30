@@ -56,6 +56,7 @@ export const Picker: React.FC<IPickerProps> = ({
     pointer,
     setPointer,
   } = useFloatingPicker({
+    openedOnInit,
     disabled,
     items: options,
     floatingStrategy,
