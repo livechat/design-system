@@ -130,7 +130,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
                   styles[`${menuWrapperClass}__button`],
                   buttonElement && styles[`${menuWrapperClass}__button--active`]
                 )}
-                kind="plain"
+                kind="primary"
                 icon={
                   <Icon
                     source={vertical ? ChevronLeft : ChevronDown}
