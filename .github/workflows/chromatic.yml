@@ -50,4 +50,4 @@ jobs:
           # 👇 Enabling of the Chromatic TurboSnap feature
           onlyChanged: false
           externals: |
-            - 'src/*.scss'
+            - 'src/*.sass'

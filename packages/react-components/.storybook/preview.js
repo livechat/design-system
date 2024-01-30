@@ -17,7 +17,6 @@ export const decorators = [
     themes: {
       light: 'lc-light-theme',
       dark: 'lc-dark-theme',
-      legacy: 'lc-legacy-theme',
     },
     defaultTheme: 'light',
   }),
