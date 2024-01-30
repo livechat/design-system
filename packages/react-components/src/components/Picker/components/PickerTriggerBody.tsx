@@ -114,7 +114,7 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
         styles[`${baseClass}__input`],
         styles[`${baseClass}__input--${size}`]
       )}
-      placeholder="Select option"
+      placeholder={placeholder}
       onChange={handleOnChange}
       onKeyDown={handleKeyDown}
       autoFocus
