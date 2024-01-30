@@ -18,7 +18,9 @@ export const ModalCloseButton: React.FC<ModalCloseButtonProps> = ({
   onClick,
 }) => (
   <Button
+    type="button"
     kind="plain"
+    aria-label="Close modal"
     title="Close modal"
     className={cx(
       styles['modal-base__close'],

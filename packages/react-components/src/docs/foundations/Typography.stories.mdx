@@ -1,0 +1,99 @@
+import { Meta, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import { Heading, Text, Display } from '../../components/Typography';
+
+<Meta title="Foundations/Typography" />
+
+# Typography
+
+This guide will help you create a typography hierarchy in the interface you build. This can be achieved by using size and weight.
+
+## Heading
+
+`Heading` component renders heading element with given size.
+
+You can modify the output element via `as` prop. For example if you want to render XLarge heading as `h3` just pass `as='h3'`
+
+```jsx
+<Heading size="xl" as="h3">
+  My h3 heading
+</Heading>
+```
+
+<ArgsTable of={Heading} />
+
+<Canvas
+  style={{
+    color: 'var(--content-default)',
+    backgroundColor: 'var(--background)',
+  }}
+>
+  <Heading size="xl">Heading XLarge</Heading>
+  <Heading size="lg">Heading Large</Heading>
+  <Heading size="md">Heading Medium</Heading>
+  <Heading size="sm">Heading Small</Heading>
+  <Heading size="xs">Heading XSmall</Heading>
+</Canvas>
+
+## Text
+
+`Text` component renders a paragraph.
+
+```jsx
+<Text size="sm" bold>
+  This text is a small bold p
+</Text>
+```
+
+<ArgsTable of={Text} />
+
+<Canvas
+  style={{
+    color: 'var(--content-default)',
+    backgroundColor: 'var(--background)',
+  }}
+>
+  <Text>Paragraph Medium</Text>
+  <Text bold>Paragraph Medium Bold</Text>
+  <Text underline>Paragraph Medium Underline</Text>
+  <Text strike>Paragraph Medium Strikethrough</Text>
+  <Text size="sm">Paragraph Small</Text>
+  <Text size="sm" bold>
+    Paragraph Small Bold
+  </Text>
+  <Text size="xs">Paragraph XSmall</Text>
+  <Text size="xs" bold>
+    Paragraph XSmall Bold
+  </Text>
+  <Text caps>Caps</Text>
+  <Text caps bold>
+    Bold Caps
+  </Text>
+  <Text as="div" size="sm">
+    Small text as div
+  </Text>
+</Canvas>
+
+## Display
+
+`Display` component renders a div.
+
+```jsx
+<Display size="sm">This text is a small div</Display>
+```
+
+<ArgsTable of={Display} />
+
+<Canvas
+  style={{
+    color: 'var(--content-default)',
+    backgroundColor: 'var(--background)',
+  }}
+>
+  <Display>Div Medium</Display>
+  <Display size="sm">Div Small</Display>
+  <Display as="p">Paragraph Medium</Display>
+  <Display as="p" size="sm">
+    Paragraph Small
+  </Display>
+</Canvas>

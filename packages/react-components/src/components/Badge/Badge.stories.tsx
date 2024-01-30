@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Story } from '@storybook/react';
 
-import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import { StoryDescriptor } from '../../docs/components/StoryDescriptor';
 
 import { Badge, BadgeProps } from './Badge';
 

@@ -48,6 +48,14 @@ describe('getInitials', () => {
     expect(getInitials('john doe')).toBe('JD');
   });
 
+  it('should handle emojis', () => {
+    expect(getInitials('😩')).toBe('😩');
+  });
+
+  it('should handle emojis with words', () => {
+    expect(getInitials('John 😩')).toBe('J😩');
+  });
+
   it('should handle empty input', () => {
     expect(getInitials('')).toBe('');
   });

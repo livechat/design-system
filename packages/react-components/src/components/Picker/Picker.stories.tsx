@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { ComponentMeta, Story } from '@storybook/react';
 
-import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import { StoryDescriptor } from '../../docs/components/StoryDescriptor';
 import noop from '../../utils/noop';
 
 import {
@@ -10,8 +10,8 @@ import {
   DEFAULT_EXTENDED_OPTIONS,
   DEFAULT_MORE_PICKER_OPTIONS,
 } from './constants';
-import { IPickerProps, Picker } from './Picker';
-import { IPickerListItem } from './types';
+import { Picker } from './Picker';
+import { IPickerListItem, IPickerProps } from './types';
 
 import './Picker.stories.css';
 

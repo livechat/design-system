@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { ComponentMeta } from '@storybook/react';
 
-import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import { StoryDescriptor } from '../../docs/components/StoryDescriptor';
 import noop from '../../utils/noop';
 
 import { Alert, AlertProps } from './Alert';
