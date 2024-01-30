@@ -3,7 +3,7 @@ import * as React from 'react';
 import { AddCircle as AddCircleIcon } from '@livechat/design-system-icons';
 import { ComponentMeta, Story } from '@storybook/react';
 
-import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import { StoryDescriptor } from '../../docs/components/StoryDescriptor';
 import { Icon } from '../Icon';
 
 import { Input, InputProps } from './Input';

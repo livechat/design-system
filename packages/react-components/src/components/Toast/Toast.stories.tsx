@@ -3,7 +3,7 @@ import * as React from 'react';
 import { action } from '@storybook/addon-actions';
 import { ComponentMeta, Story } from '@storybook/react';
 
-import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import { StoryDescriptor } from '../../docs/components/StoryDescriptor';
 import { DISABLED_CONTROLS } from '../../utils/story-parameters';
 
 import { ToastProps, Toast } from './Toast';

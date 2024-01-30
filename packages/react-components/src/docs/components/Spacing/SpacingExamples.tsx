@@ -1,8 +1,7 @@
 import * as React from 'react';
 
-import { Input } from '../../components/Input';
-
-import { StoryDescriptor } from './StoryDescriptor';
+import { Input } from '../../../components/Input';
+import { StoryDescriptor } from '../StoryDescriptor';
 
 import styles from './SpacingExamples.module.scss';
 
