@@ -49,4 +49,4 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           # 👇 Enabling of the Chromatic TurboSnap feature
           onlyChanged: true
-          externals: 'src/*.sass'
+          externals: 'src/*.scss'
