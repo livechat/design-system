@@ -12,6 +12,7 @@ table {
     th {
       padding: 16px 20px;
       text-align: left;
+      font-weight: 600;
     }
   }
 
@@ -31,6 +32,12 @@ table {
       column-gap: var(--spacing-3);
       align-items: center;
     }
+  }
+}
+
+p {
+  b {
+    font-weight: 600;
   }
 }
 
