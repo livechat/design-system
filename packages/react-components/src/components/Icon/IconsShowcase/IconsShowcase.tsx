@@ -4,7 +4,9 @@ import * as DSIcons from '@livechat/design-system-icons';
 
 import { handleCopyText } from '../../../stories/helpers';
 import { Icon, IconSource } from '../index';
+
 import './style.scss';
+import { IconName } from './types';
 
 export type IconsMap = {
   [key: string]: IconSource;
@@ -12,10 +14,13 @@ export type IconsMap = {
 
 const Icons = DSIcons as IconsMap;
 
-export const IconsShowcase: React.FC = () => {
+interface IProps {
+  data: IconName[];
+}
+export const IconsShowcase: React.FC<IProps> = ({ data }) => {
   return (
-    <div className="icons-showcase-wrapper">
-      {Object.keys(Icons).map((item) => {
+    <div className="icons-showcase-wrapper sb-unstyled">
+      {data.map((item) => {
         const iconSource = Icons[item];
 
         return (

@@ -2,6 +2,8 @@ import { Canvas, Story, ArgsTable, Meta, Title } from '@storybook/blocks';
 import { Figma } from '@storybook/addon-designs/blocks';
 import * as IconStories from './Icon.stories';
 import { IconsShowcase } from './IconsShowcase/IconsShowcase';
+import { getIconsByGroup } from './IconsShowcase/helpers';
+import { IconGroup } from './IconsShowcase/types';
 
 <Meta of={IconStories} />
 
@@ -27,9 +29,25 @@ To use them, import the icon you need and pass it to the `source` prop of the `I
 
 ℹ️ Click on the icon to copy its name to clipboard.
 
-<Canvas sourceState="none">
-  <IconsShowcase />
-</Canvas>
+### Arrows
+
+<IconsShowcase data={getIconsByGroup(IconGroup.Arrows)} />
+
+### Text
+
+<IconsShowcase data={getIconsByGroup(IconGroup.Text)} />
+
+### File Type
+
+<IconsShowcase data={getIconsByGroup(IconGroup.FileType)} />
+
+### General
+
+<IconsShowcase data={getIconsByGroup(IconGroup.General)} />
+
+### Brands
+
+<IconsShowcase data={getIconsByGroup(IconGroup.Brands)} />
 
 ## Component API <a id="ComponentAPI" />
 
