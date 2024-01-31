@@ -20,6 +20,8 @@ interface IProps {
   as?: string;
   /** Optional custom className */
   className?: string;
+  /** Optional prop to set the uppercase */
+  caps?: boolean;
 }
 
 export const Heading: React.FC<React.PropsWithChildren<IProps>> = ({
@@ -27,11 +29,21 @@ export const Heading: React.FC<React.PropsWithChildren<IProps>> = ({
   size = 'md',
   children,
   className,
+  caps,
   ...props
 }) => {
   return React.createElement(
     as || SIZE_TO_ELEMENT_MAP[size],
-    { className: cx(styles[`heading-${size}`], className), ...props },
+    {
+      className: cx(
+        {
+          [styles[`heading-${size}`]]: true,
+          [styles[`heading-caps`]]: caps,
+        },
+        className
+      ),
+      ...props,
+    },
     children
   );
 };

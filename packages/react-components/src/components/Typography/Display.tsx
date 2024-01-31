@@ -5,7 +5,8 @@ import cx from 'clsx';
 import styles from './Typography.module.scss';
 
 interface IProps {
-  size?: 'md' | 'sm';
+  /** Size of the text */
+  size?: 'md' | 'sm' | 'max';
   /** DOM element name that will be rendered */
   as?: string;
   /** Optional custom className */

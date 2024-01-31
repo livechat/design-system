@@ -18,7 +18,7 @@
   line-height: 28px;
   letter-spacing: 0;
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -38,73 +38,50 @@
   font-style: normal;
 }
 
-@mixin caps {
+@mixin heading-caps {
   text-transform: uppercase;
-  line-height: 20px;
-  letter-spacing: 0.2px;
-  font-size: 12px;
-  font-weight: 400;
-  font-style: normal;
-
-  &--bold {
-    font-weight: 600;
-  }
 }
 
 @mixin paragraph-md {
   line-height: 22px;
-  letter-spacing: 0;
-  font-size: 15px;
+  letter-spacing: -0.1px;
+  font-size: 14px;
   font-weight: 400;
   font-style: normal;
-
-  &--bold {
-    font-weight: 600;
-  }
-
-  &--underline {
-    text-decoration-line: underline;
-  }
-
-  &--strike {
-    text-decoration-line: line-through;
-  }
 }
 
 @mixin paragraph-sm {
   line-height: 20px;
-  letter-spacing: 0;
-  font-size: 14px;
+  letter-spacing: -0.1px;
+  font-size: 13px;
   font-weight: 400;
   font-style: normal;
-
-  &--bold {
-    font-weight: 600;
-  }
 }
 
 @mixin paragraph-xs {
   line-height: 16px;
-  letter-spacing: 0.2px;
+  letter-spacing: 0;
   font-size: 12px;
   font-weight: 400;
   font-style: normal;
-
-  &--bold {
-    font-weight: 600;
-  }
 }
 
 @mixin display-md {
   line-height: 32px;
   font-size: 24px;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 @mixin display-sm {
   line-height: 24px;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 700;
+}
+
+@mixin display-max {
+  line-height: 80px;
+  font-size: 80px;
+  font-weight: 700;
 }
 
 .heading-xl {
@@ -127,8 +104,8 @@
   @include heading-xs;
 }
 
-.caps {
-  @include caps;
+.heading-caps {
+  @include heading-caps;
 }
 
 .paragraph-md {
@@ -143,10 +120,32 @@
   @include paragraph-xs;
 }
 
+.paragraph {
+  &--bold {
+    font-weight: 600;
+  }
+
+  &--underline {
+    text-decoration-line: underline;
+  }
+
+  &--strike {
+    text-decoration-line: line-through;
+  }
+
+  &--caps {
+    text-transform: uppercase;
+  }
+}
+
 .display-md {
   @include display-md;
 }
 
 .display-sm {
   @include display-sm;
+}
+
+.display-max {
+  @include display-max;
 }
