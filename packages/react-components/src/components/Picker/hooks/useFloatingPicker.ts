@@ -32,6 +32,9 @@ interface UseFloatingPickerProps {
   useClickHookProps?: UseClickProps;
   useDismissHookProps?: UseDismissProps;
   openedOnInit: boolean;
+  isVisible?: boolean;
+  onClose?: (event?: Event) => void;
+  onOpen?: (event?: Event) => void;
 }
 
 interface IUseFloatingPicker {
@@ -67,6 +70,9 @@ export const useFloatingPicker = ({
   useDismissHookProps,
   useClickHookProps,
   openedOnInit = false,
+  isVisible,
+  onOpen,
+  onClose,
 }: UseFloatingPickerProps): IUseFloatingPicker => {
   const nodeId = useFloatingNodeId();
   const [open, setOpen] = React.useState(openedOnInit);
@@ -75,14 +81,24 @@ export const useFloatingPicker = ({
   const [maxHeight, setMaxHeight] = React.useState(400);
   const listElementsRef = React.useRef<Array<HTMLElement | null>>([]);
   const virtualItemRef = React.useRef(null);
+  const isControlled = isVisible !== undefined;
+
+  const handleVisibilityChange = (isOpen: boolean, event?: Event) => {
+    if (isOpen) {
+      onOpen?.(event);
+    } else {
+      onClose?.(event);
+    }
+
+    !isControlled && setOpen(isOpen);
+  };
+
   const { refs, floatingStyles, context, isPositioned } =
     useFloating<HTMLButtonElement>({
       nodeId,
       open,
       strategy: floatingStrategy,
-      onOpenChange: (open) => {
-        setOpen(open);
-      },
+      onOpenChange: handleVisibilityChange,
       whileElementsMounted: autoUpdate,
       middleware: [
         offset(4),
@@ -147,6 +163,6 @@ export const useFloatingPicker = ({
     maxHeight,
     pointer,
     setPointer,
-    setOpen,
+    setOpen: handleVisibilityChange,
   };
 };

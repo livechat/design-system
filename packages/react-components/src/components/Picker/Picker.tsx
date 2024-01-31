@@ -28,6 +28,9 @@ export const Picker: React.FC<IPickerProps> = ({
   type = 'single',
   searchDisabled = false,
   hideClearButton,
+  isVisible,
+  onOpen,
+  onClose,
   openedOnInit = false,
   clearSearchAfterSelection,
   onSelect,
@@ -62,6 +65,9 @@ export const Picker: React.FC<IPickerProps> = ({
     floatingStrategy,
     useClickHookProps,
     useDismissHookProps,
+    isVisible,
+    onOpen,
+    onClose,
   });
 
   const {

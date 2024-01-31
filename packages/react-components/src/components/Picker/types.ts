@@ -86,6 +86,18 @@ export interface IPickerProps extends ComponentCoreProps {
    */
   hideClearButton?: boolean;
   /**
+   * Set picker visibility
+   */
+  isVisible?: boolean;
+  /**
+   * Optional handler called on picker list hide
+   */
+  onClose?: (event?: Event) => void;
+  /**
+   * Optional handler called on picker list show
+   */
+  onOpen?: (event?: Event) => void;
+  /**
    * Will open picker on component initialization
    */
   openedOnInit?: boolean;
