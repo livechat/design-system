@@ -30,7 +30,6 @@ export enum ColorGroup {
   Illustration,
   Products,
   Decor,
-  Other,
   SurfaceComponentSpecific,
   Deprecated, // ???
 }
