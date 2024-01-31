@@ -1,6 +1,11 @@
 import * as React from 'react';
 
 import './Table.scss';
+import { Warning } from '@livechat/design-system-icons';
+
+import { Icon } from '../../../components/Icon';
+import { Tooltip } from '../../../components/Tooltip';
+import { DesignToken } from '../../../foundations/design-token';
 import { handleCopyText } from '../../helpers';
 
 type BasicTableData = Record<string, unknown> & {
@@ -47,7 +52,19 @@ export const Table: React.FC<ITable> = ({
                       <div className="example-field copy-text">
                         {renderExample && renderExample(row['token'])}
                         {row['enum']}
-                        {row['deprecated'] && <i> (deprecated)</i>}
+                        {row['deprecated'] && (
+                          <Tooltip
+                            kind="invert"
+                            triggerRenderer={
+                              <Icon
+                                source={Warning}
+                                customColor={`var(${DesignToken.ActionWarningDefault})`}
+                              ></Icon>
+                            }
+                          >
+                            Deprecated
+                          </Tooltip>
+                        )}
                       </div>
                     </td>
                   );

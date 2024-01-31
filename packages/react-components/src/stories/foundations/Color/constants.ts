@@ -13,4 +13,5 @@ export const ColorsTokens: ColorShape[] = ColorBaseVariants.map((color) => ({
   ...color,
   desc: ColorsData[color.enum]?.desc ?? '',
   group: ColorsData[color.enum]?.group,
+  deprecated: ColorsData[color.enum]?.deprecated,
 })).sort((a, b) => a.enum.localeCompare(b.enum));
