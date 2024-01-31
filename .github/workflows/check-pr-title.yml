@@ -1,0 +1,13 @@
+name: Check PR Title for Conventional Commits Format
+on:
+  pull_request:
+    types: [ opened, edited, synchronize ]
+jobs:
+  check-for-cc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check-for-cc
+        id: check-for-cc
+        uses: agenthunt/conventional-commit-checker-action@v2.0.0
+        with:
+          pr-title-regex: '^((build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\(.+\))?: .{1,50})'
