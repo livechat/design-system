@@ -2,6 +2,7 @@ import { DesignTokenKey } from '../../../foundations/design-token';
 
 export enum ColorGroup {
   ContentBasic,
+  ContentGradient,
   ContentInvert,
   ContentLocked,
   SurfacePrimary,
@@ -12,9 +13,11 @@ export enum ColorGroup {
   SurfaceAccentEmphasisHigh,
   SurfaceAccentEmphasisLow,
   SurfaceAccentEmphasisMin,
+  SurfaceAccentEmphasisMedium,
   SurfaceLocked,
   SurfaceOther,
   SurfaceAvatar,
+  SurfaceGradient,
   Background,
   BorderBasic,
   BorderInvert,
@@ -28,6 +31,7 @@ export enum ColorGroup {
   Products,
   Decor,
   Other,
+  SurfaceComponentSpecific,
   Deprecated, // ???
 }
 

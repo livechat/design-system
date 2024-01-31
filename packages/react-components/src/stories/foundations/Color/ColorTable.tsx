@@ -17,7 +17,7 @@ export const ColorTable: React.FC<IColorTableProps> = ({ data }) => {
       renderExample={(token) => (
         <div
           className={styles['color-example']}
-          style={{ backgroundColor: `var(${token})` }}
+          style={{ background: `var(${token})` }}
         />
       )}
       columnNames={['Enum', 'Token', 'Usage']}

@@ -1,6 +1,7 @@
 import { DesignToken, DesignTokenKey } from '../../../foundations/design-token';
 
-import { ColorGroup, ColorShape } from './types';
+import { ColorsData } from './data';
+import { ColorShape } from './types';
 
 const ColorBaseVariants = Object.entries(DesignToken).map(([key, token]) => ({
   enum: key as DesignTokenKey,
@@ -10,6 +11,6 @@ const ColorBaseVariants = Object.entries(DesignToken).map(([key, token]) => ({
 // TODO: change group and desc to match the design system
 export const ColorsTokens: ColorShape[] = ColorBaseVariants.map((color) => ({
   ...color,
-  desc: 'Temporary description',
-  group: ColorGroup.Other,
+  desc: ColorsData[color.enum]?.desc ?? '',
+  group: ColorsData[color.enum]?.group,
 })).sort((a, b) => a.enum.localeCompare(b.enum));
