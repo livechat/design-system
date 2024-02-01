@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import modalImage from '../../docs/assets/modal-image.png';
+import modalImage from '../../stories/assets/modal-image.png';
 import noop from '../../utils/noop';
 import { Button } from '../Button';
 import './Modal.stories.css';
