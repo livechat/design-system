@@ -64,7 +64,7 @@ export const Popover: React.FC<IPopoverProps> = ({
     open: currentlyVisible,
     onOpenChange: handleVisibilityChange,
     middleware: [offset(offsetSize), flip(flipOptions), shift()],
-    placement: placement,
+    placement,
     strategy: floatingStrategy,
     whileElementsMounted: autoUpdate,
   });

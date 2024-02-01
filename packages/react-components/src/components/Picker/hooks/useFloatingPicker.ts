@@ -5,6 +5,7 @@ import {
   flip,
   FloatingContext,
   offset,
+  Placement,
   shift,
   size as floatingSize,
   Strategy,
@@ -28,6 +29,7 @@ const overflowPadding = 10;
 interface UseFloatingPickerProps {
   disabled?: boolean;
   items: IPickerListItem[];
+  placement?: Placement;
   floatingStrategy?: Strategy;
   useClickHookProps?: UseClickProps;
   useDismissHookProps?: UseDismissProps;
@@ -63,6 +65,7 @@ interface IUseFloatingPicker {
 export const useFloatingPicker = ({
   disabled,
   items,
+  placement,
   floatingStrategy,
   useDismissHookProps,
   useClickHookProps,
@@ -83,6 +86,7 @@ export const useFloatingPicker = ({
       strategy: floatingStrategy,
       onOpenChange: onVisibilityChange,
       whileElementsMounted: autoUpdate,
+      placement,
       middleware: [
         offset(4),
         flip({ padding: 10 }),

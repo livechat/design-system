@@ -1,6 +1,11 @@
 import { ReactElement } from 'react';
 
-import { Strategy, UseClickProps, UseDismissProps } from '@floating-ui/react';
+import {
+  Placement,
+  Strategy,
+  UseClickProps,
+  UseDismissProps,
+} from '@floating-ui/react';
 import { VirtuosoProps } from 'react-virtuoso';
 
 import { Size } from '../../utils';
@@ -109,6 +114,10 @@ export interface IPickerProps extends ComponentCoreProps {
    * Clears the search input after item select
    */
   clearSearchAfterSelection?: boolean;
+  /**
+   * The popover placement related to the trigger element
+   */
+  placement?: Placement;
   /**
    * Floating strategy for the picker component from @floating-ui/react
    */
