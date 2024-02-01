@@ -23,3 +23,5 @@ export const getNormalizedItems = (
       !(key === SELECT_ALL_OPTION_KEY || disabled || groupHeader)
   );
 };
+
+export const getPickerListItemKey = ({ key }: IPickerListItem): string => key;

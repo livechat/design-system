@@ -56,6 +56,23 @@ export const Picker: React.FC<IPickerProps> = ({
   };
 
   const {
+    selectedKeys,
+    items,
+    searchPhrase,
+    handleSelect,
+    handleOnFilter,
+    handleItemRemove,
+    handleClear,
+  } = usePickerItems({
+    selected,
+    options,
+    type,
+    selectAllOptionText,
+    onSelect,
+    setOpen: handleVisibilityChange,
+  });
+
+  const {
     context,
     nodeId,
     getReferenceProps,
@@ -74,30 +91,13 @@ export const Picker: React.FC<IPickerProps> = ({
   } = useFloatingPicker({
     openedOnInit,
     disabled,
-    items: options,
+    items,
     placement,
     floatingStrategy,
     useClickHookProps,
     useDismissHookProps,
     isOpen,
     onVisibilityChange: handleVisibilityChange,
-  });
-
-  const {
-    selectedKeys,
-    items,
-    searchPhrase,
-    handleSelect,
-    handleOnFilter,
-    handleItemRemove,
-    handleClear,
-  } = usePickerItems({
-    selected,
-    options,
-    type,
-    selectAllOptionText,
-    onSelect,
-    setOpen: handleVisibilityChange,
   });
 
   return (
