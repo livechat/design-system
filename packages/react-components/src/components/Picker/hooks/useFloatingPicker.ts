@@ -32,7 +32,7 @@ interface UseFloatingPickerProps {
   useClickHookProps?: UseClickProps;
   useDismissHookProps?: UseDismissProps;
   openedOnInit: boolean;
-  isVisible?: boolean;
+  isOpen?: boolean;
   onVisibilityChange?: (open: boolean, event?: Event | undefined) => void;
 }
 
@@ -66,7 +66,7 @@ export const useFloatingPicker = ({
   floatingStrategy,
   useDismissHookProps,
   useClickHookProps,
-  isVisible,
+  isOpen,
   onVisibilityChange,
 }: UseFloatingPickerProps): IUseFloatingPicker => {
   const nodeId = useFloatingNodeId();
@@ -79,7 +79,7 @@ export const useFloatingPicker = ({
   const { refs, floatingStyles, context, isPositioned } =
     useFloating<HTMLButtonElement>({
       nodeId,
-      open: isVisible,
+      open: isOpen,
       strategy: floatingStrategy,
       onOpenChange: onVisibilityChange,
       whileElementsMounted: autoUpdate,
@@ -125,7 +125,7 @@ export const useFloatingPicker = ({
     [click, dismiss, role, listNavigation]
   );
 
-  if (!isVisible && pointer) {
+  if (!isOpen && pointer) {
     setPointer(false);
   }
 
