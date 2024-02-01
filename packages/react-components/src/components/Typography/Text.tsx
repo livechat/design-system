@@ -4,7 +4,7 @@ import cx from 'clsx';
 
 import styles from './Typography.module.scss';
 
-export type TTextSize = 'md' | 'sm' | 'xs';
+export type TTextSize = 'sm' | 'md' | 'xs';
 
 interface IProps {
   /** DOM element name that will be rendered */

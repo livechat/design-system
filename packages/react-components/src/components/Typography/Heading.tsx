@@ -12,7 +12,7 @@ const SIZE_TO_ELEMENT_MAP = {
   xs: 'h5',
 };
 
-export type THeadingSize = 'xl' | 'lg' | 'md' | 'sm' | 'xs';
+export type THeadingSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 interface IProps {
   size?: THeadingSize;
