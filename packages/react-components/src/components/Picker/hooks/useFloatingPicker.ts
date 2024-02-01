@@ -5,6 +5,7 @@ import {
   flip,
   FloatingContext,
   offset,
+  Placement,
   shift,
   size as floatingSize,
   Strategy,
@@ -28,10 +29,13 @@ const overflowPadding = 10;
 interface UseFloatingPickerProps {
   disabled?: boolean;
   items: IPickerListItem[];
+  placement?: Placement;
   floatingStrategy?: Strategy;
   useClickHookProps?: UseClickProps;
   useDismissHookProps?: UseDismissProps;
   openedOnInit: boolean;
+  isOpen?: boolean;
+  onVisibilityChange?: (open: boolean, event?: Event | undefined) => void;
 }
 
 interface IUseFloatingPicker {
@@ -50,12 +54,10 @@ interface IUseFloatingPicker {
   context: FloatingContext<HTMLButtonElement>;
   nodeId: string;
   setFloating: (node: HTMLElement | null) => void;
-  open: boolean;
   activeIndex: number | null;
   listElementsRef: React.MutableRefObject<(HTMLElement | null)[]>;
   virtualItemRef: React.RefObject<HTMLDivElement>;
   maxHeight: number;
-  setOpen: (opened: boolean) => void;
   pointer: boolean;
   setPointer: (pointer: boolean) => void;
 }
@@ -63,27 +65,28 @@ interface IUseFloatingPicker {
 export const useFloatingPicker = ({
   disabled,
   items,
+  placement,
   floatingStrategy,
   useDismissHookProps,
   useClickHookProps,
-  openedOnInit = false,
+  isOpen,
+  onVisibilityChange,
 }: UseFloatingPickerProps): IUseFloatingPicker => {
   const nodeId = useFloatingNodeId();
-  const [open, setOpen] = React.useState(openedOnInit);
   const [pointer, setPointer] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
   const [maxHeight, setMaxHeight] = React.useState(400);
   const listElementsRef = React.useRef<Array<HTMLElement | null>>([]);
   const virtualItemRef = React.useRef(null);
+
   const { refs, floatingStyles, context, isPositioned } =
     useFloating<HTMLButtonElement>({
       nodeId,
-      open,
+      open: isOpen,
       strategy: floatingStrategy,
-      onOpenChange: (open) => {
-        setOpen(open);
-      },
+      onOpenChange: onVisibilityChange,
       whileElementsMounted: autoUpdate,
+      placement,
       middleware: [
         offset(4),
         flip({ padding: 10 }),
@@ -126,7 +129,7 @@ export const useFloatingPicker = ({
     [click, dismiss, role, listNavigation]
   );
 
-  if (!open && pointer) {
+  if (!isOpen && pointer) {
     setPointer(false);
   }
 
@@ -140,13 +143,11 @@ export const useFloatingPicker = ({
     context,
     nodeId,
     setFloating: refs.setFloating,
-    open,
     activeIndex,
     listElementsRef,
     virtualItemRef,
     maxHeight,
     pointer,
     setPointer,
-    setOpen,
   };
 };

@@ -28,15 +28,33 @@ export const Picker: React.FC<IPickerProps> = ({
   type = 'single',
   searchDisabled = false,
   hideClearButton,
+  isVisible,
+  onOpen,
+  onClose,
   openedOnInit = false,
   clearSearchAfterSelection,
   onSelect,
+  placement,
   floatingStrategy,
   useDismissHookProps,
   useClickHookProps,
   virtuosoProps,
   ...props
 }) => {
+  const [open, setOpen] = React.useState(openedOnInit);
+  const isControlled = isVisible !== undefined;
+  const isOpen = isControlled ? isVisible : open;
+
+  const handleVisibilityChange = (isOpen: boolean, event?: Event) => {
+    if (isOpen) {
+      onOpen?.(event);
+    } else {
+      onClose?.(event);
+    }
+
+    !isControlled && setOpen(isOpen);
+  };
+
   const {
     context,
     nodeId,
@@ -50,8 +68,6 @@ export const Picker: React.FC<IPickerProps> = ({
     listElementsRef,
     virtualItemRef,
     activeIndex,
-    open,
-    setOpen,
     maxHeight,
     pointer,
     setPointer,
@@ -59,9 +75,12 @@ export const Picker: React.FC<IPickerProps> = ({
     openedOnInit,
     disabled,
     items: options,
+    placement,
     floatingStrategy,
     useClickHookProps,
     useDismissHookProps,
+    isOpen,
+    onVisibilityChange: handleVisibilityChange,
   });
 
   const {
@@ -78,7 +97,7 @@ export const Picker: React.FC<IPickerProps> = ({
     type,
     selectAllOptionText,
     onSelect,
-    setOpen,
+    setOpen: handleVisibilityChange,
   });
 
   return (
@@ -88,7 +107,7 @@ export const Picker: React.FC<IPickerProps> = ({
         setReference={setReference}
         testId={props['data-testid']}
         isItemSelected={selectedKeys.length > 0}
-        isOpen={open}
+        isOpen={isOpen}
         onClear={handleClear}
         hideClearButton={hideClearButton}
         isDisabled={disabled}
@@ -98,7 +117,7 @@ export const Picker: React.FC<IPickerProps> = ({
         size={size}
       >
         <PickerTriggerBody
-          isOpen={open}
+          isOpen={isOpen}
           isSearchDisabled={searchDisabled}
           isDisabled={disabled}
           placeholder={placeholder}
@@ -114,7 +133,7 @@ export const Picker: React.FC<IPickerProps> = ({
         />
       </PickerTrigger>
       <FloatingNode id={nodeId}>
-        {open && (
+        {isOpen && (
           <FloatingPortal>
             <PickerList
               pickerType={type}
