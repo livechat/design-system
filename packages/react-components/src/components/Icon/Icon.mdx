@@ -1,6 +1,9 @@
 import { Canvas, Story, ArgsTable, Meta, Title } from '@storybook/blocks';
 import { Figma } from '@storybook/addon-designs/blocks';
 import * as IconStories from './Icon.stories';
+import { IconsShowcase } from './IconsShowcase/IconsShowcase';
+import { getIconsByGroup } from './IconsShowcase/helpers';
+import { IconGroup } from './IconsShowcase/types';
 
 <Meta of={IconStories} />
 
@@ -13,10 +16,38 @@ import * as IconStories from './Icon.stories';
 #### Example implementation
 
 ```jsx
-import { ChevronUp } from '@livechat/design-system-icons';
+import { Edit } from '@livechat/design-system-icons';
+import { Icon } from '@livechat/design-system-react-components';
 
-<Icon source={ChevronUp} size="medium" kind="primary" />;
+<Icon source={Edit} kind="primary" />;
 ```
+
+## Available icons
+
+These are the icons used in the LiveChat Design System. They are available as a separate package `@livechat/design-system-icons`.
+To use them, import the icon you need and pass it to the `source` prop of the `Icon` component.
+
+ℹ️ Click on the icon to copy its name to clipboard.
+
+### Arrows
+
+<IconsShowcase data={getIconsByGroup(IconGroup.Arrows)} />
+
+### Text
+
+<IconsShowcase data={getIconsByGroup(IconGroup.Text)} />
+
+### File Type
+
+<IconsShowcase data={getIconsByGroup(IconGroup.FileType)} />
+
+### General
+
+<IconsShowcase data={getIconsByGroup(IconGroup.General)} />
+
+### Brands
+
+<IconsShowcase data={getIconsByGroup(IconGroup.Brands)} />
 
 ## Component API <a id="ComponentAPI" />
 
