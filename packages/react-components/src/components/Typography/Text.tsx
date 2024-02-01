@@ -4,17 +4,22 @@ import cx from 'clsx';
 
 import styles from './Typography.module.scss';
 
-type TSize = 'md' | 'sm' | 'xs';
+export type TTextSize = 'md' | 'sm' | 'xs';
 
 interface IProps {
   /** DOM element name that will be rendered */
   as?: string;
   /** Size of the text */
-  size?: TSize;
+  size?: TTextSize;
   /** Optional custom className */
   className?: string;
-  /** Optional prop to set the uppercase */
+  /**
+   * @deprecated Use `uppercase` instead
+   * Optional prop to set the uppercase
+   * */
   caps?: boolean;
+  /** Optional prop to set the uppercase */
+  uppercase?: boolean;
   /** Optional prop to set the bold */
   bold?: boolean;
   /** Optional prop to set the underline */
@@ -27,6 +32,7 @@ export const Text: React.FC<React.PropsWithChildren<IProps>> = ({
   as = 'p',
   size = 'md',
   caps = false,
+  uppercase = false,
   bold = false,
   underline = false,
   strike = false,
@@ -45,7 +51,7 @@ export const Text: React.FC<React.PropsWithChildren<IProps>> = ({
           [styles[`${baseClassPrefix}--bold`]]: bold,
           [styles[`${baseClassPrefix}--strike`]]: strike,
           [styles[`${baseClassPrefix}--underline`]]: underline,
-          [styles[`${baseClassPrefix}--caps`]]: caps,
+          [styles[`${baseClassPrefix}--uppercase`]]: uppercase || caps,
         },
         className
       ),

@@ -38,7 +38,7 @@
   font-style: normal;
 }
 
-@mixin heading-caps {
+@mixin heading-uppercase {
   text-transform: uppercase;
 }
 
@@ -104,8 +104,8 @@
   @include heading-xs;
 }
 
-.heading-caps {
-  @include heading-caps;
+.heading-uppercase {
+  @include heading-uppercase;
 }
 
 .paragraph-md {
@@ -133,7 +133,7 @@
     text-decoration-line: line-through;
   }
 
-  &--caps {
+  &--uppercase {
     text-transform: uppercase;
   }
 }

@@ -12,16 +12,16 @@ const SIZE_TO_ELEMENT_MAP = {
   xs: 'h5',
 };
 
-type TSize = 'xl' | 'lg' | 'md' | 'sm' | 'xs';
+export type THeadingSize = 'xl' | 'lg' | 'md' | 'sm' | 'xs';
 
 interface IProps {
-  size?: TSize;
+  size?: THeadingSize;
   /** DOM element name that will be rendered */
   as?: string;
   /** Optional custom className */
   className?: string;
   /** Optional prop to set the uppercase */
-  caps?: boolean;
+  uppercase?: boolean;
 }
 
 export const Heading: React.FC<React.PropsWithChildren<IProps>> = ({
@@ -29,7 +29,7 @@ export const Heading: React.FC<React.PropsWithChildren<IProps>> = ({
   size = 'md',
   children,
   className,
-  caps,
+  uppercase,
   ...props
 }) => {
   return React.createElement(
@@ -38,7 +38,7 @@ export const Heading: React.FC<React.PropsWithChildren<IProps>> = ({
       className: cx(
         {
           [styles[`heading-${size}`]]: true,
-          [styles[`heading-caps`]]: caps,
+          [styles[`heading-uppercase`]]: uppercase,
         },
         className
       ),

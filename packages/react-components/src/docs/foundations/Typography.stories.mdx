@@ -2,6 +2,10 @@ import { Meta, Canvas, ArgsTable } from '@storybook/addon-docs';
 
 import { Heading, Text, Display } from '../../components/Typography';
 
+import { HeadingExamples } from '../components/Typography/HeadingExamples';
+import { TextExamples } from '../components/Typography/TextExamples';
+import { DisplayExamples } from '../components/Typography/DisplayExamples';
+
 <Meta title="Foundations/Typography" />
 
 # Typography
@@ -28,20 +32,7 @@ You can modify the output element via `as` prop. For example if you want to rend
     backgroundColor: 'var(--background)',
   }}
 >
-  <div>
-    <Heading size="xl">Heading XL</Heading>
-    <Heading size="lg">Heading LG</Heading>
-    <Heading size="md">Heading MD</Heading>
-    <Heading size="sm">Heading SM</Heading>
-    <Heading size="xs">Heading XS</Heading>
-  </div>
-  <div>
-    <Heading size="xl" caps>Heading XL CAPS</Heading>
-    <Heading size="lg" caps>Heading LG CAPS</Heading>
-    <Heading size="md" caps>Heading MD CAPS</Heading>
-    <Heading size="sm" caps>Heading SM CAPS</Heading>
-    <Heading size="xs" caps>Heading XS CAPS</Heading>
-  </div>
+  <HeadingExamples />
 </Canvas>
 
 ## Text
@@ -62,39 +53,7 @@ You can modify the output element via `as` prop. For example if you want to rend
     backgroundColor: 'var(--background)',
   }}
 >
-  <div>
-    <Text>Paragraph MD</Text>
-    <Text bold>Paragraph MD Bold</Text>
-    <Text underline>Paragraph MD Underline</Text>
-    <Text strike>Paragraph MD Strikethrough</Text>
-    <Text caps>Paragraph MD CAPS</Text>
-  </div>
-  <div>
-    <Text size="sm">Paragraph SM</Text>
-    <Text size="sm" bold>
-      Paragraph SM Bold
-    </Text>
-    <Text size="sm" underline>
-      Paragraph SM Underline
-    </Text>
-    <Text size="sm" strike>
-      Paragraph SM Strikethrough
-    </Text>
-    <Text size="sm" caps>Paragraph SM CAPS</Text>
-  </div>
-  <div>
-    <Text size="xs">Paragraph XS</Text>
-    <Text size="xs" bold>
-      Paragraph XS Bold
-    </Text>
-    <Text size="xs" underline>
-      Paragraph XS Underline
-    </Text>
-    <Text size="xs" strike>
-      Paragraph XS Strikethrough
-    </Text>
-    <Text size="xs" caps>Paragraph XS CAPS</Text>
-  </div>
+  <TextExamples />
 </Canvas>
 
 ## Display
@@ -113,7 +72,5 @@ You can modify the output element via `as` prop. For example if you want to rend
     backgroundColor: 'var(--background)',
   }}
 >
-  <Display size="max">Display MAX</Display>
-  <Display>Display MD</Display>
-  <Display size="sm">Display SM</Display>
+  <DisplayExamples />
 </Canvas>
