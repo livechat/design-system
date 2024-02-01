@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { ComponentMeta } from '@storybook/react';
 
-import { StoryDescriptor } from '../../docs/components/StoryDescriptor';
+import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
 import { Avatar, AvatarProps } from './Avatar';
 

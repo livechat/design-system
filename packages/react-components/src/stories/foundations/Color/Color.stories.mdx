@@ -1,0 +1,258 @@
+import { Meta, Canvas } from '@storybook/addon-docs';
+import { ColorTable } from './ColorTable';
+import { ColorsTokens } from './constants';
+import { getColorsByGroup } from './helpers';
+import { ColorGroup } from './types';
+
+<Meta title="Foundations/Color" />
+
+# Colors
+
+List of available color tokens. Click on token to copy it's value to clipboard.
+
+<hr />
+
+- [Content](#Content)
+- [Surface](#Surface)
+- [Border](#Border)
+- [Illustration](#Illustration)
+- [Products](#Products)
+- [Decor](#Decor)
+- [Surface Component Specific](#SurfaceComponentSpecific)
+- [Deprecated](#Deprecated)
+
+<hr />
+
+## Usage
+
+To use color tokens in your project, you need to import the `DesignToken` constant from `@livechat/design-system-react-components`:
+
+```jsx
+import { DesignToken } from '@livechat/design-system-react-components';
+```
+
+`DesignToken` contains all the color tokens available in the design system. You can use them in your project by using the `var()` function in CSS:
+
+```css
+.my-element {
+  background-color: var(DesignToken.SurfaceBasicSubtle);
+}
+```
+
+## Content <a id="Content" />
+
+Content color tokens in a design system help organize information visually. By assigning specific colors to different elements, like using primary colors for main content and secondary colors for less important ones, designers create a clear hierarchy, improving user experience and overall design aesthetics.
+
+### Basic
+
+Content tokens used for text and icons on basic and accent surfaces.
+
+<ColorTable data={getColorsByGroup(ColorGroup.ContentBasic)}></ColorTable>
+
+### Invert
+
+Content colors on inverted surfaces.
+
+<ColorTable data={getColorsByGroup(ColorGroup.ContentInvert)}></ColorTable>
+
+### Locked
+
+When for ui content we want to use same color between all of the themes (Light/Dark/Legacy).
+
+<ColorTable data={getColorsByGroup(ColorGroup.ContentLocked)}></ColorTable>
+
+### Gradient
+
+<ColorTable data={getColorsByGroup(ColorGroup.ContentGradient)}></ColorTable>
+
+## Surface <a id="Surface" />
+
+- [Primary](#Primary)
+- [Secondary](#Secondary)
+- [Tertiary](#Tertiary)
+- [Moderate](#Moderate)
+- [Invert](#Invert)
+- [Accent](#Accent)
+- [Locked](#Locked)
+- [Other](#Other)
+- [Avatar](#Avatar)
+- [Gradient](#Gradient)
+- [Background](#Background)
+
+Surface colors can be used to create a visual hierarchy within a design, with different surfaces or layers of UI elements having different colors to indicate different levels of importance or information. For example, a primary surface color may be used for the main content area of a page, while secondary surface colors may be used for navigation bars or other less important elements.
+
+### Primary <a id="Primary" />
+
+Primary surface, base for all content on the page. Primary surface color may be used for the main content area of a page, while secondary surface colors may be used for navigation bars, cards, banners or other less important elements.
+
+<ColorTable data={getColorsByGroup(ColorGroup.SurfacePrimary)}></ColorTable>
+
+### Secondary <a id="Secondary" />
+
+Surface can be used On Primary surface to create a visual hierarchy on the page
+
+<ColorTable data={getColorsByGroup(ColorGroup.SurfacePrimary)}></ColorTable>
+
+### Tertiary <a id="Tertiary" />
+
+Surface can be used On Primary or On Secondary surfaces to create a visual hierarchy on the page
+
+<ColorTable data={getColorsByGroup(ColorGroup.SurfaceTertiary)}></ColorTable>
+
+### Moderate <a id="Moderate" />
+
+Surface can be used On Primary, On Secondary or On Tertiary surfaces to create a visual hierarchy on the page
+
+<ColorTable data={getColorsByGroup(ColorGroup.SurfaceModerate)}></ColorTable>
+
+### Invert <a id="Invert" />
+
+Inverted surface. Contrast dark for Light theme and opposite light in Dark theme.
+
+<ColorTable data={getColorsByGroup(ColorGroup.SurfaceInvert)}></ColorTable>
+
+### Accent Surfaces <a id="Accent" />
+
+Accent Surfaces tokens in a design system use specific colors to highlight key elements, creating a more engaging and cohesive user experience.
+
+### Emphasis-High
+
+High emphasis colors to create a bold and vibrant look.
+
+<ColorTable
+  data={getColorsByGroup(ColorGroup.SurfaceAccentEmphasisHigh)}
+></ColorTable>
+
+### Emphasis-Low
+
+Using a subtle change in color for elements that are not the main focus of the design, such as background colors, borders, or minor details.
+
+<ColorTable
+  data={getColorsByGroup(ColorGroup.SurfaceAccentEmphasisLow)}
+></ColorTable>
+
+### Emphasis-Min
+
+Minimum: Used as a very subtle change in color or a slightly lighter or darker shade of a main color to provide a sense of hierarchy or to draw attention to specific elements, without being too distracting. (Ex: informative banners, tags, notifications etc)
+
+<ColorTable
+  data={getColorsByGroup(ColorGroup.SurfaceAccentEmphasisMin)}
+></ColorTable>
+
+### Medium
+
+<ColorTable
+  data={getColorsByGroup(ColorGroup.SurfaceAccentEmphasisMedium)}
+></ColorTable>
+
+### Locked <a id="Locked" />
+
+Locked surface colors will be same or similar values between all of the themes (Light/Dark/Legacy)
+
+<ColorTable data={getColorsByGroup(ColorGroup.SurfaceLocked)}></ColorTable>
+
+### Other <a id="Other" />
+
+Surfaces for a specific case, skeleton elements, modal overlay etc.
+
+<ColorTable data={getColorsByGroup(ColorGroup.SurfaceOther)}></ColorTable>
+
+### Avatar <a id="Avatar" />
+
+<ColorTable data={getColorsByGroup(ColorGroup.SurfaceAvatar)}></ColorTable>
+
+### Gradient <a id="Gradient" />
+
+<ColorTable data={getColorsByGroup(ColorGroup.SurfaceGradient)}></ColorTable>
+
+## Background <a id="Background" />
+
+<ColorTable data={getColorsByGroup(ColorGroup.Background)}></ColorTable>
+
+## Border <a id="Border" />
+
+- [Basic](#Basic)
+- [Inverted](#Inverted)
+
+Borders are used to visually separate elements or create a visual hierarchy. Borders used on basic and accent surfaces to separate different sections of a screen or to define buttons and other interactive elements.
+
+### Basic <a id="Basic" />
+
+Borders used on basic and accent surfaces
+
+<ColorTable data={getColorsByGroup(ColorGroup.BorderBasic)}></ColorTable>
+
+### Inverted <a id="Inverted" />
+
+Borders used on inverted surfaces
+
+<ColorTable data={getColorsByGroup(ColorGroup.BorderInvert)}></ColorTable>
+
+## Actions
+
+- [Primary](#Primary)
+- [Negative](#Negative)
+- [Positive](#Positive)
+- [Warning](#Warning)
+- [Neutral](#Neutral)
+- [High-Contrast](#High-Contrast)
+
+Action colors refer to the colors used to prompt user action or interaction within a design.
+
+### Primary <a id="Primary" />
+
+Colors for primary CTA surfaces, borders, content.
+
+<ColorTable data={getColorsByGroup(ColorGroup.ActionPrimary)}></ColorTable>
+
+### Negative <a id="Negative" />
+
+Colors for Negative CTA’s surfaces, borders, content. Destructive actions.
+
+<ColorTable data={getColorsByGroup(ColorGroup.ActionNegative)}></ColorTable>
+
+### Positive <a id="Positive" />
+
+Colors for Positive CTA’s surfaces, borders and content.
+
+<ColorTable data={getColorsByGroup(ColorGroup.ActionPositive)}></ColorTable>
+
+### Warning <a id="Warning" />
+
+Colors for warning CTA’s surfaces, borders and content.
+
+<ColorTable data={getColorsByGroup(ColorGroup.ActionWarning)}></ColorTable>
+
+### Neutral <a id="Neutral" />
+
+Colors for neutral CTA’s surfaces, borders and content. Not primary interactive components.
+
+<ColorTable data={getColorsByGroup(ColorGroup.ActionNeutral)}></ColorTable>
+
+### High-Contrast <a id="High-Contrast" />
+
+<ColorTable data={getColorsByGroup(ColorGroup.ActionHighContrast)}></ColorTable>
+
+## Illustration <a id="Illustration" />
+
+<ColorTable data={getColorsByGroup(ColorGroup.Illustration)}></ColorTable>
+
+## Products <a id="Products" />
+
+Brand colors of product logos
+
+<ColorTable data={getColorsByGroup(ColorGroup.Products)}></ColorTable>
+
+## Decor <a id="Decor" />
+
+<ColorTable data={getColorsByGroup(ColorGroup.Decor)}></ColorTable>
+
+## Surface Component Specific <a id="SurfaceComponentSpecific" />
+
+<ColorTable
+  data={getColorsByGroup(ColorGroup.SurfaceComponentSpecific)}
+></ColorTable>
+
+## Deprecated <a id="Deprecated" />
+
+<ColorTable data={getColorsByGroup(ColorGroup.Deprecated)}></ColorTable>

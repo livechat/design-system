@@ -1,0 +1,52 @@
+table {
+  border: 1px solid var(--border-basic-secondary);
+  border-radius: 8px;
+  width: 100%;
+  overflow: hidden;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  thead {
+    background-color: var(--surface-secondary-default);
+
+    th {
+      padding: 16px 20px;
+      text-align: left;
+      font-weight: 600;
+    }
+  }
+
+  tr {
+    &:not(:last-of-type) > td {
+      border-bottom: 1px solid var(--border-basic-secondary);
+    }
+  }
+
+  td {
+    background: var(--color-white);
+    padding: 16px 20px;
+    font-size: 14px;
+
+    .example-field {
+      display: flex;
+      column-gap: var(--spacing-3);
+      align-items: center;
+    }
+  }
+}
+
+p {
+  b {
+    font-weight: 600;
+  }
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.copy-text {
+  &:hover {
+    cursor: pointer;
+  }
+}

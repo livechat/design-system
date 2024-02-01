@@ -1,6 +1,6 @@
 import './index.scss';
 
-export { DesignToken } from './themes/design-token';
+export { DesignToken } from './foundations/design-token';
 export { SpacingToken } from './foundations/spacing-token';
 export { ShadowToken } from './foundations/shadow-token';
 export { RadiusToken } from './foundations/radius-token';
