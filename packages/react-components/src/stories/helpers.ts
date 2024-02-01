@@ -1,6 +1,7 @@
 export const handleCopyText = (text: string): void => {
-  void navigator.clipboard.writeText(text);
-  alert(`"${text}" copied to clipboard`);
+  void navigator.clipboard.writeText(text).then(() => {
+    alert(`"${text}" copied to clipboard`);
+  });
 };
 
 export const sortDeprecated = (
