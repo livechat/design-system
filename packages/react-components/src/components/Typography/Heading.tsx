@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
+import { THeadingSize } from './types';
+
 import styles from './Typography.module.scss';
 
 const SIZE_TO_ELEMENT_MAP = {
@@ -11,8 +13,6 @@ const SIZE_TO_ELEMENT_MAP = {
   sm: 'h4',
   xs: 'h5',
 };
-
-export type THeadingSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 interface IProps {
   size?: THeadingSize;

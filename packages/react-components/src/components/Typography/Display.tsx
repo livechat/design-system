@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import styles from './Typography.module.scss';
+import { TDisplaySize } from './types';
 
-export type TDisplaySize = 'sm' | 'md' | 'max';
+import styles from './Typography.module.scss';
 
 interface IProps {
   /** Size of the text */

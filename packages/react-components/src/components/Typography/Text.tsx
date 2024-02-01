@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import styles from './Typography.module.scss';
+import { TTextSize } from './types';
 
-export type TTextSize = 'sm' | 'md' | 'xs';
+import styles from './Typography.module.scss';
 
 interface IProps {
   /** DOM element name that will be rendered */

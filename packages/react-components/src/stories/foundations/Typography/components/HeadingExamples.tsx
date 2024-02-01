@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Heading, THeadingSize } from '../../../components/Typography';
+import { Heading, THeadingSize } from '../../../../components/Typography';
 
 const SIZES_MAP = ['xl', 'lg', 'md', 'sm', 'xs'] as THeadingSize[];
 

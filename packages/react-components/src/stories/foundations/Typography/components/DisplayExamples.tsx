@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Display, TDisplaySize } from '../../../components/Typography';
+import { Display, TDisplaySize } from '../../../../components/Typography';
 
 const SIZES_MAP = ['sm', 'md', 'max'] as TDisplaySize[];
 

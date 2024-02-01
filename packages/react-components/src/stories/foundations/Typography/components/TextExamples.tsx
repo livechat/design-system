@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Text, TTextSize } from '../../../components/Typography';
+import { Text, TTextSize } from '../../../../components/Typography';
 
 const SIZES_MAP = ['md', 'sm', 'xs'] as TTextSize[];
 
