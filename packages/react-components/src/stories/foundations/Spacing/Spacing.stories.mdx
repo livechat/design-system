@@ -1,0 +1,30 @@
+import { Meta } from '@storybook/addon-docs';
+
+import { SpacingTokens } from './constants';
+import { SpacingTable } from './SpacingTable';
+
+<Meta title="Foundations/Spacing" />
+
+# Spacing
+
+Spacing tokens are used to define the spacing between elements in the design system. They are used to define the padding and margin of elements.
+
+## Usage
+
+To use spacing tokens in your project, you need to import the `SpacingToken` constant from `@livechat/design-system-react-components`:
+
+```jsx
+import { SpacingToken } from '@livechat/design-system-react-components';
+```
+
+`SpacingToken` contains all the radius tokens available in the design system. You can use them in your project by using the `var()` function in CSS:
+
+```css
+.my-element {
+  padding: var(${SpacingToken.Spacing6}) var(${SpacingToken.Spacing5});
+}
+```
+
+## Tokens
+
+<SpacingTable data={SpacingTokens} />

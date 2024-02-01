@@ -14,8 +14,8 @@ interface IProps {
   /** Optional custom className */
   className?: string;
   /**
-   * @deprecated Use `uppercase` instead
    * Optional prop to set the uppercase
+   * @deprecated Use `uppercase` instead
    * */
   caps?: boolean;
   /** Optional prop to set the uppercase */

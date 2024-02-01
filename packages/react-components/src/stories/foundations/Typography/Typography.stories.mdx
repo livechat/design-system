@@ -1,0 +1,76 @@
+import { Meta, Canvas, ArgsTable } from '@storybook/addon-docs';
+
+import { Heading, Text, Display } from '../../../components/Typography';
+
+import { HeadingExamples } from './HeadingExamples';
+import { TextExamples } from './TextExamples';
+import { DisplayExamples } from './DisplayExamples';
+
+<Meta title="Foundations/Typography" />
+
+# Typography
+
+This guide will help you create a typography hierarchy in the interface you build. This can be achieved by using size and weight.
+
+## Heading
+
+`Heading` component renders heading element with given size.
+
+You can modify the output element via `as` prop. For example if you want to render XLarge heading as `h3` just pass `as='h3'`
+
+```jsx
+<Heading size="xl" as="h3">
+  My h3 heading
+</Heading>
+```
+
+<ArgsTable of={Heading} />
+
+<Canvas
+  style={{
+    color: 'var(--content-default)',
+    backgroundColor: 'var(--background)',
+  }}
+>
+  <HeadingExamples />
+</Canvas>
+
+## Text
+
+`Text` component renders a paragraph.
+
+```jsx
+<Text size="sm" bold>
+  This text is a small bold p
+</Text>
+```
+
+<ArgsTable of={Text} />
+
+<Canvas
+  style={{
+    color: 'var(--content-default)',
+    backgroundColor: 'var(--background)',
+  }}
+>
+  <TextExamples />
+</Canvas>
+
+## Display
+
+`Display` component renders a div.
+
+```jsx
+<Display size="sm">This text is a small div</Display>
+```
+
+<ArgsTable of={Display} />
+
+<Canvas
+  style={{
+    color: 'var(--content-default)',
+    backgroundColor: 'var(--background)',
+  }}
+>
+  <DisplayExamples />
+</Canvas>
