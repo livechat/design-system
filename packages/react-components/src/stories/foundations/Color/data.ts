@@ -136,14 +136,29 @@ export const ColorsData: Record<
     desc: 'Most contrast border color. Specific cases.',
     deprecated: false,
   },
-  BorderBasicDisabled: {
+  BorderBasicPrimary: {
     group: ColorGroup.BorderBasic,
-    desc: 'Disabled border state for interactive components (Ex: Inputs, Pickers, Buttons, etc)',
+    desc: 'Default border for enabled interactive components in a default state (Ex: Pickers, Buttons, etc)',
+    deprecated: false,
+  },
+  BorderBasicSecondary: {
+    group: ColorGroup.BorderBasic,
+    desc: 'Used as divider for non interactive components',
+    deprecated: false,
+  },
+  BorderBasicTertiary: {
+    group: ColorGroup.BorderBasic,
+    desc: 'Minimum emphasised border used as divider for non interactive components',
     deprecated: false,
   },
   BorderBasicHover: {
     group: ColorGroup.BorderBasic,
     desc: 'Hover border state for interactive components (Ex: Inputs, Pickers, Buttons, etc)',
+    deprecated: false,
+  },
+  BorderBasicDisabled: {
+    group: ColorGroup.BorderBasic,
+    desc: 'Disabled border state for interactive components (Ex: Inputs, Pickers, Buttons, etc)',
     deprecated: false,
   },
   BorderBasicInfo: {
@@ -161,24 +176,9 @@ export const ColorsData: Record<
     desc: 'Outlined tag border, positive tag.',
     deprecated: false,
   },
-  BorderBasicPrimary: {
-    group: ColorGroup.BorderBasic,
-    desc: 'Default border for enabled interactive components in a default state (Ex: Pickers, Buttons, etc)',
-    deprecated: false,
-  },
   BorderBasicPurple: {
     group: ColorGroup.BorderBasic,
     desc: 'Outlined tag border(Purple)',
-    deprecated: false,
-  },
-  BorderBasicSecondary: {
-    group: ColorGroup.BorderBasic,
-    desc: 'Used as divider for non interactive components',
-    deprecated: false,
-  },
-  BorderBasicTertiary: {
-    group: ColorGroup.BorderBasic,
-    desc: 'Minimum emphasised border used as divider for non interactive components',
     deprecated: false,
   },
   BorderBasicWarning: {
@@ -188,23 +188,23 @@ export const ColorsData: Record<
   },
   BorderDefault: {
     group: ColorGroup.Deprecated,
-    desc: '',
+    desc: 'Replace with a BorderBasicPrimary',
     deprecated: true,
   },
   BorderDisabled: {
     group: ColorGroup.Deprecated,
-    desc: '',
+    desc: 'Replace with a BorderBasicDisabled',
     deprecated: true,
   },
   BorderHover: {
     group: ColorGroup.Deprecated,
-    desc: '',
+    desc: 'Replace with a BorderBasicHover',
     deprecated: true,
   },
   BorderInvertDefault: {
     group: ColorGroup.BorderInvert,
     desc: 'Border color on inverted surface',
-    deprecated: true,
+    deprecated: false,
   },
   BorderInvertDisabled: {
     group: ColorGroup.BorderInvert,
@@ -228,12 +228,12 @@ export const ColorsData: Record<
   },
   BorderInvertSubtle: {
     group: ColorGroup.Deprecated,
-    desc: '',
+    desc: 'Replace with a BorderInvertSecondary',
     deprecated: true,
   },
   BorderSubtle: {
     group: ColorGroup.Deprecated,
-    desc: '',
+    desc: 'Replace with a BorderBasicSecondary',
     deprecated: true,
   },
   BtnBasicBackgroundActive: {
@@ -323,7 +323,7 @@ export const ColorsData: Record<
   },
   ColorBlack: {
     group: ColorGroup.Deprecated,
-    desc: 'Always black color (all themes)',
+    desc: '',
     deprecated: true,
   },
   ColorBot: {
@@ -381,14 +381,19 @@ export const ColorsData: Record<
     desc: '',
     deprecated: true,
   },
+  ContentBasicPrimary: {
+    group: ColorGroup.ContentBasic,
+    desc: 'Primary , high-contrast content, text and icons',
+    deprecated: false,
+  },
+  ContentBasicSecondary: {
+    group: ColorGroup.ContentBasic,
+    desc: 'Secondary content values, text and icons',
+    deprecated: false,
+  },
   ContentBasicDisabled: {
     group: ColorGroup.ContentBasic,
     desc: 'Disabled content text and icons',
-    deprecated: false,
-  },
-  ContentBasicGradient01: {
-    group: ColorGroup.ContentGradient,
-    desc: 'Gradient color for content, text and icons',
     deprecated: false,
   },
   ContentBasicInfo: {
@@ -398,7 +403,7 @@ export const ColorsData: Record<
   },
   ContentBasicNegative: {
     group: ColorGroup.ContentBasic,
-    desc: '',
+    desc: 'validation error, negative values, red tags',
     deprecated: false,
   },
   ContentBasicPositive: {
@@ -406,24 +411,19 @@ export const ColorsData: Record<
     desc: 'Content, text and icons',
     deprecated: false,
   },
-  ContentBasicPrimary: {
-    group: ColorGroup.ContentBasic,
-    desc: 'Primary , high-contrast content, text and icons',
-    deprecated: false,
-  },
   ContentBasicPurple: {
     group: ColorGroup.ContentBasic,
     desc: 'Content values, purple tags, text and icons',
     deprecated: false,
   },
-  ContentBasicSecondary: {
-    group: ColorGroup.ContentBasic,
-    desc: 'Secondary content values, text and icons',
-    deprecated: false,
-  },
   ContentBasicWarning: {
     group: ColorGroup.ContentBasic,
     desc: 'Content values, yellow tags, text and icons',
+    deprecated: false,
+  },
+  ContentBasicGradient01: {
+    group: ColorGroup.ContentGradient,
+    desc: 'Gradient color for content, text and icons',
     deprecated: false,
   },
   ContentBlackLocked: {
@@ -441,9 +441,19 @@ export const ColorsData: Record<
     desc: '',
     deprecated: true,
   },
+  ContentInvertPrimary: {
+    group: ColorGroup.ContentInvert,
+    desc: 'Primary content on inverted sufrace, text and icons',
+    deprecated: false,
+  },
+  ContentInvertSecondary: {
+    group: ColorGroup.ContentInvert,
+    desc: 'Secondary content on inverted sufrace, text and icons',
+    deprecated: false,
+  },
   ContentInvertDefault: {
     group: ColorGroup.ContentInvert,
-    desc: '',
+    desc: 'Primary content on inverted surface, text and icons',
     deprecated: false,
   },
   ContentInvertDisabled: {
@@ -456,29 +466,19 @@ export const ColorsData: Record<
     desc: 'Secondary content on inverted sufrace(dark surface or opposite to primary surface)',
     deprecated: false,
   },
-  ContentInvertPrimary: {
-    group: ColorGroup.ContentInvert,
-    desc: 'Primary content on inverted sufrace, text and icons',
-    deprecated: false,
-  },
-  ContentInvertSecondary: {
-    group: ColorGroup.ContentInvert,
-    desc: 'Secondary content on inverted sufrace, text and icons',
-    deprecated: false,
-  },
   ContentInvertSubtle: {
     group: ColorGroup.Deprecated,
     desc: '',
     deprecated: true,
   },
-  ContentLockedActive: {
-    group: ColorGroup.ContentLocked,
-    desc: 'Active content color which is the same in all themes',
-    deprecated: false,
-  },
   ContentLockedBlack: {
     group: ColorGroup.ContentLocked,
     desc: 'Black content color which is the same in all themes',
+    deprecated: false,
+  },
+  ContentLockedActive: {
+    group: ColorGroup.ContentLocked,
+    desc: 'Active content color which is the same in all themes',
     deprecated: false,
   },
   ContentLockedDefault: {
@@ -993,12 +993,12 @@ export const ColorsData: Record<
   },
   SurfaceAccentEmphasisLowNegative: {
     group: ColorGroup.SurfaceAccentEmphasisLow,
-    desc: 'Tags background, Error banners',
+    desc: 'Tags background, error banners',
     deprecated: false,
   },
   SurfaceAccentEmphasisLowPositive: {
     group: ColorGroup.SurfaceAccentEmphasisLow,
-    desc: 'Tags background, Success banners',
+    desc: 'Tags background, success banners',
     deprecated: false,
   },
   SurfaceAccentEmphasisLowPurple: {
@@ -1008,7 +1008,7 @@ export const ColorsData: Record<
   },
   SurfaceAccentEmphasisLowWarning: {
     group: ColorGroup.SurfaceAccentEmphasisLow,
-    desc: 'Tags background, Warning banners',
+    desc: 'Tags background, warning banners',
     deprecated: false,
   },
   SurfaceAccentEmphasisMediumNegative: {
@@ -1028,7 +1028,7 @@ export const ColorsData: Record<
   },
   SurfaceAccentEmphasisMinNegative: {
     group: ColorGroup.SurfaceAccentEmphasisMin,
-    desc: 'Negative, Error banners',
+    desc: 'Negative, error banners',
     deprecated: false,
   },
   SurfaceAccentEmphasisMinPositive: {
@@ -1143,57 +1143,57 @@ export const ColorsData: Record<
   },
   SurfaceGradient01: {
     group: ColorGroup.SurfaceGradient,
-    desc: 'surface gradient color, as a background for banners, tags, badges',
+    desc: 'Surface gradient color, as a background for banners, tags, badges',
     deprecated: false,
   },
   SurfaceGradient02: {
     group: ColorGroup.SurfaceGradient,
-    desc: 'surface gradient color, as a background for banners, tags, badges',
+    desc: 'Surface gradient color, as a background for banners, tags, badges',
     deprecated: false,
   },
   SurfaceGradient03: {
     group: ColorGroup.SurfaceGradient,
-    desc: 'surface gradient color, as a background for banners, tags, badges',
+    desc: 'Surface gradient color, as a background for banners, tags, badges',
     deprecated: false,
   },
   SurfaceGradient04: {
     group: ColorGroup.SurfaceGradient,
-    desc: 'surface gradient color, as a background for banners, tags, badges',
+    desc: 'Surface gradient color, as a background for banners, tags, badges',
     deprecated: false,
   },
   SurfaceGradient05: {
     group: ColorGroup.SurfaceGradient,
-    desc: 'surface gradient color, as a background for banners, tags, badges',
+    desc: 'Surface gradient color, as a background for banners, tags, badges',
     deprecated: false,
   },
   SurfaceGradient06: {
     group: ColorGroup.SurfaceGradient,
-    desc: 'surface gradient color, as a background for banners, tags, badges',
+    desc: 'Surface gradient color, as a background for banners, tags, badges',
     deprecated: false,
   },
   SurfaceGradient07: {
     group: ColorGroup.SurfaceGradient,
-    desc: 'surface gradient color, as a background for banners, tags, badges',
+    desc: 'Surface gradient color, as a background for banners, tags, badges',
     deprecated: false,
   },
   SurfaceGradient08: {
     group: ColorGroup.SurfaceGradient,
-    desc: 'surface gradient color, as a background for banners, tags, badges',
+    desc: 'Surface gradient color, as a background for banners, tags, badges',
     deprecated: false,
   },
   SurfaceGradient09: {
     group: ColorGroup.SurfaceGradient,
-    desc: 'surface gradient color, as a background for banners, tags, badges',
+    desc: 'Surface gradient color, as a background for banners, tags, badges',
     deprecated: false,
   },
   SurfaceGradient10: {
     group: ColorGroup.SurfaceGradient,
-    desc: 'surface gradient color, as a background for banners, tags, badges',
+    desc: 'Surface gradient color, as a background for banners, tags, badges',
     deprecated: false,
   },
   SurfaceGradient11: {
     group: ColorGroup.SurfaceGradient,
-    desc: 'surface gradient color, as a background for banners, tags, badges',
+    desc: 'Surface gradient color, as a background for banners, tags, badges',
     deprecated: false,
   },
   SurfaceInvertDefault: {
@@ -1303,52 +1303,52 @@ export const ColorsData: Record<
   },
   SurfacePrimaryActive: {
     group: ColorGroup.SurfacePrimary,
-    desc: 'for primary surface',
+    desc: 'Active state background color for primary surface. Active item on default primary surface',
     deprecated: false,
   },
   SurfacePrimaryActiveColored: {
     group: ColorGroup.SurfacePrimary,
-    desc: 'for primary surface',
+    desc: 'Additional active state background color for primary surface, specific cases. Active item on default primary surface',
     deprecated: false,
   },
   SurfacePrimaryDefault: {
     group: ColorGroup.SurfacePrimary,
-    desc: 'for primary surface',
+    desc: 'Default state background color for primary surface.',
     deprecated: false,
   },
   SurfacePrimaryDisabled: {
     group: ColorGroup.SurfacePrimary,
-    desc: 'Disabled state for primary surface',
+    desc: 'Disabled state background color for primary surface. Disabled item on default primary surface',
     deprecated: false,
   },
   SurfacePrimaryHover: {
     group: ColorGroup.SurfacePrimary,
-    desc: 'Hover state for primary surface',
+    desc: 'Hover state for primary surface. Hovered item on default primary surface',
     deprecated: false,
   },
   SurfacePrimaryHoverOpacity: {
     group: ColorGroup.SurfacePrimary,
-    desc: 'Hover state for primary surface in message text area',
+    desc: 'Hover state for primary surface in message text area.',
     deprecated: false,
   },
   SurfaceSecondaryActive: {
     group: ColorGroup.SurfaceSecondary,
-    desc: 'for secondary surface',
+    desc: 'Activefor secondary surface',
     deprecated: false,
   },
   SurfaceSecondaryDefault: {
     group: ColorGroup.SurfaceSecondary,
-    desc: 'for secondary surface',
+    desc: 'Default state background color for secondary surface.',
     deprecated: false,
   },
   SurfaceSecondaryDisabled: {
     group: ColorGroup.SurfaceSecondary,
-    desc: 'Disabled state for secondary surface',
+    desc: 'Disabled state background color state for secondary surface. Disabled item on default secondary or default primary surface',
     deprecated: false,
   },
   SurfaceSecondaryHover: {
     group: ColorGroup.SurfaceSecondary,
-    desc: 'Hover state for secondary surface',
+    desc: 'Hover state background color for secondary surface. Hovered item on secondary default surface or on primary default',
     deprecated: false,
   },
   SurfaceSecondarySubtle: {
