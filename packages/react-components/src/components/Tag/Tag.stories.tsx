@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as TablerIcons from '@livechat/design-system-icons';
 import { ComponentMeta } from '@storybook/react';
 
-import { StoryDescriptor } from '../../docs/components/StoryDescriptor';
+import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Icon } from '../Icon';
 
 import { Tag, TagProps } from './Tag';
