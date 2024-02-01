@@ -1,0 +1,29 @@
+import { Meta } from '@storybook/addon-docs';
+import { ShadowTable } from './ShadowTable';
+import { ShadowTokens } from './constants';
+
+<Meta title="Foundations/Shadow" />
+
+# Shadow
+
+Shadows tokens in a design system add depth for a polished look and establishing hierarchy and predictability in user interface.
+
+## Usage
+
+To use shadow tokens in your project, you need to import the `ShadowToken` constant from `@livechat/design-system-react-components`:
+
+```jsx
+import { ShadowToken } from '@livechat/design-system-react-components';
+```
+
+`ShadowToken` contains all the shadow tokens available in the design system. You can use them in your project by using the `var()` function in CSS:
+
+```css
+.my-element {
+  box-shadow: var(${ShadowToken.PopOver});
+}
+```
+
+## Tokens
+
+<ShadowTable data={ShadowTokens} />

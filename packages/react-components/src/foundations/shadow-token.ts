@@ -17,3 +17,5 @@ export const ShadowToken = {
   DividerBottomRight: '--shadow-divider-bottom-right',
   MessageBox: '--shadow-message-box',
 };
+
+export type ShadowTokenKey = keyof typeof ShadowToken;
