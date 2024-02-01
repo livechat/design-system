@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { SELECT_ALL_OPTION_KEY } from '../constants';
-import { getNormalizedItems } from '../helpers';
+import { getNormalizedItems, getPickerListItemKey } from '../helpers';
 import { IPickerListItem } from '../types';
 
 interface UsePickerItemsProps {
@@ -31,9 +31,14 @@ export const usePickerItems = ({
   onSelect,
   setOpen,
 }: UsePickerItemsProps): IUsePickerItems => {
-  const [selectedKeys, setSelectedKeys] = React.useState<string[]>(
-    () => selected?.map(({ key }) => key) || []
+  const [_selectedKeys, setSelectedKeys] = React.useState<string[]>(
+    () => selected?.map(getPickerListItemKey) || []
   );
+  const isDataControlled = selected !== undefined;
+  const selectedKeys = isDataControlled
+    ? selected?.map(getPickerListItemKey) || []
+    : _selectedKeys;
+
   const [searchPhrase, setSearchPhrase] = React.useState<string>('');
 
   const items = React.useMemo<IPickerListItem[]>(() => {
