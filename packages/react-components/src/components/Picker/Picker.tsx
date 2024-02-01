@@ -40,6 +40,20 @@ export const Picker: React.FC<IPickerProps> = ({
   virtuosoProps,
   ...props
 }) => {
+  const [open, setOpen] = React.useState(openedOnInit);
+  const isControlled = isVisible !== undefined;
+  const currentlyVisible = isControlled ? isVisible : open;
+
+  const handleVisibilityChange = (isOpen: boolean, event?: Event) => {
+    if (isOpen) {
+      onOpen?.(event);
+    } else {
+      onClose?.(event);
+    }
+
+    !isControlled && setOpen(isOpen);
+  };
+
   const {
     context,
     nodeId,
@@ -53,8 +67,6 @@ export const Picker: React.FC<IPickerProps> = ({
     listElementsRef,
     virtualItemRef,
     activeIndex,
-    open,
-    setOpen,
     maxHeight,
     pointer,
     setPointer,
@@ -65,9 +77,8 @@ export const Picker: React.FC<IPickerProps> = ({
     floatingStrategy,
     useClickHookProps,
     useDismissHookProps,
-    isVisible,
-    onOpen,
-    onClose,
+    isVisible: currentlyVisible,
+    onVisibilityChange: handleVisibilityChange,
   });
 
   const {
@@ -84,7 +95,7 @@ export const Picker: React.FC<IPickerProps> = ({
     type,
     selectAllOptionText,
     onSelect,
-    setOpen,
+    setOpen: handleVisibilityChange,
   });
 
   return (
@@ -94,7 +105,7 @@ export const Picker: React.FC<IPickerProps> = ({
         setReference={setReference}
         testId={props['data-testid']}
         isItemSelected={selectedKeys.length > 0}
-        isOpen={open}
+        isOpen={currentlyVisible}
         onClear={handleClear}
         hideClearButton={hideClearButton}
         isDisabled={disabled}
@@ -104,7 +115,7 @@ export const Picker: React.FC<IPickerProps> = ({
         size={size}
       >
         <PickerTriggerBody
-          isOpen={open}
+          isOpen={currentlyVisible}
           isSearchDisabled={searchDisabled}
           isDisabled={disabled}
           placeholder={placeholder}
@@ -120,7 +131,7 @@ export const Picker: React.FC<IPickerProps> = ({
         />
       </PickerTrigger>
       <FloatingNode id={nodeId}>
-        {open && (
+        {currentlyVisible && (
           <FloatingPortal>
             <PickerList
               pickerType={type}

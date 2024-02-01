@@ -33,8 +33,7 @@ interface UseFloatingPickerProps {
   useDismissHookProps?: UseDismissProps;
   openedOnInit: boolean;
   isVisible?: boolean;
-  onClose?: (event?: Event) => void;
-  onOpen?: (event?: Event) => void;
+  onVisibilityChange?: (open: boolean, event?: Event | undefined) => void;
 }
 
 interface IUseFloatingPicker {
@@ -53,12 +52,10 @@ interface IUseFloatingPicker {
   context: FloatingContext<HTMLButtonElement>;
   nodeId: string;
   setFloating: (node: HTMLElement | null) => void;
-  open: boolean;
   activeIndex: number | null;
   listElementsRef: React.MutableRefObject<(HTMLElement | null)[]>;
   virtualItemRef: React.RefObject<HTMLDivElement>;
   maxHeight: number;
-  setOpen: (opened: boolean) => void;
   pointer: boolean;
   setPointer: (pointer: boolean) => void;
 }
@@ -69,36 +66,22 @@ export const useFloatingPicker = ({
   floatingStrategy,
   useDismissHookProps,
   useClickHookProps,
-  openedOnInit = false,
   isVisible,
-  onOpen,
-  onClose,
+  onVisibilityChange,
 }: UseFloatingPickerProps): IUseFloatingPicker => {
   const nodeId = useFloatingNodeId();
-  const [open, setOpen] = React.useState(openedOnInit);
   const [pointer, setPointer] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
   const [maxHeight, setMaxHeight] = React.useState(400);
   const listElementsRef = React.useRef<Array<HTMLElement | null>>([]);
   const virtualItemRef = React.useRef(null);
-  const isControlled = isVisible !== undefined;
-
-  const handleVisibilityChange = (isOpen: boolean, event?: Event) => {
-    if (isOpen) {
-      onOpen?.(event);
-    } else {
-      onClose?.(event);
-    }
-
-    !isControlled && setOpen(isOpen);
-  };
 
   const { refs, floatingStyles, context, isPositioned } =
     useFloating<HTMLButtonElement>({
       nodeId,
-      open,
+      open: isVisible,
       strategy: floatingStrategy,
-      onOpenChange: handleVisibilityChange,
+      onOpenChange: onVisibilityChange,
       whileElementsMounted: autoUpdate,
       middleware: [
         offset(4),
@@ -142,7 +125,7 @@ export const useFloatingPicker = ({
     [click, dismiss, role, listNavigation]
   );
 
-  if (!open && pointer) {
+  if (!isVisible && pointer) {
     setPointer(false);
   }
 
@@ -156,13 +139,11 @@ export const useFloatingPicker = ({
     context,
     nodeId,
     setFloating: refs.setFloating,
-    open,
     activeIndex,
     listElementsRef,
     virtualItemRef,
     maxHeight,
     pointer,
     setPointer,
-    setOpen: handleVisibilityChange,
   };
 };
