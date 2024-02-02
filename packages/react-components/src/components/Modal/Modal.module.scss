@@ -3,12 +3,13 @@
   position: relative;
   flex-direction: column;
   margin: 10px;
+  margin: auto;
   border-radius: var(--radius-3);
   box-shadow: 0 20px 60px 0 rgb(0 0 0 / 30%);
   background-color: var(--surface-primary-default);
   padding: var(--spacing-6) var(--spacing-7);
   max-width: 100%;
-  max-height: 100%;
+  height: fit-content;
   color: var(--content-basic-primary);
 
   &--full-space {
@@ -20,7 +21,6 @@
     position: fixed;
     top: 0;
     left: 0;
-    align-items: center;
     justify-content: center;
     z-index: 13000;
     background-color: var(--surface-other-overlay);
@@ -29,6 +29,7 @@
 
     &--visible {
       display: flex;
+      overflow-y: auto;
     }
 
     &--labelled {
