@@ -18,6 +18,7 @@
     "dev:storybook": "storybook dev -p 6006 --quiet",
     "dev:lib": "vite build -w",
     "dev:styles": "npm run build:styles -- --watch",
+    "prebuild": "rimraf dist",
     "build": "run-s build:styles build:lib",
     "build:lib": "tsc && vite build",
     "build:styles": "sass src/themes:dist/themes; sass src/foundations:dist/spacing; sass src/foundations:dist/shadow",

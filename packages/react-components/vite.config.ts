@@ -43,7 +43,15 @@ export default defineConfig({
     },
   },
   plugins: [
-    dts(),
+    dts({
+      include: [
+        'src/index.ts',
+        'src/foundations',
+        'src/utils',
+        'src/components',
+      ],
+      exclude: ['**/*.stories.tsx', '**/*.spec.ts', '**/*.spec.tsx'],
+    }),
     react({ jsxRuntime: 'classic' }),
     turbosnap({ rootDir: process.cwd() }),
   ],
