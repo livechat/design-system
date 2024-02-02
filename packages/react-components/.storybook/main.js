@@ -1,13 +1,6 @@
 import { dirname, join } from 'path';
-const foundations = ['Typography', 'ColorTokens', 'Icons', 'TablerIcons'].map(
-  (name) => `../src/stories/${name}.stories.mdx`
-);
 module.exports = {
-  stories: [
-    ...foundations,
-    '../src/**/*.mdx',
-    '../src/**/*.stories.@(js|jsx|ts|tsx)',
-  ],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-essentials'),
