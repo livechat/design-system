@@ -93,6 +93,7 @@ export const Avatar: React.FC<AvatarProps> = ({
 
   const letterCount = ['xxxsmall', 'xxsmall', 'xsmall'].includes(size) ? 1 : 2;
   const initials = getInitials(text, letterCount);
+  const isSmallSize = ['xxxsmall', 'xxsmall', 'xsmall', 'small'].includes(size);
 
   const backgroundColor = color || getBackgroundColor(text);
   const fontColor = backgroundColor ? getFontColor(backgroundColor) : undefined;
@@ -121,11 +122,11 @@ export const Avatar: React.FC<AvatarProps> = ({
   );
 
   const getTextSize = (size: AvatarSize) => {
-    if (['xxxsmall', 'xxsmall', 'xsmall'].includes(size)) {
+    if (isSmallSize) {
       return '2xs';
     }
 
-    if (['small', 'medium'].includes(size)) {
+    if (['medium'].includes(size)) {
       return 'xs';
     }
 
@@ -174,6 +175,8 @@ export const Avatar: React.FC<AvatarProps> = ({
           as="span"
           size={getTextSize(size)}
           style={{ color: fontColor }}
+          bold={isSmallSize}
+          uppercase={isSmallSize}
         >
           {initials}
         </Heading>
