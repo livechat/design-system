@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import noop from '../../utils/noop';
-import { Display, Heading } from '../Typography';
+import { Display, Heading, Text } from '../Typography';
 
 import imageDefault from './assets/image2.png';
 import promoImage from './assets/promo-img.png';
@@ -46,7 +46,7 @@ export const Default = (args: IPromoBannerV2Props): React.ReactElement => (
         Title text up 2 lines
       </Heading>
     </div>
-    Description text up to 4 lines
+    <Text as="div">Description text up to 4 lines</Text>
   </PromoBannerV2>
 );
 Default.args = {
@@ -69,7 +69,7 @@ export const WithStyledAdditionalContent = (
         <div style={{ marginBottom: 'var(--spacing-1)' }}>
           <Display>Title text up 2 lines</Display>
         </div>
-        Description text up to 4 lines
+        <Text as="div">Description text up to 4 lines</Text>
       </PromoBannerV2>
     </div>
     <div style={{ width: 450, marginTop: 30 }}>
@@ -84,7 +84,7 @@ export const WithStyledAdditionalContent = (
         <div style={{ marginBottom: 'var(--spacing-1)' }}>
           <Display size="sm">Title text up 2 lines</Display>
         </div>
-        Description text up to 4 lines
+        <Text as="div">Description text up to 4 lines</Text>
       </PromoBannerV2>
     </div>
   </div>

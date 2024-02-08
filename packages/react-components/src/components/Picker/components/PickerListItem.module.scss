@@ -3,6 +3,12 @@ $base-class: 'picker-list';
 .item-wrapper {
   padding: 0 var(--spacing-2);
 
+  &:hover {
+    > [aria-current='true'] {
+      border-color: transparent;
+    }
+  }
+
   &__first {
     padding-top: var(--spacing-2);
   }
@@ -12,14 +18,6 @@ $base-class: 'picker-list';
 
     > div {
       margin-bottom: 0;
-    }
-  }
-
-  &:hover {
-    > div {
-      &[aria-current='true'] {
-        border-color: transparent;
-      }
     }
   }
 }
@@ -94,10 +92,7 @@ $base-class: 'picker-list';
       cursor: auto;
       padding: 12px 12px 4px;
       height: 36px;
-      text-transform: uppercase;
       color: var(--content-basic-secondary);
-      font-size: 12px;
-      font-weight: 600;
 
       &::after {
         position: absolute;

@@ -5,6 +5,7 @@ import cx from 'clsx';
 
 import { Size } from '../../../utils';
 import { Icon } from '../../Icon';
+import { Text } from '../../Typography';
 
 import styles from './PickerTrigger.module.scss';
 
@@ -83,7 +84,7 @@ export const PickerTrigger: React.FC<
             styles[`${baseClass}__content--with-items`]
         )}
       >
-        {children}
+        <Text as="div">{children}</Text>
       </div>
       <div
         className={cx(

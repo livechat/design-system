@@ -6,7 +6,7 @@ import { TTextSize } from './types';
 
 import styles from './Typography.module.scss';
 
-interface IProps {
+interface IProps extends React.HTMLAttributes<HTMLElement> {
   /** DOM element name that will be rendered */
   as?: string;
   /** Size of the text */

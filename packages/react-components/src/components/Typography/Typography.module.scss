@@ -38,8 +38,22 @@
   font-style: normal;
 }
 
+@mixin heading-2xs {
+  line-height: 20px;
+  letter-spacing: 0;
+  font-size: 12px;
+  font-weight: 400;
+  font-style: normal;
+}
+
 @mixin heading-uppercase {
   text-transform: uppercase;
+  letter-spacing: 0.2px;
+}
+
+@mixin heading-bold {
+  letter-spacing: 0.2px;
+  font-weight: 500;
 }
 
 @mixin paragraph-md {
@@ -104,8 +118,16 @@
   @include heading-xs;
 }
 
+.heading-2xs {
+  @include heading-2xs;
+}
+
 .heading-uppercase {
   @include heading-uppercase;
+}
+
+.heading-bold {
+  @include heading-bold;
 }
 
 .paragraph-md {

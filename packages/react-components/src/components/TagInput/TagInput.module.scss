@@ -61,7 +61,7 @@
     padding: 0 0 0 4px;
     width: auto;
     color: var(--content-basic-primary);
-    font-size: 15px;
+    font-size: inherit;
 
     &:focus {
       border-style: none;
