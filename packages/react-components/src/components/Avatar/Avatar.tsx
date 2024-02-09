@@ -5,6 +5,7 @@ import cx from 'clsx';
 
 import { ComponentCoreProps } from '../../utils/types';
 import { Icon } from '../Icon';
+import { Heading } from '../Typography';
 
 import {
   getBackgroundColor,
@@ -92,6 +93,7 @@ export const Avatar: React.FC<AvatarProps> = ({
 
   const letterCount = ['xxxsmall', 'xxsmall', 'xsmall'].includes(size) ? 1 : 2;
   const initials = getInitials(text, letterCount);
+  const isSmallSize = ['xxxsmall', 'xxsmall', 'xsmall', 'small'].includes(size);
 
   const backgroundColor = color || getBackgroundColor(text);
   const fontColor = backgroundColor ? getFontColor(backgroundColor) : undefined;
@@ -118,6 +120,26 @@ export const Avatar: React.FC<AvatarProps> = ({
     styles[`${baseClass}__rim`],
     styles[`${baseClass}__rim--${size}`]
   );
+
+  const getTextSize = (size: AvatarSize) => {
+    if (isSmallSize) {
+      return '2xs';
+    }
+
+    if (['medium'].includes(size)) {
+      return 'xs';
+    }
+
+    if (['large', 'xlarge'].includes(size)) {
+      return 'sm';
+    }
+
+    if (['xxlarge'].includes(size)) {
+      return 'lg';
+    }
+
+    return 'xl';
+  };
 
   const handleError: React.ReactEventHandler<HTMLImageElement> | undefined =
     React.useCallback(() => setShouldDisplayFallbackAvatar(true), []);
@@ -149,7 +171,15 @@ export const Avatar: React.FC<AvatarProps> = ({
         />
       )}
       {shouldDisplayInitials && (
-        <span style={{ color: fontColor }}>{initials}</span>
+        <Heading
+          as="span"
+          size={getTextSize(size)}
+          style={{ color: fontColor }}
+          bold={isSmallSize}
+          uppercase={isSmallSize}
+        >
+          {initials}
+        </Heading>
       )}
       {shouldDisplayFallbackAvatar && (
         <Icon

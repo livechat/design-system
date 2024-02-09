@@ -5,6 +5,7 @@ import cx from 'clsx';
 
 import { Button } from '../../Button';
 import { Icon } from '../../Icon';
+import { Heading } from '../../Typography';
 import { getIconType } from '../helpers';
 import styles from '../Tooltip.module.scss';
 import { TooltipButton, TooltipTheme } from '../types';
@@ -62,7 +63,11 @@ export const Interactive: React.FC<{
           />
         </div>
       )}
-      {header && <div className={styles[`${baseClass}-header`]}>{header}</div>}
+      {header && (
+        <Heading as="div" size="xs" className={styles[`${baseClass}-header`]}>
+          {header}
+        </Heading>
+      )}
       <div className={styles[`${baseClass}-text`]}>{text}</div>
       <div
         className={cx(

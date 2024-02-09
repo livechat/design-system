@@ -61,18 +61,18 @@
     padding: 0 0 0 4px;
     width: auto;
     color: var(--content-basic-primary);
-    font-size: 15px;
+    font-size: inherit;
 
     &:focus {
       border-style: none;
     }
 
     &--medium {
-      line-height: 28px;
+      line-height: 24px;
     }
 
     &--large {
-      line-height: 36px;
+      line-height: 32px;
     }
   }
 

@@ -1,6 +1,10 @@
 import { Meta, Canvas, ArgsTable } from '@storybook/addon-docs';
 
-import { Heading, Text, Display } from '../../components/Typography';
+import { Heading, Text, Display } from '../../../components/Typography';
+
+import { HeadingExamples } from './components/HeadingExamples';
+import { TextExamples } from './components/TextExamples';
+import { DisplayExamples } from './components/DisplayExamples';
 
 <Meta title="Foundations/Typography" />
 
@@ -28,11 +32,7 @@ You can modify the output element via `as` prop. For example if you want to rend
     backgroundColor: 'var(--background)',
   }}
 >
-  <Heading size="xl">Heading XLarge</Heading>
-  <Heading size="lg">Heading Large</Heading>
-  <Heading size="md">Heading Medium</Heading>
-  <Heading size="sm">Heading Small</Heading>
-  <Heading size="xs">Heading XSmall</Heading>
+  <HeadingExamples />
 </Canvas>
 
 ## Text
@@ -53,25 +53,7 @@ You can modify the output element via `as` prop. For example if you want to rend
     backgroundColor: 'var(--background)',
   }}
 >
-  <Text>Paragraph Medium</Text>
-  <Text bold>Paragraph Medium Bold</Text>
-  <Text underline>Paragraph Medium Underline</Text>
-  <Text strike>Paragraph Medium Strikethrough</Text>
-  <Text size="sm">Paragraph Small</Text>
-  <Text size="sm" bold>
-    Paragraph Small Bold
-  </Text>
-  <Text size="xs">Paragraph XSmall</Text>
-  <Text size="xs" bold>
-    Paragraph XSmall Bold
-  </Text>
-  <Text caps>Caps</Text>
-  <Text caps bold>
-    Bold Caps
-  </Text>
-  <Text as="div" size="sm">
-    Small text as div
-  </Text>
+  <TextExamples />
 </Canvas>
 
 ## Display
@@ -90,10 +72,5 @@ You can modify the output element via `as` prop. For example if you want to rend
     backgroundColor: 'var(--background)',
   }}
 >
-  <Display>Div Medium</Display>
-  <Display size="sm">Div Small</Display>
-  <Display as="p">Paragraph Medium</Display>
-  <Display as="p" size="sm">
-    Paragraph Small
-  </Display>
+  <DisplayExamples />
 </Canvas>

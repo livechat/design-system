@@ -19,6 +19,8 @@ import {
 } from '@floating-ui/react';
 import cx from 'clsx';
 
+import { Text } from '../Typography';
+
 import { getArrowPositionStyles } from './helpers';
 import { ITooltipProps } from './types';
 
@@ -168,7 +170,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
           {...getFloatingProps()}
           data-status={status}
         >
-          {children}
+          <Text as="div">{children}</Text>
           <div
             ref={arrowRef}
             className={styles[`${baseClass}__arrow`]}

@@ -89,6 +89,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
     }
   );
   const closeIconSize = size === 'small' ? 'small' : 'medium';
+  const textSize = size === 'small' ? 'sm' : 'md';
 
   const getCustomColorStyles = () => {
     if (!customColor) {
@@ -124,7 +125,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
       {...restProps}
       {...getCustomColorStyles()}
       as="div"
-      size="md"
+      size={textSize}
     >
       {leftNode && (
         <div

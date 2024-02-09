@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
+import { Text } from '../Typography';
+
 import styles from './Textarea.module.scss';
 
 const baseClass = 'textarea';
@@ -38,12 +40,14 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
     return (
       <div className={mergedClassNames}>
-        <textarea
-          {...textareaProps}
-          ref={ref}
-          onFocus={handleOnFocus}
-          onBlur={handleOnBlur}
-        />
+        <Text as="div">
+          <textarea
+            {...textareaProps}
+            ref={ref}
+            onFocus={handleOnFocus}
+            onBlur={handleOnBlur}
+          />
+        </Text>
       </div>
     );
   }
