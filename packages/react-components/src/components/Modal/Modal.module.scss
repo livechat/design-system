@@ -1,3 +1,5 @@
+@import '../../utils/StackingContextLevel';
+
 .modal-base {
   display: flex;
   position: relative;
@@ -17,6 +19,7 @@
 
   &__overlay {
     display: none;
+    z-index: $stacking-context-level-modal;
     background-color: var(--surface-other-overlay);
 
     &--visible {
