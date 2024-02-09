@@ -8,6 +8,7 @@ import cx from 'clsx';
 
 import { Button } from '../Button';
 import { Icon } from '../Icon';
+import { Text } from '../Typography';
 
 import styles from './Input.module.scss';
 
@@ -93,20 +94,22 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={mergedClassNames} aria-disabled={disabled} tab-index="0">
         {shouldRenderLeftIcon && renderIcon(icon, disabled)}
-        <input
-          {...inputProps}
-          ref={ref}
-          onFocus={(e) => {
-            setIsFocused(true);
-            onFocus?.(e);
-          }}
-          onBlur={(e) => {
-            setIsFocused(false);
-            onBlur?.(e);
-          }}
-          disabled={disabled}
-          type={type && !isPasswordVisible ? type : 'text'}
-        />
+        <Text as="div">
+          <input
+            {...inputProps}
+            ref={ref}
+            onFocus={(e) => {
+              setIsFocused(true);
+              onFocus?.(e);
+            }}
+            onBlur={(e) => {
+              setIsFocused(false);
+              onBlur?.(e);
+            }}
+            disabled={disabled}
+            type={type && !isPasswordVisible ? type : 'text'}
+          />
+        </Text>
         {shouldRenderRightIcon && renderIcon(icon, disabled)}
         {type === 'password' && (
           <Button

@@ -4,6 +4,7 @@ import cx from 'clsx';
 
 import { KeyCodes } from '../../utils/keyCodes';
 import { FieldError } from '../FieldError';
+import { Text } from '../Typography';
 
 import { EditableTag } from './EditableTag';
 
@@ -168,18 +169,20 @@ export const TagInput: React.FC<TagInputProps> = ({
             {tag}
           </EditableTag>
         ))}
-        <input
-          {...props}
-          id={id}
-          ref={inputRef}
-          className={inputClassNames}
-          placeholder={placeholder}
-          value={inputValue}
-          onChange={handleInputChange}
-          onKeyDown={handleInputKeyDown}
-          onPaste={handlePaste}
-          onBlur={handleBlur}
-        />
+        <Text as="div">
+          <input
+            {...props}
+            id={id}
+            ref={inputRef}
+            className={inputClassNames}
+            placeholder={placeholder}
+            value={inputValue}
+            onChange={handleInputChange}
+            onKeyDown={handleInputKeyDown}
+            onPaste={handlePaste}
+            onBlur={handleBlur}
+          />
+        </Text>
       </div>
       {error && <FieldError>{error}</FieldError>}
     </>

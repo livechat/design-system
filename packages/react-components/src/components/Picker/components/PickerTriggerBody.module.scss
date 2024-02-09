@@ -46,6 +46,7 @@ $base-class: 'picker-trigger-body';
 
   &__placeholder {
     color: var(--content-basic-secondary);
+
     &--disabled {
       color: var(--content-basic-disabled);
     }
@@ -61,8 +62,9 @@ $base-class: 'picker-trigger-body';
     padding: 0;
     height: 22px;
     line-height: 22px;
+    letter-spacing: inherit;
     color: var(--content-basic-primary);
-    font-size: 15px;
+    font-size: inherit;
 
     &--compact {
       height: 20px;
