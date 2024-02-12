@@ -1,4 +1,5 @@
 import { dirname, join } from 'path';
+import { withoutVitePlugins } from '@storybook/builder-vite';
 module.exports = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
@@ -18,6 +19,14 @@ module.exports = {
   },
   docs: {
     autodocs: true,
+  },
+  viteFinal: async (config) => {
+    return {
+      ...config,
+      plugins: await withoutVitePlugins(config.plugins, [
+        'vite:lib-inject-css',
+      ]),
+    };
   },
 };
 /**
