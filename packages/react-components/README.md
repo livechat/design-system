@@ -1,5 +1,4 @@
 <h1 align="center">
-  <img src="./../../docs/assets/logo.png" alt="livechat design-system logo" /><br />
   LiveChat Design System React Components
 </h1>
 
