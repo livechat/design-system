@@ -7,6 +7,7 @@ import { extname, relative } from 'path';
 
 import react from '@vitejs/plugin-react';
 import { glob } from 'glob';
+import scss from 'rollup-plugin-scss';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import { libInjectCss } from 'vite-plugin-lib-inject-css';
@@ -69,6 +70,11 @@ export default defineConfig(({ mode }) => {
         exclude: ['**/*.stories.tsx', '**/*.spec.ts', '**/*.spec.tsx'],
       }),
       libInjectCss(),
+      scss({
+        fileName: 'style.css',
+        include: 'src/index.scss',
+        outputStyle: 'compressed',
+      }),
       react({ jsxRuntime: 'classic' }),
       mode === 'production' && turbosnap({ rootDir: process.cwd() }),
     ],
