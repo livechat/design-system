@@ -7,6 +7,7 @@ import { KeyCodes } from '../../utils/keyCodes';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { Loader } from '../Loader';
+import { Text } from '../Typography';
 
 import styles from './Search.module.scss';
 
@@ -127,19 +128,21 @@ export const SearchInput: React.FC<ISearchInputProps> = ({
         disabled={isDisabled}
         kind="primary"
       />
-      <input
-        role="searchbox"
-        ref={inputRef}
-        className={styles[inputBaseClass]}
-        type="text"
-        value={value}
-        placeholder={placeholder}
-        onChange={handleOnChange}
-        onBlur={handleBlur}
-        onFocus={handleFocus}
-        onKeyDown={handleKeyDown}
-        disabled={isDisabled}
-      />
+      <Text as="div">
+        <input
+          role="searchbox"
+          ref={inputRef}
+          className={styles[inputBaseClass]}
+          type="text"
+          value={value}
+          placeholder={placeholder}
+          onChange={handleOnChange}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          onKeyDown={handleKeyDown}
+          disabled={isDisabled}
+        />
+      </Text>
       {isCloseIconVisible && (
         <Button
           aria-label="Clear search"

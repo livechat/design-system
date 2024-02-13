@@ -5,6 +5,7 @@ import cx from 'clsx';
 
 import { Checkbox } from '../../Checkbox';
 import { Icon } from '../../Icon';
+import { Heading, Text } from '../../Typography';
 import { SELECT_ALL_OPTION_KEY } from '../constants';
 import { IPickerListItem } from '../types';
 
@@ -94,7 +95,9 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
         className={styles[`${itemClassName}__header`]}
         {...getItemProps()}
       >
-        {item.name}
+        <Heading size="2xs" uppercase bold as="div">
+          {item.name}
+        </Heading>
       </div>
     );
   }
@@ -136,7 +139,7 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
         })}
       >
         <div className={styles[`${itemClassName}__content`]}>
-          {getOptionContent(item)}
+          <Text as="span">{getOptionContent(item)}</Text>
         </div>
         {isSelected && !item.showCheckbox && (
           <Icon

@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { FloatingOverlay } from '@floating-ui/react';
 import cx from 'clsx';
 
 import { KeyCodes } from '../../../utils/keyCodes';
@@ -69,7 +70,7 @@ export const ModalBase: React.FC<React.PropsWithChildren<ModalBaseProps>> = ({
   };
 
   return (
-    <div
+    <FloatingOverlay
       data-testid="lc-modal-overlay"
       onMouseDown={onOverlayClick}
       className={cx(
@@ -86,6 +87,6 @@ export const ModalBase: React.FC<React.PropsWithChildren<ModalBaseProps>> = ({
       >
         {children}
       </div>
-    </div>
+    </FloatingOverlay>
   );
 };

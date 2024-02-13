@@ -2,10 +2,13 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
+import { TDisplaySize } from './types';
+
 import styles from './Typography.module.scss';
 
 interface IProps {
-  size?: 'md' | 'sm';
+  /** Size of the text */
+  size?: TDisplaySize;
   /** DOM element name that will be rendered */
   as?: string;
   /** Optional custom className */

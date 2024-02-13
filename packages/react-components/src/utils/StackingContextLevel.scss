@@ -1,7 +1,7 @@
 /**
  * Definition of z-index values to be used across application.
  */
-
+$stacking-context-level-modal: 10000;
 $stacking-context-level-tooltip: 3000;
 $stacking-context-level-dropdown: 2000;
 $stacking-context-level-popover: 1000;

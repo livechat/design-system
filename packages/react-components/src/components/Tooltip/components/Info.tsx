@@ -4,6 +4,7 @@ import { Close } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Icon } from '../../Icon';
+import { Heading, Text } from '../../Typography';
 import { getIconType } from '../helpers';
 import styles from '../Tooltip.module.scss';
 import { TooltipTheme } from '../types';
@@ -31,23 +32,26 @@ export const Info: React.FC<{
         </button>
       )}
       {header && (
-        <div
+        <Heading
+          as="div"
+          size="xs"
           className={cx(
             styles[`${baseClass}-header`],
             styles[`${baseClass}-header--info`]
           )}
         >
           {header}
-        </div>
+        </Heading>
       )}
-      <div
+      <Text
+        as="div"
         className={cx(
           styles[`${baseClass}-text`],
           styles[`${baseClass}-text--info`]
         )}
       >
         {text}
-      </div>
+      </Text>
     </div>
   );
 };
