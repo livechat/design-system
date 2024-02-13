@@ -155,7 +155,7 @@ export const TagInput: React.FC<TagInputProps> = ({
 
   return (
     <>
-      <div className={mergedClassNames}>
+      <Text as="div" className={mergedClassNames}>
         {tags?.map((tag, index) => (
           <EditableTag
             index={index}
@@ -169,21 +169,19 @@ export const TagInput: React.FC<TagInputProps> = ({
             {tag}
           </EditableTag>
         ))}
-        <Text as="div">
-          <input
-            {...props}
-            id={id}
-            ref={inputRef}
-            className={inputClassNames}
-            placeholder={placeholder}
-            value={inputValue}
-            onChange={handleInputChange}
-            onKeyDown={handleInputKeyDown}
-            onPaste={handlePaste}
-            onBlur={handleBlur}
-          />
-        </Text>
-      </div>
+        <input
+          {...props}
+          id={id}
+          ref={inputRef}
+          className={inputClassNames}
+          placeholder={placeholder}
+          value={inputValue}
+          onChange={handleInputChange}
+          onKeyDown={handleInputKeyDown}
+          onPaste={handlePaste}
+          onBlur={handleBlur}
+        />
+      </Text>
       {error && <FieldError>{error}</FieldError>}
     </>
   );
