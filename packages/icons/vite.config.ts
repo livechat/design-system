@@ -1,10 +1,10 @@
 /// <reference types="vite/client" />
-import { resolve } from 'path';
+import { fileURLToPath } from 'node:url';
+import { extname, relative, resolve } from 'path';
 
+import { glob } from 'glob';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-
-import entryConfig from './entryConfig.js';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,15 +12,20 @@ export default defineConfig({
   build: {
     copyPublicDir: false,
     lib: {
-      entry: {
-        index: resolve(__dirname, 'lib/index.ts'),
-        ...entryConfig,
-      },
+      entry: resolve(__dirname, 'lib/index.ts'),
       formats: ['es', 'cjs'],
       fileName: (format, entryName) => `${entryName}.${format}.js`,
     },
     rollupOptions: {
       external: ['react', 'react/jsx-runtime'],
+      input: Object.fromEntries(
+        glob.sync('lib/*.{ts,tsx}').map((file) => {
+          return [
+            relative('lib', file.slice(0, file.length - extname(file).length)),
+            fileURLToPath(new URL(file, import.meta.url)),
+          ];
+        })
+      ),
     },
   },
 });

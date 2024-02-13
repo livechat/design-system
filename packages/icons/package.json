@@ -12,14 +12,14 @@
     "dist"
   ],
   "scripts": {
-    "prebuild": "rimraf dist && rimraf lib && npm run prepareIcons && npm run createEntryConfig",
+    "prebuild": "rimraf dist && rimraf lib && npm run prepareIcons",
     "build": "tsc && vite build",
-    "createEntryConfig": "node ./scripts/createEntryConfig.js",
     "prepareIcons": "svgr ./svg ",
     "preview": "vite preview"
   },
   "devDependencies": {
     "@svgr/cli": "^8.1.0",
+    "glob": "^10.3.10",
     "typescript": "^4.5.4",
     "vite": "^4.4.5",
     "vite-plugin-dts": "^3.5.4"
