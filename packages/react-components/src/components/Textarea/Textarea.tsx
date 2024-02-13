@@ -39,16 +39,14 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     };
 
     return (
-      <div className={mergedClassNames}>
-        <Text as="div">
-          <textarea
-            {...textareaProps}
-            ref={ref}
-            onFocus={handleOnFocus}
-            onBlur={handleOnBlur}
-          />
-        </Text>
-      </div>
+      <Text as="div" className={mergedClassNames}>
+        <textarea
+          {...textareaProps}
+          ref={ref}
+          onFocus={handleOnFocus}
+          onBlur={handleOnBlur}
+        />
+      </Text>
     );
   }
 );
