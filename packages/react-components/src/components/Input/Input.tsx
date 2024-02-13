@@ -92,24 +92,27 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       icon && type !== 'password' && icon.place === 'right';
 
     return (
-      <div className={mergedClassNames} aria-disabled={disabled} tab-index="0">
+      <Text
+        as="div"
+        className={mergedClassNames}
+        aria-disabled={disabled}
+        tab-index="0"
+      >
         {shouldRenderLeftIcon && renderIcon(icon, disabled)}
-        <Text as="div">
-          <input
-            {...inputProps}
-            ref={ref}
-            onFocus={(e) => {
-              setIsFocused(true);
-              onFocus?.(e);
-            }}
-            onBlur={(e) => {
-              setIsFocused(false);
-              onBlur?.(e);
-            }}
-            disabled={disabled}
-            type={type && !isPasswordVisible ? type : 'text'}
-          />
-        </Text>
+        <input
+          {...inputProps}
+          ref={ref}
+          onFocus={(e) => {
+            setIsFocused(true);
+            onFocus?.(e);
+          }}
+          onBlur={(e) => {
+            setIsFocused(false);
+            onBlur?.(e);
+          }}
+          disabled={disabled}
+          type={type && !isPasswordVisible ? type : 'text'}
+        />
         {shouldRenderRightIcon && renderIcon(icon, disabled)}
         {type === 'password' && (
           <Button
@@ -121,7 +124,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className={styles[`${baseClass}__visibility-button`]}
           />
         )}
-      </div>
+      </Text>
     );
   }
 );
