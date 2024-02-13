@@ -61,6 +61,5 @@ import { Icon } from '@livechat/design-system-react-components';
 
 3. To add a new icon, you need to add a prepared SVG file to the `./svg` directory. The file name should be in the **snake_case** format with `-filled` addition in the name for filled icon variants. 
 
-4. You should execute the `npm run build` command, and our scripts will handle the rest, including adding a new export entry in the <i>package.json</i> file and <i>entryConfig.ts.</i>
-5. Commit your changes and create a pull request. ⚠️ Commit message should follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) naming pattern `feat(icons): add new icon`. ⚠️ This is crucial as, post squash merging, Git will use the PR name as the commit message.
-6. After the pull request is merged, the changes will be published by the Design System team in the next release.
+4. Commit your changes and create a pull request. ⚠️ Commit message should follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) naming pattern `feat(icons): add new icon`. ⚠️ This is crucial as, post squash merging, Git will use the PR name as the commit message.
+5. After the pull request is merged, the changes will be published by the Design System team in the next release.
