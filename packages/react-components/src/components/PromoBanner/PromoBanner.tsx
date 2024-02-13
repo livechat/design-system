@@ -115,7 +115,7 @@ export const PromoBanner: React.FC<
 
     return () => {
       debouncedHandleResize.cancel();
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', debouncedHandleResize);
     };
   }, []);
 
