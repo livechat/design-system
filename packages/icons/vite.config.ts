@@ -22,7 +22,7 @@ export default defineConfig({
         glob.sync('lib/*.{ts,tsx}').map((file) => {
           return [
             relative('lib', file.slice(0, file.length - extname(file).length)),
-            fileURLToPath(new URL(file, import.meta.url)),
+            `./${file}`,
           ];
         })
       ),

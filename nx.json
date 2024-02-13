@@ -19,7 +19,7 @@
       "outputs": ["{projectRoot}/dist", "{projectRoot}/lib"]
     },
     "prebuild": {
-      "outputs": ["{projectRoot}/lib", "{projectRoot}/entryConfig.ts"]
+      "outputs": ["{projectRoot}/lib"]
     },
     "build:icons": {
       "outputs": ["{projectRoot}/dist", "{projectRoot}/lib"]
