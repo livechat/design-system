@@ -1,0 +1,20 @@
+{
+  "name": "@livechat/design-system-metrics",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "dist/"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "react-scanner": "^1.1.0",
+    "typescript": "^4.9.5"
+  }
+}
