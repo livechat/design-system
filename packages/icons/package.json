@@ -837,6 +837,11 @@
       "require": "./dist/DismissChatFilled.cjs.js",
       "types": "./dist/DismissChatFilled.d.ts"
     },
+    "./DoubleArrowDown": {
+      "import": "./dist/DoubleArrowDown.es.js",
+      "require": "./dist/DoubleArrowDown.cjs.js",
+      "types": "./dist/DoubleArrowDown.d.ts"
+    },
     "./DoubleArrowLeft": {
       "import": "./dist/DoubleArrowLeft.es.js",
       "require": "./dist/DoubleArrowLeft.cjs.js",
@@ -856,6 +861,11 @@
       "import": "./dist/DoubleArrowRightFilled.es.js",
       "require": "./dist/DoubleArrowRightFilled.cjs.js",
       "types": "./dist/DoubleArrowRightFilled.d.ts"
+    },
+    "./DoubleArrowUp": {
+      "import": "./dist/DoubleArrowUp.es.js",
+      "require": "./dist/DoubleArrowUp.cjs.js",
+      "types": "./dist/DoubleArrowUp.d.ts"
     },
     "./DragIndicator": {
       "import": "./dist/DragIndicator.es.js",
@@ -1666,6 +1676,16 @@
       "import": "./dist/PlayerRecordFilled.es.js",
       "require": "./dist/PlayerRecordFilled.cjs.js",
       "types": "./dist/PlayerRecordFilled.d.ts"
+    },
+    "./Point": {
+      "import": "./dist/Point.es.js",
+      "require": "./dist/Point.cjs.js",
+      "types": "./dist/Point.d.ts"
+    },
+    "./PointFilled": {
+      "import": "./dist/PointFilled.es.js",
+      "require": "./dist/PointFilled.cjs.js",
+      "types": "./dist/PointFilled.d.ts"
     },
     "./Position": {
       "import": "./dist/Position.es.js",
