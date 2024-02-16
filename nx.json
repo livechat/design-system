@@ -5,8 +5,6 @@
       "options": {
         "cacheableOperations": [
           "build",
-          "build:lib",
-          "build:styles",
           "build:icons",
           "prebuild",
           "lint",
@@ -20,14 +18,8 @@
       "dependsOn": ["^build", "prebuild"],
       "outputs": ["{projectRoot}/dist", "{projectRoot}/lib"]
     },
-    "build:lib": {
-      "outputs": ["{projectRoot}/dist", "{projectRoot}/lib"]
-    },
-    "build:styles": {
-      "outputs": ["{projectRoot}/dist"]
-    },
     "prebuild": {
-      "outputs": ["{projectRoot}/lib", "{projectRoot}/entryConfig.ts"]
+      "outputs": ["{projectRoot}/lib"]
     },
     "build:icons": {
       "outputs": ["{projectRoot}/dist", "{projectRoot}/lib"]

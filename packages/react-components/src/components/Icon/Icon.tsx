@@ -89,7 +89,7 @@ export const Icon: React.FC<IconProps> = (props) => {
 
   const GeneratedIcon = React.createElement(source, {
     ...IconSizeMap[size],
-    color: customColor,
+    ...(customColor ? { color: customColor } : {}),
   });
 
   const mergedClassNames = cx(

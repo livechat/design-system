@@ -1,13 +1,7 @@
 import { dirname, join } from 'path';
-const foundations = ['Typography', 'ColorTokens', 'Icons', 'TablerIcons'].map(
-  (name) => `../src/stories/${name}.stories.mdx`
-);
+import { withoutVitePlugins } from '@storybook/builder-vite';
 module.exports = {
-  stories: [
-    ...foundations,
-    '../src/**/*.mdx',
-    '../src/**/*.stories.@(js|jsx|ts|tsx)',
-  ],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     getAbsolutePath('@storybook/addon-links'),
     getAbsolutePath('@storybook/addon-essentials'),
@@ -25,6 +19,14 @@ module.exports = {
   },
   docs: {
     autodocs: true,
+  },
+  viteFinal: async (config) => {
+    return {
+      ...config,
+      plugins: await withoutVitePlugins(config.plugins, [
+        'vite:lib-inject-css',
+      ]),
+    };
   },
 };
 /**
