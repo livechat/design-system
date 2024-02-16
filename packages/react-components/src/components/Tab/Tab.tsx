@@ -2,8 +2,7 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import { Size } from 'utils';
-
+import { Size } from '../../utils';
 import { Badge } from '../Badge';
 import { Text } from '../Typography';
 
