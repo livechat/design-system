@@ -58,8 +58,7 @@ import { Icon } from '@livechat/design-system-react-components';
     ```
 
 2. Next you need to prepare a SVG by replacing all color values in the `stroke` or/and `fill` attributes with `currentcolor` value. This will allow us to change the color of the icon using the `color` css property.
-
-3. To add a new icon, you need to add a prepared SVG file to the `./svg` directory. The file name should be in the **snake_case** format with `-filled` addition in the name for filled icon variants. 
-
-4. Commit your changes and create a pull request. ⚠️ Commit message should follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) naming pattern `feat(icons): add new icon`. ⚠️ This is crucial as, post squash merging, Git will use the PR name as the commit message.
-5. After the pull request is merged, the changes will be published by the Design System team in the next release.
+3. To add a new icon, you need to add a prepared SVG file to the `./svg` directory. The file name should be in the **snake_case** format with `-filled` addition in the name for filled icon variants.
+4. Then add new prop to `IconsData` in format `<icon-name>: <icon-group-name>;`.
+5. Commit your changes and create a pull request. ⚠️ Commit message should follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) naming pattern `feat(icons): add new icon`. ⚠️ This is crucial as, post squash merging, Git will use the PR name as the commit message.
+6. After the pull request is merged, the changes will be published by the Design System team in the next release.

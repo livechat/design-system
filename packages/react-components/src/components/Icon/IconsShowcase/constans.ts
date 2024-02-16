@@ -26,10 +26,12 @@ export const IconsData: Record<IconName, IconGroup> = {
   ChevronRight: IconGroup.Arrows,
   ChevronUpFilled: IconGroup.Arrows,
   ChevronUp: IconGroup.Arrows,
+  DoubleArrowDown: IconGroup.Arrows,
   DoubleArrowLeftFilled: IconGroup.Arrows,
   DoubleArrowLeft: IconGroup.Arrows,
   DoubleArrowRightFilled: IconGroup.Arrows,
   DoubleArrowRight: IconGroup.Arrows,
+  DoubleArrowUp: IconGroup.Arrows,
 
   //FileType
   FiletypeExe: IconGroup.FileType,
@@ -311,6 +313,8 @@ export const IconsData: Record<IconName, IconGroup> = {
   PlayCircle: IconGroup.General,
   PlayerRecordFilled: IconGroup.General,
   PlayerRecord: IconGroup.General,
+  Point: IconGroup.General,
+  PointFilled: IconGroup.General,
   PositionFilled: IconGroup.General,
   Position: IconGroup.General,
   PowerSettingsFilled: IconGroup.General,
