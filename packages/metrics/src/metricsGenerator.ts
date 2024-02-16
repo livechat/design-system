@@ -1,7 +1,12 @@
 import scanner, { IReactScannerConfig } from 'react-scanner';
 
+import { sendReportToFlagman } from './flagmanService';
 import { scanForTokenUsages } from './tokenScan';
-import { IMetrics } from './types';
+import {
+  IFlagmanServerConfig,
+  IMetrics,
+  ISendReportToFlagmanProps,
+} from './types';
 import { prepareOutput } from './utils';
 
 interface IProps {
@@ -45,4 +50,17 @@ export const generateMetrics = async ({
     legacyDS: prepareOutput(oldDSOutput),
     designTokenUsage,
   };
+};
+
+export const generateAndSendMetrics = async (
+  metricOptions: IProps,
+  serverOptions: IFlagmanServerConfig
+): Promise<void> => {
+  const metrics = await generateMetrics(metricOptions);
+
+  await sendReportToFlagman({
+    data: metrics,
+    buildId: '',
+    ...serverOptions,
+  });
 };

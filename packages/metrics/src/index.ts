@@ -1,1 +1,1 @@
-export { generateMetrics } from './metricsGenerator';
+export { generateMetrics, generateAndSendMetrics } from './metricsGenerator';

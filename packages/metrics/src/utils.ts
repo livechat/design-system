@@ -1,4 +1,9 @@
+import { execSync, StdioOptions } from 'child_process';
+import * as path from 'path';
+
 import { IComponentsAndPropsResult } from 'react-scanner';
+
+const __dirname = path.resolve();
 
 export const prepareOutput = (output: IComponentsAndPropsResult) => {
   const result = Object.entries(output).map(([name, { instances, props }]) => ({
@@ -11,3 +16,14 @@ export const prepareOutput = (output: IComponentsAndPropsResult) => {
 
   return { components: result, totalUses };
 };
+
+export const execCommand = (
+  command: string,
+  { stdio = 'inherit' as StdioOptions } = {}
+) => execSync(command, { cwd: __dirname, stdio });
+
+export const execCommandWithResult = (command: string) =>
+  execCommand(command, { stdio: 'pipe' }).toString().trim();
+
+export const getCurrentCommit = (): string =>
+  execCommandWithResult('git rev-parse HEAD');

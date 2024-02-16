@@ -18,3 +18,16 @@ export interface IMetrics {
   newDS: IMetricOutput;
   legacyDS: IMetricOutput;
 }
+
+export interface IFlagmanServerConfig {
+  path: string;
+  apiKey: string;
+  protocol: 'http' | 'https';
+  host: string;
+  port: string;
+}
+
+export interface ISendReportToFlagmanProps {
+  data: unknown;
+  buildId: string;
+}
