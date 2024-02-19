@@ -35,7 +35,7 @@ export interface ISendReportToFlagmanProps {
       designTokenCount: number;
       colorStringLiteralCount: number;
     };
-    applicationName: string;
+    applicationID: string;
   };
   buildId: string;
 }

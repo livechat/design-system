@@ -3,7 +3,8 @@ import * as path from 'path';
 
 import { IComponentsAndPropsResult } from 'react-scanner';
 
-const __dirname = path.resolve();
+// eslint-disable-next-line no-console
+export const logger = console.log;
 
 export const prepareOutput = (output: IComponentsAndPropsResult) => {
   const result = Object.entries(output).map(([name, { instances, props }]) => ({
@@ -20,7 +21,7 @@ export const prepareOutput = (output: IComponentsAndPropsResult) => {
 export const execCommand = (
   command: string,
   { stdio = 'inherit' as StdioOptions } = {}
-) => execSync(command, { cwd: __dirname, stdio });
+) => execSync(command, { cwd: path.resolve(), stdio });
 
 export const execCommandWithResult = (command: string) =>
   execCommand(command, { stdio: 'pipe' }).toString().trim();
