@@ -88,5 +88,5 @@ export function scanForTokenUsages(
 
   analyzeDirectory(path, enumName);
 
-  return { designTokenCount, inlineColorCodeCount };
+  return { designTokenCount, colorStringLiteralCount: inlineColorCodeCount };
 }

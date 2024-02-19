@@ -1,6 +1,6 @@
 export interface ITokenScanOutput {
   designTokenCount: number;
-  inlineColorCodeCount: number;
+  colorStringLiteralCount: number;
 }
 
 interface IComponentOutput {
@@ -28,6 +28,14 @@ export interface IFlagmanServerConfig {
 }
 
 export interface ISendReportToFlagmanProps {
-  data: unknown;
+  data: {
+    legacyDS: IMetricOutput;
+    newDS: IMetricOutput;
+    designTokenUsage: {
+      designTokenCount: number;
+      colorStringLiteralCount: number;
+    };
+    applicationName: string;
+  };
   buildId: string;
 }

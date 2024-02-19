@@ -2,11 +2,7 @@ import scanner, { IReactScannerConfig } from 'react-scanner';
 
 import { sendReportToFlagman } from './flagmanService';
 import { scanForTokenUsages } from './tokenScan';
-import {
-  IFlagmanServerConfig,
-  IMetrics,
-  ISendReportToFlagmanProps,
-} from './types';
+import { IFlagmanServerConfig, IMetrics } from './types';
 import { prepareOutput } from './utils';
 
 interface IProps {
@@ -54,12 +50,13 @@ export const generateMetrics = async ({
 
 export const generateAndSendMetrics = async (
   metricOptions: IProps,
-  serverOptions: IFlagmanServerConfig
+  serverOptions: IFlagmanServerConfig,
+  applicationName: string
 ): Promise<void> => {
   const metrics = await generateMetrics(metricOptions);
 
   await sendReportToFlagman({
-    data: metrics,
+    data: { ...metrics, applicationName },
     buildId: '',
     ...serverOptions,
   });
