@@ -7,6 +7,8 @@ import { getContrast } from 'polished';
 import { Icon } from '../Icon';
 import { Text } from '../Typography';
 
+import { TagKind, TagSize } from './types';
+
 import styles from './Tag.module.scss';
 
 const baseClass = 'tag';
@@ -15,18 +17,11 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Specify the tag kind
    */
-  kind?:
-    | 'default'
-    | 'info'
-    | 'warning'
-    | 'success'
-    | 'error'
-    | 'purple'
-    | 'black';
+  kind?: TagKind;
   /**
    * Specify the tag size
    */
-  size?: 'small' | 'medium' | 'large' | 'xlarge';
+  size?: TagSize;
   /**
    * Set the tag custom color
    */
@@ -90,6 +85,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   );
   const closeIconSize = size === 'small' ? 'small' : 'medium';
   const textSize = size === 'small' ? 'sm' : 'md';
+  const isTextContent = typeof children === 'string';
 
   const getCustomColorStyles = () => {
     if (!customColor) {
@@ -136,7 +132,11 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
           {leftNode}
         </div>
       )}
-      <div className={styles[`${baseClass}__content`]}>{children}</div>
+      {isTextContent ? (
+        <div className={styles[`${baseClass}__content`]}>{children}</div>
+      ) : (
+        <div>{children}</div>
+      )}
       {rightNode && (
         <div
           data-testid="lc-tag-right-node"

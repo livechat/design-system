@@ -1,125 +1,108 @@
-.tag {
-  box-sizing: border-box;
-  display: inline-flex;
-  position: relative;
-  align-items: center;
-  border-radius: var(--radius-3);
-  border-color: var(--border-basic-primary);
-  background-color: var(--surface-tertiary-default);
-  overflow: hidden;
-  color: var(--content-basic-primary);
+@use './styles/base';
+@use './styles/size';
+@use './styles/kind';
+@use './styles/outline';
+
+$base-class: 'tag';
+
+.#{$base-class} {
+  @include base.default();
 
   &--success {
-    border-color: var(--border-basic-positive);
-    background-color: var(--surface-accent-emphasis-low-positive);
-    color: var(--content-basic-positive);
-
-    .tag__remove {
-      color: var(--content-basic-positive);
-    }
+    @include kind.tag-kind(
+      $base-class,
+      var(--border-basic-positive),
+      var(--surface-accent-emphasis-low-positive),
+      var(--content-basic-positive)
+    );
   }
 
   &--error {
-    border-color: var(--border-basic-negative);
-    background-color: var(--surface-accent-emphasis-low-negative);
-    color: var(--content-basic-negative);
-
-    .tag__remove {
-      color: var(--content-basic-negative);
-    }
+    @include kind.tag-kind(
+      $base-class,
+      var(--border-basic-negative),
+      var(--surface-accent-emphasis-low-negative),
+      var(--content-basic-negative)
+    );
   }
 
   &--warning {
-    border-color: var(--border-basic-warning);
-    background-color: var(--surface-accent-emphasis-low-warning);
-    color: var(--content-basic-warning);
-
-    .tag__remove {
-      color: var(--content-basic-warning);
-    }
+    @include kind.tag-kind(
+      $base-class,
+      var(--border-basic-warning),
+      var(--surface-accent-emphasis-low-warning),
+      var(--content-basic-warning)
+    );
   }
 
   &--info {
-    border-color: var(--border-basic-info);
-    background-color: var(--surface-accent-emphasis-low-info);
-    color: var(--content-basic-info);
-
-    .tag__remove {
-      color: var(--content-basic-info);
-    }
+    @include kind.tag-kind(
+      $base-class,
+      var(--border-basic-info),
+      var(--surface-accent-emphasis-low-info),
+      var(--content-basic-info)
+    );
   }
 
   &--purple {
-    border-color: var(--border-basic-purple);
-    background-color: var(--surface-accent-emphasis-low-purple);
-    color: var(--content-basic-purple);
-
-    .tag__remove {
-      color: var(--content-basic-purple);
-    }
+    @include kind.tag-kind(
+      $base-class,
+      var(--border-basic-purple),
+      var(--surface-accent-emphasis-low-purple),
+      var(--content-basic-purple)
+    );
   }
 
   &--black {
-    border-color: var(--content-basic-primary);
-    background-color: var(--surface-invert-primary);
-    color: var(--content-invert-primary);
+    @include kind.tag-kind(
+      $base-class,
+      var(--content-basic-primary),
+      var(--surface-invert-primary),
+      var(--content-invert-primary)
+    );
 
-    .tag__remove {
-      color: var(--content-invert-primary);
-    }
-
-    &.tag--outline {
+    &.#{$base-class}--outline {
       color: var(--content-basic-primary);
 
-      .tag__remove {
+      .#{$base-class}__remove {
         color: var(--content-basic-primary);
       }
     }
   }
 
   &--small {
-    padding: 1px var(--spacing-1);
-    height: 20px;
+    @include size.tag-size(1px, var(--spacing-1), 20px);
   }
 
   &--medium {
-    padding: 1px var(--spacing-1);
-    height: 24px;
+    @include size.tag-size(1px, var(--spacing-1), 24px);
   }
 
   &--large {
-    padding: 5px var(--spacing-2);
-    height: 32px;
+    @include size.tag-size(1px, var(--spacing-2), 32px);
   }
 
   &--xlarge {
-    padding: 5px var(--spacing-3);
-    height: 36px;
+    @include size.tag-size(1px, var(--spacing-3), 36px);
   }
 
   &--outline {
-    border-width: 1px;
-    border-style: solid;
-    background-color: transparent;
+    @include outline.default();
 
-    &.tag--small {
-      padding: 0 calc(var(--spacing-1) - 1px);
+    &.#{$base-class}--small {
+      @include outline.outline-size(0, var(--spacing-1));
     }
 
-    &.tag--medium {
-      padding: 0 calc(var(--spacing-1) - 1px);
+    &.#{$base-class}--medium {
+      @include outline.outline-size(0, var(--spacing-1));
     }
 
-    &.tag--large {
-      padding: 4px calc(var(--spacing-2) - 1px);
+    &.#{$base-class}--large {
+      @include outline.outline-size(4px, var(--spacing-2));
     }
 
-    &.tag--xlarge {
-      padding: 4px calc(var(--spacing-3) - 1px);
-    }
-
-    .icon {
-      background-color: transparent;
+    &.#{$base-class}--xlarge {
+      @include outline.outline-size(4px, var(--spacing-3));
     }
   }
 
@@ -132,11 +115,11 @@
   }
 
   &--dismissible {
-    &.tag--medium {
+    &.#{$base-class}--medium {
       padding-right: var(--spacing-1);
     }
 
-    &.tag--large {
+    &.#{$base-class}--large {
       padding-right: var(--spacing-2);
     }
   }

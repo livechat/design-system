@@ -1,0 +1,9 @@
+@mixin tag-kind($base-class, $border-color, $background-color, $color) {
+  border-color: $border-color;
+  background-color: $background-color;
+  color: $color;
+
+  .#{$base-class}__remove {
+    color: $color;
+  }
+}

@@ -1,0 +1,9 @@
+@mixin default() {
+  border-width: 1px;
+  border-style: solid;
+  background-color: transparent;
+}
+
+@mixin outline-size($padding-v, $padding-h) {
+  padding: $padding-v calc($padding-h - 1px);
+}

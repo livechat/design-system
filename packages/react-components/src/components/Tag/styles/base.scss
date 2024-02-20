@@ -1,0 +1,11 @@
+@mixin default() {
+  box-sizing: border-box;
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  border-radius: var(--radius-3);
+  border-color: var(--border-basic-primary);
+  background-color: var(--surface-tertiary-default);
+  overflow: hidden;
+  color: var(--content-basic-primary);
+}
