@@ -214,13 +214,6 @@
     color: var(--content-basic-primary);
   }
 
-  &:focus-visible {
-    box-shadow:
-      var(--shadow-focus),
-      0 0 0 2px #fff;
-    background-color: var(--surface-primary-hover);
-  }
-
   &[aria-disabled='true'] {
     border-color: transparent;
     background-color: transparent;
@@ -284,13 +277,6 @@
 
   &:hover {
     background-color: var(--action-high-contrast-hover);
-  }
-
-  &:active,
-  &:focus {
-    box-shadow:
-      0 0 1px 1px #fff,
-      var(--shadow-focus);
   }
 
   &[aria-disabled='true'] {
