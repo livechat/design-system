@@ -71,6 +71,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   customColor,
   ...restProps
 }) => {
+  const isTextContent = typeof children === 'string';
   const mergedClassNames = cx(
     styles[baseClass],
     className,
@@ -81,11 +82,11 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
       [styles[`${baseClass}--outline`]]: outline,
       [styles[`${baseClass}--${getCustomTextClass(customColor)}`]]:
         !!customColor,
+      [styles[`${baseClass}--icon-only`]]: !isTextContent,
     }
   );
   const closeIconSize = size === 'small' ? 'small' : 'medium';
   const textSize = size === 'small' ? 'sm' : 'md';
-  const isTextContent = typeof children === 'string';
 
   const getCustomColorStyles = () => {
     if (!customColor) {
@@ -132,11 +133,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
           {leftNode}
         </div>
       )}
-      {isTextContent ? (
-        <div className={styles[`${baseClass}__content`]}>{children}</div>
-      ) : (
-        <div>{children}</div>
-      )}
+      <div className={styles[`${baseClass}__content`]}>{children}</div>
       {rightNode && (
         <div
           data-testid="lc-tag-right-node"

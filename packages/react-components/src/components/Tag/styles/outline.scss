@@ -4,6 +4,6 @@
   background-color: transparent;
 }
 
-@mixin outline-size($padding-v, $padding-h) {
+@mixin size($padding-v, $padding-h) {
   padding: $padding-v calc($padding-h - 1px);
 }

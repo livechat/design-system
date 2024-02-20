@@ -71,38 +71,38 @@ $base-class: 'tag';
   }
 
   &--small {
-    @include size.tag-size(1px, var(--spacing-1), 20px);
+    @include size.tag-size($base-class, 1px, var(--spacing-1), 20px);
   }
 
   &--medium {
-    @include size.tag-size(1px, var(--spacing-1), 24px);
+    @include size.tag-size($base-class, 1px, var(--spacing-1), 24px);
   }
 
   &--large {
-    @include size.tag-size(1px, var(--spacing-2), 32px);
+    @include size.tag-size($base-class, 1px, var(--spacing-2), 32px);
   }
 
   &--xlarge {
-    @include size.tag-size(1px, var(--spacing-3), 36px);
+    @include size.tag-size($base-class, 1px, var(--spacing-3), 36px);
   }
 
   &--outline {
     @include outline.default();
 
     &.#{$base-class}--small {
-      @include outline.outline-size(0, var(--spacing-1));
+      @include outline.size(0, var(--spacing-1));
     }
 
     &.#{$base-class}--medium {
-      @include outline.outline-size(0, var(--spacing-1));
+      @include outline.size(0, var(--spacing-1));
     }
 
     &.#{$base-class}--large {
-      @include outline.outline-size(4px, var(--spacing-2));
+      @include outline.size(4px, var(--spacing-2));
     }
 
     &.#{$base-class}--xlarge {
-      @include outline.outline-size(4px, var(--spacing-3));
+      @include outline.size(4px, var(--spacing-3));
     }
   }
 

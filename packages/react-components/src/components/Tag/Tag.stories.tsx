@@ -118,3 +118,17 @@ export const Sizes = (): React.ReactElement => (
     })}
   </>
 );
+
+export const WithIconOnly = (): React.ReactElement => (
+  <>
+    {sizes.map((size) => {
+      const title = size.charAt(0).toUpperCase() + size.slice(1);
+
+      return (
+        <StoryDescriptor title={`${title} with icon only`}>
+          <Tag size={size}>{<Icon source={TablerIcons.Smiles} />}</Tag>
+        </StoryDescriptor>
+      );
+    })}
+  </>
+);
