@@ -151,26 +151,25 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
           </div>
         )}
       </div>
-      {dismissible ||
-        (dismissibleOnHover && (
-          <button
-            tabIndex={-1}
-            title="Remove"
-            onClick={onRemove}
-            type="button"
-            aria-label="Remove tag"
-            className={cx(styles[`${baseClass}__remove`], {
-              [styles[`${baseClass}__remove--hover`]]: dismissibleOnHover,
-            })}
-          >
-            <Icon
-              data-dismiss-icon
-              source={Close}
-              size={closeIconSize}
-              customColor={getIconCustomColor()}
-            />
-          </button>
-        ))}
+      {(dismissible || dismissibleOnHover) && (
+        <button
+          tabIndex={-1}
+          title="Remove"
+          onClick={onRemove}
+          type="button"
+          aria-label="Remove tag"
+          className={cx(styles[`${baseClass}__remove`], {
+            [styles[`${baseClass}__remove--hover`]]: dismissibleOnHover,
+          })}
+        >
+          <Icon
+            data-dismiss-icon
+            source={Close}
+            size={closeIconSize}
+            customColor={getIconCustomColor()}
+          />
+        </button>
+      )}
     </Text>
   );
 };
