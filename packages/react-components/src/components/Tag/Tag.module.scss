@@ -6,7 +6,7 @@
 $base-class: 'tag';
 
 .#{$base-class} {
-  @include base.default();
+  @include base.default($base-class);
 
   &--success {
     @include kind.tag-kind(
@@ -90,19 +90,19 @@ $base-class: 'tag';
     @include outline.default();
 
     &.#{$base-class}--small {
-      @include outline.size(0, var(--spacing-1));
+      @include outline.size($base-class, 0, var(--spacing-1));
     }
 
     &.#{$base-class}--medium {
-      @include outline.size(0, var(--spacing-1));
+      @include outline.size($base-class, 0, var(--spacing-1));
     }
 
     &.#{$base-class}--large {
-      @include outline.size(4px, var(--spacing-2));
+      @include outline.size($base-class, 4px, var(--spacing-2));
     }
 
     &.#{$base-class}--xlarge {
-      @include outline.size(4px, var(--spacing-3));
+      @include outline.size($base-class, 4px, var(--spacing-3));
     }
   }
 
@@ -121,6 +121,35 @@ $base-class: 'tag';
 
     &.#{$base-class}--large {
       padding-right: var(--spacing-2);
+    }
+  }
+
+  &--dismissible-on-hover {
+    &:hover {
+      &.#{$base-class}--small .#{$base-class}__content-wrapper {
+        width: calc(100% - 18px);
+      }
+
+      &.#{$base-class}--medium .#{$base-class}__content-wrapper {
+        width: calc(100% - 22px);
+      }
+
+      &.#{$base-class}--large .#{$base-class}__content-wrapper {
+        width: calc(100% - 18px);
+      }
+
+      &.#{$base-class}--xlarge .#{$base-class}__content-wrapper {
+        width: calc(100% - 14px);
+      }
+
+      .#{$base-class}__remove--hover {
+        display: flex;
+      }
+    }
+    .#{$base-class}__remove--hover {
+      display: none;
+      position: absolute;
+      right: var(--spacing-05);
     }
   }
 

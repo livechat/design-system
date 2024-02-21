@@ -4,6 +4,10 @@
   background-color: transparent;
 }
 
-@mixin size($padding-v, $padding-h) {
+@mixin size($base-class, $padding-v, $padding-h) {
   padding: $padding-v calc($padding-h - 1px);
+
+  &.#{$base-class}--icon-only {
+    padding: 0;
+  }
 }

@@ -127,6 +127,33 @@ export const WithIconOnly = (): React.ReactElement => (
       return (
         <StoryDescriptor title={`${title} with icon only`}>
           <Tag size={size}>{<Icon source={TablerIcons.Smiles} />}</Tag>
+          <Tag size={size} outline>
+            {<Icon source={TablerIcons.Smiles} />}
+          </Tag>
+        </StoryDescriptor>
+      );
+    })}
+  </>
+);
+
+export const WithShowCloseOnHover = (): React.ReactElement => (
+  <>
+    {sizes.map((size) => {
+      const title = size.charAt(0).toUpperCase() + size.slice(1);
+
+      return (
+        <StoryDescriptor title={title}>
+          <Tag
+            size={size}
+            leftNode={exampleIcon}
+            rightNode={exampleIcon}
+            dismissibleOnHover
+          >
+            {text}
+          </Tag>
+          <Tag size={size} dismissibleOnHover>
+            {text}
+          </Tag>
         </StoryDescriptor>
       );
     })}

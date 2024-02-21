@@ -31,6 +31,10 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   dismissible?: boolean;
   /**
+   * Set to show close icon on hover only
+   */
+  dismissibleOnHover?: boolean;
+  /**
    * Outlined version of tag
    */
   outline?: boolean;
@@ -62,6 +66,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   className = '',
   children,
   dismissible = false,
+  dismissibleOnHover = false,
   size = 'medium',
   kind = 'default',
   onRemove,
@@ -83,6 +88,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
       [styles[`${baseClass}--${getCustomTextClass(customColor)}`]]:
         !!customColor,
       [styles[`${baseClass}--icon-only`]]: !isTextContent,
+      [styles[`${baseClass}--dismissible-on-hover`]]: dismissibleOnHover,
     }
   );
   const closeIconSize = size === 'small' ? 'small' : 'medium';
@@ -124,41 +130,47 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
       as="div"
       size={textSize}
     >
-      {leftNode && (
-        <div
-          data-testid="lc-tag-left-node"
-          className={styles[`${baseClass}__node`]}
-          style={{ color: getIconCustomColor() }}
-        >
-          {leftNode}
-        </div>
-      )}
-      <div className={styles[`${baseClass}__content`]}>{children}</div>
-      {rightNode && (
-        <div
-          data-testid="lc-tag-right-node"
-          style={{ color: getIconCustomColor() }}
-        >
-          {rightNode}
-        </div>
-      )}
-      {dismissible && (
-        <button
-          tabIndex={-1}
-          title="Remove"
-          onClick={onRemove}
-          type="button"
-          aria-label="Remove tag"
-          className={styles[`${baseClass}__remove`]}
-        >
-          <Icon
-            data-dismiss-icon
-            source={Close}
-            size={closeIconSize}
-            customColor={getIconCustomColor()}
-          />
-        </button>
-      )}
+      <div className={styles[`${baseClass}__content-wrapper`]}>
+        {leftNode && (
+          <div
+            data-testid="lc-tag-left-node"
+            className={styles[`${baseClass}__node`]}
+            style={{ color: getIconCustomColor() }}
+          >
+            {leftNode}
+          </div>
+        )}
+        <div className={styles[`${baseClass}__content`]}>{children}</div>
+        {rightNode && (
+          <div
+            data-testid="lc-tag-right-node"
+            className={styles[`${baseClass}__node`]}
+            style={{ color: getIconCustomColor() }}
+          >
+            {rightNode}
+          </div>
+        )}
+      </div>
+      {dismissible ||
+        (dismissibleOnHover && (
+          <button
+            tabIndex={-1}
+            title="Remove"
+            onClick={onRemove}
+            type="button"
+            aria-label="Remove tag"
+            className={cx(styles[`${baseClass}__remove`], {
+              [styles[`${baseClass}__remove--hover`]]: dismissibleOnHover,
+            })}
+          >
+            <Icon
+              data-dismiss-icon
+              source={Close}
+              size={closeIconSize}
+              customColor={getIconCustomColor()}
+            />
+          </button>
+        ))}
     </Text>
   );
 };
