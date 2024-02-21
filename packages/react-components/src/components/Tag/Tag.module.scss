@@ -162,13 +162,19 @@ $base-class: 'tag';
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: var(--spacing-1);
     outline: none;
     border-style: none;
+    border-radius: var(--radius-3);
     box-shadow: none;
     background-color: transparent;
     cursor: pointer;
-    padding: 0 0 0 var(--spacing-1);
+    padding: 0;
     color: var(--content-basic-secondary);
+
+    &:hover {
+      background-color: var(--surface-primary-hover-opacity);
+    }
   }
 
   &__content {
