@@ -1,7 +1,7 @@
 @mixin default() {
   border-width: 1px;
   border-style: solid;
-  background-color: transparent;
+  background-color: var(--surface-primary-default);
 }
 
 @mixin size($base-class, $padding-v, $padding-h) {
