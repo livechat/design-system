@@ -41,7 +41,7 @@ export default defineConfig(({ mode }) => {
           })
         ),
         output: {
-          assetFileNames: '[name][extname]',
+          assetFileNames: 'assets/style-[name][extname]',
           chunkFileNames: 'chunks/[name]-[hash].js',
           globals: {
             react: 'React',
