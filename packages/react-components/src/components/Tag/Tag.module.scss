@@ -246,16 +246,6 @@ $base-class: 'tag';
     color: var(--color-black);
   }
 
-  &--dismissible {
-    &.#{$base-class}--medium {
-      padding-right: var(--spacing-1);
-    }
-
-    &.#{$base-class}--large {
-      padding-right: var(--spacing-2);
-    }
-  }
-
   &--dismissible-on-hover {
     &:hover {
       &.#{$base-class}--small .#{$base-class}__content-wrapper {

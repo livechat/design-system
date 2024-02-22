@@ -28,10 +28,11 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
   customColor?: string;
   /**
    * Set to show close icon
+   * @deprecated The close icon will be visible by providing the `onRemove` prop and this flag will no longer be needed
    */
   dismissible?: boolean;
   /**
-   * Set to show close icon on hover only
+   * Set to show close icon on hover only if the `onRemove` prop is provided
    */
   dismissibleOnHover?: boolean;
   /**
@@ -77,18 +78,19 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   ...restProps
 }) => {
   const isTextContent = typeof children === 'string';
+  const isOnHoverCloseButton =
+    dismissibleOnHover || (onRemove && !isTextContent);
   const mergedClassNames = cx(
     styles[baseClass],
     className,
     styles[`${baseClass}--${size}`],
     styles[`${baseClass}--${kind}`],
     {
-      [styles[`${baseClass}--dismissible`]]: dismissible,
       [styles[`${baseClass}--outline`]]: outline,
       [styles[`${baseClass}--${getCustomTextClass(customColor)}`]]:
         !!customColor,
       [styles[`${baseClass}--icon-only`]]: !isTextContent,
-      [styles[`${baseClass}--dismissible-on-hover`]]: dismissibleOnHover,
+      [styles[`${baseClass}--dismissible-on-hover`]]: isOnHoverCloseButton,
     }
   );
   const closeIconSize = size === 'small' ? 'small' : 'medium';
@@ -131,7 +133,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
       size={textSize}
     >
       <div className={styles[`${baseClass}__content-wrapper`]}>
-        {leftNode && (
+        {leftNode && isTextContent && (
           <div
             data-testid="lc-tag-left-node"
             className={styles[`${baseClass}__node`]}
@@ -141,7 +143,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
           </div>
         )}
         <div className={styles[`${baseClass}__content`]}>{children}</div>
-        {rightNode && (
+        {rightNode && isTextContent && (
           <div
             data-testid="lc-tag-right-node"
             className={styles[`${baseClass}__node`]}
@@ -151,7 +153,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
           </div>
         )}
       </div>
-      {(dismissible || dismissibleOnHover) && (
+      {onRemove && (
         <button
           tabIndex={-1}
           title="Remove"
@@ -159,7 +161,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
           type="button"
           aria-label="Remove tag"
           className={cx(styles[`${baseClass}__remove`], {
-            [styles[`${baseClass}__remove--hover`]]: dismissibleOnHover,
+            [styles[`${baseClass}__remove--hover`]]: isOnHoverCloseButton,
           })}
         >
           <Icon

@@ -4,6 +4,7 @@ import * as TablerIcons from '@livechat/design-system-icons';
 import { ComponentMeta } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import noop from '../../utils/noop';
 import { Icon } from '../Icon';
 
 import { Tag, TagProps } from './Tag';
@@ -85,7 +86,7 @@ export const Kinds = (): React.ReactElement => (
             <Tag leftNode={exampleAvatar} kind={kind}>
               {text}
             </Tag>
-            <Tag kind={kind} dismissible>
+            <Tag kind={kind} onRemove={noop}>
               {text}
             </Tag>
           </StoryDescriptor>
@@ -99,7 +100,7 @@ export const Kinds = (): React.ReactElement => (
             <Tag leftNode={exampleAvatar} kind={kind} outline>
               {text}
             </Tag>
-            <Tag kind={kind} dismissible outline>
+            <Tag kind={kind} onRemove={noop} outline>
               {text}
             </Tag>
           </StoryDescriptor>
@@ -121,7 +122,7 @@ export const Sizes = (): React.ReactElement => (
             leftNode={exampleIcon}
             rightNode={exampleIcon}
             size={size}
-            dismissible
+            onRemove={noop}
           >
             {text}
           </Tag>
@@ -159,11 +160,12 @@ export const WithShowCloseOnHover = (): React.ReactElement => (
             size={size}
             leftNode={exampleIcon}
             rightNode={exampleIcon}
+            onRemove={noop}
             dismissibleOnHover
           >
             {text}
           </Tag>
-          <Tag size={size} dismissibleOnHover>
+          <Tag size={size} onRemove={noop} dismissibleOnHover>
             {text}
           </Tag>
         </StoryDescriptor>
