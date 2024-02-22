@@ -21,25 +21,12 @@ export default defineConfig(({ mode }) => {
     build: {
       lib: {
         entry: path.resolve(__dirname, 'src/index.ts'),
-        name: 'dsrc',
         formats: ['es', 'cjs'],
         fileName: (format, entryName) => `${entryName}.${format}.js`,
       },
       rollupOptions: {
         external: (id: string) => !id.startsWith('.') && !path.isAbsolute(id),
-        input: Object.fromEntries(
-          glob.sync('src/**/index.{ts,tsx}').map((file) => {
-            return [
-              relative(
-                'src',
-                file.slice(0, file.length - extname(file).length)
-              ),
-              fileURLToPath(new URL(file, import.meta.url)),
-            ];
-          })
-        ),
         output: {
-          chunkFileNames: 'chunks/[name]-[hash].js',
           globals: {
             react: 'React',
           },
