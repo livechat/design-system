@@ -15,7 +15,7 @@ import { Apple, Android } from '@livechat/design-system-icons';
 
 #### Basic implementation example
 
-<Canvas>
+<Canvas withSource="none">
   <Tag>Example tag</Tag>
 </Canvas>
 
@@ -31,7 +31,7 @@ Implementation that takes into account the use of icons in the component. If the
 <b>Important</b><br />
 Icons are passed by using `leftNode` and `rightNode` (both optional), and are visible only if you pass the string-type content by `children`. Using anything else will cause that `leftNode` and `rightNode` elements will be not visible. [Check icon only variant](#IconOnly)
 
-<Canvas>
+<Canvas withSource="none">
   <Tag leftNode={<Icon source={Apple} size="small" />} rightNode={<Icon source={Android} size="small" />} >Example tag</Tag>
   <div style={{ width: 100, display: 'flex' }}><Tag leftNode={<Icon source={Apple} size="small" />} rightNode={<Icon source={Android} size="small" />} >Example tag</Tag></div>
 </Canvas>
@@ -52,7 +52,7 @@ import { Tag, Icon } from '@livechat/design-system-react-components';
 
 If your implementation involves providing the ability to remove a tag from your view, it is possible to pass the handler via `onRemove` prop which will display a close button. The `dismissibleOnHover` flag allows you to change the behavior of the component, which consists in displaying a close button when you hover over a given tag.
 
-<Canvas>
+<Canvas withSource="none">
   <Tag leftNode={<Icon source={Apple} size="small" />} rightNode={<Icon source={Android} size="small" />} onRemove={() => {}}>Example tag</Tag>
   <Tag leftNode={<Icon source={Apple} size="small" />} rightNode={<Icon source={Android} size="small" />} onRemove={() => {}} dismissibleOnHover>Example tag</Tag>
 </Canvas>
@@ -82,7 +82,7 @@ import { Tag, Icon } from '@livechat/design-system-react-components';
 
 If you want to display only the icon in the component, it should be passed via `children`. The component will adapt itself to this variant if `children` is different from string-type. This variant can also be used with `onRemove` (no need to use `dismissibleOnHover`).
 
-<Canvas>
+<Canvas withSource="none">
   <Tag><Icon source={Apple} size="small" /></Tag>
   <Tag onRemove={() => {}}><Icon source={Apple} size="small" /></Tag>
 </Canvas>
