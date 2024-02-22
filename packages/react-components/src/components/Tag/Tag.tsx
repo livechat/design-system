@@ -2,10 +2,17 @@ import * as React from 'react';
 
 import { Close } from '@livechat/design-system-icons';
 import cx from 'clsx';
-import { getContrast } from 'polished';
 
 import { Icon } from '../Icon';
+import { Tooltip } from '../Tooltip';
 import { Text } from '../Typography';
+
+import {
+  getCustomColorStyles,
+  getCustomTextClass,
+  getIconCustomColor,
+} from './helpers';
+import { useIsOverflow } from './hooks/use-is-overflow';
 
 import styles from './Tag.module.scss';
 
@@ -51,17 +58,11 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
    * React node element to show on the right
    */
   rightNode?: React.ReactElement;
+  /**
+   * Set to show full content tooltip when a text is overflowed
+   */
+  showFullContentTooltip?: boolean;
 }
-
-const getCustomTextClass = (customColor?: string) => {
-  if (!customColor) {
-    return '';
-  }
-
-  return getContrast(customColor, '#FFFFFF') > 4.5
-    ? 'text-white'
-    : 'text-black';
-};
 
 export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   className = '',
@@ -74,8 +75,13 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   leftNode,
   rightNode,
   customColor,
+  showFullContentTooltip = true,
   ...restProps
 }) => {
+  const textRef = React.useRef<HTMLDivElement>(null);
+  const isTextOverflow = useIsOverflow(
+    textRef as React.MutableRefObject<HTMLElement>
+  );
   const mergedClassNames = cx(
     styles[baseClass],
     className,
@@ -88,42 +94,16 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
         !!customColor,
     }
   );
+  const iconCustomColor = getIconCustomColor(customColor, outline);
+  const iconCustomColorStyles = { color: iconCustomColor };
   const closeIconSize = size === 'small' ? 'small' : 'medium';
   const textSize = size === 'small' ? 'sm' : 'md';
-
-  const getCustomColorStyles = () => {
-    if (!customColor) {
-      return {};
-    }
-    if (outline) {
-      return {
-        style: {
-          backgroundColor: 'transparent',
-          color: customColor,
-          borderColor: customColor,
-        },
-      };
-    }
-
-    return { style: { backgroundColor: customColor } };
-  };
-
-  const getIconCustomColor = () => {
-    if (!customColor) {
-      return undefined;
-    }
-    if (outline) {
-      return customColor;
-    }
-
-    return getContrast(customColor, '#FFFFFF') > 4.5 ? '#FFFFFF' : '#000000';
-  };
 
   return (
     <Text
       className={mergedClassNames}
       {...restProps}
-      {...getCustomColorStyles()}
+      {...getCustomColorStyles(customColor, outline)}
       as="div"
       size={textSize}
     >
@@ -131,16 +111,29 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
         <div
           data-testid="lc-tag-left-node"
           className={styles[`${baseClass}__node`]}
-          style={{ color: getIconCustomColor() }}
+          style={iconCustomColorStyles}
         >
           {leftNode}
         </div>
       )}
-      <div className={styles[`${baseClass}__content`]}>{children}</div>
+      <div ref={textRef} className={styles[`${baseClass}__content`]}>
+        {(!isTextOverflow || !showFullContentTooltip) && children}
+        {isTextOverflow && showFullContentTooltip && (
+          <Tooltip
+            triggerRenderer={() => (
+              <div className={styles[`${baseClass}__tooltip`]}>{children}</div>
+            )}
+            theme="invert"
+          >
+            {children}
+          </Tooltip>
+        )}
+      </div>
       {rightNode && (
         <div
           data-testid="lc-tag-right-node"
-          style={{ color: getIconCustomColor() }}
+          className={cx(styles[`${baseClass}__node--right`])}
+          style={iconCustomColorStyles}
         >
           {rightNode}
         </div>
@@ -158,7 +151,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
             data-dismiss-icon
             source={Close}
             size={closeIconSize}
-            customColor={getIconCustomColor()}
+            customColor={iconCustomColor}
           />
         </button>
       )}

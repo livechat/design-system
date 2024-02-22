@@ -6,7 +6,6 @@
   border-radius: var(--radius-3);
   border-color: var(--border-basic-primary);
   background-color: var(--surface-tertiary-default);
-  overflow: hidden;
   color: var(--content-basic-primary);
 
   &--success {
@@ -162,6 +161,12 @@
   &__content {
     margin-right: var(--spacing-1);
     margin-left: var(--spacing-1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__tooltip {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
