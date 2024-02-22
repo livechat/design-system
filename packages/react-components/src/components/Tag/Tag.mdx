@@ -29,7 +29,7 @@ import { Tag } from '@livechat/design-system-react-components';
 
 Implementation that takes into account the use of icons in the component. If there is insufficient space, the text in the component is cut off, but icons are still visible.<br /><br />
 <b>Important</b><br />
-Icons are passed by using `leftNode` and `rightNode` (both optional), and are visible only if you pass the string-type content by `children`. Using anything else will cause that `leftNode` and `rightNode` elements will be not visible. [Check icon only variant](#IconOnly)
+Icons are passed by using `leftNode` and `rightNode` (both optional), and are visible only if `iconOnly` flag is set to `false` (by default). Setting the `iconOnly` to `true` will cause that `leftNode` and `rightNode` elements will be not visible. [Check icon only variant](#IconOnly)
 
 <Canvas withSource="none">
   <Tag leftNode={<Icon source={Apple} size="small" />} rightNode={<Icon source={Android} size="small" />} >Example tag</Tag>
@@ -80,11 +80,11 @@ import { Tag, Icon } from '@livechat/design-system-react-components';
 
 #### Using tag with icon only <a id="IconOnly" />
 
-If you want to display only the icon in the component, it should be passed via `children`. The component will adapt itself to this variant if `children` is different from string-type. This variant can also be used with `onRemove` (no need to use `dismissibleOnHover`).
+If you want to display only the icon in the component, it should be passed via `children`, and the `iconOnly` flag must be set to `true`. With this setup the component will adapt itself to this variant. This variant can also be used with `onRemove` (no need to use `dismissibleOnHover`).
 
 <Canvas withSource="none">
-  <Tag><Icon source={Apple} size="small" /></Tag>
-  <Tag onRemove={() => {}}><Icon source={Apple} size="small" /></Tag>
+  <Tag iconOnly><Icon source={Apple} size="small" /></Tag>
+  <Tag iconOnly onRemove={() => {}}><Icon source={Apple} size="small" /></Tag>
 </Canvas>
 
 ```jsx

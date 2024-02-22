@@ -51,6 +51,10 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
    * React node element to show on the right
    */
   rightNode?: React.ReactElement;
+  /**
+   * Set to show the tag as square (only if you want use icon without text)
+   */
+  iconOnly?: boolean;
 }
 
 const getCustomTextClass = (customColor?: string) => {
@@ -75,11 +79,10 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   leftNode,
   rightNode,
   customColor,
+  iconOnly = false,
   ...restProps
 }) => {
-  const isTextContent = typeof children === 'string';
-  const isOnHoverCloseButton =
-    dismissibleOnHover || (onRemove && !isTextContent);
+  const isOnHoverCloseButton = dismissibleOnHover || (onRemove && iconOnly);
   const mergedClassNames = cx(
     styles[baseClass],
     className,
@@ -89,7 +92,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
       [styles[`${baseClass}--outline`]]: outline,
       [styles[`${baseClass}--${getCustomTextClass(customColor)}`]]:
         !!customColor,
-      [styles[`${baseClass}--icon-only`]]: !isTextContent,
+      [styles[`${baseClass}--icon-only`]]: iconOnly,
       [styles[`${baseClass}--dismissible-on-hover`]]: isOnHoverCloseButton,
     }
   );
@@ -133,7 +136,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
       size={textSize}
     >
       <div className={styles[`${baseClass}__content-wrapper`]}>
-        {leftNode && isTextContent && (
+        {leftNode && !iconOnly && (
           <div
             data-testid="lc-tag-left-node"
             className={styles[`${baseClass}__node`]}
@@ -143,7 +146,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
           </div>
         )}
         <div className={styles[`${baseClass}__content`]}>{children}</div>
-        {rightNode && isTextContent && (
+        {rightNode && !iconOnly && (
           <div
             data-testid="lc-tag-right-node"
             className={styles[`${baseClass}__node`]}

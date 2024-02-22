@@ -139,8 +139,10 @@ export const WithIconOnly = (): React.ReactElement => (
 
       return (
         <StoryDescriptor title={`${title} with icon only`}>
-          <Tag size={size}>{<Icon source={TablerIcons.Smiles} />}</Tag>
-          <Tag size={size} outline>
+          <Tag size={size} iconOnly>
+            {<Icon source={TablerIcons.Smiles} />}
+          </Tag>
+          <Tag size={size} iconOnly outline>
             {<Icon source={TablerIcons.Smiles} />}
           </Tag>
         </StoryDescriptor>
