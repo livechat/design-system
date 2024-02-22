@@ -2,6 +2,7 @@
 @use './styles/size';
 @use './styles/kind';
 @use './styles/outline';
+@use './styles/dismissible';
 
 $base-class: 'tag';
 
@@ -248,30 +249,42 @@ $base-class: 'tag';
 
   &--dismissible-on-hover {
     &:hover {
-      &.#{$base-class}--small .#{$base-class}__content-wrapper {
-        width: calc(100% - 18px);
+      &.#{$base-class}--small {
+        @include dismissible.styles($base-class, 18px, var(--spacing-1));
       }
 
-      &.#{$base-class}--medium .#{$base-class}__content-wrapper {
-        width: calc(100% - 22px);
+      &.#{$base-class}--medium {
+        @include dismissible.styles($base-class, 22px, var(--spacing-1));
       }
 
-      &.#{$base-class}--large .#{$base-class}__content-wrapper {
-        width: calc(100% - 18px);
+      &.#{$base-class}--large {
+        @include dismissible.styles($base-class, 22px, var(--spacing-2));
       }
 
-      &.#{$base-class}--xlarge .#{$base-class}__content-wrapper {
-        width: calc(100% - 14px);
+      &.#{$base-class}--xlarge {
+        @include dismissible.styles($base-class, 22px, var(--spacing-3));
       }
 
       .#{$base-class}__remove--hover {
         display: flex;
       }
+
+      &.#{$base-class}--icon-only {
+        .#{$base-class}__content-wrapper {
+          opacity: 0;
+        }
+
+        .#{$base-class}__remove--hover {
+          right: auto;
+          left: auto;
+        }
+      }
     }
+
     .#{$base-class}__remove--hover {
       display: none;
       position: absolute;
-      right: var(--spacing-05);
+      margin: 0;
     }
   }
 

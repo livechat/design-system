@@ -1,0 +1,9 @@
+@mixin styles($base-class, $content-shrink-value, $icon-position) {
+  .#{$base-class}__content-wrapper {
+    width: calc(100% - $content-shrink-value);
+  }
+
+  .#{$base-class}__remove--hover {
+    right: $icon-position;
+  }
+}
