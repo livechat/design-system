@@ -1,4 +1,4 @@
-export const kinds: string[] = [
+export const kinds = [
   'default',
   'info',
   'warning',
@@ -18,6 +18,6 @@ export const kinds: string[] = [
   'gradient09',
   'gradient10',
   'gradient11',
-];
+] as const;
 
-export const sizes: string[] = ['small', 'medium', 'large', 'xlarge'];
+export const sizes = ['small', 'medium', 'large', 'xlarge'] as const;
