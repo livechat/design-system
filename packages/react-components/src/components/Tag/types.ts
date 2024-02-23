@@ -1,22 +1,5 @@
-export type TagKind =
-  | 'default'
-  | 'info'
-  | 'warning'
-  | 'success'
-  | 'error'
-  | 'purple'
-  | 'black'
-  | 'gray'
-  | 'gradient01'
-  | 'gradient02'
-  | 'gradient03'
-  | 'gradient04'
-  | 'gradient05'
-  | 'gradient06'
-  | 'gradient07'
-  | 'gradient08'
-  | 'gradient09'
-  | 'gradient10'
-  | 'gradient11';
+import { kinds, sizes } from './constants';
 
-export type TagSize = 'small' | 'medium' | 'large' | 'xlarge';
+export type TagKind = (typeof kinds)[number];
+
+export type TagSize = (typeof sizes)[number];

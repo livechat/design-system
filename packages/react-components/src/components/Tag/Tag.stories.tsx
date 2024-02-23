@@ -7,8 +7,8 @@ import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import noop from '../../utils/noop';
 import { Icon } from '../Icon';
 
+import { kinds, sizes } from './constants';
 import { Tag, TagProps } from './Tag';
-import { TagKind, TagSize } from './types';
 
 const exampleIcon = <Icon source={TablerIcons.Smiles} size="small" />;
 const exampleAvatar = (
@@ -21,28 +21,6 @@ const exampleAvatar = (
     data-testid="lc-tag-avatar"
   />
 );
-const kinds: Array<TagKind> = [
-  'default',
-  'info',
-  'warning',
-  'success',
-  'error',
-  'purple',
-  'black',
-  'gray',
-  'gradient01',
-  'gradient02',
-  'gradient03',
-  'gradient04',
-  'gradient05',
-  'gradient06',
-  'gradient07',
-  'gradient08',
-  'gradient09',
-  'gradient10',
-  'gradient11',
-];
-const sizes: Array<TagSize> = ['small', 'medium', 'large', 'xlarge'];
 const text = 'Example tag';
 
 export default {

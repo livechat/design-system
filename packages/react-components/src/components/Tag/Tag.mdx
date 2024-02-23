@@ -13,7 +13,7 @@ import { Apple, Android } from '@livechat/design-system-icons';
 
 ## Intro <a id="Intro" />
 
-#### Basic implementation example
+### Basic implementation example
 
 <Canvas withSource="none">
   <Tag>Example tag</Tag>
@@ -25,7 +25,7 @@ import { Tag } from '@livechat/design-system-react-components';
 <Tag>Example tag</Tag>
 ```
 
-#### Using tag with icons
+### Using tag with icons
 
 Implementation that takes into account the use of icons in the component. If there is insufficient space, the text in the component is cut off, but icons are still visible.<br /><br />
 <b>Important</b><br />
@@ -48,7 +48,7 @@ import { Tag, Icon } from '@livechat/design-system-react-components';
 </Tag>
 ```
 
-#### Using tag with close button
+### Using tag with close button
 
 If your implementation involves providing the ability to remove a tag from your view, it is possible to pass the handler via `onRemove` prop which will display a close button. The `dismissibleOnHover` flag allows you to change the behavior of the component, which consists in displaying a close button when you hover over a given tag.
 
@@ -78,7 +78,7 @@ import { Tag, Icon } from '@livechat/design-system-react-components';
 </Tag>
 ```
 
-#### Using tag with icon only <a id="IconOnly" />
+### Using tag with icon only <a id="IconOnly" />
 
 If you want to display only the icon in the component, it should be passed via `children`, and the `iconOnly` flag must be set to `true`. With this setup the component will adapt itself to this variant. This variant can also be used with `onRemove` (no need to use `dismissibleOnHover`).
 
