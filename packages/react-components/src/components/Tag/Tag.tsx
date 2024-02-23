@@ -36,11 +36,15 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   dismissibleOnHover?: boolean;
   /**
+   * Set to hide close icon if the `onRemove` prop is provided
+   */
+  disabled?: boolean;
+  /**
    * Outlined version of tag
    */
   outline?: boolean;
   /**
-   * The event handler for close icon click
+   * The event handler for close icon click, if provided the close icon will be visible
    */
   onRemove?(e: React.MouseEvent): void;
   /**
@@ -72,6 +76,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   children,
   dismissible = false,
   dismissibleOnHover = false,
+  disabled = false,
   size = 'medium',
   kind = 'default',
   onRemove,
@@ -156,7 +161,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
           </div>
         )}
       </div>
-      {onRemove && (
+      {onRemove && !disabled && (
         <button
           tabIndex={-1}
           title="Remove"
