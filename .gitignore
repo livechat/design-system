@@ -8,3 +8,4 @@
 storybook-static
 .eslintcache
 .idea
+.vscode/*
