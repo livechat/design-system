@@ -39,7 +39,7 @@
     background-color: var(--surface-primary-disabled);
   }
 
-  input {
+  &__input-field {
     outline: none;
     border: 0;
     background: none;
@@ -47,6 +47,10 @@
     width: 100%;
     color: var(--content-basic-primary);
     font-size: inherit;
+
+    &--disabled {
+      color: var(--content-basic-disabled);
+    }
   }
 
   &--crop {

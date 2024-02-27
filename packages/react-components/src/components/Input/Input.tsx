@@ -111,6 +111,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             onBlur?.(e);
           }}
           disabled={disabled}
+          className={cx(styles[`${baseClass}__input-field`], {
+            [styles[`${baseClass}__input-field--disabled`]]: disabled,
+          })}
           type={type && !isPasswordVisible ? type : 'text'}
         />
         {shouldRenderRightIcon && renderIcon(icon, disabled)}
