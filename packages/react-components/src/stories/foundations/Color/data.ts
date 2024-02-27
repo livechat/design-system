@@ -886,6 +886,16 @@ export const ColorsData: Record<
     desc: '',
     deprecated: false,
   },
+  DecorBrown50: {
+    group: ColorGroup.Decor,
+    desc: '',
+    deprecated: false,
+  },
+  DecorBrown300: {
+    group: ColorGroup.Decor,
+    desc: '',
+    deprecated: false,
+  },
   IllustrationsPrimary: {
     group: ColorGroup.Illustration,
     desc: 'Accent background color for illustration',
@@ -1196,6 +1206,16 @@ export const ColorsData: Record<
     desc: 'Surface gradient color, as a background for banners, tags, badges',
     deprecated: false,
   },
+  SurfaceGradient12: {
+    group: ColorGroup.SurfaceGradient,
+    desc: 'Surface gradient color, as a background for banners, tags, badges',
+    deprecated: false,
+  },
+  SurfaceGradient13: {
+    group: ColorGroup.SurfaceGradient,
+    desc: 'Surface gradient color, as a background for banners, tags, badges',
+    deprecated: false,
+  },
   SurfaceInvertDefault: {
     group: ColorGroup.Deprecated,
     desc: '',
@@ -1294,6 +1314,26 @@ export const ColorsData: Record<
   SurfaceOtherSkeleton: {
     group: ColorGroup.SurfaceOther,
     desc: 'Skeleton background',
+    deprecated: false,
+  },
+  SurfaceOtherInternalNote: {
+    group: ColorGroup.SurfaceOther,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceOtherInternalNoteHover: {
+    group: ColorGroup.SurfaceOther,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceOtherVisitor: {
+    group: ColorGroup.SurfaceOther,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceOtherVisitorHover: {
+    group: ColorGroup.SurfaceOther,
+    desc: '',
     deprecated: false,
   },
   SurfaceOverlay: {
