@@ -160,7 +160,6 @@
   &:hover,
   &:active,
   &:focus {
-    box-shadow: none;
     text-decoration: underline;
   }
 
@@ -212,13 +211,6 @@
     border-color: transparent;
     background-color: var(--surface-primary-active);
     color: var(--content-basic-primary);
-  }
-
-  &:focus-visible {
-    box-shadow:
-      var(--shadow-focus),
-      0 0 0 2px #fff;
-    background-color: var(--surface-primary-hover);
   }
 
   &[aria-disabled='true'] {
@@ -284,11 +276,6 @@
 
   &:hover {
     background-color: var(--action-high-contrast-hover);
-  }
-
-  &:active,
-  &:focus {
-    background-color: var(--action-high-contrast-active);
   }
 
   &[aria-disabled='true'] {

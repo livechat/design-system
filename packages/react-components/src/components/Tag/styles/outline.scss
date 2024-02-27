@@ -1,0 +1,13 @@
+@mixin default() {
+  border-width: 1px;
+  border-style: solid;
+  background-color: var(--surface-primary-default);
+}
+
+@mixin size($base-class, $padding-v, $padding-h) {
+  padding: $padding-v calc($padding-h - 1px);
+
+  &.#{$base-class}--icon-only {
+    padding: 0;
+  }
+}

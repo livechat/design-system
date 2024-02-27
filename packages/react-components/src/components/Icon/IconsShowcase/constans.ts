@@ -274,6 +274,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   LockOpen: IconGroup.General,
   LogoutFilled: IconGroup.General,
   Logout: IconGroup.General,
+  Menu: IconGroup.General,
   MessagesFilled: IconGroup.General,
   Messages: IconGroup.General,
   MoodAngry: IconGroup.General,
