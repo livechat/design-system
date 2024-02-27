@@ -1,6 +1,6 @@
 {
   "name": "@livechat/design-system-react-components",
-  "version": "1.17.0",
+  "version": "1.17.1",
   "description": "",
   "publishConfig": {
     "access": "public"
@@ -12,9 +12,6 @@
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
-  ],
-  "sideEffects": [
-    "**/*.css"
   ],
   "scripts": {
     "dev": "run-p dev:*",
@@ -60,7 +57,6 @@
     "@vitejs/plugin-react": "^1.0.7",
     "@vitest/coverage-c8": "^0.33.0",
     "chromatic": "^6.19.7",
-    "glob": "^10.3.10",
     "jsdom": "^19.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -76,10 +72,9 @@
     "vitest": "^0.31.0"
   },
   "dependencies": {
-    "@emotion/css": "^11.9.0",
     "@floating-ui/react": "^0.26.4",
     "@livechat/data-utils": "^0.2.16",
-    "@livechat/design-system-icons": "^1.17.0",
+    "@livechat/design-system-icons": "^1.17.1",
     "clsx": "^1.1.1",
     "date-fns": "^2.28.0",
     "lodash.debounce": "^4.0.8",

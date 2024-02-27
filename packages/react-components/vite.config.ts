@@ -1,16 +1,11 @@
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
 
-import { fileURLToPath } from 'node:url';
 import * as path from 'path';
-import { extname, relative } from 'path';
 
 import react from '@vitejs/plugin-react';
-import { glob } from 'glob';
-import scss from 'rollup-plugin-scss';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import { libInjectCss } from 'vite-plugin-lib-inject-css';
 import turbosnap from 'vite-plugin-turbosnap';
 
 export default defineConfig(({ mode }) => {
@@ -23,26 +18,12 @@ export default defineConfig(({ mode }) => {
     build: {
       lib: {
         entry: path.resolve(__dirname, 'src/index.ts'),
-        name: 'dsrc',
         formats: ['es', 'cjs'],
         fileName: (format, entryName) => `${entryName}.${format}.js`,
       },
       rollupOptions: {
         external: (id: string) => !id.startsWith('.') && !path.isAbsolute(id),
-        input: Object.fromEntries(
-          glob.sync('src/**/index.{ts,tsx}').map((file) => {
-            return [
-              relative(
-                'src',
-                file.slice(0, file.length - extname(file).length)
-              ),
-              fileURLToPath(new URL(file, import.meta.url)),
-            ];
-          })
-        ),
         output: {
-          assetFileNames: 'assets/[name][extname]',
-          chunkFileNames: 'chunks/[name]-[hash].js',
           globals: {
             react: 'React',
           },
@@ -69,12 +50,6 @@ export default defineConfig(({ mode }) => {
           'src/components',
         ],
         exclude: ['**/*.stories.tsx', '**/*.spec.ts', '**/*.spec.tsx'],
-      }),
-      libInjectCss(),
-      scss({
-        fileName: 'style.css',
-        include: 'src/index.scss',
-        outputStyle: 'compressed',
       }),
       react({ jsxRuntime: 'classic' }),
       mode === 'production' && turbosnap({ rootDir: process.cwd() }),
