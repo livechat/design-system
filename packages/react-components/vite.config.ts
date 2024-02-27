@@ -1,12 +1,9 @@
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
 
-import { fileURLToPath } from 'node:url';
 import * as path from 'path';
-import { extname, relative } from 'path';
 
 import react from '@vitejs/plugin-react';
-import { glob } from 'glob';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import turbosnap from 'vite-plugin-turbosnap';
@@ -26,19 +23,7 @@ export default defineConfig(({ mode }) => {
       },
       rollupOptions: {
         external: (id: string) => !id.startsWith('.') && !path.isAbsolute(id),
-        input: Object.fromEntries(
-          glob.sync('src/**/index.{ts,tsx}').map((file) => {
-            return [
-              relative(
-                'src',
-                file.slice(0, file.length - extname(file).length)
-              ),
-              fileURLToPath(new URL(file, import.meta.url)),
-            ];
-          })
-        ),
         output: {
-          chunkFileNames: 'chunks/[name]-[hash].js',
           globals: {
             react: 'React',
           },
