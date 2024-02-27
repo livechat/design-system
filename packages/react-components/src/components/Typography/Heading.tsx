@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import { THeadingSize } from './types';
+import { THeadingSize, TTextAlign } from './types';
 
 import styles from './Typography.module.scss';
 
@@ -25,6 +25,10 @@ interface IProps extends React.HTMLAttributes<HTMLElement> {
   uppercase?: boolean;
   /** Optional prop to set the bold */
   bold?: boolean;
+  /** Optional prop to set the custom color */
+  customColor?: string;
+  /** Optional prop to set the text align */
+  textAlign?: TTextAlign;
 }
 
 export const Heading: React.FC<React.PropsWithChildren<IProps>> = ({
@@ -34,6 +38,8 @@ export const Heading: React.FC<React.PropsWithChildren<IProps>> = ({
   className,
   uppercase,
   bold,
+  customColor,
+  textAlign,
   ...props
 }) => {
   return React.createElement(
@@ -47,6 +53,10 @@ export const Heading: React.FC<React.PropsWithChildren<IProps>> = ({
         },
         className
       ),
+      style: {
+        ...(customColor && { color: customColor }),
+        ...(textAlign && { textAlign: textAlign }),
+      },
       ...props,
     },
     children
