@@ -13,9 +13,6 @@
   "files": [
     "dist"
   ],
-  "sideEffects": [
-    "**/*.css"
-  ],
   "scripts": {
     "dev": "run-p dev:*",
     "dev:storybook": "storybook dev -p 6006 --quiet",
@@ -76,7 +73,6 @@
     "vitest": "^0.31.0"
   },
   "dependencies": {
-    "@emotion/css": "^11.9.0",
     "@floating-ui/react": "^0.26.4",
     "@livechat/data-utils": "^0.2.16",
     "@livechat/design-system-icons": "^1.17.0",

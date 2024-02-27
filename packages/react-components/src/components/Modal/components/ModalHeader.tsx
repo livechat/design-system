@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { cx } from '@emotion/css';
+import cx from 'clsx';
 
 import { Avatar, AvatarProps } from '../../Avatar';
 import { Icon, IconProps } from '../../Icon';
