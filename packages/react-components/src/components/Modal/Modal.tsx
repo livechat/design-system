@@ -68,7 +68,7 @@ export const Modal: React.FC<ModalProps> = ({
       {labelHeading && (
         <div className={styles[`${baseClass}__label-header`]}>
           <Heading
-            size="md"
+            size="sm"
             as="div"
             className={styles[`${baseClass}__label-heading`]}
           >
@@ -84,7 +84,7 @@ export const Modal: React.FC<ModalProps> = ({
       {!labelHeading && heading && (
         <div className={styles[`${baseClass}__header`]}>
           <Heading
-            size="md"
+            size="sm"
             as="div"
             className={styles[`${baseClass}__heading`]}
           >

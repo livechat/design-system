@@ -57,8 +57,8 @@
 }
 
 @mixin paragraph-md {
-  line-height: 22px;
-  letter-spacing: -0.1px;
+  line-height: 21px;
+  letter-spacing: 0;
   font-size: 14px;
   font-weight: 400;
   font-style: normal;
@@ -93,9 +93,9 @@
 }
 
 @mixin display-max {
-  line-height: 80px;
-  font-size: 80px;
-  font-weight: 700;
+  line-height: 68px;
+  font-size: 64px;
+  font-weight: 500;
 }
 
 .heading-xl {
