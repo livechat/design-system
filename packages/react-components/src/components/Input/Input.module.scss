@@ -39,7 +39,7 @@
     background-color: var(--surface-primary-disabled);
   }
 
-  &__input-field {
+  input {
     outline: none;
     border: 0;
     background: none;
@@ -48,7 +48,7 @@
     color: var(--content-basic-primary);
     font-size: inherit;
 
-    &--disabled {
+    &:disabled {
       color: var(--content-basic-disabled);
     }
   }
