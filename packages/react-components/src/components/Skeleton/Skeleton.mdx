@@ -1,0 +1,44 @@
+import { Title, Canvas, ArgsTable, Meta } from '@storybook/blocks';
+import { SkeletonWrapper } from './SkeletonWrapper';
+import { SkeletonPlaceholder } from './SkeletonPlaceholder';
+import { SkeletonText } from './SkeletonText';
+import * as SkeletonStories from './Skeleton.stories';
+
+<Meta of={SkeletonStories} />
+
+<Title>Skeleton</Title>
+
+[Intro](#Intro) | [Component API](#ComponentAPI)
+
+## Intro <a id="Intro" />
+
+Skeleton is a simple component to use in the UI to present a placeholder for loading content before it is ready to be displayed in a view. It may suggest a loading avatar, a line of text, or an entire block of elements. <br /><br />
+However, please note that "Skeleton" is not a single component. This is the name for a collection of components that can be used either individually or in groups, depending on your needs.
+
+### Basic implementation example
+
+<Canvas withSource="none">
+  <SkeletonWrapper>
+    <SkeletonPlaceholder size={36} />
+    <SkeletonWrapper vertical>
+      <SkeletonText width={150} />
+      <SkeletonText width={250} height={200} />
+    </SkeletonWrapper>
+  </SkeletonWrapper>
+</Canvas>
+
+```jsx
+import { SkeletonWrapper, SkeletonPlaceholder, SkeletonText } from '@livechat/design-system-react-components';
+
+<SkeletonWrapper>
+  <SkeletonPlaceholder size={36} />
+  <SkeletonWrapper vertical>
+    <SkeletonText width={150} />
+    <SkeletonText width={250} height={200} />
+  </SkeletonWrapper>
+</SkeletonWrapper>
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgsTable />
