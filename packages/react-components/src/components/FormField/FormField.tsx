@@ -84,14 +84,16 @@ export const FormField: React.FC<FormFieldProps> = ({
     <div className={mergedClassNames}>
       {labelRightNode && inline && (
         <React.Fragment>
-          <div
+          <Text
+            as="div"
+            size="sm"
             className={cx(
               styles[`${baseClass}__label-right-node`],
               styles[`${baseClass}__label-right-node--inline`]
             )}
           >
             {labelRightNode}
-          </div>
+          </Text>
           <div className={styles[`${baseClass}__row-break`]} />
         </React.Fragment>
       )}
@@ -140,9 +142,13 @@ export const FormField: React.FC<FormFieldProps> = ({
               </div>
             )}
             {labelRightNode && !inline && (
-              <div className={cx(styles[`${baseClass}__label-right-node`])}>
+              <Text
+                as="div"
+                size="sm"
+                className={cx(styles[`${baseClass}__label-right-node`])}
+              >
                 {labelRightNode}
-              </div>
+              </Text>
             )}
           </div>
         )}
