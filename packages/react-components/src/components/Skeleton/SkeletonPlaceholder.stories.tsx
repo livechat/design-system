@@ -10,11 +10,11 @@ export default {
   component: SkeletonPlaceholder,
 };
 
-export const Text = (args: ISkeletonPlaceholder): React.ReactElement => (
+export const Placeholder = (args: ISkeletonPlaceholder): React.ReactElement => (
   <SkeletonPlaceholder
     square={args.square}
     size={args.size}
     animated={args.animated}
   />
 );
-Text.args = {};
+Placeholder.args = {};
