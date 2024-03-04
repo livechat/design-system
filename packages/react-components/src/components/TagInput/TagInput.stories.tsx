@@ -4,6 +4,7 @@ import { Meta } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import noop from '../../utils/noop';
+import { TagProps } from '../Tag';
 
 import { TagInput, EmailTagInput } from './index';
 
@@ -47,6 +48,23 @@ export const DefaultEmailTagInput = ({ ...args }) => {
 };
 DefaultEmailTagInput.storyName = 'EmailTagInput';
 DefaultEmailTagInput.args = {
+  placeholder: 'name@company.com',
+};
+
+export const CustomizableTagInput = ({ ...args }) => {
+  const [tags, setTags] = React.useState<TagProps[]>([
+    { children: 'tag1', kind: 'success' },
+    { value: 'tag2', kind: 'purple' },
+  ]);
+
+  return (
+    <div>
+      <TagInput {...args} tags={tags} onChange={setTags} />
+    </div>
+  );
+};
+CustomizableTagInput.storyName = 'CustomizableTagInput';
+CustomizableTagInput.args = {
   placeholder: 'name@company.com',
 };
 

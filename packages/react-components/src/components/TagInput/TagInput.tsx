@@ -53,8 +53,10 @@ export const TagInput = <T extends TagInputValues>({
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const addTag = (value: string) => {
-    onChange([...(tags || []), value] as T[]);
-    setInputValue('');
+    if (value.trim() !== '') {
+      onChange([...(tags || []), value] as T[]);
+      setInputValue('');
+    }
   };
 
   const removeTag = (idx: number) => {
