@@ -1,10 +1,9 @@
 import * as React from 'react';
 
-import { Tag, TagProps } from '../Tag';
+import { Tag, TagProps } from '../../Tag';
+import styles from '../TagInput.module.scss';
 
 import { EditableTagContent } from './EditableTagContent';
-
-import styles from './TagInput.module.scss';
 
 const baseClass = 'tag-input__tag';
 

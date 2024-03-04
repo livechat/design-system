@@ -6,7 +6,7 @@ import { KeyCodes } from '../../utils/keyCodes';
 import { FieldError } from '../FieldError';
 import { Text } from '../Typography';
 
-import { EditableTag } from './EditableTag';
+import { EditableTag } from './components/EditableTag';
 import { TagInputProps, TagInputValues } from './types';
 
 import styles from './TagInput.module.scss';
