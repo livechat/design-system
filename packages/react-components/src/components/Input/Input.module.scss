@@ -47,6 +47,10 @@
     width: 100%;
     color: var(--content-basic-primary);
     font-size: inherit;
+
+    &:disabled {
+      color: var(--content-basic-disabled);
+    }
   }
 
   &--crop {
