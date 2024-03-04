@@ -53,7 +53,7 @@ export interface TagProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   iconOnly?: boolean;
   /**
-   * Set text value for the tag
+   * Set text value for the tag. You can use this or `children` prop. If both are provided, `value` prop will be used.
    */
   value?: string;
 }
