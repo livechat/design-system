@@ -45,4 +45,6 @@ export interface TagInputProps<T>
   addOnBlur?: boolean;
 }
 
-export type TagInputValues = string | TagProps;
+export type TagInputValues =
+  | string
+  | Omit<TagProps, 'onRemove' | 'dismissible'>;
