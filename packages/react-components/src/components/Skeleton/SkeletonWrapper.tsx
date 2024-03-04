@@ -6,7 +6,7 @@ import styles from './Skeleton.module.scss';
 
 const baseClass = 'skeleton-wrapper';
 
-export interface ISkeletonWrapper {
+export interface ISkeletonWrapper extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * The children elements to be wrapped by the skeleton wrapper
    */
@@ -25,6 +25,7 @@ export const SkeletonWrapper: React.FC<ISkeletonWrapper> = ({
   children,
   vertical,
   animated,
+  ...props
 }) => {
   const childrenWithProps = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
@@ -41,6 +42,7 @@ export const SkeletonWrapper: React.FC<ISkeletonWrapper> = ({
       className={cx(styles[`${baseClass}`], {
         [styles[`${baseClass}--vertical`]]: vertical,
       })}
+      {...props}
     >
       {childrenWithProps}
     </div>
