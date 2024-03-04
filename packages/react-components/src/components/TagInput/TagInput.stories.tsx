@@ -55,6 +55,7 @@ export const CustomizableTagInput = ({ ...args }) => {
   const [tags, setTags] = React.useState<TagProps[]>([
     { children: 'tag1', kind: 'success' },
     { value: 'tag2', kind: 'purple' },
+    { value: 'tag2', kind: 'error', outline: true },
   ]);
 
   return (
@@ -65,7 +66,7 @@ export const CustomizableTagInput = ({ ...args }) => {
 };
 CustomizableTagInput.storyName = 'CustomizableTagInput';
 CustomizableTagInput.args = {
-  placeholder: 'name@company.com',
+  placeholder: 'Add a new tag',
 };
 
 export const Sizes = (): React.ReactElement => (

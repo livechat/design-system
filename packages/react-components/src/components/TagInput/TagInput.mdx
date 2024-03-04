@@ -1,4 +1,4 @@
-import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+import { Meta, Title, Canvas, ArgsTable } from '@storybook/blocks';
 import { Figma } from '@storybook/addon-designs/blocks';
 import * as Stories from './TagInput.stories';
 
@@ -6,21 +6,65 @@ import * as Stories from './TagInput.stories';
 
 <Title>TagInput</Title>
 
-[Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+[Intro](#Intro) | [Basic implementation](#BasicImplementation) | [Customisation](#TagsCustomisation) | [Validation](#TagsValidation) | [EmailTagInput](#EmailTagInput) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
 
 ## Intro <a id="Intro" />
 
-<Canvas of={Stories.DefaultTagInput} sourceState="none" />
+The `TagInput` component is used to input multiple tags. It is a controlled component, which means that it requires an `onChange` and `tags` props to be passed.
 
-#### Example implementation
+### Basic implementation example <a id="BasicImplementation" />
+
+<Canvas of={Stories.DefaultTagInput} sourceState="none" />
 
 ```jsx
 <TagInput tags={['tag1', 'tag2']} onChange={(tags) => {}} />
 ```
 
+### Tags customisation <a id="TagsCustomisation" />
+
+The tags can be customised by passing an array of objects with the properties of Tag component. The tag value can be set via the `children` or `value` prop, if both are set, the `value` prop will be used.
+
+```jsx
+<TagInput
+  tags={[
+    { children: 'tag1', kind: 'success' },
+    { value: 'tag2', kind: 'purple' },
+    { value: 'tag2', kind: 'error', outline: true },
+  ]}
+  onChange={(tags) => {}}
+/>
+```
+
+<Canvas of={Stories.CustomizableTagInput} sourceState="none" />
+
+### Tags validation <a id="TagsValidation" />
+
+`TagInput` component provides a way to validate the tags. The `validator` prop can be used to pass a function that will be called when the tags are changed. The function should return a boolean value, if the value is `false`, the tags will be marked as invalid.
+
+```jsx
+<TagInput
+  tags={['tag1', 'tag2']}
+  validate={(tags) => tags.length < 3}
+  onChange={(tags) => {}}
+/>
+```
+
+### EmailTagInput <a id="EmailTagInput" />
+
+The `EmailTagInput` component is a special case of `TagInput` that validates the tags as emails.
+
+```jsx
+<EmailTagInput
+  tags={['tag1@mail.com', 'tag2@mail.com']}
+  onChange={(tags) => {}}
+/>
+```
+
+<Canvas of={Stories.DefaultEmailTagInput} sourceState="none" />
+
 ## Component API <a id="ComponentAPI" />
 
-<ArgTypes of={Stories.DefaultTagInput} />
+<ArgsTable />
 
 ## Content Spec <a id="ContentSpec" />
 

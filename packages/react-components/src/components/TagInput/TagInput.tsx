@@ -141,7 +141,7 @@ export const TagInput = <T extends TagInputValues>({
         size={size}
         tagProps={tag}
       >
-        {tag.children as string}
+        {tag.value || (tag.children as string)}
       </EditableTag>
     );
   };
