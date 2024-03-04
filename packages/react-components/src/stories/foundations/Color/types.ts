@@ -31,6 +31,7 @@ export enum ColorGroup {
   Products,
   Decor,
   SurfaceComponentSpecific,
+  AnimationGradient,
   Deprecated, // ???
 }
 

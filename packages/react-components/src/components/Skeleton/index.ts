@@ -1,3 +1,3 @@
 export { SkeletonWrapper } from './SkeletonWrapper';
-export { SkeletonPlaceholder } from './SkeletonPlaceholder';
+export { SkeletonAvatar } from './SkeletonAvatar';
 export { SkeletonText } from './SkeletonText';

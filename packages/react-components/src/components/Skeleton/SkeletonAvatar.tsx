@@ -4,9 +4,9 @@ import cx from 'clsx';
 
 import styles from './Skeleton.module.scss';
 
-const baseClass = 'skeleton-placeholder';
+const baseClass = 'skeleton-avatar';
 
-export interface ISkeletonPlaceholder {
+export interface ISkeletonAvatar {
   /**
    * Specify if the element is square shape
    */
@@ -21,7 +21,7 @@ export interface ISkeletonPlaceholder {
   animated?: boolean;
 }
 
-export const SkeletonPlaceholder: React.FC<ISkeletonPlaceholder> = ({
+export const SkeletonAvatar: React.FC<ISkeletonAvatar> = ({
   square = false,
   size = 16,
   animated,

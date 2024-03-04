@@ -1,6 +1,6 @@
 import { Title, Canvas, ArgsTable, Meta } from '@storybook/blocks';
 import { SkeletonWrapper } from './SkeletonWrapper';
-import { SkeletonPlaceholder } from './SkeletonPlaceholder';
+import { SkeletonAvatar } from './SkeletonAvatar';
 import { SkeletonText } from './SkeletonText';
 import * as SkeletonStories from './Skeleton.stories';
 
@@ -19,7 +19,7 @@ However, please note that "Skeleton" is not a single component. This is the name
 
 <Canvas withSource="none">
   <SkeletonWrapper>
-    <SkeletonPlaceholder size={36} />
+    <SkeletonAvatar size={36} />
     <SkeletonWrapper vertical>
       <SkeletonText width={150} />
       <SkeletonText width={250} height={200} />
@@ -28,10 +28,10 @@ However, please note that "Skeleton" is not a single component. This is the name
 </Canvas>
 
 ```jsx
-import { SkeletonWrapper, SkeletonPlaceholder, SkeletonText } from '@livechat/design-system-react-components';
+import { SkeletonWrapper, SkeletonAvatar, SkeletonText } from '@livechat/design-system-react-components';
 
 <SkeletonWrapper>
-  <SkeletonPlaceholder size={36} />
+  <SkeletonAvatar size={36} />
   <SkeletonWrapper vertical>
     <SkeletonText width={150} />
     <SkeletonText width={250} height={200} />
