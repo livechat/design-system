@@ -85,7 +85,7 @@ export const Examples = (): React.ReactElement => {
       <StoryDescriptor title="With Label and Label Adornment">
         <FormFieldComponent
           labelText={LabelText}
-          labelAdornment={<ExampleIcon />}
+          labelAdornment={'(Optional)'}
           description={DescriptionText}
         >
           <ExampleInput />
@@ -94,7 +94,7 @@ export const Examples = (): React.ReactElement => {
       <StoryDescriptor title="With Inline Label and Label Adornment">
         <FormFieldComponent
           labelText={LabelText}
-          labelAdornment={<ExampleIcon />}
+          labelAdornment={'(Optional)'}
           inline
           description={DescriptionText}
         >

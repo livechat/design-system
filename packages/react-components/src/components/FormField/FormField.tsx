@@ -130,14 +130,16 @@ export const FormField: React.FC<FormFieldProps> = ({
                   </Text>
                 </label>
                 {labelAdornment && (
-                  <div
+                  <Text
+                    as="div"
+                    size="sm"
                     className={cx(
                       styles[`${baseClass}__label-adornment`],
                       inline && styles[`${baseClass}__label-adornment--inline`]
                     )}
                   >
                     {labelAdornment}
-                  </div>
+                  </Text>
                 )}
               </div>
             )}

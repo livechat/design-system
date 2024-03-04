@@ -53,10 +53,8 @@
     align-self: flex-end;
     justify-content: flex-end;
     margin-left: 4px;
-    width: 20px;
-    height: 20px;
     overflow: hidden;
-    line-height: 20px;
+    color: var(--content-basic-secondary);
 
     &--inline {
       align-self: center;
