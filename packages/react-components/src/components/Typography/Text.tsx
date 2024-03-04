@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import { TTextSize } from './types';
+import { TTextAlign, TTextSize } from './types';
 
 import styles from './Typography.module.scss';
 
@@ -26,6 +26,10 @@ interface IProps extends React.HTMLAttributes<HTMLElement> {
   underline?: boolean;
   /** Optional prop to set the strike */
   strike?: boolean;
+  /** Optional prop to set the custom color */
+  customColor?: string;
+  /** Optional prop to set the text align */
+  textAlign?: TTextAlign;
 }
 
 export const Text: React.FC<React.PropsWithChildren<IProps>> = ({
@@ -38,6 +42,8 @@ export const Text: React.FC<React.PropsWithChildren<IProps>> = ({
   strike = false,
   children,
   className,
+  customColor,
+  textAlign,
   ...props
 }) => {
   const baseClassPrefix = `paragraph`;
@@ -55,6 +61,10 @@ export const Text: React.FC<React.PropsWithChildren<IProps>> = ({
         },
         className
       ),
+      style: {
+        ...(customColor && { color: customColor }),
+        ...(textAlign && { textAlign: textAlign }),
+      },
       ...props,
     },
     children
