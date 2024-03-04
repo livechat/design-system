@@ -1,16 +1,11 @@
 import * as React from 'react';
 
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import noop from '../../utils/noop';
 
-import {
-  TagInput,
-  TagInputProps,
-  EmailTagInput,
-  EmailTagInputProps,
-} from './index';
+import { TagInput, EmailTagInput } from './index';
 
 const placeholderText = 'Placeholder text';
 
@@ -24,11 +19,9 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof TagInput>;
+} as Meta<typeof TagInput>;
 
-export const DefaultTagInput: Story<TagInputProps> = ({
-  ...args
-}: TagInputProps) => {
+export const DefaultTagInput = ({ ...args }) => {
   const [tags, setTags] = React.useState(['tag1', 'tag2']);
 
   return (
@@ -43,9 +36,7 @@ DefaultTagInput.args = {
   placeholder: placeholderText,
 };
 
-export const DefaultEmailTagInput: Story<EmailTagInputProps> = ({
-  ...args
-}: EmailTagInputProps) => {
+export const DefaultEmailTagInput = ({ ...args }) => {
   const [tags, setTags] = React.useState(['one@test.com', 'two@test.com']);
 
   return (

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Tag } from '../Tag';
+import { Tag, TagProps } from '../Tag';
 
 import { EditableTagContent } from './EditableTagContent';
 
@@ -16,6 +16,7 @@ export interface EditableTagProps extends React.HTMLAttributes<HTMLDivElement> {
   validator?: (val: string) => boolean;
   children: string;
   size: 'medium' | 'large';
+  tagProps?: TagProps;
 }
 
 export const EditableTag: React.FC<EditableTagProps> = ({
@@ -26,6 +27,7 @@ export const EditableTag: React.FC<EditableTagProps> = ({
   inputRef,
   update,
   size,
+  tagProps,
 }) => {
   const isValid = React.useMemo(() => {
     return validator !== undefined ? validator(children) : true;
@@ -35,13 +37,13 @@ export const EditableTag: React.FC<EditableTagProps> = ({
 
   const removeTag = () => remove(index);
 
+  const getTagKind = () => {
+    if (!isValid) return 'error';
+    return tagProps ? tagProps.kind : 'default';
+  };
+
   return (
-    <Tag
-      kind={isValid ? 'default' : 'error'}
-      dismissible
-      size={size}
-      onRemove={removeTag}
-    >
+    <Tag size={size} {...tagProps} kind={getTagKind()} onRemove={removeTag}>
       <EditableTagContent
         value={children}
         inputRef={inputRef}

@@ -7,6 +7,7 @@ import { FieldError } from '../FieldError';
 import { Text } from '../Typography';
 
 import { EditableTag } from './EditableTag';
+import { TagInputProps, TagInputValues } from './types';
 
 import styles from './TagInput.module.scss';
 
@@ -21,50 +22,7 @@ const tagSeparatorKeys = [
 ];
 const tagRemoveKeys = [KeyCodes.backspace, KeyCodes.delete];
 
-export interface TagInputProps
-  extends Omit<
-    React.InputHTMLAttributes<HTMLInputElement>,
-    'size' | 'onChange'
-  > {
-  /**
-   * Set the id for input
-   */
-  id?: string;
-  /**
-   * Set the error message
-   */
-  error?: string;
-  /**
-   * Array of defined tags
-   */
-  tags?: string[];
-  /**
-   * The event handler for modify tags array
-   */
-  onChange: (tags: string[]) => void;
-  /**
-   * Set the input placeholder
-   */
-  placeholder?: string;
-  /**
-   * Set the custom validation for provided items
-   */
-  validator?: (val: string) => boolean;
-  /**
-   * Specify the input size
-   */
-  size?: 'medium' | 'large';
-  /**
-   * Set the input custom class
-   */
-  inputClassName?: string;
-  /**
-   * Add Tag on blur
-   */
-  addOnBlur?: boolean;
-}
-
-export const TagInput: React.FC<TagInputProps> = ({
+export const TagInput = <T extends TagInputValues>({
   id,
   tags,
   onChange,
@@ -77,7 +35,7 @@ export const TagInput: React.FC<TagInputProps> = ({
   onBlur,
   addOnBlur = true,
   ...props
-}) => {
+}: TagInputProps<T>): React.ReactElement => {
   const mergedClassNames = cx(
     styles[baseClass],
     {
@@ -95,7 +53,7 @@ export const TagInput: React.FC<TagInputProps> = ({
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const addTag = (value: string) => {
-    onChange([...(tags || []), value]);
+    onChange([...(tags || []), value] as T[]);
     setInputValue('');
   };
 
@@ -141,7 +99,7 @@ export const TagInput: React.FC<TagInputProps> = ({
     if (numOccurrencesOfValue > 0) {
       newTags.splice(i, 1);
     } else {
-      newTags[i] = value;
+      newTags[i] = value as T;
     }
     onChange(newTags);
   };
@@ -150,25 +108,46 @@ export const TagInput: React.FC<TagInputProps> = ({
     e.preventDefault();
     const text = e.clipboardData.getData('text/plain');
     const newTags = text.split(/[\s,;\n]+/);
-    onChange([...(tags || []), ...newTags]);
+    onChange([...(tags || []), ...newTags] as T[]);
+  };
+
+  const renderTag = (tag: T, index: number) => {
+    if (typeof tag === 'string') {
+      return (
+        <EditableTag
+          index={index}
+          key={`${index}${tag}`}
+          update={updateTag}
+          remove={removeTag}
+          inputRef={inputRef}
+          validator={validator}
+          size={size}
+        >
+          {tag}
+        </EditableTag>
+      );
+    }
+
+    return (
+      <EditableTag
+        index={index}
+        key={`${index}${tag.children}`}
+        update={updateTag}
+        remove={removeTag}
+        inputRef={inputRef}
+        validator={validator}
+        size={size}
+        tagProps={tag}
+      >
+        {tag.children as string}
+      </EditableTag>
+    );
   };
 
   return (
     <>
       <Text as="div" className={mergedClassNames}>
-        {tags?.map((tag, index) => (
-          <EditableTag
-            index={index}
-            key={`${index}${tag}`}
-            update={updateTag}
-            remove={removeTag}
-            inputRef={inputRef}
-            validator={validator}
-            size={size}
-          >
-            {tag}
-          </EditableTag>
-        ))}
+        {tags?.map(renderTag)}
         <input
           {...props}
           id={id}
