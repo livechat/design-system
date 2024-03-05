@@ -2,5 +2,5 @@
   "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
   "*.{css,scss}": "stylelint --fix",
   "*.{js,jsx,ts,tsx,css,scss,md}": "prettier --write",
-  "./packages/react-components/src/themes/**/*.{css,scss}": "npm run generate-ds-tokens-enum"
+  "./packages/react-components/src/themes/**/*.{css,scss}": "cd ./packages/react-components && npm run generate-ds-tokens-enum"
 }
