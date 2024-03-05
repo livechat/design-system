@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { cx } from '@emotion/css';
+import cx from 'clsx';
 
 import { Avatar, AvatarProps } from '../../Avatar';
 import { Icon, IconProps } from '../../Icon';
@@ -57,11 +57,7 @@ export const ModalHeader: React.FC<ModalHeaderProps> = ({
         />
       )}
       <div className={styles[`${baseClass}__heading-body`]}>
-        <Heading
-          as="div"
-          size="md"
-          className={styles[`${baseClass}__heading-title`]}
-        >
+        <Heading as="div" size="sm">
           {title}
         </Heading>
 

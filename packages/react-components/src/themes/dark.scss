@@ -90,10 +90,16 @@ $surface-tertiary-hover: #43434b;
   --surface-gradient-09: linear-gradient(95deg, #105230, #4b4119 112%);
   --surface-gradient-10: linear-gradient(95deg, #513e79, #1f2d44 112%);
   --surface-gradient-11: linear-gradient(95deg, #513e79, #423a1b 112%);
+  --surface-gradient-12: linear-gradient(95deg, #5b4939 0%, #262426 111.28%);
+  --surface-gradient-13: linear-gradient(95deg, #49494c 0%, #242428 111.28%);
   --surface-other-overlay: rgb(19 19 23 / 90%);
   --surface-other-agent: #0845a2;
-  --surface-other-agent-hover: #2158ab;
+  --surface-other-agent-hover: #195dc8;
   --surface-other-skeleton: #3b3b43;
+  --surface-other-internal-note: #3d361b;
+  --surface-other-internal-note-hover: #634d00;
+  --surface-other-visitor: #2d2d33;
+  --surface-other-visitor-hover: #43434b;
   --content-default: rgb(255 255 255 / 80%); // deprecated
   --content-basic-primary: #f6f6f7;
   --content-subtle: rgb(255 255 255 / 60%); // deprecated
@@ -186,7 +192,7 @@ $surface-tertiary-hover: #43434b;
   --action-high-contrast-disabled: rgb(252 252 252 / 20%);
   --color-bot: #50009c; // deprecated
   --surface-other-bot: #50009c;
-  --surface-other-bot-hover: #6119a6;
+  --surface-other-bot-hover: #7333b0;
   --color-black: #131317;
   --color-white: #fff;
   --decor-blue900: #003288;
@@ -264,6 +270,8 @@ $surface-tertiary-hover: #43434b;
   --decor-purple200: #d1c0ff;
   --decor-purple100: #eee8ff;
   --decor-purple50: #faf8ff;
+  --decor-brown50: #584637;
+  --decor-brown300: #ac8668;
   --products-livechat: #fe5100;
   --products-helpdesk: #00c057;
   --products-chatbot: #06f;

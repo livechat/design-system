@@ -154,7 +154,7 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
                     styles[`${baseClass}__tag`],
                     styles[`${baseClass}__tag--${size}`]
                   )}
-                  dismissible={!isDisabled}
+                  disabled={isDisabled}
                   onRemove={(e) => {
                     e.stopPropagation();
                     onItemRemove(item.key);

@@ -6,6 +6,7 @@ $surface-secondary-default: #f5f5f5;
 $surface-primary-active: #eeeeef;
 $surface-tertiary-hover: #e4e4e5;
 
+:root,
 .lc-light-theme {
   --background: #fff; // deprecated
   --background-01: #fff;
@@ -69,8 +70,12 @@ $surface-tertiary-hover: #e4e4e5;
   --surface-overlay: rgb(19 19 23 / 70%); // deprecated
   --surface-other-overlay: rgb(19 19 23 / 70%);
   --surface-other-agent: #0059e1;
-  --surface-other-agent-hover: #034fc3;
+  --surface-other-agent-hover: #07419a;
   --surface-other-skeleton: #e2e2e4;
+  --surface-other-internal-note: #ffe9bc;
+  --surface-other-internal-note-hover: #fed65e;
+  --surface-other-visitor: #f5f5f5;
+  --surface-other-visitor-hover: #e4e4e5;
   --surface-gradient-01: linear-gradient(
     107.08deg,
     #8609ff 9.14%,
@@ -90,6 +95,8 @@ $surface-tertiary-hover: #e4e4e5;
   --surface-gradient-09: linear-gradient(95deg, #d1f4d5, #fff9ee 112%);
   --surface-gradient-10: linear-gradient(95deg, #eee8ff, #f4faff 112%);
   --surface-gradient-11: linear-gradient(95deg, #eee8ff, #fff4dd 112%);
+  --surface-gradient-12: linear-gradient(95deg, #efded2 0%, #fdfcfa 111.28%);
+  --surface-gradient-13: linear-gradient(95deg, #e2e2e4 0%, #fcfcfc 111.28%);
   --content-default: #131317; // deprecated
   --content-basic-primary: #131317;
   --content-subtle: #62626d; // deprecated
@@ -182,7 +189,7 @@ $surface-tertiary-hover: #e4e4e5;
   --action-high-contrast-disabled: rgb(27 27 32 / 20%);
   --color-bot: #50009c; // deprecated
   --surface-other-bot: #50009c;
-  --surface-other-bot-hover: #41057b;
+  --surface-other-bot-hover: #380867;
   --color-black: #131317;
   --color-white: #fff;
   --decor-blue900: #003288;
@@ -260,6 +267,8 @@ $surface-tertiary-hover: #e4e4e5;
   --decor-purple200: #d1c0ff;
   --decor-purple100: #eee8ff;
   --decor-purple50: #faf8ff;
+  --decor-brown50: #efded2;
+  --decor-brown300: #ac8668;
   --products-livechat: #fe5100;
   --products-helpdesk: #00c057;
   --products-chatbot: #06f;

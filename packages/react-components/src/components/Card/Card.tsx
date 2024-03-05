@@ -80,7 +80,7 @@ export const Card: React.FC<CardProps> = ({
             />
           )}
           <div className={styles[headingClass]}>
-            <Heading size="sm" className={styles[`${headingClass}__title`]}>
+            <Heading size="xs" className={styles[`${headingClass}__title`]}>
               {title}
             </Heading>
             <Text size="sm" className={styles[`${headingClass}__description`]}>
