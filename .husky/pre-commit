@@ -3,5 +3,4 @@
 
 npx lint-staged
 
-cd ./packages/react-components
-npm run type-check
+npm run type-check --w @livechat/design-system-react-components

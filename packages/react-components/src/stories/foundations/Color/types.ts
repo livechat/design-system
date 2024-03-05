@@ -14,6 +14,8 @@ export enum ColorGroup {
   SurfaceAccentEmphasisLow,
   SurfaceAccentEmphasisMin,
   SurfaceAccentEmphasisMedium,
+  SurfaceAccentEmphasisSubtle,
+  SurfaceAccentOndark,
   SurfaceLocked,
   SurfaceOther,
   SurfaceAvatar,

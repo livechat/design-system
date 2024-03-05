@@ -46,5 +46,6 @@ export type DesignTokenKey = keyof typeof DesignToken;
   fs.writeFileSync('./src/foundations/design-token.ts', output);
   console.log('TS file generated successfully');
 } else {
+  process.exitCode = 1;
   throw new Error('Some DS color keys are missing');
 }
