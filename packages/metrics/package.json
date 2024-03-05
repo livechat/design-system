@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "prebuild": "rm -rf dist",
     "build": "tsc",
     "prepublishOnly": "npm run build"
   },

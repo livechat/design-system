@@ -90,23 +90,21 @@ export async function sendReportToFlagman({
   const commit = getCurrentCommit();
 
   if (!commit) {
-    logger('Unable to find commit ID. Discontinuing.');
-
-    return;
+    throw new Error('Commit was not found. Discontinuing.');
   }
 
   if (!data) {
-    logger('Report was not passed. Discontinuing.');
-
-    return;
+    throw new Error('Data was not found. Discontinuing.');
   }
 
   if (!buildId) {
-    logger(
-      'Build ID was not found (probably not CI environment). Discontinuing.'
-    );
+    throw new Error('Build ID was not found. Discontinuing.');
+  }
 
-    return;
+  if (!path || !apiKey || !host || !port || !protocol) {
+    throw new Error(
+      'Flagman server configuration is incomplete. Discontinuing.'
+    );
   }
 
   logger(`About to send report for commit ${commit}`);

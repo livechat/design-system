@@ -1,5 +1,6 @@
 import scanner, { IReactScannerConfig } from 'react-scanner';
 
+import { ApplicationID } from './constants';
 import { sendReportToFlagman } from './flagmanService';
 import { scanForTokenUsages } from './tokenScan';
 import { IFlagmanServerConfig, IMetrics } from './types';
@@ -54,6 +55,22 @@ export const generateAndSendMetrics = async (
   applicationID: string,
   buildId: string
 ): Promise<void> => {
+  if (!metricOptions?.rootDir) {
+    throw new Error('Root directory is required');
+  }
+  if (!applicationID) {
+    throw new Error('Application ID is required');
+  }
+  if (!Object.values(ApplicationID).includes(applicationID as ApplicationID)) {
+    throw new Error(
+      `Invalid application ID, must be one of the predefined values: ${Object.values(
+        ApplicationID
+      ).join(', ')}`
+    );
+  }
+  if (!buildId) {
+    throw new Error('Build ID is required');
+  }
   logger('Generating metrics...');
   const metrics = await generateMetrics(metricOptions);
   logger('Metrics generated. Sending to Flagman...');
