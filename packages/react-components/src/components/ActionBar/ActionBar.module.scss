@@ -16,7 +16,7 @@ $base-class: 'action-bar';
     }
 
     &--with-menu {
-      margin-right: 80px;
+      margin-right: 78px;
     }
 
     &__button {
@@ -62,6 +62,9 @@ $base-class: 'action-bar';
 
     &__button {
       &__with-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         animation: fade-in 0.6s forwards;
       }
 
@@ -101,7 +104,7 @@ $base-class: 'action-bar';
 
       &--with-menu {
         margin-right: 0;
-        margin-bottom: 80px;
+        margin-bottom: 78px;
       }
     }
 
@@ -170,5 +173,7 @@ $base-class: 'action-bar';
 
   100% {
     opacity: 1;
+    width: 24px;
+    height: 24px;
   }
 }
