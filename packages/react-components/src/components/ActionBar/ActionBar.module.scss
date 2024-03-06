@@ -98,9 +98,15 @@ $base-class: 'action-bar';
 
     .#{$base-class}__items {
       padding: var(--spacing-1) var(--spacing-2);
+
+      &--with-menu {
+        margin-right: 0;
+        margin-bottom: 80px;
+      }
     }
 
     .#{$base-class}__items__button {
+      flex-shrink: 0;
       margin: var(--spacing-1) 0;
 
       &--active {
@@ -125,11 +131,12 @@ $base-class: 'action-bar';
         min-height: 36px;
 
         > span {
-          margin-top: var(--spacing-1);
           margin-left: 0;
         }
 
         &--active {
+          width: 36px;
+
           &::after {
             bottom: 0;
             left: -9px;
@@ -137,6 +144,10 @@ $base-class: 'action-bar';
             border-bottom-right-radius: var(--radius-3);
             width: 3px;
             height: 100%;
+          }
+
+          > span {
+            margin-top: var(--spacing-1);
           }
         }
       }
