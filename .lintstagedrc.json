@@ -1,0 +1,6 @@
+{
+  "./packages/react-components/src/themes/**/*.{css,scss}": "npm run generate-ds-tokens-enum --w @livechat/design-system-react-components",
+  "*.{js,jsx,ts,tsx}": "eslint --cache --fix",
+  "*.{css,scss}": "stylelint --fix",
+  "*.{js,jsx,ts,tsx,css,scss,md}": "prettier --write"
+}
