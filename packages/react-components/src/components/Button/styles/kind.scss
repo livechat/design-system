@@ -9,8 +9,7 @@
     color: var(--action-primary-hover);
   }
 
-  &:active,
-  &:focus {
+  &:active {
     border-color: var(--action-primary-default);
     background-color: var(--btn-basic-background-active);
     color: var(--action-primary-default);
@@ -34,8 +33,7 @@
     background-color: var(--action-primary-hover);
   }
 
-  &:active,
-  &:focus {
+  &:active {
     border-color: var(--action-primary-active);
     background-color: var(--action-primary-active);
   }
@@ -56,8 +54,7 @@
     background-color: var(--btn-secondary-background-hover);
   }
 
-  &:active,
-  &:focus {
+  &:active {
     border-color: var(--border-basic-contrast);
     background-color: var(--surface-primary-active);
     color: var(--content-basic-primary);
@@ -81,8 +78,7 @@
     background-color: var(--action-negative-hover);
   }
 
-  &:active,
-  &:focus {
+  &:active {
     border-color: var(--action-negative-active);
     background-color: var(--action-negative-active);
   }
@@ -104,8 +100,7 @@
     color: var(--action-negative-hover);
   }
 
-  &:active,
-  &:focus {
+  &:active {
     border-color: var(--action-negative-active);
     background-color: var(--surface-accent-emphasis-low-negative);
     color: var(--action-negative-active);
@@ -126,8 +121,7 @@
   text-decoration: underline;
   color: var(--action-high-contrast-default);
 
-  &:hover,
-  &:focus {
+  &:hover {
     color: var(--action-high-contrast-hover);
   }
 
@@ -152,14 +146,12 @@
     color: var(--action-primary-hover);
   }
 
-  &:active,
-  &:focus {
+  &:active {
     color: var(--action-primary-active);
   }
 
   &:hover,
-  &:active,
-  &:focus {
+  &:active {
     text-decoration: underline;
   }
 
@@ -171,8 +163,7 @@
     color: var(--action-primary-disabled);
 
     &:hover,
-    &:active,
-    &:focus {
+    &:active {
       text-decoration: none;
     }
   }
@@ -185,8 +176,7 @@
     color: var(--content-invert-primary);
   }
 
-  &:active,
-  &:focus {
+  &:active {
     color: var(--content-invert-primary);
   }
 
@@ -206,8 +196,7 @@
     color: var(--content-basic-primary);
   }
 
-  &:active,
-  &:focus {
+  &:active {
     border-color: transparent;
     background-color: var(--surface-primary-active);
     color: var(--content-basic-primary);
@@ -228,8 +217,7 @@
   color: var(--content-basic-primary);
 
   &:hover,
-  &:active,
-  &:focus {
+  &:active {
     border-color: transparent;
     background-color: var(--surface-primary-hover);
     color: var(--content-basic-primary);
@@ -255,8 +243,7 @@
     color: var(--action-primary-default);
   }
 
-  &:active,
-  &:focus {
+  &:active {
     border-color: var(--border-basic-primary);
     background-color: var(--surface-primary-active);
     color: var(--action-primary-default);
