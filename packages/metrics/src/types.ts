@@ -20,7 +20,6 @@ export interface IMetrics {
 }
 
 export interface IFlagmanServerConfig {
-  path: string;
   apiKey: string;
   protocol: 'http' | 'https';
   host: string;

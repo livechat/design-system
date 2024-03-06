@@ -2,20 +2,15 @@ import * as http from 'http';
 import * as https from 'https';
 import { Buffer } from 'node:buffer';
 
+import { FLAGMAN_DS_METRICS_PATH } from './constants';
 import { IFlagmanServerConfig, ISendReportToFlagmanProps } from './types';
 import { getCurrentCommit, logger } from './utils';
 
-interface ToFlagman {
-  path: string;
+interface ToFlagman extends IFlagmanServerConfig {
   data: string;
-  apiKey: string;
-  protocol: 'http' | 'https';
-  host: string;
-  port: string;
 }
 
 async function sendToFlagman({
-  path,
   apiKey,
   data,
   protocol,
@@ -37,7 +32,7 @@ async function sendToFlagman({
         {
           host,
           port,
-          path,
+          path: FLAGMAN_DS_METRICS_PATH,
           method: 'POST',
           headers,
         },
@@ -73,7 +68,7 @@ async function sendToFlagman({
       req.end();
     });
   } catch (error) {
-    logger('Error:', `Failed to send data to ${path}`);
+    logger('Error:', `Failed to send data to Flagman`);
     logger(error);
   }
 }
@@ -81,7 +76,6 @@ async function sendToFlagman({
 export async function sendReportToFlagman({
   data,
   buildId,
-  path,
   apiKey,
   host,
   port,
@@ -101,7 +95,7 @@ export async function sendReportToFlagman({
     throw new Error('Build ID was not found. Discontinuing.');
   }
 
-  if (!path || !apiKey || !host || !port || !protocol) {
+  if (!apiKey || !host || !port || !protocol) {
     throw new Error(
       'Flagman server configuration is incomplete. Discontinuing.'
     );
@@ -117,7 +111,6 @@ export async function sendReportToFlagman({
   });
 
   await sendToFlagman({
-    path,
     data: result,
     apiKey,
     host,

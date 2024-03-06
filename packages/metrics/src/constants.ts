@@ -3,3 +3,5 @@ export enum ApplicationID {
   ACCOUNTS = 'ACCOUNTS',
   HELPDESK = 'HELPDESK',
 }
+
+export const FLAGMAN_DS_METRICS_PATH = '/webhooks/metrics/design-system';
