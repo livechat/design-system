@@ -12,8 +12,19 @@ import { FormField as FormFieldComponent, FormFieldProps } from './FormField';
 export default {
   title: 'Forms/FormField',
   component: FormFieldComponent,
-  parameters: {
-    controls: { exclude: ['children'] },
+  argTypes: {
+    children: {
+      control: false,
+    },
+    labelAdornment: {
+      control: false,
+    },
+    labelFor: {
+      control: false,
+    },
+    labelRightNode: {
+      control: false,
+    },
   },
 } as ComponentMeta<typeof FormFieldComponent>;
 
@@ -33,14 +44,7 @@ const StoryTemplate: Story<FormFieldProps> = (args: FormFieldProps) => (
 );
 
 export const Default = StoryTemplate.bind({});
-Default.args = {
-  inline: false,
-  labelText: '',
-  labelRightNode: '',
-  labelAdornment: '',
-  description: '',
-  error: '',
-};
+Default.args = {};
 
 export const Examples = (): React.ReactElement => {
   return (
@@ -81,7 +85,7 @@ export const Examples = (): React.ReactElement => {
       <StoryDescriptor title="With Label and Label Adornment">
         <FormFieldComponent
           labelText={LabelText}
-          labelAdornment={<ExampleIcon />}
+          labelAdornment={'(Optional)'}
           description={DescriptionText}
         >
           <ExampleInput />
@@ -90,7 +94,7 @@ export const Examples = (): React.ReactElement => {
       <StoryDescriptor title="With Inline Label and Label Adornment">
         <FormFieldComponent
           labelText={LabelText}
-          labelAdornment={<ExampleIcon />}
+          labelAdornment={'(Optional)'}
           inline
           description={DescriptionText}
         >

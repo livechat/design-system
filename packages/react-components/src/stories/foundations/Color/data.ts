@@ -1431,4 +1431,79 @@ export const ColorsData: Record<
     desc: '',
     deprecated: false,
   },
+  AnimatedGradientValue1: {
+    group: ColorGroup.AnimationGradient,
+    desc: 'Part of the gradient used for animation in Skeleton component',
+    deprecated: false,
+  },
+  AnimatedGradientValue2: {
+    group: ColorGroup.AnimationGradient,
+    desc: 'Part of the gradient used for animation in Skeleton component',
+    deprecated: false,
+  },
+  AnimatedGradientValue3: {
+    group: ColorGroup.AnimationGradient,
+    desc: 'Part of the gradient used for animation in Skeleton component',
+    deprecated: false,
+  },
+  SurfaceAccentOndarkNegativeDefault: {
+    group: ColorGroup.SurfaceAccentOndark,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceAccentOndarkNegativeHover: {
+    group: ColorGroup.SurfaceAccentOndark,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceAccentOndarkWarningDefault: {
+    group: ColorGroup.SurfaceAccentOndark,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceAccentOndarkWarningHover: {
+    group: ColorGroup.SurfaceAccentOndark,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceAccentOndarkInfoDefault: {
+    group: ColorGroup.SurfaceAccentOndark,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceAccentOndarkInfoHover: {
+    group: ColorGroup.SurfaceAccentOndark,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceAccentOndarkPositiveDefault: {
+    group: ColorGroup.SurfaceAccentOndark,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceAccentOndarkPositiveHover: {
+    group: ColorGroup.SurfaceAccentOndark,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceAccentEmphasisSubtleNegative: {
+    group: ColorGroup.SurfaceAccentEmphasisSubtle,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceAccentEmphasisSubtleWarning: {
+    group: ColorGroup.SurfaceAccentEmphasisSubtle,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceAccentEmphasisSubtleInfo: {
+    group: ColorGroup.SurfaceAccentEmphasisSubtle,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceAccentEmphasisSubtlePositive: {
+    group: ColorGroup.SurfaceAccentEmphasisSubtle,
+    desc: '',
+    deprecated: undefined,
+  },
 };
