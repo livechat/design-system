@@ -8,7 +8,8 @@ import noop from '../../utils/noop';
 import { Icon } from '../Icon';
 
 import { kinds, sizes } from './constants';
-import { Tag, TagProps } from './Tag';
+import { Tag } from './Tag';
+import { TagProps } from './types';
 
 const exampleIcon = <Icon source={TablerIcons.Smiles} size="small" />;
 const exampleAvatar = (
