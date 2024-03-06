@@ -37,6 +37,26 @@ DefaultTagInput.args = {
   placeholder: placeholderText,
 };
 
+export const ValidationTagInput = ({ ...args }) => {
+  const [tags, setTags] = React.useState(['LongTagName', 'ShortTag']);
+
+  return (
+    <div>
+      <TagInput
+        {...args}
+        tags={tags}
+        onChange={setTags}
+        validator={(tag) => tag.length > 8}
+      />
+    </div>
+  );
+};
+
+ValidationTagInput.storyName = 'ValidationTagInput';
+ValidationTagInput.args = {
+  placeholder: placeholderText,
+};
+
 export const DefaultEmailTagInput = ({ ...args }) => {
   const [tags, setTags] = React.useState(['one@test.com', 'two@test.com']);
 

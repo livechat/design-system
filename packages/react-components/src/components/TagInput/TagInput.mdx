@@ -43,11 +43,13 @@ The tags can be customised by passing an array of objects with the properties of
 
 ```jsx
 <TagInput
-  tags={['tag1', 'tag2']}
-  validate={(tags) => tags.length < 3}
+  tags={['LongTagName', 'ShortTag']}
+  validate={(tags) => tags.length > 8}
   onChange={(tags) => {}}
 />
 ```
+
+<Canvas of={Stories.ValidationTagInput} sourceState="none" />
 
 ### EmailTagInput <a id="EmailTagInput" />
 
