@@ -1,0 +1,71 @@
+$base-class: 'skeleton';
+
+@mixin background() {
+  background-color: var(--surface-secondary-disabled);
+}
+
+@keyframes loading {
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+@mixin animation() {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    position: absolute;
+    left: 0;
+    background: linear-gradient(
+      90deg,
+      var(--animated-gradient-value-1),
+      var(--animated-gradient-value-2),
+      var(--animated-gradient-value-3)
+    );
+    width: 100%;
+    height: 100%;
+    animation: loading 2s forwards infinite;
+    content: '';
+  }
+}
+
+.skeleton-wrapper {
+  display: flex;
+  gap: var(--spacing-2);
+  width: 100%;
+
+  &--vertical {
+    flex-direction: column;
+  }
+}
+
+.skeleton-avatar {
+  @include background;
+
+  flex-shrink: 0;
+  border-radius: 50%;
+
+  &--square {
+    border-radius: var(--radius-3);
+  }
+
+  &--animated {
+    @include animation;
+  }
+}
+
+.skeleton-text {
+  @include background;
+
+  border-radius: var(--radius-3);
+  width: 100%;
+
+  &--animated {
+    @include animation;
+  }
+}

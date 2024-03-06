@@ -1,0 +1,146 @@
+import { Title, Canvas, ArgsTable, Meta } from '@storybook/blocks';
+import { SkeletonWrapper } from './SkeletonWrapper';
+import { SkeletonAvatar } from './SkeletonAvatar';
+import { SkeletonText } from './SkeletonText';
+import * as SkeletonStories from './Skeleton.stories';
+import {
+  BlockColumnsContainer,
+  BlockColumns,
+} from '../../stories/components/BlockColumns/BlockColumns';
+
+<Meta of={SkeletonStories} />
+
+<Title>Skeleton</Title>
+
+[Intro](#Intro) | [SkeletonWrapper](#SkeletonWrapper) | [SkeletonAvatar](#SkeletonAvatar) | [SkeletonText](#SkeletonText) | [Component API](#ComponentAPI)
+
+## Intro <a id="Intro" />
+
+Skeleton is a simple component to use in the UI to present a placeholder for loading content before it is ready to be displayed in a view. It may suggest a loading avatar, a line of text, or an entire block of elements. <br /><br />
+However, please note that "Skeleton" is not a single component. This is the name for a collection of components that can be used either individually or in groups, depending on your needs.
+
+### Basic implementation example
+
+<Canvas withSource="none">
+  <SkeletonWrapper>
+    <SkeletonAvatar size={36} />
+    <SkeletonWrapper vertical>
+      <SkeletonText width={150} />
+      <SkeletonText width={250} height={200} />
+    </SkeletonWrapper>
+  </SkeletonWrapper>
+</Canvas>
+
+```jsx
+import { SkeletonWrapper, SkeletonAvatar, SkeletonText } from '@livechat/design-system-react-components';
+
+<SkeletonWrapper>
+  <SkeletonAvatar size={36} />
+  <SkeletonWrapper vertical>
+    <SkeletonText width={150} />
+    <SkeletonText width={250} height={200} />
+  </SkeletonWrapper>
+</SkeletonWrapper>
+```
+
+The above example shows a `Skeleton` implementation using multiple components. Below is a description of specific elements.
+
+#### SkeletonWrapper <a id="SkeletonWrapper" />
+
+Is a component that is intended to wrap other `Skeleton` components, manage their arrangement (`vertical` prop), and is also used to control the animation of other elements. (`animated` prop) <br />
+`SkeletonWrapper` can be used inside another wrapper if there is a need for a specific arrangement of elements.
+
+<BlockColumnsContainer>
+  <BlockColumns>
+    ##### Main wrapper as default
+    <Canvas withSource="none">
+      <SkeletonWrapper>
+        <SkeletonWrapper vertical>
+          <SkeletonText width={200} />
+          <SkeletonText width={200} />
+        </SkeletonWrapper>
+        <SkeletonWrapper>
+          <SkeletonText width={80} />
+          <SkeletonText width={80} />
+        </SkeletonWrapper>
+      </SkeletonWrapper>
+    </Canvas>
+    ```jsx
+    <SkeletonWrapper>
+      <SkeletonWrapper vertical>
+        <SkeletonText width={200} />
+        <SkeletonText width={200} />
+      </SkeletonWrapper>
+      <SkeletonWrapper>
+        <SkeletonText width={80} />
+        <SkeletonText width={80} />
+      </SkeletonWrapper>
+    </SkeletonWrapper>
+    ```
+  </BlockColumns>
+  <BlockColumns>
+    ##### Main wrapper with `vertical`
+    <Canvas withSource="none">
+      <SkeletonWrapper vertical>
+        <SkeletonWrapper vertical>
+          <SkeletonText width={200} />
+          <SkeletonText width={200} />
+        </SkeletonWrapper>
+        <SkeletonWrapper>
+          <SkeletonText width={80} />
+          <SkeletonText width={80} />
+        </SkeletonWrapper>
+      </SkeletonWrapper>
+    </Canvas>
+    ```jsx
+    <SkeletonWrapper vertical>
+      <SkeletonWrapper vertical>
+        <SkeletonText width={200} />
+        <SkeletonText width={200} />
+      </SkeletonWrapper>
+      <SkeletonWrapper>
+        <SkeletonText width={80} />
+        <SkeletonText width={80} />
+      </SkeletonWrapper>
+    </SkeletonWrapper>
+    ```
+  </BlockColumns>
+</BlockColumnsContainer>
+
+#### SkeletonAvatar <a id="SkeletonAvatar" />
+
+`SkeletonAvatar` is a component designed to present a placeholder or loading state for media such as images, avatars and icons. Can be used on its own or with the `SkeletonWrapper` element that will also control the animation.
+
+<Canvas withSource="none">
+  <SkeletonWrapper animated>
+    <SkeletonAvatar size={50} />
+  </SkeletonWrapper>
+</Canvas>
+
+```jsx
+<SkeletonWrapper animated>
+  <SkeletonAvatar size={50} />
+</SkeletonWrapper>
+
+```
+
+#### SkeletonText <a id="SkeletonText" />
+
+`SkeletonText` is a component designed to present a placeholder or loading state for text type content. Can be used on its own or with the `SkeletonWrapper` element that will also control the animation.
+
+<Canvas withSource="none">
+  <SkeletonWrapper animated>
+    <SkeletonText width={350} />
+  </SkeletonWrapper>
+</Canvas>
+
+```jsx
+<SkeletonWrapper animated>
+  <SkeletonText width={350} />
+</SkeletonWrapper>
+
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgsTable />
