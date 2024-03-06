@@ -21,8 +21,9 @@
     "build": "tsc && vite build",
     "build-storybook": "export SET NODE_OPTIONS=--openssl-legacy-provider && storybook build",
     "chromatic": "dotenv -e ../../.env chromatic -- --exit-zero-on-changes --only-changed --skip 'dependabot/**'",
-    "generateDesignTokenEnum": "node scripts/generateDesignTokenEnum.js",
+    "generate-ds-tokens-enum": "node scripts/generateDesignTokenEnum.js",
     "lint": "eslint src --ext js,jsx,ts,tsx",
+    "type-check": "tsc --noEmit --pretty",
     "test": "vitest run",
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage"

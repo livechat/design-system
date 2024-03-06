@@ -12,7 +12,7 @@ $surface-tertiary-hover: #43434b;
 
 .lc-dark-theme {
   --background: #131317; // deprecated
-  --background-01: #131317;
+  --background-01: #151519;
   --background-02: #202024;
   --background-03: #202024;
   --surface-basic-default: #202024; // deprecated
@@ -52,6 +52,18 @@ $surface-tertiary-hover: #43434b;
   --surface-accent-emphasis-min-warning: #322e26;
   --surface-accent-emphasis-min-positive: #182c26;
   --surface-accent-emphasis-min-purple: #2b2836;
+  --surface-accent-ondark-negative-default: #712a2d;
+  --surface-accent-ondark-negative-hover: #783537;
+  --surface-accent-ondark-warning-default: #534611;
+  --surface-accent-ondark-warning-hover: #5c4f1d;
+  --surface-accent-ondark-info-default: #1f4474;
+  --surface-accent-ondark-info-hover: #5c4f1d;
+  --surface-accent-ondark-positive-default: #0b4d2b;
+  --surface-accent-ondark-positive-hover: #175636;
+  --surface-accent-emphasis-subtle-negative: #712a2d;
+  --surface-accent-emphasis-subtle-warning: #534611;
+  --surface-accent-emphasis-subtle-info: #1f4474;
+  --surface-accent-emphasis-subtle-positive: #0b4d2b;
   --surface-invert-default: #eeeeef; // deprecated
   --surface-invert-primary: #e2e2e4;
   --surface-invert-subtle: #c9c9cd; // deprecated
@@ -310,7 +322,7 @@ $surface-tertiary-hover: #43434b;
   --surface-avatar-8: #a372ff;
   --surface-avatar-9: #b08c00;
   --surface-avatar-10: #00a449;
-  --navbar-background: #101014;
+  --navbar-background: #050505;
   --tooltip-border: rgb(255 255 255 / 15%);
   --animated-gradient-value-1: rgb(59 59 67 / 0%) 0.08%;
   --animated-gradient-value-2: #3b3b43 50.5%;

@@ -40,6 +40,23 @@ export const DesignToken = {
   SurfaceAccentEmphasisMinWarning: '--surface-accent-emphasis-min-warning',
   SurfaceAccentEmphasisMinPositive: '--surface-accent-emphasis-min-positive',
   SurfaceAccentEmphasisMinPurple: '--surface-accent-emphasis-min-purple',
+  SurfaceAccentOndarkNegativeDefault:
+    '--surface-accent-ondark-negative-default',
+  SurfaceAccentOndarkNegativeHover: '--surface-accent-ondark-negative-hover',
+  SurfaceAccentOndarkWarningDefault: '--surface-accent-ondark-warning-default',
+  SurfaceAccentOndarkWarningHover: '--surface-accent-ondark-warning-hover',
+  SurfaceAccentOndarkInfoDefault: '--surface-accent-ondark-info-default',
+  SurfaceAccentOndarkInfoHover: '--surface-accent-ondark-info-hover',
+  SurfaceAccentOndarkPositiveDefault:
+    '--surface-accent-ondark-positive-default',
+  SurfaceAccentOndarkPositiveHover: '--surface-accent-ondark-positive-hover',
+  SurfaceAccentEmphasisSubtleNegative:
+    '--surface-accent-emphasis-subtle-negative',
+  SurfaceAccentEmphasisSubtleWarning:
+    '--surface-accent-emphasis-subtle-warning',
+  SurfaceAccentEmphasisSubtleInfo: '--surface-accent-emphasis-subtle-info',
+  SurfaceAccentEmphasisSubtlePositive:
+    '--surface-accent-emphasis-subtle-positive',
   SurfaceInvertDefault: '--surface-invert-default',
   SurfaceInvertPrimary: '--surface-invert-primary',
   SurfaceInvertSubtle: '--surface-invert-subtle',

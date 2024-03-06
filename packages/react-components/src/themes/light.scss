@@ -49,6 +49,18 @@ $surface-tertiary-hover: #e4e4e5;
   --surface-accent-emphasis-min-warning: #fff9ed;
   --surface-accent-emphasis-min-positive: #f3fcf4;
   --surface-accent-emphasis-min-purple: #faf8ff;
+  --surface-accent-ondark-negative-default: #712a2d;
+  --surface-accent-ondark-negative-hover: #7c3b3e;
+  --surface-accent-ondark-warning-default: #534611;
+  --surface-accent-ondark-warning-hover: #615524;
+  --surface-accent-ondark-info-default: #1f4474;
+  --surface-accent-ondark-info-hover: #31537f;
+  --surface-accent-ondark-positive-default: #0b4d2b;
+  --surface-accent-ondark-positive-hover: #1f5b3c;
+  --surface-accent-emphasis-subtle-negative: #ffd1d1;
+  --surface-accent-emphasis-subtle-warning: #fee19b;
+  --surface-accent-emphasis-subtle-info: #c9e4ff;
+  --surface-accent-emphasis-subtle-positive: #bfeec8;
   --surface-invert-default: #1b1b20; // deprecated
   --surface-invert-primary: #131317;
   --surface-invert-subtle: #4e4e58; // deprecated
@@ -307,7 +319,7 @@ $surface-tertiary-hover: #e4e4e5;
   --surface-avatar-8: #a372ff;
   --surface-avatar-9: #b08c00;
   --surface-avatar-10: #00a449;
-  --navbar-background: #101014;
+  --navbar-background: #1b1b20;
   --tooltip-border: transparent;
   --animated-gradient-value-1: rgb(226 226 228 / 0%) 0.08%;
   --animated-gradient-value-2: #e2e2e4 50.5%;
