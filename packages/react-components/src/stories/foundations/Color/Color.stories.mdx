@@ -19,6 +19,7 @@ List of available color tokens. Click on token to copy it's value to clipboard.
 - [Products](#Products)
 - [Decor](#Decor)
 - [Surface Component Specific](#SurfaceComponentSpecific)
+- [Animation Gradient](#AnimationGradient)
 - [Deprecated](#Deprecated)
 
 <hr />
@@ -145,6 +146,18 @@ Minimum: Used as a very subtle change in color or a slightly lighter or darker s
   data={getColorsByGroup(ColorGroup.SurfaceAccentEmphasisMedium)}
 ></ColorTable>
 
+### Subtle
+
+<ColorTable
+  data={getColorsByGroup(ColorGroup.SurfaceAccentEmphasisSubtle)}
+></ColorTable>
+
+### Ondark
+
+<ColorTable
+  data={getColorsByGroup(ColorGroup.SurfaceAccentOndark)}
+></ColorTable>
+
 ### Locked <a id="Locked" />
 
 Locked surface colors will be same or similar values between all of the themes (Light/Dark/Legacy)
@@ -252,6 +265,10 @@ Brand colors of product logos
 <ColorTable
   data={getColorsByGroup(ColorGroup.SurfaceComponentSpecific)}
 ></ColorTable>
+
+## Animation Gradient <a id="AnimationGradient" />
+
+<ColorTable data={getColorsByGroup(ColorGroup.AnimationGradient)}></ColorTable>
 
 ## Deprecated <a id="Deprecated" />
 

@@ -24,8 +24,7 @@
     outline: 0;
   }
 
-  &:focus,
-  &:active {
+  &:focus-visible {
     box-shadow: var(--shadow-focus);
   }
 }
