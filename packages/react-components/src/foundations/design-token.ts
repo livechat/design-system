@@ -304,6 +304,9 @@ export const DesignToken = {
   SurfaceAvatar10: '--surface-avatar-10',
   NavbarBackground: '--navbar-background',
   TooltipBorder: '--tooltip-border',
+  AnimatedGradientValue1: '--animated-gradient-value-1',
+  AnimatedGradientValue2: '--animated-gradient-value-2',
+  AnimatedGradientValue3: '--animated-gradient-value-3',
 };
 
 export type DesignTokenKey = keyof typeof DesignToken;

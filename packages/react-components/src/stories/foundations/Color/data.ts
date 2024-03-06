@@ -1431,6 +1431,21 @@ export const ColorsData: Record<
     desc: '',
     deprecated: false,
   },
+  AnimatedGradientValue1: {
+    group: ColorGroup.AnimationGradient,
+    desc: 'Part of the gradient used for animation in Skeleton component',
+    deprecated: false,
+  },
+  AnimatedGradientValue2: {
+    group: ColorGroup.AnimationGradient,
+    desc: 'Part of the gradient used for animation in Skeleton component',
+    deprecated: false,
+  },
+  AnimatedGradientValue3: {
+    group: ColorGroup.AnimationGradient,
+    desc: 'Part of the gradient used for animation in Skeleton component',
+    deprecated: false,
+  },
   SurfaceAccentOndarkNegativeDefault: {
     group: ColorGroup.SurfaceAccentOndark,
     desc: '',
