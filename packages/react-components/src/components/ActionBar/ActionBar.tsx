@@ -23,6 +23,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
   vertical,
 }) => {
   const [menuItemsKeys, setMenuItemsKeys] = React.useState<string[]>([]);
+  const [menuPosition, setMenuPosition] = React.useState<number>(0);
   const isScrollType = type === 'scroll';
   const mergedClassNames = cx(
     styles[baseClass],
@@ -35,6 +36,28 @@ export const ActionBar: React.FC<IActionBarProps> = ({
     threshold: 1,
   };
   const shouldDisplayMenu = !isScrollType && menuItemsKeys.length !== 0;
+
+  // WORK IN PROGRESS
+  // - poprawić vertical
+  // - poprawić scroll
+
+  React.useEffect(() => {
+    if (isScrollType) {
+      return;
+    }
+
+    // Single element size with margin
+    const singleElementSize = 44;
+    // Extra spacing to include for menu placement
+    const menuPlacementSpacing = 4;
+    const allOptionsCount = options.length;
+    const hiddenOptionsCount = menuItemsKeys.length;
+    const visibleOptionsCount = allOptionsCount - hiddenOptionsCount;
+    const position =
+      visibleOptionsCount * singleElementSize + menuPlacementSpacing;
+
+    setMenuPosition(position);
+  }, [options, menuItemsKeys]);
 
   const handleIntersection = (entries: IntersectionObserverEntry[]) => {
     entries.map((entry) => {
@@ -100,11 +123,24 @@ export const ActionBar: React.FC<IActionBarProps> = ({
     .filter((row) => menuItemsKeys.find((i) => i === row.key))
     .find((o) => o.key === activeOptionKey);
 
+  const getMenuPosition = (position: number, vertical?: boolean) => {
+    if (vertical) {
+      return {
+        top: position,
+      };
+    }
+
+    return {
+      left: position,
+    };
+  };
+
   return (
     <div id={id} className={mergedClassNames}>
       <div
         className={cx(styles[`${baseClass}__items`], {
           [styles[`${baseClass}__items--scroll`]]: isScrollType,
+          [styles[`${baseClass}__items--with-menu`]]: shouldDisplayMenu,
         })}
       >
         {options.map((o) => (
@@ -117,9 +153,12 @@ export const ActionBar: React.FC<IActionBarProps> = ({
         ))}
       </div>
       {shouldDisplayMenu && (
-        <div className={styles[menuWrapperClass]}>
+        <div
+          className={styles[menuWrapperClass]}
+          style={getMenuPosition(menuPosition, vertical)}
+        >
           <ActionMenu
-            placement={vertical ? 'left-end' : 'bottom-end'}
+            placement={vertical ? 'left-start' : 'bottom-end'}
             options={getMenuItems(menuItemsKeys)}
             triggerClassName={cx(
               vertical && styles[`${menuWrapperClass}__trigger-vertical`]
