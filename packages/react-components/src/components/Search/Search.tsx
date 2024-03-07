@@ -47,6 +47,10 @@ export interface ISearchInputProps {
    * The event handler for onChange
    */
   onChange: (value: string) => void;
+  /**
+   * Set to enable ellipsis
+   */
+  cropOnBlur?: boolean;
 }
 
 export const SearchInput: React.FC<ISearchInputProps> = ({
@@ -57,6 +61,7 @@ export const SearchInput: React.FC<ISearchInputProps> = ({
   size = 'medium',
   value,
   className,
+  cropOnBlur = true,
   onChange,
 }) => {
   const [isCollapsed, setIsCollapsed] = React.useState<boolean>(true);
@@ -128,11 +133,16 @@ export const SearchInput: React.FC<ISearchInputProps> = ({
         disabled={isDisabled}
         kind="primary"
       />
-      <Text as="div">
+      <Text
+        as="div"
+        className={cx(
+          styles[inputBaseClass],
+          cropOnBlur && styles[`${inputBaseClass}--crop`]
+        )}
+      >
         <input
           role="searchbox"
           ref={inputRef}
-          className={styles[inputBaseClass]}
           type="text"
           value={value}
           placeholder={placeholder}
