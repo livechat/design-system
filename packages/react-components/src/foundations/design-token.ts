@@ -13,6 +13,7 @@ export const DesignToken = {
   SurfaceSecondaryHover: '--surface-secondary-hover',
   SurfaceSecondaryActive: '--surface-secondary-active',
   SurfaceSecondaryDisabled: '--surface-secondary-disabled',
+  /** @deprecated */
   SurfacePrimaryHoverOpacity: '--surface-primary-hover-opacity',
   /** @deprecated */
   SurfaceBasicHover: '--surface-basic-hover',
@@ -90,6 +91,10 @@ export const DesignToken = {
   SurfaceAccentEmphasisHighWarning: '--surface-accent-emphasis-high-warning',
   SurfaceAccentEmphasisHighPositive: '--surface-accent-emphasis-high-positive',
   SurfaceAccentEmphasisHighPurple: '--surface-accent-emphasis-high-purple',
+  SurfaceOpacityBasicHover: '--surface-opacity-basic-hover',
+  SurfaceOpacityBasicActive: '--surface-opacity-basic-active',
+  SurfaceOpacityInvertHover: '--surface-opacity-invert-hover',
+  SurfaceOpacityInvertActive: '--surface-opacity-invert-active',
   /** @deprecated */
   SurfaceOverlay: '--surface-overlay',
   SurfaceGradient01: '--surface-gradient-01',
