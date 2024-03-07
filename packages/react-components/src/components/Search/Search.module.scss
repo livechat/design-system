@@ -119,6 +119,7 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
       background-color: transparent;
       padding: 0;
       width: 100%;
+      color: inherit;
 
       &::placeholder {
         color: var(--content-basic-disabled);
