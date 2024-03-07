@@ -37,10 +37,6 @@ export const ActionBar: React.FC<IActionBarProps> = ({
   };
   const shouldDisplayMenu = !isScrollType && menuItemsKeys.length !== 0;
 
-  // WORK IN PROGRESS
-  // - poprawić vertical
-  // - poprawić scroll
-
   React.useEffect(() => {
     if (isScrollType) {
       return;
@@ -57,7 +53,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
       visibleOptionsCount * singleElementSize + menuPlacementSpacing;
 
     setMenuPosition(position);
-  }, [options, menuItemsKeys]);
+  }, [menuItemsKeys, options, isScrollType]);
 
   const handleIntersection = (entries: IntersectionObserverEntry[]) => {
     entries.map((entry) => {
@@ -89,7 +85,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
 
     if (!isScrollType && hasIOSupport) {
       const target = document.querySelectorAll(
-        `.${styles[`${baseClass}__items__button`]}`
+        `button[data-actionBarId='${id}']`
       );
 
       const observer = new IntersectionObserver(
@@ -145,6 +141,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
       >
         {options.map((o) => (
           <ActionBarItem
+            id={id}
             option={o}
             menuItemsKeys={menuItemsKeys}
             activeOptionKey={activeOptionKey}

@@ -36,6 +36,7 @@ export interface IActionBarOption {
 }
 
 export interface IActionBarItem {
+  id: string;
   option: IActionBarOption;
   menuItemsKeys: string[];
   activeOptionKey?: string | null;

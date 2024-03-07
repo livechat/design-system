@@ -12,6 +12,7 @@ import styles from './ActionBar.module.scss';
 const baseClass = 'action-bar__items';
 
 export const ActionBarItem: React.FC<IActionBarItem> = ({
+  id,
   option,
   menuItemsKeys,
   activeOptionKey,
@@ -36,6 +37,7 @@ export const ActionBarItem: React.FC<IActionBarItem> = ({
         triggerClassName={styles[`${baseClass}__tooltip`]}
         triggerRenderer={() => (
           <Button
+            data-actionBarId={id}
             id={option.key}
             key={option.key}
             title={option.label}
@@ -54,6 +56,7 @@ export const ActionBarItem: React.FC<IActionBarItem> = ({
 
   return (
     <Button
+      data-actionBarId={id}
       id={option.key}
       key={option.key}
       title={option.label}
