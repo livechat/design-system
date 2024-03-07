@@ -12,7 +12,7 @@ import { Text } from '../Typography';
 import styles from './Search.module.scss';
 
 const baseClass = 'search-input';
-const inputBaseClass = `${baseClass}__input`;
+const inputWrapperClass = `${baseClass}__input-wrapper`;
 
 export interface ISearchInputProps {
   /**
@@ -136,8 +136,8 @@ export const SearchInput: React.FC<ISearchInputProps> = ({
       <Text
         as="div"
         className={cx(
-          styles[inputBaseClass],
-          cropOnBlur && styles[`${inputBaseClass}--crop`]
+          styles[inputWrapperClass],
+          cropOnBlur && styles[`${inputWrapperClass}--crop`]
         )}
       >
         <input
