@@ -6,15 +6,16 @@ import { render, userEvent, fireEvent } from 'test-utils';
 
 import noop from '../../utils/noop';
 
-import { ActionMenu, ActionMenuProps } from './ActionMenu';
+import { ActionMenu } from './ActionMenu';
 import { exampleOptions } from './constants';
+import { IActionMenuProps } from './types';
 
 const defaultProps = {
   options: exampleOptions,
   triggerRenderer: <div>Open menu</div>,
 };
 
-const renderComponent = (props: ActionMenuProps) => {
+const renderComponent = (props: IActionMenuProps) => {
   return render(<ActionMenu data-testid="action-menu-test" {...props} />);
 };
 

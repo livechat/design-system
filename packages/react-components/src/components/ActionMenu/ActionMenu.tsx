@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import {
   useFloating,
-  Placement,
   flip,
   offset,
   autoUpdate,
@@ -11,74 +10,21 @@ import {
   useDismiss,
   useRole,
   useTransitionStyles,
-  Strategy,
 } from '@floating-ui/react';
 import { Check } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { KeyCodes } from '../../utils/keyCodes';
-import { ComponentCoreProps } from '../../utils/types';
 import { Icon } from '../Icon';
+import { Text } from '../Typography';
 
-import { IActionMenuOption } from './types';
+import { IActionMenuOption, IActionMenuProps } from './types';
 
 import styles from './ActionMenu.module.scss';
 
-export interface ActionMenuProps extends ComponentCoreProps {
-  /**
-   * The CSS class for trigger container
-   */
-  triggerClassName?: string;
-  /**
-   * Array of menu options
-   */
-  options: IActionMenuOption[];
-  /**
-   * Array of selected menu options keys
-   */
-  selectedOptions?: string[];
-  /**
-   * Trigger element
-   */
-  triggerRenderer: React.ReactElement;
-  /**
-   * The menu placement
-   */
-  placement?: Placement;
-  /**
-   * Will open menu on component initialization
-   */
-  openedOnInit?: boolean;
-  /**
-   * Menu will stay open after option click
-   */
-  keepOpenOnClick?: boolean;
-  /**
-   * Set the menu placement to keep it in view
-   */
-  flipOptions?: Parameters<typeof flip>[0];
-  /**
-   * Set to control the menu visibility
-   */
-  visible?: boolean;
-  /**
-   * Optional handler called on menu close
-   */
-  onClose?: () => void;
-  /**
-   * Optional handler called on menu open
-   */
-  onOpen?: () => void;
-  /**
-   * Set the type of CSS position property to use
-   * https://floating-ui.com/docs/usefloating#strategy
-   */
-  floatingStrategy?: Strategy;
-}
-
 const baseClass = 'action-menu';
 
-export const ActionMenu: React.FC<ActionMenuProps> = ({
+export const ActionMenu: React.FC<IActionMenuProps> = ({
   className,
   triggerClassName,
   options,
@@ -92,6 +38,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   onOpen,
   floatingStrategy,
   selectedOptions,
+  footer,
   ...props
 }) => {
   const isControlled = visible !== undefined;
@@ -270,12 +217,23 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
         >
           <ul
             {...props}
-            className={cx(styles[`${baseClass}__list`], className)}
+            className={cx(
+              styles[`${baseClass}__list`],
+              {
+                [styles[`${baseClass}__list--with-footer`]]: footer,
+              },
+              className
+            )}
             role="menu"
             ref={ref}
           >
             {options.map(getOptionElement)}
           </ul>
+          {footer && (
+            <Text size="sm" as="div" className={styles[`${baseClass}__footer`]}>
+              {footer}
+            </Text>
+          )}
         </div>
       )}
     </>
