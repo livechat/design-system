@@ -22,7 +22,7 @@ $surface-tertiary-hover: #43434b;
   --surface-secondary-hover: #{$surface-secondary-hover};
   --surface-secondary-active: #{$surface-secondary-active};
   --surface-secondary-disabled: #2d2d32;
-  --surface-primary-hover-opacity: rgb(255 255 255 / 10%);
+  --surface-primary-hover-opacity: rgb(255 255 255 / 8%); // deprecated
   --surface-basic-hover: rgb(255 255 255 / 10%); // deprecated
   --surface-primary-hover: #{$surface-primary-hover};
   --surface-basic-active: rgb(255 255 255 / 20%); // deprecated
@@ -82,6 +82,10 @@ $surface-tertiary-hover: #43434b;
   --surface-accent-emphasis-high-warning: #e8bb00;
   --surface-accent-emphasis-high-positive: #01833a;
   --surface-accent-emphasis-high-purple: #9146ff;
+  --surface-opacity-basic-hover: rgb(255 255 255 / 8%);
+  --surface-opacity-basic-active: rgb(255 255 255 / 12%);
+  --surface-opacity-invert-hover: rgb(255 255 255 / 10%);
+  --surface-opacity-invert-active: rgb(255 255 255 / 12%);
   --surface-overlay: rgb(19 19 23 / 90%); // deprecated
   --surface-gradient-01: linear-gradient(
     107.08deg,
