@@ -1,13 +1,15 @@
+@use './styles/select-indicator';
+
 $base-class: 'action-bar';
 
 .#{$base-class} {
   display: flex;
   position: relative;
+  height: 100%;
 
   &__items {
     display: flex;
     flex-direction: inherit;
-    padding: var(--spacing-2) var(--spacing-1);
     width: 100%;
     overflow: hidden;
 
@@ -19,33 +21,39 @@ $base-class: 'action-bar';
       margin-right: 78px;
     }
 
-    &__button {
+    &__button-wrapper {
+      display: flex;
+      position: relative;
+      align-items: center;
       margin: 0 var(--spacing-1);
-      width: 36px;
-
-      span {
-        align-items: center;
-        justify-content: center;
-        width: 24px;
-        height: 24px;
-      }
+      width: fit-content;
 
       &--active {
-        &::after {
-          position: absolute;
-          bottom: -9px;
-          border-top-left-radius: var(--radius-3);
-          border-top-right-radius: var(--radius-3);
-          background-color: var(--action-primary-default);
-          width: 100%;
-          height: 3px;
-          content: '';
-        }
+        @include select-indicator.select-indicator-h();
       }
 
       &--hidden {
         opacity: 0;
         pointer-events: none;
+      }
+
+      &--vertical {
+        justify-content: center;
+        margin: var(--spacing-1) 0;
+        width: 100%;
+
+        &.#{$base-class}__items__button-wrapper--active {
+          @include select-indicator.select-indicator-v();
+        }
+      }
+
+      &__button {
+        span {
+          align-items: center;
+          justify-content: center;
+          width: 24px;
+          height: 24px;
+        }
       }
     }
 
@@ -57,78 +65,26 @@ $base-class: 'action-bar';
   &__menu-wrapper {
     display: flex;
     position: absolute;
-    flex: 0 0 70px;
-    padding: var(--spacing-2) var(--spacing-1);
+    top: 0;
+    bottom: 0;
+    align-items: center;
 
-    &__button {
-      &__with-item {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        animation: fade-in 0.6s forwards;
-      }
-
-      &--active {
-        background-color: var(--surface-primary-active);
-        padding: 6px !important;
-
-        &::after {
-          position: absolute;
-          right: 0;
-          bottom: -9px;
-          left: 0;
-          border-top-left-radius: var(--radius-3);
-          border-top-right-radius: var(--radius-3);
-          background-color: var(--action-primary-default);
-          width: 100%;
-          height: 3px;
-          content: '';
-        }
-      }
+    &--active {
+      @include select-indicator.select-indicator-h();
     }
 
-    &__trigger-vertical {
-      display: flex;
-      align-items: start;
-      height: 70px;
-    }
-  }
+    &--vertical {
+      right: 0;
+      bottom: auto;
+      left: 0;
+      align-items: normal;
+      justify-content: center;
 
-  &--vertical {
-    flex-direction: column;
-    width: fit-content;
-    height: 100%;
-
-    .#{$base-class}__items {
-      padding: var(--spacing-1) var(--spacing-2);
-
-      &--with-menu {
-        margin-right: 0;
-        margin-bottom: 78px;
+      &.#{$base-class}__menu-wrapper--active {
+        @include select-indicator.select-indicator-v();
       }
-    }
 
-    .#{$base-class}__items__button {
-      flex-shrink: 0;
-      margin: var(--spacing-1) 0;
-
-      &--active {
-        &::after {
-          bottom: 0;
-          left: -9px;
-          border-top-left-radius: 0;
-          border-bottom-right-radius: var(--radius-3);
-          width: 3px;
-          height: 100%;
-        }
-      }
-    }
-
-    .#{$base-class}__menu-wrapper {
-      padding: var(--spacing-1) var(--spacing-2);
-      height: 70px;
-
-      &__button {
+      .#{$base-class}__menu-wrapper__button {
         flex-direction: column;
         height: auto;
         min-height: 36px;
@@ -152,6 +108,54 @@ $base-class: 'action-bar';
           > span {
             margin-top: var(--spacing-1);
           }
+        }
+      }
+    }
+
+    &__button {
+      position: unset;
+
+      &__with-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: fade-in 0.6s forwards;
+      }
+
+      &--active {
+        background-color: var(--surface-primary-active);
+        padding: 6px !important;
+      }
+    }
+
+    &__trigger-vertical {
+      display: flex;
+      align-items: start;
+    }
+  }
+
+  &--vertical {
+    flex-direction: column;
+
+    .#{$base-class}__items {
+      &--with-menu {
+        margin-right: 0;
+        margin-bottom: 78px;
+      }
+    }
+
+    .#{$base-class}__items__button {
+      flex-shrink: 0;
+      margin: var(--spacing-1) 0;
+
+      &--active {
+        &::after {
+          bottom: 0;
+          left: -9px;
+          border-top-left-radius: 0;
+          border-bottom-right-radius: var(--radius-3);
+          width: 3px;
+          height: 100%;
         }
       }
     }

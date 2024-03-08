@@ -10,20 +10,35 @@ import { IActionBarItem } from './types';
 import styles from './ActionBar.module.scss';
 
 const baseClass = 'action-bar__items';
+const menuWrapperClass = `${baseClass}__button-wrapper`;
 
 export const ActionBarItem: React.FC<IActionBarItem> = ({
   id,
   option,
   menuItemsKeys,
-  activeOptionKey,
+  isActive,
   vertical,
 }) => {
-  const mergedButtonClassNames = cx(styles[`${baseClass}__button`], {
-    [styles[`${baseClass}__button--hidden`]]: menuItemsKeys.includes(
-      option.key
-    ),
-    [styles[`${baseClass}__button--active`]]: option.key === activeOptionKey,
+  const mergedButtonClassNames = cx(styles[menuWrapperClass], {
+    [styles[`${menuWrapperClass}--hidden`]]: menuItemsKeys.includes(option.key),
+    [styles[`${menuWrapperClass}--active`]]: isActive,
+    [styles[`${menuWrapperClass}--vertical`]]: vertical,
   });
+
+  const button = (
+    <div className={mergedButtonClassNames}>
+      <Button
+        data-actionBarId={id}
+        id={option.key}
+        key={option.key}
+        title={option.label}
+        kind="plain"
+        onClick={option.onClick}
+        icon={option.element}
+        className={styles[`${menuWrapperClass}__button`]}
+      />
+    </div>
+  );
 
   if (option.showTooltip) {
     const tooltipVisibility = menuItemsKeys.includes(option.key) && {
@@ -35,18 +50,7 @@ export const ActionBarItem: React.FC<IActionBarItem> = ({
         kind="invert"
         placement={vertical ? 'left' : 'bottom'}
         triggerClassName={styles[`${baseClass}__tooltip`]}
-        triggerRenderer={() => (
-          <Button
-            data-actionBarId={id}
-            id={option.key}
-            key={option.key}
-            title={option.label}
-            kind="plain"
-            className={mergedButtonClassNames}
-            onClick={option.onClick}
-            icon={option.element}
-          />
-        )}
+        triggerRenderer={() => button}
         {...tooltipVisibility}
       >
         <div>{option.label}</div>
@@ -54,16 +58,5 @@ export const ActionBarItem: React.FC<IActionBarItem> = ({
     );
   }
 
-  return (
-    <Button
-      data-actionBarId={id}
-      id={option.key}
-      key={option.key}
-      title={option.label}
-      kind="plain"
-      className={mergedButtonClassNames}
-      onClick={option.onClick}
-      icon={option.element}
-    />
-  );
+  return button;
 };

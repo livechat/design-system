@@ -13,6 +13,7 @@ import { IActionBarProps } from './types';
 import styles from './ActionBar.module.scss';
 
 const baseClass = 'action-bar';
+const menuWrapperClass = 'action-bar__menu-wrapper';
 
 export const ActionBar: React.FC<IActionBarProps> = ({
   className,
@@ -21,6 +22,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
   options,
   activeOptionKey,
   vertical,
+  menuFooter,
 }) => {
   const [menuItemsKeys, setMenuItemsKeys] = React.useState<string[]>([]);
   const [menuPosition, setMenuPosition] = React.useState<number>(0);
@@ -30,7 +32,6 @@ export const ActionBar: React.FC<IActionBarProps> = ({
     className,
     vertical && styles[`${baseClass}--vertical`]
   );
-  const menuWrapperClass = `${baseClass}__menu-wrapper`;
   const observerOptions = {
     root: document.querySelector(`${id}`),
     threshold: 1,
@@ -144,14 +145,18 @@ export const ActionBar: React.FC<IActionBarProps> = ({
             id={id}
             option={o}
             menuItemsKeys={menuItemsKeys}
-            activeOptionKey={activeOptionKey}
+            isActive={o.key === activeOptionKey}
             vertical={vertical}
           />
         ))}
       </div>
       {shouldDisplayMenu && (
         <div
-          className={styles[menuWrapperClass]}
+          className={cx(
+            styles[menuWrapperClass],
+            buttonElement && styles[`${menuWrapperClass}--active`],
+            vertical && styles[`${menuWrapperClass}--vertical`]
+          )}
           style={getMenuPosition(menuPosition, vertical)}
         >
           <ActionMenu
@@ -186,6 +191,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
                 )}
               </Button>
             }
+            footer={menuFooter}
           />
         </div>
       )}
