@@ -160,6 +160,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
           style={getMenuPosition(menuPosition, vertical)}
         >
           <ActionMenu
+            floatingStrategy="fixed"
             placement={vertical ? 'left-start' : 'bottom-end'}
             options={getMenuItems(menuItemsKeys)}
             triggerClassName={cx(
