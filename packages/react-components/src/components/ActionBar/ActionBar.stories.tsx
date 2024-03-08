@@ -27,7 +27,7 @@ export const Default = (): React.ReactElement => {
   const [activeKey, setActiveKey] = React.useState<string | null>(null);
 
   return (
-    <div style={{ width: 220, height: 150 }}>
+    <div style={{ width: 220, height: 50 }}>
       <ActionBar
         activeOptionKey={activeKey}
         options={getDefaultOptions(setActiveKey)}
