@@ -131,5 +131,16 @@ $base-class: 'action-menu';
         margin-left: var(--spacing-2);
       }
     }
+
+    &--with-footer {
+      padding-bottom: var(--spacing-05);
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--border-basic-secondary);
+    padding: var(--spacing-2);
   }
 }

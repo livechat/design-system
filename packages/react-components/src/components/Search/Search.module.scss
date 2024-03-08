@@ -96,6 +96,7 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
 
   &__clear-icon {
     margin-right: var(--spacing-1);
+    margin-left: var(--spacing-1);
   }
 
   &__loader {
@@ -108,23 +109,31 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
     padding: 2px;
   }
 
-  &__input {
+  &__input-wrapper {
     flex: 1 1;
-    border: 0;
-    background-color: transparent;
     padding: 0 0 0 40px;
     width: 100%;
-    line-height: 22px;
-    color: inherit;
-    font-size: inherit;
-    font-weight: 400;
 
-    &::placeholder {
-      color: var(--content-basic-disabled);
+    input {
+      border: 0;
+      background-color: transparent;
+      padding: 0;
+      width: 100%;
+      color: inherit;
+
+      &::placeholder {
+        color: var(--content-basic-disabled);
+      }
+
+      &:focus {
+        outline: none;
+      }
     }
 
-    &:focus {
-      outline: none;
+    &--crop {
+      input {
+        text-overflow: ellipsis;
+      }
     }
   }
 }
