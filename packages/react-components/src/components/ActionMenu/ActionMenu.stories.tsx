@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { MoreHoriz } from '@livechat/design-system-icons';
+import { MoreHoriz, Add, Settings } from '@livechat/design-system-icons';
 
 import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
@@ -180,6 +180,28 @@ export const WithSelectedOptions = (): React.ReactElement => {
         }
         openedOnInit
         keepOpenOnClick
+      />
+    </div>
+  );
+};
+
+export const WithFooter = (): React.ReactElement => {
+  return (
+    <div className="action-menu-preview">
+      <ActionMenu
+        options={exampleOptions}
+        triggerRenderer={
+          <Button icon={<Icon source={MoreHoriz} kind="primary" />} />
+        }
+        openedOnInit
+        footer={
+          <>
+            <Button icon={<Icon source={Add} />} kind="plain">
+              New
+            </Button>
+            <Button icon={<Icon source={Settings} />} kind="text" />
+          </>
+        }
       />
     </div>
   );
