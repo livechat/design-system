@@ -1369,7 +1369,7 @@ export const ColorsData: Record<
   SurfacePrimaryHoverOpacity: {
     group: ColorGroup.SurfacePrimary,
     desc: 'Hover state for primary surface in message text area.',
-    deprecated: false,
+    deprecated: true,
   },
   SurfaceSecondaryActive: {
     group: ColorGroup.SurfaceSecondary,
@@ -1503,6 +1503,26 @@ export const ColorsData: Record<
   },
   SurfaceAccentEmphasisSubtlePositive: {
     group: ColorGroup.SurfaceAccentEmphasisSubtle,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceOpacityBasicHover: {
+    group: ColorGroup.SurfaceOpacity,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceOpacityBasicActive: {
+    group: ColorGroup.SurfaceOpacity,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceOpacityInvertHover: {
+    group: ColorGroup.SurfaceOpacity,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceOpacityInvertActive: {
+    group: ColorGroup.SurfaceOpacity,
     desc: '',
     deprecated: undefined,
   },

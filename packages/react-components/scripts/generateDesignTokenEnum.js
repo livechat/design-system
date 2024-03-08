@@ -9,25 +9,31 @@ function pascalCase(str) {
     .replace(/^(.)/, (m, chr) => chr.toUpperCase());
 }
 
-const keysSet = new Set();
+const keysMap = new Map();
 
 const files = fs
   .readdirSync(scssFolder)
   .filter((file) => file.endsWith('.scss'));
 
 for (const file of files) {
-  const contents = fs.readFileSync(path.join(scssFolder, file), 'utf8');
-  const matches = contents.match(/--[\w-]+/g) || [];
-  matches.forEach((key) => keysSet.add(key));
+  let contents = fs.readFileSync(path.join(scssFolder, file), 'utf8');
+  // Match CSS variable declarations, possibly multi-line, and check for deprecation comments
+  const matches = [
+    ...contents.matchAll(/(--[\w-]+)\s*:\s*([^;]+);(?:\s*\/\/\s*deprecated)?/g),
+  ];
+  matches.forEach(([fullMatch, key, value]) => {
+    const isDeprecated = fullMatch.includes('// deprecated');
+    keysMap.set(key, { key, isDeprecated });
+  });
 }
 
-const keys = Array.from(keysSet);
+const keys = Array.from(keysMap.values());
 
 let allKeysPresent = true;
 
 for (const file of files) {
-  const contents = fs.readFileSync(path.join(scssFolder, file), 'utf8');
-  for (const key of keys) {
+  let contents = fs.readFileSync(path.join(scssFolder, file), 'utf8');
+  for (const { key } of keys) {
     if (!contents.includes(key)) {
       console.error(`Missing key ${key} in file ${file}`);
       allKeysPresent = false;
@@ -37,7 +43,13 @@ for (const file of files) {
 
 if (allKeysPresent) {
   const output = `export const DesignToken = {
-  ${keys.map((key) => `${pascalCase(key.slice(2))}: '${key}',`).join('\n  ')}
+${keys
+  .map(({ key, isDeprecated }) =>
+    isDeprecated
+      ? `  /** @deprecated */\n  ${pascalCase(key.slice(2))}: '${key}',`
+      : `  ${pascalCase(key.slice(2))}: '${key}',`
+  )
+  .join('\n')}
 };
 
 export type DesignTokenKey = keyof typeof DesignToken;
