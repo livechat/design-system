@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ChevronDown, ChevronLeft } from '@livechat/design-system-icons';
+import { ChevronDown } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { ActionMenu, ActionMenuItem } from '../ActionMenu';
@@ -178,7 +178,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
                 kind="plain"
                 icon={
                   <Icon
-                    source={vertical ? ChevronLeft : ChevronDown}
+                    source={ChevronDown}
                     kind="primary"
                     className={cx(
                       styles[`${menuWrapperClass}__button__icon`],
