@@ -51,6 +51,7 @@ export const ActionBarItem: React.FC<IActionBarItem> = ({
         placement={vertical ? 'left' : 'bottom'}
         triggerClassName={styles[`${baseClass}__tooltip`]}
         triggerRenderer={() => button}
+        floatingStrategy="fixed"
         {...tooltipVisibility}
       >
         <div>{option.label}</div>
