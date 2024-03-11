@@ -36,6 +36,7 @@ export interface IActionBarOption {
   element: React.ReactElement;
   label: string;
   showTooltip?: boolean;
+  hideInMenu?: boolean;
   onClick: () => void;
 }
 

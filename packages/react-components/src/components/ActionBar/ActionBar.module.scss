@@ -126,6 +126,14 @@ $base-class: 'action-bar';
         background-color: var(--surface-primary-active);
         padding: 6px !important;
       }
+
+      &__icon {
+        transition: transform var(--transition-duration-moderate-1);
+
+        &--open {
+          transform: rotate(180deg);
+        }
+      }
     }
 
     &__trigger-vertical {

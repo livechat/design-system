@@ -26,6 +26,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
 }) => {
   const [menuItemsKeys, setMenuItemsKeys] = React.useState<string[]>([]);
   const [menuPosition, setMenuPosition] = React.useState<number>(0);
+  const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
   const isScrollType = type === 'scroll';
   const mergedClassNames = cx(
     styles[baseClass],
@@ -102,7 +103,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
 
   const getMenuItems = (keys: string[]) => {
     const filteredOptions = options.filter((row) =>
-      keys.find((i) => i === row.key)
+      keys.find((k) => k === row.key && !row.hideInMenu)
     );
 
     return filteredOptions.map((o) => {
@@ -160,6 +161,8 @@ export const ActionBar: React.FC<IActionBarProps> = ({
           style={getMenuPosition(menuPosition, vertical)}
         >
           <ActionMenu
+            onOpen={() => setIsMenuOpen(true)}
+            onClose={() => setIsMenuOpen(false)}
             floatingStrategy="fixed"
             placement={vertical ? 'left-start' : 'bottom-end'}
             options={getMenuItems(menuItemsKeys)}
@@ -177,6 +180,11 @@ export const ActionBar: React.FC<IActionBarProps> = ({
                   <Icon
                     source={vertical ? ChevronLeft : ChevronDown}
                     kind="primary"
+                    className={cx(
+                      styles[`${menuWrapperClass}__button__icon`],
+                      isMenuOpen &&
+                        styles[`${menuWrapperClass}__button__icon--open`]
+                    )}
                   />
                 }
                 iconPosition="right"
