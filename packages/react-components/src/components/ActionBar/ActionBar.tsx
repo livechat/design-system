@@ -161,6 +161,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
           style={getMenuPosition(menuPosition, vertical)}
         >
           <ActionMenu
+            selectedOptions={activeOptionKey ? [activeOptionKey] : []}
             onOpen={() => setIsMenuOpen(true)}
             onClose={() => setIsMenuOpen(false)}
             floatingStrategy="fixed"

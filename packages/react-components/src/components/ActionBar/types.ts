@@ -16,7 +16,7 @@ export interface IActionBarProps {
   /**
    * Set the key for active element
    */
-  activeOptionKey?: string | null;
+  activeOptionKey?: string;
   /**
    * Set 'scroll' to disable menu and enable scroll
    */

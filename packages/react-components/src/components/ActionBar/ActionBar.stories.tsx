@@ -24,7 +24,7 @@ export default {
 } as Meta<typeof ActionBar>;
 
 export const Default = (): React.ReactElement => {
-  const [activeKey, setActiveKey] = React.useState<string | null>(null);
+  const [activeKey, setActiveKey] = React.useState<string>();
 
   return (
     <div style={{ width: 220, height: 50 }}>
@@ -37,10 +37,9 @@ export const Default = (): React.ReactElement => {
 };
 
 export const Horizontal = (): React.ReactElement => {
-  const [activeKey, setActiveKey] = React.useState<string | null>(null);
-  const [verticalActiveKeyScroll, setActiveKeyScroll] = React.useState<
-    string | null
-  >(null);
+  const [activeKey, setActiveKey] = React.useState<string>();
+  const [verticalActiveKeyScroll, setActiveKeyScroll] =
+    React.useState<string>();
 
   return (
     <>
@@ -68,10 +67,8 @@ export const Horizontal = (): React.ReactElement => {
 };
 
 export const Vertical = (): React.ReactElement => {
-  const [activeKey, setActiveKey] = React.useState<string | null>(null);
-  const [activeKeyScroll, setActiveKeyScroll] = React.useState<string | null>(
-    null
-  );
+  const [activeKey, setActiveKey] = React.useState<string>();
+  const [activeKeyScroll, setActiveKeyScroll] = React.useState<string>();
 
   return (
     <>
