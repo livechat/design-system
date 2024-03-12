@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ChevronDown, ChevronLeft } from '@livechat/design-system-icons';
+import { ChevronDown } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { ActionMenu, ActionMenuItem } from '../ActionMenu';
@@ -13,6 +13,7 @@ import { IActionBarProps } from './types';
 import styles from './ActionBar.module.scss';
 
 const baseClass = 'action-bar';
+const menuWrapperClass = 'action-bar__menu-wrapper';
 
 export const ActionBar: React.FC<IActionBarProps> = ({
   className,
@@ -21,20 +22,40 @@ export const ActionBar: React.FC<IActionBarProps> = ({
   options,
   activeOptionKey,
   vertical,
+  menuFooter,
 }) => {
   const [menuItemsKeys, setMenuItemsKeys] = React.useState<string[]>([]);
+  const [menuPosition, setMenuPosition] = React.useState<number>(0);
+  const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
   const isScrollType = type === 'scroll';
   const mergedClassNames = cx(
     styles[baseClass],
     className,
     vertical && styles[`${baseClass}--vertical`]
   );
-  const menuWrapperClass = `${baseClass}__menu-wrapper`;
   const observerOptions = {
     root: document.querySelector(`${id}`),
     threshold: 1,
   };
   const shouldDisplayMenu = !isScrollType && menuItemsKeys.length !== 0;
+
+  React.useEffect(() => {
+    if (isScrollType) {
+      return;
+    }
+
+    // Single element size with margin
+    const singleElementSize = 44;
+    // Extra spacing to include for menu placement
+    const menuPlacementSpacing = 4;
+    const allOptionsCount = options.length;
+    const hiddenOptionsCount = menuItemsKeys.length;
+    const visibleOptionsCount = allOptionsCount - hiddenOptionsCount;
+    const position =
+      visibleOptionsCount * singleElementSize + menuPlacementSpacing;
+
+    setMenuPosition(position);
+  }, [menuItemsKeys, options, isScrollType]);
 
   const handleIntersection = (entries: IntersectionObserverEntry[]) => {
     entries.map((entry) => {
@@ -66,7 +87,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
 
     if (!isScrollType && hasIOSupport) {
       const target = document.querySelectorAll(
-        `.${styles[`${baseClass}__items__button`]}`
+        `button[data-actionBarId='${id}']`
       );
 
       const observer = new IntersectionObserver(
@@ -82,7 +103,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
 
   const getMenuItems = (keys: string[]) => {
     const filteredOptions = options.filter((row) =>
-      keys.find((i) => i === row.key)
+      keys.find((k) => k === row.key && !row.hideInMenu)
     );
 
     return filteredOptions.map((o) => {
@@ -100,26 +121,51 @@ export const ActionBar: React.FC<IActionBarProps> = ({
     .filter((row) => menuItemsKeys.find((i) => i === row.key))
     .find((o) => o.key === activeOptionKey);
 
+  const getMenuPosition = (position: number, vertical?: boolean) => {
+    if (vertical) {
+      return {
+        top: position,
+      };
+    }
+
+    return {
+      left: position,
+    };
+  };
+
   return (
     <div id={id} className={mergedClassNames}>
       <div
         className={cx(styles[`${baseClass}__items`], {
           [styles[`${baseClass}__items--scroll`]]: isScrollType,
+          [styles[`${baseClass}__items--with-menu`]]: shouldDisplayMenu,
         })}
       >
         {options.map((o) => (
           <ActionBarItem
+            id={id}
             option={o}
             menuItemsKeys={menuItemsKeys}
-            activeOptionKey={activeOptionKey}
+            isActive={o.key === activeOptionKey}
             vertical={vertical}
           />
         ))}
       </div>
       {shouldDisplayMenu && (
-        <div className={styles[menuWrapperClass]}>
+        <div
+          className={cx(
+            styles[menuWrapperClass],
+            buttonElement && styles[`${menuWrapperClass}--active`],
+            vertical && styles[`${menuWrapperClass}--vertical`]
+          )}
+          style={getMenuPosition(menuPosition, vertical)}
+        >
           <ActionMenu
-            placement={vertical ? 'left-end' : 'bottom-end'}
+            selectedOptions={activeOptionKey ? [activeOptionKey] : []}
+            onOpen={() => setIsMenuOpen(true)}
+            onClose={() => setIsMenuOpen(false)}
+            floatingStrategy="fixed"
+            placement={vertical ? 'left-start' : 'bottom-end'}
             options={getMenuItems(menuItemsKeys)}
             triggerClassName={cx(
               vertical && styles[`${menuWrapperClass}__trigger-vertical`]
@@ -133,8 +179,13 @@ export const ActionBar: React.FC<IActionBarProps> = ({
                 kind="plain"
                 icon={
                   <Icon
-                    source={vertical ? ChevronLeft : ChevronDown}
+                    source={ChevronDown}
                     kind="primary"
+                    className={cx(
+                      styles[`${menuWrapperClass}__button__icon`],
+                      isMenuOpen &&
+                        styles[`${menuWrapperClass}__button__icon--open`]
+                    )}
                   />
                 }
                 iconPosition="right"
@@ -150,6 +201,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
                 )}
               </Button>
             }
+            footer={menuFooter}
           />
         </div>
       )}

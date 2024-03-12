@@ -215,20 +215,22 @@ export const ActionMenu: React.FC<IActionMenuProps> = ({
           }}
           {...getFloatingProps()}
         >
-          <ul
-            {...props}
-            className={cx(
-              styles[`${baseClass}__list`],
-              {
-                [styles[`${baseClass}__list--with-footer`]]: footer,
-              },
-              className
-            )}
-            role="menu"
-            ref={ref}
-          >
-            {options.map(getOptionElement)}
-          </ul>
+          {options.length > 0 && (
+            <ul
+              {...props}
+              className={cx(
+                styles[`${baseClass}__list`],
+                {
+                  [styles[`${baseClass}__list--with-footer`]]: footer,
+                },
+                className
+              )}
+              role="menu"
+              ref={ref}
+            >
+              {options.map(getOptionElement)}
+            </ul>
+          )}
           {footer && (
             <Text size="sm" as="div" className={styles[`${baseClass}__footer`]}>
               {footer}

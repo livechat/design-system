@@ -1,0 +1,53 @@
+import { Canvas, Story, ArgsTable, Meta, Title } from '@storybook/blocks';
+import { Figma } from '@storybook/addon-designs/blocks';
+import * as ActionBarStories from './ActionBar.stories';
+import {
+  BlockColumnsContainer,
+  BlockColumns,
+} from '../../stories/components/BlockColumns/BlockColumns';
+
+<Meta of={ActionBarStories} />
+
+<Title>ActionBar</Title>
+
+[Intro](#Intro) | [Types](#Types) | [Component API](#ComponentAPI)
+
+## Intro <a id="Intro" />
+
+`ActionBar` is a component whose purpose is to display buttons that are responsible for performing specific actions in the form of a container that adapts to the layout. This container is responsible for checking how many elements (buttons) can be displayed and hiding those for which there is not enough space. Hidden items in default mode will be moved to the menu that will be displayed if at least one item is hidden.
+
+<Canvas of={ActionBarStories.Default} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+<ActionBar 
+  options={[
+    {
+      key: 'one',
+      element: <Icon source={AccountCircle} kind="primary" />,
+      label: 'One test',
+      onClick: () => onClickHandler('one'),
+    },
+    {
+      key: 'two',
+      element: <Icon source={AddTemplate} kind="primary" />,
+      label: 'Two test',
+      onClick: () => onClickHandler('two'),
+    },
+  ]} 
+/>
+```
+
+#### Types <a id="Types" />
+
+By default, the component is set to `menu` mode, in which hidden items will be moved to the menu. <br />
+This behavior can be changed using the `type` flag set to `scroll`, then elements will not be hidden and the container will be scrollable.
+
+<Canvas of={ActionBarStories.Horizontal} sourceState="none" />
+
+<Canvas of={ActionBarStories.Vertical} sourceState="none" />
+
+## Component API <a id="ComponentAPI" />
+
+<ArgsTable />
