@@ -26,20 +26,14 @@
   },
   "exports": {
     ".": {
-      "node": {
-        "import": "./dist/index.es.js",
-        "require": "./dist/index.cjs.js",
-        "types": "./dist/index.d.ts"
-      },
-      "default": "./dist/index.es.js"
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
     },
     "./*": {
-      "node": {
-        "import": "./dist/*.es.js",
-        "require": "./dist/*.cjs.js",
-        "types": "./dist/*.d.ts"
-      },
-      "default": "./dist/*.es.js"
+      "import": "./dist/*.es.js",
+      "require": "./dist/*.cjs.js",
+      "types": "./dist/*.d.ts"
     }
   }
 }
