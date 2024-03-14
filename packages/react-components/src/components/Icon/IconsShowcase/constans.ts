@@ -453,6 +453,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   TextLogoFilled: IconGroup.Brands,
   WeeblyColored: IconGroup.Brands,
   WindowsColored: IconGroup.Brands,
+  WindowsOriginal: IconGroup.Brands,
   Windows: IconGroup.Brands,
   WoocommerceColored: IconGroup.Brands,
   WordpressColored: IconGroup.Brands,
