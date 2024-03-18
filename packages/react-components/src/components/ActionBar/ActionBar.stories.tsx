@@ -8,7 +8,7 @@ import { ActionBar } from './ActionBar';
 import { getDefaultOptions } from './constants';
 
 export default {
-  title: 'Experimental/ActionBar',
+  title: 'Components/ActionBar',
   component: ActionBar,
   argTypes: {
     options: {

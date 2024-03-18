@@ -25,7 +25,7 @@ $base-class: 'action-bar';
       display: flex;
       position: relative;
       align-items: center;
-      margin: 0 var(--spacing-1);
+      margin: 0 var(--spacing-05);
       width: fit-content;
 
       &--active {
@@ -39,7 +39,7 @@ $base-class: 'action-bar';
 
       &--vertical {
         justify-content: center;
-        margin: var(--spacing-1) 0;
+        margin: var(--spacing-05) 0;
         width: 100%;
 
         &.#{$base-class}__items__button-wrapper--active {
