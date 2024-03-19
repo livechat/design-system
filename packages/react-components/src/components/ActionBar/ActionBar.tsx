@@ -45,14 +45,11 @@ export const ActionBar: React.FC<IActionBarProps> = ({
     }
 
     // Single element size with margin
-    const singleElementSize = 40;
-    // Extra spacing to include for menu placement
-    const menuPlacementSpacing = 2;
+    const singleElementSize = 34;
     const allOptionsCount = options.length;
     const hiddenOptionsCount = menuItemsKeys.length;
     const visibleOptionsCount = allOptionsCount - hiddenOptionsCount;
-    const position =
-      visibleOptionsCount * singleElementSize + menuPlacementSpacing;
+    const position = visibleOptionsCount * singleElementSize;
 
     setMenuPosition(position);
   }, [menuItemsKeys, options, isScrollType]);

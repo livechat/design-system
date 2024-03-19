@@ -18,14 +18,14 @@ $base-class: 'action-bar';
     }
 
     &--with-menu {
-      margin-right: 78px;
+      margin-right: 66px;
     }
 
     &__button-wrapper {
       display: flex;
       position: relative;
       align-items: center;
-      margin: 0 var(--spacing-05);
+      margin: 0 var(--spacing-05) 0 0;
       width: fit-content;
 
       &--active {
@@ -39,7 +39,7 @@ $base-class: 'action-bar';
 
       &--vertical {
         justify-content: center;
-        margin: var(--spacing-05) 0;
+        margin: 0 0 var(--spacing-05) 0;
         width: 100%;
 
         &.#{$base-class}__items__button-wrapper--active {
@@ -148,7 +148,7 @@ $base-class: 'action-bar';
     .#{$base-class}__items {
       &--with-menu {
         margin-right: 0;
-        margin-bottom: 78px;
+        margin-bottom: 66px;
       }
     }
 
