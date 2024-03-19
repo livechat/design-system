@@ -34,7 +34,6 @@ export * from './components/PromoBanner';
 export * from './components/PromoBannerV2';
 export * from './components/RadioButton';
 export * from './components/Search';
-export * from './components/Skeleton';
 export * from './components/Switch';
 export * from './components/Tab';
 export * from './components/Tag';
