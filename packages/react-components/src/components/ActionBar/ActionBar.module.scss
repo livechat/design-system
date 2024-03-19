@@ -18,14 +18,14 @@ $base-class: 'action-bar';
     }
 
     &--with-menu {
-      margin-right: 78px;
+      margin-right: 66px;
     }
 
     &__button-wrapper {
       display: flex;
       position: relative;
       align-items: center;
-      margin: 0 var(--spacing-1);
+      margin: 0 var(--spacing-05) 0 0;
       width: fit-content;
 
       &--active {
@@ -39,20 +39,11 @@ $base-class: 'action-bar';
 
       &--vertical {
         justify-content: center;
-        margin: var(--spacing-1) 0;
+        margin: 0 0 var(--spacing-05) 0;
         width: 100%;
 
         &.#{$base-class}__items__button-wrapper--active {
           @include select-indicator.select-indicator-v();
-        }
-      }
-
-      &__button {
-        span {
-          align-items: center;
-          justify-content: center;
-          width: 24px;
-          height: 24px;
         }
       }
     }
@@ -87,14 +78,14 @@ $base-class: 'action-bar';
       .#{$base-class}__menu-wrapper__button {
         flex-direction: column;
         height: auto;
-        min-height: 36px;
+        min-height: 32px;
 
         > span {
           margin-left: 0;
         }
 
         &--active {
-          width: 36px;
+          width: 32px;
 
           &::after {
             bottom: 0;
@@ -148,7 +139,7 @@ $base-class: 'action-bar';
     .#{$base-class}__items {
       &--with-menu {
         margin-right: 0;
-        margin-bottom: 78px;
+        margin-bottom: 66px;
       }
     }
 
