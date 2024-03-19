@@ -46,15 +46,6 @@ $base-class: 'action-bar';
           @include select-indicator.select-indicator-v();
         }
       }
-
-      &__button {
-        span {
-          align-items: center;
-          justify-content: center;
-          width: 24px;
-          height: 24px;
-        }
-      }
     }
 
     &__tooltip {
@@ -87,14 +78,14 @@ $base-class: 'action-bar';
       .#{$base-class}__menu-wrapper__button {
         flex-direction: column;
         height: auto;
-        min-height: 36px;
+        min-height: 32px;
 
         > span {
           margin-left: 0;
         }
 
         &--active {
-          width: 36px;
+          width: 32px;
 
           &::after {
             bottom: 0;

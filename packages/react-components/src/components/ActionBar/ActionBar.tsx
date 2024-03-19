@@ -174,6 +174,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
                   buttonElement && styles[`${menuWrapperClass}__button--active`]
                 )}
                 kind="plain"
+                size="compact"
                 icon={
                   <Icon
                     source={ChevronDown}
