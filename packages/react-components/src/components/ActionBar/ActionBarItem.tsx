@@ -26,17 +26,18 @@ export const ActionBarItem: React.FC<IActionBarItem> = ({
   });
 
   const button = (
-    <Button
-      data-actionBarId={id}
-      size="compact"
-      id={option.key}
-      key={option.key}
-      title={option.label}
-      kind="plain"
-      onClick={option.onClick}
-      icon={option.element}
-      className={styles[`${menuWrapperClass}__button`]}
-    />
+    <div className={mergedButtonClassNames}>
+      <Button
+        data-actionBarId={id}
+        id={option.key}
+        key={option.key}
+        title={option.label}
+        kind="plain"
+        onClick={option.onClick}
+        icon={option.element}
+        className={styles[`${menuWrapperClass}__button`]}
+      />
+    </div>
   );
 
   if (option.showTooltip) {
@@ -45,25 +46,18 @@ export const ActionBarItem: React.FC<IActionBarItem> = ({
     };
 
     return (
-      <div className={mergedButtonClassNames}>
-        <Tooltip
-          kind="invert"
-          placement={vertical ? 'left' : 'bottom'}
-          triggerClassName={styles[`${baseClass}__tooltip`]}
-          triggerRenderer={() => button}
-          floatingStrategy="fixed"
-          useClickHookProps={{
-            ignoreMouse: true,
-          }}
-          hoverOnDelay={800}
-          hoverOffDelay={0}
-          {...tooltipVisibility}
-        >
-          <div>{option.label}</div>
-        </Tooltip>
-      </div>
+      <Tooltip
+        kind="invert"
+        placement={vertical ? 'left' : 'bottom'}
+        triggerClassName={styles[`${baseClass}__tooltip`]}
+        triggerRenderer={() => button}
+        floatingStrategy="fixed"
+        {...tooltipVisibility}
+      >
+        <div>{option.label}</div>
+      </Tooltip>
     );
   }
 
-  return <div className={mergedButtonClassNames}>{button}</div>;
+  return button;
 };

@@ -45,11 +45,14 @@ export const ActionBar: React.FC<IActionBarProps> = ({
     }
 
     // Single element size with margin
-    const singleElementSize = 34;
+    const singleElementSize = 44;
+    // Extra spacing to include for menu placement
+    const menuPlacementSpacing = 4;
     const allOptionsCount = options.length;
     const hiddenOptionsCount = menuItemsKeys.length;
     const visibleOptionsCount = allOptionsCount - hiddenOptionsCount;
-    const position = visibleOptionsCount * singleElementSize;
+    const position =
+      visibleOptionsCount * singleElementSize + menuPlacementSpacing;
 
     setMenuPosition(position);
   }, [menuItemsKeys, options, isScrollType]);
@@ -174,7 +177,6 @@ export const ActionBar: React.FC<IActionBarProps> = ({
                   buttonElement && styles[`${menuWrapperClass}__button--active`]
                 )}
                 kind="plain"
-                size="compact"
                 icon={
                   <Icon
                     source={ChevronDown}
