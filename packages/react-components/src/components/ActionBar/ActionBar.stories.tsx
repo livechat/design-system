@@ -7,6 +7,8 @@ import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { ActionBar } from './ActionBar';
 import { getDefaultOptions } from './constants';
 
+const CONTAINER_SIZE = 220;
+
 export default {
   title: 'Components/ActionBar',
   component: ActionBar,
@@ -27,7 +29,7 @@ export const Default = (): React.ReactElement => {
   const [activeKey, setActiveKey] = React.useState<string>();
 
   return (
-    <div style={{ width: 220, height: 50 }}>
+    <div style={{ width: CONTAINER_SIZE, height: 50 }}>
       <ActionBar
         activeOptionKey={activeKey}
         options={getDefaultOptions(setActiveKey)}
@@ -44,7 +46,7 @@ export const Horizontal = (): React.ReactElement => {
   return (
     <>
       <StoryDescriptor title={'Horizontal'}>
-        <div style={{ width: 220, height: 50 }}>
+        <div style={{ width: CONTAINER_SIZE, height: 50 }}>
           <ActionBar
             id="action-bar-area-no-scroll"
             activeOptionKey={activeKey}
@@ -53,7 +55,7 @@ export const Horizontal = (): React.ReactElement => {
         </div>
       </StoryDescriptor>
       <StoryDescriptor title={'Horizontal with scroll'}>
-        <div style={{ width: 220, height: 50 }}>
+        <div style={{ width: CONTAINER_SIZE, height: 50 }}>
           <ActionBar
             id="action-bar-area-scroll"
             type="scroll"
@@ -73,7 +75,7 @@ export const Vertical = (): React.ReactElement => {
   return (
     <>
       <StoryDescriptor title={'Vertical'}>
-        <div style={{ height: 220, width: 50 }}>
+        <div style={{ height: CONTAINER_SIZE, width: 50 }}>
           <ActionBar
             id="action-bar-area-vertical"
             vertical
@@ -83,7 +85,7 @@ export const Vertical = (): React.ReactElement => {
         </div>
       </StoryDescriptor>
       <StoryDescriptor title={'Vertical with scroll'}>
-        <div style={{ height: 220, width: 50 }}>
+        <div style={{ height: CONTAINER_SIZE, width: 50 }}>
           <ActionBar
             id="action-bar-area-vertical-scroll"
             vertical

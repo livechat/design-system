@@ -51,6 +51,9 @@ export const ActionBarItem: React.FC<IActionBarItem> = ({
           triggerClassName={styles[`${baseClass}__tooltip`]}
           triggerRenderer={() => button}
           floatingStrategy="fixed"
+          useClickHookProps={{
+            ignoreMouse: true,
+          }}
           hoverOnDelay={800}
           hoverOffDelay={0}
           {...tooltipVisibility}
