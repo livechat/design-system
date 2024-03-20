@@ -7,7 +7,7 @@ import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { ActionBar } from './ActionBar';
 import { getDefaultOptions } from './constants';
 
-const CONTAINER_SIZE = 200;
+const CONTAINER_SIZE = 220;
 
 export default {
   title: 'Components/ActionBar',

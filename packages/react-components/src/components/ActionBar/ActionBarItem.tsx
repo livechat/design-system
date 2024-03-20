@@ -28,7 +28,6 @@ export const ActionBarItem: React.FC<IActionBarItem> = ({
   const button = (
     <Button
       data-actionBarId={id}
-      size="compact"
       id={option.key}
       key={option.key}
       title={option.label}
