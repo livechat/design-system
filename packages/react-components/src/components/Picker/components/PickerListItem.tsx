@@ -138,9 +138,9 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
             item.key === SELECT_ALL_OPTION_KEY,
         })}
       >
-        <div className={styles[`${itemClassName}__content`]}>
-          <Text as="span">{getOptionContent(item)}</Text>
-        </div>
+        <Text as="span" className={styles[`${itemClassName}__content`]}>
+          {getOptionContent(item)}
+        </Text>
         {isSelected && !item.showCheckbox && (
           <Icon
             kind="link"
