@@ -4,6 +4,7 @@ import { GreetingQuickReply } from '@livechat/design-system-icons';
 import { ComponentMeta, Story } from '@storybook/react';
 
 import noop from '../../utils/noop';
+import { Button } from '../Button';
 
 import {
   ModalContent,
@@ -31,6 +32,7 @@ export default {
         hidden: true,
       },
     },
+    layout: 'centered',
   },
 } as ComponentMeta<typeof ModalComponent>;
 
@@ -45,11 +47,24 @@ const defaultModalProps = {
 const StoryTemplate: Story<ModalProps> = ({
   children,
   ...args
-}: ModalProps): React.ReactElement => (
-  <ModalComponent {...args} title="Modal">
-    {children}
-  </ModalComponent>
-);
+}: ModalProps): React.ReactElement => {
+  const [isOpen, setIsOpen] = React.useState(true);
+
+  return (
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open modal</Button>
+      {isOpen && (
+        <ModalComponent
+          {...args}
+          title="Modal"
+          onClose={() => setIsOpen(false)}
+        >
+          {children}
+        </ModalComponent>
+      )}
+    </>
+  );
+};
 
 export const Modal = StoryTemplate.bind({});
 Modal.args = {

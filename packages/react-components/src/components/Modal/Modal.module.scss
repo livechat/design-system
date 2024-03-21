@@ -4,6 +4,7 @@
   display: flex;
   position: relative;
   flex-direction: column;
+  opacity: 0;
   margin: auto;
   border-radius: var(--radius-3);
   box-shadow: 0 20px 60px 0 rgb(0 0 0 / 30%);
@@ -11,6 +12,8 @@
   padding: var(--spacing-6) var(--spacing-7);
   max-width: 100%;
   height: fit-content;
+  animation: var(--transition-duration-moderate-1) fade-in-step2
+    var(--transition-duration-moderate-1) forwards;
   color: var(--content-basic-primary);
 
   &--full-space {
@@ -24,6 +27,7 @@
 
     &--visible {
       display: flex;
+      animation: fade-in-step1 var(--transition-duration-moderate-1) forwards;
     }
 
     &--labelled {
@@ -119,5 +123,27 @@
     justify-content: flex-end;
     padding-top: var(--spacing-5);
     width: 100%;
+  }
+}
+
+@keyframes fade-in-step1 {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-step2 {
+  0% {
+    opacity: 0;
+    scale: 0.8;
+  }
+
+  100% {
+    opacity: 1;
+    scale: 1;
   }
 }
