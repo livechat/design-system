@@ -68,6 +68,9 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
+    const innerRef = React.useRef<HTMLInputElement>(null);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    React.useImperativeHandle(ref, () => innerRef.current!, []);
     const [isFocused, setIsFocused] = React.useState(false);
     const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
     const { type, onFocus, onBlur } = inputProps;
@@ -91,17 +94,22 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const shouldRenderRightIcon =
       icon && type !== 'password' && icon.place === 'right';
 
+    const focusInput = () => {
+      innerRef.current?.focus();
+    };
+
     return (
       <Text
         as="div"
         className={mergedClassNames}
         aria-disabled={disabled}
         tab-index="0"
+        onClick={focusInput}
       >
         {shouldRenderLeftIcon && renderIcon(icon, disabled)}
         <input
           {...inputProps}
-          ref={ref}
+          ref={innerRef}
           onFocus={(e) => {
             setIsFocused(true);
             onFocus?.(e);

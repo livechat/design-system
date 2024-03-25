@@ -6,6 +6,7 @@
   border: 1px solid var(--border-basic-primary);
   border-radius: var(--radius-3);
   background: var(--surface-primary-default);
+  cursor: text;
   padding: 5px 12px;
   line-height: 22px;
   color: var(--content-basic-primary);
@@ -37,6 +38,7 @@
   &--disabled:hover {
     border-color: var(--border-basic-disabled);
     background-color: var(--surface-primary-disabled);
+    cursor: default;
   }
 
   input {
