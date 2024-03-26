@@ -34,6 +34,7 @@ interface UseFloatingPickerProps {
   useClickHookProps?: UseClickProps;
   useDismissHookProps?: UseDismissProps;
   openedOnInit: boolean;
+  maxListHeight: number;
   isOpen?: boolean;
   onVisibilityChange?: (open: boolean, event?: Event | undefined) => void;
 }
@@ -66,6 +67,7 @@ export const useFloatingPicker = ({
   disabled,
   items,
   placement,
+  maxListHeight,
   floatingStrategy,
   useDismissHookProps,
   useClickHookProps,
@@ -75,7 +77,7 @@ export const useFloatingPicker = ({
   const nodeId = useFloatingNodeId();
   const [pointer, setPointer] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
-  const [maxHeight, setMaxHeight] = React.useState(400);
+  const [maxHeight, setMaxHeight] = React.useState(maxListHeight);
   const listElementsRef = React.useRef<Array<HTMLElement | null>>([]);
   const virtualItemRef = React.useRef(null);
 
@@ -94,7 +96,7 @@ export const useFloatingPicker = ({
         floatingSize({
           apply({ availableHeight, rects, elements }) {
             ReactDOM.flushSync(() => {
-              setMaxHeight(availableHeight);
+              setMaxHeight(maxListHeight || availableHeight);
             });
             Object.assign(elements.floating.style, {
               width: `${rects.reference.width}px`,

@@ -1,0 +1,23 @@
+@mixin avatar-status($size) {
+  border-width: calc($size * 0.125);
+  width: $size;
+  min-width: $size;
+  height: $size;
+  min-height: $size;
+}
+
+@mixin avatar-icon($size) {
+  width: $size;
+  min-width: $size;
+  height: $size;
+  min-height: $size;
+}
+
+@mixin avatar($size, $line-height, $font-size) {
+  width: $size;
+  min-width: $size;
+  height: $size;
+  min-height: $size;
+  line-height: $line-height;
+  font-size: $font-size;
+}

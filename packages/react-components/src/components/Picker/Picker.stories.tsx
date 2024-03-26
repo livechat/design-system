@@ -114,14 +114,22 @@ export const States = (): React.ReactElement => (
 
 export const PickerWithGroupedOptions = (): React.ReactElement => (
   <div style={{ ...commonWidth, marginBottom: 320 }}>
-    <PickerComponent options={DEFAULT_EXTENDED_OPTIONS} onSelect={noop} />
+    <PickerComponent
+      openedOnInit
+      options={DEFAULT_EXTENDED_OPTIONS}
+      onSelect={noop}
+    />
   </div>
 );
 
 export const PickerWithMoreOptions = (): React.ReactElement => (
   <div style={{ ...commonWidth, marginBottom: 320 }}>
     <StoryDescriptor title="Single select">
-      <PickerComponent options={DEFAULT_MORE_PICKER_OPTIONS} onSelect={noop} />
+      <PickerComponent
+        openedOnInit
+        options={DEFAULT_MORE_PICKER_OPTIONS}
+        onSelect={noop}
+      />
     </StoryDescriptor>
     <StoryDescriptor title="Multi select">
       <PickerComponent
@@ -141,6 +149,7 @@ export const PickerWithOptionsAsCustomElements = (): React.ReactElement => (
   <div style={{ ...commonWidth, marginBottom: 320 }}>
     <StoryDescriptor title="Single select">
       <PickerComponent
+        openedOnInit
         options={[
           {
             key: 'one',

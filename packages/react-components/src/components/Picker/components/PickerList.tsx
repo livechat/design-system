@@ -5,11 +5,7 @@ import { FloatingContext, FloatingFocusManager } from '@floating-ui/react';
 import cx from 'clsx';
 import { Virtuoso, VirtuosoProps } from 'react-virtuoso';
 
-import {
-  DEFAULT_LIST_HEIGHT,
-  ITEM_GAP_HEIGHT,
-  SELECT_ALL_OPTION_KEY,
-} from '../constants';
+import { ITEM_GAP_HEIGHT, SELECT_ALL_OPTION_KEY } from '../constants';
 import { getNormalizedItems } from '../helpers';
 import { IPickerListItem } from '../types';
 
@@ -65,7 +61,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   virtuosoProps,
 }) => {
   const wrapperRef = React.useRef<HTMLDivElement>(null);
-  const [listHeight, setListHeight] = React.useState(DEFAULT_LIST_HEIGHT);
+  const [listHeight, setListHeight] = React.useState(maxHeight);
   const numberOfItems = options.length;
 
   React.useLayoutEffect(() => {
@@ -79,10 +75,10 @@ export const PickerList: React.FC<IPickerListProps> = ({
       if (height === listHeight) {
         return;
       }
-      if (height < DEFAULT_LIST_HEIGHT) {
+      if (height < maxHeight) {
         setListHeight(height + (numberOfItems - 1) * ITEM_GAP_HEIGHT);
       } else {
-        setListHeight(DEFAULT_LIST_HEIGHT);
+        setListHeight(maxHeight);
       }
     },
     [numberOfItems]
