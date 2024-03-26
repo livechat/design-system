@@ -8,10 +8,10 @@ export const AvatarSizes = [
   'xlarge',
   'xxlarge',
   'xxxlarge',
-];
-export const AvatarStatuses = ['available', 'unavailable', 'unknown'];
-export const AvatarTypes = ['image', 'text'];
-export const AvatarShapes = ['circle', 'rounded-square'];
+] as const;
+export const AvatarStatuses = ['available', 'unavailable', 'unknown'] as const;
+export const AvatarTypes = ['image', 'text'] as const;
+export const AvatarShapes = ['circle', 'rounded-square'] as const;
 
 export type AvatarSize = (typeof AvatarSizes)[number];
 export type AvatarStatus = (typeof AvatarStatuses)[number];

@@ -5,7 +5,7 @@ import { ComponentMeta } from '@storybook/react';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
 import { Avatar, AvatarProps } from './Avatar';
-import { AvatarSizes, AvatarStatuses } from './types';
+import { AvatarShapes, AvatarSizes, AvatarStatuses } from './types';
 
 export default {
   title: 'Components/Avatar',
@@ -38,12 +38,11 @@ export const Types = (): React.ReactElement => (
 
 export const Shapes = (): React.ReactElement => (
   <>
-    <StoryDescriptor title="Circle">
-      <Avatar type="text" text={defaultName} shape="circle" />
-    </StoryDescriptor>
-    <StoryDescriptor title="Rounded square">
-      <Avatar type="text" text={'Support Heroes'} shape="rounded-square" />
-    </StoryDescriptor>
+    {AvatarShapes.map((shape) => (
+      <StoryDescriptor title={shape} key={shape}>
+        <Avatar type="text" text={defaultName} shape={shape} />
+      </StoryDescriptor>
+    ))}
   </>
 );
 
