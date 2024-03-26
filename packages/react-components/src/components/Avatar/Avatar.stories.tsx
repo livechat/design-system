@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
@@ -10,7 +10,7 @@ import { AvatarShapes, AvatarSizes, AvatarStatuses } from './types';
 export default {
   title: 'Components/Avatar',
   component: Avatar,
-} as ComponentMeta<typeof Avatar>;
+} as Meta<typeof Avatar>;
 
 export const Default = (args: AvatarProps): React.ReactElement => (
   <Avatar {...args} />
