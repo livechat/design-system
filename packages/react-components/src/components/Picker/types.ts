@@ -43,6 +43,10 @@ export interface IPickerProps extends ComponentCoreProps {
    */
   listClassName?: string;
   /**
+   * Specify the max height of the picker list
+   */
+  maxListHeight?: number;
+  /**
    * Specify whether the picker should be disabled
    */
   disabled?: boolean;
