@@ -1,15 +1,16 @@
 import * as React from 'react';
 
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
 import { Avatar, AvatarProps } from './Avatar';
+import { AvatarShapes, AvatarSizes, AvatarStatuses } from './types';
 
 export default {
   title: 'Components/Avatar',
   component: Avatar,
-} as ComponentMeta<typeof Avatar>;
+} as Meta<typeof Avatar>;
 
 export const Default = (args: AvatarProps): React.ReactElement => (
   <Avatar {...args} />
@@ -37,58 +38,31 @@ export const Types = (): React.ReactElement => (
 
 export const Shapes = (): React.ReactElement => (
   <>
-    <StoryDescriptor title="Circle">
-      <Avatar type="text" text={defaultName} shape="circle" />
-    </StoryDescriptor>
-    <StoryDescriptor title="Rounded square">
-      <Avatar type="text" text={'Support Heroes'} shape="rounded-square" />
-    </StoryDescriptor>
+    {AvatarShapes.map((shape) => (
+      <StoryDescriptor title={shape} key={shape}>
+        <Avatar type="text" text={defaultName} shape={shape} />
+      </StoryDescriptor>
+    ))}
   </>
 );
 
 export const Sizes = (): React.ReactElement => (
   <>
-    <StoryDescriptor title="XXXSmall">
-      <Avatar type="text" text={defaultName} size="xxxsmall" />
-    </StoryDescriptor>
-    <StoryDescriptor title="XXSmall">
-      <Avatar type="text" text={defaultName} size="xxsmall" />
-    </StoryDescriptor>
-    <StoryDescriptor title="XSmall">
-      <Avatar type="text" text={defaultName} size="xsmall" />
-    </StoryDescriptor>
-    <StoryDescriptor title="Small">
-      <Avatar type="text" text={defaultName} size="small" />
-    </StoryDescriptor>
-    <StoryDescriptor title="Medium">
-      <Avatar type="text" text={defaultName} size="medium" />
-    </StoryDescriptor>
-    <StoryDescriptor title="Large">
-      <Avatar type="text" text={defaultName} size="large" />
-    </StoryDescriptor>
-    <StoryDescriptor title="XLarge">
-      <Avatar type="text" text={defaultName} size="xlarge" />
-    </StoryDescriptor>
-    <StoryDescriptor title="XXLarge">
-      <Avatar type="text" text={defaultName} size="xxlarge" />
-    </StoryDescriptor>
-    <StoryDescriptor title="XXXLarge">
-      <Avatar type="text" text={defaultName} size="xxxlarge" />
-    </StoryDescriptor>
+    {AvatarSizes.map((size) => (
+      <StoryDescriptor title={size} key={size}>
+        <Avatar type="text" text={defaultName} size={size} />
+      </StoryDescriptor>
+    ))}
   </>
 );
 
 export const Statuses = (): React.ReactElement => (
   <>
-    <StoryDescriptor title="Available">
-      <Avatar type="text" text={defaultName} status="available" />
-    </StoryDescriptor>
-    <StoryDescriptor title="Unavailable">
-      <Avatar type="text" text={defaultName} status="unavailable" />
-    </StoryDescriptor>
-    <StoryDescriptor title="Unknown">
-      <Avatar type="text" text={defaultName} status="unknown" />
-    </StoryDescriptor>
+    {AvatarStatuses.map((status) => (
+      <StoryDescriptor title={status} key={status}>
+        <Avatar type="text" text={defaultName} status={status} />
+      </StoryDescriptor>
+    ))}
   </>
 );
 
@@ -134,227 +108,45 @@ export const Rim = (): React.ReactElement => (
   </>
 );
 
-export const SizesWithStatus = (): React.ReactElement => (
-  <>
-    <StoryDescriptor title="XXXSmall">
-      <Avatar
-        type="image"
-        src={defaultImage}
-        size="xxxsmall"
-        status="available"
-      />
-      <Avatar
-        type="text"
-        text={defaultName}
-        shape="rounded-square"
-        size="xxxsmall"
-        status="available"
-      />
-    </StoryDescriptor>
-    <StoryDescriptor title="XXSmall">
-      <Avatar
-        type="image"
-        src={defaultImage}
-        size="xxsmall"
-        status="available"
-      />
-      <Avatar
-        type="text"
-        text={defaultName}
-        shape="rounded-square"
-        size="xxsmall"
-        status="available"
-      />
-    </StoryDescriptor>
-    <StoryDescriptor title="XSmall">
-      <Avatar
-        type="image"
-        src={defaultImage}
-        size="xsmall"
-        status="available"
-      />
-      <Avatar
-        type="text"
-        text={defaultName}
-        shape="rounded-square"
-        size="xsmall"
-        status="available"
-      />
-    </StoryDescriptor>
-    <StoryDescriptor title="Small">
-      <Avatar type="image" src={defaultImage} size="small" status="available" />
-      <Avatar
-        type="text"
-        text={defaultName}
-        shape="rounded-square"
-        size="small"
-        status="available"
-      />
-    </StoryDescriptor>
-    <StoryDescriptor title="Medium">
-      <Avatar
-        type="image"
-        src={defaultImage}
-        size="medium"
-        status="available"
-      />
-      <Avatar
-        type="text"
-        text={defaultName}
-        shape="rounded-square"
-        size="medium"
-        status="available"
-      />
-    </StoryDescriptor>
-    <StoryDescriptor title="Large">
-      <Avatar type="image" src={defaultImage} size="large" status="available" />
-      <Avatar
-        type="text"
-        text={defaultName}
-        shape="rounded-square"
-        size="large"
-        status="available"
-      />
-    </StoryDescriptor>
-    <StoryDescriptor title="XLarge">
-      <Avatar
-        type="image"
-        src={defaultImage}
-        size="xlarge"
-        status="available"
-      />
-      <Avatar
-        type="text"
-        text={defaultName}
-        shape="rounded-square"
-        size="xlarge"
-        status="available"
-      />
-    </StoryDescriptor>
-    <StoryDescriptor title="XXLarge">
-      <Avatar
-        type="image"
-        src={defaultImage}
-        size="xxlarge"
-        status="available"
-      />
-      <Avatar
-        type="text"
-        text={defaultName}
-        shape="rounded-square"
-        size="xxlarge"
-        status="available"
-      />
-    </StoryDescriptor>
-    <StoryDescriptor title="XXXLarge">
-      <Avatar
-        type="image"
-        src={defaultImage}
-        size="xxxlarge"
-        status="available"
-      />
-      <Avatar
-        type="text"
-        text={defaultName}
-        shape="rounded-square"
-        size="xxxlarge"
-        status="available"
-      />
-    </StoryDescriptor>
-  </>
-);
+export const SizesWithStatus = (): React.ReactElement => {
+  return (
+    <>
+      {AvatarSizes.map((size) => (
+        <StoryDescriptor title={size} key={size}>
+          <Avatar
+            type="image"
+            src={defaultImage}
+            size={size}
+            status="available"
+          />
+          <Avatar
+            type="text"
+            text={defaultName}
+            shape="rounded-square"
+            size={size}
+            status="available"
+          />
+        </StoryDescriptor>
+      ))}
+    </>
+  );
+};
 
-export const SizesWithRim = (): React.ReactElement => (
-  <>
-    <StoryDescriptor title="XXXSmall">
-      <Avatar type="image" src={defaultImage} size="xxxsmall" withRim />
-      <Avatar
-        type="text"
-        text={defaultName}
-        shape="rounded-square"
-        size="xxxsmall"
-        withRim
-      />
-    </StoryDescriptor>
-    <StoryDescriptor title="XXSmall">
-      <Avatar type="image" src={defaultImage} size="xxsmall" withRim />
-      <Avatar
-        type="text"
-        text={defaultName}
-        shape="rounded-square"
-        size="xxsmall"
-        withRim
-      />
-    </StoryDescriptor>
-    <StoryDescriptor title="XSmall">
-      <Avatar type="image" src={defaultImage} size="xsmall" withRim />
-      <Avatar
-        type="text"
-        text={defaultName}
-        shape="rounded-square"
-        size="xsmall"
-        withRim
-      />
-    </StoryDescriptor>
-    <StoryDescriptor title="Small">
-      <Avatar type="image" src={defaultImage} size="small" withRim />
-      <Avatar
-        type="text"
-        text={defaultName}
-        shape="rounded-square"
-        size="small"
-        withRim
-      />
-    </StoryDescriptor>
-    <StoryDescriptor title="Medium">
-      <Avatar type="image" src={defaultImage} size="medium" withRim />
-      <Avatar
-        type="text"
-        text={defaultName}
-        shape="rounded-square"
-        size="medium"
-        withRim
-      />
-    </StoryDescriptor>
-    <StoryDescriptor title="Large">
-      <Avatar type="image" src={defaultImage} size="large" withRim />
-      <Avatar
-        type="text"
-        text={defaultName}
-        shape="rounded-square"
-        size="large"
-        withRim
-      />
-    </StoryDescriptor>
-    <StoryDescriptor title="XLarge">
-      <Avatar type="image" src={defaultImage} size="xlarge" withRim />
-      <Avatar
-        type="text"
-        text={defaultName}
-        shape="rounded-square"
-        size="xlarge"
-        withRim
-      />
-    </StoryDescriptor>
-    <StoryDescriptor title="XXLarge">
-      <Avatar type="image" src={defaultImage} size="xxlarge" withRim />
-      <Avatar
-        type="text"
-        text={defaultName}
-        shape="rounded-square"
-        size="xxlarge"
-        withRim
-      />
-    </StoryDescriptor>
-    <StoryDescriptor title="XXXLarge">
-      <Avatar type="image" src={defaultImage} size="xxxlarge" withRim />
-      <Avatar
-        type="text"
-        text={defaultName}
-        shape="rounded-square"
-        size="xxxlarge"
-        withRim
-      />
-    </StoryDescriptor>
-  </>
-);
+export const SizesWithRim = (): React.ReactElement => {
+  return (
+    <>
+      {AvatarSizes.map((size) => (
+        <StoryDescriptor title={size} key={size} gap="12px">
+          <Avatar type="image" src={defaultImage} size={size} withRim />
+          <Avatar
+            type="text"
+            text={defaultName}
+            shape="rounded-square"
+            size={size}
+            withRim
+          />
+        </StoryDescriptor>
+      ))}
+    </>
+  );
+};
