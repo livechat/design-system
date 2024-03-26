@@ -1,8 +1,11 @@
+@use './styles/size';
+
 $base-class: 'avatar';
 
 .#{$base-class} {
   display: flex;
   position: relative;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   background-color: var(--surface-secondary-default);
@@ -58,57 +61,39 @@ $base-class: 'avatar';
     }
 
     &--xxxsmall {
-      border-width: calc(4px * 0.125);
-      width: 4px;
-      height: 4px;
+      @include size.avatar-status(4px);
     }
 
     &--xxsmall {
-      border-width: calc(5px * 0.125);
-      width: 5px;
-      height: 5px;
+      @include size.avatar-status(5px);
     }
 
     &--xsmall {
-      border-width: calc(6px * 0.125);
-      width: 6px;
-      height: 6px;
+      @include size.avatar-status(6px);
     }
 
     &--small {
-      border-width: calc(8px * 0.125);
-      width: 8px;
-      height: 8px;
+      @include size.avatar-status(8px);
     }
 
     &--medium {
-      border-width: calc(8px * 0.125);
-      width: 9px;
-      height: 9px;
+      @include size.avatar-status(9px);
     }
 
     &--large {
-      border-width: calc(10px * 0.125);
-      width: 10px;
-      height: 10px;
+      @include size.avatar-status(10px);
     }
 
     &--xlarge {
-      border-width: calc(12px * 0.125);
-      width: 12px;
-      height: 12px;
+      @include size.avatar-status(12px);
     }
 
     &--xxlarge {
-      border-width: calc(16px * 0.125);
-      width: 16px;
-      height: 16px;
+      @include size.avatar-status(16px);
     }
 
     &--xxxlarge {
-      border-width: calc(24px * 0.125);
-      width: 24px;
-      height: 24px;
+      @include size.avatar-status(24px);
     }
   }
 
@@ -153,48 +138,39 @@ $base-class: 'avatar';
 
   &__icon {
     &--xxxsmall svg {
-      width: 8px;
-      height: 8px;
+      @include size.avatar-icon(8px);
     }
 
     &--xxsmall svg {
-      width: 10px;
-      height: 10px;
+      @include size.avatar-icon(10px);
     }
 
     &--xsmall svg {
-      width: 12px;
-      height: 12px;
+      @include size.avatar-icon(12px);
     }
 
     &--small svg {
-      width: 16px;
-      height: 16px;
+      @include size.avatar-icon(16px);
     }
 
     &--medium svg {
-      width: 18px;
-      height: 18px;
+      @include size.avatar-icon(18px);
     }
 
     &--large svg {
-      width: 24px;
-      height: 24px;
+      @include size.avatar-icon(24px);
     }
 
     &--xlarge svg {
-      width: 32px;
-      height: 32px;
+      @include size.avatar-icon(32px);
     }
 
     &--xxlarge svg {
-      width: 48px;
-      height: 48px;
+      @include size.avatar-icon(48px);
     }
 
     &--xxxlarge svg {
-      width: 48px;
-      height: 48px;
+      @include size.avatar-icon(48px);
     }
   }
 
@@ -207,65 +183,38 @@ $base-class: 'avatar';
   }
 
   &--xxxsmall {
-    width: 16px;
-    height: 16px;
-    line-height: 20px;
-    font-size: 12px;
+    @include size.avatar(16px, 20px, 12px);
   }
 
   &--xxsmall {
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    font-size: 12px;
+    @include size.avatar(20px, 20px, 12px);
   }
 
   &--xsmall {
-    width: 24px;
-    height: 24px;
-    line-height: 20px;
-    font-size: 12px;
+    @include size.avatar(24px, 20px, 12px);
   }
 
   &--small {
-    width: 32px;
-    height: 32px;
-    line-height: 22px;
-    font-size: 15px;
+    @include size.avatar(32px, 22px, 15px);
   }
 
   &--medium {
-    width: 36px;
-    height: 36px;
-    line-height: 22px;
-    font-size: 15px;
+    @include size.avatar(36px, 22px, 15px);
   }
 
   &--large {
-    width: 40px;
-    height: 40px;
-    line-height: 24px;
-    font-size: 18px;
+    @include size.avatar(40px, 24px, 18px);
   }
 
   &--xlarge {
-    width: 48px;
-    height: 48px;
-    line-height: 24px;
-    font-size: 18px;
+    @include size.avatar(48px, 24px, 18px);
   }
 
   &--xxlarge {
-    width: 64px;
-    height: 64px;
-    line-height: 32px;
-    font-size: 24px;
+    @include size.avatar(64px, 32px, 24px);
   }
 
   &--xxxlarge {
-    width: 96px;
-    height: 96px;
-    line-height: 40px;
-    font-size: 32px;
+    @include size.avatar(96px, 40px, 32px);
   }
 }

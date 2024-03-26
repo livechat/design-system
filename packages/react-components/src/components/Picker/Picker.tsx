@@ -6,6 +6,7 @@ import cx from 'clsx';
 import { PickerList } from './components/PickerList';
 import { PickerTrigger } from './components/PickerTrigger';
 import { PickerTriggerBody } from './components/PickerTriggerBody';
+import { DEFAULT_LIST_HEIGHT } from './constants';
 import { useFloatingPicker } from './hooks/useFloatingPicker';
 import { usePickerItems } from './hooks/usePickerItems';
 import { IPickerProps } from './types';
@@ -16,6 +17,7 @@ export const Picker: React.FC<IPickerProps> = ({
   id,
   className,
   listClassName,
+  maxListHeight = DEFAULT_LIST_HEIGHT,
   disabled,
   error,
   options,
@@ -93,6 +95,7 @@ export const Picker: React.FC<IPickerProps> = ({
     disabled,
     items,
     placement,
+    maxListHeight,
     floatingStrategy,
     useClickHookProps,
     useDismissHookProps,

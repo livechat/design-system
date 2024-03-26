@@ -12,22 +12,9 @@ import {
   getFontColor,
   getInitials,
 } from './Avatar.helpers';
+import { AvatarShape, AvatarSize, AvatarStatus, AvatarType } from './types';
 
 import styles from './Avatar.module.scss';
-
-type AvatarShape = 'circle' | 'rounded-square';
-type AvatarSize =
-  | 'xxxsmall'
-  | 'xxsmall'
-  | 'xsmall'
-  | 'small'
-  | 'medium'
-  | 'large'
-  | 'xlarge'
-  | 'xxlarge'
-  | 'xxxlarge';
-type AvatarStatus = 'available' | 'unavailable' | 'unknown';
-type AvatarType = 'image' | 'text';
 
 export interface AvatarProps extends ComponentCoreProps {
   /**
