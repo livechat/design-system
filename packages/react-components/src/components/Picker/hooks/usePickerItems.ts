@@ -1,7 +1,11 @@
 import * as React from 'react';
 
 import { SELECT_ALL_OPTION_KEY } from '../constants';
-import { getNormalizedItems, getPickerListItemKey } from '../helpers';
+import {
+  getNewIndexes,
+  getNormalizedItems,
+  getPickerListItemKey,
+} from '../helpers';
 import { IPickerListItem } from '../types';
 
 interface UsePickerItemsProps {
@@ -101,14 +105,18 @@ export const usePickerItems = ({
           });
         }
       } else {
-        setSelectedKeys((prev) => {
-          const newIndexes = prev.includes(key)
-            ? prev.filter((i) => i !== key)
-            : [...prev, key];
+        if (isDataControlled) {
+          const prev = selected?.map(getPickerListItemKey) || [];
+          const newIndexes = getNewIndexes(prev, key);
           onSelect(options.filter(({ key }) => newIndexes.includes(key)));
+        } else {
+          setSelectedKeys((prev) => {
+            const newIndexes = getNewIndexes(prev, key);
+            onSelect(options.filter(({ key }) => newIndexes.includes(key)));
 
-          return newIndexes;
-        });
+            return newIndexes;
+          });
+        }
       }
     }
   };
