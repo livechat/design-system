@@ -25,3 +25,7 @@ export const getNormalizedItems = (
 };
 
 export const getPickerListItemKey = ({ key }: IPickerListItem): string => key;
+
+export const getNewIndexes = (prev: string[], key: string): string[] => {
+  return prev.includes(key) ? prev.filter((i) => i !== key) : [...prev, key];
+};
