@@ -71,6 +71,11 @@
       }
     }
   }
+
+  @media (prefers-reduced-motion) {
+    opacity: 1;
+    animation: none;
+  }
 }
 
 .modal {
