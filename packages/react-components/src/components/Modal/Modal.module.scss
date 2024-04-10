@@ -28,6 +28,10 @@
     &--visible {
       display: flex;
       animation: fade-in-step1 var(--transition-duration-moderate-1) forwards;
+
+      @media (prefers-reduced-motion) {
+        animation: none;
+      }
     }
 
     &--labelled {
@@ -70,6 +74,10 @@
         background-color: transparent;
       }
     }
+  }
+
+  @media (prefers-reduced-motion) {
+    animation: none;
   }
 }
 
