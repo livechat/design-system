@@ -4,7 +4,7 @@
   display: flex;
   position: relative;
   flex-direction: column;
-  opacity: 0;
+  opacity: var(--transition-initial-fade-in-opacity);
   margin: auto;
   border-radius: var(--radius-3);
   box-shadow: 0 20px 60px 0 rgb(0 0 0 / 30%);
@@ -28,6 +28,10 @@
     &--visible {
       display: flex;
       animation: fade-in-step1 var(--transition-duration-moderate-1) forwards;
+
+      @media (prefers-reduced-motion) {
+        animation: none;
+      }
     }
 
     &--labelled {
@@ -70,6 +74,10 @@
         background-color: transparent;
       }
     }
+  }
+
+  @media (prefers-reduced-motion) {
+    animation: none;
   }
 }
 
@@ -128,7 +136,7 @@
 
 @keyframes fade-in-step1 {
   0% {
-    opacity: 0;
+    opacity: var(--transition-initial-fade-in-opacity);
   }
 
   100% {
@@ -138,8 +146,8 @@
 
 @keyframes fade-in-step2 {
   0% {
-    opacity: 0;
-    scale: 0.8;
+    opacity: var(--transition-initial-fade-in-opacity);
+    scale: var(--transition-initial-fade-in-scale);
   }
 
   100% {

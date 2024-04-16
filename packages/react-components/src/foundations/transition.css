@@ -12,4 +12,32 @@
   --delay-instant: 50ms;
   --delay-moderate: 400ms;
   --delay-slow: 800ms;
+
+  /* Animated properties */
+  --transition-initial-fade-in-opacity: 0;
+  --transition-initial-fade-in-scale: 0.8;
+}
+
+@media (prefers-reduced-motion) {
+  :root {
+    --transition-duration-fast-1: 0ms;
+    --transition-duration-fast-2: 0ms;
+    --transition-duration-moderate-1: 0ms;
+    --delay-instant: 0ms;
+    --delay-moderate: 0ms;
+    --delay-slow: 0ms;
+    --transition-initial-fade-in-opacity: 1;
+    --transition-initial-fade-in-scale: 1;
+  }
+}
+
+.no-animations {
+  --transition-duration-fast-1: 0ms;
+  --transition-duration-fast-2: 0ms;
+  --transition-duration-moderate-1: 0ms;
+  --delay-instant: 0ms;
+  --delay-moderate: 0ms;
+  --delay-slow: 0ms;
+  --transition-initial-fade-in-opacity: 1;
+  --transition-initial-fade-in-scale: 1;
 }

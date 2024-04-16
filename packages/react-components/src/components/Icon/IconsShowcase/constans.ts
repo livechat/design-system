@@ -386,6 +386,8 @@ export const IconsData: Record<IconName, IconGroup> = {
   Traffic: IconGroup.General,
   TravelsFilled: IconGroup.General,
   Travels: IconGroup.General,
+  Trophy: IconGroup.General,
+  TrophyFilled: IconGroup.General,
   UsersGroup: IconGroup.General,
   UsersGroupFilled: IconGroup.General,
   VerifiedUserFilled: IconGroup.General,
