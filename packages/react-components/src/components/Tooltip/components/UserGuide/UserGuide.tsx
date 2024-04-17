@@ -84,7 +84,7 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
   }, [parentElement]);
 
   return parentElement && isVisible && rect ? (
-    <div>
+    <div style={{ position: 'absolute' }}>
       <SpotlightOverlay
         gap={rect}
         isVisible={isVisible}
