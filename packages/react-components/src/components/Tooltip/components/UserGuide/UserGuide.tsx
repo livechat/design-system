@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { ClientRectObject } from '@floating-ui/core';
 import cx from 'clsx';
 
 import { ModalPortalProps } from '../../../Modal';
@@ -84,7 +83,7 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
     setIsSliding(true);
   }, [parentElement]);
 
-  return parentElement && isVisible ? (
+  return parentElement && isVisible && rect ? (
     <div>
       <SpotlightOverlay
         gap={rect}
@@ -96,7 +95,7 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
         {...props}
         referenceElement={{
           getBoundingClientRect: () => {
-            return rect as ClientRectObject;
+            return rect;
           },
           contextElement: parentElement,
         }}
