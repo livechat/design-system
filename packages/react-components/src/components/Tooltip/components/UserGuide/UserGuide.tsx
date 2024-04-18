@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { FloatingPortal } from '@floating-ui/react';
 import cx from 'clsx';
 
 import { ModalPortalProps } from '../../../Modal';
@@ -15,6 +16,7 @@ const baseClass = 'guide-tooltip';
 
 const virtualReference = (element: Element, padding: number) =>
   new VirtualReference(element, padding);
+
 interface IOwnProps {
   shouldSlide?: boolean;
   className?: string;
@@ -23,7 +25,7 @@ interface IOwnProps {
 
 interface IUserGuide
   extends IOwnProps,
-    ITooltipProps,
+    Omit<ITooltipProps, 'triggerRenderer'>,
     Omit<ModalPortalProps, 'children'> {}
 
 export const UserGuide: React.FC<IUserGuide> = (props) => {
@@ -84,22 +86,22 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
   }, [parentElement]);
 
   return parentElement && isVisible && rect ? (
-    <div style={{ position: 'absolute' }}>
+    <FloatingPortal>
       <SpotlightOverlay
         gap={rect}
         isVisible={isVisible}
         slide={isSliding}
-        disablePointerEvents={true}
+        disablePointerEvents
       />
       <Tooltip
         {...props}
+        triggerRenderer={<></>}
         referenceElement={{
           getBoundingClientRect: () => {
             return rect;
           },
           contextElement: parentElement,
         }}
-        arrowOffsetY={25}
         className={cx({
           [styles[baseClass]]: true,
           [styles[`${baseClass}--slide`]]: isSliding,
@@ -108,6 +110,6 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
       >
         {props.children}
       </Tooltip>
-    </div>
+    </FloatingPortal>
   ) : null;
 };
