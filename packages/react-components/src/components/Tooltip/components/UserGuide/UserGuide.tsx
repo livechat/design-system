@@ -61,11 +61,11 @@ export const UserGuide: React.FC<IUserGuide> = (props) => {
       window.addEventListener('scroll', handleViewportChange);
 
       return () => {
-        window.addEventListener('resize', handleViewportChange);
-        window.addEventListener('resize', handleViewportChange);
+        window.removeEventListener('resize', handleViewportChange);
+        window.removeEventListener('scroll', handleViewportChange);
       };
     }
-  }, [parentElement, parentElementName]);
+  }, [parentElement]);
 
   React.useEffect(() => {
     if (parentElementName) {
