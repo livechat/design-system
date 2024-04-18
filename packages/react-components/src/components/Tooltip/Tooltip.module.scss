@@ -149,6 +149,9 @@ $base-class: 'tooltip';
 }
 
 .guide-tooltip {
+  position: absolute;
+  min-width: 250px;
+
   &--slide {
     transition-property: opacity, visibility, transform;
   }
