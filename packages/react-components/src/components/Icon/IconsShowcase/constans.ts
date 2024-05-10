@@ -394,6 +394,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   TrophyFilled: IconGroup.General,
   UsersGroup: IconGroup.General,
   UsersGroupFilled: IconGroup.General,
+  VariablePlus: IconGroup.General,
   VerifiedUserFilled: IconGroup.General,
   VerifiedUser: IconGroup.General,
   VideoFilled: IconGroup.General,
