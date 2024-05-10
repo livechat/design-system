@@ -32,9 +32,9 @@
     <g id="One" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <path d="M210,420 C325.979797,420 420,325.979797 420,210 C420,94.0202025 325.979797,0 210,0 C94.0202025,0 0,94.0202025 0,210 C0,325.979797 94.0202025,420 210,420 Z" id="BG" fill="url(#radialGradient-1)"></path>
         <g id="body">
-            <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+            <use fill="currentcolor" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
             <use fill="url(#linearGradient-2)" fill-rule="evenodd" xlink:href="#path-3"></use>
-            <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-3"></use>
+            <use fill="currentcolor" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-3"></use>
         </g>
         <path d="M210,157 C223.807119,157 235,145.807119 235,132 C235,118.192881 223.807119,107 210,107 C196.192881,107 185,118.192881 185,132 C185,145.807119 196.192881,157 210,157 Z" id="glare" fill="url(#linearGradient-6)" opacity="0.740392485"></path>
     </g>

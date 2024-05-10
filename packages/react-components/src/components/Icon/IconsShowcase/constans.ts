@@ -146,6 +146,10 @@ export const IconsData: Record<IconName, IconGroup> = {
   Channels: IconGroup.General,
   ChartFilled: IconGroup.General,
   Chart: IconGroup.General,
+  ChatBarWindow: IconGroup.General,
+  ChatBasicWindow: IconGroup.General,
+  ChatBubbleWindow: IconGroup.General,
+  ChatModernWindow: IconGroup.General,
   ChatDotsFilled: IconGroup.General,
   ChatDots: IconGroup.General,
   ChatMissedFilled: IconGroup.General,
@@ -407,6 +411,8 @@ export const IconsData: Record<IconName, IconGroup> = {
   WarningFilled: IconGroup.General,
   Warning: IconGroup.General,
   Webhook: IconGroup.General,
+  Wifi: IconGroup.General,
+  WifiOff: IconGroup.General,
 
   //Brands
   ChipCopilotColored: IconGroup.Brands,
