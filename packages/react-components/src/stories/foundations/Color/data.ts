@@ -1426,6 +1426,16 @@ export const ColorsData: Record<
     desc: 'Chat tag background ',
     deprecated: false,
   },
+  TooltipBackgroundBasic: {
+    group: ColorGroup.ContentBasic,
+    desc: '',
+    deprecated: false,
+  },
+  TooltipBackgroundInvert: {
+    group: ColorGroup.ContentBasic,
+    desc: '',
+    deprecated: false,
+  },
   TooltipBorder: {
     group: ColorGroup.BorderBasic,
     desc: '',
