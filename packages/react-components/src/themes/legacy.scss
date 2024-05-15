@@ -6,6 +6,7 @@ $action-primary-default: #4284f5;
 $surface-secondary-default: #f1f6f8;
 $surface-primary-active: #ebf1f4;
 $surface-tertiary-hover: #d3dde3;
+$decor-gray800: #29292f;
 
 .lc-legacy-theme {
   --background: #fff; // deprecated
@@ -240,7 +241,7 @@ $surface-tertiary-hover: #d3dde3;
   --decor-yellow50: #fff9ed;
   --decor-gray950: #131317;
   --decor-gray900: #1b1b20;
-  --decor-gray800: #29292f;
+  --decor-gray800: #{$decor-gray800};
   --decor-gray700: #3b3b43;
   --decor-gray600: #4e4e58;
   --decor-gray500: #62626d;
@@ -324,8 +325,12 @@ $surface-tertiary-hover: #d3dde3;
   --surface-avatar-9: #b08c00;
   --surface-avatar-10: #00a449;
   --navbar-background: #101014;
+  --tooltip-background-basic: #fff;
+  --tooltip-background-invert: #{$decor-gray800};
   --tooltip-border: transparent;
   --animated-gradient-value-1: rgb(226 226 228 / 0%) 0.08%;
   --animated-gradient-value-2: #e2e2e4 50.5%;
   --animated-gradient-value-3: rgb(226 226 228 / 0%) 99.89%;
+  --content-basic-internal-note: #3a310c;
+  --content-basic-bot: #00003e;
 }
