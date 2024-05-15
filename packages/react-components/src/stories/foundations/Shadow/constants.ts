@@ -22,8 +22,6 @@ const ShadowDescription: Record<ShadowTokenKey, string> = {
   DividerBottomRight:
     'Suited for subtle exits, like fading out elements or collapsing menus/details panel',
   MessageBox: 'MessageBox on Chats',
-  ContentBasicInternalNote: 'Content basic internal note shadow',
-  ContentBasicBot: 'Content basic dot shadow',
   FixedRight: 'Fixed shadow on right of the element',
   FixedLeft: 'Fixed shadow on left of the element',
   FixedTop: 'Fixed shadow on top of the element',

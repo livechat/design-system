@@ -421,6 +421,16 @@ export const ColorsData: Record<
     desc: 'Content values, yellow tags, text and icons',
     deprecated: false,
   },
+  ContentBasicInternalNote: {
+    group: ColorGroup.ContentBasic,
+    desc: 'Content values, yellow tags, text and icons',
+    deprecated: false,
+  },
+  ContentBasicBot: {
+    group: ColorGroup.ContentBasic,
+    desc: 'Content values, yellow tags, text and icons',
+    deprecated: false,
+  },
   ContentBasicGradient01: {
     group: ColorGroup.ContentGradient,
     desc: 'Gradient color for content, text and icons',

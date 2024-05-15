@@ -16,8 +16,6 @@ export const ShadowToken = {
   DividerTopRight: '--shadow-divider-top-right',
   DividerBottomRight: '--shadow-divider-bottom-right',
   MessageBox: '--shadow-message-box',
-  ContentBasicInternalNote: '--shadow-content-basic-internal-note',
-  ContentBasicBot: '--shadow-content-basic-bot',
   FixedRight: '--shadow-fixed-right',
   FixedLeft: '--shadow-fixed-left',
   FixedTop: '--shadow-fixed-top',
