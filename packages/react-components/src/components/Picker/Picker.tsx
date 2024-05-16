@@ -81,14 +81,12 @@ export const Picker: React.FC<IPickerProps> = ({
     setReference,
     getFloatingProps,
     getItemProps,
-    isPositioned,
     setFloating,
     floatingStyles,
     listElementsRef,
     virtualItemRef,
     activeIndex,
     maxHeight,
-    pointer,
     setPointer,
   } = useFloatingPicker({
     openedOnInit,
@@ -146,8 +144,6 @@ export const Picker: React.FC<IPickerProps> = ({
               setFloating={setFloating}
               floatingStyles={floatingStyles}
               maxHeight={maxHeight}
-              isPositioned={isPositioned}
-              pointer={pointer}
               activeIndex={activeIndex}
               selectedKeys={selectedKeys}
               listElementsRef={listElementsRef}
