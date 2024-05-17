@@ -24,7 +24,9 @@ export interface ITriggerBodyProps {
   onItemRemove: (key: string) => void;
   onSelect: (key: string) => void;
   onFilter: (text: string) => void;
+  onClear: () => void;
   virtualItemRef: React.MutableRefObject<HTMLElement | null>;
+  isTriggerFocused: boolean;
 }
 
 export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
@@ -39,8 +41,10 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
   onItemRemove,
   onSelect,
   onFilter,
+  onClear,
   searchPhrase,
   virtualItemRef,
+  isTriggerFocused,
 }) => {
   const shouldDisplaySearch = isOpen && !isSearchDisabled;
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -55,6 +59,30 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
       }
     }
   }, [selectedItems, clearSearchAfterSelection]);
+
+  const onKeyDown = (e: KeyboardEvent) => {
+    if (e.key === 'Backspace' && selectedItems && selectedItems.length > 0) {
+      e.preventDefault();
+      if (type === 'multi') {
+        onItemRemove(selectedItems[selectedItems.length - 1].key);
+      } else {
+        onClear();
+      }
+    }
+
+    if (e.key === 'Delete') {
+      e.preventDefault();
+      onClear();
+    }
+  };
+
+  React.useEffect(() => {
+    if (!isOpen && isTriggerFocused) {
+      document.addEventListener('keydown', onKeyDown);
+
+      return () => document.removeEventListener('keydown', onKeyDown);
+    }
+  }, [isOpen, selectedItems, isTriggerFocused]);
 
   const getSingleItem = (item: IPickerListItem) => {
     if (type === 'single' && isOpen && !isSearchDisabled) {

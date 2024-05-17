@@ -44,6 +44,7 @@ export const Picker: React.FC<IPickerProps> = ({
   ...props
 }) => {
   const [open, setOpen] = React.useState(openedOnInit);
+  const [triggerFocus, setTriggerFocus] = React.useState(false);
   const isControlled = isVisible !== undefined;
   const isOpen = isControlled ? isVisible : open;
 
@@ -116,6 +117,7 @@ export const Picker: React.FC<IPickerProps> = ({
         isRequired={isRequired}
         isMultiSelect={type === 'multi'}
         size={size}
+        setTriggerFocus={setTriggerFocus}
       >
         <PickerTriggerBody
           isOpen={isOpen}
@@ -129,8 +131,10 @@ export const Picker: React.FC<IPickerProps> = ({
           onItemRemove={handleItemRemove}
           onSelect={handleSelect}
           onFilter={handleOnFilter}
+          onClear={handleClear}
           searchPhrase={searchPhrase}
           virtualItemRef={virtualItemRef}
+          isTriggerFocused={triggerFocus}
         />
       </PickerTrigger>
       <FloatingNode id={nodeId}>
