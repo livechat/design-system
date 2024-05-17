@@ -68,14 +68,15 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
           />
         )}
         <div className={styles[`${itemClassName}__label-container`]}>
-          <span
-            className={cx({
+          <Text
+            as="span"
+            className={cx([styles[`${itemClassName}__label`]], {
               [styles[`${itemClassName}__main-label`]]: item.secondaryText,
             })}
             aria-disabled={item.disabled}
           >
             {item.name}
-          </span>
+          </Text>
           {item.secondaryText && (
             <span className={styles[`${itemClassName}__secondary-label`]}>
               {item.secondaryText}
@@ -138,9 +139,7 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
             item.key === SELECT_ALL_OPTION_KEY,
         })}
       >
-        <Text as="span" className={styles[`${itemClassName}__content`]}>
-          {getOptionContent(item)}
-        </Text>
+        {getOptionContent(item)}
         {isSelected && !item.showCheckbox && (
           <Icon
             kind="link"
