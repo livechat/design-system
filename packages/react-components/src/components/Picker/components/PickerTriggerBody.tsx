@@ -79,9 +79,11 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
   React.useEffect(() => {
     if (!isOpen && isTriggerFocused) {
       document.addEventListener('keydown', onKeyDown);
-
-      return () => document.removeEventListener('keydown', onKeyDown);
+    } else {
+      document.removeEventListener('keydown', onKeyDown);
     }
+
+    return () => document.removeEventListener('keydown', onKeyDown);
   }, [isOpen, selectedItems, isTriggerFocused]);
 
   const getSingleItem = (item: IPickerListItem) => {
