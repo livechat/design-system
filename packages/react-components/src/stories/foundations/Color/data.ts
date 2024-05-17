@@ -421,6 +421,16 @@ export const ColorsData: Record<
     desc: 'Content values, yellow tags, text and icons',
     deprecated: false,
   },
+  ContentBasicInternalNote: {
+    group: ColorGroup.ContentBasic,
+    desc: 'Content values, yellow tags, text and icons',
+    deprecated: false,
+  },
+  ContentBasicBot: {
+    group: ColorGroup.ContentBasic,
+    desc: 'Content values, yellow tags, text and icons',
+    deprecated: false,
+  },
   ContentBasicGradient01: {
     group: ColorGroup.ContentGradient,
     desc: 'Gradient color for content, text and icons',
@@ -1424,6 +1434,16 @@ export const ColorsData: Record<
   TagSurface01: {
     group: ColorGroup.SurfaceComponentSpecific,
     desc: 'Chat tag background ',
+    deprecated: false,
+  },
+  TooltipBackgroundBasic: {
+    group: ColorGroup.ContentBasic,
+    desc: '',
+    deprecated: false,
+  },
+  TooltipBackgroundInvert: {
+    group: ColorGroup.ContentBasic,
+    desc: '',
     deprecated: false,
   },
   TooltipBorder: {

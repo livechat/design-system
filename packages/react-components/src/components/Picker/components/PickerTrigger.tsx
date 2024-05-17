@@ -24,6 +24,7 @@ export interface PickerTriggerProps {
   isError?: boolean;
   isOpen: boolean;
   onClear: () => void;
+  setTriggerFocus: (v: boolean) => void;
 }
 
 const baseClass = 'picker-trigger';
@@ -44,6 +45,7 @@ export const PickerTrigger: React.FC<
   isError,
   onClear,
   children,
+  setTriggerFocus,
 }) => {
   const mergedClassNames = cx(
     styles[baseClass],
@@ -74,8 +76,11 @@ export const PickerTrigger: React.FC<
       ref={setReference}
       type="button"
       {...getReferenceProps()}
+      onFocus={() => setTriggerFocus(true)}
+      onBlur={() => setTriggerFocus(false)}
     >
-      <div
+      <Text
+        as="div"
         className={cx(
           styles[`${baseClass}__content`],
           styles[`${baseClass}__content--${size}`],
@@ -84,8 +89,8 @@ export const PickerTrigger: React.FC<
             styles[`${baseClass}__content--with-items`]
         )}
       >
-        <Text as="div">{children}</Text>
-      </div>
+        {children}
+      </Text>
       <div
         className={cx(
           styles[`${baseClass}__controls`],
