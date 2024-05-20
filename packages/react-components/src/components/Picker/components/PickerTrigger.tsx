@@ -79,7 +79,8 @@ export const PickerTrigger: React.FC<
       onFocus={() => setTriggerFocus(true)}
       onBlur={() => setTriggerFocus(false)}
     >
-      <div
+      <Text
+        as="div"
         className={cx(
           styles[`${baseClass}__content`],
           styles[`${baseClass}__content--${size}`],
@@ -88,8 +89,8 @@ export const PickerTrigger: React.FC<
             styles[`${baseClass}__content--with-items`]
         )}
       >
-        <Text as="div">{children}</Text>
-      </div>
+        {children}
+      </Text>
       <div
         className={cx(
           styles[`${baseClass}__controls`],
