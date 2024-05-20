@@ -35,20 +35,19 @@ export const Info: React.FC<{
         <Heading
           as="div"
           size="xs"
-          className={cx(
-            styles[`${baseClass}-header`],
-            styles[`${baseClass}-header--info`]
-          )}
+          className={cx(styles[`${baseClass}-header`], {
+            [styles[`${baseClass}-header--info`]]: closeWithX,
+          })}
         >
           {header}
         </Heading>
       )}
       <Text
         as="div"
-        className={cx(
-          styles[`${baseClass}-text`],
-          styles[`${baseClass}-text--info`]
-        )}
+        className={cx({
+          [styles[`${baseClass}-text`]]: closeWithX,
+          [styles[`${baseClass}-text--info`]]: closeWithX,
+        })}
       >
         {text}
       </Text>
