@@ -24,9 +24,11 @@
     justify-content: center;
     transition: all 0.2s ease;
     margin: 0;
+    outline: none;
     border: 1px solid var(--border-basic-primary);
     border-radius: 4px;
     background-color: var(--surface-primary-default);
+    cursor: pointer;
     width: 16px;
     height: 16px;
 
@@ -46,6 +48,10 @@
       /* stylelint-enable */
     }
 
+    &:hover {
+      border-color: var(--border-basic-hover);
+    }
+
     &:checked::after {
       opacity: 1;
     }
@@ -59,7 +65,12 @@
       }
     }
 
-    &:focus {
+    &:checked:hover {
+      border-color: var(--action-primary-default);
+      background-color: var(--action-primary-default);
+    }
+
+    &:focus-visible {
       box-shadow: var(--shadow-focus);
     }
   }
@@ -81,9 +92,13 @@
   &--disabled {
     .checkbox {
       &__input {
-        opacity: 0.4;
-        border-color: var(--border-disabled);
-        background-color: var(--surface-basic-disabled);
+        border-color: var(--border-basic-disabled);
+        background-color: var(--surface-primary-disabled);
+
+        &:checked {
+          border-color: transparent;
+          background-color: var(--action-primary-disabled);
+        }
       }
 
       &__label,
