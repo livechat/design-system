@@ -67,7 +67,7 @@ export const WithStyledAdditionalContent = (
         }
       >
         <div style={{ marginBottom: 'var(--spacing-1)' }}>
-          <Display>Title text up 2 lines</Display>
+          <Display bold>Title text up 2 lines</Display>
         </div>
         <Text as="div">Description text up to 4 lines</Text>
       </PromoBannerV2>
@@ -82,7 +82,9 @@ export const WithStyledAdditionalContent = (
         }
       >
         <div style={{ marginBottom: 'var(--spacing-1)' }}>
-          <Display size="sm">Title text up 2 lines</Display>
+          <Display bold size="sm">
+            Title text up 2 lines
+          </Display>
         </div>
         <Text as="div">Description text up to 4 lines</Text>
       </PromoBannerV2>
