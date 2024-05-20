@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { LockBlackFilled as LockIcon } from '@livechat/design-system-icons';
+import { LockBlack as LockIcon } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Icon, IconSize } from '../Icon';
@@ -73,6 +73,7 @@ export const Switch: React.FC<SwitchProps> = ({
   const [checked, setChecked] = React.useState(() =>
     isControlled ? on : defaultOn
   );
+  const [focused, setFocused] = React.useState(false);
   const controllingValue = isControlled ? on : checked;
 
   const isLoading = state === 'loading';
@@ -111,8 +112,14 @@ export const Switch: React.FC<SwitchProps> = ({
         disabled={shouldBehaveAsDisabled}
         aria-label={ariaLabel}
         {...props}
+        onFocus={() => setFocused(true)}
+        onBlur={() => setFocused(false)}
       />
-      <span className={styles[`${baseClass}__container`]}>
+      <span
+        className={cx(styles[`${baseClass}__container`], {
+          [styles[`${baseClass}__container--focused`]]: focused,
+        })}
+      >
         <span
           className={cx(
             styles[`${baseClass}__track`],
@@ -123,6 +130,7 @@ export const Switch: React.FC<SwitchProps> = ({
         <span
           className={cx(
             styles[`${baseClass}__slider`],
+            styles[`${baseClass}__slider--${availabilityStyles}`],
             styles[`${baseClass}__slider--${size}`],
             styles[`${baseClass}__slider--${size}--${toggleStyles}`]
           )}
