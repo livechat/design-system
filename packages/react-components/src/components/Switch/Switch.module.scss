@@ -18,6 +18,18 @@ $medium-width: 36px;
 $medium-size: $medium-height - 4px;
 $medium-move: $medium-width - $medium-size;
 
+@mixin hover {
+  $hovered-track: #{$base-class}__track;
+
+  .#{$hovered-track}--enabled.#{$hovered-track}--on {
+    background-color: var(--action-positive-hover);
+  }
+
+  .#{$hovered-track}--enabled.#{$hovered-track}--off {
+    background-color: var(--action-neutral-hover);
+  }
+}
+
 /* stylelint-disable max-nesting-depth */
 .#{$base-class} {
   display: inline-block;
@@ -25,15 +37,7 @@ $medium-move: $medium-width - $medium-size;
   outline: none;
 
   &:hover {
-    $hovered-track: #{$base-class}__track;
-
-    .#{$hovered-track}--enabled.#{$hovered-track}--on {
-      background-color: var(--action-positive-hover);
-    }
-
-    .#{$hovered-track}--enabled.#{$hovered-track}--off {
-      background-color: var(--action-neutral-hover);
-    }
+    @include hover;
   }
 
   &--large {
@@ -49,6 +53,10 @@ $medium-move: $medium-width - $medium-size;
   &--medium {
     width: $medium-width;
     height: $medium-height;
+  }
+
+  &--focused {
+    @include hover;
   }
 
   &__input {

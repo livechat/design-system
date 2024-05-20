@@ -85,6 +85,9 @@ export const Switch: React.FC<SwitchProps> = ({
   const mergedClassNames = cx(
     styles[baseClass],
     styles[`${baseClass}--${size}`],
+    {
+      [styles[`${baseClass}--focused`]]: focused,
+    },
     className
   );
 
