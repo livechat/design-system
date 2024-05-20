@@ -28,7 +28,7 @@ export const Display: React.FC<React.PropsWithChildren<IProps>> = ({
   className,
   customColor,
   textAlign,
-  bold,
+  bold = true,
   ...props
 }) => {
   return React.createElement(
