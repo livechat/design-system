@@ -2,6 +2,7 @@ $switch-transition-duration: 300ms;
 $switch-transition-timing-function: cubic-bezier(0.33, 0, 0.67, 1);
 
 $base-class: 'switch';
+$radius: 24px;
 $large-height: 24px;
 $large-width: 44px;
 $large-size: $large-height - 4px;
@@ -17,6 +18,18 @@ $medium-width: 36px;
 $medium-size: $medium-height - 4px;
 $medium-move: $medium-width - $medium-size;
 
+@mixin hover {
+  $hovered-track: #{$base-class}__track;
+
+  .#{$hovered-track}--enabled.#{$hovered-track}--on {
+    background-color: var(--action-positive-hover);
+  }
+
+  .#{$hovered-track}--enabled.#{$hovered-track}--off {
+    background-color: var(--action-neutral-hover);
+  }
+}
+
 /* stylelint-disable max-nesting-depth */
 .#{$base-class} {
   display: inline-block;
@@ -24,15 +37,7 @@ $medium-move: $medium-width - $medium-size;
   outline: none;
 
   &:hover {
-    $hovered-track: #{$base-class}__track;
-
-    .#{$hovered-track}--enabled.#{$hovered-track}--on {
-      background-color: var(--action-positive-hover);
-    }
-
-    .#{$hovered-track}--enabled.#{$hovered-track}--off {
-      background-color: var(--action-neutral-hover);
-    }
+    @include hover;
   }
 
   &--large {
@@ -48,6 +53,10 @@ $medium-move: $medium-width - $medium-size;
   &--medium {
     width: $medium-width;
     height: $medium-height;
+  }
+
+  &--focused {
+    @include hover;
   }
 
   &__input {
@@ -77,6 +86,11 @@ $medium-move: $medium-width - $medium-size;
     width: 100%;
     height: 100%;
     pointer-events: none;
+
+    &--focused {
+      border-radius: $radius;
+      box-shadow: var(--shadow-focus);
+    }
   }
 
   &__track {
@@ -84,7 +98,7 @@ $medium-move: $medium-width - $medium-size;
     transition-duration: $switch-transition-duration;
     transition-property: background-color;
     transition-timing-function: $switch-transition-timing-function;
-    border-radius: 24px;
+    border-radius: $radius;
     height: 100%;
 
     &--on#{&}--enabled {
@@ -160,6 +174,10 @@ $medium-move: $medium-width - $medium-size;
         right: calc(#{$medium-move} - 3px);
         left: 3px;
       }
+    }
+
+    &--disabled {
+      background: var(--content-locked-disabled);
     }
   }
 

@@ -17,6 +17,8 @@ interface IProps {
   customColor?: string;
   /** Optional prop to set the text align */
   textAlign?: TTextAlign;
+  /** Optional prop to set the bold */
+  bold?: boolean;
 }
 
 export const Display: React.FC<React.PropsWithChildren<IProps>> = ({
@@ -26,12 +28,19 @@ export const Display: React.FC<React.PropsWithChildren<IProps>> = ({
   className,
   customColor,
   textAlign,
+  bold = true,
   ...props
 }) => {
   return React.createElement(
     as,
     {
-      className: cx(styles[`display-${size}`], className),
+      className: cx(
+        styles[`display-${size}`],
+        {
+          [styles['display--bold']]: bold,
+        },
+        className
+      ),
       style: {
         ...(customColor && { color: customColor }),
         ...(textAlign && { textAlign: textAlign }),

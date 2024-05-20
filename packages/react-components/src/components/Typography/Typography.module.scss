@@ -83,13 +83,20 @@
 @mixin display-md {
   line-height: 32px;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 @mixin display-sm {
   line-height: 24px;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
+}
+
+@mixin display-lg {
+  line-height: 32px;
+  letter-spacing: 0;
+  font-size: 28px;
+  font-weight: 500;
 }
 
 @mixin display-max {
@@ -168,6 +175,14 @@
   @include display-sm;
 }
 
+.display-lg {
+  @include display-lg;
+}
+
 .display-max {
   @include display-max;
+}
+
+.display--bold {
+  font-weight: 700;
 }
