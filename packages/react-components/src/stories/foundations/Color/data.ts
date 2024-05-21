@@ -1451,6 +1451,11 @@ export const ColorsData: Record<
     desc: '',
     deprecated: false,
   },
+  TooltipBorderForSvg: {
+    group: ColorGroup.BorderBasic,
+    desc: '',
+    deprecated: false,
+  },
   AnimatedGradientValue1: {
     group: ColorGroup.AnimationGradient,
     desc: 'Part of the gradient used for animation in Skeleton component',
