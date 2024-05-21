@@ -12,6 +12,11 @@
     order: 1;
     margin-left: 4px;
   }
+
+  &--small {
+    width: 16px;
+    height: 16px;
+  }
 }
 
 @mixin icon-only($base-class) {

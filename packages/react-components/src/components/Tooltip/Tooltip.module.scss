@@ -1,11 +1,12 @@
 @import '../../utils/StackingContextLevel';
 
 $base-class: 'tooltip';
+$radius: var(--radius-3);
 
 .#{$base-class} {
   z-index: $stacking-context-level-tooltip;
   border: 1px solid var(--tooltip-border);
-  border-radius: var(--radius-3);
+  border-radius: $radius;
   box-shadow: var(--shadow-tooltip);
   background-color: var(--tooltip-background-basic);
   padding: var(--spacing-3);
@@ -13,35 +14,9 @@ $base-class: 'tooltip';
   color: var(--content-basic-primary);
   font-size: inherit;
 
-  &__arrow {
-    position: absolute;
-    border: 1px solid;
-    border-color: var(--tooltip-border) var(--tooltip-background-basic)
-      var(--tooltip-background-basic) var(--tooltip-border);
-    box-shadow: var(--shadow-tooltip-arrow);
-    background: var(--tooltip-background-basic);
-    width: 10px;
-    height: 10px;
-
-    &[aria-placement^='left'] {
-      left: calc(100% - 5px);
-      transform: rotate(135deg);
-    }
-
-    &[aria-placement^='right'] {
-      left: calc(0% - 5px);
-      transform: rotate(-45deg);
-    }
-
-    &[aria-placement^='bottom'] {
-      top: calc(0% - 5px);
-      transform: rotate(45deg);
-    }
-
-    &[aria-placement^='top'] {
-      top: calc(100% - 5px);
-      transform: rotate(-135deg);
-    }
+  &__content {
+    border-radius: $radius;
+    overflow: hidden;
   }
 
   &--invert {

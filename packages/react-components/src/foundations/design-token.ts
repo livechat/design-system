@@ -352,6 +352,7 @@ export const DesignToken = {
   TooltipBackgroundBasic: '--tooltip-background-basic',
   TooltipBackgroundInvert: '--tooltip-background-invert',
   TooltipBorder: '--tooltip-border',
+  TooltipBorderForSvg: '--tooltip-border-for-svg',
   AnimatedGradientValue1: '--animated-gradient-value-1',
   AnimatedGradientValue2: '--animated-gradient-value-2',
   AnimatedGradientValue3: '--animated-gradient-value-3',

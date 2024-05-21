@@ -16,6 +16,7 @@ import {
   useTransitionStyles,
   useTransitionStatus,
   safePolygon,
+  FloatingArrow,
 } from '@floating-ui/react';
 import cx from 'clsx';
 
@@ -103,7 +104,6 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
     refs,
     context,
     middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
-    placement: finalPlacement,
   } = useFloating({
     middleware: [
       offset({ mainAxis: offsetMainAxis }),
@@ -170,11 +170,17 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
           {...getFloatingProps()}
           data-status={status}
         >
-          <Text as="div">{children}</Text>
-          <div
+          <Text as="div" className={styles[`${baseClass}__content`]}>
+            {children}
+          </Text>
+          <FloatingArrow
             ref={arrowRef}
-            className={styles[`${baseClass}__arrow`]}
-            aria-placement={finalPlacement}
+            context={context}
+            stroke="var(--tooltip-border-for-svg)"
+            fill="var(--tooltip-background-basic)"
+            strokeWidth={1}
+            width={10}
+            height={5}
             style={{
               ...getArrowPositionStyles(
                 arrowOffsetY,
