@@ -349,10 +349,14 @@ export const DesignToken = {
   SurfaceAvatar9: '--surface-avatar-9',
   SurfaceAvatar10: '--surface-avatar-10',
   NavbarBackground: '--navbar-background',
+  TooltipBackgroundBasic: '--tooltip-background-basic',
+  TooltipBackgroundInvert: '--tooltip-background-invert',
   TooltipBorder: '--tooltip-border',
   AnimatedGradientValue1: '--animated-gradient-value-1',
   AnimatedGradientValue2: '--animated-gradient-value-2',
   AnimatedGradientValue3: '--animated-gradient-value-3',
+  ContentBasicInternalNote: '--content-basic-internal-note',
+  ContentBasicBot: '--content-basic-bot',
 };
 
 export type DesignTokenKey = keyof typeof DesignToken;

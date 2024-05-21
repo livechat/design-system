@@ -44,6 +44,7 @@ export const Picker: React.FC<IPickerProps> = ({
   ...props
 }) => {
   const [open, setOpen] = React.useState(openedOnInit);
+  const [triggerFocus, setTriggerFocus] = React.useState(false);
   const isControlled = isVisible !== undefined;
   const isOpen = isControlled ? isVisible : open;
 
@@ -81,14 +82,12 @@ export const Picker: React.FC<IPickerProps> = ({
     setReference,
     getFloatingProps,
     getItemProps,
-    isPositioned,
     setFloating,
     floatingStyles,
     listElementsRef,
     virtualItemRef,
     activeIndex,
     maxHeight,
-    pointer,
     setPointer,
   } = useFloatingPicker({
     openedOnInit,
@@ -118,6 +117,7 @@ export const Picker: React.FC<IPickerProps> = ({
         isRequired={isRequired}
         isMultiSelect={type === 'multi'}
         size={size}
+        setTriggerFocus={setTriggerFocus}
       >
         <PickerTriggerBody
           isOpen={isOpen}
@@ -131,8 +131,10 @@ export const Picker: React.FC<IPickerProps> = ({
           onItemRemove={handleItemRemove}
           onSelect={handleSelect}
           onFilter={handleOnFilter}
+          onClear={handleClear}
           searchPhrase={searchPhrase}
           virtualItemRef={virtualItemRef}
+          isTriggerFocused={triggerFocus}
         />
       </PickerTrigger>
       <FloatingNode id={nodeId}>
@@ -146,8 +148,6 @@ export const Picker: React.FC<IPickerProps> = ({
               setFloating={setFloating}
               floatingStyles={floatingStyles}
               maxHeight={maxHeight}
-              isPositioned={isPositioned}
-              pointer={pointer}
               activeIndex={activeIndex}
               selectedKeys={selectedKeys}
               listElementsRef={listElementsRef}

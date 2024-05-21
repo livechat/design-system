@@ -111,9 +111,13 @@ export const Button = React.forwardRef<
             className: cx(
               icon.props.className,
               styles[`${baseClass}__icon`],
-              styles[`${baseClass}__icon--${iconPosition}`]
+              styles[`${baseClass}__icon--${iconPosition}`],
+              {
+                [styles[`${baseClass}__icon--small`]]: size === 'xcompact',
+              }
             ),
             disabled,
+            size: size === 'xcompact' ? 'small' : 'medium',
           })}
         <div className={styles[`${baseClass}__content`]}>{children}</div>
       </Component>
