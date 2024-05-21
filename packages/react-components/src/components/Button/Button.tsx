@@ -114,6 +114,7 @@ export const Button = React.forwardRef<
               styles[`${baseClass}__icon--${iconPosition}`]
             ),
             disabled,
+            size: size === 'xcompact' ? 'small' : 'medium',
           })}
         <div className={styles[`${baseClass}__content`]}>{children}</div>
       </Component>
