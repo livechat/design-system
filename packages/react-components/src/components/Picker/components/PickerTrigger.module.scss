@@ -94,13 +94,14 @@ $base-class: 'picker-trigger';
   }
 
   &--disabled {
+    border-color: var(--border-basic-disabled);
     background-color: var(--surface-basic-disabled);
     color: var(--content-basic-disabled);
 
     &:hover,
     &:focus,
     &:active {
-      border-color: var(--border-basic-primary);
+      border-color: var(--border-basic-disabled);
       cursor: auto;
     }
   }
