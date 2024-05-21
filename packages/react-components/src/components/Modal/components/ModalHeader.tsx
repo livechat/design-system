@@ -30,7 +30,7 @@ export interface ModalHeaderProps {
   /**
    * Define class name for container
    */
-  className?: 'string';
+  className?: string;
 }
 
 export const ModalHeader: React.FC<ModalHeaderProps> = ({
