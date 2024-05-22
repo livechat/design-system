@@ -22,7 +22,7 @@ import cx from 'clsx';
 
 import { Text } from '../Typography';
 
-import { getArrowPositionStyles } from './helpers';
+import { getArrowPositionStyles, getArrowTokens } from './helpers';
 import { ITooltipProps } from './types';
 
 import styles from './Tooltip.module.scss';
@@ -176,8 +176,6 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
           <FloatingArrow
             ref={arrowRef}
             context={context}
-            stroke="var(--tooltip-border-for-svg)"
-            fill="var(--tooltip-background-basic)"
             strokeWidth={1}
             width={10}
             height={5}
@@ -189,6 +187,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
                 arrowX
               ),
             }}
+            {...getArrowTokens(tooltipStyle)}
           />
         </div>
       )}
