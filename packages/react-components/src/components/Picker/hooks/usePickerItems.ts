@@ -77,14 +77,14 @@ export const usePickerItems = ({
 
   const handleSelect = (key: string) => {
     const item = options.find((item) => item.key === key);
-    if (!item || item.disabled) {
+    if ((!item || item.disabled) && key !== SELECT_ALL_OPTION_KEY) {
       return;
     }
 
     if (type === 'single') {
       setOpen(false);
       setSelectedKeys(() => {
-        onSelect([item]);
+        item && onSelect([item]);
 
         return [key];
       });
