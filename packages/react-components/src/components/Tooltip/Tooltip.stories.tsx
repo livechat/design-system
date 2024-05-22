@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { ComponentMeta, StoryFn } from '@storybook/react';
 
+import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import noop from '../../utils/noop';
 import { Button } from '../Button';
 
@@ -65,6 +66,40 @@ Default.decorators = [
     </div>
   ),
 ];
+
+export const Kinds = (): React.ReactElement => (
+  <>
+    <StoryDescriptor title="Default">
+      <Tooltip
+        placement="right"
+        isVisible
+        triggerRenderer={<Button>Trigger</Button>}
+      >
+        Simple text content
+      </Tooltip>
+    </StoryDescriptor>
+    <StoryDescriptor title="Invert">
+      <Tooltip
+        placement="right"
+        isVisible
+        kind="invert"
+        triggerRenderer={<Button>Trigger</Button>}
+      >
+        Simple text content
+      </Tooltip>
+    </StoryDescriptor>
+    <StoryDescriptor title="Important">
+      <Tooltip
+        placement="right"
+        isVisible
+        kind="important"
+        triggerRenderer={<Button>Trigger</Button>}
+      >
+        Simple text content
+      </Tooltip>
+    </StoryDescriptor>
+  </>
+);
 
 export const TooltipInfo = (args: ITooltipProps): React.ReactElement => (
   <Tooltip {...args} triggerRenderer={<Button>Trigger</Button>}>
