@@ -18,10 +18,16 @@ import {
 
 ```jsx
 <RangeDatePicker
-  toMonth={new Date('06/20/2023')}
-  initialFromDate={new Date('2023-07-01')}
-  initialToDate={new Date('2023-07-10')}
-/>
+ toMonth={new Date('06/20/2023')}
+ initialFromDate={new Date('2023-07-01')}
+ initialToDate={new Date('2023-07-10')}
+>
+ {({ datepicker }) => (
+    <DatePickerRangeCalendarsWrapper>
+    <DatePicker {...datepicker} />
+  </DatePickerRangeCalendarsWrapper>
+  )}
+</RangeDatePicker>
 ```
 
 ## Component API <a id="ComponentAPI" />
