@@ -25,6 +25,13 @@ export default {
     useDismissHookProps: {
       control: false,
     },
+    theme: {
+      options: ['invert', 'important', undefined],
+      control: {
+        type: 'select',
+        labels: 'Theme',
+      },
+    },
     kind: {
       options: ['invert', 'important', undefined],
       control: {
