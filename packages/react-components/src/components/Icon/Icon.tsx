@@ -22,7 +22,8 @@ export type IconKind =
   | 'action-negative'
   | 'action-positive'
   | 'action-warning'
-  | 'action-neutral';
+  | 'action-neutral'
+  | 'lock-black';
 
 const IconSizeMap: Record<IconSize, { width: number; height: number }> = {
   xsmall: {

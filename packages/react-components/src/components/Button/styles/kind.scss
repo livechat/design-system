@@ -269,3 +269,38 @@
     background-color: var(--action-high-contrast-disabled);
   }
 }
+
+@mixin primary-lock-black() {
+  border-color: transparent;
+  background-color: var(--surface-locked-black);
+  color: var(--content-locked-white);
+
+  &:hover {
+    background-color: var(--surface-locked-dark);
+  }
+
+  &[aria-disabled='true'] {
+    background-color: var(--action-high-contrast-disabled);
+  }
+}
+
+@mixin lock-black() {
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+  height: auto;
+  text-decoration: underline;
+  color: var(--content-locked-black);
+
+  &:hover {
+    color: var(--content-locked-black);
+  }
+
+  &:active {
+    color: var(--content-locked-black);
+  }
+
+  &[aria-disabled='true'] {
+    color: var(--content-invert-disabled);
+  }
+}

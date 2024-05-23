@@ -134,5 +134,9 @@
     &--action-neutral {
       color: var(--action-neutral-disabled);
     }
+
+    &--lock-black {
+      color: var(--content-lock-black);
+    }
   }
 }

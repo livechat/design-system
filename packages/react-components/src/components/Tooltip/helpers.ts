@@ -8,6 +8,8 @@ export function getIconType(theme: TooltipTheme): IconKind {
   switch (theme) {
     case 'invert':
       return 'inverted';
+    case 'important':
+      return 'lock-black';
     default:
       return 'primary';
   }

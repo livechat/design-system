@@ -11,6 +11,8 @@ export type ButtonKind =
   | 'plain'
   | 'float'
   | 'dotted'
-  | 'high-contrast';
+  | 'high-contrast'
+  | 'primary-lock-black'
+  | 'lock-black';
 
 export type ButtonSize = 'xcompact' | 'compact' | 'medium' | 'large';

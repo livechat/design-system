@@ -171,7 +171,11 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
           data-status={status}
         >
           <Text as="div" className={styles[`${baseClass}__content`]}>
-            {children}
+            {React.isValidElement(children)
+              ? React.cloneElement(children as React.ReactElement, {
+                  theme: kind || theme,
+                })
+              : children}
           </Text>
           <FloatingArrow
             ref={arrowRef}
