@@ -103,11 +103,11 @@ $base-class: 'btn';
     @include icon.icon-only($base-class);
   }
 
-  &--primary-lock-black {
-    @include kind.primary-lock-black();
+  &--plain-lock-black {
+    @include kind.plain-lock-black();
   }
 
-  &--lock-black {
-    @include kind.lock-black();
+  &--text-lock-black {
+    @include kind.text-lock-black();
   }
 }

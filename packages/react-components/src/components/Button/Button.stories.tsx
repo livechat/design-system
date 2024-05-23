@@ -32,8 +32,8 @@ const kinds: Array<ButtonKind> = [
   'float',
   'dotted',
   'high-contrast',
-  'primary-lock-black',
-  'lock-black',
+  'plain-lock-black',
+  'text-lock-black',
 ];
 const sizes: ButtonSize[] = ['xcompact', 'compact', 'medium', 'large'];
 
@@ -91,7 +91,7 @@ export const KindsAndStates = (): React.ReactElement => (
       const title = kind.charAt(0).toUpperCase() + kind.slice(1);
       const isInverted = kind === 'link-inverted';
       const isDmOnlyInverted =
-        kind === 'primary-lock-black' || kind === 'lock-black';
+        kind === 'plain-lock-black' || kind === 'text-lock-black';
 
       return (
         <>

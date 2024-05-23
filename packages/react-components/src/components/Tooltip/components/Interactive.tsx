@@ -40,7 +40,7 @@ export const Interactive: React.FC<{
     }
 
     if (theme === 'important') {
-      return 'primary-lock-black';
+      return 'plain-lock-black';
     }
 
     return 'high-contrast';
@@ -85,7 +85,6 @@ export const Interactive: React.FC<{
         >
           {primaryButton.label}
         </Button>
-        {/* // secondary button => if important = lock-black (like text) */}
         <Button
           className={cx(styles[`${baseClass}-footer-secondary`], {
             [styles[`${baseClass}-footer-secondary-invert`]]:
@@ -93,7 +92,7 @@ export const Interactive: React.FC<{
           })}
           kind={
             secondaryButton.kind || theme === 'important'
-              ? 'lock-black'
+              ? 'text-lock-black'
               : 'text'
           }
           onClick={secondaryButton.handleClick}

@@ -111,6 +111,26 @@ export const ColorsData: Record<
     desc: 'Hover state for warning actions (tags)',
     deprecated: false,
   },
+  ActionLockDefault: {
+    group: ColorGroup.ActionLock,
+    desc: '',
+    deprecated: false,
+  },
+  ActionLockHover: {
+    group: ColorGroup.ActionLock,
+    desc: '',
+    deprecated: false,
+  },
+  ActionLockActive: {
+    group: ColorGroup.ActionLock,
+    desc: '',
+    deprecated: false,
+  },
+  ActionLockDisabled: {
+    group: ColorGroup.ActionLock,
+    desc: '',
+    deprecated: false,
+  },
   Background: {
     group: ColorGroup.Background,
     desc: 'Common background',
