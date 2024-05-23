@@ -13,6 +13,8 @@ import beautifulImage from './placeholder.png';
 import { Tooltip } from './Tooltip';
 import { ITooltipProps } from './types';
 
+const kinds: Array<ITooltipProps['kind']> = [undefined, 'invert', 'important'];
+
 export default {
   title: 'Components/Tooltip',
   component: Tooltip,
@@ -69,35 +71,24 @@ Default.decorators = [
 
 export const Kinds = (): React.ReactElement => (
   <>
-    <StoryDescriptor title="Default">
-      <Tooltip
-        placement="right"
-        isVisible
-        triggerRenderer={<Button>Trigger</Button>}
-      >
-        Simple text content
-      </Tooltip>
-    </StoryDescriptor>
-    <StoryDescriptor title="Invert">
-      <Tooltip
-        placement="right"
-        isVisible
-        kind="invert"
-        triggerRenderer={<Button>Trigger</Button>}
-      >
-        Simple text content
-      </Tooltip>
-    </StoryDescriptor>
-    <StoryDescriptor title="Important">
-      <Tooltip
-        placement="right"
-        isVisible
-        kind="important"
-        triggerRenderer={<Button>Trigger</Button>}
-      >
-        Simple text content
-      </Tooltip>
-    </StoryDescriptor>
+    {kinds.map((kind) => {
+      const title = kind
+        ? kind.charAt(0).toUpperCase() + kind.slice(1)
+        : 'Default';
+
+      return (
+        <StoryDescriptor title={title}>
+          <Tooltip
+            placement="right"
+            isVisible
+            kind={kind}
+            triggerRenderer={<Button>Trigger</Button>}
+          >
+            Simple text content
+          </Tooltip>
+        </StoryDescriptor>
+      );
+    })}
   </>
 );
 
