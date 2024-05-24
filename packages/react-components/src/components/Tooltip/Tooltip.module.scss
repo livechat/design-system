@@ -107,10 +107,6 @@ $radius: var(--radius-3);
 
     &-secondary {
       margin-left: var(--spacing-4);
-
-      &-invert {
-        color: var(--content-invert-primary);
-      }
     }
 
     &--interactive {

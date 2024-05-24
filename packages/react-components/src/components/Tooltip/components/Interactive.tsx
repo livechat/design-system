@@ -39,7 +39,23 @@ export const Interactive: React.FC<{
       return 'secondary';
     }
 
+    if (theme === 'important') {
+      return 'plain-lock-black';
+    }
+
     return 'high-contrast';
+  };
+
+  const getDefaultSecondaryButtonKind = (theme?: TooltipTheme) => {
+    if (theme === 'invert') {
+      return 'link-inverted';
+    }
+
+    if (theme === 'important') {
+      return 'text-lock-black';
+    }
+
+    return 'text';
   };
 
   return (
@@ -82,11 +98,8 @@ export const Interactive: React.FC<{
           {primaryButton.label}
         </Button>
         <Button
-          className={cx(styles[`${baseClass}-footer-secondary`], {
-            [styles[`${baseClass}-footer-secondary-invert`]]:
-              theme === 'invert',
-          })}
-          kind={secondaryButton.kind || 'text'}
+          className={cx(styles[`${baseClass}-footer-secondary`])}
+          kind={secondaryButton.kind || getDefaultSecondaryButtonKind(theme)}
           onClick={secondaryButton.handleClick}
         >
           {secondaryButton.label}

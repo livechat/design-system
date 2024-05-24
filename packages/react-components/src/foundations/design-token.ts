@@ -358,6 +358,10 @@ export const DesignToken = {
   AnimatedGradientValue3: '--animated-gradient-value-3',
   ContentBasicInternalNote: '--content-basic-internal-note',
   ContentBasicBot: '--content-basic-bot',
+  ActionLockDefault: '--action-lock-default',
+  ActionLockHover: '--action-lock-hover',
+  ActionLockActive: '--action-lock-active',
+  ActionLockDisabled: '--action-lock-disabled',
 };
 
 export type DesignTokenKey = keyof typeof DesignToken;
