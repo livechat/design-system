@@ -144,10 +144,16 @@ export const Sizes = (): React.ReactElement => {
       {kinds.map((kind) => {
         const kindName = kind.charAt(0).toUpperCase() + kind.slice(1);
         const isInverted = kind === 'link-inverted';
+        const isDmOnlyInverted =
+          kind === 'plain-lock-black' || kind === 'text-lock-black';
 
         return (
           <>
-            <StoryDescriptor title={`${kindName} kind`} inverted={isInverted}>
+            <StoryDescriptor
+              title={`${kindName} kind`}
+              inverted={isInverted}
+              dmOnlyInverted={isDmOnlyInverted}
+            >
               <div className="story-spacer">
                 {sizes.map((size) => {
                   const sizeName = size.charAt(0).toUpperCase() + size.slice(1);
