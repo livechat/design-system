@@ -102,6 +102,7 @@ export const Kinds = (): React.ReactElement => (
 export const TooltipInfo = (args: ITooltipProps): React.ReactElement => (
   <Tooltip {...args} triggerRenderer={<Button>Trigger</Button>}>
     <Info
+      theme={args.kind || args.theme}
       header="Header - concise and clear"
       text="Tooltip content is used to explain the details of elements or features."
       closeWithX
@@ -123,6 +124,7 @@ TooltipInfo.decorators = [
 export const TooltipInteractive = (args: ITooltipProps): React.ReactElement => (
   <Tooltip {...args} triggerRenderer={<Button>Trigger</Button>}>
     <Interactive
+      theme={args.kind || args.theme}
       header="Header - concise and clear"
       image={{
         src: beautifulImage,
