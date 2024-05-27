@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { ComponentMeta, StoryFn } from '@storybook/react';
 
+import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import noop from '../../utils/noop';
 import { Button } from '../Button';
 
@@ -12,6 +13,8 @@ import beautifulImage from './placeholder.png';
 import { Tooltip } from './Tooltip';
 import { ITooltipProps } from './types';
 
+const kinds: Array<ITooltipProps['kind']> = [undefined, 'invert', 'important'];
+
 export default {
   title: 'Components/Tooltip',
   component: Tooltip,
@@ -21,6 +24,13 @@ export default {
     },
     useDismissHookProps: {
       control: false,
+    },
+    theme: {
+      options: ['invert', 'important', undefined],
+      control: {
+        type: 'select',
+        labels: 'Theme',
+      },
     },
     kind: {
       options: ['invert', 'important', undefined],
@@ -66,9 +76,33 @@ Default.decorators = [
   ),
 ];
 
+export const Kinds = (): React.ReactElement => (
+  <>
+    {kinds.map((kind) => {
+      const title = kind
+        ? kind.charAt(0).toUpperCase() + kind.slice(1)
+        : 'Default';
+
+      return (
+        <StoryDescriptor title={title}>
+          <Tooltip
+            placement="right"
+            isVisible
+            kind={kind}
+            triggerRenderer={<Button>Trigger</Button>}
+          >
+            Simple text content
+          </Tooltip>
+        </StoryDescriptor>
+      );
+    })}
+  </>
+);
+
 export const TooltipInfo = (args: ITooltipProps): React.ReactElement => (
   <Tooltip {...args} triggerRenderer={<Button>Trigger</Button>}>
     <Info
+      theme={args.kind || args.theme}
       header="Header - concise and clear"
       text="Tooltip content is used to explain the details of elements or features."
       closeWithX
@@ -90,6 +124,7 @@ TooltipInfo.decorators = [
 export const TooltipInteractive = (args: ITooltipProps): React.ReactElement => (
   <Tooltip {...args} triggerRenderer={<Button>Trigger</Button>}>
     <Interactive
+      theme={args.kind || args.theme}
       header="Header - concise and clear"
       image={{
         src: beautifulImage,

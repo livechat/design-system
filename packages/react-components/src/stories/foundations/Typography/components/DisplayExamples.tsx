@@ -8,7 +8,9 @@ export const DisplayExamples: React.FC = () => {
   const elements = SIZES_MAP.map((size) => {
     return (
       <>
-        <Display size={size}>Display {size.toUpperCase()}</Display>
+        <Display bold={false} size={size}>
+          Display {size.toUpperCase()}
+        </Display>
         <Display bold size={size}>
           Display {size.toUpperCase()} BOLD
         </Display>

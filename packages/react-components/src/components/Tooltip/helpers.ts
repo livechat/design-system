@@ -8,6 +8,8 @@ export function getIconType(theme: TooltipTheme): IconKind {
   switch (theme) {
     case 'invert':
       return 'inverted';
+    case 'important':
+      return 'lock-black';
     default:
       return 'primary';
   }
@@ -41,3 +43,23 @@ export function getArrowPositionStyles(
 
   return;
 }
+
+export const getArrowTokens = (tooltipStyle: string | undefined) => {
+  switch (tooltipStyle) {
+    case 'invert':
+      return {
+        stroke: 'var(--tooltip-background-invert)',
+        fill: 'var(--tooltip-background-invert)',
+      };
+    case 'important':
+      return {
+        stroke: 'var(--surface-accent-emphasis-high-warning)',
+        fill: 'var(--surface-accent-emphasis-high-warning)',
+      };
+    default:
+      return {
+        stroke: 'var(--tooltip-border-for-svg)',
+        fill: 'var(--tooltip-background-basic)',
+      };
+  }
+};

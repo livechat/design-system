@@ -30,6 +30,7 @@ export enum ColorGroup {
   ActionWarning,
   ActionNeutral,
   ActionHighContrast,
+  ActionLock,
   Illustration,
   Products,
   Decor,

@@ -5,17 +5,26 @@ import cx from 'clsx';
 interface StoryDescriptorProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   inverted?: boolean;
+  dmOnlyInverted?: boolean;
   gap?: string;
 }
 
 export const StoryDescriptor: React.FC<
   React.PropsWithChildren<StoryDescriptorProps>
-> = ({ title, children, inverted, gap, ...props }) => (
+> = ({ title, children, inverted, gap, dmOnlyInverted, ...props }) => (
   <div
-    className={cx('story-container', { 'story-container-inverted': inverted })}
+    className={cx('story-container', {
+      'story-container-inverted': inverted,
+      'story-container-dm-only-inverted': dmOnlyInverted,
+    })}
     {...props}
   >
-    <div className={cx('story-title', { 'story-title-inverted': inverted })}>
+    <div
+      className={cx('story-title', {
+        'story-title-inverted': inverted,
+        'story-title-dm-only-inverted': dmOnlyInverted,
+      })}
+    >
       {title}
     </div>
     <div className="story-spacer" style={{ gap }}>
