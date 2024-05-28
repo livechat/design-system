@@ -57,8 +57,9 @@ export const usePickerItems = ({
 
         const search = searchPhrase.toLowerCase();
         const itemName = item.name.toLowerCase();
+        const itemSecondaryText = item.secondaryText?.toLowerCase();
 
-        return itemName.includes(search);
+        return itemName.includes(search) || itemSecondaryText?.includes(search);
       });
     }
 
