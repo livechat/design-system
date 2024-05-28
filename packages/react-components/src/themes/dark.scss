@@ -113,7 +113,7 @@ $surface-invert-primary: #e2e2e4;
   --surface-other-agent: #0845a2;
   --surface-other-agent-hover: #195dc8;
   --surface-other-skeleton: #3b3b43;
-  --surface-other-internal-note: #2d2c2a;
+  --surface-other-internal-note: #a09783; // deprecated
   --surface-other-internal-note-hover: #3a3937;
   --surface-other-visitor: #2d2d33;
   --surface-other-visitor-hover: #43434b;
@@ -351,4 +351,8 @@ $surface-invert-primary: #e2e2e4;
   --action-lock-hover: #131317;
   --action-lock-active: #131317;
   --action-lock-disabled: hsl(240deg 8% 12% / 20%);
+  --surface-other-internal-note-message-area: #32302a;
+  --surface-other-internal-note-default: #a09783;
+  --content-basic-internal-note-message-placeholder: #a09783;
+  --content-basic-internal-note-message-active: #efcf8d;
 }

@@ -1,6 +1,9 @@
 $surface-primary-default: #fff;
 $surface-primary-hover: #f3f3f3;
 $surface-accent-emphasis-min-info: #f4faff;
+$surface-accent-emphasis-min-warning: #fff9ed;
+$content-basic-disabled: #8d8d95;
+$content-basic-primary: #131317;
 $action-primary-default: #0059e1;
 $surface-secondary-default: #f5f5f5;
 $surface-primary-active: #eeeeef;
@@ -47,7 +50,7 @@ $decor-gray800: #29292f;
   --surface-accent-emphasis-low-purple: #eee8ff;
   --surface-accent-emphasis-min-info: #{$surface-accent-emphasis-min-info};
   --surface-accent-emphasis-min-negative: #fff8f8;
-  --surface-accent-emphasis-min-warning: #fff9ed;
+  --surface-accent-emphasis-min-warning: $surface-accent-emphasis-min-warning;
   --surface-accent-emphasis-min-positive: #f3fcf4;
   --surface-accent-emphasis-min-purple: #faf8ff;
   --surface-accent-ondark-negative-default: #712a2d;
@@ -89,8 +92,8 @@ $decor-gray800: #29292f;
   --surface-other-agent: #0059e1;
   --surface-other-agent-hover: #07419a;
   --surface-other-skeleton: #e2e2e4;
-  --surface-other-internal-note: #fff2d6;
-  --surface-other-internal-note-hover: #fede82;
+  --surface-other-internal-note: #fff2d6; // deprecated
+  --surface-other-internal-note-hover: #fee3a0;
   --surface-other-visitor: #f5f5f5;
   --surface-other-visitor-hover: #e4e4e5;
   --surface-gradient-01: linear-gradient(
@@ -115,7 +118,7 @@ $decor-gray800: #29292f;
   --surface-gradient-12: linear-gradient(95deg, #efded2 0%, #fdfcfa 111.28%);
   --surface-gradient-13: linear-gradient(95deg, #e2e2e4 0%, #fcfcfc 111.28%);
   --content-default: #131317; // deprecated
-  --content-basic-primary: #131317;
+  --content-basic-primary: $content-basic-primary;
   --content-subtle: #62626d; // deprecated
   --content-basic-secondary: #62626d;
   --content-disabled: #8d8d95; // deprecated
@@ -348,4 +351,8 @@ $decor-gray800: #29292f;
   --action-lock-hover: #131317;
   --action-lock-active: #131317;
   --action-lock-disabled: hsl(240deg 8% 12% / 20%);
+  --surface-other-internal-note-message-area: $surface-accent-emphasis-min-warning;
+  --surface-other-internal-note-default: $content-basic-disabled;
+  --content-basic-internal-note-message-placeholder: $content-basic-disabled;
+  --content-basic-internal-note-message-active: $content-basic-primary;
 }
