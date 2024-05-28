@@ -1,6 +1,6 @@
 {
   "name": "@livechat/design-system-react-components",
-  "version": "1.22.3",
+  "version": "1.22.4",
   "description": "",
   "publishConfig": {
     "access": "public"
