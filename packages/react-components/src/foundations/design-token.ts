@@ -114,6 +114,7 @@ export const DesignToken = {
   SurfaceOtherAgent: '--surface-other-agent',
   SurfaceOtherAgentHover: '--surface-other-agent-hover',
   SurfaceOtherSkeleton: '--surface-other-skeleton',
+  /** @deprecated */
   SurfaceOtherInternalNote: '--surface-other-internal-note',
   SurfaceOtherInternalNoteHover: '--surface-other-internal-note-hover',
   SurfaceOtherVisitor: '--surface-other-visitor',
@@ -362,6 +363,13 @@ export const DesignToken = {
   ActionLockHover: '--action-lock-hover',
   ActionLockActive: '--action-lock-active',
   ActionLockDisabled: '--action-lock-disabled',
+  SurfaceOtherInternalNoteMessageArea:
+    '--surface-other-internal-note-message-area',
+  SurfaceOtherInternalNoteDefault: '--surface-other-internal-note-default',
+  ContentBasicInternalNoteMessagePlaceholder:
+    '--content-basic-internal-note-message-placeholder',
+  ContentBasicInternalNoteMessageActive:
+    '--content-basic-internal-note-message-active',
 };
 
 export type DesignTokenKey = keyof typeof DesignToken;

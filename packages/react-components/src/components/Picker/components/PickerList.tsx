@@ -56,7 +56,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   listClassName,
   virtuosoProps,
 }) => {
-  const [listHeight, setListHeight] = React.useState(maxHeight);
+  const [listHeight, setListHeight] = React.useState(0);
   const numberOfItems = options.length;
 
   const handleListHeightChange = React.useCallback(
