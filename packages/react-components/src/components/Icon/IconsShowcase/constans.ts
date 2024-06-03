@@ -474,4 +474,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   WorldFilled: IconGroup.Brands,
   World: IconGroup.Brands,
   XApp: IconGroup.Brands,
+  Maximize: IconGroup.General,
+  MessagePlus: IconGroup.General,
+  Minimize: IconGroup.General,
 };
