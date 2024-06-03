@@ -44,12 +44,12 @@ const DatePickerComponent: React.FC<IDatePickerProps> = (props) => {
   }, [month, currentMonth]);
 
   React.useEffect(() => {
-    if (toMonth) {
+    if (toMonth && month !== currentMonth) {
       if (!isDateWithinRange(currentMonth, { from: fromMonth, to: toMonth })) {
         setCurrentMonth(toMonth);
       }
     }
-  }, [currentMonth, props.toMonth, props.fromMonth]);
+  }, [month, currentMonth, toMonth, fromMonth]);
 
   const handleMonthChange = React.useCallback(
     (month: Date) => {
