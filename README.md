@@ -51,7 +51,7 @@ git clone git@github.com:livechat/design-system.git
 #### Install the necessary dependencies for the entire monorepo using Lerna:
 
 
-Required version of `node.js` is `16.13.2`.
+Required version of `node.js` is `20.14.0`.
 
 If you're a [volta](https://volta.sh/) user, the project maintains node version entry within `package.json`.
 
