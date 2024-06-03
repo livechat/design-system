@@ -51,7 +51,7 @@ $content-basic-internal-note: #3a310c;
   --surface-accent-emphasis-low-purple: #eee8ff;
   --surface-accent-emphasis-min-info: #{$surface-accent-emphasis-min-info};
   --surface-accent-emphasis-min-negative: #fff8f8;
-  --surface-accent-emphasis-min-warning: $surface-accent-emphasis-min-warning;
+  --surface-accent-emphasis-min-warning: #{$surface-accent-emphasis-min-warning};
   --surface-accent-emphasis-min-positive: #f3fcf4;
   --surface-accent-emphasis-min-purple: #faf8ff;
   --surface-accent-ondark-negative-default: #712a2d;
@@ -119,7 +119,7 @@ $content-basic-internal-note: #3a310c;
   --surface-gradient-12: linear-gradient(95deg, #efded2 0%, #fdfcfa 111.28%);
   --surface-gradient-13: linear-gradient(95deg, #e2e2e4 0%, #fcfcfc 111.28%);
   --content-default: #131317; // deprecated
-  --content-basic-primary: $content-basic-primary;
+  --content-basic-primary: #{$content-basic-primary};
   --content-subtle: #62626d; // deprecated
   --content-basic-secondary: #62626d;
   --content-disabled: #8d8d95; // deprecated
@@ -346,7 +346,7 @@ $content-basic-internal-note: #3a310c;
   --animated-gradient-value-1: rgb(226 226 228 / 0%) 0.08%;
   --animated-gradient-value-2: #e2e2e4 50.5%;
   --animated-gradient-value-3: rgb(226 226 228 / 0%) 99.89%;
-  --content-basic-internal-note: $content-basic-internal-note;
+  --content-basic-internal-note: #{$content-basic-internal-note};
   --content-basic-bot: #00003e;
   --action-lock-default: #1b1b20;
   --action-lock-hover: #131317;
@@ -354,6 +354,6 @@ $content-basic-internal-note: #3a310c;
   --action-lock-disabled: hsl(240deg 8% 12% / 20%);
   --surface-other-internal-note-message-area: #fff2d6;
   --surface-other-internal-note-default: #fff2d6;
-  --content-basic-internal-note-message-placeholder: $content-basic-disabled;
-  --content-basic-internal-note-message-active: $content-basic-internal-note;
+  --content-basic-internal-note-message-placeholder: #{$content-basic-disabled};
+  --content-basic-internal-note-message-active: #{$content-basic-internal-note};
 }

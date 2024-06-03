@@ -341,8 +341,8 @@ $decor-gray800: #29292f;
   --action-lock-hover: #131317;
   --action-lock-active: #131317;
   --action-lock-disabled: hsl(240deg 8% 12% / 20%);
-  --surface-other-internal-note-message-area: $surface-accent-emphasis-min-warning;
-  --surface-other-internal-note-default: $content-basic-disabled;
-  --content-basic-internal-note-message-placeholder: $content-basic-disabled;
-  --content-basic-internal-note-message-active: $content-basic-primary;
+  --surface-other-internal-note-message-area: #{$surface-accent-emphasis-min-warning};
+  --surface-other-internal-note-default: #{$content-basic-disabled};
+  --content-basic-internal-note-message-placeholder: #{$content-basic-disabled};
+  --content-basic-internal-note-message-active: #{$content-basic-primary};
 }
