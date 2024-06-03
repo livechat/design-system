@@ -130,7 +130,10 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
   const focus = useFocus(context);
   const dismiss = useDismiss(context, useDismissHookProps);
   const role = useRole(context, { role: 'tooltip' });
-  const click = useClick(context, useClickHookProps);
+  const click = useClick(context, {
+    enabled: triggerOnClick,
+    ...useClickHookProps,
+  });
   const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
     duration: {
       open: getTransitionDuration(hoverOnDuration),
