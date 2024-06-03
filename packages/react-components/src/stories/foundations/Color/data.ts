@@ -1571,4 +1571,24 @@ export const ColorsData: Record<
     desc: '',
     deprecated: undefined,
   },
+  SurfaceOtherInternalNoteMessageArea: {
+    group: ColorGroup.SurfaceOther,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceOtherInternalNoteDefault: {
+    group: ColorGroup.SurfaceOther,
+    desc: '',
+    deprecated: undefined,
+  },
+  ContentBasicInternalNoteMessagePlaceholder: {
+    group: ColorGroup.ContentBasic,
+    desc: '',
+    deprecated: undefined,
+  },
+  ContentBasicInternalNoteMessageActive: {
+    group: ColorGroup.ContentBasic,
+    desc: '',
+    deprecated: undefined,
+  },
 };
