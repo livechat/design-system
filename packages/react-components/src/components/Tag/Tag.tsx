@@ -117,11 +117,11 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
         )}
       </div>
       {onRemove && !disabled && (
-        <button
+        <span
           tabIndex={-1}
           title="Remove"
           onClick={onRemove}
-          type="button"
+          role="button"
           aria-label="Remove tag"
           className={cx(styles[`${baseClass}__remove`], {
             [styles[`${baseClass}__remove--hover`]]: isOnHoverCloseButton,
@@ -133,7 +133,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
             size={closeIconSize}
             customColor={getIconCustomColor()}
           />
-        </button>
+        </span>
       )}
     </Text>
   );
