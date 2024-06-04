@@ -111,6 +111,7 @@ $base-class: 'tag';
       var(--surface-gradient-01),
       var(--content-locked-white)
     );
+    @include outline.gradient-outline($base-class, var(--surface-gradient-01));
   }
 
   &--gradient02 {
@@ -120,6 +121,7 @@ $base-class: 'tag';
       var(--surface-gradient-02),
       var(--content-locked-white)
     );
+    @include outline.gradient-outline($base-class, var(--surface-gradient-02));
   }
 
   &--gradient03 {
@@ -129,6 +131,7 @@ $base-class: 'tag';
       var(--surface-gradient-03),
       var(--content-locked-white)
     );
+    @include outline.gradient-outline($base-class, var(--surface-gradient-03));
   }
 
   &--gradient04 {
@@ -138,6 +141,7 @@ $base-class: 'tag';
       var(--surface-gradient-04),
       var(--content-basic-primary)
     );
+    @include outline.gradient-outline($base-class, var(--surface-gradient-04));
   }
 
   &--gradient05 {
@@ -147,6 +151,7 @@ $base-class: 'tag';
       var(--surface-gradient-05),
       var(--content-basic-primary)
     );
+    @include outline.gradient-outline($base-class, var(--surface-gradient-05));
   }
 
   &--gradient06 {
@@ -156,6 +161,7 @@ $base-class: 'tag';
       var(--surface-gradient-06),
       var(--content-basic-primary)
     );
+    @include outline.gradient-outline($base-class, var(--surface-gradient-06));
   }
 
   &--gradient07 {
@@ -165,6 +171,7 @@ $base-class: 'tag';
       var(--surface-gradient-07),
       var(--content-basic-primary)
     );
+    @include outline.gradient-outline($base-class, var(--surface-gradient-07));
   }
 
   &--gradient08 {
@@ -174,6 +181,7 @@ $base-class: 'tag';
       var(--surface-gradient-08),
       var(--content-basic-primary)
     );
+    @include outline.gradient-outline($base-class, var(--surface-gradient-08));
   }
 
   &--gradient09 {
@@ -183,6 +191,7 @@ $base-class: 'tag';
       var(--surface-gradient-09),
       var(--content-basic-primary)
     );
+    @include outline.gradient-outline($base-class, var(--surface-gradient-09));
   }
 
   &--gradient10 {
@@ -192,6 +201,7 @@ $base-class: 'tag';
       var(--surface-gradient-10),
       var(--content-basic-primary)
     );
+    @include outline.gradient-outline($base-class, var(--surface-gradient-10));
   }
 
   &--gradient11 {
@@ -201,6 +211,7 @@ $base-class: 'tag';
       var(--surface-gradient-11),
       var(--content-basic-primary)
     );
+    @include outline.gradient-outline($base-class, var(--surface-gradient-11));
   }
 
   &--small {

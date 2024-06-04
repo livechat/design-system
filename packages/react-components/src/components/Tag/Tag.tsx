@@ -7,21 +7,16 @@ import { getContrast } from 'polished';
 import { Icon } from '../Icon';
 import { Text } from '../Typography';
 
+import {
+  getCustomTextClass,
+  getGradientValue,
+  isGradientKind,
+} from './helpers';
 import { TagProps } from './types';
 
 import styles from './Tag.module.scss';
 
 const baseClass = 'tag';
-
-const getCustomTextClass = (customColor?: string) => {
-  if (!customColor) {
-    return '';
-  }
-
-  return getContrast(customColor, '#FFFFFF') > 4.5
-    ? 'text-white'
-    : 'text-black';
-};
 
 export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   className = '',
@@ -41,6 +36,8 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   ...restProps
 }) => {
   const isOnHoverCloseButton = dismissibleOnHover || (onRemove && iconOnly);
+  const gradientKind = isGradientKind(kind);
+  const gradientValue = getGradientValue(kind);
   const mergedClassNames = cx(
     styles[baseClass],
     className,
@@ -49,7 +46,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
     {
       [styles[`${baseClass}--outline`]]: outline,
       [styles[`${baseClass}--${getCustomTextClass(customColor)}`]]:
-        !!customColor,
+        !!customColor && !gradientKind,
       [styles[`${baseClass}--icon-only`]]: iconOnly,
       [styles[`${baseClass}--dismissible-on-hover`]]: isOnHoverCloseButton,
     }
@@ -74,10 +71,15 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
     return { style: { backgroundColor: customColor } };
   };
 
-  const getIconCustomColor = () => {
+  const getIconCustomColor = (value?: string) => {
+    if (value && outline) {
+      return value;
+    }
+
     if (!customColor) {
       return undefined;
     }
+
     if (outline) {
       return customColor;
     }
@@ -93,12 +95,22 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
       as="div"
       size={textSize}
     >
+      {gradientKind && (
+        <div className={styles[`${baseClass}--outline-wrapper`]}>
+          <div
+            className={styles[`${baseClass}--outline-wrapper-inner`]}
+            style={{
+              backgroundColor: customColor || 'var(--surface-primary-default)',
+            }}
+          />
+        </div>
+      )}
       <div className={styles[`${baseClass}__content-wrapper`]}>
         {leftNode && !iconOnly && (
           <div
             data-testid="lc-tag-left-node"
             className={styles[`${baseClass}__node`]}
-            style={{ color: getIconCustomColor() }}
+            style={{ color: getIconCustomColor(gradientValue?.start) }}
           >
             {leftNode}
           </div>
@@ -110,7 +122,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
           <div
             data-testid="lc-tag-right-node"
             className={styles[`${baseClass}__node`]}
-            style={{ color: getIconCustomColor() }}
+            style={{ color: getIconCustomColor(gradientValue?.stop) }}
           >
             {rightNode}
           </div>
@@ -131,7 +143,7 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
             data-dismiss-icon
             source={Close}
             size={closeIconSize}
-            customColor={getIconCustomColor()}
+            customColor={getIconCustomColor(gradientValue?.stop)}
           />
         </button>
       )}

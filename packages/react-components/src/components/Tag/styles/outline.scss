@@ -11,3 +11,26 @@
     padding: 0;
   }
 }
+
+@mixin gradient-outline($base-class, $background-color) {
+  &.#{$base-class}--outline {
+    background: $background-color;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .#{$base-class}--outline-wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border: 1px solid transparent;
+    border-radius: var(--radius-3);
+    background: $background-color border-box;
+    overflow: hidden;
+
+    &-inner {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
