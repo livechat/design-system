@@ -37,6 +37,7 @@ export enum ColorGroup {
   SurfaceComponentSpecific,
   AnimationGradient,
   Deprecated, // ???
+  GradientValues,
 }
 
 export type ColorBaseBody = {

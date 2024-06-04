@@ -1246,6 +1246,136 @@ export const ColorsData: Record<
     desc: 'Surface gradient color, as a background for banners, tags, badges',
     deprecated: false,
   },
+  SurfaceGradient01Start: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient01Stop: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient02Start: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient02Stop: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient03Start: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient03Stop: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient04Start: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient04Stop: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient05Start: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient05Stop: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient06Start: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient06Stop: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient07Start: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient07Stop: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient08Start: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient08Stop: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient09Start: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient09Stop: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient10Start: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient10Stop: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient11Start: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient11Stop: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient12Start: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient12Stop: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient13Start: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
+  SurfaceGradient13Stop: {
+    group: ColorGroup.GradientValues,
+    desc: '',
+    deprecated: false,
+  },
   SurfaceInvertDefault: {
     group: ColorGroup.Deprecated,
     desc: '',

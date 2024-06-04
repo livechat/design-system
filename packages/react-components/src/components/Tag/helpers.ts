@@ -19,58 +19,58 @@ export const getGradientValue = (
   switch (kind) {
     case 'gradient01':
       return {
-        start: '#8609ff',
-        stop: '#ee0007',
+        start: 'var(--surface-gradient-01-start)',
+        stop: 'var(--surface-gradient-01-stop)',
       };
     case 'gradient02':
       return {
-        start: '#8609ff',
-        stop: '#0059e1',
+        start: 'var(--surface-gradient-02-start)',
+        stop: 'var(--surface-gradient-02-stop)',
       };
     case 'gradient03':
       return {
-        start: '#ca0005',
-        stop: '#f3c600',
+        start: 'var(--surface-gradient-03-start)',
+        stop: 'var(--surface-gradient-03-stop)',
       };
     case 'gradient04':
       return {
-        start: '#ffe9bc',
-        stop: '#fffdf8',
+        start: 'var(--surface-gradient-04-start)',
+        stop: 'var(--surface-gradient-04-stop)',
       };
     case 'gradient05':
       return {
-        start: '#daedff',
-        stop: '#fbfdff',
+        start: 'var(--surface-gradient-05-start)',
+        stop: 'var(--surface-gradient-05-stop)',
       };
     case 'gradient06':
       return {
-        start: '#eee8ff',
-        stop: '#fdfdff',
+        start: 'var(--surface-gradient-06-start)',
+        stop: 'var(--surface-gradient-06-stop)',
       };
     case 'gradient07':
       return {
-        start: '#d1f4d5',
-        stop: '#e6f6ed',
+        start: 'var(--surface-gradient-07-start)',
+        stop: 'var(--surface-gradient-07-stop)',
       };
     case 'gradient08':
       return {
-        start: '#ffe5e5',
-        stop: '#fffcfc',
+        start: 'var(--surface-gradient-08-start)',
+        stop: 'var(--surface-gradient-08-stop)',
       };
     case 'gradient09':
       return {
-        start: '#d1f4d5',
-        stop: '#fff9ee',
+        start: 'var(--surface-gradient-09-start)',
+        stop: 'var(--surface-gradient-09-stop)',
       };
     case 'gradient10':
       return {
-        start: '#eee8ff',
-        stop: '#f4faff',
+        start: 'var(--surface-gradient-10-start)',
+        stop: 'var(--surface-gradient-10-stop)',
       };
     case 'gradient11':
       return {
-        start: '#eee8ff',
-        stop: '#fff4dd',
+        start: 'var(--surface-gradient-11-start)',
+        stop: 'var(--surface-gradient-11-stop)',
       };
     default:
       return;

@@ -55,9 +55,10 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   const textSize = size === 'small' ? 'sm' : 'md';
 
   const getCustomColorStyles = () => {
-    if (!customColor) {
+    if (!customColor || gradientKind) {
       return {};
     }
+
     if (outline) {
       return {
         style: {
@@ -72,8 +73,12 @@ export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   };
 
   const getIconCustomColor = (value?: string) => {
-    if (value && outline) {
-      return value;
+    if (value) {
+      if (outline) {
+        return value;
+      } else {
+        return undefined;
+      }
     }
 
     if (!customColor) {
