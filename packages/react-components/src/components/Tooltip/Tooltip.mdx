@@ -1,5 +1,5 @@
-import { Meta, Title, Canvas, ArgsTable, Story } from '@storybook/blocks';
-import { Figma } from '@storybook/addon-designs/blocks';
+import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+
 import * as Stories from './Tooltip.stories';
 
 <Meta of={Stories} />
@@ -11,25 +11,31 @@ import * as Stories from './Tooltip.stories';
 ## Intro <a id="Intro" />
 
 ### Simple Tooltip
+
 <Canvas of={Stories.Default} />
 
 ### Info Tooltip
+
 <Canvas of={Stories.TooltipInfo} />
 
 ### Interactive Tooltip
+
 <Canvas of={Stories.TooltipInteractive} />
 
 ### Reports Tooltip
+
 <Canvas of={Stories.TooltipReports} />
 
 ## Component API <a id="ComponentAPI" />
 
-<ArgsTable />
+<ArgTypes of={Stories.Default} sort="requiredFirst" />
 
 ## Content Spec <a id="ContentSpec" />
 
-<Figma
-  showLink
-  height="100%"
-  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=97-24893&mode=dev"
-/>
+<a
+  className="sb-unstyled"
+  href="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=97-24893&mode=dev"
+  target="_blank"
+>
+  Go to Figma documentation
+</a>

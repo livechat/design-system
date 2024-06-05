@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 
 import noop from '../../utils/noop';
 import { PdfIcon } from '../../utils/PdfIcon';
@@ -14,6 +14,7 @@ import {
 export default {
   title: 'Components/Progress/FileUploadProgress',
   component: FileUploadProgressComponent,
+  tags: ['autodocs'],
   parameters: {
     componentSubtitle: `TBD`,
   },
@@ -24,9 +25,9 @@ export default {
     onCloseButtonClick: { action: 'changed' },
     onRetryButtonClick: { action: 'changed' },
   },
-} as ComponentMeta<typeof FileUploadProgressComponent>;
+} as Meta<typeof FileUploadProgressComponent>;
 
-const StoryTemplate: Story<FileUploadProgressProps> = (
+const StoryTemplate: StoryFn<FileUploadProgressProps> = (
   args: FileUploadProgressProps
 ) => {
   return (

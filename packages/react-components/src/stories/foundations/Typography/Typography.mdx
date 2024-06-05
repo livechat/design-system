@@ -1,10 +1,9 @@
-import { Meta, Canvas, ArgsTable } from '@storybook/addon-docs';
-
-import { Heading, Text, Display } from '../../../components/Typography';
+import { Meta, Controls } from '@storybook/blocks';
 
 import { HeadingExamples } from './components/HeadingExamples';
 import { TextExamples } from './components/TextExamples';
 import { DisplayExamples } from './components/DisplayExamples';
+import { Card } from '../../../components/Card';
 
 <Meta title="Foundations/Typography" />
 
@@ -24,16 +23,17 @@ You can modify the output element via `as` prop. For example if you want to rend
 </Heading>
 ```
 
-<ArgsTable of={Heading} />
+[//]: # '<Controls /> TODO: add controls after we will create a story for Heading component'
 
-<Canvas
+<Card
+  className="sb-unstyled"
   style={{
     color: 'var(--content-default)',
     backgroundColor: 'var(--background)',
   }}
 >
   <HeadingExamples />
-</Canvas>
+</Card>
 
 ## Text
 
@@ -45,16 +45,17 @@ You can modify the output element via `as` prop. For example if you want to rend
 </Text>
 ```
 
-<ArgsTable of={Text} />
+[//]: # '<Controls /> TODO: add controls after we will create a story for Text component'
 
-<Canvas
+<Card
+  className="sb-unstyled"
   style={{
     color: 'var(--content-default)',
     backgroundColor: 'var(--background)',
   }}
 >
   <TextExamples />
-</Canvas>
+</Card>
 
 ## Display
 
@@ -64,13 +65,14 @@ You can modify the output element via `as` prop. For example if you want to rend
 <Display size="sm">This text is a small div</Display>
 ```
 
-<ArgsTable of={Display} />
+[//]: # '<Controls /> TODO: add controls after we will create a story for Display component'
 
-<Canvas
+<Card
+  className="sb-unstyled"
   style={{
     color: 'var(--content-default)',
     backgroundColor: 'var(--background)',
   }}
 >
   <DisplayExamples />
-</Canvas>
+</Card>

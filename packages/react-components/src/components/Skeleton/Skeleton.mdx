@@ -1,4 +1,4 @@
-import { Title, Canvas, ArgsTable, Meta } from '@storybook/blocks';
+import { Title, Canvas, ArgTypes, Meta } from '@storybook/blocks';
 import { SkeletonWrapper } from './SkeletonWrapper';
 import { SkeletonAvatar } from './SkeletonAvatar';
 import { SkeletonText } from './SkeletonText';
@@ -32,7 +32,11 @@ However, please note that "Skeleton" is not a single component. This is the name
 </Canvas>
 
 ```jsx
-import { SkeletonWrapper, SkeletonAvatar, SkeletonText } from '@livechat/design-system-react-components';
+import {
+  SkeletonWrapper,
+  SkeletonAvatar,
+  SkeletonText,
+} from '@livechat/design-system-react-components';
 
 <SkeletonWrapper>
   <SkeletonAvatar size={36} />
@@ -40,7 +44,7 @@ import { SkeletonWrapper, SkeletonAvatar, SkeletonText } from '@livechat/design-
     <SkeletonText width={150} />
     <SkeletonText width={250} height={200} />
   </SkeletonWrapper>
-</SkeletonWrapper>
+</SkeletonWrapper>;
 ```
 
 The above example shows a `Skeleton` implementation using multiple components. Below is a description of specific elements.
@@ -121,7 +125,6 @@ Is a component that is intended to wrap other `Skeleton` components, manage thei
 <SkeletonWrapper animated>
   <SkeletonAvatar size={50} />
 </SkeletonWrapper>
-
 ```
 
 #### SkeletonText <a id="SkeletonText" />
@@ -138,9 +141,8 @@ Is a component that is intended to wrap other `Skeleton` components, manage thei
 <SkeletonWrapper animated>
   <SkeletonText width={350} />
 </SkeletonWrapper>
-
 ```
 
 ## Component API <a id="ComponentAPI" />
 
-<ArgsTable />
+<ArgTypes of={SkeletonStories.Wrapper} sort="requiredFirst" />

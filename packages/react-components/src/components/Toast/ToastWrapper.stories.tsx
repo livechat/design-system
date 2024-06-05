@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import {
   ToastWrapperProps,
@@ -15,7 +15,7 @@ export default {
     You can use ToastWrapper component to position your toasts.
     `,
   },
-} as ComponentMeta<typeof ToastWrapperComponent>;
+} as Meta<typeof ToastWrapperComponent>;
 
 export const ToastWrapper = (args: ToastWrapperProps): React.ReactElement => (
   <div style={{ width: '100%', height: 700, position: 'relative' }}>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Story } from '@storybook/react';
+import { StoryFn } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
@@ -11,7 +11,7 @@ export default {
   component: Badge,
 };
 
-export const Default: Story<BadgeProps> = (
+export const Default: StoryFn<BadgeProps> = (
   args: BadgeProps
 ): React.ReactElement => <Badge {...args} />;
 

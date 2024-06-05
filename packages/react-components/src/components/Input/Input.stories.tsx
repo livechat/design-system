@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { AddCircle as AddCircleIcon } from '@livechat/design-system-icons';
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Icon } from '../Icon';
@@ -25,9 +25,9 @@ export default {
       type: 'boolean',
     },
   },
-} as ComponentMeta<typeof Input>;
+} as Meta<typeof Input>;
 
-export const Default: Story<InputProps> = (args: InputProps) => (
+export const Default: StoryFn<InputProps> = (args: InputProps) => (
   <Input {...args} />
 );
 
