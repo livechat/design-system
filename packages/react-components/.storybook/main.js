@@ -7,7 +7,7 @@ module.exports = {
     getAbsolutePath('@storybook/addon-a11y'),
     getAbsolutePath('@storybook/addon-themes'),
     getAbsolutePath('@storybook/addon-backgrounds'),
-    '@chromatic-com/storybook',
+    getAbsolutePath('@chromatic-com/storybook'),
   ],
   framework: {
     name: '@storybook/react-vite',
