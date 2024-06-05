@@ -10,13 +10,14 @@ module.exports = {
     '@chromatic-com/storybook',
   ],
   framework: {
-    name: getAbsolutePath('@storybook/react-vite'),
+    name: '@storybook/react-vite',
     options: {
       legacyRootApi: true, // TODO: remove when local React will be migrated to v18
     },
   },
-  docs: {
-    autodocs: 'tag',
+  docs: { autodocs: 'tag' },
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
   },
 };
 
