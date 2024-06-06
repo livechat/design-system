@@ -22,7 +22,7 @@
     "glob": "^10.3.10",
     "typescript": "^5.4.5",
     "vite": "^4.4.5",
-    "vite-plugin-dts": "^3.5.4"
+    "vite-plugin-dts": "^3.9.1"
   },
   "exports": {
     ".": {
