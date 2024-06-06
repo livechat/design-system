@@ -193,13 +193,13 @@
 
   &:hover {
     border-color: transparent;
-    background-color: var(--surface-primary-hover);
+    background-color: var(--surface-opacity-basic-hover);
     color: var(--content-basic-primary);
   }
 
   &:active {
     border-color: transparent;
-    background-color: var(--surface-primary-active);
+    background-color: var(--surface-opacity-basic-active);
     color: var(--content-basic-primary);
   }
 
