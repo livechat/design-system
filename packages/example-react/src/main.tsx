@@ -1,12 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { Container, createRoot } from 'react-dom/client';
+
 import App from './App';
 
 import '@livechat/design-system-react-components/dist/style.css';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const container = document.getElementById('root');
+const root = createRoot(container as Container);
+root.render(<App />);
