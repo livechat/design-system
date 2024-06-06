@@ -19,7 +19,7 @@
     "dev:lib": "vite build --mode development -w",
     "prebuild": "rimraf dist && mkdir dist",
     "build": "tsc && vite build",
-    "build-storybook": "export SET NODE_OPTIONS=--openssl-legacy-provider && storybook build",
+    "build-storybook": "export SET NODE_OPTIONS=--openssl-legacy-provider && storybook build --stats-json",
     "chromatic": "dotenv -e ../../.env chromatic -- --exit-zero-on-changes --only-changed --skip 'dependabot/**'",
     "generate-ds-tokens-enum": "node scripts/generateDesignTokenEnum.js",
     "lint": "eslint src --ext js,jsx,ts,tsx",
@@ -55,7 +55,7 @@
     "@types/react-transition-group": "^4.4.4",
     "@vitejs/plugin-react": "^1.0.7",
     "@vitest/coverage-c8": "^0.33.0",
-    "chromatic": "^6.19.7",
+    "chromatic": "^11.5.1",
     "jsdom": "^19.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -67,7 +67,6 @@
     "vite": "^4.3.9",
     "vite-plugin-dts": "^3.0.0-beta.3",
     "vite-plugin-lib-inject-css": "^1.3.0",
-    "vite-plugin-turbosnap": "^1.0.2",
     "vitest": "^0.31.0"
   },
   "dependencies": {
