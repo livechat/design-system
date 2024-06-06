@@ -87,7 +87,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
 
     if (!isScrollType && hasIOSupport) {
       const target = document.querySelectorAll(
-        `button[data-actionBarId='${id}']`
+        `button[data-actionbarid='${id}']`
       );
 
       const observer = new IntersectionObserver(
@@ -145,7 +145,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
           <ActionBarItem
             id={id}
             option={o}
-            menuItemsKeys={menuItemsKeys}
+            isHidden={menuItemsKeys.includes(o.key)}
             isActive={o.key === activeOptionKey}
             vertical={vertical}
           />

@@ -15,36 +15,37 @@ const menuWrapperClass = `${baseClass}__button-wrapper`;
 export const ActionBarItem: React.FC<IActionBarItem> = ({
   id,
   option,
-  menuItemsKeys,
+  isHidden,
   isActive,
   vertical,
 }) => {
   const mergedButtonClassNames = cx(styles[menuWrapperClass], {
-    [styles[`${menuWrapperClass}--hidden`]]: menuItemsKeys.includes(option.key),
+    [styles[`${menuWrapperClass}--hidden`]]: isHidden,
     [styles[`${menuWrapperClass}--active`]]: isActive,
     [styles[`${menuWrapperClass}--vertical`]]: vertical,
   });
 
   const button = (
     <Button
-      data-actionBarId={id}
+      data-actionbarid={id}
       id={option.key}
       key={option.key}
-      title={option.label}
+      title={option?.showTooltip ? undefined : option.label}
       kind="plain"
       onClick={option.onClick}
       icon={option.element}
+      disabled={isHidden}
       className={styles[`${menuWrapperClass}__button`]}
     />
   );
 
   if (option.showTooltip) {
-    const tooltipVisibility = menuItemsKeys.includes(option.key) && {
-      isVisible: false,
-    };
-
     return (
-      <div className={mergedButtonClassNames}>
+      <div
+        data-testid={option.key}
+        key={option.key}
+        className={mergedButtonClassNames}
+      >
         <Tooltip
           kind="invert"
           placement={vertical ? 'left' : 'bottom'}
@@ -56,7 +57,6 @@ export const ActionBarItem: React.FC<IActionBarItem> = ({
           }}
           hoverOnDelay={800}
           hoverOffDelay={0}
-          {...tooltipVisibility}
         >
           <div>{option.label}</div>
         </Tooltip>
@@ -64,5 +64,9 @@ export const ActionBarItem: React.FC<IActionBarItem> = ({
     );
   }
 
-  return <div className={mergedButtonClassNames}>{button}</div>;
+  return (
+    <div data-testid={option.key} className={mergedButtonClassNames}>
+      {button}
+    </div>
+  );
 };
