@@ -87,7 +87,7 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
         aria-pressed={isPressed}
         kind="secondary"
         icon={icon}
-        className={cx(styles['btn'], styles[`btn--${size}`], activityStyles)}
+        className={cx(styles.btn, styles[`btn--${size}`], activityStyles)}
         onClick={(event: React.MouseEvent<HTMLElement>) => {
           handleClick(id, event);
         }}

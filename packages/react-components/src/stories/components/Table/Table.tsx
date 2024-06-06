@@ -8,11 +8,11 @@ import { Tooltip } from '../../../components/Tooltip';
 import { DesignToken } from '../../../foundations';
 import { handleCopyText } from '../../helpers';
 
-type BasicTableData = Record<string, unknown> & {
+interface BasicTableData {
   enum: string | number;
   token: string;
   deprecated?: boolean;
-};
+}
 
 interface ITable {
   data: BasicTableData[];
@@ -50,9 +50,9 @@ export const Table: React.FC<ITable> = ({
                       onClick={() => handleCopyText(value as string)}
                     >
                       <div className="example-field copy-text">
-                        {renderExample && renderExample(row['token'])}
-                        {row['enum']}
-                        {row['deprecated'] && (
+                        {renderExample && renderExample(row.token)}
+                        {row.enum}
+                        {row.deprecated && (
                           <Tooltip
                             kind="invert"
                             triggerRenderer={

@@ -47,7 +47,7 @@ describe('<Button> component', () => {
 
     expect(btnEl).not.toHaveClass(styles['btn--loading']);
     expect(
-      container.querySelector(`.${styles['btn__loader']}`)
+      container.querySelector(`.${styles.btn__loader}`)
     ).not.toBeInTheDocument();
   });
 
@@ -55,14 +55,14 @@ describe('<Button> component', () => {
     const { container, btnEl } = renderButton({ loading: true });
 
     expect(btnEl).toHaveClass(styles['btn--loading']);
-    expect(container.querySelector(`.${styles['btn__loader']}`)).toBeVisible();
+    expect(container.querySelector(`.${styles.btn__loader}`)).toBeVisible();
   });
 
   it('should not show icon by default', () => {
     const { container } = renderButton();
 
     expect(
-      container.querySelector(`.${styles['btn__icon']}`)
+      container.querySelector(`.${styles.btn__icon}`)
     ).not.toBeInTheDocument();
   });
 
@@ -71,7 +71,7 @@ describe('<Button> component', () => {
       icon: <Icon source={Icons.AddCircle} />,
     });
 
-    const iconEl = container.querySelector(`.${styles['btn__icon']}`);
+    const iconEl = container.querySelector(`.${styles.btn__icon}`);
 
     expect(iconEl).toBeVisible();
     expect(iconEl).toHaveClass(styles['btn__icon--left']);
@@ -83,7 +83,7 @@ describe('<Button> component', () => {
       iconPosition: 'right',
     });
 
-    const iconEl = container.querySelector(`.${styles['btn__icon']}`);
+    const iconEl = container.querySelector(`.${styles.btn__icon}`);
 
     expect(iconEl).toBeVisible();
     expect(iconEl).toHaveClass(styles['btn__icon--right']);

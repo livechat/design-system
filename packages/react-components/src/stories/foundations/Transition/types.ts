@@ -4,12 +4,12 @@ import {
   TransitionTimingTokenKey,
 } from '../../../foundations/transition-token';
 
-export type TransitionShape = {
+export interface TransitionShape {
   enum: string;
   token: string;
   value: string;
   desc: string;
-};
+}
 
 export type TransitionDurationShape = TransitionShape & {
   enum: TransitionDurationTokenKey;

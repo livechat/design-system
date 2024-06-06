@@ -13,7 +13,10 @@ import {
   TransitionTimingShape,
 } from './types';
 
-type DescriptionBody = { desc: string; value: string };
+interface DescriptionBody {
+  desc: string;
+  value: string;
+}
 
 const TransitionDurationDescription: Record<
   TransitionDurationTokenKey,

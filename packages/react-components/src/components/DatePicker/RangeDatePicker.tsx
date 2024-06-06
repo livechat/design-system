@@ -116,7 +116,7 @@ export const RangeDatePicker = ({
 
     const optionsHash = options.reduce(
       (
-        acc: { [key: string]: IRangeDatePickerOption },
+        acc: Record<string, IRangeDatePickerOption>,
         option: IRangeDatePickerOption
       ) => ({ ...acc, [option.id]: option }),
       {}

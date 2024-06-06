@@ -58,9 +58,7 @@ describe('Switch', () => {
   it('should display loader icon if in loading state and behave as disabled', () => {
     const { container, getByRole } = render(<Switch state="loading" />);
     const checkbox = getByRole('checkbox') as HTMLInputElement;
-    const loader = container.querySelector(
-      `.${loaderStyles['loader__spinner']}`
-    );
+    const loader = container.querySelector(`.${loaderStyles.loader__spinner}`);
     expect(checkbox.disabled).toEqual(true);
     expect(loader).toBeVisible();
   });

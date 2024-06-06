@@ -13,7 +13,7 @@ import beautifulImage from './placeholder.png';
 import { Tooltip } from './Tooltip';
 import { ITooltipProps } from './types';
 
-const kinds: Array<ITooltipProps['kind']> = [undefined, 'invert', 'important'];
+const kinds: ITooltipProps['kind'][] = [undefined, 'invert', 'important'];
 
 export default {
   title: 'Components/Tooltip',

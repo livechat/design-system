@@ -82,7 +82,7 @@ export const Popover: React.FC<IPopoverProps> = ({
     role,
   ]);
 
-  const mergedClassNames = cx(styles['popover'], className);
+  const mergedClassNames = cx(styles.popover, className);
 
   const PopoverComponent = (
     <>

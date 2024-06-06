@@ -18,7 +18,7 @@ const icons = Object.fromEntries(
 
 const iterator = Object.keys(icons);
 
-const kinds: Array<ButtonKind> = [
+const kinds: ButtonKind[] = [
   'basic',
   'primary',
   'secondary',

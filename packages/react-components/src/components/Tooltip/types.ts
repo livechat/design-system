@@ -12,11 +12,11 @@ import { ButtonKind } from '../Button';
 
 export type TooltipTheme = 'invert' | 'important' | undefined;
 
-export type TooltipButton = {
+export interface TooltipButton {
   handleClick: () => void;
   label: string;
   kind?: ButtonKind;
-};
+}
 
 export interface ITooltipProps {
   /**

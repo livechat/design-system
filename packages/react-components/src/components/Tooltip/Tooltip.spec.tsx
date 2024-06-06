@@ -127,7 +127,7 @@ describe('<Tooltip> component', () => {
 
     userEvent.hover(button);
     expect(queryByRole('tooltip')).toBeInTheDocument();
-    userEvent.hover(queryByRole('tooltip') as HTMLElement);
+    userEvent.hover(queryByRole('tooltip')!);
     userEvent.hover(button);
 
     expect(onOpen).toBeCalledTimes(1);

@@ -85,7 +85,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
     return (
       <FloatingFocusManager context={context} modal={false} initialFocus={-1}>
         <div
-          className={cx(styles[`listbox`], styles['no-results'])}
+          className={cx(styles.listbox, styles['no-results'])}
           ref={setFloating}
           tabIndex={-1}
           style={floatingStyles}
@@ -106,7 +106,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
       <div
         ref={setFloating}
         tabIndex={-1}
-        className={cx(styles['listbox'], listClassName)}
+        className={cx(styles.listbox, listClassName)}
         style={{
           ...floatingStyles,
           maxHeight,

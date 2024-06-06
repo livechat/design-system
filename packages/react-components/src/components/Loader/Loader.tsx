@@ -50,7 +50,7 @@ export const Loader: React.FC<LoaderProps> = ({
         />
       </div>
       {label && (
-        <Text as="div" size="md" className={styles['loader__label']}>
+        <Text as="div" size="md" className={styles.loader__label}>
           {label}
         </Text>
       )}

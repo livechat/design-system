@@ -8,9 +8,7 @@ import { Icon, IconSource } from '../index';
 import './style.scss';
 import { IconName } from './types';
 
-export type IconsMap = {
-  [key: string]: IconSource;
-};
+export type IconsMap = Record<string, IconSource>;
 
 const Icons = DSIcons as IconsMap;
 

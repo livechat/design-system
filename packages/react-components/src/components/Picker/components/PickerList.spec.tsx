@@ -21,6 +21,7 @@ vitest.mock('react-virtuoso', () => {
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   return { ...vitest.importActual('react-virtuoso'), Virtuoso };
 });
 

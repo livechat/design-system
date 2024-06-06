@@ -17,11 +17,11 @@ import styles from './Toast.module.scss';
 
 type ToastKind = 'success' | 'warning' | 'error' | 'info';
 
-type ToastAction = {
+interface ToastAction {
   onClick: () => void;
   label: string;
   closesOnClick?: boolean;
-};
+}
 
 export interface ToastProps extends React.HTMLAttributes<HTMLDivElement> {
   action?: ToastAction;

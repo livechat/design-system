@@ -39,10 +39,10 @@ export enum ColorGroup {
   Deprecated, // ???
 }
 
-export type ColorBaseBody = {
+export interface ColorBaseBody {
   enum: DesignTokenKey;
   token: string;
-};
+}
 
 export type ColorShape = ColorBaseBody & {
   desc: string;

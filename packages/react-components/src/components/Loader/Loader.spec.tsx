@@ -13,20 +13,18 @@ describe('<Loader> component', () => {
     return {
       ...result,
       loaderEl: result.container.firstChild,
-      spinnerEl: result.container.querySelector(
-        `.${styles['loader__spinner']}`
-      ),
+      spinnerEl: result.container.querySelector(`.${styles.loader__spinner}`),
       circleEl: result.container.querySelector(
         `.${styles['loader__spinner-circle']}`
       ),
-      labelEl: result.container.querySelector(`.${styles['loader__label']}`),
+      labelEl: result.container.querySelector(`.${styles.loader__label}`),
     };
   }
 
   it('should have default set of classNames', () => {
     const { loaderEl, spinnerEl, circleEl } = renderLoader();
 
-    expect(loaderEl).toHaveClass(styles['loader']);
+    expect(loaderEl).toHaveClass(styles.loader);
     expect(spinnerEl).toBeVisible();
     expect(spinnerEl).toHaveClass(styles['loader__spinner--medium']);
     expect(circleEl).toBeVisible();

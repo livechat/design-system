@@ -1,7 +1,7 @@
 import { ShadowTokenKey } from '../../../foundations/shadow-token';
 
-export type ShadowShape = {
+export interface ShadowShape {
   enum: ShadowTokenKey;
   token: string;
   desc: string;
-};
+}

@@ -33,9 +33,7 @@ export const EditableTagContent: React.FC<EditableTagContentProps> = ({
   };
 
   const focusInputRef = () => {
-    if (inputRef && inputRef.current) {
-      inputRef.current.focus();
-    }
+    inputRef?.current?.focus();
   };
 
   const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {

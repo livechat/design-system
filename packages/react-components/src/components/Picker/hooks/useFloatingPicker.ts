@@ -80,7 +80,7 @@ export const useFloatingPicker = ({
   const [pointer, setPointer] = React.useState(false);
   const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
   const [maxHeight, setMaxHeight] = React.useState(maxListHeight);
-  const listElementsRef = React.useRef<Array<HTMLElement | null>>([]);
+  const listElementsRef = React.useRef<(HTMLElement | null)[]>([]);
   const virtualItemRef = React.useRef(null);
 
   const { refs, floatingStyles, context, isPositioned } =

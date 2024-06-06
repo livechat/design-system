@@ -44,6 +44,6 @@ describe('Badge', () => {
   it('should display dot content for dot type', () => {
     const { container } = render(<Badge type="dot" />);
 
-    expect(container.querySelector(`.${styles['badge__dot']}`)).toBeVisible();
+    expect(container.querySelector(`.${styles.badge__dot}`)).toBeVisible();
   });
 });

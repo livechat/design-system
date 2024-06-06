@@ -10,15 +10,15 @@ export default {
   component: TabsWrapperComponenet,
 } as Meta<typeof TabsWrapperComponenet>;
 
-type ITabArgs = {
-  items: Array<{
+interface ITabArgs {
+  items: {
     id: string;
     title: string;
     count: number;
     asBadge?: boolean;
     isDisabled?: boolean;
-  }>;
-};
+  }[];
+}
 
 export const TabsWrapper = ({ items }: ITabArgs): React.ReactElement => {
   const [selectedTab, setSelectedTab] = React.useState(items[0].id);
