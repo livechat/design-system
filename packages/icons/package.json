@@ -14,8 +14,7 @@
   "scripts": {
     "prebuild": "rimraf dist && rimraf lib && npm run prepareIcons",
     "build": "tsc && vite build",
-    "prepareIcons": "svgr ./svg ",
-    "preview": "vite preview"
+    "prepareIcons": "svgr ./svg "
   },
   "devDependencies": {
     "@svgr/cli": "^8.1.0",
