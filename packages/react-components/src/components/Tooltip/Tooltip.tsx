@@ -16,12 +16,13 @@ import {
   useTransitionStyles,
   useTransitionStatus,
   safePolygon,
+  FloatingArrow,
 } from '@floating-ui/react';
 import cx from 'clsx';
 
 import { Text } from '../Typography';
 
-import { getArrowPositionStyles } from './helpers';
+import { getArrowPositionStyles, getArrowTokens } from './helpers';
 import { ITooltipProps } from './types';
 
 import styles from './Tooltip.module.scss';
@@ -103,7 +104,6 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
     refs,
     context,
     middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
-    placement: finalPlacement,
   } = useFloating({
     middleware: [
       offset({ mainAxis: offsetMainAxis }),
@@ -130,7 +130,10 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
   const focus = useFocus(context);
   const dismiss = useDismiss(context, useDismissHookProps);
   const role = useRole(context, { role: 'tooltip' });
-  const click = useClick(context, useClickHookProps);
+  const click = useClick(context, {
+    enabled: triggerOnClick,
+    ...useClickHookProps,
+  });
   const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
     duration: {
       open: getTransitionDuration(hoverOnDuration),
@@ -170,11 +173,15 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
           {...getFloatingProps()}
           data-status={status}
         >
-          <Text as="div">{children}</Text>
-          <div
+          <Text as="div" className={styles[`${baseClass}__content`]}>
+            {children}
+          </Text>
+          <FloatingArrow
             ref={arrowRef}
-            className={styles[`${baseClass}__arrow`]}
-            aria-placement={finalPlacement}
+            context={context}
+            strokeWidth={1}
+            width={10}
+            height={5}
             style={{
               ...getArrowPositionStyles(
                 arrowOffsetY,
@@ -183,6 +190,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
                 arrowX
               ),
             }}
+            {...getArrowTokens(tooltipStyle)}
           />
         </div>
       )}

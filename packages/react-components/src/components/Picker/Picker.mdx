@@ -25,6 +25,12 @@ import * as Picker from './Picker.stories';
 />
 ```
 
+#### Items filtering
+
+By default, filtering is based on checking the entered phrase in the search input with the `option.name` parameter, even when we use custom components as list elements. For filtering to work properly, you must make sure that the phrase in `option.name` corresponds to a given custom element.
+
+Filtering also takes into account the optional `option.secondaryText` parameter, which will be taken into account if filtering by `option.name` does not return any result. The principle of operation is the same in the case of custom elements, the phrase must correspond to the element to be filtered.
+
 ## Component API <a id="ComponentAPI" />
 
 <ArgTypes of={Picker.Default} />

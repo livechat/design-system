@@ -114,6 +114,7 @@ export const DesignToken = {
   SurfaceOtherAgent: '--surface-other-agent',
   SurfaceOtherAgentHover: '--surface-other-agent-hover',
   SurfaceOtherSkeleton: '--surface-other-skeleton',
+  /** @deprecated */
   SurfaceOtherInternalNote: '--surface-other-internal-note',
   SurfaceOtherInternalNoteHover: '--surface-other-internal-note-hover',
   SurfaceOtherVisitor: '--surface-other-visitor',
@@ -349,10 +350,26 @@ export const DesignToken = {
   SurfaceAvatar9: '--surface-avatar-9',
   SurfaceAvatar10: '--surface-avatar-10',
   NavbarBackground: '--navbar-background',
+  TooltipBackgroundBasic: '--tooltip-background-basic',
+  TooltipBackgroundInvert: '--tooltip-background-invert',
   TooltipBorder: '--tooltip-border',
+  TooltipBorderForSvg: '--tooltip-border-for-svg',
   AnimatedGradientValue1: '--animated-gradient-value-1',
   AnimatedGradientValue2: '--animated-gradient-value-2',
   AnimatedGradientValue3: '--animated-gradient-value-3',
+  ContentBasicInternalNote: '--content-basic-internal-note',
+  ContentBasicBot: '--content-basic-bot',
+  ActionLockDefault: '--action-lock-default',
+  ActionLockHover: '--action-lock-hover',
+  ActionLockActive: '--action-lock-active',
+  ActionLockDisabled: '--action-lock-disabled',
+  SurfaceOtherInternalNoteMessageArea:
+    '--surface-other-internal-note-message-area',
+  SurfaceOtherInternalNoteDefault: '--surface-other-internal-note-default',
+  ContentBasicInternalNoteMessagePlaceholder:
+    '--content-basic-internal-note-message-placeholder',
+  ContentBasicInternalNoteMessageActive:
+    '--content-basic-internal-note-message-active',
 };
 
 export type DesignTokenKey = keyof typeof DesignToken;

@@ -21,8 +21,6 @@ export interface IPickerListProps {
   floatingStyles: React.CSSProperties;
   maxHeight: number;
   listElementsRef: React.MutableRefObject<(HTMLElement | null)[]>;
-  isPositioned: boolean;
-  pointer: boolean;
   activeIndex: number | null;
   selectedKeys: string[];
   setPointer: (pointer: boolean) => void;
@@ -46,8 +44,6 @@ export const PickerList: React.FC<IPickerListProps> = ({
   floatingStyles,
   maxHeight,
   options,
-  isPositioned,
-  pointer,
   activeIndex,
   selectedKeys,
   listElementsRef,
@@ -60,15 +56,8 @@ export const PickerList: React.FC<IPickerListProps> = ({
   listClassName,
   virtuosoProps,
 }) => {
-  const wrapperRef = React.useRef<HTMLDivElement>(null);
-  const [listHeight, setListHeight] = React.useState(maxHeight);
+  const [listHeight, setListHeight] = React.useState(0);
   const numberOfItems = options.length;
-
-  React.useLayoutEffect(() => {
-    if (isPositioned && !pointer && activeIndex !== null) {
-      wrapperRef.current?.focus({ preventScroll: true });
-    }
-  }, [isPositioned, activeIndex, pointer, wrapperRef]);
 
   const handleListHeightChange = React.useCallback(
     (height: number) => {
@@ -127,7 +116,6 @@ export const PickerList: React.FC<IPickerListProps> = ({
           tabIndex={0}
           aria-multiselectable={pickerType === 'multi'}
           className={styles['listbox-wrapper']}
-          ref={wrapperRef}
           // Some screen readers do not like any wrapper tags inside
           // the element with the role, so we spread it onto the
           // virtualizer wrapper.

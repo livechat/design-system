@@ -111,6 +111,26 @@ export const ColorsData: Record<
     desc: 'Hover state for warning actions (tags)',
     deprecated: false,
   },
+  ActionLockDefault: {
+    group: ColorGroup.ActionLock,
+    desc: '',
+    deprecated: false,
+  },
+  ActionLockHover: {
+    group: ColorGroup.ActionLock,
+    desc: '',
+    deprecated: false,
+  },
+  ActionLockActive: {
+    group: ColorGroup.ActionLock,
+    desc: '',
+    deprecated: false,
+  },
+  ActionLockDisabled: {
+    group: ColorGroup.ActionLock,
+    desc: '',
+    deprecated: false,
+  },
   Background: {
     group: ColorGroup.Background,
     desc: 'Common background',
@@ -417,6 +437,16 @@ export const ColorsData: Record<
     deprecated: false,
   },
   ContentBasicWarning: {
+    group: ColorGroup.ContentBasic,
+    desc: 'Content values, yellow tags, text and icons',
+    deprecated: false,
+  },
+  ContentBasicInternalNote: {
+    group: ColorGroup.ContentBasic,
+    desc: 'Content values, yellow tags, text and icons',
+    deprecated: false,
+  },
+  ContentBasicBot: {
     group: ColorGroup.ContentBasic,
     desc: 'Content values, yellow tags, text and icons',
     deprecated: false,
@@ -1426,7 +1456,22 @@ export const ColorsData: Record<
     desc: 'Chat tag background ',
     deprecated: false,
   },
+  TooltipBackgroundBasic: {
+    group: ColorGroup.ContentBasic,
+    desc: '',
+    deprecated: false,
+  },
+  TooltipBackgroundInvert: {
+    group: ColorGroup.ContentBasic,
+    desc: '',
+    deprecated: false,
+  },
   TooltipBorder: {
+    group: ColorGroup.BorderBasic,
+    desc: '',
+    deprecated: false,
+  },
+  TooltipBorderForSvg: {
     group: ColorGroup.BorderBasic,
     desc: '',
     deprecated: false,
@@ -1523,6 +1568,26 @@ export const ColorsData: Record<
   },
   SurfaceOpacityInvertActive: {
     group: ColorGroup.SurfaceOpacity,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceOtherInternalNoteMessageArea: {
+    group: ColorGroup.SurfaceOther,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceOtherInternalNoteDefault: {
+    group: ColorGroup.SurfaceOther,
+    desc: '',
+    deprecated: undefined,
+  },
+  ContentBasicInternalNoteMessagePlaceholder: {
+    group: ColorGroup.ContentBasic,
+    desc: '',
+    deprecated: undefined,
+  },
+  ContentBasicInternalNoteMessageActive: {
+    group: ColorGroup.ContentBasic,
     desc: '',
     deprecated: undefined,
   },

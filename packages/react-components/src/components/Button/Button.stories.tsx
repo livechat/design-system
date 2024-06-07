@@ -32,6 +32,8 @@ const kinds: Array<ButtonKind> = [
   'float',
   'dotted',
   'high-contrast',
+  'plain-lock-black',
+  'text-lock-black',
 ];
 const sizes: ButtonSize[] = ['xcompact', 'compact', 'medium', 'large'];
 
@@ -88,10 +90,16 @@ export const KindsAndStates = (): React.ReactElement => (
     {kinds.map((kind) => {
       const title = kind.charAt(0).toUpperCase() + kind.slice(1);
       const isInverted = kind === 'link-inverted';
+      const isDmOnlyInverted =
+        kind === 'plain-lock-black' || kind === 'text-lock-black';
 
       return (
         <>
-          <StoryDescriptor title={title} inverted={isInverted}>
+          <StoryDescriptor
+            title={title}
+            inverted={isInverted}
+            dmOnlyInverted={isDmOnlyInverted}
+          >
             <Button kind={kind}>{title}</Button>
             <Button kind={kind} disabled>
               Disabled
@@ -100,7 +108,11 @@ export const KindsAndStates = (): React.ReactElement => (
               Loading
             </Button>
           </StoryDescriptor>
-          <StoryDescriptor title={`${title} with icon`} inverted={isInverted}>
+          <StoryDescriptor
+            title={`${title} with icon`}
+            inverted={isInverted}
+            dmOnlyInverted={isDmOnlyInverted}
+          >
             <Button kind={kind} icon={ExampleIcon}>
               {title}
             </Button>
@@ -114,6 +126,7 @@ export const KindsAndStates = (): React.ReactElement => (
           <StoryDescriptor
             title={`${title} with icon only`}
             inverted={isInverted}
+            dmOnlyInverted={isDmOnlyInverted}
           >
             <Button kind={kind} icon={ExampleIcon} />
             <Button kind={kind} icon={ExampleIcon} disabled />
@@ -131,10 +144,16 @@ export const Sizes = (): React.ReactElement => {
       {kinds.map((kind) => {
         const kindName = kind.charAt(0).toUpperCase() + kind.slice(1);
         const isInverted = kind === 'link-inverted';
+        const isDmOnlyInverted =
+          kind === 'plain-lock-black' || kind === 'text-lock-black';
 
         return (
           <>
-            <StoryDescriptor title={`${kindName} kind`} inverted={isInverted}>
+            <StoryDescriptor
+              title={`${kindName} kind`}
+              inverted={isInverted}
+              dmOnlyInverted={isDmOnlyInverted}
+            >
               <div className="story-spacer">
                 {sizes.map((size) => {
                   const sizeName = size.charAt(0).toUpperCase() + size.slice(1);

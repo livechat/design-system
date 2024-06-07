@@ -6,7 +6,7 @@ import cx from 'clsx';
 import { PickerList } from './components/PickerList';
 import { PickerTrigger } from './components/PickerTrigger';
 import { PickerTriggerBody } from './components/PickerTriggerBody';
-import { DEFAULT_LIST_HEIGHT } from './constants';
+import { DEFAULT_LIST_HEIGHT, MIN_LIST_HEIGHT } from './constants';
 import { useFloatingPicker } from './hooks/useFloatingPicker';
 import { usePickerItems } from './hooks/usePickerItems';
 import { IPickerProps } from './types';
@@ -17,6 +17,7 @@ export const Picker: React.FC<IPickerProps> = ({
   id,
   className,
   listClassName,
+  minListHeight = MIN_LIST_HEIGHT,
   maxListHeight = DEFAULT_LIST_HEIGHT,
   disabled,
   error,
@@ -44,6 +45,7 @@ export const Picker: React.FC<IPickerProps> = ({
   ...props
 }) => {
   const [open, setOpen] = React.useState(openedOnInit);
+  const [triggerFocus, setTriggerFocus] = React.useState(false);
   const isControlled = isVisible !== undefined;
   const isOpen = isControlled ? isVisible : open;
 
@@ -81,20 +83,19 @@ export const Picker: React.FC<IPickerProps> = ({
     setReference,
     getFloatingProps,
     getItemProps,
-    isPositioned,
     setFloating,
     floatingStyles,
     listElementsRef,
     virtualItemRef,
     activeIndex,
     maxHeight,
-    pointer,
     setPointer,
   } = useFloatingPicker({
     openedOnInit,
     disabled,
     items,
     placement,
+    minListHeight,
     maxListHeight,
     floatingStrategy,
     useClickHookProps,
@@ -118,6 +119,7 @@ export const Picker: React.FC<IPickerProps> = ({
         isRequired={isRequired}
         isMultiSelect={type === 'multi'}
         size={size}
+        setTriggerFocus={setTriggerFocus}
       >
         <PickerTriggerBody
           isOpen={isOpen}
@@ -131,8 +133,10 @@ export const Picker: React.FC<IPickerProps> = ({
           onItemRemove={handleItemRemove}
           onSelect={handleSelect}
           onFilter={handleOnFilter}
+          onClear={handleClear}
           searchPhrase={searchPhrase}
           virtualItemRef={virtualItemRef}
+          isTriggerFocused={triggerFocus}
         />
       </PickerTrigger>
       <FloatingNode id={nodeId}>
@@ -146,8 +150,6 @@ export const Picker: React.FC<IPickerProps> = ({
               setFloating={setFloating}
               floatingStyles={floatingStyles}
               maxHeight={maxHeight}
-              isPositioned={isPositioned}
-              pointer={pointer}
               activeIndex={activeIndex}
               selectedKeys={selectedKeys}
               listElementsRef={listElementsRef}

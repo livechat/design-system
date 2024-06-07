@@ -1,57 +1,32 @@
 @import '../../utils/StackingContextLevel';
 
 $base-class: 'tooltip';
+$radius: var(--radius-3);
 
 .#{$base-class} {
   z-index: $stacking-context-level-tooltip;
   border: 1px solid var(--tooltip-border);
-  border-radius: var(--radius-3);
+  border-radius: $radius;
   box-shadow: var(--shadow-tooltip);
-  background-color: var(--background-02);
+  background-color: var(--tooltip-background-basic);
   padding: var(--spacing-3);
   max-width: 320px;
   color: var(--content-basic-primary);
   font-size: inherit;
 
-  &__arrow {
-    position: absolute;
-    border: 1px solid;
-    border-color: var(--tooltip-border) var(--background-02)
-      var(--background-02) var(--tooltip-border);
-    box-shadow: var(--shadow-tooltip-arrow);
-    background: var(--background-02);
-    width: 10px;
-    height: 10px;
-
-    &[aria-placement^='left'] {
-      left: calc(100% - 5px);
-      transform: rotate(135deg);
-    }
-
-    &[aria-placement^='right'] {
-      left: calc(0% - 5px);
-      transform: rotate(-45deg);
-    }
-
-    &[aria-placement^='bottom'] {
-      top: calc(0% - 5px);
-      transform: rotate(45deg);
-    }
-
-    &[aria-placement^='top'] {
-      top: calc(100% - 5px);
-      transform: rotate(-135deg);
-    }
+  &__content {
+    border-radius: $radius;
+    overflow: hidden;
   }
 
   &--invert {
-    border-color: var(--surface-invert-primary);
-    background-color: var(--surface-invert-primary);
+    border-color: var(--tooltip-background-invert);
+    background-color: var(--tooltip-background-invert);
     color: var(--content-invert-primary);
 
     .#{$base-class}__arrow {
-      border-color: var(--surface-invert-primary);
-      background: var(--surface-invert-primary);
+      border-color: var(--tooltip-background-invert);
+      background: var(--tooltip-background-invert);
     }
   }
 
@@ -132,10 +107,6 @@ $base-class: 'tooltip';
 
     &-secondary {
       margin-left: var(--spacing-4);
-
-      &-invert {
-        color: var(--content-invert-primary);
-      }
     }
 
     &--interactive {

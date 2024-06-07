@@ -16,6 +16,7 @@ const defaultProps: PickerTriggerProps = {
   isItemSelected: false,
   isOpen: false,
   onClear: () => noop,
+  setTriggerFocus: () => noop,
 };
 
 const renderComponent = (props: PickerTriggerProps) => {

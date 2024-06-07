@@ -1,11 +1,15 @@
 $surface-primary-disabled: #f9fafb;
 $surface-primary-hover: #f3f6f7;
 $surface-accent-emphasis-min-info: #f4faff;
+$surface-accent-emphasis-min-warning: #fff9ed;
+$content-basic-disabled: #8d8d95;
+$content-basic-primary: #131317;
 $surface-primary-default: #fff;
 $action-primary-default: #4284f5;
 $surface-secondary-default: #f1f6f8;
 $surface-primary-active: #ebf1f4;
 $surface-tertiary-hover: #d3dde3;
+$decor-gray800: #29292f;
 
 .lc-legacy-theme {
   --background: #fff; // deprecated
@@ -88,8 +92,8 @@ $surface-tertiary-hover: #d3dde3;
   --surface-other-agent: #4284f5;
   --surface-other-agent-hover: #034fc3;
   --surface-other-skeleton: #e5e8ec;
-  --surface-other-internal-note: #ffe9bc;
-  --surface-other-internal-note-hover: #fed65e;
+  --surface-other-internal-note: #ffe9bc; // deprecated
+  --surface-other-internal-note-hover: #fee3a0;
   --surface-other-visitor: #f5f5f5;
   --surface-other-visitor-hover: #e4e4e5;
   --surface-gradient-01: linear-gradient(
@@ -240,7 +244,7 @@ $surface-tertiary-hover: #d3dde3;
   --decor-yellow50: #fff9ed;
   --decor-gray950: #131317;
   --decor-gray900: #1b1b20;
-  --decor-gray800: #29292f;
+  --decor-gray800: #{$decor-gray800};
   --decor-gray700: #3b3b43;
   --decor-gray600: #4e4e58;
   --decor-gray500: #62626d;
@@ -324,8 +328,21 @@ $surface-tertiary-hover: #d3dde3;
   --surface-avatar-9: #b08c00;
   --surface-avatar-10: #00a449;
   --navbar-background: #101014;
+  --tooltip-background-basic: #fff;
+  --tooltip-background-invert: #{$decor-gray800};
   --tooltip-border: transparent;
+  --tooltip-border-for-svg: transparent;
   --animated-gradient-value-1: rgb(226 226 228 / 0%) 0.08%;
   --animated-gradient-value-2: #e2e2e4 50.5%;
   --animated-gradient-value-3: rgb(226 226 228 / 0%) 99.89%;
+  --content-basic-internal-note: #3a310c;
+  --content-basic-bot: #00003e;
+  --action-lock-default: #1b1b20;
+  --action-lock-hover: #131317;
+  --action-lock-active: #131317;
+  --action-lock-disabled: hsl(240deg 8% 12% / 20%);
+  --surface-other-internal-note-message-area: #{$surface-accent-emphasis-min-warning};
+  --surface-other-internal-note-default: #{$content-basic-disabled};
+  --content-basic-internal-note-message-placeholder: #{$content-basic-disabled};
+  --content-basic-internal-note-message-active: #{$content-basic-primary};
 }

@@ -57,8 +57,9 @@ export const usePickerItems = ({
 
         const search = searchPhrase.toLowerCase();
         const itemName = item.name.toLowerCase();
+        const itemSecondaryText = item.secondaryText?.toLowerCase();
 
-        return itemName.includes(search);
+        return itemName.includes(search) || itemSecondaryText?.includes(search);
       });
     }
 
@@ -76,21 +77,21 @@ export const usePickerItems = ({
   }, [searchPhrase, options, type, selectAllOptionText]);
 
   const handleSelect = (key: string) => {
-    const item = items.find((item) => item.key === key);
-    if (!item || item.disabled) {
+    const item = options.find((item) => item.key === key);
+    if ((!item || item.disabled) && key !== SELECT_ALL_OPTION_KEY) {
       return;
     }
 
     if (type === 'single') {
       setOpen(false);
       setSelectedKeys(() => {
-        onSelect([item]);
+        item && onSelect([item]);
 
         return [key];
       });
     } else {
       if (key === SELECT_ALL_OPTION_KEY) {
-        if (selectedKeys.length === getNormalizedItems(items).length) {
+        if (selectedKeys.length === getNormalizedItems(options).length) {
           setSelectedKeys(() => {
             onSelect(null);
 
@@ -98,7 +99,7 @@ export const usePickerItems = ({
           });
         } else {
           setSelectedKeys(() => {
-            const newItems = getNormalizedItems(items);
+            const newItems = getNormalizedItems(options);
             onSelect(newItems);
 
             return newItems.map(({ key }) => key);

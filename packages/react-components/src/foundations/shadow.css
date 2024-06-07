@@ -17,6 +17,10 @@
   --shadow-divider-top-right: -1px 1px 0 0 #eeeeef inset;
   --shadow-divider-bottom-right: -1px -1px 0 0 #eeeeef inset;
   --shadow-message-box: 0 0 8px 0 rgb(19 19 23 / 12%);
+  --shadow-fixed-right: 2px 0 10px rgb(19 19 23 / 18%);
+  --shadow-fixed-left: -2px 0 10px rgb(19 19 23 / 18%);
+  --shadow-fixed-top: 0 -2px 10px rgb(19 19 23 / 18%);
+  --shadow-fixed-bottom: 0 2px 10px rgb(19 19 23 / 18%);
 }
 
 .lc-light-theme {
@@ -37,6 +41,10 @@
   --shadow-divider-top-right: -1px 1px 0 0 #eeeeef inset;
   --shadow-divider-bottom-right: -1px -1px 0 0 #eeeeef inset;
   --shadow-message-box: 0 0 8px 0 rgb(19 19 23 / 12%);
+  --shadow-fixed-right: 2px 0 10px rgb(19 19 23 / 18%);
+  --shadow-fixed-left: -2px 0 10px rgb(19 19 23 / 18%);
+  --shadow-fixed-top: 0 -2px 10px rgb(19 19 23 / 18%);
+  --shadow-fixed-bottom: 0 2px 10px rgb(19 19 23 / 18%);
 }
 
 .lc-dark-theme {
@@ -60,4 +68,8 @@
   --shadow-divider-top-right: -1px 1px 0 0 #3b3b43 inset;
   --shadow-divider-bottom-right: -1px -1px 0 0 #3b3b43 inset;
   --shadow-message-box: 0 0 8px 0 rgb(0 0 0 / 60%);
+  --shadow-fixed-right: 2px 0 10px rgb(19 19 23 / 18%);
+  --shadow-fixed-left: -2px 0 10px rgb(19 19 23 / 18%);
+  --shadow-fixed-top: 0 -2px 10px rgb(19 19 23 / 18%);
+  --shadow-fixed-bottom: 0 2px 10px rgb(19 19 23 / 18%);
 }

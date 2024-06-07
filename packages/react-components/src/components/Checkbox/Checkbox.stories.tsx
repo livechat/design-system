@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { ComponentMeta } from '@storybook/react';
 
-import noop from '../../utils/noop';
+import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
 import { Checkbox as CheckboxComponent, CheckboxProps } from './Checkbox';
 
@@ -13,7 +13,13 @@ export default {
 } as ComponentMeta<typeof CheckboxComponent>;
 
 export const Checkbox = (args: CheckboxProps): React.ReactElement => {
-  return <CheckboxComponent {...args} onChange={noop} />;
+  const [checked, setChecked] = React.useState(args.checked);
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setChecked(e.target.checked);
+
+  return (
+    <CheckboxComponent {...args} checked={checked} onChange={handleOnChange} />
+  );
 };
 
 Checkbox.args = {
@@ -22,3 +28,24 @@ Checkbox.args = {
   description: 'Help text',
   children: 'Checkbox label',
 };
+
+export const States = (): React.ReactElement => (
+  <>
+    <StoryDescriptor title="Checked">
+      <CheckboxComponent checked description="Enabled">
+        Checkbox label
+      </CheckboxComponent>
+      <CheckboxComponent checked description="Disabled" disabled>
+        Checkbox label
+      </CheckboxComponent>
+    </StoryDescriptor>
+    <StoryDescriptor title="Unchecked">
+      <CheckboxComponent checked={false} description="Enabled">
+        Checkbox label
+      </CheckboxComponent>
+      <CheckboxComponent checked={false} description="Disabled" disabled>
+        Checkbox label
+      </CheckboxComponent>
+    </StoryDescriptor>
+  </>
+);

@@ -170,6 +170,7 @@
 }
 
 @mixin link-inverted() {
+  text-decoration: underline;
   color: var(--content-invert-primary);
 
   &:hover {
@@ -192,13 +193,13 @@
 
   &:hover {
     border-color: transparent;
-    background-color: var(--surface-primary-hover);
+    background-color: var(--surface-opacity-basic-hover);
     color: var(--content-basic-primary);
   }
 
   &:active {
     border-color: transparent;
-    background-color: var(--surface-primary-active);
+    background-color: var(--surface-opacity-basic-active);
     color: var(--content-basic-primary);
   }
 
@@ -267,5 +268,40 @@
 
   &[aria-disabled='true'] {
     background-color: var(--action-high-contrast-disabled);
+  }
+}
+
+@mixin plain-lock-black() {
+  border-color: transparent;
+  background-color: var(--action-lock-default);
+  color: var(--content-locked-white);
+
+  &:hover {
+    background-color: var(--action-lock-hover);
+  }
+
+  &[aria-disabled='true'] {
+    background-color: var(--action-lock-disabled);
+  }
+}
+
+@mixin text-lock-black() {
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+  height: auto;
+  text-decoration: underline;
+  color: var(--action-lock-default);
+
+  &:hover {
+    color: var(--action-lock-hover);
+  }
+
+  &:active {
+    color: var(--action-lock-active);
+  }
+
+  &[aria-disabled='true'] {
+    color: var(--action-lock-disabled);
   }
 }

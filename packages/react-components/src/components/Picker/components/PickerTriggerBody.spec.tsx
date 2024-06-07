@@ -14,7 +14,9 @@ const defaultProps = {
   onItemRemove: () => noop,
   onFilter: () => noop,
   onSelect: () => noop,
+  onClear: () => noop,
   virtualItemRef: { current: null },
+  isTriggerFocused: false,
 };
 
 const renderComponent = (props: ITriggerBodyProps) => {

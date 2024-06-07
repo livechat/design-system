@@ -112,13 +112,6 @@ $base-class: 'picker-list';
       }
     }
 
-    &__content {
-      display: flex;
-      flex: 1;
-      align-items: center;
-      overflow: hidden;
-    }
-
     &__custom {
       width: 100%;
       height: auto;
@@ -154,13 +147,22 @@ $base-class: 'picker-list';
       overflow: hidden;
     }
 
+    &__label {
+      overflow: hidden;
+      text-wrap: nowrap;
+      text-overflow: ellipsis;
+    }
+
     &__main-label {
       font-weight: bold;
     }
 
     &__secondary-label {
+      overflow: hidden;
+      text-overflow: ellipsis;
       color: var(--content-basic-secondary);
       font-size: 12px;
+      text-wrap: nowrap;
     }
   }
 }

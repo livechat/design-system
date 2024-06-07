@@ -9,6 +9,7 @@ $base-class: 'action-menu';
   background-color: var(--popover-background);
   min-width: 168px;
   max-width: 336px;
+  overflow: hidden;
 
   &__trigger-button {
     border: 0;
@@ -115,7 +116,7 @@ $base-class: 'action-menu';
       }
 
       &--disabled {
-        color: var(--content-basic-disabled);
+        opacity: 0.45;
 
         &:hover {
           background: none;
