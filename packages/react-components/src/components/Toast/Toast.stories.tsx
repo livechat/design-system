@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { action } from '@storybook/addon-actions';
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { DISABLED_CONTROLS } from '../../utils/story-parameters';
@@ -22,15 +22,15 @@ export default {
     onClose: { action: 'closed' },
     action: { control: false },
   },
-} as ComponentMeta<typeof Toast>;
+} as Meta<typeof Toast>;
 
-export const Default: Story<ToastProps> = (args: ToastProps) => (
+export const Default: StoryFn<ToastProps> = (args: ToastProps) => (
   <Toast {...args}>All systems running</Toast>
 );
 Default.storyName = 'Toast';
 Default.args = {};
 
-export const Kinds: Story = (): React.ReactElement => (
+export const Kinds: StoryFn = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Success">
       <Toast kind="success">Saved successfully</Toast>
@@ -48,7 +48,7 @@ export const Kinds: Story = (): React.ReactElement => (
 );
 Kinds.parameters = DISABLED_CONTROLS;
 
-export const WithCloseIcon: Story = (): React.ReactElement => (
+export const WithCloseIcon: StoryFn = (): React.ReactElement => (
   <Toast removable={true} onClose={action('closed')}>
     All systems running
   </Toast>

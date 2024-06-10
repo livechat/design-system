@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import { RadioButton } from '../RadioButton';
 
@@ -17,7 +17,7 @@ export default {
     Use FieldGroup component to group elements and display it in nice layout (inline or stacked).
     `,
   },
-} as ComponentMeta<typeof FieldGroupComponent>;
+} as Meta<typeof FieldGroupComponent>;
 
 export const FieldGroup = ({
   ...args

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import {
   ProgressCircle as ProgressCircleComponent,
@@ -10,7 +10,7 @@ import {
 export default {
   title: 'Components/Progress/ProgressCircle',
   component: ProgressCircleComponent,
-} as ComponentMeta<typeof ProgressCircleComponent>;
+} as Meta<typeof ProgressCircleComponent>;
 
 export const ProgressCircle = (
   args: ProgressCircleProps

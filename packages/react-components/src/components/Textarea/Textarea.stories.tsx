@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
@@ -13,9 +13,9 @@ export default {
   title: 'Forms/Textarea',
   component: Textarea,
   argTypes: { onChange: { action: 'changed' } },
-} as ComponentMeta<typeof Textarea>;
+} as Meta<typeof Textarea>;
 
-export const Default: Story<TextareaProps> = (args: TextareaProps) => {
+export const Default: StoryFn<TextareaProps> = (args: TextareaProps) => {
   return (
     <div>
       <Textarea {...args} />

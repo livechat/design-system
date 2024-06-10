@@ -6,7 +6,6 @@ import * as path from 'path';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import turbosnap from 'vite-plugin-turbosnap';
 
 export default defineConfig(({ mode }) => {
   return {
@@ -52,7 +51,6 @@ export default defineConfig(({ mode }) => {
         exclude: ['**/*.stories.tsx', '**/*.spec.ts', '**/*.spec.tsx'],
       }),
       react({ jsxRuntime: 'classic' }),
-      mode === 'production' && turbosnap({ rootDir: process.cwd() }),
     ],
   };
 });

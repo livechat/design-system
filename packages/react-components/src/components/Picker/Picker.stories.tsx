@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import noop from '../../utils/noop';
@@ -27,7 +27,7 @@ export default {
     },
     onSelect: { action: 'changed' },
   },
-} as ComponentMeta<typeof Picker>;
+} as Meta<typeof Picker>;
 
 const commonWidth: React.CSSProperties = { width: 300 };
 
@@ -45,7 +45,7 @@ const PickerComponent = (args: IPickerProps) => {
   );
 };
 
-const StoryTemplate: Story<IPickerProps> = (args: IPickerProps) => {
+const StoryTemplate: StoryFn<IPickerProps> = (args: IPickerProps) => {
   return (
     <div style={{ height: 320 }}>
       <PickerComponent {...args} />

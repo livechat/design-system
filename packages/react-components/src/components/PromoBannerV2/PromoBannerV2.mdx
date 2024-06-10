@@ -1,7 +1,6 @@
 import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
-import { Figma } from '@storybook/addon-designs/blocks';
+
 import * as Stories from './PromoBannerV2.stories';
-import { SMALL_CONTAINER_WIDTH_TRESHOLD } from './constants.ts';
 
 <Meta of={Stories} />
 
@@ -39,7 +38,8 @@ import { SMALL_CONTAINER_WIDTH_TRESHOLD } from './constants.ts';
 ```
 
 ##### How to control the elements
-By default, items in the left column are centered, while items in the right column are aligned to the bottom right. The component contains a breakpoint depending on the width of the main container, which, if it is <b>less than {SMALL_CONTAINER_WIDTH_TRESHOLD}px</b>, will change the view to "vertical" and the contents of the right column will be moved above the left column. In "vertical" view, the contents of the right column will be left-aligned by default, the left column will remain unchanged. If you want more control of these elements (left and right columns) in both views, below is an instruction on how to control the position of individual elements via CSS styles.
+
+By default, items in the left column are centered, while items in the right column are aligned to the bottom right. The component contains a breakpoint depending on the width of the main container, which, if it is <b>less than `{SMALL_CONTAINER_WIDTH_TRESHOLD}`px</b>, will change the view to "vertical" and the contents of the right column will be moved above the left column. In "vertical" view, the contents of the right column will be left-aligned by default, the left column will remain unchanged. If you want more control of these elements (left and right columns) in both views, below is an instruction on how to control the position of individual elements via CSS styles.
 
 First, we use `container queries` to rearrange these elements. They allow you to change the arrangement of elements in the component via pure CSS. Example:
 
@@ -65,17 +65,18 @@ The implementation takes into account the possibility of using this to rearrange
 }
 ```
 
-The above example will cause the transferred element to fill the container in which it was placed, and the layout change will be on the side of implementation in your code. Using the `container query` set to the breakpoint indicated by us (<b>{SMALL_CONTAINER_WIDTH_TRESHOLD}px</b>), the element will be moved accordingly in accordance with the provided styles.
-
+The above example will cause the transferred element to fill the container in which it was placed, and the layout change will be on the side of implementation in your code. Using the `container query` set to the breakpoint indicated by us `(<b>{SMALL_CONTAINER_WIDTH_TRESHOLD}px</b>)`, the element will be moved accordingly in accordance with the provided styles.
 
 ## Component API <a id="ComponentAPI" />
 
-<ArgTypes of={Stories.Default} />
+<ArgTypes of={Stories.Default} sort="requiredFirst" />
 
 ## Content Spec <a id="ContentSpec" />
 
-<Figma
-  showLink
-  height="100%"
-  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=646-40122&mode=dev"
-/>
+<a
+  className="sb-unstyled"
+  href="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=646-40122&mode=dev"
+  target="_blank"
+>
+  Go to Figma documentation
+</a>

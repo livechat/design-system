@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { GreetingQuickReply } from '@livechat/design-system-icons';
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 
 import noop from '../../utils/noop';
 import { Button } from '../Button';
@@ -34,7 +34,7 @@ export default {
     },
     layout: 'centered',
   },
-} as ComponentMeta<typeof ModalComponent>;
+} as Meta<typeof ModalComponent>;
 
 const defaultModalProps = {
   children: <ModalContent />,
@@ -44,7 +44,7 @@ const defaultModalProps = {
   onClose: () => noop,
 };
 
-const StoryTemplate: Story<ModalProps> = ({
+const StoryTemplate: StoryFn<ModalProps> = ({
   children,
   ...args
 }: ModalProps): React.ReactElement => {

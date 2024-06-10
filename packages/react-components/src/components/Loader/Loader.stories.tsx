@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
@@ -9,7 +9,7 @@ import { Loader, LoaderProps } from './Loader';
 export default {
   title: 'Components/Loader',
   component: Loader,
-} as ComponentMeta<typeof Loader>;
+} as Meta<typeof Loader>;
 
 export const Default = (args: LoaderProps): React.ReactElement => (
   <Loader {...args} />

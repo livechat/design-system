@@ -1,10 +1,6 @@
-import { Meta, Title, Subtitle, Canvas, ArgTypes } from '@storybook/blocks';
-import { Figma } from '@storybook/addon-designs/blocks';
+import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+
 import * as BadgeStories from './Badge.stories';
-import {
-  BlockColumnsContainer,
-  BlockColumns,
-} from '../../stories/components/BlockColumns/BlockColumns';
 
 <Meta of={BadgeStories} />
 
@@ -22,12 +18,14 @@ import {
 
 ## Component API <a id="ComponentAPI" />
 
-<ArgTypes />
+<ArgTypes of={BadgeStories.Default} sort="requiredFirst" />
 
 ## Content Spec <a id="ContentSpec" />
 
-<Figma
-  showLink
-  height="100%"
-  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=731-59622&mode=dev"
-/>
+<a
+  className="sb-unstyled"
+  href="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=731-59622&mode=dev"
+  target="_blank"
+>
+  Go to Figma documentation
+</a>

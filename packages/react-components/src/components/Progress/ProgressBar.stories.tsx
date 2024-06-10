@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import {
   ProgressBar as ProgressBarComponent,
@@ -10,7 +10,7 @@ import {
 export default {
   title: 'Components/Progress/ProgressBar',
   component: ProgressBarComponent,
-} as ComponentMeta<typeof ProgressBarComponent>;
+} as Meta<typeof ProgressBarComponent>;
 
 export const ProgressBar = (args: ProgressBarProps): React.ReactElement => {
   return <ProgressBarComponent {...args} />;

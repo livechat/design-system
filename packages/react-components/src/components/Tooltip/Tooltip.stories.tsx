@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import noop from '../../utils/noop';
@@ -58,7 +58,7 @@ export default {
     Simple,
     UserGuide,
   },
-} as ComponentMeta<typeof Tooltip>;
+} as Meta<typeof Tooltip>;
 
 export const Default = (args: ITooltipProps): React.ReactElement => (
   <Tooltip {...args} triggerRenderer={<Button>Trigger</Button>}>

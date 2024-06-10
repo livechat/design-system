@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import { FieldGroup } from '../FieldGroup';
 import { RadioButton } from '../RadioButton';
@@ -10,12 +10,13 @@ import { FormGroup as FormGroupComponent, FormGroupProps } from './FormGroup';
 export default {
   title: 'Forms/Form Group',
   component: FormGroupComponent,
+  tags: ['autodocs'],
   parameters: {
     componentSubtitle: `
     Use FormGroup component to group related fieldsets. Component provides label for group of fields which improves accessibility of your form.
     `,
   },
-} as ComponentMeta<typeof FormGroupComponent>;
+} as Meta<typeof FormGroupComponent>;
 
 export const FormGroup = ({ ...args }: FormGroupProps): React.ReactElement => (
   <FormGroupComponent {...args}>
