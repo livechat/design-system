@@ -1,31 +1,24 @@
 {
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx/tasks-runners/default",
-      "options": {
-        "cacheableOperations": [
-          "build",
-          "build:icons",
-          "prebuild",
-          "lint",
-          "test"
-        ]
-      }
-    }
-  },
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build", "prebuild"],
-      "outputs": ["{projectRoot}/dist", "{projectRoot}/lib"]
+      "outputs": ["{projectRoot}/dist", "{projectRoot}/lib"],
+      "cache": true
     },
     "prebuild": {
-      "outputs": ["{projectRoot}/lib"]
+      "outputs": ["{projectRoot}/lib"],
+      "cache": true
     },
     "build:icons": {
-      "outputs": ["{projectRoot}/dist", "{projectRoot}/lib"]
+      "outputs": ["{projectRoot}/dist", "{projectRoot}/lib"],
+      "cache": true
     },
     "test": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "cache": true
+    },
+    "lint": {
+      "cache": true
     }
   },
   "$schema": "./node_modules/nx/schemas/nx-schema.json",

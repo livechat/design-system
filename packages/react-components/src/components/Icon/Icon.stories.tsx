@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import * as TablerIcons from '@livechat/design-system-icons';
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import { Icon as IconComponent, IconProps } from './Icon';
 
@@ -34,7 +34,7 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof IconComponent>;
+} as Meta<typeof IconComponent>;
 
 export const Icon = (args: IconProps): React.ReactElement => (
   <div style={{ width: '300px' }}>

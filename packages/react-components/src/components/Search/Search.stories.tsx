@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
@@ -12,7 +12,7 @@ export default {
   title: 'Components/Search',
   component: SearchInput,
   argTypes: { onChange: { action: 'changed' } },
-} as ComponentMeta<typeof SearchInput>;
+} as Meta<typeof SearchInput>;
 
 const SearchInputComponent = (args: ISearchInputProps) => {
   const [value, setValue] = React.useState(args.value || '');
@@ -20,7 +20,7 @@ const SearchInputComponent = (args: ISearchInputProps) => {
   return <SearchInput {...args} value={value} onChange={setValue} />;
 };
 
-const StoryTemplate: Story<ISearchInputProps> = (args: ISearchInputProps) => {
+const StoryTemplate: StoryFn<ISearchInputProps> = (args: ISearchInputProps) => {
   return <SearchInputComponent {...args} />;
 };
 

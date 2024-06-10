@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 
 import {
   PromoBannerProps,
@@ -19,9 +19,9 @@ export default {
     `,
   },
   argTypes: { onClose: { defaultValue: null } },
-} as ComponentMeta<typeof PromoBannerComponent>;
+} as Meta<typeof PromoBannerComponent>;
 
-const StoryTemplate: Story<PromoBannerProps> = (args: PromoBannerProps) => (
+const StoryTemplate: StoryFn<PromoBannerProps> = (args: PromoBannerProps) => (
   <PromoBannerComponent {...args}>
     <>
       A description with a <b>maximum of 100 characters</b>. That usually means

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { Search } from '@livechat/design-system-icons';
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Icon } from '../Icon';
@@ -12,6 +12,7 @@ import { FormField as FormFieldComponent, FormFieldProps } from './FormField';
 export default {
   title: 'Forms/FormField',
   component: FormFieldComponent,
+  tags: ['autodocs'],
   argTypes: {
     children: {
       control: false,
@@ -26,14 +27,14 @@ export default {
       control: false,
     },
   },
-} as ComponentMeta<typeof FormFieldComponent>;
+} as Meta<typeof FormFieldComponent>;
 
 const ExampleIcon = () => <Icon source={Search} />;
 const ExampleInput = () => <Input placeholder="Placeholder text" />;
 const LabelText = 'Example label text';
 const DescriptionText = 'Example description text';
 
-const StoryTemplate: Story<FormFieldProps> = (args: FormFieldProps) => (
+const StoryTemplate: StoryFn<FormFieldProps> = (args: FormFieldProps) => (
   <div>
     <FormFieldComponent {...args}>
       {args.children || (

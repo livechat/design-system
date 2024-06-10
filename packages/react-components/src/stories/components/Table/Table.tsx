@@ -5,7 +5,7 @@ import { Warning } from '@livechat/design-system-icons';
 
 import { Icon } from '../../../components/Icon';
 import { Tooltip } from '../../../components/Tooltip';
-import { DesignToken } from '../../../foundations/design-token';
+import { DesignToken } from '../../../foundations';
 import { handleCopyText } from '../../helpers';
 
 type BasicTableData = Record<string, unknown> & {
@@ -35,18 +35,18 @@ export const Table: React.FC<ITable> = ({
         <thead>
           <tr>
             {columnNames.map((columnName) => (
-              <th>{columnName}</th>
+              <th key={columnName}>{columnName}</th>
             ))}
           </tr>
         </thead>
         <tbody>
           {data.map((row, rowIndex) => (
-            <tr key={rowIndex}>
+            <tr key={`${rowIndex}-row`}>
               {Object.entries(row).map(([key, value], cellIndex) => {
                 if (key === 'enum') {
                   return (
                     <td
-                      key={cellIndex}
+                      key={`${rowIndex}-${cellIndex}-cell`}
                       onClick={() => handleCopyText(value as string)}
                     >
                       <div className="example-field copy-text">
@@ -73,7 +73,7 @@ export const Table: React.FC<ITable> = ({
                 if (key === 'token') {
                   return (
                     <td
-                      key={cellIndex}
+                      key={`${rowIndex}-${cellIndex}-cell`}
                       className="no-wrap copy-text"
                       onClick={() => handleCopyText(value as string)}
                     >
@@ -83,7 +83,7 @@ export const Table: React.FC<ITable> = ({
                 }
 
                 if (typeof value === 'string') {
-                  return <td key={cellIndex}>{value}</td>;
+                  return <td key={`${rowIndex}-${cellIndex}-cell`}>{value}</td>;
                 }
               })}
             </tr>

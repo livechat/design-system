@@ -1,5 +1,5 @@
 import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
-import { Figma } from '@storybook/addon-designs/blocks';
+
 import * as Picker from './Picker.stories';
 
 <Meta of={Picker} />
@@ -33,12 +33,14 @@ Filtering also takes into account the optional `option.secondaryText` parameter,
 
 ## Component API <a id="ComponentAPI" />
 
-<ArgTypes of={Picker.Default} />
+<ArgTypes of={Picker.Default} sort="requiredFirst" />
 
 ## Content Spec <a id="ContentSpec" />
 
-<Figma
-  showLink
-  height="100%"
-  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=731-53240&mode=dev"
-/>
+<a
+  className="sb-unstyled"
+  href="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=731-53240&mode=dev"
+  target="_blank"
+>
+  Go to Figma documentation
+</a>
