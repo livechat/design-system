@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import noop from '../../utils/noop';
@@ -27,7 +27,7 @@ export default {
       action: 'clicked',
     },
   },
-} as ComponentMeta<typeof Alert>;
+} as Meta<typeof Alert>;
 
 export const Default = (args: AlertProps): React.ReactElement => (
   <Alert {...args}>

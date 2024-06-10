@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 
 import {
   NumericInputProps,
@@ -17,9 +17,9 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof NumericInputComponent>;
+} as Meta<typeof NumericInputComponent>;
 
-const StoryTemplate: Story<NumericInputProps> = (args: NumericInputProps) => {
+const StoryTemplate: StoryFn<NumericInputProps> = (args: NumericInputProps) => {
   const [value, setValue] = React.useState('0');
 
   return (

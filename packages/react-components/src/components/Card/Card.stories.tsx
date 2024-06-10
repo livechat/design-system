@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { action } from '@storybook/addon-actions';
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import { Card, CardProps } from '../Card';
 
@@ -16,9 +16,9 @@ export default {
       control: false,
     },
   },
-} as ComponentMeta<typeof Card>;
+} as Meta<typeof Card>;
 
-export const Default: Story<CardProps> = (args: CardProps) => (
+export const Default = (args: CardProps): React.ReactElement => (
   <Card {...args} />
 );
 
@@ -31,7 +31,7 @@ Default.args = {
 } as CardProps;
 Default.storyName = 'Card';
 
-export const Expandable: Story = (): React.ReactElement => (
+export const Expandable = (): React.ReactElement => (
   <Card
     title="Expandable card"
     description="Click show more to expand"
@@ -43,7 +43,7 @@ export const Expandable: Story = (): React.ReactElement => (
   </Card>
 );
 
-export const WithButtons: Story = (): React.ReactElement => (
+export const WithButtons = (): React.ReactElement => (
   <Card
     title="Expandable card"
     description="Click show more to expand"
@@ -66,7 +66,7 @@ export const WithButtons: Story = (): React.ReactElement => (
   </Card>
 );
 
-export const ExpandableWithButtons: Story = (): React.ReactElement => (
+export const ExpandableWithButtons = (): React.ReactElement => (
   <Card
     title="Expandable card"
     description="Click show more to expand"

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 
 import { Button } from '../Button';
 import { Form as FormComponenet, FormProps } from '../Form';
@@ -9,9 +9,10 @@ import { RadioButton } from '../RadioButton';
 export default {
   title: 'Forms/Form',
   component: FormComponenet,
-} as ComponentMeta<typeof FormComponenet>;
+  tags: ['autodocs'],
+} as Meta<typeof FormComponenet>;
 
-export const Form: Story<FormProps> = (args) => {
+export const Form: StoryFn<FormProps> = (args) => {
   return <FormComponenet {...args} />;
 };
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
@@ -10,7 +10,7 @@ export default {
   title: 'Forms/Checkbox',
   component: CheckboxComponent,
   argTypes: { onChange: { action: 'changed' } },
-} as ComponentMeta<typeof CheckboxComponent>;
+} as Meta<typeof CheckboxComponent>;
 
 export const Checkbox = (args: CheckboxProps): React.ReactElement => {
   const [checked, setChecked] = React.useState(args.checked);
