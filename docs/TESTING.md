@@ -6,7 +6,7 @@ Quality assurance is mainly provided by `@livechat/design-system` team, especial
 
 We believe in a good balance of manual and automated approaches in the area of quality.
 
-In order to start testing please follow installation and running instructions as described [here](./README.md).
+In order to start testing please follow installation and running instructions as described [here](../README.md).
 
 ## Manual testing
 
@@ -35,6 +35,20 @@ Each change needs to be manually reviewed in `Chromatic` and although not requir
 # Automatic Testing
 
 Although `Storybook` covers most of the scenarios we still invest in automated coverage using a unit testing framework called [Vitest](https://vitest.dev/). As much as possible we try to avoid "technical" verification and focus on implementation testing. Instead, our tests are designed to simulate user actions and observations, following these [rules](https://testing-library.com/docs/guiding-principles/). To do so we utilize [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) and other packages from [Testing Library](https://testing-library.com/) family.
+
+Writing tests for each component must be approached individually, there is no proven recipe that will suit everyone, because components have their own purpose. You know best how the component should work and these scenarios should be covered with tests. 
+
+Nevertheless, below are some rules that we follow when creating unit tests:
+- We aim for 100% coverage
+- Each new component must include unit tests
+- Each new feature or update of an existing component must include additional tests, and, if necessary, also modification of the existing ones to better fulfill their role
+- Each component should check whether the user can pass his class to it, and in the case of more complex components, when there are more class-related parameters, it should also check whether they are passed
+- If a given component consists of several smaller ones, each of them should be covered with tests based on its API, and the main component should contain tests as part of its usage scenarios
+- Unit tests should be based on the DOM (UI consistencies are checked by visual tests)
+  - Components should be built in accordance with [a11y standards](https://www.a11yproject.com/), and tests should be based on interactions with these elements in purely functional terms (we refer to an element by `role`, `label`, `type`, `text`, and ultimately via `testId`)
+  - If the component contains logic transferred to a `helpers` file, such a file should also contain tests to check whether a given logic returns correct data
+  - We check every possible component variant based on its API (handlers are/are not launched in specific cases, if necessary, whether they transmit correct data, if any prop affects the display/hiding of a specific element, we check whether it is visible from the DOM or contains appropriate props informing about its status)
+  - Since we focus on `a11y`, we should also take care of users who work only with the keyboard. This mainly applies to more complicated components that include our custom keyboard support, the test should take into account such interaction (for example, whether focus on the trigger and clicking `space` opens the list)
 
 # Testing principles
 
