@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { VirtuosoProps } from 'react-virtuoso';
 import { vitest } from 'vitest';
 

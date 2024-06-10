@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { AddCircle as AddCircleIcon } from '@livechat/design-system-icons';
 
 import { fireEvent, render } from 'test-utils';

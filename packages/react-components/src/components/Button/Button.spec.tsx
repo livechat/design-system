@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import * as Icons from '@livechat/design-system-icons';
 
 import { render, fireEvent, vi } from 'test-utils';
