@@ -6,17 +6,15 @@ import styles from './TabsWrapper.module.scss';
 
 const baseClass = 'tabs';
 
-export const TabsWrapper: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
-  className,
-  children,
-}) => {
+export const TabsWrapper: React.FC<
+  React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>
+> = ({ className, children }) => {
   return <div className={cx(styles[baseClass], className)}>{children}</div>;
 };
 
-export const TabsList: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
-  className,
-  children,
-}) => {
+export const TabsList: React.FC<
+  React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>
+> = ({ className, children }) => {
   return (
     <div className={cx(styles[`${baseClass}__list`], className)}>
       {children}

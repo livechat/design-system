@@ -50,7 +50,9 @@ export interface IDetailsCardProps {
 
 const baseClass = 'details-card';
 
-export const DetailsCard: React.FC<IDetailsCardProps> = ({
+export const DetailsCard: React.FC<
+  React.PropsWithChildren<IDetailsCardProps>
+> = ({
   children,
   className,
   leftNode,

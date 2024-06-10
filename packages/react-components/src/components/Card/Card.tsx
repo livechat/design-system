@@ -47,7 +47,7 @@ const headingClass = `${headerClass}__heading`;
 const actionsClass = `${baseClass}__actions`;
 const noImageClass = `${headerClass}__no-image`;
 
-export const Card: React.FC<CardProps> = ({
+export const Card: React.FC<React.PropsWithChildren<CardProps>> = ({
   alt,
   buttonsOptions = [],
   children,

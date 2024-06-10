@@ -77,7 +77,7 @@ export interface IconProps {
 
 const baseClass = 'icon';
 
-export const Icon: React.FC<IconProps> = (props) => {
+export const Icon: React.FC<React.PropsWithChildren<IconProps>> = (props) => {
   const {
     source,
     size = 'medium',

@@ -8,12 +8,9 @@ export interface ModalPortalProps extends React.HTMLAttributes<HTMLDivElement> {
   parentElementName?: string;
 }
 
-export const ModalPortal: React.FC<ModalPortalProps> = ({
-  children,
-  className = '',
-  parentElementName = 'body',
-  zIndex,
-}) => {
+export const ModalPortal: React.FC<
+  React.PropsWithChildren<ModalPortalProps>
+> = ({ children, className = '', parentElementName = 'body', zIndex }) => {
   const [container] = React.useState(() => document.createElement('div'));
 
   if (className) {

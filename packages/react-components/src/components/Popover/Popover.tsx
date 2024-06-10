@@ -24,7 +24,7 @@ import { IPopoverProps } from './types';
 
 import styles from './Popover.module.scss';
 
-export const Popover: React.FC<IPopoverProps> = ({
+export const Popover: React.FC<React.PropsWithChildren<IPopoverProps>> = ({
   triggerRenderer,
   onClose,
   onOpen,
