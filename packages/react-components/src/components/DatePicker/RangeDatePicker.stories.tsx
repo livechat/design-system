@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import { subDays } from 'date-fns';
 
 import { DatePicker } from './DatePicker';
@@ -61,9 +61,9 @@ export default {
       defaultValue: true,
     },
   },
-} as ComponentMeta<typeof RangeDatePickerComponent>;
+} as Meta<typeof RangeDatePickerComponent>;
 
-const StoryTemplate: Story<IRangeDatePickerProps> = (
+const StoryTemplate: StoryFn<IRangeDatePickerProps> = (
   args: IRangeDatePickerProps
 ) => {
   return (

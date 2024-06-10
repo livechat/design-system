@@ -43,7 +43,7 @@ export interface IActionBarOption {
 export interface IActionBarItem {
   id: string;
   option: IActionBarOption;
-  menuItemsKeys: string[];
+  isHidden: boolean;
   isActive?: boolean;
   vertical?: boolean;
 }

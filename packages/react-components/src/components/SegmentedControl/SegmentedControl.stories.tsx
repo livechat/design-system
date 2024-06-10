@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import * as TablerIcons from '@livechat/design-system-icons';
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 
 import { Icon } from '../Icon';
 
@@ -22,9 +22,9 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof SegmentedControl>;
+} as Meta<typeof SegmentedControl>;
 
-export const Default: Story<SegmentedControlProps> = (
+export const Default: StoryFn<SegmentedControlProps> = (
   args: SegmentedControlProps
 ) => <SegmentedControl {...args} />;
 
@@ -40,7 +40,7 @@ Default.args = {
   initialId: 'fourth',
 };
 
-export const Uncontrolled: Story<SegmentedControlProps> = (
+export const Uncontrolled: StoryFn<SegmentedControlProps> = (
   args: SegmentedControlProps
 ) => <SegmentedControl {...args} />;
 

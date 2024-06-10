@@ -58,7 +58,7 @@ At this stage of the project we consider Storybook and Figma as parts of our doc
 
 ### Development
 
-Required version of `node.js` is `16.13.2`.
+Required version of `node.js` is `20.14.0`.
 
 If you're a [volta](https://volta.sh/) user, the project maintains node version entry within `package.json`.
 

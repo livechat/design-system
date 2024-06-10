@@ -6,3 +6,5 @@ build
 *.mdx
 *.md
 storybook-static
+
+/.nx/cache

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import * as TablerIcons from '@livechat/design-system-icons';
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import noop from '../../utils/noop';
@@ -27,7 +27,7 @@ const text = 'Example tag';
 export default {
   title: 'Components/Tag',
   component: Tag,
-} as ComponentMeta<typeof Tag>;
+} as Meta<typeof Tag>;
 
 export const Default = ({
   children,

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import { Tab } from './Tab';
 import { TabsList, TabsWrapper as TabsWrapperComponenet } from './TabsWrapper';
@@ -8,7 +8,7 @@ import { TabsList, TabsWrapper as TabsWrapperComponenet } from './TabsWrapper';
 export default {
   title: 'Components/Tabs',
   component: TabsWrapperComponenet,
-} as ComponentMeta<typeof TabsWrapperComponenet>;
+} as Meta<typeof TabsWrapperComponenet>;
 
 type ITabArgs = {
   items: Array<{

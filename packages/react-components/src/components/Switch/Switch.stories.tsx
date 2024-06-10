@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { DISABLED_CONTROLS } from '../../utils/story-parameters';
@@ -18,13 +18,13 @@ export default {
       control: false,
     },
   },
-} as ComponentMeta<typeof Switch>;
+} as Meta<typeof Switch>;
 
-export const Default: Story<SwitchProps> = (args: SwitchProps) => (
+export const Default: StoryFn<SwitchProps> = (args: SwitchProps) => (
   <Switch {...args} onChange={undefined} />
 );
 
-export const States: Story = (): React.ReactElement => (
+export const States: StoryFn = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Regular">
       <Switch on={true} state="regular" />
@@ -42,7 +42,7 @@ export const States: Story = (): React.ReactElement => (
 );
 States.parameters = DISABLED_CONTROLS;
 
-export const Availability: Story = (): React.ReactElement => (
+export const Availability: StoryFn = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Enabled">
       <Switch on={true} />
@@ -56,7 +56,7 @@ export const Availability: Story = (): React.ReactElement => (
 );
 Availability.parameters = DISABLED_CONTROLS;
 
-export const Sizes: Story = (): React.ReactElement => (
+export const Sizes: StoryFn = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Compact">
       <Switch size="compact" />

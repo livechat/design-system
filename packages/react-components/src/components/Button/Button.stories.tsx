@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import * as Icons from '@livechat/design-system-icons';
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Icon, IconSource } from '../Icon';
@@ -59,7 +59,7 @@ export default {
       sort: 'alpha',
     },
   },
-} as ComponentMeta<typeof Button>;
+} as Meta<typeof Button>;
 
 export const Default = (args: ButtonProps): React.ReactElement => (
   <Button {...args} />
