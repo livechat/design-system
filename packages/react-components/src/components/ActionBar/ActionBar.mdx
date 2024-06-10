@@ -1,10 +1,5 @@
-import { Canvas, Story, ArgsTable, Meta, Title } from '@storybook/blocks';
-import { Figma } from '@storybook/addon-designs/blocks';
+import { ArgTypes, Canvas, Meta, Title } from '@storybook/blocks';
 import * as ActionBarStories from './ActionBar.stories';
-import {
-  BlockColumnsContainer,
-  BlockColumns,
-} from '../../stories/components/BlockColumns/BlockColumns';
 
 <Meta of={ActionBarStories} />
 
@@ -21,7 +16,7 @@ import {
 #### Example implementation
 
 ```jsx
-<ActionBar 
+<ActionBar
   options={[
     {
       key: 'one',
@@ -35,7 +30,7 @@ import {
       label: 'Two test',
       onClick: () => onClickHandler('two'),
     },
-  ]} 
+  ]}
 />
 ```
 
@@ -50,4 +45,4 @@ This behavior can be changed using the `type` flag set to `scroll`, then element
 
 ## Component API <a id="ComponentAPI" />
 
-<ArgsTable />
+<ArgTypes of={ActionBarStories.Default} sort="requiredFirst" />

@@ -1,5 +1,5 @@
-import { Canvas, Story, ArgsTable, Meta, Title } from '@storybook/blocks';
-import { Figma } from '@storybook/addon-designs/blocks';
+import { Canvas, ArgTypes, Meta, Title } from '@storybook/blocks';
+
 import * as AvatarStories from './Avatar.stories';
 import {
   BlockColumnsContainer,
@@ -45,12 +45,14 @@ identify users and visually distinguish them in various contexts throughout an a
 
 ## Component API <a id="ComponentAPI" />
 
-<ArgsTable />
+<ArgTypes of={AvatarStories.Default} sort="requiredFirst" />
 
 ## Content Spec <a id="ContentSpec" />
 
-<Figma
-  showLink
-  height="100%"
-  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=131-10149&mode=dev"
-/>
+<a
+  className="sb-unstyled"
+  href="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=131-10149&mode=dev"
+  target="_blank"
+>
+  Go to Figma documentation
+</a>

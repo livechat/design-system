@@ -9,3 +9,4 @@ storybook-static
 .eslintcache
 .idea
 .vscode/*
+.nx/cache

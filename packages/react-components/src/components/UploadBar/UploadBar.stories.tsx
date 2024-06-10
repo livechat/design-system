@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import noop from '../../utils/noop';
 import { PdfIcon } from '../../utils/PdfIcon';
@@ -61,7 +61,7 @@ export default {
     onCloseButtonClick: { action: 'changed' },
     onRetryButtonClick: { action: 'changed' },
   },
-} as ComponentMeta<typeof UploadBarComponent>;
+} as Meta<typeof UploadBarComponent>;
 
 export const UploadBarWithSingleElement: React.FC = () => {
   const [status, setStatus] = React.useState<'normal' | 'success' | 'error'>(

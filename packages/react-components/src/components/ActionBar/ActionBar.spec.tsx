@@ -58,6 +58,6 @@ describe('<ActionBar> component', () => {
     });
 
     userEvent.click(getByText('Four'));
-    expect(onClick).toBeCalled();
+    expect(onClick).toHaveBeenCalled();
   });
 });

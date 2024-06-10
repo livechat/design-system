@@ -1,5 +1,5 @@
 import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
-import { Figma } from '@storybook/addon-designs/blocks';
+
 import * as Stories from './Tag.stories';
 import { Tag } from './Tag';
 import { Icon } from '../Icon';
@@ -22,30 +22,47 @@ import { Apple, Android } from '@livechat/design-system-icons';
 ```jsx
 import { Tag } from '@livechat/design-system-react-components';
 
-<Tag>Example tag</Tag>
+<Tag>Example tag</Tag>;
 ```
 
 ### Using tag with icons
 
 Implementation that takes into account the use of icons in the component. If there is insufficient space, the text in the component is cut off, but icons are still visible.<br /><br />
-<b>Important</b><br />
-Icons are passed by using `leftNode` and `rightNode` (both optional), and are visible only if `iconOnly` flag is set to `false` (by default). Setting the `iconOnly` to `true` will cause that `leftNode` and `rightNode` elements will be not visible. [Check icon only variant](#IconOnly)
+
+<b>Important</b>
+<br />
+Icons are passed by using `leftNode` and `rightNode` (both optional), and are
+visible only if `iconOnly` flag is set to `false` (by default). Setting the
+`iconOnly` to `true` will cause that `leftNode` and `rightNode` elements will be
+not visible. [Check icon only variant](#IconOnly)
 
 <Canvas withSource="none">
-  <Tag leftNode={<Icon source={Apple} size="small" />} rightNode={<Icon source={Android} size="small" />} >Example tag</Tag>
-  <div style={{ width: 100, display: 'flex' }}><Tag leftNode={<Icon source={Apple} size="small" />} rightNode={<Icon source={Android} size="small" />} >Example tag</Tag></div>
+  <Tag
+    leftNode={<Icon source={Apple} size="small" />}
+    rightNode={<Icon source={Android} size="small" />}
+  >
+    Example tag
+  </Tag>
+  <div style={{ width: 100, display: 'flex' }}>
+    <Tag
+      leftNode={<Icon source={Apple} size="small" />}
+      rightNode={<Icon source={Android} size="small" />}
+    >
+      Example tag
+    </Tag>
+  </div>
 </Canvas>
 
 ```jsx
 import { Apple, Android } from '@livechat/design-system-icons';
 import { Tag, Icon } from '@livechat/design-system-react-components';
 
-<Tag 
-  leftNode={<Icon source={Apple} size="small" />} 
+<Tag
+  leftNode={<Icon source={Apple} size="small" />}
   rightNode={<Icon source={Android} size="small" />}
 >
   Example tag
-</Tag>
+</Tag>;
 ```
 
 ### Using tag with close button
@@ -53,23 +70,36 @@ import { Tag, Icon } from '@livechat/design-system-react-components';
 If your implementation involves providing the ability to remove a tag from your view, it is possible to pass the handler via `onRemove` prop which will display a close button. The `dismissibleOnHover` flag allows you to change the behavior of the component, which consists in displaying a close button when you hover over a given tag.
 
 <Canvas withSource="none">
-  <Tag leftNode={<Icon source={Apple} size="small" />} rightNode={<Icon source={Android} size="small" />} onRemove={() => {}}>Example tag</Tag>
-  <Tag leftNode={<Icon source={Apple} size="small" />} rightNode={<Icon source={Android} size="small" />} onRemove={() => {}} dismissibleOnHover>Example tag</Tag>
+  <Tag
+    leftNode={<Icon source={Apple} size="small" />}
+    rightNode={<Icon source={Android} size="small" />}
+    onRemove={() => {}}
+  >
+    Example tag
+  </Tag>
+  <Tag
+    leftNode={<Icon source={Apple} size="small" />}
+    rightNode={<Icon source={Android} size="small" />}
+    onRemove={() => {}}
+    dismissibleOnHover
+  >
+    Example tag
+  </Tag>
 </Canvas>
 
 ```jsx
 import { Apple, Android } from '@livechat/design-system-icons';
 import { Tag, Icon } from '@livechat/design-system-react-components';
 
-<Tag 
-  leftNode={<Icon source={Apple} size="small" />} 
+<Tag
+  leftNode={<Icon source={Apple} size="small" />}
   rightNode={<Icon source={Android} size="small" />}
   onRemove={() => {}}
 >
   Example tag
 </Tag>
-<Tag 
-  leftNode={<Icon source={Apple} size="small" />} 
+<Tag
+  leftNode={<Icon source={Apple} size="small" />}
   rightNode={<Icon source={Android} size="small" />}
   onRemove={() => {}}
   dismissibleOnHover
@@ -83,8 +113,12 @@ import { Tag, Icon } from '@livechat/design-system-react-components';
 If you want to display only the icon in the component, it should be passed via `children`, and the `iconOnly` flag must be set to `true`. With this setup the component will adapt itself to this variant. This variant can also be used with `onRemove` (no need to use `dismissibleOnHover`).
 
 <Canvas withSource="none">
-  <Tag iconOnly><Icon source={Apple} size="small" /></Tag>
-  <Tag iconOnly onRemove={() => {}}><Icon source={Apple} size="small" /></Tag>
+  <Tag iconOnly>
+    <Icon source={Apple} size="small" />
+  </Tag>
+  <Tag iconOnly onRemove={() => {}}>
+    <Icon source={Apple} size="small" />
+  </Tag>
 </Canvas>
 
 ```jsx
@@ -101,12 +135,14 @@ import { Tag, Icon } from '@livechat/design-system-react-components';
 
 ## Component API <a id="ComponentAPI" />
 
-<ArgTypes of={Stories.Default} />
+<ArgTypes of={Stories.Default} sort="requiredFirst" />
 
 ## Content Spec <a id="ContentSpec" />
 
-<Figma
-  showLink
-  height="100%"
-  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=759-70081&mode=dev"
-/>
+<a
+  className="sb-unstyled"
+  href="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=759-70081&mode=dev"
+  target="_blank"
+>
+  Go to Figma documentation
+</a>

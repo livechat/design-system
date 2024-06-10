@@ -1,5 +1,5 @@
 import { Canvas, ArgTypes, Meta, Title } from '@storybook/blocks';
-import { Figma } from '@storybook/addon-designs/blocks';
+
 import * as DatePickerStories from './DatePicker.stories';
 
 <Meta of={DatePickerStories} />
@@ -22,12 +22,14 @@ import * as DatePickerStories from './DatePicker.stories';
 
 ## Component API <a id="ComponentAPI" />
 
-<ArgTypes />
+<ArgTypes of={DatePickerStories.DatePicker} sort="requiredFirst" />
 
 ## Content Spec <a id="ContentSpec" />
 
-<Figma
-  showLink
-  height="100%"
-  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=777-80905&mode=dev"
-/>
+<a
+  className="sb-unstyled"
+  href="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=777-80905&mode=dev"
+  target="_blank"
+>
+  Go to Figma documentation
+</a>
