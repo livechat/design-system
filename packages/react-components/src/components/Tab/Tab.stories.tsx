@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
@@ -9,7 +9,7 @@ import { Tab as TabComponent, TabProps } from './Tab';
 export default {
   title: 'Components/Tabs',
   component: TabComponent,
-} as ComponentMeta<typeof TabComponent>;
+} as Meta<typeof TabComponent>;
 
 type ITabArgs = TabProps;
 

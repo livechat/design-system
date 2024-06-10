@@ -1,10 +1,6 @@
-import { Canvas, ArgsTable, Meta, Title } from '@storybook/blocks';
-import { Figma } from '@storybook/addon-designs/blocks';
+import { Canvas, Controls, Meta, Title } from '@storybook/blocks';
+
 import * as CardStories from './Card.stories';
-import {
-  BlockColumnsContainer,
-  BlockColumns,
-} from '../../stories/components/BlockColumns/BlockColumns';
 
 <Meta of={CardStories} />
 
@@ -20,18 +16,20 @@ import {
 
 ```jsx
 <Card title="Card title" description="Card description">
-  Card text
+  Card text content
 </Card>
 ```
 
 ## Component API <a id="ComponentAPI" />
 
-<ArgsTable />
+<Controls of={CardStories.Default} sort="requiredFirst" />
 
 ## Content Spec <a id="ContentSpec" />
 
-<Figma
-  showLink
-  height="100%"
-  url="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=749-56931&mode=dev"
-/>
+<a
+  className="sb-unstyled"
+  href="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=749-56931&mode=dev"
+  target="_blank"
+>
+  Go to Figma documentation
+</a>

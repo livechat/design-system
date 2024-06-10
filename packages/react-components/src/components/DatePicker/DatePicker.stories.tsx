@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ComponentMeta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 
 import { DatePicker as DatePickerComponent } from './DatePicker';
 import { IDatePickerProps } from './types';
@@ -63,9 +63,9 @@ export default {
       },
     },
   },
-} as ComponentMeta<typeof DatePickerComponent>;
+} as Meta<typeof DatePickerComponent>;
 
-const StoryTemplate: Story<IDatePickerProps> = (args: IDatePickerProps) => {
+const StoryTemplate = (args: IDatePickerProps) => {
   const argsSelectedDate = args.selectedDays
     ? new Date(args.selectedDays as Date)
     : void 0;
@@ -94,17 +94,21 @@ const StoryTemplate: Story<IDatePickerProps> = (args: IDatePickerProps) => {
   );
 };
 
-export const DatePicker = StoryTemplate.bind({});
+export const DatePicker: StoryFn = StoryTemplate.bind({});
 DatePicker.args = {};
 
-export const DatePickerWithDatesBetweenTwoMonths = StoryTemplate.bind({});
+export const DatePickerWithDatesBetweenTwoMonths: StoryFn = StoryTemplate.bind(
+  {}
+);
 DatePickerWithDatesBetweenTwoMonths.args = {
   fromMonth: new Date('06/20/2021'),
   toMonth: new Date('09/20/2021'),
   month: new Date('09/20/2021'),
 };
 
-export const DatePickerWithCustomFirstDayOfWeek = StoryTemplate.bind({});
+export const DatePickerWithCustomFirstDayOfWeek: StoryFn = StoryTemplate.bind(
+  {}
+);
 DatePickerWithCustomFirstDayOfWeek.args = {
   firstDayOfWeek: 0,
 };

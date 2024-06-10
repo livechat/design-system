@@ -20,6 +20,7 @@ import './DetailsCard.stories.css';
 export default {
   title: 'Components/DetailsCard',
   component: DetailsCard,
+  tags: ['autodocs'],
   subcomponents: {
     DetailsCardInfo,
   },
