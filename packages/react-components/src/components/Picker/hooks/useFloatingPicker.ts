@@ -42,14 +42,14 @@ interface UseFloatingPickerProps {
 
 interface IUseFloatingPicker {
   getReferenceProps: (
-    userProps?: React.HTMLProps<HTMLElement> | undefined
+    userProps?: React.HTMLProps<Element> | undefined
   ) => Record<string, unknown>;
   setReference: (element: HTMLElement | null) => void;
   getFloatingProps: (
-    userProps?: React.HTMLProps<HTMLElement> | undefined
+    userProps?: React.HTMLProps<Element> | undefined
   ) => Record<string, unknown>;
   getItemProps: (
-    userProps?: React.HTMLProps<HTMLElement> | undefined
+    userProps?: React.HTMLProps<Element> | undefined
   ) => Record<string, unknown>;
   floatingStyles: React.CSSProperties;
   isPositioned: boolean;
@@ -100,7 +100,7 @@ export const useFloatingPicker = ({
             ReactDOM.flushSync(() => {
               setMaxHeight(
                 Math.max(
-                  Math.min(maxListHeight, availableHeight),
+                  Math.min(maxListHeight, Number(availableHeight)),
                   minListHeight
                 )
               );
