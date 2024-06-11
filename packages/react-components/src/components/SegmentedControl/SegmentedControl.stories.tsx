@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import * as TablerIcons from '@livechat/design-system-icons';
 import { Meta, StoryFn } from '@storybook/react';
 

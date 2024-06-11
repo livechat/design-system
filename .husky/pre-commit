@@ -1,6 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npx lint-staged
+npm run lint-staged
 
 npm run type-check --w @livechat/design-system-react-components

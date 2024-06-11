@@ -144,7 +144,11 @@ export const useFloatingPicker = ({
 
   return {
     getReferenceProps,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     getFloatingProps,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     getItemProps,
     setReference: refs.setReference,
     floatingStyles,

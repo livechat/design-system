@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { vi } from 'vitest';
 
 import { render, cleanup, waitFor, userEvent } from 'test-utils';

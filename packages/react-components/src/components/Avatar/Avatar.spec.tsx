@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { render, fireEvent } from 'test-utils';
 
 import { Avatar, AvatarProps } from './Avatar';

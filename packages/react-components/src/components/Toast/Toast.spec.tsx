@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { render, fireEvent, vi } from 'test-utils';
 
 import { ToastProps, Toast } from './Toast';

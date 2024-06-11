@@ -35,6 +35,8 @@
     "eslint-comments/no-unused-disable": "error",
     "@typescript-eslint/no-unused-vars": "off",
     "unused-imports/no-unused-imports": "error",
+    "import/prefer-default-export": "off",
+    "import/no-named-as-default": "off",
     "unused-imports/no-unused-vars": [
       "warn",
       {

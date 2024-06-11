@@ -16,6 +16,7 @@
     "build:icons": "lerna run build --scope @livechat/design-system-icons",
     "chromatic": "lerna run chromatic --stream",
     "prepare": "husky install",
+    "lint-staged": "lerna run lint-staged --stream",
     "lint": "lerna run lint --stream",
     "test": "lerna run test --ignore example-react --stream",
     "test:watch": "lerna run test:watch --parallel",
