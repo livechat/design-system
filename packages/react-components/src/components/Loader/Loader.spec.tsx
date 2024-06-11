@@ -25,9 +25,7 @@ describe('<Loader> component', () => {
       secondaryColor: 'blue',
     });
     const loader = getByRole('status');
-    const { borderColor, borderTopColor } = getComputedStyle(
-      loader as HTMLElement
-    );
+    const { borderColor, borderTopColor } = getComputedStyle(loader);
 
     expect(borderColor).toBe('blue');
     expect(borderTopColor).toBe('red');
