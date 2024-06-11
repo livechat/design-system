@@ -28,7 +28,9 @@ interface IUserGuide
     Omit<ITooltipProps, 'triggerRenderer'>,
     Omit<ModalPortalProps, 'children'> {}
 
-export const UserGuide: React.FC<IUserGuide> = (props) => {
+export const UserGuide: React.FC<React.PropsWithChildren<IUserGuide>> = (
+  props
+) => {
   const {
     className,
     parentElementName,

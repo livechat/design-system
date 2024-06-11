@@ -30,15 +30,27 @@
     "ecmaVersion": 12,
     "project": "tsconfig.json"
   },
-  "plugins": ["@typescript-eslint", "import"],
+  "plugins": ["@typescript-eslint", "import", "unused-imports"],
   "rules": {
     "eslint-comments/no-unused-disable": "error",
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
     "prefer-const": "error",
     "@typescript-eslint/no-unsafe-member-access": "off", // TODO: enable when design-system-icons will have proper types
     "@typescript-eslint/no-unsafe-call": "warn",
     "@typescript-eslint/no-unsafe-assignment": "off", // TODO: enable when design-system-icons will have proper types
     "@typescript-eslint/no-unsafe-return": "warn",
     "@typescript-eslint/restrict-template-expressions": "warn",
+    "@typescript-eslint/no-floating-promises": "off",
     "no-console": "error",
     "no-undef": "error",
     "no-useless-escape": "error",

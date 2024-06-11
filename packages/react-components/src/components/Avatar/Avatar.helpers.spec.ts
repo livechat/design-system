@@ -75,7 +75,7 @@ describe('getFontColor', () => {
   beforeAll(() => {
     originalGetComputedStyle = window.getComputedStyle;
 
-    (window.getComputedStyle as any) = function () {
+    (window.getComputedStyle as unknown) = function () {
       return {
         getPropertyValue(variableName: string) {
           if (variableName === '--some-color-variable') return '#000000';
