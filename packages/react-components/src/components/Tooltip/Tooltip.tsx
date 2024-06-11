@@ -19,6 +19,8 @@ import {
   FloatingArrow,
   FloatingNode,
   useFloatingNodeId,
+  useFloatingParentNodeId,
+  FloatingTree,
 } from '@floating-ui/react';
 import cx from 'clsx';
 
@@ -67,6 +69,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
   const arrowRef = React.useRef(null);
   const currentlyVisible = isControlled ? isVisible : visible;
   const tooltipStyle = kind || theme;
+  const parentId = useFloatingParentNodeId();
   const nodeId = useFloatingNodeId();
   const mergedClassNames = cx(
     styles[baseClass],
@@ -108,6 +111,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
     context,
     middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
   } = useFloating({
+    nodeId,
     middleware: [
       offset({ mainAxis: offsetMainAxis }),
       shift(),
@@ -156,7 +160,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
     referenceElement && refs.setReference(referenceElement);
   }, [refs.setReference, referenceElement]);
 
-  return (
+  const TooltipComponent = (
     <>
       <div
         ref={refs.setReference}
@@ -201,4 +205,10 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
       </FloatingNode>
     </>
   );
+
+  if (parentId === null) {
+    return <FloatingTree>{TooltipComponent}</FloatingTree>;
+  }
+
+  return TooltipComponent;
 };

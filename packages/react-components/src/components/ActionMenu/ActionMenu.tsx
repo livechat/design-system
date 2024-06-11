@@ -12,6 +12,8 @@ import {
   useTransitionStyles,
   FloatingNode,
   useFloatingNodeId,
+  useFloatingParentNodeId,
+  FloatingTree,
 } from '@floating-ui/react';
 import { Check } from '@livechat/design-system-icons';
 import cx from 'clsx';
@@ -46,6 +48,7 @@ export const ActionMenu: React.FC<IActionMenuProps> = ({
   const isControlled = visible !== undefined;
   const [isVisible, setIsVisible] = React.useState(openedOnInit);
   const indexRef = React.useRef<number>(-1);
+  const parentId = useFloatingParentNodeId();
   const nodeId = useFloatingNodeId();
   const ref = React.useRef<HTMLUListElement | null>(null);
   const currentlyVisible = isControlled ? visible : isVisible;
@@ -61,6 +64,7 @@ export const ActionMenu: React.FC<IActionMenuProps> = ({
   };
 
   const { x, y, strategy, refs, context } = useFloating({
+    nodeId,
     middleware: [offset(4), flip(flipOptions)],
     placement: placement,
     open: currentlyVisible,
@@ -195,7 +199,7 @@ export const ActionMenu: React.FC<IActionMenuProps> = ({
     );
   };
 
-  return (
+  const ActionMenuComponent = (
     <>
       <div
         aria-label="Toggle menu"
@@ -249,4 +253,10 @@ export const ActionMenu: React.FC<IActionMenuProps> = ({
       </FloatingNode>
     </>
   );
+
+  if (parentId === null) {
+    return <FloatingTree>{ActionMenuComponent}</FloatingTree>;
+  }
+
+  return ActionMenuComponent;
 };
