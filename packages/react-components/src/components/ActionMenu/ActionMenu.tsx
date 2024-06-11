@@ -10,6 +10,10 @@ import {
   useDismiss,
   useRole,
   useTransitionStyles,
+  FloatingNode,
+  useFloatingNodeId,
+  useFloatingParentNodeId,
+  FloatingTree,
 } from '@floating-ui/react';
 import { Check } from '@livechat/design-system-icons';
 import cx from 'clsx';
@@ -44,6 +48,8 @@ export const ActionMenu: React.FC<IActionMenuProps> = ({
   const isControlled = visible !== undefined;
   const [isVisible, setIsVisible] = React.useState(openedOnInit);
   const indexRef = React.useRef<number>(-1);
+  const parentId = useFloatingParentNodeId();
+  const nodeId = useFloatingNodeId();
   const ref = React.useRef<HTMLUListElement | null>(null);
   const currentlyVisible = isControlled ? visible : isVisible;
 
@@ -58,6 +64,7 @@ export const ActionMenu: React.FC<IActionMenuProps> = ({
   };
 
   const { x, y, strategy, refs, context } = useFloating({
+    nodeId,
     middleware: [offset(4), flip(flipOptions)],
     placement: placement,
     open: currentlyVisible,
@@ -192,7 +199,7 @@ export const ActionMenu: React.FC<IActionMenuProps> = ({
     );
   };
 
-  return (
+  const ActionMenuComponent = (
     <>
       <div
         aria-label="Toggle menu"
@@ -203,41 +210,53 @@ export const ActionMenu: React.FC<IActionMenuProps> = ({
       >
         {triggerRenderer}
       </div>
-      {currentlyVisible && (
-        <div
-          ref={refs.setFloating}
-          className={styles[baseClass]}
-          style={{
-            position: strategy,
-            top: y !== null && y !== undefined ? y : '',
-            left: x !== null && x !== undefined ? x : '',
-            ...transitionStyles,
-          }}
-          {...getFloatingProps()}
-        >
-          {options.length > 0 && (
-            <ul
-              {...props}
-              className={cx(
-                styles[`${baseClass}__list`],
-                {
-                  [styles[`${baseClass}__list--with-footer`]]: footer,
-                },
-                className
-              )}
-              role="menu"
-              ref={ref}
-            >
-              {options.map(getOptionElement)}
-            </ul>
-          )}
-          {footer && (
-            <Text size="sm" as="div" className={styles[`${baseClass}__footer`]}>
-              {footer}
-            </Text>
-          )}
-        </div>
-      )}
+      <FloatingNode id={nodeId}>
+        {currentlyVisible && (
+          <div
+            ref={refs.setFloating}
+            className={styles[baseClass]}
+            style={{
+              position: strategy,
+              top: y !== null && y !== undefined ? y : '',
+              left: x !== null && x !== undefined ? x : '',
+              ...transitionStyles,
+            }}
+            {...getFloatingProps()}
+          >
+            {options.length > 0 && (
+              <ul
+                {...props}
+                className={cx(
+                  styles[`${baseClass}__list`],
+                  {
+                    [styles[`${baseClass}__list--with-footer`]]: footer,
+                  },
+                  className
+                )}
+                role="menu"
+                ref={ref}
+              >
+                {options.map(getOptionElement)}
+              </ul>
+            )}
+            {footer && (
+              <Text
+                size="sm"
+                as="div"
+                className={styles[`${baseClass}__footer`]}
+              >
+                {footer}
+              </Text>
+            )}
+          </div>
+        )}
+      </FloatingNode>
     </>
   );
+
+  if (parentId === null) {
+    return <FloatingTree>{ActionMenuComponent}</FloatingTree>;
+  }
+
+  return ActionMenuComponent;
 };

@@ -17,6 +17,10 @@ import {
   useTransitionStatus,
   safePolygon,
   FloatingArrow,
+  FloatingNode,
+  useFloatingNodeId,
+  useFloatingParentNodeId,
+  FloatingTree,
 } from '@floating-ui/react';
 import cx from 'clsx';
 
@@ -65,6 +69,8 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
   const arrowRef = React.useRef(null);
   const currentlyVisible = isControlled ? isVisible : visible;
   const tooltipStyle = kind || theme;
+  const parentId = useFloatingParentNodeId();
+  const nodeId = useFloatingNodeId();
   const mergedClassNames = cx(
     styles[baseClass],
     className,
@@ -105,6 +111,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
     context,
     middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
   } = useFloating({
+    nodeId,
     middleware: [
       offset({ mainAxis: offsetMainAxis }),
       shift(),
@@ -153,7 +160,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
     referenceElement && refs.setReference(referenceElement);
   }, [refs.setReference, referenceElement]);
 
-  return (
+  const TooltipComponent = (
     <>
       <div
         ref={refs.setReference}
@@ -162,38 +169,46 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
       >
         {isTriggerAsFunction ? triggerRenderer() : triggerRenderer}
       </div>
-      {isMounted && (
-        <div
-          ref={refs.setFloating}
-          style={{
-            ...floatingStyles,
-            ...transitionStyles,
-          }}
-          className={mergedClassNames}
-          {...getFloatingProps()}
-          data-status={status}
-        >
-          <Text as="div" className={styles[`${baseClass}__content`]}>
-            {children}
-          </Text>
-          <FloatingArrow
-            ref={arrowRef}
-            context={context}
-            strokeWidth={1}
-            width={10}
-            height={5}
+      <FloatingNode id={nodeId}>
+        {isMounted && (
+          <div
+            ref={refs.setFloating}
             style={{
-              ...getArrowPositionStyles(
-                arrowOffsetY,
-                arrowOffsetX,
-                arrowY,
-                arrowX
-              ),
+              ...floatingStyles,
+              ...transitionStyles,
             }}
-            {...getArrowTokens(tooltipStyle)}
-          />
-        </div>
-      )}
+            className={mergedClassNames}
+            {...getFloatingProps()}
+            data-status={status}
+          >
+            <Text as="div" className={styles[`${baseClass}__content`]}>
+              {children}
+            </Text>
+            <FloatingArrow
+              ref={arrowRef}
+              context={context}
+              strokeWidth={1}
+              width={10}
+              height={5}
+              style={{
+                ...getArrowPositionStyles(
+                  arrowOffsetY,
+                  arrowOffsetX,
+                  arrowY,
+                  arrowX
+                ),
+              }}
+              {...getArrowTokens(tooltipStyle)}
+            />
+          </div>
+        )}
+      </FloatingNode>
     </>
   );
+
+  if (parentId === null) {
+    return <FloatingTree>{TooltipComponent}</FloatingTree>;
+  }
+
+  return TooltipComponent;
 };

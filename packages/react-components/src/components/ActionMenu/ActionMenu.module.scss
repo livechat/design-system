@@ -97,10 +97,6 @@ $base-class: 'action-menu';
         outline-offset: -2px;
       }
 
-      > * {
-        pointer-events: none;
-      }
-
       &--with-divider {
         margin-bottom: var(--spacing-2);
 
