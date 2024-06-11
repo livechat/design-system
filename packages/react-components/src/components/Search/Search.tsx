@@ -165,10 +165,7 @@ export const SearchInput: React.FC<ISearchInputProps> = ({
         />
       )}
       {isLoading && (
-        <div
-          data-testid={`${baseClass}-loader`}
-          className={styles[`${baseClass}__loader`]}
-        >
+        <div role="status" className={styles[`${baseClass}__loader`]}>
           <Loader size="small" />
         </div>
       )}
