@@ -34,9 +34,10 @@ export const Loader: React.FC<LoaderProps> = ({
   label,
   className,
   size = 'medium',
+  ...props
 }) => {
   return (
-    <div className={cx(styles[baseClass], className)}>
+    <div className={cx(styles[baseClass], className)} {...props}>
       <div
         className={cx(styles[spinnerClass], styles[`${spinnerClass}--${size}`])}
       >
