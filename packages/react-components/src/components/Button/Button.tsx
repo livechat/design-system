@@ -4,7 +4,7 @@ import cx from 'clsx';
 
 import { Loader } from '../Loader';
 
-import { getSpinnerColors } from './helpers';
+import { getSpinnerColors } from './Button.helpers';
 import { ButtonKind, ButtonSize } from './types';
 
 import styles from './Button.module.scss';
@@ -100,6 +100,7 @@ export const Button = React.forwardRef<
       >
         {loading && (
           <Loader
+            data-testid="button-loader"
             size="small"
             label={loaderLabel}
             className={styles[`${baseClass}__loader`]}
@@ -118,6 +119,7 @@ export const Button = React.forwardRef<
             ),
             disabled,
             size: size === 'xcompact' ? 'small' : 'medium',
+            ['data-testid']: 'button-icon',
           })}
         <div className={styles[`${baseClass}__content`]}>{children}</div>
       </Component>
