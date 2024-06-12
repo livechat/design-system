@@ -190,7 +190,10 @@ export const ActionMenu: React.FC<IActionMenuProps> = ({
         >
           {option.element}
           {selectedOptions?.includes(option.key) && (
-            <div className={styles[`${baseClass}__list__item__icon`]}>
+            <div
+              data-testid={`${option.key}-selected-icon`}
+              className={styles[`${baseClass}__list__item__icon`]}
+            >
               <Icon source={Check} kind="action-primary" />
             </div>
           )}
