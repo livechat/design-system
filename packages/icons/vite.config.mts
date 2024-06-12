@@ -1,5 +1,5 @@
 /// <reference types="vite/client" />
-import { fileURLToPath } from 'node:url';
+
 import { extname, relative, resolve } from 'path';
 
 import { glob } from 'glob';
