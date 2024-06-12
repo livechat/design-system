@@ -3,6 +3,8 @@
 $base-class: 'action-menu';
 
 .#{$base-class} {
+  display: flex;
+  flex-direction: column;
   z-index: $stacking-context-level-popover;
   border-radius: var(--radius-3);
   box-shadow: var(--shadow-pop-over);
@@ -30,9 +32,9 @@ $base-class: 'action-menu';
   &__list {
     margin: 0;
     border-radius: var(--radius-3);
-    background-color: var(--picker-list-background);
     padding: 0;
     padding: var(--spacing-2);
+    overflow-y: scroll;
     list-style: none;
 
     &__group-header {
