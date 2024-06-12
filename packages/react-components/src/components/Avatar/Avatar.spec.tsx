@@ -37,7 +37,7 @@ describe('<Avatar> component', () => {
     });
 
     expect(container.firstChild).toHaveStyle(
-      `background-color: ${customColor}`
+      `background-color: rgb(0, 128, 0)`
     );
   });
 

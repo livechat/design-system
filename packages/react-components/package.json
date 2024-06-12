@@ -50,7 +50,7 @@
     "@storybook/react-vite": "^8.1.6",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^15.0.7",
-    "@testing-library/user-event": "^14.5.2",
+    "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^29.5.12",
     "@types/lodash.debounce": "^4.0.6",
     "@types/lodash.escape": "^4.0.6",

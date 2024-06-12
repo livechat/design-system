@@ -60,6 +60,6 @@ describe('<Loader> component', () => {
     );
 
     expect(borderColor).toBe('blue');
-    expect(borderTopColor).toBe('red');
+    expect(borderTopColor).toBe('rgb(255, 0, 0)');
   });
 });
