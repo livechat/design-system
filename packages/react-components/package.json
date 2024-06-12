@@ -13,6 +13,7 @@
   "files": [
     "dist"
   ],
+  "type": "module",
   "scripts": {
     "dev": "run-p dev:*",
     "dev:storybook": "storybook dev -p 6006 --quiet",
