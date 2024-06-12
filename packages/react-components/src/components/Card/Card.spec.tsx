@@ -19,7 +19,7 @@ describe('<Card> component', () => {
     expect(container.firstChild).toHaveClass('my-css-class');
   });
 
-  it('should display title if it's provided', () => {
+  it(`should display title if it's provided`, () => {
     const { getByText } = renderComponent({ title: 'Hello' });
 
     expect(getByText('Hello')).toBeInTheDocument();
