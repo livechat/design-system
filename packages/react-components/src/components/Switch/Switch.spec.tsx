@@ -1,17 +1,16 @@
 import * as React from 'react';
 
-import { render, fireEvent, vi } from 'test-utils';
-
-import loaderStyles from '../Loader/Loader.module.scss';
+import { render, fireEvent, userEvent, vi } from 'test-utils';
 
 import { Switch } from './Switch';
 
-describe('Switch', () => {
+describe('<Switch> component', () => {
   it('should not change internal state when controlled (on) prop is passed', () => {
     const { getByRole } = render(<Switch on={true} />);
     const checkbox = getByRole('checkbox') as HTMLInputElement;
+
     expect(checkbox.checked).toEqual(true);
-    fireEvent.click(checkbox);
+    userEvent.click(checkbox);
     expect(checkbox.checked).toEqual(true);
   });
 
@@ -19,31 +18,28 @@ describe('Switch', () => {
     const toggleFn = vi.fn();
     const { getByRole } = render(<Switch onChange={toggleFn} />);
     const checkbox = getByRole('checkbox') as HTMLInputElement;
+
     expect(checkbox.checked).toEqual(false);
     fireEvent.click(checkbox);
     expect(toggleFn).toHaveBeenCalled();
     expect(checkbox.checked).toEqual(true);
   });
 
-  it('should change state to checked (on) when user clicks on unchecked (off) switch', () => {
+  it('should change state on user clicks when no controlled (on) prop is passed', () => {
     const { getByRole } = render(<Switch />);
     const checkbox = getByRole('checkbox') as HTMLInputElement;
+
     expect(checkbox.checked).toEqual(false);
     fireEvent.click(checkbox);
     expect(checkbox.checked).toEqual(true);
-  });
-
-  it('should not change state to unchecked (off) when user clicks on checked (on) switch', () => {
-    const { getByRole } = render(<Switch on={true} />);
-    const checkbox = getByRole('checkbox') as HTMLInputElement;
-    expect(checkbox.checked).toEqual(true);
     fireEvent.click(checkbox);
-    expect(checkbox.checked).toEqual(true);
+    expect(checkbox.checked).toEqual(false);
   });
 
-  it('should be checked (on) if defaultOn is set to true', () => {
+  it('should be checked (on) if defaultOn is set to true and change state on click', () => {
     const { getByRole } = render(<Switch defaultOn={true} />);
     const checkbox = getByRole('checkbox') as HTMLInputElement;
+
     expect(checkbox.checked).toEqual(true);
     fireEvent.click(checkbox);
     expect(checkbox.checked).toEqual(false);
@@ -52,15 +48,15 @@ describe('Switch', () => {
   it('should be disabled if disabled is set to true', () => {
     const { getByRole } = render(<Switch disabled={true} />);
     const checkbox = getByRole('checkbox') as HTMLInputElement;
+
     expect(checkbox.disabled).toEqual(true);
   });
 
   it('should display loader icon if in loading state and behave as disabled', () => {
-    const { container, getByRole } = render(<Switch state="loading" />);
+    const { getByTestId, getByRole } = render(<Switch state="loading" />);
     const checkbox = getByRole('checkbox') as HTMLInputElement;
-    const loader = container.querySelector(
-      `.${loaderStyles['loader__spinner']}`
-    );
+    const loader = getByTestId('switch-loader');
+
     expect(checkbox.disabled).toEqual(true);
     expect(loader).toBeVisible();
   });
