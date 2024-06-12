@@ -140,6 +140,7 @@ export const Switch: React.FC<SwitchProps> = ({
         >
           {isLoading && (
             <Loader
+              data-testid="switch-loader"
               className={cx(
                 styles[`${baseClass}__loader`],
                 styles[`${baseClass}__loader--${size}`]
