@@ -58,7 +58,7 @@ describe('<ActionMenu> component', () => {
 
     userEvent.click(trigger);
     userEvent.click(getByText('Option two'));
-    expect(onClick).toBeCalled();
+    expect(onClick).toHaveBeenCalled();
   });
 
   it('should keep menu open after option click if keepOpenOnClick is true', () => {
@@ -101,6 +101,7 @@ describe('<ActionMenu> component', () => {
     fireEvent.click(trigger);
     expect(onClose).toHaveBeenCalled();
   });
+
   it('should not change menu visibility in controlled state', () => {
     const { getByTestId, queryByTestId } = renderComponent({
       ...defaultProps,
@@ -111,5 +112,39 @@ describe('<ActionMenu> component', () => {
     expect(queryByTestId('action-menu-test')).not.toBeInTheDocument();
     fireEvent.click(trigger);
     expect(queryByTestId('action-menu-test')).not.toBeInTheDocument();
+  });
+
+  it('should show the menu on render if openedOnInit is true', () => {
+    const { getByTestId } = renderComponent({
+      ...defaultProps,
+      openedOnInit: true,
+    });
+
+    expect(getByTestId('action-menu-test')).toBeInTheDocument();
+  });
+
+  it('should show menu footer if footer is defined', () => {
+    const { getByTestId, getByText } = renderComponent({
+      ...defaultProps,
+      footer: <div>Footer</div>,
+    });
+    const trigger = getByTestId('action-menu-trigger-button');
+
+    fireEvent.click(trigger);
+    expect(getByText('Footer')).toBeInTheDocument();
+  });
+
+  it('should show selected item icon if selectedOptions is defined', () => {
+    const selectedOptionsKeys = ['one', 'two'];
+    const { getByTestId } = renderComponent({
+      ...defaultProps,
+      selectedOptions: selectedOptionsKeys,
+    });
+    const trigger = getByTestId('action-menu-trigger-button');
+
+    fireEvent.click(trigger);
+    selectedOptionsKeys.map((key) =>
+      expect(getByTestId(`${key}-selected-icon`)).toBeInTheDocument()
+    );
   });
 });
