@@ -321,6 +321,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   PlayCircle: IconGroup.General,
   PlayerRecordFilled: IconGroup.General,
   PlayerRecord: IconGroup.General,
+  PlayerStop: IconGroup.General,
   Point: IconGroup.General,
   PointFilled: IconGroup.General,
   PositionFilled: IconGroup.General,
