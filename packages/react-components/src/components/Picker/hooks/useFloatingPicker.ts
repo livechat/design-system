@@ -46,10 +46,10 @@ interface IUseFloatingPicker {
   ) => Record<string, unknown>;
   setReference: (element: HTMLElement | null) => void;
   getFloatingProps: (
-    userProps?: React.HTMLProps<Element> | undefined
+    userProps?: React.HTMLProps<HTMLElement>
   ) => Record<string, unknown>;
   getItemProps: (
-    userProps?: React.HTMLProps<Element> | undefined
+    userProps?: Omit<React.HTMLProps<HTMLElement>, 'selected' | 'active'>
   ) => Record<string, unknown>;
   floatingStyles: React.CSSProperties;
   isPositioned: boolean;
@@ -144,11 +144,7 @@ export const useFloatingPicker = ({
 
   return {
     getReferenceProps,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
     getFloatingProps,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
     getItemProps,
     setReference: refs.setReference,
     floatingStyles,
