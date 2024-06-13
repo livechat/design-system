@@ -34,7 +34,7 @@ $base-class: 'action-menu';
     border-radius: var(--radius-3);
     padding: 0;
     padding: var(--spacing-2);
-    overflow-y: scroll;
+    overflow-y: auto;
     list-style: none;
 
     &__group-header {
