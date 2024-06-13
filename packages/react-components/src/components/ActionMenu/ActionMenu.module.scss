@@ -36,6 +36,7 @@ $base-class: 'action-menu';
     padding: var(--spacing-2);
     overflow-y: auto;
     list-style: none;
+    color-scheme: var(--color-scheme);
 
     &__group-header {
       display: flex;
