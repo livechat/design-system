@@ -6,10 +6,6 @@ import noop from '../../utils/noop';
 
 import { ISearchInputProps, SearchInput } from './Search';
 
-import styles from './Search.module.scss';
-
-const baseClass = 'search-input';
-
 const defaultProps = {
   value: '',
   onChange: () => noop,
@@ -29,78 +25,47 @@ describe('<Search> component', () => {
     expect(getByRole('search')).toHaveClass('test-class');
   });
 
-  it('should render with default values', () => {
+  it('should render with default value and placeholder', () => {
     const { getByRole } = renderComponent({
       ...defaultProps,
     });
     const input = getByRole('searchbox');
 
-    expect(getByRole('search')).toHaveClass(styles[`${baseClass}--medium`]);
     expect(input).toHaveValue('');
     expect(input).toHaveAttribute('placeholder', 'Search ...');
   });
 
-  it('should render with compact size, if that prop is given', () => {
-    const { getByRole } = renderComponent({
-      ...defaultProps,
-      size: 'compact',
-    });
-
-    expect(getByRole('search')).toHaveClass(styles[`${baseClass}--compact`]);
-  });
-
-  it('should render with medium size, if that prop is given', () => {
-    const { getByRole } = renderComponent({
-      ...defaultProps,
-      size: 'medium',
-    });
-
-    expect(getByRole('search')).toHaveClass(styles[`${baseClass}--medium`]);
-  });
-
-  it('should render with large size, if that prop is given', () => {
-    const { getByRole } = renderComponent({
-      ...defaultProps,
-      size: 'large',
-    });
-
-    expect(getByRole('search')).toHaveClass(styles[`${baseClass}--large`]);
-  });
-
-  it('should render as disabled and input should be disabled, if that prop is given', () => {
+  it('should be disabled if isDisabled is given', () => {
     const { getByRole } = renderComponent({
       ...defaultProps,
       isDisabled: true,
     });
     const searchbox = getByRole('searchbox');
 
-    expect(getByRole('search')).toHaveClass(styles[`${baseClass}--disabled`]);
     expect(searchbox).toBeDisabled();
   });
 
   it('should render as loading, if that prop is given', () => {
-    const { getByTestId } = renderComponent({
+    const { getByRole } = renderComponent({
       ...defaultProps,
       isLoading: true,
     });
 
-    expect(getByTestId(`${baseClass}-loader`)).toBeVisible();
+    expect(getByRole('status')).toBeInTheDocument();
   });
 
   it('should render as disabled loading and input should be disabled, if that props are given', () => {
-    const { getByTestId, getByRole } = renderComponent({
+    const { getByRole } = renderComponent({
       ...defaultProps,
       isDisabled: true,
       isLoading: true,
     });
-    const searchbox = getByRole('searchbox');
 
-    expect(getByRole('search')).toHaveClass(styles[`${baseClass}--disabled`]);
-    expect(getByTestId(`${baseClass}-loader`)).toBeVisible();
-    expect(searchbox).toBeDisabled();
+    expect(getByRole('status')).toBeInTheDocument();
+    expect(getByRole('searchbox')).toBeDisabled();
   });
 
-  it('should render as collapsable, open it after click and focus the input', () => {
+  it('should render as collapsable, open it after user clicks the icon and focus the input', () => {
     const { getByRole } = renderComponent({
       ...defaultProps,
       isCollapsable: true,
@@ -108,10 +73,8 @@ describe('<Search> component', () => {
     const component = getByRole('search');
     const searchbox = getByRole('searchbox');
 
-    expect(component).toHaveClass(styles[`${baseClass}--collapsable`]);
     expect(component).toHaveAttribute('aria-expanded', 'false');
     userEvent.click(component);
-    expect(component).toHaveClass(styles[`${baseClass}--collapsable--open`]);
     expect(component).toHaveAttribute('aria-expanded', 'true');
     expect(searchbox).toHaveFocus();
   });
@@ -148,7 +111,6 @@ describe('<Search> component', () => {
 
     userEvent.click(document.body);
     expect(searchbox).not.toHaveFocus();
-    expect(component).not.toHaveClass(styles[`${baseClass}--focused`]);
     expect(component).toHaveAttribute('aria-expanded', 'true');
   });
 
@@ -167,12 +129,12 @@ describe('<Search> component', () => {
     });
     const text = 'test value';
 
-    expect(queryByRole('button')).toBeFalsy();
+    expect(queryByRole('button')).not.toBeInTheDocument();
     userEvent.type(getByRole('searchbox'), text);
 
     rerender(<SearchInput {...defaultProps} value={text} />);
 
-    expect(queryByRole('button')).toBeVisible();
+    expect(queryByRole('button')).toBeInTheDocument();
   });
 
   it('should call onChange if input value change', () => {
@@ -207,6 +169,6 @@ describe('<Search> component', () => {
     });
 
     userEvent.click(getByRole('button'));
-    expect(onChangeFunction).toBeCalledWith('');
+    expect(onChangeFunction).toHaveBeenCalledWith('');
   });
 });

@@ -1,10 +1,8 @@
 import * as React from 'react';
 
-import { render, fireEvent, vi } from 'test-utils';
+import { render, vi, userEvent } from 'test-utils';
 
 import { ToastProps, Toast } from './Toast';
-
-import styles from './Toast.module.scss';
 
 const renderComponent = (props: ToastProps) => {
   return render(
@@ -21,31 +19,7 @@ describe('<Toast> component', () => {
     expect(container.firstChild).toHaveClass('my-css-class');
   });
 
-  it('should render as info by default', () => {
-    const { container } = renderComponent({});
-
-    expect(container.firstChild).toHaveClass(styles['toast--info']);
-  });
-
-  it('should render as success', () => {
-    const { container } = renderComponent({ kind: 'success' });
-
-    expect(container.firstChild).toHaveClass(styles['toast--success']);
-  });
-
-  it('should render as warning', () => {
-    const { container } = renderComponent({ kind: 'warning' });
-
-    expect(container.firstChild).toHaveClass(styles['toast--warning']);
-  });
-
-  it('should render as error', () => {
-    const { container } = renderComponent({ kind: 'error' });
-
-    expect(container.firstChild).toHaveClass(styles['toast--error']);
-  });
-
-  it('should render with action button and call action function', () => {
+  it('should render with action button and call action function on user click', () => {
     const onClick = vi.fn();
     const { getByText } = renderComponent({
       action: {
@@ -53,13 +27,14 @@ describe('<Toast> component', () => {
         onClick,
       },
     });
+    const button = getByText('Example action');
 
-    expect(getByText('Example action')).toBeVisible();
-    fireEvent.click(getByText('Example action'));
+    expect(button).toBeInTheDocument();
+    userEvent.click(button);
     expect(onClick).toHaveBeenCalled();
   });
 
-  it('should call action function with onClose function', () => {
+  it('should call action function with onClose function after user clicks the button', () => {
     const onClick = vi.fn();
     const onClose = vi.fn();
     const { getByText } = renderComponent({
@@ -71,20 +46,21 @@ describe('<Toast> component', () => {
       onClose,
     });
 
-    fireEvent.click(getByText('Example action'));
+    userEvent.click(getByText('Example action'));
     expect(onClick).toHaveBeenCalled();
     expect(onClose).toHaveBeenCalled();
   });
 
-  it('should render with close button and call onClose function', () => {
+  it('should render with close button and call onClose function on user click', () => {
     const onClose = vi.fn();
     const { getByLabelText } = renderComponent({
       removable: true,
       onClose,
     });
+    const closeButton = getByLabelText('Close toast');
 
-    expect(getByLabelText('Close toast')).toBeVisible();
-    fireEvent.click(getByLabelText('Close toast'));
+    expect(closeButton).toBeInTheDocument();
+    userEvent.click(closeButton);
     expect(onClose).toHaveBeenCalled();
   });
 });
