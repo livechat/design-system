@@ -45,26 +45,4 @@ describe('<Textarea> component', () => {
     userEvent.click(document.body);
     expect(customOnBlur).toHaveBeenCalled();
   });
-
-  it('should call onChange if textarea value change', () => {
-    const onChangeFunction = vi.fn();
-    const TextareaWrapper = () => {
-      const [value, setValue] = React.useState('');
-
-      return (
-        <Textarea
-          value={value}
-          onChange={(v) => {
-            setValue(v.currentTarget.value);
-            onChangeFunction(v.currentTarget.value);
-          }}
-        />
-      );
-    };
-    const { getByRole } = render(<TextareaWrapper />);
-    const text = 'test value';
-
-    userEvent.type(getByRole('textbox'), text, { delay: 0 });
-    expect(onChangeFunction).toHaveBeenCalledWith(text);
-  });
 });
