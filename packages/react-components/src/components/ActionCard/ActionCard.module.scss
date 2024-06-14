@@ -2,6 +2,7 @@ $base-class: 'action-card';
 
 @mixin verticalStyles {
   flex-direction: column;
+  padding: var(--spacing-6);
 
   .#{$base-class}__column--first,
   .#{$base-class}__column--second {
