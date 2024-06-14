@@ -46,6 +46,7 @@ export default defineConfig({
         'src/foundations',
         'src/utils',
         'src/components',
+        'src/providers',
       ],
       exclude: ['**/*.stories.tsx', '**/*.spec.ts', '**/*.spec.tsx'],
     }),
