@@ -6,7 +6,14 @@ import { IconSource } from './types';
 
 import styles from './Icon.module.scss';
 
-export type IconSize = 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge';
+export type IconSize =
+  | 'xsmall'
+  | 'small'
+  | 'medium'
+  | 'large'
+  | 'xlarge'
+  | 'xxlarge'
+  | 'xxxlarge';
 export type IconKind =
   | 'primary'
   | 'subtle'
@@ -45,6 +52,14 @@ const IconSizeMap: Record<IconSize, { width: number; height: number }> = {
   xlarge: {
     width: 32,
     height: 32,
+  },
+  xxlarge: {
+    width: 48,
+    height: 48,
+  },
+  xxxlarge: {
+    width: 64,
+    height: 64,
   },
 };
 
