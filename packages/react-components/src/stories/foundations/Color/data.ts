@@ -1591,4 +1591,24 @@ export const ColorsData: Record<
     desc: '',
     deprecated: undefined,
   },
+  SurfaceGradient14: {
+    group: ColorGroup.SurfaceGradient,
+    desc: '',
+    deprecated: undefined,
+  },
+  OnePopoverMessageBackgroundDefault: {
+    group: ColorGroup.Products,
+    desc: '',
+    deprecated: undefined,
+  },
+  OnePopoverBorderDefault: {
+    group: ColorGroup.Products,
+    desc: '',
+    deprecated: undefined,
+  },
+  OnePopoverBorderActive: {
+    group: ColorGroup.Products,
+    desc: '',
+    deprecated: undefined,
+  },
 };
