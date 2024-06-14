@@ -1,8 +1,10 @@
 import * as React from 'react';
 
+import { Smiles } from '@livechat/design-system-icons';
 import { Meta } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import { Icon } from '../Icon';
 
 import { Tab as TabComponent, TabProps } from './Tab';
 
@@ -46,6 +48,26 @@ export const StatesAndVariants = (): React.ReactElement => (
         Tab selected
       </Tab>
       <Tab count={3} asBadge disabled>
+        Tab disabled
+      </Tab>
+    </StoryDescriptor>
+    <StoryDescriptor title="With icon">
+      <Tab icon={<Icon source={Smiles} />}>Tab</Tab>
+      <Tab icon={<Icon source={Smiles} />} isSelected>
+        Tab selected
+      </Tab>
+      <Tab icon={<Icon source={Smiles} />} disabled>
+        Tab disabled
+      </Tab>
+    </StoryDescriptor>
+    <StoryDescriptor title="With icon and counter">
+      <Tab count={3} icon={<Icon source={Smiles} />}>
+        Tab
+      </Tab>
+      <Tab count={3} icon={<Icon source={Smiles} />} isSelected>
+        Tab selected
+      </Tab>
+      <Tab count={3} icon={<Icon source={Smiles} />} disabled>
         Tab disabled
       </Tab>
     </StoryDescriptor>

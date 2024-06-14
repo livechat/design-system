@@ -47,6 +47,10 @@
     height: 48px;
   }
 
+  &__icon {
+    margin-right: var(--spacing-1);
+  }
+
   &__count {
     display: inline-block;
     transition: color 0.25s;
