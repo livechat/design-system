@@ -39,16 +39,24 @@ export const FormGroup: React.FC<React.PropsWithChildren<FormGroupProps>> = ({
       {...(labelText && { 'aria-label': labelText })}
       className={mergedClassNames}
     >
-      <div className={styles[`${baseClass}__header`]}>
-        <Heading as="div" size="sm" className={styles[`${baseClass}__label`]}>
-          {labelText}
-        </Heading>
-        {helperText && (
-          <Text as="div" size="sm" className={styles[`${baseClass}__helper`]}>
-            {helperText}
-          </Text>
-        )}
-      </div>
+      {(labelText || helperText) && (
+        <div className={styles[`${baseClass}__header`]}>
+          {labelText && (
+            <Heading
+              as="div"
+              size="sm"
+              className={styles[`${baseClass}__label`]}
+            >
+              {labelText}
+            </Heading>
+          )}
+          {helperText && (
+            <Text as="div" size="sm" className={styles[`${baseClass}__helper`]}>
+              {helperText}
+            </Text>
+          )}
+        </div>
+      )}
       {children}
     </div>
   );
