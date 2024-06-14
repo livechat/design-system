@@ -1,0 +1,56 @@
+$base-class: 'action-card';
+
+@mixin verticalStyles {
+  flex-direction: column;
+
+  .#{$base-class}__column--first,
+  .#{$base-class}__column--second {
+    min-width: 100%;
+    max-width: 100%;
+  }
+}
+
+.main-wrapper {
+  container-type: inline-size;
+}
+
+.#{$base-class} {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  transition: all var(--transition-duration-moderate-1) ease-out;
+  border: 1px solid var(--border-basic-secondary);
+  border-radius: var(--radius-4);
+  background-color: var(--surface-primary-default);
+  padding: var(--spacing-8);
+  min-height: 280px;
+  color: var(--content-baisc-primary);
+
+  &:hover {
+    border-color: var(--action-primary-hover);
+    cursor: pointer;
+  }
+
+  &:focus-visible {
+    outline: 0;
+    box-shadow: var(--shadow-focus);
+  }
+
+  &__column {
+    display: flex;
+
+    &--first {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    &--second {
+      flex: 0 1 auto;
+      max-width: 300px;
+    }
+  }
+
+  @container (max-width: 623px) {
+    @include verticalStyles;
+  }
+}
