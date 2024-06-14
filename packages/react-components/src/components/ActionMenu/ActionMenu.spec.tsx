@@ -7,7 +7,7 @@ import { render, userEvent, fireEvent } from 'test-utils';
 import noop from '../../utils/noop';
 
 import { ActionMenu } from './ActionMenu';
-import { exampleOptions } from './constants.stories';
+import { exampleOptions } from './stories-constants';
 import { IActionMenuProps } from './types';
 
 const defaultProps = {
