@@ -77,31 +77,35 @@ export const StatesAndVariants = (): React.ReactElement => (
 export const Sizes = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Compact">
-      <Tab size="compact">Tab</Tab>
-      <Tab size="compact" isSelected>
+      <Tab count={3} icon={<Icon source={Smiles} />} size="compact">
+        Tab
+      </Tab>
+      <Tab count={3} icon={<Icon source={Smiles} />} size="compact" isSelected>
         Tab selected
       </Tab>
-      <Tab size="compact" disabled>
+      <Tab count={3} icon={<Icon source={Smiles} />} size="compact" disabled>
         Tab disabled
       </Tab>
     </StoryDescriptor>
     <StoryDescriptor title="Medium">
-      <Tab size="medium">Tab</Tab>
-      <Tab size="medium" isSelected>
+      <Tab count={3} icon={<Icon source={Smiles} />} size="medium">
+        Tab
+      </Tab>
+      <Tab count={3} icon={<Icon source={Smiles} />} size="medium" isSelected>
         Tab selected
       </Tab>
-      <Tab size="medium" disabled>
+      <Tab count={3} icon={<Icon source={Smiles} />} size="medium" disabled>
         Tab disabled
       </Tab>
     </StoryDescriptor>
     <StoryDescriptor title="Large">
-      <Tab size="large" asBadge>
+      <Tab count={3} icon={<Icon source={Smiles} />} size="large">
         Tab
       </Tab>
-      <Tab size="large" asBadge isSelected>
+      <Tab count={3} icon={<Icon source={Smiles} />} size="large" isSelected>
         Tab selected
       </Tab>
-      <Tab size="large" asBadge disabled>
+      <Tab count={3} icon={<Icon source={Smiles} />} size="large" disabled>
         Tab disabled
       </Tab>
     </StoryDescriptor>
