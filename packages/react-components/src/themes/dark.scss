@@ -109,6 +109,12 @@ $surface-invert-primary: #e2e2e4;
   --surface-gradient-11: linear-gradient(95deg, #513e79, #423a1b 112%);
   --surface-gradient-12: linear-gradient(95deg, #5b4939 0%, #262426 111.28%);
   --surface-gradient-13: linear-gradient(95deg, #49494c 0%, #242428 111.28%);
+  --surface-gradient-14: linear-gradient(
+    235.08deg,
+    #1d2636 -45.66%,
+    #22416a -12.16%,
+    #202024 52.8%
+  );
   --surface-other-overlay: rgb(19 19 23 / 90%);
   --surface-other-agent: #0845a2;
   --surface-other-agent-hover: #195dc8;
@@ -355,4 +361,27 @@ $surface-invert-primary: #e2e2e4;
   --surface-other-internal-note-default: #2d2c2a;
   --content-basic-internal-note-message-placeholder: #a09783;
   --content-basic-internal-note-message-active: #efcf8d;
+  --one-popover-message-background-default: linear-gradient(
+    254.49deg,
+    rgb(187 154 255 / 18%) -0.38%,
+    rgb(104 175 255 / 18%) 94.44%
+  );
+  --one-popover-border-default: conic-gradient(
+    from 171.11deg at 50% 50%,
+    #b466ff -46.87deg,
+    #7e54ff 0.45deg,
+    #45acff 163.12deg,
+    #d7cdff 240deg,
+    #b466ff 313.12deg,
+    #7e54ff 360.45deg
+  );
+  --one-popover-border-active: conic-gradient(
+    from 171.11deg at 50% 50%,
+    #c930ff -46.87deg,
+    #7000ff 0.45deg,
+    #00b3ff 163.12deg,
+    #fff 240deg,
+    #c930ff 313.12deg,
+    #7000ff 360.45deg
+  );
 }
