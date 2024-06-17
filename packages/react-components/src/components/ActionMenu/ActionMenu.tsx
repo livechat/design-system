@@ -3,6 +3,7 @@ import * as React from 'react';
 import {
   useFloating,
   flip,
+  size,
   offset,
   autoUpdate,
   useClick,
@@ -17,6 +18,7 @@ import {
 } from '@floating-ui/react';
 import { Check } from '@livechat/design-system-icons';
 import cx from 'clsx';
+import { flushSync } from 'react-dom';
 
 import { KeyCodes } from '../../utils/keyCodes';
 import { Icon } from '../Icon';
@@ -47,6 +49,7 @@ export const ActionMenu: React.FC<IActionMenuProps> = ({
 }) => {
   const isControlled = visible !== undefined;
   const [isVisible, setIsVisible] = React.useState(openedOnInit);
+  const [maxHeight, setMaxHeight] = React.useState<number | null>(null);
   const indexRef = React.useRef<number>(-1);
   const parentId = useFloatingParentNodeId();
   const nodeId = useFloatingNodeId();
@@ -65,7 +68,15 @@ export const ActionMenu: React.FC<IActionMenuProps> = ({
 
   const { x, y, strategy, refs, context } = useFloating({
     nodeId,
-    middleware: [offset(4), flip(flipOptions)],
+    middleware: [
+      offset(4),
+      flip(flipOptions),
+      size({
+        apply({ availableHeight }) {
+          flushSync(() => setMaxHeight(availableHeight));
+        },
+      }),
+    ],
     placement: placement,
     open: currentlyVisible,
     strategy: floatingStrategy,
@@ -222,6 +233,7 @@ export const ActionMenu: React.FC<IActionMenuProps> = ({
               position: strategy,
               top: y !== null && y !== undefined ? y : '',
               left: x !== null && x !== undefined ? x : '',
+              ...(!!maxHeight && { maxHeight: maxHeight }),
               ...transitionStyles,
             }}
             {...getFloatingProps()}
