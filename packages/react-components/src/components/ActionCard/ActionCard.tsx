@@ -23,7 +23,7 @@ export const ActionCard: React.FC<ActionCardProps> = ({
       return;
     }
 
-     onClick?.();
+    onClick?.();
   };
 
   const handleOnKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
