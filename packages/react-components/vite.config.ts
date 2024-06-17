@@ -35,6 +35,7 @@ export default defineConfig({
     setupFiles: './src/test/setup.ts',
   },
   resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.mdx'],
     alias: {
       'test-utils': path.resolve(__dirname, 'src/test/utils.ts'),
     },
