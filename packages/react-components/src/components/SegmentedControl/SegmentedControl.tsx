@@ -39,7 +39,7 @@ export interface SegmentedControlProps
    */
   initialId?: string;
   /**
-   * Id of current selected button
+   * Id of current selected button, it will make component controlled
    */
   currentId?: string;
   /**

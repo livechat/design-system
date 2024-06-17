@@ -4,8 +4,6 @@ import { render, userEvent, vi } from 'test-utils';
 
 import { SegmentedControl, SegmentedControlProps } from './SegmentedControl';
 
-import styles from './SegmentedControl.module.scss';
-
 const defaultProps: SegmentedControlProps = {
   buttons: [
     { id: 'one', label: 'one' },
@@ -13,42 +11,63 @@ const defaultProps: SegmentedControlProps = {
   ],
 };
 
+const renderComponent = (props: SegmentedControlProps) => {
+  return render(<SegmentedControl {...props} />);
+};
+
 describe('<SegmentedControl> component', () => {
-  function renderComponent(props: SegmentedControlProps) {
-    return render(<SegmentedControl {...props} />);
-  }
+  it('should allow for custom class', () => {
+    const { getByRole } = renderComponent({
+      ...defaultProps,
+      className: 'test-class',
+    });
 
-  it('should have custom css class', () => {
-    const className = 'my-custom-class';
-    const {
-      container: { firstChild: el },
-    } = renderComponent({ ...defaultProps, className });
-
-    expect(el).toHaveClass(className);
+    expect(getByRole('group')).toHaveClass('test-class');
   });
 
-  it('should allow for controlled version of component by passing "currentIndex" prop', () => {
+  it('should not have active buttons by default in unconrolled version', () => {
+    const { getAllByRole } = renderComponent({ ...defaultProps });
+    const [firstButton, secondButton] = getAllByRole('button');
+
+    expect(firstButton).toHaveAttribute('aria-pressed', 'false');
+    expect(secondButton).toHaveAttribute('aria-pressed', 'false');
+  });
+
+  it('should select correct button if initialId is provided and should change the selected button on user click (uncontrolled mode)', () => {
+    const { getAllByRole } = renderComponent({
+      ...defaultProps,
+      initialId: 'one',
+    });
+    const [firstButton, secondButton] = getAllByRole('button');
+
+    expect(firstButton).toHaveAttribute('aria-pressed', 'true');
+    expect(secondButton).toHaveAttribute('aria-pressed', 'false');
+    userEvent.click(secondButton);
+
+    const [rerenderFirstButton, rerenderSecondButton] = getAllByRole('button');
+
+    expect(rerenderFirstButton).toHaveAttribute('aria-pressed', 'false');
+    expect(rerenderSecondButton).toHaveAttribute('aria-pressed', 'true');
+  });
+
+  it('should select correct button if currentId is provided and should not change the selected button on user click (controlled mode)', () => {
     const { getAllByRole } = renderComponent({
       ...defaultProps,
       currentId: 'one',
     });
-
     const [firstButton, secondButton] = getAllByRole('button');
 
-    expect(firstButton).toHaveClass(styles['btn--active']);
-    expect(secondButton).not.toHaveClass(styles['btn--active']);
+    expect(firstButton).toHaveAttribute('aria-pressed', 'true');
+    expect(secondButton).toHaveAttribute('aria-pressed', 'false');
+    userEvent.click(secondButton);
+
+    const [rerenderFirstButton, rerenderSecondButton] = getAllByRole('button');
+
+    expect(rerenderFirstButton).toHaveAttribute('aria-pressed', 'true');
+    expect(rerenderSecondButton).toHaveAttribute('aria-pressed', 'false');
   });
 
-  it('should not have active button by default in unconrolled version', () => {
-    const { getAllByRole } = renderComponent({ ...defaultProps });
-
-    const [firstButton, secondButton] = getAllByRole('button');
-
-    expect(firstButton).not.toHaveClass(styles['btn--active']);
-    expect(secondButton).not.toHaveClass(styles['btn--active']);
-  });
-
-  it('should call "onButtonClick" with index of current selected button on click', () => {
+  it('should call "onButtonClick" with id of current selected button on click', () => {
     const onButtonClick = vi.fn();
     const { getAllByRole } = renderComponent({
       ...defaultProps,
@@ -58,10 +77,11 @@ describe('<SegmentedControl> component', () => {
 
     const [firstButton] = getAllByRole('button');
 
-    expect(firstButton).not.toHaveClass(styles['btn--active']);
-
+    expect(firstButton).toHaveAttribute('aria-pressed', 'false');
     userEvent.click(firstButton);
-    expect(onButtonClick).toHaveBeenCalled();
-    expect(firstButton).toHaveClass(styles['btn--active']);
+
+    expect(onButtonClick).toHaveBeenCalledTimes(1);
+    expect(onButtonClick).toHaveBeenCalledWith('one', expect.any(Object));
+    expect(firstButton).toHaveAttribute('aria-pressed', 'true');
   });
 });
