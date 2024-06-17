@@ -39,7 +39,7 @@ export const ActionCard: React.FC<ActionCardProps> = ({
     ) {
       e.preventDefault();
 
-      onClick && onClick();
+      onClick?.();
     }
   };
 
