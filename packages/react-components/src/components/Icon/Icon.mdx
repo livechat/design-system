@@ -9,9 +9,9 @@ import { IconGroup } from './IconsShowcase/types';
 
 <Title>Icon</Title>
 
-[Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+[Sizes](#Sizes) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
 
-<Canvas of={IconStories.Icon} sourceState="none" />
+<Canvas of={IconStories.Default} sourceState="none" />
 
 #### Example implementation
 
@@ -49,9 +49,13 @@ To use them, import the icon you need and pass it to the `source` prop of the `I
 
 <IconsShowcase data={getIconsByGroup(IconGroup.Brands)} />
 
+## Sizes <a id="Sizes" />
+
+<Canvas of={IconStories.Sizes} sourceState="none" />
+
 ## Component API <a id="ComponentAPI" />
 
-<ArgTypes of={IconStories.Icon} sort="requiredFirst" />
+<ArgTypes of={IconStories.Default} sort="requiredFirst" />
 
 ## Content Spec <a id="ContentSpec" />
 
