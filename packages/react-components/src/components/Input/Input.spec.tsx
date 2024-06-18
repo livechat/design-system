@@ -8,7 +8,8 @@ import { Icon } from '../Icon';
 
 import { Input, InputProps } from './Input';
 
-const renderComponent = (props: InputProps) => render(<Input {...props} />);
+const renderComponent = (props: InputProps) =>
+  render(<Input {...props} data-testid="input" />);
 
 describe('<Input> component', () => {
   it('should allow for custom class', () => {
@@ -42,20 +43,14 @@ describe('<Input> component', () => {
   });
 
   it('should have password type input if type "password" is set', () => {
-    const { getByTestId } = renderComponent({
-      type: 'password',
-      [`data-testid`]: 'password-input',
-    });
+    const { getByTestId } = renderComponent({ type: 'password' });
 
-    expect(getByTestId('password-input')).toHaveAttribute('type', 'password');
+    expect(getByTestId('input')).toHaveAttribute('type', 'password');
   });
 
   it('should change the input type if show password icon is clicked', () => {
-    const { getByRole, getByTestId } = renderComponent({
-      type: 'password',
-      [`data-testid`]: 'password-input',
-    });
-    const input = getByTestId('password-input');
+    const { getByRole, getByTestId } = renderComponent({ type: 'password' });
+    const input = getByTestId('input');
     const button = getByRole('button');
 
     expect(input).toHaveAttribute('type', 'password');

@@ -110,6 +110,7 @@ export const DesignToken = {
   SurfaceGradient11: '--surface-gradient-11',
   SurfaceGradient12: '--surface-gradient-12',
   SurfaceGradient13: '--surface-gradient-13',
+  SurfaceGradient14: '--surface-gradient-14',
   SurfaceOtherOverlay: '--surface-other-overlay',
   SurfaceOtherAgent: '--surface-other-agent',
   SurfaceOtherAgentHover: '--surface-other-agent-hover',
@@ -370,6 +371,10 @@ export const DesignToken = {
     '--content-basic-internal-note-message-placeholder',
   ContentBasicInternalNoteMessageActive:
     '--content-basic-internal-note-message-active',
+  OnePopoverMessageBackgroundDefault:
+    '--one-popover-message-background-default',
+  OnePopoverBorderDefault: '--one-popover-border-default',
+  OnePopoverBorderActive: '--one-popover-border-active',
 };
 
 export type DesignTokenKey = keyof typeof DesignToken;
