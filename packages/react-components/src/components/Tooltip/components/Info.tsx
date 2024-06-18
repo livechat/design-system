@@ -5,20 +5,20 @@ import cx from 'clsx';
 
 import { Icon } from '../../Icon';
 import { Heading, Text } from '../../Typography';
-import { getIconType } from '../helpers';
+import { getIconType } from '../Tooltip.helpers';
 import styles from '../Tooltip.module.scss';
-import { TooltipTheme } from '../types';
+import { ITooltipInfoProps } from '../types';
 
 const baseClass = 'tooltip';
 
-export const Info: React.FC<{
-  className?: string;
-  header?: string;
-  text: string;
-  closeWithX?: boolean;
-  theme?: TooltipTheme;
-  handleCloseAction?: (ev: React.MouseEvent) => void;
-}> = ({ className, header, text, closeWithX, theme, handleCloseAction }) => {
+export const Info: React.FC<ITooltipInfoProps> = ({
+  className,
+  header,
+  text,
+  closeWithX,
+  theme,
+  handleCloseAction,
+}) => {
   return (
     <div className={className}>
       {closeWithX && (

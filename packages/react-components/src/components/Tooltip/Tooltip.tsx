@@ -26,7 +26,7 @@ import cx from 'clsx';
 
 import { Text } from '../Typography';
 
-import { getArrowPositionStyles, getArrowTokens } from './helpers';
+import { getArrowPositionStyles, getArrowTokens } from './Tooltip.helpers';
 import { ITooltipProps } from './types';
 
 import styles from './Tooltip.module.scss';
@@ -163,6 +163,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
   const TooltipComponent = (
     <>
       <div
+        data-testid="tooltip-trigger"
         ref={refs.setReference}
         {...getReferenceProps()}
         className={triggerClassName}

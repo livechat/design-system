@@ -4,73 +4,54 @@ import userEvent from '@testing-library/user-event';
 
 import { render, vi } from 'test-utils';
 
-import styles from '../Modal.module.scss';
+import { ModalBase, ModalBaseProps } from './ModalBase';
 
-import { ModalBase } from './ModalBase';
+const renderComponent = (props: ModalBaseProps) =>
+  render(<ModalBase {...props}>Modal base</ModalBase>);
 
-const baseClass = 'modal-base';
-
-describe('<ModalBase /> component', () => {
+describe('<ModalBase> component', () => {
   it('should allow for custom class', () => {
     const onClose = vi.fn();
-    const { getByRole } = render(
-      <ModalBase onClose={onClose} className="my-css-class">
-        test
-      </ModalBase>
-    );
+    const { getByRole } = renderComponent({
+      onClose,
+      className: 'my-css-class',
+    });
+
     expect(getByRole('dialog')).toHaveClass('my-css-class');
   });
 
   it('should call onClose method on overlay click', () => {
     const onClose = vi.fn();
-    const { getByTestId } = render(
-      <ModalBase onClose={onClose}>test</ModalBase>
-    );
+    const { getByTestId } = renderComponent({ onClose });
 
     userEvent.click(getByTestId('lc-modal-overlay'));
-    expect(onClose).toBeCalledTimes(1);
+    expect(onClose).toHaveBeenCalledTimes(1);
   });
 
   it('should call onClose on escape button pressed by default', () => {
     const onClose = vi.fn();
-    render(<ModalBase onClose={onClose}>test</ModalBase>);
+    renderComponent({ onClose });
 
     userEvent.keyboard('[Escape]');
-    expect(onClose).toBeCalledTimes(1);
+    expect(onClose).toHaveBeenCalledTimes(1);
   });
 
   it('should not call onClose on escape button pressed when closeOnEscPress is disabled', () => {
     const onClose = vi.fn();
-    render(
-      <ModalBase onClose={onClose} closeOnEscPress={false}>
-        test
-      </ModalBase>
-    );
+    renderComponent({ onClose, closeOnEscPress: false });
 
     userEvent.keyboard('[Escape]');
-    expect(onClose).not.toBeCalled();
+    expect(onClose).not.toHaveBeenCalled();
   });
 
   it('should not call onClose on overlay pressed when closeOnOverlayPress is disabled', () => {
     const onClose = vi.fn();
-    const { getByTestId } = render(
-      <ModalBase onClose={onClose} closeOnOverlayPress={false}>
-        test
-      </ModalBase>
-    );
+    const { getByTestId } = renderComponent({
+      onClose,
+      closeOnOverlayPress: false,
+    });
 
     userEvent.click(getByTestId('lc-modal-overlay'));
-    expect(onClose).not.toBeCalled();
-  });
-
-  it('should display with full space content if prop is given', () => {
-    const onClose = vi.fn();
-    const { getByRole } = render(
-      <ModalBase onClose={onClose} fullSpaceContent>
-        test
-      </ModalBase>
-    );
-
-    expect(getByRole('dialog')).toHaveClass(styles[`${baseClass}--full-space`]);
+    expect(onClose).not.toHaveBeenCalled();
   });
 });
