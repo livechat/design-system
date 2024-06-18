@@ -10,7 +10,7 @@ import { Switch } from '../Switch';
 
 import { ActionMenu } from './ActionMenu';
 import { ActionMenuItem } from './ActionMenuItem';
-import { exampleOptions } from './constants';
+import { exampleOptions } from './stories-constants';
 
 import './ActionMenu.stories.css';
 
