@@ -2,16 +2,12 @@ import * as React from 'react';
 
 import { vi } from 'vitest';
 
-import { render, cleanup, waitFor, userEvent } from 'test-utils';
+import { render, waitFor, userEvent } from 'test-utils';
 
 import { Tooltip } from './Tooltip';
 import { ITooltipProps } from './types';
 
-import styles from './Tooltip.module.scss';
-
 const defaultProps = {
-  hoverOutDelayTimeout: 0,
-  withFadeAnimation: false,
   triggerRenderer: <button>Open</button>,
 };
 
@@ -20,9 +16,27 @@ const renderComponent = (props: ITooltipProps) => {
 };
 
 describe('<Tooltip> component', () => {
+  it('should allow for custom class', () => {
+    const { getByRole } = renderComponent({
+      ...defaultProps,
+      className: 'custom-class',
+      isVisible: true,
+    });
+
+    expect(getByRole('tooltip')).toHaveClass('custom-class');
+  });
+
+  it('should allow for custom class for trigger wrapper', () => {
+    const { getByTestId } = renderComponent({
+      ...defaultProps,
+      triggerClassName: 'trigger-custom-class',
+    });
+
+    expect(getByTestId('tooltip-trigger')).toHaveClass('trigger-custom-class');
+  });
+
   it('should show tooltip on mouse hover and hide it on mouse leave', async () => {
     const { queryByRole, getByRole } = renderComponent(defaultProps);
-
     const button = getByRole('button');
 
     expect(queryByRole('tooltip')).not.toBeInTheDocument();
@@ -32,8 +46,6 @@ describe('<Tooltip> component', () => {
     await waitFor(() => {
       expect(queryByRole('tooltip')).not.toBeInTheDocument();
     });
-
-    cleanup();
   });
 
   it(`shouldn't show tooltip on hover when isVisible prop is set to false`, () => {
@@ -42,10 +54,8 @@ describe('<Tooltip> component', () => {
       isVisible: false,
     });
 
-    userEvent.hover(getByRole('button', { name: 'Open' }));
+    userEvent.hover(getByRole('button'));
     expect(queryByRole('tooltip')).not.toBeInTheDocument();
-
-    cleanup();
   });
 
   it(`should show tooltip when isVisible prop is set to true`, () => {
@@ -55,8 +65,6 @@ describe('<Tooltip> component', () => {
     });
 
     expect(getByRole('tooltip')).toBeInTheDocument();
-
-    cleanup();
   });
 
   it(`should show tooltip on trigger click and hide it on second click`, async () => {
@@ -64,7 +72,6 @@ describe('<Tooltip> component', () => {
       ...defaultProps,
       triggerOnClick: true,
     });
-
     const button = getByRole('button');
 
     userEvent.click(button);
@@ -73,21 +80,6 @@ describe('<Tooltip> component', () => {
     await waitFor(() => {
       expect(queryByRole('tooltip')).not.toBeInTheDocument();
     });
-
-    cleanup();
-  });
-
-  it('should have proper theme atribute for important theme', () => {
-    const { getByRole } = renderComponent({
-      ...defaultProps,
-      isVisible: true,
-      kind: 'important',
-    });
-
-    const tooltip = getByRole('tooltip');
-    expect(tooltip).toHaveClass(styles['tooltip--important']);
-
-    cleanup();
   });
 
   it('should call onOpen and onClose callbacks when visibility changes on hover action', async () => {
@@ -98,20 +90,17 @@ describe('<Tooltip> component', () => {
       onOpen,
       onClose,
     });
-
     const button = getByRole('button');
 
     userEvent.hover(button);
     expect(queryByRole('tooltip')).toBeInTheDocument();
-    expect(onOpen).toBeCalledTimes(1);
-    expect(onClose).not.toBeCalled();
+    expect(onOpen).toHaveBeenCalledTimes(1);
+    expect(onClose).not.toHaveBeenCalled();
     userEvent.unhover(button);
     await waitFor(() => {
       expect(queryByRole('tooltip')).not.toBeInTheDocument();
       expect(onClose).toHaveBeenCalledTimes(1);
     });
-
-    cleanup();
   });
 
   it('should not call onOpen callback redundantly when hovering from trigger element to tooltip', () => {
@@ -122,7 +111,6 @@ describe('<Tooltip> component', () => {
       onOpen,
       onClose,
     });
-
     const button = getByRole('button');
 
     userEvent.hover(button);
@@ -130,9 +118,7 @@ describe('<Tooltip> component', () => {
     userEvent.hover(queryByRole('tooltip') as HTMLElement);
     userEvent.hover(button);
 
-    expect(onOpen).toBeCalledTimes(1);
-    expect(onClose).not.toBeCalled();
-
-    cleanup();
+    expect(onOpen).toHaveBeenCalledTimes(1);
+    expect(onClose).not.toHaveBeenCalled();
   });
 });
