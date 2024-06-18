@@ -50,7 +50,7 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
     document.body.classList.add(`lc-${theme}-theme`);
 
     for (const [key, value] of Object.entries(variables)) {
-      document.documentElement.style.setProperty(`--custom-${key}`, value);
+      document.body.style.setProperty(key, value);
     }
   }, [theme, variables]);
 

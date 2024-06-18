@@ -47,6 +47,48 @@ const ThemeSwitcher: FC = () => {
 
 ```
 
+### Customizing Theme Variables
+
+You can pass custom theme variables to the ThemeProvider and update them dynamically or use can use the `setCustomVariables` function from the `useTheme` hook.
+
+```jsx
+import React from 'react';
+import { ThemeProvider, useTheme } from '@livechat/design-system-react-components';
+
+const CustomThemeSwitcher: React.FC = () => {
+  const { theme, toggleTheme, setCustomVariables } = useTheme();
+
+  const handleCustomVariablesChange = () => {
+    setCustomVariables({
+      '--content-basic-primary': '#ff0000',
+      '--content-basic-secondary': '#00ff00',
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={toggleTheme}>
+        Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme
+      </button>
+      <button onClick={handleCustomVariablesChange}>
+        Apply Custom Variables
+      </button>
+    </div>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <ThemeProvider initialTheme="light" customVariables={{ '--content-basic-primary': '#0000ff' }}>
+      <CustomThemeSwitcher />
+    </ThemeProvider>
+  );
+};
+
+export default App;
+
+```
+
 ## API
 
 ### ThemeProvider Props
