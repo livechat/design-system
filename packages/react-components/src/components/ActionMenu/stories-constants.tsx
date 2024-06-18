@@ -57,4 +57,9 @@ export const exampleOptions = [
     ),
     onClick: noop,
   },
+  ...[...Array(10)].map((_, index) => ({
+    key: `option${index + 8}`,
+    element: <ActionMenuItem>{`Menu item #${index + 8}`}</ActionMenuItem>,
+    onClick: noop,
+  })),
 ];
