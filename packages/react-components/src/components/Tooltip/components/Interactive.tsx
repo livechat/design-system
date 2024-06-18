@@ -6,25 +6,13 @@ import cx from 'clsx';
 import { Button } from '../../Button';
 import { Icon } from '../../Icon';
 import { Heading } from '../../Typography';
-import { getIconType } from '../helpers';
+import { getIconType } from '../Tooltip.helpers';
 import styles from '../Tooltip.module.scss';
-import { TooltipButton, TooltipTheme } from '../types';
+import { ITooltipInteractiveProps, TooltipTheme } from '../types';
 
 const baseClass = 'tooltip';
 
-export const Interactive: React.FC<{
-  header?: string;
-  text: string;
-  image?: {
-    src: string;
-    alt: string;
-  };
-  closeWithX?: boolean;
-  theme?: TooltipTheme;
-  handleCloseAction?: (ev: React.MouseEvent) => void;
-  primaryButton: TooltipButton;
-  secondaryButton: TooltipButton;
-}> = ({
+export const Interactive: React.FC<ITooltipInteractiveProps> = ({
   header,
   text,
   image,

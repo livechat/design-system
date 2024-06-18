@@ -138,3 +138,68 @@ export interface ITooltipProps {
    */
   floatingStrategy?: Strategy;
 }
+
+export interface ITooltipInfoProps {
+  /**
+   * The CSS class for Info tooltip
+   */
+  className?: string;
+  /**
+   * The Info tooltip header
+   */
+  header?: string;
+  /**
+   * The Info tooltip text
+   */
+  text: string;
+  /**
+   * Set to show close button
+   */
+  closeWithX?: boolean;
+  /**
+   * The Info tooltip theme
+   */
+  theme?: TooltipTheme;
+  /**
+   * The Info tooltip close button action
+   */
+  handleCloseAction?: (ev: React.MouseEvent) => void;
+}
+
+export interface ITooltipInteractiveProps {
+  /**
+   * The Interactive tooltip header
+   */
+  header?: string;
+  /**
+   * The Interactive tooltip text
+   */
+  text: string;
+  /**
+   * The Interactive tooltip image
+   */
+  image?: {
+    src: string;
+    alt: string;
+  };
+  /**
+   * Set to show close button
+   */
+  closeWithX?: boolean;
+  /**
+   * The Interactive tooltip theme
+   */
+  theme?: TooltipTheme;
+  /**
+   * The Interactive tooltip close button action
+   */
+  handleCloseAction?: (ev: React.MouseEvent) => void;
+  /**
+   * The Interactive tooltip primary button props
+   */
+  primaryButton: TooltipButton;
+  /**
+   * The Interactive tooltip secondary button props
+   */
+  secondaryButton: TooltipButton;
+}
