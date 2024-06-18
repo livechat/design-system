@@ -17,7 +17,7 @@ describe('<Tab> component', () => {
   it('should render unselected Tab by default', () => {
     const { getByRole } = renderComponent({});
 
-    expect(getByRole('tab')).toHaveAttribute('aria-selected', 'false');
+    expect(getByRole('tab')).not.toHaveAttribute('aria-selected');
   });
 
   it('should render selected Tab if isSelected is provided', () => {

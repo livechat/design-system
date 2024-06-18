@@ -57,7 +57,7 @@ export const Tab: React.FC<React.PropsWithChildren<TabProps>> = ({
       {...restProps}
       as={restProps.href ? 'a' : 'button'}
       role="tab"
-      aria-selected={isSelected ? true : false}
+      aria-selected={isSelected}
       size="md"
       bold={isSelected}
       className={cx(
