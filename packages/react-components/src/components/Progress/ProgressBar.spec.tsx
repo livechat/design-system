@@ -2,28 +2,30 @@ import * as React from 'react';
 
 import { render } from 'test-utils';
 
-import { ProgressBar } from './ProgressBar';
+import { ProgressBar, ProgressBarProps } from './ProgressBar';
 
-import styles from './ProgressBar.module.scss';
+const defaultProps = {
+  percent: 10,
+};
 
-describe('<ProgressBar /> component', () => {
-  it('should render normal ProgressBar by default', () => {
-    const { getByRole } = render(<ProgressBar percent={10} />);
-    expect(getByRole('progressbar')).toHaveClass(styles['progress-bar']);
-    expect(getByRole('progressbar')).toHaveClass(
-      styles['progress-bar--normal']
-    );
+const renderComponent = (props: ProgressBarProps) =>
+  render(<ProgressBar {...props} />);
+
+describe('<ProgressBar> component', () => {
+  it('should allow for custom class', () => {
+    const { container } = renderComponent({
+      ...defaultProps,
+      className: 'custom-class',
+    });
+
+    expect(container.firstChild).toHaveClass('custom-class');
   });
 
-  it('should render success ProgressBar when success status is passed', () => {
-    const { getByRole } = render(<ProgressBar status="success" percent={10} />);
-    expect(getByRole('progressbar')).toHaveClass(
-      styles['progress-bar--success']
-    );
-  });
+  it('should apply correct width for progress indicator', () => {
+    const { getByTestId, rerender } = renderComponent(defaultProps);
 
-  it('should render error ProgressBar when error status is passed', () => {
-    const { getByRole } = render(<ProgressBar status="error" percent={10} />);
-    expect(getByRole('progressbar')).toHaveClass(styles['progress-bar--error']);
+    expect(getByTestId('progress-bar-indicator')).toHaveStyle('width: 10%');
+    rerender(<ProgressBar percent={20} />);
+    expect(getByTestId('progress-bar-indicator')).toHaveStyle('width: 20%');
   });
 });

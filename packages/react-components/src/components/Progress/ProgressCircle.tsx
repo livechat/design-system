@@ -3,7 +3,7 @@ import * as React from 'react';
 import cx from 'clsx';
 
 import { ProgressSize, ProgressStatus } from './constants';
-import { getPercentNumber, getProgressStatus } from './helpers';
+import { getPercentNumber } from './Progress.helpers';
 
 import styles from './ProgressCircle.module.scss';
 
@@ -53,8 +53,7 @@ export const ProgressCircle: React.ExoticComponent<
     },
     ref: React.LegacyRef<HTMLInputElement>
   ) => {
-    const progressStatus = getProgressStatus(status, progressValue);
-    const percentNumber = getPercentNumber(progressStatus, progressValue);
+    const percentNumber = getPercentNumber(status, progressValue);
     const thickness = THICKNESS_FROM_SIZE[size];
     const sizeValue = SIZE_VALUE_FROM_SIZE[size];
 
