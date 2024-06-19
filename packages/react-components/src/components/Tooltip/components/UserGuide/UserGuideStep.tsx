@@ -6,7 +6,7 @@ import cx from 'clsx';
 import { Button } from '../../../Button';
 import { Icon } from '../../../Icon';
 import { Heading } from '../../../Typography';
-import { getIconType } from '../../helpers';
+import { getIconType } from '../../Tooltip.helpers';
 import styles from '../../Tooltip.module.scss';
 import { TooltipTheme } from '../../types';
 

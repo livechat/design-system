@@ -50,7 +50,9 @@ export const Badge: React.FC<React.PropsWithChildren<BadgeProps>> = ({
   const content = {
     ['counter']: formatCount(count, max),
     ['alert']: '!',
-    ['dot']: <span className={styles[`${baseClass}__dot`]} />,
+    ['dot']: (
+      <span data-testid="badge-dot" className={styles[`${baseClass}__dot`]} />
+    ),
   }[type];
 
   return (

@@ -1,0 +1,56 @@
+import { Canvas, ArgTypes, Meta, Title } from '@storybook/blocks';
+
+import * as ActionCardStories from './ActionCard.stories';
+
+<Meta of={ActionCardStories} />
+
+<Title>ActionCard</Title>
+
+[Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+## Intro <a id="Intro" />
+
+`ActionCard` is a component used to create a tile layout. each card is clickable, triggering the given action.
+Each component displays content in one column by default, but you can pass your own element via `secondColumn`, then the tile will turn into a two-column view.
+By default, the component adapts to the width of the container in which it will be placed. If you want to keep it at a certain width, it will be best to use our own wrapper. Additionally, the component adjusts its layout depending on the width of the container in which it is located. Breakpoint is <b>623px</b>, if the container is smaller than this value, the component will change the layout from columns to rows.
+
+<Canvas of={ActionCardStories.OneColumn} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+<ActionCard 
+  onClick={() => {}}
+>
+  // your content here
+</ActionCard>
+```
+
+### Two columns layout
+
+<Canvas of={ActionCardStories.TwoColumns} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+<ActionCard
+  secondColumn={( /* your content here */)}
+  onClick={() => {}}
+>
+  // your content here
+</ActionCard>
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={ActionCardStories.OneColumn} sort="requiredFirst" />
+
+## Content Spec <a id="ContentSpec" />
+
+<a
+  className="sb-unstyled"
+  href="https://www.figma.com/design/9FDwjR8lYvincseDkKypC4/Component-Documentations?node-id=5406-6869&t=huZtFfPD8H9Y8hUi-4"
+  target="_blank"
+>
+  Go to Figma documentation
+</a>

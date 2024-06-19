@@ -18,13 +18,11 @@ const renderComponent = (props: IDetailsCardProps) => {
 
 describe('<DetailsCard> component', () => {
   it('should render closed card with label by default', () => {
-    const { getByText, getByTestId } = renderComponent(defaultProps);
+    const { getByTestId, getByText } = renderComponent(defaultProps);
+    const label = getByTestId('details-card-label');
 
-    expect(getByText(label)).toBeVisible();
-    expect(getByTestId('details-card-label')).toHaveAttribute(
-      'aria-expanded',
-      'false'
-    );
+    expect(getByText('Test label')).toBeInTheDocument();
+    expect(label).toHaveAttribute('aria-expanded', 'false');
   });
 
   it('should toggle the card on button click', () => {
@@ -49,6 +47,7 @@ describe('<DetailsCard> component', () => {
 
     expect(label).toHaveAttribute('aria-hidden', 'false');
     expect(label).toHaveAttribute('aria-expanded', 'false');
+
     userEvent.click(button);
     expect(label).toHaveAttribute('aria-expanded', 'true');
     expect(label).toHaveAttribute('aria-hidden', 'true');
@@ -71,7 +70,19 @@ describe('<DetailsCard> component', () => {
       onClick: handler,
     });
     const button = getByRole('button');
+
     userEvent.click(button);
     expect(handler).toHaveBeenCalledTimes(1);
+  });
+
+  it('should display additional nodes when passed', () => {
+    const { getByText } = renderComponent({
+      ...defaultProps,
+      leftNode: <div>Left node</div>,
+      rightNode: <div>Right node</div>,
+    });
+
+    expect(getByText('Left node')).toBeInTheDocument();
+    expect(getByText('Right node')).toBeInTheDocument();
   });
 });

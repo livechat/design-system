@@ -2,9 +2,7 @@ import { render } from 'test-utils';
 
 import { Badge } from './Badge';
 
-import styles from './Badge.module.scss';
-
-describe('Badge', () => {
+describe('<Badge> component', () => {
   it('should accept custom className', () => {
     const { container } = render(<Badge className="my-custom-class" />);
 
@@ -40,8 +38,8 @@ describe('Badge', () => {
   });
 
   it('should display dot content for dot type', () => {
-    const { container } = render(<Badge type="dot" />);
+    const { getByTestId } = render(<Badge type="dot" />);
 
-    expect(container.querySelector(`.${styles['badge__dot']}`)).toBeVisible();
+    expect(getByTestId('badge-dot')).toBeVisible();
   });
 });

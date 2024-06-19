@@ -117,6 +117,12 @@ $decor-gray800: #29292f;
   --surface-gradient-11: linear-gradient(95deg, #eee8ff, #fff4dd 112%);
   --surface-gradient-12: linear-gradient(95deg, #efded2 0%, #fdfcfa 111.28%);
   --surface-gradient-13: linear-gradient(95deg, #e2e2e4 0%, #fcfcfc 111.28%);
+  --surface-gradient-14: linear-gradient(
+    243.27deg,
+    #daedff 6.51%,
+    #fbfdff 67.15%,
+    #fff 70.53%
+  );
   --content-default: #424d57; // deprecated
   --content-basic-primary: #424d57;
   --content-subtle: #677179; // deprecated
@@ -345,4 +351,27 @@ $decor-gray800: #29292f;
   --surface-other-internal-note-default: #{$content-basic-disabled};
   --content-basic-internal-note-message-placeholder: #{$content-basic-disabled};
   --content-basic-internal-note-message-active: #{$content-basic-primary};
+  --one-popover-message-background-default: linear-gradient(
+    254.49deg,
+    rgb(187 154 255 / 18%) -0.38%,
+    rgb(104 175 255 / 18%) 94.44%
+  );
+  --one-popover-border-default: conic-gradient(
+    from 171.11deg at 50% 50%,
+    #b466ff -46.87deg,
+    #7e54ff 0.45deg,
+    #45acff 163.12deg,
+    #d7cdff 240deg,
+    #b466ff 313.12deg,
+    #7e54ff 360.45deg
+  );
+  --one-popover-border-active: conic-gradient(
+    from 171.11deg at 50% 50%,
+    #c930ff -46.87deg,
+    #7000ff 0.45deg,
+    #00b3ff 163.12deg,
+    #fff 240deg,
+    #c930ff 313.12deg,
+    #7000ff 360.45deg
+  );
 }

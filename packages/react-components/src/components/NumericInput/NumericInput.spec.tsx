@@ -4,6 +4,11 @@ import noop from '../../utils/noop';
 
 import { NumericInputProps, NumericInput } from './NumericInput';
 
+const defaultProps: NumericInputProps = {
+  value: '0',
+  onChange: noop,
+};
+
 const renderComponent = (props: Partial<NumericInputProps>) => {
   const finalProps = Object.assign(
     {},
@@ -11,39 +16,37 @@ const renderComponent = (props: Partial<NumericInputProps>) => {
     props
   ) as NumericInputProps;
 
-  return render(<NumericInput {...finalProps} className="my-css-class" />);
+  return render(<NumericInput {...finalProps} />);
 };
 
 describe('<NumericInput> component', () => {
   it('should allow for custom class', () => {
     const { container } = renderComponent({
-      value: '0',
+      ...defaultProps,
+      className: 'my-css-class',
     });
 
     expect(container.firstChild).toHaveClass('my-css-class');
   });
 
   it('should display buttons by default', () => {
-    const { queryByRole } = renderComponent({
-      value: '0',
-    });
+    const { queryByRole } = renderComponent(defaultProps);
 
     expect(
       queryByRole('button', {
         name: /Increment value/i,
       })
-    ).toBeVisible();
-
+    ).toBeInTheDocument();
     expect(
       queryByRole('button', {
         name: /Decrement value/i,
       })
-    ).toBeVisible();
+    ).toBeInTheDocument();
   });
 
-  it('should not display buttons', () => {
+  it('should not display buttons if noControls is set true', () => {
     const { queryByRole } = renderComponent({
-      value: '0',
+      ...defaultProps,
       noControls: true,
     });
 
@@ -51,31 +54,28 @@ describe('<NumericInput> component', () => {
       queryByRole('button', {
         name: /Increment value/i,
       })
-    ).toBeFalsy();
-
+    ).not.toBeInTheDocument();
     expect(
       queryByRole('button', {
         name: /Decrement value/i,
       })
-    ).toBeFalsy();
+    ).not.toBeInTheDocument();
   });
 
-  it('all elements should be disabled', () => {
-    const { queryByRole } = renderComponent({
-      value: '0',
+  it('all elements should be disabled if disabled is set true', () => {
+    const { getByRole } = renderComponent({
+      ...defaultProps,
       disabled: true,
     });
 
-    expect(queryByRole('textbox')).toBeDisabled();
-
+    expect(getByRole('textbox')).toBeDisabled();
     expect(
-      queryByRole('button', {
+      getByRole('button', {
         name: /Increment value/i,
       })
     ).toBeDisabled();
-
     expect(
-      queryByRole('button', {
+      getByRole('button', {
         name: /Decrement value/i,
       })
     ).toBeDisabled();
@@ -84,7 +84,7 @@ describe('<NumericInput> component', () => {
   it('should call onChange when button click', () => {
     const onChange = vi.fn();
     const { getByRole } = renderComponent({
-      value: '0',
+      ...defaultProps,
       onChange,
     });
 
@@ -94,6 +94,7 @@ describe('<NumericInput> component', () => {
       })
     );
     expect(onChange).toHaveBeenCalledTimes(1);
+    expect(onChange).toHaveBeenCalledWith('1');
 
     fireEvent.click(
       getByRole('button', {
@@ -101,6 +102,7 @@ describe('<NumericInput> component', () => {
       })
     );
     expect(onChange).toHaveBeenCalledTimes(2);
+    expect(onChange).toHaveBeenCalledWith('-1');
   });
 
   it('should disable Increment button when limit reached', () => {

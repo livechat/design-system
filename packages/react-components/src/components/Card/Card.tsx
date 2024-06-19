@@ -83,9 +83,14 @@ export const Card: React.FC<React.PropsWithChildren<CardProps>> = ({
             <Heading size="xs" className={styles[`${headingClass}__title`]}>
               {title}
             </Heading>
-            <Text size="sm" className={styles[`${headingClass}__description`]}>
-              {description}
-            </Text>
+            {description && (
+              <Text
+                size="sm"
+                className={styles[`${headingClass}__description`]}
+              >
+                {description}
+              </Text>
+            )}
           </div>
         </div>
       )}
