@@ -80,18 +80,26 @@ export const Interactive: React.FC<ITooltipInteractiveProps> = ({
         )}
       >
         <Button
+          {...primaryButton}
           kind={primaryButton.kind || getDefaultPrimaryButtonKind(theme)}
           onClick={primaryButton.handleClick}
         >
           {primaryButton.label}
         </Button>
-        <Button
-          className={cx(styles[`${baseClass}-footer-secondary`])}
-          kind={secondaryButton.kind || getDefaultSecondaryButtonKind(theme)}
-          onClick={secondaryButton.handleClick}
-        >
-          {secondaryButton.label}
-        </Button>
+
+        {secondaryButton && (
+          <Button
+            {...secondaryButton}
+            className={cx(
+              styles[`${baseClass}-footer-secondary`],
+              secondaryButton.className
+            )}
+            kind={secondaryButton.kind || getDefaultSecondaryButtonKind(theme)}
+            onClick={secondaryButton.handleClick}
+          >
+            {secondaryButton.label}
+          </Button>
+        )}
       </div>
     </div>
   );
