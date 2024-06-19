@@ -2,73 +2,112 @@ import * as React from 'react';
 
 import { vi } from 'vitest';
 
-import { render, fireEvent } from 'test-utils';
+import { render, userEvent } from 'test-utils';
 
 import { Popover } from './Popover';
+import { IPopoverProps } from './types';
 
 const triggerButtonId = 'popover-trigger-button';
 
+const defaultProps = {
+  triggerRenderer: <button>Open Popover</button>,
+  children: 'Popover Content',
+};
+
+const renderComponent = (props: IPopoverProps) =>
+  render(<Popover {...props} />);
+
 describe('<Popover> component', () => {
-  const props = {
-    triggerRenderer: <button>Open Popover</button>,
-    onClose: vi.fn(),
-    onOpen: vi.fn(),
-    children: 'Popover Content',
-  };
+  it('should allow for custom class', () => {
+    const { getByRole } = renderComponent({
+      ...defaultProps,
+      isVisible: true,
+      className: 'custom-class',
+    });
 
-  it('renders the trigger button', () => {
-    const { getByTestId } = render(<Popover {...props} />);
-    const triggerButton = getByTestId(triggerButtonId);
-    expect(triggerButton).toBeInTheDocument();
+    expect(getByRole('dialog')).toHaveClass('custom-class');
   });
 
-  it('opens the popover when the trigger button is clicked', () => {
-    const { getByTestId, getByText } = render(<Popover {...props} />);
-    const triggerButton = getByTestId(triggerButtonId);
-    fireEvent.click(triggerButton);
-    const popoverContent = getByText('Popover Content');
-    expect(popoverContent).toBeInTheDocument();
+  it('should allow for custom class for trigger button', () => {
+    const { getByTestId } = renderComponent({
+      ...defaultProps,
+      triggerClassName: 'custom-trigger-class',
+    });
+
+    expect(getByTestId(triggerButtonId)).toHaveClass('custom-trigger-class');
   });
 
-  it('calls onOpen when the popover is opened', () => {
-    const { getByTestId } = render(<Popover {...props} />);
-    const triggerButton = getByTestId(triggerButtonId);
-    fireEvent.click(triggerButton);
-    expect(props.onOpen).toHaveBeenCalled();
+  it('renders the given element as trigger button', () => {
+    const { getByRole } = renderComponent(defaultProps);
+
+    expect(getByRole('button')).toBeInTheDocument();
   });
 
-  it('calls onClose when the popover is closed', () => {
-    const { getByTestId } = render(<Popover {...props} openedOnInit={true} />);
+  it('should open the popover when user click the trigger button', () => {
+    const { getByTestId, getByRole } = renderComponent(defaultProps);
+
+    userEvent.click(getByTestId(triggerButtonId));
+    expect(getByRole('dialog')).toBeInTheDocument();
+    expect(getByRole('dialog')).toHaveTextContent('Popover Content');
+  });
+
+  it('should call onOpen when the popover is opened and onClose when popover is closed', () => {
+    const onOpen = vi.fn();
+    const onClose = vi.fn();
+    const { getByTestId } = renderComponent({
+      ...defaultProps,
+      onOpen,
+      onClose,
+    });
     const triggerButton = getByTestId(triggerButtonId);
-    fireEvent.click(triggerButton);
-    expect(props.onClose).toHaveBeenCalled();
+
+    userEvent.click(triggerButton);
+    expect(onOpen).toHaveBeenCalledTimes(1);
+    userEvent.click(triggerButton);
+    expect(onClose).toHaveBeenCalledTimes(1);
   });
 
   it('closes the popover when Escape key is pressed', () => {
-    const { queryByText } = render(<Popover {...props} openedOnInit={true} />);
-    fireEvent.keyDown(document, { key: 'Escape' });
-    const popoverContent = queryByText('Popover Content');
-    expect(popoverContent).not.toBeInTheDocument();
+    const { queryByRole } = renderComponent({
+      ...defaultProps,
+      openedOnInit: true,
+    });
+
+    userEvent.keyboard('[Escape]');
+    expect(queryByRole('dialog')).not.toBeInTheDocument();
   });
 
-  it('does not close the popover when Escape key is pressed if closeOnEsc is false', () => {
-    const { getByText } = render(
-      <Popover {...props} openedOnInit={true} closeOnEsc={false} />
-    );
-    fireEvent.keyDown(document, { key: 'Escape' });
-    const popoverContent = getByText('Popover Content');
-    expect(popoverContent).toBeInTheDocument();
+  it('should not close the popover when Escape key is pressed if closeOnEsc is set false', () => {
+    const { getByRole } = renderComponent({
+      ...defaultProps,
+      openedOnInit: true,
+      closeOnEsc: false,
+    });
+    const popover = getByRole('dialog');
+
+    expect(popover).toBeInTheDocument();
+    userEvent.keyboard('[Escape]');
+    expect(popover).toBeInTheDocument();
   });
 
-  it('renders the popover as open when isVisible prop is true', () => {
-    const { getByText } = render(<Popover {...props} isVisible={true} />);
-    const popoverContent = getByText('Popover Content');
-    expect(popoverContent).toBeInTheDocument();
+  it('should keep open when isVisible is set true (controlled mode)', () => {
+    const { getByRole } = renderComponent({ ...defaultProps, isVisible: true });
+    const popover = getByRole('dialog');
+
+    expect(popover).toBeInTheDocument();
+    userEvent.keyboard('[Escape]');
+    expect(popover).toBeInTheDocument();
   });
 
-  it('renders the popover as closed when isVisible prop is false', () => {
-    const { queryByText } = render(<Popover {...props} isVisible={false} />);
-    const popoverContent = queryByText('Popover Content');
-    expect(popoverContent).not.toBeInTheDocument();
+  it('should keep close when isVisible is set false (controlled mode)', () => {
+    const { queryByRole, getByTestId } = renderComponent({
+      ...defaultProps,
+      isVisible: false,
+    });
+    const popover = queryByRole('dialog');
+
+    expect(popover).not.toBeInTheDocument();
+    userEvent.click(getByTestId(triggerButtonId));
+    expect(popover).not.toBeInTheDocument();
   });
 });
