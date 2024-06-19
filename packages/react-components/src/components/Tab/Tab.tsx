@@ -56,6 +56,8 @@ export const Tab: React.FC<React.PropsWithChildren<TabProps>> = ({
     <Text
       {...restProps}
       as={restProps.href ? 'a' : 'button'}
+      role="tab"
+      aria-selected={isSelected}
       size="md"
       bold={isSelected}
       className={cx(
@@ -66,7 +68,11 @@ export const Tab: React.FC<React.PropsWithChildren<TabProps>> = ({
         disabled && styles[`${baseClass}--disabled`]
       )}
     >
-      {icon && <div className={styles[`${baseClass}__icon`]}>{icon}</div>}
+      {icon && (
+        <div data-testId="icon" className={styles[`${baseClass}__icon`]}>
+          {icon}
+        </div>
+      )}
       {children}
       {shouldDisplayAsCounter && (
         <Text as="span" size="md" className={styles[`${baseClass}__count`]}>
