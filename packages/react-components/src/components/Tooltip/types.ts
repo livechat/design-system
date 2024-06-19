@@ -8,15 +8,14 @@ import {
   UseClickProps,
 } from '@floating-ui/react';
 
-import { ButtonKind } from '../Button';
+import { ButtonProps } from '../Button';
 
 export type TooltipTheme = 'invert' | 'important' | undefined;
 
 export type TooltipButton = {
   handleClick: () => void;
   label: string;
-  kind?: ButtonKind;
-};
+} & Omit<ButtonProps, 'onClick'>;
 
 export interface ITooltipProps {
   /**
@@ -201,5 +200,5 @@ export interface ITooltipInteractiveProps {
   /**
    * The Interactive tooltip secondary button props
    */
-  secondaryButton: TooltipButton;
+  secondaryButton?: TooltipButton;
 }
