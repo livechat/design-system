@@ -9,31 +9,31 @@ describe('<Tab> component', () => {
   it('should allow for custom class', () => {
     const { getByRole } = renderComponent({ className: 'custom-class' });
 
-    expect(getByRole('tab')).toHaveClass('custom-class');
+    expect(getByRole('button')).toHaveClass('custom-class');
   });
 
   it('should render unselected Tab by default', () => {
     const { getByRole } = renderComponent({});
 
-    expect(getByRole('tab')).not.toHaveAttribute('aria-selected');
+    expect(getByRole('button')).not.toHaveAttribute('aria-selected');
   });
 
   it('should render selected Tab if isSelected is provided', () => {
     const { getByRole } = renderComponent({ isSelected: true });
 
-    expect(getByRole('tab')).toHaveAttribute('aria-selected', 'true');
+    expect(getByRole('button')).toHaveAttribute('aria-selected', 'true');
   });
 
   it('should render disabled Tab if disabled is provided', () => {
     const { getByRole } = renderComponent({ disabled: true });
 
-    expect(getByRole('tab')).toBeDisabled();
+    expect(getByRole('button')).toBeDisabled();
   });
 
   it('should render properly formatted counter', () => {
     const { getByRole } = renderComponent({ count: 1 });
 
-    expect(getByRole('tab')).toHaveTextContent('(1)');
+    expect(getByRole('button')).toHaveTextContent('(1)');
   });
 
   it('should render properly formatted counter as a badge', () => {
@@ -44,7 +44,7 @@ describe('<Tab> component', () => {
 
   it('should render with anchor element if href is provided', () => {
     const { getByRole } = renderComponent({ href: 'http://example.com' });
-    const link = getByRole('tab');
+    const link = getByRole('link');
 
     expect(link).toHaveTextContent('Hello');
     expect(link).toHaveAttribute('href', 'http://example.com');
