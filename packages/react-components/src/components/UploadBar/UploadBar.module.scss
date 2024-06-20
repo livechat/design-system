@@ -23,8 +23,7 @@ $base-class: 'upload-bar';
   &__wrapper {
     box-sizing: border-box;
     display: flex;
-    align-content: center;
-    justify-content: space-between;
+    place-content: center space-between;
     cursor: pointer;
 
     &__header {
@@ -119,6 +118,7 @@ $base-class: 'upload-bar';
       padding-right: var(--spacing-5);
       height: 100%;
       overflow-y: auto;
+      color-scheme: var(--color-scheme);
 
       > div:not(:last-child) {
         margin-bottom: var(--spacing-4);
