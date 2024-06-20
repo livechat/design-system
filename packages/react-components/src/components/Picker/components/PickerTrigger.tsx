@@ -71,6 +71,7 @@ export const PickerTrigger: React.FC<
     <button
       tabIndex={isDisabled ? -1 : 0}
       aria-disabled={isDisabled}
+      disabled={isDisabled}
       className={mergedClassNames}
       data-testid={testId}
       ref={setReference}
