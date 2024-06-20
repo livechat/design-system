@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { render, fireEvent, vi } from 'test-utils';
+import { render, userEvent, vi } from 'test-utils';
 
 import noop from '../../../utils/noop';
 
@@ -51,7 +51,7 @@ describe('<PickerTrigger> component', () => {
       onClear,
     });
 
-    fireEvent.click(getByTestId(`picker-trigger__clear-icon`));
+    userEvent.click(getByTestId(`picker-trigger__clear-icon`));
     expect(onClear).toHaveBeenCalled();
   });
 
