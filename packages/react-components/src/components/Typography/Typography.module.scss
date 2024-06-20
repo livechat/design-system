@@ -18,7 +18,7 @@
   line-height: 28px;
   letter-spacing: 0;
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -54,6 +54,14 @@
 @mixin heading-bold {
   letter-spacing: 0.2px;
   font-weight: 500;
+}
+
+@mixin paragraph-lg {
+  line-height: 24px;
+  letter-spacing: 0;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
 }
 
 @mixin paragraph-md {
@@ -135,6 +143,10 @@
 
 .heading-bold {
   @include heading-bold;
+}
+
+.paragraph-lg {
+  @include paragraph-lg;
 }
 
 .paragraph-md {

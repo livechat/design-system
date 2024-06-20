@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Text, TTextSize } from '../../../../components/Typography';
 
-const SIZES_MAP = ['md', 'sm', 'xs'] as TTextSize[];
+const SIZES_MAP = ['lg', 'md', 'sm', 'xs'] as TTextSize[];
 
 export const TextExamples: React.FC = () => {
   const elements = SIZES_MAP.map((size) => {
@@ -26,7 +26,7 @@ export const TextExamples: React.FC = () => {
   });
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+    <div style={{ display: 'flex', justifyContent: 'space-around', gap: 10 }}>
       {elements}
     </div>
   );
