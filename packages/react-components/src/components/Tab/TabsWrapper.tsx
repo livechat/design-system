@@ -16,7 +16,7 @@ export const TabsList: React.FC<
   React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>
 > = ({ className, children }) => {
   return (
-    <div className={cx(styles[`${baseClass}__list`], className)}>
+    <div role="tablist" className={cx(styles[`${baseClass}__list`], className)}>
       {children}
     </div>
   );

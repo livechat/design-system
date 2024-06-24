@@ -32,15 +32,26 @@ vitest.mock('react-virtuoso', () => {
   return { ...vitest.importActual('react-virtuoso'), Virtuoso };
 });
 
-const renderComponent = (props: IPickerProps) => {
-  return render(<Picker {...props} className="my-css-class" />);
-};
+const renderComponent = (props: IPickerProps) => render(<Picker {...props} />);
 
 describe('<Picker> component', () => {
   it('should allow for custom class', () => {
-    const { container } = renderComponent({ ...defaultProps });
+    const { container } = renderComponent({
+      ...defaultProps,
+      className: 'my-css-class',
+    });
 
     expect(container.firstChild).toHaveClass('my-css-class');
+  });
+
+  it('should allow for custom class for picker list', () => {
+    const { getByText, getByTestId } = renderComponent({
+      ...defaultProps,
+      listClassName: 'my-css-class',
+    });
+
+    userEvent.click(getByText('Select option'));
+    expect(getByTestId('picker-list')).toHaveClass('my-css-class');
   });
 
   it('should call onSelect with selected item', () => {
@@ -150,5 +161,100 @@ describe('<Picker> component', () => {
     });
 
     expect(getByText('Option three')).toBeVisible();
+  });
+
+  it('should be disabled if provided', () => {
+    const { getByRole } = renderComponent({
+      ...defaultProps,
+      disabled: true,
+    });
+
+    expect(getByRole('combobox')).toBeDisabled();
+  });
+
+  it('should render given text for search empty state if no search result found', () => {
+    const { getByText, getByRole } = renderComponent({
+      ...defaultProps,
+      noSearchResultText: 'No results found',
+    });
+
+    userEvent.click(getByText('Select option'));
+    userEvent.type(getByRole('textbox'), 'not existing option');
+    expect(getByText('No results found')).toBeVisible();
+  });
+
+  it('should open list if openedOnInit is provided', () => {
+    const { getByTestId } = renderComponent({
+      ...defaultProps,
+      openedOnInit: true,
+    });
+
+    expect(getByTestId('picker-list')).toBeInTheDocument();
+  });
+
+  it('should not open list if isVisible is set to false (controlled mode) after user click', () => {
+    const { queryByTestId, getByRole } = renderComponent({
+      ...defaultProps,
+      isVisible: false,
+    });
+
+    expect(queryByTestId('picker-list')).not.toBeInTheDocument();
+    userEvent.click(getByRole('combobox'));
+    expect(queryByTestId('picker-list')).not.toBeInTheDocument();
+  });
+
+  it('should not close list if isVisible is set to true (controlled mode) after user click', () => {
+    const { queryByTestId } = renderComponent({
+      ...defaultProps,
+      isVisible: true,
+    });
+
+    expect(queryByTestId('picker-list')).toBeInTheDocument();
+    userEvent.click(document.body);
+    expect(queryByTestId('picker-list')).toBeInTheDocument();
+  });
+
+  it('should call onOpen and onClose handlers on list open and close', () => {
+    const onOpen = vi.fn();
+    const onClose = vi.fn();
+    const { getByRole } = renderComponent({
+      ...defaultProps,
+      onOpen,
+      onClose,
+    });
+
+    userEvent.click(getByRole('combobox'));
+    expect(onOpen).toHaveBeenCalled();
+    userEvent.click(document.body);
+    expect(onClose).toHaveBeenCalled();
+  });
+
+  it('should clear search input after selection if clearSearchAfterSelection is provided (multi-select mode)', () => {
+    const { getByRole, getByText, rerender } = renderComponent({
+      ...defaultProps,
+      type: 'multi',
+      clearSearchAfterSelection: true,
+      isVisible: true,
+    });
+
+    userEvent.type(getByRole('textbox'), 'Option one');
+    userEvent.click(getByText('Option one'));
+
+    rerender(
+      <Picker
+        {...defaultProps}
+        type="multi"
+        isVisible
+        clearSearchAfterSelection
+        selected={[
+          {
+            key: 'one',
+            name: 'Option one',
+          },
+        ]}
+      />
+    );
+
+    expect(getByRole('textbox')).toHaveValue('');
   });
 });

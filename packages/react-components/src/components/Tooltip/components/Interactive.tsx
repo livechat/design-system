@@ -6,25 +6,13 @@ import cx from 'clsx';
 import { Button } from '../../Button';
 import { Icon } from '../../Icon';
 import { Heading } from '../../Typography';
-import { getIconType } from '../helpers';
+import { getIconType } from '../Tooltip.helpers';
 import styles from '../Tooltip.module.scss';
-import { TooltipButton, TooltipTheme } from '../types';
+import { ITooltipInteractiveProps, TooltipTheme } from '../types';
 
 const baseClass = 'tooltip';
 
-export const Interactive: React.FC<{
-  header?: string;
-  text: string;
-  image?: {
-    src: string;
-    alt: string;
-  };
-  closeWithX?: boolean;
-  theme?: TooltipTheme;
-  handleCloseAction?: (ev: React.MouseEvent) => void;
-  primaryButton: TooltipButton;
-  secondaryButton: TooltipButton;
-}> = ({
+export const Interactive: React.FC<ITooltipInteractiveProps> = ({
   header,
   text,
   image,
@@ -92,18 +80,26 @@ export const Interactive: React.FC<{
         )}
       >
         <Button
+          {...primaryButton}
           kind={primaryButton.kind || getDefaultPrimaryButtonKind(theme)}
           onClick={primaryButton.handleClick}
         >
           {primaryButton.label}
         </Button>
-        <Button
-          className={cx(styles[`${baseClass}-footer-secondary`])}
-          kind={secondaryButton.kind || getDefaultSecondaryButtonKind(theme)}
-          onClick={secondaryButton.handleClick}
-        >
-          {secondaryButton.label}
-        </Button>
+
+        {secondaryButton && (
+          <Button
+            {...secondaryButton}
+            className={cx(
+              styles[`${baseClass}-footer-secondary`],
+              secondaryButton.className
+            )}
+            kind={secondaryButton.kind || getDefaultSecondaryButtonKind(theme)}
+            onClick={secondaryButton.handleClick}
+          >
+            {secondaryButton.label}
+          </Button>
+        )}
       </div>
     </div>
   );

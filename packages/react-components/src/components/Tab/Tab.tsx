@@ -13,10 +13,26 @@ type HTMLProps =
   | (React.ButtonHTMLAttributes<HTMLButtonElement> & { href?: never });
 
 export type TabProps = HTMLProps & {
+  /**
+   * Set to display numeric counter with given number
+   */
   count?: number;
+  /**
+   * Set to display selected state
+   */
   isSelected?: boolean;
+  /**
+   * Set to display numeric counter as badge
+   */
   asBadge?: boolean;
+  /**
+   * Specify the button size
+   */
   size?: Size;
+  /**
+   * Renders given element
+   */
+  icon?: React.ReactElement;
 };
 
 const baseClass = 'tab';
@@ -28,6 +44,7 @@ export const Tab: React.FC<React.PropsWithChildren<TabProps>> = ({
   isSelected,
   asBadge,
   size = 'medium',
+  icon,
   ...restProps
 }) => {
   const { disabled } =
@@ -39,6 +56,7 @@ export const Tab: React.FC<React.PropsWithChildren<TabProps>> = ({
     <Text
       {...restProps}
       as={restProps.href ? 'a' : 'button'}
+      aria-selected={isSelected}
       size="md"
       bold={isSelected}
       className={cx(
@@ -49,6 +67,11 @@ export const Tab: React.FC<React.PropsWithChildren<TabProps>> = ({
         disabled && styles[`${baseClass}--disabled`]
       )}
     >
+      {icon && (
+        <div data-testId="icon" className={styles[`${baseClass}__icon`]}>
+          {icon}
+        </div>
+      )}
       {children}
       {shouldDisplayAsCounter && (
         <Text as="span" size="md" className={styles[`${baseClass}__count`]}>

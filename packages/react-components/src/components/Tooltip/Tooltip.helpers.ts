@@ -15,10 +15,6 @@ export function getIconType(theme: TooltipTheme): IconKind {
   }
 }
 
-export const sleep = (milliseconds: number): Promise<void> => {
-  return new Promise((resolve) => setTimeout(resolve, milliseconds));
-};
-
 export function getArrowPositionStyles(
   arrowOffsetY?: number,
   arrowOffsetX?: number,

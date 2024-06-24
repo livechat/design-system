@@ -8,8 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@livechat/design-system-icons": "^1.22.5",
-    "@livechat/design-system-react-components": "^1.22.5",
+    "@livechat/design-system-icons": "^1.24.2",
+    "@livechat/design-system-react-components": "^1.25.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.0"
   },

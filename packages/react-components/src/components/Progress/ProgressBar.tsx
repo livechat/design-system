@@ -3,7 +3,7 @@ import * as React from 'react';
 import cx from 'clsx';
 
 import { ProgressSize, ProgressStatus } from './constants';
-import { getPercentNumber, getProgressStatus } from './helpers';
+import { getPercentNumber } from './Progress.helpers';
 
 import styles from './ProgressBar.module.scss';
 
@@ -41,8 +41,7 @@ export const ProgressBar: React.ExoticComponent<
     },
     ref: React.LegacyRef<HTMLInputElement>
   ) => {
-    const progressStatus = getProgressStatus(status, percent);
-    const percentNumber = getPercentNumber(progressStatus, percent);
+    const percentNumber = getPercentNumber(status, percent);
 
     const mergedClassNames = cx(
       styles[baseClass],
@@ -61,6 +60,7 @@ export const ProgressBar: React.ExoticComponent<
         role="progressbar"
       >
         <div
+          data-testid="progress-bar-indicator"
           className={styles[`${baseClass}__indicator--${status}`]}
           style={{ width: `${percentNumber}%` }}
         />

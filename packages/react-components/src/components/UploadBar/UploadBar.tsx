@@ -74,7 +74,10 @@ export interface UploadBarProps {
 const getHeaderIcon = (status: ProgressStatus, progressValue: number) => {
   if (status === 'success') {
     return (
-      <div className={styles[`${wrapperHeaderClass}__success-icon`]}>
+      <div
+        data-testid="success-icon"
+        className={styles[`${wrapperHeaderClass}__success-icon`]}
+      >
         <Icon source={CheckIcon} />
       </div>
     );
@@ -82,7 +85,10 @@ const getHeaderIcon = (status: ProgressStatus, progressValue: number) => {
 
   if (status === 'error') {
     return (
-      <div className={styles[`${wrapperHeaderClass}__error-icon`]}>
+      <div
+        data-testid="error-icon"
+        className={styles[`${wrapperHeaderClass}__error-icon`]}
+      >
         <Icon source={ErrorIcon} />
       </div>
     );
@@ -169,6 +175,7 @@ export const UploadBar: React.FC<React.PropsWithChildren<UploadBarProps>> = ({
             <button
               className={styles[`${wrapperHeaderClass}__collapse-button`]}
               type="button"
+              aria-label="Collapse button"
               onClick={handleOnWrapperClick}
             >
               {expanded ? (
