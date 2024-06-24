@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 
 import { AddCircle as AddCircleIcon } from '@livechat/design-system-icons';
 
@@ -88,7 +88,7 @@ describe('<Input> component', () => {
   it('should call onChange if input value change', () => {
     const onChangeFunction = vi.fn();
     const InputWrapper = () => {
-      const [value, setValue] = React.useState('');
+      const [value, setValue] = useState('');
 
       return (
         <Input

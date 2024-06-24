@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { render, userEvent, vi } from 'test-utils';
 
 import { IPromoBannerV2Props, PromoBannerV2 } from './PromoBannerV2';

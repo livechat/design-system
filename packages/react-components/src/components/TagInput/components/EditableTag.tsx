@@ -18,7 +18,9 @@ export interface EditableTagProps extends React.HTMLAttributes<HTMLDivElement> {
   tagProps?: TagProps;
 }
 
-export const EditableTag: React.FC<EditableTagProps> = ({
+export const EditableTag: React.FC<
+  React.PropsWithChildren<EditableTagProps>
+> = ({
   children,
   index,
   remove,

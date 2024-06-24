@@ -5,7 +5,7 @@ import cx from 'clsx';
 import styles from './DatePicker.module.scss';
 
 export const DatePickerRangeCalendarsWrapper: React.FC<
-  React.HTMLAttributes<HTMLDivElement>
+  React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>
 > = (props) => {
   const { className, children, ...restProps } = props;
 

@@ -77,7 +77,7 @@ export const Table: React.FC<ITable> = ({
                       className="no-wrap copy-text"
                       onClick={() => handleCopyText(value as string)}
                     >
-                      {value}
+                      {value as string}
                     </td>
                   );
                 }

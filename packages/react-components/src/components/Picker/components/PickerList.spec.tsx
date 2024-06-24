@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { VirtuosoProps } from 'react-virtuoso';
 import { vitest } from 'vitest';
 
@@ -21,10 +19,10 @@ vitest.mock('react-virtuoso', () => {
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   return { ...vitest.importActual('react-virtuoso'), Virtuoso };
 });
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
 window.HTMLElement.prototype.scrollIntoView = () => {};
 
 const defaultProps: IPickerListProps = {

@@ -1,5 +1,7 @@
 import { DayMode } from '@livechat/design-system-icons';
 
+import { IPickerListItem } from './types';
+
 export const ITEM_GAP_HEIGHT = 2;
 export const MIN_LIST_HEIGHT = 200;
 export const DEFAULT_LIST_HEIGHT = 400;
@@ -42,7 +44,7 @@ export const DEFAULT_EXTENDED_OPTIONS = [
   { key: 'seven', name: 'Option seven', disabled: true },
 ];
 
-export const DEFAULT_MORE_PICKER_OPTIONS = [
+export const DEFAULT_MORE_PICKER_OPTIONS: IPickerListItem[] = [
   {
     key: 'one',
     name: 'Option with 2 lines label',

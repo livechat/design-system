@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import * as TablerIcons from '@livechat/design-system-icons';
 
 import { render, userEvent, vi } from 'test-utils';
@@ -70,7 +68,9 @@ describe('<Tag> component', () => {
         tag1
       </Tag>
     );
-    expect(container.firstChild).toHaveStyle(`background-color: transparent`);
+    expect(container.firstChild).toHaveStyle(
+      `background-color: rgba(0, 0, 0, 0)`
+    );
     expect(container.firstChild).toHaveStyle(`color: #ff0000`);
     expect(container.firstChild).toHaveStyle(`border-color: #ff0000`);
   });

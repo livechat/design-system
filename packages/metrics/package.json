@@ -1,6 +1,6 @@
 {
   "name": "@livechat/design-system-metrics",
-  "version": "1.19.0",
+  "version": "2.0.0-alpha.0",
   "description": "",
   "scripts": {
     "prebuild": "rm -rf dist",
@@ -16,6 +16,6 @@
   "license": "ISC",
   "devDependencies": {
     "react-scanner": "^1.1.0",
-    "typescript": "^4.9.5"
+    "typescript": "^5.4.5"
   }
 }
