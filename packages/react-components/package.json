@@ -1,14 +1,14 @@
 {
   "name": "@livechat/design-system-react-components",
-  "version": "1.25.0",
+  "version": "2.0.0-alpha.2",
   "description": "",
   "publishConfig": {
     "access": "public"
   },
   "author": "",
   "license": "ISC",
-  "main": "./dist/index.cjs.js",
-  "module": "./dist/index.es.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
@@ -76,7 +76,7 @@
   "dependencies": {
     "@floating-ui/react": "^0.26.4",
     "@livechat/data-utils": "^0.2.16",
-    "@livechat/design-system-icons": "^1.24.2",
+    "@livechat/design-system-icons": "^2.0.0-alpha.0",
     "clsx": "^1.1.1",
     "date-fns": "^2.28.0",
     "lodash.debounce": "^4.0.8",

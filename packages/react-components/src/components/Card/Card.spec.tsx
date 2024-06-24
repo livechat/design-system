@@ -1,4 +1,4 @@
-import { render, userEvent, vi } from 'test-utils';
+import { render, vi, userEvent } from 'test-utils';
 
 import { Card, CardProps } from './Card';
 

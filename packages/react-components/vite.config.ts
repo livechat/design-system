@@ -17,7 +17,8 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
       formats: ['es', 'cjs'],
-      fileName: (format, entryName) => `${entryName}.${format}.js`,
+      fileName: (format, entryName) =>
+        `${entryName}.${format === 'cjs' ? 'cjs' : 'js'}`,
     },
     rollupOptions: {
       external: (id: string) => !id.startsWith('.') && !path.isAbsolute(id),
@@ -47,7 +48,6 @@ export default defineConfig({
         'src/foundations',
         'src/utils',
         'src/components',
-        'src/providers',
       ],
       exclude: ['**/*.stories.tsx', '**/*.spec.ts', '**/*.spec.tsx'],
     }),
