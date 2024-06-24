@@ -106,7 +106,6 @@ export const FileUploadProgress: React.ExoticComponent<
                 <Text size="sm" as="div">
                   {title}
                 </Text>
-                ={' '}
               </div>
             )}
             {actionsVisibility !== 'hidden' && (

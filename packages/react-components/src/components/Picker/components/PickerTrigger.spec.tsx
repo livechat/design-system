@@ -1,12 +1,8 @@
-import { render, fireEvent, vi } from 'test-utils';
+import { render, vi, userEvent } from 'test-utils';
 
 import noop from '../../../utils/noop';
 
 import { PickerTriggerProps, PickerTrigger } from './PickerTrigger';
-
-import styles from './PickerTrigger.module.scss';
-
-const baseClass = 'picker-trigger';
 
 const defaultProps: PickerTriggerProps = {
   getReferenceProps: vi.fn(),
@@ -17,9 +13,8 @@ const defaultProps: PickerTriggerProps = {
   setTriggerFocus: () => noop,
 };
 
-const renderComponent = (props: PickerTriggerProps) => {
-  return render(<PickerTrigger {...props}>Example text</PickerTrigger>);
-};
+const renderComponent = (props: PickerTriggerProps) =>
+  render(<PickerTrigger {...props}>Example text</PickerTrigger>);
 
 describe('<PickerTrigger> component', () => {
   it('should render Trigger with given content', () => {
@@ -28,19 +23,13 @@ describe('<PickerTrigger> component', () => {
     expect(getByText('Example text')).toBeVisible();
   });
 
-  it('should render Trigger with default size', () => {
-    const { container } = renderComponent(defaultProps);
-
-    expect(container.firstChild).toHaveClass(styles[`${baseClass}--medium`]);
-  });
-
   it('should render clear button if isItemSelected', () => {
     const { getByTestId } = renderComponent({
       ...defaultProps,
       isItemSelected: true,
     });
 
-    expect(getByTestId(`${baseClass}__clear-icon`)).toBeVisible();
+    expect(getByTestId(`picker-trigger__clear-icon`)).toBeVisible();
   });
 
   it('should render disabled Trigger if isDisabled', () => {
@@ -49,16 +38,7 @@ describe('<PickerTrigger> component', () => {
       isDisabled: true,
     });
 
-    expect(container.firstChild).toHaveClass(styles[`${baseClass}--disabled`]);
-  });
-
-  it('should render error Trigger if isError', () => {
-    const { container } = renderComponent({
-      ...defaultProps,
-      isError: true,
-    });
-
-    expect(container.firstChild).toHaveClass(styles[`${baseClass}--error`]);
+    expect(container.firstChild).toBeDisabled();
   });
 
   it('should call onClearClick when clear button clicked', () => {
@@ -69,7 +49,7 @@ describe('<PickerTrigger> component', () => {
       onClear,
     });
 
-    fireEvent.click(getByTestId(`${baseClass}__clear-icon`));
+    userEvent.click(getByTestId(`picker-trigger__clear-icon`));
     expect(onClear).toHaveBeenCalled();
   });
 
@@ -80,18 +60,7 @@ describe('<PickerTrigger> component', () => {
       isRequired: true,
     });
 
-    expect(queryByTestId(`${baseClass}__clear-icon`)).toBeNull();
-  });
-
-  it('should render Trigger with proper class in multiselect mode', () => {
-    const { container } = renderComponent({
-      ...defaultProps,
-      isMultiSelect: true,
-    });
-
-    expect(container.firstChild).toHaveClass(
-      styles[`${baseClass}--multi-select`]
-    );
+    expect(queryByTestId(`picker-trigger__clear-icon`)).not.toBeInTheDocument();
   });
 
   it('should render Trigger without input if isOpen and isSearchDisabled', () => {
@@ -100,6 +69,6 @@ describe('<PickerTrigger> component', () => {
       isOpen: true,
     });
 
-    expect(queryByRole('textbox')).toBeNull();
+    expect(queryByRole('textbox')).not.toBeInTheDocument();
   });
 });

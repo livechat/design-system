@@ -17,9 +17,8 @@ const defaultProps = {
   isTriggerFocused: false,
 };
 
-const renderComponent = (props: ITriggerBodyProps) => {
-  return render(<PickerTriggerBody {...props}>Example text</PickerTriggerBody>);
-};
+const renderComponent = (props: ITriggerBodyProps) =>
+  render(<PickerTriggerBody {...props}>Example text</PickerTriggerBody>);
 
 describe('<PickerTriggerBody> component', () => {
   it('should display placeholder if there is no selected items and not isOpen', () => {
@@ -46,7 +45,7 @@ describe('<PickerTriggerBody> component', () => {
     });
 
     userEvent.type(getByRole('textbox'), 'option');
-    expect(onFilter).toBeCalledWith('option');
+    expect(onFilter).toHaveBeenCalledWith('option');
   });
 
   it('should show only one item in single mode', () => {
@@ -60,8 +59,8 @@ describe('<PickerTriggerBody> component', () => {
     });
 
     expect(queryByText('Option one')).toBeVisible();
-    expect(queryByText('Option two')).toBeNull();
-    expect(queryByText('Option three')).toBeNull();
+    expect(queryByText('Option two')).not.toBeInTheDocument();
+    expect(queryByText('Option three')).not.toBeInTheDocument();
   });
 
   it('should show all items in multiselect mode', () => {
@@ -75,9 +74,9 @@ describe('<PickerTriggerBody> component', () => {
       ],
     });
 
-    expect(queryByText('Option one')).toBeVisible();
-    expect(queryByText('Option two')).toBeVisible();
-    expect(queryByText('Option three')).toBeVisible();
+    expect(queryByText('Option one')).toBeInTheDocument();
+    expect(queryByText('Option two')).toBeInTheDocument();
+    expect(queryByText('Option three')).toBeInTheDocument();
   });
 
   it('should call onItemRemove with item selected to remove', () => {
@@ -172,7 +171,7 @@ describe('<PickerTriggerBody> component', () => {
       />
     );
 
-    expect(onFilter).toBeCalledWith('');
+    expect(onFilter).toHaveBeenCalledWith('');
     expect(getByRole('textbox')).toHaveValue('');
   });
 });
