@@ -59,7 +59,7 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
   };
 
   const setCustomVariables = (newVariables: CustomVariables) => {
-    setVariables((prevVariables) => ({ ...prevVariables, ...newVariables }));
+    setVariables(newVariables);
   };
 
   return (
