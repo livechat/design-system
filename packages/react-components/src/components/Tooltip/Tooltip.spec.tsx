@@ -70,6 +70,7 @@ describe('<Tooltip> component', () => {
   it(`should show tooltip on trigger click and hide it on second click`, async () => {
     const { queryByRole, getByRole } = renderComponent({
       ...defaultProps,
+      triggerOnHover: false,
       triggerOnClick: true,
     });
     const button = getByRole('button');
