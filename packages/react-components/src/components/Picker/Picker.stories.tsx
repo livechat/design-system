@@ -318,6 +318,6 @@ PickerIntegrationTest.play = async ({
 
   await step('Close the list and show selected option', async () => {
     await expect(canvas.queryByRole('listbox')).not.toBeInTheDocument();
-    await expect(canvas.getByRole('combobox')).toHaveTextContent('Option one');
+    await expect(canvas.getByRole('combobox')).toHaveTextContent('Option two');
   });
 };
