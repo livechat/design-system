@@ -12,7 +12,7 @@
   padding: var(--spacing-6) var(--spacing-7);
   max-width: 100%;
   height: fit-content;
-  animation: var(--transition-duration-moderate-1) fade-in-step2
+  animation: var(--transition-duration-moderate-1) fade-in
     var(--transition-duration-moderate-1) forwards;
   color: var(--content-basic-primary);
 
@@ -27,7 +27,7 @@
 
     &--visible {
       display: flex;
-      animation: fade-in-step1 var(--transition-duration-moderate-1) forwards;
+      animation: fade-in var(--transition-duration-moderate-1) forwards;
 
       @media (prefers-reduced-motion) {
         animation: none;
@@ -134,24 +134,12 @@
   }
 }
 
-@keyframes fade-in-step1 {
+@keyframes fade-in {
   0% {
     opacity: var(--transition-initial-fade-in-opacity);
   }
 
   100% {
     opacity: 1;
-  }
-}
-
-@keyframes fade-in-step2 {
-  0% {
-    opacity: var(--transition-initial-fade-in-opacity);
-    scale: var(--transition-initial-fade-in-scale);
-  }
-
-  100% {
-    opacity: 1;
-    scale: 1;
   }
 }
