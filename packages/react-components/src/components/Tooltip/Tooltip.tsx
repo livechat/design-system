@@ -53,6 +53,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
   hoverOnDelay,
   hoverOffDelay,
   triggerOnClick = false,
+  triggerOnHover = true,
   offsetMainAxis = 8,
   referenceElement,
   activationThreshold = 0,
@@ -131,7 +132,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
       open: getTransitionDelay(hoverOnDelay),
       close: getTransitionDelay(hoverOffDelay || hoverOutDelayTimeout),
     },
-    enabled: !triggerOnClick,
+    enabled: triggerOnHover,
     handleClose: closeOnTriggerBlur ? null : safePolygon(),
   });
   const focus = useFocus(context);
