@@ -1,6 +1,8 @@
 import * as React from 'react';
 
 import { MoreHoriz, Add, Settings } from '@livechat/design-system-icons';
+import { StoryContext } from '@storybook/react';
+import { userEvent, within, expect } from '@storybook/test';
 
 import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
@@ -13,8 +15,6 @@ import { ActionMenuItem } from './ActionMenuItem';
 import { exampleOptions } from './stories-constants';
 
 import './ActionMenu.stories.css';
-
-import { userEvent, within, expect } from '@storybook/test';
 
 export default {
   title: 'Components/ActionMenu',
@@ -37,7 +37,9 @@ export const Default = (): React.ReactElement => {
     </div>
   );
 };
-Default.play = async ({ canvasElement, step }) => {
+Default.play = async ({
+  canvasElement,
+}: StoryContext<typeof ActionMenu>['play']) => {
   const canvas = within(canvasElement);
 
   await expect(canvas.getByRole('menu')).toBeInTheDocument();

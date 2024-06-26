@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryContext, StoryFn } from '@storybook/react';
+import { userEvent, within, expect } from '@storybook/test';
+import { VirtuosoMockContext } from 'react-virtuoso';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import noop from '../../utils/noop';
-
-import { userEvent, within, expect } from '@storybook/test';
 
 import {
   DEFAULT_PICKER_OPTIONS,
@@ -16,7 +16,6 @@ import { Picker } from './Picker';
 import { IPickerListItem, IPickerProps } from './types';
 
 import './Picker.stories.css';
-import { VirtuosoMockContext } from 'react-virtuoso';
 
 export default {
   title: 'Components/Picker',
@@ -281,20 +280,27 @@ export const PickerWithOptionsAsCustomElements = (): React.ReactElement => (
   </div>
 );
 
-export const PickerIntegrationTest = (args: IPickerProps): React.ReactElement => {
+export const PickerIntegrationTest = (
+  args: IPickerProps
+): React.ReactElement => {
   return (
     <div style={{ height: 320 }}>
-      <VirtuosoMockContext.Provider value={{ viewportHeight: 400 }}>
+      <VirtuosoMockContext.Provider
+        value={{ viewportHeight: 400, itemHeight: 10 }}
+      >
         <PickerComponent {...args} />
       </VirtuosoMockContext.Provider>
     </div>
   );
-}
+};
 PickerIntegrationTest.args = {
   options: DEFAULT_PICKER_OPTIONS,
 };
 PickerIntegrationTest.tags = ['dev'];
-PickerIntegrationTest.play = async ({ canvasElement, step }) => {
+PickerIntegrationTest.play = async ({
+  canvasElement,
+  step,
+}: StoryContext<typeof Picker>['play']) => {
   const canvas = within(canvasElement.parentElement!);
 
   await step('Render picker', async () => {
