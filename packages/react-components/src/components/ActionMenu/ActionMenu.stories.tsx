@@ -14,6 +14,8 @@ import { exampleOptions } from './stories-constants';
 
 import './ActionMenu.stories.css';
 
+import { userEvent, within, expect } from '@storybook/test';
+
 export default {
   title: 'Components/ActionMenu',
   component: ActionMenu,
@@ -34,6 +36,15 @@ export const Default = (): React.ReactElement => {
       />
     </div>
   );
+};
+Default.play = async ({ canvasElement, step }) => {
+  const canvas = within(canvasElement);
+
+  await expect(canvas.getByRole('menu')).toBeInTheDocument();
+
+  await userEvent.click(canvas.getByText('Copy'));
+
+  await expect(canvas.queryByRole('menu')).not.toBeInTheDocument();
 };
 
 export const KeepOpenOnItemClick = (): React.ReactElement => {

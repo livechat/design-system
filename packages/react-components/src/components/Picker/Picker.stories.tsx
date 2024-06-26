@@ -5,6 +5,8 @@ import { Meta, StoryFn } from '@storybook/react';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import noop from '../../utils/noop';
 
+import { userEvent, within, expect } from '@storybook/test';
+
 import {
   DEFAULT_PICKER_OPTIONS,
   DEFAULT_EXTENDED_OPTIONS,
@@ -14,6 +16,7 @@ import { Picker } from './Picker';
 import { IPickerListItem, IPickerProps } from './types';
 
 import './Picker.stories.css';
+import { VirtuosoMockContext } from 'react-virtuoso';
 
 export default {
   title: 'Components/Picker',
@@ -277,3 +280,38 @@ export const PickerWithOptionsAsCustomElements = (): React.ReactElement => (
     </StoryDescriptor>
   </div>
 );
+
+export const PickerIntegrationTest = (args: IPickerProps): React.ReactElement => {
+  return (
+    <div style={{ height: 320 }}>
+      <VirtuosoMockContext.Provider value={{ viewportHeight: 400 }}>
+        <PickerComponent {...args} />
+      </VirtuosoMockContext.Provider>
+    </div>
+  );
+}
+PickerIntegrationTest.args = {
+  options: DEFAULT_PICKER_OPTIONS,
+};
+PickerIntegrationTest.tags = ['dev'];
+PickerIntegrationTest.play = async ({ canvasElement, step }) => {
+  const canvas = within(canvasElement.parentElement!);
+
+  await step('Render picker', async () => {
+    await expect(canvas.getByRole('combobox')).toBeVisible();
+  });
+
+  await step('Open the list after trigger click', async () => {
+    await userEvent.click(canvas.getByText('Select option'));
+    await expect(canvas.getByRole('listbox')).toBeVisible();
+  });
+
+  await step('Select single option', async () => {
+    await userEvent.click(canvas.getByText('Option one'));
+  });
+
+  await step('Close the list and show selected option', async () => {
+    await expect(canvas.queryByRole('listbox')).not.toBeInTheDocument();
+    await expect(canvas.getByRole('combobox')).toHaveTextContent('Option one');
+  });
+};
