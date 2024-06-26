@@ -12,7 +12,7 @@ $base-class: 'promo-banner-v2';
   .#{$base-class}__additional-content {
     justify-content: left;
     order: 1;
-    padding-top: var(--spacing-5);
+    padding: var(--spacing-5) var(--spacing-5) 0;
   }
 
   .#{$base-class}__close {
@@ -24,10 +24,11 @@ $base-class: 'promo-banner-v2';
 }
 
 .main-wrapper {
-  container-type: inline-size;
   border-radius: var(--radius-3);
   background-color: var(--surface-accent-emphasis-low-info);
+  overflow: hidden;
   color: var(--content-basic-primary);
+  container-type: inline-size;
 }
 
 .#{$base-class} {
