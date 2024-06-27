@@ -4,6 +4,7 @@ import {
   ReactNode,
   useContext,
   useEffect,
+  useMemo,
   useState,
 } from 'react';
 
@@ -54,17 +55,19 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
     }
   }, [theme, variables]);
 
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
-  };
-
-  const setCustomVariables = (newVariables: CustomVariables) => {
-    setVariables(newVariables);
-  };
+  const value = useMemo(
+    () => ({
+      theme,
+      toggleTheme: () =>
+        setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light')),
+      setCustomVariables: (newVariables: CustomVariables) => {
+        setVariables(newVariables);
+      },
+    }),
+    [theme, setTheme, setVariables]
+  );
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, setCustomVariables }}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
 };
