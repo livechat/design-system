@@ -14,9 +14,7 @@ const config: StorybookConfig = {
   ],
   framework: {
     name: '@storybook/react-vite',
-    options: {
-      legacyRootApi: true, // TODO: remove when local React will be migrated to v18
-    },
+    options: {},
   },
   docs: {},
   typescript: {
