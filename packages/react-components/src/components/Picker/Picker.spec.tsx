@@ -12,6 +12,7 @@ import { DEFAULT_PICKER_OPTIONS } from './constants';
 import { Picker } from './Picker';
 import { PickerType, IPickerProps } from './types';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 window.HTMLElement.prototype.scrollIntoView = () => {};
 
 const defaultProps = {
