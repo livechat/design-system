@@ -46,3 +46,4 @@ export * from './components/Typography';
 export * from './components/Textarea';
 export * from './components/FileUploadProgress';
 export * from './components/UploadBar';
+export * from './providers';

@@ -1,6 +1,5 @@
 import { withThemeByClassName } from '@storybook/addon-themes';
 
-import '../src/themes/legacy.scss';
 import '../src/themes/light.scss';
 import '../src/themes/dark.scss';
 import '../src/foundations/spacing.css';

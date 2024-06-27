@@ -22,7 +22,7 @@
     "build": "tsc && vite build",
     "build-storybook": "export SET NODE_OPTIONS=--openssl-legacy-provider && storybook build --stats-json",
     "chromatic": "dotenv -e ../../.env chromatic -- --exit-zero-on-changes --only-changed --skip 'dependabot/**'",
-    "generate-ds-tokens-enum": "node scripts/generateDesignTokenEnum.js",
+    "generate-ds-tokens-enum": "node scripts/generateDesignTokenEnum.cjs",
     "lint": "eslint src --ext js,jsx,ts,tsx",
     "lint-staged": "lint-staged",
     "lint:fix": "eslint src --fix --ext js,jsx,ts,tsx",

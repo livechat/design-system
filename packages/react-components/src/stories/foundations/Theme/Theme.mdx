@@ -1,0 +1,223 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Foundations/Theme" />
+
+# Theme
+
+The LiveChat Design System uses a theme to manage the look and feel of the components. The theme is a set of tokens that define the colors, typography, and other visual properties of the components.
+
+## Usage
+
+### Basic usage
+
+To use the theme in your project, you need to import the `ThemeProvider` component from `@livechat/design-system-react-components` and wrap your application with it.
+
+The `ThemeProvider` component allows you to manage and switch themes in your application. It supports `light` and `dark` themes by default, and also allows consumers to customize theme variables.
+
+```jsx
+import { ThemeProvider } from '@livechat/design-system-react-components';
+
+const App: FC = () => {
+  return (
+    <ThemeProvider>
+      <YourComponent />
+    </ThemeProvider>
+  );
+};
+
+export default App;
+```
+
+### Toggling Themes
+
+Use the `useTheme` hook to toggle between light and dark themes.
+
+```jsx
+import { useTheme } from '@livechat/design-system-react-components';
+
+const ThemeSwitcher: FC = () => {
+  const { theme, toggleTheme } = useTheme();
+
+  return (
+    <button onClick={toggleTheme}>
+      Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme
+    </button>
+  );
+};
+
+```
+
+### Customizing Theme Variables
+
+You can pass custom theme variables to the ThemeProvider and update them dynamically or use can use the `setCustomVariables` function from the `useTheme` hook.
+
+```jsx
+import React from 'react';
+import { ThemeProvider, useTheme } from '@livechat/design-system-react-components';
+
+const CustomThemeSwitcher: React.FC = () => {
+  const { theme, toggleTheme, setCustomVariables } = useTheme();
+
+  const handleCustomVariablesChange = () => {
+    setCustomVariables({
+      '--content-basic-primary': '#ff0000',
+      '--content-basic-secondary': '#00ff00',
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={toggleTheme}>
+        Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme
+      </button>
+      <button onClick={handleCustomVariablesChange}>
+        Apply Custom Variables
+      </button>
+    </div>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <ThemeProvider initialTheme="light" customVariables={{ '--content-basic-primary': '#0000ff' }}>
+      <CustomThemeSwitcher />
+    </ThemeProvider>
+  );
+};
+
+export default App;
+
+```
+
+## API
+
+### ThemeProvider Props
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>initialTheme</code>
+      </td>
+      <td>
+        <code>Theme</code>
+      </td>
+      <td>
+        <code>'light'</code>
+      </td>
+      <td>
+        The initial theme (<code>'light'</code> or <code>'dark'</code>).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>customVariables</code>
+      </td>
+      <td>
+        <code>CustomVariables</code>
+      </td>
+      <td>
+        <code>{}</code>
+      </td>
+      <td>Custom CSS variables to override the default theme variables.</td>
+    </tr>
+  </tbody>
+</table>
+
+### useTheme Hook
+
+The `useTheme` hook provides access to the theme context.
+
+#### Returns
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <code>theme</code>
+      </td>
+      <td>
+        <code>Theme</code>
+      </td>
+      <td>
+        The current theme (<code>'light'</code> or <code>'dark'</code>).
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <code>toggleTheme</code>
+      </td>
+      <td>
+        <code>() => void</code>
+      </td>
+      <td>Function to toggle between light and dark themes.</td>
+    </tr>
+    <tr>
+      <td>
+        <code>setCustomVariables</code>
+      </td>
+      <td>
+        <code>(vars: CustomVariables) => void</code>
+      </td>
+      <td>Function to set custom CSS variables.</td>
+    </tr>
+  </tbody>
+</table>
+
+## Example
+
+Here's a full example integrating the `ThemeProvider` and custom theme switching in your application:
+
+```jsx
+import { FC } from 'react';
+import { ThemeProvider, useTheme } from '@livechat/design-system-react-components';
+
+const ThemeSwitcher: FC = () => {
+  const { theme, toggleTheme, setCustomVariables } = useTheme();
+
+  const handleCustomVariablesChange = () => {
+    setCustomVariables({
+      'primary-color': '#ff0000',
+      'background-color': '#00ff00',
+    });
+  };
+
+  return (
+    <div>
+      <button onClick={toggleTheme}>
+        Switch to {theme === 'light' ? 'Dark' : 'Light'} Theme
+      </button>
+      <button onClick={handleCustomVariablesChange}>
+        Apply Custom Variables
+      </button>
+    </div>
+  );
+};
+
+const App: FC = () => {
+  return (
+    <ThemeProvider initialTheme="light" customVariables={{ 'primary-color': '#0000ff' }}>
+      <ThemeSwitcher />
+      {/* Your other components */}
+    </ThemeProvider>
+  );
+};
+
+export default App;
+
+```
