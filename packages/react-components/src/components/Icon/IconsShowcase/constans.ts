@@ -32,6 +32,10 @@ export const IconsData: Record<IconName, IconGroup> = {
   DoubleArrowRightFilled: IconGroup.Arrows,
   DoubleArrowRight: IconGroup.Arrows,
   DoubleArrowUp: IconGroup.Arrows,
+  ArrowAutofitWidth: IconGroup.Arrows,
+  ArrowBarToLeft: IconGroup.Arrows,
+  ArrowBarToRight: IconGroup.Arrows,
+  ArrowsShuffle: IconGroup.Arrows,
 
   //FileType
   FiletypeExe: IconGroup.FileType,
@@ -417,6 +421,15 @@ export const IconsData: Record<IconName, IconGroup> = {
   Webhook: IconGroup.General,
   Wifi: IconGroup.General,
   WifiOff: IconGroup.General,
+  Maximize: IconGroup.General,
+  MessagePlus: IconGroup.General,
+  Minimize: IconGroup.General,
+  ChartAnomaly: IconGroup.General,
+  DirectionsSignOff: IconGroup.General,
+  DirectionsSign: IconGroup.General,
+  TrendingUp: IconGroup.General,
+  ZoomIn: IconGroup.General,
+  ZoomOut: IconGroup.General,
 
   //Brands
   ChipCopilotColored: IconGroup.Brands,
@@ -477,7 +490,9 @@ export const IconsData: Record<IconName, IconGroup> = {
   WorldFilled: IconGroup.Brands,
   World: IconGroup.Brands,
   XApp: IconGroup.Brands,
-  Maximize: IconGroup.General,
-  MessagePlus: IconGroup.General,
-  Minimize: IconGroup.General,
+  Chatgpt: IconGroup.Brands,
+  GoogleSheets: IconGroup.Brands,
+  Hubspot: IconGroup.Brands,
+  Stripe: IconGroup.Brands,
+  Mailchimp: IconGroup.Brands,
 };
