@@ -41,9 +41,7 @@ export interface IActionBarOption {
 }
 
 export interface IActionBarItem {
-  id: string;
   option: IActionBarOption;
-  isHidden: boolean;
   isActive?: boolean;
   vertical?: boolean;
 }

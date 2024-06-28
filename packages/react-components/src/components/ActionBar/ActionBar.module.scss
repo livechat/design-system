@@ -10,15 +10,9 @@ $base-class: 'action-bar';
   &__items {
     display: flex;
     flex-direction: inherit;
-    width: 100%;
-    overflow: hidden;
 
     &--scroll {
       overflow: auto;
-    }
-
-    &--with-menu {
-      margin-right: 78px;
     }
 
     &__button-wrapper {
@@ -64,21 +58,19 @@ $base-class: 'action-bar';
 
   &__menu-wrapper {
     display: flex;
-    position: absolute;
-    top: 0;
-    bottom: 0;
+    position: relative;
     align-items: center;
+    margin-left: var(--spacing-1);
 
     &--active {
       @include select-indicator.select-indicator-h();
     }
 
     &--vertical {
-      right: 0;
-      bottom: auto;
-      left: 0;
       align-items: normal;
       justify-content: center;
+      margin-top: var(--spacing-1);
+      margin-left: 0;
 
       &.#{$base-class}__menu-wrapper--active {
         @include select-indicator.select-indicator-v();
