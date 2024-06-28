@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { ComponentProps } from 'react';
 
 import userEvent from '@testing-library/user-event';
 
@@ -6,7 +6,7 @@ import { render, vi } from 'test-utils';
 
 import { Modal } from './Modal';
 
-const renderComponent = (props: React.ComponentProps<typeof Modal>) =>
+const renderComponent = (props: ComponentProps<typeof Modal>) =>
   render(<Modal {...props}>Modal content</Modal>);
 
 describe('<Modal> component', () => {

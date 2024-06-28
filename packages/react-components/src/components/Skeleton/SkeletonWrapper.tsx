@@ -21,12 +21,9 @@ export interface ISkeletonWrapper extends React.HTMLAttributes<HTMLDivElement> {
   animated?: boolean;
 }
 
-export const SkeletonWrapper: React.FC<ISkeletonWrapper> = ({
-  children,
-  vertical,
-  animated,
-  ...props
-}) => {
+export const SkeletonWrapper: React.FC<
+  React.PropsWithChildren<ISkeletonWrapper>
+> = ({ children, vertical, animated, ...props }) => {
   const childrenWithProps = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
       return React.cloneElement(child as React.ReactElement, {

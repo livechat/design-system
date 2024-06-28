@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { render, fireEvent } from 'test-utils';
 
 import { Avatar, AvatarProps } from './Avatar';
@@ -39,7 +37,7 @@ describe('<Avatar> component', () => {
     });
 
     expect(container.firstChild).toHaveStyle(
-      `background-color: ${customColor}`
+      `background-color: rgb(0, 128, 0)`
     );
   });
 

@@ -11,7 +11,7 @@ export interface IReportsProps {
 
 const baseClass = 'reports-tooltip';
 
-export const Reports: React.FC<IReportsProps> = ({
+export const Reports: React.FC<React.PropsWithChildren<IReportsProps>> = ({
   title,
   description,
   children,
