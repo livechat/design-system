@@ -44,6 +44,8 @@ export const ActionBar: React.FC<IActionBarProps> = ({
 
     if (options.length !== visibleItemsCount) {
       setMenuOptions(options.slice(visibleItemsCount, options.length));
+    } else {
+      setMenuOptions([]);
     }
   }, [options, visibleItemsCount]);
 
