@@ -83,12 +83,12 @@ export const usePickerItems = ({
     }
 
     if (type === 'single') {
-      setOpen(false);
       setSelectedKeys(() => {
         item && onSelect([item]);
 
         return [key];
       });
+      setOpen(false);
     } else {
       if (key === SELECT_ALL_OPTION_KEY) {
         if (selectedKeys.length === getNormalizedItems(options).length) {
@@ -127,10 +127,10 @@ export const usePickerItems = ({
   const handleItemRemove = (itemKey: string) => handleSelect(itemKey);
 
   const handleClear = () => {
-    setOpen(false);
-    setSelectedKeys([]);
+    !isDataControlled && setSelectedKeys([]);
     onSelect(null);
     setSearchPhrase('');
+    setOpen(false);
   };
 
   return {

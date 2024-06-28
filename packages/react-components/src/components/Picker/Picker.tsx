@@ -49,14 +49,14 @@ export const Picker: React.FC<IPickerProps> = ({
   const isControlled = isVisible !== undefined;
   const isOpen = isControlled ? isVisible : open;
 
-  const handleVisibilityChange = (isOpen: boolean, event?: Event) => {
-    if (isOpen) {
-      onOpen?.(event);
+  const handleVisibilityChange = (newValue: boolean, event?: Event) => {
+    if (newValue) {
+      !isOpen && onOpen?.(event);
     } else {
-      onClose?.(event);
+      isOpen && onClose?.(event);
     }
 
-    !isControlled && setOpen(isOpen);
+    !isControlled && setOpen(newValue);
   };
 
   const {
