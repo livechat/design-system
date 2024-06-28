@@ -141,7 +141,7 @@ export const PickerWithMoreOptions = (): React.ReactElement => (
   </div>
 );
 
-const CustomPickerOption: React.FC<React.PropsWithChildren> = ({
+const CustomPickerOption: React.FC<React.PropsWithChildren<any>> = ({
   children,
 }) => <div className="custom-picker-option">{children}</div>;
 
