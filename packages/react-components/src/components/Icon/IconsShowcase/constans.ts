@@ -383,6 +383,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   ThumbUp: IconGroup.General,
   TicketsFilled: IconGroup.General,
   Tickets: IconGroup.General,
+  TicketsOff: IconGroup.General,
   TimeFilled: IconGroup.General,
   Time: IconGroup.General,
   TimelineFilled: IconGroup.General,
