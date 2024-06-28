@@ -56,9 +56,11 @@ describe('<Picker> component', () => {
 
   it('should call onSelect with selected item', () => {
     const onSelect = vi.fn();
+    const onClose = vi.fn();
     const { getByText } = renderComponent({
       ...defaultProps,
       onSelect,
+      onClose,
     });
 
     userEvent.click(getByText('Select option'));
@@ -69,22 +71,27 @@ describe('<Picker> component', () => {
         name: 'Option three',
       },
     ]);
+    expect(onClose).toHaveBeenCalledTimes(1); // it was visible, it should be closed after selection
   });
 
   it('should call onSelect with null after clearing the selection', () => {
     const onSelect = vi.fn();
+    const onClose = vi.fn();
     const { getByTestId } = renderComponent({
       ...defaultProps,
       selected: [{ key: 'three', name: 'Option three' }],
       onSelect,
+      onClose,
     });
 
     userEvent.click(getByTestId('picker-trigger__clear-icon'));
     expect(onSelect).toHaveBeenCalledWith(null);
+    expect(onClose).not.toHaveBeenCalled(); // because it was not visible
   });
 
   it('should call onSelect includes the currently selected options in multiselect mode', () => {
     const onSelect = vi.fn();
+    const onClose = vi.fn();
     const stepOneState = [{ key: 'two', name: 'Option two' }];
     const stepTwoState = [
       { key: 'two', name: 'Option two' },
@@ -99,26 +106,31 @@ describe('<Picker> component', () => {
       ...defaultProps,
       type: 'multi' as PickerType,
       onSelect,
+      onClose,
     };
     const { getByText, rerender } = renderComponent(props);
 
     userEvent.click(getByText('Select option'));
     userEvent.click(getByText('Option two'));
     expect(onSelect).toHaveBeenCalledWith(stepOneState);
+    expect(onClose).not.toHaveBeenCalled(); // because it is multiselect mode
 
     rerender(<Picker {...props} selected={stepOneState} />);
 
     userEvent.click(getByText('Option four'));
     expect(onSelect).toHaveBeenCalledWith(stepTwoState);
+    expect(onClose).not.toHaveBeenCalled(); // because it is multiselect mode
 
     rerender(<Picker {...props} selected={stepTwoState} />);
 
     userEvent.click(getByText('Option seven'));
     expect(onSelect).toHaveBeenCalledWith(stepThreeState);
+    expect(onClose).not.toHaveBeenCalled(); // because it is multiselect mode
   });
 
   it('should call onSelect with all correct elements in multiselect mode if "Select all" option is chosen', () => {
     const onSelect = vi.fn();
+    const onClose = vi.fn();
     const expectedResult = [
       { key: 'one', name: 'Option one' },
       { key: 'three', name: 'Option three' },
@@ -143,6 +155,7 @@ describe('<Picker> component', () => {
     userEvent.click(getByText('Select option'));
     userEvent.click(getByText('Select all'));
     expect(onSelect).toHaveBeenCalledWith(expectedResult);
+    expect(onClose).not.toHaveBeenCalled(); // because it is multiselect mode
   });
 
   it('should render given placeholder text if no item selected', () => {
@@ -193,24 +206,30 @@ describe('<Picker> component', () => {
   });
 
   it('should not open list if isVisible is set to false (controlled mode) after user click', () => {
+    const onOpen = vi.fn();
     const { queryByTestId, getByRole } = renderComponent({
       ...defaultProps,
       isVisible: false,
+      onOpen,
     });
 
     expect(queryByTestId('picker-list')).not.toBeInTheDocument();
     userEvent.click(getByRole('combobox'));
+    expect(onOpen).toHaveBeenCalledTimes(1);
     expect(queryByTestId('picker-list')).not.toBeInTheDocument();
   });
 
   it('should not close list if isVisible is set to true (controlled mode) after user click', () => {
+    const onClose = vi.fn();
     const { queryByTestId } = renderComponent({
       ...defaultProps,
       isVisible: true,
+      onClose,
     });
 
     expect(queryByTestId('picker-list')).toBeInTheDocument();
     userEvent.click(document.body);
+    expect(onClose).toHaveBeenCalledTimes(1);
     expect(queryByTestId('picker-list')).toBeInTheDocument();
   });
 
@@ -224,9 +243,9 @@ describe('<Picker> component', () => {
     });
 
     userEvent.click(getByRole('combobox'));
-    expect(onOpen).toHaveBeenCalled();
+    expect(onOpen).toHaveBeenCalledTimes(1);
     userEvent.click(document.body);
-    expect(onClose).toHaveBeenCalled();
+    expect(onClose).toHaveBeenCalledTimes(1);
   });
 
   it('should clear search input after selection if clearSearchAfterSelection is provided (multi-select mode)', () => {

@@ -30,7 +30,7 @@ describe('<Button> component', () => {
 
   it('should show icon component when "icon" prop has been passed', () => {
     const { getByTestId } = renderButton({
-      icon: <Icon source={Icons.AddCircle} />,
+      icon: <Icon source={Icons.AddCircle} data-testid="button-icon" />,
     });
 
     expect(getByTestId('button-icon')).toBeVisible();

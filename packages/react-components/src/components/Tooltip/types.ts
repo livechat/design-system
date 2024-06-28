@@ -97,6 +97,10 @@ export interface ITooltipProps {
    */
   triggerOnClick?: boolean;
   /**
+   * Set if you want to show tooltip after trigger hover if state is not managed
+   */
+  triggerOnHover?: boolean;
+  /**
    * Set the tooltip distance from the trigger
    */
   offsetMainAxis?: number;
