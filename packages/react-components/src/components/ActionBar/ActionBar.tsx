@@ -36,20 +36,19 @@ export const ActionBar: React.FC<IActionBarProps> = ({
     vertical && styles[`${baseClass}--vertical`]
   );
   const singleElementSize = 44;
+  const shouldDisplayMenu = !isScrollType && menuOptions.length !== 0;
 
   React.useEffect(() => {
     if (isScrollType) {
       return;
     }
 
-    if (options.length !== visibleItemsCount) {
+    if (options.length > visibleItemsCount) {
       setMenuOptions(options.slice(visibleItemsCount, options.length));
     } else {
       setMenuOptions([]);
     }
   }, [options, visibleItemsCount]);
-
-  const shouldDisplayMenu = !isScrollType && menuOptions.length !== 0;
 
   React.useEffect(() => {
     const hasIOSupport = !!window.ResizeObserver;
@@ -60,10 +59,15 @@ export const ActionBar: React.FC<IActionBarProps> = ({
         const containerSize = vertical ? height : width;
         const exstraSpacing = menuOptions.length > 0 ? 60 : 0;
 
-        const visibleOptionsCount = Math.floor(
+        const newVisibleOptionsCount = Math.floor(
           (containerSize - exstraSpacing) / singleElementSize
         );
-        setVisibleItemsCount(visibleOptionsCount);
+
+        if (
+          newVisibleOptionsCount >= 0 &&
+          newVisibleOptionsCount !== visibleItemsCount
+        )
+          setVisibleItemsCount(newVisibleOptionsCount);
       });
 
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -71,7 +75,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
 
       return () => observer.disconnect();
     }
-  }, [menuOptions, isScrollType]);
+  }, [menuOptions, isScrollType, visibleItemsCount]);
 
   const getMenuItems = (menuOptions: IActionBarOption[]) =>
     menuOptions.map((o) => {
@@ -80,6 +84,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
         element: (
           <ActionMenuItem leftNode={o.element}>{o.label}</ActionMenuItem>
         ),
+        withDivider: o.withDivider,
         onClick: o.onClick,
       };
     });

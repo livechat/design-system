@@ -30,7 +30,12 @@ export const ActionBarItem: React.FC<IActionBarItem> = ({
       kind="plain"
       onClick={option.onClick}
       icon={option.element}
-      className={styles[`${menuWrapperClass}__button`]}
+      className={cx(styles[`${menuWrapperClass}__button`], {
+        [styles[`${menuWrapperClass}__button--with-vertical-divider`]]:
+          vertical && option.withDivider,
+        [styles[`${menuWrapperClass}__button--with-divider`]]:
+          !vertical && option.withDivider,
+      })}
     />
   );
 
