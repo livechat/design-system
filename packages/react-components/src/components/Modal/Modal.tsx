@@ -81,15 +81,21 @@ export const Modal: React.FC<ModalProps> = ({
           />
         </div>
       )}
-      {!labelHeading && heading && (
-        <div className={styles[`${baseClass}__header`]}>
-          <Heading
-            size="sm"
-            as="div"
-            className={styles[`${baseClass}__heading`]}
-          >
-            {heading}
-          </Heading>
+      {!labelHeading && (
+        <div
+          className={cx(styles[`${baseClass}__header`], {
+            [styles[`${baseClass}__header--without-heading`]]: !heading,
+          })}
+        >
+          {heading && (
+            <Heading
+              size="sm"
+              as="div"
+              className={styles[`${baseClass}__heading`]}
+            >
+              {heading}
+            </Heading>
+          )}
           <ModalCloseButton onClick={onCloseButtonClick} />
         </div>
       )}
