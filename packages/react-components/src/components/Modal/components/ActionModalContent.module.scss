@@ -7,7 +7,7 @@ $base-class: 'action-modal-content';
   padding-top: var(--spacing-3);
   padding-bottom: var(--spacing-10);
   width: 100%;
-  width: 480px;
+  max-width: 480px;
   height: 100%;
 
   &__icon {
