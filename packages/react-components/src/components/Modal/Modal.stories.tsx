@@ -1,11 +1,13 @@
 import * as React from 'react';
 
-import { GreetingQuickReply } from '@livechat/design-system-icons';
+import { GreetingQuickReply, Info } from '@livechat/design-system-icons';
 import { Meta, StoryFn } from '@storybook/react';
 
 import noop from '../../utils/noop';
 import { Button } from '../Button';
+import { Icon } from '../Icon';
 
+import { ActionModalContent } from './components/ActionModalContent';
 import {
   ModalContent,
   ModalFullSpaceContent,
@@ -24,7 +26,7 @@ import {
 export default {
   title: 'Components/Modal',
   component: ModalComponent,
-  subcomponents: { ModalHeader },
+  subcomponents: { ModalHeader, ActionModalContent, ModalBase },
   parameters: {
     viewMode: 'story',
     previewTabs: {
@@ -127,6 +129,28 @@ ModalWithFullSpaceContent.args = {
   ),
   children: <ModalFullSpaceContent />,
   fullSpaceContent: true,
+  footer: null,
+} as ModalProps;
+
+export const ActionModal = StoryTemplate.bind({});
+ActionModal.args = {
+  ...defaultModalProps,
+  children: (
+    <ActionModalContent
+      icon={<Icon source={Info} size="xxxlarge" kind="subtle" />}
+      heading="Action Modal Header"
+      actions={
+        <>
+          <Button>Button</Button>
+          <Button kind="primary">Button</Button>
+        </>
+      }
+    >
+      Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
+      Velit officia consequat duis enim velit mollit. Exercitation veniam
+      consequat sunt nostrud amet.
+    </ActionModalContent>
+  ),
   footer: null,
 } as ModalProps;
 

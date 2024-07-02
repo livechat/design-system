@@ -1,0 +1,35 @@
+$base-class: 'action-modal-content';
+
+.#{$base-class} {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: var(--spacing-3);
+  padding-bottom: var(--spacing-10);
+  width: 100%;
+  width: 480px;
+  height: 100%;
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--spacing-3);
+    min-width: 48px;
+    min-height: 48px;
+  }
+
+  &__heading {
+    margin-bottom: var(--spacing-2);
+  }
+
+  &__content {
+    margin-bottom: var(--spacing-10);
+    text-align: center;
+  }
+
+  &__actions {
+    display: flex;
+    gap: var(--spacing-2);
+  }
+}
