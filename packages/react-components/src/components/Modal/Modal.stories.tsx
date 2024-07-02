@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { GreetingQuickReply, Info } from '@livechat/design-system-icons';
+import { GreetingQuickReply, Error } from '@livechat/design-system-icons';
 import { Meta, StoryFn } from '@storybook/react';
 
 import noop from '../../utils/noop';
@@ -137,12 +137,20 @@ ActionModal.args = {
   ...defaultModalProps,
   children: (
     <ActionModalContent
-      icon={<Icon source={Info} size="xxxlarge" kind="subtle" />}
+      icon={
+        <Icon
+          source={Error}
+          size="xxxlarge"
+          customColor="var(--content-basic-disabled)"
+        />
+      }
       heading="Action Modal Header"
       actions={
         <>
-          <Button>Button</Button>
-          <Button kind="primary">Button</Button>
+          <Button size="large">Button</Button>
+          <Button size="large" kind="primary">
+            Button
+          </Button>
         </>
       }
     >
