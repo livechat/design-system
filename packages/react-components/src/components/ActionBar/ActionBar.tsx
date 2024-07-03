@@ -14,6 +14,7 @@ import styles from './ActionBar.module.scss';
 
 const baseClass = 'action-bar';
 const menuWrapperClass = 'action-bar__menu-wrapper';
+const singleElementSize = 44;
 
 export const ActionBar: React.FC<IActionBarProps> = ({
   className,
@@ -35,7 +36,6 @@ export const ActionBar: React.FC<IActionBarProps> = ({
     className,
     vertical && styles[`${baseClass}--vertical`]
   );
-  const singleElementSize = 44;
   const shouldDisplayMenu = !isScrollType && menuOptions.length !== 0;
 
   React.useEffect(() => {
@@ -57,10 +57,10 @@ export const ActionBar: React.FC<IActionBarProps> = ({
       const observer = new ResizeObserver((entries) => {
         const { width, height } = entries[0].contentRect;
         const containerSize = vertical ? height : width;
-        const exstraSpacing = menuOptions.length > 0 ? 60 : 0;
+        const extraSpacing = menuOptions.length > 0 ? 60 : 0;
 
         const newVisibleOptionsCount = Math.floor(
-          (containerSize - exstraSpacing) / singleElementSize
+          (containerSize - extraSpacing) / singleElementSize
         );
 
         if (
@@ -77,8 +77,8 @@ export const ActionBar: React.FC<IActionBarProps> = ({
     }
   }, [menuOptions, isScrollType, visibleItemsCount]);
 
-  const getMenuItems = (menuOptions: IActionBarOption[]) =>
-    menuOptions.map((o) => {
+  const getMenuItems = React.useCallback(() => {
+    return menuOptions.map((o) => {
       return {
         key: o.key,
         element: (
@@ -88,6 +88,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
         onClick: o.onClick,
       };
     });
+  }, [menuOptions]);
 
   const buttonElement = menuOptions.find((o) => o.key === activeOptionKey);
 
@@ -120,7 +121,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
             onClose={() => setIsMenuOpen(false)}
             floatingStrategy="fixed"
             placement={vertical ? 'left-start' : 'bottom-end'}
-            options={getMenuItems(menuOptions)}
+            options={getMenuItems()}
             triggerClassName={cx(
               vertical && styles[`${menuWrapperClass}__trigger-vertical`]
             )}
