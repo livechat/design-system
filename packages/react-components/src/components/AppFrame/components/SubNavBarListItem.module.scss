@@ -39,10 +39,6 @@ $base-class: 'sub-nav-bar-list-item';
     &--active {
       background-color: var(--surface-opacity-invert-active);
       font-weight: 600;
-
-      &:hover {
-        background-color: transparent;
-      }
     }
 
     &--icon-hidden {
