@@ -1,0 +1,53 @@
+$base-class: 'app-frame';
+
+.#{$base-class} {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--navbar-background);
+  width: 100%;
+  height: 100%;
+  color: var(--content-invert-default);
+
+  &__page-content-container {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 1;
+    padding-right: 6px;
+    padding-bottom: 6px;
+    width: 100%;
+    height: 100%;
+
+    &__top-bar {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      height: 48px;
+    }
+
+    &__content-wrapper {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      height: 100%;
+
+      &__nav-bar-wrapper {
+        flex-shrink: 0;
+        padding-top: 48px;
+        max-width: 296px;
+        height: 100%;
+      }
+
+      &__content {
+        border-radius: 16px;
+        background-color: var(--background-01);
+        padding-right: 6px;
+        padding-bottom: 6px;
+        width: 100%;
+        height: 100%;
+        color: var(--content-default);
+      }
+    }
+  }
+}
