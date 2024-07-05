@@ -36,6 +36,12 @@ const getOptions = (handler: (o: string) => void) => [
     icon: <Icon source={Icons.ChatDotsFilled} />,
     onClick: () => handler('tertiary'),
   },
+  {
+    key: '4',
+    label: 'Fourth',
+    icon: <Icon source={Icons.Columns} />,
+    onClick: () => handler('fourth'),
+  },
 ];
 
 const getMainSubMenu = (
