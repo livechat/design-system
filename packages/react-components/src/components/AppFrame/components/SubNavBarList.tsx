@@ -1,8 +1,10 @@
 import * as React from 'react';
 
+import { ChevronRight } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import noop from '../../../utils/noop';
+import { Icon } from '../../Icon';
 import { Text } from '../../Typography';
 import { ISubNavBarListProps } from '../types';
 
@@ -73,11 +75,14 @@ export const SubNavBarList: React.FC<ISubNavBarListProps> = ({
                 [styles[`${baseClass}__chevron--active`]]: isOpen,
               })}
             >
-              {/* <ChevronRight width={16} height={16} /> */}
-              test
+              <Icon source={ChevronRight} size="small" />
             </div>
           }
-          label={<Text bold>{localLabel}</Text>}
+          label={
+            <Text className={styles[`${baseClass}__label`]} bold>
+              {localLabel}
+            </Text>
+          }
           isMainEntry
           onClick={toggle}
           onItemHover={onItemHover}

@@ -8,6 +8,7 @@ import { Tag } from '../Tag';
 
 import { AppFrame } from './AppFrame';
 import { SubNavBar } from './components/SubNavBar';
+import { SubNavBarList } from './components/SubNavBarList';
 import { SubNavBarListItem } from './components/SubNavBarListItem';
 
 export default {
@@ -41,7 +42,7 @@ const getMainSubMenu = (
   activeSubItem: number,
   handler: (o: number) => void
 ) => (
-  <SubNavBar noGaps title="Options list simple">
+  <SubNavBar noGaps title="Simple list">
     <SubNavBarListItem
       label="Option 1"
       shouldKeepIconSpace={false}
@@ -73,7 +74,7 @@ const getSecondarySubMenu = (
   activeSubItem: number,
   handler: (o: number) => void
 ) => (
-  <SubNavBar noGaps title="Options list with elements">
+  <SubNavBar noGaps title="List of options with additional elements">
     <SubNavBarListItem
       label="Option 1"
       icon={<Icon source={Icons.HelpFilled} size="small" />}
@@ -98,6 +99,54 @@ const getSecondarySubMenu = (
   </SubNavBar>
 );
 
+const getTertiarySubMenu = (
+  activeSubItem: number,
+  handler: (o: number) => void
+) => (
+  <SubNavBar noGaps title="Options in collapsable list">
+    <SubNavBarList isCollapsible label="Collapsable 1">
+      <SubNavBarListItem
+        label="Option 1"
+        icon={<Icon source={Icons.HelpFilled} size="small" />}
+        rightNode={<Badge count={5} />}
+        isActive={activeSubItem === 0}
+        onClick={() => handler(0)}
+      />
+      <SubNavBarListItem
+        label="Option 2"
+        icon={<Icon source={Icons.ErrorFilled} size="small" />}
+        rightNode={<Badge kind="tertiary" />}
+        isActive={activeSubItem === 1}
+        onClick={() => handler(1)}
+      />
+      <SubNavBarListItem
+        label="Option 3"
+        icon={<Icon source={Icons.CloseCircleFilled} size="small" />}
+        rightNode={<Tag size="small">NEW</Tag>}
+        isActive={activeSubItem === 2}
+        onClick={() => handler(2)}
+      />
+    </SubNavBarList>
+    <SubNavBarList isCollapsible label="Collapsable 2">
+      <SubNavBarListItem
+        label="Option 1"
+        isActive={activeSubItem === 3}
+        onClick={() => handler(3)}
+      />
+      <SubNavBarListItem
+        label="Option 2"
+        isActive={activeSubItem === 4}
+        onClick={() => handler(4)}
+      />
+      <SubNavBarListItem
+        label="Option 3"
+        isActive={activeSubItem === 5}
+        onClick={() => handler(5)}
+      />
+    </SubNavBarList>
+  </SubNavBar>
+);
+
 export const Default = (): React.ReactElement => {
   const [activeItem, setActiveItem] = React.useState('main');
   const [activeSubItem, setActiveSubItem] = React.useState(0);
@@ -109,7 +158,7 @@ export const Default = (): React.ReactElement => {
       case 'secondary':
         return getSecondarySubMenu(activeSubItem, setActiveSubItem);
       case 'tertiary':
-        return null;
+        return getTertiarySubMenu(activeSubItem, setActiveSubItem);
       default:
         return null;
     }
