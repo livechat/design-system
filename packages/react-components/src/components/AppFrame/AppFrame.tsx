@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
+import { useAppFrame } from '../../providers/AppFrameProvider';
+
 import { NavBar } from './components/NavBar';
 import { IAppFrameProps } from './types';
 
@@ -19,6 +21,7 @@ export const AppFrame: React.FC<IAppFrameProps> = ({
   topBarNode,
 }) => {
   const mergedClassNames = cx(styles[baseClass], className);
+  const { isSubNavBarVisible } = useAppFrame();
 
   return (
     <div className={mergedClassNames}>
@@ -30,9 +33,16 @@ export const AppFrame: React.FC<IAppFrameProps> = ({
         <div className={styles[`${pageContainerClass}__content-wrapper`]}>
           {subNavBar && (
             <div
-              className={
-                styles[`${baseClass}__content-wrapper__nav-bar-wrapper`]
-              }
+              className={cx(
+                styles[
+                  `${pageContainerClass}__content-wrapper__nav-bar-wrapper`
+                ],
+                {
+                  [styles[
+                    `${pageContainerClass}__content-wrapper__nav-bar-wrapper--visible`
+                  ]]: isSubNavBarVisible,
+                }
+              )}
             >
               {subNavBar}
             </div>

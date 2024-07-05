@@ -1,180 +1,46 @@
 import * as React from 'react';
 
-import * as Icons from '@livechat/design-system-icons';
-
-import { Badge } from '../Badge';
-import { Icon } from '../Icon';
-import { Tag } from '../Tag';
+import { AppFrameProvider } from '../../providers/AppFrameProvider';
 
 import { AppFrame } from './AppFrame';
-import { SubNavBar } from './components/SubNavBar';
-import { SubNavBarList } from './components/SubNavBarList';
-import { SubNavBarListItem } from './components/SubNavBarListItem';
+import {
+  ExampleAppContent,
+  getArchivesSubMenu,
+  getChatsMenu,
+  getEngageSubMenu,
+  getMainNavOptions,
+} from './stories-helpers';
 
 export default {
   title: 'Components/AppFrame',
   component: AppFrame,
+  parameters: {
+    layout: 'fullscreen',
+  },
 };
 
-const getOptions = (handler: (o: string) => void) => [
-  {
-    key: 'main',
-    label: 'Main',
-    disableTooltip: true,
-    icon: <Icon source={Icons.AccountCircleFilled} />,
-    onClick: () => handler('main'),
-  },
-  {
-    key: 'secondary',
-    label: 'Secondary',
-    icon: <Icon source={Icons.AppsFilled} />,
-    onClick: () => handler('secondary'),
-  },
-  {
-    key: 'tertiary',
-    label: 'Tertiary',
-    icon: <Icon source={Icons.ChatDotsFilled} />,
-    onClick: () => handler('tertiary'),
-  },
-  {
-    key: '4',
-    label: 'Fourth',
-    icon: <Icon source={Icons.Columns} />,
-    onClick: () => handler('fourth'),
-  },
-];
-
-const getMainSubMenu = (
-  activeSubItem: number,
-  handler: (o: number) => void
-) => (
-  <SubNavBar noGaps title="Simple list">
-    <SubNavBarListItem
-      label="Option 1"
-      shouldKeepIconSpace={false}
-      isActive={activeSubItem === 0}
-      onClick={() => handler(0)}
-    />
-    <SubNavBarListItem
-      label="Option 2"
-      shouldKeepIconSpace={false}
-      isActive={activeSubItem === 1}
-      onClick={() => handler(1)}
-    />
-    <SubNavBarListItem
-      label="Option 3"
-      shouldKeepIconSpace={false}
-      isActive={activeSubItem === 2}
-      onClick={() => handler(2)}
-    />
-    <SubNavBarListItem
-      label="Option 4"
-      shouldKeepIconSpace={false}
-      isActive={activeSubItem === 3}
-      onClick={() => handler(3)}
-    />
-  </SubNavBar>
-);
-
-const getSecondarySubMenu = (
-  activeSubItem: number,
-  handler: (o: number) => void
-) => (
-  <SubNavBar noGaps title="List of options with additional elements">
-    <SubNavBarListItem
-      label="Option 1"
-      icon={<Icon source={Icons.HelpFilled} size="small" />}
-      rightNode={<Badge count={5} />}
-      isActive={activeSubItem === 0}
-      onClick={() => handler(0)}
-    />
-    <SubNavBarListItem
-      label="Option 2"
-      icon={<Icon source={Icons.ErrorFilled} size="small" />}
-      rightNode={<Badge kind="tertiary" />}
-      isActive={activeSubItem === 1}
-      onClick={() => handler(1)}
-    />
-    <SubNavBarListItem
-      label="Option 3"
-      icon={<Icon source={Icons.CloseCircleFilled} size="small" />}
-      rightNode={<Tag size="small">NEW</Tag>}
-      isActive={activeSubItem === 2}
-      onClick={() => handler(2)}
-    />
-  </SubNavBar>
-);
-
-const getTertiarySubMenu = (
-  activeSubItem: number,
-  handler: (o: number) => void
-) => (
-  <SubNavBar noGaps title="Options in collapsable list">
-    <SubNavBarList isCollapsible label="Collapsable 1">
-      <SubNavBarListItem
-        label="Option 1"
-        icon={<Icon source={Icons.HelpFilled} size="small" />}
-        rightNode={<Badge count={5} />}
-        isActive={activeSubItem === 0}
-        onClick={() => handler(0)}
-      />
-      <SubNavBarListItem
-        label="Option 2"
-        icon={<Icon source={Icons.ErrorFilled} size="small" />}
-        rightNode={<Badge kind="tertiary" />}
-        isActive={activeSubItem === 1}
-        onClick={() => handler(1)}
-      />
-      <SubNavBarListItem
-        label="Option 3"
-        icon={<Icon source={Icons.CloseCircleFilled} size="small" />}
-        rightNode={<Tag size="small">NEW</Tag>}
-        isActive={activeSubItem === 2}
-        onClick={() => handler(2)}
-      />
-    </SubNavBarList>
-    <SubNavBarList isCollapsible label="Collapsable 2">
-      <SubNavBarListItem
-        label="Option 1"
-        isActive={activeSubItem === 3}
-        onClick={() => handler(3)}
-      />
-      <SubNavBarListItem
-        label="Option 2"
-        isActive={activeSubItem === 4}
-        onClick={() => handler(4)}
-      />
-      <SubNavBarListItem
-        label="Option 3"
-        isActive={activeSubItem === 5}
-        onClick={() => handler(5)}
-      />
-    </SubNavBarList>
-  </SubNavBar>
-);
-
 export const Default = (): React.ReactElement => {
-  const [activeItem, setActiveItem] = React.useState('main');
+  const [activeItem, setActiveItem] = React.useState('home');
   const [activeSubItem, setActiveSubItem] = React.useState(0);
 
   const getSubNav = () => {
     switch (activeItem) {
-      case 'main':
-        return getMainSubMenu(activeSubItem, setActiveSubItem);
-      case 'secondary':
-        return getSecondarySubMenu(activeSubItem, setActiveSubItem);
-      case 'tertiary':
-        return getTertiarySubMenu(activeSubItem, setActiveSubItem);
+      case 'chats':
+        return getChatsMenu(activeSubItem, setActiveSubItem);
+      case 'engage':
+        return getEngageSubMenu(activeSubItem, setActiveSubItem);
+      case 'archives':
+        return getArchivesSubMenu(activeSubItem, setActiveSubItem);
       default:
         return null;
     }
   };
 
   return (
-    <div style={{ width: 800, height: 700 }}>
+    <AppFrameProvider>
       <AppFrame
         activeOptionKey={activeItem}
-        navBarOptions={getOptions(setActiveItem)}
+        navBarOptions={getMainNavOptions(setActiveItem)}
         subNavBar={getSubNav()}
         topBarNode={
           <div
@@ -190,18 +56,8 @@ export const Default = (): React.ReactElement => {
           </div>
         }
       >
-        <div
-          style={{
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <h1>App content</h1>
-        </div>
+        <ExampleAppContent showToggle={activeItem !== 'home'} />
       </AppFrame>
-    </div>
+    </AppFrameProvider>
   );
 };
