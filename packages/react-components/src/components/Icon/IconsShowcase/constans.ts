@@ -326,6 +326,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   PlayerRecordFilled: IconGroup.General,
   PlayerRecord: IconGroup.General,
   PlayerStop: IconGroup.General,
+  PluginConnected: IconGroup.General,
   Point: IconGroup.General,
   PointFilled: IconGroup.General,
   PositionFilled: IconGroup.General,
