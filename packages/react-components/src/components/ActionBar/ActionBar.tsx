@@ -72,7 +72,6 @@ export const ActionBar: React.FC<IActionBarProps> = ({
           setVisibleItemsCount(newVisibleOptionsCount);
       });
 
-       
       observer.observe(document.querySelector(`#${id}`)!);
 
       return () => observer.disconnect();
