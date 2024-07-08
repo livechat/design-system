@@ -78,16 +78,18 @@ export const ActionBar: React.FC<IActionBarProps> = ({
   }, [menuOptions, isScrollType, visibleItemsCount]);
 
   const getMenuItems = React.useCallback(() => {
-    return menuOptions.map((o) => {
-      return {
-        key: o.key,
-        element: (
-          <ActionMenuItem leftNode={o.element}>{o.label}</ActionMenuItem>
-        ),
-        withDivider: o.withDivider,
-        onClick: o.onClick,
-      };
-    });
+    return menuOptions
+      .filter((o) => !o.hideInMenu)
+      .map((o) => {
+        return {
+          key: o.key,
+          element: (
+            <ActionMenuItem leftNode={o.element}>{o.label}</ActionMenuItem>
+          ),
+          withDivider: o.withDivider,
+          onClick: o.onClick,
+        };
+      });
   }, [menuOptions]);
 
   const buttonElement = menuOptions.find((o) => o.key === activeOptionKey);
