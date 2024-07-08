@@ -112,8 +112,13 @@ export const Card: React.FC<React.PropsWithChildren<CardProps>> = ({
           <div className={styles[`${actionsClass}__buttons`]}>
             {shouldShowActionButtons &&
               buttonsOptions.map(
-                ({ kind, onClick, children: buttonChildren }) => (
-                  <Button size="compact" kind={kind} onClick={onClick}>
+                ({ kind, onClick, children: buttonChildren }, index) => (
+                  <Button
+                    key={index}
+                    size="compact"
+                    kind={kind}
+                    onClick={onClick}
+                  >
                     {buttonChildren}
                   </Button>
                 )

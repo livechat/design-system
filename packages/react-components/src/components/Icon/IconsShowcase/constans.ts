@@ -326,6 +326,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   PlayerRecordFilled: IconGroup.General,
   PlayerRecord: IconGroup.General,
   PlayerStop: IconGroup.General,
+  PlugConnected: IconGroup.General,
   Point: IconGroup.General,
   PointFilled: IconGroup.General,
   PositionFilled: IconGroup.General,
@@ -496,4 +497,5 @@ export const IconsData: Record<IconName, IconGroup> = {
   Hubspot: IconGroup.Brands,
   Stripe: IconGroup.Brands,
   Mailchimp: IconGroup.Brands,
+  LayoutSidebarLeft: IconGroup.General,
 };
