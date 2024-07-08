@@ -3,6 +3,8 @@ import * as React from 'react';
 import { ChevronDown } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
+import { IActionMenuOption } from 'components/ActionMenu/types';
+
 import { ActionMenu, ActionMenuItem } from '../ActionMenu';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
@@ -78,18 +80,24 @@ export const ActionBar: React.FC<IActionBarProps> = ({
   }, [menuOptions, isScrollType, visibleItemsCount]);
 
   const getMenuItems = React.useCallback(() => {
-    return menuOptions
-      .filter((o) => !o.hideInMenu)
-      .map((o) => {
-        return {
-          key: o.key,
-          element: (
-            <ActionMenuItem leftNode={o.element}>{o.label}</ActionMenuItem>
-          ),
-          withDivider: o.withDivider,
-          onClick: o.onClick,
-        };
-      });
+    return menuOptions.reduce(
+      (acc: IActionMenuOption[], o: IActionBarOption) => {
+        if (!o.hideInMenu) {
+          const item = {
+            key: o.key,
+            element: (
+              <ActionMenuItem leftNode={o.element}>{o.label}</ActionMenuItem>
+            ),
+            withDivider: o.withDivider,
+            onClick: o.onClick,
+          };
+          acc.push(item);
+        }
+
+        return acc;
+      },
+      []
+    );
   }, [menuOptions]);
 
   const buttonElement = menuOptions.find((o) => o.key === activeOptionKey);
