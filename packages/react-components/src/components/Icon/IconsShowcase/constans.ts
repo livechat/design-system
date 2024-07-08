@@ -497,4 +497,5 @@ export const IconsData: Record<IconName, IconGroup> = {
   Hubspot: IconGroup.Brands,
   Stripe: IconGroup.Brands,
   Mailchimp: IconGroup.Brands,
+  LayoutSidebarLeft: IconGroup.General,
 };
