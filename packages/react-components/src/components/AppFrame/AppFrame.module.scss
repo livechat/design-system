@@ -21,20 +21,31 @@ $base-class: 'app-frame';
       display: flex;
       flex-shrink: 0;
       align-items: center;
-      padding-top: 6px;
-      padding-bottom: 6px;
-      height: 48px;
+      transition: all var(--transition-duration-fast-2) ease;
+      padding: 0;
+      height: 6px;
+
+      &--visible {
+        padding-top: 6px;
+        padding-bottom: 6px;
+        height: 48px;
+      }
     }
 
     &__content-wrapper {
       display: flex;
       flex-direction: row;
+      transition: all var(--transition-duration-fast-2) ease;
       width: 100%;
-      height: calc(100vh - 54px);
+      height: calc(100vh - 6px);
+
+      &--with-top-bar {
+        height: calc(100vh - 54px);
+      }
 
       &__nav-bar-wrapper {
         flex-shrink: 0;
-        transition: all 0.2s ease;
+        transition: all var(--transition-duration-fast-2) ease;
         width: 0;
         max-width: 296px;
         height: 100%;

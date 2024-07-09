@@ -19,10 +19,14 @@ const defaultImage =
 
 interface ExampleAppContentProps {
   showToggle: boolean;
+  topBarVisible: boolean;
+  handleTopBarButtonClick: () => void;
 }
 
 export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
   showToggle,
+  topBarVisible,
+  handleTopBarButtonClick,
 }) => {
   const { isSubNavBarVisible, toggleSubNavBarVisibility } = useAppFrame();
 
@@ -46,6 +50,12 @@ export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
           </Button>
         </>
       )}
+      <>
+        <Text>Set top-bar visibility</Text>
+        <Button onClick={handleTopBarButtonClick}>
+          {topBarVisible ? 'Close' : 'Open'}
+        </Button>
+      </>
     </div>
   );
 };
@@ -111,12 +121,21 @@ export const getBottomNavOptions = (
     disableTooltip: true,
     disableOpacity: true,
     icon: (
-      <Avatar
-        status="available"
-        type="image"
-        src={defaultImage}
-        alt="User avatar"
-      />
+      <Tooltip
+        isVisible
+        floatingStrategy="fixed"
+        placement="right"
+        triggerRenderer={
+          <Avatar
+            status="available"
+            type="image"
+            src={defaultImage}
+            alt="User avatar"
+          />
+        }
+      >
+        test
+      </Tooltip>
     ),
     onClick: () => handler('user'),
   },

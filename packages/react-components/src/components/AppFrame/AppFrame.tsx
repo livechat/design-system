@@ -40,12 +40,20 @@ export const AppFrame: React.FC<IAppFrameProps> = ({
         <div
           className={cx(
             styles[`${pageContainerClass}__top-bar`],
+            {
+              [styles[`${pageContainerClass}__top-bar--visible`]]: topBarNode,
+            },
             topBarClassName
           )}
         >
           {topBarNode}
         </div>
-        <div className={styles[`${pageContainerClass}__content-wrapper`]}>
+        <div
+          className={cx(styles[`${pageContainerClass}__content-wrapper`], {
+            [styles[`${pageContainerClass}__content-wrapper--with-top-bar`]]:
+              topBarNode,
+          })}
+        >
           {subNavBar && (
             <div
               className={cx(
