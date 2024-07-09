@@ -4,56 +4,78 @@ $base-class: 'nav-bar';
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  gap: 6px;
   align-items: center;
-  margin: 0;
-  padding-top: 6px;
-  padding-left: 0;
   width: 54px;
   height: 100%;
-  list-style: none;
 
-  &__button {
-    opacity: 0.7;
-    border-color: transparent;
-    background-color: transparent;
-    width: 42px;
-    height: 42px;
-    color: var(--content-locked-white);
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0;
+    padding-top: 6px;
+    padding-left: 0;
+    list-style: none;
 
-    &:hover {
-      opacity: 1;
-      background-color: color-mix(
-        in srgb,
-        var(--surface-locked-white) 15%,
-        transparent
-      );
-      color: var(--content-locked-white);
-
-      span {
-        transform: scale(1.1);
-      }
+    &--bottom {
+      margin-top: auto;
+      padding-bottom: 6px;
     }
 
-    span {
-      transform: scale(1);
-      transition: all 0.2s ease-in-out 0s;
-      width: 24px;
-      height: 24px;
+    &__item {
+      position: relative;
 
-      svg {
-        width: 24px;
-        height: 24px;
+      &__badge {
+        position: absolute;
+        top: 1px;
+        right: 2px;
+        pointer-events: none;
       }
-    }
 
-    &--active {
-      opacity: 1;
-      background-color: color-mix(
-        in srgb,
-        var(--surface-locked-white) 15%,
-        transparent
-      );
+      &__button {
+        position: relative;
+        opacity: 0.7;
+        border-color: transparent;
+        background-color: transparent;
+        width: 42px;
+        height: 42px;
+        color: var(--content-locked-white);
+
+        &:hover {
+          opacity: 1;
+          background-color: color-mix(
+            in srgb,
+            var(--surface-locked-white) 15%,
+            transparent
+          );
+          color: var(--content-locked-white);
+
+          span {
+            transform: scale(1.1);
+          }
+        }
+
+        span {
+          transform: scale(1);
+          transition: all 0.2s ease-in-out 0s;
+          width: 24px;
+          height: 24px;
+
+          svg {
+            width: 24px;
+            height: 24px;
+          }
+        }
+
+        &--active {
+          opacity: 1;
+          background-color: color-mix(
+            in srgb,
+            var(--surface-locked-white) 15%,
+            transparent
+          );
+        }
+      }
     }
   }
 }

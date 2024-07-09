@@ -6,6 +6,7 @@ export interface INavBarOption {
   icon: React.ReactElement;
   href?: string;
   disableTooltip?: boolean;
+  badge?: 'dot' | 'alert' | number;
   onClick: () => void;
 }
 
@@ -16,13 +17,18 @@ export interface IAppFrameProps {
   activeOptionKey?: string;
   subNavBar?: React.ReactNode;
   topBarNode?: React.ReactNode;
-  leftBarNode?: React.ReactNode;
-  subLeftBarNode?: React.ReactNode;
+  navigationClassName?: string;
+  topBarClassName?: string;
+  subNavigationClassName?: string;
+  contentClassName?: string;
+  bottomNavBarOptions?: INavBarOption[];
 }
 
 export interface INavBarProps {
+  className?: string;
   navBarOptions: INavBarOption[];
   activeOptionKey?: string;
+  bottomNavBarOptions?: INavBarOption[];
 }
 
 export interface ISubNavBarProps {

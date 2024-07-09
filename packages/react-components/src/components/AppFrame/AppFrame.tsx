@@ -19,15 +19,30 @@ export const AppFrame: React.FC<IAppFrameProps> = ({
   activeOptionKey,
   subNavBar,
   topBarNode,
+  navigationClassName,
+  topBarClassName,
+  subNavigationClassName,
+  contentClassName,
+  bottomNavBarOptions,
 }) => {
   const mergedClassNames = cx(styles[baseClass], className);
   const { isSubNavBarVisible } = useAppFrame();
 
   return (
     <div className={mergedClassNames}>
-      <NavBar activeOptionKey={activeOptionKey} navBarOptions={navBarOptions} />
+      <NavBar
+        className={navigationClassName}
+        activeOptionKey={activeOptionKey}
+        navBarOptions={navBarOptions}
+        bottomNavBarOptions={bottomNavBarOptions}
+      />
       <div className={styles[pageContainerClass]}>
-        <div className={styles[`${pageContainerClass}__top-bar`]}>
+        <div
+          className={cx(
+            styles[`${pageContainerClass}__top-bar`],
+            topBarClassName
+          )}
+        >
           {topBarNode}
         </div>
         <div className={styles[`${pageContainerClass}__content-wrapper`]}>
@@ -37,6 +52,7 @@ export const AppFrame: React.FC<IAppFrameProps> = ({
                 styles[
                   `${pageContainerClass}__content-wrapper__nav-bar-wrapper`
                 ],
+                subNavigationClassName,
                 {
                   [styles[
                     `${pageContainerClass}__content-wrapper__nav-bar-wrapper--visible`
@@ -48,9 +64,10 @@ export const AppFrame: React.FC<IAppFrameProps> = ({
             </div>
           )}
           <div
-            className={
-              styles[`${pageContainerClass}__content-wrapper__content`]
-            }
+            className={cx(
+              styles[`${pageContainerClass}__content-wrapper__content`],
+              contentClassName
+            )}
           >
             {children}
           </div>

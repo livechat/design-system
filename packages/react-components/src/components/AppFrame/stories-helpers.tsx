@@ -3,6 +3,7 @@ import * as React from 'react';
 import * as Icons from '@livechat/design-system-icons';
 
 import { useAppFrame } from '../../providers/AppFrameProvider';
+import { Avatar } from '../Avatar';
 import { Badge } from '../Badge';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
@@ -10,6 +11,10 @@ import { Tag } from '../Tag';
 import { Heading, Text } from '../Typography';
 
 import { SubNavBar, SubNavBarList, SubNavBarListItem } from './components';
+import { INavBarOption } from './types';
+
+const defaultImage =
+  'https://cdn-labs.livechat-files.com/api/file/lc/img/100019504/df59da4b5b0cdb6030efb08787fd255d.jpg';
 
 interface ExampleAppContentProps {
   showToggle: boolean;
@@ -44,7 +49,9 @@ export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
   );
 };
 
-export const getMainNavOptions = (handler: (o: string) => void) => [
+export const getMainNavOptions = (
+  handler: (o: string) => void
+): INavBarOption[] => [
   {
     key: 'home',
     label: 'Home',
@@ -55,20 +62,61 @@ export const getMainNavOptions = (handler: (o: string) => void) => [
   {
     key: 'chats',
     label: 'Chats',
+    badge: 'dot',
     icon: <Icon source={Icons.Messages} />,
     onClick: () => handler('chats'),
   },
   {
     key: 'engage',
     label: 'Engage',
+    badge: 'alert',
     icon: <Icon source={Icons.Automation} />,
     onClick: () => handler('engage'),
   },
   {
     key: 'archives',
     label: 'Archives',
+    badge: 5,
     icon: <Icon source={Icons.Archives} />,
     onClick: () => handler('archives'),
+  },
+];
+
+export const getBottomNavOptions = (
+  handler: (o: string) => void
+): INavBarOption[] => [
+  {
+    key: 'billing',
+    label: 'Billing',
+    icon: <Icon source={Icons.CreditCardOutline} />,
+    onClick: () => handler('billing'),
+  },
+  {
+    key: 'setting',
+    label: 'Settings',
+    icon: <Icon source={Icons.Settings} />,
+    onClick: () => handler('settings'),
+  },
+  {
+    key: 'news',
+    label: 'News',
+    badge: 2,
+    icon: <Icon source={Icons.Notifications} />,
+    onClick: () => handler('engage'),
+  },
+  {
+    key: 'user',
+    label: 'User',
+    disableTooltip: true,
+    icon: (
+      <Avatar
+        status="available"
+        type="image"
+        src={defaultImage}
+        alt="User avatar"
+      />
+    ),
+    onClick: () => handler('user'),
   },
 ];
 

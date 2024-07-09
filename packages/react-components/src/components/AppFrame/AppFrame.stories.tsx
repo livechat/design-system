@@ -6,6 +6,7 @@ import { AppFrame } from './AppFrame';
 import {
   ExampleAppContent,
   getArchivesSubMenu,
+  getBottomNavOptions,
   getChatsMenu,
   getEngageSubMenu,
   getMainNavOptions,
@@ -41,6 +42,7 @@ export const Default = (): React.ReactElement => {
       <AppFrame
         activeOptionKey={activeItem}
         navBarOptions={getMainNavOptions(setActiveItem)}
+        bottomNavBarOptions={getBottomNavOptions(setActiveItem)}
         subNavBar={getSubNav()}
         topBarNode={
           <div
