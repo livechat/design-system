@@ -75,6 +75,10 @@ $base-class: 'nav-bar';
             transparent
           );
         }
+
+        &--opacity {
+          opacity: 1;
+        }
       }
     }
   }

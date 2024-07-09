@@ -6,6 +6,7 @@ export interface INavBarOption {
   icon: React.ReactElement;
   href?: string;
   disableTooltip?: boolean;
+  disableOpacity?: boolean;
   badge?: 'dot' | 'alert' | number;
   onClick: () => void;
 }
