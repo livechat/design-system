@@ -39,32 +39,36 @@ export const NavBar: React.FC<INavBarProps> = ({
   };
 
   const getOption = (o: INavBarOption) => (
-    <Tooltip
-      key={o.key}
-      placement="right"
-      kind="invert"
-      isVisible={o.disableTooltip ? false : undefined}
-      offsetMainAxis={12}
-      hoverOnDelay={400}
-      triggerRenderer={
-        <li className={styles[`${listBaseClass}__item`]}>
-          <Button
-            aria-label={o.label}
-            className={cx(styles[`${listBaseClass}__item__button`], {
-              [styles[`${listBaseClass}__item__button--active`]]:
-                o.key === activeOptionKey,
-            })}
-            kind="plain"
-            icon={o.icon}
-            onClick={o.onClick}
-            href={o.href}
-          />
-          {o.badge && getBadge(o.badge)}
-        </li>
-      }
-    >
-      {o.label}
-    </Tooltip>
+    <li className={styles[`${listBaseClass}__item`]}>
+      <Tooltip
+        key={o.key}
+        placement="right"
+        kind="invert"
+        isVisible={o.disableTooltip ? false : undefined}
+        offsetMainAxis={12}
+        hoverOnDelay={400}
+        triggerRenderer={
+          <>
+            <Button
+              aria-label={o.label}
+              className={cx(styles[`${listBaseClass}__item__button`], {
+                [styles[`${listBaseClass}__item__button--active`]]:
+                  o.key === activeOptionKey,
+                [styles[`${listBaseClass}__item__button--opacity`]]:
+                  o.disableOpacity,
+              })}
+              kind="plain"
+              icon={o.icon}
+              onClick={o.onClick}
+              href={o.href}
+            />
+            {o.badge && getBadge(o.badge)}
+          </>
+        }
+      >
+        {o.label}
+      </Tooltip>
+    </li>
   );
 
   return (
