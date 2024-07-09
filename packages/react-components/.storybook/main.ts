@@ -14,7 +14,9 @@ const config: StorybookConfig = {
   ],
   framework: {
     name: '@storybook/react-vite',
-    options: {},
+    options: {
+      strictMode: true,
+    },
   },
   docs: {},
   typescript: {

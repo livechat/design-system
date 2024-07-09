@@ -1,34 +1,52 @@
-import * as React from 'react';
+import {
+  useEffect,
+  FC,
+  useRef,
+  PropsWithChildren,
+  ReactNode,
+  HTMLAttributes,
+} from 'react';
 
-import * as ReactDOM from 'react-dom';
+import { createPortal } from 'react-dom';
 
-export interface ModalPortalProps extends React.HTMLAttributes<HTMLDivElement> {
-  children: React.ReactNode;
+export interface ModalPortalProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
   zIndex: number;
   parentElementName?: string;
 }
 
-export const ModalPortal: React.FC<
-  React.PropsWithChildren<ModalPortalProps>
-> = ({ children, className = '', parentElementName = 'body', zIndex }) => {
-  const [container] = React.useState(() => document.createElement('div'));
+export const ModalPortal: FC<PropsWithChildren<ModalPortalProps>> = ({
+  children,
+  className = '',
+  parentElementName = 'body',
+  zIndex,
+}) => {
+  const containerRef = useRef(document.createElement('div'));
 
-  if (className) {
-    container.classList.add(className);
-  }
+  useEffect(() => {
+    const container = containerRef.current;
+    const parentElement = document.querySelector(parentElementName);
 
-  if (zIndex) {
-    container.style.zIndex = zIndex.toString();
-  }
-
-  React.useEffect(() => {
-    document.querySelector(parentElementName)?.appendChild(container);
+    if (parentElement) {
+      parentElement.appendChild(container);
+    }
 
     return () => {
-      document.querySelector(parentElementName)?.removeChild(container);
+      if (parentElement) {
+        parentElement.removeChild(container);
+      }
     };
   }, [parentElementName]);
 
-  // Fragment added to fix TS complaining about createPortal any type
-  return <>{ReactDOM.createPortal(children, container)}</>;
+  useEffect(() => {
+    const container = containerRef.current;
+    if (className) {
+      container.className = className;
+    }
+    if (zIndex) {
+      container.style.zIndex = `${zIndex}`;
+    }
+  }, [className, zIndex]);
+
+  return createPortal(<>{children}</>, containerRef.current);
 };
