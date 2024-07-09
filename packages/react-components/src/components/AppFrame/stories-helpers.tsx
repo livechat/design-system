@@ -8,6 +8,7 @@ import { Badge } from '../Badge';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { Tag } from '../Tag';
+import { Tooltip } from '../Tooltip';
 import { Heading, Text } from '../Typography';
 
 import { SubNavBar, SubNavBarList, SubNavBarListItem } from './components';
@@ -102,12 +103,13 @@ export const getBottomNavOptions = (
     label: 'News',
     badge: 2,
     icon: <Icon source={Icons.Notifications} />,
-    onClick: () => handler('engage'),
+    onClick: () => handler('news'),
   },
   {
     key: 'user',
     label: 'User',
     disableTooltip: true,
+    disableOpacity: true,
     icon: (
       <Avatar
         status="available"

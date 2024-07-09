@@ -20,6 +20,8 @@ export default {
   },
 };
 
+const SectionsWithToggle = ['chats', 'engage', 'archives'];
+
 export const Default = (): React.ReactElement => {
   const [activeItem, setActiveItem] = React.useState('home');
   const [activeSubItem, setActiveSubItem] = React.useState(0);
@@ -58,7 +60,9 @@ export const Default = (): React.ReactElement => {
           </div>
         }
       >
-        <ExampleAppContent showToggle={activeItem !== 'home'} />
+        <ExampleAppContent
+          showToggle={SectionsWithToggle.includes(activeItem)}
+        />
       </AppFrame>
     </AppFrameProvider>
   );
