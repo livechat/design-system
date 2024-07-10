@@ -453,6 +453,8 @@ export const IconsData: Record<IconName, IconGroup> = {
   GoogleDarkModeColored: IconGroup.Brands,
   GoogleLightModeColored: IconGroup.Brands,
   GoogleTagManagerColored: IconGroup.Brands,
+  HelloColored: IconGroup.Brands,
+  HelloMono: IconGroup.Brands,
   HelpDeskColored: IconGroup.Brands,
   HelpDeskMono: IconGroup.Brands,
   Instagram: IconGroup.Brands,
