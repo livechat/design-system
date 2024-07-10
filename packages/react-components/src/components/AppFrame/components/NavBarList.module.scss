@@ -1,0 +1,10 @@
+$base-class: 'nav-bar-list';
+
+.#{$base-class} {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

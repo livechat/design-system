@@ -3,20 +3,13 @@ import * as React from 'react';
 import * as Icons from '@livechat/design-system-icons';
 
 import { useAppFrame } from '../../providers/AppFrameProvider';
-import { Avatar } from '../Avatar';
 import { Badge } from '../Badge';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { Tag } from '../Tag';
-import { Tooltip } from '../Tooltip';
 import { Heading, Text } from '../Typography';
 
 import { SubNavBar, SubNavBarList, SubNavBarListItem } from './components';
-import { INavBarOption } from './types';
-
-const defaultImage =
-  'https://cdn-labs.livechat-files.com/api/file/lc/img/100019504/df59da4b5b0cdb6030efb08787fd255d.jpg';
-
 interface ExampleAppContentProps {
   showToggle: boolean;
   topBarVisible: boolean;
@@ -59,87 +52,6 @@ export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
     </div>
   );
 };
-
-export const getMainNavOptions = (
-  handler: (o: string) => void
-): INavBarOption[] => [
-  {
-    key: 'home',
-    label: 'Home',
-    disableTooltip: true,
-    icon: <Icon source={Icons.LiveChatMono} />,
-    onClick: () => handler('home'),
-  },
-  {
-    key: 'chats',
-    label: 'Chats',
-    badge: 'dot',
-    icon: <Icon source={Icons.Messages} />,
-    onClick: () => handler('chats'),
-  },
-  {
-    key: 'engage',
-    label: 'Engage',
-    badge: 'alert',
-    icon: <Icon source={Icons.Automation} />,
-    onClick: () => handler('engage'),
-  },
-  {
-    key: 'archives',
-    label: 'Archives',
-    badge: 5,
-    icon: <Icon source={Icons.Archives} />,
-    onClick: () => handler('archives'),
-  },
-];
-
-export const getBottomNavOptions = (
-  handler: (o: string) => void
-): INavBarOption[] => [
-  {
-    key: 'billing',
-    label: 'Billing',
-    icon: <Icon source={Icons.CreditCardOutline} />,
-    onClick: () => handler('billing'),
-  },
-  {
-    key: 'setting',
-    label: 'Settings',
-    icon: <Icon source={Icons.Settings} />,
-    onClick: () => handler('settings'),
-  },
-  {
-    key: 'news',
-    label: 'News',
-    badge: 2,
-    icon: <Icon source={Icons.Notifications} />,
-    onClick: () => handler('news'),
-  },
-  {
-    key: 'user',
-    label: 'User',
-    disableTooltip: true,
-    disableOpacity: true,
-    icon: (
-      <Tooltip
-        isVisible
-        floatingStrategy="fixed"
-        placement="right"
-        triggerRenderer={
-          <Avatar
-            status="available"
-            type="image"
-            src={defaultImage}
-            alt="User avatar"
-          />
-        }
-      >
-        test
-      </Tooltip>
-    ),
-    onClick: () => handler('user'),
-  },
-];
 
 export const getChatsMenu = (
   activeSubItem: number,

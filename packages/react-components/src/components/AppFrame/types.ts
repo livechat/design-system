@@ -1,35 +1,37 @@
 import * as React from 'react';
 
+export interface INavBarListProps {
+  className?: string;
+}
+
 export interface INavBarOption {
-  key: string;
   label: string;
   icon: React.ReactElement;
-  href?: string;
+  href: string;
   disableTooltip?: boolean;
   disableOpacity?: boolean;
   badge?: 'dot' | 'alert' | number;
-  onClick: () => void;
+  isActive?: boolean;
+  onClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 export interface IAppFrameProps {
   children: React.ReactNode;
   className?: string;
-  navBarOptions: INavBarOption[];
-  activeOptionKey?: string;
+  topNavBarNode?: React.ReactNode;
+  bottomNavBarNode?: React.ReactNode;
   subNavBar?: React.ReactNode;
   topBarNode?: React.ReactNode;
   navigationClassName?: string;
   topBarClassName?: string;
   subNavigationClassName?: string;
   contentClassName?: string;
-  bottomNavBarOptions?: INavBarOption[];
 }
 
 export interface INavBarProps {
   className?: string;
-  navBarOptions: INavBarOption[];
-  activeOptionKey?: string;
-  bottomNavBarOptions?: INavBarOption[];
+  topNavBarNode?: React.ReactNode;
+  bottomNavBarNode?: React.ReactNode;
 }
 
 export interface ISubNavBarProps {
