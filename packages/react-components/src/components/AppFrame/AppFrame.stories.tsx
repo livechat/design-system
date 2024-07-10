@@ -2,15 +2,15 @@ import * as React from 'react';
 
 import * as Icons from '@livechat/design-system-icons';
 
-import { AppFrameProvider } from '../../providers/AppFrameProvider';
 import { Avatar } from '../Avatar';
 import { Icon } from '../Icon';
 import { Tooltip } from '../Tooltip';
 
 import { AppFrame } from './AppFrame';
-import { NavBarItem, NavBarList } from './components';
+import { Navigation, NavigationItem, NavigationList } from './components';
 import {
   ExampleAppContent,
+  ExampleTopBar,
   getArchivesSubMenu,
   getChatsMenu,
   getEngageSubMenu,
@@ -48,129 +48,139 @@ export const Default = (): React.ReactElement => {
   };
 
   return (
-    <AppFrameProvider>
-      <AppFrame
-        topNavBarNode={
-          <NavBarList>
-            <NavBarItem
+    <AppFrame
+      navigation={
+        <Navigation>
+          <NavigationList scrollable>
+            <NavigationItem
+              id="home"
               label="Home"
               disableTooltip
               icon={<Icon source={Icons.LiveChatMono} />}
-              onClick={(e) => {
+              onClick={(e, id) => {
                 e.preventDefault();
-                setActiveItem('home');
+                setActiveItem(id);
               }}
               isActive={activeItem === 'home'}
               href="#"
             />
-            <NavBarItem
+            <NavigationItem
+              id="chats"
               label="Chats"
               icon={<Icon source={Icons.Messages} />}
-              onClick={(e) => {
+              onClick={(e, id) => {
                 e.preventDefault();
-                setActiveItem('chats');
+                setActiveItem(id);
               }}
               isActive={activeItem === 'chats'}
               badge="dot"
               href="#"
             />
-            <NavBarItem
+            <NavigationItem
+              id="engage"
               label="Engage"
               icon={<Icon source={Icons.Automation} />}
-              onClick={(e) => {
+              onClick={(e, id) => {
                 e.preventDefault();
-                setActiveItem('engage');
+                setActiveItem(id);
               }}
               isActive={activeItem === 'engage'}
               badge="alert"
               href="#"
             />
-            <NavBarItem
+            <NavigationItem
+              id="archives"
               label="Archives"
               icon={<Icon source={Icons.Archives} />}
-              onClick={(e) => {
+              onClick={(e, id) => {
                 e.preventDefault();
-                setActiveItem('archives');
+                setActiveItem(id);
               }}
               isActive={activeItem === 'archives'}
               badge={5}
               href="#"
             />
-            <NavBarItem
+            <NavigationItem
+              id="tickets"
               label="Tickets"
               icon={<Icon source={Icons.Tickets} />}
-              onClick={(e) => {
+              onClick={(e, id) => {
                 e.preventDefault();
-                setActiveItem('tickets');
+                setActiveItem(id);
               }}
               isActive={activeItem === 'tickets'}
               href="#"
             />
-            <NavBarItem
+            <NavigationItem
+              id="team"
               label="Team"
               icon={<Icon source={Icons.People} />}
-              onClick={(e) => {
+              onClick={(e, id) => {
                 e.preventDefault();
-                setActiveItem('team');
+                setActiveItem(id);
               }}
               isActive={activeItem === 'team'}
               href="#"
             />
-            <NavBarItem
+            <NavigationItem
+              id="reports"
               label="Reports"
               icon={<Icon source={Icons.Report} />}
-              onClick={(e) => {
+              onClick={(e, id) => {
                 e.preventDefault();
-                setActiveItem('reports');
+                setActiveItem(id);
               }}
               isActive={activeItem === 'reports'}
               href="#"
             />
-            <NavBarItem
+            <NavigationItem
+              id="apps"
               label="Apps"
               icon={<Icon source={Icons.Apps} />}
-              onClick={(e) => {
+              onClick={(e, id) => {
                 e.preventDefault();
-                setActiveItem('apps');
+                setActiveItem(id);
               }}
               isActive={activeItem === 'apps'}
               href="#"
             />
-          </NavBarList>
-        }
-        bottomNavBarNode={
-          <NavBarList>
-            <NavBarItem
+          </NavigationList>
+          <NavigationList>
+            <NavigationItem
+              id="billing"
               label="Billing"
               icon={<Icon source={Icons.CreditCardOutline} />}
-              onClick={(e) => {
+              onClick={(e, id) => {
                 e.preventDefault();
-                setActiveItem('billing');
+                setActiveItem(id);
               }}
               isActive={activeItem === 'billing'}
               href="#"
             />
-            <NavBarItem
+            <NavigationItem
+              id="settings"
               label="Settings"
               icon={<Icon source={Icons.Settings} />}
-              onClick={(e) => {
+              onClick={(e, id) => {
                 e.preventDefault();
-                setActiveItem('settings');
+                setActiveItem(id);
               }}
               isActive={activeItem === 'settings'}
               href="#"
             />
-            <NavBarItem
+            <NavigationItem
+              id="news"
               label="News"
               icon={<Icon source={Icons.Notifications} />}
-              onClick={(e) => {
+              onClick={(e, id) => {
                 e.preventDefault();
-                setActiveItem('news');
+                setActiveItem(id);
               }}
               isActive={activeItem === 'news'}
               href="#"
             />
-            <NavBarItem
+            <NavigationItem
+              id="user"
               label="User"
               disableOpacity
               disableTooltip
@@ -193,31 +203,17 @@ export const Default = (): React.ReactElement => {
               onClick={(e) => e.preventDefault()}
               href="#"
             />
-          </NavBarList>
-        }
-        subNavBar={getSubNav()}
-        topBarNode={
-          topBarVisible && (
-            <div
-              style={{
-                width: '100%',
-                height: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <h3>Top bar node</h3>
-            </div>
-          )
-        }
-      >
-        <ExampleAppContent
-          showToggle={SectionsWithToggle.includes(activeItem)}
-          topBarVisible={topBarVisible}
-          handleTopBarButtonClick={() => setTopBarVisible((prev) => !prev)}
-        />
-      </AppFrame>
-    </AppFrameProvider>
+          </NavigationList>
+        </Navigation>
+      }
+      sideNavigation={getSubNav()}
+      topBar={topBarVisible && <ExampleTopBar />}
+    >
+      <ExampleAppContent
+        showToggle={SectionsWithToggle.includes(activeItem)}
+        topBarVisible={topBarVisible}
+        handleTopBarButtonClick={() => setTopBarVisible((prev) => !prev)}
+      />
+    </AppFrame>
   );
 };

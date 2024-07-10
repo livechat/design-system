@@ -1,4 +1,6 @@
 $base-class: 'app-frame';
+$top-bar-height: 54px;
+$empty-top-bar-height: 6px;
 
 .#{$base-class} {
   display: flex;
@@ -37,10 +39,10 @@ $base-class: 'app-frame';
       flex-direction: row;
       transition: all var(--transition-duration-fast-2) ease;
       width: 100%;
-      height: calc(100vh - 6px);
+      height: calc(100vh - $empty-top-bar-height);
 
       &--with-top-bar {
-        height: calc(100vh - 54px);
+        height: calc(100vh - $top-bar-height);
       }
 
       &__nav-bar-wrapper {

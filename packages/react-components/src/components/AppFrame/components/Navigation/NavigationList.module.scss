@@ -1,4 +1,4 @@
-$base-class: 'nav-bar-list';
+$base-class: 'navigation-list';
 
 .#{$base-class} {
   display: flex;
@@ -7,4 +7,9 @@ $base-class: 'nav-bar-list';
   margin: 0;
   padding: 0;
   list-style: none;
+
+  &--scrollable {
+    overflow-y: scroll;
+    scrollbar-width: none;
+  }
 }

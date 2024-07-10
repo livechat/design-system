@@ -4,13 +4,15 @@ import cx from 'clsx';
 
 import { Badge } from '../../../Badge';
 import { Tooltip } from '../../../Tooltip';
-import { INavBarOption } from '../../types';
 
-import styles from './NavBarItem.module.scss';
+import { INavigationItemProps } from './types';
 
-const baseClass = 'nav-bar-item';
+import styles from './NavigationItem.module.scss';
 
-export const NavBarItem: React.FC<INavBarOption> = ({
+const baseClass = 'navigation-item';
+
+export const NavigationItem: React.FC<INavigationItemProps> = ({
+  id,
   label,
   icon,
   href,
@@ -19,6 +21,7 @@ export const NavBarItem: React.FC<INavBarOption> = ({
   badge,
   isActive,
   onClick,
+  ...props
 }) => {
   const getBadge = (badge: 'dot' | 'alert' | number) => {
     if (typeof badge === 'number') {
@@ -41,7 +44,7 @@ export const NavBarItem: React.FC<INavBarOption> = ({
   };
 
   return (
-    <li className={styles[baseClass]}>
+    <li key={id} className={styles[baseClass]}>
       <Tooltip
         placement="right"
         kind="invert"
@@ -56,8 +59,9 @@ export const NavBarItem: React.FC<INavBarOption> = ({
                 [styles[`${baseClass}__button--active`]]: isActive,
                 [styles[`${baseClass}__button--opacity`]]: disableOpacity,
               })}
-              onClick={onClick}
+              onClick={(e) => onClick(e, id)}
               href={href}
+              {...props}
             >
               {icon}
             </a>

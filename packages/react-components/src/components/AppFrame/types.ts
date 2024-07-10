@@ -1,69 +1,47 @@
 import * as React from 'react';
 
-export interface INavBarListProps {
-  className?: string;
-}
-
-export interface INavBarOption {
-  label: string;
-  icon: React.ReactElement;
-  href: string;
-  disableTooltip?: boolean;
-  disableOpacity?: boolean;
-  badge?: 'dot' | 'alert' | number;
-  isActive?: boolean;
-  onClick: (e: React.MouseEvent<HTMLAnchorElement>) => void;
-}
-
 export interface IAppFrameProps {
+  /**
+   * It will display your app in the content area
+   */
   children: React.ReactNode;
+  /**
+   * The CSS class for the app frame
+   */
   className?: string;
-  topNavBarNode?: React.ReactNode;
-  bottomNavBarNode?: React.ReactNode;
-  subNavBar?: React.ReactNode;
-  topBarNode?: React.ReactNode;
-  navigationClassName?: string;
+  /**
+   * It will display navigation elements
+   */
+  navigation: React.ReactNode;
+  /**
+   * It will display the side navigation bar
+   */
+  sideNavigation?: React.ReactNode;
+  /**
+   * It will display the top bar with passed element
+   */
+  topBar?: React.ReactNode;
+  /**
+   * The CSS class for the top bar
+   */
   topBarClassName?: string;
-  subNavigationClassName?: string;
+  /**
+   * The CSS class for the sub navigation bar
+   */
+  sideNavigationClassName?: string;
+  /**
+   * The CSS class for the content container
+   */
   contentClassName?: string;
 }
 
-export interface INavBarProps {
-  className?: string;
-  topNavBarNode?: React.ReactNode;
-  bottomNavBarNode?: React.ReactNode;
-}
-
-export interface ISubNavBarProps {
-  title?: string;
-  customHeader?: React.ReactNode;
-  noGaps?: boolean;
-  rightNode?: React.ReactNode;
-}
-
-export interface ISubNavBarListProps {
-  children: React.ReactNode;
-  label?: React.ReactNode | ((isOpen: boolean) => React.ReactNode);
-  rightNode?: React.ReactNode | ((isOpen: boolean) => React.ReactNode);
-  className?: string;
-  isCollapsible?: boolean;
-  onItemHover?: () => void;
-  // tourStep?: ISideNavigationItem['tourStep'];
-  shouldOpenOnInit?: boolean;
-  shouldOpenOnActive?: boolean;
-}
-
-export interface ISubNavBarListItemProps {
-  label: React.ReactNode;
-  rightNode?: React.ReactNode;
-  icon?: React.ReactNode;
-  shouldKeepIconSpace?: boolean;
-  url?: string;
-  className?: string;
-  isActive?: boolean;
-  isMainEntry?: boolean;
-  onClick: () => void;
-  onItemHover?: () => void;
-  isIconHidden?: boolean;
-  // tourStep?: ISideNavigationItem['tourStep'];
-}
+export type {
+  INavigationListProps,
+  INavigationItemProps,
+  INavigationProps,
+} from './components/Navigation/types';
+export type {
+  ISubNavBarProps,
+  ISubNavBarListProps,
+  ISubNavBarListItemProps,
+} from './components/SideNavigation/types';

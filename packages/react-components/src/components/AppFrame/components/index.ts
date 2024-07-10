@@ -1,6 +1,6 @@
-export { SubNavBar } from './SubNavBar/SubNavBar';
-export { SubNavBarList } from './SubNavBar/SubNavBarList';
-export { SubNavBarListItem } from './SubNavBar/SubNavBarListItem';
-export { NavBarList } from './NavBar/NavBarList';
-export { NavBarItem } from './NavBar/NavBarItem';
-export { NavBar } from './NavBar/NavBar';
+export { SubNavBar } from './SideNavigation/SubNavBar';
+export { SubNavBarList } from './SideNavigation/SubNavBarList';
+export { SubNavBarListItem } from './SideNavigation/SubNavBarListItem';
+export { NavigationList } from './Navigation/NavigationList';
+export { NavigationItem } from './Navigation/NavigationItem';
+export { Navigation } from './Navigation/Navigation';

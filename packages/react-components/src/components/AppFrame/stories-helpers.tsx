@@ -53,6 +53,20 @@ export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
   );
 };
 
+export const ExampleTopBar: React.FC = () => (
+  <div
+    style={{
+      width: '100%',
+      height: '100%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    }}
+  >
+    <h3>Top bar node</h3>
+  </div>
+);
+
 export const getChatsMenu = (
   activeSubItem: number,
   handler: (o: number) => void

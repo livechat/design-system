@@ -109,11 +109,5 @@ export const SubNavBarList: React.FC<ISubNavBarListProps> = ({
     </div>
   );
 
-  // return tourStep ? (
-  //   <UserGuidedTourStep tourId={tourStep.id} step={tourStep.step}>
-  //     {listContent}
-  //   </UserGuidedTourStep>
-  // ) : (
   return listContent;
-  // );
 };

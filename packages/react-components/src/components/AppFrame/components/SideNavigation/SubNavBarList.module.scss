@@ -1,11 +1,12 @@
 $base-class: 'sub-nav-bar-list';
+$transition: all var(--transition-duration-moderate-1)
+  cubic-bezier(0.645, 0.045, 0.355, 1);
 
 .#{$base-class} {
   width: 100%;
 
   &__chevron {
-    transition: transform var(--transition-duration-moderate-1)
-      cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: $transition;
 
     &--active {
       transform: rotate(90deg);
@@ -19,8 +20,7 @@ $base-class: 'sub-nav-bar-list';
   &__list {
     display: flex;
     flex-direction: column;
-    transition: all var(--transition-duration-moderate-1)
-      cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: $transition;
     opacity: 0;
     margin-top: 0;
     margin-bottom: 0;
@@ -32,8 +32,7 @@ $base-class: 'sub-nav-bar-list';
 
     > li {
       transform: translateY(-10px);
-      transition: all var(--transition-duration-fast-2)
-        cubic-bezier(0.645, 0.045, 0.355, 1);
+      transition: $transition;
     }
 
     &--expanded {
