@@ -3,10 +3,10 @@ import * as React from 'react';
 import { ChevronRight } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
-import noop from '../../../utils/noop';
-import { Icon } from '../../Icon';
-import { Text } from '../../Typography';
-import { ISubNavBarListProps } from '../types';
+import noop from '../../../../utils/noop';
+import { Icon } from '../../../Icon';
+import { Text } from '../../../Typography';
+import { ISubNavBarListProps } from '../../types';
 
 import { SubNavBarListItem } from './SubNavBarListItem';
 

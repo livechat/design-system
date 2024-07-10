@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import noop from '../../../utils/noop';
-import { Text } from '../../Typography';
-import { ISubNavBarListItemProps } from '../types';
+import noop from '../../../../utils/noop';
+import { Text } from '../../../Typography';
+import { ISubNavBarListItemProps } from '../../types';
 
 import styles from './SubNavBarListItem.module.scss';
 

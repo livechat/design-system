@@ -4,7 +4,7 @@ import cx from 'clsx';
 
 import { useAppFrame } from '../../providers/AppFrameProvider';
 
-import { NavBar } from './components/NavBar';
+import { NavBar } from './components';
 import { IAppFrameProps } from './types';
 
 import styles from './AppFrame.module.scss';

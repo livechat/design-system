@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import { Heading } from '../../Typography';
-import { ISubNavBarProps } from '../types';
+import { Heading } from '../../../Typography';
+import { ISubNavBarProps } from '../../types';
 
 import styles from './SubNavBar.module.scss';
 

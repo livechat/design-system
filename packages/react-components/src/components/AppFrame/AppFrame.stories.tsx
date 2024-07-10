@@ -171,16 +171,6 @@ export const Default = (): React.ReactElement => {
               href="#"
             />
             <NavBarItem
-              label="News"
-              icon={<Icon source={Icons.Notifications} />}
-              onClick={(e) => {
-                e.preventDefault();
-                setActiveItem('news');
-              }}
-              isActive={activeItem === 'news'}
-              href="#"
-            />
-            <NavBarItem
               label="User"
               disableOpacity
               disableTooltip

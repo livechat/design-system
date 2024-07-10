@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import { INavBarProps } from '../types';
+import { INavBarProps } from '../../types';
 
 import styles from './NavBar.module.scss';
 

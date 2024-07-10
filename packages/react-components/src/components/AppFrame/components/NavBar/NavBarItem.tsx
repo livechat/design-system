@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import { Badge } from '../../Badge';
-import { Tooltip } from '../../Tooltip';
-import { INavBarOption } from '../types';
+import { Badge } from '../../../Badge';
+import { Tooltip } from '../../../Tooltip';
+import { INavBarOption } from '../../types';
 
 import styles from './NavBarItem.module.scss';
 
