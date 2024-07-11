@@ -68,7 +68,7 @@ export const SideNavigationList: React.FC<ISideNavigationListProps> = ({
     <div className={styles[baseClass]}>
       {isCollapsible ? (
         <SideNavigationItem
-          icon={
+          leftNode={
             <div
               className={cx(styles[`${baseClass}__chevron`], {
                 [styles[`${baseClass}__chevron--active`]]: isOpen,

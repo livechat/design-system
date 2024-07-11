@@ -33,7 +33,7 @@ export interface ISideNavigationListProps {
 export interface ISideNavigationItemProps {
   label: React.ReactNode;
   rightNode?: React.ReactNode;
-  icon?: React.ReactNode;
+  leftNode?: React.ReactNode;
   shouldKeepIconSpace?: boolean;
   url?: string;
   className?: string;

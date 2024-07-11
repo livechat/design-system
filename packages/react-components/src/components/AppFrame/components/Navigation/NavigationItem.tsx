@@ -46,6 +46,7 @@ export const NavigationItem: React.FC<INavigationItemProps> = ({
   return (
     <li key={id} className={styles[baseClass]}>
       <Tooltip
+        floatingStrategy="fixed"
         placement="right"
         kind="invert"
         isVisible={disableTooltip ? false : undefined}

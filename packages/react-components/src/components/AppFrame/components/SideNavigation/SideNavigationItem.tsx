@@ -16,7 +16,7 @@ export const SIDE_NAVIGATION_PARENT_ICON_TEST_ID = 'side-nav-parent-icon';
 const baseClass = 'side-navigation-item';
 
 export const SideNavigationItem: React.FC<ISideNavigationItemProps> = ({
-  icon,
+  leftNode,
   shouldKeepIconSpace = true,
   url,
   label,
@@ -58,12 +58,12 @@ export const SideNavigationItem: React.FC<ISideNavigationItemProps> = ({
       >
         {shouldKeepIconSpace && (
           <span
-            className={cx(styles[`${baseClass}__icon`], {
-              [styles[`${baseClass}__icon--active`]]: isActive,
+            className={cx(styles[`${baseClass}__left-node`], {
+              [styles[`${baseClass}__left-node--active`]]: isActive,
             })}
             data-testid={SIDE_NAVIGATION_PARENT_ICON_TEST_ID}
           >
-            {icon}
+            {leftNode}
           </span>
         )}
         {isTextLabel ? (

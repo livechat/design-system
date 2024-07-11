@@ -111,21 +111,21 @@ export const getEngageSubMenu = (
   <SideNavigation noGaps title="List of options with additional elements">
     <SideNavigationItem
       label="Option 1"
-      icon={<Icon source={Icons.HelpFilled} size="small" />}
+      leftNode={<Icon source={Icons.HelpFilled} size="small" />}
       rightNode={<Badge count={5} />}
       isActive={activeSubItem === 0}
       onClick={() => handler(0)}
     />
     <SideNavigationItem
       label="Option 2"
-      icon={<Icon source={Icons.ErrorFilled} size="small" />}
+      leftNode={<Icon source={Icons.ErrorFilled} size="small" />}
       rightNode={<Badge kind="tertiary" />}
       isActive={activeSubItem === 1}
       onClick={() => handler(1)}
     />
     <SideNavigationItem
       label="Option 3"
-      icon={<Icon source={Icons.CloseCircleFilled} size="small" />}
+      leftNode={<Icon source={Icons.CloseCircleFilled} size="small" />}
       rightNode={<Tag size="small">NEW</Tag>}
       isActive={activeSubItem === 2}
       onClick={() => handler(2)}
@@ -163,21 +163,21 @@ export const getArchivesSubMenu = (
     <SideNavigationList isCollapsible label="With elements">
       <SideNavigationItem
         label="Option 5"
-        icon={<Icon source={Icons.HelpFilled} size="small" />}
+        leftNode={<Icon source={Icons.HelpFilled} size="small" />}
         rightNode={<Badge count={5} />}
         isActive={activeSubItem === 4}
         onClick={() => handler(4)}
       />
       <SideNavigationItem
         label="Option 6"
-        icon={<Icon source={Icons.ErrorFilled} size="small" />}
+        leftNode={<Icon source={Icons.ErrorFilled} size="small" />}
         rightNode={<Badge kind="tertiary" />}
         isActive={activeSubItem === 5}
         onClick={() => handler(5)}
       />
       <SideNavigationItem
         label="Option 7"
-        icon={<Icon source={Icons.CloseCircleFilled} size="small" />}
+        leftNode={<Icon source={Icons.CloseCircleFilled} size="small" />}
         rightNode={<Tag size="small">NEW</Tag>}
         isActive={activeSubItem === 6}
         onClick={() => handler(6)}
