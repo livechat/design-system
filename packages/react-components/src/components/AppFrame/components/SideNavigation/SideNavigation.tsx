@@ -3,13 +3,14 @@ import * as React from 'react';
 import cx from 'clsx';
 
 import { Heading } from '../../../Typography';
-import { ISubNavBarProps } from '../../types';
 
-import styles from './SubNavBar.module.scss';
+import { ISideNavigationProps } from './types';
 
-const baseClass = 'sub-nav-bar';
+import styles from './SideNavigation.module.scss';
 
-export const SubNavBar: React.FC<ISubNavBarProps> = ({
+const baseClass = 'side-navigation';
+
+export const SideNavigation: React.FC<ISideNavigationProps> = ({
   children,
   title,
   customHeader,

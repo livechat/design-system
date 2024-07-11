@@ -41,7 +41,7 @@ export type {
   INavigationProps,
 } from './components/Navigation/types';
 export type {
-  ISubNavBarProps,
-  ISubNavBarListProps,
-  ISubNavBarListItemProps,
+  ISideNavigationProps,
+  ISideNavigationListProps,
+  ISideNavigationItemProps,
 } from './components/SideNavigation/types';

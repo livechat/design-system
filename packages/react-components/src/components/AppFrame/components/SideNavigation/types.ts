@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export interface ISubNavBarProps {
+export interface ISideNavigationProps {
   /**
    * It will display the title of the sub navigation bar
    */
@@ -19,7 +19,7 @@ export interface ISubNavBarProps {
   rightNode?: React.ReactNode;
 }
 
-export interface ISubNavBarListProps {
+export interface ISideNavigationListProps {
   children: React.ReactNode;
   label?: React.ReactNode | ((isOpen: boolean) => React.ReactNode);
   rightNode?: React.ReactNode | ((isOpen: boolean) => React.ReactNode);
@@ -30,7 +30,7 @@ export interface ISubNavBarListProps {
   shouldOpenOnActive?: boolean;
 }
 
-export interface ISubNavBarListItemProps {
+export interface ISideNavigationItemProps {
   label: React.ReactNode;
   rightNode?: React.ReactNode;
   icon?: React.ReactNode;

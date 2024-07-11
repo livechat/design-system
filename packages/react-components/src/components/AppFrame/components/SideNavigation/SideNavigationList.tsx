@@ -6,22 +6,21 @@ import cx from 'clsx';
 import noop from '../../../../utils/noop';
 import { Icon } from '../../../Icon';
 import { Text } from '../../../Typography';
-import { ISubNavBarListProps } from '../../types';
 
-import { SubNavBarListItem } from './SubNavBarListItem';
+import { SideNavigationItem } from './SideNavigationItem';
+import { ISideNavigationListProps } from './types';
 
-import styles from './SubNavBarList.module.scss';
+import styles from './SideNavigationList.module.scss';
 
-const baseClass = 'sub-nav-bar-list';
+const baseClass = 'side-navigation-list';
 
-export const SubNavBarList: React.FC<ISubNavBarListProps> = ({
+export const SideNavigationList: React.FC<ISideNavigationListProps> = ({
   label,
   rightNode,
   className,
   children,
   isCollapsible,
   onItemHover,
-  // tourStep,
   shouldOpenOnInit = false,
   shouldOpenOnActive = false,
 }) => {
@@ -68,7 +67,7 @@ export const SubNavBarList: React.FC<ISubNavBarListProps> = ({
   const listContent = (
     <div className={styles[baseClass]}>
       {isCollapsible ? (
-        <SubNavBarListItem
+        <SideNavigationItem
           icon={
             <div
               className={cx(styles[`${baseClass}__chevron`], {

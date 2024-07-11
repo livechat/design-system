@@ -4,17 +4,18 @@ import cx from 'clsx';
 
 import noop from '../../../../utils/noop';
 import { Text } from '../../../Typography';
-import { ISubNavBarListItemProps } from '../../types';
 
-import styles from './SubNavBarListItem.module.scss';
+import { ISideNavigationItemProps } from './types';
+
+import styles from './SideNavigationItem.module.scss';
 
 export const SIDE_NAVIGATION_ITEM_TEST_ID = 'side-navigation-item-test-id';
 export const SIDE_NAVIGATION_ACTIVE_ITEM_TEST_ID =
   'side-navigation-active-item-test-id';
 export const SIDE_NAVIGATION_PARENT_ICON_TEST_ID = 'side-nav-parent-icon';
-const baseClass = 'sub-nav-bar-list-item';
+const baseClass = 'side-navigation-item';
 
-export const SubNavBarListItem: React.FC<ISubNavBarListItemProps> = ({
+export const SideNavigationItem: React.FC<ISideNavigationItemProps> = ({
   icon,
   shouldKeepIconSpace = true,
   url,
@@ -25,7 +26,6 @@ export const SubNavBarListItem: React.FC<ISubNavBarListItemProps> = ({
   isActive,
   isMainEntry,
   onItemHover,
-  // tourStep,
   isIconHidden,
 }) => {
   const isTextLabel = typeof label === 'string';
@@ -83,11 +83,5 @@ export const SubNavBarListItem: React.FC<ISubNavBarListItemProps> = ({
     </li>
   );
 
-  // return tourStep ? (
-  //   <UserGuidedTourStep tourId={tourStep.id} step={tourStep.step}>
-  //     {navigationItem}
-  //   </UserGuidedTourStep>
-  // ) : (
   return navigationItem;
-  // );
 };
