@@ -1,0 +1,104 @@
+import { ArgTypes, Canvas, Meta, Title } from '@storybook/blocks';
+import * as AppFrameStories from './AppFrame.stories';
+
+<Meta of={AppFrameStories} />
+
+<Title>AppFrame</Title>
+
+[Intro](#Intro) | [How to build the navigation](#BuildNav) | [Component API](#ComponentAPI)
+
+## Intro <a id="Intro" />
+
+`AppFrame` is a component used to build an application layout, which assumes displaying its content in a frame around which interface elements such as navigation, side navigation or top bar are located.
+
+The most important functionality of this component, apart from the UI layout, is primarily the navigation displayed on the left side of the layout. Thanks to the component approach to building this navigation, anyone can easily add additional elements to the navigation, and specific components will be responsible for specific tasks within the operation of the entire component, while leaving the way open to introducing your own custom elements, the addition of which will not be necessary, blocked by the limiting interface.
+
+<Canvas of={AppFrameStories.Default} />
+
+## How to build the navigation <a id="BuildNav" />
+
+The component allows you to place navigation available on the left side, consisting of icons, and also allows you to display additional navigation in the opening panel.
+
+### Main navigation
+
+To build the main navigation, use the available components:
+- `Navigation`
+- `NavigationList`
+- `NavigationItem`
+
+#### `Navigation` component
+
+It mainly serves as a container for other navigation elements. The styles have been prepared to provide enough space to place a list of items. If we want to make another group of navigation items, the next group will be displayed at the bottom of the navigation.
+
+#### `NavigationList` component
+
+Is another container for building navigation, responsible for the appropriate arrangement of navigation buttons. In addition to the container function, it is also responsible for enabling scrolling of elements when there is not enough space to display them using the `scrollable` prop, which is not defined by default.
+
+#### `NavigationItem` component
+
+The final element for building navigation, which is responsible for displaying the buttons. This component will display buttons with an icon (or any other element you pass, but remember about the size limitations of this element), a tooltip displayed on the hover with the name of the given element passed by `label` which can be turned off if necessary, and also badge which is optional.
+
+#### Navigation implementation example
+
+```jsx
+<AppFrame
+  navigation={
+    <Navigation>
+      <NavigationList scrollable>
+        ...
+        <NavigationItem
+          key="home"
+          id="home"
+          label="Home"
+          icon={<Icon source={Home} />}
+          onClick={(e, id) => {}}
+          isActive={activeItem === 'home'}
+          badge={5}
+          url="#"
+        />
+        ...
+      </NavigationList>
+      <NavigationList>
+        ...
+        <NavigationItem
+          key="settings"
+          id="settings"
+          label="Settings"
+          icon={<Icon source={Settings} />}
+          onClick={(e, id) => {}}
+          isActive={activeItem === 'settings'}
+          badge='alert'
+          url="#"
+        />
+        ...
+      </NavigationList>
+    </Navigation>
+  }
+>
+  App content
+</AppFrame>
+```
+
+### Side navigation
+
+To build the side navigation, use the available components:
+
+- `SideNavigation`
+- `SideNavigationList`
+- `SideNavigationItem`
+
+#### `SideNavigation` component
+
+It mainly serves as a container for other side navigation elements. An addition in this component is props `title` which will display an additional header above the list of navigation buttons.
+
+#### `SideNavigationList` component
+
+TBD
+
+#### `SideNavigationItem` component
+
+TBD
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={AppFrameStories.Default} sort="requiredFirst" />

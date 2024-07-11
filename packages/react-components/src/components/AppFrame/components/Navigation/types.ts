@@ -27,7 +27,7 @@ export interface INavigationItemProps {
   /**
    * The URL to navigate to
    */
-  href: string;
+  url: string;
   /**
    * Specify whether the tooltip should be disabled after hover
    */

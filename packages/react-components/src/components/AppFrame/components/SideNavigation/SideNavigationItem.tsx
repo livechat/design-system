@@ -27,6 +27,7 @@ export const SideNavigationItem: React.FC<ISideNavigationItemProps> = ({
   isMainEntry,
   onItemHover,
   isIconHidden,
+  ...props
 }) => {
   const isTextLabel = typeof label === 'string';
 
@@ -44,6 +45,7 @@ export const SideNavigationItem: React.FC<ISideNavigationItemProps> = ({
           : SIDE_NAVIGATION_ITEM_TEST_ID
       }
       data-active={isActive}
+      {...props}
     >
       <a
         className={cx(styles[`${baseClass}__anchor`], {

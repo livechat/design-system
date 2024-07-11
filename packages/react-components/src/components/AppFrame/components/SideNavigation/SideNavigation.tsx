@@ -12,6 +12,7 @@ const baseClass = 'side-navigation';
 
 export const SideNavigation: React.FC<ISideNavigationProps> = ({
   children,
+  className,
   title,
   customHeader,
   noGaps,
@@ -27,7 +28,7 @@ export const SideNavigation: React.FC<ISideNavigationProps> = ({
   );
 
   return (
-    <div className={styles[`${baseClass}`]}>
+    <div className={cx(styles[`${baseClass}`], className)}>
       {header}
       <div
         className={cx(styles[`${baseClass}__nav-wrapper`], {

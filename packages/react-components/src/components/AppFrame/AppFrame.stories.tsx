@@ -7,11 +7,19 @@ import { Icon } from '../Icon';
 import { Tooltip } from '../Tooltip';
 
 import { AppFrame } from './AppFrame';
-import { Navigation, NavigationItem, NavigationList } from './components';
+import {
+  Navigation,
+  NavigationItem,
+  NavigationList,
+  SideNavigation,
+  SideNavigationItem,
+  SideNavigationList,
+} from './components';
 import {
   ExampleAppContent,
   ExampleTopBar,
   getArchivesSubMenu,
+  getBadgeContent,
   getChatsMenu,
   getEngageSubMenu,
 } from './stories-helpers';
@@ -25,8 +33,44 @@ export default {
   parameters: {
     layout: 'fullscreen',
   },
+  subcomponents: {
+    Navigation,
+    NavigationItem,
+    NavigationList,
+    SideNavigation,
+    SideNavigationItem,
+    SideNavigationList,
+  },
 };
 
+const navigationItems = [
+  'home',
+  'chats',
+  'engage',
+  'archives',
+  'tickets',
+  'team',
+  'reports',
+  'apps',
+  'billing',
+  'settings',
+  'news',
+];
+const navigationItemsIcons = [
+  Icons.LiveChatMono,
+  Icons.Messages,
+  Icons.Automation,
+  Icons.Archives,
+  Icons.Tickets,
+  Icons.People,
+  Icons.Report,
+  Icons.Apps,
+];
+const secondaryNavigationIcons = [
+  Icons.CreditCardOutline,
+  Icons.Settings,
+  Icons.Notifications,
+];
 const SectionsWithToggle = ['chats', 'engage', 'archives'];
 
 export const Default = (): React.ReactElement => {
@@ -52,133 +96,37 @@ export const Default = (): React.ReactElement => {
       navigation={
         <Navigation>
           <NavigationList scrollable>
-            <NavigationItem
-              id="home"
-              label="Home"
-              disableTooltip
-              icon={<Icon source={Icons.LiveChatMono} />}
-              onClick={(e, id) => {
-                e.preventDefault();
-                setActiveItem(id);
-              }}
-              isActive={activeItem === 'home'}
-              href="#"
-            />
-            <NavigationItem
-              id="chats"
-              label="Chats"
-              icon={<Icon source={Icons.Messages} />}
-              onClick={(e, id) => {
-                e.preventDefault();
-                setActiveItem(id);
-              }}
-              isActive={activeItem === 'chats'}
-              badge="dot"
-              href="#"
-            />
-            <NavigationItem
-              id="engage"
-              label="Engage"
-              icon={<Icon source={Icons.Automation} />}
-              onClick={(e, id) => {
-                e.preventDefault();
-                setActiveItem(id);
-              }}
-              isActive={activeItem === 'engage'}
-              badge="alert"
-              href="#"
-            />
-            <NavigationItem
-              id="archives"
-              label="Archives"
-              icon={<Icon source={Icons.Archives} />}
-              onClick={(e, id) => {
-                e.preventDefault();
-                setActiveItem(id);
-              }}
-              isActive={activeItem === 'archives'}
-              badge={5}
-              href="#"
-            />
-            <NavigationItem
-              id="tickets"
-              label="Tickets"
-              icon={<Icon source={Icons.Tickets} />}
-              onClick={(e, id) => {
-                e.preventDefault();
-                setActiveItem(id);
-              }}
-              isActive={activeItem === 'tickets'}
-              href="#"
-            />
-            <NavigationItem
-              id="team"
-              label="Team"
-              icon={<Icon source={Icons.People} />}
-              onClick={(e, id) => {
-                e.preventDefault();
-                setActiveItem(id);
-              }}
-              isActive={activeItem === 'team'}
-              href="#"
-            />
-            <NavigationItem
-              id="reports"
-              label="Reports"
-              icon={<Icon source={Icons.Report} />}
-              onClick={(e, id) => {
-                e.preventDefault();
-                setActiveItem(id);
-              }}
-              isActive={activeItem === 'reports'}
-              href="#"
-            />
-            <NavigationItem
-              id="apps"
-              label="Apps"
-              icon={<Icon source={Icons.Apps} />}
-              onClick={(e, id) => {
-                e.preventDefault();
-                setActiveItem(id);
-              }}
-              isActive={activeItem === 'apps'}
-              href="#"
-            />
+            {navigationItems.slice(0, 8).map((item, index) => (
+              <NavigationItem
+                key={item}
+                id={item}
+                label={item.charAt(0).toUpperCase() + item.slice(1)}
+                icon={<Icon source={navigationItemsIcons[index]} />}
+                onClick={(e, id) => {
+                  e.preventDefault();
+                  setActiveItem(id);
+                }}
+                isActive={activeItem === item}
+                badge={getBadgeContent(item)}
+                url="#"
+              />
+            ))}
           </NavigationList>
           <NavigationList>
-            <NavigationItem
-              id="billing"
-              label="Billing"
-              icon={<Icon source={Icons.CreditCardOutline} />}
-              onClick={(e, id) => {
-                e.preventDefault();
-                setActiveItem(id);
-              }}
-              isActive={activeItem === 'billing'}
-              href="#"
-            />
-            <NavigationItem
-              id="settings"
-              label="Settings"
-              icon={<Icon source={Icons.Settings} />}
-              onClick={(e, id) => {
-                e.preventDefault();
-                setActiveItem(id);
-              }}
-              isActive={activeItem === 'settings'}
-              href="#"
-            />
-            <NavigationItem
-              id="news"
-              label="News"
-              icon={<Icon source={Icons.Notifications} />}
-              onClick={(e, id) => {
-                e.preventDefault();
-                setActiveItem(id);
-              }}
-              isActive={activeItem === 'news'}
-              href="#"
-            />
+            {navigationItems.slice(8, 11).map((item, index) => (
+              <NavigationItem
+                key={item}
+                id={item}
+                label={item.charAt(0).toUpperCase() + item.slice(1)}
+                icon={<Icon source={secondaryNavigationIcons[index]} />}
+                onClick={(e, id) => {
+                  e.preventDefault();
+                  setActiveItem(id);
+                }}
+                isActive={activeItem === item}
+                url="#"
+              />
+            ))}
             <NavigationItem
               id="user"
               label="User"
@@ -201,7 +149,7 @@ export const Default = (): React.ReactElement => {
                 </Tooltip>
               }
               onClick={(e) => e.preventDefault()}
-              href="#"
+              url="#"
             />
           </NavigationList>
         </Navigation>

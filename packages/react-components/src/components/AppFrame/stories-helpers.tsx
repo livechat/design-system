@@ -72,6 +72,19 @@ export const ExampleTopBar: React.FC = () => (
   </div>
 );
 
+export const getBadgeContent = (item: string) => {
+  switch (item) {
+    case 'chats':
+      return 5;
+    case 'engage':
+      return 'dot';
+    case 'archives':
+      return 'alert';
+    default:
+      return undefined;
+  }
+};
+
 export const getChatsMenu = (
   activeSubItem: number,
   handler: (o: number) => void

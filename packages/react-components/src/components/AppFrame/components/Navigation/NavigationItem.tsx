@@ -15,7 +15,7 @@ export const NavigationItem: React.FC<INavigationItemProps> = ({
   id,
   label,
   icon,
-  href,
+  url,
   disableTooltip,
   disableOpacity,
   badge,
@@ -61,7 +61,7 @@ export const NavigationItem: React.FC<INavigationItemProps> = ({
                 [styles[`${baseClass}__button--opacity`]]: disableOpacity,
               })}
               onClick={(e) => onClick(e, id)}
-              href={href}
+              href={url}
               {...props}
             >
               {icon}
