@@ -31,7 +31,8 @@ jobs:
               body = prData.body.replace(/{issue-number}/g, issueNumber);
             }
             
-            body = prData.body.replace(/{branch-name}/g, branchName);
+            const branchNameCropped = branchName.split('feature/')[1];
+            body = prData.body.replace(/{branch-name}/g, branchNameCropped);
                         
             await github.rest.pulls.update({
               owner: owner,
