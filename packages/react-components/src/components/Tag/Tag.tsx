@@ -26,7 +26,6 @@ const getCustomTextClass = (customColor?: string) => {
 export const Tag: React.FC<React.PropsWithChildren<TagProps>> = ({
   className = '',
   children,
-  dismissible = false,
   dismissibleOnHover = false,
   disabled = false,
   size = 'medium',

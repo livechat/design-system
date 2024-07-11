@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { render, vi, userEvent } from 'test-utils';
 
 import { UploadBar, UploadBarProps } from './UploadBar';

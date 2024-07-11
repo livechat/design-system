@@ -10,11 +10,9 @@ export type FieldDescriptionProps = React.HTMLAttributes<HTMLSpanElement>;
 
 const baseClass = 'field-description';
 
-export const FieldDescription: React.FC<FieldDescriptionProps> = ({
-  children,
-  className = '',
-  ...props
-}) => {
+export const FieldDescription: React.FC<
+  React.PropsWithChildren<FieldDescriptionProps>
+> = ({ children, className = '', ...props }) => {
   const mergedClassNames = cx(styles[baseClass], className);
 
   return (

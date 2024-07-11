@@ -31,7 +31,7 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   type?: 'counter' | 'alert' | 'dot';
 }
 
-export const Badge: React.FC<BadgeProps> = ({
+export const Badge: React.FC<React.PropsWithChildren<BadgeProps>> = ({
   className,
   count = 0,
   max = 99,

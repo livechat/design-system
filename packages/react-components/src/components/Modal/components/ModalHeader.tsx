@@ -33,13 +33,9 @@ export interface ModalHeaderProps {
   className?: string;
 }
 
-export const ModalHeader: React.FC<ModalHeaderProps> = ({
-  title,
-  iconProps,
-  avatarProps,
-  children,
-  className = '',
-}) => {
+export const ModalHeader: React.FC<
+  React.PropsWithChildren<ModalHeaderProps>
+> = ({ title, iconProps, avatarProps, children, className = '' }) => {
   const mergedClassNames = cx(styles[baseClass], className);
 
   return (
