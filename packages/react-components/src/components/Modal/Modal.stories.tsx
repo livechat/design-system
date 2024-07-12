@@ -38,6 +38,14 @@ export default {
   },
 } as Meta<typeof ModalComponent>;
 
+const StoryContainerStyles = {
+  width: '80vh',
+  height: '50vh',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
+
 const defaultModalProps = {
   children: <ModalContent />,
   closeOnEscPress: true,
@@ -53,15 +61,7 @@ const StoryTemplate: StoryFn<ModalProps> = ({
   const [isOpen, setIsOpen] = React.useState(true);
 
   return (
-    <div
-      style={{
-        width: '80vh',
-        height: '50vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <div style={StoryContainerStyles}>
       <Button onClick={() => setIsOpen(true)}>Open modal</Button>
       {isOpen && (
         <ModalComponent

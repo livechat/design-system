@@ -19,7 +19,7 @@ Use it for Data Entry:
 - <b>Invite</b> agents
 - <b>Gather</b> necessary information for specific tasks
 
-Modal includes:
+Modal should includes:
 
 - Form fields
 - Labels and placeholders for guidance
@@ -31,6 +31,8 @@ Modal includes:
 #### Example implementation
 
 ```jsx
+import { Modal, Button } from '@livechat/design-system-react-components';
+
 <Modal
   heading='Modal header'
   footer={
@@ -60,7 +62,7 @@ Use it for:
 - <b>Confirmation of actions</b> - Confirm that an action has been successfully completed (e.g., "Your changes have been saved").
 - <b>Educational content</b> - Offer tutorials, walkthroughs, or additional information about how to use a feature.
 
-Info modal includes:
+Info modal should includes:
 - An icon to indicate the type of information (e.g., info icon).
 - Action Title
 - Action Description
@@ -73,6 +75,8 @@ Info modal includes:
 #### Example implementation
 
 ```jsx
+import { Modal, ActionModalContent, Button } from '@livechat/design-system-react-components';
+
 <Modal {...props}>
   <ActionModalContent
     icon={
@@ -110,7 +114,7 @@ Use it in these scenarios:
 - <b>Executing a Command</b>: Double-check significant commands (e.g., start/stop services).
 - <b>Irreversible Actions</b>: Confirm actions that cannot be undone.
 
-Confirmation modal includes:
+Confirmation modal should includes:
 - Attention icon. (error)
 - Action Title
 - Action Description
@@ -133,6 +137,8 @@ Use it for:
 <Canvas of={ModalStories.ModalWithFullSpaceContent} sourceState="none" />
 
 ```jsx
+import { Modal, ModalHeader } from '@livechat/design-system-react-components';
+
 <Modal
   labelHeading={
     <ModalHeader
