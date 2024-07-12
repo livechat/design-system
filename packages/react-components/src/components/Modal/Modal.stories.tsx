@@ -53,7 +53,15 @@ const StoryTemplate: StoryFn<ModalProps> = ({
   const [isOpen, setIsOpen] = React.useState(true);
 
   return (
-    <>
+    <div
+      style={{
+        width: '80vh',
+        height: '50vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
       <Button onClick={() => setIsOpen(true)}>Open modal</Button>
       {isOpen && (
         <ModalComponent
@@ -64,7 +72,7 @@ const StoryTemplate: StoryFn<ModalProps> = ({
           {children}
         </ModalComponent>
       )}
-    </>
+    </div>
   );
 };
 
