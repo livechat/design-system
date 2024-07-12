@@ -1,4 +1,4 @@
-import { ArgTypes, Meta, Title } from '@storybook/blocks';
+import { ArgTypes, Meta, Title, Canvas } from '@storybook/blocks';
 
 import * as ModalStories from './Modal.stories';
 
@@ -8,24 +8,33 @@ import * as ModalStories from './Modal.stories';
 
 [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
 
+## How to use modals
+
+### Default Modal
+
+Default Modal window is used to gather user input without navigating away from the current page.
+
+Use it for Data Entry:
+- <b>Edit</b> details or preferences.
+- <b>Invite</b> agents
+- <b>Gather</b> necessary information for specific tasks
+
+Modal should includes:
+
+- Form fields
+- Labels and placeholders for guidance
+- Error messages and validation
+- Submit (Primary button kind) and cancel buttons (Secondary, Plain buttons kinds)
+
+<Canvas of={ModalStories.Modal} sourceState="none" />
+
 #### Example implementation
 
 ```jsx
-import { GreetingQuickReply } from '@livechat/design-system-icons';
+import { Modal, Button } from '@livechat/design-system-react-components';
 
 <Modal
-  heading={
-    <ModalHeader
-      title="Modal Header"
-      iconProps={{
-        source: GreetingQuickReply,
-        kind: 'primary',
-        size: 'large',
-      }}
-    >
-      Modal description
-    </ModalHeader>
-  }
+  heading='Modal header'
   footer={
     <div>
       <Button size="medium" kind="secondary">
@@ -39,7 +48,115 @@ import { GreetingQuickReply } from '@livechat/design-system-icons';
   onClose={() => {}}
 >
   Modal content
-</Modal>;
+</Modal>
+```
+
+### Action Modal - Info <a id="ActionModalInfo" />
+
+Info modal used to provide important information without requiring immediate action. 
+
+Use it for:
+- <b>General notifications</b> - Inform users about updates, news, or general information that doesn’t need immediate action.
+- <b>Instructions or tips</b> - Provide guidance or tips related to the current task or feature.
+- <b>Announcements</b> - Share announcements, such as new features, upcoming maintenance, or scheduled downtime.
+- <b>Confirmation of actions</b> - Confirm that an action has been successfully completed (e.g., "Your changes have been saved").
+- <b>Educational content</b> - Offer tutorials, walkthroughs, or additional information about how to use a feature.
+
+Info modal should includes:
+- An icon to indicate the type of information (e.g., info icon).
+- Action Title
+- Action Description
+- An acknowledgment primary button (e.g., "OK", "Got it").
+- Optional secondary button if further action might be needed (e.g., "Learn More").
+- Close icon
+
+<Canvas of={ModalStories.ActionModal} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+import { Modal, ActionModalContent, Button } from '@livechat/design-system-react-components';
+
+<Modal {...props}>
+  <ActionModalContent
+    icon={
+      <Icon
+        source={Error}
+        size="xxxlarge"
+        customColor="var(--content-basic-disabled)"
+      />
+    }
+    heading="Action Modal Header"
+    actions={
+      <>
+        <Button size="large">Button</Button>
+        <Button size="large" kind="primary">
+          Button
+        </Button>
+      </>
+    }
+  >
+    Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
+    Velit officia consequat duis enim velit mollit. Exercitation veniam
+    consequat sunt nostrud amet.
+  </ActionModalContent>
+</Modal>
+```
+
+### Action Modal - Confirmation
+
+A Confirmation Modal is used to verify a user's intent before proceeding with important actions.
+
+Use it in these scenarios:
+- <b>Deleting Data</b>: Prevent accidental data loss.
+- <b>Submitting a Form</b>: Confirm critical information submission.
+- <b>Exiting or Logging Out</b>: Ensure unsaved changes are saved or confirm exit.
+- <b>Executing a Command</b>: Double-check significant commands (e.g., start/stop services).
+- <b>Irreversible Actions</b>: Confirm actions that cannot be undone.
+
+Confirmation modal should includes:
+- Attention icon. (error)
+- Action Title
+- Action Description
+- Primary (kind=Destructive) and secondary buttons (optional).
+- Close icon
+
+The implementation is the same as [Action Modal - Info](#ActionModalInfo)
+
+### Full space content “Promo modal”
+
+A Promotional Modal is used to introduce new features or updates to users in an engaging way. 
+
+Use it for:
+- <b>New Feature Announcements</b>: Highlight and explain new features or tools.
+- <b>Product Updates</b>: Inform users about major updates or improvements.
+- <b>Special Offers</b>: Promote limited-time deals, discounts, or promotions.
+- <b>User Onboarding</b>: Guide new users through key features and benefits.
+- <b>Engagement Boost</b>: Encourage users to try out new or underused features.
+
+<Canvas of={ModalStories.ModalWithFullSpaceContent} sourceState="none" />
+
+```jsx
+import { Modal, ModalHeader } from '@livechat/design-system-react-components';
+
+<Modal
+  labelHeading={
+    <ModalHeader
+      title="Modal Header"
+      avatarProps={{
+        type: 'image',
+        size: 'small',
+        src: 'https://cdn-labs.livechat-files.com/api/file/lc/img/100019504/df59da4b5b0cdb6030efb08787fd255d.jpg',
+      }}
+    >
+      {' '}
+      Modal description{' '}
+    </ModalHeader>
+  }
+  fullSpaceContent
+>
+  <YourCustomStyledContent />
+</Modal>
 ```
 
 ## Component API <a id="ComponentAPI" />
