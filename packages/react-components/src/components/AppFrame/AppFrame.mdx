@@ -17,7 +17,7 @@ The most important functionality of this component, apart from the UI layout, is
 
 ## How to build the navigation <a id="BuildNav" />
 
-[Main nvaigation](#MainNav) | [Side navigation](#SideNav) | [AppFrameProvider](#Provider)
+[Main navigation](#MainNav) | [Side navigation](#SideNav) | [AppFrameProvider](#Provider)
 
 The component allows you to place navigation available on the left side, consisting of icons, and also allows you to display additional navigation in the opening panel.
 
@@ -25,29 +25,32 @@ The component allows you to place navigation available on the left side, consist
 
 To build the main navigation, use the available components:
 - `Navigation`
-- `NavigationList`
+- `NavigationGroup`
 - `NavigationItem`
 
 #### `Navigation` component
 
-It mainly serves as a container for other navigation elements. The styles have been prepared to provide enough space to place a list of items. If we want to make another group of navigation items, the next group will be displayed at the bottom of the navigation.
+The `Navigation` component serves as the main wrapper for grouped navigation items passed as children. It should have `NavigationGroup` components as its direct children, which will group `NavigationItem` components. The styles have been prepared to provide enough space to place a list of items vertically and also have styles that display `NavigationGroup` components on opposite sides of the bar, with the first item going to the top and the second to the bottom of the vertical navigation bar.
 
-#### `NavigationList` component
+#### `NavigationGroup` component
 
-Is another container for building navigation, responsible for the appropriate arrangement of navigation buttons. In addition to the container function, it is also responsible for enabling scrolling of elements when there is not enough space to display them using the `scrollable` prop, which is not defined by default.
+The `NavigationGroup` component is a container responsible for the appropriate grouping of `NavigationItem` elements. Should be a direct child of the `Navigation` component. In addition to its container function, it enables the scrolling of elements when there is insufficient space for their display. This feature can be activated by passing the prop `scrollable={true}`.
 
 #### `NavigationItem` component
 
-The final element for building navigation, which is responsible for displaying the buttons. This component will display buttons with an icon (or any other element you pass, but remember about the size limitations of this element), a tooltip displayed on the hover with the name of the given element passed by `label` which can be turned off if necessary, and also badge which is optional.
+The `NavigationItem` component is responsible for displaying navigation elements. It displays buttons with an icon (or any other element you provide, keeping in mind the size limitations of this component). Additionally, a tooltip displaying the name of the element can appear on hover, as specified by the `label` prop, this can be disabled if necessary. The badge prop is also optional.
 
 #### Navigation implementation example
 
 ```jsx
+import { AppFrame, Navigation, NavigationGroup, NavigationItem, Icon } from '@livechat/design-system-react-components';
+import { Home, Settings } from '@livechat/design-system-icons';
+
 <AppFrame
   navigation={
     <Navigation>
       // top navigation
-      <NavigationList scrollable>
+      <NavigationGroup scrollable>
         ...
         <NavigationItem
           key="home"
@@ -60,9 +63,9 @@ The final element for building navigation, which is responsible for displaying t
           url="#"
         />
         ...
-      </NavigationList>
+      </NavigationGroup>
       // bottom navigation
-      <NavigationList>
+      <NavigationGroup>
         ...
         <NavigationItem
           key="settings"
@@ -75,7 +78,7 @@ The final element for building navigation, which is responsible for displaying t
           url="#"
         />
         ...
-      </NavigationList>
+      </NavigationGroup>
     </Navigation>
   }
 >
@@ -88,16 +91,16 @@ The final element for building navigation, which is responsible for displaying t
 To build the side navigation, use the available components:
 
 - `SideNavigation`
-- `SideNavigationList`
+- `SideNavigationGroup`
 - `SideNavigationItem`
 
 #### `SideNavigation` component
 
 It mainly serves as a container for side navigation elements. An addition in this component is props `title` which will display an additional header above the list of navigation buttons.
 
-#### `SideNavigationList` component
+#### `SideNavigationGroup` component
 
-Unlike `NavigationList` it is not a component required to create a side navigation structure. Its main task is to aggregate elements under a label, with the option of enabling expansion of the list of elements via the `isCollapsible` prop.
+Unlike `NavigationGroup` it is not a component required to create a side navigation structure. Its main task is to aggregate elements under a label, with the option of enabling expansion of the list of elements via the `isCollapsible` prop.
 
 #### `SideNavigationItem` component
 
@@ -106,6 +109,9 @@ It is the final element for building side navigation, responsible for displaying
 #### Side navigation implementation example
 
 ```jsx
+import { AppFrame, Navigation, SideNavigation, SideNavigationGroup, SideNavigationItem } from '@livechat/design-system-react-components';
+import { Home, Settings } from '@livechat/design-system-icons';
+
 <AppFrame
   navigation={<Navigation>...</Navigation>}
   sideNavigation={
@@ -117,7 +123,7 @@ It is the final element for building side navigation, responsible for displaying
         onClick={() => {}}
       />
       // with collapsible list
-      <SideNavigationList isCollapsible label="With elements">
+      <SideNavigationGroup isCollapsible label="With elements">
         ...
           <SideNavigationItem
             label="Example2 option"
@@ -125,7 +131,7 @@ It is the final element for building side navigation, responsible for displaying
             onClick={() => {}}
           />
         ...
-      </SideNavigationList>
+      </SideNavigationGroup>
     </SideNavigation>
   }
 ```
@@ -136,17 +142,21 @@ Side navigation passed by the `sideNavigation` prop will be displayed in an appr
 For this purpose, `AppFrameProvider` was created, which is used by default inside the `AppFrame` component.
 
 `AppFrameProvider` gives us access to the following properties:
-- `isSubNavBarVisible` - defines whether side navigation is open/closed
-- `toggleSubNavBarVisibility` - function changing the value of `isSubNavBarVisible`
+- `isSideNavigationBarVisible` - defines whether side navigation is open/closed
+- `toggleSideNavigationBarVisibility` - function changing the value of `isSideNavigationBarVisible`
 
 Thanks to the provider, you can easily implement the ability to close and open this panel in your own UI.
 
 ```jsx
-  const { isSubNavBarVisible, toggleSubNavBarVisibility } = useAppFrame();
+import { useAppFrame } from '@livechat/design-system-react-components';
 
-  <Button onClick={toggleSubNavBarVisibility}>
-    {isSubNavBarVisible ? 'Visible' : 'Hidden'}
+const SideNavigationSwitcher: FC = () => {
+  const { isSideNavigationBarVisible, toggleSideNavigationBarVisibility } = useAppFrame();
+
+  <Button onClick={toggleSideNavigationBarVisibility}>
+    {isSideNavigationBarVisible ? 'Visible' : 'Hidden'}
   </Button>
+};
 ```
 
 ## Component API <a id="ComponentAPI" />

@@ -1,6 +1,7 @@
 import './index.scss';
 
 export * from './foundations';
+export * from './providers';
 export * from './utils';
 
 export * from './components/ActionBar';

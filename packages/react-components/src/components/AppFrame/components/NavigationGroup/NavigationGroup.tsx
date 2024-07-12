@@ -2,13 +2,13 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import { INavigationListProps } from './types';
+import { INavigationGroupProps } from './types';
 
-import styles from './NavigationList.module.scss';
+import styles from './NavigationGroup.module.scss';
 
-const baseClass = 'navigation-list';
+const baseClass = 'navigation-group';
 
-export const NavigationList: React.FC<INavigationListProps> = ({
+export const NavigationGroup: React.FC<INavigationGroupProps> = ({
   children,
   className,
   scrollable,

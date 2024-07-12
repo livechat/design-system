@@ -1,6 +1,6 @@
 export { SideNavigation } from './SideNavigation/SideNavigation';
-export { SideNavigationList } from './SideNavigation/SideNavigationList';
-export { SideNavigationItem } from './SideNavigation/SideNavigationItem';
-export { NavigationList } from './Navigation/NavigationList';
-export { NavigationItem } from './Navigation/NavigationItem';
+export { SideNavigationGroup } from './SideNavigationGroup/SideNavigationGroup';
+export { SideNavigationItem } from './SideNavigationItem/SideNavigationItem';
+export { NavigationGroup } from './NavigationGroup/NavigationGroup';
+export { NavigationItem } from './NavigationItem/NavigationItem';
 export { Navigation } from './Navigation/Navigation';

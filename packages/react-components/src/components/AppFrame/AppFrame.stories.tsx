@@ -10,10 +10,10 @@ import { AppFrame } from './AppFrame';
 import {
   Navigation,
   NavigationItem,
-  NavigationList,
+  NavigationGroup,
   SideNavigation,
   SideNavigationItem,
-  SideNavigationList,
+  SideNavigationGroup,
 } from './components';
 import {
   ExampleAppContent,
@@ -36,10 +36,10 @@ export default {
   subcomponents: {
     Navigation,
     NavigationItem,
-    NavigationList,
+    NavigationGroup,
     SideNavigation,
     SideNavigationItem,
-    SideNavigationList,
+    SideNavigationGroup,
   },
 };
 
@@ -95,7 +95,7 @@ export const Default = (): React.ReactElement => {
     <AppFrame
       navigation={
         <Navigation>
-          <NavigationList scrollable>
+          <NavigationGroup scrollable>
             {navigationItems.slice(0, 8).map((item, index) => (
               <NavigationItem
                 key={item}
@@ -111,8 +111,8 @@ export const Default = (): React.ReactElement => {
                 url="#"
               />
             ))}
-          </NavigationList>
-          <NavigationList>
+          </NavigationGroup>
+          <NavigationGroup>
             {navigationItems.slice(8, 11).map((item, index) => (
               <NavigationItem
                 key={item}
@@ -151,7 +151,7 @@ export const Default = (): React.ReactElement => {
               onClick={(e) => e.preventDefault()}
               url="#"
             />
-          </NavigationList>
+          </NavigationGroup>
         </Navigation>
       }
       sideNavigation={getSubNav()}

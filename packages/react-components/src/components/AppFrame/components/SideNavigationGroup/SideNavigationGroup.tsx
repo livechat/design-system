@@ -6,15 +6,15 @@ import cx from 'clsx';
 import noop from '../../../../utils/noop';
 import { Icon } from '../../../Icon';
 import { Text } from '../../../Typography';
+import { SideNavigationItem } from '../SideNavigationItem/SideNavigationItem';
 
-import { SideNavigationItem } from './SideNavigationItem';
-import { ISideNavigationListProps } from './types';
+import { ISideNavigationGroupProps } from './types';
 
-import styles from './SideNavigationList.module.scss';
+import styles from './SideNavigationGroup.module.scss';
 
-const baseClass = 'side-navigation-list';
+const baseClass = 'side-navigation-group';
 
-export const SideNavigationList: React.FC<ISideNavigationListProps> = ({
+export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   label,
   rightNode,
   className,
@@ -64,7 +64,7 @@ export const SideNavigationList: React.FC<ISideNavigationListProps> = ({
     hadActiveListElementsRef.current = hasActiveElements;
   }, [hasActiveElements, shouldOpenOnActive]);
 
-  const listContent = (
+  return (
     <div className={styles[baseClass]}>
       {isCollapsible ? (
         <SideNavigationItem
@@ -107,6 +107,4 @@ export const SideNavigationList: React.FC<ISideNavigationListProps> = ({
       </ul>
     </div>
   );
-
-  return listContent;
 };

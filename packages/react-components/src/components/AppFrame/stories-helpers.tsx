@@ -12,7 +12,7 @@ import { Heading, Text } from '../Typography';
 import {
   SideNavigation,
   SideNavigationItem,
-  SideNavigationList,
+  SideNavigationGroup,
 } from './components';
 
 interface ExampleAppContentProps {
@@ -26,7 +26,8 @@ export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
   topBarVisible,
   handleTopBarButtonClick,
 }) => {
-  const { isSubNavBarVisible, toggleSubNavBarVisibility } = useAppFrame();
+  const { isSideNavigationBarVisible, toggleSideNavigationBarVisibility } =
+    useAppFrame();
 
   return (
     <div
@@ -43,8 +44,8 @@ export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
       {showToggle && (
         <>
           <Text>Set sub-navigation visibility</Text>
-          <Button onClick={toggleSubNavBarVisibility}>
-            {isSubNavBarVisible ? 'Visible' : 'Hidden'}
+          <Button onClick={toggleSideNavigationBarVisibility}>
+            {isSideNavigationBarVisible ? 'Visible' : 'Hidden'}
           </Button>
         </>
       )}
@@ -151,7 +152,7 @@ export const getArchivesSubMenu = (
   handler: (o: number) => void
 ) => (
   <SideNavigation noGaps title="Options with collapsable list">
-    <SideNavigationList isCollapsible label="Simple">
+    <SideNavigationGroup isCollapsible label="Simple">
       <SideNavigationItem
         label="Option 1"
         isActive={activeSubItem === 0}
@@ -172,8 +173,8 @@ export const getArchivesSubMenu = (
         isActive={activeSubItem === 3}
         onClick={() => handler(3)}
       />
-    </SideNavigationList>
-    <SideNavigationList isCollapsible label="With elements">
+    </SideNavigationGroup>
+    <SideNavigationGroup isCollapsible label="With elements">
       <SideNavigationItem
         label="Option 5"
         leftNode={<Icon source={Icons.HelpFilled} size="small" />}
@@ -195,8 +196,8 @@ export const getArchivesSubMenu = (
         isActive={activeSubItem === 6}
         onClick={() => handler(6)}
       />
-    </SideNavigationList>
-    <SideNavigationList isCollapsible label="Collapsable">
+    </SideNavigationGroup>
+    <SideNavigationGroup isCollapsible label="Collapsable">
       <SideNavigationItem
         label="Option 8"
         isActive={activeSubItem === 7}
@@ -222,7 +223,7 @@ export const getArchivesSubMenu = (
         isActive={activeSubItem === 11}
         onClick={() => handler(11)}
       />
-    </SideNavigationList>
+    </SideNavigationGroup>
     <SideNavigationItem
       label="Option 13"
       isMainEntry
@@ -241,7 +242,7 @@ export const getArchivesSubMenu = (
       isActive={activeSubItem === 14}
       onClick={() => handler(14)}
     />
-    <SideNavigationList isCollapsible label="Collapsable">
+    <SideNavigationGroup isCollapsible label="Collapsable">
       <SideNavigationItem
         label="Option 16"
         isActive={activeSubItem === 15}
@@ -267,6 +268,6 @@ export const getArchivesSubMenu = (
         isActive={activeSubItem === 19}
         onClick={() => handler(19)}
       />
-    </SideNavigationList>
+    </SideNavigationGroup>
   </SideNavigation>
 );

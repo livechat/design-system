@@ -35,13 +35,9 @@ export interface IAppFrameProps {
   contentClassName?: string;
 }
 
-export type {
-  INavigationListProps,
-  INavigationItemProps,
-  INavigationProps,
-} from './components/Navigation/types';
-export type {
-  ISideNavigationProps,
-  ISideNavigationListProps,
-  ISideNavigationItemProps,
-} from './components/SideNavigation/types';
+export type { INavigationProps } from './components/Navigation/types';
+export type { INavigationGroupProps } from './components/NavigationGroup/types';
+export type { INavigationItemProps } from './components/NavigationItem/types';
+export type { ISideNavigationProps } from './components/SideNavigation/types';
+export type { ISideNavigationGroupProps } from './components/SideNavigationGroup/types';
+export type { ISideNavigationItemProps } from './components/SideNavigationItem/types';

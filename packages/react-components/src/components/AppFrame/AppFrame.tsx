@@ -26,7 +26,7 @@ const Frame = (props: IAppFrameProps) => {
     contentClassName,
   } = props;
   const mergedClassNames = cx(styles[baseClass], className);
-  const { isSubNavBarVisible } = useAppFrame();
+  const { isSideNavigationBarVisible } = useAppFrame();
 
   return (
     <div className={mergedClassNames}>
@@ -59,7 +59,7 @@ const Frame = (props: IAppFrameProps) => {
                 {
                   [styles[
                     `${pageContainerClass}__content-wrapper__nav-bar-wrapper--visible`
-                  ]]: isSubNavBarVisible,
+                  ]]: isSideNavigationBarVisible,
                 }
               )}
             >
