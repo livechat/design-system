@@ -3,17 +3,20 @@ import * as React from 'react';
 import { ChevronDown } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
+import { IActionMenuOption } from 'components/ActionMenu/types';
+
 import { ActionMenu, ActionMenuItem } from '../ActionMenu';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
 
 import { ActionBarItem } from './ActionBarItem';
-import { IActionBarProps } from './types';
+import { IActionBarOption, IActionBarProps } from './types';
 
 import styles from './ActionBar.module.scss';
 
 const baseClass = 'action-bar';
 const menuWrapperClass = 'action-bar__menu-wrapper';
+const singleElementSize = 44;
 
 export const ActionBar: React.FC<IActionBarProps> = ({
   className,
@@ -24,8 +27,10 @@ export const ActionBar: React.FC<IActionBarProps> = ({
   vertical,
   menuFooter,
 }) => {
-  const [menuItemsKeys, setMenuItemsKeys] = React.useState<string[]>([]);
-  const [menuPosition, setMenuPosition] = React.useState<number>(0);
+  const [visibleItemsCount, setVisibleItemsCount] = React.useState<number>(
+    options.length
+  );
+  const [menuOptions, setMenuOptions] = React.useState<IActionBarOption[]>([]);
   const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
   const isScrollType = type === 'scroll';
   const mergedClassNames = cx(
@@ -33,119 +38,80 @@ export const ActionBar: React.FC<IActionBarProps> = ({
     className,
     vertical && styles[`${baseClass}--vertical`]
   );
-  const observerOptions = {
-    root: document.querySelector(`${id}`),
-    threshold: 1,
-  };
-  const shouldDisplayMenu = !isScrollType && menuItemsKeys.length !== 0;
+  const shouldDisplayMenu = !isScrollType && menuOptions.length !== 0;
 
   React.useEffect(() => {
     if (isScrollType) {
       return;
     }
 
-    // Single element size with margin
-    const singleElementSize = 44;
-    // Extra spacing to include for menu placement
-    const menuPlacementSpacing = 4;
-    const allOptionsCount = options.length;
-    const hiddenOptionsCount = menuItemsKeys.length;
-    const visibleOptionsCount = allOptionsCount - hiddenOptionsCount;
-    const position =
-      visibleOptionsCount * singleElementSize + menuPlacementSpacing;
-
-    setMenuPosition(position);
-  }, [menuItemsKeys, options, isScrollType]);
-
-  const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-    entries.map((entry) => {
-      const entryExistInMenu = menuItemsKeys.includes(entry.target.id);
-
-      if (!entry.isIntersecting) {
-        entry.target.setAttribute('tabindex', '-1');
-
-        if (!entryExistInMenu) {
-          setMenuItemsKeys((prevItemKeys) => [
-            ...prevItemKeys,
-            entry.target.id,
-          ]);
-        }
-
-        return;
-      }
-
-      entry.target.removeAttribute('tabindex');
-
-      if (entryExistInMenu) {
-        setMenuItemsKeys(menuItemsKeys.filter((i) => i !== entry.target.id));
-      }
-    });
-  };
+    if (options.length > visibleItemsCount) {
+      setMenuOptions(options.slice(visibleItemsCount, options.length));
+    } else {
+      setMenuOptions([]);
+    }
+  }, [options, visibleItemsCount]);
 
   React.useEffect(() => {
-    const hasIOSupport = !!window.IntersectionObserver;
+    const hasIOSupport = !!window.ResizeObserver;
 
     if (!isScrollType && hasIOSupport) {
-      const target = document.querySelectorAll(
-        `button[data-actionbarid='${id}']`
-      );
+      const observer = new ResizeObserver((entries) => {
+        const { width, height } = entries[0].contentRect;
+        const containerSize = vertical ? height : width;
+        const extraSpacing = menuOptions.length > 0 ? 60 : 0;
 
-      const observer = new IntersectionObserver(
-        handleIntersection,
-        observerOptions
-      );
+        const newVisibleOptionsCount = Math.floor(
+          (containerSize - extraSpacing) / singleElementSize
+        );
 
-      target.forEach((e) => observer.observe(e));
+        if (
+          newVisibleOptionsCount >= 0 &&
+          newVisibleOptionsCount !== visibleItemsCount
+        )
+          setVisibleItemsCount(newVisibleOptionsCount);
+      });
+
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      observer.observe(document.querySelector(`#${id}`)!);
 
       return () => observer.disconnect();
     }
-  }, [menuItemsKeys, isScrollType]);
+  }, [menuOptions, isScrollType, visibleItemsCount]);
 
-  const getMenuItems = (keys: string[]) => {
-    const filteredOptions = options.filter((row) =>
-      keys.find((k) => k === row.key && !row.hideInMenu)
+  const getMenuItems = React.useCallback(() => {
+    return menuOptions.reduce(
+      (acc: IActionMenuOption[], o: IActionBarOption) => {
+        if (!o.hideInMenu) {
+          const item = {
+            key: o.key,
+            element: (
+              <ActionMenuItem leftNode={o.element}>{o.label}</ActionMenuItem>
+            ),
+            withDivider: o.withDivider,
+            onClick: o.onClick,
+          };
+          acc.push(item);
+        }
+
+        return acc;
+      },
+      []
     );
+  }, [menuOptions]);
 
-    return filteredOptions.map((o) => {
-      return {
-        key: o.key,
-        element: (
-          <ActionMenuItem leftNode={o.element}>{o.label}</ActionMenuItem>
-        ),
-        onClick: o.onClick,
-      };
-    });
-  };
-
-  const buttonElement = options
-    .filter((row) => menuItemsKeys.find((i) => i === row.key))
-    .find((o) => o.key === activeOptionKey);
-
-  const getMenuPosition = (position: number, vertical?: boolean) => {
-    if (vertical) {
-      return {
-        top: position,
-      };
-    }
-
-    return {
-      left: position,
-    };
-  };
+  const buttonElement = menuOptions.find((o) => o.key === activeOptionKey);
 
   return (
     <div id={id} className={mergedClassNames}>
       <div
         className={cx(styles[`${baseClass}__items`], {
           [styles[`${baseClass}__items--scroll`]]: isScrollType,
-          [styles[`${baseClass}__items--with-menu`]]: shouldDisplayMenu,
         })}
       >
-        {options.map((o) => (
+        {options.slice(0, visibleItemsCount).map((o) => (
           <ActionBarItem
-            id={id}
             option={o}
-            isHidden={menuItemsKeys.includes(o.key)}
             isActive={o.key === activeOptionKey}
             vertical={vertical}
           />
@@ -158,7 +124,6 @@ export const ActionBar: React.FC<IActionBarProps> = ({
             buttonElement && styles[`${menuWrapperClass}--active`],
             vertical && styles[`${menuWrapperClass}--vertical`]
           )}
-          style={getMenuPosition(menuPosition, vertical)}
         >
           <ActionMenu
             selectedOptions={activeOptionKey ? [activeOptionKey] : []}
@@ -166,7 +131,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
             onClose={() => setIsMenuOpen(false)}
             floatingStrategy="fixed"
             placement={vertical ? 'left-start' : 'bottom-end'}
-            options={getMenuItems(menuItemsKeys)}
+            options={getMenuItems()}
             triggerClassName={cx(
               vertical && styles[`${menuWrapperClass}__trigger-vertical`]
             )}
