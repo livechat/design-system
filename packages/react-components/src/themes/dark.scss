@@ -83,8 +83,8 @@ $surface-invert-primary: #e2e2e4;
   --surface-accent-emphasis-high-warning: #e8bb00;
   --surface-accent-emphasis-high-positive: #01833a;
   --surface-accent-emphasis-high-purple: #9146ff;
-  --surface-opacity-basic-hover: rgb(255 255 255 / 8%);
-  --surface-opacity-basic-active: rgb(255 255 255 / 12%);
+  --surface-opacity-basic-hover: hsl(0deg 0% 100% / 11%);
+  --surface-opacity-basic-active: hsl(0deg 0% 100% / 15%);
   --surface-opacity-invert-hover: rgb(255 255 255 / 10%);
   --surface-opacity-invert-active: rgb(255 255 255 / 12%);
   --surface-overlay: rgb(19 19 23 / 90%); // deprecated
@@ -384,4 +384,10 @@ $surface-invert-primary: #e2e2e4;
     #c930ff 313.12deg,
     #7000ff 360.45deg
   );
+  --one-tooltip-background: linear-gradient(
+    254.49deg,
+    #3c364c -0.38%,
+    #2d3a4c 94.44%
+  );
+  --content-basic-autofill: hsl(240deg 6% 97% / 100%);
 }
