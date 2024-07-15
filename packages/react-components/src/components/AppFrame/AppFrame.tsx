@@ -22,7 +22,7 @@ const Frame = (props: IAppFrameProps) => {
     sideNavigation,
     topBar,
     topBarClassName,
-    sideNavigationClassName,
+    sideNavigationContainerClassName,
     contentClassName,
   } = props;
   const mergedClassNames = cx(styles[baseClass], className);
@@ -55,7 +55,7 @@ const Frame = (props: IAppFrameProps) => {
                 styles[
                   `${pageContainerClass}__content-wrapper__nav-bar-wrapper`
                 ],
-                sideNavigationClassName,
+                sideNavigationContainerClassName,
                 {
                   [styles[
                     `${pageContainerClass}__content-wrapper__nav-bar-wrapper--visible`

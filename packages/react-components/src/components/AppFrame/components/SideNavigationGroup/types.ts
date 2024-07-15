@@ -1,18 +1,20 @@
 import * as React from 'react';
 
-export interface ISideNavigationGroupProps {
+import { ComponentCoreProps } from '../../../../utils/types';
+
+export interface ISideNavigationGroupProps extends ComponentCoreProps {
+  /**
+   * It will display your side navigation elements
+   */
+  children: React.ReactNode;
   /**
    * The label of the side navigation list
    */
   label?: React.ReactNode | ((isOpen: boolean) => React.ReactNode);
   /**
-   * The right node of the side navigation list
+   * The right node of the side navigation list if `isCollapsible` is set to true
    */
   rightNode?: React.ReactNode | ((isOpen: boolean) => React.ReactNode);
-  /**
-   * The CSS class for the side navigation list
-   */
-  className?: string;
   /**
    * Specify whether the list should be collapsible
    */

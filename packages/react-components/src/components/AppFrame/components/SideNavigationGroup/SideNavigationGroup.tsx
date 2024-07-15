@@ -65,7 +65,7 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   }, [hasActiveElements, shouldOpenOnActive]);
 
   return (
-    <div className={styles[baseClass]}>
+    <div data-testid="side-navigation-group" className={styles[baseClass]}>
       {isCollapsible ? (
         <SideNavigationItem
           leftNode={

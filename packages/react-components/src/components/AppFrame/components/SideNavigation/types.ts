@@ -1,10 +1,12 @@
 import * as React from 'react';
 
-export interface ISideNavigationProps {
+import { ComponentCoreProps } from '../../../../utils/types';
+
+export interface ISideNavigationProps extends ComponentCoreProps {
   /**
-   * The CSS class for the side navigation
+   * It will display your side navigation elements
    */
-  className?: string;
+  children: React.ReactNode;
   /**
    * It will display the title of the side navigation bar
    */

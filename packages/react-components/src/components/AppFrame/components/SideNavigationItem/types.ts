@@ -1,6 +1,8 @@
 import * as React from 'react';
 
-export interface ISideNavigationItemProps {
+import { ComponentCoreProps } from '../../../../utils/types';
+
+export interface ISideNavigationItemProps extends ComponentCoreProps {
   /**
    * The label of the item
    */
@@ -21,10 +23,6 @@ export interface ISideNavigationItemProps {
    * The URL to navigate to
    */
   url?: string;
-  /**
-   * The CSS class for the side navigation item
-   */
-  className?: string;
   /**
    * Specify whether the item is active
    */

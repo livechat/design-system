@@ -1,14 +1,12 @@
 import * as React from 'react';
 
-export interface IAppFrameProps {
+import { ComponentCoreProps } from '../../utils/types';
+
+export interface IAppFrameProps extends ComponentCoreProps {
   /**
    * It will display your app in the content area
    */
   children: React.ReactNode;
-  /**
-   * The CSS class for the app frame
-   */
-  className?: string;
   /**
    * It will display navigation elements
    */
@@ -28,7 +26,7 @@ export interface IAppFrameProps {
   /**
    * The CSS class for the sub navigation bar
    */
-  sideNavigationClassName?: string;
+  sideNavigationContainerClassName?: string;
   /**
    * The CSS class for the content container
    */

@@ -1,6 +1,8 @@
 import * as React from 'react';
 
-export interface INavigationItemProps {
+import { ComponentCoreProps } from '../../../../utils/types';
+
+export interface INavigationItemProps extends ComponentCoreProps {
   /**
    * The ID of the item
    */

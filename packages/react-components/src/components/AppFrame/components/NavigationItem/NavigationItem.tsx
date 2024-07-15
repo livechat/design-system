@@ -11,6 +11,28 @@ import styles from './NavigationItem.module.scss';
 
 const baseClass = 'navigation-item';
 
+const getBadge = (badge: 'dot' | 'alert' | number, id: string) => {
+  if (typeof badge === 'number') {
+    return (
+      <Badge
+        data-testid={`${id}-badge-count`}
+        className={styles[`${baseClass}__badge`]}
+        size="compact"
+        count={badge}
+      />
+    );
+  }
+
+  return (
+    <Badge
+      data-testid={`${id}-badge`}
+      className={styles[`${baseClass}__badge`]}
+      size="compact"
+      type={badge}
+    />
+  );
+};
+
 export const NavigationItem: React.FC<INavigationItemProps> = ({
   id,
   label,
@@ -21,57 +43,36 @@ export const NavigationItem: React.FC<INavigationItemProps> = ({
   badge,
   isActive,
   onClick,
+  className,
   ...props
-}) => {
-  const getBadge = (badge: 'dot' | 'alert' | number) => {
-    if (typeof badge === 'number') {
-      return (
-        <Badge
-          className={styles[`${baseClass}__badge`]}
-          size="compact"
-          count={badge}
-        />
-      );
-    }
-
-    return (
-      <Badge
-        className={styles[`${baseClass}__badge`]}
-        size="compact"
-        type={badge}
-      />
-    );
-  };
-
-  return (
-    <li key={id} className={styles[baseClass]}>
-      <Tooltip
-        floatingStrategy="fixed"
-        placement="right"
-        kind="invert"
-        isVisible={disableTooltip ? false : undefined}
-        offsetMainAxis={12}
-        hoverOnDelay={400}
-        triggerRenderer={
-          <>
-            <a
-              aria-label={label}
-              className={cx(styles[`${baseClass}__button`], {
-                [styles[`${baseClass}__button--active`]]: isActive,
-                [styles[`${baseClass}__button--opacity`]]: disableOpacity,
-              })}
-              onClick={(e) => onClick(e, id)}
-              href={url}
-              {...props}
-            >
-              {icon}
-            </a>
-            {badge && getBadge(badge)}
-          </>
-        }
-      >
-        {label}
-      </Tooltip>
-    </li>
-  );
-};
+}) => (
+  <li key={id} className={cx(styles[baseClass], className)}>
+    <Tooltip
+      floatingStrategy="fixed"
+      placement="right"
+      kind="invert"
+      isVisible={disableTooltip ? false : undefined}
+      offsetMainAxis={12}
+      hoverOnDelay={400}
+      triggerRenderer={
+        <>
+          <a
+            aria-label={label}
+            className={cx(styles[`${baseClass}__button`], {
+              [styles[`${baseClass}__button--active`]]: isActive,
+              [styles[`${baseClass}__button--opacity`]]: disableOpacity,
+            })}
+            onClick={(e) => onClick(e, id)}
+            href={url}
+            {...props}
+          >
+            {icon}
+          </a>
+          {badge && getBadge(badge, id)}
+        </>
+      }
+    >
+      {label}
+    </Tooltip>
+  </li>
+);

@@ -1,12 +1,10 @@
 import * as React from 'react';
 
-export interface INavigationProps {
+import { ComponentCoreProps } from '../../../../utils/types';
+
+export interface INavigationProps extends ComponentCoreProps {
   /**
    * It will display your navigation elements
    */
   children: React.ReactNode;
-  /**
-   * The CSS class for the navigation bar container
-   */
-  className?: string;
 }

@@ -28,7 +28,10 @@ export const SideNavigation: React.FC<ISideNavigationProps> = ({
   );
 
   return (
-    <div className={cx(styles[`${baseClass}`], className)}>
+    <div
+      data-testid="side-navigation"
+      className={cx(styles[baseClass], className)}
+    >
       {header}
       <div
         className={cx(styles[`${baseClass}__nav-wrapper`], {
