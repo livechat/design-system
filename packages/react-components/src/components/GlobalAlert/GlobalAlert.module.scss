@@ -1,0 +1,130 @@
+@use 'styles/background-color';
+@use 'styles/icon-color';
+
+$base-class: 'global-alert';
+$animation-duration: 0.2s;
+
+.#{$base-class} {
+  @include background-color.kind();
+
+  box-sizing: border-box;
+  transition: all $animation-duration ease-out;
+  border-radius: var(--radius-3);
+  padding: calc(var(--spacing-2) - 2px) var(--spacing-3);
+  max-width: 415px;
+
+  &--expanded {
+    @include background-color.kind($expanded: true);
+
+    box-shadow: var(--shadow-float);
+    padding: var(--radius-3) var(--radius-4);
+    max-width: 440px;
+
+    @media (width <= 1360px) {
+      max-width: 440px;
+    }
+  }
+
+  &__header-row {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-2);
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__header-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    flex-shrink: 1;
+    gap: var(--spacing-2);
+    align-items: flex-start;
+    width: 100%;
+    min-width: 0;
+  }
+
+  &__icon {
+    &--collapsed {
+      @include icon-color.kind();
+    }
+
+    &--expanded {
+      @include icon-color.kind($expanded: true);
+    }
+  }
+
+  &__label {
+    transition: color $animation-duration ease-out;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  &__label--expanded {
+    color: var(--content-basic-primary);
+  }
+
+  &__label--collapsed {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--content-locked-white);
+  }
+
+  &__action-button {
+    flex-shrink: 0;
+    border-radius: var(--radius-3);
+    padding: 0 !important;
+    min-width: 20px !important;
+    height: 20px !important;
+
+    &:hover {
+      background-color: var(--surface-opacity-invert-hover);
+    }
+
+    &:focus {
+      background-color: var(--surface-opacity-invert-active) !important;
+    }
+
+    svg {
+      color: var(--content-locked-white);
+    }
+  }
+
+  &__action-button--expanded {
+    svg {
+      color: var(--content-basic-primary);
+    }
+  }
+
+  &__content-wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    grid-template-columns: 0fr;
+    opacity: 0;
+  }
+
+  &__content-wrapper--expanded {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    opacity: 1;
+    padding-top: var(--spacing-2);
+  }
+
+  &__content-animation {
+    // add new anim
+  }
+
+  &__content {
+    overflow: hidden;
+  }
+
+  @media (width <= 1360px) {
+    max-width: 300px;
+  }
+}

@@ -1,0 +1,81 @@
+@mixin info($expanded) {
+  background-color: var(--surface-accent-ondark-info-default);
+
+  &:hover {
+    background-color: var(--surface-accent-ondark-info-hover);
+  }
+
+  @if $expanded {
+    background-color: var(--surface-accent-emphasis-subtle-info);
+
+    &:hover {
+      background-color: var(--surface-accent-emphasis-subtle-info);
+    }
+  }
+}
+
+@mixin warning($expanded) {
+  background-color: var(--surface-accent-ondark-warning-default);
+
+  &:hover {
+    background-color: var(--surface-accent-ondark-warning-hover);
+  }
+
+  @if $expanded {
+    background-color: var(--surface-accent-emphasis-subtle-warning);
+
+    &:hover {
+      background-color: var(--surface-accent-emphasis-subtle-warning);
+    }
+  }
+}
+
+@mixin success($expanded) {
+  background-color: var(--surface-accent-ondark-positive-default);
+
+  &:hover {
+    background-color: var(--surface-accent-ondark-positive-hover);
+  }
+
+  @if $expanded {
+    background-color: var(--surface-accent-emphasis-subtle-positive);
+
+    &:hover {
+      background-color: var(--surface-accent-emphasis-subtle-positive);
+    }
+  }
+}
+
+@mixin error($expanded) {
+  background-color: var(--surface-accent-ondark-negative-default);
+
+  &:hover {
+    background-color: var(--surface-accent-ondark-negative-hover);
+  }
+
+  @if $expanded {
+    background-color: var(--surface-accent-emphasis-subtle-negative);
+
+    &:hover {
+      background-color: var(--surface-accent-emphasis-subtle-negative);
+    }
+  }
+}
+
+@mixin kind($expanded: false) {
+  &--info {
+    @include info($expanded);
+  }
+
+  &--warning {
+    @include warning($expanded);
+  }
+
+  &--error {
+    @include error($expanded);
+  }
+
+  &--success {
+    @include success($expanded);
+  }
+}

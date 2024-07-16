@@ -1,0 +1,49 @@
+@mixin info($expanded) {
+  color: var(--decor-blue200);
+
+  @if $expanded {
+    color: var(--content-basic-info);
+  }
+}
+
+@mixin warning($expanded) {
+  color: var(--decor-yellow200);
+
+  @if $expanded {
+    color: var(--content-basic-warning);
+  }
+}
+
+@mixin success($expanded) {
+  color: var(--decor-green200);
+
+  @if $expanded {
+    color: var(--content-basic-positive);
+  }
+}
+
+@mixin error($expanded) {
+  color: var(--decor-red200);
+
+  @if $expanded {
+    color: var(--content-basic-negative);
+  }
+}
+
+@mixin kind($expanded: false) {
+  &--info {
+    @include info($expanded);
+  }
+
+  &--warning {
+    @include warning($expanded);
+  }
+
+  &--error {
+    @include error($expanded);
+  }
+
+  &--success {
+    @include success($expanded);
+  }
+}
