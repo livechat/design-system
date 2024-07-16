@@ -58,10 +58,14 @@ export const NavigationItem: React.FC<INavigationItemProps> = ({
         <>
           <a
             aria-label={label}
-            className={cx(styles[`${baseClass}__button`], {
-              [styles[`${baseClass}__button--active`]]: isActive,
-              [styles[`${baseClass}__button--opacity`]]: disableOpacity,
-            })}
+            className={cx(
+              styles[`${baseClass}__button`],
+              {
+                [styles[`${baseClass}__button--active`]]: isActive,
+                [styles[`${baseClass}__button--opacity`]]: disableOpacity,
+              },
+              'lc-dark-theme'
+            )}
             onClick={(e) => onClick(e, id)}
             href={url}
             {...props}

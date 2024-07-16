@@ -14,10 +14,7 @@ export const Navigation: React.FC<INavigationProps> = ({
   ...props
 }) => {
   return (
-    <nav
-      className={cx(styles[baseClass], className, 'lc-dark-theme')}
-      {...props}
-    >
+    <nav className={cx(styles[baseClass], className)} {...props}>
       {children}
     </nav>
   );
