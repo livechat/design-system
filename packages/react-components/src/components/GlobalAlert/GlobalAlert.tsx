@@ -174,14 +174,18 @@ export const GlobalAlert: FC<IGlobalAlert> = ({
       </div>
       {children && (
         <div
-          className={cx(styles[`${baseClass}__content-wrapper`], {
-            [styles[`${baseClass}__content-wrapper--expanded`]]: isVisible,
-            [styles[
-              `${baseClass}__content-animation--${
-                isVisible ? 'expanded' : 'collapsed'
-              }`
-            ]]: isAlertToggled,
-          })}
+          className={cx(
+            styles[`${baseClass}__content-wrapper`],
+            styles[`${baseClass}__content-animation`],
+            {
+              [styles[`${baseClass}__content-wrapper--expanded`]]: isVisible,
+              [styles[
+                `${baseClass}__content-animation--${
+                  isVisible ? 'expanded' : 'collapsed'
+                }`
+              ]]: isAlertToggled,
+            }
+          )}
         >
           <div className={styles[`${baseClass}__content`]}>{children}</div>
         </div>

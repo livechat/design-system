@@ -1,5 +1,6 @@
 @use 'styles/background-color';
 @use 'styles/icon-color';
+@use 'styles/animation';
 
 $base-class: 'global-alert';
 $animation-duration: 0.2s;
@@ -117,7 +118,16 @@ $animation-duration: 0.2s;
   }
 
   &__content-animation {
-    // add new anim
+    animation-duration: $animation-duration;
+    animation-timing-function: ease-out;
+
+    &--expanded {
+      animation-name: global-alert-expand;
+    }
+
+    &--collapsed {
+      animation-name: global-alert-collapsed;
+    }
   }
 
   &__content {
