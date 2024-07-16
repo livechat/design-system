@@ -47,6 +47,15 @@ describe('<SideNavigation> component', () => {
     expect(getByText('Custom header')).toBeInTheDocument();
   });
 
+  it('should render custom footer', () => {
+    const { getByText } = renderComponent({
+      ...defaultProps,
+      customFooter: <div>Custom footer</div>,
+    });
+
+    expect(getByText('Custom footer')).toBeInTheDocument();
+  });
+
   it('should render right node if given', () => {
     const { getByText } = renderComponent({
       ...defaultProps,
