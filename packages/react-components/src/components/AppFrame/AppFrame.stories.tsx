@@ -24,6 +24,8 @@ import {
   getEngageSubMenu,
 } from './stories-helpers';
 
+import './AppFrame.stories.css';
+
 const defaultImage =
   'https://cdn-labs.livechat-files.com/api/file/lc/img/100019504/df59da4b5b0cdb6030efb08787fd255d.jpg';
 
@@ -138,6 +140,7 @@ export const Default = (): React.ReactElement => {
                   placement="right"
                   triggerRenderer={
                     <Avatar
+                      className="avatar"
                       status="available"
                       type="image"
                       src={defaultImage}

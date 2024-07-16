@@ -5,15 +5,15 @@ import cx from 'clsx';
 import noop from '../../../../utils/noop';
 import { Text } from '../../../Typography';
 
+import {
+  SIDE_NAVIGATION_ACTIVE_ITEM_TEST_ID,
+  SIDE_NAVIGATION_ITEM_TEST_ID,
+  SIDE_NAVIGATION_PARENT_ICON_TEST_ID,
+} from './constants';
 import { ISideNavigationItemProps } from './types';
 
 import styles from './SideNavigationItem.module.scss';
 
-export const SIDE_NAVIGATION_ITEM_TEST_ID = 'side-navigation-item-test-id';
-export const SIDE_NAVIGATION_ACTIVE_ITEM_TEST_ID =
-  'side-navigation-active-item-test-id';
-export const SIDE_NAVIGATION_PARENT_ICON_TEST_ID =
-  'side-navigation-parent-icon';
 const baseClass = 'side-navigation-item';
 
 export const SideNavigationItem: React.FC<ISideNavigationItemProps> = ({

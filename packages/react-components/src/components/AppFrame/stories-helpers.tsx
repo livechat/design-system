@@ -26,7 +26,7 @@ export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
   topBarVisible,
   handleTopBarButtonClick,
 }) => {
-  const { isSideNavigationBarVisible, toggleSideNavigationBarVisibility } =
+  const { isSideNavigationVisible, toggleSideNavigationVisibility } =
     useAppFrame();
 
   return (
@@ -44,8 +44,8 @@ export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
       {showToggle && (
         <>
           <Text>Set sub-navigation visibility</Text>
-          <Button onClick={toggleSideNavigationBarVisibility}>
-            {isSideNavigationBarVisible ? 'Visible' : 'Hidden'}
+          <Button onClick={toggleSideNavigationVisibility}>
+            {isSideNavigationVisible ? 'Visible' : 'Hidden'}
           </Button>
         </>
       )}

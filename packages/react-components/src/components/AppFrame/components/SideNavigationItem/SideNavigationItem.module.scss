@@ -18,11 +18,7 @@ $base-class: 'side-navigation-item';
     font-size: 13px;
 
     &:hover {
-      background-color: color-mix(
-        in srgb,
-        var(--surface-locked-white) 15%,
-        transparent
-      );
+      background-color: var(--surface-opacity-basic-hover);
       text-decoration: none;
       color: var(--content-locked-white);
 
@@ -37,7 +33,7 @@ $base-class: 'side-navigation-item';
     }
 
     &--active {
-      background-color: var(--surface-opacity-invert-active);
+      background-color: var(--surface-opacity-basic-active);
       font-weight: 600;
     }
 

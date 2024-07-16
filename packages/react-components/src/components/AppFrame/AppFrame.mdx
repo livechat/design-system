@@ -142,8 +142,8 @@ Side navigation passed by the `sideNavigation` prop will be displayed in an appr
 For this purpose, `AppFrameProvider` was created, which is used by default inside the `AppFrame` component.
 
 `AppFrameProvider` gives us access to the following properties:
-- `isSideNavigationBarVisible` - defines whether side navigation is open/closed
-- `toggleSideNavigationBarVisibility` - function changing the value of `isSideNavigationBarVisible`
+- `isSideNavigationVisible` - defines whether side navigation is open/closed
+- `toggleSideNavigationVisibility` - function changing the value of `isSideNavigationVisible`
 
 Thanks to the provider, you can easily implement the ability to close and open this panel in your own UI.
 
@@ -151,10 +151,10 @@ Thanks to the provider, you can easily implement the ability to close and open t
 import { useAppFrame } from '@livechat/design-system-react-components';
 
 const SideNavigationSwitcher: FC = () => {
-  const { isSideNavigationBarVisible, toggleSideNavigationBarVisibility } = useAppFrame();
+  const { isSideNavigationVisible, toggleSideNavigationVisibility } = useAppFrame();
 
-  <Button onClick={toggleSideNavigationBarVisibility}>
-    {isSideNavigationBarVisible ? 'Visible' : 'Hidden'}
+  <Button onClick={toggleSideNavigationVisibility}>
+    {isSideNavigationVisible ? 'Visible' : 'Hidden'}
   </Button>
 };
 ```

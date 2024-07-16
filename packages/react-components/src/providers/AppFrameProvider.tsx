@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 interface AppFrameContextProps {
-  isSideNavigationBarVisible: boolean;
-  toggleSideNavigationBarVisibility: () => void;
+  isSideNavigationVisible: boolean;
+  toggleSideNavigationVisibility: () => void;
 }
 
 const AppFrameContext = React.createContext<AppFrameContextProps | undefined>(
@@ -20,20 +20,20 @@ export const useAppFrame = (): AppFrameContextProps => {
 };
 
 interface AppFrameProviderProps {
-  isSideNavigationBarVisible?: boolean;
+  isSideNavigationVisible?: boolean;
 }
 
 export const AppFrameProvider: React.FC<AppFrameProviderProps> = ({
   children,
-  isSideNavigationBarVisible = true,
+  isSideNavigationVisible = true,
 }) => {
   const [isSsideNavigationBarOpen, setIsSideNavigationBarOpen] =
-    React.useState<boolean>(isSideNavigationBarVisible);
+    React.useState<boolean>(isSideNavigationVisible);
 
   const value = React.useMemo(
     () => ({
-      isSideNavigationBarVisible: isSsideNavigationBarOpen,
-      toggleSideNavigationBarVisibility: () =>
+      isSideNavigationVisible: isSsideNavigationBarOpen,
+      toggleSideNavigationVisibility: () =>
         setIsSideNavigationBarOpen(!isSsideNavigationBarOpen),
     }),
     [isSsideNavigationBarOpen, setIsSideNavigationBarOpen]

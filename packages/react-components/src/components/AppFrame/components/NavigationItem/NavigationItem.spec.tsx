@@ -48,7 +48,7 @@ describe('<NavigationItem> component', () => {
     expect(getByTestId('navigation-test')).toBeInTheDocument();
   });
 
-  it('should call passed onClick handler when user clicks', () => {
+  it('should trigger onClick callback', () => {
     const { getByRole } = renderComponent(defaultProps);
     const link = getByRole('link');
 
@@ -60,7 +60,7 @@ describe('<NavigationItem> component', () => {
     );
   });
 
-  it('should render badge with count if badge prop is provided', () => {
+  it('should render badge with number', () => {
     const { getByTestId } = renderComponent({
       ...defaultProps,
       badge: 5,
@@ -71,7 +71,7 @@ describe('<NavigationItem> component', () => {
     expect(badge).toHaveTextContent('5');
   });
 
-  it('should render badge with type if badge prop is provided', () => {
+  it('should render badge with given type', () => {
     const { getByTestId } = renderComponent({
       ...defaultProps,
       badge: 'alert',
