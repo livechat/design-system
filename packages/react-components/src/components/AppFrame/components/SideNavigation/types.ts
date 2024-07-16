@@ -16,6 +16,10 @@ export interface ISideNavigationProps extends ComponentCoreProps {
    */
   customHeader?: React.ReactNode;
   /**
+   * It will display the custom element as footer of the side navigation bar
+   */
+  customFooter?: React.ReactNode;
+  /**
    * Specify whether the gaps between elements should be removed
    */
   noGaps?: boolean;

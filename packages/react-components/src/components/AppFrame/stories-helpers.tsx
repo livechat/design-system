@@ -151,7 +151,11 @@ export const getArchivesSubMenu = (
   activeSubItem: number,
   handler: (o: number) => void
 ) => (
-  <SideNavigation noGaps title="Options with collapsable list">
+  <SideNavigation
+    noGaps
+    title="Options with collapsable list"
+    customFooter={<h3>Custom footer</h3>}
+  >
     <SideNavigationGroup isCollapsible label="Simple">
       <SideNavigationItem
         label="Option 1"

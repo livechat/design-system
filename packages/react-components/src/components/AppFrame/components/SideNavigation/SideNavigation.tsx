@@ -15,6 +15,7 @@ export const SideNavigation: React.FC<ISideNavigationProps> = ({
   className,
   title,
   customHeader,
+  customFooter,
   noGaps,
   rightNode,
 }) => {
@@ -40,6 +41,9 @@ export const SideNavigation: React.FC<ISideNavigationProps> = ({
       >
         {children}
       </div>
+      {customFooter && (
+        <div className={styles[`${baseClass}__footer`]}>{customFooter}</div>
+      )}
     </div>
   );
 };
