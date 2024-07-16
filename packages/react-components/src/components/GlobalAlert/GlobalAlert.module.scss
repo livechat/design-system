@@ -131,6 +131,7 @@ $animation-duration: 0.2s;
   }
 
   &__content {
+    margin-left: var(--spacing-7);
     overflow: hidden;
   }
 
