@@ -6,6 +6,7 @@ import { Button } from '../Button';
 import { Text } from '../Typography';
 
 import { GlobalAlert as GlobalAlertComponent } from './GlobalAlert';
+import { TopBarAlertKind } from './types';
 
 const meta: Meta<typeof GlobalAlertComponent> = {
   title: 'Components/GlobalAlert',
@@ -21,6 +22,7 @@ const meta: Meta<typeof GlobalAlertComponent> = {
 
 export default meta;
 type Story = StoryObj<typeof GlobalAlertComponent>;
+const types: Array<TopBarAlertKind> = ['info', 'warning', 'error', 'success'];
 
 export const Default: Story = {
   args: {
@@ -69,4 +71,30 @@ export const ControlledWithCloseButton: Story = {
       </GlobalAlertComponent>
     );
   },
+};
+
+export const Kinds: Story = {
+  args: {
+    onClose: () => ({}),
+  },
+  render: ({ ...args }) => (
+    <div
+      style={{
+        display: 'flex',
+        justifyContent: 'flex-start',
+        flexDirection: 'column',
+        gap: '12px',
+      }}
+    >
+      {types.map((kind) => (
+        <GlobalAlertComponent
+          {...args}
+          kind={kind}
+          label={`Alert with kind: ${kind}`}
+        >
+          <Text>Some description</Text>
+        </GlobalAlertComponent>
+      ))}
+    </div>
+  ),
 };
