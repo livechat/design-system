@@ -27,6 +27,7 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   const [isOpen, setIsOpen] = React.useState(
     !isCollapsible || shouldOpenOnInit
   );
+  const [isSideMenuVisible, setIsSideMenuVisible] = React.useState(false);
   const [hasActiveElements, setHasActiveElements] =
     React.useState<boolean>(false);
   const hadActiveListElementsRef = React.useRef(false);
@@ -64,6 +65,16 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
     hadActiveListElementsRef.current = hasActiveElements;
   }, [hasActiveElements, shouldOpenOnActive]);
 
+  React.useEffect(() => {
+    if (!isCollapsible) return setIsSideMenuVisible(true);
+
+    if (isOpen) return setIsSideMenuVisible(true);
+
+    setTimeout(() => setIsSideMenuVisible(false), 600);
+
+    return;
+  }, [isOpen]);
+
   return (
     <div data-testid="side-navigation-group" className={styles[baseClass]}>
       {isCollapsible ? (
@@ -91,20 +102,23 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
         <Text onMouseEnter={onItemHover || noop}>{localLabel}</Text>
       )}
 
-      <ul
-        ref={onSetListNode}
+      <div
         className={cx([
-          styles[`${baseClass}__list`],
+          styles[`${baseClass}__list-wrapper`],
           {
-            [styles[`${baseClass}__list--expanded`]]: isOpen,
-            [styles[`${baseClass}__list--expanded-list-gap`]]:
+            [styles[`${baseClass}__list-wrapper--expanded`]]: isOpen,
+            [styles[`${baseClass}__list-wrapper--expanded-list-gap`]]:
               isOpen && isCollapsible,
           },
           className,
         ])}
       >
-        {children}
-      </ul>
+        {isSideMenuVisible && (
+          <ul className={styles[`${baseClass}__list`]} ref={onSetListNode}>
+            {children}
+          </ul>
+        )}
+      </div>
     </div>
   );
 };

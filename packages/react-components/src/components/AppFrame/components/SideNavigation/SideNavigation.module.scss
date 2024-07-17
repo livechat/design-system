@@ -11,7 +11,7 @@ $base-class: 'side-navigation';
   padding: var(--spacing-3) var(--spacing-1) var(--spacing-1) var(--spacing-7);
   width: 296px;
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
   color: var(--content-basic-secondary);
 
   &__header {

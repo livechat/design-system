@@ -7,6 +7,7 @@ import { Badge } from '../Badge';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { Tag } from '../Tag';
+import { Tooltip } from '../Tooltip';
 import { Heading, Text } from '../Typography';
 
 import {
@@ -125,7 +126,15 @@ export const getEngageSubMenu = (
   <SideNavigation noGaps title="List of options with additional elements">
     <SideNavigationItem
       label="Option 1"
-      leftNode={<Icon source={Icons.HelpFilled} size="small" />}
+      leftNode={
+        <Tooltip
+          placement="top-start"
+          floatingStrategy="fixed"
+          triggerRenderer={<Icon source={Icons.HelpFilled} size="small" />}
+        >
+          Custom tooltip
+        </Tooltip>
+      }
       rightNode={<Badge count={5} />}
       isActive={activeSubItem === 0}
       onClick={() => handler(0)}
@@ -156,7 +165,7 @@ export const getArchivesSubMenu = (
     title="Options with collapsable list"
     customFooter={<h3>Custom footer</h3>}
   >
-    <SideNavigationGroup isCollapsible label="Simple">
+    <SideNavigationGroup label="Simple">
       <SideNavigationItem
         label="Option 1"
         isActive={activeSubItem === 0}

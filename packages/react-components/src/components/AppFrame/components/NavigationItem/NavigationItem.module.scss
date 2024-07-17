@@ -37,6 +37,16 @@ $base-class: 'navigation-item';
       }
     }
 
+    &:focus-visible {
+      opacity: 1;
+      outline: 0;
+      box-shadow: var(--shadow-app-frame-focus);
+
+      span {
+        transform: scale(1.1);
+      }
+    }
+
     span {
       transform: scale(1);
       transition: all var(--transition-duration-fast-2) ease-in-out;

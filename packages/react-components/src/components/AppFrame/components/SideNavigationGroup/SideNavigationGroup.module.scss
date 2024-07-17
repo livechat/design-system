@@ -17,17 +17,14 @@ $transition: all var(--transition-duration-moderate-1)
     margin: 0;
   }
 
-  &__list {
+  &__list-wrapper {
     display: flex;
     flex-direction: column;
     transition: $transition;
     opacity: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding: 0;
     width: 100%;
     max-height: 0;
-    overflow: hidden;
+    overflow: auto;
     list-style: none;
 
     > li {
@@ -47,5 +44,11 @@ $transition: all var(--transition-duration-moderate-1)
     &--expanded-list-gap {
       margin-bottom: var(--spacing-5);
     }
+  }
+
+  &__list {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
   }
 }

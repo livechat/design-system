@@ -28,7 +28,7 @@ export interface ISideNavigationGroupProps extends ComponentCoreProps {
    */
   shouldOpenOnInit?: boolean;
   /**
-   * Specify whether the list should be open if item is active
+   * Specify whether the list should be open if an item within the group is active
    */
   shouldOpenOnActive?: boolean;
 }

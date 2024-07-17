@@ -148,7 +148,8 @@ export const Default = (): React.ReactElement => {
                     />
                   }
                 >
-                  Custom element with tooltip
+                  Custom element with own tooltip (native nav tooltip is
+                  disabled)
                 </Tooltip>
               }
               onClick={(e) => e.preventDefault()}

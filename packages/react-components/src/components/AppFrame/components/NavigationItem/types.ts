@@ -24,7 +24,7 @@ export interface INavigationItemProps extends ComponentCoreProps {
    */
   disableTooltip?: boolean;
   /**
-   * Specify whether the opacity should be disabled
+   * Set if you are preparing a custom element as a button icon and you do not want it to be semi-transparent without hover
    */
   disableOpacity?: boolean;
   /**

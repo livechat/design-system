@@ -28,6 +28,17 @@ $base-class: 'side-navigation-item';
       }
     }
 
+    &:focus-visible {
+      opacity: 1;
+      outline: 0;
+      box-shadow: var(--shadow-app-frame-focus);
+
+      > p,
+      > span {
+        opacity: 1;
+      }
+    }
+
     &--main-entry {
       font-weight: 600;
     }
@@ -49,12 +60,6 @@ $base-class: 'side-navigation-item';
     opacity: 0.6;
     width: 16px;
     height: 16px;
-
-    > * {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
 
     &--active {
       opacity: 1;

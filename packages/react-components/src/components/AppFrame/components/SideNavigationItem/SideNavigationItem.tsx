@@ -37,6 +37,13 @@ export const SideNavigationItem: React.FC<ISideNavigationItemProps> = ({
     onClick?.();
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLAnchorElement>) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      onClick?.();
+    }
+  };
+
   return (
     <li
       className={cx([styles[baseClass], className])}
@@ -49,20 +56,23 @@ export const SideNavigationItem: React.FC<ISideNavigationItemProps> = ({
       {...props}
     >
       <a
+        tabIndex={0}
         className={cx(styles[`${baseClass}__anchor`], {
           [styles[`${baseClass}__anchor--active`]]: isActive,
           [styles[`${baseClass}__anchor--main-entry`]]: isMainEntry,
           [styles[`${baseClass}__anchor--icon-hidden`]]: isIconHidden,
         })}
-        type="button"
         href={url}
         onClick={handleClick}
+        onKeyDown={handleKeyDown}
         onMouseEnter={onItemHover || noop}
+        onFocus={onItemHover || noop}
       >
         {shouldKeepIconSpace && (
           <span
             className={cx(styles[`${baseClass}__left-node`], {
-              [styles[`${baseClass}__left-node--active`]]: isActive,
+              [styles[`${baseClass}__left-node--active`]]:
+                isActive || isMainEntry,
             })}
             data-testid={SIDE_NAVIGATION_PARENT_ICON_TEST_ID}
           >
