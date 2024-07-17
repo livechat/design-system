@@ -19,7 +19,7 @@ const baseClass = 'global-alert';
 
 interface IGlobalAlert {
   className?: string;
-  kind: TopBarAlertKind;
+  kind?: TopBarAlertKind;
   icon?: FC;
   label: string;
   collapsable?: boolean;
@@ -34,7 +34,7 @@ const HOVER_DELAY = 400;
 
 export const GlobalAlert: FC<IGlobalAlert> = ({
   className,
-  kind,
+  kind = 'info',
   icon,
   label,
   collapsable = true,

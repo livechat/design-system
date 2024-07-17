@@ -1,0 +1,39 @@
+import { ArgTypes, Canvas, Meta, Title } from '@storybook/blocks';
+import * as Stories from './GlobalAlert.stories';
+
+<Meta of={Stories} />
+
+<Title>GlobalAlert</Title>
+
+[Intro](#Intro) | [Component API](#ComponentAPI)
+
+## Intro <a id="Intro" />
+
+`GlobalAlert` is a component that displays a global alert message. It is used to inform users about important information or changes in the system.
+It is meant to be used in pair with the `AppFrame` component.
+
+<Canvas of={Stories.Default} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+import { GlobalAlert } from '@livechat/design-system-react-components';
+
+<GlobalAlert
+  kind="info"
+  label="Turn on notifications to never miss a chat!"
+  onClose={handleSkip}
+>
+  <Button
+    size="compact"
+    kind="high-contrast"
+    onClick={handleEnableNotifications}
+  >
+    Turn on browser notifications
+  </Button>
+</GlobalAlert>;
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={Stories.Default} sort="requiredFirst" />
