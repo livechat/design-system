@@ -110,11 +110,13 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
             [styles[`${baseClass}__list-wrapper--expanded-list-gap`]]:
               isOpen && isCollapsible,
           },
-          className,
         ])}
       >
         {isSideMenuVisible && (
-          <ul className={styles[`${baseClass}__list`]} ref={onSetListNode}>
+          <ul
+            className={cx(styles[`${baseClass}__list`], className)}
+            ref={onSetListNode}
+          >
             {children}
           </ul>
         )}

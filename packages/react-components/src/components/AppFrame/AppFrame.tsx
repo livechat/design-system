@@ -65,7 +65,7 @@ const Frame = (props: IAppFrameProps) => {
                 }
               )}
             >
-              {sideNavigation}
+              {isSideNavigationVisible && sideNavigation}
             </div>
           )}
           <div
