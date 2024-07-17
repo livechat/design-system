@@ -18,7 +18,7 @@ $animation-duration: 0.2s;
     @include background-color.kind($expanded: true);
 
     box-shadow: var(--shadow-float);
-    padding: var(--radius-3) var(--radius-4);
+    padding: var(--spacing-4);
     max-width: 440px;
 
     @media (width <= 1360px) {

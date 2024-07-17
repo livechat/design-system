@@ -12,7 +12,7 @@ const meta: Meta<typeof GlobalAlertComponent> = {
   component: GlobalAlertComponent,
   decorators: [
     (Story) => (
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
         <Story />
       </div>
     ),
@@ -32,23 +32,15 @@ export const Default: Story = {
   },
 };
 
-export const TwoLineLabel: Story = {
-  args: {
-    kind: 'info',
-    label: 'Info alert with really really really really long label',
-    children: (
-      <Text>Some really important information with very long description</Text>
-    ),
-  },
-};
-
 export const LongContent: Story = {
   args: {
-    kind: 'info',
-    label: 'Long content alert',
+    kind: 'error',
+    label: 'Info alert with really really really really long label ',
     children: (
       <>
-        <Text>Some description text here</Text>
+        <Text>
+          Some really important information with very long description
+        </Text>
         <Button>Start accepting chats</Button>
       </>
     ),

@@ -111,6 +111,7 @@ export const GlobalAlert: FC<IGlobalAlert> = ({
         styles[baseClass],
         styles[`${baseClass}--${kind}`],
         {
+          [styles[`${baseClass}--expanded`]]: isVisible,
           [styles[`${baseClass}--expanded--${kind}`]]: isVisible,
         },
         className
