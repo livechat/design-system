@@ -17,7 +17,7 @@ import styles from './GlobalAlert.module.scss';
 
 const baseClass = 'global-alert';
 
-interface IGlobalAlert {
+export interface IGlobalAlertProps {
   className?: string;
   kind?: TopBarAlertKind;
   icon?: FC;
@@ -32,7 +32,7 @@ interface IGlobalAlert {
 
 const HOVER_DELAY = 400;
 
-export const GlobalAlert: FC<IGlobalAlert> = ({
+export const GlobalAlert: FC<IGlobalAlertProps> = ({
   className,
   kind = 'info',
   icon,
@@ -146,6 +146,7 @@ export const GlobalAlert: FC<IGlobalAlert> = ({
         </div>
         {collapsable && (
           <Button
+            aria-label={isVisible ? 'Collapse alert' : 'Expand alert'}
             className={cx(
               styles[`${baseClass}__action-button`],
               styles[
@@ -162,6 +163,7 @@ export const GlobalAlert: FC<IGlobalAlert> = ({
         )}
         {onClose && (
           <Button
+            aria-label="Close alert"
             className={cx(styles[`${baseClass}__action-button`], {
               [styles[`${baseClass}__action-button--expanded`]]: isVisible,
             })}
