@@ -46,3 +46,27 @@ export const LongContent: Story = {
     ),
   },
 };
+
+export const ControlledWithCloseButton: Story = {
+  args: {
+    kind: 'warning',
+    label: 'Warning alert',
+    children: (
+      <Text>Some really important information with very long description</Text>
+    ),
+  },
+  render: ({ children, ...args }) => {
+    const [isVisible, setIsVisible] = React.useState<boolean>(false);
+
+    return (
+      <GlobalAlertComponent
+        isVisible={isVisible}
+        onVisibilityChange={(isOpened) => setIsVisible(isOpened)}
+        onClose={() => setIsVisible(false)}
+        {...args}
+      >
+        {children}
+      </GlobalAlertComponent>
+    );
+  },
+};
