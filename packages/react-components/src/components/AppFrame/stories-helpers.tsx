@@ -91,7 +91,7 @@ export const getChatsMenu = (
   activeSubItem: number,
   handler: (o: number) => void
 ) => (
-  <SideNavigation noGaps title="Simple list">
+  <SideNavigation noGaps title="Chats">
     <SideNavigationItem
       label="Option 1"
       shouldKeepIconSpace={false}
@@ -119,36 +119,65 @@ export const getChatsMenu = (
   </SideNavigation>
 );
 
+const getCustomLabel = (label: string, component: React.ReactNode) => (
+  <span
+    style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      gap: 8,
+    }}
+  >
+    {label} {component}
+  </span>
+);
+
 export const getEngageSubMenu = (
   activeSubItem: number,
   handler: (o: number) => void
 ) => (
-  <SideNavigation noGaps title="List of options with additional elements">
+  <SideNavigation noGaps title="Engage">
     <SideNavigationItem
-      label="Option 1"
+      label={getCustomLabel('Option 1', <Badge count={1} />)}
       leftNode={
         <Tooltip
           placement="top-start"
           floatingStrategy="fixed"
           triggerRenderer={<Icon source={Icons.HelpFilled} size="small" />}
         >
-          Custom tooltip
+          Option 1 custom tooltip
         </Tooltip>
       }
-      rightNode={<Badge count={5} />}
+      rightNode={<Badge count={5} kind="tertiary" />}
       isActive={activeSubItem === 0}
       onClick={() => handler(0)}
     />
     <SideNavigationItem
-      label="Option 2"
-      leftNode={<Icon source={Icons.ErrorFilled} size="small" />}
+      label={getCustomLabel('Option 2', <Badge type="alert" />)}
+      leftNode={
+        <Tooltip
+          placement="top-start"
+          floatingStrategy="fixed"
+          triggerRenderer={<Icon source={Icons.HelpFilled} size="small" />}
+        >
+          Option 2 custom tooltip
+        </Tooltip>
+      }
       rightNode={<Badge kind="tertiary" />}
       isActive={activeSubItem === 1}
       onClick={() => handler(1)}
     />
     <SideNavigationItem
-      label="Option 3"
-      leftNode={<Icon source={Icons.CloseCircleFilled} size="small" />}
+      label={getCustomLabel('Option 3', <Badge type="dot" />)}
+      leftNode={
+        <Tooltip
+          placement="top-start"
+          floatingStrategy="fixed"
+          triggerRenderer={<Icon source={Icons.HelpFilled} size="small" />}
+        >
+          Option 3 custom tooltip
+        </Tooltip>
+      }
       rightNode={<Tag size="small">NEW</Tag>}
       isActive={activeSubItem === 2}
       onClick={() => handler(2)}
@@ -160,57 +189,81 @@ export const getArchivesSubMenu = (
   activeSubItem: number,
   handler: (o: number) => void
 ) => (
-  <SideNavigation
-    noGaps
-    title="Options with collapsable list"
-    customFooter={<h3>Custom footer</h3>}
-  >
-    <SideNavigationGroup label="Simple">
+  <SideNavigation noGaps title="Archives" customFooter={<h3>Custom footer</h3>}>
+    <SideNavigationGroup label="Group 1 (non collapsible)">
       <SideNavigationItem
         label="Option 1"
         isActive={activeSubItem === 0}
         onClick={() => handler(0)}
+        shouldKeepIconSpace={false}
       />
       <SideNavigationItem
         label="Option 2"
         isActive={activeSubItem === 1}
         onClick={() => handler(1)}
+        shouldKeepIconSpace={false}
       />
       <SideNavigationItem
         label="Option 3"
         isActive={activeSubItem === 2}
         onClick={() => handler(2)}
+        shouldKeepIconSpace={false}
       />
       <SideNavigationItem
         label="Option 4"
         isActive={activeSubItem === 3}
         onClick={() => handler(3)}
+        shouldKeepIconSpace={false}
       />
     </SideNavigationGroup>
-    <SideNavigationGroup isCollapsible label="With elements">
+    <SideNavigationGroup isCollapsible label="Group 2">
       <SideNavigationItem
-        label="Option 5"
-        leftNode={<Icon source={Icons.HelpFilled} size="small" />}
-        rightNode={<Badge count={5} />}
-        isActive={activeSubItem === 4}
-        onClick={() => handler(4)}
+        label={getCustomLabel('Option 5', <Badge count={1} />)}
+        leftNode={
+          <Tooltip
+            placement="top-start"
+            floatingStrategy="fixed"
+            triggerRenderer={<Icon source={Icons.HelpFilled} size="small" />}
+          >
+            Option 5 custom tooltip
+          </Tooltip>
+        }
+        rightNode={<Badge count={5} kind="tertiary" />}
+        isActive={activeSubItem === 0}
+        onClick={() => handler(0)}
       />
       <SideNavigationItem
-        label="Option 6"
-        leftNode={<Icon source={Icons.ErrorFilled} size="small" />}
+        label={getCustomLabel('Option 6', <Badge type="alert" />)}
+        leftNode={
+          <Tooltip
+            placement="top-start"
+            floatingStrategy="fixed"
+            triggerRenderer={<Icon source={Icons.HelpFilled} size="small" />}
+          >
+            Option 6 custom tooltip
+          </Tooltip>
+        }
         rightNode={<Badge kind="tertiary" />}
-        isActive={activeSubItem === 5}
-        onClick={() => handler(5)}
+        isActive={activeSubItem === 1}
+        onClick={() => handler(1)}
       />
       <SideNavigationItem
-        label="Option 7"
-        leftNode={<Icon source={Icons.CloseCircleFilled} size="small" />}
+        label={getCustomLabel('Option 7', <Badge type="dot" />)}
+        leftNode={
+          <Tooltip
+            placement="top-start"
+            floatingStrategy="fixed"
+            triggerRenderer={<Icon source={Icons.HelpFilled} size="small" />}
+          >
+            Option 7 custom tooltip
+          </Tooltip>
+        }
         rightNode={<Tag size="small">NEW</Tag>}
-        isActive={activeSubItem === 6}
-        onClick={() => handler(6)}
+        isActive={activeSubItem === 2}
+        onClick={() => handler(2)}
       />
     </SideNavigationGroup>
-    <SideNavigationGroup isCollapsible label="Collapsable">
+    <SideNavigationGroup isCollapsible label="Group 3">
       <SideNavigationItem
         label="Option 8"
         isActive={activeSubItem === 7}
@@ -238,24 +291,24 @@ export const getArchivesSubMenu = (
       />
     </SideNavigationGroup>
     <SideNavigationItem
-      label="Option 13"
-      isMainEntry
+      label="Option 13 (not grouped)"
       isActive={activeSubItem === 12}
       onClick={() => handler(12)}
+      shouldKeepIconSpace={false}
     />
     <SideNavigationItem
-      label="Option 14"
-      isMainEntry
+      label="Option 14 (not grouped)"
       isActive={activeSubItem === 13}
       onClick={() => handler(13)}
+      shouldKeepIconSpace={false}
     />
     <SideNavigationItem
-      label="Option 15"
-      isMainEntry
+      label="Option 15 (not grouped)"
       isActive={activeSubItem === 14}
       onClick={() => handler(14)}
+      shouldKeepIconSpace={false}
     />
-    <SideNavigationGroup isCollapsible label="Collapsable">
+    <SideNavigationGroup isCollapsible label="Group 4">
       <SideNavigationItem
         label="Option 16"
         isActive={activeSubItem === 15}

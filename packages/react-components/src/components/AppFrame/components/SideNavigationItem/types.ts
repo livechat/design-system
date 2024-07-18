@@ -8,11 +8,11 @@ export interface ISideNavigationItemProps extends ComponentCoreProps {
    */
   label: React.ReactNode;
   /**
-   * It will display the custom element on the right side of the side navigation item
+   * Custom element on the right side of the side navigation item
    */
   rightNode?: React.ReactNode;
   /**
-   * It will display the custom element on the left side of the side navigation item
+   * Custom element on the left side of the side navigation item
    */
   leftNode?: React.ReactNode;
   /**

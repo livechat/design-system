@@ -89,7 +89,14 @@ export const SideNavigationItem: React.FC<ISideNavigationItemProps> = ({
             {label}
           </Text>
         ) : (
-          label
+          <span
+            className={cx(styles[`${baseClass}__custom-label`], {
+              [styles[`${baseClass}__custom-label--active`]]:
+                isActive || isMainEntry,
+            })}
+          >
+            {label}
+          </span>
         )}
         {rightNode}
       </a>

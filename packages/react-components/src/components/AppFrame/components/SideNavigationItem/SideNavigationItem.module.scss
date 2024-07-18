@@ -26,6 +26,10 @@ $base-class: 'side-navigation-item';
       > span {
         opacity: 1;
       }
+
+      .#{$base-class}__custom-label {
+        color: var(--content-locked-white);
+      }
     }
 
     &:focus-visible {
@@ -77,6 +81,16 @@ $base-class: 'side-navigation-item';
 
     &--active {
       opacity: 1;
+    }
+  }
+
+  &__custom-label {
+    margin-right: auto;
+    line-height: 21px;
+    color: rgb(255 255 255 / 60%);
+
+    &--active {
+      color: var(--content-locked-white);
     }
   }
 }

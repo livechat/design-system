@@ -99,7 +99,13 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
           rightNode={localRightNode}
         />
       ) : (
-        <Text onMouseEnter={onItemHover || noop}>{localLabel}</Text>
+        <Text
+          bold
+          className={styles[`${baseClass}__simple-label`]}
+          onMouseEnter={onItemHover || noop}
+        >
+          {localLabel}
+        </Text>
       )}
 
       <div
