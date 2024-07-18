@@ -113,8 +113,6 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
           styles[`${baseClass}__list-wrapper`],
           {
             [styles[`${baseClass}__list-wrapper--expanded`]]: isOpen,
-            [styles[`${baseClass}__list-wrapper--expanded-list-gap`]]:
-              isOpen && isCollapsible,
           },
         ])}
       >
