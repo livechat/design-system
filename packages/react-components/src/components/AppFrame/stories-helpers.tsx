@@ -138,7 +138,7 @@ export const getEngageSubMenu = (
 ) => (
   <SideNavigation noGaps title="Engage">
     <SideNavigationItem
-      label={getCustomLabel('Option 1', <Badge count={1} />)}
+      label={getCustomLabel('Option 1', <Badge count={1} size="compact" />)}
       leftNode={
         <Tooltip
           placement="top-start"
@@ -153,7 +153,7 @@ export const getEngageSubMenu = (
       onClick={() => handler(0)}
     />
     <SideNavigationItem
-      label={getCustomLabel('Option 2', <Badge type="alert" />)}
+      label={getCustomLabel('Option 2', <Badge type="alert" size="compact" />)}
       leftNode={
         <Tooltip
           placement="top-start"
@@ -168,7 +168,7 @@ export const getEngageSubMenu = (
       onClick={() => handler(1)}
     />
     <SideNavigationItem
-      label={getCustomLabel('Option 3', <Badge type="dot" />)}
+      label={getCustomLabel('Option 3', <Badge type="dot" size="compact" />)}
       leftNode={
         <Tooltip
           placement="top-start"
@@ -218,7 +218,7 @@ export const getArchivesSubMenu = (
     </SideNavigationGroup>
     <SideNavigationGroup isCollapsible label="Group 2">
       <SideNavigationItem
-        label={getCustomLabel('Option 5', <Badge count={1} />)}
+        label={getCustomLabel('Option 5', <Badge count={1} size="compact" />)}
         leftNode={
           <Tooltip
             placement="top-start"
@@ -229,11 +229,14 @@ export const getArchivesSubMenu = (
           </Tooltip>
         }
         rightNode={<Badge count={5} kind="tertiary" />}
-        isActive={activeSubItem === 0}
-        onClick={() => handler(0)}
+        isActive={activeSubItem === 4}
+        onClick={() => handler(4)}
       />
       <SideNavigationItem
-        label={getCustomLabel('Option 6', <Badge type="alert" />)}
+        label={getCustomLabel(
+          'Option 6',
+          <Badge type="alert" size="compact" />
+        )}
         leftNode={
           <Tooltip
             placement="top-start"
@@ -244,11 +247,11 @@ export const getArchivesSubMenu = (
           </Tooltip>
         }
         rightNode={<Badge kind="tertiary" />}
-        isActive={activeSubItem === 1}
-        onClick={() => handler(1)}
+        isActive={activeSubItem === 5}
+        onClick={() => handler(5)}
       />
       <SideNavigationItem
-        label={getCustomLabel('Option 7', <Badge type="dot" />)}
+        label={getCustomLabel('Option 7', <Badge type="dot" size="compact" />)}
         leftNode={
           <Tooltip
             placement="top-start"
@@ -259,8 +262,8 @@ export const getArchivesSubMenu = (
           </Tooltip>
         }
         rightNode={<Tag size="small">NEW</Tag>}
-        isActive={activeSubItem === 2}
-        onClick={() => handler(2)}
+        isActive={activeSubItem === 6}
+        onClick={() => handler(6)}
       />
     </SideNavigationGroup>
     <SideNavigationGroup isCollapsible label="Group 3">
