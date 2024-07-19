@@ -35,7 +35,7 @@ export const Picker: React.FC<IPickerProps> = ({
   onOpen,
   onClose,
   openedOnInit = false,
-  clearSearchAfterSelection,
+  clearSearchAfterSelection = true,
   onSelect,
   placement,
   floatingStrategy,
