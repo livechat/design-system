@@ -9,6 +9,7 @@
     "selector-class-pattern": null,
     "no-descending-specificity": null,
     "order/properties-alphabetical-order": null,
+    "media-query-no-invalid": null,
     "import-notation": "string"
   }
 }

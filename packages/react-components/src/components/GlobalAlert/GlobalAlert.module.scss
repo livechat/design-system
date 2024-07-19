@@ -22,7 +22,7 @@ $width-breakpoint: 1430px;
     padding: var(--spacing-4);
     max-width: 440px;
 
-    @media (width <= 1360px) {
+    @media (width <= $width-breakpoint) {
       max-width: 440px;
     }
   }
@@ -136,7 +136,7 @@ $width-breakpoint: 1430px;
     overflow: hidden;
   }
 
-  @media (width <= 1360px) {
+  @media (width <= $width-breakpoint) {
     max-width: 300px;
   }
 }
