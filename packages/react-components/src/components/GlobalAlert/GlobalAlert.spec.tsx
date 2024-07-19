@@ -6,7 +6,7 @@ import { vi } from 'vitest';
 
 import { GlobalAlert, IGlobalAlertProps } from './GlobalAlert';
 
-describe('GlobalAlert', () => {
+describe('<GlobalAlert> component', () => {
   const label = 'Test Alert';
   const onClose = vi.fn();
   const onVisibilityChange = vi.fn();

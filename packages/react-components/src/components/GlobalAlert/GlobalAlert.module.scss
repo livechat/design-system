@@ -3,7 +3,8 @@
 @use 'styles/animation';
 
 $base-class: 'global-alert';
-$animation-duration: 0.2s;
+$animation-duration: var(--transition-duration-fast-2);
+$width-breakpoint: 1430px;
 
 .#{$base-class} {
   @include background-color.kind();
