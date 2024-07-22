@@ -91,6 +91,7 @@ $base-class: 'side-navigation-item';
     line-height: 21px;
     white-space: nowrap;
     color: rgb(255 255 255 / 60%);
+    font-size: 14px;
 
     &--active {
       color: var(--content-locked-white);
