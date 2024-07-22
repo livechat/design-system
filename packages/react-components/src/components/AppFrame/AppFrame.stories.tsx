@@ -76,7 +76,7 @@ const secondaryNavigationIcons = [
 const SectionsWithToggle = ['chats', 'engage', 'archives'];
 
 export const Default = (): React.ReactElement => {
-  const [activeItem, setActiveItem] = React.useState('home');
+  const [activeItem, setActiveItem] = React.useState('archives');
   const [activeSubItem, setActiveSubItem] = React.useState(0);
   const [topBarVisible, setTopBarVisible] = React.useState(true);
 
