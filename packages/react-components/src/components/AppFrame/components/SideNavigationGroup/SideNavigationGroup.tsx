@@ -66,13 +66,15 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   }, [hasActiveElements, shouldOpenOnActive]);
 
   React.useEffect(() => {
-    if (!isCollapsible) return setIsSideMenuVisible(true);
+    if (!isCollapsible) {
+      return setIsSideMenuVisible(true);
+    }
 
-    if (isOpen) return setIsSideMenuVisible(true);
+    if (isOpen) {
+      return setIsSideMenuVisible(true);
+    }
 
-    setTimeout(() => setIsSideMenuVisible(false), 600);
-
-    return;
+    return setIsSideMenuVisible(false);
   }, [isOpen]);
 
   return (
