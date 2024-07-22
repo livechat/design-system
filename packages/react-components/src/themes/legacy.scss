@@ -374,4 +374,10 @@ $decor-gray800: #29292f;
     #c930ff 313.12deg,
     #7000ff 360.45deg
   );
+  --one-tooltip-background: linear-gradient(
+    254.49deg,
+    #3c364c -0.38%,
+    #1b2b46 96.36%
+  );
+  --content-basic-autofill: hsl(240deg 10% 8% / 59%);
 }

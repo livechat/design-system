@@ -1611,4 +1611,14 @@ export const ColorsData: Record<
     desc: '',
     deprecated: undefined,
   },
+  OneTooltipBackground: {
+    group: ColorGroup.Products,
+    desc: '',
+    deprecated: undefined,
+  },
+  ContentBasicAutofill: {
+    group: ColorGroup.ContentBasic,
+    desc: '',
+    deprecated: undefined,
+  },
 };

@@ -35,6 +35,7 @@ export const getDefaultOptions = (
     element: <Icon source={Adjust} kind="primary" />,
     label: 'Three test',
     showTooltip: true,
+    withDivider: true,
     onClick: () => onClickHandler('three'),
   },
   {

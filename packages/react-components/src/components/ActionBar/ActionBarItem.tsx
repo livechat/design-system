@@ -13,29 +13,29 @@ const baseClass = 'action-bar__items';
 const menuWrapperClass = `${baseClass}__button-wrapper`;
 
 export const ActionBarItem: React.FC<IActionBarItem> = ({
-  id,
   option,
-  isHidden,
   isActive,
   vertical,
 }) => {
   const mergedButtonClassNames = cx(styles[menuWrapperClass], {
-    [styles[`${menuWrapperClass}--hidden`]]: isHidden,
     [styles[`${menuWrapperClass}--active`]]: isActive,
     [styles[`${menuWrapperClass}--vertical`]]: vertical,
   });
 
   const button = (
     <Button
-      data-actionbarid={id}
       id={option.key}
       key={option.key}
       title={option?.showTooltip ? undefined : option.label}
       kind="plain"
       onClick={option.onClick}
       icon={option.element}
-      disabled={isHidden}
-      className={styles[`${menuWrapperClass}__button`]}
+      className={cx(styles[`${menuWrapperClass}__button`], {
+        [styles[`${menuWrapperClass}__button--with-vertical-divider`]]:
+          vertical && option.withDivider,
+        [styles[`${menuWrapperClass}__button--with-divider`]]:
+          !vertical && option.withDivider,
+      })}
     />
   );
 

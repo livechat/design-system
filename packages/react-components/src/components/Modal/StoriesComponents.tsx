@@ -45,9 +45,6 @@ export const ModalFullSpaceContent: React.FC = () => {
 
 export const ModalContent: React.FC = () => (
   <div style={{ maxWidth: 400 }}>
-    <Heading size="lg" as="div">
-      Content header
-    </Heading>
     <Text size="sm">
       Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
       Velit officia consequat duis enim velit mollit. Exercitation veniam

@@ -35,15 +35,14 @@ export interface IActionBarOption {
   key: string;
   element: React.ReactElement;
   label: string;
+  withDivider?: boolean;
   showTooltip?: boolean;
   hideInMenu?: boolean;
   onClick: () => void;
 }
 
 export interface IActionBarItem {
-  id: string;
   option: IActionBarOption;
-  isHidden: boolean;
   isActive?: boolean;
   vertical?: boolean;
 }

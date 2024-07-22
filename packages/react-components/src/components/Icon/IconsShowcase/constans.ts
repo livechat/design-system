@@ -326,6 +326,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   PlayerRecordFilled: IconGroup.General,
   PlayerRecord: IconGroup.General,
   PlayerStop: IconGroup.General,
+  PlugConnected: IconGroup.General,
   Point: IconGroup.General,
   PointFilled: IconGroup.General,
   PositionFilled: IconGroup.General,
@@ -452,6 +453,8 @@ export const IconsData: Record<IconName, IconGroup> = {
   GoogleDarkModeColored: IconGroup.Brands,
   GoogleLightModeColored: IconGroup.Brands,
   GoogleTagManagerColored: IconGroup.Brands,
+  HelloColored: IconGroup.Brands,
+  HelloMono: IconGroup.Brands,
   HelpDeskColored: IconGroup.Brands,
   HelpDeskMono: IconGroup.Brands,
   Instagram: IconGroup.Brands,
@@ -496,4 +499,5 @@ export const IconsData: Record<IconName, IconGroup> = {
   Hubspot: IconGroup.Brands,
   Stripe: IconGroup.Brands,
   Mailchimp: IconGroup.Brands,
+  LayoutSidebarLeft: IconGroup.General,
 };
