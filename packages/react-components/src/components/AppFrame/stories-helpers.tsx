@@ -221,6 +221,7 @@ export const getArchivesSubMenu = (
     </SideNavigationGroup>
     <SideNavigationGroup
       isCollapsible
+      shouldOpenOnInit
       label="Group 2 with very long label name"
     >
       <SideNavigationItem
@@ -317,7 +318,7 @@ export const getArchivesSubMenu = (
       onClick={() => handler(14)}
       shouldKeepIconSpace={false}
     />
-    <SideNavigationGroup isCollapsible label="Group 4">
+    <SideNavigationGroup isCollapsible shouldOpenOnInit label="Group 4">
       <SideNavigationItem
         label="Option 16"
         isActive={activeSubItem === 15}
