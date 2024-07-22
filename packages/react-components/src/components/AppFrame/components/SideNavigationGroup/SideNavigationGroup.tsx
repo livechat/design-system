@@ -27,7 +27,6 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   const [isOpen, setIsOpen] = React.useState(
     !isCollapsible || shouldOpenOnInit
   );
-  const [isSideMenuVisible, setIsSideMenuVisible] = React.useState(false);
   const [hasActiveElements, setHasActiveElements] =
     React.useState<boolean>(false);
   const hadActiveListElementsRef = React.useRef(false);
@@ -64,18 +63,6 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
 
     hadActiveListElementsRef.current = hasActiveElements;
   }, [hasActiveElements, shouldOpenOnActive]);
-
-  React.useEffect(() => {
-    if (!isCollapsible) {
-      return setIsSideMenuVisible(true);
-    }
-
-    if (isOpen) {
-      return setIsSideMenuVisible(true);
-    }
-
-    return setIsSideMenuVisible(false);
-  }, [isOpen]);
 
   return (
     <div data-testid="side-navigation-group" className={styles[baseClass]}>
@@ -118,7 +105,7 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
           },
         ])}
       >
-        {isSideMenuVisible && (
+        {isOpen && (
           <ul
             className={cx(styles[`${baseClass}__list`], className)}
             ref={onSetListNode}
