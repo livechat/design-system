@@ -22,9 +22,9 @@ export interface IProductOption {
   icon: ReactNode;
   notificationCount?: number;
   backgroundColors: {
-    primary: string;
-    secondary: string;
-    tertiary: string;
+    main: string;
+    second: string;
+    third: string;
   };
   withDivider?: boolean;
   url: string;

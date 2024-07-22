@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { FC } from 'react';
 
+import { Popover } from '../Popover';
+
 import { ProductTile } from './components/ProductTile/ProductTile';
 import { IProductSwitcherProps } from './types';
 
@@ -20,15 +22,17 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
   }
 
   return (
-    <div>
-      <div>
+    <Popover
+      placement="bottom-end"
+      triggerRenderer={
         <ProductTile
           id={mainProduct.id}
           isMainProduct
           icon={mainProduct.icon}
           backgroundColors={mainProduct.backgroundColors}
         />
-      </div>
+      }
+    >
       <div>
         {otherProducts.map((product) => (
           <ProductTile
@@ -39,6 +43,6 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
           />
         ))}
       </div>
-    </div>
+    </Popover>
   );
 };

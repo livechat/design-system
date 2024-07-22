@@ -30,7 +30,7 @@ export const ProductTile: FC<IProps> = ({
         [styles[`${baseClass}--main-product`]]: isMainProduct,
       })}
       style={{
-        backgroundColor: backgroundColors.primary,
+        backgroundColor: backgroundColors.main,
       }}
     >
       {notificationCount && (
@@ -39,7 +39,12 @@ export const ProductTile: FC<IProps> = ({
           className={styles[`${baseClass}--badge`]}
         />
       )}
-      <Icon source={icon as IconSource} />
+      <Icon
+        source={icon as IconSource}
+        className={cx(styles[`${baseClass}--icon`], {
+          [styles[`${baseClass}--icon__large`]]: isMainProduct,
+        })}
+      />
     </div>
   );
 };

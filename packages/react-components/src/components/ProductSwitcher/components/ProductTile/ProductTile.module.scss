@@ -2,6 +2,8 @@ $base-class: 'product-tile';
 
 .#{$base-class} {
   display: flex;
+  position: relative;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-3);
@@ -17,5 +19,19 @@ $base-class: 'product-tile';
     position: absolute;
     top: 0;
     right: 0;
+  }
+
+  &--icon {
+    color: var(--content-locked-white);
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    &__large svg {
+      width: 28px;
+      height: 28px;
+    }
   }
 }
