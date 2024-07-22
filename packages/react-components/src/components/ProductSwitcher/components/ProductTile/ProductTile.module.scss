@@ -2,7 +2,6 @@ $base-class: 'product-tile';
 
 .#{$base-class} {
   display: flex;
-  position: relative;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;

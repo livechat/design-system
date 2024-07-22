@@ -24,6 +24,7 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
   return (
     <Popover
       placement="bottom-end"
+      openedOnInit
       triggerRenderer={
         <ProductTile
           id={mainProduct.id}
@@ -33,16 +34,14 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
         />
       }
     >
-      <div>
-        {otherProducts.map((product) => (
-          <ProductTile
-            key={product.id}
-            id={product.id}
-            icon={product.icon}
-            backgroundColors={product.backgroundColors}
-          />
-        ))}
-      </div>
+      {otherProducts.map((product) => (
+        <ProductTile
+          key={product.id}
+          id={product.id}
+          icon={product.icon}
+          backgroundColors={product.backgroundColors}
+        />
+      ))}
     </Popover>
   );
 };

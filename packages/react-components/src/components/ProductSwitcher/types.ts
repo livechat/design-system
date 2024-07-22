@@ -7,6 +7,7 @@ export type ProductId =
   | 'helpdesk'
   | 'chatbot'
   | 'openwidget'
+  | 'knowledgebase'
   | 'hello'
   | 'accounts';
 
