@@ -167,7 +167,7 @@ const getAdvancedNavElements = (
           floatingStrategy="fixed"
           triggerRenderer={<Icon source={Icons.HelpFilled} size="small" />}
         >
-          {`Option ${index + 4} custom tooltip`}
+          {`Option ${index + 5} custom tooltip`}
         </Tooltip>
       }
       rightNode={getLabelRightNode(index + 5)}
