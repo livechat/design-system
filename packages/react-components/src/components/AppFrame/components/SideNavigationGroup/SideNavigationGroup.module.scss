@@ -14,12 +14,18 @@ $transition: all var(--transition-duration-fast-1) ease-in-out;
 
   &__label {
     margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
   }
 
   &__simple-label {
     margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
     line-height: 32px;
     color: var(--content-locked-white);
+    text-wrap: nowrap;
   }
 
   &__list-wrapper {

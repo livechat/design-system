@@ -86,7 +86,10 @@ $base-class: 'side-navigation-item';
 
   &__custom-label {
     margin-right: auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
     line-height: 21px;
+    white-space: nowrap;
     color: rgb(255 255 255 / 60%);
 
     &--active {

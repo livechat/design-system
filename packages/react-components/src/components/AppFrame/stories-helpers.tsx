@@ -111,7 +111,7 @@ export const getChatsMenu = (
       onClick={() => handler(2)}
     />
     <SideNavigationItem
-      label="Option 4"
+      label="Option 4 with very long label name"
       shouldKeepIconSpace={false}
       isActive={activeSubItem === 3}
       onClick={() => handler(3)}
@@ -190,7 +190,10 @@ export const getArchivesSubMenu = (
   handler: (o: number) => void
 ) => (
   <SideNavigation noGaps title="Archives" customFooter={<h3>Custom footer</h3>}>
-    <SideNavigationGroup label="Group 1 (non collapsible)">
+    <SideNavigationGroup
+      label="Group 1 (non collapsible) with very long label name"
+      rightNode={<Badge count={5} kind="tertiary" />}
+    >
       <SideNavigationItem
         label="Option 1"
         isActive={activeSubItem === 0}
@@ -216,7 +219,10 @@ export const getArchivesSubMenu = (
         shouldKeepIconSpace={false}
       />
     </SideNavigationGroup>
-    <SideNavigationGroup isCollapsible label="Group 2">
+    <SideNavigationGroup
+      isCollapsible
+      label="Group 2 with very long label name"
+    >
       <SideNavigationItem
         label={getCustomLabel('Option 5', <Badge count={1} size="compact" />)}
         leftNode={
