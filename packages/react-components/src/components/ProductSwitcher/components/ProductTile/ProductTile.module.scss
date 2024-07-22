@@ -1,0 +1,21 @@
+$base-class: 'product-tile';
+
+.#{$base-class} {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-3);
+  width: 36px;
+  height: 36px;
+
+  &--main-product {
+    width: 42px;
+    height: 42px;
+  }
+
+  &--badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
