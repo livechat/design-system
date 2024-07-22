@@ -30,11 +30,11 @@ To build the main navigation, use the available components:
 
 #### `Navigation` component
 
-The `Navigation` component serves as the main wrapper for grouped navigation items passed as children. It should have `NavigationGroup` components as its direct children, which will group `NavigationItem` components. The styles have been prepared to provide enough space to place a list of items vertically and also have styles that display `NavigationGroup` components on opposite sides of the bar, with the first item going to the top and the second to the bottom of the vertical navigation bar.
+The `Navigation` component serves as the main wrapper for grouped navigation items passed as children. It should have `NavigationGroup` components as its direct children, which will group `NavigationItem` components. It provides possibility to use another `NavigationGroup` component if you need to create another group of navigation elements and it will be displayed at the bottom of the navigation bar.
 
 #### `NavigationGroup` component
 
-The `NavigationGroup` component is a container responsible for the appropriate grouping of `NavigationItem` elements. Should be a direct child of the `Navigation` component. In addition to its container function, it enables the scrolling of elements when there is insufficient space for their display. This feature can be activated by passing the prop `scrollable={true}`.
+The `NavigationGroup` component is a container responsible for the appropriate grouping of `NavigationItem` elements. Should be a direct child of the `Navigation` component. In addition to its container function, it enables the scrolling of elements when there is insufficient space for their display. This feature can be activated by setting the `scrollable` prop.
 
 #### `NavigationItem` component
 
@@ -96,15 +96,16 @@ To build the side navigation, use the available components:
 
 #### `SideNavigation` component
 
-It mainly serves as a container for side navigation elements. An addition in this component is props `title` which will display an additional header above the list of navigation buttons.
+The `SideNavigation` component serves as a container for side navigation elements passed as children. It should have `SideNavigationGroup` or `SideNavigationItem` components as its direct children.
 
 #### `SideNavigationGroup` component
 
-Unlike `NavigationGroup` it is not a component required to create a side navigation structure. Its main task is to aggregate elements under a label, with the option of enabling expansion of the list of elements via the `isCollapsible` prop.
+The `SideNavigationGroup` component is used to create collapsible items within the `SideNavigation`. It groups the `SideNavigationItem` items under same category.
+It is not a component required to create a side navigation structure. Its main task is to aggregate elements under a label, with the option of enabling expansion of the list of elements via the `isCollapsible` prop.
 
 #### `SideNavigationItem` component
 
-It is the final element for building side navigation, responsible for displaying the button. In addition to displaying the button with the given label, it can be supplemented by passing your own elements via the `leftNode` and `rightNode` props.
+The `SideNavigationItem` component is used to create single side navigation element. It displays button with the given label and it can be supplemented by passing your own elements via the `leftNode` and `rightNode` props.
 
 #### Side navigation implementation example
 
