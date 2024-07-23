@@ -24,6 +24,7 @@ export const ProductRow: FC<IProps> = ({
     name,
     url,
     withDivider,
+    order,
   },
   onClick,
 }) => {
@@ -48,6 +49,9 @@ export const ProductRow: FC<IProps> = ({
           ></ProductTile>
           <Text bold>{name}</Text>
         </div>
+        <Text size="sm" className={styles[`${baseClass}__shortcut`]}>
+          ⌥⌘{order}
+        </Text>
       </a>
     </>
   );

@@ -16,6 +16,7 @@ export interface IProductSwitcherProps {
 }
 
 export interface IProductOption {
+  order: number;
   id: ProductId;
   name: string;
   tooltipProps?: Omit<ITooltipProps, 'triggerRenderer'>;

@@ -5,6 +5,7 @@ $base-class: 'product-row';
   flex-direction: row;
   gap: 8px;
   align-items: center;
+  justify-content: space-between;
   outline: none;
   border-radius: 14px;
   padding: var(--spacing-2) var(--spacing-3);
@@ -32,5 +33,9 @@ $base-class: 'product-row';
     flex-direction: row;
     gap: 16px;
     align-items: center;
+  }
+
+  &__shortcut {
+    color: var(--content-basic-disabled);
   }
 }
