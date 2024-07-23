@@ -1,0 +1,3 @@
+.avatar > [class^='lc-Avatar-module__avatar__status'] {
+  border-color: var(--navbar-background);
+}

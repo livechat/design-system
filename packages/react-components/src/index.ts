@@ -1,12 +1,14 @@
 import './index.scss';
 
 export * from './foundations';
+export * from './providers';
 export * from './utils';
 
 export * from './components/ActionBar';
 export * from './components/ActionCard';
 export * from './components/ActionMenu';
 export * from './components/Alert';
+export * from './components/AppFrame';
 export * from './components/Avatar';
 export * from './components/Badge';
 export * from './components/Button';

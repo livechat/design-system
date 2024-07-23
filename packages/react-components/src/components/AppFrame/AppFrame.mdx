@@ -1,0 +1,165 @@
+import { ArgTypes, Canvas, Meta, Title } from '@storybook/blocks';
+import * as AppFrameStories from './AppFrame.stories';
+
+<Meta of={AppFrameStories} />
+
+<Title>AppFrame</Title>
+
+[Intro](#Intro) | [How to build the navigation](#BuildNav) | [Component API](#ComponentAPI)
+
+## Intro <a id="Intro" />
+
+`AppFrame` is a component used to build an application layout, which assumes displaying its content in a frame around which interface elements such as navigation, side navigation or top bar are located.
+
+The most important functionality of this component, apart from the UI layout, is primarily the navigation displayed on the left side of the layout. Thanks to the component approach to building this navigation, anyone can easily add additional elements to the navigation, and specific components will be responsible for specific tasks within the operation of the entire component, while leaving the way open to introducing your own custom elements, the addition of which will not be necessary, blocked by the limiting interface.
+
+<Canvas of={AppFrameStories.Default} />
+
+## How to build the navigation <a id="BuildNav" />
+
+[Main navigation](#MainNav) | [Side navigation](#SideNav) | [AppFrameProvider](#Provider)
+
+The component allows you to place navigation available on the left side, consisting of icons, and also allows you to display additional navigation in the opening panel.
+
+### Main navigation <a id="MainNav" />
+
+To build the main navigation, use the available components:
+- `Navigation`
+- `NavigationGroup`
+- `NavigationItem`
+
+#### `Navigation` component
+
+The `Navigation` component serves as the main wrapper for grouped navigation items passed as children. It should have `NavigationGroup` components as its direct children, which will group `NavigationItem` components. It provides possibility to use another `NavigationGroup` component if you need to create another group of navigation elements and it will be displayed at the bottom of the navigation bar.
+
+#### `NavigationGroup` component
+
+The `NavigationGroup` component is a container responsible for the appropriate grouping of `NavigationItem` elements. Should be a direct child of the `Navigation` component. In addition to its container function, it enables the scrolling of elements when there is insufficient space for their display. This feature can be activated by setting the `scrollable` prop.
+
+#### `NavigationItem` component
+
+The `NavigationItem` component is responsible for displaying navigation elements. It displays buttons with an icon (or any other element you provide, keeping in mind the size limitations of this component). Additionally, a tooltip displaying the name of the element can appear on hover, as specified by the `label` prop, this can be disabled if necessary. The badge prop is also optional.
+
+#### Navigation implementation example
+
+```jsx
+import { AppFrame, Navigation, NavigationGroup, NavigationItem, Icon } from '@livechat/design-system-react-components';
+import { Home, Settings } from '@livechat/design-system-icons';
+
+<AppFrame
+  navigation={
+    <Navigation>
+      // top navigation
+      <NavigationGroup scrollable>
+        ...
+        <NavigationItem
+          key="home"
+          id="home"
+          label="Home"
+          icon={<Icon source={Home} />}
+          onClick={(e, id) => {}}
+          isActive={activeItem === 'home'}
+          badge={5}
+          url="#"
+        />
+        ...
+      </NavigationGroup>
+      // bottom navigation
+      <NavigationGroup>
+        ...
+        <NavigationItem
+          key="settings"
+          id="settings"
+          label="Settings"
+          icon={<Icon source={Settings} />}
+          onClick={(e, id) => {}}
+          isActive={activeItem === 'settings'}
+          badge='alert'
+          url="#"
+        />
+        ...
+      </NavigationGroup>
+    </Navigation>
+  }
+>
+  App content
+</AppFrame>
+```
+
+### Side navigation <a id="SideNav" />
+
+To build the side navigation, use the available components:
+
+- `SideNavigation`
+- `SideNavigationGroup`
+- `SideNavigationItem`
+
+#### `SideNavigation` component
+
+The `SideNavigation` component serves as a container for side navigation elements passed as children. It should have `SideNavigationGroup` or `SideNavigationItem` components as its direct children.
+
+#### `SideNavigationGroup` component
+
+The `SideNavigationGroup` component is used to create collapsible items within the `SideNavigation`. It groups the `SideNavigationItem` items under same category.
+It is not a component required to create a side navigation structure. Its main task is to aggregate elements under a label, with the option of enabling expansion of the list of elements via the `isCollapsible` prop.
+
+#### `SideNavigationItem` component
+
+The `SideNavigationItem` component is used to create single side navigation element. It displays button with the given label and it can be supplemented by passing your own elements via the `leftNode` and `rightNode` props.
+
+#### Side navigation implementation example
+
+```jsx
+import { AppFrame, Navigation, SideNavigation, SideNavigationGroup, SideNavigationItem } from '@livechat/design-system-react-components';
+import { Home, Settings } from '@livechat/design-system-icons';
+
+<AppFrame
+  navigation={<Navigation>...</Navigation>}
+  sideNavigation={
+    <SideNavigation title="Example">
+      // single element
+      <SideNavigationItem
+        label="Example option"
+        isActive={activeElement === 'example'}
+        onClick={() => {}}
+      />
+      // with collapsible list
+      <SideNavigationGroup isCollapsible label="With elements">
+        ...
+          <SideNavigationItem
+            label="Example2 option"
+            isActive={activeElement === 'example2'}
+            onClick={() => {}}
+          />
+        ...
+      </SideNavigationGroup>
+    </SideNavigation>
+  }
+```
+
+#### Side navigation visibility with `AppFrameProvider` <a id="Provider" />
+
+Side navigation passed by the `sideNavigation` prop will be displayed in an appropriate container, located next to the application frame. By default, the navigation will be visible, but the component allows you to control its visibility.
+For this purpose, `AppFrameProvider` was created, which is used by default inside the `AppFrame` component.
+
+`AppFrameProvider` gives us access to the following properties:
+- `isSideNavigationVisible` - defines whether side navigation is open/closed
+- `toggleSideNavigationVisibility` - function changing the value of `isSideNavigationVisible`
+
+Thanks to the provider, you can easily implement the ability to close and open this panel in your own UI.
+
+```jsx
+import { useAppFrame } from '@livechat/design-system-react-components';
+
+const SideNavigationSwitcher: FC = () => {
+  const { isSideNavigationVisible, toggleSideNavigationVisibility } = useAppFrame();
+
+  <Button onClick={toggleSideNavigationVisibility}>
+    {isSideNavigationVisible ? 'Visible' : 'Hidden'}
+  </Button>
+};
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={AppFrameStories.Default} sort="requiredFirst" />

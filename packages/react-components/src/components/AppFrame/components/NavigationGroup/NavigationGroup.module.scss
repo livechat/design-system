@@ -1,0 +1,15 @@
+$base-class: 'navigation-group';
+
+.#{$base-class} {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &--scrollable {
+    overflow-y: scroll;
+    scrollbar-width: none;
+  }
+}

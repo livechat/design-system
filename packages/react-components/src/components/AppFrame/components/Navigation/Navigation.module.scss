@@ -1,0 +1,13 @@
+$base-class: 'navigation';
+
+.#{$base-class} {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  width: 54px;
+  height: 100%;
+}
