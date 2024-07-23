@@ -47,8 +47,13 @@ $base-class: 'product-tile';
 
   &__badge {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -6px;
+    right: -6px;
+    border: solid 1.5px var(--picker-list-background);
+
+    &--bordered {
+      border: solid 1.5px var(--navbar-background);
+    }
   }
 
   &__icon {

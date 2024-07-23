@@ -34,12 +34,15 @@ export const ProductTile: FC<IProps> = ({
           backgroundColor: backgroundColors.main,
         }}
       >
-        {notificationCount && (
+        {notificationCount ? (
           <Badge
+            size="compact"
             count={notificationCount}
-            className={styles[`${baseClass}__badge`]}
+            className={cx(styles[`${baseClass}__badge`], {
+              [styles[`${baseClass}__badge--bordered`]]: isMainProduct,
+            })}
           />
-        )}
+        ) : null}
         <Icon
           source={icon}
           className={cx(styles[`${baseClass}__icon`], {

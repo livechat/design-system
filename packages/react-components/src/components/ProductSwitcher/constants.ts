@@ -20,6 +20,7 @@ export const ProductSwitcherProducts: IProductOption[] = [
       third: 'var(--products-chatbot)',
     },
     url: '/livechat',
+    notificationCount: 1,
   },
   {
     id: 'chatbot',
@@ -31,6 +32,7 @@ export const ProductSwitcherProducts: IProductOption[] = [
       third: 'var(--products-helpdesk)',
     },
     url: '/chatbot',
+    notificationCount: 1,
   },
   {
     id: 'helpdesk',
@@ -42,6 +44,7 @@ export const ProductSwitcherProducts: IProductOption[] = [
       third: 'var(--products-chatbot)',
     },
     url: '/helpdesk',
+    notificationCount: 1,
   },
   {
     id: 'knowledgebase',
@@ -77,6 +80,7 @@ export const ProductSwitcherProducts: IProductOption[] = [
       third: 'var(--products-chatbot)',
     },
     url: '/hello',
+    notificationCount: 1,
   },
   {
     id: 'accounts',

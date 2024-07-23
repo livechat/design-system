@@ -29,6 +29,11 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
     event.preventDefault();
   };
 
+  const combinedNotificationCount = productOptions.reduce(
+    (acc, product) => acc + (product.notificationCount || 0),
+    0
+  );
+
   return (
     <Popover
       placement="right-start"
@@ -39,6 +44,7 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
           isMainProduct
           icon={mainProduct.icon}
           backgroundColors={mainProduct.backgroundColors}
+          notificationCount={combinedNotificationCount}
         />
       }
     >
