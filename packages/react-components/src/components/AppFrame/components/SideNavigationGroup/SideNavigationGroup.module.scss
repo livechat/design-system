@@ -21,6 +21,7 @@ $transition: all var(--transition-duration-fast-2) ease-in-out;
 
   &__simple-label {
     margin: 0;
+    padding: 0 var(--spacing-3);
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 32px;
