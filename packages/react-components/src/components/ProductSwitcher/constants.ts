@@ -1,7 +1,6 @@
 import {
   AccountCircle,
   ChatBotMono,
-  HelloMono,
   HelpDeskMono,
   KnowledgeBaseMono,
   LiveChatMono,
@@ -69,7 +68,7 @@ export const ProductSwitcherProducts: IProductOption[] = [
   {
     id: 'hello',
     name: 'TeamChat',
-    icon: HelloMono,
+    icon: AccountCircle,
     backgroundColors: {
       main: 'var(--products-hello)',
       second: 'var(--products-livechat)',

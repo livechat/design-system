@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { FC } from 'react';
 
 import { Popover } from '../Popover';
@@ -23,7 +22,7 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
 
   return (
     <Popover
-      placement="bottom-end"
+      placement="right-start"
       openedOnInit
       triggerRenderer={
         <ProductTile

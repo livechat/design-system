@@ -1,5 +1,4 @@
-import { ReactNode } from 'react';
-
+import { IconSource } from '../Icon';
 import { ITooltipProps } from '../Tooltip';
 
 export type ProductId =
@@ -20,7 +19,7 @@ export interface IProductOption {
   id: ProductId;
   name: string;
   tooltipProps?: Omit<ITooltipProps, 'triggerRenderer'>;
-  icon: ReactNode;
+  icon: IconSource;
   notificationCount?: number;
   backgroundColors: {
     main: string;

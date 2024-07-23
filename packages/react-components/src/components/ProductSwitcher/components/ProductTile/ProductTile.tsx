@@ -1,10 +1,9 @@
-import * as React from 'react';
 import { FC } from 'react';
 
 import cx from 'clsx';
 
 import { Badge } from '../../../Badge';
-import { Icon, IconSource } from '../../../Icon';
+import { Icon } from '../../../Icon';
 import { IProductOption } from '../../types';
 
 import styles from './ProductTile.module.scss';
@@ -19,6 +18,7 @@ type IProps = Pick<
 const baseClass = 'product-tile';
 
 export const ProductTile: FC<IProps> = ({
+  id,
   icon,
   backgroundColors,
   notificationCount,
@@ -40,8 +40,9 @@ export const ProductTile: FC<IProps> = ({
         />
       )}
       <Icon
-        source={icon as IconSource}
+        source={icon}
         className={cx(styles[`${baseClass}--icon`], {
+          [styles[`${baseClass}--icon__black`]]: id === 'accounts',
           [styles[`${baseClass}--icon__large`]]: isMainProduct,
         })}
       />

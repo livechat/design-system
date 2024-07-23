@@ -28,6 +28,10 @@ $base-class: 'product-tile';
       height: 24px;
     }
 
+    &__black {
+      color: var(--content-locked-black);
+    }
+
     &__large svg {
       width: 28px;
       height: 28px;
