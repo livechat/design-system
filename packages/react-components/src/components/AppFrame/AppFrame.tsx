@@ -27,6 +27,40 @@ const Frame = (props: IAppFrameProps) => {
   } = props;
   const mergedClassNames = cx(styles[baseClass], className);
   const { isSideNavigationVisible } = useAppFrame();
+  const [isSideNavMounted, setIsSideNavMounted] = React.useState(
+    isSideNavigationVisible
+  );
+  const [isSideNavOpen, setIsSideNavOpen] = React.useState(
+    isSideNavigationVisible
+  );
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (isSideNavigationVisible) {
+      setIsSideNavMounted(true);
+      requestAnimationFrame(() => setIsSideNavOpen(true));
+
+      return;
+    }
+
+    return setIsSideNavOpen(false);
+  }, [isSideNavigationVisible]);
+
+  React.useEffect(() => {
+    const node = ref.current;
+
+    if (!isSideNavOpen && node) {
+      const handleTransitionEnd = () => {
+        setIsSideNavMounted(false);
+      };
+
+      node.addEventListener('transitionend', handleTransitionEnd);
+
+      return () => {
+        node.removeEventListener('transitionend', handleTransitionEnd);
+      };
+    }
+  }, [isSideNavOpen]);
 
   return (
     <div className={mergedClassNames}>
@@ -52,6 +86,7 @@ const Frame = (props: IAppFrameProps) => {
         >
           {sideNavigation && (
             <div
+              ref={ref}
               className={cx(
                 styles[
                   `${pageContainerClass}__content-wrapper__nav-bar-wrapper`
@@ -60,12 +95,12 @@ const Frame = (props: IAppFrameProps) => {
                 sideNavigationContainerClassName,
                 {
                   [styles[
-                    `${pageContainerClass}__content-wrapper__nav-bar-wrapper--visible`
-                  ]]: isSideNavigationVisible,
+                    `${pageContainerClass}__content-wrapper__nav-bar-wrapper--open`
+                  ]]: isSideNavOpen,
                 }
               )}
             >
-              {isSideNavigationVisible && sideNavigation}
+              {isSideNavMounted && sideNavigation}
             </div>
           )}
           <div

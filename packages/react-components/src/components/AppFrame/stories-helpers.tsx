@@ -87,35 +87,28 @@ export const getBadgeContent = (item: string) => {
   }
 };
 
+const getSimpleNavElements = (
+  activeSubItem: number,
+  handler: (o: number) => void
+) =>
+  [...Array(4)].map((_, index) => (
+    <SideNavigationItem
+      key={index}
+      label={`Option ${index + 1} ${
+        index === 3 ? 'with very long label name' : ''
+      }`}
+      shouldKeepIconSpace={false}
+      isActive={activeSubItem === index}
+      onClick={() => handler(index)}
+    />
+  ));
+
 export const getChatsMenu = (
   activeSubItem: number,
   handler: (o: number) => void
 ) => (
   <SideNavigation noGaps title="Chats">
-    <SideNavigationItem
-      label="Option 1"
-      shouldKeepIconSpace={false}
-      isActive={activeSubItem === 0}
-      onClick={() => handler(0)}
-    />
-    <SideNavigationItem
-      label="Option 2"
-      shouldKeepIconSpace={false}
-      isActive={activeSubItem === 1}
-      onClick={() => handler(1)}
-    />
-    <SideNavigationItem
-      label="Option 3"
-      shouldKeepIconSpace={false}
-      isActive={activeSubItem === 2}
-      onClick={() => handler(2)}
-    />
-    <SideNavigationItem
-      label="Option 4 with very long label name"
-      shouldKeepIconSpace={false}
-      isActive={activeSubItem === 3}
-      onClick={() => handler(3)}
-    />
+    {getSimpleNavElements(activeSubItem, handler)}
   </SideNavigation>
 );
 
@@ -132,56 +125,63 @@ const getCustomLabel = (label: string, component: React.ReactNode) => (
   </span>
 );
 
+const getCustomLabelElement = (index: number) => {
+  switch (index) {
+    case 5:
+      return <Badge count={1} size="compact" />;
+    case 6:
+      return <Badge type="alert" size="compact" />;
+    case 7:
+      return <Badge type="dot" size="compact" />;
+    default:
+      return null;
+  }
+};
+
+const getLabelRightNode = (index: number) => {
+  switch (index) {
+    case 5:
+      return <Badge count={5} kind="tertiary" />;
+    case 6:
+      return <Badge kind="tertiary" />;
+    case 7:
+      return <Tag size="small">NEW</Tag>;
+    default:
+      return null;
+  }
+};
+
+const getAdvancedNavElements = (
+  activeSubItem: number,
+  handler: (o: number) => void
+) =>
+  [...Array(3)].map((_, index) => (
+    <SideNavigationItem
+      label={getCustomLabel(
+        `Option ${index + 5}`,
+        getCustomLabelElement(index + 5)
+      )}
+      leftNode={
+        <Tooltip
+          placement="top-start"
+          floatingStrategy="fixed"
+          triggerRenderer={<Icon source={Icons.HelpFilled} size="small" />}
+        >
+          {`Option ${index + 5} custom tooltip`}
+        </Tooltip>
+      }
+      rightNode={getLabelRightNode(index + 5)}
+      isActive={activeSubItem === index + 5}
+      onClick={() => handler(index + 5)}
+    />
+  ));
+
 export const getEngageSubMenu = (
   activeSubItem: number,
   handler: (o: number) => void
 ) => (
   <SideNavigation noGaps title="Engage">
-    <SideNavigationItem
-      label={getCustomLabel('Option 1', <Badge count={1} size="compact" />)}
-      leftNode={
-        <Tooltip
-          placement="top-start"
-          floatingStrategy="fixed"
-          triggerRenderer={<Icon source={Icons.HelpFilled} size="small" />}
-        >
-          Option 1 custom tooltip
-        </Tooltip>
-      }
-      rightNode={<Badge count={5} kind="tertiary" />}
-      isActive={activeSubItem === 0}
-      onClick={() => handler(0)}
-    />
-    <SideNavigationItem
-      label={getCustomLabel('Option 2', <Badge type="alert" size="compact" />)}
-      leftNode={
-        <Tooltip
-          placement="top-start"
-          floatingStrategy="fixed"
-          triggerRenderer={<Icon source={Icons.HelpFilled} size="small" />}
-        >
-          Option 2 custom tooltip
-        </Tooltip>
-      }
-      rightNode={<Badge kind="tertiary" />}
-      isActive={activeSubItem === 1}
-      onClick={() => handler(1)}
-    />
-    <SideNavigationItem
-      label={getCustomLabel('Option 3', <Badge type="dot" size="compact" />)}
-      leftNode={
-        <Tooltip
-          placement="top-start"
-          floatingStrategy="fixed"
-          triggerRenderer={<Icon source={Icons.HelpFilled} size="small" />}
-        >
-          Option 3 custom tooltip
-        </Tooltip>
-      }
-      rightNode={<Tag size="small">NEW</Tag>}
-      isActive={activeSubItem === 2}
-      onClick={() => handler(2)}
-    />
+    {getAdvancedNavElements(activeSubItem, handler)}
   </SideNavigation>
 );
 
@@ -194,156 +194,43 @@ export const getArchivesSubMenu = (
       label="Group 1 (non collapsible) with very long label name"
       rightNode={<Badge count={5} kind="tertiary" />}
     >
-      <SideNavigationItem
-        label="Option 1"
-        isActive={activeSubItem === 0}
-        onClick={() => handler(0)}
-        shouldKeepIconSpace={false}
-      />
-      <SideNavigationItem
-        label="Option 2"
-        isActive={activeSubItem === 1}
-        onClick={() => handler(1)}
-        shouldKeepIconSpace={false}
-      />
-      <SideNavigationItem
-        label="Option 3"
-        isActive={activeSubItem === 2}
-        onClick={() => handler(2)}
-        shouldKeepIconSpace={false}
-      />
-      <SideNavigationItem
-        label="Option 4"
-        isActive={activeSubItem === 3}
-        onClick={() => handler(3)}
-        shouldKeepIconSpace={false}
-      />
+      {getSimpleNavElements(activeSubItem, handler)}
     </SideNavigationGroup>
     <SideNavigationGroup
       isCollapsible
       shouldOpenOnInit
       label="Group 2 with very long label name"
     >
-      <SideNavigationItem
-        label={getCustomLabel('Option 5', <Badge count={1} size="compact" />)}
-        leftNode={
-          <Tooltip
-            placement="top-start"
-            floatingStrategy="fixed"
-            triggerRenderer={<Icon source={Icons.HelpFilled} size="small" />}
-          >
-            Option 5 custom tooltip
-          </Tooltip>
-        }
-        rightNode={<Badge count={5} kind="tertiary" />}
-        isActive={activeSubItem === 4}
-        onClick={() => handler(4)}
-      />
-      <SideNavigationItem
-        label={getCustomLabel(
-          'Option 6',
-          <Badge type="alert" size="compact" />
-        )}
-        leftNode={
-          <Tooltip
-            placement="top-start"
-            floatingStrategy="fixed"
-            triggerRenderer={<Icon source={Icons.HelpFilled} size="small" />}
-          >
-            Option 6 custom tooltip
-          </Tooltip>
-        }
-        rightNode={<Badge kind="tertiary" />}
-        isActive={activeSubItem === 5}
-        onClick={() => handler(5)}
-      />
-      <SideNavigationItem
-        label={getCustomLabel('Option 7', <Badge type="dot" size="compact" />)}
-        leftNode={
-          <Tooltip
-            placement="top-start"
-            floatingStrategy="fixed"
-            triggerRenderer={<Icon source={Icons.HelpFilled} size="small" />}
-          >
-            Option 7 custom tooltip
-          </Tooltip>
-        }
-        rightNode={<Tag size="small">NEW</Tag>}
-        isActive={activeSubItem === 6}
-        onClick={() => handler(6)}
-      />
+      {getAdvancedNavElements(activeSubItem, handler)}
     </SideNavigationGroup>
     <SideNavigationGroup isCollapsible label="Group 3">
-      <SideNavigationItem
-        label="Option 8"
-        isActive={activeSubItem === 7}
-        onClick={() => handler(7)}
-      />
-      <SideNavigationItem
-        label="Option 9"
-        isActive={activeSubItem === 8}
-        onClick={() => handler(8)}
-      />
-      <SideNavigationItem
-        label="Option 10"
-        isActive={activeSubItem === 9}
-        onClick={() => handler(9)}
-      />
-      <SideNavigationItem
-        label="Option 11"
-        isActive={activeSubItem === 10}
-        onClick={() => handler(10)}
-      />
-      <SideNavigationItem
-        label="Option 12"
-        isActive={activeSubItem === 11}
-        onClick={() => handler(11)}
-      />
+      {[...Array(5)].map((_, index) => (
+        <SideNavigationItem
+          key={index}
+          label={`Option ${index + 8}`}
+          isActive={activeSubItem === index + 8}
+          onClick={() => handler(index + 8)}
+        />
+      ))}
     </SideNavigationGroup>
-    <SideNavigationItem
-      label="Option 13 (not grouped)"
-      isActive={activeSubItem === 12}
-      onClick={() => handler(12)}
-      shouldKeepIconSpace={false}
-    />
-    <SideNavigationItem
-      label="Option 14 (not grouped)"
-      isActive={activeSubItem === 13}
-      onClick={() => handler(13)}
-      shouldKeepIconSpace={false}
-    />
-    <SideNavigationItem
-      label="Option 15 (not grouped)"
-      isActive={activeSubItem === 14}
-      onClick={() => handler(14)}
-      shouldKeepIconSpace={false}
-    />
+    {[...Array(3)].map((_, index) => (
+      <SideNavigationItem
+        key={index}
+        label={`Option ${index + 13} (not grouped)`}
+        isActive={activeSubItem === index + 13}
+        onClick={() => handler(index + 13)}
+        shouldKeepIconSpace={false}
+      />
+    ))}
     <SideNavigationGroup isCollapsible shouldOpenOnInit label="Group 4">
-      <SideNavigationItem
-        label="Option 16"
-        isActive={activeSubItem === 15}
-        onClick={() => handler(15)}
-      />
-      <SideNavigationItem
-        label="Option 17"
-        isActive={activeSubItem === 16}
-        onClick={() => handler(16)}
-      />
-      <SideNavigationItem
-        label="Option 18"
-        isActive={activeSubItem === 17}
-        onClick={() => handler(17)}
-      />
-      <SideNavigationItem
-        label="Option 19"
-        isActive={activeSubItem === 18}
-        onClick={() => handler(18)}
-      />
-      <SideNavigationItem
-        label="Option 20"
-        isActive={activeSubItem === 19}
-        onClick={() => handler(19)}
-      />
+      {[...Array(5)].map((_, index) => (
+        <SideNavigationItem
+          key={index}
+          label={`Option ${index + 16}`}
+          isActive={activeSubItem === index + 16}
+          onClick={() => handler(index + 16)}
+        />
+      ))}
     </SideNavigationGroup>
   </SideNavigation>
 );
