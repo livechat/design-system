@@ -39,23 +39,10 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   const localLabel = typeof label === 'function' ? label(isOpen) : label;
 
   React.useEffect(() => {
-    if (isOpen) {
-      setIsGroupMounted(true);
-      requestAnimationFrame(() => setIsOpen(true));
-
-      return;
-    }
-
-    return setIsOpen(false);
-  }, [isOpen]);
-
-  React.useEffect(() => {
     const sideNavWrapper = listWrapperRef.current;
 
     if (!isOpen && sideNavWrapper) {
-      const handleTransitionEnd = () => {
-        setIsGroupMounted(false);
-      };
+      const handleTransitionEnd = () => setIsGroupMounted(false);
 
       sideNavWrapper.addEventListener('transitionend', handleTransitionEnd);
 
@@ -66,6 +53,15 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
         );
       };
     }
+
+    if (isOpen) {
+      setIsGroupMounted(true);
+      requestAnimationFrame(() => setIsOpen(true));
+
+      return;
+    }
+
+    return setIsOpen(false);
   }, [isOpen]);
 
   const openList = (): void => setIsOpen(true);
