@@ -2,8 +2,7 @@ import { FC, MouseEvent } from 'react';
 
 import cx from 'clsx';
 
-import { Text } from '@livechat/design-system-react-components';
-
+import { Text } from '../../../Typography';
 import { IProductOption, ProductId } from '../../types';
 import { ProductTile } from '../ProductTile/ProductTile';
 

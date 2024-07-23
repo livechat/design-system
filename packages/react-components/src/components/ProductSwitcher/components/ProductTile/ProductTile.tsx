@@ -25,27 +25,41 @@ export const ProductTile: FC<IProps> = ({
   isMainProduct = false,
 }) => {
   return (
-    <div
-      className={cx(styles[baseClass], {
-        [styles[`${baseClass}--main-product`]]: isMainProduct,
-      })}
-      style={{
-        backgroundColor: backgroundColors.main,
-      }}
-    >
-      {notificationCount && (
-        <Badge
-          count={notificationCount}
-          className={styles[`${baseClass}--badge`]}
-        />
-      )}
-      <Icon
-        source={icon}
-        className={cx(styles[`${baseClass}--icon`], {
-          [styles[`${baseClass}--icon__black`]]: id === 'accounts',
-          [styles[`${baseClass}--icon__large`]]: isMainProduct,
+    <div className={styles['product-tile-wrapper']}>
+      <div
+        className={cx(styles[baseClass], {
+          [styles[`${baseClass}__main-product`]]: isMainProduct,
         })}
-      />
+        style={{
+          backgroundColor: backgroundColors.main,
+        }}
+      >
+        {notificationCount && (
+          <Badge
+            count={notificationCount}
+            className={styles[`${baseClass}__badge`]}
+          />
+        )}
+        <Icon
+          source={icon}
+          className={cx(styles[`${baseClass}__icon`], {
+            [styles[`${baseClass}__icon--black`]]: id === 'accounts',
+            [styles[`${baseClass}__icon--large`]]: isMainProduct,
+          })}
+        />
+      </div>
+      {isMainProduct && (
+        <>
+          <div
+            className={styles[`${baseClass}__second-layer`]}
+            style={{ background: backgroundColors.second }}
+          />
+          <div
+            className={styles[`${baseClass}__third-layer`]}
+            style={{ background: backgroundColors.third }}
+          />
+        </>
+      )}
     </div>
   );
 };

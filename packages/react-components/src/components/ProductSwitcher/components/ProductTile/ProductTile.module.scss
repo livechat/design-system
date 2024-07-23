@@ -1,7 +1,36 @@
 $base-class: 'product-tile';
 
-.#{$base-class} {
+@mixin animation() {
+  transition: all 100ms ease-in-out;
+}
+
+.product-tile-wrapper {
   display: flex;
+  position: relative;
+  justify-content: center;
+
+  &:hover {
+    .#{$base-class} {
+      transform: scale(1.1);
+      transition-property: transform, bottom;
+
+      &__second-layer {
+        bottom: -7px;
+        width: 42px;
+      }
+
+      &__third-layer {
+        bottom: -12px;
+      }
+    }
+  }
+}
+
+.#{$base-class} {
+  @include animation();
+
+  display: flex;
+  position: relative;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
@@ -9,19 +38,20 @@ $base-class: 'product-tile';
   width: 36px;
   height: 36px;
 
-  &--main-product {
+  &__main-product {
+    border: 1.5px solid var(--navbar-background);
     cursor: pointer;
     width: 42px;
     height: 42px;
   }
 
-  &--badge {
+  &__badge {
     position: absolute;
     top: 0;
     right: 0;
   }
 
-  &--icon {
+  &__icon {
     color: var(--content-locked-white);
 
     svg {
@@ -29,13 +59,37 @@ $base-class: 'product-tile';
       height: 24px;
     }
 
-    &__black {
+    &--black {
       color: var(--content-locked-black);
     }
 
-    &__large svg {
+    &--large svg {
       width: 28px;
       height: 28px;
     }
+  }
+
+  &__second-layer {
+    @include animation();
+
+    position: absolute;
+    bottom: -4px;
+    z-index: -1;
+    border: solid 1.5px var(--navbar-background);
+    border-radius: var(--radius-3);
+    width: 40px;
+    height: 37px;
+  }
+
+  &__third-layer {
+    @include animation();
+
+    position: absolute;
+    bottom: -8px;
+    z-index: -2;
+    border: solid 1.5px var(--navbar-background);
+    border-radius: var(--radius-3);
+    width: 36px;
+    height: 36px;
   }
 }
