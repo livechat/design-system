@@ -3,6 +3,7 @@ import { FC, MouseEvent } from 'react';
 import cx from 'clsx';
 
 import { Text } from '../../../Typography';
+import { useProductSwitcherShortcut } from '../../hooks/useProductSwitcherShortcut';
 import { IProductOption, ProductId } from '../../types';
 import { ProductTile } from '../ProductTile/ProductTile';
 
@@ -28,6 +29,8 @@ export const ProductRow: FC<IProps> = ({
   },
   onClick,
 }) => {
+  useProductSwitcherShortcut(order, url);
+
   return (
     <>
       {withDivider && <div className={styles[`${baseClass}__divider`]} />}
@@ -50,7 +53,7 @@ export const ProductRow: FC<IProps> = ({
           <Text bold>{name}</Text>
         </div>
         <Text size="sm" className={styles[`${baseClass}__shortcut`]}>
-          ⌥⌘{order}
+          Ctrl+{order}
         </Text>
       </a>
     </>
