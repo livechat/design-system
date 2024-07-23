@@ -33,7 +33,7 @@ const Frame = (props: IAppFrameProps) => {
   const [isSideNavOpen, setIsSideNavOpen] = React.useState(
     isSideNavigationVisible
   );
-  const ref = React.useRef<HTMLDivElement>(null);
+  const sideNavWrapperRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     if (isSideNavigationVisible) {
@@ -47,17 +47,20 @@ const Frame = (props: IAppFrameProps) => {
   }, [isSideNavigationVisible]);
 
   React.useEffect(() => {
-    const node = ref.current;
+    const sideNavWrapper = sideNavWrapperRef.current;
 
-    if (!isSideNavOpen && node) {
+    if (!isSideNavOpen && sideNavWrapper) {
       const handleTransitionEnd = () => {
         setIsSideNavMounted(false);
       };
 
-      node.addEventListener('transitionend', handleTransitionEnd);
+      sideNavWrapper.addEventListener('transitionend', handleTransitionEnd);
 
       return () => {
-        node.removeEventListener('transitionend', handleTransitionEnd);
+        sideNavWrapper.removeEventListener(
+          'transitionend',
+          handleTransitionEnd
+        );
       };
     }
   }, [isSideNavOpen]);
@@ -86,7 +89,7 @@ const Frame = (props: IAppFrameProps) => {
         >
           {sideNavigation && (
             <div
-              ref={ref}
+              ref={sideNavWrapperRef}
               className={cx(
                 styles[
                   `${pageContainerClass}__content-wrapper__nav-bar-wrapper`

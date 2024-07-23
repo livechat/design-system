@@ -13,6 +13,7 @@ import { ISideNavigationGroupProps } from './types';
 import styles from './SideNavigationGroup.module.scss';
 
 const baseClass = 'side-navigation-group';
+const singleElementSize = 34;
 
 export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   label,
@@ -29,10 +30,43 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   );
   const [hasActiveElements, setHasActiveElements] =
     React.useState<boolean>(false);
+  const [listHeight, setListHeight] = React.useState<number>(0);
+  const [isGroupMounted, setIsGroupMounted] = React.useState(isOpen);
   const hadActiveListElementsRef = React.useRef(false);
+  const listWrapperRef = React.useRef<HTMLDivElement>(null);
   const localRightNode =
     typeof rightNode === 'function' ? rightNode(isOpen) : rightNode;
   const localLabel = typeof label === 'function' ? label(isOpen) : label;
+
+  React.useEffect(() => {
+    if (isOpen) {
+      setIsGroupMounted(true);
+      requestAnimationFrame(() => setIsOpen(true));
+
+      return;
+    }
+
+    return setIsOpen(false);
+  }, [isOpen]);
+
+  React.useEffect(() => {
+    const sideNavWrapper = listWrapperRef.current;
+
+    if (!isOpen && sideNavWrapper) {
+      const handleTransitionEnd = () => {
+        setIsGroupMounted(false);
+      };
+
+      sideNavWrapper.addEventListener('transitionend', handleTransitionEnd);
+
+      return () => {
+        sideNavWrapper.removeEventListener(
+          'transitionend',
+          handleTransitionEnd
+        );
+      };
+    }
+  }, [isOpen]);
 
   const openList = (): void => setIsOpen(true);
 
@@ -50,6 +84,9 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
       : false;
 
     setHasActiveElements(hasListActiveElements);
+
+    const newListHeight = (listElements?.length || 0) * singleElementSize;
+    setListHeight(newListHeight);
   };
 
   React.useEffect(() => {
@@ -98,14 +135,16 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
       )}
 
       <div
+        ref={listWrapperRef}
         className={cx([
           styles[`${baseClass}__list-wrapper`],
           {
             [styles[`${baseClass}__list-wrapper--expanded`]]: isOpen,
           },
         ])}
+        style={{ maxHeight: isOpen ? listHeight : 0 }}
       >
-        {isOpen && (
+        {isGroupMounted && (
           <ul
             className={cx(styles[`${baseClass}__list`], className)}
             ref={onSetListNode}
