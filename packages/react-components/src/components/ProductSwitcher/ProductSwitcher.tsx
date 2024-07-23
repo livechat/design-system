@@ -1,9 +1,14 @@
-import { FC } from 'react';
+import { FC, MouseEvent } from 'react';
 
 import { Popover } from '../Popover';
 
+import { ProductRow } from './components/ProductRow/ProductRow';
 import { ProductTile } from './components/ProductTile/ProductTile';
 import { IProductSwitcherProps } from './types';
+
+import styles from './ProductSwitcher.module.scss';
+
+const baseClass = 'product-switcher';
 
 export const ProductSwitcher: FC<IProductSwitcherProps> = ({
   productOptions,
@@ -20,10 +25,14 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
     return null;
   }
 
+  const handleClick = (event: MouseEvent) => {
+    event.preventDefault();
+  };
+
   return (
     <Popover
       placement="right-start"
-      openedOnInit
+      className={styles[baseClass]}
       triggerRenderer={
         <ProductTile
           id={mainProduct.id}
@@ -33,14 +42,11 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
         />
       }
     >
-      {otherProducts.map((product) => (
-        <ProductTile
-          key={product.id}
-          id={product.id}
-          icon={product.icon}
-          backgroundColors={product.backgroundColors}
-        />
-      ))}
+      <div className={styles[`${baseClass}__content`]}>
+        {otherProducts.map((product) => (
+          <ProductRow product={product} onClick={handleClick} />
+        ))}
+      </div>
     </Popover>
   );
 };

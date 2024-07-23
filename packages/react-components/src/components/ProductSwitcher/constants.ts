@@ -59,7 +59,8 @@ export const ProductSwitcherProducts: IProductOption[] = [
     name: 'Widget',
     icon: OpenWidgetMono,
     backgroundColors: {
-      main: 'var(--products-openwidget)',
+      main: 'var(--products-knowledgebase)',
+      // main: 'var(--products-openwidget)',
       second: 'var(--products-livechat)',
       third: 'var(--products-chatbot)',
     },
@@ -70,7 +71,8 @@ export const ProductSwitcherProducts: IProductOption[] = [
     name: 'TeamChat',
     icon: AccountCircle,
     backgroundColors: {
-      main: 'var(--products-hello)',
+      main: 'var(--products-knowledgebase)',
+      // main: 'var(--products-hello)',
       second: 'var(--products-livechat)',
       third: 'var(--products-chatbot)',
     },

@@ -1,0 +1,13 @@
+$base-class: 'product-switcher';
+
+.#{$base-class} {
+  gap: 16px;
+  padding: var(--spacing-3);
+  width: 260px;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+}

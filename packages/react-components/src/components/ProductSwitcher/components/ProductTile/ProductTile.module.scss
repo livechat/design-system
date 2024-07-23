@@ -10,6 +10,7 @@ $base-class: 'product-tile';
   height: 36px;
 
   &--main-product {
+    cursor: pointer;
     width: 42px;
     height: 42px;
   }
