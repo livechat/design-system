@@ -7,6 +7,7 @@ import {
   useAppFrame,
 } from '../../providers/AppFrameProvider';
 
+import { useAppFrameAnimations } from './hooks/useAppFrameAnimations';
 import { IAppFrameProps } from './types';
 
 import styles from './AppFrame.module.scss';
@@ -27,43 +28,11 @@ const Frame = (props: IAppFrameProps) => {
   } = props;
   const mergedClassNames = cx(styles[baseClass], className);
   const { isSideNavigationVisible } = useAppFrame();
-  const [isSideNavMounted, setIsSideNavMounted] = React.useState(
-    isSideNavigationVisible
-  );
-  const [isSideNavOpen, setIsSideNavOpen] = React.useState(
-    isSideNavigationVisible
-  );
   const sideNavWrapperRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    if (isSideNavigationVisible) {
-      setIsSideNavMounted(true);
-      requestAnimationFrame(() => setIsSideNavOpen(true));
-
-      return;
-    }
-
-    return setIsSideNavOpen(false);
-  }, [isSideNavigationVisible]);
-
-  React.useEffect(() => {
-    const sideNavWrapper = sideNavWrapperRef.current;
-
-    if (!isSideNavOpen && sideNavWrapper) {
-      const handleTransitionEnd = () => {
-        setIsSideNavMounted(false);
-      };
-
-      sideNavWrapper.addEventListener('transitionend', handleTransitionEnd);
-
-      return () => {
-        sideNavWrapper.removeEventListener(
-          'transitionend',
-          handleTransitionEnd
-        );
-      };
-    }
-  }, [isSideNavOpen]);
+  const { isOpen, isMounted } = useAppFrameAnimations({
+    isVisible: isSideNavigationVisible,
+    elementRef: sideNavWrapperRef,
+  });
 
   return (
     <div className={mergedClassNames}>
@@ -99,11 +68,11 @@ const Frame = (props: IAppFrameProps) => {
                 {
                   [styles[
                     `${pageContainerClass}__content-wrapper__nav-bar-wrapper--open`
-                  ]]: isSideNavOpen,
+                  ]]: isOpen,
                 }
               )}
             >
-              {isSideNavMounted && sideNavigation}
+              {isMounted && sideNavigation}
             </div>
           )}
           <div

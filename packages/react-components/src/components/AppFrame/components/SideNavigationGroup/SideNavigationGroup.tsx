@@ -6,6 +6,7 @@ import cx from 'clsx';
 import noop from '../../../../utils/noop';
 import { Icon } from '../../../Icon';
 import { Text } from '../../../Typography';
+import { useAppFrameAnimations } from '../../hooks/useAppFrameAnimations';
 import { SideNavigationItem } from '../SideNavigationItem/SideNavigationItem';
 
 import { ISideNavigationGroupProps } from './types';
@@ -13,7 +14,7 @@ import { ISideNavigationGroupProps } from './types';
 import styles from './SideNavigationGroup.module.scss';
 
 const baseClass = 'side-navigation-group';
-const singleElementSize = 34;
+const SINGLE_ELEMENT_SIZE = 34;
 
 export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   label,
@@ -25,44 +26,18 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   shouldOpenOnInit = false,
   shouldOpenOnActive = false,
 }) => {
-  const [isOpen, setIsOpen] = React.useState(
-    !isCollapsible || shouldOpenOnInit
-  );
   const [hasActiveElements, setHasActiveElements] =
     React.useState<boolean>(false);
   const [listHeight, setListHeight] = React.useState<number>(0);
-  const [isGroupMounted, setIsGroupMounted] = React.useState(isOpen);
   const hadActiveListElementsRef = React.useRef(false);
   const listWrapperRef = React.useRef<HTMLDivElement>(null);
+  const { isOpen, isMounted, setIsOpen } = useAppFrameAnimations({
+    isVisible: !isCollapsible || shouldOpenOnInit,
+    elementRef: listWrapperRef,
+  });
   const localRightNode =
     typeof rightNode === 'function' ? rightNode(isOpen) : rightNode;
   const localLabel = typeof label === 'function' ? label(isOpen) : label;
-
-  React.useEffect(() => {
-    const sideNavWrapper = listWrapperRef.current;
-
-    if (!isOpen && sideNavWrapper) {
-      const handleTransitionEnd = () => setIsGroupMounted(false);
-
-      sideNavWrapper.addEventListener('transitionend', handleTransitionEnd);
-
-      return () => {
-        sideNavWrapper.removeEventListener(
-          'transitionend',
-          handleTransitionEnd
-        );
-      };
-    }
-
-    if (isOpen) {
-      setIsGroupMounted(true);
-      requestAnimationFrame(() => setIsOpen(true));
-
-      return;
-    }
-
-    return setIsOpen(false);
-  }, [isOpen]);
 
   const openList = (): void => setIsOpen(true);
 
@@ -81,7 +56,7 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
 
     setHasActiveElements(hasListActiveElements);
 
-    const newListHeight = (listElements?.length || 0) * singleElementSize;
+    const newListHeight = (listElements?.length || 0) * SINGLE_ELEMENT_SIZE;
     setListHeight(newListHeight);
   };
 
@@ -140,7 +115,7 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
         ])}
         style={{ maxHeight: isOpen ? listHeight : 0 }}
       >
-        {isGroupMounted && (
+        {isMounted && (
           <ul
             className={cx(styles[`${baseClass}__list`], className)}
             ref={onSetListNode}
