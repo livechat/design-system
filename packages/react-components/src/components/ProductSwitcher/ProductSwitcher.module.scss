@@ -3,7 +3,7 @@ $base-class: 'product-switcher';
 .#{$base-class} {
   gap: 16px;
   padding: var(--spacing-3);
-  width: 260px;
+  width: 270px;
 
   &__content {
     display: flex;

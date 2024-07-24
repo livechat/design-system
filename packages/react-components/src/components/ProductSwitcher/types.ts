@@ -1,5 +1,6 @@
+import { ReactNode } from 'react';
+
 import { IconSource } from '../Icon';
-import { ITooltipProps } from '../Tooltip';
 
 export type ProductId =
   | 'livechat'
@@ -19,7 +20,9 @@ export interface IProductOption {
   order: number;
   id: ProductId;
   name: string;
-  tooltipProps?: Omit<ITooltipProps, 'triggerRenderer'>;
+  expired?: boolean;
+  trialDaysLeft?: number;
+  nameAdornment?: ReactNode;
   icon: IconSource;
   notificationCount?: number;
   backgroundColors: {

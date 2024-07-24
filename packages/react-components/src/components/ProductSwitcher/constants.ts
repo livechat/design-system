@@ -48,6 +48,7 @@ export const ProductSwitcherProducts: IProductOption[] = [
     url: '/helpdesk',
     notificationCount: 1,
     order: 3,
+    expired: true,
   },
   {
     id: 'knowledgebase',
@@ -60,6 +61,7 @@ export const ProductSwitcherProducts: IProductOption[] = [
     },
     url: '/helpdesk',
     order: 4,
+    trialDaysLeft: 2,
   },
   {
     id: 'openwidget',

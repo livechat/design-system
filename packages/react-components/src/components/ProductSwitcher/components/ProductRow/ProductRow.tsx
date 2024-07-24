@@ -1,7 +1,10 @@
 import { FC, MouseEvent } from 'react';
 
+import { Info } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
+import { Icon } from '../../../Icon';
+import { Tooltip } from '../../../Tooltip';
 import { Text } from '../../../Typography';
 import { useProductSwitcherShortcut } from '../../hooks/useProductSwitcherShortcut';
 import { IProductOption, ProductId } from '../../types';
@@ -26,6 +29,9 @@ export const ProductRow: FC<IProps> = ({
     url,
     withDivider,
     order,
+    expired,
+    trialDaysLeft,
+    nameAdornment,
   },
   onClick,
 }) => {
@@ -50,10 +56,39 @@ export const ProductRow: FC<IProps> = ({
             backgroundColors={backgroundColors}
             notificationCount={notificationCount}
           ></ProductTile>
-          <Text bold>{name}</Text>
+          <Text bold className={styles[`${baseClass}__name`]}>
+            {name}
+            {expired && (
+              <Tooltip
+                triggerRenderer={
+                  <Icon
+                    source={Info}
+                    className={styles[`${baseClass}__tooltip-icon`]}
+                  />
+                }
+                placement="right"
+              >
+                Your licence is expired
+              </Tooltip>
+            )}
+            {trialDaysLeft && (
+              <Tooltip
+                triggerRenderer={
+                  <Icon
+                    source={Info}
+                    className={styles[`${baseClass}__tooltip-icon`]}
+                  />
+                }
+                placement="right"
+              >
+                {trialDaysLeft} trial day(s) left in your trial. Time to upgrade
+              </Tooltip>
+            )}
+            {nameAdornment}
+          </Text>
         </div>
         <Text size="sm" className={styles[`${baseClass}__shortcut`]}>
-          Ctrl+{order}
+          ⌘{order}
         </Text>
       </a>
     </>

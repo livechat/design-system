@@ -38,4 +38,16 @@ $base-class: 'product-row';
   &__shortcut {
     color: var(--content-basic-disabled);
   }
+
+  &__name {
+    display: flex;
+    gap: var(--spacing-1);
+    align-items: center;
+  }
+
+  &__tooltip-icon {
+    svg {
+      color: var(--content-basic-secondary);
+    }
+  }
 }
