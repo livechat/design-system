@@ -27,4 +27,8 @@ $base-class: 'product-switcher';
     text-decoration: none;
     color: var(--content-basic-secondary);
   }
+
+  &__tooltip {
+    z-index: 999;
+  }
 }

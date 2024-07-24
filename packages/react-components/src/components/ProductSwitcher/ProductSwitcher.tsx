@@ -1,6 +1,7 @@
 import { FC, MouseEvent } from 'react';
 
 import { Popover } from '../Popover';
+import { Tooltip } from '../Tooltip';
 import { Text } from '../Typography';
 
 import { ProductRow } from './components/ProductRow/ProductRow';
@@ -39,14 +40,26 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
     <Popover
       placement="right-start"
       className={styles[baseClass]}
+      offsetSize={5}
       triggerRenderer={
-        <ProductTile
-          id={mainProduct.id}
-          isMainProduct
-          icon={mainProduct.icon}
-          backgroundColors={mainProduct.backgroundColors}
-          notificationCount={combinedNotificationCount}
-        />
+        <Tooltip
+          offsetCrossAxis={2}
+          arrowOffsetY={2}
+          offsetMainAxis={10}
+          className={styles[`${baseClass}__tooltip`]}
+          placement="right"
+          triggerRenderer={
+            <ProductTile
+              id={mainProduct.id}
+              isMainProduct
+              icon={mainProduct.icon}
+              backgroundColors={mainProduct.backgroundColors}
+              notificationCount={combinedNotificationCount}
+            />
+          }
+        >
+          Switch product
+        </Tooltip>
       }
     >
       <>
