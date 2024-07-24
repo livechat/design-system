@@ -1,6 +1,7 @@
 import { FC, MouseEvent } from 'react';
 
 import { Popover } from '../Popover';
+import { Text } from '../Typography';
 
 import { ProductRow } from './components/ProductRow/ProductRow';
 import { ProductTile } from './components/ProductTile/ProductTile';
@@ -48,11 +49,25 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
         />
       }
     >
-      <div className={styles[`${baseClass}__content`]}>
-        {otherProducts.map((product) => (
-          <ProductRow product={product} onClick={handleClick} />
-        ))}
-      </div>
+      <>
+        <div className={styles[`${baseClass}__content`]}>
+          {otherProducts.map((product) => (
+            <ProductRow product={product} onClick={handleClick} />
+          ))}
+        </div>
+        <div className={styles[`${baseClass}__footer`]}>
+          <a
+            href="https://www.text.com"
+            target="_blank"
+            className={styles[`${baseClass}__footer-link`]}
+          >
+            <Text noMargin>powered by</Text>
+            <Text noMargin bold customColor="var(--content-locked-white)">
+              text|
+            </Text>
+          </a>
+        </div>
+      </>
     </Popover>
   );
 };

@@ -30,6 +30,8 @@ interface IProps extends React.HTMLAttributes<HTMLElement> {
   customColor?: string;
   /** Optional prop to set the text align */
   textAlign?: TTextAlign;
+  /** Optional prop to set the no margin */
+  noMargin?: boolean;
 }
 
 export const Text: React.FC<React.PropsWithChildren<IProps>> = ({
@@ -44,6 +46,7 @@ export const Text: React.FC<React.PropsWithChildren<IProps>> = ({
   className,
   customColor,
   textAlign,
+  noMargin,
   ...props
 }) => {
   const baseClassPrefix = `paragraph`;
@@ -58,6 +61,7 @@ export const Text: React.FC<React.PropsWithChildren<IProps>> = ({
           [styles[`${baseClassPrefix}--strike`]]: strike,
           [styles[`${baseClassPrefix}--underline`]]: underline,
           [styles[`${baseClassPrefix}--uppercase`]]: uppercase || caps,
+          [styles[`${baseClassPrefix}--no-margin`]]: noMargin,
         },
         className
       ),

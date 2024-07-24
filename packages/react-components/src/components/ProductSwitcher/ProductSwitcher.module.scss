@@ -10,4 +10,21 @@ $base-class: 'product-switcher';
     flex-direction: column;
     gap: 2px;
   }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 14px;
+    margin-bottom: 4px;
+  }
+
+  &__footer-link {
+    display: inline-flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--content-basic-secondary);
+  }
 }
