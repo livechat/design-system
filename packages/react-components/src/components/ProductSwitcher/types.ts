@@ -17,8 +17,8 @@ export interface IProductSwitcherProps {
 }
 
 export interface IProductOption {
-  order: number;
   id: ProductId;
+  shortcutKey?: string;
   name: string;
   expired?: boolean;
   trialDaysLeft?: number;

@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
 
-export function useProductSwitcherShortcut(order: number, url: string): void {
+export function useProductSwitcherShortcut(
+  keySymbol: string,
+  url: string
+): void {
   const handleKeyPress = (event: KeyboardEvent): void => {
-    if (event.key === order.toString() && event.ctrlKey) {
+    if (event.key === keySymbol && event.ctrlKey) {
       event.preventDefault();
 
       window.open(url, '_blank');

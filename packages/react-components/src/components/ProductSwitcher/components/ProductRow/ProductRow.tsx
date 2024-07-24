@@ -28,14 +28,16 @@ export const ProductRow: FC<IProps> = ({
     name,
     url,
     withDivider,
-    order,
+    shortcutKey,
     expired,
     trialDaysLeft,
     nameAdornment,
   },
   onClick,
 }) => {
-  useProductSwitcherShortcut(order, url);
+  if (shortcutKey) {
+    useProductSwitcherShortcut(shortcutKey, url);
+  }
 
   return (
     <>
@@ -87,9 +89,11 @@ export const ProductRow: FC<IProps> = ({
             {nameAdornment}
           </Text>
         </div>
-        <Text size="sm" className={styles[`${baseClass}__shortcut`]}>
-          ⌘{order}
-        </Text>
+        {shortcutKey && (
+          <Text size="sm" className={styles[`${baseClass}__shortcut`]}>
+            ⌘{shortcutKey}
+          </Text>
+        )}
       </a>
     </>
   );
