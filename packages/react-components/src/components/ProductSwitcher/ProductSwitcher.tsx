@@ -1,4 +1,5 @@
 import { FC, MouseEvent } from 'react';
+import * as React from 'react';
 
 import { Popover } from '../Popover';
 import { Tooltip } from '../Tooltip';
