@@ -1,0 +1,79 @@
+$base-class: 'status-badge';
+
+@mixin size($size) {
+  border-radius: $size;
+  width: $size;
+  height: $size;
+}
+
+.#{$base-class} {
+  display: flex;
+  border-style: solid;
+  border-color: var(--surface-primary-default);
+
+  &--3XS {
+    @include size(4px);
+
+    border-width: 1px;
+  }
+
+  &--2XS {
+    @include size(5px);
+
+    border-width: 1px;
+  }
+
+  &--XS {
+    @include size(6px);
+
+    border-width: 1px;
+  }
+
+  &--SM {
+    @include size(8px);
+
+    border-width: 1px;
+  }
+
+  &--MD {
+    @include size(9px);
+
+    border-width: 2px;
+  }
+
+  &--LG {
+    @include size(10px);
+
+    border-width: 2px;
+  }
+
+  &--XL {
+    @include size(12px);
+
+    border-width: 2px;
+  }
+
+  &--2XL {
+    @include size(16px);
+
+    border-width: 2px;
+  }
+
+  &--3XL {
+    @include size(24px);
+
+    border-width: 3px;
+  }
+
+  &--offline {
+    background-color: var(--content-basic-disabled);
+  }
+
+  &--accept {
+    background-color: var(--surface-accent-emphasis-high-positive);
+  }
+
+  &--not-accept {
+    background-color: var(--surface-accent-emphasis-high-negative);
+  }
+}

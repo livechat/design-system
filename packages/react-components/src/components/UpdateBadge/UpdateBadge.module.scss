@@ -1,0 +1,13 @@
+$base-class: 'update-badge';
+$size: 9px;
+
+.#{$base-class} {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: $size;
+  box-shadow: inset 0 0 0 3.25px var(--surface-accent-emphasis-high-negative);
+  background-color: var(--content-invert-primary);
+  width: $size;
+  height: $size;
+}
