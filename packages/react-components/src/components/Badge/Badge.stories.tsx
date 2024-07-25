@@ -7,7 +7,7 @@ import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Badge, BadgeProps } from './Badge';
 
 export default {
-  title: 'Components/Badge',
+  title: 'Components/Badge/Badge',
   component: Badge,
 };
 

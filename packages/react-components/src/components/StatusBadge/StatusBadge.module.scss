@@ -1,13 +1,10 @@
 $base-class: 'status-badge';
 
-@mixin size($size) {
+@mixin size($size, $border-size) {
+  border-width: $border-size;
   border-radius: $size;
   width: $size;
   height: $size;
-}
-
-@mixin border($size) {
-  border-width: $size;
 }
 
 .#{$base-class} {
@@ -17,48 +14,39 @@ $base-class: 'status-badge';
   border-color: var(--surface-primary-default);
 
   &--3XS {
-    @include size(4px);
-    @include border(1px);
+    @include size(4px, 1px);
   }
 
   &--2XS {
-    @include size(5px);
-    @include border(1px);
+    @include size(5px, 1px);
   }
 
   &--XS {
-    @include size(6px);
-    @include border(1px);
+    @include size(6px, 1px);
   }
 
   &--SM {
-    @include size(8px);
-    @include border(1px);
+    @include size(8px, 1px);
   }
 
   &--MD {
-    @include size(9px);
-    @include border(2px);
+    @include size(9px, 2px);
   }
 
   &--LG {
-    @include size(10px);
-    @include border(2px);
+    @include size(10px, 2px);
   }
 
   &--XL {
-    @include size(12px);
-    @include border(2px);
+    @include size(12px, 2px);
   }
 
   &--2XL {
-    @include size(16px);
-    @include border(2px);
+    @include size(16px, 2px);
   }
 
   &--3XL {
-    @include size(24px);
-    @include border(3px);
+    @include size(24px, 3px);
   }
 
   &--offline {
