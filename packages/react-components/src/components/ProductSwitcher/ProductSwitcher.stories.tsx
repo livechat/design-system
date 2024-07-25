@@ -7,7 +7,6 @@ const meta: Meta<typeof ProductSwitcherComponent> = {
   title: 'Business Components/ProductSwitcher',
   component: ProductSwitcherComponent,
   parameters: {
-    layout: 'centered',
     controls: { expanded: true },
   },
 };
@@ -20,4 +19,9 @@ export const Default: Story = {
     productOptions: ProductSwitcherProducts,
     mainProductId: 'livechat',
   },
+  render: (props) => (
+    <div style={{ display: 'flex' }}>
+      <ProductSwitcherComponent {...props} />
+    </div>
+  ),
 };

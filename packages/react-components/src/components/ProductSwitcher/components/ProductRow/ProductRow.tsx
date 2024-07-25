@@ -48,13 +48,14 @@ export const ProductRow: FC<IProps> = ({
         aria-label={`Go to ${name} product`}
         onClick={(event) => onClick(event, id)}
         className={cx(styles[baseClass], {
-          [styles[`${baseClass}--with-divider`]]: withDivider,
+          [styles[`${baseClass}--expired`]]: expired,
         })}
       >
         <div className={styles[`${baseClass}__heading`]}>
           <ProductTile
             id={id}
             icon={icon}
+            expired={expired}
             backgroundColors={backgroundColors}
             notificationCount={notificationCount}
           ></ProductTile>

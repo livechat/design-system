@@ -33,7 +33,6 @@ export const ProductSwitcherProducts: IProductOption[] = [
     },
     url: '/chatbot',
     notificationCount: 1,
-    shortcutKey: '2',
   },
   {
     id: 'helpdesk',
@@ -46,7 +45,6 @@ export const ProductSwitcherProducts: IProductOption[] = [
     },
     url: '/helpdesk',
     notificationCount: 1,
-    shortcutKey: '3',
     expired: true,
   },
   {

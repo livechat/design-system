@@ -22,6 +22,10 @@ $base-class: 'product-row';
     background-color: var(--picker-list-option-background-hover);
   }
 
+  &--expired {
+    color: var(--content-basic-secondary);
+  }
+
   &__divider {
     margin: var(--spacing-2) var(--spacing-3);
     background-color: var(--border-basic-secondary);

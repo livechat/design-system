@@ -10,7 +10,7 @@ import styles from './ProductTile.module.scss';
 
 type IProps = Pick<
   IProductOption,
-  'id' | 'icon' | 'notificationCount' | 'backgroundColors'
+  'id' | 'icon' | 'notificationCount' | 'backgroundColors' | 'expired'
 > & {
   isMainProduct?: boolean;
 };
@@ -20,6 +20,7 @@ const baseClass = 'product-tile';
 export const ProductTile: FC<IProps> = ({
   id,
   icon,
+  expired,
   backgroundColors,
   notificationCount,
   isMainProduct = false,
@@ -31,10 +32,12 @@ export const ProductTile: FC<IProps> = ({
           [styles[`${baseClass}__main-product`]]: isMainProduct,
         })}
         style={{
-          backgroundColor: backgroundColors.main,
+          backgroundColor: expired
+            ? 'var(--surface-moderate-default)'
+            : backgroundColors.main,
         }}
       >
-        {notificationCount ? (
+        {notificationCount && !expired ? (
           <Badge
             size="compact"
             count={notificationCount}
@@ -48,6 +51,7 @@ export const ProductTile: FC<IProps> = ({
           className={cx(styles[`${baseClass}__icon`], {
             [styles[`${baseClass}__icon--black`]]: id === 'accounts',
             [styles[`${baseClass}__icon--large`]]: isMainProduct,
+            [styles[`${baseClass}__icon--expired`]]: expired,
           })}
         />
       </div>

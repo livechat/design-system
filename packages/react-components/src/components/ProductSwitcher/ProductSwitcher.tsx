@@ -19,9 +19,6 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
   const mainProduct = productOptions.find(
     (product) => product.id === mainProductId
   );
-  const otherProducts = productOptions.filter(
-    (product) => product.id !== mainProductId
-  );
 
   if (!mainProduct) {
     return null;
@@ -64,7 +61,7 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
     >
       <>
         <div className={styles[`${baseClass}__content`]}>
-          {otherProducts.map((product) => (
+          {productOptions.map((product) => (
             <ProductRow product={product} onClick={handleClick} />
           ))}
         </div>

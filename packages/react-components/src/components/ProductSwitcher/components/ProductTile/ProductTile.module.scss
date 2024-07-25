@@ -72,6 +72,10 @@ $base-class: 'product-tile';
       width: 28px;
       height: 28px;
     }
+
+    &--expired {
+      color: var(--content-locked-secondary);
+    }
   }
 
   &__second-layer {
