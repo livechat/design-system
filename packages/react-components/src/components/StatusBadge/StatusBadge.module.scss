@@ -6,63 +6,59 @@ $base-class: 'status-badge';
   height: $size;
 }
 
+@mixin border($size) {
+  border-width: $size;
+}
+
 .#{$base-class} {
+  box-sizing: content-box;
   display: flex;
   border-style: solid;
   border-color: var(--surface-primary-default);
 
   &--3XS {
     @include size(4px);
-
-    border-width: 1px;
+    @include border(1px);
   }
 
   &--2XS {
     @include size(5px);
-
-    border-width: 1px;
+    @include border(1px);
   }
 
   &--XS {
     @include size(6px);
-
-    border-width: 1px;
+    @include border(1px);
   }
 
   &--SM {
     @include size(8px);
-
-    border-width: 1px;
+    @include border(1px);
   }
 
   &--MD {
     @include size(9px);
-
-    border-width: 2px;
+    @include border(2px);
   }
 
   &--LG {
     @include size(10px);
-
-    border-width: 2px;
+    @include border(2px);
   }
 
   &--XL {
     @include size(12px);
-
-    border-width: 2px;
+    @include border(2px);
   }
 
   &--2XL {
     @include size(16px);
-
-    border-width: 2px;
+    @include border(2px);
   }
 
   &--3XL {
     @include size(24px);
-
-    border-width: 3px;
+    @include border(3px);
   }
 
   &--offline {
