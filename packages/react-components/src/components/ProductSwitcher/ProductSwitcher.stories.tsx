@@ -22,7 +22,7 @@ export const Default: Story = {
     mainProductId: 'livechat',
   },
   render: (props) => (
-    <div style={{ display: 'flex' }}>
+    <div className="lc-dark-theme" style={{ display: 'flex' }}>
       <ProductSwitcherComponent {...props} />
     </div>
   ),
