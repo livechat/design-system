@@ -6,6 +6,7 @@ import cx from 'clsx';
 import noop from '../../../../utils/noop';
 import { Icon } from '../../../Icon';
 import { Text } from '../../../Typography';
+import { useAppFrameAnimations } from '../../hooks/useAppFrameAnimations';
 import { SideNavigationItem } from '../SideNavigationItem/SideNavigationItem';
 
 import { ISideNavigationGroupProps } from './types';
@@ -13,6 +14,7 @@ import { ISideNavigationGroupProps } from './types';
 import styles from './SideNavigationGroup.module.scss';
 
 const baseClass = 'side-navigation-group';
+const SINGLE_ELEMENT_SIZE = 34;
 
 export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   label,
@@ -24,12 +26,15 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   shouldOpenOnInit = false,
   shouldOpenOnActive = false,
 }) => {
-  const [isOpen, setIsOpen] = React.useState(
-    !isCollapsible || shouldOpenOnInit
-  );
   const [hasActiveElements, setHasActiveElements] =
     React.useState<boolean>(false);
+  const [listHeight, setListHeight] = React.useState<number>(0);
   const hadActiveListElementsRef = React.useRef(false);
+  const listWrapperRef = React.useRef<HTMLDivElement>(null);
+  const { isOpen, isMounted, setIsOpen } = useAppFrameAnimations({
+    isVisible: !isCollapsible || shouldOpenOnInit,
+    elementRef: listWrapperRef,
+  });
   const localRightNode =
     typeof rightNode === 'function' ? rightNode(isOpen) : rightNode;
   const localLabel = typeof label === 'function' ? label(isOpen) : label;
@@ -50,6 +55,9 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
       : false;
 
     setHasActiveElements(hasListActiveElements);
+
+    const newListHeight = (listElements?.length || 0) * SINGLE_ELEMENT_SIZE;
+    setListHeight(newListHeight);
   };
 
   React.useEffect(() => {
@@ -98,14 +106,16 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
       )}
 
       <div
+        ref={listWrapperRef}
         className={cx([
           styles[`${baseClass}__list-wrapper`],
           {
             [styles[`${baseClass}__list-wrapper--expanded`]]: isOpen,
           },
         ])}
+        style={{ maxHeight: isOpen ? listHeight : 0 }}
       >
-        {isOpen && (
+        {isMounted && (
           <ul
             className={cx(styles[`${baseClass}__list`], className)}
             ref={onSetListNode}

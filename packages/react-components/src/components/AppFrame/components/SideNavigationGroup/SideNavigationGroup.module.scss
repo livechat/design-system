@@ -1,5 +1,5 @@
 $base-class: 'side-navigation-group';
-$transition: all var(--transition-duration-fast-1) ease-in-out;
+$transition: all var(--transition-duration-fast-2) ease-in-out;
 
 .#{$base-class} {
   width: 100%;
@@ -21,6 +21,7 @@ $transition: all var(--transition-duration-fast-1) ease-in-out;
 
   &__simple-label {
     margin: 0;
+    padding: 0 var(--spacing-3);
     overflow: hidden;
     text-overflow: ellipsis;
     line-height: 32px;
@@ -34,14 +35,12 @@ $transition: all var(--transition-duration-fast-1) ease-in-out;
     transition: $transition;
     opacity: 0;
     width: 100%;
-    max-height: 0;
     overflow: hidden;
     list-style: none;
 
     &--expanded {
       opacity: 1;
       margin-bottom: var(--spacing-5);
-      max-height: 9999px; // maximum value to achieve the effect of "auto"
     }
   }
 
