@@ -4,23 +4,31 @@ $base-class: 'product-tile';
   transition: all 100ms ease-in-out;
 }
 
+.outer-border {
+  border: solid 2px rgb(255 255 255 / 80%);
+  border-radius: 12px;
+  padding: 3px;
+}
+
 .product-tile-wrapper {
   display: flex;
   position: relative;
   justify-content: center;
 
-  &:hover {
-    .#{$base-class} {
-      transform: scale(1.1);
-      transition-property: transform, bottom;
+  &__animated {
+    &:hover {
+      .#{$base-class} {
+        transform: scale(1.1);
+        transition-property: transform, bottom;
 
-      &__second-layer {
-        bottom: -7px;
-        width: 42px;
-      }
+        &__second-layer {
+          bottom: -7px;
+          width: 42px;
+        }
 
-      &__third-layer {
-        bottom: -12px;
+        &__third-layer {
+          bottom: -12px;
+        }
       }
     }
   }

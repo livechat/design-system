@@ -37,6 +37,12 @@ $base-class: 'product-row';
     flex-direction: row;
     gap: 16px;
     align-items: center;
+
+    > :first-child {
+      display: flex;
+      justify-content: center;
+      width: 46px;
+    }
   }
 
   &__shortcut {

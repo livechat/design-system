@@ -15,6 +15,7 @@ import styles from './ProductRow.module.scss';
 type IProps = {
   onClick: (event: MouseEvent, id: ProductId) => void;
   product: IProductOption;
+  isActive?: boolean;
 };
 
 const baseClass = 'product-row';
@@ -34,6 +35,7 @@ export const ProductRow: FC<IProps> = ({
     nameAdornment,
   },
   onClick,
+  isActive = false,
 }) => {
   if (shortcutKey) {
     useProductSwitcherShortcut(shortcutKey, url);
@@ -58,6 +60,7 @@ export const ProductRow: FC<IProps> = ({
             expired={expired}
             backgroundColors={backgroundColors}
             notificationCount={notificationCount}
+            withBorder={isActive}
           ></ProductTile>
           <Text bold className={styles[`${baseClass}__name`]}>
             {name}
