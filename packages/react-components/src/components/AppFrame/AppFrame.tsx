@@ -7,6 +7,7 @@ import {
   useAppFrame,
 } from '../../providers/AppFrameProvider';
 
+import { useAppFrameAnimations } from './hooks/useAppFrameAnimations';
 import { IAppFrameProps } from './types';
 
 import styles from './AppFrame.module.scss';
@@ -27,6 +28,11 @@ const Frame = (props: IAppFrameProps) => {
   } = props;
   const mergedClassNames = cx(styles[baseClass], className);
   const { isSideNavigationVisible } = useAppFrame();
+  const sideNavWrapperRef = React.useRef<HTMLDivElement>(null);
+  const { isOpen, isMounted } = useAppFrameAnimations({
+    isVisible: isSideNavigationVisible,
+    elementRef: sideNavWrapperRef,
+  });
 
   return (
     <div className={mergedClassNames}>
@@ -52,6 +58,7 @@ const Frame = (props: IAppFrameProps) => {
         >
           {sideNavigation && (
             <div
+              ref={sideNavWrapperRef}
               className={cx(
                 styles[
                   `${pageContainerClass}__content-wrapper__nav-bar-wrapper`
@@ -60,12 +67,12 @@ const Frame = (props: IAppFrameProps) => {
                 sideNavigationContainerClassName,
                 {
                   [styles[
-                    `${pageContainerClass}__content-wrapper__nav-bar-wrapper--visible`
-                  ]]: isSideNavigationVisible,
+                    `${pageContainerClass}__content-wrapper__nav-bar-wrapper--open`
+                  ]]: isOpen,
                 }
               )}
             >
-              {isSideNavigationVisible && sideNavigation}
+              {isMounted && sideNavigation}
             </div>
           )}
           <div

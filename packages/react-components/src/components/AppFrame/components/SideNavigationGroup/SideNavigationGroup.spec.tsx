@@ -91,4 +91,15 @@ describe('<SideNavigationGroup> component', () => {
     userEvent.hover(getByText('Side navigation label'));
     expect(onItemHover).toHaveBeenCalledTimes(1);
   });
+
+  it('should not render children if isCollapsible is set true and isOpen is false', () => {
+    const { queryByText } = renderComponent({
+      ...defaultProps,
+      isCollapsible: true,
+    });
+
+    expect(
+      queryByText('Side navigation group content')
+    ).not.toBeInTheDocument();
+  });
 });

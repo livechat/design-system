@@ -23,7 +23,7 @@ $empty-top-bar-height: 6px;
       display: flex;
       flex-shrink: 0;
       align-items: center;
-      transition: all var(--transition-duration-fast-2) ease;
+      transition: all var(--transition-duration-fast-2) ease-in-out;
       padding: 0;
       height: 6px;
 
@@ -37,7 +37,7 @@ $empty-top-bar-height: 6px;
     &__content-wrapper {
       display: flex;
       flex-direction: row;
-      transition: all var(--transition-duration-fast-2) ease;
+      transition: all var(--transition-duration-fast-2) ease-in-out;
       width: 100%;
       height: calc(100vh - $empty-top-bar-height);
 
@@ -47,14 +47,15 @@ $empty-top-bar-height: 6px;
 
       &__nav-bar-wrapper {
         flex-shrink: 0;
-        transition: all var(--transition-duration-fast-2) ease;
-        width: 0;
+        transition: all var(--transition-duration-fast-2) ease-in-out;
+        margin-left: -296px;
+        width: 100%;
         max-width: 296px;
         height: 100%;
         overflow: hidden;
 
-        &--visible {
-          width: 100%;
+        &--open {
+          margin-left: 0;
         }
       }
 
