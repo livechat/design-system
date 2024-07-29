@@ -460,6 +460,8 @@ export const IconsData: Record<IconName, IconGroup> = {
   Instagram: IconGroup.Brands,
   InstagramColored: IconGroup.Brands,
   InternetExplorerColored: IconGroup.Brands,
+  LinkedinColored: IconGroup.Brands,
+  LinkedinMono: IconGroup.Brands,
   Linux: IconGroup.Brands,
   LiveChatColored: IconGroup.Brands,
   LiveChatMono: IconGroup.Brands,

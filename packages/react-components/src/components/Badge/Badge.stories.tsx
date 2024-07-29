@@ -7,7 +7,7 @@ import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Badge, BadgeProps } from './Badge';
 
 export default {
-  title: 'Components/Badge',
+  title: 'Components/Badge/Badge',
   component: Badge,
 };
 
@@ -28,7 +28,7 @@ export const Sizes = (): React.ReactElement => (
     <StoryDescriptor title="Medium">
       <Badge size="medium" count={1} />
     </StoryDescriptor>
-    <StoryDescriptor title="Large">
+    <StoryDescriptor title="Large (deprecated)">
       <Badge size="large" count={1} />
     </StoryDescriptor>
   </>
@@ -39,7 +39,7 @@ export const Kinds = (): React.ReactElement => (
     <StoryDescriptor title="Primary">
       <Badge kind="primary" count={1} />
     </StoryDescriptor>
-    <StoryDescriptor title="Secondary">
+    <StoryDescriptor title="Secondary (Deprecated)">
       <Badge kind="secondary" count={1} />
     </StoryDescriptor>
     <StoryDescriptor title="Tertiary">
@@ -64,7 +64,7 @@ export const Types = (): React.ReactElement => (
     <StoryDescriptor title="Alert">
       <Badge type="alert" />
     </StoryDescriptor>
-    <StoryDescriptor title="Dot">
+    <StoryDescriptor title="Dot (Deprecated)">
       <Badge type="dot" />
     </StoryDescriptor>
   </>
