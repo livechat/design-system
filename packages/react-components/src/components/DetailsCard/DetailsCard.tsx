@@ -81,6 +81,19 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
     onClick?.();
   };
 
+  const handleLabelClick = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    const target = e.target as HTMLElement;
+    const targetTagName = target.tagName.toLowerCase();
+    const nonInteractiveTags = ['input', 'button', 'select', 'textarea', 'a'];
+
+    if (!nonInteractiveTags.includes(targetTagName)) {
+      setIsOpen((prevValue) => !prevValue);
+      onClick?.();
+    }
+  };
+
   React.useEffect(() => {
     const hasIOSupport = !!window.IntersectionObserver;
 
@@ -109,6 +122,7 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
         aria-expanded={isOpen}
         aria-hidden={isLabelHidden}
         data-testid="details-card-label"
+        onClick={handleLabelClick}
       >
         <div
           className={cx(
