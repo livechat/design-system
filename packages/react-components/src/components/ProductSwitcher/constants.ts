@@ -1,11 +1,12 @@
 import {
-  AccountCircle,
   ChatBotMono,
   HelloMono,
   HelpDeskMono,
   KnowledgeBaseMono,
   LiveChatMono,
   OpenWidgetMono,
+  TextAccounts,
+  TextPlatform,
 } from '@livechat/design-system-icons';
 
 import { OpenWidgetLogoUri } from './openwidgetLogoUri';
@@ -83,7 +84,7 @@ export const ProductSwitcherProducts: IProductOption[] = [
   {
     id: 'platform',
     name: 'Platform',
-    icon: HelloMono,
+    icon: TextPlatform,
     iconColor: 'var(--content-locked-black)',
     backgroundColors: {
       main: 'var(--products-platform)',
@@ -95,7 +96,7 @@ export const ProductSwitcherProducts: IProductOption[] = [
   {
     id: 'accounts',
     name: 'Accounts',
-    icon: AccountCircle, // TODO - replace with proper icon
+    icon: TextAccounts,
     backgroundColors: {
       main: 'var(--surface-locked-white)',
       second: 'var(--products-livechat)',

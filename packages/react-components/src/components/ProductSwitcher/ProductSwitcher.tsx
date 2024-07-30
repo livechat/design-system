@@ -1,6 +1,9 @@
 import { FC, MouseEvent } from 'react';
 import * as React from 'react';
 
+import { TextLogoFull } from '@livechat/design-system-icons';
+
+import { Icon } from '../Icon';
 import { Popover } from '../Popover';
 import { Tooltip } from '../Tooltip';
 import { Text } from '../Typography';
@@ -78,9 +81,11 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
             className={styles[`${baseClass}__footer-link`]}
           >
             <Text noMargin>powered by</Text>
-            <Text noMargin bold customColor="var(--content-locked-white)">
-              text|
-            </Text>
+            <Icon
+              size="xlarge"
+              source={TextLogoFull}
+              customColor="var(--content-locked-white)"
+            />
           </a>
         </div>
       </>

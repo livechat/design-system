@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "dev": "run-p dev:*",
-    "dev:storybook": "storybook dev -p 6006",
+    "dev:storybook": "storybook dev -p 6006 --exact-port",
     "dev:lib": "vite build --mode development -w",
     "prebuild": "rimraf dist && mkdir dist",
     "build": "tsc && vite build",
