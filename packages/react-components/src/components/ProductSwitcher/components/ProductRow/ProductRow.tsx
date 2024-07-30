@@ -63,7 +63,7 @@ export const ProductRow: FC<IProps> = ({
             notificationCount={notificationCount}
             withBorder={isActive}
           ></ProductTile>
-          <Text bold className={styles[`${baseClass}__name`]}>
+          <Text as="div" bold className={styles[`${baseClass}__name`]}>
             {name}
             {expired && (
               <Tooltip

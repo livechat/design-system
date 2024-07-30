@@ -64,6 +64,7 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
         <div className={styles[`${baseClass}__content`]}>
           {productOptions.map((product) => (
             <ProductRow
+              key={product.id}
               isActive={product.id === mainProductId}
               product={product}
               onClick={handleClick}

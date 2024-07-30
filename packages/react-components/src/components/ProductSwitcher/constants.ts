@@ -62,7 +62,7 @@ export const ProductSwitcherProducts: IProductOption[] = [
   },
   {
     id: 'openwidget',
-    name: 'Widget',
+    name: 'OpenWidget',
     icon: OpenWidgetMono,
     backgroundColors: {
       main: 'var(--products-openwidget)',
