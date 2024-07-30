@@ -41,7 +41,7 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
     <Popover
       placement="right-start"
       className={styles[baseClass]}
-      offsetSize={5}
+      offsetSize={{ mainAxis: 4, crossAxis: -1 }}
       triggerRenderer={
         <Tooltip
           offsetCrossAxis={2}

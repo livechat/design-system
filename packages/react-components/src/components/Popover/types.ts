@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { OffsetOptions } from '@floating-ui/core';
 import {
   Placement,
   UseClickProps,
@@ -45,7 +46,7 @@ export interface IPopoverProps {
   /**
    * Set the popover offset
    */
-  offsetSize?: number;
+  offsetSize?: OffsetOptions;
   /**
    * Set `false` if the menu is not to be closed with an esc press
    */
