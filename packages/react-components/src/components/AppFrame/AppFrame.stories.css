@@ -2,6 +2,11 @@
   border-color: var(--navbar-background);
 }
 
+.product-switcher-height {
+    margin-bottom: 12px;
+}
+
+
 .example-top-bar {
   display: flex;
   flex-direction: column;

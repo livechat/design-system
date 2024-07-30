@@ -4,6 +4,8 @@ import * as Icons from '@livechat/design-system-icons';
 
 import { Avatar } from '../Avatar';
 import { Icon } from '../Icon';
+import { ProductSwitcher } from '../ProductSwitcher';
+import { ProductSwitcherProducts } from '../ProductSwitcher/constants';
 import { Tooltip } from '../Tooltip';
 
 import { AppFrame } from './AppFrame';
@@ -97,6 +99,12 @@ export const Default = (): React.ReactElement => {
       navigation={
         <Navigation>
           <NavigationGroup scrollable>
+            <li className="lc-dark-theme product-switcher-height">
+              <ProductSwitcher
+                mainProductId="livechat"
+                productOptions={ProductSwitcherProducts}
+              />
+            </li>
             {navigationItems.slice(0, 8).map((item, index) => (
               <NavigationItem
                 key={item}
