@@ -377,6 +377,8 @@ export const DesignToken = {
   OnePopoverBorderActive: '--one-popover-border-active',
   OneTooltipBackground: '--one-tooltip-background',
   ContentBasicAutofill: '--content-basic-autofill',
+  ProductsHello: '--products-hello',
+  ProductsPlatform: '--products-platform',
 };
 
 export type DesignTokenKey = keyof typeof DesignToken;

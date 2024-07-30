@@ -25,6 +25,7 @@ export const ProductRow: FC<IProps> = ({
   product: {
     id,
     icon,
+    iconColor,
     backgroundColors,
     notificationCount,
     name,
@@ -56,8 +57,8 @@ export const ProductRow: FC<IProps> = ({
       >
         <div className={styles[`${baseClass}__heading`]}>
           <ProductTile
-            id={id}
             icon={icon}
+            iconColor={iconColor}
             expired={expired}
             backgroundColors={backgroundColors}
             notificationCount={notificationCount}

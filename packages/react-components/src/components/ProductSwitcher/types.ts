@@ -9,6 +9,7 @@ export type ProductId =
   | 'openwidget'
   | 'knowledgebase'
   | 'hello'
+  | 'platform'
   | 'accounts';
 
 export interface IProductSwitcherProps {
@@ -24,6 +25,7 @@ export interface IProductOption {
   trialDaysLeft?: number;
   nameAdornment?: ReactNode;
   icon: IconSource;
+  iconColor?: string;
   notificationCount?: number;
   backgroundColors: {
     main: string;

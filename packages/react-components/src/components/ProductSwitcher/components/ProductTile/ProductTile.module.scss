@@ -47,10 +47,23 @@ $base-class: 'product-tile';
   height: 36px;
 
   &__main-product {
+    position: relative;
     border: 1.5px solid var(--navbar-background);
     cursor: pointer;
     width: 42px;
     height: 42px;
+  }
+
+  &__openwidget-product {
+    //overflow: hidden;
+    //&:after {
+    //  background: var(--products-openwidget);
+    //  content: '';
+    //  position: absolute;
+    //  inset: 0;
+    //  z-index: -1;
+    //  filter: blur(3px);
+    //}
   }
 
   &__badge {
@@ -70,10 +83,6 @@ $base-class: 'product-tile';
     svg {
       width: 24px;
       height: 24px;
-    }
-
-    &--black {
-      color: var(--content-locked-black);
     }
 
     &--large svg {

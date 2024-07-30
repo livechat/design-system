@@ -48,7 +48,6 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
           placement="right"
           triggerRenderer={
             <ProductTile
-              id={mainProduct.id}
               isMainProduct
               icon={mainProduct.icon}
               backgroundColors={mainProduct.backgroundColors}

@@ -1621,4 +1621,14 @@ export const ColorsData: Record<
     desc: '',
     deprecated: undefined,
   },
+  ProductsHello: {
+    group: ColorGroup.Products,
+    desc: '',
+    deprecated: undefined,
+  },
+  ProductsPlatform: {
+    group: ColorGroup.Products,
+    desc: '',
+    deprecated: undefined,
+  },
 };

@@ -11,7 +11,7 @@ import styles from './ProductTile.module.scss';
 
 type IProps = Pick<
   IProductOption,
-  'id' | 'icon' | 'notificationCount' | 'backgroundColors' | 'expired'
+  'icon' | 'notificationCount' | 'backgroundColors' | 'expired' | 'iconColor'
 > & {
   isMainProduct?: boolean;
   withBorder?: boolean;
@@ -20,8 +20,8 @@ type IProps = Pick<
 const baseClass = 'product-tile';
 
 export const ProductTile: FC<IProps> = ({
-  id,
   icon,
+  iconColor,
   expired,
   backgroundColors,
   notificationCount,
@@ -40,7 +40,7 @@ export const ProductTile: FC<IProps> = ({
             [styles[`${baseClass}__main-product`]]: isMainProduct,
           })}
           style={{
-            backgroundColor: expired
+            background: expired
               ? 'var(--surface-moderate-default)'
               : backgroundColors.main,
           }}
@@ -57,10 +57,10 @@ export const ProductTile: FC<IProps> = ({
           <Icon
             source={icon}
             className={cx(styles[`${baseClass}__icon`], {
-              [styles[`${baseClass}__icon--black`]]: id === 'accounts',
               [styles[`${baseClass}__icon--large`]]: isMainProduct,
               [styles[`${baseClass}__icon--expired`]]: expired,
             })}
+            customColor={iconColor}
           />
         </div>
         {isMainProduct && (

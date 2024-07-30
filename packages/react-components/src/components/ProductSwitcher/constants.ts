@@ -8,6 +8,7 @@ import {
   OpenWidgetMono,
 } from '@livechat/design-system-icons';
 
+import { OpenWidgetLogoUri } from './openwidgetLogoUri';
 import { IProductOption } from './types';
 
 export const ProductSwitcherProducts: IProductOption[] = [
@@ -21,7 +22,6 @@ export const ProductSwitcherProducts: IProductOption[] = [
       third: 'var(--products-chatbot)',
     },
     url: '/livechat',
-    notificationCount: 1,
   },
   {
     id: 'chatbot',
@@ -33,7 +33,6 @@ export const ProductSwitcherProducts: IProductOption[] = [
       third: 'var(--products-helpdesk)',
     },
     url: '/chatbot',
-    notificationCount: 1,
   },
   {
     id: 'helpdesk',
@@ -45,7 +44,6 @@ export const ProductSwitcherProducts: IProductOption[] = [
       third: 'var(--products-chatbot)',
     },
     url: '/helpdesk',
-    notificationCount: 1,
     expired: true,
   },
   {
@@ -65,7 +63,7 @@ export const ProductSwitcherProducts: IProductOption[] = [
     name: 'OpenWidget',
     icon: OpenWidgetMono,
     backgroundColors: {
-      main: 'var(--products-openwidget)',
+      main: `url("${OpenWidgetLogoUri}")`,
       second: 'var(--products-livechat)',
       third: 'var(--products-chatbot)',
     },
@@ -81,7 +79,18 @@ export const ProductSwitcherProducts: IProductOption[] = [
       third: 'var(--products-chatbot)',
     },
     url: '/hello',
-    notificationCount: 1,
+  },
+  {
+    id: 'platform',
+    name: 'Platform',
+    icon: HelloMono,
+    iconColor: 'var(--content-locked-black)',
+    backgroundColors: {
+      main: 'var(--products-platform)',
+      second: 'var(--products-livechat)',
+      third: 'var(--products-chatbot)',
+    },
+    url: '/platform',
   },
   {
     id: 'accounts',
@@ -92,6 +101,7 @@ export const ProductSwitcherProducts: IProductOption[] = [
       second: 'var(--products-livechat)',
       third: 'var(--products-chatbot)',
     },
+    iconColor: 'var(--content-locked-black)',
     withDivider: true,
     url: '/accounts',
   },
