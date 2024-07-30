@@ -63,7 +63,7 @@ export const ProductSwitcherProducts: IProductOption[] = [
     name: 'OpenWidget',
     icon: OpenWidgetMono,
     backgroundColors: {
-      main: `url("${OpenWidgetLogoUri}")`,
+      main: `url('${OpenWidgetLogoUri}')`,
       second: 'var(--products-livechat)',
       third: 'var(--products-chatbot)',
     },

@@ -50,6 +50,7 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
             <ProductTile
               isMainProduct
               icon={mainProduct.icon}
+              iconColor={mainProduct.iconColor}
               backgroundColors={mainProduct.backgroundColors}
               notificationCount={combinedNotificationCount}
             />
