@@ -481,6 +481,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   OpenWidgetMono: IconGroup.Brands,
   OperaColored: IconGroup.Brands,
   OutlookColored: IconGroup.Brands,
+  PlatformColored: IconGroup.Brands,
   SafariColored: IconGroup.Brands,
   ShopifyColored: IconGroup.Brands,
   ShoppingCartFilled: IconGroup.Brands,
