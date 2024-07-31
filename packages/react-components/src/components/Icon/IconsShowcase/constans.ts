@@ -36,6 +36,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   ArrowBarToLeft: IconGroup.Arrows,
   ArrowBarToRight: IconGroup.Arrows,
   ArrowsShuffle: IconGroup.Arrows,
+  ArrowsSort: IconGroup.Arrows,
 
   //FileType
   FiletypeExe: IconGroup.FileType,
