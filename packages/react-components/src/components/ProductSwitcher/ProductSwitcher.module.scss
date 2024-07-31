@@ -1,7 +1,12 @@
+@import '../../utils/StackingContextLevel';
 $base-class: 'product-switcher';
 
 .#{$base-class} {
   gap: 16px;
+  z-index: $stacking-context-level-popover;
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-pop-over);
+  background-color: var(--popover-background);
   padding: var(--spacing-3);
   width: 270px;
 

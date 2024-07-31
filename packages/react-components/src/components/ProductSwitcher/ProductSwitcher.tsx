@@ -1,10 +1,22 @@
 import { FC, MouseEvent } from 'react';
 import * as React from 'react';
 
+import {
+  FloatingNode,
+  FloatingTree,
+  offset,
+  useClick,
+  useDismiss,
+  useFloating,
+  useFloatingNodeId,
+  useFloatingParentNodeId,
+  useInteractions,
+  useRole,
+  useTransitionStyles,
+} from '@floating-ui/react';
 import { TextLogoFull } from '@livechat/design-system-icons';
 
 import { Icon } from '../Icon';
-import { Popover } from '../Popover';
 import { Tooltip } from '../Tooltip';
 import { Text } from '../Typography';
 
@@ -20,6 +32,32 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
   productOptions,
   mainProductId,
 }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const parentId = useFloatingParentNodeId();
+  const nodeId = useFloatingNodeId();
+
+  const { refs, context, floatingStyles } = useFloating({
+    nodeId,
+    strategy: 'fixed',
+    placement: 'right-start',
+    open: isOpen,
+    onOpenChange: setIsOpen,
+    middleware: [offset({ mainAxis: 10 })],
+  });
+
+  const click = useClick(context);
+  const role = useRole(context);
+  const dismiss = useDismiss(context);
+  const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
+    initial: { opacity: 0, transform: 'translateX(-80%)' },
+  });
+
+  const { getReferenceProps, getFloatingProps } = useInteractions([
+    click,
+    dismiss,
+    role,
+  ]);
+
   const mainProduct = productOptions.find(
     (product) => product.id === mainProductId
   );
@@ -37,13 +75,11 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
     0
   );
 
-  return (
-    <Popover
-      placement="right-start"
-      className={styles[baseClass]}
-      offsetSize={{ mainAxis: 4, crossAxis: -1 }}
-      triggerRenderer={
+  const ProductSwitcherComponent = (
+    <>
+      <div ref={refs.setReference} {...getReferenceProps()}>
         <Tooltip
+          isVisible={false}
           offsetCrossAxis={2}
           arrowOffsetY={2}
           offsetMainAxis={10}
@@ -61,34 +97,49 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
         >
           Switch product
         </Tooltip>
-      }
-    >
-      <>
-        <div className={styles[`${baseClass}__content`]}>
-          {productOptions.map((product) => (
-            <ProductRow
-              key={product.id}
-              isActive={product.id === mainProductId}
-              product={product}
-              onClick={handleClick}
-            />
-          ))}
+      </div>
+      <FloatingNode id={nodeId}>
+        <div
+          ref={refs.setFloating}
+          style={floatingStyles}
+          {...getFloatingProps()}
+        >
+          {isMounted && (
+            <div className={styles[baseClass]} style={transitionStyles}>
+              <div className={styles[`${baseClass}__content`]}>
+                {productOptions.map((product) => (
+                  <ProductRow
+                    key={product.id}
+                    isActive={product.id === mainProductId}
+                    product={product}
+                    onClick={handleClick}
+                  />
+                ))}
+              </div>
+              <div className={styles[`${baseClass}__footer`]}>
+                <a
+                  href="https://www.text.com"
+                  target="_blank"
+                  className={styles[`${baseClass}__footer-link`]}
+                >
+                  <Text noMargin>powered by</Text>
+                  <Icon
+                    size="xlarge"
+                    source={TextLogoFull}
+                    customColor="var(--content-locked-white)"
+                  />
+                </a>
+              </div>
+            </div>
+          )}
         </div>
-        <div className={styles[`${baseClass}__footer`]}>
-          <a
-            href="https://www.text.com"
-            target="_blank"
-            className={styles[`${baseClass}__footer-link`]}
-          >
-            <Text noMargin>powered by</Text>
-            <Icon
-              size="xlarge"
-              source={TextLogoFull}
-              customColor="var(--content-locked-white)"
-            />
-          </a>
-        </div>
-      </>
-    </Popover>
+      </FloatingNode>
+    </>
   );
+
+  if (parentId === null) {
+    return <FloatingTree>{ProductSwitcherComponent}</FloatingTree>;
+  }
+
+  return ProductSwitcherComponent;
 };
