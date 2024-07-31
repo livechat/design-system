@@ -2,6 +2,7 @@ import { FC, MouseEvent } from 'react';
 import * as React from 'react';
 
 import {
+  autoUpdate,
   FloatingNode,
   FloatingTree,
   offset,
@@ -43,6 +44,7 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
     open: isOpen,
     onOpenChange: setIsOpen,
     middleware: [offset({ mainAxis: 10 })],
+    whileElementsMounted: autoUpdate,
   });
 
   const click = useClick(context);
