@@ -35,6 +35,6 @@ $base-class: 'product-switcher';
   }
 
   &__tooltip {
-    z-index: 999;
+    z-index: initial;
   }
 }

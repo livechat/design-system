@@ -1,4 +1,4 @@
-import { FC, MouseEvent } from 'react';
+import { FC, MouseEvent, useState } from 'react';
 import * as React from 'react';
 
 import {
@@ -34,6 +34,9 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
   mainProductId,
 }) => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [isTooltipOpen, setIsTooltipOpen] = useState<boolean | undefined>(
+    false
+  );
   const parentId = useFloatingParentNodeId();
   const nodeId = useFloatingNodeId();
 
@@ -42,8 +45,11 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
     strategy: 'fixed',
     placement: 'right-start',
     open: isOpen,
-    onOpenChange: setIsOpen,
-    middleware: [offset({ mainAxis: 10 })],
+    onOpenChange: (newValue) => {
+      setIsTooltipOpen(false);
+      setIsOpen(newValue);
+    },
+    middleware: [offset({ mainAxis: 5 })],
     whileElementsMounted: autoUpdate,
   });
 
@@ -51,6 +57,7 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
   const role = useRole(context);
   const dismiss = useDismiss(context);
   const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
+    duration: 200,
     common: {
       transformOrigin: 'left top',
     },
@@ -87,7 +94,9 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
     <>
       <div ref={refs.setReference} {...getReferenceProps()}>
         <Tooltip
-          isVisible={false}
+          isVisible={isTooltipOpen}
+          onOpen={() => setIsTooltipOpen(true)}
+          onClose={() => setIsTooltipOpen(false)}
           offsetCrossAxis={2}
           arrowOffsetY={2}
           offsetMainAxis={10}
