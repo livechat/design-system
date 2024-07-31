@@ -38,6 +38,7 @@ interface UseFloatingPickerProps {
   maxListHeight: number;
   isOpen?: boolean;
   onVisibilityChange?: (open: boolean, event?: Event | undefined) => void;
+  searchPhrase?: string;
 }
 
 interface IUseFloatingPicker {
@@ -75,6 +76,7 @@ export const useFloatingPicker = ({
   useClickHookProps,
   isOpen,
   onVisibilityChange,
+  searchPhrase,
 }: UseFloatingPickerProps): IUseFloatingPicker => {
   const nodeId = useFloatingNodeId();
   const [pointer, setPointer] = React.useState(false);
@@ -82,6 +84,11 @@ export const useFloatingPicker = ({
   const [maxHeight, setMaxHeight] = React.useState(maxListHeight);
   const listElementsRef = React.useRef<Array<HTMLElement | null>>([]);
   const virtualItemRef = React.useRef(null);
+
+  React.useEffect(() => {
+    virtualItemRef.current = null;
+    setActiveIndex(null);
+  }, [searchPhrase]);
 
   const { refs, floatingStyles, context, isPositioned } =
     useFloating<HTMLButtonElement>({
