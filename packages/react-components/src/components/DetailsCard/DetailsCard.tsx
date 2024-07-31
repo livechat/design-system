@@ -45,10 +45,13 @@ export interface IDetailsCardProps {
   /**
    * Callback function called when the card label is clicked
    */
-  onClick?: () => void;
+  onClick?: (
+    e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement | HTMLDivElement>
+  ) => void;
 }
 
 const baseClass = 'details-card';
+const NON_INTERACTIVE_TAGS = ['input', 'button', 'select', 'textarea', 'a'];
 
 export const DetailsCard: React.FC<IDetailsCardProps> = ({
   children,
@@ -78,7 +81,19 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
   ) => {
     setIsOpen((prevValue) => !prevValue);
     e.currentTarget.blur();
-    onClick?.();
+    onClick?.(e);
+  };
+
+  const handleLabelClick = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    const target = e.target as HTMLElement;
+    const targetTagName = target.tagName.toLowerCase();
+
+    if (!NON_INTERACTIVE_TAGS.includes(targetTagName)) {
+      setIsOpen((prevValue) => !prevValue);
+      onClick?.(e);
+    }
   };
 
   React.useEffect(() => {
@@ -109,6 +124,7 @@ export const DetailsCard: React.FC<IDetailsCardProps> = ({
         aria-expanded={isOpen}
         aria-hidden={isLabelHidden}
         data-testid="details-card-label"
+        onClick={handleLabelClick}
       >
         <div
           className={cx(

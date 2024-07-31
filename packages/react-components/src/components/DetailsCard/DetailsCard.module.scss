@@ -38,6 +38,10 @@ $min-card-height: 72px;
     overflow: hidden;
     color: var(--content-basic-primary);
 
+    &:hover {
+      cursor: pointer;
+    }
+
     &--hide {
       transition:
         opacity var(--transition-duration-fast-1) ease-out,
