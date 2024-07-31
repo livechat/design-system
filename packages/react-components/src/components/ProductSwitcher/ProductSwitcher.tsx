@@ -49,7 +49,13 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
   const role = useRole(context);
   const dismiss = useDismiss(context);
   const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
-    initial: { opacity: 0, transform: 'translateX(-80%)' },
+    common: {
+      transformOrigin: 'left top',
+    },
+    initial: {
+      opacity: 0,
+      transform: 'scale(0.84) translateX(-22px)',
+    },
   });
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
