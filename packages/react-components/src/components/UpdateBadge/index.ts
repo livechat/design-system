@@ -1,0 +1,1 @@
+export { UpdateBadge } from './UpdateBadge';

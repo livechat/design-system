@@ -67,6 +67,10 @@ export const PickerTrigger: React.FC<
     onClear();
   };
 
+  React.useEffect(() => {
+    if (!isOpen) setTriggerFocus(false);
+  }, [isOpen]);
+
   return (
     <button
       tabIndex={isDisabled ? -1 : 0}
