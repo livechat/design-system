@@ -102,6 +102,7 @@ export const Picker: React.FC<IPickerProps> = ({
     useDismissHookProps,
     isOpen,
     onVisibilityChange: handleVisibilityChange,
+    searchPhrase,
   });
 
   return (
