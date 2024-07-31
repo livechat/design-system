@@ -36,6 +36,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   ArrowBarToLeft: IconGroup.Arrows,
   ArrowBarToRight: IconGroup.Arrows,
   ArrowsShuffle: IconGroup.Arrows,
+  ArrowsSort: IconGroup.Arrows,
 
   //FileType
   FiletypeExe: IconGroup.FileType,
@@ -480,6 +481,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   OpenWidgetMono: IconGroup.Brands,
   OperaColored: IconGroup.Brands,
   OutlookColored: IconGroup.Brands,
+  PlatformColored: IconGroup.Brands,
   SafariColored: IconGroup.Brands,
   ShopifyColored: IconGroup.Brands,
   ShoppingCartFilled: IconGroup.Brands,
