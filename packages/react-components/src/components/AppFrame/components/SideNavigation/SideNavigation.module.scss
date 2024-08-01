@@ -51,6 +51,11 @@ $base-class: 'side-navigation';
       width: 4px;
     }
 
+    &::-webkit-scrollbar-thumb {
+      border-radius: 2px;
+      background-color: var(--action-neutral-hover);
+    }
+
     &--no-gaps {
       gap: 0;
     }
