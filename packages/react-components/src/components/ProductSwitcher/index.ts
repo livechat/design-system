@@ -4,6 +4,6 @@ export {
   type ProductId,
 } from './types';
 
-export { ProductSwitcher } from './ProductSwitcher';
+export * from './ProductSwitcher';
 
 export { ProductSwitcherProducts } from './constants';

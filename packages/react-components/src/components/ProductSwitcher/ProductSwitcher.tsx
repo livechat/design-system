@@ -102,6 +102,7 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
           offsetMainAxis={10}
           className={styles[`${baseClass}__tooltip`]}
           placement="right"
+          floatingStrategy="fixed"
           triggerRenderer={
             <ProductTile
               isMainProduct
