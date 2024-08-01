@@ -32,6 +32,10 @@ $base-class: 'product-switcher';
     height: 19px;
     text-decoration: none;
     color: var(--content-basic-secondary);
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   &__tooltip {

@@ -13,13 +13,9 @@ $base-class: 'product-row';
   text-decoration: none;
   color: var(--content-basic-primary);
 
-  //&:focus-visible {
-  //  outline: 2px solid var(--action-primary-default);
-  //  outline-offset: -2px;
-  //}
-
   &:hover {
     background-color: var(--picker-list-option-background-hover);
+    text-decoration: none;
   }
 
   &--expired {
