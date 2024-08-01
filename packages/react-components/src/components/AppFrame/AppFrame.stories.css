@@ -1,3 +1,37 @@
 .avatar > [class^='lc-Avatar-module__avatar__status'] {
   border-color: var(--navbar-background);
 }
+
+.example-top-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  span {
+    margin: 10px 0;
+  }
+}
+
+.alert {
+  box-sizing: border-box;
+  display: flex;
+  position: relative;
+  top: 0;
+  flex: 0 1 auto;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: var(--radius-2);
+  background-color: var(--surface-accent-emphasis-high-warning);
+  padding: 8px 0;
+  width: 100%;
+  height: 42px;
+  overflow: hidden;
+  text-align: center;
+  line-height: 0;
+  color: var(--content-locked-black);
+  font-size: 14px;
+  font-weight: 600;
+}
