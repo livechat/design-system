@@ -1,4 +1,4 @@
-import { FC, MouseEvent, useState } from 'react';
+import { FC, useState } from 'react';
 import * as React from 'react';
 
 import {
@@ -81,8 +81,8 @@ export const ProductSwitcher: FC<IProductSwitcherProps> = ({
     return null;
   }
 
-  const handleClick = (event: MouseEvent) => {
-    event.preventDefault();
+  const handleClick = () => {
+    setIsOpen(false);
   };
 
   const combinedNotificationCount = productOptions.reduce(
