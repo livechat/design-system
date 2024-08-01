@@ -22,7 +22,7 @@ export const ProductSwitcherProducts: IProductOption[] = [
       second: 'var(--products-helpdesk)',
       third: 'var(--products-chatbot)',
     },
-    url: '/livechat',
+    url: '',
   },
   {
     id: 'chatbot',
@@ -33,7 +33,7 @@ export const ProductSwitcherProducts: IProductOption[] = [
       second: 'var(--products-livechat)',
       third: 'var(--products-helpdesk)',
     },
-    url: '/chatbot',
+    url: '',
   },
   {
     id: 'helpdesk',
@@ -44,7 +44,7 @@ export const ProductSwitcherProducts: IProductOption[] = [
       second: 'var(--products-livechat)',
       third: 'var(--products-chatbot)',
     },
-    url: '/helpdesk',
+    url: '',
     expired: true,
   },
   {
@@ -56,7 +56,7 @@ export const ProductSwitcherProducts: IProductOption[] = [
       second: 'var(--products-helpdesk)',
       third: 'var(--products-chatbot)',
     },
-    url: '/helpdesk',
+    url: '',
     trialDaysLeft: 2,
   },
   {
@@ -68,7 +68,7 @@ export const ProductSwitcherProducts: IProductOption[] = [
       second: 'var(--products-livechat)',
       third: 'var(--products-chatbot)',
     },
-    url: '/openwidget',
+    url: '',
   },
   {
     id: 'hello',
@@ -79,7 +79,7 @@ export const ProductSwitcherProducts: IProductOption[] = [
       second: 'var(--products-livechat)',
       third: 'var(--products-chatbot)',
     },
-    url: '/hello',
+    url: '',
   },
   {
     id: 'platform',
@@ -91,7 +91,7 @@ export const ProductSwitcherProducts: IProductOption[] = [
       second: 'var(--products-livechat)',
       third: 'var(--products-chatbot)',
     },
-    url: '/platform',
+    url: '',
   },
   {
     id: 'accounts',
@@ -104,6 +104,6 @@ export const ProductSwitcherProducts: IProductOption[] = [
     },
     iconColor: 'var(--content-locked-black)',
     withDivider: true,
-    url: '/accounts',
+    url: '',
   },
 ];

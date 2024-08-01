@@ -2,10 +2,13 @@ import * as React from 'react';
 
 import * as Icons from '@livechat/design-system-icons';
 
+import {
+  labsRedirectData,
+  useProductSwitcher,
+} from '../../hooks/useProductSwitcher';
 import { Avatar } from '../Avatar';
 import { Icon } from '../Icon';
 import { ProductSwitcher } from '../ProductSwitcher';
-import { ProductSwitcherProducts } from '../ProductSwitcher/constants';
 import { Tooltip } from '../Tooltip';
 
 import { AppFrame } from './AppFrame';
@@ -81,6 +84,8 @@ export const Default = (): React.ReactElement => {
   const [activeItem, setActiveItem] = React.useState('archives');
   const [activeSubItem, setActiveSubItem] = React.useState(0);
 
+  const { products } = useProductSwitcher(labsRedirectData, 'labs');
+
   const getSubNav = () => {
     switch (activeItem) {
       case 'chats':
@@ -102,7 +107,7 @@ export const Default = (): React.ReactElement => {
             <li className="lc-dark-theme product-switcher-height">
               <ProductSwitcher
                 mainProductId="livechat"
-                productOptions={ProductSwitcherProducts}
+                productOptions={products}
               />
             </li>
             {navigationItems.slice(0, 8).map((item, index) => (

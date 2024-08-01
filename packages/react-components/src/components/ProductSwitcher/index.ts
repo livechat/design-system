@@ -5,3 +5,5 @@ export {
 } from './types';
 
 export { ProductSwitcher } from './ProductSwitcher';
+
+export { ProductSwitcherProducts } from './constants';
