@@ -35,6 +35,18 @@ export const ProductTile: FC<IProps> = ({
           [styles['product-tile-wrapper__animated']]: isMainProduct,
         })}
       >
+        {isMainProduct && (
+          <>
+            <div
+              className={styles[`${baseClass}__third-layer`]}
+              style={{ background: backgroundColors.third }}
+            />
+            <div
+              className={styles[`${baseClass}__second-layer`]}
+              style={{ background: backgroundColors.second }}
+            />
+          </>
+        )}
         <div
           className={cx(styles[baseClass], {
             [styles[`${baseClass}__main-product`]]: isMainProduct,
@@ -63,18 +75,6 @@ export const ProductTile: FC<IProps> = ({
             customColor={iconColor}
           />
         </div>
-        {isMainProduct && (
-          <>
-            <div
-              className={styles[`${baseClass}__second-layer`]}
-              style={{ background: backgroundColors.second }}
-            />
-            <div
-              className={styles[`${baseClass}__third-layer`]}
-              style={{ background: backgroundColors.third }}
-            />
-          </>
-        )}
       </div>
     </div>
   );

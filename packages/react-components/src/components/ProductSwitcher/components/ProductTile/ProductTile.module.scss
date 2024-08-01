@@ -16,6 +16,8 @@ $base-class: 'product-tile';
   justify-content: center;
 
   &__animated {
+    cursor: pointer;
+
     &:hover {
       .#{$base-class} {
         transform: scale(1.1);
@@ -49,7 +51,6 @@ $base-class: 'product-tile';
   &__main-product {
     position: relative;
     border: 1.5px solid var(--navbar-background);
-    cursor: pointer;
     width: 42px;
     height: 42px;
   }
@@ -100,7 +101,6 @@ $base-class: 'product-tile';
 
     position: absolute;
     bottom: -4px;
-    z-index: -1;
     border: solid 1.5px var(--navbar-background);
     border-radius: var(--radius-3);
     width: 40px;
@@ -112,7 +112,6 @@ $base-class: 'product-tile';
 
     position: absolute;
     bottom: -8px;
-    z-index: -2;
     border: solid 1.5px var(--navbar-background);
     border-radius: var(--radius-3);
     width: 36px;
