@@ -16,6 +16,7 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
   id,
   isActive,
   isChecked,
+  isLastElement,
   title,
   description,
   onClick,
@@ -45,6 +46,9 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
         })}
       >
         {isChecked && <Icon size="small" source={Check} />}
+        {!isLastElement && (
+          <span className={styles[`${baseClass}__check-mark__line`]} />
+        )}
       </span>
       <div
         onClick={() => onClick(id)}

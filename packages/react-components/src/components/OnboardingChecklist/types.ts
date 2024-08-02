@@ -18,6 +18,7 @@ export interface ChecklistItem {
 export interface ICheckListItem extends ChecklistItem {
   isActive: boolean;
   isChecked: boolean;
+  isLastElement: boolean;
   onClick: (id: string) => void;
 }
 

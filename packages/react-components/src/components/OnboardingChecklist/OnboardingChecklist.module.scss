@@ -30,16 +30,5 @@ $base-class: 'onboarding-checklist';
 
   &__checklist {
     position: relative;
-
-    &::after {
-      position: absolute;
-      top: 0;
-      left: 11.5px;
-      z-index: 1;
-      border-left: 1px dashed var(--border-basic-primary);
-      width: 1px;
-      height: 100%;
-      content: '';
-    }
   }
 }
