@@ -11,5 +11,9 @@ $base-class: 'navigation-group';
   &--scrollable {
     overflow-y: scroll;
     scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
   }
 }

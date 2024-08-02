@@ -18,14 +18,10 @@ import {
 
 interface ExampleAppContentProps {
   showToggle: boolean;
-  topBarVisible: boolean;
-  handleTopBarButtonClick: () => void;
 }
 
 export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
   showToggle,
-  topBarVisible,
-  handleTopBarButtonClick,
 }) => {
   const { isSideNavigationVisible, toggleSideNavigationVisibility } =
     useAppFrame();
@@ -50,27 +46,14 @@ export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
           </Button>
         </>
       )}
-      <>
-        <Text>Set top-bar visibility</Text>
-        <Button onClick={handleTopBarButtonClick}>
-          {topBarVisible ? 'Close' : 'Open'}
-        </Button>
-      </>
     </div>
   );
 };
 
 export const ExampleTopBar: React.FC = () => (
-  <div
-    style={{
-      width: '100%',
-      height: '100%',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}
-  >
-    <h3>Top bar node</h3>
+  <div className="example-top-bar">
+    <div className="alert">Example top bar element</div>
+    <span>Example top bar element</span>
   </div>
 );
 

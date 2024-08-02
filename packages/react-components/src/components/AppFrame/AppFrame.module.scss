@@ -1,6 +1,4 @@
 $base-class: 'app-frame';
-$top-bar-height: 54px;
-$empty-top-bar-height: 6px;
 
 .#{$base-class} {
   display: flex;
@@ -24,13 +22,15 @@ $empty-top-bar-height: 6px;
       flex-shrink: 0;
       align-items: center;
       transition: all var(--transition-duration-fast-2) ease-in-out;
-      padding: 0;
-      height: 6px;
+      padding-top: 3px;
+      padding-bottom: 3px;
+      height: auto;
+      max-height: 96px;
 
       &--visible {
         padding-top: 6px;
         padding-bottom: 6px;
-        height: 48px;
+        min-height: 48px;
       }
     }
 
@@ -39,11 +39,8 @@ $empty-top-bar-height: 6px;
       flex-direction: row;
       transition: all var(--transition-duration-fast-2) ease-in-out;
       width: 100%;
-      height: calc(100vh - $empty-top-bar-height);
-
-      &--with-top-bar {
-        height: calc(100vh - $top-bar-height);
-      }
+      height: 100%;
+      overflow: hidden;
 
       &__nav-bar-wrapper {
         flex-shrink: 0;
@@ -64,6 +61,7 @@ $empty-top-bar-height: 6px;
         background-color: var(--surface-primary-default);
         width: 100%;
         height: 100%;
+        overflow: hidden;
         color: var(--content-default);
       }
     }

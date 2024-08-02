@@ -78,7 +78,6 @@ const SectionsWithToggle = ['chats', 'engage', 'archives'];
 export const Default = (): React.ReactElement => {
   const [activeItem, setActiveItem] = React.useState('archives');
   const [activeSubItem, setActiveSubItem] = React.useState(0);
-  const [topBarVisible, setTopBarVisible] = React.useState(true);
 
   const getSubNav = () => {
     switch (activeItem) {
@@ -159,13 +158,9 @@ export const Default = (): React.ReactElement => {
         </Navigation>
       }
       sideNavigation={getSubNav()}
-      topBar={topBarVisible && <ExampleTopBar />}
+      topBar={<ExampleTopBar />}
     >
-      <ExampleAppContent
-        showToggle={SectionsWithToggle.includes(activeItem)}
-        topBarVisible={topBarVisible}
-        handleTopBarButtonClick={() => setTopBarVisible((prev) => !prev)}
-      />
+      <ExampleAppContent showToggle={SectionsWithToggle.includes(activeItem)} />
     </AppFrame>
   );
 };
