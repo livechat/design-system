@@ -1,0 +1,45 @@
+$base-class: 'onboarding-checklist';
+
+.#{$base-class} {
+  display: flex;
+  flex-direction: row;
+  border-radius: var(--radius-4);
+  background-color: var(--surface-secondary-default);
+  width: 100%;
+  max-width: 1280px;
+
+  &__column {
+    padding: 40px;
+    width: 50%;
+  }
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--spacing-9);
+
+    &__label {
+      margin-bottom: 4px;
+      color: var(--content-basic-secondary);
+    }
+
+    &__title {
+      margin: 0;
+    }
+  }
+
+  &__checklist {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      left: 11.5px;
+      z-index: 1;
+      border-left: 1px dashed var(--border-basic-primary);
+      width: 1px;
+      height: 100%;
+      content: '';
+    }
+  }
+}
