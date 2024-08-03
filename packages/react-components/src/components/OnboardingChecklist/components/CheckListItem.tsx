@@ -21,6 +21,7 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
   description,
   onClick,
   primaryButton,
+  secondaryButton,
 }) => {
   const descriptionRef = React.useRef<HTMLDivElement>(null);
   const [size, setSize] = React.useState(0);
@@ -51,7 +52,7 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
         )}
       </span>
       <div
-        onClick={() => onClick(id)}
+        onClick={!isActive ? () => onClick(id) : undefined}
         className={cx(styles[`${baseClass}__content`], {
           [styles[`${baseClass}__content--open`]]: isActive,
         })}
@@ -84,6 +85,16 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
                   iconPosition={primaryButton.iconPosition}
                 >
                   {primaryButton.label}
+                </Button>
+              )}
+              {secondaryButton && (
+                <Button
+                  kind="plain"
+                  onClick={secondaryButton.onClick}
+                  icon={secondaryButton.icon}
+                  iconPosition={secondaryButton.iconPosition}
+                >
+                  {secondaryButton.label}
                 </Button>
               )}
             </div>

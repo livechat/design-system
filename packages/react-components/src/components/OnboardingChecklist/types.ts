@@ -7,15 +7,17 @@ type ChecklistItemButton = {
   onClick: () => void;
 };
 
-export interface ChecklistItem {
+export interface IChecklistItemProps {
   id: string;
   title: string;
   description: string;
   primaryButton: ChecklistItemButton;
   secondaryButton?: ChecklistItemButton;
+  placeholder: React.ReactElement;
 }
 
-export interface ICheckListItem extends ChecklistItem {
+export interface ICheckListItem
+  extends Omit<IChecklistItemProps, 'placeholder'> {
   isActive: boolean;
   isChecked: boolean;
   isLastElement: boolean;
@@ -25,7 +27,7 @@ export interface ICheckListItem extends ChecklistItem {
 export interface IOnboardingChecklistProps {
   title: string;
   titleLabel?: string;
-  items: ChecklistItem[];
+  items: IChecklistItemProps[];
   activeId: string;
   checkedId: string[];
   onActiveChange: (id: string) => void;

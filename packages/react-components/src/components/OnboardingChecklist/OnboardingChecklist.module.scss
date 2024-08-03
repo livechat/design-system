@@ -7,10 +7,16 @@ $base-class: 'onboarding-checklist';
   background-color: var(--surface-secondary-default);
   width: 100%;
   max-width: 1280px;
+  overflow: hidden;
 
   &__column {
+    position: relative;
     padding: 40px;
     width: 50%;
+
+    &--right {
+      background: var(--surface-gradient-05);
+    }
   }
 
   &__header {
@@ -30,5 +36,19 @@ $base-class: 'onboarding-checklist';
 
   &__checklist {
     position: relative;
+  }
+
+  &__placeholder {
+    display: flex;
+    position: absolute;
+    inset: 0;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-duration-moderate-1);
+    opacity: 0;
+
+    &--active {
+      opacity: 1;
+    }
   }
 }

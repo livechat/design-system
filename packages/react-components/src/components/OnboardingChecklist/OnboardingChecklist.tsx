@@ -36,11 +36,15 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
           {items.map((item, index) => (
             <CheckListItem
               key={index}
+              id={item.id}
+              description={item.description}
+              title={item.title}
               isActive={item.id === activeId}
               isChecked={checkedId.includes(item.id)}
               isLastElement={index === items.length - 1}
               onClick={onActiveChange}
-              {...item}
+              primaryButton={item.primaryButton}
+              secondaryButton={item.secondaryButton}
             />
           ))}
         </div>
@@ -51,7 +55,17 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
           styles[`${baseClass}__column--right`]
         )}
       >
-        placeholder
+        {items.map((item, index) => (
+          <div
+            key={index}
+            className={cx(styles[`${baseClass}__placeholder`], {
+              [styles[`${baseClass}__placeholder--active`]]:
+                item.id === activeId,
+            })}
+          >
+            {item.placeholder}
+          </div>
+        ))}
       </div>
     </div>
   );
