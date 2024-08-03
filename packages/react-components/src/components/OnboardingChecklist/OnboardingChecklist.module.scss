@@ -52,3 +52,13 @@ $base-class: 'onboarding-checklist';
     }
   }
 }
+
+@media not (width >= 920px) {
+  .#{$base-class}__column {
+    width: 100%;
+
+    &--right {
+      display: none;
+    }
+  }
+}
