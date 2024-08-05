@@ -27,11 +27,21 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
   const [size, setSize] = React.useState(0);
 
   React.useEffect(() => {
-    if (
-      descriptionRef.current &&
-      size !== descriptionRef.current.offsetHeight
-    ) {
-      setSize(descriptionRef.current.offsetHeight);
+    const hasIOSupport = !!window.ResizeObserver;
+
+    if (descriptionRef.current && hasIOSupport) {
+      const resizeObserver = new ResizeObserver(() => {
+        if (
+          descriptionRef.current &&
+          size !== descriptionRef.current.offsetHeight
+        ) {
+          setSize(descriptionRef.current.offsetHeight);
+        }
+      });
+
+      resizeObserver.observe(descriptionRef.current);
+
+      return () => resizeObserver.disconnect();
     }
   }, [descriptionRef]);
 
@@ -69,7 +79,7 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
           className={styles[`${baseClass}__content__inner`]}
           style={{ maxHeight: isActive ? size : 0 }}
         >
-          <span ref={descriptionRef}>
+          <div ref={descriptionRef}>
             <Text
               size="lg"
               className={styles[`${baseClass}__content__inner__description`]}
@@ -98,7 +108,7 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
                 </Button>
               )}
             </div>
-          </span>
+          </div>
         </div>
       </div>
     </div>
