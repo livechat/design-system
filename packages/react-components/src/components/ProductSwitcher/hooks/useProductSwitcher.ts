@@ -71,6 +71,20 @@ export const useProductSwitcher = ({
   subscriptions,
   organizationId,
 }: IProductSwitcherHook): { products: IProductOption[] } => {
+  if (
+    !redirectData ||
+    !installedProducts ||
+    !subscriptions ||
+    !organizationId
+  ) {
+    throw new Error('Missing required parameters');
+  }
+  if (redirectData.length === 0) {
+    return {
+      products: [],
+    };
+  }
+
   return {
     products: ProductSwitcherProducts.reduce((acc, product) => {
       if (isVisibleProduct(product.id, installedProducts)) {

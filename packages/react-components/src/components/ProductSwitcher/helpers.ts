@@ -11,7 +11,9 @@ export const getRedirectURL = (
     domain += 'https://accounts.livechat.com';
   }
 
-  return `${domain}/signin?client_id=${productClientId}&redirect_uri=${productRedirectUri}&response_type=token&organization_id=${organizationId}`;
+  return `${domain}/signin?client_id=${productClientId}&redirect_uri=${encodeURIComponent(
+    productRedirectUri
+  )}&response_type=token&organization_id=${organizationId}`;
 };
 export const getTrialDaysLeft = (trialEnd: string): number => {
   const trialEndDate = new Date(trialEnd);
