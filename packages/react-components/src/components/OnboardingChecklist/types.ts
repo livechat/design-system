@@ -1,18 +1,10 @@
 import * as React from 'react';
 
-type ChecklistItemButton = {
-  label: string;
-  icon?: React.ReactElement;
-  iconPosition?: 'left' | 'right';
-  onClick: () => void;
-};
-
 export interface IChecklistItemProps {
   id: string;
   title: string;
   description: string;
-  primaryButton: ChecklistItemButton;
-  secondaryButton?: ChecklistItemButton;
+  cta: React.ReactElement;
   placeholder: React.ReactElement;
 }
 
@@ -24,6 +16,13 @@ export interface ICheckListItem
   onClick: (id: string) => void;
 }
 
+type CompleteItem = {
+  title: string;
+  titleLabel?: string;
+  placeholder?: React.ReactElement;
+  delay?: number;
+};
+
 export interface IOnboardingChecklistProps {
   title: string;
   titleLabel?: string;
@@ -31,4 +30,7 @@ export interface IOnboardingChecklistProps {
   activeId: string;
   checkedId: string[];
   onActiveChange: (id: string) => void;
+  placeholderClassName?: string;
+  isCompleted?: boolean;
+  completeItem: CompleteItem;
 }

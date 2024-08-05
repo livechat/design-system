@@ -51,6 +51,11 @@ $base-class: 'checklist-item';
     width: 100%;
     min-height: 24px;
 
+    &:focus-visible {
+      outline: 0;
+      box-shadow: var(--shadow-focus);
+    }
+
     &:hover {
       background-color: var(--surface-secondary-hover);
       cursor: pointer;
@@ -61,7 +66,7 @@ $base-class: 'checklist-item';
       margin-top: 0;
       margin-bottom: 0;
       box-shadow: 0 2px 6px 0 rgb(19 19 23 / 20%);
-      background-color: var(--content-locked-white);
+      background-color: var(--content-invert-primary);
 
       &:hover {
         background-color: var(--content-locked-white);
@@ -74,6 +79,10 @@ $base-class: 'checklist-item';
 
       &--open {
         margin-bottom: 4px;
+      }
+
+      &--checked {
+        text-decoration: line-through;
       }
     }
 
@@ -94,5 +103,13 @@ $base-class: 'checklist-item';
         padding-top: var(--spacing-3);
       }
     }
+  }
+
+  &__chevron {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 24px;
+    bottom: 0;
   }
 }
