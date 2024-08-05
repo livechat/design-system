@@ -1,3 +1,12 @@
+import {
+  alwaysVisibleProducts,
+  labsRedirectData,
+  prodRedirectData,
+  SSOProductIdMap,
+  stagingRedirectData,
+} from './constants';
+import { IProductOption, ProductData, ProductId } from './types';
+
 export const getRedirectURL = (
   productClientId: string,
   productRedirectUri: string,
@@ -21,4 +30,60 @@ export const getTrialDaysLeft = (trialEnd: string): number => {
   const diffTime = trialEndDate.getTime() - currentDate.getTime();
 
   return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+};
+
+export const isVisibleProduct = (
+  productId: ProductId,
+  installedProducts: { product: 'LiveChat' | '' }[]
+): boolean =>
+  alwaysVisibleProducts.includes(productId) ||
+  installedProducts.some(
+    (installedProduct) =>
+      installedProduct.product === SSOProductIdMap[productId]
+  );
+
+export const createProductOption = (
+  product: IProductOption,
+  redirectData: ProductData[],
+  subscriptions: Record<string, any>,
+  organizationId: string,
+  env?: string
+): IProductOption => {
+  const productData = redirectData.find(
+    (data) => data.product === SSOProductIdMap[product.id]
+  );
+
+  if (!productData) {
+    throw new Error(`Product data for ${product.id} not found`);
+  }
+
+  return {
+    ...product,
+    trialDaysLeft:
+      subscriptions[product.id] && subscriptions[product.id]?.status === 'trial'
+        ? getTrialDaysLeft(subscriptions[product.id]['next_charge_at'] ?? '')
+        : undefined,
+    expired: subscriptions[product.id]?.status === 'expired',
+    url: getRedirectURL(
+      productData.clientId,
+      productData.redirectUri,
+      organizationId,
+      env
+    ),
+  };
+};
+
+export const getRedirectDataByEnv = (
+  env: 'labs' | 'staging' | 'prod'
+): ProductData[] => {
+  switch (env) {
+    case 'prod':
+      return prodRedirectData;
+    case 'staging':
+      return stagingRedirectData;
+    case 'labs':
+      return labsRedirectData;
+    default:
+      return [];
+  }
 };

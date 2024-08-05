@@ -5,7 +5,6 @@ import * as Icons from '@livechat/design-system-icons';
 import { Avatar } from '../Avatar';
 import { Icon } from '../Icon';
 import { ProductSwitcher, useProductSwitcher } from '../ProductSwitcher';
-import { labsRedirectData } from '../ProductSwitcher/constants';
 import { Tooltip } from '../Tooltip';
 
 import { AppFrame } from './AppFrame';
@@ -82,7 +81,6 @@ export const Default = (): React.ReactElement => {
   const [activeSubItem, setActiveSubItem] = React.useState(0);
 
   const { products } = useProductSwitcher({
-    redirectData: labsRedirectData,
     env: 'labs',
     installedProducts: [],
     organizationId: 'organizationId',

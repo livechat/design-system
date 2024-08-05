@@ -10,7 +10,7 @@ import {
 } from '@livechat/design-system-icons';
 
 import { OpenWidgetLogoUri } from './openwidgetLogoUri';
-import { IProductOption, ProductId, ProductData } from './types';
+import { IProductOption, ProductData, ProductId } from './types';
 
 export const ProductSwitcherProducts: IProductOption[] = [
   {
@@ -143,6 +143,76 @@ export const labsRedirectData: ProductData[] = [
   },
 ];
 
+export const stagingRedirectData: ProductData[] = [
+  {
+    clientId: 'bb9e5b2f1ab480e4a715977b7b1b4279',
+    redirectUri: 'https://my.staging.livechatinc.com',
+    product: 'LiveChat',
+  },
+  {
+    clientId: '82837eac-ff5e-45ca-bce1-00011acf925c',
+    redirectUri: 'https://app.helpdesk.com',
+    product: 'HelpDesk',
+  },
+  {
+    clientId: '92418ea187dd3c572383cbf56f015b6c',
+    redirectUri: 'https://app.chatbot.com/auth',
+    product: 'ChatBot',
+  },
+  {
+    clientId: '8c7275c9fa6f4853e8442df1387f7fe6',
+    redirectUri: 'https://app.openwidget.com',
+    product: 'OpenWidget',
+  },
+  {
+    clientId: '0671f59cf1c3015a511619de69373e47',
+    redirectUri: 'https://app.knowledgebase.ai',
+    product: 'KnowledgeBase',
+  },
+  { clientId: '', redirectUri: '', product: 'Hello' },
+  { clientId: '', redirectUri: '', product: 'Platform' },
+  {
+    clientId: '2fd9f1923f2233763b8637f7d10a6fe6',
+    redirectUri: 'https://accounts.staging.livechat.com/panel',
+    product: 'Accounts',
+  },
+];
+
+export const prodRedirectData: ProductData[] = [
+  {
+    clientId: 'bb9e5b2f1ab480e4a715977b7b1b4279',
+    redirectUri: 'https://my.livechatinc.com',
+    product: 'LiveChat',
+  },
+  {
+    clientId: '82837eac-ff5e-45ca-bce1-00011acf925c',
+    redirectUri: 'https://app.helpdesk.com',
+    product: 'HelpDesk',
+  },
+  {
+    clientId: '92418ea187dd3c572383cbf56f015b6c',
+    redirectUri: 'https://app.chatbot.com/auth',
+    product: 'ChatBot',
+  },
+  {
+    clientId: '8c7275c9fa6f4853e8442df1387f7fe6',
+    redirectUri: 'https://app.openwidget.com',
+    product: 'OpenWidget',
+  },
+  {
+    clientId: '0671f59cf1c3015a511619de69373e47',
+    redirectUri: 'https://app.knowledgebase.ai',
+    product: 'KnowledgeBase',
+  },
+  { clientId: '', redirectUri: '', product: 'Hello' },
+  { clientId: '', redirectUri: '', product: 'Platform' },
+  {
+    clientId: '2fd9f1923f2233763b8637f7d10a6fe6',
+    redirectUri: 'https://accounts.livechat.com/panel',
+    product: 'Accounts',
+  },
+];
+
 export const SSOProductIdMap: Record<ProductId, string> = {
   livechat: 'LiveChat',
   helpdesk: 'HelpDesk',
@@ -153,3 +223,10 @@ export const SSOProductIdMap: Record<ProductId, string> = {
   hello: 'hello',
   platform: 'TextPlatform',
 };
+
+export const alwaysVisibleProducts: ProductId[] = [
+  'livechat',
+  'chatbot',
+  'helpdesk',
+  'accounts',
+];

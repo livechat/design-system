@@ -1,17 +1,13 @@
-import { ProductSwitcherProducts, SSOProductIdMap } from '../constants';
-import { getRedirectURL, getTrialDaysLeft } from '../helpers';
-import { IProductOption, ProductId, ProductData } from '../types';
-
-const alwaysVisibleProducts: ProductId[] = [
-  'livechat',
-  'chatbot',
-  'helpdesk',
-  'accounts',
-];
+import { prodRedirectData, ProductSwitcherProducts } from '../constants';
+import {
+  createProductOption,
+  getRedirectDataByEnv,
+  isVisibleProduct,
+} from '../helpers';
+import { IProductOption } from '../types';
 
 export interface IProductSwitcherHook {
-  env?: string;
-  redirectData: ProductData[];
+  env?: 'labs' | 'staging' | 'prod';
   installedProducts: { product: 'LiveChat' | '' }[];
   organizationId: string;
   subscriptions: Record<
@@ -23,67 +19,16 @@ export interface IProductSwitcherHook {
   >;
 }
 
-const isVisibleProduct = (
-  productId: ProductId,
-  installedProducts: { product: 'LiveChat' | '' }[]
-): boolean =>
-  alwaysVisibleProducts.includes(productId) ||
-  installedProducts.some(
-    (installedProduct) =>
-      installedProduct.product === SSOProductIdMap[productId]
-  );
-
-const createProductOption = (
-  product: IProductOption,
-  redirectData: ProductData[],
-  subscriptions: Record<string, any>,
-  organizationId: string,
-  env?: string
-): IProductOption => {
-  const productData = redirectData.find(
-    (data) => data.product === SSOProductIdMap[product.id]
-  );
-
-  if (!productData) {
-    throw new Error(`Product data for ${product.id} not found`);
-  }
-
-  return {
-    ...product,
-    trialDaysLeft:
-      subscriptions[product.id] && subscriptions[product.id]?.status === 'trial'
-        ? getTrialDaysLeft(subscriptions[product.id]['next_charge_at'] ?? '')
-        : undefined,
-    expired: subscriptions[product.id]?.status === 'expired',
-    url: getRedirectURL(
-      productData.clientId,
-      productData.redirectUri,
-      organizationId,
-      env
-    ),
-  };
-};
-
 export const useProductSwitcher = ({
   env,
-  redirectData,
   installedProducts,
   subscriptions,
   organizationId,
 }: IProductSwitcherHook): { products: IProductOption[] } => {
-  if (
-    !redirectData ||
-    !installedProducts ||
-    !subscriptions ||
-    !organizationId
-  ) {
+  if (!installedProducts || !subscriptions || !organizationId) {
     throw new Error('Missing required parameters');
   }
-  if (redirectData.length === 0) {
-    return {
-      products: [],
-    };
-  }
+  const redirectData = env ? getRedirectDataByEnv(env) : prodRedirectData;
 
   return {
     products: ProductSwitcherProducts.reduce((acc, product) => {
