@@ -35,3 +35,9 @@ export interface IProductOption {
   withDivider?: boolean;
   url: string;
 }
+
+export type ProductData = {
+  clientId: string;
+  product: string;
+  redirectUri: string;
+};

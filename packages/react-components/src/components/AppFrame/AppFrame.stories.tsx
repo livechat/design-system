@@ -2,13 +2,10 @@ import * as React from 'react';
 
 import * as Icons from '@livechat/design-system-icons';
 
-import {
-  labsRedirectData,
-  useProductSwitcher,
-} from '../../hooks/useProductSwitcher';
 import { Avatar } from '../Avatar';
 import { Icon } from '../Icon';
-import { ProductSwitcher } from '../ProductSwitcher';
+import { ProductSwitcher, useProductSwitcher } from '../ProductSwitcher';
+import { labsRedirectData } from '../ProductSwitcher/constants';
 import { Tooltip } from '../Tooltip';
 
 import { AppFrame } from './AppFrame';
@@ -84,7 +81,15 @@ export const Default = (): React.ReactElement => {
   const [activeItem, setActiveItem] = React.useState('archives');
   const [activeSubItem, setActiveSubItem] = React.useState(0);
 
-  const { products } = useProductSwitcher(labsRedirectData, 'labs');
+  const { products } = useProductSwitcher({
+    redirectData: labsRedirectData,
+    env: 'labs',
+    installedProducts: [],
+    organizationId: 'organizationId',
+    subscriptions: {
+      livechat: { status: 'active' },
+    },
+  });
 
   const getSubNav = () => {
     switch (activeItem) {
