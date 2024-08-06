@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, MouseEvent, useState } from 'react';
 import * as React from 'react';
 
 import {
@@ -23,7 +23,7 @@ import { Text } from '../Typography';
 
 import { ProductRow } from './components/ProductRow/ProductRow';
 import { ProductTile } from './components/ProductTile/ProductTile';
-import { ProductSwitcherProps } from './types';
+import { ProductId, ProductSwitcherProps } from './types';
 
 import styles from './ProductSwitcher.module.scss';
 
@@ -81,7 +81,10 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
     return null;
   }
 
-  const handleClick = () => {
+  const handleClick = (event: MouseEvent, id: ProductId) => {
+    if (id === mainProductId) {
+      event.preventDefault();
+    }
     setIsOpen(false);
   };
 
