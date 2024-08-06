@@ -24,7 +24,7 @@ $base-class: 'navigation-top-bar';
     font-size: 14px;
 
     &--open {
-      padding-block: var(--spacing-2);
+      padding-block: 5px;
       min-height: 42px;
     }
 
