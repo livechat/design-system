@@ -5,6 +5,10 @@ export { NavigationGroup } from './NavigationGroup/NavigationGroup';
 export { NavigationItem } from './NavigationItem/NavigationItem';
 export { Navigation } from './Navigation/Navigation';
 export {
+  NavigationTopBar,
+  NavigationTopBarAlert,
+} from './NavigationTopBar/NavigationTopBar';
+export {
   SIDE_NAVIGATION_ITEM_TEST_ID,
   SIDE_NAVIGATION_ACTIVE_ITEM_TEST_ID,
   SIDE_NAVIGATION_PARENT_ICON_TEST_ID,

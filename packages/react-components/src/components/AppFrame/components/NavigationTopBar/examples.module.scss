@@ -1,0 +1,8 @@
+.custom-bg {
+  background: var(--surface-gradient-01);
+  background-size: 200% auto;
+
+  &:hover {
+    background-position: 100% 50%;
+  }
+}
