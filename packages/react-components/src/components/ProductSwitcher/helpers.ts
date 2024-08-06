@@ -26,7 +26,7 @@ export const getRedirectURL = (
     domain += 'https://accounts.livechat.com';
   }
 
-  return `${domain}/signin?client_id=${productClientId}&redirect_uri=${encodeURIComponent(
+  return `${domain}?client_id=${productClientId}&redirect_uri=${encodeURIComponent(
     productRedirectUri
   )}&response_type=token&organization_id=${organizationId}`;
 };

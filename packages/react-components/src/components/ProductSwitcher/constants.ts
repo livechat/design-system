@@ -135,7 +135,11 @@ export const labsRedirectData: ProductData[] = [
     product: 'KnowledgeBase',
   },
   { clientId: '', redirectUri: '', product: 'Hello' },
-  { clientId: '', redirectUri: '', product: 'Platform' },
+  {
+    clientId: 'fc4e19548af17e72ce41e065a8d4b4b1',
+    redirectUri: 'https://platform.labs.text.com/console',
+    product: 'Platform',
+  },
   {
     clientId: '0ab5cf9b99447db22109ff70003d4507',
     redirectUri: 'https://accounts.labs.livechat.com/panel',
@@ -170,7 +174,11 @@ export const stagingRedirectData: ProductData[] = [
     product: 'KnowledgeBase',
   },
   { clientId: '', redirectUri: '', product: 'Hello' },
-  { clientId: '', redirectUri: '', product: 'Platform' },
+  {
+    clientId: '49aba739e5310548611ec9a209f7ac03',
+    redirectUri: 'https://platform.text.com/console',
+    product: 'Platform',
+  },
   {
     clientId: '2fd9f1923f2233763b8637f7d10a6fe6',
     redirectUri: 'https://accounts.staging.livechat.com/panel',
@@ -205,7 +213,12 @@ export const prodRedirectData: ProductData[] = [
     product: 'KnowledgeBase',
   },
   { clientId: '', redirectUri: '', product: 'Hello' },
-  { clientId: '', redirectUri: '', product: 'Platform' },
+  {
+    clientId: '49aba739e5310548611ec9a209f7ac03',
+    redirectUri: 'https://platform.text.com/console',
+    product: 'Platform',
+  },
+
   {
     clientId: '2fd9f1923f2233763b8637f7d10a6fe6',
     redirectUri: 'https://accounts.livechat.com/panel',
