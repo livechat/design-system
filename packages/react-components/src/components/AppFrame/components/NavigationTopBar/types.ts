@@ -5,7 +5,15 @@ import { ComponentCoreProps } from 'utils/types';
 export type NavigationTopBarKind = 'info' | 'success' | 'warning' | 'error';
 
 export interface INavigationTopBarProps extends ComponentCoreProps {
+  /**
+   * Contents of the top bar. You can use the `NavigationTopBar.Alert` component to display alerts.
+   */
   children: React.ReactNode;
+
+  /**
+   * Title of the top bar. This is optional, and the title will be rendered below the children if defined.
+   */
+  title?: React.ReactNode;
 }
 
 export interface ITopBarAlertProps extends ComponentCoreProps {

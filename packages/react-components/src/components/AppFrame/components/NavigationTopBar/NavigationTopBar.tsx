@@ -24,8 +24,14 @@ const alertClass = `${baseClass}__alert`;
  */
 export const NavigationTopBar = ({
   children,
+  title,
 }: INavigationTopBarProps): React.ReactElement => {
-  return <div className={styles[baseClass]}>{children}</div>;
+  return (
+    <div className={styles[baseClass]}>
+      {children}
+      {title && <div className={styles[`${baseClass}__title`]}>{title}</div>}
+    </div>
+  );
 };
 
 /**
@@ -117,6 +123,7 @@ export const NavigationTopBarAlert: React.FC<ITopBarAlertProps> = ({
           className={cx(styles[`${alertClass}__wrapper`], {
             [styles[`${alertClass}__wrapper--open`]]: isOpen,
           })}
+          ref={alertRef}
         >
           <div
             data-testid="navigation-top-bar-alert"

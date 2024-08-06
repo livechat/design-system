@@ -164,7 +164,10 @@ const SideNavigationSwitcher: FC = () => {
 
 The top bar is a component designed to display alerts and important messages to the user. 
 
-`NavigationTopBar` provides no properties, but allows children, notably `NavigationTopBarAlert` (`NavigationTopBar.Alert`). 
+It has the following properties:
+
+- `children`, notably `NavigationTopBarAlert` (`NavigationTopBar.Alert`)
+- `title` - the title of the top bar. This is optional and will be displayed under the alerts.
 
 ```jsx
 import { AppFrame, Navigation, NavigationTopBar, NavigationTopBarAlert } from '@livechat/design-system-react-components';

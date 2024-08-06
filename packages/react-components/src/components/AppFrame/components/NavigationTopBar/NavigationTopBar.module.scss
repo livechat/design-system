@@ -8,6 +8,13 @@ $base-class: 'navigation-top-bar';
   width: 100%;
   overflow: hidden;
 
+  &__title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+  }
+
   &__alert {
     display: flex;
     align-items: center;

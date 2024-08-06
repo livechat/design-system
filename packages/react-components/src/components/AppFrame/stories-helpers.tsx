@@ -118,7 +118,7 @@ export const ExampleTopBar: React.FC<{
   };
 
   return (
-    <NavigationTopBar>
+    <NavigationTopBar title="Example top bar content">
       <DisconnectedAlert
         show={visibleAlerts[0]}
         onClose={() => closeAlert(0)}
