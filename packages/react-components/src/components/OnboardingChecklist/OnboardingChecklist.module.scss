@@ -2,10 +2,11 @@ $base-class: 'onboarding-checklist';
 
 .#{$base-class} {
   display: flex;
+  position: relative;
   flex-direction: row;
   transition: all var(--transition-duration-moderate-1);
   border-radius: var(--radius-4);
-  background-color: var(--surface-secondary-default);
+  background-color: var(--surface-check-list-background);
   padding: 0;
   width: 100%;
   max-width: 1280px;
@@ -20,6 +21,7 @@ $base-class: 'onboarding-checklist';
     flex-direction: row;
     gap: var(--spacing-5);
     padding: 20px;
+    width: 100%;
 
     &__icon {
       color: var(--surface-accent-emphasis-high-positive);
@@ -70,6 +72,20 @@ $base-class: 'onboarding-checklist';
     align-items: center;
     justify-content: center;
     transition: all var(--transition-duration-moderate-1);
+  }
+
+  &__button {
+    position: absolute;
+    top: 30px;
+    right: var(--spacing-5);
+
+    &__icon {
+      transition: all var(--transition-duration-moderate-1);
+
+      &--open {
+        transform: rotate(180deg);
+      }
+    }
   }
 }
 

@@ -381,4 +381,5 @@ $decor-gray800: #29292f;
   );
   --content-basic-autofill: hsl(240deg 10% 8% / 59%);
   --surface-check-list-item-open-background: #fff;
+  --surface-check-list-background: #{$surface-secondary-default};
 }

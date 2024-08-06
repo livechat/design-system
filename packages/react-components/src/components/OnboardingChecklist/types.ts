@@ -24,6 +24,7 @@ type CompleteItem = {
 };
 
 export interface IOnboardingChecklistProps {
+  className?: string;
   title: string;
   titleLabel?: string;
   items: IChecklistItemProps[];

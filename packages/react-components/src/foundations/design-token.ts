@@ -379,6 +379,7 @@ export const DesignToken = {
   ContentBasicAutofill: '--content-basic-autofill',
   SurfaceCheckListItemOpenBackground:
     '--surface-check-list-item-open-background',
+  SurfaceCheckListBackground: '--surface-check-list-background',
 };
 
 export type DesignTokenKey = keyof typeof DesignToken;

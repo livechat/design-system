@@ -1,8 +1,9 @@
 import * as React from 'react';
 
-import { CheckCircle } from '@livechat/design-system-icons';
+import { CheckCircle, ChevronDown } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
+import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { Heading, Text } from '../Typography';
 
@@ -24,12 +25,18 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
   placeholderClassName,
   isCompleted = false,
   completeItem,
+  className,
 }) => {
   const [complete, setComplete] = React.useState(isCompleted);
+  const [isOpen, setIsOpen] = React.useState(true);
   const [currentContainerHeight, setCurrentContainerHeight] = React.useState<
     number | undefined
   >(undefined);
   const containerRef = React.useRef<HTMLDivElement>(null);
+
+  const handleButtonClick = () => {
+    setIsOpen((prev) => !prev);
+  };
 
   React.useEffect(() => {
     const delay = completeItem?.delay || 1500;
@@ -41,6 +48,7 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
 
       setTimeout(() => {
         setComplete(true);
+        setIsOpen(false);
       }, delay);
     }
   }, [isCompleted]);
@@ -48,14 +56,21 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
   return (
     <div
       ref={containerRef}
-      className={cx(styles[baseClass], {
-        [styles[`${baseClass}--complete`]]: complete,
-      })}
+      className={cx(
+        styles[baseClass],
+        {
+          [styles[`${baseClass}--complete`]]: complete && !isOpen,
+        },
+        className
+      )}
       style={{
-        height: !complete ? currentContainerHeight : COMPLETE_CONTAINER_EIGHT,
+        height:
+          !complete || isOpen
+            ? currentContainerHeight
+            : COMPLETE_CONTAINER_EIGHT,
       }}
     >
-      {!complete && (
+      {isOpen && (
         <>
           <div className={styles[`${baseClass}__column`]}>
             <div className={styles[`${baseClass}__header`]}>
@@ -118,32 +133,51 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
           </div>
         </>
       )}
-      {complete && (
-        <div className={styles[`${baseClass}__complete`]}>
-          <div>
-            <Icon
-              size="large"
-              className={styles[`${baseClass}__complete__icon`]}
-              source={CheckCircle}
-            />
-          </div>
-          <div>
-            {completeItem?.titleLabel && (
-              <Text
-                size="lg"
-                className={styles[`${baseClass}__complete__label`]}
+      {!isOpen && (
+        <>
+          <div className={styles[`${baseClass}__complete`]}>
+            <div>
+              <Icon
+                size="large"
+                className={styles[`${baseClass}__complete__icon`]}
+                source={CheckCircle}
+              />
+            </div>
+            <div>
+              {completeItem?.titleLabel && (
+                <Text
+                  size="lg"
+                  className={styles[`${baseClass}__complete__label`]}
+                >
+                  {completeItem.titleLabel}
+                </Text>
+              )}
+              <Heading
+                size="sm"
+                className={styles[`${baseClass}__complete__title`]}
               >
-                {completeItem.titleLabel}
-              </Text>
-            )}
-            <Heading
-              size="sm"
-              className={styles[`${baseClass}__complete__title`]}
-            >
-              {completeItem.title}
-            </Heading>
+                {completeItem.title}
+              </Heading>
+            </div>
           </div>
-        </div>
+        </>
+      )}
+      {complete && (
+        <Button
+          kind={isOpen ? 'float' : 'text'}
+          icon={
+            <Icon
+              source={ChevronDown}
+              className={cx(
+                styles[`${baseClass}__button__icon`],
+                isOpen && styles[`${baseClass}__button__icon--open`]
+              )}
+            />
+          }
+          className={styles[`${baseClass}__button`]}
+          onClick={handleButtonClick}
+          aria-expanded={isOpen}
+        />
       )}
     </div>
   );
