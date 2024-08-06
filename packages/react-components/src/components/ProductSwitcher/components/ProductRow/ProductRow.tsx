@@ -8,14 +8,14 @@ import { Icon } from '../../../Icon';
 import { Tooltip } from '../../../Tooltip';
 import { Text } from '../../../Typography';
 import { useProductSwitcherShortcut } from '../../hooks/useProductSwitcherShortcut';
-import { IProductOption, ProductId } from '../../types';
+import { ProductOption, ProductId } from '../../types';
 import { ProductTile } from '../ProductTile/ProductTile';
 
 import styles from './ProductRow.module.scss';
 
 type IProps = {
   onClick: (event: MouseEvent, id: ProductId) => void;
-  product: IProductOption;
+  product: ProductOption;
   isActive?: boolean;
 };
 

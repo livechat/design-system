@@ -10,9 +10,9 @@ import {
 } from '@livechat/design-system-icons';
 
 import { OpenWidgetLogoUri } from './openwidgetLogoUri';
-import { IProductOption, ProductData, ProductId } from './types';
+import { ProductOption, ProductData, ProductId } from './types';
 
-export const ProductSwitcherProducts: IProductOption[] = [
+export const ProductSwitcherProducts: ProductOption[] = [
   {
     id: 'livechat',
     name: 'Livechat',
@@ -212,17 +212,6 @@ export const prodRedirectData: ProductData[] = [
     product: 'Accounts',
   },
 ];
-
-export const SSOProductIdMap: Record<ProductId, string> = {
-  livechat: 'LiveChat',
-  helpdesk: 'HelpDesk',
-  accounts: 'Accounts',
-  knowledgebase: 'KnowledgeBase',
-  chatbot: 'ChatBot',
-  openwidget: 'OpenWidget',
-  hello: 'hello',
-  platform: 'TextPlatform',
-};
 
 export const alwaysVisibleProducts: ProductId[] = [
   'livechat',

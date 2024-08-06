@@ -2,10 +2,16 @@ import {
   alwaysVisibleProducts,
   labsRedirectData,
   prodRedirectData,
-  SSOProductIdMap,
   stagingRedirectData,
 } from './constants';
-import { IProductOption, ProductData, ProductId } from './types';
+import {
+  ProductName,
+  ProductData,
+  ProductId,
+  SSOProductIdMap,
+  ProductOption,
+  ProductSubscription,
+} from './types';
 
 export const getRedirectURL = (
   productClientId: string,
@@ -34,7 +40,7 @@ export const getTrialDaysLeft = (trialEnd: string): number => {
 
 export const isVisibleProduct = (
   productId: ProductId,
-  installedProducts: { product: 'LiveChat' | '' }[]
+  installedProducts: { product: ProductName }[]
 ): boolean =>
   alwaysVisibleProducts.includes(productId) ||
   installedProducts.some(
@@ -43,12 +49,12 @@ export const isVisibleProduct = (
   );
 
 export const createProductOption = (
-  product: IProductOption,
+  product: ProductOption,
   redirectData: ProductData[],
-  subscriptions: Record<string, any>,
+  subscriptions: ProductSubscription,
   organizationId: string,
   env?: string
-): IProductOption => {
+): ProductOption => {
   const productData = redirectData.find(
     (data) => data.product === SSOProductIdMap[product.id]
   );

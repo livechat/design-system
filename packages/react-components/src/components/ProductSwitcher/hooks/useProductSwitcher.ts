@@ -4,19 +4,15 @@ import {
   getRedirectDataByEnv,
   isVisibleProduct,
 } from '../helpers';
-import { IProductOption } from '../types';
+import { ProductName, ProductOption, ProductSubscription } from '../types';
 
 export interface IProductSwitcherHook {
   env?: 'labs' | 'staging' | 'prod';
-  installedProducts: { product: 'LiveChat' | '' }[];
+  installedProducts: {
+    product: ProductName;
+  }[];
   organizationId: string;
-  subscriptions: Record<
-    string,
-    {
-      status: 'trial' | 'active' | 'cancelled' | 'past_due' | 'expired';
-      next_charge_at?: string;
-    }
-  >;
+  subscriptions: ProductSubscription;
 }
 
 export const useProductSwitcher = ({
@@ -24,7 +20,7 @@ export const useProductSwitcher = ({
   installedProducts,
   subscriptions,
   organizationId,
-}: IProductSwitcherHook): { products: IProductOption[] } => {
+}: IProductSwitcherHook): { products: ProductOption[] } => {
   if (!installedProducts || !subscriptions || !organizationId) {
     throw new Error('Missing required parameters');
   }
@@ -45,6 +41,6 @@ export const useProductSwitcher = ({
       }
 
       return acc;
-    }, [] as IProductOption[]),
+    }, [] as ProductOption[]),
   };
 };

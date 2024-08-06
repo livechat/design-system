@@ -23,13 +23,13 @@ import { Text } from '../Typography';
 
 import { ProductRow } from './components/ProductRow/ProductRow';
 import { ProductTile } from './components/ProductTile/ProductTile';
-import { IProductSwitcherProps } from './types';
+import { ProductSwitcherProps } from './types';
 
 import styles from './ProductSwitcher.module.scss';
 
 const baseClass = 'product-switcher';
 
-export const ProductSwitcher: FC<IProductSwitcherProps> = ({
+export const ProductSwitcher: FC<ProductSwitcherProps> = ({
   productOptions,
   mainProductId,
 }) => {

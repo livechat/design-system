@@ -12,12 +12,34 @@ export type ProductId =
   | 'platform'
   | 'accounts';
 
-export interface IProductSwitcherProps {
+export interface ProductSwitcherProps {
   mainProductId: ProductId;
-  productOptions: IProductOption[];
+  productOptions: ProductOption[];
 }
 
-export interface IProductOption {
+export const SSOProductIdMap: Record<ProductId, string> = {
+  livechat: 'LiveChat',
+  helpdesk: 'HelpDesk',
+  accounts: 'Accounts',
+  knowledgebase: 'KnowledgeBase',
+  chatbot: 'ChatBot',
+  openwidget: 'OpenWidget',
+  hello: 'hello',
+  platform: 'TextPlatform',
+};
+
+export type ProductName =
+  (typeof SSOProductIdMap)[keyof typeof SSOProductIdMap];
+
+export type ProductSubscription = Record<
+  ProductName,
+  {
+    status: 'trial' | 'active' | 'cancelled' | 'past_due' | 'expired';
+    next_charge_at?: string;
+  }
+>;
+
+export interface ProductOption {
   id: ProductId;
   shortcutKey?: string;
   name: string;

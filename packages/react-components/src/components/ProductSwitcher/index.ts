@@ -1,6 +1,6 @@
 export {
-  type IProductOption,
-  type IProductSwitcherProps,
+  type ProductOption,
+  type ProductSwitcherProps,
   type ProductId,
   type ProductData,
 } from './types';

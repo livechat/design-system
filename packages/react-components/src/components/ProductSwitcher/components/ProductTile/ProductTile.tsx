@@ -5,12 +5,12 @@ import cx from 'clsx';
 
 import { Badge } from '../../../Badge';
 import { Icon } from '../../../Icon';
-import { IProductOption } from '../../types';
+import { ProductOption } from '../../types';
 
 import styles from './ProductTile.module.scss';
 
 type IProps = Pick<
-  IProductOption,
+  ProductOption,
   'icon' | 'notificationCount' | 'backgroundColors' | 'expired' | 'iconColor'
 > & {
   isMainProduct?: boolean;
