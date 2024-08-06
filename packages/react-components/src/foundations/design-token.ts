@@ -377,6 +377,8 @@ export const DesignToken = {
   OnePopoverBorderActive: '--one-popover-border-active',
   OneTooltipBackground: '--one-tooltip-background',
   ContentBasicAutofill: '--content-basic-autofill',
+  SurfaceCheckListItemOpenBackground:
+    '--surface-check-list-item-open-background',
 };
 
 export type DesignTokenKey = keyof typeof DesignToken;

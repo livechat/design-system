@@ -66,10 +66,10 @@ $base-class: 'checklist-item';
       margin-top: 0;
       margin-bottom: 0;
       box-shadow: 0 2px 6px 0 rgb(19 19 23 / 20%);
-      background-color: var(--content-invert-primary);
+      background-color: var(--surface-check-list-item-open-background);
 
       &:hover {
-        background-color: var(--content-locked-white);
+        background-color: var(--surface-check-list-item-open-background);
       }
     }
 

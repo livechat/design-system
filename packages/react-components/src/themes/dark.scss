@@ -390,4 +390,5 @@ $surface-invert-primary: #e2e2e4;
     #2d3a4c 94.44%
   );
   --content-basic-autofill: hsl(240deg 6% 97% / 59%);
+  --surface-check-list-item-open-background: #{$surface-secondary-active};
 }
