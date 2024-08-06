@@ -16,7 +16,14 @@ $base-class: 'onboarding-checklist';
   }
 
   &__complete {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-5);
     padding: 20px;
+
+    &__icon {
+      color: var(--surface-accent-emphasis-high-positive);
+    }
 
     &__label {
       margin: 0;

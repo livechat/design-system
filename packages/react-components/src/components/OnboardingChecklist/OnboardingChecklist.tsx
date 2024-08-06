@@ -1,7 +1,9 @@
 import * as React from 'react';
 
+import { CheckCircle } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
+import { Icon } from '../Icon';
 import { Heading, Text } from '../Typography';
 
 import { CheckListItem } from './components';
@@ -118,17 +120,29 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
       )}
       {complete && (
         <div className={styles[`${baseClass}__complete`]}>
-          {completeItem?.titleLabel && (
-            <Text size="lg" className={styles[`${baseClass}__complete__label`]}>
-              {completeItem.titleLabel}
-            </Text>
-          )}
-          <Heading
-            size="sm"
-            className={styles[`${baseClass}__complete__title`]}
-          >
-            {completeItem.title}
-          </Heading>
+          <div>
+            <Icon
+              size="large"
+              className={styles[`${baseClass}__complete__icon`]}
+              source={CheckCircle}
+            />
+          </div>
+          <div>
+            {completeItem?.titleLabel && (
+              <Text
+                size="lg"
+                className={styles[`${baseClass}__complete__label`]}
+              >
+                {completeItem.titleLabel}
+              </Text>
+            )}
+            <Heading
+              size="sm"
+              className={styles[`${baseClass}__complete__title`]}
+            >
+              {completeItem.title}
+            </Heading>
+          </div>
         </div>
       )}
     </div>
