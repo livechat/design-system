@@ -1,0 +1,112 @@
+$base-class: 'navigation-top-bar';
+
+.#{$base-class} {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  width: 100%;
+  overflow: hidden;
+
+  &__alert {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    transition: all var(--transition-duration-moderate-1) ease-in-out;
+    border-radius: var(--radius-2);
+    padding-right: 0;
+    padding-left: var(--spacing-10);
+    padding-block: 0;
+    width: 100%;
+    min-height: 0;
+    overflow: hidden;
+    color: var(--content-locked-white);
+    font-size: 14px;
+
+    &--open {
+      padding-block: var(--spacing-2);
+      min-height: 42px;
+    }
+
+    &__wrapper {
+      // Grid trick: https://css-tricks.com/css-grid-can-do-auto-height-transitions/
+      // Allows transitioning from 0 to auto height. Can be removed when `allow-discrete` becomes widely available
+      // https://developer.mozilla.org/en-US/docs/Web/CSS/transition-behavior#browser_compatibility
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: all var(--transition-duration-moderate-1) ease-in-out;
+      overflow: hidden;
+
+      &--open {
+        grid-template-rows: 1fr;
+      }
+    }
+
+    &--info {
+      background-color: var(--surface-accent-emphasis-high-info);
+    }
+
+    &--success {
+      background-color: var(--surface-accent-emphasis-high-positive);
+    }
+
+    &--warning {
+      background-color: var(--surface-accent-emphasis-high-warning);
+      color: var(--content-locked-black);
+    }
+
+    &--error {
+      background-color: var(--surface-accent-emphasis-high-negative);
+    }
+
+    &__children-wrapper {
+      display: flex;
+      gap: var(--spacing-4);
+      align-items: center;
+      justify-content: center;
+      width: calc(100% - 48px);
+
+      @media screen and (width <= 768px) {
+        flex-direction: column;
+        gap: var(--spacing-2);
+      }
+    }
+
+    &__close-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      border: 0;
+      background-color: transparent;
+      cursor: pointer;
+      padding: 0;
+      color: inherit;
+
+      @media screen and (width <= 768px) {
+        position: absolute;
+        top: var(--spacing-3);
+        right: var(--spacing-3);
+      }
+    }
+
+    &__cta-wrapper {
+      display: flex;
+      flex-shrink: 0;
+      gap: var(--spacing-2);
+      align-items: center;
+      justify-content: center;
+
+      @media screen and (width <= 768px) {
+        flex-shrink: 1;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media screen and (width <= 768px) {
+      border-radius: 0;
+      padding-inline: var(--spacing-10);
+      text-align: center;
+    }
+  }
+}

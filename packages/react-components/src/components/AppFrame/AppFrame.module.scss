@@ -25,12 +25,11 @@ $base-class: 'app-frame';
       padding-top: 3px;
       padding-bottom: 3px;
       height: auto;
-      max-height: 96px;
 
       &--visible {
+        transition: height var(--transition-duration-fast-2) ease-in-out;
         padding-top: 6px;
         padding-bottom: 6px;
-        min-height: 48px;
       }
     }
 
