@@ -160,6 +160,71 @@ const SideNavigationSwitcher: FC = () => {
 };
 ```
 
+### Top bar <a id="TopBar" />
+
+The top bar is a component designed to display alerts and important messages to the user. 
+
+`NavigationTopBar` provides no properties, but allows children, notably `NavigationTopBarAlert` (`NavigationTopBar.Alert`). 
+
+```jsx
+import { AppFrame, Navigation, NavigationTopBar, NavigationTopBarAlert } from '@livechat/design-system-react-components';
+
+<AppFrame
+  navigation={<Navigation>...</Navigation>}
+>
+  <NavigationTopBar>
+    <NavigationTopBarAlert kind="info">
+    Hello, this is an alert!
+    </NavigationTopBarAlert>
+  </NavigationTopBar>
+  App content
+</AppFrame>
+```
+
+
+### Top bar alert <a id="TopBarAlert" />
+
+The `NavigationTopBarAlert` component is used to display alerts in the top bar. It's accessible as an import and as a property of the `NavigationTopBar` component. Its appearance and disappearance is animated. The component is intentionally simple - it allows arbitrary `children` and `classname`s, so can be customized to display any content in any style.
+
+It has the following properties:
+- `kind` - defines the type of alert, can be `info`, `success`, `warning` or `error`. This determines the colors of the alert.
+
+- `closeButton` - defines the behavior and metadata of the 'X' button. When not provided, the button is not displayed.
+
+- `primary-` and `secondary-` `Cta` - defines the behavior and label of CTAs. When not provided, the corresponding button are not displayed.
+
+- `show` - defines whether the alert is visible.
+
+```jsx
+import { NavigationTopBarAlert } from '@livechat/design-system-react-components';
+
+... 
+const [showAlert, setShowAlert] = useState(true);
+return (
+  <NavigationTopBar>
+    <NavigationTopBarAlert
+      kind="info"
+      show={showAlert}
+      primaryCta={{
+        label: 'Primary',
+        onClick: () => {},
+      }}
+      secondaryCta={{
+        label: 'Secondary',
+        onClick: () => {},
+      }}
+      closeButton={{
+        onClick: () => setShowAlert(false),
+        'aria-label': 'Close welcome alert',
+      }}
+    >
+      Hello, this is an alert!
+    </NavigationTopBarAlert>
+  </NavigationTopBar>
+);
+
+```
+
 ## Component API <a id="ComponentAPI" />
 
 <ArgTypes of={AppFrameStories.Default} sort="requiredFirst" />

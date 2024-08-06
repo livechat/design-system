@@ -15,13 +15,23 @@ import {
   SideNavigationItem,
   SideNavigationGroup,
 } from './components';
+import {
+  ChameleonAlert,
+  CustomBackgroundAlert,
+  DisconnectedAlert,
+} from './components/NavigationTopBar/examples';
+import { NavigationTopBar } from './components/NavigationTopBar/NavigationTopBar';
 
 interface ExampleAppContentProps {
   showToggle: boolean;
+  alerts?: boolean[];
+  setAlerts?: (alerts: boolean[]) => void;
 }
 
 export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
   showToggle,
+  alerts,
+  setAlerts,
 }) => {
   const { isSideNavigationVisible, toggleSideNavigationVisibility } =
     useAppFrame();
@@ -38,24 +48,94 @@ export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
       }}
     >
       <Heading size="lg">App content</Heading>
-      {showToggle && (
-        <>
-          <Text>Set sub-navigation visibility</Text>
-          <Button onClick={toggleSideNavigationVisibility}>
-            {isSideNavigationVisible ? 'Visible' : 'Hidden'}
-          </Button>
-        </>
-      )}
+      <div
+        style={{
+          display: 'flex',
+          gap: 16,
+          flexDirection: 'column',
+        }}
+      >
+        {showToggle && (
+          <div>
+            <Text>Set sub-navigation visibility</Text>
+            <Button onClick={toggleSideNavigationVisibility}>
+              {isSideNavigationVisible ? 'Visible' : 'Hidden'}
+            </Button>
+          </div>
+        )}
+        {alerts && setAlerts && (
+          <div>
+            <Text>Set alerts</Text>
+            <Button onClick={() => setAlerts(alerts.map(() => true))}>
+              Open all
+            </Button>
+            <Button onClick={() => setAlerts(alerts.map(() => false))}>
+              Close all
+            </Button>
+
+            {alerts.map((show, index) => (
+              <Button
+                key={index}
+                onClick={() =>
+                  setAlerts(alerts.map((_, i) => (i === index ? !show : _)))
+                }
+              >
+                {show ? 'Close' : 'Open'} alert {index + 1}
+              </Button>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
-export const ExampleTopBar: React.FC = () => (
-  <div className="example-top-bar">
-    <div className="alert">Example top bar element</div>
-    <span>Example top bar element</span>
-  </div>
-);
+export const ExampleTopBar: React.FC<{
+  visibleAlerts: boolean[];
+  setAlerts: (alerts: boolean[]) => void;
+}> = ({ visibleAlerts, setAlerts }) => {
+  const [kind, setKind] = React.useState<
+    'info' | 'success' | 'warning' | 'error'
+  >('warning');
+
+  const closeAlert = (index: number) => {
+    setAlerts(visibleAlerts.map((_, i) => (i === index ? false : _)));
+  };
+
+  const changeKind = () => {
+    setKind((prevKind) => {
+      switch (prevKind) {
+        case 'info':
+          return 'success';
+        case 'success':
+          return 'warning';
+        case 'warning':
+          return 'error';
+        case 'error':
+          return 'info';
+      }
+    });
+  };
+
+  return (
+    <NavigationTopBar>
+      <DisconnectedAlert
+        show={visibleAlerts[0]}
+        onClose={() => closeAlert(0)}
+      />
+      <ChameleonAlert
+        show={visibleAlerts[1]}
+        onClose={() => closeAlert(1)}
+        kind={kind}
+        changeKind={changeKind}
+      />
+      <CustomBackgroundAlert
+        show={visibleAlerts[2]}
+        onClose={() => closeAlert(2)}
+      />
+    </NavigationTopBar>
+  );
+};
 
 export const getBadgeContent = (item: string) => {
   switch (item) {
