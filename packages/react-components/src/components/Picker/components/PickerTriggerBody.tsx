@@ -179,7 +179,7 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
           : selectedItems.map((item) => {
               return (
                 <Tag
-                  key={item.name}
+                  key={item.key}
                   className={cx(
                     styles[`${baseClass}__tag`],
                     styles[`${baseClass}__tag--${size}`]
