@@ -148,6 +148,7 @@ export const NavigationTopBarAlert: React.FC<ITopBarAlertProps> = ({
             [styles[`${alertClass}__wrapper--open`]]: isOpen,
           })}
           ref={alertRef}
+          role="status"
         >
           <div
             data-testid="navigation-top-bar-alert"
