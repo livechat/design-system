@@ -35,7 +35,9 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
   const containerRef = React.useRef<HTMLDivElement>(null);
   const COMPLETE_CONTAINER_HEIGHT = completionMessageData.height || 96;
 
-  const handleButtonClick = () => setIsOpen((prev) => !prev);
+  const handleButtonClick = () => {
+    setIsOpen((prev) => !prev);
+  };
 
   React.useEffect(() => {
     const delay = completionMessageData.delay || 1500;
