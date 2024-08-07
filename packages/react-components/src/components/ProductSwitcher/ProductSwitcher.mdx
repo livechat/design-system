@@ -1,0 +1,82 @@
+import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+
+import * as ProductSwitcher from './ProductSwitcher.stories';
+
+<Meta of={ProductSwitcher} />
+
+<Title>ProductSwitcher</Title>
+
+[Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+## Intro <a id="Intro" />
+
+`ProductSwitcher` is a component used to switch between products in the LiveChat ecosystem. It allows users to switch between products they have access to, see their subscription status, and navigate to the product dashboard.
+
+<Canvas of={ProductSwitcher.Default} sourceState="none" />
+
+#### Example implementation
+
+ProductSwitcher is a controlled component. To use it, you need to provide the `mainProductId` (type ProductId) and `productOptions` (type ProductOption) props.<br/>
+
+- The `mainProductId` prop is required and should be the id of the product that the user is currently using.<br/>
+  The available options are: `livechat`, `helpdesk`, `chatbot`, `knowledgebase`, `openwidget`, `hello`, `accounts`. They are described in the TS type value called `ProductId`.<br/>
+- The `productOptions` prop is an array of products that the user has access to. Object structure is described in type `ProductOption`.<br/>
+  The `productOptions` can be generated using the `useProductSwitcher` hook. The hook requires the following props:<br/>
+  - `env` - the environment in which the product switcher is used. It can be either `labs`, `staging` or `prod` .<br/>
+  - `installedProducts` - an array of objects with the `product` key. The `product` key should be one of the available products: `livechat`, `helpdesk`, `chatbot`, `knowledgebase`, `openwidget`, `hello`, `accounts`.<br/>
+  - `subscriptions` - an object with the subscription status for each product. The key should be the product name and the value should be an object with the `status` and `next_charge_at` keys.<br/>
+  - `organizationId` - the organization id of the user.<br/>
+
+Values for the `installedProducts` can be retrieved from the following endpoint: [Accounts Products API Documentation](https://github.com/livechat/sso/blob/labs/docs/api/organizations.md#http-get-v2organizationsmyproducts).<br/>
+Values for the `subscriptions` can be retrieved from the following endpoint: [Accounts Billing API Documentation](https://github.com/livechat/billing/blob/master/docs/api/subscription.md#subscriptions-in-v3).
+
+```jsx
+import {
+  ProductSwitcher,
+  useProductSwitcher,
+  ProductId,
+} from '@livechat/design-system-react-components';
+
+const installedProducts = [
+  { product: 'LiveChat' },
+  { product: 'HelpDesk' },
+  { product: 'ChatBot' },
+  { product: 'KnowledgeBase' },
+  { product: 'OpenWidget' },
+];
+
+const subscriptions = {
+  livechat: { status: 'active', next_charge_at: '2024-08-25T10:41:37Z' },
+  helpdesk: { status: 'expired', next_charge_at: '2024-08-25T10:41:37Z' },
+  chatbot: { status: 'trial', next_charge_at: '2024-08-25T10:41:37Z' },
+  knowledgebase: { status: 'trial', next_charge_at: '2024-08-25T10:41:37Z' },
+};
+
+const organizationId = '1234';
+
+const { products } = useProductSwitcher({
+  env: 'labs',
+  installedProducts,
+  subscriptions,
+  organizationId,
+});
+
+<ProductSwitcher
+  mainProductId={ProductId.livechat}
+  productOptions={products}
+/>;
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={ProductSwitcher.Default} sort="requiredFirst" />
+
+## Content Spec <a id="ContentSpec" />
+
+<a
+  className="sb-unstyled"
+  href="https://www.figma.com/design/2pFu80PXO5A2tfyrAGnx91/Product-Components?node-id=24512-12788&t=20BhxuGosBA4dLGT-0"
+  target="_blank"
+>
+  Go to Figma documentation
+</a>

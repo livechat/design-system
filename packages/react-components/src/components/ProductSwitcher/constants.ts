@@ -72,7 +72,7 @@ export const ProductSwitcherProducts: ProductOption[] = [
   },
   {
     id: 'hello',
-    name: 'TeamChat',
+    name: 'Hello',
     icon: HelloMono,
     backgroundColors: {
       main: 'var(--products-hello)',

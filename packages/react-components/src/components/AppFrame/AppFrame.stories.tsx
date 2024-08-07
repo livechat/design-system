@@ -82,10 +82,27 @@ export const Default = (): React.ReactElement => {
 
   const { products } = useProductSwitcher({
     env: 'labs',
-    installedProducts: [],
+    installedProducts: [
+      {
+        product: 'ChatBot',
+      },
+      {
+        product: 'HelpDesk',
+      },
+      {
+        product: 'KnowledgeBase',
+      },
+      {
+        product: 'LiveChat',
+      },
+      {
+        product: 'OpenWidget',
+      },
+    ],
     organizationId: 'organizationId',
     subscriptions: {
       livechat: { status: 'active' },
+      chatbot: { status: 'expired' },
     },
   });
 

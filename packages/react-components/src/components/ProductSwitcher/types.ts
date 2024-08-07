@@ -24,7 +24,7 @@ export const SSOProductIdMap: Record<ProductId, string> = {
   knowledgebase: 'KnowledgeBase',
   chatbot: 'ChatBot',
   openwidget: 'OpenWidget',
-  hello: 'hello',
+  hello: 'Hello',
   platform: 'TextPlatform',
 };
 

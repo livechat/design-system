@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Meta, StoryObj } from '@storybook/react';
 
-import { ProductSwitcherProducts } from './constants';
+import { useProductSwitcher } from './hooks/useProductSwitcher';
 import { ProductSwitcher as ProductSwitcherComponent } from './ProductSwitcher';
 
 const meta: Meta<typeof ProductSwitcherComponent> = {
@@ -18,12 +18,47 @@ type Story = StoryObj<typeof ProductSwitcherComponent>;
 
 export const Default: Story = {
   args: {
-    productOptions: ProductSwitcherProducts,
     mainProductId: 'livechat',
   },
-  render: (props) => (
-    <div className="lc-dark-theme" style={{ display: 'flex' }}>
-      <ProductSwitcherComponent {...props} />
-    </div>
-  ),
+  render: (props) => {
+    const { products } = useProductSwitcher({
+      env: 'labs',
+      installedProducts: [
+        {
+          product: 'ChatBot',
+        },
+        {
+          product: 'HelpDesk',
+        },
+        {
+          product: 'KnowledgeBase',
+        },
+        {
+          product: 'LiveChat',
+        },
+
+        {
+          product: 'Hello',
+        },
+        {
+          product: 'OpenWidget',
+        },
+      ],
+      organizationId: 'organizationId',
+      subscriptions: {
+        livechat: { status: 'active' },
+        chatbot: { status: 'expired' },
+        knowledgebase: {
+          status: 'trial',
+          next_charge_at: '2024-08-25T10:41:37Z',
+        },
+      },
+    });
+
+    return (
+      <div className="lc-dark-theme" style={{ display: 'flex' }}>
+        <ProductSwitcherComponent {...props} productOptions={products} />
+      </div>
+    );
+  },
 };
