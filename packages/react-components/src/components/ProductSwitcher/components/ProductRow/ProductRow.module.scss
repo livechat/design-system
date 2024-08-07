@@ -6,7 +6,6 @@ $base-class: 'product-row';
   gap: 8px;
   align-items: center;
   justify-content: space-between;
-  outline: none;
   border-radius: 14px;
   padding: var(--spacing-2) var(--spacing-3);
   height: 56px;
@@ -16,6 +15,11 @@ $base-class: 'product-row';
   &:hover {
     background-color: var(--picker-list-option-background-hover);
     text-decoration: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--action-primary-default);
+    background-color: var(--picker-list-option-background-hover);
   }
 
   &--expired {
