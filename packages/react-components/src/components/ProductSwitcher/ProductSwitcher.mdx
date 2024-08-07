@@ -30,6 +30,8 @@ ProductSwitcher is a controlled component. To use it, you need to provide the `m
 Values for the `installedProducts` can be retrieved from the following endpoint: [Accounts Products API Documentation](https://github.com/livechat/sso/blob/labs/docs/api/organizations.md#http-get-v2organizationsmyproducts).<br/>
 Values for the `subscriptions` can be retrieved from the following endpoint: [Accounts Billing API Documentation](https://github.com/livechat/billing/blob/master/docs/api/subscription.md#subscriptions-in-v3).
 
+The main logic behind the `useProductSwitcher` hook is to filter out the products that the user has access to and to sort them in the correct order. By default there are 4 products displayed in the product switcher: `livechat`, `helpdesk`, `chatbot`, `accounts`. The rest of the products are displayed conditionally based on the `installedProducts` props.
+
 ```jsx
 import {
   ProductSwitcher,
