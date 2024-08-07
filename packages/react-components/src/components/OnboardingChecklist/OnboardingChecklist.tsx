@@ -13,21 +13,22 @@ import { IOnboardingChecklistProps } from './types';
 import styles from './OnboardingChecklist.module.scss';
 
 const baseClass = 'onboarding-checklist';
-const COMPLETE_CONTAINER_EIGHT = 96;
+const COMPLETE_CONTAINER_HEIGHT = 96;
 
 export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
-  activeId,
-  checkedId,
+  activeItemId,
+  completedItemsIds,
   title,
-  titleLabel,
+  greetingText,
   items,
   onActiveChange,
   placeholderClassName,
   isCompleted = false,
-  completeItem,
+  completionMessageData,
   className,
 }) => {
-  const [complete, setComplete] = React.useState(isCompleted);
+  const [isChecklistCompleted, setIsChecklistCompleted] =
+    React.useState(isCompleted);
   const [isOpen, setIsOpen] = React.useState(true);
   const [currentContainerHeight, setCurrentContainerHeight] = React.useState<
     number | undefined
@@ -39,17 +40,21 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
   };
 
   React.useEffect(() => {
-    const delay = completeItem?.delay || 1500;
+    const delay = completionMessageData.delay || 1500;
     const container = containerRef.current;
 
     if (isCompleted && container) {
       const currentHeight = container.offsetHeight;
       setCurrentContainerHeight(currentHeight);
 
-      setTimeout(() => {
-        setComplete(true);
+      const timeoutId = setTimeout(() => {
+        setIsChecklistCompleted(true);
         setIsOpen(false);
       }, delay);
+
+      return () => {
+        clearTimeout(timeoutId);
+      };
     }
   }, [isCompleted]);
 
@@ -59,27 +64,27 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
       className={cx(
         styles[baseClass],
         {
-          [styles[`${baseClass}--complete`]]: complete && !isOpen,
+          [styles[`${baseClass}--complete`]]: isChecklistCompleted && !isOpen,
         },
         className
       )}
       style={{
         height:
-          !complete || isOpen
+          !isChecklistCompleted || isOpen
             ? currentContainerHeight
-            : COMPLETE_CONTAINER_EIGHT,
+            : COMPLETE_CONTAINER_HEIGHT,
       }}
     >
       {isOpen && (
         <>
           <div className={styles[`${baseClass}__column`]}>
             <div className={styles[`${baseClass}__header`]}>
-              {titleLabel && (
+              {greetingText && (
                 <Text
                   size="lg"
                   className={styles[`${baseClass}__header__label`]}
                 >
-                  {titleLabel}
+                  {greetingText}
                 </Text>
               )}
               <Heading
@@ -96,8 +101,8 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
                   id={item.id}
                   description={item.description}
                   title={item.title}
-                  isActive={item.id === activeId}
-                  isChecked={checkedId.includes(item.id)}
+                  isActive={item.id === activeItemId}
+                  isChecked={completedItemsIds.includes(item.id)}
                   isLastElement={index === items.length - 1}
                   onClick={onActiveChange}
                   cta={item.cta}
@@ -112,22 +117,14 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
               placeholderClassName
             )}
           >
-            {!isCompleted &&
-              items.map((item, index) => {
-                return (
-                  item.id === activeId && (
-                    <div
-                      key={index}
-                      className={styles[`${baseClass}__placeholder`]}
-                    >
-                      {item.placeholder}
-                    </div>
-                  )
-                );
-              })}
-            {isCompleted && completeItem && (
+            {!isCompleted && (
               <div className={styles[`${baseClass}__placeholder`]}>
-                {completeItem.placeholder}
+                {items.find((item) => item.id === activeItemId)?.placeholder}
+              </div>
+            )}
+            {isCompleted && (
+              <div className={styles[`${baseClass}__placeholder`]}>
+                {completionMessageData.placeholder}
               </div>
             )}
           </div>
@@ -144,25 +141,25 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
               />
             </div>
             <div>
-              {completeItem?.titleLabel && (
+              {completionMessageData?.greetingText && (
                 <Text
                   size="lg"
                   className={styles[`${baseClass}__complete__label`]}
                 >
-                  {completeItem.titleLabel}
+                  {completionMessageData.greetingText}
                 </Text>
               )}
               <Heading
                 size="sm"
                 className={styles[`${baseClass}__complete__title`]}
               >
-                {completeItem.title}
+                {completionMessageData.title}
               </Heading>
             </div>
           </div>
         </>
       )}
-      {complete && (
+      {isChecklistCompleted && (
         <Button
           kind={isOpen ? 'float' : 'text'}
           icon={

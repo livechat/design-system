@@ -20,7 +20,7 @@ $base-class: 'onboarding-checklist';
     display: flex;
     flex-direction: row;
     gap: var(--spacing-5);
-    padding: 20px;
+    padding: var(--spacing-5);
     width: 100%;
 
     &__icon {
@@ -38,7 +38,7 @@ $base-class: 'onboarding-checklist';
 
   &__column {
     position: relative;
-    padding: 40px;
+    padding: var(--spacing-10);
     width: 50%;
 
     &--right {
@@ -89,7 +89,7 @@ $base-class: 'onboarding-checklist';
   }
 }
 
-@media not (width >= 920px) {
+@media (width <= 919px) {
   .#{$base-class}__column {
     width: 100%;
 

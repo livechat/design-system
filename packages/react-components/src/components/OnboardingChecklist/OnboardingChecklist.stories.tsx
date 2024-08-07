@@ -131,15 +131,15 @@ export const Default = (): React.ReactElement => {
   return (
     <OnboardingChecklist
       title="Here’s your getting started guide"
-      titleLabel="Hello, Tim!"
+      greetingText="Hello, Tim!"
       items={getItems(handlePrimaryClick, handleSecondaryClick)}
-      activeId={activeItem}
-      checkedId={checkedIds}
+      activeItemId={activeItem}
+      completedItemsIds={checkedIds}
       onActiveChange={handleSecondaryClick}
       isCompleted={isCompleted}
-      completeItem={{
+      completionMessageData={{
         title: 'Your getting started guide is completed. ',
-        titleLabel: 'Hey Tim, nice work!',
+        greetingText: 'Hey Tim, nice work!',
         placeholder: <Icon size="xxxlarge" source={Icons.HelloColored} />,
       }}
     />

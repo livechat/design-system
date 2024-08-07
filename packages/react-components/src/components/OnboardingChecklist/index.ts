@@ -1,2 +1,6 @@
 export { OnboardingChecklist } from './OnboardingChecklist';
-export type { IOnboardingChecklistProps } from './types';
+export type {
+  IOnboardingChecklistProps,
+  IChecklistItemProps,
+  ICompletionMessageDataProps,
+} from './types';
