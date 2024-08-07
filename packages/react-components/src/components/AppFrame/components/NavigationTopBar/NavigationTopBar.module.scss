@@ -1,4 +1,6 @@
+/* stylelint-disable media-query-no-invalid */
 $base-class: 'navigation-top-bar';
+$mobile-breakpoint: 768px;
 
 .#{$base-class} {
   display: flex;
@@ -71,9 +73,9 @@ $base-class: 'navigation-top-bar';
       gap: var(--spacing-4);
       align-items: center;
       justify-content: center;
-      width: calc(100% - 48px);
+      width: calc(100% - 62px);
 
-      @media screen and (width <= 768px) {
+      @media screen and (width <=$mobile-breakpoint) {
         flex-direction: column;
         gap: var(--spacing-2);
       }
@@ -90,7 +92,7 @@ $base-class: 'navigation-top-bar';
       padding: 0;
       color: inherit;
 
-      @media screen and (width <= 768px) {
+      @media screen and (width <=$mobile-breakpoint) {
         position: absolute;
         top: var(--spacing-3);
         right: var(--spacing-3);
@@ -104,13 +106,13 @@ $base-class: 'navigation-top-bar';
       align-items: center;
       justify-content: center;
 
-      @media screen and (width <= 768px) {
+      @media screen and (width <=$mobile-breakpoint) {
         flex-shrink: 1;
         flex-wrap: wrap;
       }
     }
 
-    @media screen and (width <= 768px) {
+    @media screen and (width <=$mobile-breakpoint) {
       border-radius: 0;
       padding-inline: var(--spacing-10);
       text-align: center;
