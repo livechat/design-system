@@ -9,7 +9,6 @@ export type ProductId =
   | 'openwidget'
   | 'knowledgebase'
   | 'hello'
-  | 'platform'
   | 'accounts';
 
 export interface ProductSwitcherProps {
@@ -25,7 +24,6 @@ export const SSOProductIdMap: Record<ProductId, string> = {
   chatbot: 'ChatBot',
   openwidget: 'OpenWidget',
   hello: 'Hello',
-  platform: 'TextPlatform',
 };
 
 export type ProductName =

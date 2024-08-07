@@ -6,7 +6,6 @@ import {
   LiveChatMono,
   OpenWidgetMono,
   TextAccounts,
-  TextPlatform,
 } from '@livechat/design-system-icons';
 
 import { OpenWidgetLogoUri } from './openwidgetLogoUri';
@@ -76,18 +75,6 @@ export const ProductSwitcherProducts: ProductOption[] = [
     icon: HelloMono,
     backgroundColors: {
       main: 'var(--products-hello)',
-      second: 'var(--products-livechat)',
-      third: 'var(--products-chatbot)',
-    },
-    url: '',
-  },
-  {
-    id: 'platform',
-    name: 'Platform',
-    icon: TextPlatform,
-    iconColor: 'var(--content-locked-black)',
-    backgroundColors: {
-      main: 'var(--products-platform)',
       second: 'var(--products-livechat)',
       third: 'var(--products-chatbot)',
     },
