@@ -32,7 +32,7 @@ export const DisconnectedAlert: React.FC<{
   return (
     <NavigationTopBar.Alert
       kind={isReconnected ? 'success' : 'error'}
-      show={show}
+      isVisible={show}
       primaryCta={
         !isReconnecting && !isReconnected
           ? {
@@ -58,7 +58,7 @@ export const ChameleonAlert: React.FC<{
   return (
     <NavigationTopBar.Alert
       kind={kind}
-      show={show}
+      isVisible={show}
       closeButton={{
         onClick: onClose,
       }}
@@ -85,7 +85,7 @@ export const CustomBackgroundAlert: React.FC<{
   return (
     <NavigationTopBar.Alert
       kind="info"
-      show={show}
+      isVisible={show}
       className={styles['custom-bg']}
       closeButton={{
         onClick: onClose,

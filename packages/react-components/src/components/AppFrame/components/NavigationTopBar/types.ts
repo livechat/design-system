@@ -11,9 +11,16 @@ export interface INavigationTopBarProps extends ComponentCoreProps {
   children: React.ReactNode;
 
   /**
-   * Title of the top bar. This is optional, and the title will be rendered below the children if defined.
+   * Ńodes placed under the children. Optional
    */
-  title?: React.ReactNode;
+  additionalNodes?: React.ReactNode;
+}
+
+export interface ITopBarTitleProps extends ComponentCoreProps {
+  /**
+   * Content of the title.
+   */
+  children: React.ReactNode;
 }
 
 export interface ITopBarAlertProps extends ComponentCoreProps {
@@ -57,5 +64,5 @@ export interface ITopBarAlertProps extends ComponentCoreProps {
   /**
    * Show or hide the alert, defaults to `true`. Changes to this prop are animated - the alert will enter and leave smoothly.
    * */
-  show?: boolean;
+  isVisible?: boolean;
 }
