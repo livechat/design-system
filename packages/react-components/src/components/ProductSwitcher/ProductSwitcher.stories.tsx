@@ -3,18 +3,18 @@ import * as React from 'react';
 import { Meta, StoryObj } from '@storybook/react';
 
 import { useProductSwitcher } from './hooks/useProductSwitcher';
-import { ProductSwitcher as ProductSwitcherComponent } from './ProductSwitcher';
+import { ProductSwitcher } from './ProductSwitcher';
 
-const meta: Meta<typeof ProductSwitcherComponent> = {
+const meta: Meta<typeof ProductSwitcher> = {
   title: 'Business Components/ProductSwitcher',
-  component: ProductSwitcherComponent,
+  component: ProductSwitcher,
   parameters: {
     controls: { expanded: true },
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof ProductSwitcherComponent>;
+type Story = StoryObj<typeof ProductSwitcher>;
 
 export const Default: Story = {
   args: {
@@ -57,7 +57,7 @@ export const Default: Story = {
 
     return (
       <div className="lc-dark-theme" style={{ display: 'flex', height: 500 }}>
-        <ProductSwitcherComponent {...props} productOptions={products} />
+        <ProductSwitcher {...props} productOptions={products} />
       </div>
     );
   },
