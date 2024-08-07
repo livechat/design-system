@@ -55,18 +55,6 @@ $base-class: 'product-tile';
     height: 42px;
   }
 
-  &__openwidget-product {
-    //overflow: hidden;
-    //&:after {
-    //  background: var(--products-openwidget);
-    //  content: '';
-    //  position: absolute;
-    //  inset: 0;
-    //  z-index: -1;
-    //  filter: blur(3px);
-    //}
-  }
-
   &__badge {
     position: absolute;
     top: -6px;
