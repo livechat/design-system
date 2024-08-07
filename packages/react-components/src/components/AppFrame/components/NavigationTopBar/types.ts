@@ -8,10 +8,10 @@ export interface INavigationTopBarProps extends ComponentCoreProps {
   /**
    * Contents of the top bar. You can use the `NavigationTopBar.Alert` component to display alerts.
    */
-  children: React.ReactNode;
+  children?: React.ReactNode;
 
   /**
-   * Ńodes placed under the children. Optional
+   * Ńodes placed under the children.
    */
   additionalNodes?: React.ReactNode;
 }
