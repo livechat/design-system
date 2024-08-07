@@ -3,6 +3,7 @@ export { ModalBase } from './components/ModalBase';
 export { ModalCloseButton } from './components/ModalCloseButton';
 export { ModalPortal } from './components/ModalPortal';
 export { ModalHeader } from './components/ModalHeader';
+export { ActionModalContent } from './components/ActionModalContent';
 
 export type { ModalProps } from './Modal';
 export type { ModalBaseProps } from './components/ModalBase';
