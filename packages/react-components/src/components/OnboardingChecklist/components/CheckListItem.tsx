@@ -60,6 +60,8 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
         )}
       </span>
       <div
+        data-testid={`checklist-item-${id}`}
+        aria-expanded={isActive}
         tabIndex={0}
         onFocus={!isActive ? () => onClick(id) : undefined}
         onClick={!isActive ? () => onClick(id) : undefined}

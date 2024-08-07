@@ -48,6 +48,10 @@ export type ICompletionMessageDataProps = {
    * Define the delay betweend displaying complete placeholder and the animation starts
    */
   delay?: number;
+  /**
+   * Define the custom heigh of content visible after checklist complete
+   */
+  height?: number;
 };
 
 export interface IOnboardingChecklistProps {

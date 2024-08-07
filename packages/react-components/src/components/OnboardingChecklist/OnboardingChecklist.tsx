@@ -13,7 +13,6 @@ import { IOnboardingChecklistProps } from './types';
 import styles from './OnboardingChecklist.module.scss';
 
 const baseClass = 'onboarding-checklist';
-const COMPLETE_CONTAINER_HEIGHT = 96;
 
 export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
   activeItemId,
@@ -29,11 +28,12 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
 }) => {
   const [isChecklistCompleted, setIsChecklistCompleted] =
     React.useState(isCompleted);
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(!isCompleted);
   const [currentContainerHeight, setCurrentContainerHeight] = React.useState<
     number | undefined
   >(undefined);
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const COMPLETE_CONTAINER_HEIGHT = completionMessageData.height || 96;
 
   const handleButtonClick = () => {
     setIsOpen((prev) => !prev);
