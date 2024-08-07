@@ -5,7 +5,7 @@ $base-class: 'checklist-item';
   position: relative;
   gap: 20px;
   transition: all var(--transition-duration-moderate-1);
-  margin-top: 0;
+  margin-bottom: 4px;
   height: 72px;
 
   &--active {
@@ -35,7 +35,7 @@ $base-class: 'checklist-item';
     &__line {
       position: absolute;
       top: 48px;
-      bottom: -24px;
+      bottom: -28px;
       left: 11.5px;
       z-index: 1;
       border-left: 1px dashed var(--border-basic-primary);
@@ -46,7 +46,7 @@ $base-class: 'checklist-item';
   &__content {
     transition: inherit;
     border-radius: var(--radius-4);
-    box-shadow: 0;
+    box-shadow: unset;
     padding: 24px;
     width: 100%;
     min-height: 24px;
@@ -63,8 +63,6 @@ $base-class: 'checklist-item';
 
     &--open {
       z-index: 1;
-      margin-top: 0;
-      margin-bottom: 0;
       box-shadow: 0 2px 6px 0 rgb(19 19 23 / 20%);
       background-color: var(--surface-check-list-item-open-background);
 

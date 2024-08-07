@@ -35,9 +35,7 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
   const containerRef = React.useRef<HTMLDivElement>(null);
   const COMPLETE_CONTAINER_HEIGHT = completionMessageData.height || 96;
 
-  const handleButtonClick = () => {
-    setIsOpen((prev) => !prev);
-  };
+  const handleButtonClick = () => setIsOpen((prev) => !prev);
 
   React.useEffect(() => {
     const delay = completionMessageData.delay || 1500;
@@ -57,6 +55,13 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
       };
     }
   }, [isCompleted]);
+
+  // React.useEffect(() => {
+  //   console.log('activeItemId', activeItemId);
+  //   if (activeItemId && containerRef.current) {
+  //     containerRef.current.focus();
+  //   }
+  // }, [activeItemId]);
 
   return (
     <div

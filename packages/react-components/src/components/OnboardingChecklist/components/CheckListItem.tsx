@@ -21,8 +21,15 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
   onClick,
   cta,
 }) => {
+  const itemRef = React.useRef<HTMLDivElement>(null);
   const descriptionRef = React.useRef<HTMLDivElement>(null);
   const [size, setSize] = React.useState(0);
+
+  React.useEffect(() => {
+    if (isActive && itemRef.current) {
+      itemRef.current.focus();
+    }
+  }, [isActive]);
 
   React.useEffect(() => {
     const hasIOSupport = !!window.ResizeObserver;
@@ -60,6 +67,7 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
         )}
       </span>
       <div
+        ref={itemRef}
         data-testid={`checklist-item-${id}`}
         aria-expanded={isActive}
         tabIndex={0}
