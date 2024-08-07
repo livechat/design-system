@@ -7,7 +7,11 @@ import { Button } from '../../../Button';
 import { Icon } from '../../../Icon';
 import { useAppFrameAnimations } from '../../hooks/useAppFrameAnimations';
 
-import { INavigationTopBarProps, ITopBarAlertProps } from './types';
+import {
+  INavigationTopBarProps,
+  ITopBarAlertProps,
+  ITopBarTitleProps,
+} from './types';
 
 import styles from './NavigationTopBar.module.scss';
 const baseClass = 'navigation-top-bar';
@@ -24,12 +28,32 @@ const alertClass = `${baseClass}__alert`;
  */
 export const NavigationTopBar = ({
   children,
-  title,
+  additionalNodes,
 }: INavigationTopBarProps): React.ReactElement => {
   return (
     <div className={styles[baseClass]}>
       {children}
-      {title && <div className={styles[`${baseClass}__title`]}>{title}</div>}
+      {additionalNodes}
+    </div>
+  );
+};
+/**
+ * Title component for the NavigationTopBar. Supposed to be placed in the `additionalNodes` prop of the NavigationTopBar.
+ * @example
+ * <NavigationTopBar additionalNodes={<NavigationTopBar.Title>Example top bar content</NavigationTopBar.Title>}>
+ * </NavigationTopBar>
+ */
+export const NavigationTopBarTitle: React.FC<ITopBarTitleProps> = ({
+  children,
+  className,
+  'data-testid': dataTestId,
+}) => {
+  return (
+    <div
+      className={cx(styles[`${baseClass}__title`], className)}
+      data-testid={dataTestId}
+    >
+      {children}
     </div>
   );
 };
@@ -62,11 +86,11 @@ export const NavigationTopBarAlert: React.FC<ITopBarAlertProps> = ({
   children,
   primaryCta,
   secondaryCta,
-  show = true,
+  isVisible = true,
 }) => {
   const alertRef = React.useRef<HTMLDivElement>(null);
   const { isMounted, isOpen } = useAppFrameAnimations({
-    isVisible: show,
+    isVisible,
     elementRef: alertRef,
   });
 
@@ -145,3 +169,4 @@ export const NavigationTopBarAlert: React.FC<ITopBarAlertProps> = ({
 };
 
 NavigationTopBar.Alert = NavigationTopBarAlert;
+NavigationTopBar.Title = NavigationTopBarTitle;
