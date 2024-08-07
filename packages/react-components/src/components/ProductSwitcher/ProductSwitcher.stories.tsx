@@ -56,7 +56,7 @@ export const Default: Story = {
     });
 
     return (
-      <div className="lc-dark-theme" style={{ display: 'flex' }}>
+      <div className="lc-dark-theme" style={{ display: 'flex', height: 500 }}>
         <ProductSwitcherComponent {...props} productOptions={products} />
       </div>
     );
