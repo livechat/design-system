@@ -56,13 +56,6 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
     }
   }, [isCompleted]);
 
-  // React.useEffect(() => {
-  //   console.log('activeItemId', activeItemId);
-  //   if (activeItemId && containerRef.current) {
-  //     containerRef.current.focus();
-  //   }
-  // }, [activeItemId]);
-
   return (
     <div
       ref={containerRef}
