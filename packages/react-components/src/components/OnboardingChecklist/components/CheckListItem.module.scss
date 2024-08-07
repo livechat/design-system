@@ -86,6 +86,12 @@ $base-class: 'checklist-item';
 
     &__inner {
       transition: inherit;
+      margin-right: -3px;
+      margin-bottom: -3px;
+      margin-left: -3px;
+      padding-right: 3px;
+      padding-bottom: 3px;
+      padding-left: 3px;
       height: 100%;
       overflow: hidden;
 

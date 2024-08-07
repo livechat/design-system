@@ -10,6 +10,7 @@ import { ICheckListItem } from '../types';
 import styles from './CheckListItem.module.scss';
 
 const baseClass = 'checklist-item';
+const INNER_CONTENT_PADDING = 3;
 
 export const CheckListItem: React.FC<ICheckListItem> = ({
   id,
@@ -35,12 +36,11 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
     const hasIOSupport = !!window.ResizeObserver;
 
     if (descriptionRef.current && hasIOSupport) {
+      const descriptionHeightWithPadding =
+        descriptionRef.current.offsetHeight + INNER_CONTENT_PADDING;
       const resizeObserver = new ResizeObserver(() => {
-        if (
-          descriptionRef.current &&
-          size !== descriptionRef.current.offsetHeight
-        ) {
-          setSize(descriptionRef.current.offsetHeight);
+        if (size !== descriptionHeightWithPadding) {
+          setSize(descriptionHeightWithPadding);
         }
       });
 
