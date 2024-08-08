@@ -172,6 +172,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   CheckCircleFilled: IconGroup.General,
   CheckCircle: IconGroup.General,
   CircleMinus: IconGroup.General,
+  Click: IconGroup.General,
   ClipboardCheck: IconGroup.General,
   ClipboardX: IconGroup.General,
   CloseFilled: IconGroup.General,
