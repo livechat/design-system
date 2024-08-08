@@ -7,6 +7,7 @@ export { Navigation } from './Navigation/Navigation';
 export {
   NavigationTopBar,
   NavigationTopBarAlert,
+  NavigationTopBarTitle,
 } from './NavigationTopBar/NavigationTopBar';
 export {
   SIDE_NAVIGATION_ITEM_TEST_ID,

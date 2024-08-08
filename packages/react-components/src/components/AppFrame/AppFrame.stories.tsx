@@ -16,6 +16,7 @@ import {
   SideNavigationGroup,
   NavigationTopBar,
   NavigationTopBarAlert,
+  NavigationTopBarTitle,
 } from './components';
 import {
   ExampleAppContent,
@@ -46,6 +47,7 @@ export default {
     SideNavigationGroup,
     NavigationTopBar,
     NavigationTopBarAlert,
+    NavigationTopBarTitle,
   },
 };
 
