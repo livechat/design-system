@@ -86,14 +86,19 @@ $base-class: 'checklist-item';
 
     &__inner {
       transition: inherit;
-      margin-right: -3px;
-      margin-bottom: -3px;
-      margin-left: -3px;
-      padding-right: 3px;
-      padding-bottom: 3px;
-      padding-left: 3px;
+      margin: 0;
+      padding: 0;
       height: 100%;
       overflow: hidden;
+
+      &--open {
+        margin-right: -3px;
+        margin-bottom: -3px;
+        margin-left: -3px;
+        padding-right: 3px;
+        padding-bottom: 3px;
+        padding-left: 3px;
+      }
 
       &__description {
         margin: 0;

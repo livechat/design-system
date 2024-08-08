@@ -87,7 +87,9 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
           {title}
         </Heading>
         <div
-          className={styles[`${baseClass}__content__inner`]}
+          className={cx(styles[`${baseClass}__content__inner`], {
+            [styles[`${baseClass}__content__inner--open`]]: isActive,
+          })}
           style={{ maxHeight: isActive ? size : 0 }}
         >
           <div ref={descriptionRef}>
