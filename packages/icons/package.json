@@ -1,6 +1,6 @@
 {
   "name": "@livechat/design-system-icons",
-  "version": "1.30.1",
+  "version": "1.31.0",
   "description": "",
   "publishConfig": {
     "access": "public"
