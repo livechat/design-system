@@ -7,7 +7,6 @@ import cx from 'clsx';
 import { Icon } from '../../../Icon';
 import { Tooltip } from '../../../Tooltip';
 import { Text } from '../../../Typography';
-import { useProductSwitcherShortcut } from '../../hooks/useProductSwitcherShortcut';
 import { ProductOption, ProductId } from '../../types';
 import { ProductTile } from '../ProductTile/ProductTile';
 
@@ -39,10 +38,6 @@ export const ProductRow: FC<IProps> = ({
   onClick,
   isActive = false,
 }) => {
-  if (shortcutKey) {
-    useProductSwitcherShortcut(shortcutKey, url);
-  }
-
   return (
     <>
       {withDivider && <div className={styles[`${baseClass}__divider`]} />}
