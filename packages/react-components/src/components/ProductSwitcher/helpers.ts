@@ -20,7 +20,7 @@ export const getRedirectURL = (
   env: 'production' | 'prod' | string | undefined
 ): string => {
   let domain = '';
-  if (env && domain !== 'production' && domain !== 'prod') {
+  if (env && env !== 'production' && env !== 'prod') {
     domain += `https://accounts.${env}.livechat.com`;
   } else {
     domain += 'https://accounts.livechat.com';
@@ -66,8 +66,10 @@ export const createProductOption = (
   return {
     ...product,
     trialDaysLeft:
-      subscriptions[product.id] && subscriptions[product.id]?.status === 'trial'
-        ? getTrialDaysLeft(subscriptions[product.id]['next_charge_at'] ?? '')
+      subscriptions[product.id] &&
+      subscriptions[product.id]?.status === 'trial' &&
+      subscriptions[product.id]?.['next_charge_at']
+        ? getTrialDaysLeft(subscriptions[product.id]?.['next_charge_at'] ?? '')
         : undefined,
     expired: subscriptions[product.id]?.status === 'expired',
     url: getRedirectURL(

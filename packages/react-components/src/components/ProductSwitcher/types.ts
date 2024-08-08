@@ -11,6 +11,15 @@ export type ProductId =
   | 'hello'
   | 'accounts';
 
+export type ProductName =
+  | 'LiveChat'
+  | 'HelpDesk'
+  | 'ChatBot'
+  | 'OpenWidget'
+  | 'KnowledgeBase'
+  | 'Hello'
+  | 'Accounts';
+
 export interface ProductSwitcherProps {
   mainProductId: ProductId;
   productOptions: ProductOption[];
@@ -20,7 +29,7 @@ export interface ProductSwitcherProps {
   onClose?: (event?: Event) => void;
 }
 
-export const SSOProductIdMap: Record<ProductId, string> = {
+export const SSOProductIdMap: Record<ProductId, ProductName> = {
   livechat: 'LiveChat',
   helpdesk: 'HelpDesk',
   accounts: 'Accounts',
@@ -30,15 +39,14 @@ export const SSOProductIdMap: Record<ProductId, string> = {
   hello: 'Hello',
 };
 
-export type ProductName =
-  (typeof SSOProductIdMap)[keyof typeof SSOProductIdMap];
-
-export type ProductSubscription = Record<
-  ProductName,
-  {
-    status: 'trial' | 'active' | 'cancelled' | 'past_due' | 'expired';
-    next_charge_at?: string;
-  }
+export type ProductSubscription = Partial<
+  Record<
+    ProductId,
+    {
+      status: 'trial' | 'active' | 'cancelled' | 'past_due' | 'expired';
+      next_charge_at?: string;
+    }
+  >
 >;
 
 export interface ProductOption {
@@ -62,6 +70,6 @@ export interface ProductOption {
 
 export type ProductData = {
   clientId: string;
-  product: string;
+  product: ProductName;
   redirectUri: string;
 };
