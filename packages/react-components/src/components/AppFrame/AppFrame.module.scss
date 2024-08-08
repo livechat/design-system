@@ -21,16 +21,13 @@ $base-class: 'app-frame';
       display: flex;
       flex-shrink: 0;
       align-items: center;
-      transition: all var(--transition-duration-fast-2) ease-in-out;
       padding-top: 3px;
       padding-bottom: 3px;
       height: auto;
-      max-height: 96px;
 
       &--visible {
         padding-top: 6px;
         padding-bottom: 6px;
-        min-height: 48px;
       }
     }
 
