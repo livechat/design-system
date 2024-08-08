@@ -3,7 +3,7 @@ $base-class: 'product-row';
 .#{$base-class} {
   display: flex;
   flex-direction: row;
-  gap: 8px;
+  gap: var(--spacing-2);
   align-items: center;
   justify-content: space-between;
   border-radius: 14px;
@@ -18,7 +18,8 @@ $base-class: 'product-row';
   }
 
   &:focus-visible {
-    outline: 2px solid var(--action-primary-default);
+    outline: 0;
+    box-shadow: var(--focus-ring-inner);
     background-color: var(--picker-list-option-background-hover);
   }
 
@@ -35,7 +36,7 @@ $base-class: 'product-row';
   &__heading {
     display: flex;
     flex-direction: row;
-    gap: 16px;
+    gap: var(--spacing-4);
     align-items: center;
 
     > :first-child {

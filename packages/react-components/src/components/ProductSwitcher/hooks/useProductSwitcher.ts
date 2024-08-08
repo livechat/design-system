@@ -27,20 +27,23 @@ export const useProductSwitcher = ({
   const redirectData = env ? getRedirectDataByEnv(env) : prodRedirectData;
 
   return {
-    products: ProductSwitcherProducts.reduce((acc, product) => {
-      if (isVisibleProduct(product.id, installedProducts)) {
-        acc.push(
-          createProductOption(
-            product,
-            redirectData,
-            subscriptions,
-            organizationId,
-            env
-          )
-        );
-      }
+    products: ProductSwitcherProducts.reduce<ProductOption[]>(
+      (acc, product) => {
+        if (isVisibleProduct(product.id, installedProducts)) {
+          acc.push(
+            createProductOption(
+              product,
+              redirectData,
+              subscriptions,
+              organizationId,
+              env
+            )
+          );
+        }
 
-      return acc;
-    }, [] as ProductOption[]),
+        return acc;
+      },
+      []
+    ),
   };
 };

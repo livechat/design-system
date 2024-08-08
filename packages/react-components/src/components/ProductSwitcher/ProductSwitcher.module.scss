@@ -13,20 +13,20 @@ $base-class: 'product-switcher';
   &__content {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: var(--spacing-05);
   }
 
   &__footer {
     display: flex;
     justify-content: center;
     margin-top: 14px;
-    margin-bottom: 4px;
+    margin-bottom: var(--spacing-1);
   }
 
   &__footer-link {
     display: inline-flex;
     flex-direction: row;
-    gap: 4px;
+    gap: var(--spacing-1);
     align-items: center;
     justify-content: center;
     height: 19px;
