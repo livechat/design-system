@@ -37,6 +37,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   ArrowBarToRight: IconGroup.Arrows,
   ArrowsShuffle: IconGroup.Arrows,
   ArrowsSort: IconGroup.Arrows,
+  ArrowsMerge: IconGroup.Arrows,
 
   //FileType
   FiletypeExe: IconGroup.FileType,
@@ -171,6 +172,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   CheckCircleFilled: IconGroup.General,
   CheckCircle: IconGroup.General,
   CircleMinus: IconGroup.General,
+  Click: IconGroup.General,
   ClipboardCheck: IconGroup.General,
   ClipboardX: IconGroup.General,
   CloseFilled: IconGroup.General,
