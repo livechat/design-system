@@ -1621,4 +1621,14 @@ export const ColorsData: Record<
     desc: '',
     deprecated: undefined,
   },
+  SurfaceCheckListItemOpenBackground: {
+    group: ColorGroup.SurfaceComponentSpecific,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceCheckListBackground: {
+    group: ColorGroup.SurfaceComponentSpecific,
+    desc: '',
+    deprecated: undefined,
+  },
 };

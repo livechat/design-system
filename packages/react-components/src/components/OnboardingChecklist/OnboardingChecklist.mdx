@@ -1,0 +1,63 @@
+import { ArgTypes, Meta, Title, Canvas } from '@storybook/blocks';
+
+import * as OnboardingChecklistStories from './OnboardingChecklist.stories';
+
+<Meta of={OnboardingChecklistStories} />
+
+<Title>Onboarding Checklist</Title>
+
+[Intro](#Intro) | [Implementation example](#Implementation) | [Component API](#ComponentAPI)
+
+## Intro <a id="Intro" />
+
+`OnboardingChecklist` is a component used to create a kind of list of steps that are to guide the user through the application configuration process.
+The left column is used to display a list of steps with descriptions and cta, while the right column is used to display a graphical presentation of a given step.
+
+<Canvas of={OnboardingChecklistStories.Default} />
+
+#### `OnboardingChecklist` implementation example <a id="Implementation" />
+
+```jsx
+import { OnboardingChecklist } from '@livechat/design-system-react-components';
+
+const items = [
+  {
+    id: '1',
+    title: 'Run a test chat',
+    description: 'Make it match your brand and website',
+    placeholder: <img src="[url]" />,
+    cta: (
+      <>
+        <Button
+          kind="high-contrast"
+          icon={<Icon source={Icons.OpenInNew} />}
+          iconPosition="right"
+          onClick={() => {}}
+        >
+          Chat with yourself
+        </Button>
+        <Button kind="plain" onClick={() => {}}>
+          Skip
+        </Button>
+      </>
+    ),
+  },
+  ...
+];
+const checkedIds = ['1', '2'];
+
+<OnboardingChecklist
+  title="Here’s your getting started guide"
+  greetingText="Hello, Tim!"
+  items={items}
+  activeId={'1'}
+  checkedId={checkedIds}
+  onActiveChange={(id) => {}}
+  isCompleted={false}
+  completeItem={{
+    title: 'Your getting started guide is completed. ',
+    greetingText: 'Hey Tim, nice work!',
+    placeholder: <img src="[url]" />,
+  }}
+/>
+```

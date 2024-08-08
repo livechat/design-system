@@ -1,0 +1,124 @@
+$base-class: 'checklist-item';
+
+.#{$base-class} {
+  display: flex;
+  position: relative;
+  gap: 20px;
+  transition: all var(--transition-duration-moderate-1);
+  margin-bottom: 4px;
+  height: 72px;
+
+  &--active {
+    height: 100%;
+  }
+
+  &__check-mark {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    transition: inherit;
+    z-index: 2;
+    margin-top: 24px;
+    border: 2px solid var(--border-basic-primary);
+    border-radius: 24px;
+    background-color: var(--surface-primary-default);
+    width: 24px;
+    height: 24px;
+    color: #fff;
+
+    &--checked {
+      border-color: var(--surface-accent-emphasis-high-positive);
+      background-color: var(--surface-accent-emphasis-high-positive);
+    }
+
+    &__line {
+      position: absolute;
+      top: 48px;
+      bottom: -28px;
+      left: 11.5px;
+      z-index: 1;
+      border-left: 1px dashed var(--border-basic-primary);
+      width: 1px;
+    }
+  }
+
+  &__content {
+    transition: inherit;
+    border-radius: var(--radius-4);
+    box-shadow: unset;
+    padding: 24px;
+    width: 100%;
+    min-height: 24px;
+
+    &:focus-visible {
+      outline: 0;
+      box-shadow: var(--shadow-focus);
+    }
+
+    &:hover {
+      background-color: var(--surface-secondary-hover);
+      cursor: pointer;
+    }
+
+    &--open {
+      z-index: 1;
+      box-shadow: 0 2px 6px 0 rgb(19 19 23 / 20%);
+      background-color: var(--surface-check-list-item-open-background);
+
+      &:hover {
+        background-color: var(--surface-check-list-item-open-background);
+      }
+    }
+
+    &__label {
+      transition: inherit;
+      margin: 0;
+
+      &--open {
+        margin-bottom: 4px;
+      }
+
+      &--checked {
+        text-decoration: line-through;
+      }
+    }
+
+    &__inner {
+      transition: inherit;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+
+      &--open {
+        margin-right: -3px;
+        margin-bottom: -3px;
+        margin-left: -3px;
+        padding-right: 3px;
+        padding-bottom: 3px;
+        padding-left: 3px;
+      }
+
+      &__description {
+        margin: 0;
+        padding: 0;
+        color: var(--content-basic-secondary);
+      }
+
+      &__cta {
+        display: flex;
+        gap: var(--spacing-2);
+        padding-top: var(--spacing-3);
+      }
+    }
+  }
+
+  &__chevron {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 24px;
+    bottom: 0;
+  }
+}
