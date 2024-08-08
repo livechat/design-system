@@ -11,6 +11,15 @@ const meta: Meta<typeof ProductSwitcher> = {
   parameters: {
     controls: { expanded: true },
   },
+  argTypes: {
+    isVisible: {
+      options: [true, false, undefined],
+      control: {
+        type: 'select',
+        labels: 'Visible',
+      },
+    },
+  },
 };
 
 export default meta;
@@ -19,6 +28,7 @@ type Story = StoryObj<typeof ProductSwitcher>;
 export const Default: Story = {
   args: {
     mainProductId: 'livechat',
+    openedOnInit: true,
   },
   render: (props) => {
     const { products } = useProductSwitcher({

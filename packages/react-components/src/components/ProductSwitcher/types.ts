@@ -14,6 +14,10 @@ export type ProductId =
 export interface ProductSwitcherProps {
   mainProductId: ProductId;
   productOptions: ProductOption[];
+  openedOnInit?: boolean;
+  isVisible?: boolean;
+  onOpen?: (event?: Event) => void;
+  onClose?: (event?: Event) => void;
 }
 
 export const SSOProductIdMap: Record<ProductId, string> = {

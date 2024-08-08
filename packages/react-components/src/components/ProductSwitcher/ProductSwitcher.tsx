@@ -32,22 +32,39 @@ const baseClass = 'product-switcher';
 export const ProductSwitcher: FC<ProductSwitcherProps> = ({
   productOptions,
   mainProductId,
+  openedOnInit = false,
+  isVisible,
+  onOpen,
+  onClose,
 }) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(openedOnInit);
   const [isTooltipOpen, setIsTooltipOpen] = useState<boolean | undefined>(
     false
   );
   const parentId = useFloatingParentNodeId();
   const nodeId = useFloatingNodeId();
 
+  const isControlled = isVisible !== undefined;
+  const currentlyVisible = isControlled ? isVisible : isOpen;
+
+  const handleVisibilityChange = (opened: boolean, event?: Event) => {
+    if (opened) {
+      onOpen?.(event);
+    } else {
+      onClose?.(event);
+    }
+
+    !isControlled && setIsOpen(opened);
+  };
+
   const { refs, context, floatingStyles } = useFloating({
     nodeId,
     strategy: 'fixed',
     placement: 'right-start',
-    open: isOpen,
-    onOpenChange: (newValue) => {
+    open: currentlyVisible,
+    onOpenChange: (newValue, event) => {
       setIsTooltipOpen(false);
-      setIsOpen(newValue);
+      handleVisibilityChange(newValue, event);
     },
     middleware: [offset({ mainAxis: 5 })],
     whileElementsMounted: autoUpdate,
