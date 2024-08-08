@@ -17,7 +17,7 @@ The most important functionality of this component, apart from the UI layout, is
 
 ## How to build the navigation <a id="BuildNav" />
 
-[Main navigation](#MainNav) | [Side navigation](#SideNav) | [AppFrameProvider](#Provider)
+[Main navigation](#MainNav) | [Side navigation](#SideNav) | [Top bar](#TopBar) | [AppFrameProvider](#Provider)
 
 The component allows you to place navigation available on the left side, consisting of icons, and also allows you to display additional navigation in the opening panel.
 
@@ -158,6 +158,87 @@ const SideNavigationSwitcher: FC = () => {
     {isSideNavigationVisible ? 'Visible' : 'Hidden'}
   </Button>
 };
+```
+
+### Top bar <a id="TopBar" />
+
+The top bar is a component designed to display alerts and important messages to the user. 
+
+It has the following properties:
+
+- `children`, notably `NavigationTopBarAlert` (`NavigationTopBar.Alert`)
+- `additionalNodes` - additional node, placed under the `children` node. Optional.
+
+```jsx
+import { AppFrame, Navigation, NavigationTopBar, NavigationTopBarAlert } from '@livechat/design-system-react-components';
+
+<AppFrame
+  navigation={<Navigation>...</Navigation>}
+  topBar={
+  <NavigationTopBar>
+    <NavigationTopBarAlert kind="info">
+    Hello, this is an alert!
+    </NavigationTopBarAlert>
+  </NavigationTopBar>
+  }
+>
+  App content
+</AppFrame>
+```
+
+#### Top bar title <a id="TopBarTitle" />
+
+The `NavigationTopBarTitle` component is used to display the title in the top bar. It's accessible as an import and as a property of the `NavigationTopBar` component. The title is displayed in the center of the top bar, under any alerts (`children`).
+
+```jsx
+import { NavigationTopBar } from '@livechat/design-system-react-components'; 
+
+<NavigationTopBar additionalNodes={<NavigationTopBar.Title>App title</NavigationTopBar.Title>}>
+  ...
+</NavigationTopBar>
+```
+
+#### Top bar alert <a id="TopBarAlert" />
+
+The `NavigationTopBarAlert` component is used to display alerts in the top bar. It's accessible as an import and as a property of the `NavigationTopBar` component. Its appearance and disappearance is animated. The component is intentionally simple - it allows arbitrary `children` and `classname`s, so can be customized to display any content in any style.
+
+It has the following properties:
+- `kind` - defines the type of alert, can be `info`, `success`, `warning` or `error`. This determines the colors of the alert.
+
+- `closeButton` - defines the behavior and metadata of the 'X' button. When not provided, the button is not displayed.
+
+- `primary-` and `secondary-` `Cta` - defines the behavior and label of CTAs. When not provided, the corresponding button are not displayed.
+
+- `isVisible` - defines whether the alert is visible.
+
+```jsx
+import { NavigationTopBarAlert } from '@livechat/design-system-react-components';
+
+... 
+const [showAlert, setShowAlert] = useState(true);
+return (
+  <NavigationTopBar>
+    <NavigationTopBarAlert
+      kind="info"
+      isVisible={showAlert}
+      primaryCta={{
+        label: 'Primary',
+        onClick: () => {},
+      }}
+      secondaryCta={{
+        label: 'Secondary',
+        onClick: () => {},
+      }}
+      closeButton={{
+        onClick: () => setShowAlert(false),
+        'aria-label': 'Close welcome alert',
+      }}
+    >
+      Hello, this is an alert!
+    </NavigationTopBarAlert>
+  </NavigationTopBar>
+);
+
 ```
 
 ## Component API <a id="ComponentAPI" />

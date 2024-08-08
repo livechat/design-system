@@ -15,6 +15,9 @@ import {
   SideNavigation,
   SideNavigationItem,
   SideNavigationGroup,
+  NavigationTopBar,
+  NavigationTopBarAlert,
+  NavigationTopBarTitle,
 } from './components';
 import {
   ExampleAppContent,
@@ -43,6 +46,9 @@ export default {
     SideNavigation,
     SideNavigationItem,
     SideNavigationGroup,
+    NavigationTopBar,
+    NavigationTopBarAlert,
+    NavigationTopBarTitle,
   },
 };
 
@@ -79,6 +85,9 @@ const SectionsWithToggle = ['chats', 'engage', 'archives'];
 export const Default = (): React.ReactElement => {
   const [activeItem, setActiveItem] = React.useState('archives');
   const [activeSubItem, setActiveSubItem] = React.useState(0);
+  const [visibleAlerts, setVisibleAlerts] = React.useState<boolean[]>(
+    Array(3).fill(false)
+  );
 
   const { products } = useProductSwitcher({
     env: 'labs',
@@ -191,9 +200,18 @@ export const Default = (): React.ReactElement => {
         </Navigation>
       }
       sideNavigation={getSubNav()}
-      topBar={<ExampleTopBar />}
+      topBar={
+        <ExampleTopBar
+          visibleAlerts={visibleAlerts}
+          setAlerts={setVisibleAlerts}
+        />
+      }
     >
-      <ExampleAppContent showToggle={SectionsWithToggle.includes(activeItem)} />
+      <ExampleAppContent
+        showToggle={SectionsWithToggle.includes(activeItem)}
+        alerts={visibleAlerts}
+        setAlerts={setVisibleAlerts}
+      />
     </AppFrame>
   );
 };
