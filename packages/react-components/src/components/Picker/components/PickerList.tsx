@@ -36,8 +36,6 @@ export interface IPickerListProps {
   virtuosoProps?: VirtuosoProps<IPickerListItem, unknown>;
 }
 
-const baseClass = 'picker-list';
-
 export const PickerList: React.FC<IPickerListProps> = ({
   context,
   setFloating,
@@ -78,10 +76,6 @@ export const PickerList: React.FC<IPickerListProps> = ({
   }, [options.length]);
 
   if (options.length === 0) {
-    const noResultsStyle = cx(styles[baseClass], {
-      [styles[`${baseClass}__no-results`]]: options.length === 0,
-    });
-
     return (
       <FloatingFocusManager context={context} modal={false} initialFocus={-1}>
         <div
@@ -90,7 +84,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
           tabIndex={-1}
           style={floatingStyles}
         >
-          <div className={noResultsStyle}>{emptyStateText}</div>
+          <div className={styles['no-results-text']}>{emptyStateText}</div>
         </div>
       </FloatingFocusManager>
     );
