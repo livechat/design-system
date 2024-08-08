@@ -33,6 +33,7 @@ export * from './components/NumericInput';
 export * from './components/OnboardingChecklist';
 export * from './components/Picker';
 export * from './components/Popover';
+export * from './components/ProductSwitcher';
 export * from './components/Progress';
 export * from './components/PromoBanner';
 export * from './components/PromoBannerV2';

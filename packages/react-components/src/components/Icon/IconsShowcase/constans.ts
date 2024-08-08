@@ -506,4 +506,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   Stripe: IconGroup.Brands,
   Mailchimp: IconGroup.Brands,
   LayoutSidebarLeft: IconGroup.General,
+  TextAccounts: IconGroup.Brands,
+  TextLogoFull: IconGroup.Brands,
+  TextPlatform: IconGroup.Brands,
 };

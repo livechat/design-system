@@ -55,6 +55,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
   triggerOnClick = false,
   triggerOnHover = true,
   offsetMainAxis = 8,
+  offsetCrossAxis = 0,
   referenceElement,
   activationThreshold = 0,
   useDismissHookProps,
@@ -114,7 +115,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
   } = useFloating({
     nodeId,
     middleware: [
-      offset({ mainAxis: offsetMainAxis }),
+      offset({ mainAxis: offsetMainAxis, crossAxis: offsetCrossAxis }),
       shift(),
       flip(),
       arrow({ element: arrowRef }),

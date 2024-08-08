@@ -1,0 +1,64 @@
+$base-class: 'product-row';
+
+.#{$base-class} {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-2);
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 14px;
+  padding: var(--spacing-2) var(--spacing-3);
+  height: 56px;
+  text-decoration: none;
+  color: var(--content-basic-primary);
+
+  &:hover {
+    background-color: var(--picker-list-option-background-hover);
+    text-decoration: none;
+  }
+
+  &:focus-visible {
+    outline: 0;
+    box-shadow: var(--focus-ring-inner);
+    background-color: var(--picker-list-option-background-hover);
+  }
+
+  &--expired {
+    color: var(--content-basic-secondary);
+  }
+
+  &__divider {
+    margin: var(--spacing-2) var(--spacing-3);
+    background-color: var(--border-basic-secondary);
+    height: 1px;
+  }
+
+  &__heading {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-4);
+    align-items: center;
+
+    > :first-child {
+      display: flex;
+      justify-content: center;
+      width: 46px;
+    }
+  }
+
+  &__shortcut {
+    color: var(--content-basic-disabled);
+  }
+
+  &__name {
+    display: flex;
+    gap: var(--spacing-1);
+    align-items: center;
+  }
+
+  &__tooltip-icon {
+    svg {
+      color: var(--content-basic-secondary);
+    }
+  }
+}

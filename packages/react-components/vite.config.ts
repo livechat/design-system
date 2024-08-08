@@ -46,6 +46,7 @@ export default defineConfig(({ mode }) => {
           'src/index.ts',
           'src/foundations',
           'src/utils',
+          'src/hooks',
           'src/components',
         ],
         exclude: ['**/*.stories.tsx', '**/*.spec.ts', '**/*.spec.tsx'],
