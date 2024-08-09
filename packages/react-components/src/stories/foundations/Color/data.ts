@@ -1641,4 +1641,9 @@ export const ColorsData: Record<
     desc: '',
     deprecated: undefined,
   },
+  ContentBasicPlaceholder: {
+    group: ColorGroup.ContentBasic,
+    desc: '',
+    deprecated: undefined,
+  },
 };

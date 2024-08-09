@@ -382,6 +382,7 @@ export const DesignToken = {
   SurfaceCheckListItemOpenBackground:
     '--surface-check-list-item-open-background',
   SurfaceCheckListBackground: '--surface-check-list-background',
+  ContentBasicPlaceholder: '--content-basic-placeholder',
 };
 
 export type DesignTokenKey = keyof typeof DesignToken;
