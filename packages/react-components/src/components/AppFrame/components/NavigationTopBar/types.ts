@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { ButtonProps } from 'components/Button';
 import { ComponentCoreProps } from 'utils/types';
 
 export type NavigationTopBarKind = 'info' | 'success' | 'warning' | 'error';
@@ -23,6 +24,10 @@ export interface ITopBarTitleProps extends ComponentCoreProps {
   children: React.ReactNode;
 }
 
+type CTAProps = {
+  label: string;
+  onClick: () => void;
+} & Omit<ButtonProps, 'onClick' | 'children'>;
 export interface ITopBarAlertProps extends ComponentCoreProps {
   /**
    * Visual style of the alert. You can also use `className` to style the alert if you need to set a custom background color.
@@ -45,21 +50,15 @@ export interface ITopBarAlertProps extends ComponentCoreProps {
 
   /**
    * Primary CTA button. The button will be rendered if defined.
-   * Simple on purpose - if you need more complex buttons, you can use the `children` prop.
+   * Allows ButtonProps, but `children` is recommended for more complex use-cases.
    * */
-  primaryCta?: {
-    label: string;
-    onClick: () => void;
-  };
+  primaryCta?: CTAProps;
 
   /**
    * Secondary CTA button. The button will be rendered if defined.
-   * Simple on purpose - if you need more complex buttons, you can use the `children` prop.
+   * Allows ButtonProps, but `children` is recommended for more complex use-cases.
    * */
-  secondaryCta?: {
-    label: string;
-    onClick: () => void;
-  };
+  secondaryCta?: CTAProps;
 
   /**
    * Show or hide the alert, defaults to `true`. Changes to this prop are animated - the alert will enter and leave smoothly.
