@@ -36,6 +36,7 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
   isVisible,
   onOpen,
   onClose,
+  onSelect,
 }) => {
   const [isOpen, setIsOpen] = React.useState(openedOnInit);
   const [isTooltipOpen, setIsTooltipOpen] = useState<boolean | undefined>(
@@ -103,6 +104,7 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
       event.preventDefault();
     }
     setIsOpen(false);
+    onSelect?.(id);
   };
 
   const combinedNotificationCount = productOptions.reduce(

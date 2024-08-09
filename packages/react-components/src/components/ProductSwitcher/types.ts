@@ -27,6 +27,7 @@ export interface ProductSwitcherProps {
   isVisible?: boolean;
   onOpen?: (event?: Event) => void;
   onClose?: (event?: Event) => void;
+  onSelect?: (id: ProductId) => void;
 }
 
 export const SSOProductIdMap: Record<ProductId, ProductName> = {
