@@ -25,6 +25,7 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
   const itemRef = React.useRef<HTMLDivElement>(null);
   const descriptionRef = React.useRef<HTMLDivElement>(null);
   const [size, setSize] = React.useState(0);
+  const previousSizeRef = React.useRef(size);
 
   React.useEffect(() => {
     if (isActive && itemRef.current) {
@@ -36,11 +37,15 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
     const hasIOSupport = !!window.ResizeObserver;
 
     if (descriptionRef.current && hasIOSupport) {
-      const descriptionHeightWithPadding =
-        descriptionRef.current.offsetHeight + INNER_CONTENT_PADDING;
-      const resizeObserver = new ResizeObserver(() => {
-        if (size !== descriptionHeightWithPadding) {
-          setSize(descriptionHeightWithPadding);
+      const resizeObserver = new ResizeObserver((entries) => {
+        const entry = entries[0];
+        if (!entry) return;
+
+        const newSize = entry.contentRect.height + INNER_CONTENT_PADDING;
+
+        if (previousSizeRef.current !== newSize) {
+          setSize(newSize);
+          previousSizeRef.current = newSize;
         }
       });
 
