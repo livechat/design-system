@@ -105,18 +105,14 @@ export const NavigationTopBarAlert: React.FC<ITopBarAlertProps> = ({
         {primaryCta && (
           <Button
             size="compact"
-            onClick={primaryCta.onClick}
             kind={isMobile ? secondaryCtaKind : primaryCtaKind}
+            {...primaryCta}
           >
             {primaryCta.label}
           </Button>
         )}
         {secondaryCta && (
-          <Button
-            size="compact"
-            onClick={secondaryCta.onClick}
-            kind={secondaryCtaKind}
-          >
+          <Button size="compact" kind={secondaryCtaKind} {...secondaryCta}>
             {secondaryCta.label}
           </Button>
         )}
@@ -144,21 +140,25 @@ export const NavigationTopBarAlert: React.FC<ITopBarAlertProps> = ({
     <>
       {isMounted && (
         <div
-          className={cx(styles[`${alertClass}__wrapper`], {
-            [styles[`${alertClass}__wrapper--open`]]: isOpen,
-          })}
+          className={cx(
+            styles[`${alertClass}__wrapper`],
+            {
+              [styles[`${alertClass}__wrapper--open`]]: isOpen,
+            },
+            'lc-dark-theme' // Alerts are forced into dark mode to maintain consistency of the colors
+          )}
           ref={alertRef}
           role="status"
         >
           <div
             data-testid="navigation-top-bar-alert"
             className={cx(
-              className,
               styles[alertClass],
               styles[`${alertClass}--${kind}`],
               {
                 [styles[`${alertClass}--open`]]: isOpen,
-              }
+              },
+              className
             )}
           >
             {Children}
