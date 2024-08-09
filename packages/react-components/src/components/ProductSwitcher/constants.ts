@@ -14,7 +14,7 @@ import { ProductOption, ProductData, ProductId } from './types';
 export const ProductSwitcherProducts: ProductOption[] = [
   {
     id: 'livechat',
-    name: 'Livechat',
+    name: 'LiveChat',
     icon: LiveChatMono,
     backgroundColors: {
       main: 'var(--products-livechat)',
@@ -25,7 +25,7 @@ export const ProductSwitcherProducts: ProductOption[] = [
   },
   {
     id: 'chatbot',
-    name: 'Chatbot',
+    name: 'ChatBot',
     icon: ChatBotMono,
     backgroundColors: {
       main: 'var(--products-chatbot)',
@@ -36,7 +36,7 @@ export const ProductSwitcherProducts: ProductOption[] = [
   },
   {
     id: 'helpdesk',
-    name: 'Helpdesk',
+    name: 'HelpDesk',
     icon: HelpDeskMono,
     backgroundColors: {
       main: 'var(--products-helpdesk)',
