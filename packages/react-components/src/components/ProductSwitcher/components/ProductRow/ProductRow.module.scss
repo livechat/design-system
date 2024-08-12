@@ -61,4 +61,9 @@ $base-class: 'product-row';
       color: var(--content-basic-secondary);
     }
   }
+
+  &__trial-tooltip {
+    max-width: unset;
+    text-wrap: nowrap;
+  }
 }
