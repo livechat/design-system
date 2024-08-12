@@ -1,4 +1,4 @@
-import { differenceInCalendarDays } from 'date-fns';
+import { differenceInCalendarDays, isPast } from 'date-fns';
 
 import {
   alwaysVisibleProducts,
@@ -35,6 +35,8 @@ export const getRedirectURL = (
 export const getTrialDaysLeft = (trialEnd: string): number => {
   const trialEndDate = new Date(trialEnd);
   const currentDate = new Date();
+
+  if (isPast(trialEndDate)) return 0;
 
   return differenceInCalendarDays(trialEndDate, currentDate);
 };

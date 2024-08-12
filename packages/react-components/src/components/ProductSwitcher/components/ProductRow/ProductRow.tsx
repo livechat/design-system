@@ -75,10 +75,9 @@ export const ProductRow: FC<IProps> = ({
                 Your licence is expired
               </Tooltip>
             )}
-            {trialDaysLeft && (
+            {typeof trialDaysLeft !== 'undefined' && (
               <Tooltip
                 className={styles[`${baseClass}__trial-tooltip`]}
-                isVisible
                 triggerRenderer={
                   <Icon
                     source={Info}
