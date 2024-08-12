@@ -49,9 +49,12 @@ describe('helpers', () => {
   describe('getTrialDaysLeft', () => {
     it('should return the correct number of trial days left', () => {
       const trialEnd = new Date();
-      trialEnd.setDate(trialEnd.getDate() + 10); // Set trial end date 10 days in the future
-      const daysLeft = getTrialDaysLeft(trialEnd.toISOString());
-      expect(daysLeft).toBe(10);
+      trialEnd.setHours(23);
+      expect(getTrialDaysLeft(trialEnd.toISOString())).toBe(0);
+      trialEnd.setDate(trialEnd.getDate() + 1);
+      expect(getTrialDaysLeft(trialEnd.toISOString())).toBe(1);
+      trialEnd.setDate(trialEnd.getDate() + 10);
+      expect(getTrialDaysLeft(trialEnd.toISOString())).toBe(11);
     });
   });
 

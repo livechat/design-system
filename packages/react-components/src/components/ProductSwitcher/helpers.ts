@@ -1,3 +1,5 @@
+import { differenceInCalendarDays } from 'date-fns';
+
 import {
   alwaysVisibleProducts,
   labsRedirectData,
@@ -33,9 +35,8 @@ export const getRedirectURL = (
 export const getTrialDaysLeft = (trialEnd: string): number => {
   const trialEndDate = new Date(trialEnd);
   const currentDate = new Date();
-  const diffTime = trialEndDate.getTime() - currentDate.getTime();
 
-  return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  return differenceInCalendarDays(trialEndDate, currentDate);
 };
 
 export const isVisibleProduct = (
