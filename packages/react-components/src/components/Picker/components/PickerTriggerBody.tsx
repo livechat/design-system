@@ -27,6 +27,7 @@ export interface ITriggerBodyProps {
   onClear: () => void;
   virtualItemRef: React.MutableRefObject<HTMLElement | null>;
   isTriggerFocused: boolean;
+  inputRef?: React.RefObject<HTMLInputElement>;
 }
 
 export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
@@ -45,16 +46,13 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
   searchPhrase,
   virtualItemRef,
   isTriggerFocused,
+  inputRef,
 }) => {
   const shouldDisplaySearch = isOpen && !isSearchDisabled;
-  const inputRef = React.useRef<HTMLInputElement>(null);
 
   React.useEffect(() => {
     if (clearSearchAfterSelection) {
-      onFilter('');
-
-      if (inputRef.current) {
-        inputRef.current.value = '';
+      if (inputRef?.current) {
         inputRef.current.focus();
       }
     }
