@@ -34,6 +34,7 @@ export interface ITopBarAlertProps extends ComponentCoreProps {
    * Defaults to `info`.
    * */
   kind?: NavigationTopBarKind;
+
   /**
    * Properties of the close button. If defined, the alert will be closable and the close button will be rendered.
    * aria-label is highly recommended for accessibility.
@@ -43,6 +44,7 @@ export interface ITopBarAlertProps extends ComponentCoreProps {
     'data-testid'?: string;
     'aria-label'?: string;
   };
+
   /**
    * Content of the alert.
    */

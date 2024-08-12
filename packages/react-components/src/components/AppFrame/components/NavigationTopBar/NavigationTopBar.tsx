@@ -28,10 +28,11 @@ const alertClass = `${baseClass}__alert`;
  */
 export const NavigationTopBar = ({
   children,
+  className,
   additionalNodes,
 }: INavigationTopBarProps): React.ReactElement => {
   return (
-    <div className={styles[baseClass]}>
+    <div className={cx(styles[baseClass], className)}>
       {children}
       {additionalNodes}
     </div>
