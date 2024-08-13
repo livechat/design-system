@@ -161,6 +161,7 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
                   href="https://www.text.com"
                   target="_blank"
                   className={styles[`${baseClass}__footer-link`]}
+                  onClick={() => handleVisibilityChange(false)}
                 >
                   <Text noMargin>powered by</Text>
                   <Icon

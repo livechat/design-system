@@ -4,6 +4,7 @@ import * as React from 'react';
 import { Info } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
+import { plural } from '../../../../utils/plural';
 import { Icon } from '../../../Icon';
 import { Tooltip } from '../../../Tooltip';
 import { Text } from '../../../Typography';
@@ -74,8 +75,9 @@ export const ProductRow: FC<IProps> = ({
                 Your licence is expired
               </Tooltip>
             )}
-            {trialDaysLeft && (
+            {typeof trialDaysLeft !== 'undefined' && (
               <Tooltip
+                className={styles[`${baseClass}__trial-tooltip`]}
                 triggerRenderer={
                   <Icon
                     source={Info}
@@ -84,7 +86,8 @@ export const ProductRow: FC<IProps> = ({
                 }
                 placement="right"
               >
-                {trialDaysLeft} trial day(s) left in your trial. Time to upgrade
+                {trialDaysLeft} trial {plural(trialDaysLeft, 'day', 'days')}{' '}
+                left in your trial. Time to upgrade
               </Tooltip>
             )}
             {nameAdornment}
