@@ -170,7 +170,6 @@ export const Default = (): React.ReactElement => {
             ))}
             <NavigationItem
               id="user"
-              label="User"
               disableOpacity
               icon={
                 <Tooltip

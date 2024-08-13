@@ -53,6 +53,11 @@ export const NavigationItem: React.FC<INavigationItemProps> = ({
       isVisible={!label ? false : undefined}
       offsetMainAxis={12}
       hoverOnDelay={400}
+      useClickHookProps={{ ignoreMouse: true }}
+      useDismissHookProps={{
+        referencePress: true,
+        referencePressEvent: 'click',
+      }}
       triggerRenderer={
         <>
           <a
