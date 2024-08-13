@@ -48,6 +48,7 @@ export const Picker: React.FC<IPickerProps> = ({
   const [triggerFocus, setTriggerFocus] = React.useState(false);
   const isControlled = isVisible !== undefined;
   const isOpen = isControlled ? isVisible : open;
+  const inputRef = React.useRef<HTMLInputElement>(null);
 
   const handleVisibilityChange = (newValue: boolean, event?: Event) => {
     if (newValue) {
@@ -74,6 +75,8 @@ export const Picker: React.FC<IPickerProps> = ({
     selectAllOptionText,
     onSelect,
     setOpen: handleVisibilityChange,
+    clearSearchAfterSelection,
+    inputRef,
   });
 
   const {
@@ -131,6 +134,7 @@ export const Picker: React.FC<IPickerProps> = ({
           type={type}
           size={size}
           clearSearchAfterSelection={clearSearchAfterSelection}
+          inputRef={inputRef}
           onItemRemove={handleItemRemove}
           onSelect={handleSelect}
           onFilter={handleOnFilter}
