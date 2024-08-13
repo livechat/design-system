@@ -72,6 +72,10 @@ $base-class: 'checklist-item';
     }
 
     &__label {
+      display: flex;
+      flex-direction: row;
+      gap: var(--spacing-1);
+      align-items: center;
       transition: inherit;
       margin: 0;
 
