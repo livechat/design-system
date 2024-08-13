@@ -19,7 +19,7 @@ const config: StorybookConfig = {
   },
   docs: {},
   typescript: {
-    reactDocgen: false,
+    reactDocgen: 'react-docgen-typescript',
   },
   core: {
     disableTelemetry: true,
