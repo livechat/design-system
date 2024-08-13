@@ -3,6 +3,7 @@ $base-class: 'navigation-item';
 .#{$base-class} {
   display: flex;
   position: relative;
+  cursor: pointer;
 
   &__badge {
     position: absolute;

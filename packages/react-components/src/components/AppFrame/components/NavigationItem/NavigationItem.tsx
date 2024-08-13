@@ -38,7 +38,6 @@ export const NavigationItem: React.FC<INavigationItemProps> = ({
   label,
   icon,
   url,
-  disableTooltip,
   disableOpacity,
   badge,
   isActive,
@@ -51,7 +50,7 @@ export const NavigationItem: React.FC<INavigationItemProps> = ({
       floatingStrategy="fixed"
       placement="right"
       kind="invert"
-      isVisible={disableTooltip ? false : undefined}
+      isVisible={!label ? false : undefined}
       offsetMainAxis={12}
       hoverOnDelay={400}
       triggerRenderer={

@@ -151,7 +151,6 @@ export const Default = (): React.ReactElement => {
                 }}
                 isActive={activeItem === item}
                 badge={getBadgeContent(item)}
-                url="#"
               />
             ))}
           </NavigationGroup>
@@ -167,14 +166,12 @@ export const Default = (): React.ReactElement => {
                   setActiveItem(id);
                 }}
                 isActive={activeItem === item}
-                url="#"
               />
             ))}
             <NavigationItem
               id="user"
               label="User"
               disableOpacity
-              disableTooltip
               icon={
                 <Tooltip
                   floatingStrategy="fixed"
@@ -194,7 +191,6 @@ export const Default = (): React.ReactElement => {
                 </Tooltip>
               }
               onClick={(e) => e.preventDefault()}
-              url="#"
             />
           </NavigationGroup>
         </Navigation>
