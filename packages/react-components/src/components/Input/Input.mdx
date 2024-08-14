@@ -35,6 +35,9 @@ The `AutoComplete` component is a wrapper around the `Input` component that prov
 
 ### Implementation tips
 
+#### `single` AutoComplete
+The component exposes a `single` prop, that when set to `true`, will only show the first matching option. This is useful for cases where a list would be too long to be legible. 
+
 #### Custom list items
 
 The `IAutoCompleteListItem` is a subset of `IPickerListItem` that restricts the incoming props to the ones relevant for the `AutoComplete` component. This allows you to customise the list items in a simpler way than the `IPickerListItem`.
@@ -73,6 +76,10 @@ const handleChange = debounce((e) => {
   placeholder="Type something..."
   onChange={handleChange}/>
 ```
+
+#### Hide on exact match
+
+The `hideOnExactMatch` makes it so when the value of the input matches the only option available exactly, the list will not be shown.  This prop is on by default, but can be turned off if needed.
 
 <ArgTypes of={InputStories.AutoCompleteStory}/>
 

@@ -75,6 +75,25 @@ AutoCompleteStory.argTypes = {
       defaultValue: { summary: 'false' },
     },
   },
+  single: {
+    description: 'If true, only shows the first matching item.',
+    table: {
+      defaultValue: { summary: 'false' },
+    },
+    control: {
+      type: 'boolean',
+    },
+  },
+  hideIfExactMatch: {
+    description:
+      'If true, the option list will be hidden if there is only one option and it is an exact match to the input value.',
+    table: {
+      defaultValue: { summary: 'true' },
+    },
+    control: {
+      type: 'boolean',
+    },
+  },
 };
 
 export const Sizes = (): React.ReactElement => (
@@ -215,6 +234,24 @@ export const AutocompleteExamples = (): React.ReactElement => {
           options={createOptions(10)}
           placeholder={placeholderText}
           autocompleteOpenOnInit
+        />
+      </StoryDescriptor>
+      <StoryDescriptor title="Single option">
+        <AutoComplete
+          options={[
+            'adam.kowalski@text.com',
+            'adam.kowalski+1@text.com',
+            'jerzy.kiler@text.com',
+          ]}
+          placeholder={placeholderText}
+          single
+        />
+      </StoryDescriptor>
+      <StoryDescriptor title="Don't hide exact matches">
+        <AutoComplete
+          options={['Option 1']}
+          placeholder={placeholderText}
+          hideIfExactMatch={false}
         />
       </StoryDescriptor>
     </>

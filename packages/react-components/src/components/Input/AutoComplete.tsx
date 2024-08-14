@@ -37,6 +37,10 @@ export interface AutoCompleteProps extends Omit<InputProps, 'type'> {
   placement?: Placement;
   /** Floating strategy */
   floatingStrategy?: Strategy;
+  /** Type of the input. If true, only shows one matching item. */
+  single?: boolean;
+  /** If true, the option list will be hidden if there is only one option and it is an exact match to the input value. */
+  hideIfExactMatch?: boolean;
 }
 
 const areAllOptionsStrings = (
@@ -60,6 +64,18 @@ const buildOptionsFromAutoCompleteListItems = (
     }),
     ...rest,
   }));
+
+const getFilteredPickerItems = (
+  items: IPickerListItem[],
+  single: boolean,
+  hideIfExactMatch: boolean,
+  inputValue: string
+): IPickerListItem[] => {
+  const isExactMatch = items.length === 1 && items[0].name === inputValue;
+  const shownItems = single ? items.slice(0, 1) : items;
+
+  return hideIfExactMatch && isExactMatch ? [] : shownItems;
+};
 
 /**
  * Text input with autocomplete functionality. The autocomplete list is displayed below the input and is accessible via the keyboard
@@ -85,7 +101,9 @@ export const AutoComplete = React.forwardRef<
       options,
       readOnly,
       floatingStrategy,
-      alwaysShowAllOptions = false,
+      single,
+      alwaysShowAllOptions,
+      hideIfExactMatch = true,
       ...inputProps
     },
     ref
@@ -106,16 +124,15 @@ export const AutoComplete = React.forwardRef<
     };
 
     const onFilter = (value: string) => {
-      if (alwaysShowAllOptions) {
-        return;
-      }
       handleOnFilter(value);
     };
 
     const handleValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       inputProps.onChange?.(event);
       setValue(event.target.value);
-      onFilter(event.target.value);
+      if (!alwaysShowAllOptions) {
+        onFilter(event.target.value);
+      }
       inputRef.current?.focus();
     };
 
@@ -152,6 +169,13 @@ export const AutoComplete = React.forwardRef<
         clearSearchAfterSelection: true,
         inputRef,
       });
+
+    const filteredPickerItems = getFilteredPickerItems(
+      items,
+      single || false,
+      hideIfExactMatch || false,
+      inputValue?.toString() || ''
+    );
 
     const {
       nodeId,
@@ -203,7 +227,7 @@ export const AutoComplete = React.forwardRef<
             <FloatingPortal>
               <PickerList
                 context={context}
-                options={items}
+                options={filteredPickerItems}
                 setFloating={setFloating}
                 getFloatingProps={getFloatingProps}
                 floatingStyles={floatingStyles}

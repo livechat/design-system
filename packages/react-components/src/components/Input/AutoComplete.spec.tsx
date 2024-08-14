@@ -79,4 +79,14 @@ describe('<AutoComplete> component', () => {
     userEvent.type(autocomplete, '{arrowdown}{enter}');
     expect(autocomplete).toHaveValue('Paul');
   });
+
+  it('should allow for single option display', () => {
+    renderComponent({
+      autocompleteOpenOnInit: true,
+      single: true,
+    });
+
+    expect(screen.getByText('Paul')).toBeInTheDocument();
+    expect(screen.queryByText('Adam')).toBeNull();
+  });
 });
