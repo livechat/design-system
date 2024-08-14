@@ -23,6 +23,7 @@ export type ProductName =
 export interface ProductSwitcherProps {
   mainProductId: ProductId;
   productOptions: ProductOption[];
+  textURL?: string;
   openedOnInit?: boolean;
   isVisible?: boolean;
   onOpen?: (event?: Event) => void;
