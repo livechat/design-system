@@ -101,6 +101,7 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
                   id={item.id}
                   description={item.description}
                   title={item.title}
+                  titleHint={item.titleHint}
                   isActive={item.id === activeItemId}
                   isChecked={completedItemsIds.includes(item.id)}
                   isLastElement={index === items.length - 1}

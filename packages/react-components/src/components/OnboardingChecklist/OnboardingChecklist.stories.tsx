@@ -59,6 +59,7 @@ const getItems = (
   {
     id: '3',
     title: 'Invite your teammates',
+    titleHint: 'recommended: 5',
     description: 'Save time by using prepared answers',
     placeholder: <Icon size="xxxlarge" source={Icons.ChatBotColored} />,
     cta: (

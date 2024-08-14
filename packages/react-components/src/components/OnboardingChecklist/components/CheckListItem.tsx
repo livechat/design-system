@@ -18,6 +18,7 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
   isChecked,
   isLastElement,
   title,
+  titleHint,
   description,
   onClick,
   cta,
@@ -89,7 +90,16 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
             [styles[`${baseClass}__content__label--checked`]]: isChecked,
           })}
         >
-          {title}
+          {title}{' '}
+          {titleHint && (
+            <Text
+              noMargin
+              size="lg"
+              className={styles[`${baseClass}__content__hint`]}
+            >
+              {titleHint}
+            </Text>
+          )}
         </Heading>
         <div
           className={cx(styles[`${baseClass}__content__inner`], {
