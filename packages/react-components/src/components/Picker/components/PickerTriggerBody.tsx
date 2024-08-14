@@ -89,7 +89,7 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
       return null;
     }
 
-    if (item?.customElement) {
+    if (item?.customElement?.selectedItemBody) {
       return (
         <div className={styles[`${baseClass}__item`]}>
           {item.customElement.selectedItemBody}
