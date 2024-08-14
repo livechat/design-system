@@ -38,35 +38,51 @@ export const NavigationItem: React.FC<INavigationItemProps> = ({
   label,
   icon,
   url,
-  disableTooltip,
   disableOpacity,
+  disabled = false,
   badge,
   isActive,
   onClick,
   className,
   ...props
 }) => (
-  <li key={id} className={cx(styles[baseClass], className)}>
+  <li
+    key={id}
+    className={cx(
+      styles[baseClass],
+      {
+        [styles[`${baseClass}--disabled`]]: disabled,
+      },
+      className
+    )}
+  >
     <Tooltip
       floatingStrategy="fixed"
       placement="right"
       kind="invert"
-      isVisible={disableTooltip ? false : undefined}
+      isVisible={!label || disabled ? false : undefined}
       offsetMainAxis={12}
       hoverOnDelay={400}
+      useClickHookProps={{ ignoreMouse: true }}
+      useDismissHookProps={{
+        referencePress: true,
+        referencePressEvent: 'click',
+      }}
       triggerRenderer={
         <>
           <a
+            tabIndex={disabled ? -1 : 0}
             aria-label={label}
             className={cx(
               styles[`${baseClass}__button`],
               {
                 [styles[`${baseClass}__button--active`]]: isActive,
                 [styles[`${baseClass}__button--opacity`]]: disableOpacity,
+                [styles[`${baseClass}__button--disabled`]]: disabled,
               },
               'lc-dark-theme'
             )}
-            onClick={(e) => onClick(e, id)}
+            onClick={(e) => !disabled && onClick(e, id)}
             href={url}
             {...props}
           >

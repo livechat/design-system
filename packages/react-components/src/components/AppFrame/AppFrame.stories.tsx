@@ -85,6 +85,7 @@ const SectionsWithToggle = ['chats', 'engage', 'archives'];
 export const Default = (): React.ReactElement => {
   const [activeItem, setActiveItem] = React.useState('archives');
   const [activeSubItem, setActiveSubItem] = React.useState(0);
+  const [topBarVisible, setTopBarVisible] = React.useState(true);
   const [visibleAlerts, setVisibleAlerts] = React.useState<boolean[]>(
     Array(3).fill(false)
   );
@@ -151,7 +152,6 @@ export const Default = (): React.ReactElement => {
                 }}
                 isActive={activeItem === item}
                 badge={getBadgeContent(item)}
-                url="#"
               />
             ))}
           </NavigationGroup>
@@ -160,6 +160,7 @@ export const Default = (): React.ReactElement => {
               <NavigationItem
                 key={item}
                 id={item}
+                disabled={index % 2 === 0}
                 label={item.charAt(0).toUpperCase() + item.slice(1)}
                 icon={<Icon source={secondaryNavigationIcons[index]} />}
                 onClick={(e, id) => {
@@ -167,14 +168,11 @@ export const Default = (): React.ReactElement => {
                   setActiveItem(id);
                 }}
                 isActive={activeItem === item}
-                url="#"
               />
             ))}
             <NavigationItem
               id="user"
-              label="User"
               disableOpacity
-              disableTooltip
               icon={
                 <Tooltip
                   floatingStrategy="fixed"
@@ -194,23 +192,27 @@ export const Default = (): React.ReactElement => {
                 </Tooltip>
               }
               onClick={(e) => e.preventDefault()}
-              url="#"
             />
           </NavigationGroup>
         </Navigation>
       }
       sideNavigation={getSubNav()}
       topBar={
-        <ExampleTopBar
-          visibleAlerts={visibleAlerts}
-          setAlerts={setVisibleAlerts}
-        />
+        topBarVisible || visibleAlerts.some((alert) => alert) ? (
+          <ExampleTopBar
+            topBarVisible={topBarVisible}
+            visibleAlerts={visibleAlerts}
+            setAlerts={setVisibleAlerts}
+          />
+        ) : null
       }
     >
       <ExampleAppContent
         showToggle={SectionsWithToggle.includes(activeItem)}
         alerts={visibleAlerts}
         setAlerts={setVisibleAlerts}
+        topBarVisible={topBarVisible}
+        setTopBarVisible={setTopBarVisible}
       />
     </AppFrame>
   );
