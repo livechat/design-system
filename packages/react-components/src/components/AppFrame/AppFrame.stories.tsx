@@ -85,6 +85,7 @@ const SectionsWithToggle = ['chats', 'engage', 'archives'];
 export const Default = (): React.ReactElement => {
   const [activeItem, setActiveItem] = React.useState('archives');
   const [activeSubItem, setActiveSubItem] = React.useState(0);
+  const [topBarVisible, setTopBarVisible] = React.useState(true);
   const [visibleAlerts, setVisibleAlerts] = React.useState<boolean[]>(
     Array(3).fill(false)
   );
@@ -197,16 +198,20 @@ export const Default = (): React.ReactElement => {
       }
       sideNavigation={getSubNav()}
       topBar={
-        <ExampleTopBar
-          visibleAlerts={visibleAlerts}
-          setAlerts={setVisibleAlerts}
-        />
+        topBarVisible ? (
+          <ExampleTopBar
+            visibleAlerts={visibleAlerts}
+            setAlerts={setVisibleAlerts}
+          />
+        ) : null
       }
     >
       <ExampleAppContent
         showToggle={SectionsWithToggle.includes(activeItem)}
         alerts={visibleAlerts}
         setAlerts={setVisibleAlerts}
+        topBarVisible={topBarVisible}
+        setTopBarVisible={setTopBarVisible}
       />
     </AppFrame>
   );
