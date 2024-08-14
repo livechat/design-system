@@ -16,6 +16,7 @@ import {
   useTransitionStyles,
 } from '@floating-ui/react';
 import { TextLogoFull } from '@livechat/design-system-icons';
+import cx from 'clsx';
 
 import { Icon } from '../Icon';
 import { Tooltip } from '../Tooltip';
@@ -37,6 +38,7 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
   onOpen,
   onClose,
   onSelect,
+  textURL = 'https://www.text.com',
 }) => {
   const [isOpen, setIsOpen] = React.useState(openedOnInit);
   const [isTooltipOpen, setIsTooltipOpen] = useState<boolean | undefined>(
@@ -145,7 +147,10 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
           {...getFloatingProps()}
         >
           {isMounted && (
-            <div className={styles[baseClass]} style={transitionStyles}>
+            <div
+              className={cx('lc-dark-theme', styles[baseClass])}
+              style={transitionStyles}
+            >
               <div className={styles[`${baseClass}__content`]}>
                 {productOptions.map((product) => (
                   <ProductRow
@@ -158,7 +163,7 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
               </div>
               <div className={styles[`${baseClass}__footer`]}>
                 <a
-                  href="https://www.text.com"
+                  href={textURL}
                   target="_blank"
                   className={styles[`${baseClass}__footer-link`]}
                   onClick={() => handleVisibilityChange(false)}
