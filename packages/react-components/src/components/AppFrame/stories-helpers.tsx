@@ -102,8 +102,9 @@ export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
 
 export const ExampleTopBar: React.FC<{
   visibleAlerts: boolean[];
+  topBarVisible: boolean;
   setAlerts: (alerts: boolean[]) => void;
-}> = ({ visibleAlerts, setAlerts }) => {
+}> = ({ visibleAlerts, setAlerts, topBarVisible }) => {
   const [kind, setKind] = React.useState<
     'info' | 'success' | 'warning' | 'error'
   >('warning');
@@ -130,7 +131,11 @@ export const ExampleTopBar: React.FC<{
   return (
     <NavigationTopBar
       additionalNodes={
-        <NavigationTopBar.Title>Example top bar content</NavigationTopBar.Title>
+        topBarVisible ? (
+          <NavigationTopBar.Title>
+            Example top bar content
+          </NavigationTopBar.Title>
+        ) : null
       }
     >
       <DisconnectedAlert
