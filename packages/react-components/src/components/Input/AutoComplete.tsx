@@ -161,7 +161,6 @@ export const AutoComplete = React.forwardRef<
     const { items, searchPhrase, handleOnFilter, handleSelect, selectedKeys } =
       usePickerItems({
         selected: [],
-        // If there is only one option and it is already typed in, don't show it in the picker.
         options: pickerOptions,
         type: 'single',
         onSelect: handleAutoComplete,
