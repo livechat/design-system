@@ -198,7 +198,7 @@ export const Default = (): React.ReactElement => {
       }
       sideNavigation={getSubNav()}
       topBar={
-        topBarVisible && visibleAlerts.length > 0 ? (
+        topBarVisible || visibleAlerts.some((alert) => alert) ? (
           <ExampleTopBar
             topBarVisible={topBarVisible}
             visibleAlerts={visibleAlerts}
