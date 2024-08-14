@@ -32,6 +32,7 @@ export interface IPickerListProps {
     userProps?: React.HTMLProps<HTMLElement> | undefined
   ) => Record<string, unknown>;
   emptyStateText?: string;
+  hideWhenEmpty?: boolean;
   listClassName?: string;
   virtuosoProps?: VirtuosoProps<IPickerListItem, unknown>;
 }
@@ -50,6 +51,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   getFloatingProps,
   getItemProps,
   emptyStateText = 'No results found',
+  hideWhenEmpty = false,
   pickerType = 'single',
   listClassName,
   virtuosoProps,
@@ -76,6 +78,10 @@ export const PickerList: React.FC<IPickerListProps> = ({
   }, [options.length]);
 
   if (options.length === 0) {
+    if (hideWhenEmpty) {
+      return null;
+    }
+
     return (
       <FloatingFocusManager context={context} modal={false} initialFocus={-1}>
         <div
