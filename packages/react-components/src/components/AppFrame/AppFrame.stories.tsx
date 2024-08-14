@@ -159,6 +159,7 @@ export const Default = (): React.ReactElement => {
               <NavigationItem
                 key={item}
                 id={item}
+                disabled={index % 2 === 0}
                 label={item.charAt(0).toUpperCase() + item.slice(1)}
                 icon={<Icon source={secondaryNavigationIcons[index]} />}
                 onClick={(e, id) => {

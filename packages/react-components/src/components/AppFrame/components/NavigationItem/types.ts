@@ -24,6 +24,10 @@ export interface INavigationItemProps extends ComponentCoreProps {
    */
   disableOpacity?: boolean;
   /**
+   * Specify whether the navigation item is disabled
+   */
+  disabled?: boolean;
+  /**
    * Specify whether the badge should be visible and what type it should be
    */
   badge?: 'dot' | 'alert' | number;
