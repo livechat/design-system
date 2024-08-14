@@ -2,10 +2,7 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import {
-  AppFrameProvider,
-  useAppFrame,
-} from '../../providers/AppFrameProvider';
+import { AppFrameProvider, useAppFrame } from '../../providers';
 
 import { useAppFrameAnimations } from './hooks/useAppFrameAnimations';
 import { IAppFrameProps } from './types';
