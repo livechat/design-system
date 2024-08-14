@@ -26,12 +26,16 @@ interface ExampleAppContentProps {
   showToggle: boolean;
   alerts?: boolean[];
   setAlerts?: (alerts: boolean[]) => void;
+  topBarVisible: boolean;
+  setTopBarVisible: (visible: boolean) => void;
 }
 
 export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
   showToggle,
   alerts,
   setAlerts,
+  topBarVisible,
+  setTopBarVisible,
 }) => {
   const { isSideNavigationVisible, toggleSideNavigationVisibility } =
     useAppFrame();
@@ -55,6 +59,12 @@ export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
           flexDirection: 'column',
         }}
       >
+        <div>
+          <Text>Toggle TopBar Visibility</Text>
+          <Button onClick={() => setTopBarVisible(!topBarVisible)}>
+            {topBarVisible ? 'Hide' : 'Show'}
+          </Button>
+        </div>
         {showToggle && (
           <div>
             <Text>Set sub-navigation visibility</Text>
@@ -92,8 +102,9 @@ export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
 
 export const ExampleTopBar: React.FC<{
   visibleAlerts: boolean[];
+  topBarVisible: boolean;
   setAlerts: (alerts: boolean[]) => void;
-}> = ({ visibleAlerts, setAlerts }) => {
+}> = ({ visibleAlerts, setAlerts, topBarVisible }) => {
   const [kind, setKind] = React.useState<
     'info' | 'success' | 'warning' | 'error'
   >('warning');
@@ -120,7 +131,11 @@ export const ExampleTopBar: React.FC<{
   return (
     <NavigationTopBar
       additionalNodes={
-        <NavigationTopBar.Title>Example top bar content</NavigationTopBar.Title>
+        topBarVisible ? (
+          <NavigationTopBar.Title>
+            Example top bar content
+          </NavigationTopBar.Title>
+        ) : null
       }
     >
       <DisconnectedAlert

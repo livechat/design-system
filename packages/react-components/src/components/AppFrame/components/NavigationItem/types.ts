@@ -10,7 +10,7 @@ export interface INavigationItemProps extends ComponentCoreProps {
   /**
    * The label of the item visible in the tooltip
    */
-  label: string;
+  label?: string;
   /**
    * Container for the icon or any other element
    */
@@ -18,15 +18,15 @@ export interface INavigationItemProps extends ComponentCoreProps {
   /**
    * The URL to navigate to
    */
-  url: string;
-  /**
-   * Specify whether the tooltip should be disabled after hover
-   */
-  disableTooltip?: boolean;
+  url?: string;
   /**
    * Set if you are preparing a custom element as a button icon and you do not want it to be semi-transparent without hover
    */
   disableOpacity?: boolean;
+  /**
+   * Specify whether the navigation item is disabled
+   */
+  disabled?: boolean;
   /**
    * Specify whether the badge should be visible and what type it should be
    */
