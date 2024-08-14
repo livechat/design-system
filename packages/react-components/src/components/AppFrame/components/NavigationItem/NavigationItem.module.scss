@@ -52,6 +52,10 @@ $base-class: 'navigation-item';
       }
     }
 
+    &--disabled {
+      opacity: 0.4;
+    }
+
     span {
       transform: scale(1);
       transition: all var(--transition-duration-fast-1) ease-in-out;
