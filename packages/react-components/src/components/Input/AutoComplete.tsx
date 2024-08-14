@@ -136,6 +136,13 @@ export const AutoComplete = React.forwardRef<
       inputRef.current?.focus();
     };
 
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (virtualItemRef.current?.id && event.key === 'Enter') {
+        handleAutoComplete([{ key: virtualItemRef.current?.id }]);
+      }
+      inputProps.onKeyDown?.(event);
+    };
+
     const handleAutoComplete = (value: { key: string }[] | null) => {
       if (value) {
         const key = value[0].key;
@@ -209,12 +216,7 @@ export const AutoComplete = React.forwardRef<
           {...inputProps}
           ref={inputRef}
           onChange={handleValueChange}
-          onKeyDown={(e) => {
-            if (virtualItemRef.current?.id && e.key === 'Enter') {
-              handleAutoComplete([{ key: virtualItemRef.current?.id }]);
-            }
-            inputProps.onKeyDown?.(e);
-          }}
+          onKeyDown={handleKeyDown}
           value={inputValue}
           disabled={disabled}
           readOnly={readOnly}
