@@ -43,6 +43,10 @@ $base-class: 'onboarding-checklist';
 
     &--right {
       background: var(--surface-gradient-05);
+
+      &--completed {
+        padding: 0;
+      }
     }
   }
 
@@ -67,11 +71,17 @@ $base-class: 'onboarding-checklist';
 
   &__placeholder {
     display: flex;
-    position: absolute;
-    inset: 0;
     align-items: center;
     justify-content: center;
     transition: all var(--transition-duration-moderate-1);
+    width: 100%;
+    height: 100%;
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 
   &__button {

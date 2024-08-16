@@ -142,7 +142,14 @@ export const Default = (): React.ReactElement => {
       completionMessageData={{
         title: 'Your getting started guide is completed. ',
         greetingText: 'Hey Tim, nice work!',
-        placeholder: <Icon size="xxxlarge" source={Icons.HelloColored} />,
+        placeholder: (
+          <video
+            src="https://cdn.livechat-static.com/api/file/lc/img/default/assets/onboarding-success.mp4"
+            playsInline
+            muted
+            autoPlay
+          />
+        ),
       }}
     />
   );
