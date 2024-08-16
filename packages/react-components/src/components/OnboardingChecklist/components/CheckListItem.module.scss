@@ -72,10 +72,7 @@ $base-class: 'checklist-item';
     }
 
     &__label {
-      display: flex;
-      flex-direction: row;
-      gap: var(--spacing-1);
-      align-items: center;
+      display: inline;
       transition: inherit;
       margin: 0;
 
@@ -86,6 +83,11 @@ $base-class: 'checklist-item';
       &--checked {
         text-decoration: line-through;
       }
+    }
+
+    &__hint {
+      display: inline-block;
+      margin-right: var(--spacing-6);
     }
 
     &__inner {
