@@ -83,39 +83,41 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
           [styles[`${baseClass}__content--open`]]: isActive,
         })}
       >
-        <Heading
-          size="xs"
-          className={cx(styles[`${baseClass}__content__label`], {
-            [styles[`${baseClass}__content__label--open`]]: isActive,
-            [styles[`${baseClass}__content__label--checked`]]: isChecked,
-          })}
-        >
-          {title}{' '}
-          {titleHint && (
-            <Text
-              noMargin
-              size="lg"
-              className={styles[`${baseClass}__content__hint`]}
-            >
-              {titleHint}
-            </Text>
-          )}
-        </Heading>
-        <div
-          className={cx(styles[`${baseClass}__content__inner`], {
-            [styles[`${baseClass}__content__inner--open`]]: isActive,
-          })}
-          style={{ maxHeight: isActive ? size : 0 }}
-        >
-          <div ref={descriptionRef}>
-            <Text
-              size="lg"
-              className={styles[`${baseClass}__content__inner__description`]}
-            >
-              {description}
-            </Text>
-            <div className={styles[`${baseClass}__content__inner__cta`]}>
-              {cta}
+        <div>
+          <Heading
+            size="xs"
+            className={cx(styles[`${baseClass}__content__label`], {
+              [styles[`${baseClass}__content__label--open`]]: isActive,
+              [styles[`${baseClass}__content__label--checked`]]: isChecked,
+            })}
+          >
+            {title}{' '}
+            {titleHint && (
+              <Text
+                noMargin
+                size="lg"
+                className={styles[`${baseClass}__content__hint`]}
+              >
+                {titleHint}
+              </Text>
+            )}
+          </Heading>
+          <div
+            className={cx(styles[`${baseClass}__content__inner`], {
+              [styles[`${baseClass}__content__inner--open`]]: isActive,
+            })}
+            style={{ maxHeight: isActive ? size : 0 }}
+          >
+            <div ref={descriptionRef}>
+              <Text
+                size="lg"
+                className={styles[`${baseClass}__content__inner__description`]}
+              >
+                {description}
+              </Text>
+              <div className={styles[`${baseClass}__content__inner__cta`]}>
+                {cta}
+              </div>
             </div>
           </div>
         </div>

@@ -115,6 +115,9 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
             className={cx(
               styles[`${baseClass}__column`],
               styles[`${baseClass}__column--right`],
+              {
+                [styles[`${baseClass}__column--right--completed`]]: isCompleted,
+              },
               placeholderClassName
             )}
           >
