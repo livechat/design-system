@@ -46,11 +46,7 @@ export const ProductRow: FC<IProps> = ({
         href={url}
         target="_blank"
         aria-label={`Go to ${name} product`}
-        onClick={(event) => {
-          event.preventDefault();
-          onClick(event, id);
-          window.open(url, '_blank')?.focus();
-        }}
+        onClick={(event) => onClick(event, id)}
         className={cx(styles[baseClass], {
           [styles[`${baseClass}--expired`]]: expired,
         })}

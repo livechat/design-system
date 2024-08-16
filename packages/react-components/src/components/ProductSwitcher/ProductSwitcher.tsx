@@ -124,9 +124,10 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
           offsetCrossAxis={2}
           arrowOffsetY={2}
           offsetMainAxis={10}
-          className={cx(styles[`${baseClass}__tooltip`], 'lc-dark-theme')}
+          className={styles[`${baseClass}__tooltip`]}
           placement="right"
           floatingStrategy="fixed"
+          kind="invert"
           triggerRenderer={
             <ProductTile
               isMainProduct
