@@ -58,7 +58,8 @@ const getItems = (
   },
   {
     id: '3',
-    title: 'Invite your teammates',
+    title:
+      'Invite your teammates with this really long long long text your teammates with this really long long long text ',
     titleHint: 'recommended: 5',
     description: 'Save time by using prepared answers',
     placeholder: <Icon size="xxxlarge" source={Icons.ChatBotColored} />,
