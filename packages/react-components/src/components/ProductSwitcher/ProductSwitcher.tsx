@@ -127,6 +127,7 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
           className={styles[`${baseClass}__tooltip`]}
           placement="right"
           floatingStrategy="fixed"
+          kind="invert"
           triggerRenderer={
             <ProductTile
               isMainProduct
