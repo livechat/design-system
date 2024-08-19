@@ -24,6 +24,7 @@ import { Text } from '../Typography';
 
 import { ProductRow } from './components/ProductRow/ProductRow';
 import { ProductTile } from './components/ProductTile/ProductTile';
+import { openOrFocusTab } from './helpers';
 import { ProductId, ProductSwitcherProps } from './types';
 
 import styles from './ProductSwitcher.module.scss';
@@ -101,9 +102,10 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
     return null;
   }
 
-  const handleClick = (event: MouseEvent, id: ProductId) => {
-    if (id === mainProductId) {
-      event.preventDefault();
+  const handleClick = (event: MouseEvent, id: ProductId, url: string) => {
+    event.preventDefault();
+    if (id !== mainProductId) {
+      openOrFocusTab(url, id);
     }
     setIsOpen(false);
     onSelect?.(id);
