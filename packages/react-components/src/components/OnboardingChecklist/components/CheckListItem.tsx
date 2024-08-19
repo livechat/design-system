@@ -98,6 +98,7 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
                 size="lg"
                 className={styles[`${baseClass}__content__hint`]}
               >
+                &nbsp;
                 {titleHint}
               </Text>
             )}
