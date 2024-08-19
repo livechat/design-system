@@ -98,3 +98,12 @@ export const getRedirectDataByEnv = (
       return [];
   }
 };
+
+export const openOrFocusTab = (url: string, tabName: string): void => {
+  const tab = window.open(url, tabName);
+  if (tab) {
+    tab.focus();
+  } else {
+    window.open(url, '_blank');
+  }
+};
