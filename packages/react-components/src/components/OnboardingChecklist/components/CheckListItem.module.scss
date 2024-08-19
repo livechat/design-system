@@ -112,7 +112,7 @@ $base-class: 'checklist-item';
       }
 
       &__description {
-        margin: 0;
+        margin: var(--spacing-1) 0 0;
         padding: 0;
         color: var(--content-basic-secondary);
       }
