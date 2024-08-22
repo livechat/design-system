@@ -69,6 +69,21 @@ npm start
 
 If `Storybook` is not enough, you can additionaly run `npm start:example` which will run `example-react` package in `watch` mode. `example-react` is a simple [React](https://reactjs.org/) app based on [vite-react boilterplate](https://github.com/vitejs/vite/tree/main/packages/create-vite). It has a direct dependency on `react-components` package, so every change should be reflected in the app via auto-reload.
 
+### 404 and disconnections problems
+If you have problems with disconnects while working in the environment, make the following change to the file `packages/react-components/.storybook/main.ts`:
+```
+...
+typescript: {
+// reactDocgen: 'react-docgen-typescript',
+  check: false,
+  reactDocgen: false,
+},
+...
+```
+This is a problem that occurred after the last update of Storybook and related packages, we are currently looking for a solution for this.
+
+**Be sure not to commit changes to this file along with other changes made to components.**
+
 ## Contributing
 
 The guide that describes the contribution process is available [here](./docs/CONTRIBUTION.md).
