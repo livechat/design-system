@@ -114,6 +114,7 @@ export const Default = (): React.ReactElement => {
       livechat: { status: 'active' },
       chatbot: { status: 'expired' },
     },
+    mainProductId: 'livechat',
   });
 
   const getSubNav = () => {

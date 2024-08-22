@@ -137,7 +137,7 @@ export const stagingRedirectData: ProductData[] = [
   },
   {
     clientId: '82837eac-ff5e-45ca-bce1-00011acf925c',
-    redirectUri: 'https://app.helpdesk.com',
+    redirectUri: 'https://app.staging.helpdesk.com',
     product: 'HelpDesk',
   },
   {
