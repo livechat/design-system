@@ -14,7 +14,7 @@ import { ProductTile } from '../ProductTile/ProductTile';
 import styles from './ProductRow.module.scss';
 
 type IProps = {
-  onClick: (event: MouseEvent, id: ProductId, url: string) => void;
+  onClick: (event: MouseEvent, id: ProductId) => void;
   product: ProductOption;
   isActive?: boolean;
 };
@@ -46,7 +46,7 @@ export const ProductRow: FC<IProps> = ({
         href={url}
         target="_blank"
         aria-label={`Go to ${name} product`}
-        onClick={(event) => onClick(event, id, url)}
+        onClick={(event) => onClick(event, id)}
         className={cx(styles[baseClass], {
           [styles[`${baseClass}--expired`]]: expired,
         })}
