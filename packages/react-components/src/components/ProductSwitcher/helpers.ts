@@ -116,12 +116,3 @@ export const getUtmSource = (env: Env, mainProductId: ProductId) => {
 
   return productData?.redirectUri.replace('https://', '');
 };
-
-export const openOrFocusTab = (url: string, tabName: string): void => {
-  const tab = window.open(url, tabName);
-  if (tab) {
-    tab.focus();
-  } else {
-    window.open(url, '_blank');
-  }
-};
