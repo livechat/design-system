@@ -29,7 +29,10 @@ export const ProductTile: FC<IProps> = ({
   isMainProduct = false,
 }) => {
   return (
-    <div className={cx({ [styles['outer-border']]: withBorder })}>
+    <div
+      className={cx({ [styles['outer-border']]: withBorder })}
+      tabIndex={isMainProduct ? 0 : -1}
+    >
       <div
         className={cx(styles['product-tile-wrapper'], {
           [styles['product-tile-wrapper__animated']]: isMainProduct,
