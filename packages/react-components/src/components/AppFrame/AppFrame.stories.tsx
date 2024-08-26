@@ -18,6 +18,7 @@ import {
   NavigationTopBar,
   NavigationTopBarAlert,
   NavigationTopBarTitle,
+  ExpirationCounter,
 } from './components';
 import {
   ExampleAppContent,
@@ -49,6 +50,7 @@ export default {
     NavigationTopBar,
     NavigationTopBarAlert,
     NavigationTopBarTitle,
+    ExpirationCounter,
   },
 };
 
@@ -157,6 +159,14 @@ export const Default = (): React.ReactElement => {
             ))}
           </NavigationGroup>
           <NavigationGroup>
+            <ExpirationCounter
+              id="expiration"
+              daysLeft={7}
+              onClick={(e, id) => {
+                e.preventDefault();
+                setActiveItem(id);
+              }}
+            />
             {navigationItems.slice(8, 11).map((item, index) => (
               <NavigationItem
                 key={item}
