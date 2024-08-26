@@ -72,7 +72,7 @@ export const ProductRow: FC<IProps> = ({
                 }
                 placement="right"
               >
-                Your licence is expired
+                Your licence is expired.
               </Tooltip>
             )}
             {typeof trialDaysLeft !== 'undefined' && (
@@ -87,7 +87,7 @@ export const ProductRow: FC<IProps> = ({
                 placement="right"
               >
                 {trialDaysLeft} {plural(trialDaysLeft, 'day', 'days')} left in
-                your trial. Time to upgrade
+                your trial. Time to upgrade.
               </Tooltip>
             )}
             {nameAdornment}
