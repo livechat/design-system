@@ -86,8 +86,8 @@ export const ProductRow: FC<IProps> = ({
                 }
                 placement="right"
               >
-                {trialDaysLeft} trial {plural(trialDaysLeft, 'day', 'days')}{' '}
-                left in your trial. Time to upgrade
+                {trialDaysLeft} {plural(trialDaysLeft, 'day', 'days')} left in
+                your trial. Time to upgrade
               </Tooltip>
             )}
             {nameAdornment}
