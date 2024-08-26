@@ -98,7 +98,8 @@ export const NavigationTopBarAlert: React.FC<ITopBarAlertProps> = ({
   const isMobile = window.matchMedia('(max-width: 768px)').matches;
 
   const secondaryCtaKind = kind === 'warning' ? 'link-inverted' : 'text';
-  const primaryCtaKind = kind === 'warning' ? 'secondary' : 'high-contrast';
+  const primaryCtaKind =
+    kind === 'warning' ? 'plain-lock-black' : 'high-contrast';
 
   const Ctas =
     primaryCta || secondaryCta ? (

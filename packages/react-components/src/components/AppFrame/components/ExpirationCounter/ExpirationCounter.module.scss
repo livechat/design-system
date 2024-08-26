@@ -1,0 +1,31 @@
+$base-class: 'expiration-counter';
+
+.#{$base-class} {
+  display: flex;
+  position: relative;
+  cursor: pointer;
+
+  &__button {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-duration-fast-1) ease-in-out;
+    border-radius: var(--radius-3);
+    background-color: var(--surface-accent-emphasis-high-negative);
+    width: 42px;
+    height: 42px;
+    color: var(--content-locked-white);
+
+    &__number {
+      line-height: 20px;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    &__label {
+      font-size: 10px;
+    }
+  }
+}

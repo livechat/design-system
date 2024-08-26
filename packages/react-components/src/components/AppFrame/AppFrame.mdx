@@ -5,7 +5,7 @@ import * as AppFrameStories from './AppFrame.stories';
 
 <Title>AppFrame</Title>
 
-[Intro](#Intro) | [How to build the navigation](#BuildNav) | [Component API](#ComponentAPI)
+[Intro](#Intro) | [How to build the navigation](#BuildNav) | [Top bar](#TopBar) | [Component API](#ComponentAPI)
 
 ## Intro <a id="Intro" />
 
@@ -17,7 +17,7 @@ The most important functionality of this component, apart from the UI layout, is
 
 ## How to build the navigation <a id="BuildNav" />
 
-[Main navigation](#MainNav) | [Side navigation](#SideNav) | [Top bar](#TopBar) | [AppFrameProvider](#Provider)
+[Main navigation](#MainNav) | [Side navigation](#SideNav) | [AppFrameProvider](#Provider) | [Expiration Counter](#ExpirationCounter) 
 
 The component allows you to place navigation available on the left side, consisting of icons, and also allows you to display additional navigation in the opening panel.
 
@@ -160,7 +160,34 @@ const SideNavigationSwitcher: FC = () => {
 };
 ```
 
-### Top bar <a id="TopBar" />
+#### Expiration Counter <a id="ExpirationCounter" />
+
+Expiration Counter is a simple component to use as a navigation item, its purpose is to present the number of days left until the end of a trial/subscription.
+
+```jsx
+import { AppFrame, Navigation, NavigationGroup, ExpirationCounter } from '@livechat/design-system-react-components';
+
+<AppFrame
+  navigation={
+    <Navigation>
+      <NavigationGroup>
+        ...
+        <ExpirationCounter
+          id="expiration"
+          url="#"
+          daysLeft={7}
+          onClick={(e, id) => {}}
+        />
+        ...
+      </NavigationGroup>
+    </Navigation>
+  }
+>
+  App content
+</AppFrame>
+```
+
+## Top bar <a id="TopBar" />
 
 The top bar is a component designed to display alerts and important messages to the user. 
 
