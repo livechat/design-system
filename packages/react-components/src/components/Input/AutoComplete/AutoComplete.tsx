@@ -1,81 +1,20 @@
 import * as React from 'react';
 
+import { FloatingNode, FloatingPortal } from '@floating-ui/react';
+
+import { PickerList } from '../../Picker';
+import { DEFAULT_LIST_HEIGHT, MIN_LIST_HEIGHT } from '../../Picker/constants';
+import { useFloatingPicker } from '../../Picker/hooks/useFloatingPicker';
+import { usePickerItems } from '../../Picker/hooks/usePickerItems';
+import { Input } from '../Input';
+
 import {
-  FloatingNode,
-  FloatingPortal,
-  Placement,
-  Strategy,
-} from '@floating-ui/react';
-
-import { IPickerListItem, PickerList } from '../Picker';
-import { DEFAULT_LIST_HEIGHT, MIN_LIST_HEIGHT } from '../Picker/constants';
-import { useFloatingPicker } from '../Picker/hooks/useFloatingPicker';
-import { usePickerItems } from '../Picker/hooks/usePickerItems';
-
-import { Input, InputProps } from './Input';
-
-// selectedItemBody is unnecessary for AutoCompleteListItem, key should be === name
-export type IAutoCompleteListItem = Omit<
-  IPickerListItem,
-  'key' | 'customElement'
-> & {
-  customElement?: React.ReactElement;
-};
-
-export interface AutoCompleteProps extends Omit<InputProps, 'type'> {
-  /** Options that will be displayed in the picker. If they are strings, they will be converted to `IPickerListItem[]`*/
-  options: string[] | IAutoCompleteListItem[];
-  /** If true, disables filtering of the options. Useful for getting options from an external source.*/
-  alwaysShowAllOptions?: boolean;
-  /** If true, the autocomplete list will be open when the component mounts.*/
-  autocompleteOpenOnInit?: boolean;
-  /** Minimum height of the list */
-  minListHeight?: number;
-  /** Maximum height of the list */
-  maxListHeight?: number;
-  /** Placement of the list */
-  placement?: Placement;
-  /** Floating strategy */
-  floatingStrategy?: Strategy;
-  /** Type of the input. If true, only shows one matching item. */
-  single?: boolean;
-  /** If true, the option list will be hidden if there is only one option and it is an exact match to the input value. */
-  hideIfExactMatch?: boolean;
-}
-
-const areAllOptionsStrings = (
-  options: AutoCompleteProps['options']
-): options is string[] => typeof options[0] === 'string'; // Assumption (backed by TS): if o[0] is a string, the rest are too.
-
-const buildOptionsFromStrings = (options: string[]): IPickerListItem[] =>
-  options.map((option) => ({ name: option, key: option }));
-
-const buildOptionsFromAutoCompleteListItems = (
-  options: IAutoCompleteListItem[]
-): IPickerListItem[] =>
-  options.map(({ customElement, name, ...rest }) => ({
-    name,
-    key: name,
-    ...(customElement && {
-      customElement: {
-        listItemBody: customElement,
-        selectedItemBody: <></>,
-      },
-    }),
-    ...rest,
-  }));
-
-const getFilteredPickerItems = (
-  items: IPickerListItem[],
-  single: boolean,
-  hideIfExactMatch: boolean,
-  inputValue: string
-): IPickerListItem[] => {
-  const isExactMatch = items.length === 1 && items[0].name === inputValue;
-  const shownItems = single ? items.slice(0, 1) : items;
-
-  return hideIfExactMatch && isExactMatch ? [] : shownItems;
-};
+  areAllOptionsStrings,
+  buildOptionsFromAutoCompleteListItems,
+  buildOptionsFromStrings,
+  getFilteredPickerItems,
+} from './helpers';
+import { AutoCompleteProps } from './types';
 
 /**
  * Text input with autocomplete functionality. The autocomplete list is displayed below the input and is accessible via the keyboard

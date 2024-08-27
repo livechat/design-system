@@ -5,7 +5,7 @@ import { vitest } from 'vitest';
 
 import { render, userEvent, screen } from 'test-utils';
 
-import { AutoCompleteProps, AutoComplete } from './AutoComplete';
+import { AutoCompleteProps, AutoComplete } from '.';
 
 const BASIC_OPTIONS = ['Paul', 'Adam', 'John'];
 const DEFAULT_PROPS = {

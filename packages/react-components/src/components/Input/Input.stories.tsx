@@ -7,7 +7,7 @@ import debounce from 'lodash.debounce';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Icon } from '../Icon';
 
-import { AutoComplete, AutoCompleteProps } from './AutoComplete';
+import { AutoCompleteProps, AutoComplete } from './AutoComplete';
 import { Input, InputProps } from './Input';
 
 const placeholderText = 'Placeholder text';
