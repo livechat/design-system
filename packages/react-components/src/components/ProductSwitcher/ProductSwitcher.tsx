@@ -124,6 +124,7 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
           offsetCrossAxis={2}
           arrowOffsetY={2}
           offsetMainAxis={10}
+          hoverOnDelay={400}
           className={styles[`${baseClass}__tooltip`]}
           placement="right"
           floatingStrategy="fixed"
