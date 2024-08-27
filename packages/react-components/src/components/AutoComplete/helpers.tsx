@@ -1,12 +1,13 @@
 import * as React from 'react';
 
-import { IPickerListItem } from '../../Picker';
+import { IPickerListItem } from '../Picker';
 
 import { AutoCompleteProps, IAutoCompleteListItem } from './types';
 
 export const areAllOptionsStrings = (
   options: AutoCompleteProps['options']
-): options is string[] => typeof options[0] === 'string'; // Assumption (backed by TS): if o[0] is a string, the rest are too.
+): options is string[] =>
+  options !== undefined && typeof options[0] === 'string'; // Assumption (backed by TS): if o[0] is a string, the rest are too.
 
 export const buildOptionsFromStrings = (options: string[]): IPickerListItem[] =>
   options.map((option) => ({ name: option, key: option }));

@@ -2,11 +2,11 @@ import * as React from 'react';
 
 import { FloatingNode, FloatingPortal } from '@floating-ui/react';
 
-import { PickerList } from '../../Picker';
-import { DEFAULT_LIST_HEIGHT, MIN_LIST_HEIGHT } from '../../Picker/constants';
-import { useFloatingPicker } from '../../Picker/hooks/useFloatingPicker';
-import { usePickerItems } from '../../Picker/hooks/usePickerItems';
 import { Input } from '../Input';
+import { IPickerListItem, PickerList } from '../Picker';
+import { DEFAULT_LIST_HEIGHT, MIN_LIST_HEIGHT } from '../Picker/constants';
+import { useFloatingPicker } from '../Picker/hooks/useFloatingPicker';
+import { usePickerItems } from '../Picker/hooks/usePickerItems';
 
 import {
   areAllOptionsStrings,
@@ -96,13 +96,15 @@ export const AutoComplete = React.forwardRef<
       }
     };
 
-    const pickerOptions = React.useMemo(
-      () =>
-        areAllOptionsStrings(options)
-          ? buildOptionsFromStrings(options)
-          : buildOptionsFromAutoCompleteListItems(options),
-      [options]
-    );
+    const pickerOptions = React.useMemo((): IPickerListItem[] => {
+      if (!options) {
+        return [];
+      }
+
+      return areAllOptionsStrings(options)
+        ? buildOptionsFromStrings(options)
+        : buildOptionsFromAutoCompleteListItems(options);
+    }, [options]);
 
     const { items, searchPhrase, handleOnFilter, handleSelect, selectedKeys } =
       usePickerItems({

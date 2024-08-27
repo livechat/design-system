@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import { Placement, Strategy } from '@floating-ui/react';
 
-import { IPickerListItem } from '../../Picker';
 import { InputProps } from '../Input';
+import { IPickerListItem } from '../Picker';
 
 // selectedItemBody is unnecessary for AutoCompleteListItem, key should be === name
 export type IAutoCompleteListItem = Omit<
@@ -15,7 +15,7 @@ export type IAutoCompleteListItem = Omit<
 
 export interface AutoCompleteProps extends Omit<InputProps, 'type'> {
   /** Options that will be displayed in the picker. If they are strings, they will be converted to `IPickerListItem[]`*/
-  options: string[] | IAutoCompleteListItem[];
+  options?: string[] | IAutoCompleteListItem[];
   /** If true, disables filtering of the options. Useful for getting options from an external source.*/
   alwaysShowAllOptions?: boolean;
   /** If true, the autocomplete list will be open when the component mounts.*/
