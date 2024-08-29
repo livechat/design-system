@@ -16,14 +16,6 @@ import * as AutoCompleteStories from './AutoComplete.stories';
 <AutoComplete options={["Option 1", "Option 2", "Option 3"]} placeholder="Placeholder text" onChange={(e) => {}} />
 ```
 
-## Component API <a id="ComponentAPI" />
-
-The `AutoComplete` component is a wrapper around the `Input` component that provides a list of suggestions based on the user's Input. It requires a list of unique `options` to be passed. All of `Input`'s props are available and the component can be used both controlled and uncontrolled.
-
-
-<ArgTypes of={AutoCompleteStories.Default} sort="requiredFirst" />
-
-
 ### Implementation tips
 
 #### `single` AutoComplete
@@ -82,3 +74,11 @@ The `hideOnExactMatch` makes it so when the value of the input matches the only 
 >
   Go to Figma documentation
 </a>
+
+
+## Component API <a id="ComponentAPI" />
+
+The `AutoComplete` component is a wrapper around the `Input` component that provides a list of suggestions based on the user's Input. It requires a list of unique `options` to be passed. All of `Input`'s props are available and the component can be used both controlled and uncontrolled.
+
+
+<ArgTypes of={AutoCompleteStories.Default} sort="requiredFirst" />
