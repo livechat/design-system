@@ -1,0 +1,16 @@
+.accordion-content-container {
+  border-left: 1px dashed var(--border-basic-primary);
+  padding-left: var(--spacing-6);
+}
+
+.rule-picker {
+  margin-bottom: var(--spacing-4);
+  max-width: 50%;
+}
+
+.label {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+}

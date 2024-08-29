@@ -10,7 +10,6 @@ $base-class: 'accordion';
   border-radius: var(--radius-4);
   box-shadow: unset;
   background-color: var(--surface-secondary-default);
-  padding: var(--spacing-5) var(--spacing-12) var(--spacing-5) var(--spacing-5);
   width: 100%;
   min-height: 24px;
 
@@ -21,20 +20,31 @@ $base-class: 'accordion';
 
   &:hover {
     border-color: var(--border-basic-hover);
-    cursor: pointer;
   }
 
   &--warning {
     background-color: var(--surface-accent-emphasis-min-warning);
+
+    &:hover {
+      border-color: var(--border-basic-warning);
+    }
   }
 
   &--error {
     background-color: var(--surface-accent-emphasis-min-negative);
+
+    &:hover {
+      border-color: var(--content-basic-negative);
+    }
   }
 
   &--open {
     box-shadow: var(--shadow-pop-over);
     background-color: var(--surface-primary-default);
+
+    &:hover {
+      border-color: transparent;
+    }
   }
 
   &__chevron {
@@ -42,6 +52,7 @@ $base-class: 'accordion';
     top: 20px;
     right: 20px;
     transition: inherit;
+    z-index: 0;
 
     &--open {
       transform: rotate(180deg);
@@ -49,7 +60,14 @@ $base-class: 'accordion';
   }
 
   &__label {
+    z-index: 1;
     margin: 0;
+    padding: var(--spacing-5) var(--spacing-12) var(--spacing-5)
+      var(--spacing-5);
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &__multiline-element {
@@ -62,7 +80,13 @@ $base-class: 'accordion';
     overflow: hidden;
 
     &__inner {
-      padding-top: var(--spacing-5);
+      transition: all var(--transition-duration-moderate-1);
+      opacity: 0;
+      padding: 0 var(--spacing-12) var(--spacing-5) var(--spacing-5);
+
+      &--open {
+        opacity: 1;
+      }
     }
   }
 }
