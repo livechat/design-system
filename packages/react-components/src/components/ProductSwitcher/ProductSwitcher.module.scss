@@ -29,12 +29,19 @@ $base-class: 'product-switcher';
     gap: var(--spacing-1);
     align-items: center;
     justify-content: center;
+    border-radius: var(--radius-2);
+    padding: 0 var(--spacing-2);
     height: 19px;
     text-decoration: none;
     color: var(--content-basic-secondary);
 
     &:hover {
       text-decoration: none;
+    }
+
+    &:focus-visible {
+      outline: 0;
+      box-shadow: var(--focus-ring-inner);
     }
   }
 
