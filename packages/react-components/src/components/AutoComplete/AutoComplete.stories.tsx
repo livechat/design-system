@@ -12,61 +12,6 @@ const placeholderText = 'Placeholder text';
 export default {
   title: 'Forms/AutoComplete',
   component: AutoComplete,
-  argTypes: {
-    onChange: {
-      description: 'The event handler for onChange',
-      action: 'changed',
-    },
-    icon: {
-      control: false,
-    },
-    readOnly: {
-      type: 'boolean',
-    },
-    description:
-      'Options that will be displayed in the picker. If they are strings, they will be converted to `IPickerListItem[]`',
-    table: {
-      type: {
-        summary: 'IAutoCompleteListItem[] | string[]',
-      },
-    },
-    alwaysShowAllOptions: {
-      description:
-        'If true, disables filtering of the options. Useful for getting options from an external source.',
-      table: {
-        defaultValue: { summary: 'false' },
-      },
-      control: {
-        type: 'boolean',
-      },
-    },
-    autocompleteOpenOnInit: {
-      description:
-        'If true, the autocomplete list will be open when the component mounts.',
-      table: {
-        defaultValue: { summary: 'false' },
-      },
-    },
-    single: {
-      description: 'If true, only shows the first matching item.',
-      table: {
-        defaultValue: { summary: 'false' },
-      },
-      control: {
-        type: 'boolean',
-      },
-    },
-    hideIfExactMatch: {
-      description:
-        'If true, the option list will be hidden if there is only one option and it is an exact match to the input value.',
-      table: {
-        defaultValue: { summary: 'true' },
-      },
-      control: {
-        type: 'boolean',
-      },
-    },
-  },
 };
 
 export const Default: StoryFn<AutoCompleteProps> = (
