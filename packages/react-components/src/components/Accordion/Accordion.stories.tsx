@@ -55,16 +55,19 @@ export const Example = (): React.ReactElement => {
   return (
     <div>
       <Accordion
-        label={
-          <div className="label">
-            <Icon source={TagIcon} />
-            Tag <Tag>{ruleSelected && ruleSelected[0].name}</Tag>
-            and
-            {tagSelected &&
-              tagSelected &&
-              tagSelected.map((tag) => <Tag key={tag.key}>{tag.name}</Tag>)}
-          </div>
-        }
+        label={{
+          closed: (
+            <div className="label">
+              <Icon source={TagIcon} />
+              Tag <Tag>{ruleSelected && ruleSelected[0].name}</Tag>
+              and
+              {tagSelected &&
+                tagSelected &&
+                tagSelected.map((tag) => <Tag key={tag.key}>{tag.name}</Tag>)}
+            </div>
+          ),
+          open: <div className="label">Edit your tags</div>,
+        }}
       >
         <div className="accordion-content-container">
           <div className="rule-picker">

@@ -1,0 +1,19 @@
+$base-class: 'accordion-animated-label';
+
+.#{$base-class} {
+  display: flex;
+  position: relative;
+  align-items: center;
+  height: 21px;
+
+  &__open,
+  &__close {
+    position: absolute;
+    transition: all var(--transition-duration-fast-2) ease-in-out;
+    opacity: 0;
+
+    &--visible {
+      opacity: 1;
+    }
+  }
+}

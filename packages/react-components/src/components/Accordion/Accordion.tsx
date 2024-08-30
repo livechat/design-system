@@ -3,36 +3,15 @@ import * as React from 'react';
 import { ChevronDown } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
-import { ComponentCoreProps } from '../../utils/types';
 import { Icon } from '../Icon';
 import { Text } from '../Typography';
+
+import { getLabel } from './helpers';
+import { IAccordionProps } from './types';
 
 import styles from './Accordion.module.scss';
 
 const baseClass = 'accordion';
-
-export interface IAccordionProps extends ComponentCoreProps {
-  /**
-   * Specify the content of the accordion
-   */
-  children: React.ReactNode;
-  /**
-   * Specify the label of the accordion
-   */
-  label: React.ReactNode;
-  /**
-   * Specify the multiline element, which will be displayed under the label
-   */
-  multilineElement?: React.ReactNode;
-  /**
-   * Specify the kind of the accordion
-   */
-  kind?: 'default' | 'warning' | 'error';
-  /**
-   * Specify if the accordion should be open on init
-   */
-  openOnInit?: boolean;
-}
 
 export const Accordion: React.FC<IAccordionProps> = ({
   className,
@@ -41,31 +20,43 @@ export const Accordion: React.FC<IAccordionProps> = ({
   multilineElement,
   kind = 'default',
   openOnInit = false,
+  isOpen,
+  onClose,
+  onOpen,
+  ...props
 }) => {
-  const [isOpen, setIsOpen] = React.useState(openOnInit);
+  const isControlled = isOpen !== undefined;
   const contentRef = React.useRef<HTMLDivElement>(null);
+  const [open, setOpen] = React.useState(openOnInit);
+  const currentlyOpen = isControlled ? isOpen : open;
   const [size, setSize] = React.useState(0);
   const previousSizeRef = React.useRef(size);
   const mergedClassName = cx(
     styles[baseClass],
     styles[`${baseClass}--${kind}`],
     {
-      [styles[`${baseClass}--open`]]: isOpen,
+      [styles[`${baseClass}--open`]]: currentlyOpen,
     },
     className
   );
 
-  const handleClick = () => {
-    setIsOpen((prev) => !prev);
+  const handleStateChange = (state: boolean) => {
+    if (state) {
+      onClose?.();
+      !isControlled && setOpen(false);
+    } else {
+      onOpen?.();
+      !isControlled && setOpen(true);
+    }
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (!isOpen && (event.key === 'Enter' || event.key === ' ')) {
-      setIsOpen((prev) => !prev);
+    if (!currentlyOpen && (event.key === 'Enter' || event.key === ' ')) {
+      handleStateChange(currentlyOpen);
     }
 
-    if (isOpen && event.key === 'Escape') {
-      setIsOpen(false);
+    if (currentlyOpen && event.key === 'Escape') {
+      handleStateChange(currentlyOpen);
     }
   };
 
@@ -94,22 +85,23 @@ export const Accordion: React.FC<IAccordionProps> = ({
   return (
     <div
       tabIndex={0}
-      aria-expanded={isOpen}
+      aria-expanded={currentlyOpen}
       className={mergedClassName}
       onKeyDown={handleKeyDown}
+      {...props}
     >
       <Icon
         source={ChevronDown}
         className={cx(styles[`${baseClass}__chevron`], {
-          [styles[`${baseClass}__chevron--open`]]: isOpen,
+          [styles[`${baseClass}__chevron--open`]]: currentlyOpen,
         })}
       />
       <Text
         bold
         className={styles[`${baseClass}__label`]}
-        onClick={handleClick}
+        onClick={() => handleStateChange(currentlyOpen)}
       >
-        {label}
+        {getLabel(label, currentlyOpen)}
       </Text>
       {multilineElement && (
         <div className={styles[`${baseClass}__multiline-element`]}>
@@ -118,13 +110,13 @@ export const Accordion: React.FC<IAccordionProps> = ({
       )}
       <div
         className={styles[`${baseClass}__content`]}
-        style={{ maxHeight: isOpen ? size : 0 }}
+        style={{ maxHeight: currentlyOpen ? size : 0 }}
       >
-        <div aria-expanded={isOpen} ref={contentRef}>
+        <div aria-expanded={currentlyOpen} ref={contentRef}>
           <Text
             as="div"
             className={cx(styles[`${baseClass}__content__inner`], {
-              [styles[`${baseClass}__content__inner--open`]]: isOpen,
+              [styles[`${baseClass}__content__inner--open`]]: currentlyOpen,
             })}
           >
             {children}
