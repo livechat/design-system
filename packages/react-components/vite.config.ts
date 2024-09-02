@@ -48,6 +48,7 @@ export default defineConfig(({ mode }) => {
           'src/utils',
           'src/hooks',
           'src/components',
+          'src/providers',
         ],
         exclude: ['**/*.stories.tsx', '**/*.spec.ts', '**/*.spec.tsx'],
       }),

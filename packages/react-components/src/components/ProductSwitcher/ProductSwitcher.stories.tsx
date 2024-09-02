@@ -63,6 +63,7 @@ export const Default: Story = {
           next_charge_at: '2024-08-25T10:41:37Z',
         },
       },
+      mainProductId: 'livechat',
     });
 
     return (

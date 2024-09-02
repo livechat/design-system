@@ -20,6 +20,8 @@ export type ProductName =
   | 'Hello'
   | 'Accounts';
 
+export type Env = 'labs' | 'staging' | 'prod';
+
 export interface ProductSwitcherProps {
   mainProductId: ProductId;
   productOptions: ProductOption[];
