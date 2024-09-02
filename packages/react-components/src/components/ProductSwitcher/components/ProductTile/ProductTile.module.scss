@@ -33,6 +33,25 @@ $base-class: 'product-tile';
         }
       }
     }
+
+    &:focus-visible {
+      outline: 0;
+
+      .#{$base-class} {
+        transform: scale(1.1);
+        transition-property: transform, bottom;
+        box-shadow: var(--focus-ring-inner);
+
+        &__second-layer {
+          bottom: -7px;
+          width: 42px;
+        }
+
+        &__third-layer {
+          bottom: -12px;
+        }
+      }
+    }
   }
 }
 

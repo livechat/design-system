@@ -63,10 +63,11 @@ export const Default: Story = {
           next_charge_at: '2024-08-25T10:41:37Z',
         },
       },
+      mainProductId: 'livechat',
     });
 
     return (
-      <div className="lc-dark-theme" style={{ display: 'flex', height: 500 }}>
+      <div style={{ display: 'flex', height: 500 }}>
         <ProductSwitcher {...props} productOptions={products} />
       </div>
     );

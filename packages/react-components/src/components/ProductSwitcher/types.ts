@@ -20,9 +20,12 @@ export type ProductName =
   | 'Hello'
   | 'Accounts';
 
+export type Env = 'labs' | 'staging' | 'prod';
+
 export interface ProductSwitcherProps {
   mainProductId: ProductId;
   productOptions: ProductOption[];
+  textURL?: string;
   openedOnInit?: boolean;
   isVisible?: boolean;
   onOpen?: (event?: Event) => void;

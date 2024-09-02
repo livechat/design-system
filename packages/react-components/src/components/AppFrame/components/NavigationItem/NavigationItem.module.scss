@@ -3,6 +3,11 @@ $base-class: 'navigation-item';
 .#{$base-class} {
   display: flex;
   position: relative;
+  cursor: pointer;
+
+  &--disabled {
+    cursor: not-allowed;
+  }
 
   &__badge {
     position: absolute;
@@ -23,7 +28,7 @@ $base-class: 'navigation-item';
     height: 42px;
     color: var(--content-locked-white);
 
-    &:hover {
+    &:hover:not(.#{$base-class}__button--disabled) {
       opacity: 1;
       background-color: color-mix(
         in srgb,
@@ -37,7 +42,7 @@ $base-class: 'navigation-item';
       }
     }
 
-    &:focus-visible {
+    &:focus-visible:not(.#{$base-class}__button--disabled) {
       opacity: 1;
       outline: 0;
       box-shadow: var(--focus-ring-inner);
@@ -45,6 +50,10 @@ $base-class: 'navigation-item';
       span {
         transform: scale(1.1);
       }
+    }
+
+    &--disabled {
+      opacity: 0.4;
     }
 
     span {

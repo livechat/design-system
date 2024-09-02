@@ -10,6 +10,10 @@ export interface IChecklistItemProps {
    */
   title: string;
   /**
+   * Set the additional text for the title
+   */
+  titleHint?: string;
+  /**
    * Set the description of the item
    */
   description: string;

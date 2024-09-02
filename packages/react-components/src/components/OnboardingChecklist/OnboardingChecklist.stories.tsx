@@ -58,7 +58,9 @@ const getItems = (
   },
   {
     id: '3',
-    title: 'Invite your teammates',
+    title:
+      'Invite your teammates with this really long long long text your teammates with this really long long long text ',
+    titleHint: 'recommended: 5',
     description: 'Save time by using prepared answers',
     placeholder: <Icon size="xxxlarge" source={Icons.ChatBotColored} />,
     cta: (
@@ -140,7 +142,15 @@ export const Default = (): React.ReactElement => {
       completionMessageData={{
         title: 'Your getting started guide is completed. ',
         greetingText: 'Hey Tim, nice work!',
-        placeholder: <Icon size="xxxlarge" source={Icons.HelloColored} />,
+        delay: 3000,
+        placeholder: (
+          <video
+            src="https://cdn.livechat-static.com/api/file/lc/img/default/assets/onboarding-success.mp4"
+            playsInline
+            muted
+            autoPlay
+          />
+        ),
       }}
     />
   );

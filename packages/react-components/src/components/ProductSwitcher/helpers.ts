@@ -13,24 +13,33 @@ import {
   SSOProductIdMap,
   ProductOption,
   ProductSubscription,
+  Env,
 } from './types';
 
 export const getRedirectURL = (
   productClientId: string,
   productRedirectUri: string,
   organizationId: string,
-  env: 'production' | 'prod' | string | undefined
+  mainProductId: ProductId,
+  env: Env
 ): string => {
   let domain = '';
-  if (env && env !== 'production' && env !== 'prod') {
+  if (env && env !== 'prod') {
     domain += `https://accounts.${env}.livechat.com`;
   } else {
     domain += 'https://accounts.livechat.com';
   }
 
-  return `${domain}?client_id=${productClientId}&redirect_uri=${encodeURIComponent(
+  const utmSource = getUtmSource(env, mainProductId);
+  const url = `${domain}?client_id=${productClientId}&redirect_uri=${encodeURIComponent(
     productRedirectUri
   )}&response_type=token&organization_id=${organizationId}`;
+
+  if (!utmSource) {
+    return url;
+  }
+
+  return `${url}&utm_source=${utmSource}&utm_medium=referral&utm_campaign=productswitcher`;
 };
 export const getTrialDaysLeft = (trialEnd: string): number => {
   const trialEndDate = new Date(trialEnd);
@@ -56,7 +65,8 @@ export const createProductOption = (
   redirectData: ProductData[],
   subscriptions: ProductSubscription,
   organizationId: string,
-  env?: string
+  mainProductId: ProductId,
+  env: Env
 ): ProductOption => {
   const productData = redirectData.find(
     (data) => data.product === SSOProductIdMap[product.id]
@@ -79,14 +89,13 @@ export const createProductOption = (
       productData.clientId,
       productData.redirectUri,
       organizationId,
+      mainProductId,
       env
     ),
   };
 };
 
-export const getRedirectDataByEnv = (
-  env: 'labs' | 'staging' | 'prod'
-): ProductData[] => {
+export const getRedirectDataByEnv = (env: Env): ProductData[] => {
   switch (env) {
     case 'prod':
       return prodRedirectData;
@@ -97,4 +106,13 @@ export const getRedirectDataByEnv = (
     default:
       return [];
   }
+};
+
+export const getUtmSource = (env: Env, mainProductId: ProductId) => {
+  const redirectData = getRedirectDataByEnv(env);
+  const productData = redirectData.find(
+    (data) => data.product === SSOProductIdMap[mainProductId]
+  );
+
+  return productData?.redirectUri.replace('https://', '');
 };
