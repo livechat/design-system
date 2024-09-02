@@ -17,7 +17,7 @@ export const AccordionMultilineElement: React.FC<
   const multilineRef = React.useRef<HTMLDivElement>(null);
   const [size, setSize] = React.useState(0);
   const previousMultilineSizeRef = React.useRef(size);
-  const { isOpen, isMounted } = useAnimations({
+  const { isOpen: isVisible, isMounted } = useAnimations({
     isVisible: !isExpanded,
     elementRef: multilineRef,
   });
@@ -47,9 +47,9 @@ export const AccordionMultilineElement: React.FC<
   return (
     <div
       className={styles[`${baseClass}`]}
-      style={{ maxHeight: isOpen ? size : 0 }}
+      style={{ maxHeight: isVisible ? size : 0 }}
     >
-      <div ref={multilineRef}>
+      <div aria-expanded={isExpanded} ref={multilineRef}>
         {isMounted && (
           <div className={styles[`${baseClass}__inner`]}>{children}</div>
         )}

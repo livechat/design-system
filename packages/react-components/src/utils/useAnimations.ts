@@ -20,15 +20,15 @@ export const useAnimations = ({
 
   // The main part of the logic responsible for managing the states used to animate the container opening/closing and mounting/unmounting the container elements
   React.useEffect(() => {
-    const sideNavWrapper = elementRef.current;
+    const currentElement = elementRef.current;
 
-    if (!isOpen && sideNavWrapper) {
+    if (!isOpen && currentElement) {
       const handleTransitionEnd = () => setisMounted(false);
 
-      sideNavWrapper.addEventListener('transitionend', handleTransitionEnd);
+      currentElement.addEventListener('transitionend', handleTransitionEnd);
 
       return () => {
-        sideNavWrapper.removeEventListener(
+        currentElement.removeEventListener(
           'transitionend',
           handleTransitionEnd
         );
