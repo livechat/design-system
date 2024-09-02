@@ -1,24 +1,24 @@
 import * as React from 'react';
 
-interface UseAppFrameAnimationsProps {
+interface UseAnimationsProps {
   isVisible: boolean;
   elementRef: React.RefObject<HTMLDivElement>;
 }
 
-interface IUseAppFrameAnimations {
+interface IUseAnimations {
   isOpen: boolean;
   isMounted: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const useAppFrameAnimations = ({
+export const useAnimations = ({
   isVisible,
   elementRef,
-}: UseAppFrameAnimationsProps): IUseAppFrameAnimations => {
+}: UseAnimationsProps): IUseAnimations => {
   const [isMounted, setisMounted] = React.useState(isVisible);
   const [isOpen, setIsOpen] = React.useState(isVisible);
 
-  // The main part of the logic responsible for managing the states used to animate the side menu group opening/closing and mounting/unmounting the side menu elements
+  // The main part of the logic responsible for managing the states used to animate the container opening/closing and mounting/unmounting the container elements
   React.useEffect(() => {
     const sideNavWrapper = elementRef.current;
 
@@ -45,7 +45,7 @@ export const useAppFrameAnimations = ({
     return setIsOpen(false);
   }, [isOpen]);
 
-  // Additional logic, dedicated to the side menu wrapper whose visibility is managed by the context
+  // Additional logic, dedicated to the container wrapper whose visibility is managed by the context
   React.useEffect(() => {
     if (isVisible) {
       setisMounted(true);

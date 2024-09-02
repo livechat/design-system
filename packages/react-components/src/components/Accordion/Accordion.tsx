@@ -3,6 +3,7 @@ import * as React from 'react';
 import { ChevronDown } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
+import { useAnimations } from '../../utils';
 import { Icon } from '../Icon';
 import { Text } from '../Typography';
 
@@ -39,6 +40,10 @@ export const Accordion: React.FC<IAccordionProps> = ({
     },
     className
   );
+  const { isOpen: isVisible, isMounted } = useAnimations({
+    isVisible: currentlyOpen,
+    elementRef: contentRef,
+  });
 
   const handleStateChange = (state: boolean) => {
     if (state) {
@@ -85,7 +90,7 @@ export const Accordion: React.FC<IAccordionProps> = ({
   return (
     <div
       tabIndex={0}
-      aria-expanded={currentlyOpen}
+      aria-expanded={isVisible}
       className={mergedClassName}
       onKeyDown={handleKeyDown}
       {...props}
@@ -93,15 +98,15 @@ export const Accordion: React.FC<IAccordionProps> = ({
       <Icon
         source={ChevronDown}
         className={cx(styles[`${baseClass}__chevron`], {
-          [styles[`${baseClass}__chevron--open`]]: currentlyOpen,
+          [styles[`${baseClass}__chevron--open`]]: isVisible,
         })}
       />
       <Text
         bold
         className={styles[`${baseClass}__label`]}
-        onClick={() => handleStateChange(currentlyOpen)}
+        onClick={() => handleStateChange(isVisible)}
       >
-        {getLabel(label, currentlyOpen)}
+        {getLabel(label, isVisible)}
       </Text>
       {multilineElement && (
         <div className={styles[`${baseClass}__multiline-element`]}>
@@ -110,17 +115,19 @@ export const Accordion: React.FC<IAccordionProps> = ({
       )}
       <div
         className={styles[`${baseClass}__content`]}
-        style={{ maxHeight: currentlyOpen ? size : 0 }}
+        style={{ maxHeight: isVisible ? size : 0 }}
       >
-        <div aria-expanded={currentlyOpen} ref={contentRef}>
-          <Text
-            as="div"
-            className={cx(styles[`${baseClass}__content__inner`], {
-              [styles[`${baseClass}__content__inner--open`]]: currentlyOpen,
-            })}
-          >
-            {children}
-          </Text>
+        <div aria-expanded={isVisible} ref={contentRef}>
+          {isMounted && (
+            <Text
+              as="div"
+              className={cx(styles[`${baseClass}__content__inner`], {
+                [styles[`${baseClass}__content__inner--open`]]: isVisible,
+              })}
+            >
+              {children}
+            </Text>
+          )}
         </div>
       </div>
     </div>

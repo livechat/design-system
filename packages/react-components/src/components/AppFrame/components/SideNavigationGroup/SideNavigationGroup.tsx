@@ -3,10 +3,10 @@ import * as React from 'react';
 import { ChevronRight } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
+import { useAnimations } from '../../../../utils';
 import noop from '../../../../utils/noop';
 import { Icon } from '../../../Icon';
 import { Text } from '../../../Typography';
-import { useAppFrameAnimations } from '../../hooks/useAppFrameAnimations';
 import { SideNavigationItem } from '../SideNavigationItem/SideNavigationItem';
 
 import { ISideNavigationGroupProps } from './types';
@@ -31,7 +31,7 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   const [listHeight, setListHeight] = React.useState<number>(0);
   const hadActiveListElementsRef = React.useRef(false);
   const listWrapperRef = React.useRef<HTMLDivElement>(null);
-  const { isOpen, isMounted, setIsOpen } = useAppFrameAnimations({
+  const { isOpen, isMounted, setIsOpen } = useAnimations({
     isVisible: !isCollapsible || shouldOpenOnInit,
     elementRef: listWrapperRef,
   });
