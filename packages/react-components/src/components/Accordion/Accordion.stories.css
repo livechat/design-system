@@ -14,3 +14,18 @@
   gap: 5px;
   align-items: center;
 }
+
+.multiline {
+  border-radius: var(--radius-3);
+  background-color: var(--surface-tertiary-default);
+  padding: var(--spacing-3);
+  white-space: pre-wrap;
+
+  p {
+    margin-top: 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

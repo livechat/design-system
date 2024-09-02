@@ -44,7 +44,7 @@ export const Kinds = (): React.ReactElement => {
   );
 };
 
-export const Example = (): React.ReactElement => {
+export const Examples = (): React.ReactElement => {
   const [ruleSelected, setRuleSelected] = React.useState<
     IPickerListItem[] | null
   >([RULE_PICKER_OPTIONS[0]]);
@@ -54,41 +54,60 @@ export const Example = (): React.ReactElement => {
 
   return (
     <div>
-      <Accordion
-        label={{
-          closed: (
-            <div className="label">
-              <Icon source={TagIcon} />
-              Tag <Tag>{ruleSelected && ruleSelected[0].name}</Tag>
-              and
-              {tagSelected &&
-                tagSelected &&
-                tagSelected.map((tag) => <Tag key={tag.key}>{tag.name}</Tag>)}
+      <StoryDescriptor title="With changing label">
+        <Accordion
+          label={{
+            closed: (
+              <div className="label">
+                <Icon source={TagIcon} />
+                Tag <Tag>{ruleSelected && ruleSelected[0].name}</Tag>
+                and
+                {tagSelected &&
+                  tagSelected &&
+                  tagSelected.map((tag) => <Tag key={tag.key}>{tag.name}</Tag>)}
+              </div>
+            ),
+            open: <div className="label">Edit your tags</div>,
+          }}
+        >
+          <div className="accordion-content-container">
+            <div className="rule-picker">
+              <Picker
+                id="rule-picker"
+                options={RULE_PICKER_OPTIONS}
+                selected={ruleSelected}
+                hideClearButton
+                searchDisabled
+                onSelect={(selected) => setRuleSelected(selected)}
+              />
             </div>
-          ),
-          open: <div className="label">Edit your tags</div>,
-        }}
-      >
-        <div className="accordion-content-container">
-          <div className="rule-picker">
             <Picker
-              id="rule-picker"
-              options={RULE_PICKER_OPTIONS}
-              selected={ruleSelected}
-              hideClearButton
-              searchDisabled
-              onSelect={(selected) => setRuleSelected(selected)}
+              id="first-picker"
+              type="multi"
+              options={TAGS_PICKER_OPTIONS}
+              selected={tagSelected}
+              onSelect={(selected) => setTagSelected(selected)}
             />
           </div>
-          <Picker
-            id="first-picker"
-            type="multi"
-            options={TAGS_PICKER_OPTIONS}
-            selected={tagSelected}
-            onSelect={(selected) => setTagSelected(selected)}
-          />
-        </div>
-      </Accordion>
+        </Accordion>
+      </StoryDescriptor>
+      <StoryDescriptor title="With multiline element">
+        <Accordion
+          label="Default"
+          multilineElement={
+            <div className="multiline">
+              <p>{`Hello {{ticket.requesterName}},`}</p>
+              <p>
+                We haven't heard back from you for some time. If you need any
+                further help, please follow up on this email.
+              </p>
+              <p>Thank you.</p>
+            </div>
+          }
+        >
+          Default accordion content
+        </Accordion>
+      </StoryDescriptor>
     </div>
   );
 };

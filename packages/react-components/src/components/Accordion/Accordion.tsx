@@ -7,6 +7,7 @@ import { useAnimations } from '../../utils';
 import { Icon } from '../Icon';
 import { Text } from '../Typography';
 
+import { AccordionMultilineElement } from './components/AccordionMultilineElement';
 import { getLabel } from './helpers';
 import { IAccordionProps } from './types';
 
@@ -26,12 +27,9 @@ export const Accordion: React.FC<IAccordionProps> = ({
   onOpen,
   ...props
 }) => {
-  const isControlled = isOpen !== undefined;
-  const contentRef = React.useRef<HTMLDivElement>(null);
   const [open, setOpen] = React.useState(openOnInit);
+  const isControlled = isOpen !== undefined;
   const currentlyOpen = isControlled ? isOpen : open;
-  const [size, setSize] = React.useState(0);
-  const previousSizeRef = React.useRef(size);
   const mergedClassName = cx(
     styles[baseClass],
     styles[`${baseClass}--${kind}`],
@@ -40,7 +38,10 @@ export const Accordion: React.FC<IAccordionProps> = ({
     },
     className
   );
-  const { isOpen: isVisible, isMounted } = useAnimations({
+  const contentRef = React.useRef<HTMLDivElement>(null);
+  const [size, setSize] = React.useState(0);
+  const previousSizeRef = React.useRef(size);
+  const { isOpen: isExpanded, isMounted } = useAnimations({
     isVisible: currentlyOpen,
     elementRef: contentRef,
   });
@@ -56,11 +57,11 @@ export const Accordion: React.FC<IAccordionProps> = ({
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (!currentlyOpen && (event.key === 'Enter' || event.key === ' ')) {
+    if (!isExpanded && (event.key === 'Enter' || event.key === ' ')) {
       handleStateChange(currentlyOpen);
     }
 
-    if (currentlyOpen && event.key === 'Escape') {
+    if (isExpanded && event.key === 'Escape') {
       handleStateChange(currentlyOpen);
     }
   };
@@ -90,7 +91,7 @@ export const Accordion: React.FC<IAccordionProps> = ({
   return (
     <div
       tabIndex={0}
-      aria-expanded={isVisible}
+      aria-expanded={isExpanded}
       className={mergedClassName}
       onKeyDown={handleKeyDown}
       {...props}
@@ -98,31 +99,31 @@ export const Accordion: React.FC<IAccordionProps> = ({
       <Icon
         source={ChevronDown}
         className={cx(styles[`${baseClass}__chevron`], {
-          [styles[`${baseClass}__chevron--open`]]: isVisible,
+          [styles[`${baseClass}__chevron--open`]]: isExpanded,
         })}
       />
       <Text
         bold
         className={styles[`${baseClass}__label`]}
-        onClick={() => handleStateChange(isVisible)}
+        onClick={() => handleStateChange(isExpanded)}
       >
-        {getLabel(label, isVisible)}
+        {getLabel(label, isExpanded)}
       </Text>
       {multilineElement && (
-        <div className={styles[`${baseClass}__multiline-element`]}>
+        <AccordionMultilineElement isExpanded={isExpanded}>
           {multilineElement}
-        </div>
+        </AccordionMultilineElement>
       )}
       <div
         className={styles[`${baseClass}__content`]}
-        style={{ maxHeight: isVisible ? size : 0 }}
+        style={{ maxHeight: isExpanded ? size : 0 }}
       >
-        <div aria-expanded={isVisible} ref={contentRef}>
+        <div aria-expanded={isExpanded} ref={contentRef}>
           {isMounted && (
             <Text
               as="div"
               className={cx(styles[`${baseClass}__content__inner`], {
-                [styles[`${baseClass}__content__inner--open`]]: isVisible,
+                [styles[`${baseClass}__content__inner--open`]]: isExpanded,
               })}
             >
               {children}

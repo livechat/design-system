@@ -70,10 +70,6 @@ $base-class: 'accordion';
     }
   }
 
-  &__multiline-element {
-    margin-top: var(--spacing-1);
-  }
-
   &__content {
     transition: inherit;
     height: 100%;
