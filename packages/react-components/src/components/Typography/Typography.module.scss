@@ -177,6 +177,10 @@
   &--uppercase {
     text-transform: uppercase;
   }
+
+  &--no-margin {
+    margin: 0;
+  }
 }
 
 .display-md {

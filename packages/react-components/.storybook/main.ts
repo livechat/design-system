@@ -22,6 +22,19 @@ const config: StorybookConfig = {
   typescript: {
     reactDocgen: 'react-docgen-typescript',
   },
+  core: {
+    disableTelemetry: true,
+  },
+  async viteFinal(config) {
+    // Merge custom configuration into the default config
+    const { mergeConfig } = await import('vite');
+
+    return mergeConfig(config, {
+      // Add dependencies to pre-optimization
+      // workaround, see https://github.com/storybookjs/storybook/issues/25256
+      assetsInclude: ['/sb-preview/runtime.js'],
+    });
+  },
 };
 
 function getAbsolutePath(value) {

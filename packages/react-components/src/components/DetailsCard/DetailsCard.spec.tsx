@@ -63,7 +63,7 @@ describe('<DetailsCard> component', () => {
     expect(label).toHaveAttribute('aria-expanded', 'true');
   });
 
-  it('should call onClick handler on label click', () => {
+  it('should call onClick handler on label button click', () => {
     const handler = vi.fn();
     const { getByRole } = renderComponent({
       ...defaultProps,
@@ -84,5 +84,22 @@ describe('<DetailsCard> component', () => {
 
     expect(getByText('Left node')).toBeInTheDocument();
     expect(getByText('Right node')).toBeInTheDocument();
+  });
+
+  it('should not call onClick handler if external interactive element is clicked', () => {
+    const handler = vi.fn();
+    const { getByRole, getByText } = renderComponent({
+      ...defaultProps,
+      onClick: handler,
+      leftNode: <input />,
+      rightNode: <span>text</span>,
+    });
+    const input = getByRole('textbox');
+    const text = getByText('text');
+
+    userEvent.click(input);
+    expect(handler).toHaveBeenCalledTimes(0);
+    userEvent.click(text);
+    expect(handler).toHaveBeenCalledTimes(1);
   });
 });

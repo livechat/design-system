@@ -1611,4 +1611,39 @@ export const ColorsData: Record<
     desc: '',
     deprecated: undefined,
   },
+  OneTooltipBackground: {
+    group: ColorGroup.Products,
+    desc: '',
+    deprecated: undefined,
+  },
+  ContentBasicAutofill: {
+    group: ColorGroup.ContentBasic,
+    desc: '',
+    deprecated: undefined,
+  },
+  ProductsHello: {
+    group: ColorGroup.Products,
+    desc: '',
+    deprecated: undefined,
+  },
+  ProductsPlatform: {
+    group: ColorGroup.Products,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceCheckListItemOpenBackground: {
+    group: ColorGroup.SurfaceComponentSpecific,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceCheckListBackground: {
+    group: ColorGroup.SurfaceComponentSpecific,
+    desc: '',
+    deprecated: undefined,
+  },
+  ContentBasicPlaceholder: {
+    group: ColorGroup.ContentBasic,
+    desc: '',
+    deprecated: undefined,
+  },
 };

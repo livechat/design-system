@@ -105,6 +105,10 @@ export interface ITooltipProps {
    */
   offsetMainAxis?: number;
   /**
+   * Set the tooltip distance from the trigger
+   */
+  offsetCrossAxis?: number;
+  /**
    * Set custom reference object for the tooltip
    */
   referenceElement?: VirtualElement;

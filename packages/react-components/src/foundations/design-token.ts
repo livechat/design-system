@@ -375,6 +375,14 @@ export const DesignToken = {
     '--one-popover-message-background-default',
   OnePopoverBorderDefault: '--one-popover-border-default',
   OnePopoverBorderActive: '--one-popover-border-active',
+  OneTooltipBackground: '--one-tooltip-background',
+  ContentBasicAutofill: '--content-basic-autofill',
+  ProductsHello: '--products-hello',
+  ProductsPlatform: '--products-platform',
+  SurfaceCheckListItemOpenBackground:
+    '--surface-check-list-item-open-background',
+  SurfaceCheckListBackground: '--surface-check-list-background',
+  ContentBasicPlaceholder: '--content-basic-placeholder',
 };
 
 export type DesignTokenKey = keyof typeof DesignToken;

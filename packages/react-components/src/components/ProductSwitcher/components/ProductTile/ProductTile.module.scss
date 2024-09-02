@@ -1,0 +1,127 @@
+$base-class: 'product-tile';
+
+@mixin animation() {
+  transition: all 100ms ease-in-out;
+}
+
+.outer-border {
+  border: solid 2px rgb(255 255 255 / 80%);
+  border-radius: 12px;
+  padding: 3px;
+}
+
+.product-tile-wrapper {
+  display: flex;
+  position: relative;
+  justify-content: center;
+
+  &__animated {
+    cursor: pointer;
+
+    &:hover {
+      .#{$base-class} {
+        transform: scale(1.1);
+        transition-property: transform, bottom;
+
+        &__second-layer {
+          bottom: -7px;
+          width: 42px;
+        }
+
+        &__third-layer {
+          bottom: -12px;
+        }
+      }
+    }
+
+    &:focus-visible {
+      outline: 0;
+
+      .#{$base-class} {
+        transform: scale(1.1);
+        transition-property: transform, bottom;
+        box-shadow: var(--focus-ring-inner);
+
+        &__second-layer {
+          bottom: -7px;
+          width: 42px;
+        }
+
+        &__third-layer {
+          bottom: -12px;
+        }
+      }
+    }
+  }
+}
+
+.#{$base-class} {
+  @include animation();
+
+  display: flex;
+  position: relative;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-3);
+  width: 36px;
+  height: 36px;
+
+  &__main-product {
+    position: relative;
+    border: 1.5px solid var(--navbar-background);
+    width: 42px;
+    height: 42px;
+  }
+
+  &__badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    border: solid 1.5px var(--picker-list-background);
+
+    &--bordered {
+      border: solid 1.5px var(--navbar-background);
+    }
+  }
+
+  &__icon {
+    color: var(--content-locked-white);
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    &--large svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    &--expired {
+      color: var(--content-locked-secondary);
+    }
+  }
+
+  &__second-layer {
+    @include animation();
+
+    position: absolute;
+    bottom: -4px;
+    border: solid 1.5px var(--navbar-background);
+    border-radius: var(--radius-3);
+    width: 40px;
+    height: 37px;
+  }
+
+  &__third-layer {
+    @include animation();
+
+    position: absolute;
+    bottom: -8px;
+    border: solid 1.5px var(--navbar-background);
+    border-radius: var(--radius-3);
+    width: 36px;
+    height: 36px;
+  }
+}

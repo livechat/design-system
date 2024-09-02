@@ -385,4 +385,15 @@ $content-basic-internal-note: #3a310c;
     #c930ff 313.12deg,
     #7000ff 360.45deg
   );
+  --one-tooltip-background: linear-gradient(
+    254.49deg,
+    #3c364c -0.38%,
+    #1b2b46 96.36%
+  );
+  --content-basic-autofill: hsl(240deg 10% 8% / 59%);
+  --products-hello: #e8bb00;
+  --products-platform: #04df90;
+  --surface-check-list-item-open-background: #fff;
+  --surface-check-list-background: #{$surface-secondary-default};
+  --content-basic-placeholder: hsl(240deg 10% 8% / 59%);
 }

@@ -16,7 +16,7 @@
   "type": "module",
   "scripts": {
     "dev": "run-p dev:*",
-    "dev:storybook": "storybook dev -p 6006 --quiet",
+    "dev:storybook": "storybook dev -p 6006 --exact-port",
     "dev:lib": "vite build --mode development -w",
     "prebuild": "rimraf dist && mkdir dist",
     "build": "tsc && vite build",
@@ -57,7 +57,7 @@
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
     "@types/react-transition-group": "^4.4.4",
-    "@vitejs/plugin-react": "^4.2.1",
+    "@vitejs/plugin-react": "^4.3.1",
     "@vitest/coverage-v8": "^1.6.0",
     "chromatic": "^11.5.3",
     "jsdom": "^24.1.0",

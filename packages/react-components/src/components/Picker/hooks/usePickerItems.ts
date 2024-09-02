@@ -15,6 +15,8 @@ interface UsePickerItemsProps {
   selectAllOptionText?: string;
   onSelect: (items: IPickerListItem[] | null) => void;
   setOpen: (isOpen: boolean) => void;
+  clearSearchAfterSelection: boolean;
+  inputRef: React.RefObject<HTMLInputElement>;
 }
 
 interface IUsePickerItems {
@@ -34,6 +36,8 @@ export const usePickerItems = ({
   selectAllOptionText,
   onSelect,
   setOpen,
+  clearSearchAfterSelection,
+  inputRef,
 }: UsePickerItemsProps): IUsePickerItems => {
   const [_selectedKeys, setSelectedKeys] = React.useState<string[]>(
     () => selected?.map(getPickerListItemKey) || []
@@ -44,6 +48,26 @@ export const usePickerItems = ({
     : _selectedKeys;
 
   const [searchPhrase, setSearchPhrase] = React.useState<string>('');
+
+  const handleOnFilter = (text: string) => setSearchPhrase(text);
+
+  const handleItemRemove = (itemKey: string) => handleSelect(itemKey);
+
+  const handleClear = () => {
+    !isDataControlled && setSelectedKeys([]);
+    onSelect(null);
+    setSearchPhrase('');
+    setOpen(false);
+  };
+
+  const clearInput = () => {
+    handleOnFilter('');
+
+    if (inputRef.current) {
+      // eslint-disable-next-line react-compiler/react-compiler
+      inputRef.current.value = '';
+    }
+  };
 
   const items = React.useMemo<IPickerListItem[]>(() => {
     const shouldShowSelectAll = type === 'multi' && selectAllOptionText;
@@ -118,19 +142,12 @@ export const usePickerItems = ({
             return newIndexes;
           });
         }
+
+        if (clearSearchAfterSelection) {
+          clearInput();
+        }
       }
     }
-  };
-
-  const handleOnFilter = (text: string) => setSearchPhrase(text);
-
-  const handleItemRemove = (itemKey: string) => handleSelect(itemKey);
-
-  const handleClear = () => {
-    !isDataControlled && setSelectedKeys([]);
-    onSelect(null);
-    setSearchPhrase('');
-    setOpen(false);
   };
 
   return {

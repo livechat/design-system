@@ -15,6 +15,7 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   count?: number;
   /**
    * Specify the badge kind
+   * @param secondary - is deprecated, use "primary" or "tertiary" instead
    */
   kind?: 'primary' | 'secondary' | 'tertiary';
   /**
@@ -23,10 +24,12 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   max?: number;
   /**
    * Specify the badge size
+   * @param large - is deprecated, use "medium" or "compact" instead
    */
   size?: 'large' | 'medium' | 'compact';
   /**
    * Specify the badge type
+   * @param dot - is deprecated, use "UpdateBadge" component instead
    */
   type?: 'counter' | 'alert' | 'dot';
 }
