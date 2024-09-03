@@ -95,6 +95,16 @@ describe('<PickerList> component', () => {
     expect(getByText('Custom empty state')).toBeVisible();
   });
 
+  it('should display nothing if no filter result and hideWhenEmpty is true', () => {
+    const { container } = renderComponent({
+      ...defaultProps,
+      options: [],
+      hideWhenEmpty: true,
+    });
+
+    expect(container.firstChild).toBeNull();
+  });
+
   it('should display custom components as options', () => {
     const { getByText } = renderComponent({
       ...defaultProps,

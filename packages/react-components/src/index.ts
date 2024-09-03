@@ -9,6 +9,7 @@ export * from './components/ActionCard';
 export * from './components/ActionMenu';
 export * from './components/Alert';
 export * from './components/AppFrame';
+export * from './components/AutoComplete';
 export * from './components/Avatar';
 export * from './components/Badge';
 export * from './components/Button';
