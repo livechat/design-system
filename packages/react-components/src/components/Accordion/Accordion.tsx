@@ -27,42 +27,45 @@ export const Accordion: React.FC<IAccordionProps> = ({
   onOpen,
   ...props
 }) => {
-  const [open, setOpen] = React.useState(openOnInit);
   const isControlled = isOpen !== undefined;
-  const currentlyOpen = isControlled ? isOpen : open;
+  const currentlyOpen = isControlled ? isOpen : openOnInit;
+  const contentRef = React.useRef<HTMLDivElement>(null);
+  const [size, setSize] = React.useState(0);
+  const previousSizeRef = React.useRef(size);
+  const {
+    isOpen: isExpanded,
+    isMounted,
+    setIsOpen,
+  } = useAnimations({
+    isVisible: currentlyOpen,
+    elementRef: contentRef,
+  });
   const mergedClassName = cx(
     styles[baseClass],
     styles[`${baseClass}--${kind}`],
     {
-      [styles[`${baseClass}--open`]]: currentlyOpen,
+      [styles[`${baseClass}--open`]]: isExpanded,
     },
     className
   );
-  const contentRef = React.useRef<HTMLDivElement>(null);
-  const [size, setSize] = React.useState(0);
-  const previousSizeRef = React.useRef(size);
-  const { isOpen: isExpanded, isMounted } = useAnimations({
-    isVisible: currentlyOpen,
-    elementRef: contentRef,
-  });
 
   const handleStateChange = (state: boolean) => {
     if (state) {
       onClose?.();
-      !isControlled && setOpen(false);
+      !isControlled && setIsOpen(false);
     } else {
       onOpen?.();
-      !isControlled && setOpen(true);
+      !isControlled && setIsOpen(true);
     }
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (!isExpanded && (event.key === 'Enter' || event.key === ' ')) {
-      handleStateChange(currentlyOpen);
+      handleStateChange(isExpanded);
     }
 
     if (isExpanded && event.key === 'Escape') {
-      handleStateChange(currentlyOpen);
+      handleStateChange(isExpanded);
     }
   };
 
@@ -103,6 +106,9 @@ export const Accordion: React.FC<IAccordionProps> = ({
         })}
       />
       <Text
+        aria-expanded={isExpanded}
+        role="button"
+        as="div"
         bold
         className={styles[`${baseClass}__label`]}
         onClick={() => handleStateChange(isExpanded)}
@@ -118,7 +124,7 @@ export const Accordion: React.FC<IAccordionProps> = ({
         className={styles[`${baseClass}__content`]}
         style={{ maxHeight: isExpanded ? size : 0 }}
       >
-        <div aria-expanded={isExpanded} ref={contentRef}>
+        <div ref={contentRef}>
           {isMounted && (
             <Text
               as="div"

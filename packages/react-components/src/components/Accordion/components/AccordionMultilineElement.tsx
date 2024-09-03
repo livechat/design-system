@@ -49,7 +49,7 @@ export const AccordionMultilineElement: React.FC<
       className={styles[`${baseClass}`]}
       style={{ maxHeight: isVisible ? size : 0 }}
     >
-      <div aria-expanded={isExpanded} ref={multilineRef}>
+      <div ref={multilineRef}>
         {isMounted && (
           <div className={styles[`${baseClass}__inner`]}>{children}</div>
         )}

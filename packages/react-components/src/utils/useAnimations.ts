@@ -15,7 +15,7 @@ export const useAnimations = ({
   isVisible,
   elementRef,
 }: UseAnimationsProps): IUseAnimations => {
-  const [isMounted, setisMounted] = React.useState(isVisible);
+  const [isMounted, setIsMounted] = React.useState(isVisible);
   const [isOpen, setIsOpen] = React.useState(isVisible);
 
   // The main part of the logic responsible for managing the states used to animate the container opening/closing and mounting/unmounting the container elements
@@ -23,7 +23,7 @@ export const useAnimations = ({
     const currentElement = elementRef.current;
 
     if (!isOpen && currentElement) {
-      const handleTransitionEnd = () => setisMounted(false);
+      const handleTransitionEnd = () => setIsMounted(false);
 
       currentElement.addEventListener('transitionend', handleTransitionEnd);
 
@@ -36,7 +36,7 @@ export const useAnimations = ({
     }
 
     if (isOpen) {
-      setisMounted(true);
+      setIsMounted(true);
       requestAnimationFrame(() => setIsOpen(true));
 
       return;
@@ -48,7 +48,7 @@ export const useAnimations = ({
   // Additional logic, dedicated to the container wrapper whose visibility is managed by the context
   React.useEffect(() => {
     if (isVisible) {
-      setisMounted(true);
+      setIsMounted(true);
       requestAnimationFrame(() => setIsOpen(true));
 
       return;
