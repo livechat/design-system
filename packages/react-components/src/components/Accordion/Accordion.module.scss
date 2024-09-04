@@ -20,6 +20,7 @@ $base-class: 'accordion';
 
   &:hover {
     border-color: var(--border-basic-hover);
+    box-shadow: var(--shadow-float);
   }
 
   &--warning {
@@ -39,11 +40,12 @@ $base-class: 'accordion';
   }
 
   &--open {
-    box-shadow: var(--shadow-pop-over);
+    border: 1px solid var(--action-primary-default);
+    box-shadow: var(--shadow-float);
     background-color: var(--surface-primary-default);
 
     &:hover {
-      border-color: transparent;
+      border-color: var(--action-primary-default);
     }
   }
 
