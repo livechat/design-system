@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
+import { useAnimations } from '../../../hooks';
 import { IAccordionAnimatedLabelProps } from '../types';
 
 import styles from './AccordionAnimatedLabel.module.scss';
@@ -13,43 +14,24 @@ export const AccordionAnimatedLabel: React.FC<IAccordionAnimatedLabelProps> = ({
   closed,
   isOpen,
 }) => {
-  const openLabelRef = React.useRef<HTMLDivElement>(null);
-  const closeLabelRef = React.useRef<HTMLDivElement>(null);
-  const [isOpenMounted, setIsOpenMounted] = React.useState(isOpen);
-  const [isOpenVisible, setIsOpenVisible] = React.useState(isOpen);
-  const [isClosedMounted, setIsClosedMounted] = React.useState(!isOpen);
-  const [isClosedVisible, setIsClosedVisible] = React.useState(!isOpen);
-
-  React.useEffect(() => {
-    const openRef = openLabelRef.current;
-    const closeRef = closeLabelRef.current;
-    const currentRef = isOpen ? openRef : closeRef;
-
-    if (isOpen) {
-      setIsOpenMounted(true);
-      setIsClosedVisible(false);
-    } else {
-      setIsClosedMounted(true);
-      setIsOpenVisible(false);
+  const openRef = React.useRef<HTMLDivElement>(null);
+  const closedRef = React.useRef<HTMLDivElement>(null);
+  const { isOpen: isOpenVisible, isMounted: isOpenMounted } = useAnimations({
+    isVisible: isOpen,
+    elementRef: openRef,
+  });
+  const { isOpen: isClosedVisible, isMounted: isClosedMounted } = useAnimations(
+    {
+      isVisible: !isOpen,
+      elementRef: closedRef,
     }
-
-    requestAnimationFrame(() =>
-      isOpen ? setIsOpenVisible(true) : setIsClosedVisible(true)
-    );
-
-    currentRef &&
-      currentRef.addEventListener(
-        'transitionend',
-        () => (isOpen ? setIsClosedMounted(false) : setIsOpenMounted(false)),
-        { once: true }
-      );
-  }, [isOpen]);
+  );
 
   return (
     <div className={styles[baseClass]}>
       {isOpenMounted && (
         <div
-          ref={openLabelRef}
+          ref={openRef}
           className={cx(styles[`${baseClass}__open`], {
             [styles[`${baseClass}__open--visible`]]: isOpenVisible,
           })}
@@ -59,7 +41,7 @@ export const AccordionAnimatedLabel: React.FC<IAccordionAnimatedLabelProps> = ({
       )}
       {isClosedMounted && (
         <div
-          ref={closeLabelRef}
+          ref={closedRef}
           className={cx(styles[`${baseClass}__close`], {
             [styles[`${baseClass}__close--visible`]]: isClosedVisible,
           })}
