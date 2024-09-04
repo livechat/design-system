@@ -59,8 +59,11 @@ const useSharedResizeObserver = (() => {
 
 export const useHeightResizer = (): IUseResizer => {
   const [size, setSize] = React.useState<number>(0);
+  const hasIOSupport = !!window.ResizeObserver;
 
   const handleResize = React.useCallback((node: NODE) => {
+    if (!hasIOSupport) return;
+
     if (node !== null) {
       useSharedResizeObserver.observe(node, (newSize: number) => {
         setSize(newSize);
