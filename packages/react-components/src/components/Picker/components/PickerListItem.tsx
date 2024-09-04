@@ -37,7 +37,7 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
   numberOfItems,
 }) => {
   const getOptionContent = (item: IPickerListItem) => {
-    if (item?.customElement) {
+    if (item?.customElement?.listItemBody) {
       return (
         <div className={styles[`${itemClassName}__custom`]}>
           {item.customElement.listItemBody}

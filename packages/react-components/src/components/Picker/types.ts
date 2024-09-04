@@ -16,8 +16,8 @@ export interface IPickerListItem {
   key: string;
   name: string;
   customElement?: {
-    listItemBody: ReactElement;
-    selectedItemBody: ReactElement;
+    listItemBody?: ReactElement;
+    selectedItemBody?: ReactElement;
   };
   groupHeader?: boolean;
   disabled?: boolean;
