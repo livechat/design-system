@@ -3,7 +3,7 @@ import * as React from 'react';
 import { ChevronDown } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
-import { useAnimations, useHeightResizer } from '../../utils';
+import { useAnimations, useHeightResizer } from '../../hooks';
 import { Icon } from '../Icon';
 import { Text } from '../Typography';
 

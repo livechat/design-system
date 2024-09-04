@@ -2,8 +2,8 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
+import { useAnimations } from '../../hooks';
 import { AppFrameProvider, useAppFrame } from '../../providers';
-import { useAnimations } from '../../utils';
 
 import { IAppFrameProps } from './types';
 

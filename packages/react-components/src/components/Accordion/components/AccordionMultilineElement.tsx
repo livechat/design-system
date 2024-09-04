@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { useAnimations, useHeightResizer } from '../../../utils';
+import { useAnimations, useHeightResizer } from '../../../hooks';
 
 import styles from './AccordionMultilineElement.module.scss';
 
