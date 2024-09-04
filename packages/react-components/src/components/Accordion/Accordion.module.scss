@@ -52,7 +52,7 @@ $base-class: 'accordion';
     top: 20px;
     right: 20px;
     transition: inherit;
-    z-index: 0;
+    pointer-events: none;
 
     &--open {
       transform: rotate(180deg);
@@ -60,7 +60,6 @@ $base-class: 'accordion';
   }
 
   &__label {
-    z-index: 1;
     margin: 0;
     padding: var(--spacing-5) var(--spacing-12) var(--spacing-5)
       var(--spacing-5);

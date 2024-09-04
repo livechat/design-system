@@ -3,7 +3,7 @@ import * as React from 'react';
 import { ChevronDown } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
-import { useAnimations } from '../../utils';
+import { useAnimations, useHeightResizer } from '../../utils';
 import { Icon } from '../Icon';
 import { Text } from '../Typography';
 
@@ -30,8 +30,6 @@ export const Accordion: React.FC<IAccordionProps> = ({
   const isControlled = isOpen !== undefined;
   const currentlyOpen = isControlled ? isOpen : openOnInit;
   const contentRef = React.useRef<HTMLDivElement>(null);
-  const [size, setSize] = React.useState(0);
-  const previousSizeRef = React.useRef(size);
   const {
     isOpen: isExpanded,
     isMounted,
@@ -48,9 +46,10 @@ export const Accordion: React.FC<IAccordionProps> = ({
     },
     className
   );
+  const { size, handleResize } = useHeightResizer();
 
-  const handleStateChange = (state: boolean) => {
-    if (state) {
+  const handleExpandChange = (isExpanded: boolean) => {
+    if (isExpanded) {
       onClose?.();
       !isControlled && setIsOpen(false);
     } else {
@@ -61,35 +60,13 @@ export const Accordion: React.FC<IAccordionProps> = ({
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (!isExpanded && (event.key === 'Enter' || event.key === ' ')) {
-      handleStateChange(isExpanded);
+      handleExpandChange(isExpanded);
     }
 
     if (isExpanded && event.key === 'Escape') {
-      handleStateChange(isExpanded);
+      handleExpandChange(isExpanded);
     }
   };
-
-  React.useEffect(() => {
-    const hasIOSupport = !!window.ResizeObserver;
-
-    if (contentRef.current && hasIOSupport) {
-      const resizeObserver = new ResizeObserver((entries) => {
-        const entry = entries[0];
-        if (!entry) return;
-
-        const newSize = entry.contentRect.height;
-
-        if (previousSizeRef.current !== newSize) {
-          setSize(newSize);
-          previousSizeRef.current = newSize;
-        }
-      });
-
-      resizeObserver.observe(contentRef.current);
-
-      return () => resizeObserver.disconnect();
-    }
-  }, [contentRef]);
 
   return (
     <div
@@ -111,7 +88,7 @@ export const Accordion: React.FC<IAccordionProps> = ({
         as="div"
         bold
         className={styles[`${baseClass}__label`]}
-        onClick={() => handleStateChange(isExpanded)}
+        onClick={() => handleExpandChange(isExpanded)}
       >
         {getLabel(label, isExpanded)}
       </Text>
@@ -123,8 +100,9 @@ export const Accordion: React.FC<IAccordionProps> = ({
       <div
         className={styles[`${baseClass}__content`]}
         style={{ maxHeight: isExpanded ? size : 0 }}
+        ref={contentRef}
       >
-        <div ref={contentRef}>
+        <div ref={handleResize}>
           {isMounted && (
             <Text
               as="div"

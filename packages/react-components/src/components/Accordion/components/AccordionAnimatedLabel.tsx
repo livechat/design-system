@@ -23,38 +23,26 @@ export const AccordionAnimatedLabel: React.FC<IAccordionAnimatedLabelProps> = ({
   React.useEffect(() => {
     const openRef = openLabelRef.current;
     const closeRef = closeLabelRef.current;
+    const currentRef = isOpen ? openRef : closeRef;
 
     if (isOpen) {
       setIsOpenMounted(true);
       setIsClosedVisible(false);
-
-      requestAnimationFrame(() => setIsOpenVisible(true));
-
-      if (closeRef) {
-        closeRef.addEventListener(
-          'transitionend',
-          () => {
-            setIsClosedMounted(false);
-          },
-          { once: true }
-        );
-      }
     } else {
       setIsClosedMounted(true);
       setIsOpenVisible(false);
-
-      requestAnimationFrame(() => setIsClosedVisible(true));
-
-      if (openRef) {
-        openRef.addEventListener(
-          'transitionend',
-          () => {
-            setIsOpenMounted(false);
-          },
-          { once: true }
-        );
-      }
     }
+
+    requestAnimationFrame(() =>
+      isOpen ? setIsOpenVisible(true) : setIsClosedVisible(true)
+    );
+
+    currentRef &&
+      currentRef.addEventListener(
+        'transitionend',
+        () => (isOpen ? setIsClosedMounted(false) : setIsOpenMounted(false)),
+        { once: true }
+      );
   }, [isOpen]);
 
   return (
