@@ -19,6 +19,7 @@ import {
   NavigationTopBarAlert,
   NavigationTopBarTitle,
   ExpirationCounter,
+  MobileNavigation,
 } from './components';
 import {
   ExampleAppContent,
@@ -206,6 +207,25 @@ export const Default = (): React.ReactElement => {
             />
           </NavigationGroup>
         </Navigation>
+      }
+      mobileNavigation={
+        <MobileNavigation>
+          {navigationItems.slice(0, 5).map((item, index) => (
+            <NavigationItem
+              isMobile
+              key={item}
+              id={item}
+              label={item.charAt(0).toUpperCase() + item.slice(1)}
+              icon={<Icon source={navigationItemsIcons[index]} />}
+              onClick={(e, id) => {
+                e.preventDefault();
+                setActiveItem(id);
+              }}
+              isActive={activeItem === item}
+              badge={getBadgeContent(item)}
+            />
+          ))}
+        </MobileNavigation>
       }
       sideNavigation={getSubNav()}
       topBar={

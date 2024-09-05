@@ -44,6 +44,7 @@ export const NavigationItem: React.FC<INavigationItemProps> = ({
   isActive,
   onClick,
   className,
+  isMobile,
   ...props
 }) => (
   <li
@@ -60,7 +61,7 @@ export const NavigationItem: React.FC<INavigationItemProps> = ({
       floatingStrategy="fixed"
       placement="right"
       kind="invert"
-      isVisible={!label || disabled ? false : undefined}
+      isVisible={isMobile || !label || disabled ? false : undefined}
       offsetMainAxis={12}
       hoverOnDelay={400}
       useClickHookProps={{ ignoreMouse: true }}
@@ -79,6 +80,7 @@ export const NavigationItem: React.FC<INavigationItemProps> = ({
                 [styles[`${baseClass}__button--active`]]: isActive,
                 [styles[`${baseClass}__button--opacity`]]: disableOpacity,
                 [styles[`${baseClass}__button--disabled`]]: disabled,
+                [styles[`${baseClass}__button--mobile`]]: isMobile,
               },
               'lc-dark-theme'
             )}
@@ -87,6 +89,7 @@ export const NavigationItem: React.FC<INavigationItemProps> = ({
             {...props}
           >
             {icon}
+            {isMobile && label}
           </a>
           {badge && getBadge(badge, id)}
         </>

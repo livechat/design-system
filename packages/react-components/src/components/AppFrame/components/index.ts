@@ -15,3 +15,4 @@ export {
   SIDE_NAVIGATION_PARENT_ICON_TEST_ID,
 } from './SideNavigationItem/constants';
 export { ExpirationCounter } from './ExpirationCounter/ExpirationCounter';
+export { MobileNavigation } from './MobileNavigation/MobileNavigation';
