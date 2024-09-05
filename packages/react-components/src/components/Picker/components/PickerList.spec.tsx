@@ -1,9 +1,8 @@
 import * as React from 'react';
 
 import { VirtuosoProps } from 'react-virtuoso';
-import { vitest } from 'vitest';
 
-import { render, vi } from 'test-utils';
+import { render, vi, vitest } from 'test-utils';
 
 import noop from '../../../utils/noop';
 import { DEFAULT_PICKER_OPTIONS } from '../constants';
@@ -28,6 +27,9 @@ vitest.mock('react-virtuoso', () => {
 window.HTMLElement.prototype.scrollIntoView = () => {};
 
 const defaultProps: IPickerListProps = {
+  isPositioned: false,
+  onItemRemove: noop,
+  searchDisabled: false,
   activeIndex: null,
   context: {
     x: 0,
