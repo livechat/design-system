@@ -118,7 +118,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
       offset({ mainAxis: offsetMainAxis, crossAxis: offsetCrossAxis }),
       shift(),
       flip(),
-      arrow({ element: arrowRef }),
+      arrow({ element: arrowRef, padding: 8 }),
     ],
     placement: placement,
     open: currentlyVisible,
