@@ -42,6 +42,7 @@ export const Picker: React.FC<IPickerProps> = ({
   useDismissHookProps,
   useClickHookProps,
   virtuosoProps,
+  inputProps,
   ...props
 }) => {
   const [open, setOpen] = React.useState(openedOnInit);
@@ -142,6 +143,7 @@ export const Picker: React.FC<IPickerProps> = ({
           searchPhrase={searchPhrase}
           virtualItemRef={virtualItemRef}
           isTriggerFocused={triggerFocus}
+          inputProps={inputProps}
         />
       </PickerTrigger>
       <FloatingNode id={nodeId}>
