@@ -1,8 +1,9 @@
 import * as React from 'react';
 
 import { VirtuosoProps } from 'react-virtuoso';
+import { vitest } from 'vitest';
 
-import { render, vi, vitest } from 'test-utils';
+import { render, vi } from 'test-utils';
 
 import noop from '../../../utils/noop';
 import { DEFAULT_PICKER_OPTIONS } from '../constants';
