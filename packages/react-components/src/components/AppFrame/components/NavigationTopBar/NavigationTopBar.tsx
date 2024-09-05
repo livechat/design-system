@@ -3,9 +3,9 @@ import * as React from 'react';
 import { Close } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
+import { useAnimations } from '../../../../hooks';
 import { Button } from '../../../Button';
 import { Icon } from '../../../Icon';
-import { useAppFrameAnimations } from '../../hooks/useAppFrameAnimations';
 
 import {
   INavigationTopBarProps,
@@ -90,7 +90,7 @@ export const NavigationTopBarAlert: React.FC<ITopBarAlertProps> = ({
   isVisible = true,
 }) => {
   const alertRef = React.useRef<HTMLDivElement>(null);
-  const { isMounted, isOpen } = useAppFrameAnimations({
+  const { isMounted, isOpen } = useAnimations({
     isVisible,
     elementRef: alertRef,
   });
