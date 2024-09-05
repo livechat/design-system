@@ -39,8 +39,6 @@ const PickerComponent = (args: IPickerProps) => {
   return (
     <Picker
       {...args}
-      openedOnInit={false}
-      searchDisabled={true}
       selected={selectedItems}
       onSelect={(items) => setSelectedItems(items)}
     />
