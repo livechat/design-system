@@ -4,6 +4,7 @@ export * from './foundations';
 export * from './providers';
 export * from './utils';
 
+export * from './components/Accordion';
 export * from './components/ActionBar';
 export * from './components/ActionCard';
 export * from './components/ActionMenu';
