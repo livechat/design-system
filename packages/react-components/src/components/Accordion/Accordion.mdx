@@ -1,0 +1,29 @@
+import { Canvas, ArgTypes, Meta, Title } from '@storybook/blocks';
+
+import * as AccordionStories from './Accordion.stories';
+
+<Meta of={AccordionStories} />
+
+<Title>Accordion</Title>
+
+[Intro](#Intro) | [Component API](#ComponentAPI)
+
+## Intro <a id="Intro" />
+
+Accordion is a simple component for building expandable tiles that display provided content when opened.
+
+<Canvas of={AccordionStories.Examples} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+import { Accordion } from '@livechat/design-system-react-components';
+
+  <Accordion label="Default">
+  Default accordion content
+</Accordion>
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={AccordionStories.Default} sort="requiredFirst" />

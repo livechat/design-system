@@ -2,9 +2,9 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
+import { useAnimations } from '../../hooks';
 import { AppFrameProvider, useAppFrame } from '../../providers';
 
-import { useAppFrameAnimations } from './hooks/useAppFrameAnimations';
 import { IAppFrameProps } from './types';
 
 import styles from './AppFrame.module.scss';
@@ -26,7 +26,7 @@ const Frame = (props: IAppFrameProps) => {
   const mergedClassNames = cx(styles[baseClass], className);
   const { isSideNavigationVisible } = useAppFrame();
   const sideNavWrapperRef = React.useRef<HTMLDivElement>(null);
-  const { isOpen, isMounted } = useAppFrameAnimations({
+  const { isOpen, isMounted } = useAnimations({
     isVisible: isSideNavigationVisible,
     elementRef: sideNavWrapperRef,
   });
