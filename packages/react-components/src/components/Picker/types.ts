@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { InputHTMLAttributes, ReactElement } from 'react';
 
 import {
   Placement,
@@ -145,4 +145,8 @@ export interface IPickerProps extends ComponentCoreProps {
    * https://virtuoso.dev/virtuoso-api-reference/
    */
   virtuosoProps?: VirtuosoProps<IPickerListItem, unknown>;
+  /**
+   * Additional props for the input element
+   */
+  inputProps?: InputHTMLAttributes<HTMLInputElement> | Record<string, unknown>;
 }
