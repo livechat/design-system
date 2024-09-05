@@ -115,7 +115,7 @@ $base-class: 'action-menu';
       }
 
       &--disabled {
-        opacity: 0.45;
+        color: var(--content-basic-disabled);
 
         &:hover {
           background: none;
