@@ -14,6 +14,7 @@ import { Theme } from './types';
 interface ThemeContextProps {
   theme: Theme;
   toggleTheme: () => void;
+  setTheme: (theme: Theme) => void;
   setCustomVariables: (variables: CustomVariables) => void;
 }
 
@@ -60,6 +61,7 @@ export const ThemeProvider: FC<ThemeProviderProps> = ({
       theme,
       toggleTheme: () =>
         setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light')),
+      setTheme,
       setCustomVariables: (newVariables: CustomVariables) => {
         setVariables(newVariables);
       },
