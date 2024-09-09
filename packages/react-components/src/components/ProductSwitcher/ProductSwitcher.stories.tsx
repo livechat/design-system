@@ -48,7 +48,7 @@ export const Default: Story = {
         },
 
         {
-          product: 'Hello',
+          product: 'TeamChat',
         },
         {
           product: 'OpenWidget',

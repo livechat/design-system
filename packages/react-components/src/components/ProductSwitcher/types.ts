@@ -8,7 +8,7 @@ export type ProductId =
   | 'chatbot'
   | 'openwidget'
   | 'knowledgebase'
-  | 'hello'
+  | 'teamchat'
   | 'accounts';
 
 export type ProductName =
@@ -17,7 +17,7 @@ export type ProductName =
   | 'ChatBot'
   | 'OpenWidget'
   | 'KnowledgeBase'
-  | 'Hello'
+  | 'TeamChat'
   | 'Accounts';
 
 export type Env = 'labs' | 'staging' | 'prod';
@@ -40,7 +40,7 @@ export const SSOProductIdMap: Record<ProductId, ProductName> = {
   knowledgebase: 'KnowledgeBase',
   chatbot: 'ChatBot',
   openwidget: 'OpenWidget',
-  hello: 'Hello',
+  teamchat: 'TeamChat',
 };
 
 export type ProductSubscription = Partial<
