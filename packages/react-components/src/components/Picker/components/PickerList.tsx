@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { FloatingContext, FloatingFocusManager } from '@floating-ui/react';
 import cx from 'clsx';
@@ -23,6 +23,9 @@ export interface IPickerListProps {
   listElementsRef: React.MutableRefObject<(HTMLElement | null)[]>;
   activeIndex: number | null;
   selectedKeys: string[];
+  isPositioned: boolean;
+  searchDisabled: boolean;
+  onItemRemove: (key: string) => void;
   setPointer: (pointer: boolean) => void;
   onSelect: (key: string) => void;
   getFloatingProps: (
@@ -32,6 +35,7 @@ export interface IPickerListProps {
     userProps?: React.HTMLProps<HTMLElement> | undefined
   ) => Record<string, unknown>;
   emptyStateText?: string;
+  hideWhenEmpty?: boolean;
   listClassName?: string;
   virtuosoProps?: VirtuosoProps<IPickerListItem, unknown>;
 }
@@ -45,16 +49,21 @@ export const PickerList: React.FC<IPickerListProps> = ({
   activeIndex,
   selectedKeys,
   listElementsRef,
+  isPositioned,
+  searchDisabled,
+  onItemRemove,
   setPointer,
   onSelect,
   getFloatingProps,
   getItemProps,
   emptyStateText = 'No results found',
+  hideWhenEmpty = false,
   pickerType = 'single',
   listClassName,
   virtuosoProps,
 }) => {
   const [listHeight, setListHeight] = React.useState(0);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const numberOfItems = options.length;
 
   const handleListHeightChange = React.useCallback(
@@ -72,11 +81,22 @@ export const PickerList: React.FC<IPickerListProps> = ({
   );
 
   useEffect(() => {
+    // focusing the list to enable keyboard handlers for items selection when the search is disabled
+    if (searchDisabled && isPositioned && activeIndex !== null) {
+      wrapperRef.current?.focus();
+    }
+  }, [searchDisabled, isPositioned, activeIndex]);
+
+  useEffect(() => {
     // eslint-disable-next-line react-compiler/react-compiler
     listElementsRef.current = new Array(options.length);
   }, [options.length]);
 
   if (options.length === 0) {
+    if (hideWhenEmpty) {
+      return null;
+    }
+
     return (
       <FloatingFocusManager context={context} modal={false} initialFocus={-1}>
         <div
@@ -96,6 +116,12 @@ export const PickerList: React.FC<IPickerListProps> = ({
     (key === SELECT_ALL_OPTION_KEY &&
       selectedKeys.length === getNormalizedItems(options).length);
 
+  const handleItemRemove = () => {
+    if (pickerType === 'multi') {
+      onItemRemove(selectedKeys[selectedKeys.length - 1]);
+    }
+  };
+
   return (
     <FloatingFocusManager context={context} modal={false} initialFocus={-1}>
       <div
@@ -109,18 +135,21 @@ export const PickerList: React.FC<IPickerListProps> = ({
         }}
       >
         <div
+          ref={wrapperRef}
           tabIndex={0}
           aria-multiselectable={pickerType === 'multi'}
           className={styles['listbox-wrapper']}
-          // Some screen readers do not like any wrapper tags inside
-          // the element with the role, so we spread it onto the
-          // virtualizer wrapper.
+          // Those handlers are run only when the search is disabled (only then the list is focused) in other cases this is handled by the search input
           {...getFloatingProps({
             onKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
               setPointer(false);
 
               if (e.key === 'Enter' && activeIndex !== null) {
                 onSelect(options[activeIndex].key);
+              }
+
+              if (e.key === 'Backspace' || e.key === 'Delete') {
+                handleItemRemove();
               }
 
               if (e.key === ' ') {

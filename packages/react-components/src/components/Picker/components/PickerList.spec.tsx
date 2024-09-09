@@ -12,8 +12,8 @@ vitest.mock('react-virtuoso', () => {
   function Virtuoso(props: VirtuosoProps<unknown, unknown>) {
     return (
       <>
-        {props.data?.map(
-          (value, index) => props.itemContent?.(index, value, undefined)
+        {props.data?.map((value, index) =>
+          props.itemContent?.(index, value, undefined)
         )}
       </>
     );
@@ -26,6 +26,9 @@ vitest.mock('react-virtuoso', () => {
 window.HTMLElement.prototype.scrollIntoView = () => {};
 
 const defaultProps: IPickerListProps = {
+  isPositioned: false,
+  onItemRemove: noop,
+  searchDisabled: false,
   activeIndex: null,
   context: {
     x: 0,
@@ -91,6 +94,16 @@ describe('<PickerList> component', () => {
     });
 
     expect(getByText('Custom empty state')).toBeVisible();
+  });
+
+  it('should display nothing if no filter result and hideWhenEmpty is true', () => {
+    const { container } = renderComponent({
+      ...defaultProps,
+      options: [],
+      hideWhenEmpty: true,
+    });
+
+    expect(container.firstChild).toBeNull();
   });
 
   it('should display custom components as options', () => {

@@ -6,7 +6,7 @@ import styles from './Link.module.scss';
 
 export interface LinkProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
-  bold: boolean;
+  bold?: boolean;
 }
 
 const baseClass = 'link';

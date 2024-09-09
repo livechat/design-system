@@ -1,0 +1,89 @@
+$base-class: 'accordion';
+
+.#{$base-class} {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all var(--transition-duration-moderate-1);
+  border: 1px solid transparent;
+  border-radius: var(--radius-4);
+  box-shadow: unset;
+  background-color: var(--surface-secondary-default);
+  width: 100%;
+  min-height: 24px;
+
+  &:focus-visible {
+    outline: 0;
+    box-shadow: var(--shadow-focus);
+  }
+
+  &:hover {
+    border-color: var(--border-basic-hover);
+    box-shadow: var(--shadow-float);
+  }
+
+  &--warning {
+    background-color: var(--surface-accent-emphasis-min-warning);
+
+    &:hover {
+      border-color: var(--border-basic-warning);
+    }
+  }
+
+  &--error {
+    background-color: var(--surface-accent-emphasis-min-negative);
+
+    &:hover {
+      border-color: var(--content-basic-negative);
+    }
+  }
+
+  &--open {
+    border: 1px solid var(--action-primary-default);
+    box-shadow: var(--shadow-float);
+    background-color: var(--surface-primary-default);
+
+    &:hover {
+      border-color: var(--action-primary-default);
+    }
+  }
+
+  &__chevron {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transition: inherit;
+    pointer-events: none;
+
+    &--open {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__label {
+    margin: 0;
+    padding: var(--spacing-5) var(--spacing-12) var(--spacing-5)
+      var(--spacing-5);
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__content {
+    transition: inherit;
+    height: 100%;
+    overflow: hidden;
+
+    &__inner {
+      transition: all var(--transition-duration-moderate-1);
+      opacity: 0;
+      padding: 0 var(--spacing-12) var(--spacing-5) var(--spacing-5);
+
+      &--open {
+        opacity: 1;
+      }
+    }
+  }
+}

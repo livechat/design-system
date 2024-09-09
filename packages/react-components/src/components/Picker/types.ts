@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { InputHTMLAttributes, ReactElement } from 'react';
 
 import {
   Placement,
@@ -16,8 +16,8 @@ export interface IPickerListItem {
   key: string;
   name: string;
   customElement?: {
-    listItemBody: ReactElement;
-    selectedItemBody: ReactElement;
+    listItemBody?: ReactElement;
+    selectedItemBody?: ReactElement;
   };
   groupHeader?: boolean;
   disabled?: boolean;
@@ -145,4 +145,8 @@ export interface IPickerProps extends ComponentCoreProps {
    * https://virtuoso.dev/virtuoso-api-reference/
    */
   virtuosoProps?: VirtuosoProps<IPickerListItem, unknown>;
+  /**
+   * Additional props for the input element
+   */
+  inputProps?: InputHTMLAttributes<HTMLInputElement> | Record<string, unknown>;
 }
