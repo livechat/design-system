@@ -26,18 +26,22 @@ const Frame = (props: IAppFrameProps) => {
     mobileViewBreakpoint = 705,
   } = props;
   const mergedClassNames = cx(styles[baseClass], className);
-  const { isSideNavigationVisible } = useAppFrame();
+  const { isSideNavigationVisible, setIsMobileViewEnabled } = useAppFrame();
   const sideNavWrapperRef = React.useRef<HTMLDivElement>(null);
   const { isOpen, isMounted } = useAnimations({
     isVisible: isSideNavigationVisible,
     elementRef: sideNavWrapperRef,
   });
-  const { isMobile, handleResize } = useMobileViewDetector({
+  const { isMobile, handleResizeRef } = useMobileViewDetector({
     mobileBreakpoint: mobileViewBreakpoint,
   });
 
+  React.useEffect(() => {
+    setIsMobileViewEnabled(isMobile);
+  }, [isMobile]);
+
   return (
-    <div className={mergedClassNames} ref={handleResize}>
+    <div className={mergedClassNames} ref={handleResizeRef}>
       {!isMobile && navigation}
       <div
         className={cx(styles[pageContainerClass], {

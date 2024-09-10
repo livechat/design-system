@@ -26,7 +26,6 @@ const defaultProps = {
         id="item-1"
         label="Item 1"
         icon={<div>Icon</div>}
-        url="#"
         onClick={vi.fn()}
       />
     </Navigation>
@@ -37,7 +36,6 @@ const defaultProps = {
         id="item-1"
         label="Item 1"
         icon={<div>Icon</div>}
-        url="#"
         onClick={vi.fn()}
       />
     </MobileNavigation>

@@ -6,7 +6,7 @@ import { IUseHeightResizer, NODE } from './types';
 export const useHeightResizer = (): IUseHeightResizer => {
   const [size, setSize] = React.useState<number>(0);
 
-  const handleResize = React.useCallback(
+  const handleResizeRef = React.useCallback(
     (node: NODE) =>
       resizeCallback(node, (newSize: DOMRectReadOnly) =>
         setSize(newSize.height)
@@ -16,6 +16,6 @@ export const useHeightResizer = (): IUseHeightResizer => {
 
   return {
     size,
-    handleResize,
+    handleResizeRef,
   };
 };

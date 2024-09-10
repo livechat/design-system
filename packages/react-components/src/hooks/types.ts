@@ -3,7 +3,7 @@ export type CALLBACK = (newSize: DOMRectReadOnly) => void;
 
 export interface IUseHeightResizer {
   size: number;
-  handleResize: (node: NODE) => void;
+  handleResizeRef: (node: NODE) => void;
 }
 
 export interface IUseMobileViewDetectorProps {
@@ -12,5 +12,5 @@ export interface IUseMobileViewDetectorProps {
 
 export interface IUseMobileViewDetector {
   isMobile: boolean;
-  handleResize: (node: NODE) => void;
+  handleResizeRef: (node: NODE) => void;
 }

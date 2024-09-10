@@ -19,7 +19,7 @@ export const AccordionMultilineElement: React.FC<
     isVisible: !isExpanded,
     elementRef: multilineRef,
   });
-  const { size, handleResize } = useHeightResizer();
+  const { size, handleResizeRef } = useHeightResizer();
 
   return (
     <div
@@ -27,7 +27,7 @@ export const AccordionMultilineElement: React.FC<
       style={{ maxHeight: isVisible ? size : 0 }}
       ref={multilineRef}
     >
-      <div ref={handleResize}>
+      <div ref={handleResizeRef}>
         {isMounted && (
           <div className={styles[`${baseClass}__inner`]}>{children}</div>
         )}

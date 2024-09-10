@@ -37,6 +37,7 @@ export interface IAppFrameProps extends ComponentCoreProps {
   contentClassName?: string;
   /**
    * The value that will determine on which resolution mobile view will be displayed
+   * @default 705
    */
   mobileViewBreakpoint?: number;
 }

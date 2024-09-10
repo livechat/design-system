@@ -212,7 +212,6 @@ export const Default = (): React.ReactElement => {
         <MobileNavigation>
           {navigationItems.slice(0, 5).map((item, index) => (
             <NavigationItem
-              isMobile
               key={item}
               id={item}
               label={item.charAt(0).toUpperCase() + item.slice(1)}

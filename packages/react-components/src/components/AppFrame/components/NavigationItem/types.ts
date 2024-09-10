@@ -39,8 +39,4 @@ export interface INavigationItemProps extends ComponentCoreProps {
    * The function to call on click
    */
   onClick: (e: React.MouseEvent<HTMLAnchorElement>, id: string) => void;
-  /**
-   * Set to display the item in mobile mode
-   */
-  isMobile?: boolean;
 }

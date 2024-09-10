@@ -12,7 +12,7 @@ export const useMobileViewDetector = ({
 }: IUseMobileViewDetectorProps): IUseMobileViewDetector => {
   const [isMobile, setIsMobile] = React.useState<boolean>(false);
 
-  const handleResize = React.useCallback(
+  const handleResizeRef = React.useCallback(
     (node: NODE) =>
       resizeCallback(node, (newSize: DOMRectReadOnly) =>
         setIsMobile(newSize.width <= mobileBreakpoint)
@@ -22,6 +22,6 @@ export const useMobileViewDetector = ({
 
   return {
     isMobile,
-    handleResize,
+    handleResizeRef,
   };
 };
