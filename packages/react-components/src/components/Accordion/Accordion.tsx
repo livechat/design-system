@@ -44,6 +44,7 @@ export const Accordion: React.FC<IAccordionProps> = ({
     {
       [styles[`${baseClass}--open`]]: isExpanded,
     },
+    'release-test',
     className
   );
   const { size, handleResize } = useHeightResizer();
