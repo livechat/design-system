@@ -3,7 +3,7 @@ name: Release test
 on:
   push:
     branches:
-      - release-test
+      - releaste-test
 
 jobs:
   release:
@@ -59,7 +59,7 @@ jobs:
       #   with:
       #     token: ${{ secrets.GITHUB_TOKEN }}
       #     commit-message: "Release - version update"
-      #     branch: release-test
+      #     branch: releaste-test
       #     base: main
       #     title: 'Release - version update'
       #     body: 'This is an automated PR to merge the release branch into main after version bump and publish.'
