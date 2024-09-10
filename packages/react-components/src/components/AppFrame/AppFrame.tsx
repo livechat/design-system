@@ -26,7 +26,11 @@ const Frame = (props: IAppFrameProps) => {
     mobileViewBreakpoint = 705,
   } = props;
   const mergedClassNames = cx(styles[baseClass], className);
-  const { isSideNavigationVisible, setIsMobileViewEnabled } = useAppFrame();
+  const {
+    isSideNavigationVisible,
+    setIsMobileViewEnabled,
+    isMobileViewEnabled,
+  } = useAppFrame();
   const sideNavWrapperRef = React.useRef<HTMLDivElement>(null);
   const { isOpen, isMounted } = useAnimations({
     isVisible: isSideNavigationVisible,
@@ -42,13 +46,13 @@ const Frame = (props: IAppFrameProps) => {
 
   return (
     <div className={mergedClassNames} ref={handleResizeRef}>
-      {!isMobile && navigation}
+      {!isMobileViewEnabled && navigation}
       <div
         className={cx(styles[pageContainerClass], {
-          [styles[`${pageContainerClass}--mobile`]]: isMobile,
+          [styles[`${pageContainerClass}--mobile`]]: isMobileViewEnabled,
         })}
       >
-        {!isMobile && (
+        {!isMobileViewEnabled && (
           <div
             className={cx(
               styles[`${pageContainerClass}__top-bar`],
@@ -65,10 +69,10 @@ const Frame = (props: IAppFrameProps) => {
         <div
           className={cx(styles[`${pageContainerClass}__content-wrapper`], {
             [styles[`${pageContainerClass}__content-wrapper--mobile`]]:
-              isMobile,
+              isMobileViewEnabled,
           })}
         >
-          {!isMobile && sideNavigation && (
+          {!isMobileViewEnabled && sideNavigation && (
             <div
               ref={sideNavWrapperRef}
               className={cx(
@@ -94,13 +98,13 @@ const Frame = (props: IAppFrameProps) => {
               {
                 [styles[
                   `${pageContainerClass}__content-wrapper__content--mobile`
-                ]]: isMobile,
+                ]]: isMobileViewEnabled,
               }
             )}
           >
             {children}
           </div>
-          {isMobile && (
+          {isMobileViewEnabled && (
             <>
               <div
                 className={
