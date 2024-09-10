@@ -5,7 +5,6 @@
   "command": {
     "version": {
       "conventionalCommits": true,
-      "createRelease": "github"
     }
-  },
+  }
 }
