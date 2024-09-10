@@ -28,6 +28,7 @@ export interface ITriggerBodyProps {
   virtualItemRef: React.MutableRefObject<HTMLElement | null>;
   isTriggerFocused: boolean;
   inputRef?: React.RefObject<HTMLInputElement>;
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
 }
 
 export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
@@ -47,6 +48,7 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
   virtualItemRef,
   isTriggerFocused,
   inputRef,
+  inputProps,
 }) => {
   const shouldDisplaySearch = isOpen && !isSearchDisabled;
 
@@ -137,6 +139,7 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
 
   const getSearch = () => (
     <input
+      {...inputProps}
       ref={inputRef}
       className={cx(
         styles[`${baseClass}__input`],

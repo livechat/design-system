@@ -28,6 +28,9 @@ vitest.mock('react-virtuoso', () => {
 window.HTMLElement.prototype.scrollIntoView = () => {};
 
 const defaultProps: IPickerListProps = {
+  isPositioned: false,
+  onItemRemove: noop,
+  searchDisabled: false,
   activeIndex: null,
   context: {
     x: 0,

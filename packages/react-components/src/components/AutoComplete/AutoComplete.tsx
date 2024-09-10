@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { FloatingNode, FloatingPortal } from '@floating-ui/react';
 
+import noop from '../../utils/noop';
 import { Input } from '../Input';
 import { IPickerListItem, PickerList } from '../Picker';
 import { DEFAULT_LIST_HEIGHT, MIN_LIST_HEIGHT } from '../Picker/constants';
@@ -139,6 +140,7 @@ export const AutoComplete = React.forwardRef<
       virtualItemRef,
       listElementsRef,
       activeIndex,
+      isPositioned,
     } = useFloatingPicker({
       openedOnInit: autocompleteOpenOnInit,
       disabled: disabled || readOnly,
@@ -182,6 +184,9 @@ export const AutoComplete = React.forwardRef<
                 hideWhenEmpty
                 getItemProps={getItemProps}
                 onSelect={handleSelect}
+                isPositioned={isPositioned}
+                searchDisabled={false}
+                onItemRemove={noop}
               />
             </FloatingPortal>
           )}
