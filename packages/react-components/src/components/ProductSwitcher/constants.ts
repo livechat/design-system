@@ -70,8 +70,8 @@ export const ProductSwitcherProducts: ProductOption[] = [
     url: '',
   },
   {
-    id: 'hello',
-    name: 'Hello',
+    id: 'hello', // TODO: change to 'teamchat' when the product is renamed
+    name: 'TeamChat',
     icon: HelloMono,
     backgroundColors: {
       main: 'var(--products-hello)',
@@ -121,7 +121,11 @@ export const labsRedirectData: ProductData[] = [
     redirectUri: 'https://app.staging.knowledgebase.ai',
     product: 'KnowledgeBase',
   },
-  { clientId: '', redirectUri: '', product: 'Hello' }, // TODO: add Hello configuration when available
+  {
+    clientId: '6193fd6d9771645e2dc6a4614c677314',
+    redirectUri: 'https://hello.labs.text.com/app',
+    product: 'Hello', // TODO: change to 'TeamChat' when the product is renamed
+  },
   {
     clientId: '0ab5cf9b99447db22109ff70003d4507',
     redirectUri: 'https://accounts.labs.livechat.com/panel',
@@ -155,7 +159,11 @@ export const stagingRedirectData: ProductData[] = [
     redirectUri: 'https://app.knowledgebase.ai',
     product: 'KnowledgeBase',
   },
-  { clientId: '', redirectUri: '', product: 'Hello' }, // TODO: add Hello configuration when available
+  {
+    clientId: '6c493637185258c1a937e68886906831',
+    redirectUri: 'https://teamchat.text.com',
+    product: 'Hello', // TODO: change to 'TeamChat' when the product is renamed
+  },
   {
     clientId: '2fd9f1923f2233763b8637f7d10a6fe6',
     redirectUri: 'https://accounts.staging.livechat.com/panel',
@@ -189,7 +197,11 @@ export const prodRedirectData: ProductData[] = [
     redirectUri: 'https://app.knowledgebase.ai',
     product: 'KnowledgeBase',
   },
-  { clientId: '', redirectUri: '', product: 'Hello' }, // TODO: add Hello configuration when available
+  {
+    clientId: '6c493637185258c1a937e68886906831',
+    redirectUri: 'https//hello.text.com/app',
+    product: 'Hello', // TODO: change to 'TeamChat' when the product is renamed
+  },
   {
     clientId: '2fd9f1923f2233763b8637f7d10a6fe6',
     redirectUri: 'https://accounts.livechat.com/panel',
