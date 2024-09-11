@@ -80,5 +80,12 @@ $base-class: 'navigation-item';
     &--opacity {
       opacity: 1;
     }
+
+    &--mobile {
+      flex-direction: column;
+      width: 56px;
+      height: 48px;
+      font-size: 10px;
+    }
   }
 }
