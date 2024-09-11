@@ -2,6 +2,8 @@ name: Check PR Title for Conventional Commits Format
 on:
   pull_request:
     types: [ opened, edited, synchronize ]
+    branches:
+      - main
 jobs:
   check-for-cc:
     runs-on: ubuntu-latest
