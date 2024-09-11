@@ -51,14 +51,23 @@ jobs:
             exit 0
           fi
 
-      # 6. Create merge-back PR to main
-      - name: Create merge-back PR to main
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Release - version update"
-          branch: release-test-v7
-          base: main
-          title: 'Release - version update'
-          body: 'This is an automated PR to merge the release branch into main after version bump and publish.'
+      - name: Create merge-back PR to main using GitHub API
+        run: |
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"title":"Release - version update","body":"This is an automated PR to merge the release branch into main after version bump and publish.","head":"release-test-v7","base":"main"}' \
+            https://api.github.com/repos/${{ github.repository }}/pulls
+  
+
+      # # 6. Create merge-back PR to main
+      # - name: Create merge-back PR to main
+      #   uses: peter-evans/create-pull-request@v5
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     commit-message: "Release - version update"
+      #     branch: release-test-v7
+      #     base: main
+      #     title: 'Release - version update'
+      #     body: 'This is an automated PR to merge the release branch into main after version bump and publish.'
         
