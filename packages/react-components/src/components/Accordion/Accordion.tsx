@@ -46,7 +46,7 @@ export const Accordion: React.FC<IAccordionProps> = ({
     },
     className
   );
-  const { size, handleResize } = useHeightResizer();
+  const { size, handleResizeRef } = useHeightResizer();
 
   const handleExpandChange = (isExpanded: boolean) => {
     if (isExpanded) {
@@ -102,7 +102,7 @@ export const Accordion: React.FC<IAccordionProps> = ({
         style={{ maxHeight: isExpanded ? size : 0 }}
         ref={contentRef}
       >
-        <div ref={handleResize}>
+        <div ref={handleResizeRef}>
           {isMounted && (
             <Text
               as="div"

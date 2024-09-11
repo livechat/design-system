@@ -3,6 +3,8 @@ import * as React from 'react';
 interface AppFrameContextProps {
   isSideNavigationVisible: boolean;
   toggleSideNavigationVisibility: () => void;
+  isMobileViewEnabled: boolean;
+  setIsMobileViewEnabled: (isEnabled: boolean) => void;
 }
 
 const AppFrameContext = React.createContext<AppFrameContextProps | undefined>(
@@ -21,22 +23,34 @@ export const useAppFrame = (): AppFrameContextProps => {
 
 interface AppFrameProviderProps {
   isSideNavigationVisible?: boolean;
+  isMobileViewVisible?: boolean;
 }
 
 export const AppFrameProvider: React.FC<AppFrameProviderProps> = ({
   children,
   isSideNavigationVisible = true,
+  isMobileViewVisible = false,
 }) => {
   const [isSsideNavigationBarOpen, setIsSideNavigationBarOpen] =
     React.useState<boolean>(isSideNavigationVisible);
+  const [isMobileViewEnabled, setIsMobileViewEnabled] =
+    React.useState<boolean>(isMobileViewVisible);
 
   const value = React.useMemo(
     () => ({
       isSideNavigationVisible: isSsideNavigationBarOpen,
       toggleSideNavigationVisibility: () =>
         setIsSideNavigationBarOpen(!isSsideNavigationBarOpen),
+      isMobileViewEnabled,
+      setIsMobileViewEnabled: (isEnabled: boolean) =>
+        setIsMobileViewEnabled(isEnabled),
     }),
-    [isSsideNavigationBarOpen, setIsSideNavigationBarOpen]
+    [
+      isSsideNavigationBarOpen,
+      setIsSideNavigationBarOpen,
+      isMobileViewEnabled,
+      setIsMobileViewEnabled,
+    ]
   );
 
   return (

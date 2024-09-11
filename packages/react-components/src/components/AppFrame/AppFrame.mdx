@@ -17,7 +17,7 @@ The most important functionality of this component, apart from the UI layout, is
 
 ## How to build the navigation <a id="BuildNav" />
 
-[Main navigation](#MainNav) | [Side navigation](#SideNav) | [AppFrameProvider](#Provider) | [Expiration Counter](#ExpirationCounter) 
+[Main navigation](#MainNav) | [Side navigation](#SideNav) | [MobileNavigation](#MobileNav) | [AppFrameProvider](#Provider) | [Expiration Counter](#ExpirationCounter) 
 
 The component allows you to place navigation available on the left side, consisting of icons, and also allows you to display additional navigation in the opening panel.
 
@@ -134,6 +134,47 @@ import { Home, Settings } from '@livechat/design-system-icons';
         ...
       </SideNavigationGroup>
     </SideNavigation>
+  }
+```
+
+### Mobile navigation <a id="MobileNav" />
+
+To build the mobile navigation, use the available components:
+- `MobileNavigation`
+- `NavigationItem`
+
+#### `MobileNavigation` component
+
+The `MobileNavigation` component serves as the main wrapper for navigation items passed as children.
+
+#### `NavigationItem` component
+
+The `NavigationItem` is the same component used in the `Navigation`. You must remember to set the `isMobile` prop to `true` to display items in the mobile mode (label is visible in the button instead of tooltip).
+
+#### Mobile navigation implementation example
+
+```jsx
+import { AppFrame, Navigation, NavigationItem, MobileNavigation } from '@livechat/design-system-react-components';
+import { Home, Settings } from '@livechat/design-system-icons';
+
+<AppFrame
+  navigation={<Navigation>...</Navigation>}
+  mobileNavigation={
+    <MobileNavigation>
+      ...
+        <NavigationItem
+          isMobile
+          key="home"
+          id="home"
+          label="Home"
+          icon={<Icon source={Home} />}
+          onClick={(e, id) => {}}
+          isActive={activeItem === 'home'}
+          badge={5}
+          url="#"
+        />
+      ...
+    </MobileNavigation>
   }
 ```
 
