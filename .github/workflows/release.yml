@@ -66,5 +66,5 @@ jobs:
           curl -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Content-Type: application/json" \
-            -d '{"title":"Release - version update","body":"This is an automated PR to merge the release branch into main after version bump and publish.","head":"release","base":"main"}' \
+            -d '{"title":"Merge-back: release to main","body":"This is an automated PR to merge the release branch into main after version bump and publish.","head":"release","base":"main"}' \
             https://api.github.com/repos/${{ github.repository }}/pulls
