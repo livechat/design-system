@@ -8,7 +8,7 @@ export type ProductId =
   | 'chatbot'
   | 'openwidget'
   | 'knowledgebase'
-  | 'teamchat'
+  | 'hello' // TODO: change to 'teamchat' when the product is renamed
   | 'accounts';
 
 export type ProductName =
@@ -17,7 +17,7 @@ export type ProductName =
   | 'ChatBot'
   | 'OpenWidget'
   | 'KnowledgeBase'
-  | 'TeamChat'
+  | 'Hello' // TODO: change to 'TeamChat' when the product is renamed
   | 'Accounts';
 
 export type Env = 'labs' | 'staging' | 'prod';
@@ -40,7 +40,7 @@ export const SSOProductIdMap: Record<ProductId, ProductName> = {
   knowledgebase: 'KnowledgeBase',
   chatbot: 'ChatBot',
   openwidget: 'OpenWidget',
-  teamchat: 'TeamChat',
+  hello: 'Hello', // TODO: change to teamchat: 'TeamChat' when the product is renamed
 };
 
 export type ProductSubscription = Partial<

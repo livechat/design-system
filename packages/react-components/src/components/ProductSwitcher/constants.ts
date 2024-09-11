@@ -70,7 +70,7 @@ export const ProductSwitcherProducts: ProductOption[] = [
     url: '',
   },
   {
-    id: 'teamchat',
+    id: 'hello', // TODO: change to 'teamchat' when the product is renamed
     name: 'TeamChat',
     icon: HelloMono,
     backgroundColors: {
@@ -124,7 +124,7 @@ export const labsRedirectData: ProductData[] = [
   {
     clientId: '6193fd6d9771645e2dc6a4614c677314',
     redirectUri: 'https://hello.labs.text.com/app',
-    product: 'TeamChat',
+    product: 'Hello', // TODO: change to 'TeamChat' when the product is renamed
   },
   {
     clientId: '0ab5cf9b99447db22109ff70003d4507',
@@ -162,7 +162,7 @@ export const stagingRedirectData: ProductData[] = [
   {
     clientId: '6c493637185258c1a937e68886906831',
     redirectUri: 'https://teamchat.text.com',
-    product: 'TeamChat',
+    product: 'Hello', // TODO: change to 'TeamChat' when the product is renamed
   },
   {
     clientId: '2fd9f1923f2233763b8637f7d10a6fe6',
@@ -200,7 +200,7 @@ export const prodRedirectData: ProductData[] = [
   {
     clientId: '6c493637185258c1a937e68886906831',
     redirectUri: 'https//hello.text.com/app',
-    product: 'TeamChat',
+    product: 'Hello', // TODO: change to 'TeamChat' when the product is renamed
   },
   {
     clientId: '2fd9f1923f2233763b8637f7d10a6fe6',
