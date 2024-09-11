@@ -61,7 +61,4 @@ jobs:
           base: main
           title: 'Release - version update'
           body: 'This is an automated PR to merge the release branch into main after version bump and publish.'
-          always-create: true
-          branch-suffix: timestamp
-          update-existing-pr: true
         
