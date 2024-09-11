@@ -3,7 +3,7 @@ name: Test
 on:
   push:
     branches:
-      - feature/main-workflow-test
+      - feature/main-workflow-test-v2
 
 jobs:
   release:
@@ -13,7 +13,7 @@ jobs:
       - name: Checkout current branch (release)
         uses: actions/checkout@v2
         with:
-          ref: feature/main-workflow-test
+          ref: feature/main-workflow-test-v2
 
       - name: Cache node_modules
         uses: actions/cache@v2
