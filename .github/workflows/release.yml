@@ -45,7 +45,7 @@ jobs:
           echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
       - name: Bump version with Lerna and publish
-        run: lerna version --conventional-commits --no-changelog --yes && lerna publish from-package --yes
+        run: npm run deploy:auto
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }},
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -66,5 +66,5 @@ jobs:
           curl -X POST \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -H "Content-Type: application/json" \
-            -d '{"title":"Release - version update","body":"This is an automated PR to merge the release branch into main after version bump and publish.","head":"release","base":"main"}' \
+            -d '{"title":"Merge-back: release to main","body":"This is an automated PR to merge the release branch into main after version bump and publish.","head":"release","base":"main"}' \
             https://api.github.com/repos/${{ github.repository }}/pulls
