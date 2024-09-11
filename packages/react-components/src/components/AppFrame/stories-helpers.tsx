@@ -4,8 +4,8 @@ import * as Icons from '@livechat/design-system-icons';
 
 import { useAppFrame } from '../../providers/AppFrameProvider';
 import { Badge } from '../Badge';
-import { Button } from '../Button';
 import { Icon } from '../Icon';
+import { Switch } from '../Switch';
 import { Tag } from '../Tag';
 import { Tooltip } from '../Tooltip';
 import { Heading, Text } from '../Typography';
@@ -21,6 +21,8 @@ import {
   DisconnectedAlert,
 } from './components/NavigationTopBar/examples';
 import { NavigationTopBar } from './components/NavigationTopBar/NavigationTopBar';
+
+import './AppFrame.stories.css';
 
 interface ExampleAppContentProps {
   showToggle: boolean;
@@ -39,62 +41,123 @@ export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
 }) => {
   const { isSideNavigationVisible, toggleSideNavigationVisibility } =
     useAppFrame();
+  const [allBannersVisible, setAllBannersVisible] = React.useState(false);
 
   return (
-    <div
-      style={{
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'column',
-      }}
-    >
-      <Heading size="lg">App content</Heading>
-      <div
-        style={{
-          display: 'flex',
-          gap: 16,
-          flexDirection: 'column',
-        }}
-      >
-        <div>
-          <Text>Toggle TopBar Visibility</Text>
-          <Button onClick={() => setTopBarVisible(!topBarVisible)}>
-            {topBarVisible ? 'Hide' : 'Show'}
-          </Button>
+    <div className="app-container">
+      <Heading className="page-title" size="lg">
+        App content
+      </Heading>
+      <div className="app-content-1">
+        <div className="switchers">
+          <div className="switch">
+            <Text bold>Toggle top bar visibility</Text>
+            <Switch
+              size="compact"
+              on={topBarVisible}
+              onChange={() => setTopBarVisible(!topBarVisible)}
+            />
+          </div>
+          {showToggle && (
+            <div className="switch">
+              <Text bold>Toogle sub-navigation visibility</Text>
+              <Switch
+                size="compact"
+                on={isSideNavigationVisible}
+                onChange={toggleSideNavigationVisibility}
+              />
+            </div>
+          )}
+          {alerts && setAlerts && (
+            <>
+              <div className="switch">
+                <Text bold>Toggle all alerts</Text>
+                <Switch
+                  size="compact"
+                  on={allBannersVisible}
+                  onChange={() => {
+                    setAllBannersVisible(!allBannersVisible);
+                    setAlerts(alerts.map(() => !allBannersVisible));
+                  }}
+                />
+              </div>
+              {alerts.map((show, index) => (
+                <div key={index} className="switch">
+                  <Text bold>Taggle alert {index + 1}</Text>
+                  <Switch
+                    size="compact"
+                    on={show}
+                    onChange={() =>
+                      setAlerts(alerts.map((_, i) => (i === index ? !show : _)))
+                    }
+                  />
+                </div>
+              ))}
+            </>
+          )}
         </div>
-        {showToggle && (
-          <div>
-            <Text>Set sub-navigation visibility</Text>
-            <Button onClick={toggleSideNavigationVisibility}>
-              {isSideNavigationVisible ? 'Visible' : 'Hidden'}
-            </Button>
-          </div>
-        )}
-        {alerts && setAlerts && (
-          <div>
-            <Text>Set alerts</Text>
-            <Button onClick={() => setAlerts(alerts.map(() => true))}>
-              Open all
-            </Button>
-            <Button onClick={() => setAlerts(alerts.map(() => false))}>
-              Close all
-            </Button>
-
-            {alerts.map((show, index) => (
-              <Button
-                key={index}
-                onClick={() =>
-                  setAlerts(alerts.map((_, i) => (i === index ? !show : _)))
-                }
-              >
-                {show ? 'Close' : 'Open'} alert {index + 1}
-              </Button>
-            ))}
-          </div>
-        )}
+      </div>
+      <div className="app-content-2">
+        <Text>
+          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+          accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
+          ab illo inventore veritatis et quasi architecto beatae vitae dicta
+          sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+          aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
+          qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui
+          dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
+          quia non numquam eius modi tempora incidunt ut labore et dolore magnam
+          aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum
+          exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex
+          ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in
+          ea voluptate velit esse quam nihil molestiae consequatur, vel illum
+          qui dolorem eum fugiat quo voluptas nulla pariatur?"
+        </Text>
+        <Text>
+          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+          accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
+          ab illo inventore veritatis et quasi architecto beatae vitae dicta
+          sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+          aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
+          qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui
+          dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
+          quia non numquam eius modi tempora incidunt ut labore et dolore magnam
+          aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum
+          exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex
+          ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in
+          ea voluptate velit esse quam nihil molestiae consequatur, vel illum
+          qui dolorem eum fugiat quo voluptas nulla pariatur?"
+        </Text>
+        <Text>
+          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+          accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
+          ab illo inventore veritatis et quasi architecto beatae vitae dicta
+          sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+          aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
+          qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui
+          dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
+          quia non numquam eius modi tempora incidunt ut labore et dolore magnam
+          aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum
+          exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex
+          ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in
+          ea voluptate velit esse quam nihil molestiae consequatur, vel illum
+          qui dolorem eum fugiat quo voluptas nulla pariatur?"
+        </Text>
+        <Text>
+          "Sed ut perspiciatis unde omnis iste natus error sit voluptatem
+          accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
+          ab illo inventore veritatis et quasi architecto beatae vitae dicta
+          sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+          aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
+          qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui
+          dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
+          quia non numquam eius modi tempora incidunt ut labore et dolore magnam
+          aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum
+          exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex
+          ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in
+          ea voluptate velit esse quam nihil molestiae consequatur, vel illum
+          qui dolorem eum fugiat quo voluptas nulla pariatur?"
+        </Text>
       </div>
     </div>
   );
