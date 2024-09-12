@@ -45,16 +45,10 @@ jobs:
 
       - name: Display modified files
         run: git status --short
+
       - name: Display detailed diff
         run: git diff
 
       - name: Run tests
         run: npm run test
 
-      - name: Create merge-back PR to main using GitHub API
-        run: |
-          curl -X POST \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            -d '{"title":"[TEST] Merge-back: release to main","body":"This is an automated PR to merge the release branch into main after version bump and publish.","head":"feature/v2-build-test","base":"main"}' \
-            https://api.github.com/repos/${{ github.repository }}/pulls
