@@ -46,7 +46,7 @@ export const Default: Story = {
         },
 
         {
-          product: 'Hello',
+          product: 'Hello', // TODO: change to 'TeamChat' when the product is renamed
         },
         {
           product: 'OpenWidget',
