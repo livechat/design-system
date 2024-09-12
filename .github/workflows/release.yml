@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     branches:
-      - release
+      - feature/v2-build-test
 
 jobs:
   release:
@@ -13,7 +13,7 @@ jobs:
       - name: Checkout current branch (release)
         uses: actions/checkout@v2
         with:
-          ref: release
+          ref: feature/v2-build-test
 
       - name: Cache node_modules
         uses: actions/cache@v2
@@ -40,31 +40,10 @@ jobs:
       - name: Build icons
         run: npm run build:icons
 
-      - name: Configure npm authentication
-        run: |
-          echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
+      - name: Lerna version
+        run: lerna version --conventional-commits --no-changelog --no-git-tag-version --no-push --yes
 
-      - name: Bump version with Lerna and publish
-        run: npm run deploy:auto
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }},
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Pull latest changes from remote
-        run: git pull origin release
-
-      - name: Check for changes between release and main
-        run: |
-          git fetch origin main
-          if [ "$(git rev-list --count release..origin/main)" -eq 0 ]; then
-            echo "No changes to merge. Skipping PR creation."
-            exit 0
-          fi
-
-      - name: Create merge-back PR to main using GitHub API
-        run: |
-          curl -X POST \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            -d '{"title":"Merge-back: release to main","body":"This is an automated PR to merge the release branch into main after version bump and publish.","head":"release","base":"main"}' \
-            https://api.github.com/repos/${{ github.repository }}/pulls
+      - name: Display modified files
+        run: git status --short
+      - name: Display detailed diff
+        run: git diff
