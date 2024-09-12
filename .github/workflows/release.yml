@@ -41,7 +41,7 @@ jobs:
         run: npm run build:icons
 
       - name: Lerna version
-        run: lerna version --conventional-commits --no-changelog --no-git-tag-version --no-push --yes
+        run: lerna version --conventional-commits --no-changelog --yes
 
       - name: Display modified files
         run: |
