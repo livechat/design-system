@@ -77,10 +77,12 @@ export const AutoComplete = React.forwardRef<
     };
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-      if (virtualItemRef.current?.id && event.key === 'Enter') {
+      const isEnterKey = event.key === 'Enter';
+      if (virtualItemRef.current?.id && isEnterKey) {
         handleAutoComplete([{ key: virtualItemRef.current?.id }]);
         event.preventDefault();
-      } else {
+      }
+      if (!isEnterKey) {
         handleVisibilityChange(true);
       }
       inputProps.onKeyDown?.(event);
