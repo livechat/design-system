@@ -183,3 +183,21 @@ export const ButtonAsLink = (): React.ReactElement => (
     Button as an external link to livechat.com
   </Button>
 );
+
+export const ButtonWithAnimatedLabel = (): React.ReactElement => {
+  return (
+    <>
+      {sizes.map((size) => {
+        const sizeName = size.charAt(0).toUpperCase() + size.slice(1);
+
+        return (
+          <StoryDescriptor title={`${size} kind`}>
+            <Button kind="primary" size={size} animatedLabel icon={ExampleIcon}>
+              Button {sizeName} with animated label
+            </Button>
+          </StoryDescriptor>
+        );
+      })}
+    </>
+  );
+};
