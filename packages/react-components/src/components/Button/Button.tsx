@@ -44,7 +44,7 @@ export type ButtonProps = {
    */
   iconPosition?: 'left' | 'right';
   /**
-   * Set to show label on hover if icon is present
+   * Set to enable animation that will show label on button hover if icon is present
    */
   animatedLabel?: boolean;
 } & React.ButtonHTMLAttributes<HTMLButtonElement> &
@@ -76,8 +76,8 @@ export const Button = React.forwardRef<
     },
     ref
   ) => {
-    const [labelWidth, setLabelWidth] = React.useState<number>(0);
-    const [isLabelOpen, setIsLabelOpen] = React.useState<boolean>(false);
+    const [labelWidth, setLabelWidth] = React.useState(0);
+    const [isLabelOpen, setIsLabelOpen] = React.useState(false);
     const isDisabled = loading || disabled;
     const isIconOnly = !children && icon;
     const isAnimatedLabel = animatedLabel && children && icon;

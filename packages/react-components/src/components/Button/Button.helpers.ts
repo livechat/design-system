@@ -27,7 +27,7 @@ export const handleMouseInteraction = (
   userHandler?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>
 ): void => {
   internalHandler();
-  userHandler && userHandler(event);
+  userHandler?.(event);
 };
 
 export const handleKeyboardInteraction = (
@@ -38,7 +38,7 @@ export const handleKeyboardInteraction = (
   userHandler?: React.FocusEventHandler<HTMLButtonElement | HTMLAnchorElement>
 ): void => {
   internalHandler();
-  userHandler && userHandler(event);
+  userHandler?.(event);
 };
 
 export const buttonRef = (
