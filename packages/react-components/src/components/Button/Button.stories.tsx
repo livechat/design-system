@@ -191,7 +191,7 @@ export const ButtonWithAnimatedLabel = (): React.ReactElement => {
         const sizeName = size.charAt(0).toUpperCase() + size.slice(1);
 
         return (
-          <StoryDescriptor title={`${size} kind`}>
+          <StoryDescriptor title={`${size} size`}>
             <Button kind="primary" size={size} animatedLabel icon={ExampleIcon}>
               Button {sizeName} with animated label
             </Button>
