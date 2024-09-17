@@ -103,12 +103,24 @@ export const Examples = (): React.ReactElement => {
           single
         />
       </StoryDescriptor>
+
       <StoryDescriptor title="Don't hide exact matches">
         <AutoComplete
           options={['Option 1']}
           placeholder={placeholderText}
           hideIfExactMatch={false}
         />
+      </StoryDescriptor>
+      <StoryDescriptor title="In a form">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            // eslint-disable-next-line no-console
+            console.log('submit');
+          }}
+        >
+          <AutoComplete options={options} placeholder={placeholderText} />
+        </form>
       </StoryDescriptor>
     </>
   );
