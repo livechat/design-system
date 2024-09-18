@@ -49,7 +49,7 @@ export const AutoComplete = React.forwardRef<
     ref
   ) => {
     const inputRef = React.useRef<HTMLInputElement>(null);
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+
     React.useImperativeHandle(ref, () => inputRef.current!, []);
 
     const [value, setValue] = React.useState('');

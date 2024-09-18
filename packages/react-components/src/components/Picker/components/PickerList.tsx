@@ -88,6 +88,7 @@ export const PickerList: React.FC<IPickerListProps> = ({
   }, [searchDisabled, isPositioned, activeIndex]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-compiler/react-compiler
     listElementsRef.current = new Array(options.length);
   }, [options.length]);
 

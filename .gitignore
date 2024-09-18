@@ -10,4 +10,5 @@ storybook-static
 .idea
 .vscode/*
 .nx/cache
+.nx/workspace-data
 .history

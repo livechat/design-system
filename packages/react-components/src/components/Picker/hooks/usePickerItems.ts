@@ -64,6 +64,7 @@ export const usePickerItems = ({
     handleOnFilter('');
 
     if (inputRef.current) {
+      // eslint-disable-next-line react-compiler/react-compiler
       inputRef.current.value = '';
     }
   };

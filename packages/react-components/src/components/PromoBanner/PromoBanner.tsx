@@ -71,7 +71,7 @@ export const PromoBanner: React.FC<
   onButtonClick,
   onClose,
   onLinkClick,
-}) => {
+}: React.PropsWithChildren<PromoBannerProps>) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [containerSize, setContainerSize] = React.useState<
     'small' | 'medium' | 'large'

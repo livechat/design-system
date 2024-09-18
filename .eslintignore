@@ -6,3 +6,4 @@ lib
 *.log
 storybook-static
 vite.config.js
+!.storybook

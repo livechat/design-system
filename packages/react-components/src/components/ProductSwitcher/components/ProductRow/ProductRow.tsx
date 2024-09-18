@@ -1,5 +1,4 @@
 import { FC, MouseEvent } from 'react';
-import * as React from 'react';
 
 import { Info } from '@livechat/design-system-icons';
 import cx from 'clsx';

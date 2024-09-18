@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { within } from '@testing-library/react';
 import { vi } from 'vitest';
 

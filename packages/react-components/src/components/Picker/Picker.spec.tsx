@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import userEvent from '@testing-library/user-event';
 import { VirtuosoProps } from 'react-virtuoso';
 import { vitest } from 'vitest';
@@ -12,7 +10,6 @@ import { DEFAULT_PICKER_OPTIONS } from './constants';
 import { Picker } from './Picker';
 import { PickerType, IPickerProps } from './types';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
 window.HTMLElement.prototype.scrollIntoView = () => {};
 
 const defaultProps = {
@@ -31,6 +28,7 @@ vitest.mock('react-virtuoso', () => {
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   return { ...vitest.importActual('react-virtuoso'), Virtuoso };
 });
 

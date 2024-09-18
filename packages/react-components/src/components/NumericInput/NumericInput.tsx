@@ -21,7 +21,9 @@ export type NumericInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   onChange: (value: string) => void;
 };
 
-export const NumericInput: React.FC<NumericInputProps> = ({
+export const NumericInput: React.FC<
+  React.PropsWithChildren<NumericInputProps>
+> = ({
   className,
   error,
   value,

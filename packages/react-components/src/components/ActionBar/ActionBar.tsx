@@ -72,7 +72,6 @@ export const ActionBar: React.FC<IActionBarProps> = ({
           setVisibleItemsCount(newVisibleOptionsCount);
       });
 
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       observer.observe(document.querySelector(`#${id}`)!);
 
       return () => observer.disconnect();

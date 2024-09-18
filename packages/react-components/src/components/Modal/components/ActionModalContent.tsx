@@ -35,7 +35,9 @@ interface IActionModalProps {
   contentClassName?: string;
 }
 
-export const ActionModalContent: React.FC<IActionModalProps> = ({
+export const ActionModalContent: React.FC<
+  React.PropsWithChildren<IActionModalProps>
+> = ({
   children,
   className,
   icon,
