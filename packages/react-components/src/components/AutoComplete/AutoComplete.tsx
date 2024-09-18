@@ -49,7 +49,7 @@ export const AutoComplete = React.forwardRef<
     ref
   ) => {
     const inputRef = React.useRef<HTMLInputElement>(null);
-     
+
     React.useImperativeHandle(ref, () => inputRef.current!, []);
 
     const [value, setValue] = React.useState('');
@@ -77,9 +77,13 @@ export const AutoComplete = React.forwardRef<
     };
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-      handleVisibilityChange(true);
-      if (virtualItemRef.current?.id && event.key === 'Enter') {
+      const isEnterKey = event.key === 'Enter';
+      if (virtualItemRef.current?.id && isEnterKey) {
         handleAutoComplete([{ key: virtualItemRef.current?.id }]);
+        event.preventDefault();
+      }
+      if (!isEnterKey) {
+        handleVisibilityChange(true);
       }
       inputProps.onKeyDown?.(event);
     };
