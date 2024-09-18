@@ -14,8 +14,8 @@ vitest.mock('react-virtuoso', () => {
   function Virtuoso(props: VirtuosoProps<unknown, unknown>) {
     return (
       <>
-        {props.data?.map((value, index) =>
-          props.itemContent?.(index, value, undefined)
+        {props.data?.map(
+          (value, index) => props.itemContent?.(index, value, undefined)
         )}
       </>
     );
