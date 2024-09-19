@@ -4,7 +4,8 @@ $base-class: 'accordion-animated-label';
   display: flex;
   position: relative;
   align-items: center;
-  height: 21px;
+  transition: all var(--transition-duration-fast-2) ease-in-out;
+  min-height: 21px;
 
   &__open,
   &__close {
@@ -14,7 +15,19 @@ $base-class: 'accordion-animated-label';
     max-width: 100%;
 
     &--visible {
-      opacity: 1;
+      animation: change-visibility var(--transition-duration-fast-2) ease-in-out;
+      animation-fill-mode: forwards;
     }
+  }
+}
+
+@keyframes change-visibility {
+  0% {
+    opacity: 0;
+  }
+
+  70%,
+  100% {
+    opacity: 1;
   }
 }
