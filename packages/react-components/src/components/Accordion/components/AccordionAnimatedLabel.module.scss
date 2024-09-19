@@ -5,7 +5,7 @@ $base-class: 'accordion-animated-label';
   position: relative;
   align-items: center;
   transition: all var(--transition-duration-fast-2) ease-in-out;
-  min-height: 21px;
+  min-height: 24px;
 
   &__open,
   &__close {
@@ -15,7 +15,7 @@ $base-class: 'accordion-animated-label';
     max-width: 100%;
 
     &--visible {
-      animation: change-visibility var(--transition-duration-fast-2) ease-in-out;
+      animation: change-visibility var(--transition-duration-fast-2);
       animation-fill-mode: forwards;
     }
   }
