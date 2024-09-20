@@ -1,6 +1,6 @@
 {
   "name": "@livechat/design-system-metrics",
-  "version": "1.38.3",
+  "version": "1.38.4",
   "description": "",
   "scripts": {
     "prebuild": "rm -rf dist",
