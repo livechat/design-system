@@ -16,6 +16,9 @@ export const AccordionAnimatedLabel: React.FC<IAccordionAnimatedLabelProps> = ({
 }) => {
   const openRef = React.useRef<HTMLDivElement>(null);
   const closedRef = React.useRef<HTMLDivElement>(null);
+  const [containerHeight, setContainerHeight] = React.useState<
+    number | undefined
+  >(undefined);
   const { isOpen: isOpenVisible, isMounted: isOpenMounted } = useAnimations({
     isVisible: isOpen,
     elementRef: openRef,
@@ -27,8 +30,19 @@ export const AccordionAnimatedLabel: React.FC<IAccordionAnimatedLabelProps> = ({
     }
   );
 
+  React.useEffect(() => {
+    const activeRef = isOpen ? openRef.current : closedRef.current;
+    if (activeRef) {
+      const newHeight = activeRef.getBoundingClientRect().height;
+      setContainerHeight(newHeight);
+    }
+  }, [isOpen, isOpenMounted, isClosedMounted]);
+
   return (
-    <div className={styles[baseClass]}>
+    <div
+      className={styles[baseClass]}
+      style={{ height: containerHeight ? `${containerHeight}px` : 'auto' }}
+    >
       {isOpenMounted && (
         <div
           ref={openRef}
