@@ -38,7 +38,8 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
     const unknownAgentsNumber =
       agents.length - availableAgentsNumber - unavailableAgentsNumber;
     const sortedAgents = getSortedAgents(agents);
-    const visibleAgents = sortedAgents.slice(0, 3);
+    const visibleAgents =
+      sortedAgents.length > 4 ? sortedAgents.slice(0, 3) : sortedAgents;
     const additionalAgentsNumber = agents.length - visibleAgents.length;
 
     return {
@@ -71,12 +72,15 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
                 />
               ))}
             </div>
-            <Text
-              noMargin
-              className={styles[`${baseClass}__available-agents-number`]}
-            >
-              +{additionalAgentsNumber}
-            </Text>
+            {additionalAgentsNumber > 0 && (
+              <Text
+                className={
+                  styles[`${baseClass}__tooltip-additional-agents-number`]
+                }
+              >
+                {additionalAgentsNumber}
+              </Text>
+            )}
           </div>
         }
       >
