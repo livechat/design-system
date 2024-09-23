@@ -1,0 +1,21 @@
+import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+import * as InviteAgentsStories from './InviteAgents.stories';
+
+<Meta of={InviteAgentsStories} />
+
+<Title>InviteAgents</Title>
+
+## Intro <a id="Intro" />
+
+The `InviteAgents` component is used to display a list of invited agents and provide functionality to add more agents. It displays each agent's name, email, status, and avatar.
+
+<Canvas of={InviteAgentsStories.Default} />
+
+### Example implementation
+
+```
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={InviteAgentsStories.Default} sort="requiredFirst" />
