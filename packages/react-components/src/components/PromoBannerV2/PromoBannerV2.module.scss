@@ -83,6 +83,20 @@ $base-class: 'promo-banner-v2';
     }
   }
 
+  &--dark {
+    // Override dark mode styles
+
+    &__content {
+      // TODO: Override content styles for dark mode
+    }
+
+    &__close__btn {
+      // TODO: Override close button color
+    }
+
+    // Add more overrides as needed
+  }
+
   &--vertical {
     @include verticalStyles;
   }

@@ -51,6 +51,11 @@ export interface IPromoBannerV2Props {
    * Event handler for close button press
    */
   onClose?: () => void;
+  /**
+   * Specify the kind of PromoBannerV2
+   * @default 'default'
+   */
+  kind?: 'default' | 'dark';
 }
 
 export const PromoBannerV2: React.FC<
@@ -65,8 +70,13 @@ export const PromoBannerV2: React.FC<
   contentClassName,
   additionalContentClassName,
   onClose,
+  kind = 'default', // Default kind
 }) => {
-  const mergedClassNames = cx(styles[`main-wrapper`], className);
+  const mergedClassNames = cx(
+    styles['main-wrapper'],
+    styles[`${baseClass}--${kind}`], // Apply kind-based styling
+    className
+  );
 
   return (
     <div role="banner" className={mergedClassNames}>
