@@ -54,7 +54,6 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
   return (
     <div className={cx(ThemeClassName.Dark, styles[baseClass], className)}>
       <Tooltip
-        isVisible={true}
         className={cx(ThemeClassName.Dark, styles[`${baseClass}__tooltip`])}
         offsetMainAxis={11}
         triggerRenderer={
