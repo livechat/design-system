@@ -22,26 +22,39 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
   onAddAgentsClick,
   className,
 }) => {
-  const { availableAgentsNumber, visibleAgents, additionalAgentsNumber } =
-    useMemo(() => {
-      const availableNumber = agents.filter(
-        (agent) => agent.status === 'available'
-      ).length;
-      const sortedAgents = getSortedAgents(agents);
-      const visibleAgents = sortedAgents.slice(0, 3);
-      const additional = agents.length - visibleAgents.length;
+  const {
+    availableAgentsNumber,
+    unavailableAgentsNumber,
+    unknownAgentsNumber,
+    visibleAgents,
+    additionalAgentsNumber,
+  } = useMemo(() => {
+    const availableAgentsNumber = agents.filter(
+      (agent) => agent.status === 'available'
+    ).length;
+    const unavailableAgentsNumber = agents.filter(
+      (agent) => agent.status === 'unavailable'
+    ).length;
+    const unknownAgentsNumber =
+      agents.length - availableAgentsNumber - unavailableAgentsNumber;
+    const sortedAgents = getSortedAgents(agents);
+    const visibleAgents = sortedAgents.slice(0, 3);
+    const additionalAgentsNumber = agents.length - visibleAgents.length;
 
-      return {
-        availableAgentsNumber: availableNumber,
-        visibleAgents,
-        additionalAgentsNumber: additional,
-      };
-    }, [agents]);
+    return {
+      availableAgentsNumber,
+      unavailableAgentsNumber,
+      unknownAgentsNumber,
+      visibleAgents,
+      additionalAgentsNumber,
+    };
+  }, [agents]);
 
   return (
     <div className={cx(ThemeClassName.Dark, styles[baseClass], className)}>
       <Tooltip
-        className={ThemeClassName.Dark}
+        isVisible={true}
+        className={cx(ThemeClassName.Dark, styles[`${baseClass}__tooltip`])}
         offsetMainAxis={11}
         triggerRenderer={
           <div className={styles[`${baseClass}__tooltip-trigger`]}>
@@ -67,8 +80,39 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
           </div>
         }
       >
+        <Text
+          bold
+          size="md"
+          className={styles[`${baseClass}__tooltip-heading`]}
+        >
+          Agent status
+        </Text>
         <Text noMargin>
-          {availableAgentsNumber} of {agents.length} agents accepting chats
+          <div
+            className={cx(
+              styles[`${baseClass}__tooltip-status`],
+              styles[`${baseClass}__tooltip-status--available`]
+            )}
+          />
+          {availableAgentsNumber} accept chats
+        </Text>
+        <Text noMargin>
+          <div
+            className={cx(
+              styles[`${baseClass}__tooltip-status`],
+              styles[`${baseClass}__tooltip-status--unavailable`]
+            )}
+          />
+          {unavailableAgentsNumber} do not accept chats
+        </Text>
+        <Text noMargin>
+          <div
+            className={cx(
+              styles[`${baseClass}__tooltip-status`],
+              styles[`${baseClass}__tooltip-status--unknown`]
+            )}
+          />
+          {unknownAgentsNumber} offline
         </Text>
       </Tooltip>
 

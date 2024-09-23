@@ -11,12 +11,44 @@ $base-class: 'invite-agents';
   max-width: 220px;
   height: 32px;
 
+  &__tooltip {
+    > div {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-3);
+    }
+  }
+
   &__tooltip-trigger {
     display: flex;
     gap: var(--spacing-2);
     align-items: center;
     cursor: pointer;
     padding-right: var(--spacing-2);
+  }
+
+  &__tooltip-heading {
+    margin: 0;
+  }
+
+  &__tooltip-status {
+    display: inline-block;
+    margin-right: var(--spacing-3);
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+
+    &--available {
+      background: var(--surface-accent-emphasis-high-positive);
+    }
+
+    &--unavailable {
+      background: var(--surface-accent-emphasis-high-negative);
+    }
+
+    &--unknown {
+      background: var(--action-neutral-default);
+    }
   }
 
   &__avatar-container {
