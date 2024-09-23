@@ -1,0 +1,46 @@
+$base-class: 'invite-agents';
+
+.#{$base-class} {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-basic-secondary);
+  border-right: 0;
+  border-radius: 16px;
+  background-color: var(--surface-secondary-active);
+  padding-left: var(--spacing-1);
+  max-width: 220px;
+  height: 32px;
+
+  &__tooltip-trigger {
+    display: flex;
+    gap: var(--spacing-2);
+    align-items: center;
+    cursor: pointer;
+    padding-right: var(--spacing-2);
+  }
+
+  &__avatar-container {
+    display: flex;
+  }
+
+  &__available-agents-number {
+    padding-right: var(--spacing-1);
+    padding-left: var(--spacing-1);
+    text-transform: uppercase;
+    line-height: 20px; /* 166.667% */
+    letter-spacing: 0.2px;
+    color: var(--content-basic-secondary);
+    font-size: 12px;
+    font-weight: 500;
+    font-style: normal;
+  }
+
+  &__invite-button {
+    border: 1px solid var(--content-basic-disabled);
+    border-radius: 24px;
+    background-color: var(--surface-primary-default);
+    padding: 6px 16px 6px 12px;
+    height: 32px;
+    color: var(--content-basic-primary);
+  }
+}

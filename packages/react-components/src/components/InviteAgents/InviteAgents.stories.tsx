@@ -6,6 +6,11 @@ import { InviteAgents } from './InviteAgents';
 const meta: Meta<typeof InviteAgents> = {
   title: 'Business Components/InviteAgents',
   component: InviteAgents,
+  render: (args) => (
+    <div style={{ display: 'flex' }}>
+      <InviteAgents {...args} />
+    </div>
+  ),
 };
 
 export default meta;
@@ -15,13 +20,13 @@ const mockAgents = [
   {
     name: 'Alice Johnson',
     email: 'alice@example.com',
-    status: 'online' as const,
+    status: 'available' as const,
     avatar: 'https://via.placeholder.com/150',
   },
   {
     name: 'Bob Smith',
     email: 'bob@example.com',
-    status: 'away' as const,
+    status: 'unavailable' as const,
     avatar: 'https://via.placeholder.com/150',
   },
 ];
