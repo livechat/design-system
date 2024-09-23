@@ -41,6 +41,12 @@ const mockAgents = [
     status: 'unavailable' as const,
     avatar: 'https://via.placeholder.com/150',
   },
+  ...Array(10).fill({
+    name: 'Unknown Agent',
+    email: 'unknown@example.com',
+    status: 'unknown' as const,
+    avatar: 'https://via.placeholder.com/150',
+  }),
 ];
 
 export const Default: Story = {

@@ -52,72 +52,79 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
   }, [agents]);
 
   return (
-    <div className={cx(ThemeClassName.Dark, styles[baseClass], className)}>
-      <Tooltip
-        className={cx(ThemeClassName.Dark, styles[`${baseClass}__tooltip`])}
-        offsetMainAxis={11}
-        triggerRenderer={
-          <div className={styles[`${baseClass}__tooltip-trigger`]}>
-            <div className={styles[`${baseClass}__avatar-container`]}>
-              {visibleAgents.map((agent, index) => (
-                <Avatar
-                  className={styles[`${baseClass}__avatar`]}
-                  key={agent.email}
-                  type="image"
-                  size="xsmall"
-                  status={agent.status}
-                  src={agent.avatar}
-                  style={{ zIndex: agents.length - index }}
-                />
-              ))}
+    <div
+      className={cx(
+        ThemeClassName.Dark,
+        styles[baseClass],
+        { [styles[`${baseClass}--empty`]]: agents.length === 0 },
+        className
+      )}
+    >
+      {agents.length > 0 && (
+        <Tooltip
+          className={cx(ThemeClassName.Dark, styles[`${baseClass}__tooltip`])}
+          offsetMainAxis={11}
+          triggerRenderer={
+            <div className={styles[`${baseClass}__tooltip-trigger`]}>
+              <div className={styles[`${baseClass}__avatar-container`]}>
+                {visibleAgents.map((agent, index) => (
+                  <Avatar
+                    className={styles[`${baseClass}__avatar`]}
+                    key={agent.email}
+                    type="image"
+                    size="xsmall"
+                    status={agent.status}
+                    src={agent.avatar}
+                    style={{ zIndex: agents.length - index }}
+                  />
+                ))}
+              </div>
+              {additionalAgentsNumber > 0 && (
+                <Text
+                  className={styles[`${baseClass}__available-agents-number`]}
+                >
+                  +{additionalAgentsNumber}
+                </Text>
+              )}
             </div>
-            {additionalAgentsNumber > 0 && (
-              <Text
-                className={
-                  styles[`${baseClass}__tooltip-additional-agents-number`]
-                }
-              >
-                {additionalAgentsNumber}
-              </Text>
-            )}
-          </div>
-        }
-      >
-        <Text
-          bold
-          size="md"
-          className={styles[`${baseClass}__tooltip-heading`]}
+          }
         >
-          Agent status
-        </Text>
-        <Text noMargin>
-          <div
-            className={cx(
-              styles[`${baseClass}__tooltip-status`],
-              styles[`${baseClass}__tooltip-status--available`]
-            )}
-          />
-          {availableAgentsNumber} accept chats
-        </Text>
-        <Text noMargin>
-          <div
-            className={cx(
-              styles[`${baseClass}__tooltip-status`],
-              styles[`${baseClass}__tooltip-status--unavailable`]
-            )}
-          />
-          {unavailableAgentsNumber} do not accept chats
-        </Text>
-        <Text noMargin>
-          <div
-            className={cx(
-              styles[`${baseClass}__tooltip-status`],
-              styles[`${baseClass}__tooltip-status--unknown`]
-            )}
-          />
-          {unknownAgentsNumber} offline
-        </Text>
-      </Tooltip>
+          <Text
+            bold
+            size="md"
+            className={styles[`${baseClass}__tooltip-heading`]}
+          >
+            Agent status
+          </Text>
+          <Text noMargin>
+            <div
+              className={cx(
+                styles[`${baseClass}__tooltip-status`],
+                styles[`${baseClass}__tooltip-status--available`]
+              )}
+            />
+            {availableAgentsNumber} accept chats
+          </Text>
+          <Text noMargin>
+            <div
+              className={cx(
+                styles[`${baseClass}__tooltip-status`],
+                styles[`${baseClass}__tooltip-status--unavailable`]
+              )}
+            />
+            {unavailableAgentsNumber} do not accept chats
+          </Text>
+          <Text noMargin>
+            <div
+              className={cx(
+                styles[`${baseClass}__tooltip-status`],
+                styles[`${baseClass}__tooltip-status--unknown`]
+              )}
+            />
+            {unknownAgentsNumber} offline
+          </Text>
+        </Tooltip>
+      )}
 
       <Button
         kind="secondary"
