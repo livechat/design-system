@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo, useMemo } from 'react';
 
 import { Add } from '@livechat/design-system-icons';
 import cx from 'clsx';
@@ -17,17 +17,26 @@ import styles from './InviteAgents.module.scss';
 
 const baseClass = 'invite-agents';
 
-export const InviteAgents: FC<InviteAgentsProps> = ({
+const InviteAgentsComponent: FC<InviteAgentsProps> = ({
   agents,
   onAddAgentsClick,
   className,
 }) => {
-  const availableAgentsNumber = agents.filter(
-    (agent) => agent.status === 'available'
-  ).length;
+  const { availableAgentsNumber, visibleAgents, additionalAgentsNumber } =
+    useMemo(() => {
+      const availableNumber = agents.filter(
+        (agent) => agent.status === 'available'
+      ).length;
+      const sortedAgents = getSortedAgents(agents);
+      const visibleAgents = sortedAgents.slice(0, 3);
+      const additional = agents.length - visibleAgents.length;
 
-  const visibleAgents = getSortedAgents(agents).slice(0, 3);
-  const additionalAgentsNumber = agents.length - visibleAgents.length;
+      return {
+        availableAgentsNumber: availableNumber,
+        visibleAgents,
+        additionalAgentsNumber: additional,
+      };
+    }, [agents]);
 
   return (
     <div className={cx(ThemeClassName.Dark, styles[baseClass], className)}>
@@ -74,3 +83,5 @@ export const InviteAgents: FC<InviteAgentsProps> = ({
     </div>
   );
 };
+
+export const InviteAgents = memo(InviteAgentsComponent);
