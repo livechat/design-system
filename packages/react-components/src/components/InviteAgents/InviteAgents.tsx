@@ -10,6 +10,7 @@ import { Icon } from '../Icon';
 import { Tooltip } from '../Tooltip';
 import { Text } from '../Typography';
 
+import { getSortedAgents } from './helpers';
 import { InviteAgentsProps } from './types';
 
 import styles from './InviteAgents.module.scss';
@@ -25,20 +26,26 @@ export const InviteAgents: FC<InviteAgentsProps> = ({
     (agent) => agent.status === 'available'
   ).length;
 
+  const visibleAgents = getSortedAgents(agents).slice(0, 3);
+  const additionalAgentsNumber = agents.length - visibleAgents.length;
+
   return (
     <div className={cx(ThemeClassName.Dark, styles[baseClass], className)}>
       <Tooltip
         className={ThemeClassName.Dark}
+        offsetMainAxis={11}
         triggerRenderer={
           <div className={styles[`${baseClass}__tooltip-trigger`]}>
             <div className={styles[`${baseClass}__avatar-container`]}>
-              {agents.map((agent) => (
+              {visibleAgents.map((agent, index) => (
                 <Avatar
+                  className={styles[`${baseClass}__avatar`]}
                   key={agent.email}
                   type="image"
                   size="xsmall"
                   status={agent.status}
                   src={agent.avatar}
+                  style={{ zIndex: agents.length - index }}
                 />
               ))}
             </div>
@@ -46,7 +53,7 @@ export const InviteAgents: FC<InviteAgentsProps> = ({
               noMargin
               className={styles[`${baseClass}__available-agents-number`]}
             >
-              {availableAgentsNumber}
+              +{additionalAgentsNumber}
             </Text>
           </div>
         }

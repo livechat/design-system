@@ -23,11 +23,22 @@ $base-class: 'invite-agents';
     display: flex;
   }
 
+  &__avatar {
+    position: relative;
+    border: 1px solid var(--border-basic-tertiary);
+
+    &:not(:first-child) {
+      margin-left: -10px;
+    }
+
+    > div {
+      border: 1px solid var(--border-basic-tertiary);
+    }
+  }
+
   &__available-agents-number {
-    padding-right: var(--spacing-1);
-    padding-left: var(--spacing-1);
     text-transform: uppercase;
-    line-height: 20px; /* 166.667% */
+    line-height: 20px;
     letter-spacing: 0.2px;
     color: var(--content-basic-secondary);
     font-size: 12px;
