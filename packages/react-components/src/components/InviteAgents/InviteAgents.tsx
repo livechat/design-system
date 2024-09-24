@@ -130,7 +130,10 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
         animatedLabel={animatedInviteButton}
         kind="secondary"
         size="xcompact"
-        className={styles[`${baseClass}__invite-button`]}
+        className={cx(styles[`${baseClass}__invite-button`], {
+          [styles[`${baseClass}__invite-button--animated`]]:
+            animatedInviteButton,
+        })}
         icon={<Icon source={Add} />}
         onClick={onAddAgentsClick}
       >

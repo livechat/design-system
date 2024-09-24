@@ -83,22 +83,28 @@ $base-class: 'invite-agents';
   }
 
   &__invite-button {
-    margin-right: 4px;
+    margin-right: 0;
     border: 1px solid var(--content-basic-disabled);
     border-radius: 24px;
     background-color: var(--surface-primary-default);
     padding: 6px 16px 6px 12px;
     min-width: 0;
+    height: 32px;
     color: var(--content-basic-primary);
 
-    &[class*='--animated-label'][class*='--with-left-icon'] {
-      padding-right: 3px;
-      padding-left: 3px;
+    &--animated {
+      margin-right: 4px;
+      height: 24px;
 
-      &:hover,
-      &:focus-visible {
-        margin-right: 0;
-        height: 32px;
+      &[class*='--animated-label'][class*='--with-left-icon'] {
+        padding-right: 3px;
+        padding-left: 3px;
+
+        &:hover,
+        &:focus-visible {
+          margin-right: 0;
+          height: 32px;
+        }
       }
     }
   }
