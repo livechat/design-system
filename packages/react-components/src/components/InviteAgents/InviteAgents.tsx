@@ -29,6 +29,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
     unknownAgentsNumber,
     visibleAgents,
     additionalAgentsNumber,
+    hasOnlyUnavailableAgents,
   } = useMemo(() => {
     const availableAgentsNumber = agents.filter(
       (agent) => agent.status === 'available'
@@ -42,6 +43,10 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
     const visibleAgents =
       sortedAgents.length > 4 ? sortedAgents.slice(0, 3) : sortedAgents;
     const additionalAgentsNumber = agents.length - visibleAgents.length;
+    const hasOnlyUnavailableAgents =
+      agents.length > 0 &&
+      unavailableAgentsNumber > 0 &&
+      availableAgentsNumber === 0;
 
     return {
       availableAgentsNumber,
@@ -49,6 +54,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
       unknownAgentsNumber,
       visibleAgents,
       additionalAgentsNumber,
+      hasOnlyUnavailableAgents,
     };
   }, [agents]);
 
@@ -57,11 +63,27 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
       className={cx(
         ThemeClassName.Dark,
         styles[baseClass],
-        { [styles[`${baseClass}--empty`]]: agents.length === 0 },
+        {
+          [styles[`${baseClass}--empty`]]: agents.length === 0,
+          [styles[`${baseClass}--only-unavailable`]]: hasOnlyUnavailableAgents,
+        },
         className
       )}
     >
-      {agents.length > 0 && (
+      {hasOnlyUnavailableAgents && (
+        <div className={styles[`${baseClass}__not-accepting`]}>
+          <div
+            className={cx(
+              styles[`${baseClass}__tooltip-status`],
+              styles[`${baseClass}__tooltip-status--unavailable`]
+            )}
+          />
+          <Text noMargin bold size="sm">
+            Not accepting
+          </Text>
+        </div>
+      )}
+      {agents.length > 0 && !hasOnlyUnavailableAgents && (
         <Tooltip
           className={cx(ThemeClassName.Dark, styles[`${baseClass}__tooltip`])}
           triggerRenderer={

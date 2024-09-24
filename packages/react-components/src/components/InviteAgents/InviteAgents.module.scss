@@ -7,18 +7,37 @@ $base-class: 'invite-agents';
   border-right: 0;
   border-radius: 16px;
   background-color: var(--surface-secondary-active);
-  max-width: 232px;
+  max-width: 251px;
   height: 32px;
 
   &--empty {
     border: 0;
   }
 
+  &--only-unavailable {
+    border-color: var(--action-negative-default);
+    background-color: var(--surface-accent-ondark-negative-default);
+  }
+
+  &__not-accepting {
+    display: flex;
+    gap: var(--spacing-2);
+    align-items: center;
+    margin-right: var(--spacing-2);
+    margin-left: var(--spacing-2);
+    color: var(--content-basic-primary);
+  }
+
   &__tooltip {
     > div {
       display: flex;
       flex-direction: column;
-      gap: var(--spacing-3);
+
+      > p {
+        display: inline-flex;
+        gap: var(--spacing-3);
+        align-items: center;
+      }
     }
   }
 
@@ -33,11 +52,11 @@ $base-class: 'invite-agents';
 
   &__tooltip-heading {
     margin: 0;
+    margin-bottom: var(--spacing-1);
   }
 
   &__tooltip-status {
     display: inline-block;
-    margin-right: var(--spacing-3);
     border-radius: 50%;
     width: 10px;
     height: 10px;

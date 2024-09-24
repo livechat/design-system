@@ -64,3 +64,13 @@ export const NoAgents: Story = {
     onAddAgentsClick: action('Add Agents Clicked'),
   },
 };
+
+export const OnlyUnavailableAgents: Story = {
+  args: {
+    agents: mockAgents.map((agent) => ({
+      ...agent,
+      status: 'unavailable' as const,
+    })),
+    onAddAgentsClick: action('Add Agents Clicked'),
+  },
+};
