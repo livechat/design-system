@@ -7,7 +7,9 @@ const meta: Meta<typeof InviteAgents> = {
   title: 'Business Components/InviteAgents',
   component: InviteAgents,
   render: (args) => (
-    <div style={{ display: 'flex', marginLeft: '100px' }}>
+    <div
+      style={{ display: 'flex', marginLeft: '100px', justifyContent: 'end' }}
+    >
       <InviteAgents {...args} />
     </div>
   ),
@@ -41,12 +43,12 @@ const mockAgents = [
     status: 'unavailable' as const,
     avatar: 'https://via.placeholder.com/150',
   },
-  ...Array(10).fill({
-    name: 'Unknown Agent',
-    email: 'unknown@example.com',
+  ...[...Array(10)].map((_, index) => ({
+    name: `Unknown Agent ${index}`,
+    email: `unknown${index}@example.com`,
     status: 'unknown' as const,
     avatar: 'https://via.placeholder.com/150',
-  }),
+  })),
 ];
 
 export const Default: Story = {

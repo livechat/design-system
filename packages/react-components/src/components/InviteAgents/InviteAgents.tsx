@@ -21,6 +21,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
   agents,
   onAddAgentsClick,
   className,
+  animatedInviteButton = false,
 }) => {
   const {
     availableAgentsNumber,
@@ -63,7 +64,6 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
       {agents.length > 0 && (
         <Tooltip
           className={cx(ThemeClassName.Dark, styles[`${baseClass}__tooltip`])}
-          offsetMainAxis={11}
           triggerRenderer={
             <div className={styles[`${baseClass}__tooltip-trigger`]}>
               <div className={styles[`${baseClass}__avatar-container`]}>
@@ -127,6 +127,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
       )}
 
       <Button
+        animatedLabel={animatedInviteButton}
         kind="secondary"
         className={styles[`${baseClass}__invite-button`]}
         icon={<Icon source={Add} />}

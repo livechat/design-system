@@ -18,4 +18,8 @@ export interface InviteAgentsProps {
    * The function to call when the "Add agents" button is clicked
    */
   onAddAgentsClick: () => void;
+  /**
+   * Whether the invite button should be animated
+   */
+  animatedInviteButton?: boolean;
 }
