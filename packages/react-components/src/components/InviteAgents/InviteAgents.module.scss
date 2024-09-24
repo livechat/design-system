@@ -83,11 +83,23 @@ $base-class: 'invite-agents';
   }
 
   &__invite-button {
+    margin-right: 4px;
     border: 1px solid var(--content-basic-disabled);
     border-radius: 24px;
     background-color: var(--surface-primary-default);
     padding: 6px 16px 6px 12px;
-    height: 32px;
+    min-width: 0;
     color: var(--content-basic-primary);
+
+    &[class*='--animated-label'][class*='--with-left-icon'] {
+      padding-right: 3px;
+      padding-left: 3px;
+
+      &:hover,
+      &:focus-visible {
+        margin-right: 0;
+        height: 32px;
+      }
+    }
   }
 }
