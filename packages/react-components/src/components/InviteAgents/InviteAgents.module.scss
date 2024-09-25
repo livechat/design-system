@@ -58,10 +58,6 @@ $base-class: 'invite-agents';
     padding-left: var(--spacing-1);
   }
 
-  &__tooltip-heading {
-    margin: 0 0 var(--spacing-1);
-  }
-
   &__not-accepting-status-dot {
     display: inline-block;
     border: 1px solid var(--navbar-background);

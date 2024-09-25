@@ -140,11 +140,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
               }}
             />
           ) : (
-            <Text
-              bold
-              size="md"
-              className={styles[`${baseClass}__tooltip-heading`]}
-            >
+            <Text noMargin size="md">
               {getAvailableAgentsTooltipText(availableAgentsNumber)}
             </Text>
           )}
