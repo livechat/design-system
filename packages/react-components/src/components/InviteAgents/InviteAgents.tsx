@@ -22,6 +22,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
   onAddAgentsClick,
   className,
   animatedInviteButton = false,
+  tooltipArrowOffset = 13,
 }) => {
   const shouldAnimateInviteButton = animatedInviteButton && agents.length > 0;
   const {
@@ -73,6 +74,8 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
     >
       {agents.length > 0 && (
         <Tooltip
+          offsetMainAxis={tooltipArrowOffset}
+          floatingStrategy="fixed"
           hoverOnDelay={50}
           className={cx(ThemeClassName.Dark, styles[`${baseClass}__tooltip`])}
           triggerRenderer={

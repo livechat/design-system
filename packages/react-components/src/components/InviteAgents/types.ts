@@ -22,4 +22,8 @@ export interface InviteAgentsProps {
    * Whether the invite button should be animated
    */
   animatedInviteButton?: boolean;
+  /**
+   * Offset for the tooltip arrow
+   */
+  tooltipArrowOffset?: number;
 }
