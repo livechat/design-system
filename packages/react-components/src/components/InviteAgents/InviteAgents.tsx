@@ -70,45 +70,47 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
         className
       )}
     >
-      {hasOnlyUnavailableAgents && (
-        <div className={styles[`${baseClass}__not-accepting`]}>
-          <div
-            className={cx(
-              styles[`${baseClass}__tooltip-status`],
-              styles[`${baseClass}__tooltip-status--unavailable`]
-            )}
-          />
-          <Text noMargin bold size="sm">
-            Not accepting
-          </Text>
-        </div>
-      )}
-      {agents.length > 0 && !hasOnlyUnavailableAgents && (
+      {agents.length > 0 && (
         <Tooltip
+          hoverOnDelay={50}
           className={cx(ThemeClassName.Dark, styles[`${baseClass}__tooltip`])}
           triggerRenderer={
-            <div className={styles[`${baseClass}__tooltip-trigger`]}>
-              <div className={styles[`${baseClass}__avatar-container`]}>
-                {visibleAgents.map((agent, index) => (
-                  <Avatar
-                    className={styles[`${baseClass}__avatar`]}
-                    key={agent.email}
-                    type="image"
-                    size="xsmall"
-                    status={agent.status}
-                    src={agent.avatar}
-                    style={{ zIndex: agents.length - index }}
-                  />
-                ))}
-              </div>
-              {additionalAgentsNumber > 0 && (
-                <Text
-                  className={styles[`${baseClass}__available-agents-number`]}
-                >
-                  +{additionalAgentsNumber}
+            hasOnlyUnavailableAgents ? (
+              <div className={styles[`${baseClass}__not-accepting`]}>
+                <div
+                  className={cx(
+                    styles[`${baseClass}__tooltip-status`],
+                    styles[`${baseClass}__tooltip-status--unavailable`]
+                  )}
+                />
+                <Text noMargin bold size="sm">
+                  Not accepting
                 </Text>
-              )}
-            </div>
+              </div>
+            ) : (
+              <div className={styles[`${baseClass}__tooltip-trigger`]}>
+                <div className={styles[`${baseClass}__avatar-container`]}>
+                  {visibleAgents.map((agent, index) => (
+                    <Avatar
+                      className={styles[`${baseClass}__avatar`]}
+                      key={agent.email}
+                      type="image"
+                      size="xsmall"
+                      status={agent.status}
+                      src={agent.avatar}
+                      style={{ zIndex: agents.length - index }}
+                    />
+                  ))}
+                </div>
+                {additionalAgentsNumber > 0 && (
+                  <Text
+                    className={styles[`${baseClass}__available-agents-number`]}
+                  >
+                    +{additionalAgentsNumber}
+                  </Text>
+                )}
+              </div>
+            )
           }
         >
           <Text
@@ -116,35 +118,43 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
             size="md"
             className={styles[`${baseClass}__tooltip-heading`]}
           >
-            Agent status
+            {hasOnlyUnavailableAgents
+              ? 'No one assist your customers'
+              : 'Team status'}
           </Text>
-          <Text noMargin>
-            <div
-              className={cx(
-                styles[`${baseClass}__tooltip-status`],
-                styles[`${baseClass}__tooltip-status--available`]
-              )}
-            />
-            {availableAgentsNumber} accept chats
-          </Text>
-          <Text noMargin>
-            <div
-              className={cx(
-                styles[`${baseClass}__tooltip-status`],
-                styles[`${baseClass}__tooltip-status--unavailable`]
-              )}
-            />
-            {unavailableAgentsNumber} do not accept chats
-          </Text>
-          <Text noMargin>
-            <div
-              className={cx(
-                styles[`${baseClass}__tooltip-status`],
-                styles[`${baseClass}__tooltip-status--unknown`]
-              )}
-            />
-            {unknownAgentsNumber} offline
-          </Text>
+          {!!availableAgentsNumber && (
+            <Text noMargin>
+              <div
+                className={cx(
+                  styles[`${baseClass}__tooltip-status`],
+                  styles[`${baseClass}__tooltip-status--available`]
+                )}
+              />
+              {availableAgentsNumber} available
+            </Text>
+          )}
+          {!!unavailableAgentsNumber && (
+            <Text noMargin>
+              <div
+                className={cx(
+                  styles[`${baseClass}__tooltip-status`],
+                  styles[`${baseClass}__tooltip-status--unavailable`]
+                )}
+              />
+              {unavailableAgentsNumber} unavailable
+            </Text>
+          )}
+          {!!unknownAgentsNumber && (
+            <Text noMargin>
+              <div
+                className={cx(
+                  styles[`${baseClass}__tooltip-status`],
+                  styles[`${baseClass}__tooltip-status--unknown`]
+                )}
+              />
+              {unknownAgentsNumber} offline
+            </Text>
+          )}
         </Tooltip>
       )}
 
