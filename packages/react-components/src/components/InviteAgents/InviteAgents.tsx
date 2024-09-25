@@ -10,7 +10,7 @@ import { Icon } from '../Icon';
 import { Tooltip } from '../Tooltip';
 import { Text } from '../Typography';
 
-import { getSortedAgents } from './helpers';
+import { getAvailableAgentsTooltipText, getSortedAgents } from './helpers';
 import { InviteAgentsProps } from './types';
 
 import styles from './InviteAgents.module.scss';
@@ -27,33 +27,24 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
   const shouldAnimateInviteButton = animatedInviteButton && agents.length > 0;
   const {
     availableAgentsNumber,
-    unavailableAgentsNumber,
-    unknownAgentsNumber,
     visibleAgents,
     additionalAgentsNumber,
     hasOnlyUnavailableAgents,
   } = useMemo(() => {
-    const availableAgentsNumber = agents.filter(
+    const availableAgents = agents.filter(
       (agent) => agent.status === 'available'
-    ).length;
-    const unavailableAgentsNumber = agents.filter(
-      (agent) => agent.status === 'unavailable'
-    ).length;
-    const unknownAgentsNumber =
-      agents.length - availableAgentsNumber - unavailableAgentsNumber;
-    const sortedAgents = getSortedAgents(agents);
+    );
+    const sortedAgents = getSortedAgents(availableAgents);
+    const availableAgentsNumber = availableAgents.length;
+
     const visibleAgents =
       sortedAgents.length > 4 ? sortedAgents.slice(0, 3) : sortedAgents;
-    const additionalAgentsNumber = agents.length - visibleAgents.length;
+    const additionalAgentsNumber = availableAgentsNumber - visibleAgents.length;
     const hasOnlyUnavailableAgents =
-      agents.length > 0 &&
-      unavailableAgentsNumber > 0 &&
-      availableAgentsNumber === 0;
+      agents.length > 0 && availableAgentsNumber === 0;
 
     return {
       availableAgentsNumber,
-      unavailableAgentsNumber,
-      unknownAgentsNumber,
       visibleAgents,
       additionalAgentsNumber,
       hasOnlyUnavailableAgents,
@@ -83,9 +74,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
               <div className={styles[`${baseClass}__not-accepting`]}>
                 <div
                   className={cx(
-                    styles[`${baseClass}__tooltip-status`],
-                    styles[`${baseClass}__tooltip-status--unavailable`],
-                    styles[`${baseClass}__tooltip-status--unavailable--border`]
+                    styles[`${baseClass}__not-accepting-status-dot`]
                   )}
                 />
                 <Text noMargin bold size="sm">
@@ -123,43 +112,8 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
             size="md"
             className={styles[`${baseClass}__tooltip-heading`]}
           >
-            {hasOnlyUnavailableAgents
-              ? 'No one assist your customers'
-              : 'Team status'}
+            {getAvailableAgentsTooltipText(availableAgentsNumber)}
           </Text>
-          {!!availableAgentsNumber && (
-            <Text noMargin>
-              <div
-                className={cx(
-                  styles[`${baseClass}__tooltip-status`],
-                  styles[`${baseClass}__tooltip-status--available`]
-                )}
-              />
-              {availableAgentsNumber} accepting chats
-            </Text>
-          )}
-          {!!unavailableAgentsNumber && (
-            <Text noMargin>
-              <div
-                className={cx(
-                  styles[`${baseClass}__tooltip-status`],
-                  styles[`${baseClass}__tooltip-status--unavailable`]
-                )}
-              />
-              {unavailableAgentsNumber} not accepting chats
-            </Text>
-          )}
-          {!!unknownAgentsNumber && (
-            <Text noMargin>
-              <div
-                className={cx(
-                  styles[`${baseClass}__tooltip-status`],
-                  styles[`${baseClass}__tooltip-status--unknown`]
-                )}
-              />
-              {unknownAgentsNumber} offline
-            </Text>
-          )}
         </Tooltip>
       )}
 

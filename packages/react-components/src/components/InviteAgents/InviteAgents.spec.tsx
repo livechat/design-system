@@ -35,7 +35,7 @@ describe('InviteAgents Component', () => {
     expect(tooltipHeading).not.toBeInTheDocument();
   });
 
-  it('renders available, unavailable, and unknown agents correctly', async () => {
+  it('renders only available agents', async () => {
     const agents: Agent[] = [
       {
         name: 'Alice',
@@ -60,15 +60,12 @@ describe('InviteAgents Component', () => {
     renderComponent(agents);
 
     const avatars = screen.getAllByRole('img');
-    expect(avatars).toHaveLength(3);
+    expect(avatars).toHaveLength(1);
 
     userEvent.hover(avatars[0]);
 
     await waitFor(() => {
-      expect(screen.getByText(/team status/i)).toBeInTheDocument();
-      expect(screen.getByText(/1 accepting chats/i)).toBeInTheDocument();
-      expect(screen.getByText(/1 not accepting chats/i)).toBeInTheDocument();
-      expect(screen.getByText(/1 offline/i)).toBeInTheDocument();
+      expect(screen.getByText(/1 agent accepting chats/i)).toBeInTheDocument();
     });
   });
 
@@ -154,7 +151,6 @@ describe('InviteAgents Component', () => {
       expect(
         screen.getByText('No one assist your customers')
       ).toBeInTheDocument();
-      expect(screen.getByText(/2 not accepting chats/i)).toBeInTheDocument();
     });
   });
 });

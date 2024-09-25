@@ -59,31 +59,16 @@ $base-class: 'invite-agents';
   }
 
   &__tooltip-heading {
-    margin: 0;
-    margin-bottom: var(--spacing-1);
+    margin: 0 0 var(--spacing-1);
   }
 
-  &__tooltip-status {
+  &__not-accepting-status-dot {
     display: inline-block;
+    border: 1px solid var(--navbar-background);
     border-radius: 50%;
+    background: var(--surface-accent-emphasis-high-negative);
     width: 10px;
     height: 10px;
-
-    &--available {
-      background: var(--surface-accent-emphasis-high-positive);
-    }
-
-    &--unavailable {
-      background: var(--surface-accent-emphasis-high-negative);
-
-      &--border {
-        border: 1px solid var(--navbar-background);
-      }
-    }
-
-    &--unknown {
-      background: var(--action-neutral-default);
-    }
   }
 
   &__avatar-container {

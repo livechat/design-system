@@ -46,7 +46,7 @@ const mockAgents = [
   ...[...Array(10)].map((_, index) => ({
     name: `Unknown Agent ${index}`,
     email: `unknown${index}@example.com`,
-    status: 'unknown' as const,
+    status: 'available' as const,
     avatar: 'https://via.placeholder.com/150',
   })),
 ];
