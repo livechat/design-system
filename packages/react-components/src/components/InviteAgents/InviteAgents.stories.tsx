@@ -58,10 +58,11 @@ export const Default: Story = {
   },
 };
 
-export const NoAgents: Story = {
+export const AnimatedInviteButton: Story = {
   args: {
-    agents: [],
+    agents: mockAgents,
     onAddAgentsClick: action('Add Agents Clicked'),
+    animatedInviteButton: true,
   },
 };
 
@@ -71,6 +72,13 @@ export const OnlyUnavailableAgents: Story = {
       ...agent,
       status: 'unavailable' as const,
     })),
+    onAddAgentsClick: action('Add Agents Clicked'),
+  },
+};
+
+export const NoAgents: Story = {
+  args: {
+    agents: [],
     onAddAgentsClick: action('Add Agents Clicked'),
   },
 };

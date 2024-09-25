@@ -23,6 +23,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
   className,
   animatedInviteButton = false,
 }) => {
+  const shouldAnimateInviteButton = animatedInviteButton && agents.length > 0;
   const {
     availableAgentsNumber,
     unavailableAgentsNumber,
@@ -159,12 +160,12 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
       )}
 
       <Button
-        animatedLabel={animatedInviteButton}
+        animatedLabel={shouldAnimateInviteButton}
         kind="secondary"
         size="xcompact"
         className={cx(styles[`${baseClass}__invite-button`], {
           [styles[`${baseClass}__invite-button--animated`]]:
-            animatedInviteButton,
+            shouldAnimateInviteButton,
         })}
         icon={<Icon source={Add} />}
         onClick={onAddAgentsClick}
