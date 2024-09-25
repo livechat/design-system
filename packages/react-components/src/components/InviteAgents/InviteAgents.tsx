@@ -81,7 +81,8 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
                 <div
                   className={cx(
                     styles[`${baseClass}__tooltip-status`],
-                    styles[`${baseClass}__tooltip-status--unavailable`]
+                    styles[`${baseClass}__tooltip-status--unavailable`],
+                    styles[`${baseClass}__tooltip-status--unavailable--border`]
                   )}
                 />
                 <Text noMargin bold size="sm">
@@ -131,7 +132,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
                   styles[`${baseClass}__tooltip-status--available`]
                 )}
               />
-              {availableAgentsNumber} available
+              {availableAgentsNumber} accepting chats
             </Text>
           )}
           {!!unavailableAgentsNumber && (
@@ -142,7 +143,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
                   styles[`${baseClass}__tooltip-status--unavailable`]
                 )}
               />
-              {unavailableAgentsNumber} unavailable
+              {unavailableAgentsNumber} not accepting chats
             </Text>
           )}
           {!!unknownAgentsNumber && (

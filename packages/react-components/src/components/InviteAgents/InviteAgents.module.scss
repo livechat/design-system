@@ -3,12 +3,16 @@ $base-class: 'invite-agents';
 .#{$base-class} {
   display: flex;
   align-items: center;
-  border: 1px solid var(--border-basic-secondary);
+  border: 1px solid transparent;
   border-right: 0;
-  border-radius: 16px;
-  background-color: var(--surface-secondary-active);
+  border-radius: var(--radius-4);
+  background-color: var(--surface-secondary-default);
   max-width: 251px;
   height: 32px;
+
+  &:hover {
+    border-color: var(--border-basic-secondary);
+  }
 
   &--empty {
     border: 0;
@@ -17,6 +21,10 @@ $base-class: 'invite-agents';
   &--only-unavailable {
     border-color: var(--action-negative-default);
     background-color: var(--surface-accent-ondark-negative-default);
+
+    &:hover {
+      border-color: var(--border-basic-negative);
+    }
   }
 
   &__not-accepting {
@@ -68,6 +76,10 @@ $base-class: 'invite-agents';
 
     &--unavailable {
       background: var(--surface-accent-emphasis-high-negative);
+
+      &--border {
+        border: 1px solid var(--navbar-background);
+      }
     }
 
     &--unknown {
