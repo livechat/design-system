@@ -155,7 +155,7 @@ describe('InviteAgents Component', () => {
 
     renderComponent(agents);
 
-    const notAcceptingText = screen.getByText(/not accepting/i);
+    const notAcceptingText = screen.getByText(/no active agents/i);
     expect(notAcceptingText).toBeInTheDocument();
 
     userEvent.hover(notAcceptingText);

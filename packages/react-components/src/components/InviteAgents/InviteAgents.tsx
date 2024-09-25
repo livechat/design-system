@@ -101,7 +101,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
                   )}
                 />
                 <Text noMargin bold size="sm">
-                  Not accepting
+                  No active agents
                 </Text>
               </div>
             ) : (
