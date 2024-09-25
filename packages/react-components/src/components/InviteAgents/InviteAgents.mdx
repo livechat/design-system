@@ -7,13 +7,43 @@ import * as InviteAgentsStories from './InviteAgents.stories';
 
 ## Intro <a id="Intro" />
 
-The `InviteAgents` component is used to display a list of invited agents and provide functionality to add more agents. It displays each agent's name, email, status, and avatar.
+The `InviteAgents` component is used to display a list of invited agents and provide functionality to add more agents or set up a chatbot.
 
 <Canvas of={InviteAgentsStories.Default} />
 
 ### Example implementation
 
-```
+```jsx
+import { InviteAgents } from '@livechat/design-system-react-components';
+
+const agents = [
+  {
+    name: 'Alice',
+    email: 'alice@example.com',
+    status: 'available',
+    avatar: 'https://via.placeholder.com/150',
+  },
+]; 
+
+const onAddTeammateClick = () => {
+  console.log('Add Teammate Clicked');
+};
+
+const onSetUpChatbotClick = () => {
+  console.log('Set Up Chatbot Clicked');
+};
+
+return (
+  <InviteAgents
+    agents={agents}
+    onAddTeammateClick={onAddTeammateClick}
+    onSetUpChatbotClick={onSetUpChatbotClick}
+    animatedInviteButton={true}
+    tooltipArrowOffset={13}
+    className="invite-agents"
+  />
+);
+
 ```
 
 ## Component API <a id="ComponentAPI" />
