@@ -15,9 +15,13 @@ export interface InviteAgentsProps {
    */
   agents: Agent[];
   /**
-   * The function to call when the "Add agents" button is clicked
+   * The function to call when the "Set up Chatbot" button is clicked
    */
-  onAddAgentsClick: () => void;
+  onSetUpChatbotClick: () => void;
+  /**
+   * The function to call when the "Invite Teammate" button is clicked
+   */
+  onAddTeammateClick: () => void;
   /**
    * Whether the invite button should be animated
    */

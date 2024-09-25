@@ -54,14 +54,16 @@ const mockAgents = [
 export const Default: Story = {
   args: {
     agents: mockAgents,
-    onAddAgentsClick: action('Add Agents Clicked'),
+    onAddTeammateClick: action('Add Teammate Clicked'),
+    onSetUpChatbotClick: action('Set Up Chatbot Clicked'),
   },
 };
 
 export const AnimatedInviteButton: Story = {
   args: {
     agents: mockAgents,
-    onAddAgentsClick: action('Add Agents Clicked'),
+    onAddTeammateClick: action('Add Teammate Clicked'),
+    onSetUpChatbotClick: action('Set Up Chatbot Clicked'),
     animatedInviteButton: true,
   },
 };
@@ -72,13 +74,15 @@ export const OnlyUnavailableAgents: Story = {
       ...agent,
       status: 'unavailable' as const,
     })),
-    onAddAgentsClick: action('Add Agents Clicked'),
+    onAddTeammateClick: action('Add Teammate Clicked'),
+    onSetUpChatbotClick: action('Set Up Chatbot Clicked'),
   },
 };
 
 export const NoAgents: Story = {
   args: {
     agents: [],
-    onAddAgentsClick: action('Add Agents Clicked'),
+    onAddTeammateClick: action('Add Teammate Clicked'),
+    onSetUpChatbotClick: action('Set Up Chatbot Clicked'),
   },
 };

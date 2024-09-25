@@ -7,6 +7,7 @@ import { Agent } from './types';
 
 describe('InviteAgents Component', () => {
   const mockOnAddAgentsClick = vi.fn();
+  const mockOnSetUpChatbotClick = vi.fn();
 
   const renderComponent = (
     agents: Agent[] = [],
@@ -15,7 +16,8 @@ describe('InviteAgents Component', () => {
     render(
       <InviteAgents
         agents={agents}
-        onAddAgentsClick={mockOnAddAgentsClick}
+        onSetUpChatbotClick={mockOnSetUpChatbotClick}
+        onAddTeammateClick={mockOnAddAgentsClick}
         animatedInviteButton={animatedInviteButton}
       />
     );
@@ -80,7 +82,11 @@ describe('InviteAgents Component', () => {
     ];
 
     const { container } = render(
-      <InviteAgents agents={agents} onAddAgentsClick={mockOnAddAgentsClick} />
+      <InviteAgents
+        agents={agents}
+        onSetUpChatbotClick={mockOnSetUpChatbotClick}
+        onAddTeammateClick={mockOnAddAgentsClick}
+      />
     );
 
     expect(container.firstChild).toHaveClass(/invite-agents--only-unavailable/);
@@ -102,11 +108,18 @@ describe('InviteAgents Component', () => {
     expect(inviteButton).toHaveClass(/invite-agents__invite-button--animated/);
   });
 
-  it('invokes onAddAgentsClick when invite button is clicked', () => {
+  it('shows action menu when invite button is clicked', async () => {
     renderComponent();
 
     const inviteButton = screen.getByRole('button', { name: /invite team/i });
     userEvent.click(inviteButton);
+
+    await waitFor(() => {
+      expect(screen.getByText(/invite teammate/i)).toBeInTheDocument();
+      expect(screen.getByText(/set up chatbot/i)).toBeInTheDocument();
+    });
+
+    userEvent.click(screen.getByText(/invite teammate/i));
 
     expect(mockOnAddAgentsClick).toHaveBeenCalledTimes(1);
   });
@@ -149,8 +162,19 @@ describe('InviteAgents Component', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText('No one assist your customers')
+        screen.getByText("No one's available to assist customers")
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText('Offer 24/7 support with ChatBot.')
       ).toBeInTheDocument();
     });
+
+    const chatbotButton = screen.getByRole('button', {
+      name: /set up chatbot/i,
+    });
+    expect(chatbotButton).toBeInTheDocument();
+
+    userEvent.click(chatbotButton);
+    expect(mockOnSetUpChatbotClick).toHaveBeenCalledTimes(1);
   });
 });

@@ -1,13 +1,14 @@
 import { FC, memo, useMemo } from 'react';
 
-import { Add } from '@livechat/design-system-icons';
+import { Add, ChatBotColored, PersonAdd } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { ThemeClassName } from '../../providers';
+import { ActionMenu, ActionMenuItem } from '../ActionMenu';
 import { Avatar } from '../Avatar';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
-import { Tooltip } from '../Tooltip';
+import { Interactive, Tooltip } from '../Tooltip';
 import { Text } from '../Typography';
 
 import { getAvailableAgentsTooltipText, getSortedAgents } from './helpers';
@@ -19,7 +20,8 @@ const baseClass = 'invite-agents';
 
 const InviteAgentsComponent: FC<InviteAgentsProps> = ({
   agents,
-  onAddAgentsClick,
+  onSetUpChatbotClick,
+  onAddTeammateClick,
   className,
   animatedInviteButton = false,
   tooltipArrowOffset = 13,
@@ -50,6 +52,27 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
       hasOnlyUnavailableAgents,
     };
   }, [agents]);
+
+  const menuOptions = [
+    {
+      key: 'chatbot',
+      onClick: onSetUpChatbotClick,
+      element: (
+        <ActionMenuItem leftNode={<Icon source={ChatBotColored} />}>
+          Set up ChatBot
+        </ActionMenuItem>
+      ),
+    },
+    {
+      key: 'teammate',
+      element: (
+        <ActionMenuItem leftNode={<Icon source={PersonAdd} />}>
+          Invite teammate
+        </ActionMenuItem>
+      ),
+      onClick: onAddTeammateClick,
+    },
+  ];
 
   return (
     <div
@@ -107,29 +130,44 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
             )
           }
         >
-          <Text
-            bold
-            size="md"
-            className={styles[`${baseClass}__tooltip-heading`]}
-          >
-            {getAvailableAgentsTooltipText(availableAgentsNumber)}
-          </Text>
+          {hasOnlyUnavailableAgents ? (
+            <Interactive
+              header="No one's available to assist customers"
+              text="Offer 24/7 support with ChatBot."
+              primaryButton={{
+                handleClick: onSetUpChatbotClick,
+                label: 'Set up ChatBot',
+              }}
+            />
+          ) : (
+            <Text
+              bold
+              size="md"
+              className={styles[`${baseClass}__tooltip-heading`]}
+            >
+              {getAvailableAgentsTooltipText(availableAgentsNumber)}
+            </Text>
+          )}
         </Tooltip>
       )}
 
-      <Button
-        animatedLabel={shouldAnimateInviteButton}
-        kind="secondary"
-        size="xcompact"
-        className={cx(styles[`${baseClass}__invite-button`], {
-          [styles[`${baseClass}__invite-button--animated`]]:
-            shouldAnimateInviteButton,
-        })}
-        icon={<Icon source={Add} />}
-        onClick={onAddAgentsClick}
-      >
-        Invite team
-      </Button>
+      <ActionMenu
+        options={menuOptions}
+        triggerRenderer={
+          <Button
+            animatedLabel={shouldAnimateInviteButton}
+            kind="secondary"
+            size="xcompact"
+            className={cx(styles[`${baseClass}__invite-button`], {
+              [styles[`${baseClass}__invite-button--animated`]]:
+                shouldAnimateInviteButton,
+            })}
+            icon={<Icon source={Add} />}
+          >
+            Invite team
+          </Button>
+        }
+      />
     </div>
   );
 };
