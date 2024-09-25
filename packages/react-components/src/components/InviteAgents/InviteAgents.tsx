@@ -1,4 +1,4 @@
-import { FC, memo, useMemo } from 'react';
+import { FC, memo, useMemo, useState } from 'react';
 
 import { Add, ChatBotColored, PersonAdd } from '@livechat/design-system-icons';
 import cx from 'clsx';
@@ -26,7 +26,9 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
   animatedInviteButton = false,
   tooltipArrowOffset = 13,
 }) => {
-  const shouldAnimateInviteButton = animatedInviteButton && agents.length > 0;
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const shouldAnimateInviteButton =
+    animatedInviteButton && agents.length > 0 && !isMenuOpen;
   const {
     availableAgentsNumber,
     visibleAgents,
@@ -88,6 +90,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
     >
       {agents.length > 0 && (
         <Tooltip
+          isVisible={isMenuOpen ? false : undefined}
           offsetMainAxis={tooltipArrowOffset}
           floatingStrategy="fixed"
           hoverOnDelay={50}
@@ -148,6 +151,9 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
       )}
 
       <ActionMenu
+        visible={isMenuOpen}
+        onOpen={() => setIsMenuOpen(true)}
+        onClose={() => setIsMenuOpen(false)}
         options={menuOptions}
         triggerRenderer={
           <Button
