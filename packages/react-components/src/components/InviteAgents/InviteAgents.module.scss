@@ -37,6 +37,8 @@ $base-class: 'invite-agents';
   }
 
   &__tooltip {
+    max-width: 260px;
+
     > div {
       display: flex;
       flex-direction: column;
