@@ -136,6 +136,9 @@ export const Button = React.forwardRef<
             if (e.key === 'Enter' || e.key === ' ') {
               setIsLabelOpen(true);
             }
+            if (e.key === 'Escape') {
+              setIsLabelOpen(false);
+            }
             props?.onKeyUp?.(e as React.KeyboardEvent<HTMLButtonElement>);
           },
         })}
