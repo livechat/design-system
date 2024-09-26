@@ -86,7 +86,6 @@ export const Button = React.forwardRef<
     const Component = href ? 'a' : 'button';
 
     const mergedClassNames = cx(
-      className,
       styles[baseClass],
       styles[`${baseClass}--${kind}`],
       styles[`${baseClass}--${size}`],
@@ -99,7 +98,8 @@ export const Button = React.forwardRef<
         [styles[`${baseClass}--icon-only--bg`]]: isIconOnly && isTextButton,
         [styles[`${baseClass}--disabled`]]: isDisabled,
         [styles[`${baseClass}--animated-label`]]: isAnimatedLabel,
-      }
+      },
+      className
     );
 
     return (
