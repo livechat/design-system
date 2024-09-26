@@ -30,7 +30,7 @@ describe('InviteAgents Component', () => {
   it('renders correctly with no agents', () => {
     renderComponent([]);
 
-    const inviteButton = screen.getByRole('button', { name: /invite team/i });
+    const inviteButton = screen.getByRole('button', { name: 'Invite' });
     expect(inviteButton).toBeInTheDocument();
 
     const tooltipHeading = screen.queryByText(/team status/i);
@@ -104,14 +104,14 @@ describe('InviteAgents Component', () => {
 
     renderComponent(agents, true);
 
-    const inviteButton = screen.getByRole('button', { name: /invite team/i });
+    const inviteButton = screen.getByRole('button', { name: 'Invite' });
     expect(inviteButton).toHaveClass(/invite-agents__invite-button--animated/);
   });
 
   it('shows action menu when invite button is clicked', async () => {
     renderComponent();
 
-    const inviteButton = screen.getByRole('button', { name: /invite team/i });
+    const inviteButton = screen.getByRole('button', { name: 'Invite' });
     userEvent.click(inviteButton);
 
     await waitFor(() => {

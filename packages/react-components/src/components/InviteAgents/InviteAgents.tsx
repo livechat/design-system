@@ -166,7 +166,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
             })}
             icon={<Icon source={Add} />}
           >
-            Invite team
+            Invite
           </Button>
         }
       />
