@@ -98,6 +98,8 @@ export const Button = React.forwardRef<
         [styles[`${baseClass}--icon-only--bg`]]: isIconOnly && isTextButton,
         [styles[`${baseClass}--disabled`]]: isDisabled,
         [styles[`${baseClass}--animated-label`]]: isAnimatedLabel,
+        [styles[`${baseClass}--animated-label--expanded`]]:
+          isAnimatedLabel && isLabelOpen,
       },
       className
     );
@@ -124,18 +126,21 @@ export const Button = React.forwardRef<
               () => setIsLabelOpen(false),
               props?.onMouseLeave
             ),
-          onFocus: (e) =>
-            handleKeyboardInteraction(
-              e,
-              () => setIsLabelOpen(true),
-              props?.onFocus
-            ),
           onBlur: (e) =>
             handleKeyboardInteraction(
               e,
               () => setIsLabelOpen(false),
               props?.onBlur
             ),
+          onKeyUp: (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              setIsLabelOpen(true);
+            }
+            if (e.key === 'Escape') {
+              setIsLabelOpen(false);
+            }
+            props?.onKeyUp?.(e as React.KeyboardEvent<HTMLButtonElement>);
+          },
         })}
       >
         {loading && (

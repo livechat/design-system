@@ -105,7 +105,7 @@ describe('InviteAgents Component', () => {
     renderComponent(agents, true);
 
     const inviteButton = screen.getByRole('button', { name: 'Invite' });
-    expect(inviteButton).toHaveClass(/invite-agents__invite-button--animated/);
+    expect(inviteButton).toHaveClass(/animated-button/);
   });
 
   it('shows action menu when invite button is clicked', async () => {
