@@ -114,8 +114,7 @@ $base-class: 'invite-agents';
         padding-right: 3px;
         padding-left: 3px;
 
-        &:hover,
-        &:focus-visible {
+        &:hover {
           margin-right: -1px;
           height: 32px;
         }
