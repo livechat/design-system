@@ -1,3 +1,5 @@
+import { ComponentCoreProps } from '../../utils/types';
+
 export interface Agent {
   name: string;
   email: string;
@@ -5,11 +7,7 @@ export interface Agent {
   avatar: string;
 }
 
-export interface InviteAgentsProps {
-  /**
-   * The class name to apply to the component
-   */
-  className?: string;
+export interface InviteAgentsProps extends ComponentCoreProps {
   /**
    * The list of invited agents
    */

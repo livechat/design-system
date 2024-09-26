@@ -53,10 +53,6 @@ export interface AvatarProps extends ComponentCoreProps {
    * Displays rim
    */
   withRim?: boolean;
-  /**
-   * Custom style for the avatar
-   */
-  style?: React.CSSProperties;
 }
 
 const baseClass = 'avatar';

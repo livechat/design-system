@@ -25,6 +25,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
   className,
   animatedInviteButton = false,
   tooltipArrowOffset = 13,
+  ...props
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const shouldAnimateInviteButton =
@@ -78,6 +79,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
 
   return (
     <div
+      {...props}
       className={cx(
         ThemeClassName.Dark,
         styles[baseClass],
