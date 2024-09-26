@@ -59,7 +59,10 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
   const menuOptions = [
     {
       key: 'chatbot',
-      onClick: onSetUpChatbotClick,
+      onClick: () => {
+        onSetUpChatbotClick();
+        setIsMenuOpen(false);
+      },
       element: (
         <ActionMenuItem leftNode={<Icon source={ChatBotColored} />}>
           Set up ChatBot
@@ -73,7 +76,10 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
           Invite teammate
         </ActionMenuItem>
       ),
-      onClick: onAddTeammateClick,
+      onClick: () => {
+        onAddTeammateClick();
+        setIsMenuOpen(false);
+      },
     },
   ];
 
@@ -153,6 +159,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
       )}
 
       <ActionMenu
+        floatingStrategy="fixed"
         visible={isMenuOpen}
         onOpen={() => setIsMenuOpen(true)}
         onClose={() => setIsMenuOpen(false)}
