@@ -6,11 +6,11 @@ import cx from 'clsx';
 import { ThemeClassName } from '../../providers';
 import { ActionMenu, ActionMenuItem } from '../ActionMenu';
 import { Avatar } from '../Avatar';
-import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { Interactive, Tooltip } from '../Tooltip';
 import { Text } from '../Typography';
 
+import { AnimatedButton } from './components/AnimatedButton/AnimatedButton';
 import { getAvailableAgentsTooltipText, getSortedAgents } from './helpers';
 import { InviteAgentsProps } from './types';
 
@@ -28,8 +28,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
   ...props
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const shouldAnimateInviteButton =
-    animatedInviteButton && agents.length > 0 && !isMenuOpen;
+
   const {
     availableAgentsNumber,
     visibleAgents,
@@ -165,18 +164,12 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
         onClose={() => setIsMenuOpen(false)}
         options={menuOptions}
         triggerRenderer={
-          <Button
-            animatedLabel={shouldAnimateInviteButton}
-            kind="secondary"
-            size="xcompact"
-            className={cx(styles[`${baseClass}__invite-button`], {
-              [styles[`${baseClass}__invite-button--animated`]]:
-                shouldAnimateInviteButton,
-            })}
+          <AnimatedButton
             icon={<Icon source={Add} />}
-          >
-            Invite
-          </Button>
+            text="Invite"
+            onClick={() => setIsMenuOpen((prev) => !prev)}
+            isExpanded={animatedInviteButton ? isMenuOpen || undefined : true}
+          />
         }
       />
     </div>
