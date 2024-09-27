@@ -8,6 +8,7 @@ import { Agent } from './types';
 describe('InviteAgents Component', () => {
   const mockOnAddAgentsClick = vi.fn();
   const mockOnSetUpChatbotClick = vi.fn();
+  const mockOnAvailableAgentsClick = vi.fn();
 
   const renderComponent = (
     agents: Agent[] = [],
@@ -19,6 +20,7 @@ describe('InviteAgents Component', () => {
         onSetUpChatbotClick={mockOnSetUpChatbotClick}
         onAddTeammateClick={mockOnAddAgentsClick}
         animatedInviteButton={animatedInviteButton}
+        onAvailableAgentsClick={mockOnAvailableAgentsClick}
       />
     );
   };
@@ -86,6 +88,7 @@ describe('InviteAgents Component', () => {
         agents={agents}
         onSetUpChatbotClick={mockOnSetUpChatbotClick}
         onAddTeammateClick={mockOnAddAgentsClick}
+        onAvailableAgentsClick={mockOnAvailableAgentsClick}
       />
     );
 

@@ -56,6 +56,7 @@ export const Default: Story = {
     agents: mockAgents,
     onAddTeammateClick: action('Add Teammate Clicked'),
     onSetUpChatbotClick: action('Set Up Chatbot Clicked'),
+    onAvailableAgentsClick: action('Available Agents Clicked'),
   },
 };
 
@@ -65,6 +66,7 @@ export const AnimatedInviteButton: Story = {
     onAddTeammateClick: action('Add Teammate Clicked'),
     onSetUpChatbotClick: action('Set Up Chatbot Clicked'),
     animatedInviteButton: true,
+    onAvailableAgentsClick: action('Available Agents Clicked'),
   },
 };
 
@@ -76,6 +78,7 @@ export const OnlyUnavailableAgents: Story = {
     })),
     onAddTeammateClick: action('Add Teammate Clicked'),
     onSetUpChatbotClick: action('Set Up Chatbot Clicked'),
+    onAvailableAgentsClick: action('Available Agents Clicked'),
   },
 };
 
@@ -84,5 +87,6 @@ export const NoAgents: Story = {
     agents: [],
     onAddTeammateClick: action('Add Teammate Clicked'),
     onSetUpChatbotClick: action('Set Up Chatbot Clicked'),
+    onAvailableAgentsClick: action('Available Agents Clicked'),
   },
 };

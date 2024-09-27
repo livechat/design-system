@@ -28,4 +28,8 @@ export interface InviteAgentsProps extends ComponentCoreProps {
    * Offset for the tooltip arrow
    */
   tooltipArrowOffset?: number;
+  /**
+   * The function to call when the "Available" button is clicked
+   */
+  onAvailableAgentsClick: () => void;
 }
