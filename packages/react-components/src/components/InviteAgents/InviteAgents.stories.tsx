@@ -23,13 +23,13 @@ const mockAgents = [
     name: 'Bob Smith',
     email: 'bob@example.com',
     status: 'unknown' as const,
-    avatar: 'https://via.placeholder.com/150',
+    avatar: '',
   },
   {
     name: 'Alice Johnson',
     email: 'alice@example.com',
     status: 'available' as const,
-    avatar: 'https://via.placeholder.com/150',
+    avatar: undefined,
   },
   {
     name: 'Alice Johnson 2',

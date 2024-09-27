@@ -4,7 +4,7 @@ export interface Agent {
   name: string;
   email: string;
   status: 'available' | 'unavailable' | 'unknown';
-  avatar: string;
+  avatar?: string;
 }
 
 export interface InviteAgentsProps extends ComponentCoreProps {

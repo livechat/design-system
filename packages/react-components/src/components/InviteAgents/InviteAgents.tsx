@@ -128,9 +128,10 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
                 <div className={styles[`${baseClass}__avatar-container`]}>
                   {visibleAgents.map((agent, index) => (
                     <Avatar
+                      text={agent.name}
                       className={styles[`${baseClass}__avatar`]}
                       key={agent.email}
-                      type="image"
+                      type={agent.avatar ? 'image' : 'text'}
                       size="xsmall"
                       status={agent.status}
                       src={agent.avatar}
