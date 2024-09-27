@@ -25,6 +25,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
   className,
   animatedInviteButton = false,
   tooltipArrowOffset = 13,
+  onAvailableAgentsClick,
   ...props
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -64,6 +65,12 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
 
   const handleAddTeammateClick = () => {
     onAddTeammateClick();
+    setIsMenuOpen(false);
+    setIsTooltipVisible(false);
+  };
+
+  const handleAvailableAgentsClick = () => {
+    onAvailableAgentsClick();
     setIsMenuOpen(false);
     setIsTooltipVisible(false);
   };
@@ -113,7 +120,10 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
           className={cx(ThemeClassName.Dark, styles[`${baseClass}__tooltip`])}
           triggerRenderer={
             hasOnlyUnavailableAgents ? (
-              <div className={styles[`${baseClass}__not-accepting`]}>
+              <div
+                className={styles[`${baseClass}__not-accepting`]}
+                onClick={handleAvailableAgentsClick}
+              >
                 <div
                   className={cx(
                     styles[`${baseClass}__not-accepting-status-dot`]
@@ -124,7 +134,10 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
                 </Text>
               </div>
             ) : (
-              <div className={styles[`${baseClass}__tooltip-trigger`]}>
+              <div
+                className={styles[`${baseClass}__tooltip-trigger`]}
+                onClick={handleAvailableAgentsClick}
+              >
                 <div className={styles[`${baseClass}__avatar-container`]}>
                   {visibleAgents.map((agent, index) => (
                     <Avatar
