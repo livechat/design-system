@@ -28,6 +28,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
   ...props
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isTooltipVisible, setIsTooltipVisible] = useState(false);
 
   const {
     availableAgentsNumber,
@@ -55,13 +56,22 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
     };
   }, [agents]);
 
+  const handleSetUpChatbotClick = () => {
+    onSetUpChatbotClick();
+    setIsMenuOpen(false);
+    setIsTooltipVisible(false);
+  };
+
+  const handleAddTeammateClick = () => {
+    onAddTeammateClick();
+    setIsMenuOpen(false);
+    setIsTooltipVisible(false);
+  };
+
   const menuOptions = [
     {
       key: 'chatbot',
-      onClick: () => {
-        onSetUpChatbotClick();
-        setIsMenuOpen(false);
-      },
+      onClick: handleSetUpChatbotClick,
       element: (
         <ActionMenuItem leftNode={<Icon source={ChatBotColored} />}>
           Set up ChatBot
@@ -75,10 +85,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
           Invite teammate
         </ActionMenuItem>
       ),
-      onClick: () => {
-        onAddTeammateClick();
-        setIsMenuOpen(false);
-      },
+      onClick: handleAddTeammateClick,
     },
   ];
 
@@ -97,10 +104,12 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
     >
       {agents.length > 0 && (
         <Tooltip
-          isVisible={isMenuOpen ? false : undefined}
+          isVisible={isTooltipVisible && !isMenuOpen}
           offsetMainAxis={tooltipArrowOffset}
           floatingStrategy="fixed"
           hoverOnDelay={50}
+          onOpen={() => setIsTooltipVisible(true)}
+          onClose={() => setIsTooltipVisible(false)}
           className={cx(ThemeClassName.Dark, styles[`${baseClass}__tooltip`])}
           triggerRenderer={
             hasOnlyUnavailableAgents ? (
@@ -145,7 +154,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
               header="No one's available to assist customers"
               text="Offer 24/7 support with ChatBot."
               primaryButton={{
-                handleClick: onSetUpChatbotClick,
+                handleClick: handleSetUpChatbotClick,
                 label: 'Set up ChatBot',
               }}
             />
