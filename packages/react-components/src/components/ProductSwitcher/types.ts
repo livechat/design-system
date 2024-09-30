@@ -28,6 +28,7 @@ export interface ProductSwitcherProps {
   textURL?: string;
   openedOnInit?: boolean;
   isVisible?: boolean;
+  isDarkMode?: boolean;
   onOpen?: (event?: Event) => void;
   onClose?: (event?: Event) => void;
   onSelect?: (id: ProductId) => void;
