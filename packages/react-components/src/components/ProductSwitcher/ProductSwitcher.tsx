@@ -35,6 +35,7 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
   mainProductId,
   openedOnInit = false,
   isVisible,
+  isDarkMode = true,
   onOpen,
   onClose,
   onSelect,
@@ -150,7 +151,10 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
         >
           {isMounted && (
             <div
-              className={cx('lc-dark-theme', styles[baseClass])}
+              className={cx(
+                isDarkMode ? 'lc-dark-theme' : 'lc-light-theme',
+                styles[baseClass]
+              )}
               style={transitionStyles}
             >
               <div className={styles[`${baseClass}__content`]}>
