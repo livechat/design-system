@@ -92,6 +92,7 @@ export const ProductSwitcherProducts: ProductOption[] = [
     iconColor: 'var(--content-locked-black)',
     withDivider: true,
     url: '',
+    borderColor: 'var(--border-basic-secondary)',
   },
 ];
 

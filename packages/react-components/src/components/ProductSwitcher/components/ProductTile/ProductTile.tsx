@@ -10,7 +10,12 @@ import styles from './ProductTile.module.scss';
 
 type IProps = Pick<
   ProductOption,
-  'icon' | 'notificationCount' | 'backgroundColors' | 'expired' | 'iconColor'
+  | 'icon'
+  | 'notificationCount'
+  | 'backgroundColors'
+  | 'expired'
+  | 'iconColor'
+  | 'borderColor'
 > & {
   isMainProduct?: boolean;
   withBorder?: boolean;
@@ -23,6 +28,7 @@ export const ProductTile: FC<IProps> = ({
   iconColor,
   expired,
   backgroundColors,
+  borderColor,
   notificationCount,
   withBorder = false,
   isMainProduct = false,
@@ -55,6 +61,7 @@ export const ProductTile: FC<IProps> = ({
             background: expired
               ? 'var(--surface-moderate-default)'
               : backgroundColors.main,
+            border: borderColor ? `1px solid ${borderColor}` : '',
           }}
         >
           {notificationCount && !expired ? (

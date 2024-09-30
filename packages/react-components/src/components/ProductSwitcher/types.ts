@@ -71,6 +71,7 @@ export interface ProductOption {
   };
   withDivider?: boolean;
   url: string;
+  borderColor?: string;
 }
 
 export type ProductData = {
