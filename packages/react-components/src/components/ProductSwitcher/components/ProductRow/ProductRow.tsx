@@ -26,6 +26,7 @@ export const ProductRow: FC<IProps> = ({
     icon,
     iconColor,
     backgroundColors,
+    borderColor,
     notificationCount,
     name,
     url,
@@ -56,6 +57,7 @@ export const ProductRow: FC<IProps> = ({
             iconColor={iconColor}
             expired={expired}
             backgroundColors={backgroundColors}
+            borderColor={borderColor}
             notificationCount={notificationCount}
             withBorder={isActive}
           />

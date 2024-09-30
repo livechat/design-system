@@ -5,7 +5,7 @@ $base-class: 'product-tile';
 }
 
 .outer-border {
-  border: solid 2px rgb(255 255 255 / 80%);
+  border: solid 2px var(--content-basic-primary);
   border-radius: 12px;
   padding: 3px;
 }

@@ -178,7 +178,7 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
                   <Icon
                     size="xlarge"
                     source={TextLogoFull}
-                    customColor="var(--content-locked-white)"
+                    customColor="var(--content-basic-primary)"
                   />
                 </a>
               </div>
