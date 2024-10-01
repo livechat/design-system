@@ -18,9 +18,6 @@ export const getAvailableAgentsTooltipText = (
   if (availableAgentsNumber === 0) {
     return 'No one assist your customers';
   }
-  if (availableAgentsNumber === 1) {
-    return '1 agent accepting chats';
-  }
 
-  return `${availableAgentsNumber} agents accepting chats`;
+  return `${availableAgentsNumber} accepting chats`;
 };

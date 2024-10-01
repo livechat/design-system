@@ -69,7 +69,7 @@ describe('InviteAgents Component', () => {
     userEvent.hover(avatars[0]);
 
     await waitFor(() => {
-      expect(screen.getByText(/1 agent accepting chats/i)).toBeInTheDocument();
+      expect(screen.getByText(/1 accepting chats/i)).toBeInTheDocument();
     });
   });
 
