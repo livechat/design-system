@@ -89,9 +89,7 @@ export const Default = (): React.ReactElement => {
   const [activeItem, setActiveItem] = React.useState('archives');
   const [activeSubItem, setActiveSubItem] = React.useState(0);
   const [topBarVisible, setTopBarVisible] = React.useState(true);
-  const [visibleAlerts, setVisibleAlerts] = React.useState<boolean[]>(
-    Array(3).fill(false)
-  );
+  const [visibleAlert, setVisibleAlert] = React.useState<number | null>(null);
 
   const { products } = useProductSwitcher({
     env: 'labs',
@@ -228,21 +226,22 @@ export const Default = (): React.ReactElement => {
       }
       sideNavigation={getSubNav()}
       topBar={
-        topBarVisible || visibleAlerts.some((alert) => alert) ? (
+        topBarVisible ? (
           <ExampleTopBar
             topBarVisible={topBarVisible}
-            visibleAlerts={visibleAlerts}
-            setAlerts={setVisibleAlerts}
+            visibleAlert={visibleAlert}
+            setVisibleAlert={setVisibleAlert}
           />
         ) : null
       }
     >
       <ExampleAppContent
         showToggle={SectionsWithToggle.includes(activeItem)}
-        alerts={visibleAlerts}
-        setAlerts={setVisibleAlerts}
+        alerts={Array(3).fill(null)}
         topBarVisible={topBarVisible}
         setTopBarVisible={setTopBarVisible}
+        visibleAlert={visibleAlert}
+        setVisibleAlert={setVisibleAlert}
       />
     </AppFrame>
   );

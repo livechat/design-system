@@ -5,6 +5,7 @@ import cx from 'clsx';
 import { useAnimations, useMobileViewDetector } from '../../hooks';
 import { AppFrameProvider, useAppFrame } from '../../providers';
 
+import { MOBILE_BREAKPOINT } from './constants';
 import { IAppFrameProps } from './types';
 
 import styles from './AppFrame.module.scss';
@@ -23,7 +24,6 @@ const Frame = (props: IAppFrameProps) => {
     topBarClassName,
     sideNavigationContainerClassName,
     contentClassName,
-    mobileViewBreakpoint = 705,
   } = props;
   const mergedClassNames = cx(styles[baseClass], className);
   const {
@@ -37,7 +37,7 @@ const Frame = (props: IAppFrameProps) => {
     elementRef: sideNavWrapperRef,
   });
   const { isMobile, handleResizeRef } = useMobileViewDetector({
-    mobileBreakpoint: mobileViewBreakpoint,
+    mobileBreakpoint: MOBILE_BREAKPOINT,
   });
 
   React.useEffect(() => {

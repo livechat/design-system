@@ -1,0 +1,2 @@
+export const MOBILE_BREAKPOINT = 705;
+export const ALERTS_MOBILE_BREAKPOINT = 751;

@@ -35,11 +35,6 @@ export interface IAppFrameProps extends ComponentCoreProps {
    * The CSS class for the content container
    */
   contentClassName?: string;
-  /**
-   * The value that will determine on which resolution mobile view will be displayed
-   * @default 705
-   */
-  mobileViewBreakpoint?: number;
 }
 
 export type { INavigationProps } from './components/Navigation/types';
