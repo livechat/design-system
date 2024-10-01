@@ -18,6 +18,8 @@ import styles from './InviteAgents.module.scss';
 
 const baseClass = 'invite-agents';
 
+const HOVER_ON_DELAY = 50;
+
 const InviteAgentsComponent: FC<InviteAgentsProps> = ({
   agents,
   onSetUpChatbotClick,
@@ -114,7 +116,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
           isVisible={isTooltipVisible && !isMenuOpen}
           offsetMainAxis={tooltipArrowOffset}
           floatingStrategy="fixed"
-          hoverOnDelay={50}
+          hoverOnDelay={HOVER_ON_DELAY}
           onOpen={() => setIsTooltipVisible(true)}
           onClose={() => setIsTooltipVisible(false)}
           className={cx(ThemeClassName.Dark, styles[`${baseClass}__tooltip`])}
