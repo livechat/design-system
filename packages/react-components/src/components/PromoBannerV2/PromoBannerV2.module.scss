@@ -13,6 +13,7 @@ $base-class: 'promo-banner-v2';
     justify-content: left;
     order: 1;
     padding: var(--spacing-5) var(--spacing-5) 0;
+    padding-top: var(--spacing-10);
   }
 
   .#{$base-class}__close {
