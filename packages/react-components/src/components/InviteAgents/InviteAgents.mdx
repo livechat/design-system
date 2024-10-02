@@ -1,0 +1,46 @@
+import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+import * as InviteAgentsStories from './InviteAgents.stories';
+
+<Meta of={InviteAgentsStories} />
+
+<Title>InviteAgents</Title>
+
+## Intro <a id="Intro" />
+
+The `InviteAgents` component is used to display a list of invited agents and provide functionality to add more agents or set up a chatbot.
+
+<Canvas of={InviteAgentsStories.Default} />
+
+### Example implementation
+
+```jsx
+import { InviteAgents } from '@livechat/design-system-react-components';
+
+const agents = [
+  {
+    name: 'Alice',
+    email: 'alice@example.com',
+    status: 'available',
+    avatar: 'https://via.placeholder.com/150',
+  },
+]; 
+
+const onAddTeammateClick = () => {};
+const onSetUpChatbotClick = () => {};
+
+return (
+  <InviteAgents
+    agents={agents}
+    onAddTeammateClick={onAddTeammateClick}
+    onSetUpChatbotClick={onSetUpChatbotClick}
+    animatedInviteButton={true}
+    tooltipArrowOffset={13}
+    className="invite-agents"
+  />
+);
+
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={InviteAgentsStories.Default} sort="requiredFirst" />

@@ -20,7 +20,7 @@ const baseClass = 'link';
  *
  * Use `<Button href="">` to display as a `<Button>` - <a target="_self" href="/story/components-button--link">see the story</a>.
  */
-export const Link: React.FC<LinkProps> = ({
+export const Link: React.FC<React.PropsWithChildren<LinkProps>> = ({
   bold = false,
   className = '',
   ...rest

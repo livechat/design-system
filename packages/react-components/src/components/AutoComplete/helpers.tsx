@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { IPickerListItem } from '../Picker';
 
 import { AutoCompleteProps, IAutoCompleteListItem } from './types';

@@ -1,3 +1,3 @@
-import * as React from 'react';
+import { FC, SVGProps } from 'react';
 
-export type IconSource = React.FC<React.SVGProps<SVGSVGElement>>;
+export type IconSource = FC<SVGProps<SVGSVGElement>>;

@@ -69,6 +69,19 @@ It is required to import the `CSS` directly into your project so it could be app
 import '@livechat/design-system-react-components/dist/style.css';
 ```
 
+Next, you need to wrap your application with the `ThemeProvider` component. <br/>
+More information about the theme can be found in the **[Theme section](/docs/foundations-theme--docs)**.
+
+```jsx
+import { ThemeProvider } from '@livechat/design-system-react-components';
+
+const App = () => (
+  <ThemeProvider>
+    <YourComponent />
+  </ThemeProvider>
+);
+```
+
 You can import components directly from the npm package:
 
 ```jsx

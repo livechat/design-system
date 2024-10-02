@@ -34,7 +34,7 @@ export interface ModalProps extends ModalBaseProps {
 
 const baseClass = 'modal';
 
-export const Modal: React.FC<ModalProps> = ({
+export const Modal: React.FC<React.PropsWithChildren<ModalProps>> = ({
   children,
   className = '',
   heading,

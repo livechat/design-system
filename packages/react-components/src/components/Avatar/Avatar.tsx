@@ -68,6 +68,7 @@ export const Avatar: React.FC<AvatarProps> = ({
   text,
   type,
   withRim = false,
+  style,
   ...props
 }) => {
   const isImproperImageSetup = type === 'image' && !src;
@@ -136,7 +137,11 @@ export const Avatar: React.FC<AvatarProps> = ({
   }, [isImproperImageSetup]);
 
   return (
-    <div className={mergedClassNames} style={backgroundStyle} {...props}>
+    <div
+      className={mergedClassNames}
+      style={{ ...backgroundStyle, ...style }}
+      {...props}
+    >
       {withRim && (
         <div
           data-testid={`${baseClass}__rim`}

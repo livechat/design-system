@@ -28,6 +28,7 @@ export * from './components/FormField';
 export * from './components/FormGroup';
 export * from './components/Icon';
 export * from './components/Input';
+export * from './components/InviteAgents';
 export * from './components/Link';
 export * from './components/Loader';
 export * from './components/Modal';

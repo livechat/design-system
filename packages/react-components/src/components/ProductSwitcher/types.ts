@@ -8,7 +8,7 @@ export type ProductId =
   | 'chatbot'
   | 'openwidget'
   | 'knowledgebase'
-  | 'hello' // TODO: change to 'teamchat' when the product is renamed
+  | 'teamchat'
   | 'accounts';
 
 export type ProductName =
@@ -17,7 +17,7 @@ export type ProductName =
   | 'ChatBot'
   | 'OpenWidget'
   | 'KnowledgeBase'
-  | 'Hello' // TODO: change to 'TeamChat' when the product is renamed
+  | 'TeamChat'
   | 'Accounts';
 
 export type Env = 'labs' | 'staging' | 'prod';
@@ -28,6 +28,7 @@ export interface ProductSwitcherProps {
   textURL?: string;
   openedOnInit?: boolean;
   isVisible?: boolean;
+  isDarkMode?: boolean;
   onOpen?: (event?: Event) => void;
   onClose?: (event?: Event) => void;
   onSelect?: (id: ProductId) => void;
@@ -40,7 +41,7 @@ export const SSOProductIdMap: Record<ProductId, ProductName> = {
   knowledgebase: 'KnowledgeBase',
   chatbot: 'ChatBot',
   openwidget: 'OpenWidget',
-  hello: 'Hello', // TODO: change to teamchat: 'TeamChat' when the product is renamed
+  teamchat: 'TeamChat',
 };
 
 export type ProductSubscription = Partial<
@@ -70,6 +71,7 @@ export interface ProductOption {
   };
   withDivider?: boolean;
   url: string;
+  borderColor?: string;
 }
 
 export type ProductData = {

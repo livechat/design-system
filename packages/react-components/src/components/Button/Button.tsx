@@ -86,7 +86,6 @@ export const Button = React.forwardRef<
     const Component = href ? 'a' : 'button';
 
     const mergedClassNames = cx(
-      className,
       styles[baseClass],
       styles[`${baseClass}--${kind}`],
       styles[`${baseClass}--${size}`],
@@ -99,7 +98,10 @@ export const Button = React.forwardRef<
         [styles[`${baseClass}--icon-only--bg`]]: isIconOnly && isTextButton,
         [styles[`${baseClass}--disabled`]]: isDisabled,
         [styles[`${baseClass}--animated-label`]]: isAnimatedLabel,
-      }
+        [styles[`${baseClass}--animated-label--expanded`]]:
+          isAnimatedLabel && isLabelOpen,
+      },
+      className
     );
 
     return (
@@ -124,18 +126,21 @@ export const Button = React.forwardRef<
               () => setIsLabelOpen(false),
               props?.onMouseLeave
             ),
-          onFocus: (e) =>
-            handleKeyboardInteraction(
-              e,
-              () => setIsLabelOpen(true),
-              props?.onFocus
-            ),
           onBlur: (e) =>
             handleKeyboardInteraction(
               e,
               () => setIsLabelOpen(false),
               props?.onBlur
             ),
+          onKeyUp: (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              setIsLabelOpen(true);
+            }
+            if (e.key === 'Escape') {
+              setIsLabelOpen(false);
+            }
+            props?.onKeyUp?.(e as React.KeyboardEvent<HTMLButtonElement>);
+          },
         })}
       >
         {loading && (
@@ -150,6 +155,7 @@ export const Button = React.forwardRef<
         {icon &&
           React.cloneElement(icon, {
             className: cx(
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
               icon.props.className,
               styles[`${baseClass}__icon`],
               styles[`${baseClass}__icon--${iconPosition}`],

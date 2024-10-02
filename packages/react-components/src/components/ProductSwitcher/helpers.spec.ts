@@ -17,6 +17,7 @@ import {
   SSOProductIdMap,
   ProductOption,
   ProductSubscription,
+  Env,
 } from './types';
 
 describe('helpers', () => {
@@ -128,7 +129,7 @@ describe('helpers', () => {
           subscriptions,
           organizationId,
           'chatbot',
-          'test' as any
+          'test' as Env
         );
       }).toThrowError('Product data for unknownProduct not found');
     });

@@ -12,7 +12,7 @@ export type FieldErrorProps = React.HTMLAttributes<HTMLSpanElement>;
 
 const baseClass = 'field-error';
 
-export const FieldError: React.FC<FieldErrorProps> = ({
+export const FieldError: React.FC<React.PropsWithChildren<FieldErrorProps>> = ({
   children,
   className = '',
   ...props

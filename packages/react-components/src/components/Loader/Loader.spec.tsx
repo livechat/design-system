@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { render } from 'test-utils';
 
 import { Loader, LoaderProps } from './Loader';
@@ -28,6 +26,6 @@ describe('<Loader> component', () => {
     const { borderColor, borderTopColor } = getComputedStyle(loader);
 
     expect(borderColor).toBe('blue');
-    expect(borderTopColor).toBe('red');
+    expect(borderTopColor).toBe('rgb(255, 0, 0)');
   });
 });

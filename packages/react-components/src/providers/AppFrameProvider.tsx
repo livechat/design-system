@@ -26,7 +26,9 @@ interface AppFrameProviderProps {
   isMobileViewVisible?: boolean;
 }
 
-export const AppFrameProvider: React.FC<AppFrameProviderProps> = ({
+export const AppFrameProvider: React.FC<
+  React.PropsWithChildren<AppFrameProviderProps>
+> = ({
   children,
   isSideNavigationVisible = true,
   isMobileViewVisible = false,

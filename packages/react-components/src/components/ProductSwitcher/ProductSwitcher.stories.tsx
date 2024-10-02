@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { Meta, StoryObj } from '@storybook/react';
 
 import { useProductSwitcher } from './hooks/useProductSwitcher';
@@ -46,9 +44,8 @@ export const Default: Story = {
         {
           product: 'LiveChat',
         },
-
         {
-          product: 'Hello', // TODO: change to 'TeamChat' when the product is renamed
+          product: 'TeamChat',
         },
         {
           product: 'OpenWidget',

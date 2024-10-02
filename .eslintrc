@@ -23,6 +23,7 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:eslint-comments/recommended",
+    "plugin:storybook/recommended",
     "prettier"
   ],
   "parser": "@typescript-eslint/parser",
@@ -30,9 +31,23 @@
     "ecmaVersion": 12,
     "project": "tsconfig.json"
   },
-  "plugins": ["@typescript-eslint", "import"],
+  "plugins": ["@typescript-eslint", "import", "unused-imports", "eslint-plugin-react-compiler"],
   "rules": {
     "eslint-comments/no-unused-disable": "error",
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "import/prefer-default-export": "off",
+    "import/no-named-as-default": "off",
+    "react-compiler/react-compiler": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
     "prefer-const": "error",
     "@typescript-eslint/no-unsafe-member-access": "off", // TODO: enable when design-system-icons will have proper types
     "@typescript-eslint/no-unsafe-call": "warn",

@@ -133,7 +133,7 @@ export const TagInput = <T extends TagInputValues>({
     return (
       <EditableTag
         index={index}
-        key={`${index}${tag.children}`}
+        key={`${index}${tag.children as string}`}
         update={updateTag}
         remove={removeTag}
         inputRef={inputRef}
