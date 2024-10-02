@@ -3,7 +3,8 @@ import * as React from 'react';
 import { Close } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
-import { Button, ButtonKind } from '../Button';
+import { ThemeClassName } from '../../providers/constants';
+import { Button, ButtonKind, ButtonProps } from '../Button';
 import { Icon } from '../Icon';
 
 import styles from './PromoBannerV2.module.scss';
@@ -26,7 +27,7 @@ export interface IPromoBannerV2Props {
     handleClick: () => void;
     label: string;
     kind?: ButtonKind;
-  };
+  } & ButtonProps;
   /**
    * Shows the secondary CTA button
    */
@@ -70,11 +71,12 @@ export const PromoBannerV2: React.FC<
   contentClassName,
   additionalContentClassName,
   onClose,
-  kind = 'default', // Default kind
+  kind = 'default',
 }) => {
   const mergedClassNames = cx(
     styles['main-wrapper'],
-    styles[`${baseClass}--${kind}`], // Apply kind-based styling
+    styles[`${baseClass}--${kind}`],
+    kind === 'dark' && ThemeClassName.Dark,
     className
   );
 

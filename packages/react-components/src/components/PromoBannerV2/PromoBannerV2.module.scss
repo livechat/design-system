@@ -34,6 +34,7 @@ $base-class: 'promo-banner-v2';
 .#{$base-class} {
   box-sizing: border-box;
   display: flex;
+  position: relative;
   flex-direction: row;
   height: 100%;
 
@@ -84,17 +85,9 @@ $base-class: 'promo-banner-v2';
   }
 
   &--dark {
-    // Override dark mode styles
-
-    &__content {
-      // TODO: Override content styles for dark mode
-    }
-
-    &__close__btn {
-      // TODO: Override close button color
-    }
-
-    // Add more overrides as needed
+    border-radius: var(--radius-4);
+    box-shadow: 0 6px 20px 0 var(--shadow-pop-over);
+    background-color: var(--surface-secondary-default);
   }
 
   &--vertical {
