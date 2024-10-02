@@ -115,7 +115,7 @@ const Frame = (props: IAppFrameProps) => {
               >
                 {topBar}
               </div>
-              <div>{mobileNavigation}</div>
+              {mobileNavigation}
             </>
           )}
         </div>
