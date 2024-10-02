@@ -87,7 +87,7 @@ $base-class: 'promo-banner-v2';
 
   &--dark {
     border-radius: var(--radius-4);
-    box-shadow: 0 6px 20px 0 var(--shadow-pop-over);
+    box-shadow: var(--shadow-pop-over);
     background-color: var(--surface-secondary-default);
   }
 
