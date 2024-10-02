@@ -11,6 +11,8 @@ export const ShadowToken = {
   Focus: '--shadow-focus',
   DividerBottom: '--shadow-divider-bottom',
   DividerTop: '--shadow-divider-top',
+  DividerRight: '--shadow-divider-right',
+  DividerLeft: '--shadow-divider-left',
   DividerBottomLeft: '--shadow-divider-bottom-left',
   DividerTopLeft: '--shadow-divider-top-left',
   DividerTopRight: '--shadow-divider-top-right',
