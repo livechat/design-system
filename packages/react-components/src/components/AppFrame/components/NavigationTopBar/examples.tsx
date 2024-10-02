@@ -95,3 +95,25 @@ export const CustomBackgroundAlert: React.FC<{
     </NavigationTopBar.Alert>
   );
 };
+
+export const InfoAlert: React.FC<{
+  show: boolean;
+  onClose: () => void;
+}> = ({ show, onClose }) => {
+  return (
+    <NavigationTopBar.Alert
+      kind="info"
+      isVisible={show}
+      primaryCta={{
+        label: 'Primary CTA',
+        onClick: onClose,
+      }}
+      secondaryCta={{
+        label: 'Secondary CTA',
+        onClick: onClose,
+      }}
+    >
+      Info alert
+    </NavigationTopBar.Alert>
+  );
+};

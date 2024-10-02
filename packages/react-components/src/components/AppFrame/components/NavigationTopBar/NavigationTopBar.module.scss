@@ -7,6 +7,7 @@ $mobile-alert-size: 70px;
 
 .#{$base-class} {
   display: flex;
+  position: relative;
   flex-direction: column;
   width: 100%;
   overflow: hidden;
@@ -24,6 +25,7 @@ $mobile-alert-size: 70px;
 
   &__alert {
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: space-evenly;
     transition: all var(--transition-duration-moderate-1) ease-in-out;

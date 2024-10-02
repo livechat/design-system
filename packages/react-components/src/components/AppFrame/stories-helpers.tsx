@@ -19,6 +19,7 @@ import {
   ChameleonAlert,
   CustomBackgroundAlert,
   DisconnectedAlert,
+  InfoAlert,
 } from './components/NavigationTopBar/examples';
 import { NavigationTopBar } from './components/NavigationTopBar/NavigationTopBar';
 
@@ -203,6 +204,7 @@ export const ExampleTopBar: React.FC<{
         show={visibleAlert === 2}
         onClose={() => closeAlert()}
       />
+      <InfoAlert show={visibleAlert === 3} onClose={() => closeAlert()} />
     </NavigationTopBar>
   );
 };

@@ -237,7 +237,7 @@ export const Default = (): React.ReactElement => {
     >
       <ExampleAppContent
         showToggle={SectionsWithToggle.includes(activeItem)}
-        alerts={Array(3).fill(null)}
+        alerts={Array(4).fill(null)}
         topBarVisible={topBarVisible}
         setTopBarVisible={setTopBarVisible}
         visibleAlert={visibleAlert}
