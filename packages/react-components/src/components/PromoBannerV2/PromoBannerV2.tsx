@@ -3,7 +3,8 @@ import * as React from 'react';
 import { Close } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
-import { Button, ButtonKind } from '../Button';
+import { ThemeClassName } from '../../providers';
+import { Button, ButtonKind, ButtonProps } from '../Button';
 import { Icon } from '../Icon';
 
 import styles from './PromoBannerV2.module.scss';
@@ -26,7 +27,7 @@ export interface IPromoBannerV2Props {
     handleClick: () => void;
     label: string;
     kind?: ButtonKind;
-  };
+  } & ButtonProps;
   /**
    * Shows the secondary CTA button
    */
@@ -51,6 +52,11 @@ export interface IPromoBannerV2Props {
    * Event handler for close button press
    */
   onClose?: () => void;
+  /**
+   * Specify the kind of PromoBannerV2
+   * @default 'default'
+   */
+  kind?: 'default' | 'dark';
 }
 
 export const PromoBannerV2: React.FC<
@@ -65,8 +71,14 @@ export const PromoBannerV2: React.FC<
   contentClassName,
   additionalContentClassName,
   onClose,
+  kind = 'default',
 }) => {
-  const mergedClassNames = cx(styles[`main-wrapper`], className);
+  const mergedClassNames = cx(
+    styles['main-wrapper'],
+    styles[`${baseClass}--${kind}`],
+    kind === 'dark' && ThemeClassName.Dark,
+    className
+  );
 
   return (
     <div role="banner" className={mergedClassNames}>

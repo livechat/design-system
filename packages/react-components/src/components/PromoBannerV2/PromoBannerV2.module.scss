@@ -13,6 +13,7 @@ $base-class: 'promo-banner-v2';
     justify-content: left;
     order: 1;
     padding: var(--spacing-5) var(--spacing-5) 0;
+    padding-top: var(--spacing-10);
   }
 
   .#{$base-class}__close {
@@ -34,6 +35,7 @@ $base-class: 'promo-banner-v2';
 .#{$base-class} {
   box-sizing: border-box;
   display: flex;
+  position: relative;
   flex-direction: row;
   height: 100%;
 
@@ -81,6 +83,12 @@ $base-class: 'promo-banner-v2';
       min-width: 20px;
       height: 20px;
     }
+  }
+
+  &--dark {
+    border-radius: var(--radius-4);
+    box-shadow: var(--shadow-pop-over);
+    background-color: var(--surface-secondary-default);
   }
 
   &--vertical {

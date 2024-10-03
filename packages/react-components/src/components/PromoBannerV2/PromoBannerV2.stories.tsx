@@ -6,6 +6,7 @@ import { Display, Heading, Text } from '../Typography';
 import imageDefault from './assets/image2.png';
 import promoImage from './assets/promo-img.png';
 import { IPromoBannerV2Props, PromoBannerV2 } from './PromoBannerV2';
+
 import './PromoBannerV2.stories.css';
 
 export default {
@@ -105,3 +106,37 @@ export const WithStyledMainContent = (): React.ReactElement => (
     </PromoBannerV2>
   </div>
 );
+
+export const Dark = (args: IPromoBannerV2Props): React.ReactElement => (
+  <PromoBannerV2
+    {...args}
+    className="dark-promo-banner"
+    additionalContent={<img src="https://placehold.co/600x360" />}
+    additionalContentClassName="dark-promo-additional-content"
+  >
+    <Heading size="sm" className="dark-promo-header">
+      Hi 👋 Using Shopify integration?
+    </Heading>
+    <Text noMargin>
+      We want to make it as useful as possible and would love your thoughts on
+      that!
+    </Text>
+    <Text>
+      Join us for a video call, and we'll thank you with a $25 gift card.
+    </Text>
+  </PromoBannerV2>
+);
+
+Dark.args = {
+  primaryButton: {
+    label: 'Schedule a call',
+    handleClick: noop,
+    kind: 'high-contrast',
+  },
+  secondaryButton: {
+    label: 'Remind me in a week',
+    handleClick: noop,
+  },
+  onClose: noop,
+  kind: 'dark',
+};
