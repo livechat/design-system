@@ -124,8 +124,12 @@ const Frame = (props: IAppFrameProps) => {
   );
 };
 
-export const AppFrame: React.FC<IAppFrameProps> = (props) => (
-  <AppFrameProvider>
-    <Frame {...props} />
-  </AppFrameProvider>
-);
+export const AppFrame: React.FC<IAppFrameProps> = (props) => {
+  const { isSideNavigationVisible, ...restProps } = props;
+
+  return (
+    <AppFrameProvider isSideNavigationVisible={isSideNavigationVisible}>
+      <Frame {...restProps} />
+    </AppFrameProvider>
+  );
+};
