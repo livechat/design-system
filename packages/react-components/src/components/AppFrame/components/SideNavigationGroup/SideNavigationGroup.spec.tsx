@@ -1,4 +1,4 @@
-import { render, userEvent, vi } from 'test-utils';
+import { render, userEvent, vi, waitFor } from 'test-utils';
 
 import { SideNavigationGroup } from './SideNavigationGroup';
 import { ISideNavigationGroupProps } from './types';
@@ -36,7 +36,7 @@ describe('<SideNavigationGroup> component', () => {
     expect(getByText('Side navigation label')).toBeInTheDocument();
   });
 
-  it('should render label as provided function includes state change when isCollapsible is set true', () => {
+  it('should render label as provided function includes state change when isCollapsible is set true', async () => {
     const handleLabel = (isOpen: boolean) => (
       <div data-testid="toggle">{isOpen ? 'Opened label' : 'Closed label'}</div>
     );
@@ -49,7 +49,10 @@ describe('<SideNavigationGroup> component', () => {
 
     expect(toggle).toHaveTextContent('Closed label');
     userEvent.click(toggle);
-    expect(toggle).toHaveTextContent('Opened label');
+
+    await waitFor(() => {
+      expect(toggle).toHaveTextContent('Opened label');
+    });
   });
 
   it('should render rightNode as provided element if isCollapsible is set true', () => {
@@ -62,7 +65,7 @@ describe('<SideNavigationGroup> component', () => {
     expect(getByText('Right node')).toBeInTheDocument();
   });
 
-  it('should render rightNode as provided function includes state change when isCollapsible is set true', () => {
+  it('should render rightNode as provided function includes state change when isCollapsible is set true', async () => {
     const handleRightNode = (isOpen: boolean) => (
       <div data-testid="toggle">{isOpen ? 'Opened node' : 'Closed node'}</div>
     );
@@ -75,7 +78,10 @@ describe('<SideNavigationGroup> component', () => {
 
     expect(toggle).toHaveTextContent('Closed node');
     userEvent.click(toggle);
-    expect(toggle).toHaveTextContent('Opened node');
+
+    await waitFor(() => {
+      expect(toggle).toHaveTextContent('Opened node');
+    });
   });
 
   it('should call onItemHover when provided if user hovers the label', () => {
