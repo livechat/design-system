@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Close } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
-import { ThemeClassName } from '../../providers/constants';
+import { ThemeClassName } from '../../providers';
 import { Button, ButtonKind, ButtonProps } from '../Button';
 import { Icon } from '../Icon';
 

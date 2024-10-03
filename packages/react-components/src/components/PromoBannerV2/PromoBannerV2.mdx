@@ -7,13 +7,14 @@ import { SMALL_CONTAINER_WIDTH_TRESHOLD } from './constants.ts';
 
 <Title>PromoBannerV2</Title>
 
-[Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+[Intro](#Intro) | [Example implementation](#ExampleImplementation) | [How to control the elements](#HowToControlElements) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
 
 ## Intro <a id="Intro" />
 
-<Canvas of={Stories.Default} sourceState="none" />
+The `PromoBannerV2` component is used to display a promotional banner with a customizable layout and content. It can be used to display a variety of content, such as a call to action, a message, or an image.
+### Example implementation <a id="ExampleImplementation" />
 
-#### Example implementation
+<Canvas of={Stories.Default} sourceState="none" />
 
 ```jsx
 <PromoBannerV2
@@ -38,7 +39,67 @@ import { SMALL_CONTAINER_WIDTH_TRESHOLD } from './constants.ts';
 </PromoBannerV2>
 ```
 
-##### How to control the elements
+#### Implementation of the dark kind
+
+The below example shows how to implement the `dark` kind of the `PromoBannerV2` component.
+
+<Canvas of={Stories.Dark} sourceState="none" />
+
+**Styles:**
+
+```css
+.dark-promo-banner {
+  max-width: 800px;
+}
+
+.dark-promo-header {
+  margin: 0 0 var(--spacing-4) 0;
+}
+
+.dark-promo-additional-content {
+  align-items: center;
+
+  img {
+    border-radius: 12px;
+  }
+}
+```
+
+**Code:**
+
+```jsx
+import { PromoBannerV2 } from '@livechat/design-system-react-components';
+
+<PromoBannerV2
+  primaryButton={{
+    label: 'Schedule a call',
+    handleClick: noop,
+    kind: 'high-contrast',
+  }}
+  secondaryButton={{
+    label: 'Remind me in a week',
+    handleClick: noop,
+  }}
+  onClose={noop}
+  kind="dark"
+  className="dark-promo-banner"
+  additionalContent={<img src="https://placehold.co/600x360" />}
+  additionalContentClassName="dark-promo-additional-content"
+>
+  <Heading size="sm" className="dark-promo-header">
+    Hi 👋 Using Shopify integration?
+  </Heading>
+  <Text noMargin>
+    We want to make it as useful as possible and would love your thoughts on
+    that!
+  </Text>
+  <Text>
+    Join us for a video call, and we'll thank you with a $25 gift card.
+  </Text>
+</PromoBannerV2>
+```
+
+### How to control the elements <a id="HowToControlElements" />
 
 By default, items in the left column are centered, while items in the right column are aligned to the bottom right. The component contains a breakpoint depending on the width of the main container, which, if it is <b>less than {SMALL_CONTAINER_WIDTH_TRESHOLD}px</b>, will change the view to "vertical" and the contents of the right column will be moved above the left column. In "vertical" view, the contents of the right column will be left-aligned by default, the left column will remain unchanged. If you want more control of these elements (left and right columns) in both views, below is an instruction on how to control the position of individual elements via CSS styles.
 
