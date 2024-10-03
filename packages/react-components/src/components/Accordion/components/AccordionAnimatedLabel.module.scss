@@ -15,19 +15,7 @@ $base-class: 'accordion-animated-label';
     max-width: 100%;
 
     &--visible {
-      animation: change-visibility var(--transition-duration-fast-2);
-      animation-fill-mode: forwards;
+      opacity: 1;
     }
-  }
-}
-
-@keyframes change-visibility {
-  0% {
-    opacity: 0;
-  }
-
-  70%,
-  100% {
-    opacity: 1;
   }
 }
