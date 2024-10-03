@@ -36,10 +36,9 @@ export interface IAppFrameProps extends ComponentCoreProps {
    */
   contentClassName?: string;
   /**
-   * The value that will determine on which resolution mobile view will be displayed
-   * @default 705
+   * Set the initial visibility of the side navigation bar
    */
-  mobileViewBreakpoint?: number;
+  isSideNavigationVisible?: boolean;
 }
 
 export type { INavigationProps } from './components/Navigation/types';

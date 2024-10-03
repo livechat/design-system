@@ -33,7 +33,7 @@ export const Accordion: React.FC<IAccordionProps> = ({
   const {
     isOpen: isExpanded,
     isMounted,
-    setIsOpen,
+    setShouldBeVisible,
   } = useAnimations({
     isVisible: currentlyOpen,
     elementRef: contentRef,
@@ -51,10 +51,10 @@ export const Accordion: React.FC<IAccordionProps> = ({
   const handleExpandChange = (isExpanded: boolean) => {
     if (isExpanded) {
       onClose?.();
-      !isControlled && setIsOpen(false);
+      !isControlled && setShouldBeVisible(false);
     } else {
       onOpen?.();
-      !isControlled && setIsOpen(true);
+      !isControlled && setShouldBeVisible(true);
     }
   };
 

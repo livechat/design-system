@@ -309,6 +309,51 @@ return (
 
 ```
 
+#### How to build top bar alerts
+
+In general, alerts do not have height limits, which allows you to insert any amount of content. The container in which they are located also does not have such limits.
+
+However, it is important to remember to provide the best possible user experience, not to put too much information into the top bar, which could reduce the application window.
+
+Components layout changes depending on the browser window resolution:
+- `width > 1110px` - standard layout with the option of setting the kind for cta buttons
+- `width <= 1100px` - row layout, buttons are automatically changed to kind `text` (`link-inverted` for `warning` alert)
+- `width <= 705px` - mobile version (no radiuses)
+
+It is also important to remember that you should not display a large number of alerts. For this purpose, we suggest a simple solution, consisting in hiding and showing only the currently expected alert (the decision is up to the project which alert has the highest priority)
+
+##### Example
+
+```jsx
+import { NavigationTopBarAlert } from '@livechat/design-system-react-components';
+
+const [visibleAlert, setVisibleAlert] = React.useState(null);
+
+return (
+  <NavigationTopBar>
+    <NavigationTopBarAlert
+      kind="info"
+      isVisible={visibleAlert === 0}
+    >
+      Info
+    </NavigationTopBarAlert>
+    <NavigationTopBarAlert
+      kind="warning"
+      isVisible={visibleAlert === 1}
+    >
+      Warning
+    </NavigationTopBarAlert>
+    <NavigationTopBarAlert
+      kind="error"
+      isVisible={visibleAlert === 2}
+    >
+      Error
+    </NavigationTopBarAlert>
+  </NavigationTopBar>
+);
+
+```
+
 ## Component API <a id="ComponentAPI" />
 
 <ArgTypes of={AppFrameStories.Default} sort="requiredFirst" />

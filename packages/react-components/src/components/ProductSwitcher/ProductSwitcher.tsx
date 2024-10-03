@@ -18,6 +18,7 @@ import {
 import { TextLogoFull } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
+import { ThemeClassName } from '../../providers';
 import { Icon } from '../Icon';
 import { Tooltip } from '../Tooltip';
 import { Text } from '../Typography';
@@ -126,7 +127,7 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
           arrowOffsetY={2}
           offsetMainAxis={10}
           hoverOnDelay={400}
-          className={styles[`${baseClass}__tooltip`]}
+          className={cx(styles[`${baseClass}__tooltip`], ThemeClassName.Light)}
           placement="right"
           floatingStrategy="fixed"
           kind="invert"

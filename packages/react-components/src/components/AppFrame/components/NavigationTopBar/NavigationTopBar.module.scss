@@ -1,12 +1,14 @@
 /* stylelint-disable media-query-no-invalid */
 $base-class: 'navigation-top-bar';
-$mobile-breakpoint: 768px;
+$alerts-mobile-breakpoint: 810px;
+$mobile-breakpoint: 705px;
+$alert-size: 42px;
+$mobile-alert-size: 70px;
 
 .#{$base-class} {
   display: flex;
   position: relative;
   flex-direction: column;
-  gap: var(--spacing-1);
   width: 100%;
   overflow: hidden;
 
@@ -14,11 +16,16 @@ $mobile-breakpoint: 768px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px 0;
+    height: 36px;
+  }
+
+  &__alerts-wrapper {
+    overflow: hidden;
   }
 
   &__alert {
     display: flex;
+    position: relative;
     align-items: center;
     justify-content: space-evenly;
     transition: all var(--transition-duration-moderate-1) ease-in-out;
@@ -34,7 +41,11 @@ $mobile-breakpoint: 768px;
 
     &--open {
       padding-block: 5px;
-      min-height: 42px;
+      min-height: $alert-size;
+
+      @media screen and (width <=$mobile-breakpoint) {
+        min-height: $mobile-alert-size;
+      }
     }
 
     &__wrapper {
@@ -75,9 +86,9 @@ $mobile-breakpoint: 768px;
       justify-content: center;
       width: calc(100% - 62px);
 
-      @media screen and (width <=$mobile-breakpoint) {
+      @media screen and (width <=$alerts-mobile-breakpoint) {
         flex-direction: column;
-        gap: var(--spacing-2);
+        gap: 0;
       }
     }
 
@@ -92,10 +103,11 @@ $mobile-breakpoint: 768px;
       padding: 0;
       color: inherit;
 
-      @media screen and (width <=$mobile-breakpoint) {
+      @media screen and (width <=$alerts-mobile-breakpoint) {
         position: absolute;
-        top: var(--spacing-3);
+        top: auto;
         right: var(--spacing-3);
+        bottom: auto;
       }
     }
 
@@ -106,16 +118,19 @@ $mobile-breakpoint: 768px;
       align-items: center;
       justify-content: center;
 
-      @media screen and (width <=$mobile-breakpoint) {
+      @media screen and (width <=$alerts-mobile-breakpoint) {
         flex-shrink: 1;
         flex-wrap: wrap;
       }
     }
 
-    @media screen and (width <=$mobile-breakpoint) {
-      border-radius: 0;
+    @media screen and (width <=$alerts-mobile-breakpoint) {
       padding-inline: var(--spacing-10);
       text-align: center;
+    }
+
+    @media screen and (width <=$mobile-breakpoint) {
+      border-radius: 0;
     }
   }
 }

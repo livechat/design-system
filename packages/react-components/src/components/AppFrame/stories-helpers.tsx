@@ -19,6 +19,7 @@ import {
   ChameleonAlert,
   CustomBackgroundAlert,
   DisconnectedAlert,
+  InfoAlert,
 } from './components/NavigationTopBar/examples';
 import { NavigationTopBar } from './components/NavigationTopBar/NavigationTopBar';
 
@@ -27,21 +28,22 @@ import './AppFrame.stories.css';
 interface ExampleAppContentProps {
   showToggle: boolean;
   alerts?: boolean[];
-  setAlerts?: (alerts: boolean[]) => void;
   topBarVisible: boolean;
   setTopBarVisible: (visible: boolean) => void;
+  visibleAlert: number | null;
+  setVisibleAlert: (index: number | null) => void;
 }
 
 export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
   showToggle,
   alerts,
-  setAlerts,
   topBarVisible,
   setTopBarVisible,
+  visibleAlert,
+  setVisibleAlert,
 }) => {
   const { isSideNavigationVisible, toggleSideNavigationVisibility } =
     useAppFrame();
-  const [allBannersVisible, setAllBannersVisible] = React.useState(false);
 
   return (
     <div className="app-container">
@@ -68,27 +70,16 @@ export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
               />
             </div>
           )}
-          {alerts && setAlerts && (
+          {alerts && (
             <>
-              <div className="switch">
-                <Text bold>Toggle all alerts</Text>
-                <Switch
-                  size="compact"
-                  on={allBannersVisible}
-                  onChange={() => {
-                    setAllBannersVisible(!allBannersVisible);
-                    setAlerts(alerts.map(() => !allBannersVisible));
-                  }}
-                />
-              </div>
-              {alerts.map((show, index) => (
+              {alerts.map((_, index) => (
                 <div key={index} className="switch">
                   <Text bold>Taggle alert {index + 1}</Text>
                   <Switch
                     size="compact"
-                    on={show}
+                    on={index === visibleAlert}
                     onChange={() =>
-                      setAlerts(alerts.map((_, i) => (i === index ? !show : _)))
+                      setVisibleAlert(index === visibleAlert ? null : index)
                     }
                   />
                 </div>
@@ -164,17 +155,15 @@ export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
 };
 
 export const ExampleTopBar: React.FC<{
-  visibleAlerts: boolean[];
   topBarVisible: boolean;
-  setAlerts: (alerts: boolean[]) => void;
-}> = ({ visibleAlerts, setAlerts, topBarVisible }) => {
+  visibleAlert: number | null;
+  setVisibleAlert: (index: number | null) => void;
+}> = ({ topBarVisible, visibleAlert, setVisibleAlert }) => {
   const [kind, setKind] = React.useState<
     'info' | 'success' | 'warning' | 'error'
   >('warning');
 
-  const closeAlert = (index: number) => {
-    setAlerts(visibleAlerts.map((_, i) => (i === index ? false : _)));
-  };
+  const closeAlert = () => setVisibleAlert(null);
 
   const changeKind = () => {
     setKind((prevKind) => {
@@ -202,19 +191,20 @@ export const ExampleTopBar: React.FC<{
       }
     >
       <DisconnectedAlert
-        show={visibleAlerts[0]}
-        onClose={() => closeAlert(0)}
+        show={visibleAlert === 0}
+        onClose={() => closeAlert()}
       />
       <ChameleonAlert
-        show={visibleAlerts[1]}
-        onClose={() => closeAlert(1)}
+        show={visibleAlert === 1}
+        onClose={() => closeAlert()}
         kind={kind}
         changeKind={changeKind}
       />
       <CustomBackgroundAlert
-        show={visibleAlerts[2]}
-        onClose={() => closeAlert(2)}
+        show={visibleAlert === 2}
+        onClose={() => closeAlert()}
       />
+      <InfoAlert show={visibleAlert === 3} onClose={() => closeAlert()} />
     </NavigationTopBar>
   );
 };
