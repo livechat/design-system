@@ -15,6 +15,8 @@ const ShadowDescription: Record<ShadowTokenKey, string> = {
   Focus: 'Focus state on elements',
   DividerBottom: 'Separator on bottom of the element',
   DividerTop: 'Separator on top of the element',
+  DividerRight: 'Separator on right of the element',
+  DividerLeft: 'Separator on left of the element',
   DividerBottomLeft:
     'Suited for subtle exits, like fading out elements or collapsing menus/details panel',
   DividerTopLeft: 'Separator on top left of the element',

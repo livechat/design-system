@@ -12,6 +12,8 @@
   --shadow-focus: 0 0 1px 1px var(--background-01), 0 0 1px 3px #4284f5;
   --shadow-divider-bottom: 0 -1px 0 0 #eeeeef inset;
   --shadow-divider-top: 0 1px 0 0 #eeeeef inset;
+  --shadow-divider-right: -1px 0 0 0 #eeeeef inset;
+  --shadow-divider-left: 1px 0 0 0 #eeeeef inset;
   --shadow-divider-bottom-left: 1px -1px 0 0 #eeeeef inset;
   --shadow-divider-top-left: 1px 1px 0 0 #eeeeef inset;
   --shadow-divider-top-right: -1px 1px 0 0 #eeeeef inset;
@@ -37,6 +39,8 @@
   --shadow-focus: 0 0 1px 1px var(--background-01), 0 0 1px 3px #0059e1;
   --shadow-divider-bottom: 0 -1px 0 0 #eeeeef inset;
   --shadow-divider-top: 0 1px 0 0 #eeeeef inset;
+  --shadow-divider-right: -1px 0 0 0 #eeeeef inset;
+  --shadow-divider-left: 1px 0 0 0 #eeeeef inset;
   --shadow-divider-bottom-left: 1px -1px 0 0 #eeeeef inset;
   --shadow-divider-top-left: 1px 1px 0 0 #eeeeef inset;
   --shadow-divider-top-right: -1px 1px 0 0 #eeeeef inset;
@@ -65,6 +69,8 @@
   --shadow-focus: 0 0 1px 1px var(--background-01), 0 0 1px 3px #68afff;
   --shadow-divider-bottom: 0 -1px 0 0 #3b3b43 inset;
   --shadow-divider-top: 0 1px 0 0 #3b3b43 inset;
+  --shadow-divider-right: -1px 0 0 0 #3b3b43 inset;
+  --shadow-divider-left: 1px 0 0 0 #3b3b43 inset;
   --shadow-divider-bottom-left: 1px -1px 0 0 #3b3b43 inset;
   --shadow-divider-top-left: 1px 1px 0 0 #3b3b43 inset;
   --shadow-divider-top-right: -1px 1px 0 0 #3b3b43 inset;
