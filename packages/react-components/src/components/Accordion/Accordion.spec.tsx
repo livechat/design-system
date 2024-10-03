@@ -41,7 +41,7 @@ describe('<Accordion> component', () => {
     expect(getByText('Content')).toBeInTheDocument();
   });
 
-  it('should call onClose and onOpen handlers on label click', () => {
+  it('should call onClose and onOpen handlers on label click', async () => {
     const onClose = vi.fn();
     const onOpen = vi.fn();
     const { getByRole } = renderComponent({
@@ -50,8 +50,14 @@ describe('<Accordion> component', () => {
       onOpen,
     });
 
+    expect(getByRole('button')).toHaveAttribute('aria-expanded', 'false');
     userEvent.click(getByRole('button'));
     expect(onOpen).toHaveBeenCalledTimes(1);
+
+    await waitFor(() => {
+      expect(getByRole('button')).toHaveAttribute('aria-expanded', 'false');
+    });
+
     userEvent.click(getByRole('button'));
     expect(onClose).toHaveBeenCalledTimes(1);
   });
