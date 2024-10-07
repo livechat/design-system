@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import { Button } from '../Button';
 
 import { SearchInput, ISearchInputProps } from './Search';
 
@@ -81,3 +82,18 @@ export const CollapsableSearch = (
 );
 
 CollapsableSearch.args = {};
+
+export const FocusOnClick = (args: ISearchInputProps): React.ReactElement => {
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  return (
+    <div style={commonWidth}>
+      <StoryDescriptor title="Focus on click">
+        <SearchInput {...args} ref={inputRef} />
+      </StoryDescriptor>
+      <Button onClick={() => inputRef.current?.focus()}>Focus</Button>
+    </div>
+  );
+};
+
+FocusOnClick.args = {};

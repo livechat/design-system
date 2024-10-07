@@ -53,122 +53,136 @@ export interface ISearchInputProps {
   cropOnBlur?: boolean;
 }
 
-export const SearchInput: React.FC<ISearchInputProps> = ({
-  isCollapsable,
-  isDisabled,
-  isLoading,
-  placeholder = 'Search ...',
-  size = 'medium',
-  value,
-  className,
-  cropOnBlur = true,
-  onChange,
-}) => {
-  const [isCollapsed, setIsCollapsed] = React.useState<boolean>(true);
-  const [isFocused, setIsFocused] = React.useState<boolean>(false);
-  const inputRef = React.useRef<HTMLInputElement>(null);
-  const isCloseIconVisible = !!value && !isDisabled && !isLoading;
-  const ariaExpandedValue = isCollapsable && !isCollapsed && 'true';
+export const SearchInput = React.forwardRef<
+  HTMLInputElement,
+  ISearchInputProps
+>(
+  (
+    {
+      isCollapsable,
+      isDisabled,
+      isLoading,
+      placeholder = 'Search ...',
+      size = 'medium',
+      value,
+      className,
+      cropOnBlur = true,
+      onChange,
+    },
+    ref
+  ) => {
+    const internalRef = React.useRef<HTMLInputElement>(null);
+    React.useImperativeHandle(ref, () => internalRef.current!, [ref]);
 
-  const mergedClassNames = cx(
-    className,
-    styles[baseClass],
-    styles[`${baseClass}--${size}`],
-    isFocused && styles[`${baseClass}--focused`],
-    isDisabled && styles[`${baseClass}--disabled`],
-    isCollapsable && styles[`${baseClass}--collapsable`],
-    !isCollapsed && styles[`${baseClass}--collapsable--open`]
-  );
+    const [isCollapsed, setIsCollapsed] = React.useState<boolean>(true);
+    const [isFocused, setIsFocused] = React.useState<boolean>(false);
+    const isCloseIconVisible = !!value && !isDisabled && !isLoading;
+    const ariaExpandedValue = isCollapsable && !isCollapsed && 'true';
 
-  React.useEffect(() => {
-    if (isCollapsable && !!value) {
-      setIsCollapsed(false);
-    }
-  }, [isCollapsable]);
+    const mergedClassNames = cx(
+      className,
+      styles[baseClass],
+      styles[`${baseClass}--${size}`],
+      isFocused && styles[`${baseClass}--focused`],
+      isDisabled && styles[`${baseClass}--disabled`],
+      isCollapsable && styles[`${baseClass}--collapsable`],
+      !isCollapsed && styles[`${baseClass}--collapsable--open`]
+    );
 
-  const handleOnChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const value = e.currentTarget.value;
-    onChange(value);
-  };
+    React.useEffect(() => {
+      if (isCollapsable && !!value) {
+        setIsCollapsed(false);
+      }
+    }, [isCollapsable, value]);
 
-  const handleClear = () => {
-    onChange('');
-  };
+    const handleOnChange = (e: React.FormEvent<HTMLInputElement>) => {
+      const newValue = e.currentTarget.value;
+      onChange(newValue);
+    };
 
-  const handleClick = () => {
-    inputRef.current?.focus();
-  };
+    const handleClear = () => {
+      onChange('');
+    };
 
-  const handleFocus = () => {
-    if (isCollapsable) {
-      setIsCollapsed(false);
-    }
-    setIsFocused(true);
-  };
+    const handleClick = () => {
+      if (internalRef.current) {
+        internalRef.current.focus();
+      }
+    };
 
-  const handleBlur = () => {
-    if (isCollapsable && !value) {
-      setIsCollapsed(true);
-    }
-    setIsFocused(false);
-  };
+    const handleFocus = () => {
+      if (isCollapsable) {
+        setIsCollapsed(false);
+      }
+      setIsFocused(true);
+    };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === KeyCodes.enter) {
-      e.preventDefault();
-      onChange(value);
-    }
-  };
+    const handleBlur = () => {
+      if (isCollapsable && !value) {
+        setIsCollapsed(true);
+      }
+      setIsFocused(false);
+    };
 
-  return (
-    <div
-      aria-expanded={ariaExpandedValue}
-      role="search"
-      className={mergedClassNames}
-      onClick={handleClick}
-    >
-      <Icon
-        className={styles[`${baseClass}__search-icon`]}
-        source={Search}
-        disabled={isDisabled}
-        kind="primary"
-      />
-      <Text
-        as="div"
-        className={cx(
-          styles[inputWrapperClass],
-          cropOnBlur && styles[`${inputWrapperClass}--crop`]
-        )}
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === KeyCodes.enter) {
+        e.preventDefault();
+        onChange(value);
+      }
+    };
+
+    return (
+      <div
+        aria-expanded={ariaExpandedValue}
+        role="search"
+        className={mergedClassNames}
+        onClick={handleClick}
       >
-        <input
-          role="searchbox"
-          ref={inputRef}
-          type="text"
-          value={value}
-          placeholder={placeholder}
-          onChange={handleOnChange}
-          onBlur={handleBlur}
-          onFocus={handleFocus}
-          onKeyDown={handleKeyDown}
+        <Icon
+          className={styles[`${baseClass}__search-icon`]}
+          source={Search}
           disabled={isDisabled}
+          kind="primary"
         />
-      </Text>
-      {isCloseIconVisible && (
-        <Button
-          aria-label="Clear search"
-          title="Clear search"
-          className={styles[`${baseClass}__clear-icon`]}
-          onClick={handleClear}
-          icon={<Icon source={Close} kind="primary" />}
-          kind="text"
-          size="compact"
-        />
-      )}
-      {isLoading && (
-        <div className={styles[`${baseClass}__loader`]}>
-          <Loader size="small" />
-        </div>
-      )}
-    </div>
-  );
-};
+        <Text
+          as="div"
+          className={cx(
+            styles[inputWrapperClass],
+            cropOnBlur && styles[`${inputWrapperClass}--crop`]
+          )}
+        >
+          <input
+            role="searchbox"
+            ref={internalRef}
+            type="text"
+            value={value}
+            placeholder={placeholder}
+            onChange={handleOnChange}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
+            onKeyDown={handleKeyDown}
+            disabled={isDisabled}
+          />
+        </Text>
+        {isCloseIconVisible && (
+          <Button
+            aria-label="Clear search"
+            title="Clear search"
+            className={styles[`${baseClass}__clear-icon`]}
+            onClick={handleClear}
+            icon={<Icon source={Close} kind="primary" />}
+            kind="text"
+            size="compact"
+          />
+        )}
+        {isLoading && (
+          <div className={styles[`${baseClass}__loader`]}>
+            <Loader size="small" />
+          </div>
+        )}
+      </div>
+    );
+  }
+);
+
+SearchInput.displayName = 'SearchInput';
