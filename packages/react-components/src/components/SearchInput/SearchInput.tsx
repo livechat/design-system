@@ -9,12 +9,16 @@ import { Icon } from '../Icon';
 import { Loader } from '../Loader';
 import { Text } from '../Typography';
 
-import styles from './Search.module.scss';
+import styles from './SearchInput.module.scss';
 
 const baseClass = 'search-input';
 const inputWrapperClass = `${baseClass}__input-wrapper`;
 
-export interface ISearchInputProps {
+export interface ISearchInputProps
+  extends Omit<
+    React.InputHTMLAttributes<HTMLInputElement>,
+    'size' | 'onChange'
+  > {
   /**
    * Makes search expandable after focusing the icon
    */
@@ -68,6 +72,7 @@ export const SearchInput = React.forwardRef<
       className,
       cropOnBlur = true,
       onChange,
+      ...props
     },
     ref
   ) => {
@@ -162,6 +167,7 @@ export const SearchInput = React.forwardRef<
             onFocus={handleFocus}
             onKeyDown={handleKeyDown}
             disabled={isDisabled}
+            {...props}
           />
         </Text>
         {isCloseIconVisible && (

@@ -41,7 +41,7 @@ export * from './components/Progress';
 export * from './components/PromoBanner';
 export * from './components/PromoBannerV2';
 export * from './components/RadioButton';
-export * from './components/Search';
+export * from './components/SearchInput';
 export * from './components/Skeleton';
 export * from './components/StatusBadge';
 export * from './components/Switch';

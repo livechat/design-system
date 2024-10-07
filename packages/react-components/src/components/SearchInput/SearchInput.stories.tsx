@@ -5,12 +5,12 @@ import { Meta, StoryFn } from '@storybook/react';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Button } from '../Button';
 
-import { SearchInput, ISearchInputProps } from './Search';
+import { SearchInput, ISearchInputProps } from './SearchInput';
 
 const commonWidth: React.CSSProperties = { width: 300 };
 
 export default {
-  title: 'Components/Search',
+  title: 'Components/SearchInput',
   component: SearchInput,
   argTypes: { onChange: { action: 'changed' } },
 } as Meta<typeof SearchInput>;
