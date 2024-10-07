@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { Search } from '@livechat/design-system-icons';
 import { Meta, StoryFn } from '@storybook/react';
 
@@ -47,64 +45,75 @@ const StoryTemplate: StoryFn<FormFieldProps> = (args: FormFieldProps) => (
 export const Default = StoryTemplate.bind({});
 Default.args = {};
 
-export const Examples = (): React.ReactElement => {
-  return (
-    <div>
-      <StoryDescriptor title="With Label">
-        <FormFieldComponent labelText={LabelText} description={DescriptionText}>
-          <ExampleInput />
-        </FormFieldComponent>
-      </StoryDescriptor>
-      <StoryDescriptor title="With Inline Label">
-        <FormFieldComponent
-          labelText={LabelText}
-          inline
-          description={DescriptionText}
-        >
-          <ExampleInput />
-        </FormFieldComponent>
-      </StoryDescriptor>
-      <StoryDescriptor title="With Label and Right node">
-        <FormFieldComponent
-          labelText={LabelText}
-          labelRightNode={<ExampleIcon />}
-          description={DescriptionText}
-        >
-          <ExampleInput />
-        </FormFieldComponent>
-      </StoryDescriptor>
-      <StoryDescriptor title="With Inline Label and Right node">
-        <FormFieldComponent
-          labelText={LabelText}
-          labelRightNode={<ExampleIcon />}
-          inline
-          description={DescriptionText}
-        >
-          <ExampleInput />
-        </FormFieldComponent>
-      </StoryDescriptor>
-      <StoryDescriptor title="With Label and Label Adornment">
-        <FormFieldComponent
-          labelText={LabelText}
-          labelAdornment={'(Optional)'}
-          description={DescriptionText}
-        >
-          <ExampleInput />
-        </FormFieldComponent>
-      </StoryDescriptor>
-      <StoryDescriptor title="With Inline Label and Label Adornment">
-        <FormFieldComponent
-          labelText={LabelText}
-          labelAdornment={'(Optional)'}
-          inline
-          description={DescriptionText}
-        >
-          <ExampleInput />
-        </FormFieldComponent>
-      </StoryDescriptor>
-    </div>
-  );
-};
+export const WithLabel: StoryFn<FormFieldProps> = () => (
+  <StoryDescriptor title="With Label">
+    <FormFieldComponent labelText={LabelText} description={DescriptionText}>
+      <ExampleInput />
+    </FormFieldComponent>
+  </StoryDescriptor>
+);
+
+export const WithInlineLabel: StoryFn<FormFieldProps> = () => (
+  <StoryDescriptor title="With Inline Label">
+    <FormFieldComponent
+      labelText={LabelText}
+      inline
+      description={DescriptionText}
+    >
+      <ExampleInput />
+    </FormFieldComponent>
+  </StoryDescriptor>
+);
+
+export const WithLabelAndRightNode: StoryFn<FormFieldProps> = () => (
+  <StoryDescriptor title="With Label and Right node">
+    <FormFieldComponent
+      labelText={LabelText}
+      labelRightNode={<ExampleIcon />}
+      description={DescriptionText}
+    >
+      <ExampleInput />
+    </FormFieldComponent>
+  </StoryDescriptor>
+);
+
+export const WithInlineLabelAndRightNode: StoryFn<FormFieldProps> = () => (
+  <StoryDescriptor title="With Inline Label and Right node">
+    <FormFieldComponent
+      labelText={LabelText}
+      labelRightNode={<ExampleIcon />}
+      inline
+      description={DescriptionText}
+    >
+      <ExampleInput />
+    </FormFieldComponent>
+  </StoryDescriptor>
+);
+
+export const WithLabelAndLabelAdornment: StoryFn<FormFieldProps> = () => (
+  <StoryDescriptor title="With Label and Label Adornment">
+    <FormFieldComponent
+      labelText={LabelText}
+      labelAdornment={'(Optional)'}
+      description={DescriptionText}
+    >
+      <ExampleInput />
+    </FormFieldComponent>
+  </StoryDescriptor>
+);
+
+export const WithInlineLabelAndLabelAdornment: StoryFn<FormFieldProps> = () => (
+  <StoryDescriptor title="With Inline Label and Label Adornment">
+    <FormFieldComponent
+      labelText={LabelText}
+      labelAdornment={'(Optional)'}
+      inline
+      description={DescriptionText}
+    >
+      <ExampleInput />
+    </FormFieldComponent>
+  </StoryDescriptor>
+);
 
 export const TextFieldWithError = StoryTemplate.bind({});
 TextFieldWithError.args = {
