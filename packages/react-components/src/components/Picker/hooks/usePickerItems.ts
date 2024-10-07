@@ -51,7 +51,14 @@ export const usePickerItems = ({
 
   const handleOnFilter = (text: string) => setSearchPhrase(text);
 
-  const handleItemRemove = (itemKey: string) => handleSelect(itemKey);
+  const handleItemRemove = (itemKey: string) => {
+    if (type === 'single') {
+      handleSelect(itemKey);
+    } else {
+      setSelectedKeys(selectedKeys.filter((key) => key !== itemKey));
+      onSelect(selected?.filter(({ key }) => key !== itemKey) || null);
+    }
+  };
 
   const handleClear = () => {
     !isDataControlled && setSelectedKeys([]);
