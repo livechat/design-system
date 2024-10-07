@@ -4,7 +4,7 @@ import { render, userEvent, vi } from 'test-utils';
 
 import noop from '../../utils/noop';
 
-import { ISearchInputProps, SearchInput } from './Search';
+import { ISearchInputProps, SearchInput } from './SearchInput';
 
 const defaultProps = {
   value: '',
@@ -15,7 +15,7 @@ const renderComponent = (props: ISearchInputProps) => {
   return render(<SearchInput {...props} />);
 };
 
-describe('<Search> component', () => {
+describe('<SearchInput> component', () => {
   it('should apply className prop', () => {
     const { getByRole } = renderComponent({
       ...defaultProps,
