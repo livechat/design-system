@@ -5,6 +5,7 @@ export interface Agent {
   email: string;
   status: 'available' | 'unavailable' | 'unknown';
   avatar?: string;
+  isBot: boolean;
 }
 
 export interface InviteAgentsProps extends ComponentCoreProps {

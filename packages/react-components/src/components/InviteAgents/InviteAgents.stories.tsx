@@ -24,30 +24,35 @@ const mockAgents = [
     email: 'bob@example.com',
     status: 'unknown' as const,
     avatar: '',
+    isBot: false,
   },
   {
     name: 'Alice Johnson',
     email: 'alice@example.com',
     status: 'available' as const,
     avatar: undefined,
+    isBot: false,
   },
   {
     name: 'Alice Johnson 2',
     email: 'alic2@example.com',
     status: 'available' as const,
     avatar: 'https://via.placeholder.com/150',
+    isBot: false,
   },
   {
     name: 'Bob Smith',
     email: 'bob3@example.com',
     status: 'unavailable' as const,
     avatar: 'https://via.placeholder.com/150',
+    isBot: false,
   },
   ...[...Array(10)].map((_, index) => ({
     name: `Unknown Agent ${index}`,
     email: `unknown${index}@example.com`,
     status: 'available' as const,
     avatar: 'https://via.placeholder.com/150',
+    isBot: index % 2 === 0,
   })),
 ];
 

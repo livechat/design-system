@@ -46,18 +46,21 @@ describe('InviteAgents Component', () => {
         email: 'alice@example.com',
         status: 'available',
         avatar: 'https://via.placeholder.com/150',
+        isBot: false,
       },
       {
         name: 'Bob',
         email: 'bob@example.com',
         status: 'unavailable',
         avatar: 'https://via.placeholder.com/150',
+        isBot: false,
       },
       {
         name: 'Charlie',
         email: 'charlie@example.com',
         status: 'unknown',
         avatar: 'https://via.placeholder.com/150',
+        isBot: true,
       },
     ];
 
@@ -69,7 +72,7 @@ describe('InviteAgents Component', () => {
     userEvent.hover(avatars[0]);
 
     await waitFor(() => {
-      expect(screen.getByText(/1 accepting chats/i)).toBeInTheDocument();
+      expect(screen.getByText(/1 agent/i)).toBeInTheDocument();
     });
   });
 
@@ -80,6 +83,7 @@ describe('InviteAgents Component', () => {
         email: 'bob@example.com',
         status: 'unavailable',
         avatar: 'https://via.placeholder.com/150',
+        isBot: false,
       },
     ];
 
@@ -102,6 +106,7 @@ describe('InviteAgents Component', () => {
         email: 'alice@example.com',
         status: 'available',
         avatar: 'https://via.placeholder.com/150',
+        isBot: false,
       },
     ];
 
@@ -127,17 +132,18 @@ describe('InviteAgents Component', () => {
     expect(mockOnAddAgentsClick).toHaveBeenCalledTimes(1);
   });
 
-  it('displays additional agents count correctly', () => {
+  it('displays total accepting agents count correctly', () => {
     const agents: Agent[] = Array.from({ length: 5 }, (_, index) => ({
       name: `Agent ${index + 1}`,
       email: `agent${index + 1}@example.com`,
       status: 'available',
       avatar: 'https://via.placeholder.com/150',
+      isBot: false,
     }));
 
     renderComponent(agents);
 
-    expect(screen.getByText('+2')).toBeInTheDocument();
+    expect(screen.getByText('5')).toBeInTheDocument();
   });
 
   it('renders "Not accepting" when all agents are unavailable', async () => {
@@ -147,12 +153,14 @@ describe('InviteAgents Component', () => {
         email: 'bob@example.com',
         status: 'unavailable',
         avatar: 'https://via.placeholder.com/150',
+        isBot: false,
       },
       {
         name: 'Charlie',
         email: 'charlie@example.com',
         status: 'unavailable',
         avatar: 'https://via.placeholder.com/150',
+        isBot: false,
       },
     ];
 
@@ -179,5 +187,35 @@ describe('InviteAgents Component', () => {
 
     userEvent.click(chatbotButton);
     expect(mockOnSetUpChatbotClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('displays only bots when all agents are bots', async () => {
+    const agents: Agent[] = [
+      {
+        name: 'Alice',
+        email: 'alice@example.com',
+        status: 'available',
+        avatar: 'https://via.placeholder.com/150',
+        isBot: true,
+      },
+      {
+        name: 'Bob',
+        email: 'bob@example.com',
+        status: 'available',
+        avatar: 'https://via.placeholder.com/150',
+        isBot: true,
+      },
+    ];
+
+    renderComponent(agents);
+
+    const avatars = screen.getAllByRole('img');
+    expect(avatars).toHaveLength(2);
+
+    userEvent.hover(avatars[0]);
+
+    await waitFor(() => {
+      expect(screen.getByText('2 bots')).toBeInTheDocument();
+    });
   });
 });

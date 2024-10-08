@@ -11,13 +11,3 @@ export const getSortedAgents = (agents: Agent[]) => {
     return statusPriority[a.status] - statusPriority[b.status];
   });
 };
-
-export const getAvailableAgentsTooltipText = (
-  availableAgentsNumber: number
-) => {
-  if (availableAgentsNumber === 0) {
-    return 'No one assist your customers';
-  }
-
-  return `${availableAgentsNumber} accepting chats`;
-};
