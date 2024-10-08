@@ -95,4 +95,16 @@ $base-class: 'invite-agents';
     font-weight: 500;
     font-style: normal;
   }
+
+  &__accepting-agents {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  &__accepting-agents-row {
+    display: flex;
+    gap: var(--spacing-2);
+    align-items: center;
+  }
 }
