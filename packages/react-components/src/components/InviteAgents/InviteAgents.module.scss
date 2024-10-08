@@ -37,6 +37,7 @@ $base-class: 'invite-agents';
   }
 
   &__tooltip {
+    box-shadow: 0 1px 10px 0 rgb(66 77 87 / 30%);
     max-width: 260px;
 
     > div {
