@@ -32,7 +32,7 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   const hadActiveListElementsRef = React.useRef(false);
   const listWrapperRef = React.useRef<HTMLDivElement>(null);
   const { isOpen, isMounted, setShouldBeVisible } = useAnimations({
-    isVisible: !isCollapsible || shouldOpenOnInit,
+    isVisible: isCollapsible || shouldOpenOnInit,
     elementRef: listWrapperRef,
   });
   const localRightNode =
@@ -40,6 +40,7 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   const localLabel = typeof label === 'function' ? label(isOpen) : label;
 
   const openList = (): void => setShouldBeVisible(true);
+  const closeList = (): void => setShouldBeVisible(false);
 
   const toggle = (): void => {
     if (!isCollapsible) return;
@@ -63,6 +64,10 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   React.useEffect(() => {
     if (!shouldOpenOnActive) {
       return;
+    }
+
+    if (!hasActiveElements) {
+      closeList();
     }
 
     if (!hadActiveListElementsRef.current && hasActiveElements) {
