@@ -24,8 +24,8 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   isCollapsible,
   onItemHover,
   shouldOpenOnInit = false,
-  shouldOpenOnActive = false,
 }) => {
+  const [initialMount, setInitialMount] = React.useState<boolean>(true);
   const [hasActiveElements, setHasActiveElements] =
     React.useState<boolean>(false);
   const [listHeight, setListHeight] = React.useState<number>(0);
@@ -38,6 +38,7 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   const localRightNode =
     typeof rightNode === 'function' ? rightNode(isOpen) : rightNode;
   const localLabel = typeof label === 'function' ? label(isOpen) : label;
+  const shouldRenderList = initialMount ? initialMount : isMounted;
 
   const openList = (): void => setShouldBeVisible(true);
 
@@ -58,19 +59,16 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
 
     const newListHeight = (listElements?.length || 0) * SINGLE_ELEMENT_SIZE;
     setListHeight(newListHeight);
+    setInitialMount(false);
   };
 
   React.useEffect(() => {
-    if (!shouldOpenOnActive) {
-      return;
-    }
-
     if (!hadActiveListElementsRef.current && hasActiveElements) {
       openList();
     }
 
     hadActiveListElementsRef.current = hasActiveElements;
-  }, [hasActiveElements, shouldOpenOnActive]);
+  }, [hasActiveElements, hadActiveListElementsRef.current, shouldOpenOnInit]);
 
   return (
     <div data-testid="side-navigation-group" className={styles[baseClass]}>
@@ -115,7 +113,7 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
         ])}
         style={{ maxHeight: isOpen ? listHeight : 0 }}
       >
-        {isMounted && (
+        {shouldRenderList && (
           <ul
             className={cx(styles[`${baseClass}__list`], className)}
             ref={onSetListNode}

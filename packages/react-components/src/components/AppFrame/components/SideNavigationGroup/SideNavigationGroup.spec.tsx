@@ -4,7 +4,12 @@ import { SideNavigationGroup } from './SideNavigationGroup';
 import { ISideNavigationGroupProps } from './types';
 
 const defaultProps = {
-  children: <div>Side navigation group content</div>,
+  children: (
+    <>
+      <li>Option 1</li>
+      <li>Option 2</li>
+    </>
+  ),
 };
 
 const renderComponent = (props: ISideNavigationGroupProps) => {
@@ -24,7 +29,8 @@ describe('<SideNavigationGroup> component', () => {
   it('should render children', () => {
     const { getByText } = renderComponent(defaultProps);
 
-    expect(getByText('Side navigation group content')).toBeInTheDocument();
+    expect(getByText('Option 1')).toBeInTheDocument();
+    expect(getByText('Option 2')).toBeInTheDocument();
   });
 
   it('should render label as provided element', () => {
@@ -96,14 +102,33 @@ describe('<SideNavigationGroup> component', () => {
     expect(onItemHover).toHaveBeenCalledTimes(1);
   });
 
-  it('should not render children if isCollapsible is set true and isOpen is false', () => {
+  it('should not render children if isCollapsible is set true and there is no active option', async () => {
     const { queryByText } = renderComponent({
       ...defaultProps,
       isCollapsible: true,
     });
 
-    expect(
-      queryByText('Side navigation group content')
-    ).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(queryByText('Option 1')).not.toBeInTheDocument();
+      expect(queryByText('Option 2')).not.toBeInTheDocument();
+    });
+  });
+
+  it('should render children if isCollapsible is set true and there is active option', async () => {
+    const { queryByText } = renderComponent({
+      ...defaultProps,
+      isCollapsible: true,
+      children: (
+        <>
+          <li data-active="true">Option 1</li>
+          <li>Option 2</li>
+        </>
+      ),
+    });
+
+    await waitFor(() => {
+      expect(queryByText('Option 1')).toBeInTheDocument();
+      expect(queryByText('Option 2')).toBeInTheDocument();
+    });
   });
 });
