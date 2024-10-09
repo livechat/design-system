@@ -96,14 +96,16 @@ describe('<SideNavigationGroup> component', () => {
     expect(onItemHover).toHaveBeenCalledTimes(1);
   });
 
-  it('should not render children if isCollapsible is set true and isOpen is false', () => {
+  it('should not render children if isCollapsible is set true and isOpen is false', async () => {
     const { queryByText } = renderComponent({
       ...defaultProps,
       isCollapsible: true,
     });
 
-    expect(
-      queryByText('Side navigation group content')
-    ).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        queryByText('Side navigation group content')
+      ).not.toBeInTheDocument();
+    });
   });
 });
