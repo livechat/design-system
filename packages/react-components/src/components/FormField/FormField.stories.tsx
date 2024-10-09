@@ -108,5 +108,5 @@ export const Examples = (): React.ReactElement => {
 
 export const TextFieldWithError = StoryTemplate.bind({});
 TextFieldWithError.args = {
-  error: 'Error text',
+  error: 'Very long error message that should be displayed',
 };
