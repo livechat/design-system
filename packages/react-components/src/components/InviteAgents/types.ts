@@ -33,4 +33,8 @@ export interface InviteAgentsProps extends ComponentCoreProps {
    * The function to call when the "Available" button is clicked
    */
   onAvailableAgentsClick: () => void;
+  /**
+   * Whether to show bots in the tooltip
+   */
+  showBotsInTooltip?: boolean;
 }

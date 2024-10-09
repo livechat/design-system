@@ -35,6 +35,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
   animatedInviteButton = false,
   tooltipArrowOffset = 13,
   onAvailableAgentsClick,
+  showBotsInTooltip = true,
   ...props
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -207,13 +208,15 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
                   `${onlyAgentsNumber} agents`
                 )}
               </Text>
-              <Text
-                noMargin
-                className={styles[`${baseClass}__accepting-agents-row`]}
-              >
-                <Icon source={Bot} />
-                {plural(onlyBotsNumber, '1 bot', `${onlyBotsNumber} bots`)}
-              </Text>
+              {showBotsInTooltip && (
+                <Text
+                  noMargin
+                  className={styles[`${baseClass}__accepting-agents-row`]}
+                >
+                  <Icon source={Bot} />
+                  {plural(onlyBotsNumber, '1 bot', `${onlyBotsNumber} bots`)}
+                </Text>
+              )}
             </Text>
           )}
         </Tooltip>
