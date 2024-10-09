@@ -24,7 +24,6 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   isCollapsible,
   onItemHover,
   shouldOpenOnInit = false,
-  shouldOpenOnActive = false,
 }) => {
   const [hasActiveElements, setHasActiveElements] =
     React.useState<boolean>(false);
@@ -32,7 +31,7 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   const hadActiveListElementsRef = React.useRef(false);
   const listWrapperRef = React.useRef<HTMLDivElement>(null);
   const { isOpen, isMounted, setShouldBeVisible } = useAnimations({
-    isVisible: !isCollapsible || shouldOpenOnInit,
+    isVisible: true,
     elementRef: listWrapperRef,
   });
   const localRightNode =
@@ -62,11 +61,7 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   };
 
   React.useEffect(() => {
-    if (!shouldOpenOnActive) {
-      return;
-    }
-
-    if (!hasActiveElements && isCollapsible) {
+    if (!hasActiveElements && isCollapsible && !shouldOpenOnInit) {
       closeList();
     }
 
@@ -75,7 +70,7 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
     }
 
     hadActiveListElementsRef.current = hasActiveElements;
-  }, [hasActiveElements, shouldOpenOnActive]);
+  }, [hasActiveElements]);
 
   return (
     <div data-testid="side-navigation-group" className={styles[baseClass]}>
