@@ -25,21 +25,22 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   onItemHover,
   shouldOpenOnInit = false,
 }) => {
+  const [initialMount, setInitialMount] = React.useState<boolean>(true);
   const [hasActiveElements, setHasActiveElements] =
     React.useState<boolean>(false);
   const [listHeight, setListHeight] = React.useState<number>(0);
   const hadActiveListElementsRef = React.useRef(false);
   const listWrapperRef = React.useRef<HTMLDivElement>(null);
   const { isOpen, isMounted, setShouldBeVisible } = useAnimations({
-    isVisible: true,
+    isVisible: !isCollapsible || shouldOpenOnInit,
     elementRef: listWrapperRef,
   });
   const localRightNode =
     typeof rightNode === 'function' ? rightNode(isOpen) : rightNode;
   const localLabel = typeof label === 'function' ? label(isOpen) : label;
+  const shouldRenderList = initialMount ? initialMount : isMounted;
 
   const openList = (): void => setShouldBeVisible(true);
-  const closeList = (): void => setShouldBeVisible(false);
 
   const toggle = (): void => {
     if (!isCollapsible) return;
@@ -58,19 +59,16 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
 
     const newListHeight = (listElements?.length || 0) * SINGLE_ELEMENT_SIZE;
     setListHeight(newListHeight);
+    setInitialMount(false);
   };
 
   React.useEffect(() => {
-    if (!hasActiveElements && isCollapsible && !shouldOpenOnInit) {
-      closeList();
-    }
-
     if (!hadActiveListElementsRef.current && hasActiveElements) {
       openList();
     }
 
     hadActiveListElementsRef.current = hasActiveElements;
-  }, [hasActiveElements]);
+  }, [hasActiveElements, hadActiveListElementsRef.current, shouldOpenOnInit]);
 
   return (
     <div data-testid="side-navigation-group" className={styles[baseClass]}>
@@ -115,7 +113,7 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
         ])}
         style={{ maxHeight: isOpen ? listHeight : 0 }}
       >
-        {isMounted && (
+        {shouldRenderList && (
           <ul
             className={cx(styles[`${baseClass}__list`], className)}
             ref={onSetListNode}
