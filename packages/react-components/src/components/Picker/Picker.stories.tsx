@@ -277,3 +277,19 @@ export const PickerWithOptionsAsCustomElements = (): React.ReactElement => (
     </StoryDescriptor>
   </div>
 );
+
+export const PickerWithCustomSelectedItem = (): React.ReactElement => (
+  <div style={{ ...commonWidth, marginBottom: 320 }}>
+    <StoryDescriptor title="Multi select + Custom option selected">
+      <PickerComponent
+        options={DEFAULT_PICKER_OPTIONS}
+        onSelect={noop}
+        type="multi"
+        selected={[
+          { key: 'two', name: 'Option two' },
+          { key: 'custom-option', name: 'Custom option' },
+        ]}
+      />
+    </StoryDescriptor>
+  </div>
+);
