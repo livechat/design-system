@@ -1,9 +1,16 @@
 import { FC, memo, useMemo, useState } from 'react';
 
-import { Add, ChatBotColored, PersonAdd } from '@livechat/design-system-icons';
+import {
+  Add,
+  Bot,
+  ChatBotColored,
+  People,
+  PersonAdd,
+} from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { ThemeClassName } from '../../providers';
+import { plural } from '../../utils/plural';
 import { ActionMenu, ActionMenuItem } from '../ActionMenu';
 import { Avatar } from '../Avatar';
 import { Icon } from '../Icon';
@@ -11,7 +18,7 @@ import { Interactive, Tooltip } from '../Tooltip';
 import { Text } from '../Typography';
 
 import { AnimatedButton } from './components/AnimatedButton/AnimatedButton';
-import { getAvailableAgentsTooltipText, getSortedAgents } from './helpers';
+import { getSortedAgents } from './helpers';
 import { InviteAgentsProps } from './types';
 
 import styles from './InviteAgents.module.scss';
@@ -36,8 +43,9 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
   const {
     availableAgentsNumber,
     visibleAgents,
-    additionalAgentsNumber,
     hasOnlyUnavailableAgents,
+    onlyAgentsNumber,
+    onlyBotsNumber,
   } = useMemo(() => {
     const availableAgents = agents.filter(
       (agent) => agent.status === 'available'
@@ -47,15 +55,19 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
 
     const visibleAgents =
       sortedAgents.length > 4 ? sortedAgents.slice(0, 3) : sortedAgents;
-    const additionalAgentsNumber = availableAgentsNumber - visibleAgents.length;
     const hasOnlyUnavailableAgents =
       agents.length > 0 && availableAgentsNumber === 0;
+    const onlyAgentsNumber = availableAgents.filter(
+      (agent) => !agent.isBot
+    ).length;
+    const onlyBotsNumber = availableAgentsNumber - onlyAgentsNumber;
 
     return {
       availableAgentsNumber,
       visibleAgents,
-      additionalAgentsNumber,
       hasOnlyUnavailableAgents,
+      onlyAgentsNumber,
+      onlyBotsNumber,
     };
   }, [agents]);
 
@@ -154,11 +166,11 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
                     />
                   ))}
                 </div>
-                {additionalAgentsNumber > 0 && (
+                {availableAgentsNumber > 0 && (
                   <Text
                     className={styles[`${baseClass}__available-agents-number`]}
                   >
-                    +{additionalAgentsNumber}
+                    {availableAgentsNumber}
                   </Text>
                 )}
               </div>
@@ -175,8 +187,33 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
               }}
             />
           ) : (
-            <Text noMargin size="md">
-              {getAvailableAgentsTooltipText(availableAgentsNumber)}
+            <Text
+              as="div"
+              noMargin
+              size="md"
+              className={styles[`${baseClass}__accepting-agents`]}
+            >
+              <Text bold noMargin>
+                Accepting chats:
+              </Text>
+              <Text
+                noMargin
+                className={styles[`${baseClass}__accepting-agents-row`]}
+              >
+                <Icon source={People} />
+                {plural(
+                  onlyAgentsNumber,
+                  '1 agent',
+                  `${onlyAgentsNumber} agents`
+                )}
+              </Text>
+              <Text
+                noMargin
+                className={styles[`${baseClass}__accepting-agents-row`]}
+              >
+                <Icon source={Bot} />
+                {plural(onlyBotsNumber, '1 bot', `${onlyBotsNumber} bots`)}
+              </Text>
             </Text>
           )}
         </Tooltip>
