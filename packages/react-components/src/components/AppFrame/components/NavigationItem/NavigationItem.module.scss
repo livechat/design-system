@@ -38,7 +38,7 @@ $base-class: 'navigation-item';
       color: var(--content-locked-white);
 
       span {
-        transform: scale(1.1);
+        transform: scale(1);
       }
     }
 
@@ -48,7 +48,7 @@ $base-class: 'navigation-item';
       box-shadow: var(--focus-ring-inner);
 
       span {
-        transform: scale(1.1);
+        transform: scale(1);
       }
     }
 
@@ -57,7 +57,7 @@ $base-class: 'navigation-item';
     }
 
     span {
-      transform: scale(1);
+      transform: scale(0.9);
       transition: all var(--transition-duration-fast-1) ease-in-out;
       width: 24px;
       height: 24px;
