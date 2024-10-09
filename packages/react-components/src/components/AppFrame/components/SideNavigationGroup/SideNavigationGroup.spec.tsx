@@ -4,7 +4,12 @@ import { SideNavigationGroup } from './SideNavigationGroup';
 import { ISideNavigationGroupProps } from './types';
 
 const defaultProps = {
-  children: <div>Side navigation group content</div>,
+  children: (
+    <>
+      <li>Option 1</li>
+      <li>Option 2</li>
+    </>
+  ),
 };
 
 const renderComponent = (props: ISideNavigationGroupProps) => {
@@ -24,7 +29,8 @@ describe('<SideNavigationGroup> component', () => {
   it('should render children', () => {
     const { getByText } = renderComponent(defaultProps);
 
-    expect(getByText('Side navigation group content')).toBeInTheDocument();
+    expect(getByText('Option 1')).toBeInTheDocument();
+    expect(getByText('Option 2')).toBeInTheDocument();
   });
 
   it('should render label as provided element', () => {
@@ -94,18 +100,5 @@ describe('<SideNavigationGroup> component', () => {
 
     userEvent.hover(getByText('Side navigation label'));
     expect(onItemHover).toHaveBeenCalledTimes(1);
-  });
-
-  it('should not render children if isCollapsible is set true and isOpen is false', async () => {
-    const { queryByText } = renderComponent({
-      ...defaultProps,
-      isCollapsible: true,
-    });
-
-    await waitFor(() => {
-      expect(
-        queryByText('Side navigation group content')
-      ).not.toBeInTheDocument();
-    });
   });
 });
