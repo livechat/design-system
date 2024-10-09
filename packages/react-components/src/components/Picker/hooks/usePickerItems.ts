@@ -138,9 +138,16 @@ export const usePickerItems = ({
         }
       } else {
         if (isDataControlled) {
-          const prev = selected?.map(getPickerListItemKey) || [];
-          const newIndexes = getNewIndexes(prev, key);
-          onSelect(options.filter(({ key }) => newIndexes.includes(key)));
+          if (selectedKeys.includes(key)) {
+            onSelect(
+              selected?.filter(({ key: selectedKey }) => selectedKey !== key) ||
+                null
+            );
+            setSelectedKeys((prev) => prev.filter((k) => k !== key));
+          } else {
+            onSelect([...(selected || []), item!]);
+            setSelectedKeys((prev) => [...prev, key]);
+          }
         } else {
           setSelectedKeys((prev) => {
             const newIndexes = getNewIndexes(prev, key);
