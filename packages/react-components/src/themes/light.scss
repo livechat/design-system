@@ -9,6 +9,7 @@ $surface-secondary-default: #f5f5f5;
 $surface-primary-active: #eeeeef;
 $surface-tertiary-hover: #e4e4e5;
 $decor-gray800: #29292f;
+$decor-gray600: #4e4e58;
 $content-basic-internal-note: #3a310c;
 
 :root,
@@ -211,7 +212,7 @@ $content-basic-internal-note: #3a310c;
   --action-neutral-hover: #68686f;
   --action-neutral-disabled: rgb(141 141 149 / 20%);
   --action-high-contrast-default: #1b1b20;
-  --action-high-contrast-hover: #131317;
+  --action-high-contrast-hover: #{$decor-gray600};
   --action-high-contrast-active: #131317;
   --action-high-contrast-disabled: rgb(27 27 32 / 20%);
   --color-bot: #50009c; // deprecated
@@ -263,7 +264,7 @@ $content-basic-internal-note: #3a310c;
   --decor-gray900: #1b1b20;
   --decor-gray800: #{$decor-gray800};
   --decor-gray700: #3b3b43;
-  --decor-gray600: #4e4e58;
+  --decor-gray600: #{$decor-gray600};
   --decor-gray500: #62626d;
   --decor-gray400: #767680;
   --decor-gray300: #8d8d95;
@@ -355,7 +356,7 @@ $content-basic-internal-note: #3a310c;
   --content-basic-internal-note: #{$content-basic-internal-note};
   --content-basic-bot: #00003e;
   --action-lock-default: #1b1b20;
-  --action-lock-hover: #131317;
+  --action-lock-hover: #343439;
   --action-lock-active: #131317;
   --action-lock-disabled: hsl(240deg 8% 12% / 20%);
   --surface-other-internal-note-message-area: #fff2d6;
