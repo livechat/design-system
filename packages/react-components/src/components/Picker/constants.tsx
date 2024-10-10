@@ -1,12 +1,40 @@
 import { DayMode } from '@livechat/design-system-icons';
 
+import { Icon } from '../Icon';
+import { TagKind } from '../Tag';
+
 import { IPickerListItem } from './types';
 
 export const ITEM_GAP_HEIGHT = 2;
 export const MIN_LIST_HEIGHT = 200;
 export const DEFAULT_LIST_HEIGHT = 400;
 
-export const DEFAULT_PICKER_OPTIONS = [
+export const CUSTOM_ITEMS: IPickerListItem[] = [
+  {
+    key: 'custom-option',
+    name: 'Gradient 01',
+    selectedTagOptions: {
+      kind: 'gradient01' as TagKind,
+    },
+  },
+  {
+    key: 'custom-option-2',
+    name: 'Gradient 02',
+    selectedTagOptions: {
+      kind: 'success' as TagKind,
+    },
+  },
+  {
+    key: 'custom-option-3',
+    name: 'Cyan',
+    selectedTagOptions: {
+      kind: 'error' as TagKind,
+      leftNode: <Icon source={DayMode} />,
+    },
+  },
+];
+
+export const DEFAULT_PICKER_OPTIONS: IPickerListItem[] = [
   { key: 'one', name: 'Option one' },
   { key: 'groupA', name: 'Group A title header', groupHeader: true },
   { key: 'two', name: 'Option two' },
