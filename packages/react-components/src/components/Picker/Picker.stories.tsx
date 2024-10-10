@@ -9,6 +9,7 @@ import {
   DEFAULT_PICKER_OPTIONS,
   DEFAULT_EXTENDED_OPTIONS,
   DEFAULT_MORE_PICKER_OPTIONS,
+  CUSTOM_ITEMS,
 } from './constants';
 import { Picker } from './Picker';
 import { IPickerListItem, IPickerProps } from './types';
@@ -289,6 +290,19 @@ export const PickerWithCustomSelectedItem = (): React.ReactElement => (
           { key: 'two', name: 'Option two' },
           { key: 'custom-option', name: 'Custom option' },
         ]}
+      />
+    </StoryDescriptor>
+  </div>
+);
+
+export const MultiPickerWithCustomSelectedTagProps = (): React.ReactElement => (
+  <div style={{ ...commonWidth, marginBottom: 320 }}>
+    <StoryDescriptor title="Multi select + Custom option selected">
+      <PickerComponent
+        options={CUSTOM_ITEMS}
+        selected={CUSTOM_ITEMS}
+        onSelect={noop}
+        type="multi"
       />
     </StoryDescriptor>
   </div>

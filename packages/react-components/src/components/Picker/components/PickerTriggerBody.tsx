@@ -190,6 +190,7 @@ export const PickerTriggerBody: React.FC<ITriggerBodyProps> = ({
                     e.stopPropagation();
                     onItemRemove(item.key);
                   }}
+                  {...item.selectedTagOptions}
                 >
                   {getSingleItem(item)}
                 </Tag>

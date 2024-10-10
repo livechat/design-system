@@ -11,6 +11,7 @@ import { VirtuosoProps } from 'react-virtuoso';
 import { Size } from '../../utils';
 import { ComponentCoreProps } from '../../utils/types';
 import { IconSource } from '../Icon';
+import { TagProps } from '../Tag';
 
 export interface IPickerListItem {
   key: string;
@@ -25,6 +26,7 @@ export interface IPickerListItem {
   avatarSrc?: string;
   secondaryText?: string;
   showCheckbox?: boolean;
+  selectedTagOptions?: TagProps;
 }
 
 export type PickerType = 'single' | 'multi';
