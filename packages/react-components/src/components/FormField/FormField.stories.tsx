@@ -89,6 +89,6 @@ export const WithInlineLabelAndLabelAdornment: StoryFn<FormFieldProps> = () => (
 
 export const TextFieldWithError: StoryFn<FormFieldProps> = () => (
   <FormFieldComponent labelText="Username" error="Username must be unique">
-    <ExampleInput />
+    <ExampleInput error />
   </FormFieldComponent>
 );
