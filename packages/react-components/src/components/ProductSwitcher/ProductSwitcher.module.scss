@@ -4,7 +4,7 @@ $base-class: 'product-switcher';
 .#{$base-class} {
   gap: 16px;
   z-index: $stacking-context-level-popover;
-  border-radius: var(--radius-3);
+  border-radius: var(--radius-4);
   box-shadow: var(--shadow-pop-over);
   background-color: var(--popover-background);
   padding: var(--spacing-3);
@@ -47,5 +47,6 @@ $base-class: 'product-switcher';
 
   &__tooltip {
     z-index: initial;
+    pointer-events: none;
   }
 }

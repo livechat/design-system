@@ -136,7 +136,7 @@ export const Default = (): React.ReactElement => {
       navigation={
         <Navigation>
           <NavigationGroup scrollable>
-            <li className="lc-dark-theme product-switcher-height">
+            <li className="product-switcher-height">
               <ProductSwitcher
                 mainProductId="livechat"
                 productOptions={products}

@@ -1,25 +1,24 @@
 import { render, userEvent, vi, waitFor } from 'test-utils';
 
+import { SideNavigationItem } from '../SideNavigationItem/SideNavigationItem';
+
 import { SideNavigationGroup } from './SideNavigationGroup';
 import { ISideNavigationGroupProps } from './types';
 
-const defaultProps = {
-  children: (
-    <>
-      <li>Option 1</li>
-      <li>Option 2</li>
-    </>
-  ),
-};
-
-const renderComponent = (props: ISideNavigationGroupProps) => {
-  return render(<SideNavigationGroup {...props} />);
+const renderComponent = (
+  props: Omit<ISideNavigationGroupProps, 'children'>
+) => {
+  return render(
+    <SideNavigationGroup {...props}>
+      <SideNavigationItem label="Option 1" onClick={vi.fn()} />
+      <SideNavigationItem label="Option 2" onClick={vi.fn()} />
+    </SideNavigationGroup>
+  );
 };
 
 describe('<SideNavigationGroup> component', () => {
   it('should allow for custom class', () => {
     const { getByRole } = renderComponent({
-      ...defaultProps,
       className: 'custom-class',
     });
 
@@ -27,7 +26,7 @@ describe('<SideNavigationGroup> component', () => {
   });
 
   it('should render children', () => {
-    const { getByText } = renderComponent(defaultProps);
+    const { getByText } = renderComponent({});
 
     expect(getByText('Option 1')).toBeInTheDocument();
     expect(getByText('Option 2')).toBeInTheDocument();
@@ -35,7 +34,6 @@ describe('<SideNavigationGroup> component', () => {
 
   it('should render label as provided element', () => {
     const { getByText } = renderComponent({
-      ...defaultProps,
       label: <div>Side navigation label</div>,
     });
 
@@ -47,7 +45,6 @@ describe('<SideNavigationGroup> component', () => {
       <div data-testid="toggle">{isOpen ? 'Opened label' : 'Closed label'}</div>
     );
     const { getByTestId } = renderComponent({
-      ...defaultProps,
       isCollapsible: true,
       label: handleLabel,
     });
@@ -63,7 +60,6 @@ describe('<SideNavigationGroup> component', () => {
 
   it('should render rightNode as provided element if isCollapsible is set true', () => {
     const { getByText } = renderComponent({
-      ...defaultProps,
       isCollapsible: true,
       rightNode: <div>Right node</div>,
     });
@@ -76,7 +72,6 @@ describe('<SideNavigationGroup> component', () => {
       <div data-testid="toggle">{isOpen ? 'Opened node' : 'Closed node'}</div>
     );
     const { getByTestId } = renderComponent({
-      ...defaultProps,
       isCollapsible: true,
       rightNode: handleRightNode,
     });
@@ -93,7 +88,6 @@ describe('<SideNavigationGroup> component', () => {
   it('should call onItemHover when provided if user hovers the label', () => {
     const onItemHover = vi.fn();
     const { getByText } = renderComponent({
-      ...defaultProps,
       label: <div>Side navigation label</div>,
       onItemHover,
     });
@@ -104,7 +98,6 @@ describe('<SideNavigationGroup> component', () => {
 
   it('should not render children if isCollapsible is set true and there is no active option', async () => {
     const { queryByText } = renderComponent({
-      ...defaultProps,
       isCollapsible: true,
     });
 
@@ -115,16 +108,12 @@ describe('<SideNavigationGroup> component', () => {
   });
 
   it('should render children if isCollapsible is set true and there is active option', async () => {
-    const { queryByText } = renderComponent({
-      ...defaultProps,
-      isCollapsible: true,
-      children: (
-        <>
-          <li data-active="true">Option 1</li>
-          <li>Option 2</li>
-        </>
-      ),
-    });
+    const { queryByText } = render(
+      <SideNavigationGroup>
+        <SideNavigationItem label="Option 1" onClick={vi.fn()} isActive />
+        <SideNavigationItem label="Option 2" onClick={vi.fn()} />
+      </SideNavigationGroup>
+    );
 
     await waitFor(() => {
       expect(queryByText('Option 1')).toBeInTheDocument();

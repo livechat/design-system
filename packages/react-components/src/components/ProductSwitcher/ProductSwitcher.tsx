@@ -18,7 +18,6 @@ import {
 import { TextLogoFull } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
-import { ThemeClassName } from '../../providers';
 import { Icon } from '../Icon';
 import { Tooltip } from '../Tooltip';
 import { Text } from '../Typography';
@@ -127,7 +126,7 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
           arrowOffsetY={2}
           offsetMainAxis={10}
           hoverOnDelay={400}
-          className={cx(styles[`${baseClass}__tooltip`], ThemeClassName.Light)}
+          className={cx(styles[`${baseClass}__tooltip`])}
           placement="right"
           floatingStrategy="fixed"
           kind="invert"
@@ -140,6 +139,7 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
               notificationCount={combinedNotificationCount}
             />
           }
+          closeOnTriggerBlur
         >
           Switch product
         </Tooltip>
@@ -161,6 +161,7 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
               <div className={styles[`${baseClass}__content`]}>
                 {productOptions.map((product) => (
                   <ProductRow
+                    isDarkMode={isDarkMode}
                     key={product.id}
                     isActive={product.id === mainProductId}
                     product={product}
