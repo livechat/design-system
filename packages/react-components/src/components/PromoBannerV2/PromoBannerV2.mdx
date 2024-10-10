@@ -12,20 +12,21 @@ import { SMALL_CONTAINER_WIDTH_TRESHOLD } from './constants.ts';
 ## Intro <a id="Intro" />
 
 The `PromoBannerV2` component is used to display a promotional banner with a customizable layout and content. It can be used to display a variety of content, such as a call to action, a message, or an image.
+
 ### Example implementation <a id="ExampleImplementation" />
 
 <Canvas of={Stories.Default} sourceState="none" />
 
 ```jsx
 <PromoBannerV2
-  primaryButton={
+  primaryButton={{
     label: 'Main CTA',
-    handleClick: () => {}
-  }
-  secondaryButton={
+    handleClick: () => {},
+  }}
+  secondaryButton={{
     label: 'Secondary CTA',
-    handleClick: () => {}
-  }
+    handleClick: () => {},
+  }}
   additionalContent={<img src={imgSrc} />}
   onClose={() => {}}
 >
@@ -34,8 +35,8 @@ The `PromoBannerV2` component is used to display a promotional banner with a cus
       Title goes here, up 2 lines of text
     </Heading>
   </div>
-  A description with a <b>maximum of 100 characters</b>. That usually means
-  only one or two sentences.
+  A description with a <b>maximum of 100 characters</b>. That usually means only
+  one or two sentences.
 </PromoBannerV2>
 ```
 
@@ -96,7 +97,7 @@ import { PromoBannerV2 } from '@livechat/design-system-react-components';
   <Text>
     Join us for a video call, and we'll thank you with a $25 gift card.
   </Text>
-</PromoBannerV2>
+</PromoBannerV2>;
 ```
 
 ### How to control the elements <a id="HowToControlElements" />
