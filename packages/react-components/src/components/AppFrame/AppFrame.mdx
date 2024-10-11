@@ -103,6 +103,8 @@ The `SideNavigation` component serves as a container for side navigation element
 The `SideNavigationGroup` component is used to create collapsible items within the `SideNavigation`. It groups the `SideNavigationItem` items under same category.
 It is not a component required to create a side navigation structure. Its main task is to aggregate elements under a label, with the option of enabling expansion of the list of elements via the `isCollapsible` prop.
 
+In `isCollapsible` mode, the `SideNavigationGroup` component should automatically open if there is any child element inside with `isActive` set. With `SideNavigationItem` components passed as children directly, any of them with `isActive` prop set to `true` will cause the group component to automaticly open. Using `SideNavigationItem` as direct childs is the assumed pattern of building side navigation, however if you need to wrap these components (or use your own) to make the menu open automatically, you need to provide and handle `isActive` to the child component yourself.
+
 #### `SideNavigationItem` component
 
 The `SideNavigationItem` component is used to create single side navigation element. It displays button with the given label and it can be supplemented by passing your own elements via the `leftNode` and `rightNode` props.
