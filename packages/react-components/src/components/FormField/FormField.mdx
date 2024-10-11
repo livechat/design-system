@@ -1,0 +1,118 @@
+import { Canvas, ArgTypes, Meta, Title } from '@storybook/blocks';
+import * as FormFieldStories from './FormField.stories';
+
+<Meta of={FormFieldStories} />
+
+<Title>FormField</Title>
+
+[Intro](#Intro) | [Usage](#Usage) | [Component API](#ComponentAPI)
+
+## Intro <a id="Intro" />
+
+The `FormField` component serves as a flexible and accessible wrapper for input elements in your application. It provides consistent styling, labeling, and validation mechanisms, enhancing user experience and maintaining a unified design language across your forms. Whether you're dealing with simple inputs or complex form structures, `FormField` offers the necessary tools to handle labels, descriptions, adornments, and error messages efficiently.
+
+## Usage <a id="Usage" />
+
+The `FormField` component is designed to encapsulate form elements, providing additional functionalities such as labeling, descriptions, adornments, and error handling. It supports both inline and stacked layouts, allowing for versatile form designs that cater to different use cases.
+
+### Basic Implementation
+
+To use the `FormField` component, wrap your input elements within it and provide the necessary props for labeling and descriptions.
+
+```tsx
+import { FormField, Input } from '@livechat/design-system-react-components';
+
+<FormField labelText="Username">
+  <Input placeholder="e.g., johndoe123" />
+</FormField>;
+```
+
+<Canvas of={FormFieldStories.WithLabel} sourceState="none" />
+
+### Inline Label
+
+For a compact layout, you can display the label inline with the input field.
+
+```tsx
+<FormField labelText="Email" inline>
+  <Input type="email" placeholder="e.g., john@example.com" />
+</FormField>
+```
+
+<Canvas of={FormFieldStories.WithInlineLabel} sourceState="none" />
+
+### Label, Description and Right Node Label
+
+To enhance labels with additional information or icons, use the `labelAdornment` prop.
+
+```tsx
+import { Info } from '@livechat/design-system-icons';
+import {
+  Icon,
+  FormField,
+  Input,
+} from '@livechat/design-system-react-components';
+
+<FormField
+  labelText="Username"
+  labelRightNode={<Icon source={Info} />}
+  description="Username must be unique"
+>
+  <Input type="text" placeholder="Enter your username" />
+</FormField>;
+```
+
+<Canvas
+  of={FormFieldStories.WithLabelDescriptionAndRightNode}
+  sourceState="none"
+/>
+
+### Label with Adornment
+
+To add an adornment to the label, use the `labelAdornment` prop.
+
+```tsx
+<FormField
+  labelText="Username"
+  labelAdornment={'(Optional)'}
+  description="Username must be unique"
+>
+  <Input type="text" placeholder="Enter your username" />
+</FormField>
+```
+
+<Canvas of={FormFieldStories.WithLabelAndLabelAdornment} sourceState="none" />
+
+### Inline Label with Adornment
+
+```tsx
+<FormField
+  labelText="Username"
+  labelAdornment={'(Optional)'}
+  description="Username must be unique"
+  inline
+>
+  <Input type="text" placeholder="Enter your username" />
+</FormField>
+```
+
+<Canvas
+  of={FormFieldStories.WithInlineLabelAndLabelAdornment}
+  sourceState="none"
+/>
+
+### Error Handling
+
+To display error messages, use the `error` prop.
+
+```tsx
+<FormField labelText="Username" error="Username must be unique">
+  <Input error type="text" placeholder="Enter your username" />
+</FormField>
+```
+
+<Canvas of={FormFieldStories.TextFieldWithError} sourceState="none" />
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={FormFieldStories.Default} sort="requiredFirst" />

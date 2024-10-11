@@ -106,5 +106,18 @@ export const WithIcons = (): React.ReactElement => (
         type="password"
       />
     </StoryDescriptor>
+    <StoryDescriptor title="Disabled input with icon">
+      <Input
+        icon={{
+          source: <Icon source={AddCircleIcon} />,
+          place: 'left',
+        }}
+        placeholder={placeholderText}
+        disabled
+      />
+    </StoryDescriptor>
+    <StoryDescriptor title="Disabled input with password type">
+      <Input placeholder={placeholderText} type="password" disabled />
+    </StoryDescriptor>
   </>
 );
