@@ -106,6 +106,8 @@ It is not a component required to create a side navigation structure. Its main t
 In `isCollapsible` mode, the `SideNavigationGroup` component should automatically open if there is any child element inside with `isActive` set. With `SideNavigationItem` components passed as children directly, any of them with `isActive` prop set to `true` will cause the group component to automaticly open. Using `SideNavigationItem` as direct childs is the assumed pattern of building side navigation, however if you need to wrap these components (or use your own) to make the menu open automatically, you need to provide and handle `isActive` to the child component yourself. Alternatively you can use `shouldOpenOnInit` prop which will automatically open the list, regardless of whether any item has `isActive` set.
 
 ```jsx
+import { SideNavigationGroup } from '@livechat/design-system-react-components';
+
 ...
 <SideNavigationGroup isCollapsible label="With custom elements">
   ...
