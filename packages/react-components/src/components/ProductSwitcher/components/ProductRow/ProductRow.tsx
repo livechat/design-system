@@ -16,6 +16,7 @@ type IProps = {
   onClick: (event: MouseEvent, id: ProductId) => void;
   product: ProductOption;
   isActive?: boolean;
+  isDarkMode: boolean;
 };
 
 const baseClass = 'product-row';
@@ -38,6 +39,7 @@ export const ProductRow: FC<IProps> = ({
   },
   onClick,
   isActive = false,
+  isDarkMode,
 }) => {
   return (
     <>
@@ -65,6 +67,9 @@ export const ProductRow: FC<IProps> = ({
             {name}
             {expired && (
               <Tooltip
+                className={cx({
+                  [styles[`${baseClass}__tooltip-dark-shadow`]]: isDarkMode,
+                })}
                 triggerRenderer={
                   <Icon
                     source={Info}
@@ -78,7 +83,9 @@ export const ProductRow: FC<IProps> = ({
             )}
             {typeof trialDaysLeft !== 'undefined' && (
               <Tooltip
-                className={styles[`${baseClass}__trial-tooltip`]}
+                className={cx(styles[`${baseClass}__trial-tooltip`], {
+                  [styles[`${baseClass}__tooltip-dark-shadow`]]: isDarkMode,
+                })}
                 triggerRenderer={
                   <Icon
                     source={Info}
