@@ -105,6 +105,8 @@ It is not a component required to create a side navigation structure. Its main t
 
 In `isCollapsible` mode, the `SideNavigationGroup` component should automatically open if there is any child element inside with `isActive` set. With `SideNavigationItem` components passed as children directly, any of them with `isActive` prop set to `true` will cause the group component to automaticly open. Using `SideNavigationItem` as direct childs is the assumed pattern of building side navigation, however if you need to wrap these components (or use your own) to make the menu open automatically, you need to provide and handle `isActive` to the child component yourself. [see example](#SideNavExample)
 
+Alternatively you can use `shouldOpenOnInit` prop which will automatically open the list, regardless of whether any item has `isActive` set.
+
 #### `SideNavigationItem` component
 
 The `SideNavigationItem` component is used to create single side navigation element. It displays button with the given label and it can be supplemented by passing your own elements via the `leftNode` and `rightNode` props.
@@ -141,7 +143,13 @@ import { Home, Settings } from '@livechat/design-system-icons';
           // child as custom component
           <NavCustomComponent
             isActive={activeElement === 'custom'}
-          >
+          />
+        ...
+      </SideNavigationGroup>
+      <SideNavigationGroup isCollapsible shouldOpenOnInit label="With custom elements">
+        ...
+          // child as custom component
+          <NavCustomComponent />
         ...
       </SideNavigationGroup>
     </SideNavigation>
