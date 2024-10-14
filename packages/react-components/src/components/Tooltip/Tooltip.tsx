@@ -21,7 +21,7 @@ import {
   useFloatingNodeId,
   useFloatingParentNodeId,
   FloatingTree,
-  hide as hideMiddleware,
+  hide,
 } from '@floating-ui/react';
 import cx from 'clsx';
 
@@ -120,7 +120,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
       shift(),
       flip(),
       arrow({ element: arrowRef, padding: 8 }),
-      hideMiddleware(),
+      hide(),
     ],
     placement: placement,
     open: currentlyVisible,
