@@ -12,9 +12,14 @@ export interface INavigationTopBarProps extends ComponentCoreProps {
   children?: React.ReactNode;
 
   /**
-   * Ńodes placed under the children.
+   * Nodes placed under the children.
    */
   additionalNodes?: React.ReactNode;
+
+  /**
+   * The CSS class name
+   */
+  className?: string;
 }
 
 export interface ITopBarTitleProps extends ComponentCoreProps {
@@ -22,6 +27,10 @@ export interface ITopBarTitleProps extends ComponentCoreProps {
    * Content of the title.
    */
   children: React.ReactNode;
+  /**
+   * The CSS class name
+   */
+  className?: string;
 }
 
 type CTAProps = {
@@ -66,4 +75,9 @@ export interface ITopBarAlertProps extends ComponentCoreProps {
    * Show or hide the alert, defaults to `true`. Changes to this prop are animated - the alert will enter and leave smoothly.
    * */
   isVisible?: boolean;
+
+  /**
+   * The CSS class name
+   * */
+  className?: string;
 }
