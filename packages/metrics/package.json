@@ -14,8 +14,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "dependencies": {
+    "react-scanner": "^1.2.0"
+  },
   "devDependencies": {
-    "react-scanner": "^1.2.0",
     "typescript": "^5.4.5"
   }
 }
