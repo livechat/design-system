@@ -199,8 +199,8 @@ export const prodRedirectData: ProductData[] = [
     product: 'KnowledgeBase',
   },
   {
-    clientId: '6c493637185258c1a937e68886906831',
-    redirectUri: 'https//teamchat.text.com/app',
+    clientId: '1ebfa721f575b1346b9c76bb8f86583c',
+    redirectUri: 'https://teamchat.text.com/app',
     product: 'TeamChat',
   },
   {
