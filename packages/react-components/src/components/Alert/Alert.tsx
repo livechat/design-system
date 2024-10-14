@@ -11,13 +11,18 @@ import cx from 'clsx';
 import debounce from 'lodash.debounce';
 
 import { ComponentCoreProps } from '../../utils/types';
-import { Button } from '../Button';
+import { Button, ButtonProps } from '../Button';
 import { Icon, IconSource, IconKind } from '../Icon';
 import { Text } from '../Typography';
 
 import styles from './Alert.module.scss';
 
 type AlertKind = 'info' | 'warning' | 'success' | 'error';
+
+type OldButtonProps = {
+  handleClick: () => void;
+  label: string;
+};
 
 export interface AlertProps extends ComponentCoreProps {
   /**
@@ -27,17 +32,11 @@ export interface AlertProps extends ComponentCoreProps {
   /**
    * Shows the primary CTA button
    */
-  primaryButton?: {
-    handleClick: () => void;
-    label: string;
-  };
+  primaryButton?: ButtonProps & OldButtonProps;
   /**
    * Shows the secondary CTA button
    */
-  secondaryButton?: {
-    handleClick: () => void;
-    label: string;
-  };
+  secondaryButton?: ButtonProps & OldButtonProps;
   /**
    * The optional event handler for close button
    */
@@ -132,7 +131,11 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
         {(primaryButton || secondaryButton) && (
           <div className={styles[`${baseClass}__content__wrapper__cta`]}>
             {primaryButton && (
-              <Button kind="high-contrast" onClick={primaryButton.handleClick}>
+              <Button
+                kind="high-contrast"
+                onClick={primaryButton.handleClick}
+                {...primaryButton}
+              >
                 {primaryButton.label}
               </Button>
             )}
@@ -141,6 +144,7 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
                 className={styles[`${baseClass}__content__wrapper__cta__link`]}
                 kind="text"
                 onClick={secondaryButton.handleClick}
+                {...secondaryButton}
               >
                 {secondaryButton.label}
               </Button>
