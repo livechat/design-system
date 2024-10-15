@@ -12,6 +12,9 @@ const placeholderText = 'Placeholder text';
 export default {
   title: 'Forms/AutoComplete',
   component: AutoComplete,
+  parameters: {
+    chromatic: { delay: 300 },
+  },
 };
 
 export const Default: StoryFn<AutoCompleteProps> = (

@@ -28,6 +28,9 @@ export default {
     },
     onSelect: { action: 'changed' },
   },
+  parameters: {
+    chromatic: { delay: 300 },
+  },
 } as Meta<typeof Picker>;
 
 const commonWidth: React.CSSProperties = { width: 300 };

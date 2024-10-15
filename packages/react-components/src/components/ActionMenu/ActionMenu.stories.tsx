@@ -20,6 +20,9 @@ export default {
   subcomponents: {
     ActionMenuItem,
   },
+  parameters: {
+    chromatic: { delay: 300 },
+  },
 };
 
 export const Default = (): React.ReactElement => {
