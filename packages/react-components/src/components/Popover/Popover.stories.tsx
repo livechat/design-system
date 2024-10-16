@@ -56,6 +56,7 @@ export default {
   parameters: {
     layout: 'centered',
     controls: { expanded: true },
+    chromatic: { delay: 300 },
   },
 } as Meta<typeof PopoverComponent>;
 
