@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { MoreHoriz, Add, Settings } from '@livechat/design-system-icons';
 
+import { customHeightForChromatic } from '../../utils/chromatic-story-helpers';
 import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
@@ -20,18 +21,23 @@ export default {
   subcomponents: {
     ActionMenuItem,
   },
+  parameters: {
+    chromatic: { delay: 300 },
+  },
 };
 
 export const Default = (): React.ReactElement => {
   return (
-    <div className="action-menu-preview">
-      <ActionMenu
-        options={exampleOptions}
-        triggerRenderer={
-          <Button icon={<Icon source={MoreHoriz} kind="primary" />} />
-        }
-        openedOnInit
-      />
+    <div style={{ height: customHeightForChromatic('1000px') }}>
+      <div className="action-menu-preview">
+        <ActionMenu
+          options={exampleOptions}
+          triggerRenderer={
+            <Button icon={<Icon source={MoreHoriz} kind="primary" />} />
+          }
+          openedOnInit
+        />
+      </div>
     </div>
   );
 };
@@ -155,54 +161,58 @@ export const WithSelectedOptions = (): React.ReactElement => {
   };
 
   return (
-    <div className="action-menu-preview">
-      <ActionMenu
-        selectedOptions={selectedOptions}
-        options={[
-          {
-            key: 'one',
-            element: <ActionMenuItem>Option one</ActionMenuItem>,
-            onClick: () => handleSelectOption('one'),
-          },
-          {
-            key: 'two',
-            element: <ActionMenuItem>Option two</ActionMenuItem>,
-            onClick: () => handleSelectOption('two'),
-          },
-          {
-            key: 'three',
-            element: <ActionMenuItem>Option three</ActionMenuItem>,
-            onClick: () => handleSelectOption('three'),
-          },
-        ]}
-        triggerRenderer={
-          <Button icon={<Icon source={MoreHoriz} kind="primary" />} />
-        }
-        openedOnInit
-        keepOpenOnClick
-      />
+    <div style={{ height: customHeightForChromatic('1000px') }}>
+      <div className="action-menu-preview">
+        <ActionMenu
+          selectedOptions={selectedOptions}
+          options={[
+            {
+              key: 'one',
+              element: <ActionMenuItem>Option one</ActionMenuItem>,
+              onClick: () => handleSelectOption('one'),
+            },
+            {
+              key: 'two',
+              element: <ActionMenuItem>Option two</ActionMenuItem>,
+              onClick: () => handleSelectOption('two'),
+            },
+            {
+              key: 'three',
+              element: <ActionMenuItem>Option three</ActionMenuItem>,
+              onClick: () => handleSelectOption('three'),
+            },
+          ]}
+          triggerRenderer={
+            <Button icon={<Icon source={MoreHoriz} kind="primary" />} />
+          }
+          openedOnInit
+          keepOpenOnClick
+        />
+      </div>
     </div>
   );
 };
 
 export const WithFooter = (): React.ReactElement => {
   return (
-    <div className="action-menu-preview">
-      <ActionMenu
-        options={exampleOptions}
-        triggerRenderer={
-          <Button icon={<Icon source={MoreHoriz} kind="primary" />} />
-        }
-        openedOnInit
-        footer={
-          <>
-            <Button icon={<Icon source={Add} />} kind="plain">
-              New
-            </Button>
-            <Button icon={<Icon source={Settings} />} kind="text" />
-          </>
-        }
-      />
+    <div style={{ height: customHeightForChromatic('1000px') }}>
+      <div className="action-menu-preview">
+        <ActionMenu
+          options={exampleOptions}
+          triggerRenderer={
+            <Button icon={<Icon source={MoreHoriz} kind="primary" />} />
+          }
+          openedOnInit
+          footer={
+            <>
+              <Button icon={<Icon source={Add} />} kind="plain">
+                New
+              </Button>
+              <Button icon={<Icon source={Settings} />} kind="text" />
+            </>
+          }
+        />
+      </div>
     </div>
   );
 };

@@ -22,6 +22,7 @@ import {
   useFloatingParentNodeId,
   FloatingTree,
   FloatingPortal,
+  hide,
 } from '@floating-ui/react';
 import cx from 'clsx';
 
@@ -67,6 +68,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
   floatingStrategy,
   portal,
   portalProps,
+  hideWhenReferenceHidden = false,
 }) => {
   const isControlled = isVisible !== undefined;
   const [visible, setVisible] = React.useState(false);
@@ -113,7 +115,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
     floatingStyles,
     refs,
     context,
-    middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
+    middlewareData: { arrow: { x: arrowX, y: arrowY } = {}, hide: hideData },
   } = useFloating({
     nodeId,
     middleware: [
@@ -121,6 +123,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
       shift(),
       flip(),
       arrow({ element: arrowRef, padding: 8 }),
+      hideWhenReferenceHidden ? hide() : undefined,
     ],
     placement: placement,
     open: currentlyVisible,
@@ -174,6 +177,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
           style={{
             ...floatingStyles,
             ...transitionStyles,
+            visibility: hideData?.referenceHidden ? 'hidden' : 'visible',
           }}
           className={mergedClassNames}
           {...getFloatingProps()}

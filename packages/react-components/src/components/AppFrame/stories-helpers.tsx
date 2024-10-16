@@ -49,6 +49,12 @@ export const ExampleAppContent: React.FC<ExampleAppContentProps> = ({
     <div className="app-container">
       <Heading className="page-title" size="lg">
         App content
+        <Tooltip
+          triggerClassName="tooltip-trigger"
+          triggerRenderer={<Icon source={Icons.Info} />}
+        >
+          Help info tooltip
+        </Tooltip>
       </Heading>
       <div className="app-content-1">
         <div className="switchers">
