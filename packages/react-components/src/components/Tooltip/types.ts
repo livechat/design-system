@@ -6,9 +6,8 @@ import {
   UseDismissProps,
   Strategy,
   UseClickProps,
+  FloatingPortalProps,
 } from '@floating-ui/react';
-
-import { FloatingPortalProps } from 'components/FloatingPortal';
 
 import { ButtonProps } from '../Button';
 

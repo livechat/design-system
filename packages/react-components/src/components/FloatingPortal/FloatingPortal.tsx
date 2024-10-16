@@ -1,6 +1,7 @@
-import { FloatingPortal as FloatingUIPortal } from '@floating-ui/react';
-
-import { FloatingPortalProps } from './types';
+import {
+  FloatingPortal as FloatingUIPortal,
+  FloatingPortalProps,
+} from '@floating-ui/react';
 
 export const FloatingPortal = ({
   children,
