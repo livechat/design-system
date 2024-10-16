@@ -161,7 +161,7 @@ export const WithSelectedOptions = (): React.ReactElement => {
   };
 
   return (
-    <div style={{ height: customHeightForChromatic('400px') }}>
+    <div style={{ height: customHeightForChromatic('1000px') }}>
       <div className="action-menu-preview">
         <ActionMenu
           selectedOptions={selectedOptions}
