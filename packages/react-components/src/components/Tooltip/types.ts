@@ -8,6 +8,8 @@ import {
   UseClickProps,
 } from '@floating-ui/react';
 
+import { FloatingPortalProps } from 'components/FloatingPortal';
+
 import { ButtonProps } from '../Button';
 
 export type TooltipTheme = 'invert' | 'important' | undefined;
@@ -144,6 +146,15 @@ export interface ITooltipProps {
    * https://floating-ui.com/docs/usefloating#strategy
    */
   floatingStrategy?: Strategy;
+
+  /**
+   * Set to render the tooltip in a portal
+   */
+  portal?: boolean;
+  /**
+   * Props for the FloatingPortal component, see FloatingPortal docs or https://floating-ui.com/docs/FloatingPortal
+   */
+  portalProps?: FloatingPortalProps;
 }
 
 export interface ITooltipInfoProps {
