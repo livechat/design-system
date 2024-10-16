@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { MoreHoriz, Add, Settings } from '@livechat/design-system-icons';
 
+import { customHeightForChromatic } from '../../utils/chromatic-story-helpers';
 import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
@@ -27,7 +28,10 @@ export default {
 
 export const Default = (): React.ReactElement => {
   return (
-    <div className="action-menu-preview">
+    <div
+      className="action-menu-preview"
+      style={{ height: customHeightForChromatic('1000px') }}
+    >
       <ActionMenu
         options={exampleOptions}
         triggerRenderer={
@@ -158,7 +162,10 @@ export const WithSelectedOptions = (): React.ReactElement => {
   };
 
   return (
-    <div className="action-menu-preview">
+    <div
+      className="action-menu-preview"
+      style={{ height: customHeightForChromatic('400px') }}
+    >
       <ActionMenu
         selectedOptions={selectedOptions}
         options={[
@@ -190,7 +197,10 @@ export const WithSelectedOptions = (): React.ReactElement => {
 
 export const WithFooter = (): React.ReactElement => {
   return (
-    <div className="action-menu-preview">
+    <div
+      className="action-menu-preview"
+      style={{ height: customHeightForChromatic('1000px') }}
+    >
       <ActionMenu
         options={exampleOptions}
         triggerRenderer={
