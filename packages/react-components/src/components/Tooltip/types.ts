@@ -144,6 +144,11 @@ export interface ITooltipProps {
    * https://floating-ui.com/docs/usefloating#strategy
    */
   floatingStrategy?: Strategy;
+  /**
+   * Set to hide the tooltip when reference element is hidden
+   * IMPORTANT: This prop enables the `hide` middleware from `floating-ui` library: https://floating-ui.com/docs/hide. But for some reason, it doesn't work in tests because always returns `true` in `referenceHidden` check.
+   */
+  hideWhenReferenceHidden?: boolean;
 }
 
 export interface ITooltipInfoProps {
