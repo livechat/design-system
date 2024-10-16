@@ -66,6 +66,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
   arrowOffsetX,
   closeOnTriggerBlur = false,
   floatingStrategy,
+  hideWhenReferenceHidden = false,
 }) => {
   const isControlled = isVisible !== undefined;
   const [visible, setVisible] = React.useState(false);
@@ -120,7 +121,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
       shift(),
       flip(),
       arrow({ element: arrowRef, padding: 8 }),
-      hide(),
+      hideWhenReferenceHidden ? hide() : undefined,
     ],
     placement: placement,
     open: currentlyVisible,
