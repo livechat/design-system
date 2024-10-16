@@ -5,6 +5,39 @@ import { FloatingPortal } from './FloatingPortal';
 export default {
   title: 'Components/FloatingPortal',
   component: FloatingPortal,
+  argTypes: {
+    children: {
+      description: 'The content to render inside the portal.',
+      table: {
+        type: {
+          summary: 'React.ReactNode',
+        },
+      },
+    },
+    id: {
+      description:
+        'The target ID - the portal will be appended to the element with this ID, or the body if not specified.',
+
+      type: 'string',
+    },
+    root: {
+      description: 'The root element to append the portal to.',
+      table: {
+        type: {
+          summary:
+            'HTMLElement | null | React.MutableRefObject<HTMLElement | null>',
+        },
+      },
+    },
+    preserveTabOrder: {
+      description: 'Whether to preserve the tab order of the portal.',
+      defaultValue: false,
+      control: {
+        type: 'boolean',
+      },
+      type: 'boolean',
+    },
+  },
 } as Meta<typeof FloatingPortal>;
 
 export const Basic = () => {
