@@ -1,0 +1,26 @@
+import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+
+import * as FloatingPortal from './FloatingPortal.stories';
+
+<Meta of={FloatingPortal} />
+
+<Title>FloatingPortal</Title>
+
+[Component API](#ComponentAPI) 
+
+Utility component that renders its children into a 'portal', escaping the usual DOM hierarchy. Useful for escaping `overflow: hidden` or `z-index` issues. Wrapper for FloatingPortal from `@floating-ui/react`, see [docs here](https://floating-ui.com/docs/floatingportal).
+
+
+#### Example implementation
+
+```jsx
+<FloatingPortal>
+  While this component is logically a child of the div, it will be
+  appended to the body instead.
+</FloatingPortal>
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={FloatingPortal.Basic} sort="requiredFirst" />
+
