@@ -44,7 +44,7 @@ export const Examples = (): React.ReactElement => {
   }, 1000);
 
   return (
-    <span style={{ height: customHeightForChromatic('1500px') }}>
+    <div style={{ height: customHeightForChromatic('1500px') }}>
       <StoryDescriptor title="Static options">
         <AutoComplete
           options={['Option 1', 'Option 2', 'Option 3']}
@@ -126,6 +126,6 @@ export const Examples = (): React.ReactElement => {
           <AutoComplete options={options} placeholder={placeholderText} />
         </form>
       </StoryDescriptor>
-    </span>
+    </div>
   );
 };

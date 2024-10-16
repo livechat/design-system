@@ -157,7 +157,7 @@ TooltipInteractive.decorators = [
 ];
 
 export const TooltipReports = (args: ITooltipProps): React.ReactElement => (
-  <span style={{ height: customHeightForChromatic('1500px') }}>
+  <div style={{ height: customHeightForChromatic('1500px') }}>
     <Tooltip {...args} triggerRenderer={<Button>Trigger</Button>}>
       <Reports title="Date or Series" description="Additional information">
         <div className="tooltip-preview-reports">Reports component content</div>
@@ -169,7 +169,7 @@ export const TooltipReports = (args: ITooltipProps): React.ReactElement => (
         <div className="tooltip-preview-reports">Reports component content</div>
       </Reports>
     </Tooltip>
-  </span>
+  </div>
 );
 TooltipReports.args = {
   isVisible: true,
