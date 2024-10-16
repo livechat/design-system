@@ -22,6 +22,7 @@ import {
   useFloatingParentNodeId,
   FloatingTree,
   hide,
+  FloatingPortal,
 } from '@floating-ui/react';
 import cx from 'clsx';
 
@@ -177,37 +178,39 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
       </div>
       <FloatingNode id={nodeId}>
         {isMounted && (
-          <div
-            ref={refs.setFloating}
-            style={{
-              ...floatingStyles,
-              ...transitionStyles,
-              visibility: hideData?.referenceHidden ? 'hidden' : 'visible',
-            }}
-            className={mergedClassNames}
-            {...getFloatingProps()}
-            data-status={status}
-          >
-            <Text as="div" className={styles[`${baseClass}__content`]}>
-              {children}
-            </Text>
-            <FloatingArrow
-              ref={arrowRef}
-              context={context}
-              strokeWidth={1}
-              width={10}
-              height={5}
+          <FloatingPortal>
+            <div
+              ref={refs.setFloating}
               style={{
-                ...getArrowPositionStyles(
-                  arrowOffsetY,
-                  arrowOffsetX,
-                  arrowY,
-                  arrowX
-                ),
+                ...floatingStyles,
+                ...transitionStyles,
+                visibility: hideData?.referenceHidden ? 'hidden' : 'visible',
               }}
-              {...getArrowTokens(tooltipStyle)}
-            />
-          </div>
+              className={mergedClassNames}
+              {...getFloatingProps()}
+              data-status={status}
+            >
+              <Text as="div" className={styles[`${baseClass}__content`]}>
+                {children}
+              </Text>
+              <FloatingArrow
+                ref={arrowRef}
+                context={context}
+                strokeWidth={1}
+                width={10}
+                height={5}
+                style={{
+                  ...getArrowPositionStyles(
+                    arrowOffsetY,
+                    arrowOffsetX,
+                    arrowY,
+                    arrowX
+                  ),
+                }}
+                {...getArrowTokens(tooltipStyle)}
+              />
+            </div>
+          </FloatingPortal>
         )}
       </FloatingNode>
     </>
