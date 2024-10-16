@@ -4,6 +4,7 @@ import { StoryFn } from '@storybook/react';
 import debounce from 'lodash.debounce';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import { customHeightForChromatic } from '../../utils/chromatic-story-helpers';
 
 import { AutoComplete } from './AutoComplete';
 import { AutoCompleteProps } from './types';
@@ -12,6 +13,9 @@ const placeholderText = 'Placeholder text';
 export default {
   title: 'Forms/AutoComplete',
   component: AutoComplete,
+  parameters: {
+    chromatic: { delay: 300 },
+  },
 };
 
 export const Default: StoryFn<AutoCompleteProps> = (
@@ -40,7 +44,7 @@ export const Examples = (): React.ReactElement => {
   }, 1000);
 
   return (
-    <>
+    <div style={{ height: customHeightForChromatic('1500px') }}>
       <StoryDescriptor title="Static options">
         <AutoComplete
           options={['Option 1', 'Option 2', 'Option 3']}
@@ -122,6 +126,6 @@ export const Examples = (): React.ReactElement => {
           <AutoComplete options={options} placeholder={placeholderText} />
         </form>
       </StoryDescriptor>
-    </>
+    </div>
   );
 };

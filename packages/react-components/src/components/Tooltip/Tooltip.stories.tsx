@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import { customHeightForChromatic } from '../../utils/chromatic-story-helpers';
 import noop from '../../utils/noop';
 import { Button } from '../Button';
 
@@ -48,8 +49,9 @@ export default {
     },
   },
   parameters: {
-    layout: 'centered',
+    layout: 'top',
     controls: { expanded: true },
+    chromatic: { delay: 300 },
   },
   subcomponents: {
     Info,
@@ -155,17 +157,19 @@ TooltipInteractive.decorators = [
 ];
 
 export const TooltipReports = (args: ITooltipProps): React.ReactElement => (
-  <Tooltip {...args} triggerRenderer={<Button>Trigger</Button>}>
-    <Reports title="Date or Series" description="Additional information">
-      <div className="tooltip-preview-reports">Reports component content</div>
-    </Reports>
-    <Reports title="Date or Series" description="Additional information">
-      <div className="tooltip-preview-reports">Reports component content</div>
-    </Reports>
-    <Reports title="Date or Series" description="Additional information">
-      <div className="tooltip-preview-reports">Reports component content</div>
-    </Reports>
-  </Tooltip>
+  <div style={{ height: customHeightForChromatic('1500px') }}>
+    <Tooltip {...args} triggerRenderer={<Button>Trigger</Button>}>
+      <Reports title="Date or Series" description="Additional information">
+        <div className="tooltip-preview-reports">Reports component content</div>
+      </Reports>
+      <Reports title="Date or Series" description="Additional information">
+        <div className="tooltip-preview-reports">Reports component content</div>
+      </Reports>
+      <Reports title="Date or Series" description="Additional information">
+        <div className="tooltip-preview-reports">Reports component content</div>
+      </Reports>
+    </Tooltip>
+  </div>
 );
 TooltipReports.args = {
   isVisible: true,
