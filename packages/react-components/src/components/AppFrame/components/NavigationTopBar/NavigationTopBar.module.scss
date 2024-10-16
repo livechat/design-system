@@ -30,7 +30,7 @@ $mobile-alert-size: 70px;
     justify-content: space-evenly;
     transition: all var(--transition-duration-moderate-1) ease-in-out;
     border-radius: var(--radius-3);
-    padding-right: 0;
+    padding-right: var(--spacing-10);
     padding-left: var(--spacing-10);
     padding-block: 0;
     width: 100%;
@@ -94,6 +94,10 @@ $mobile-alert-size: 70px;
 
     &__close-button {
       display: flex;
+      position: absolute;
+      top: auto;
+      right: var(--spacing-4);
+      bottom: auto;
       align-items: center;
       justify-content: center;
       outline: none;
@@ -104,10 +108,7 @@ $mobile-alert-size: 70px;
       color: inherit;
 
       @media screen and (width <=$alerts-mobile-breakpoint) {
-        position: absolute;
-        top: auto;
         right: var(--spacing-3);
-        bottom: auto;
       }
     }
 
