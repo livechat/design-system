@@ -34,7 +34,10 @@ export default {
   },
 } as Meta<typeof Picker>;
 
-const commonWidth: React.CSSProperties = { width: 300 };
+const commonWidth: React.CSSProperties = {
+  width: 300,
+  height: customHeightForChromatic('1000px'),
+};
 
 const PickerComponent = (args: IPickerProps) => {
   const [selectedItems, setSelectedItems] = React.useState<
