@@ -8,7 +8,11 @@ import { Icon } from '../../Icon';
 import { Heading } from '../../Typography';
 import { getIconType } from '../Tooltip.helpers';
 import styles from '../Tooltip.module.scss';
-import { ITooltipInteractiveProps, TooltipTheme } from '../types';
+import {
+  ITooltipInteractiveProps,
+  TooltipButton,
+  TooltipTheme,
+} from '../types';
 
 const baseClass = 'tooltip';
 
@@ -46,6 +50,32 @@ export const Interactive: React.FC<ITooltipInteractiveProps> = ({
     return 'text';
   };
 
+  const renderButton = (
+    button?: TooltipButton | React.ReactNode,
+    isPrimary: boolean = true
+  ) => {
+    if (!button) return null;
+
+    if (React.isValidElement(button)) {
+      return button;
+    }
+
+    const tooltipButton = button as TooltipButton;
+    const kind = isPrimary
+      ? tooltipButton.kind || getDefaultPrimaryButtonKind(theme)
+      : tooltipButton.kind || getDefaultSecondaryButtonKind(theme);
+
+    return (
+      <Button
+        {...tooltipButton}
+        kind={kind}
+        onClick={tooltipButton.handleClick}
+      >
+        {tooltipButton.label}
+      </Button>
+    );
+  };
+
   return (
     <div className={styles[`${baseClass}__interactive`]}>
       {closeWithX && (
@@ -79,27 +109,8 @@ export const Interactive: React.FC<ITooltipInteractiveProps> = ({
           styles[`${baseClass}-footer--interactive`]
         )}
       >
-        <Button
-          {...primaryButton}
-          kind={primaryButton.kind || getDefaultPrimaryButtonKind(theme)}
-          onClick={primaryButton.handleClick}
-        >
-          {primaryButton.label}
-        </Button>
-
-        {secondaryButton && (
-          <Button
-            {...secondaryButton}
-            className={cx(
-              styles[`${baseClass}-footer-secondary`],
-              secondaryButton.className
-            )}
-            kind={secondaryButton.kind || getDefaultSecondaryButtonKind(theme)}
-            onClick={secondaryButton.handleClick}
-          >
-            {secondaryButton.label}
-          </Button>
-        )}
+        {renderButton(primaryButton, true)}
+        {renderButton(secondaryButton, false)}
       </div>
     </div>
   );

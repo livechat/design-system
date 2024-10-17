@@ -219,9 +219,9 @@ export interface ITooltipInteractiveProps {
   /**
    * The Interactive tooltip primary button props
    */
-  primaryButton: TooltipButton;
+  primaryButton: TooltipButton | React.ReactNode;
   /**
    * The Interactive tooltip secondary button props
    */
-  secondaryButton?: TooltipButton;
+  secondaryButton?: TooltipButton | React.ReactNode;
 }
