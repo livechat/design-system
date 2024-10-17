@@ -11,6 +11,12 @@ import styles from './PromoBannerV2.module.scss';
 
 const baseClass = 'promo-banner-v2';
 
+type OldButtonProps = {
+  handleClick: () => void;
+  label: string;
+  kind?: ButtonKind;
+};
+
 export interface IPromoBannerV2Props {
   /**
    * Specify an optional className to be applied to the main container node
@@ -23,19 +29,11 @@ export interface IPromoBannerV2Props {
   /**
    * Shows the primary CTA button
    */
-  primaryButton?: {
-    handleClick: () => void;
-    label: string;
-    kind?: ButtonKind;
-  } & ButtonProps;
+  primaryButton?: OldButtonProps & ButtonProps;
   /**
    * Shows the secondary CTA button
    */
-  secondaryButton?: {
-    handleClick: () => void;
-    label: string;
-    kind?: ButtonKind;
-  };
+  secondaryButton?: OldButtonProps & ButtonProps;
   /**
    * Set to true to display the banner vertically
    */
@@ -97,6 +95,7 @@ export const PromoBannerV2: React.FC<
             <div className={styles[`${baseClass}__content__cta`]}>
               {primaryButton && (
                 <Button
+                  {...primaryButton}
                   kind={primaryButton?.kind || 'high-contrast'}
                   onClick={primaryButton.handleClick}
                 >
@@ -105,9 +104,13 @@ export const PromoBannerV2: React.FC<
               )}
               {secondaryButton && (
                 <Button
+                  {...secondaryButton}
                   kind={secondaryButton?.kind || 'text'}
                   onClick={secondaryButton.handleClick}
-                  className={styles[`${baseClass}__content__cta__secondary`]}
+                  className={cx(
+                    styles[`${baseClass}__content__cta__secondary`],
+                    secondaryButton.className
+                  )}
                 >
                   {secondaryButton.label}
                 </Button>

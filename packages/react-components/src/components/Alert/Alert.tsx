@@ -141,7 +141,10 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
             )}
             {secondaryButton && (
               <Button
-                className={styles[`${baseClass}__content__wrapper__cta__link`]}
+                className={cx(
+                  styles[`${baseClass}__content__wrapper__cta__link`],
+                  secondaryButton.className
+                )}
                 kind="text"
                 onClick={secondaryButton.handleClick}
                 {...secondaryButton}
