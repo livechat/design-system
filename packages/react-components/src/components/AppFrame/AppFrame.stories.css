@@ -59,7 +59,15 @@
 }
 
 .page-title {
+  display: flex;
+  gap: var(--spacing-3);
+  align-content: center;
   text-align: center;
+}
+
+.tooltip-trigger {
+  display: flex;
+  align-items: center;
 }
 
 .switchers {

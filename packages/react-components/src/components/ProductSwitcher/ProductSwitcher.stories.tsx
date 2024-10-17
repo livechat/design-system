@@ -1,5 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react';
 
+import { customHeightForChromatic } from '../../utils/chromatic-story-helpers';
+
 import { useProductSwitcher } from './hooks/useProductSwitcher';
 import { ProductSwitcher } from './ProductSwitcher';
 
@@ -64,7 +66,13 @@ export const Default: Story = {
     });
 
     return (
-      <div style={{ display: 'flex', height: 500 }}>
+      <div
+        style={{
+          display: 'flex',
+          width: 400,
+          height: customHeightForChromatic('1000px'),
+        }}
+      >
         <ProductSwitcher {...props} productOptions={products} />
       </div>
     );

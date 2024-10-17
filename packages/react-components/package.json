@@ -1,6 +1,6 @@
 {
   "name": "@livechat/design-system-react-components",
-  "version": "2.4.6",
+  "version": "2.5.0",
   "description": "",
   "publishConfig": {
     "access": "public"
@@ -74,7 +74,7 @@
     "vitest": "^1.6.0"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.26.4",
+    "@floating-ui/react": "^0.26.25",
     "@livechat/data-utils": "^0.2.16",
     "@livechat/design-system-icons": "^2.0.0",
     "clsx": "^1.1.1",

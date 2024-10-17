@@ -21,6 +21,8 @@ import {
   useFloatingNodeId,
   useFloatingParentNodeId,
   FloatingTree,
+  FloatingPortal,
+  hide,
 } from '@floating-ui/react';
 import cx from 'clsx';
 
@@ -32,7 +34,6 @@ import { ITooltipProps } from './types';
 import styles from './Tooltip.module.scss';
 
 const baseClass = 'tooltip';
-
 export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
   children,
   className,
@@ -65,6 +66,9 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
   arrowOffsetX,
   closeOnTriggerBlur = false,
   floatingStrategy,
+  portal,
+  portalProps,
+  hideWhenReferenceHidden = false,
 }) => {
   const isControlled = isVisible !== undefined;
   const [visible, setVisible] = React.useState(false);
@@ -111,7 +115,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
     floatingStyles,
     refs,
     context,
-    middlewareData: { arrow: { x: arrowX, y: arrowY } = {} },
+    middlewareData: { arrow: { x: arrowX, y: arrowY } = {}, hide: hideData },
   } = useFloating({
     nodeId,
     middleware: [
@@ -119,6 +123,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
       shift(),
       flip(),
       arrow({ element: arrowRef, padding: 8 }),
+      hideWhenReferenceHidden ? hide() : undefined,
     ],
     placement: placement,
     open: currentlyVisible,
@@ -126,6 +131,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
     onOpenChange: handleMenuStateChange,
     whileElementsMounted: autoUpdate,
   });
+
   const hover = useHover(context, {
     move: false,
     restMs: activationThreshold,
@@ -143,6 +149,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
     enabled: triggerOnClick,
     ...useClickHookProps,
   });
+
   const { isMounted, styles: transitionStyles } = useTransitionStyles(context, {
     duration: {
       open: getTransitionDuration(hoverOnDuration),
@@ -163,6 +170,64 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
   }, [refs.setReference, referenceElement]);
 
   const TooltipComponent = (
+    <FloatingNode id={nodeId}>
+      {isMounted && (
+        <div
+          ref={refs.setFloating}
+          style={{
+            ...floatingStyles,
+            ...transitionStyles,
+            visibility: hideData?.referenceHidden ? 'hidden' : 'visible',
+          }}
+          className={mergedClassNames}
+          {...getFloatingProps()}
+          data-status={status}
+        >
+          <Text as="div" className={styles[`${baseClass}__content`]}>
+            {children}
+          </Text>
+          <FloatingArrow
+            ref={arrowRef}
+            context={context}
+            strokeWidth={1}
+            width={10}
+            height={5}
+            style={{
+              ...getArrowPositionStyles(
+                arrowOffsetY,
+                arrowOffsetX,
+                arrowY,
+                arrowX
+              ),
+            }}
+            {...getArrowTokens(tooltipStyle)}
+          />
+        </div>
+      )}
+    </FloatingNode>
+  );
+
+  const renderTooltip = () => {
+    if (parentId === null) {
+      return (
+        <FloatingTree>
+          {portal ? (
+            <FloatingPortal {...portalProps}>{TooltipComponent}</FloatingPortal>
+          ) : (
+            TooltipComponent
+          )}
+        </FloatingTree>
+      );
+    }
+
+    return portal ? (
+      <FloatingPortal {...portalProps}>{TooltipComponent}</FloatingPortal>
+    ) : (
+      TooltipComponent
+    );
+  };
+
+  return (
     <>
       <div
         data-testid="tooltip-trigger"
@@ -172,46 +237,7 @@ export const Tooltip: React.FC<React.PropsWithChildren<ITooltipProps>> = ({
       >
         {isTriggerAsFunction ? triggerRenderer() : triggerRenderer}
       </div>
-      <FloatingNode id={nodeId}>
-        {isMounted && (
-          <div
-            ref={refs.setFloating}
-            style={{
-              ...floatingStyles,
-              ...transitionStyles,
-            }}
-            className={mergedClassNames}
-            {...getFloatingProps()}
-            data-status={status}
-          >
-            <Text as="div" className={styles[`${baseClass}__content`]}>
-              {children}
-            </Text>
-            <FloatingArrow
-              ref={arrowRef}
-              context={context}
-              strokeWidth={1}
-              width={10}
-              height={5}
-              style={{
-                ...getArrowPositionStyles(
-                  arrowOffsetY,
-                  arrowOffsetX,
-                  arrowY,
-                  arrowX
-                ),
-              }}
-              {...getArrowTokens(tooltipStyle)}
-            />
-          </div>
-        )}
-      </FloatingNode>
+      {renderTooltip()}
     </>
   );
-
-  if (parentId === null) {
-    return <FloatingTree>{TooltipComponent}</FloatingTree>;
-  }
-
-  return TooltipComponent;
 };

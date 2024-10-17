@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import { customHeightForChromatic } from '../../utils/chromatic-story-helpers';
 import noop from '../../utils/noop';
 
 import {
@@ -28,9 +29,15 @@ export default {
     },
     onSelect: { action: 'changed' },
   },
+  parameters: {
+    chromatic: { delay: 300 },
+  },
 } as Meta<typeof Picker>;
 
-const commonWidth: React.CSSProperties = { width: 300 };
+const commonWidth: React.CSSProperties = {
+  width: 300,
+  height: customHeightForChromatic('1000px'),
+};
 
 const PickerComponent = (args: IPickerProps) => {
   const [selectedItems, setSelectedItems] = React.useState<
@@ -147,7 +154,13 @@ const CustomPickerOption: React.FC<React.PropsWithChildren> = ({
 }) => <div className="custom-picker-option">{children}</div>;
 
 export const PickerWithOptionsAsCustomElements = (): React.ReactElement => (
-  <div style={{ ...commonWidth, marginBottom: 320 }}>
+  <div
+    style={{
+      ...commonWidth,
+      marginBottom: 320,
+      height: customHeightForChromatic('1000px'),
+    }}
+  >
     <StoryDescriptor title="Single select">
       <PickerComponent
         openedOnInit
