@@ -1,4 +1,8 @@
-import { render, vi } from 'test-utils';
+import { ReactElement } from 'react';
+
+import { render, RenderResult, vi } from 'test-utils';
+
+import { AppFrameProvider } from '../../../../providers';
 
 import {
   NavigationTopBar,
@@ -14,9 +18,15 @@ window.matchMedia =
     };
   };
 
+let providerWrapper: (el: ReactElement) => RenderResult;
+
+beforeEach(() => {
+  providerWrapper = (el) => render(<AppFrameProvider>{el}</AppFrameProvider>);
+});
+
 describe('<NavigationTopBar> component', () => {
   it('should render children', () => {
-    const { getByText } = render(
+    const { getByText } = providerWrapper(
       <NavigationTopBar>
         <div>Child</div>
       </NavigationTopBar>
@@ -26,7 +36,7 @@ describe('<NavigationTopBar> component', () => {
   });
 
   it('should render additional nodes', () => {
-    const { getByText } = render(
+    const { getByText } = providerWrapper(
       <NavigationTopBar
         additionalNodes={<div>Top content</div>}
       ></NavigationTopBar>
@@ -36,7 +46,7 @@ describe('<NavigationTopBar> component', () => {
   });
 
   it('should render title', () => {
-    const { getByText } = render(
+    const { getByText } = providerWrapper(
       <NavigationTopBar
         additionalNodes={
           <NavigationTopBarTitle>Page title</NavigationTopBarTitle>
@@ -50,7 +60,7 @@ describe('<NavigationTopBar> component', () => {
 
 describe('<NavigationTopBarAlert> component', () => {
   it('should render children', () => {
-    const { getByText } = render(
+    const { getByText } = providerWrapper(
       <NavigationTopBarAlert isVisible={true}>Alert</NavigationTopBarAlert>
     );
 
@@ -58,7 +68,7 @@ describe('<NavigationTopBarAlert> component', () => {
   });
 
   it('should render CTAs when provided', () => {
-    const { getByText } = render(
+    const { getByText } = providerWrapper(
       <NavigationTopBarAlert
         isVisible={true}
         primaryCta={{ label: 'Primary', onClick: vi.fn() }}
@@ -73,7 +83,7 @@ describe('<NavigationTopBarAlert> component', () => {
   });
 
   it('should render close button when provided', () => {
-    const { getByLabelText } = render(
+    const { getByLabelText } = providerWrapper(
       <NavigationTopBarAlert
         isVisible={true}
         closeButton={{ onClick: vi.fn(), 'aria-label': 'Close' }}
@@ -86,7 +96,7 @@ describe('<NavigationTopBarAlert> component', () => {
   });
 
   it('should remove elements from the DOM when isVisible set to false', () => {
-    const { queryByText } = render(
+    const { queryByText } = providerWrapper(
       <NavigationTopBarAlert isVisible={false}>Alert</NavigationTopBarAlert>
     );
 
