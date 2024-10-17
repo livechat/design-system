@@ -59,7 +59,6 @@ const Frame = (props: IAppFrameProps) => {
               {
                 [styles[`${pageContainerClass}__top-bar--visible`]]: topBar,
               },
-              'lc-dark-theme',
               topBarClassName
             )}
           >
@@ -91,6 +90,15 @@ const Frame = (props: IAppFrameProps) => {
               {isMounted && sideNavigation}
             </div>
           )}
+          {isMobileViewEnabled && (
+            <div
+              className={
+                styles[`${pageContainerClass}__content-wrapper__mobile-top-bar`]
+              }
+            >
+              {topBar}
+            </div>
+          )}
           <div
             className={cx(
               styles[`${pageContainerClass}__content-wrapper__content`],
@@ -104,20 +112,7 @@ const Frame = (props: IAppFrameProps) => {
           >
             {children}
           </div>
-          {isMobileViewEnabled && (
-            <>
-              <div
-                className={
-                  styles[
-                    `${pageContainerClass}__content-wrapper__mobile-top-bar`
-                  ]
-                }
-              >
-                {topBar}
-              </div>
-              {mobileNavigation}
-            </>
-          )}
+          {isMobileViewEnabled && mobileNavigation}
         </div>
       </div>
     </div>
