@@ -26,7 +26,7 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Card description
    */
-  description?: string;
+  description?: React.ReactNode;
   /**
    * Element to display in the expandable area
    */

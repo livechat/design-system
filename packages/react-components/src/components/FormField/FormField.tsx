@@ -34,7 +34,7 @@ export interface FormFieldProps {
   /**
    * Define error text
    */
-  error?: string;
+  error?: React.ReactNode;
   /**
    * Define the description text
    */

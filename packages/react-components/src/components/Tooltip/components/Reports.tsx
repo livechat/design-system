@@ -4,8 +4,8 @@ import { Text } from '../../Typography';
 import styles from '../Tooltip.module.scss';
 
 export interface IReportsProps {
-  title: string;
-  description?: string;
+  title: React.ReactNode;
+  description?: React.ReactNode;
   children: React.ReactNode;
 }
 
