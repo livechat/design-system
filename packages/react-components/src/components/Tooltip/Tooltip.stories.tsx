@@ -242,7 +242,7 @@ const TooltipUserGuideExample: React.FC<ITooltipProps> = (props) => {
   return (
     <div>
       <Button onClick={() => dispatch({ type: 'isVisible' })}>
-        {state.isVisible ? 'Hide' : 'Show'}
+        Start guide
       </Button>
       <div
         style={{
