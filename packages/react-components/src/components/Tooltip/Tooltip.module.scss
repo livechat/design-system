@@ -105,12 +105,12 @@ $radius: var(--radius-3);
     justify-content: space-between;
     margin: var(--spacing-4) 0 0;
 
-    &-secondary {
-      margin-left: var(--spacing-4);
-    }
-
     &--interactive {
       justify-content: flex-start;
+
+      button:not(:first-child) {
+        margin-left: var(--spacing-4);
+      }
     }
 
     &--user-guide-step {

@@ -83,7 +83,7 @@ export const UserGuideStep: React.FC<{
           Step {currentStep} of {stepMax}
         </span>
         <Button kind="high-contrast" onClick={handleClickPrimary}>
-          Primary button
+          {currentStep === stepMax ? 'Finish' : 'Next'}
         </Button>
       </div>
     </div>

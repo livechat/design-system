@@ -176,6 +176,7 @@ export interface ITooltipInfoProps {
   text: string;
   /**
    * Set to show close button
+   * @deprecated Use `handleCloseAction` instead
    */
   closeWithX?: boolean;
   /**
@@ -206,6 +207,7 @@ export interface ITooltipInteractiveProps {
   };
   /**
    * Set to show close button
+   * @deprecated Use `handleCloseAction` instead
    */
   closeWithX?: boolean;
   /**
@@ -219,9 +221,9 @@ export interface ITooltipInteractiveProps {
   /**
    * The Interactive tooltip primary button props
    */
-  primaryButton: TooltipButton;
+  primaryButton: TooltipButton | React.ReactNode;
   /**
    * The Interactive tooltip secondary button props
    */
-  secondaryButton?: TooltipButton;
+  secondaryButton?: TooltipButton | React.ReactNode;
 }

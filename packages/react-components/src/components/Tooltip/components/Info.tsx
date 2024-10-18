@@ -21,7 +21,7 @@ export const Info: React.FC<ITooltipInfoProps> = ({
 }) => {
   return (
     <div className={className}>
-      {closeWithX && (
+      {(closeWithX || handleCloseAction) && (
         <button
           type="button"
           aria-label="Close tooltip"
