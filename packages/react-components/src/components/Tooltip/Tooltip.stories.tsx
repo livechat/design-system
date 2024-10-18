@@ -181,13 +181,111 @@ TooltipReports.decorators = [
   ),
 ];
 
-export const TooltipUserGuide = (args: ITooltipProps): React.ReactElement => (
+export const SimpleUserGuide = (): React.ReactElement => {
+  const reducer = (
+    state: { isVisible: boolean; reference: string },
+    action: { type: string }
+  ) => {
+    if (action.type === 'reference1') {
+      return {
+        ...state,
+        reference: 'reference1',
+      };
+    }
+    if (action.type === 'reference2') {
+      return {
+        ...state,
+        reference: 'reference2',
+      };
+    }
+    if (action.type === 'reference3') {
+      return {
+        ...state,
+        reference: 'reference3',
+      };
+    }
+    if (action.type === 'isVisible') {
+      return {
+        reference: 'reference1',
+        isVisible: !state.isVisible,
+      };
+    }
+
+    return state;
+  };
+
+  const [state, dispatch] = React.useReducer(reducer, {
+    reference: 'reference1',
+    isVisible: false,
+  });
+
+  return (
+    <div className="simple-user-guide-container">
+      <Button onClick={() => dispatch({ type: 'isVisible' })}>
+        Start guide
+      </Button>
+      <div className="guide-container">
+        <div
+          onClick={() => dispatch({ type: 'reference1' })}
+          id="reference1"
+          className="guide-reference"
+        >
+          Example reference 1
+        </div>
+        <div
+          onClick={() => dispatch({ type: 'reference2' })}
+          id="reference2"
+          className="guide-reference"
+        >
+          Example reference 2
+        </div>
+
+        <div
+          onClick={() => dispatch({ type: 'reference3' })}
+          id="reference3"
+          className="guide-reference"
+        >
+          Example reference 3
+        </div>
+
+        <UserGuide
+          isVisible={state.isVisible}
+          parentElementName={`#${state.reference}`}
+          zIndex={1000}
+          shouldSlide={true}
+        >
+          {state.reference === 'reference1' ? (
+            <Button onClick={() => dispatch({ type: 'reference2' })}>
+              Next
+            </Button>
+          ) : null}
+
+          {state.reference === 'reference2' ? (
+            <Button onClick={() => dispatch({ type: 'reference3' })}>
+              Next
+            </Button>
+          ) : null}
+
+          {state.reference === 'reference3' ? (
+            <Button onClick={() => dispatch({ type: 'isVisible' })}>
+              Finish
+            </Button>
+          ) : null}
+        </UserGuide>
+      </div>
+    </div>
+  );
+};
+
+export const ExtendedContentUserGuide = (
+  args: ITooltipProps
+): React.ReactElement => (
   <div className="tooltip-preview-container">
     <TooltipUserGuideExample {...args}></TooltipUserGuideExample>
   </div>
 );
 
-TooltipUserGuide.args = {
+ExtendedContentUserGuide.args = {
   placement: 'bottom',
   isVisible: true,
   theme: 'default',

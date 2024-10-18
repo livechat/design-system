@@ -14,7 +14,14 @@ The Tooltip component provides contextual information when users interact with e
 
 ## Usage <a id="Usage" />
 
-### Simple Tooltip
+- [Default Tooltip](#DefaultTooltip)
+- [Info Tooltip](#InfoTooltip)
+- [Interactive Tooltip](#InteractiveTooltip)
+- [Reports Tooltip](#ReportsTooltip)
+- [User Guide Tooltip](#UserGuideTooltip)
+
+
+### Default Tooltip <a id="DefaultTooltip" />
 
 A simple tooltip that appears on hover or focus.
 
@@ -28,7 +35,7 @@ import { Tooltip, Button } from '@livechat/design-system-react-components';
 
 <Canvas of={Stories.Default} />
 
-### Info Tooltip
+### Info Tooltip <a id="InfoTooltip" />
 
 A tooltip with additional header and close button.
 
@@ -50,7 +57,7 @@ import {
 
 <Canvas of={Stories.TooltipInfo} />
 
-### Interactive Tooltip
+### Interactive Tooltip <a id="InteractiveTooltip" />
 
 A tooltip that can be interacted with.
 
@@ -83,7 +90,7 @@ import {
 
 <Canvas of={Stories.TooltipInteractive} />
 
-### Reports Tooltip
+### Reports Tooltip <a id="ReportsTooltip" />
 
 A tooltip that displays a report view.
 
@@ -108,6 +115,100 @@ import {
 ```
 
 <Canvas of={Stories.TooltipReports} />
+
+### User Guide Tooltip <a id="UserGuideTooltip" />
+
+A simple user guide that can be used to guide users through a series of steps.
+
+```tsx
+import {
+  UserGuide,
+  Button,
+} from '@livechat/design-system-react-components';
+
+const reducer = (
+    state: { isVisible: boolean; reference: string },
+  action: { type: string }
+) => {
+  if (action.type === 'reference1') {
+    return {
+      ...state,
+      reference: 'reference1',
+    };
+  }
+  if (action.type === 'reference2') {
+    return {
+      ...state,
+      reference: 'reference2',
+    };
+  }
+  if (action.type === 'reference3') {
+    return {
+      ...state,
+      reference: 'reference3',
+    };
+  }
+  if (action.type === 'isVisible') {
+    return {
+      reference: 'reference1',
+      isVisible: !state.isVisible,
+    };
+  }
+
+  return state;
+};
+
+const [state, dispatch] = React.useReducer(reducer, {
+  reference: 'reference1',
+  isVisible: false,
+});
+
+return (
+  <div className="simple-user-guide-container">
+    <Button onClick={() => dispatch({ type: 'isVisible' })}>
+      Start guide
+    </Button>
+    <div className="guide-container">
+      <div
+        onClick={() => dispatch({ type: 'reference1' })}
+        id="reference1"
+        className="guide-reference"
+      >
+        Example reference 1
+      </div>
+      <div
+        onClick={() => dispatch({ type: 'reference2' })}
+        id="reference2"
+        className="guide-reference"
+      >
+        Example reference 2
+      </div>
+
+      <div
+        onClick={() => dispatch({ type: 'reference3' })}
+        id="reference3"
+        className="guide-reference"
+      >
+        Example reference 3
+      </div>
+
+      <UserGuide
+        isVisible={state.isVisible}
+        parentElementName={`#${state.reference}`}
+        zIndex={1000}
+        shouldSlide
+      >
+        {state.reference === 'reference1' && <Button onClick={() => dispatch({ type: 'reference2' })}>Next</Button>}
+        {state.reference === 'reference2' && <Button onClick={() => dispatch({ type: 'reference3' })}>Next</Button>}
+        {state.reference === 'reference3' && <Button onClick={() => dispatch({ type: 'isVisible' })}>Finish</Button>}
+      </UserGuide>
+    </div>
+  </div>
+);
+
+```
+
+<Canvas of={Stories.SimpleUserGuide} />
 
 ## Component API <a id="ComponentAPI" />
 
