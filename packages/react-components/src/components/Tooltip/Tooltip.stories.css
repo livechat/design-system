@@ -32,7 +32,7 @@
 
 .tooltip-story {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   margin: auto;
   width: 700px;

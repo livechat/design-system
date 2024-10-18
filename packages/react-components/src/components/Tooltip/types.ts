@@ -207,6 +207,7 @@ export interface ITooltipInteractiveProps {
   };
   /**
    * Set to show close button
+   * @deprecated Use `handleCloseAction` instead
    */
   closeWithX?: boolean;
   /**

@@ -78,7 +78,7 @@ export const Interactive: React.FC<ITooltipInteractiveProps> = ({
 
   return (
     <div className={styles[`${baseClass}__interactive`]}>
-      {closeWithX && (
+      {(closeWithX || handleCloseAction) && (
         <button
           type="button"
           aria-label="Close tooltip"

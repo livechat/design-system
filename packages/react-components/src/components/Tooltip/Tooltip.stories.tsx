@@ -49,7 +49,6 @@ export default {
     },
   },
   parameters: {
-    layout: 'top',
     controls: { expanded: true },
     chromatic: { delay: 300 },
   },
@@ -107,7 +106,6 @@ export const TooltipInfo = (args: ITooltipProps): React.ReactElement => (
       theme={args.kind || args.theme}
       header="Header - concise and clear"
       text="Tooltip content is used to explain the details of elements or features."
-      closeWithX
       handleCloseAction={noop}
     />
   </Tooltip>
@@ -133,7 +131,7 @@ export const TooltipInteractive = (args: ITooltipProps): React.ReactElement => (
         alt: 'image',
       }}
       text="Tooltip content is used to explain the details of elements or features."
-      closeWithX
+      handleCloseAction={noop}
       primaryButton={{
         handleClick: noop,
         label: 'Primary Button',

@@ -6,23 +6,106 @@ import * as Stories from './Tooltip.stories';
 
 <Title>Tooltip</Title>
 
-[Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+[Intro](#Intro) | [Usage](#Usage) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
 
 ## Intro <a id="Intro" />
 
+The Tooltip component provides contextual information when users interact with elements in your application. It enhances user experience by offering additional insights without cluttering the interface.
+
+## Usage <a id="Usage" />
+
 ### Simple Tooltip
+
+A simple tooltip that appears on hover or focus.
+
+```tsx
+import { Tooltip, Button } from '@livechat/design-system-react-components';
+
+<Tooltip triggerRenderer={<Button>Trigger</Button>}>
+  Simple text content
+</Tooltip>;
+```
 
 <Canvas of={Stories.Default} />
 
 ### Info Tooltip
 
+A tooltip with additional header and close button.
+
+```tsx
+import {
+  Tooltip,
+  Button,
+  Info,
+} from '@livechat/design-system-react-components';
+
+<Tooltip triggerRenderer={<Button>Trigger</Button>}>
+  <Info
+    header="Header - concise and clear"
+    text="Tooltip content is used to explain the details of elements or features."
+    handleCloseAction={() => {}}
+  />
+</Tooltip>;
+```
+
 <Canvas of={Stories.TooltipInfo} />
 
 ### Interactive Tooltip
 
+A tooltip that can be interacted with.
+
+```tsx
+import {
+  Tooltip,
+  Interactive,
+  Button,
+} from '@livechat/design-system-react-components';
+
+<Tooltip triggerRenderer={<Button>Trigger</Button>}>
+  <Interactive
+    header="Header - concise and clear"
+    image={{
+      src: 'https://placehold.co/600x400',
+      alt: 'image',
+    }}
+    text="Tooltip content is used to explain the details of elements or features."
+    primaryButton={{
+      handleClick: () => {},
+      label: 'Primary Button',
+    }}
+    secondaryButton={{
+      handleClick: () => {},
+      label: 'Secondary',
+    }}
+  />
+</Tooltip>;
+```
+
 <Canvas of={Stories.TooltipInteractive} />
 
 ### Reports Tooltip
+
+A tooltip that displays a report view.
+
+```tsx
+import {
+  Tooltip,
+  Reports,
+  Button,
+} from '@livechat/design-system-react-components';
+
+<Tooltip triggerRenderer={<Button>Trigger</Button>}>
+  <Reports title="Date or Series" description="Additional information">
+    <div className="example-class">Reports component content</div>
+  </Reports>
+  <Reports title="Date or Series" description="Additional information">
+    <div className="example-class">Reports component content</div>
+  </Reports>
+  <Reports title="Date or Series" description="Additional information">
+    <div className="example-class">Reports component content</div>
+  </Reports>
+</Tooltip>
+```
 
 <Canvas of={Stories.TooltipReports} />
 
