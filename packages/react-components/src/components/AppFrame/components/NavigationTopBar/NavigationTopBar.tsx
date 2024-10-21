@@ -6,6 +6,7 @@ import cx from 'clsx';
 import { useAnimations } from '../../../../hooks';
 import { resizeCallback } from '../../../../hooks/helpers';
 import { NODE } from '../../../../hooks/types';
+import { useAppFrame } from '../../../../providers';
 import { Button } from '../../../Button';
 import { Icon } from '../../../Icon';
 import { ALERTS_MOBILE_BREAKPOINT } from '../../constants';
@@ -35,10 +36,12 @@ export const NavigationTopBar = ({
   className,
   additionalNodes,
 }: INavigationTopBarProps): React.ReactElement => {
+  const { isMobileViewEnabled } = useAppFrame();
+
   return (
     <div className={cx(styles[baseClass], className)}>
       <div className={styles[`${baseClass}__alerts-wrapper`]}>{children}</div>
-      {additionalNodes}
+      {!isMobileViewEnabled && additionalNodes}
     </div>
   );
 };
