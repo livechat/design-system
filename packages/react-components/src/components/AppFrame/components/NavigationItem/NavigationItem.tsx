@@ -96,7 +96,7 @@ export const NavigationItem: React.FC<INavigationItemProps> = ({
               {icon}
               {isMobileViewEnabled && label}
             </a>
-            {badge && getBadge(badge, id)}
+            {!!badge && getBadge(badge, id)}
           </>
         }
       >

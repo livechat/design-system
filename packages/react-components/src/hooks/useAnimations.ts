@@ -19,22 +19,17 @@ export const useAnimations = ({
   const [isOpen, setIsOpen] = React.useState(isVisible);
   const [shouldBeVisible, setShouldBeVisible] = React.useState(isVisible);
 
+  const handleTransitionEnd = () => setIsMounted(false);
+
   // The main part of the logic responsible for managing the states used to animate the container opening/closing and mounting/unmounting the container elements
   React.useEffect(() => {
     const currentElement = elementRef.current;
 
     if (!shouldBeVisible && currentElement) {
-      const handleTransitionEnd = () => setIsMounted(false);
-
-      currentElement.addEventListener('transitionend', handleTransitionEnd);
+      currentElement.addEventListener('transitionend', handleTransitionEnd, {
+        once: true,
+      });
       setIsOpen(false);
-
-      return () => {
-        currentElement.removeEventListener(
-          'transitionend',
-          handleTransitionEnd
-        );
-      };
     }
 
     if (shouldBeVisible) {
