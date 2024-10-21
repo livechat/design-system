@@ -5,4 +5,5 @@ export type {
   ITooltipProps,
   ITooltipInfoProps,
   ITooltipInteractiveProps,
+  TooltipButton,
 } from './types';
