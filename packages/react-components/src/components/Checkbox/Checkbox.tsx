@@ -19,7 +19,7 @@ export interface CheckboxProps extends React.HTMLAttributes<HTMLInputElement> {
   /**
    * Set the checkbox description
    */
-  description?: string;
+  description?: React.ReactNode;
 }
 
 const baseClass = 'checkbox';
