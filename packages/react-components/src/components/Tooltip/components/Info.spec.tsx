@@ -51,4 +51,16 @@ describe('<Info> component', () => {
     userEvent.click(button);
     expect(onClose).toHaveBeenCalledTimes(1);
   });
+
+  it('should render close button if handleCloseAction is provided and call the handler after user click', () => {
+    const onClose = vi.fn();
+    const { getByRole } = renderComponent({
+      ...defaultProps,
+      handleCloseAction: onClose,
+    });
+    const button = getByRole('button');
+    expect(button).toBeInTheDocument();
+    userEvent.click(button);
+    expect(onClose).toHaveBeenCalledTimes(1);
+  });
 });
