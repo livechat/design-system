@@ -520,4 +520,6 @@ export const IconsData: Record<IconName, IconGroup> = {
   TextAccounts: IconGroup.Brands,
   TextLogoFull: IconGroup.Brands,
   TextPlatform: IconGroup.Brands,
+  SquareRoundedPlusFilled: IconGroup.General,
+  SquareRoundedPlus: IconGroup.General,
 };
