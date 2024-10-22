@@ -1,6 +1,7 @@
 $base-class: 'search-input';
-$transition: 0.25s ease-in-out;
-$transition-with-delay: 0.25s ease-in-out 0.25s;
+$transition: var(--transition-duration-fast-2) ease-in-out;
+$transition-with-delay: var(--transition-duration-fast-2) ease-in-out
+  var(--transition-duration-fast-2);
 
 .#{$base-class} {
   box-sizing: border-box;
@@ -48,7 +49,7 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
   &--collapsable {
     transition:
       width $transition,
-      background $transition-with-delay,
+      background $transition,
       border $transition-with-delay;
     border-color: transparent;
     background-color: transparent;
@@ -85,7 +86,7 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
 
       &:hover {
         border-color: var(--border-basic-hover);
-        background-color: transparent;
+        background-color: var(--surface-primary-default);
       }
 
       &.#{$base-class}--focused,
