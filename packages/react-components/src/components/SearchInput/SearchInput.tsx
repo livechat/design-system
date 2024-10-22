@@ -91,6 +91,7 @@ export const SearchInput = React.forwardRef<
       isFocused && styles[`${baseClass}--focused`],
       isDisabled && styles[`${baseClass}--disabled`],
       isCollapsable && styles[`${baseClass}--collapsable`],
+      isCollapsable && styles[`${baseClass}--collapsable--${size}`],
       !isCollapsed && styles[`${baseClass}--collapsable--open`]
     );
 
@@ -144,7 +145,10 @@ export const SearchInput = React.forwardRef<
         onClick={handleClick}
       >
         <Icon
-          className={styles[`${baseClass}__search-icon`]}
+          className={cx(
+            styles[`${baseClass}__search-icon`],
+            styles[`${baseClass}__search-icon--${size}`]
+          )}
           source={Search}
           disabled={isDisabled}
           kind="primary"
@@ -153,6 +157,7 @@ export const SearchInput = React.forwardRef<
           as="div"
           className={cx(
             styles[inputWrapperClass],
+            styles[`${inputWrapperClass}--${size}`],
             cropOnBlur && styles[`${inputWrapperClass}--crop`]
           )}
         >

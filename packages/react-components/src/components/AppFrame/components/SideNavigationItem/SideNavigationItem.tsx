@@ -98,7 +98,11 @@ export const SideNavigationItem: React.FC<ISideNavigationItemProps> = ({
             {label}
           </span>
         )}
-        {rightNode}
+        {rightNode && (
+          <span className={styles[`${baseClass}__right-node`]}>
+            {rightNode}
+          </span>
+        )}
       </a>
     </li>
   );

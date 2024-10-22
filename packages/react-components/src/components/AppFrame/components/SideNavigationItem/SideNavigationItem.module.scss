@@ -70,6 +70,11 @@ $base-class: 'side-navigation-item';
     }
   }
 
+  &__right-node {
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
   &__label {
     gap: var(--spacing-2);
     opacity: 0.6;

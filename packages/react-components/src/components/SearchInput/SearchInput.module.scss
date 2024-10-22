@@ -52,10 +52,22 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
       border $transition-with-delay;
     border-color: transparent;
     background-color: transparent;
-    width: 42px;
 
     &:hover {
       border-color: transparent;
+      background-color: var(--surface-opacity-basic-hover);
+    }
+
+    &--compact {
+      width: 34px;
+    }
+
+    &--medium {
+      width: 38px;
+    }
+
+    &--large {
+      width: 46px;
     }
 
     .#{$base-class}__search-icon {
@@ -73,6 +85,7 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
 
       &:hover {
         border-color: var(--border-basic-hover);
+        background-color: transparent;
       }
 
       &.#{$base-class}--focused,
@@ -90,8 +103,19 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
   &__search-icon {
     position: absolute;
     justify-content: center;
-    width: 40px;
     height: 100%;
+
+    &--compact {
+      width: 32px;
+    }
+
+    &--medium {
+      width: 36px;
+    }
+
+    &--large {
+      width: 44px;
+    }
   }
 
   &__clear-icon {
@@ -111,8 +135,20 @@ $transition-with-delay: 0.25s ease-in-out 0.25s;
 
   &__input-wrapper {
     flex: 1 1;
-    padding: 0 0 0 40px;
+    padding: 0;
     width: 100%;
+
+    &--compact {
+      padding-left: 32px;
+    }
+
+    &--medium {
+      padding-left: 36px;
+    }
+
+    &--large {
+      padding-left: 44px;
+    }
 
     input {
       border: 0;
