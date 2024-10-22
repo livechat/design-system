@@ -9,7 +9,7 @@ $base-class: 'navigation-group';
   list-style: none;
 
   &--scrollable {
-    overflow-y: scroll;
+    overflow: hidden scroll;
     scrollbar-width: none;
 
     &::-webkit-scrollbar {
