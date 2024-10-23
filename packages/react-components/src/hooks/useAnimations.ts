@@ -26,10 +26,15 @@ export const useAnimations = ({
     const currentElement = elementRef.current;
 
     if (!shouldBeVisible && currentElement) {
-      currentElement.addEventListener('transitionend', handleTransitionEnd, {
-        once: true,
-      });
+      currentElement.addEventListener('transitionend', handleTransitionEnd);
       setIsOpen(false);
+
+      return () => {
+        currentElement.removeEventListener(
+          'transitionend',
+          handleTransitionEnd
+        );
+      };
     }
 
     if (shouldBeVisible) {
