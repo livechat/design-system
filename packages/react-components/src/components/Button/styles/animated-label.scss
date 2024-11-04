@@ -4,20 +4,16 @@
     .#{$base-class}__content {
       visibility: visible;
       opacity: 1;
+      max-width: var(--button-label-width);
     }
-  }
 
-  &--expanded {
-    &:hover,
-    &:focus-visible {
-      .#{$base-class}__icon {
-        &--right {
-          margin-left: 4px;
-        }
+    .#{$base-class}__icon {
+      &--right {
+        margin-left: 4px;
+      }
 
-        &--left {
-          margin-right: 4px;
-        }
+      &--left {
+        margin-right: 4px;
       }
     }
   }
@@ -32,6 +28,7 @@
     transition: all var(--transition-duration-moderate-1) ease-in-out;
     visibility: hidden;
     opacity: 0;
+    max-width: 0;
     overflow: hidden;
     white-space: nowrap;
   }
@@ -53,21 +50,24 @@
     padding-right: $padding-default;
     padding-left: $padding-default;
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
       padding-right: $padding-hover-label;
       padding-left: $padding-hover-icon;
     }
   }
 
   &.#{$base-class}--with-left-icon {
-    &:hover {
+    &:hover,
+    &:focus-visible {
       padding-right: $padding-hover-label;
       padding-left: $padding-hover-icon;
     }
   }
 
   &.#{$base-class}--with-right-icon {
-    &:hover {
+    &:hover,
+    &:focus-visible {
       padding-right: $padding-hover-icon;
       padding-left: $padding-hover-label;
     }
