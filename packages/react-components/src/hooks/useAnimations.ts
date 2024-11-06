@@ -18,18 +18,30 @@ export const useAnimations = ({
   const [isMounted, setIsMounted] = React.useState(isVisible);
   const [isOpen, setIsOpen] = React.useState(isVisible);
   const [shouldBeVisible, setShouldBeVisible] = React.useState(isVisible);
+  const transitionTimeout = React.useRef<number | null>(null);
 
-  const handleTransitionEnd = () => setIsMounted(false);
+  // Handle transition end, unmounting the element
+  const handleTransitionEnd = () => {
+    setIsMounted(false);
+    if (transitionTimeout.current) {
+      clearTimeout(transitionTimeout.current); // Clear fallback if transition completes
+    }
+  };
 
-  // The main part of the logic responsible for managing the states used to animate the container opening/closing and mounting/unmounting the container elements
+  // Effect to add event listener for transitionend with a fallback timer
   React.useEffect(() => {
     const currentElement = elementRef.current;
 
     if (!shouldBeVisible && currentElement) {
+      // Set isOpen to false for closing animation
       currentElement.addEventListener('transitionend', handleTransitionEnd);
       setIsOpen(false);
 
+      // Fallback timer in case transitionend doesn’t fire due to sleep
+      transitionTimeout.current = window.setTimeout(handleTransitionEnd, 300); // Adjust duration as needed
+
       return () => {
+        clearTimeout(transitionTimeout.current as number);
         currentElement.removeEventListener(
           'transitionend',
           handleTransitionEnd
@@ -39,13 +51,27 @@ export const useAnimations = ({
 
     if (shouldBeVisible) {
       setIsMounted(true);
-      requestAnimationFrame(() => setIsOpen(true));
-
-      return;
+      requestAnimationFrame(() => setIsOpen(true)); // Trigger opening animation
     }
   }, [shouldBeVisible]);
 
-  // Additional logic, dedicated to the container wrapper whose visibility is managed by the context
+  // Effect to listen for visibility changes (detecting sleep/wake scenarios)
+  React.useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        // Reset the animation state when returning to the visible state
+        setShouldBeVisible(isVisible);
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [isVisible]);
+
+  // Synchronize shouldBeVisible with the isVisible prop
   React.useEffect(() => {
     setShouldBeVisible(isVisible);
   }, [isVisible]);
