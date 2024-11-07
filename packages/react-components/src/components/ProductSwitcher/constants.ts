@@ -5,7 +5,7 @@ import {
   KnowledgeBaseMono,
   LiveChatMono,
   OpenWidgetMono,
-  TextAccounts,
+  TextLogo,
 } from '@livechat/design-system-icons';
 
 import { OpenWidgetLogoUri } from './openwidgetLogoUri';
@@ -82,8 +82,8 @@ export const ProductSwitcherProducts: ProductOption[] = [
   },
   {
     id: 'accounts',
-    name: 'Accounts',
-    icon: TextAccounts,
+    name: 'Text Accounts',
+    icon: TextLogo,
     backgroundColors: {
       main: 'var(--surface-locked-white)',
       second: 'var(--products-livechat)',
