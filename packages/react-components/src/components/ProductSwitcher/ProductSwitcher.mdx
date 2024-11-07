@@ -19,11 +19,11 @@ import * as ProductSwitcher from './ProductSwitcher.stories';
 ProductSwitcher is a controlled component. To use it, you need to provide the `mainProductId` (type ProductId) and `productOptions` (type ProductOption) props.<br/>
 
 - The `mainProductId` prop is required and should be the id of the product that the user is currently using.<br/>
-  The available options are: `livechat`, `helpdesk`, `chatbot`, `knowledgebase`, `openwidget`, `hello`, `accounts`. They are described in the TS type value called `ProductId`.<br/>
+  The available options are: `livechat`, `helpdesk`, `chatbot`, `knowledgebase`, `openwidget`, `teamchat`, `accounts`. They are described in the TS type value called `ProductId`.<br/>
 - The `productOptions` prop is an array of products that the user has access to. Object structure is described in type `ProductOption`.<br/>
   The `productOptions` can be generated using the `useProductSwitcher` hook. The hook requires the following props:<br/>
   - `env` - the environment in which the product switcher is used. It can be either `labs`, `staging` or `prod` .<br/>
-  - `installedProducts` - an array of objects with the `product` key. The `product` key should be one of the available products: `livechat`, `helpdesk`, `chatbot`, `knowledgebase`, `openwidget`, `hello`, `accounts`.<br/>
+  - `installedProducts` - an array of objects with the `product` key. The `product` key should be one of the available products: `livechat`, `helpdesk`, `chatbot`, `knowledgebase`, `openwidget`, `teamchat`, `accounts`.<br/>
   - `subscriptions` - an object with the subscription status for each product. The key should be the product name and the value should be an object with the `status` and `next_charge_at` keys.<br/>
   - `organizationId` - the organization id of the user.<br/>
 
