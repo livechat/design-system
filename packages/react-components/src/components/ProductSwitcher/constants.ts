@@ -214,6 +214,5 @@ export const alwaysVisibleProducts: ProductId[] = [
   'livechat',
   'chatbot',
   'helpdesk',
-  'teamchat',
   'accounts',
 ];
