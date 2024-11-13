@@ -136,6 +136,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   Bot: IconGroup.General,
   BriefcaseFilled: IconGroup.General,
   Briefcase: IconGroup.General,
+  Brush: IconGroup.General,
   BugReportFilled: IconGroup.General,
   BugReport: IconGroup.General,
   Building: IconGroup.General,
