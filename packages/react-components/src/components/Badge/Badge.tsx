@@ -15,7 +15,6 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   count?: number;
   /**
    * Specify the badge kind
-   * @param secondary - is deprecated, use "primary" or "tertiary" instead
    */
   kind?: 'primary' | 'secondary' | 'tertiary';
   /**
