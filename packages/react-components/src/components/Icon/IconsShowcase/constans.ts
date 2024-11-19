@@ -38,6 +38,10 @@ export const IconsData: Record<IconName, IconGroup> = {
   ArrowsShuffle: IconGroup.Arrows,
   ArrowsSort: IconGroup.Arrows,
   ArrowsMerge: IconGroup.Arrows,
+  CaretDown: IconGroup.Arrows,
+  CaretDownFilled: IconGroup.Arrows,
+  CaretUp: IconGroup.Arrows,
+  CaretUpFilled: IconGroup.Arrows,
 
   //FileType
   FiletypeExe: IconGroup.FileType,
@@ -307,6 +311,8 @@ export const IconsData: Record<IconName, IconGroup> = {
   MoreHoriz: IconGroup.General,
   MoveToFilled: IconGroup.General,
   MoveTo: IconGroup.General,
+  MultiChoiceFilled: IconGroup.General,
+  MultiChoice: IconGroup.General,
   NightModeFilled: IconGroup.General,
   NightMode: IconGroup.General,
   NoteAddFilled: IconGroup.General,
