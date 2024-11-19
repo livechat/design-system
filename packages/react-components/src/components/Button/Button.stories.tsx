@@ -102,7 +102,7 @@ export const KindsAndStates = (): React.ReactElement => (
           >
             <Button kind={kind}>{title}</Button>
             <Button kind={kind} disabled>
-              Disabled
+              Disabled test
             </Button>
             <Button kind={kind} loading>
               Loading
