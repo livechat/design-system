@@ -529,4 +529,6 @@ export const IconsData: Record<IconName, IconGroup> = {
   TextPlatform: IconGroup.Brands,
   SquareRoundedPlusFilled: IconGroup.General,
   SquareRoundedPlus: IconGroup.General,
+  ArrowsDiagonalMinimize: IconGroup.Arrows,
+  ArrowsDiagonal: IconGroup.Arrows,
 };
