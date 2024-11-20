@@ -101,6 +101,7 @@ export const NavigationTopBarAlert: React.FC<ITopBarAlertProps> = ({
   const { isMounted, isOpen } = useAnimations({
     isVisible,
     elementRef: alertRef,
+    includeSleepWakeScenario: true,
   });
   const handleResizeRef = React.useCallback(
     (node: NODE) =>
