@@ -84,4 +84,15 @@ describe('<Accordion> component', () => {
 
     expect(getByText('Multi')).toBeInTheDocument();
   });
+
+  it('should show footer element if open', async () => {
+    const { queryByText, getByRole } = renderComponent({
+      ...DEFAULT_PROPS,
+      footer: <div>Footer</div>,
+    });
+
+    expect(queryByText('Footer')).not.toBeInTheDocument();
+    userEvent.click(getByRole('button'));
+    await waitFor(() => expect(queryByText('Footer')).toBeInTheDocument());
+  });
 });

@@ -5,24 +5,29 @@ import cx from 'clsx';
 
 import { useAnimations, useHeightResizer } from '../../hooks';
 import { Icon } from '../Icon';
-import { Text } from '../Typography';
+import { Heading, Text } from '../Typography';
 
 import { AccordionMultilineElement } from './components/AccordionMultilineElement';
 import { getLabel } from './helpers';
-import { IAccordionProps } from './types';
+import { useAccordion } from './hooks';
+import {
+  IAccordionProps,
+  IAccordionPromoProps,
+  IAccordionComponentProps,
+} from './types';
 
 import styles from './Accordion.module.scss';
 
-const baseClass = 'accordion';
-
-export const Accordion: React.FC<IAccordionProps> = ({
+const AccordionComponent: React.FC<IAccordionComponentProps> = ({
   className,
+  mainClassName,
   children,
   label,
   multilineElement,
-  kind = 'default',
   openOnInit = false,
   isOpen,
+  isPromo,
+  footer,
   onClose,
   onOpen,
   ...props
@@ -38,35 +43,21 @@ export const Accordion: React.FC<IAccordionProps> = ({
     isVisible: currentlyOpen,
     elementRef: contentRef,
   });
+  const { size, handleResizeRef } = useHeightResizer();
+  const { handleExpandChange, handleKeyDown } = useAccordion({
+    isControlled,
+    isExpanded,
+    setShouldBeVisible,
+    onOpen,
+    onClose,
+  });
   const mergedClassName = cx(
-    styles[baseClass],
-    styles[`${baseClass}--${kind}`],
+    mainClassName,
     {
       [styles[`${baseClass}--open`]]: isExpanded,
     },
     className
   );
-  const { size, handleResizeRef } = useHeightResizer();
-
-  const handleExpandChange = (isExpanded: boolean) => {
-    if (isExpanded) {
-      onClose?.();
-      !isControlled && setShouldBeVisible(false);
-    } else {
-      onOpen?.();
-      !isControlled && setShouldBeVisible(true);
-    }
-  };
-
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (!isExpanded && (event.key === 'Enter' || event.key === ' ')) {
-      handleExpandChange(isExpanded);
-    }
-
-    if (isExpanded && event.key === 'Escape') {
-      handleExpandChange(isExpanded);
-    }
-  };
 
   return (
     <div
@@ -80,18 +71,36 @@ export const Accordion: React.FC<IAccordionProps> = ({
         source={ChevronDown}
         className={cx(styles[`${baseClass}__chevron`], {
           [styles[`${baseClass}__chevron--open`]]: isExpanded,
+          [styles[`${baseClass}__chevron--promo`]]: isPromo,
         })}
       />
-      <Text
-        aria-expanded={isExpanded}
-        role="button"
-        as="div"
-        bold
-        className={styles[`${baseClass}__label`]}
-        onClick={() => handleExpandChange(isExpanded)}
-      >
-        {getLabel(label, isExpanded)}
-      </Text>
+      {!isPromo && (
+        <Text
+          aria-expanded={isExpanded}
+          role="button"
+          as="div"
+          bold
+          className={styles[`${baseClass}__label`]}
+          onClick={() => handleExpandChange(isExpanded)}
+        >
+          {getLabel(label, isExpanded)}
+        </Text>
+      )}
+      {isPromo && (
+        <Heading
+          aria-expanded={isExpanded}
+          role="button"
+          as="div"
+          size="xs"
+          className={cx(
+            styles[`${baseClass}__label`],
+            styles[`${baseClass}__label--promo`]
+          )}
+          onClick={() => handleExpandChange(isExpanded)}
+        >
+          {getLabel(label, isExpanded)}
+        </Heading>
+      )}
       {multilineElement && (
         <AccordionMultilineElement isExpanded={isExpanded}>
           {multilineElement}
@@ -104,17 +113,48 @@ export const Accordion: React.FC<IAccordionProps> = ({
       >
         <div ref={handleResizeRef}>
           {isMounted && (
-            <Text
-              as="div"
-              className={cx(styles[`${baseClass}__content__inner`], {
-                [styles[`${baseClass}__content__inner--open`]]: isExpanded,
-              })}
-            >
-              {children}
-            </Text>
+            <>
+              <Text
+                as="div"
+                className={cx(styles[`${baseClass}__content__inner`], {
+                  [styles[`${baseClass}__content__inner--open`]]: isExpanded,
+                  [styles[`${baseClass}__content__inner--promo`]]: isPromo,
+                })}
+              >
+                {children}
+              </Text>
+              {footer && (
+                <Text
+                  as="div"
+                  className={cx(styles[`${baseClass}__footer`], {
+                    [styles[`${baseClass}__footer--promo`]]: isPromo,
+                  })}
+                >
+                  {footer}
+                </Text>
+              )}
+            </>
           )}
         </div>
       </div>
     </div>
+  );
+};
+
+const baseClass = 'accordion';
+
+export const Accordion: React.FC<IAccordionProps> = ({ kind, ...props }) => {
+  const mainClassName = cx(styles[baseClass], styles[`${baseClass}--${kind}`]);
+
+  return <AccordionComponent mainClassName={mainClassName} {...props} />;
+};
+
+const promoBaseClass = `${baseClass}--promo`;
+
+export const AccordionPromo: React.FC<IAccordionPromoProps> = (props) => {
+  const mainClassName = cx(styles[baseClass], styles[promoBaseClass]);
+
+  return (
+    <AccordionComponent mainClassName={mainClassName} isPromo {...props} />
   );
 };
