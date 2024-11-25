@@ -47,6 +47,7 @@ export * from './components/Skeleton';
 export * from './components/StatusBadge';
 export * from './components/Switch';
 export * from './components/Tab';
+export * from './components/Table';
 export * from './components/Tag';
 export * from './components/TagInput';
 export * from './components/Toast';

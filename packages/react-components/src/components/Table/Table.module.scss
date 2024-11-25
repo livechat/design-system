@@ -1,0 +1,134 @@
+@use './styles/pin';
+@use './styles/size';
+
+$base-class: 'table';
+
+.#{$base-class} {
+  width: 100%;
+  border-collapse: collapse;
+
+  &__row {
+    border-bottom: 1px solid var(--border-basic-tertiary);
+    background-color: var(--background-01);
+
+    &:not(.#{$base-class}__header):hover {
+      background-color: var(--surface-primary-hover);
+    }
+  }
+
+  &--small {
+    @include size.table-size(48px, 8px, 16px);
+  }
+
+  &--medium {
+    @include size.table-size(56px, 12px, 16px);
+  }
+
+  &--large {
+    @include size.table-size(64px, 14px, 16px);
+  }
+
+  &--pinned_header {
+    @include pin.generatePin('header');
+  }
+
+  &--pinned_firstColumn {
+    @include pin.generatePin('firstColumn');
+  }
+
+  &_skaks {
+    box-shadow: 2px 0 10px 0 #1313172e;
+  }
+
+  &__cell {
+    text-align: start;
+    line-height: 21px;
+    font-size: 14px;
+  }
+
+  &__header {
+    line-height: 20px;
+    color: var(--content-basic-secondary);
+    font-size: 13px;
+    user-select: none;
+
+    th:hover {
+      background-color: var(--surface-primary-hover);
+    }
+  }
+
+  &__header__cell {
+    display: flex;
+    position: relative;
+    align-items: center;
+
+    > span {
+      margin-left: 4px;
+    }
+
+    &--hoverDisabled {
+      &:hover {
+        background-color: var(--background-01) !important;
+      }
+    }
+  }
+
+  &__selected {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    padding: 8px;
+    font-weight: 500;
+
+    > p {
+      margin: 0;
+      font-weight: 500;
+    }
+
+    > div:first-child {
+      display: flex;
+      align-items: center;
+      margin-right: 4px;
+    }
+  }
+
+  &--stripped {
+    tr:nth-child(even) {
+      background-color: var(--surface-secondary-default);
+
+      &:hover {
+        background-color: var(--surface-primary-disabled);
+      }
+    }
+  }
+
+  &__resizer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--border-basic-secondary);
+    cursor: col-resize;
+    width: 1px;
+    height: 100%;
+
+    &:hover,
+    &:active {
+      background-color: var(--action-primary-default);
+      height: 100vh;
+    }
+  }
+
+  tbody {
+    width: 100%;
+  }
+
+  td,
+  th {
+    text-align: left;
+  }
+
+  th > div {
+    display: flex;
+  }
+}

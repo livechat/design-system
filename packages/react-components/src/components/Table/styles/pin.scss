@@ -1,0 +1,39 @@
+@mixin generatePin($type) {
+  @if $type == 'header' {
+    thead {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      box-shadow: 0 2px 10px 0 #1313172e;
+    }
+  }
+
+ @else if $type == 'firstColumn' {
+    /*
+    td {
+      height: inherit;
+      padding: 0;
+    }
+
+    tr > td > span {
+      height: 100%;
+      display: flex;
+
+      > span {
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    tr span:first-child {
+      box-shadow: 2px 0px 10px 0px #1313172e;
+      position: sticky;
+      left: 0;
+      z-index: 5;
+    } */
+  }
+
+ @else {
+    @warn "Invalid pinned value: #{$type}. Supported values are 'header' or 'firstColumn'.";
+  }
+}
