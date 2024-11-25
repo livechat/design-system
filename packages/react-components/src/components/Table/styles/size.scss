@@ -1,0 +1,10 @@
+@mixin table-size($height, $padding-v, $padding-h) {
+  tr {
+    height: $height;
+  }
+
+  th,
+  td {
+    padding: $padding-v $padding-h;
+  }
+}
