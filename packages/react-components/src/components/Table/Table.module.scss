@@ -7,15 +7,6 @@ $base-class: 'table';
   width: 100%;
   border-collapse: collapse;
 
-  &__row {
-    border-bottom: 1px solid var(--border-basic-tertiary);
-    background-color: var(--background-01);
-
-    &:not(.#{$base-class}__header):hover {
-      background-color: var(--surface-primary-hover);
-    }
-  }
-
   &--small {
     @include size.table-size(48px, 8px, 16px);
   }
@@ -32,52 +23,17 @@ $base-class: 'table';
     @include pin.generatePin('header');
   }
 
-  &--pinned_firstColumn {
-    @include pin.generatePin('firstColumn');
-  }
-
-  &_skaks {
-    box-shadow: 2px 0 10px 0 #1313172e;
-  }
-
   &__cell {
     text-align: start;
     line-height: 21px;
     font-size: 14px;
   }
 
-  &__header {
-    line-height: 20px;
-    color: var(--content-basic-secondary);
-    font-size: 13px;
-    user-select: none;
-
-    th:hover {
-      background-color: var(--surface-primary-hover);
-    }
-  }
-
-  &__header__cell {
-    display: flex;
-    position: relative;
-    align-items: center;
-
-    > span {
-      margin-left: 4px;
-    }
-
-    &--hoverDisabled {
-      &:hover {
-        background-color: var(--background-01) !important;
-      }
-    }
-  }
-
   &__selected {
     display: flex;
-    gap: 4px;
+    gap: var(--spacing-1);
     align-items: center;
-    padding: 8px;
+    padding: var(--spacing-2);
     font-weight: 500;
 
     > p {
@@ -88,34 +44,17 @@ $base-class: 'table';
     > div:first-child {
       display: flex;
       align-items: center;
-      margin-right: 4px;
+      margin-right: var(--spacing-1);
     }
   }
 
   &--stripped {
-    tr:nth-child(even) {
+    tbody tr:nth-child(odd) {
       background-color: var(--surface-secondary-default);
 
       &:hover {
         background-color: var(--surface-primary-disabled);
       }
-    }
-  }
-
-  &__resizer {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--border-basic-secondary);
-    cursor: col-resize;
-    width: 1px;
-    height: 100%;
-
-    &:hover,
-    &:active {
-      background-color: var(--action-primary-default);
-      height: 100vh;
     }
   }
 

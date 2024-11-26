@@ -1,0 +1,63 @@
+@use './styles/pin';
+@use './styles/size';
+
+$base-class: 'header';
+
+.#{$base-class} {
+  border-bottom: 1px solid var(--border-basic-tertiary);
+  background-color: var(--background-01);
+  line-height: var(--spacing-5);
+  color: var(--content-basic-secondary);
+  font-size: 13px;
+  user-select: none;
+
+  th:hover {
+    background-color: var(--surface-primary-hover);
+  }
+
+  &__cell {
+    display: flex;
+    position: relative;
+    align-items: center;
+
+    > span {
+      margin-left: var(--spacing-1);
+    }
+
+    &--hoverDisabled {
+      &:hover {
+        background-color: var(--background-01) !important;
+      }
+    }
+  }
+
+  &__resizer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--border-basic-secondary);
+    cursor: col-resize;
+    width: 1px;
+    height: 100%;
+
+    &:hover,
+    &:active {
+      background-color: var(--action-primary-default);
+      height: 100vh;
+    }
+  }
+
+  &__content {
+    position: relative;
+  }
+
+  td,
+  th {
+    text-align: left;
+  }
+
+  th > span {
+    display: flex;
+  }
+}

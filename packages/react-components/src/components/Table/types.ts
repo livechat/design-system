@@ -7,7 +7,7 @@ export type Column<T> = {
 
 export type TableSize = 'small' | 'medium' | 'large';
 
-export type PinOptions = 'header' | 'firstColumn';
+export type PinOptions = 'header';
 
 export enum SortOrder {
   Ascending = 'asc',
@@ -26,4 +26,9 @@ export interface ITableProps<T> {
   selectable?: true;
   selectedRows?: Set<string | number>;
   onSelectionChange?: (selectedIds: Set<string | number>) => void;
+}
+
+export interface SortConfig<T> {
+  key: keyof T | null;
+  direction: SortOrder;
 }
