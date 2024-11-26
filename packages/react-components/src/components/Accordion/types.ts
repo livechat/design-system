@@ -51,7 +51,13 @@ export interface IAccordionProps extends IAccordionGlobalProps {
 export interface IAccordionPromoProps extends IAccordionGlobalProps {}
 
 export interface IAccordionComponentProps extends IAccordionGlobalProps {
+  /**
+   * CSS class name for the main accordion wrapper
+   */
   mainClassName: string;
+  /**
+   * Set to display promo accordion
+   */
   isPromo?: boolean;
 }
 

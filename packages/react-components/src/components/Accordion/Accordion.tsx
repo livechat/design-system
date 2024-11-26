@@ -5,7 +5,7 @@ import cx from 'clsx';
 
 import { useAnimations, useHeightResizer } from '../../hooks';
 import { Icon } from '../Icon';
-import { Heading, Text } from '../Typography';
+import { Heading, Text, TTextSize } from '../Typography';
 
 import { AccordionMultilineElement } from './components/AccordionMultilineElement';
 import { getLabel } from './helpers';
@@ -59,6 +59,22 @@ const AccordionComponent: React.FC<IAccordionComponentProps> = ({
     className
   );
 
+  const buildHeader = (isPromo?: boolean) => {
+    const Component = isPromo ? Heading : Text;
+    const props = {
+      'aria-expanded': isExpanded,
+      as: 'div',
+      className: cx(styles[`${baseClass}__label`], {
+        [styles[`${baseClass}__label--promo`]]: isPromo,
+      }),
+      onClick: () => handleExpandChange(isExpanded),
+      bold: !isPromo ? true : undefined,
+      ...(isPromo ? { size: 'xs' as TTextSize } : {}),
+    };
+
+    return <Component {...props}>{getLabel(label, isExpanded)}</Component>;
+  };
+
   return (
     <div
       tabIndex={0}
@@ -74,33 +90,7 @@ const AccordionComponent: React.FC<IAccordionComponentProps> = ({
           [styles[`${baseClass}__chevron--promo`]]: isPromo,
         })}
       />
-      {!isPromo && (
-        <Text
-          aria-expanded={isExpanded}
-          role="button"
-          as="div"
-          bold
-          className={styles[`${baseClass}__label`]}
-          onClick={() => handleExpandChange(isExpanded)}
-        >
-          {getLabel(label, isExpanded)}
-        </Text>
-      )}
-      {isPromo && (
-        <Heading
-          aria-expanded={isExpanded}
-          role="button"
-          as="div"
-          size="xs"
-          className={cx(
-            styles[`${baseClass}__label`],
-            styles[`${baseClass}__label--promo`]
-          )}
-          onClick={() => handleExpandChange(isExpanded)}
-        >
-          {getLabel(label, isExpanded)}
-        </Heading>
-      )}
+      {buildHeader(isPromo)}
       {multilineElement && (
         <AccordionMultilineElement isExpanded={isExpanded}>
           {multilineElement}
