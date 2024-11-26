@@ -116,6 +116,8 @@ const AccordionComponent: React.FC<IAccordionComponentProps> = ({
               {footer && (
                 <Text
                   as="div"
+                  aria-label="Accordion footer"
+                  role="complementary"
                   className={cx(styles[`${baseClass}__footer`], {
                     [styles[`${baseClass}__footer--promo`]]: isPromo,
                   })}
