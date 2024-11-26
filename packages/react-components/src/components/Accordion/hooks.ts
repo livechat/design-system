@@ -3,7 +3,7 @@ import * as React from 'react';
 interface UseAccordionProps {
   isControlled: boolean;
   isExpanded: boolean;
-  setShouldBeVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setShouldBeVisible: (isVisible: boolean) => void;
   onOpen?: () => void;
   onClose?: () => void;
 }
@@ -23,20 +23,18 @@ export const useAccordion = ({
   const handleExpandChange = (isExpanded: boolean) => {
     if (isExpanded) {
       onClose?.();
-      !isControlled && setShouldBeVisible(false);
     } else {
       onOpen?.();
-      !isControlled && setShouldBeVisible(true);
     }
+    !isControlled && setShouldBeVisible(!isExpanded);
   };
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (!isExpanded && (event.key === 'Enter' || event.key === ' ')) {
-        handleExpandChange(isExpanded);
-      }
-
-      if (isExpanded && event.key === 'Escape') {
+      if (
+        (!isExpanded && (event.key === 'Enter' || event.key === ' ')) ||
+        (isExpanded && event.key === 'Escape')
+      ) {
         handleExpandChange(isExpanded);
       }
     },
