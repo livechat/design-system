@@ -44,26 +44,26 @@ describe('<Accordion> component', () => {
   it('should call onClose and onOpen handlers on label click', async () => {
     const onClose = vi.fn();
     const onOpen = vi.fn();
-    const { getByRole } = renderComponent({
+    const { getByText } = renderComponent({
       ...DEFAULT_PROPS,
       onClose,
       onOpen,
     });
 
-    expect(getByRole('button')).toHaveAttribute('aria-expanded', 'false');
-    userEvent.click(getByRole('button'));
+    expect(getByText('Label')).toHaveAttribute('aria-expanded', 'false');
+    userEvent.click(getByText('Label'));
     expect(onOpen).toHaveBeenCalledTimes(1);
 
     await waitFor(() => {
-      expect(getByRole('button')).toHaveAttribute('aria-expanded', 'false');
+      expect(getByText('Label')).toHaveAttribute('aria-expanded', 'false');
     });
 
-    userEvent.click(getByRole('button'));
+    userEvent.click(getByText('Label'));
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
   it('should show different label content when open and closed', async () => {
-    const { getByText, getByRole } = renderComponent({
+    const { getByText } = renderComponent({
       ...DEFAULT_PROPS,
       label: {
         open: <div>Open label</div>,
@@ -72,7 +72,7 @@ describe('<Accordion> component', () => {
     });
 
     expect(getByText('Closed label')).toBeInTheDocument();
-    userEvent.click(getByRole('button'));
+    userEvent.click(getByText('Closed label'));
     await waitFor(() => expect(getByText('Open label')).toBeInTheDocument());
   });
 
@@ -86,13 +86,13 @@ describe('<Accordion> component', () => {
   });
 
   it('should show footer element if open', async () => {
-    const { queryByText, getByRole } = renderComponent({
+    const { queryByText, getByText } = renderComponent({
       ...DEFAULT_PROPS,
       footer: <div>Footer</div>,
     });
 
     expect(queryByText('Footer')).not.toBeInTheDocument();
-    userEvent.click(getByRole('button'));
+    userEvent.click(getByText('Label'));
     await waitFor(() => expect(queryByText('Footer')).toBeInTheDocument());
   });
 });
