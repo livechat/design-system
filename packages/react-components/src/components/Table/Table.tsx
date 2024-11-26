@@ -1,28 +1,19 @@
 import * as React from 'react';
 
-import {
-  ArrowDownward,
-  ArrowUpward,
-  ArrowsSort,
-} from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Checkbox } from '../Checkbox';
-import { Icon } from '../Icon';
 import { Text } from '../Typography';
 
 import { useTable } from './hooks';
+import { TableBody } from './TableBody';
+import { TableHeader } from './TableHeader';
 import { ITableProps, SortOrder } from './types';
 
 import styles from './Table.module.scss';
 
 const baseClass = 'table';
-const headerClass = `${baseClass}__header`;
-const rowClass = `${baseClass}__row`;
-const cellClass = `${baseClass}__cell`;
-const headerCellClass = `${headerClass}__cell`;
 const selectedClass = `${baseClass}__selected`;
-const resizerClass = `${baseClass}__resizer`;
 
 export const Table = <T,>({
   data,
@@ -156,7 +147,7 @@ export const Table = <T,>({
             checked={selectedCount === data.length}
             onChange={toggleSelectAll}
           />
-          {selectedCount} <Text size="md">selected items</Text>
+          <Text size="md">{selectedCount} selected items</Text>
         </div>
       )}
       <table
@@ -169,82 +160,26 @@ export const Table = <T,>({
           }
         )}
       >
-        <thead>
-          <tr className={cx(styles[`${headerClass}`], styles[`${rowClass}`])}>
-            {selectable && <th />}
-            {columns.map((column, index) => (
-              <th
-                key={String(column.key)}
-                ref={(el) => (columnRefs.current[index] = el)}
-                className={cx({
-                  [styles[`${headerCellClass}--hoverDisabled`]]:
-                    !column.sortable,
-                })}
-                onMouseEnter={() => setHoveredColumnIndex(index)}
-                onMouseLeave={() => setHoveredColumnIndex(null)}
-              >
-                <span
-                  className={cx(styles[`${headerCellClass}`])}
-                  onClick={() => handleSort(column.key)}
-                >
-                  {column.header}
-
-                  {sortConfig.key !== column.key &&
-                  sortConfig.direction === SortOrder.None &&
-                  hoveredColumnIndex === index &&
-                  column.sortable ? (
-                    <Icon source={ArrowsSort} kind="subtle" />
-                  ) : null}
-
-                  {sortConfig.key === column.key &&
-                  sortConfig.direction !== SortOrder.None ? (
-                    <Icon
-                      source={
-                        sortConfig.direction === SortOrder.Ascending
-                          ? ArrowDownward
-                          : ArrowUpward
-                      }
-                      kind="primary"
-                    />
-                  ) : null}
-                  {resizable && (
-                    <span
-                      className={styles[`${resizerClass}`]}
-                      onMouseDown={(e) => handleMouseDown(index, e)}
-                    />
-                  )}
-                </span>
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {sortedData.map((row) => {
-            const rowId = getRowId(row);
-
-            return (
-              <tr key={rowId} className={styles[`${rowClass}`]}>
-                {selectable && (
-                  <td>
-                    <Checkbox
-                      checked={isSelected(rowId)}
-                      onChange={() => toggleRowSelection(rowId)}
-                    />
-                  </td>
-                )}
-                {columns.map((column, index) => (
-                  <td
-                    key={String(column.key)}
-                    className={styles[`${cellClass}`]}
-                    style={{ width: `${columnWidths[index]}px` }}
-                  >
-                    {row[column.key] as React.ReactNode}
-                  </td>
-                ))}
-              </tr>
-            );
-          })}
-        </tbody>
+        <TableHeader
+          columns={columns}
+          sortConfig={sortConfig}
+          handleSort={handleSort}
+          resizable={resizable}
+          handleMouseDown={handleMouseDown}
+          columnRefs={columnRefs}
+          selectable={selectable}
+          hoveredColumnIndex={hoveredColumnIndex}
+          setHoveredColumnIndex={setHoveredColumnIndex}
+        />
+        <TableBody
+          data={sortedData}
+          columns={columns}
+          getRowId={getRowId}
+          columnWidths={columnWidths}
+          selectable={selectable}
+          isSelected={isSelected}
+          toggleRowSelection={toggleRowSelection}
+        />
       </table>
     </>
   );
