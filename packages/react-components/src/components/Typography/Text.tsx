@@ -60,8 +60,8 @@ export const Text: React.FC<React.PropsWithChildren<IProps>> = ({
       className: cx(
         {
           [styles[`${baseClassPrefix}-${size}`]]: true,
-          [styles[`${baseClassPrefix}--semi-bold`]]: semiBold,
-          [styles[`${baseClassPrefix}--bold`]]: bold,
+          [styles[`${baseClassPrefix}--semi-bold`]]: semiBold && !bold,
+          [styles[`${baseClassPrefix}--bold`]]: bold && !semiBold,
           [styles[`${baseClassPrefix}--strike`]]: strike,
           [styles[`${baseClassPrefix}--underline`]]: underline,
           [styles[`${baseClassPrefix}--uppercase`]]: uppercase || caps,
