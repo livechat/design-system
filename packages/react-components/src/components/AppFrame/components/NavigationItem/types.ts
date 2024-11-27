@@ -2,7 +2,9 @@ import * as React from 'react';
 
 import { ComponentCoreProps } from '../../../../utils/types';
 
-export interface INavigationItemProps extends ComponentCoreProps {
+export interface INavigationItemProps
+  extends ComponentCoreProps,
+    Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'onClick'> {
   /**
    * The ID of the item
    */

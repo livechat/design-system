@@ -1,8 +1,8 @@
-import * as React from 'react';
-
 import { vi } from 'vitest';
 
 import { render, userEvent } from 'test-utils';
+
+import { AppFrameProvider } from '../../../../providers';
 
 import { NavigationItem } from './NavigationItem';
 import { INavigationItemProps } from './types';
@@ -16,7 +16,11 @@ const defaultProps: INavigationItemProps = {
 };
 
 const renderComponent = (props: INavigationItemProps) => {
-  return render(<NavigationItem {...props} />);
+  return render(
+    <AppFrameProvider>
+      <NavigationItem {...props} />
+    </AppFrameProvider>
+  );
 };
 
 describe('<NavigationItem> component', () => {

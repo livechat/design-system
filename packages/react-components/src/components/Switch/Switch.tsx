@@ -56,7 +56,7 @@ export interface SwitchProps {
   state?: SwitchState;
 }
 
-export const Switch: React.FC<SwitchProps> = ({
+export const Switch: React.FC<React.PropsWithChildren<SwitchProps>> = ({
   className = '',
   defaultOn = false,
   disabled = false,

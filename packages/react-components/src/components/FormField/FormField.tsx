@@ -34,7 +34,7 @@ export interface FormFieldProps {
   /**
    * Define error text
    */
-  error?: string;
+  error?: React.ReactNode;
   /**
    * Define the description text
    */
@@ -49,7 +49,7 @@ export interface FormFieldProps {
   labelRightNode?: React.ReactNode;
 }
 
-export const FormField: React.FC<FormFieldProps> = ({
+export const FormField: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
   inline,
   error,
   description,

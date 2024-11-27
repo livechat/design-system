@@ -9,7 +9,7 @@ import styles from './RadioButton.module.scss';
 
 export interface RadioButtonProps
   extends React.HTMLAttributes<HTMLInputElement> {
-  description?: string;
+  description?: React.ReactNode;
   checked?: boolean;
   disabled?: boolean;
 }

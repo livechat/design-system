@@ -1,0 +1,75 @@
+@mixin default($base-class) {
+  &:hover,
+  &:focus-visible {
+    .#{$base-class}__content {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  &--expanded {
+    &:hover,
+    &:focus-visible {
+      .#{$base-class}__icon {
+        &--right {
+          margin-left: 4px;
+        }
+
+        &--left {
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+
+  .#{$base-class}__icon {
+    transition: all var(--transition-duration-moderate-1) ease-in-out;
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .#{$base-class}__content {
+    transition: all var(--transition-duration-moderate-1) ease-in-out;
+    visibility: hidden;
+    opacity: 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  &.#{$base-class}--with-left-icon,
+  &.#{$base-class}--with-right-icon {
+    transition: all var(--transition-duration-moderate-1) ease-in-out;
+  }
+}
+
+@mixin size(
+  $base-class,
+  $padding-default,
+  $padding-hover-icon,
+  $padding-hover-label
+) {
+  &.#{$base-class}--with-left-icon,
+  &.#{$base-class}--with-right-icon {
+    padding-right: $padding-default;
+    padding-left: $padding-default;
+
+    &:hover {
+      padding-right: $padding-hover-label;
+      padding-left: $padding-hover-icon;
+    }
+  }
+
+  &.#{$base-class}--with-left-icon {
+    &:hover {
+      padding-right: $padding-hover-label;
+      padding-left: $padding-hover-icon;
+    }
+  }
+
+  &.#{$base-class}--with-right-icon {
+    &:hover {
+      padding-right: $padding-hover-icon;
+      padding-left: $padding-hover-label;
+    }
+  }
+}

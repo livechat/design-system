@@ -22,7 +22,7 @@ $base-class: 'navigation-item';
     align-items: center;
     justify-content: center;
     transition: all var(--transition-duration-fast-1) ease-in-out;
-    opacity: 0.7;
+    opacity: 0.6;
     border-radius: var(--radius-3);
     width: 42px;
     height: 42px;
@@ -38,7 +38,7 @@ $base-class: 'navigation-item';
       color: var(--content-locked-white);
 
       span {
-        transform: scale(1.1);
+        transform: scale(1);
       }
     }
 
@@ -48,16 +48,16 @@ $base-class: 'navigation-item';
       box-shadow: var(--focus-ring-inner);
 
       span {
-        transform: scale(1.1);
+        transform: scale(1);
       }
     }
 
     &--disabled {
-      opacity: 0.4;
+      opacity: 0.3;
     }
 
     span {
-      transform: scale(1);
+      transform: scale(0.9);
       transition: all var(--transition-duration-fast-1) ease-in-out;
       width: 24px;
       height: 24px;
@@ -79,6 +79,13 @@ $base-class: 'navigation-item';
 
     &--opacity {
       opacity: 1;
+    }
+
+    &--mobile {
+      flex-direction: column;
+      width: 56px;
+      height: 48px;
+      font-size: 10px;
     }
   }
 }

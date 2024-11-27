@@ -12,6 +12,10 @@ export interface IAppFrameProps extends ComponentCoreProps {
    */
   navigation: React.ReactNode;
   /**
+   * It will display mobile navigation elements
+   */
+  mobileNavigation: React.ReactNode;
+  /**
    * It will display the side navigation bar
    */
   sideNavigation?: React.ReactNode;
@@ -31,6 +35,10 @@ export interface IAppFrameProps extends ComponentCoreProps {
    * The CSS class for the content container
    */
   contentClassName?: string;
+  /**
+   * Set the initial visibility of the side navigation bar
+   */
+  isSideNavigationVisible?: boolean;
 }
 
 export type { INavigationProps } from './components/Navigation/types';

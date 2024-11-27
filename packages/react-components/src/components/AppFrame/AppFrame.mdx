@@ -5,7 +5,7 @@ import * as AppFrameStories from './AppFrame.stories';
 
 <Title>AppFrame</Title>
 
-[Intro](#Intro) | [How to build the navigation](#BuildNav) | [Component API](#ComponentAPI)
+[Intro](#Intro) | [How to build the navigation](#BuildNav) | [Top bar](#TopBar) | [Component API](#ComponentAPI)
 
 ## Intro <a id="Intro" />
 
@@ -17,7 +17,7 @@ The most important functionality of this component, apart from the UI layout, is
 
 ## How to build the navigation <a id="BuildNav" />
 
-[Main navigation](#MainNav) | [Side navigation](#SideNav) | [Top bar](#TopBar) | [AppFrameProvider](#Provider)
+[Main navigation](#MainNav) | [Side navigation](#SideNav) | [MobileNavigation](#MobileNav) | [AppFrameProvider](#Provider) | [Expiration Counter](#ExpirationCounter) 
 
 The component allows you to place navigation available on the left side, consisting of icons, and also allows you to display additional navigation in the opening panel.
 
@@ -103,6 +103,29 @@ The `SideNavigation` component serves as a container for side navigation element
 The `SideNavigationGroup` component is used to create collapsible items within the `SideNavigation`. It groups the `SideNavigationItem` items under same category.
 It is not a component required to create a side navigation structure. Its main task is to aggregate elements under a label, with the option of enabling expansion of the list of elements via the `isCollapsible` prop.
 
+In `isCollapsible` mode, the `SideNavigationGroup` component should automatically open if there is any child element inside with `isActive` set. With `SideNavigationItem` components passed as children directly, any of them with `isActive` prop set to `true` will cause the group component to automaticly open. Using `SideNavigationItem` as direct childs is the assumed pattern of building side navigation, however if you need to wrap these components (or use your own) to make the menu open automatically, you need to provide and handle `isActive` to the child component yourself. Alternatively you can use `shouldOpenOnInit` prop which will automatically open the list, regardless of whether any item has `isActive` set.
+
+```jsx
+import { SideNavigationGroup } from '@livechat/design-system-react-components';
+
+...
+<SideNavigationGroup isCollapsible label="With custom elements">
+  ...
+    // child as custom component
+    <NavCustomComponent
+      isActive={activeElement === 'custom'}
+    />
+  ...
+</SideNavigationGroup>
+<SideNavigationGroup isCollapsible shouldOpenOnInit label="With custom elements">
+  ...
+    // child as custom component
+    <NavCustomComponent />
+  ...
+</SideNavigationGroup>
+...
+```
+
 #### `SideNavigationItem` component
 
 The `SideNavigationItem` component is used to create single side navigation element. It displays button with the given label and it can be supplemented by passing your own elements via the `leftNode` and `rightNode` props.
@@ -126,6 +149,7 @@ import { Home, Settings } from '@livechat/design-system-icons';
       // with collapsible list
       <SideNavigationGroup isCollapsible label="With elements">
         ...
+          // child as dedicated DS component
           <SideNavigationItem
             label="Example2 option"
             isActive={activeElement === 'example2'}
@@ -134,6 +158,47 @@ import { Home, Settings } from '@livechat/design-system-icons';
         ...
       </SideNavigationGroup>
     </SideNavigation>
+  }
+```
+
+### Mobile navigation <a id="MobileNav" />
+
+To build the mobile navigation, use the available components:
+- `MobileNavigation`
+- `NavigationItem`
+
+#### `MobileNavigation` component
+
+The `MobileNavigation` component serves as the main wrapper for navigation items passed as children.
+
+#### `NavigationItem` component
+
+The `NavigationItem` is the same component used in the `Navigation`. You must remember to set the `isMobile` prop to `true` to display items in the mobile mode (label is visible in the button instead of tooltip).
+
+#### Mobile navigation implementation example
+
+```jsx
+import { AppFrame, Navigation, NavigationItem, MobileNavigation } from '@livechat/design-system-react-components';
+import { Home, Settings } from '@livechat/design-system-icons';
+
+<AppFrame
+  navigation={<Navigation>...</Navigation>}
+  mobileNavigation={
+    <MobileNavigation>
+      ...
+        <NavigationItem
+          isMobile
+          key="home"
+          id="home"
+          label="Home"
+          icon={<Icon source={Home} />}
+          onClick={(e, id) => {}}
+          isActive={activeItem === 'home'}
+          badge={5}
+          url="#"
+        />
+      ...
+    </MobileNavigation>
   }
 ```
 
@@ -160,7 +225,34 @@ const SideNavigationSwitcher: FC = () => {
 };
 ```
 
-### Top bar <a id="TopBar" />
+#### Expiration Counter <a id="ExpirationCounter" />
+
+Expiration Counter is a simple component to use as a navigation item, its purpose is to present the number of days left until the end of a trial/subscription.
+
+```jsx
+import { AppFrame, Navigation, NavigationGroup, ExpirationCounter } from '@livechat/design-system-react-components';
+
+<AppFrame
+  navigation={
+    <Navigation>
+      <NavigationGroup>
+        ...
+        <ExpirationCounter
+          id="expiration"
+          url="#"
+          daysLeft={7}
+          onClick={(e, id) => {}}
+        />
+        ...
+      </NavigationGroup>
+    </Navigation>
+  }
+>
+  App content
+</AppFrame>
+```
+
+## Top bar <a id="TopBar" />
 
 The top bar is a component designed to display alerts and important messages to the user. 
 
@@ -235,6 +327,51 @@ return (
       }}
     >
       Hello, this is an alert!
+    </NavigationTopBarAlert>
+  </NavigationTopBar>
+);
+
+```
+
+#### How to build top bar alerts
+
+In general, alerts do not have height limits, which allows you to insert any amount of content. The container in which they are located also does not have such limits.
+
+However, it is important to remember to provide the best possible user experience, not to put too much information into the top bar, which could reduce the application window.
+
+Components layout changes depending on the browser window resolution:
+- `width > 1110px` - standard layout with the option of setting the kind for cta buttons
+- `width <= 1100px` - row layout, buttons are automatically changed to kind `text` (`link-inverted` for `warning` alert)
+- `width <= 705px` - mobile version (no radiuses)
+
+It is also important to remember that you should not display a large number of alerts. For this purpose, we suggest a simple solution, consisting in hiding and showing only the currently expected alert (the decision is up to the project which alert has the highest priority)
+
+##### Example
+
+```jsx
+import { NavigationTopBarAlert } from '@livechat/design-system-react-components';
+
+const [visibleAlert, setVisibleAlert] = React.useState(null);
+
+return (
+  <NavigationTopBar>
+    <NavigationTopBarAlert
+      kind="info"
+      isVisible={visibleAlert === 0}
+    >
+      Info
+    </NavigationTopBarAlert>
+    <NavigationTopBarAlert
+      kind="warning"
+      isVisible={visibleAlert === 1}
+    >
+      Warning
+    </NavigationTopBarAlert>
+    <NavigationTopBarAlert
+      kind="error"
+      isVisible={visibleAlert === 2}
+    >
+      Error
     </NavigationTopBarAlert>
   </NavigationTopBar>
 );

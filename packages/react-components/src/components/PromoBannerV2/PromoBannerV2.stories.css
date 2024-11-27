@@ -38,3 +38,19 @@
 .text {
   font-size: 24px;
 }
+
+.dark-promo-banner {
+  max-width: 800px;
+}
+
+.dark-promo-header {
+  margin: 0 0 var(--spacing-4) 0;
+}
+
+.dark-promo-additional-content {
+  align-items: center;
+
+  img {
+    border-radius: 12px;
+  }
+}

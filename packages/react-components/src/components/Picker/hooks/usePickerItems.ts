@@ -51,7 +51,14 @@ export const usePickerItems = ({
 
   const handleOnFilter = (text: string) => setSearchPhrase(text);
 
-  const handleItemRemove = (itemKey: string) => handleSelect(itemKey);
+  const handleItemRemove = (itemKey: string) => {
+    if (type === 'single') {
+      handleSelect(itemKey);
+    } else {
+      setSelectedKeys(selectedKeys.filter((key) => key !== itemKey));
+      onSelect(selected?.filter(({ key }) => key !== itemKey) || null);
+    }
+  };
 
   const handleClear = () => {
     !isDataControlled && setSelectedKeys([]);
@@ -64,6 +71,7 @@ export const usePickerItems = ({
     handleOnFilter('');
 
     if (inputRef.current) {
+      // eslint-disable-next-line react-compiler/react-compiler
       inputRef.current.value = '';
     }
   };
@@ -130,9 +138,16 @@ export const usePickerItems = ({
         }
       } else {
         if (isDataControlled) {
-          const prev = selected?.map(getPickerListItemKey) || [];
-          const newIndexes = getNewIndexes(prev, key);
-          onSelect(options.filter(({ key }) => newIndexes.includes(key)));
+          if (selectedKeys.includes(key)) {
+            onSelect(
+              selected?.filter(({ key: selectedKey }) => selectedKey !== key) ||
+                null
+            );
+            setSelectedKeys((prev) => prev.filter((k) => k !== key));
+          } else {
+            onSelect([...(selected || []), item!]);
+            setSelectedKeys((prev) => [...prev, key]);
+          }
         } else {
           setSelectedKeys((prev) => {
             const newIndexes = getNewIndexes(prev, key);

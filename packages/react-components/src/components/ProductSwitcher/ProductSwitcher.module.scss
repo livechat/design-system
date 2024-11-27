@@ -4,7 +4,7 @@ $base-class: 'product-switcher';
 .#{$base-class} {
   gap: 16px;
   z-index: $stacking-context-level-popover;
-  border-radius: var(--radius-3);
+  border-radius: var(--radius-4);
   box-shadow: var(--shadow-pop-over);
   background-color: var(--popover-background);
   padding: var(--spacing-3);
@@ -29,6 +29,8 @@ $base-class: 'product-switcher';
     gap: var(--spacing-1);
     align-items: center;
     justify-content: center;
+    border-radius: var(--radius-2);
+    padding: 0 var(--spacing-2);
     height: 19px;
     text-decoration: none;
     color: var(--content-basic-secondary);
@@ -36,9 +38,15 @@ $base-class: 'product-switcher';
     &:hover {
       text-decoration: none;
     }
+
+    &:focus-visible {
+      outline: 0;
+      box-shadow: var(--focus-ring-inner);
+    }
   }
 
   &__tooltip {
     z-index: initial;
+    pointer-events: none;
   }
 }

@@ -27,11 +27,11 @@ $base-class: 'avatar';
     }
 
     &--unavailable {
-      background: var(--action-negative-default);
+      background: var(--surface-accent-emphasis-high-negative);
     }
 
     &--unknown {
-      background: var(--surface-moderate-default);
+      background: var(--action-neutral-default);
     }
 
     &--xxxsmall#{$circle-class},

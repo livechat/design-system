@@ -5,7 +5,7 @@ import {
   KnowledgeBaseMono,
   LiveChatMono,
   OpenWidgetMono,
-  TextAccounts,
+  TextLogo,
 } from '@livechat/design-system-icons';
 
 import { OpenWidgetLogoUri } from './openwidgetLogoUri';
@@ -70,8 +70,8 @@ export const ProductSwitcherProducts: ProductOption[] = [
     url: '',
   },
   {
-    id: 'hello',
-    name: 'Hello',
+    id: 'teamchat',
+    name: 'TeamChat',
     icon: HelloMono,
     backgroundColors: {
       main: 'var(--products-hello)',
@@ -82,8 +82,8 @@ export const ProductSwitcherProducts: ProductOption[] = [
   },
   {
     id: 'accounts',
-    name: 'Accounts',
-    icon: TextAccounts,
+    name: 'Text Accounts',
+    icon: TextLogo,
     backgroundColors: {
       main: 'var(--surface-locked-white)',
       second: 'var(--products-livechat)',
@@ -92,6 +92,7 @@ export const ProductSwitcherProducts: ProductOption[] = [
     iconColor: 'var(--content-locked-black)',
     withDivider: true,
     url: '',
+    borderColor: 'var(--border-basic-secondary)',
   },
 ];
 
@@ -121,7 +122,11 @@ export const labsRedirectData: ProductData[] = [
     redirectUri: 'https://app.staging.knowledgebase.ai',
     product: 'KnowledgeBase',
   },
-  { clientId: '', redirectUri: '', product: 'Hello' }, // TODO: add Hello configuration when available
+  {
+    clientId: '6193fd6d9771645e2dc6a4614c677314',
+    redirectUri: 'https://teamchat.labs.text.com/app',
+    product: 'TeamChat',
+  },
   {
     clientId: '0ab5cf9b99447db22109ff70003d4507',
     redirectUri: 'https://accounts.labs.livechat.com/panel',
@@ -137,7 +142,7 @@ export const stagingRedirectData: ProductData[] = [
   },
   {
     clientId: '82837eac-ff5e-45ca-bce1-00011acf925c',
-    redirectUri: 'https://app.helpdesk.com',
+    redirectUri: 'https://app.staging.helpdesk.com',
     product: 'HelpDesk',
   },
   {
@@ -155,7 +160,11 @@ export const stagingRedirectData: ProductData[] = [
     redirectUri: 'https://app.knowledgebase.ai',
     product: 'KnowledgeBase',
   },
-  { clientId: '', redirectUri: '', product: 'Hello' }, // TODO: add Hello configuration when available
+  {
+    clientId: '6c493637185258c1a937e68886906831',
+    redirectUri: 'https//teamchat.text.com/app',
+    product: 'TeamChat',
+  },
   {
     clientId: '2fd9f1923f2233763b8637f7d10a6fe6',
     redirectUri: 'https://accounts.staging.livechat.com/panel',
@@ -189,7 +198,11 @@ export const prodRedirectData: ProductData[] = [
     redirectUri: 'https://app.knowledgebase.ai',
     product: 'KnowledgeBase',
   },
-  { clientId: '', redirectUri: '', product: 'Hello' }, // TODO: add Hello configuration when available
+  {
+    clientId: '1ebfa721f575b1346b9c76bb8f86583c',
+    redirectUri: 'https://teamchat.text.com/app',
+    product: 'TeamChat',
+  },
   {
     clientId: '2fd9f1923f2233763b8637f7d10a6fe6',
     redirectUri: 'https://accounts.livechat.com/panel',

@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { VirtuosoProps } from 'react-virtuoso';
 import { vitest } from 'vitest';
 
@@ -21,13 +19,16 @@ vitest.mock('react-virtuoso', () => {
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   return { ...vitest.importActual('react-virtuoso'), Virtuoso };
 });
 
-// eslint-disable-next-line @typescript-eslint/no-empty-function
 window.HTMLElement.prototype.scrollIntoView = () => {};
 
 const defaultProps: IPickerListProps = {
+  isPositioned: false,
+  onItemRemove: noop,
+  searchDisabled: false,
   activeIndex: null,
   context: {
     x: 0,
@@ -93,6 +94,16 @@ describe('<PickerList> component', () => {
     });
 
     expect(getByText('Custom empty state')).toBeVisible();
+  });
+
+  it('should display nothing if no filter result and hideWhenEmpty is true', () => {
+    const { container } = renderComponent({
+      ...defaultProps,
+      options: [],
+      hideWhenEmpty: true,
+    });
+
+    expect(container.firstChild).toBeNull();
   });
 
   it('should display custom components as options', () => {

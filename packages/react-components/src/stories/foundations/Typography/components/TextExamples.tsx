@@ -12,6 +12,9 @@ export const TextExamples: React.FC = () => {
         <Text size={size} bold>
           Paragraph {size.toUpperCase()} with bold
         </Text>
+        <Text size={size} semiBold>
+          Paragraph {size.toUpperCase()} with semi-bold
+        </Text>
         <Text size={size} underline>
           Paragraph {size.toUpperCase()} with underline
         </Text>

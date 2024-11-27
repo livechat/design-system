@@ -69,8 +69,8 @@ $base-class: 'badge';
   }
 
   &--secondary {
-    background-color: var(--surface-accent-emphasis-high-info);
-    color: var(--content-locked-white);
+    background-color: var(--surface-invert-secondary);
+    color: var(--content-invert-primary);
 
     .#{$base-class}__dot {
       background-color: var(--content-locked-white);

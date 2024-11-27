@@ -42,6 +42,7 @@ export const Picker: React.FC<IPickerProps> = ({
   useDismissHookProps,
   useClickHookProps,
   virtuosoProps,
+  inputProps,
   ...props
 }) => {
   const [open, setOpen] = React.useState(openedOnInit);
@@ -93,6 +94,7 @@ export const Picker: React.FC<IPickerProps> = ({
     activeIndex,
     maxHeight,
     setPointer,
+    isPositioned,
   } = useFloatingPicker({
     openedOnInit,
     disabled,
@@ -142,6 +144,7 @@ export const Picker: React.FC<IPickerProps> = ({
           searchPhrase={searchPhrase}
           virtualItemRef={virtualItemRef}
           isTriggerFocused={triggerFocus}
+          inputProps={inputProps}
         />
       </PickerTrigger>
       <FloatingNode id={nodeId}>
@@ -158,6 +161,9 @@ export const Picker: React.FC<IPickerProps> = ({
               activeIndex={activeIndex}
               selectedKeys={selectedKeys}
               listElementsRef={listElementsRef}
+              searchDisabled={searchDisabled}
+              isPositioned={isPositioned}
+              onItemRemove={handleItemRemove}
               setPointer={setPointer}
               onSelect={handleSelect}
               getFloatingProps={getFloatingProps}

@@ -6,9 +6,11 @@ $transition: all var(--transition-duration-fast-2) ease-in-out;
 
   &__chevron {
     transition: $transition;
+    opacity: 0.6;
 
     &--active {
       transform: rotate(90deg);
+      opacity: 1;
     }
   }
 

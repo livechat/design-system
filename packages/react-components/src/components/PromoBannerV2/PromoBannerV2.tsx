@@ -3,12 +3,19 @@ import * as React from 'react';
 import { Close } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
-import { Button, ButtonKind } from '../Button';
+import { ThemeClassName } from '../../providers';
+import { Button, ButtonKind, ButtonProps } from '../Button';
 import { Icon } from '../Icon';
 
 import styles from './PromoBannerV2.module.scss';
 
 const baseClass = 'promo-banner-v2';
+
+type OldButtonProps = {
+  handleClick: () => void;
+  label: string;
+  kind?: ButtonKind;
+};
 
 export interface IPromoBannerV2Props {
   /**
@@ -22,19 +29,11 @@ export interface IPromoBannerV2Props {
   /**
    * Shows the primary CTA button
    */
-  primaryButton?: {
-    handleClick: () => void;
-    label: string;
-    kind?: ButtonKind;
-  };
+  primaryButton?: OldButtonProps & ButtonProps;
   /**
    * Shows the secondary CTA button
    */
-  secondaryButton?: {
-    handleClick: () => void;
-    label: string;
-    kind?: ButtonKind;
-  };
+  secondaryButton?: OldButtonProps & ButtonProps;
   /**
    * Set to true to display the banner vertically
    */
@@ -51,6 +50,11 @@ export interface IPromoBannerV2Props {
    * Event handler for close button press
    */
   onClose?: () => void;
+  /**
+   * Specify the kind of PromoBannerV2
+   * @default 'default'
+   */
+  kind?: 'default' | 'dark';
 }
 
 export const PromoBannerV2: React.FC<
@@ -65,8 +69,14 @@ export const PromoBannerV2: React.FC<
   contentClassName,
   additionalContentClassName,
   onClose,
+  kind = 'default',
 }) => {
-  const mergedClassNames = cx(styles[`main-wrapper`], className);
+  const mergedClassNames = cx(
+    styles['main-wrapper'],
+    styles[`${baseClass}--${kind}`],
+    kind === 'dark' && ThemeClassName.Dark,
+    className
+  );
 
   return (
     <div role="banner" className={mergedClassNames}>
@@ -85,6 +95,7 @@ export const PromoBannerV2: React.FC<
             <div className={styles[`${baseClass}__content__cta`]}>
               {primaryButton && (
                 <Button
+                  {...primaryButton}
                   kind={primaryButton?.kind || 'high-contrast'}
                   onClick={primaryButton.handleClick}
                 >
@@ -93,9 +104,13 @@ export const PromoBannerV2: React.FC<
               )}
               {secondaryButton && (
                 <Button
+                  {...secondaryButton}
                   kind={secondaryButton?.kind || 'text'}
                   onClick={secondaryButton.handleClick}
-                  className={styles[`${baseClass}__content__cta__secondary`]}
+                  className={cx(
+                    styles[`${baseClass}__content__cta__secondary`],
+                    secondaryButton.className
+                  )}
                 >
                   {secondaryButton.label}
                 </Button>

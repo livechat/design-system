@@ -18,6 +18,8 @@ import {
   NavigationTopBar,
   NavigationTopBarAlert,
   NavigationTopBarTitle,
+  ExpirationCounter,
+  MobileNavigation,
 } from './components';
 import {
   ExampleAppContent,
@@ -49,6 +51,7 @@ export default {
     NavigationTopBar,
     NavigationTopBarAlert,
     NavigationTopBarTitle,
+    ExpirationCounter,
   },
 };
 
@@ -86,9 +89,7 @@ export const Default = (): React.ReactElement => {
   const [activeItem, setActiveItem] = React.useState('archives');
   const [activeSubItem, setActiveSubItem] = React.useState(0);
   const [topBarVisible, setTopBarVisible] = React.useState(true);
-  const [visibleAlerts, setVisibleAlerts] = React.useState<boolean[]>(
-    Array(3).fill(false)
-  );
+  const [visibleAlert, setVisibleAlert] = React.useState<number | null>(null);
 
   const { products } = useProductSwitcher({
     env: 'labs',
@@ -114,6 +115,7 @@ export const Default = (): React.ReactElement => {
       livechat: { status: 'active' },
       chatbot: { status: 'expired' },
     },
+    mainProductId: 'livechat',
   });
 
   const getSubNav = () => {
@@ -134,7 +136,7 @@ export const Default = (): React.ReactElement => {
       navigation={
         <Navigation>
           <NavigationGroup scrollable>
-            <li className="lc-dark-theme product-switcher-height">
+            <li className="product-switcher-height">
               <ProductSwitcher
                 mainProductId="livechat"
                 productOptions={products}
@@ -156,6 +158,14 @@ export const Default = (): React.ReactElement => {
             ))}
           </NavigationGroup>
           <NavigationGroup>
+            <ExpirationCounter
+              id="expiration"
+              daysLeft={7}
+              onClick={(e, id) => {
+                e.preventDefault();
+                setActiveItem(id);
+              }}
+            />
             {navigationItems.slice(8, 11).map((item, index) => (
               <NavigationItem
                 key={item}
@@ -196,23 +206,42 @@ export const Default = (): React.ReactElement => {
           </NavigationGroup>
         </Navigation>
       }
+      mobileNavigation={
+        <MobileNavigation>
+          {navigationItems.slice(0, 5).map((item, index) => (
+            <NavigationItem
+              key={item}
+              id={item}
+              label={item.charAt(0).toUpperCase() + item.slice(1)}
+              icon={<Icon source={navigationItemsIcons[index]} />}
+              onClick={(e, id) => {
+                e.preventDefault();
+                setActiveItem(id);
+              }}
+              isActive={activeItem === item}
+              badge={getBadgeContent(item)}
+            />
+          ))}
+        </MobileNavigation>
+      }
       sideNavigation={getSubNav()}
       topBar={
-        topBarVisible || visibleAlerts.some((alert) => alert) ? (
+        topBarVisible ? (
           <ExampleTopBar
             topBarVisible={topBarVisible}
-            visibleAlerts={visibleAlerts}
-            setAlerts={setVisibleAlerts}
+            visibleAlert={visibleAlert}
+            setVisibleAlert={setVisibleAlert}
           />
         ) : null
       }
     >
       <ExampleAppContent
         showToggle={SectionsWithToggle.includes(activeItem)}
-        alerts={visibleAlerts}
-        setAlerts={setVisibleAlerts}
+        alerts={Array(4).fill(null)}
         topBarVisible={topBarVisible}
         setTopBarVisible={setTopBarVisible}
+        visibleAlert={visibleAlert}
+        setVisibleAlert={setVisibleAlert}
       />
     </AppFrame>
   );

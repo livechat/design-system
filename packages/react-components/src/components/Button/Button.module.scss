@@ -3,6 +3,7 @@
 @use './styles/size';
 @use './styles/loader';
 @use './styles/icon';
+@use './styles/animated-label';
 
 $base-class: 'btn';
 
@@ -109,5 +110,25 @@ $base-class: 'btn';
 
   &--text-lock-black {
     @include kind.text-lock-black();
+  }
+
+  &--animated-label {
+    @include animated-label.default($base-class);
+
+    &.#{$base-class}--xcompact {
+      @include animated-label.size($base-class, 4px, 8px, 12px);
+    }
+
+    &.#{$base-class}--compact {
+      @include animated-label.size($base-class, 6px, 12px, 16px);
+    }
+
+    &.#{$base-class}--medium {
+      @include animated-label.size($base-class, 8px, 12px, 16px);
+    }
+
+    &.#{$base-class}--large {
+      @include animated-label.size($base-class, 12px, 12px, 16px);
+    }
   }
 }

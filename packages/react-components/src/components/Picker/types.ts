@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { InputHTMLAttributes, ReactElement } from 'react';
 
 import {
   Placement,
@@ -11,13 +11,14 @@ import { VirtuosoProps } from 'react-virtuoso';
 import { Size } from '../../utils';
 import { ComponentCoreProps } from '../../utils/types';
 import { IconSource } from '../Icon';
+import { TagProps } from '../Tag';
 
 export interface IPickerListItem {
   key: string;
   name: string;
   customElement?: {
-    listItemBody: ReactElement;
-    selectedItemBody: ReactElement;
+    listItemBody?: ReactElement;
+    selectedItemBody?: ReactElement;
   };
   groupHeader?: boolean;
   disabled?: boolean;
@@ -25,6 +26,7 @@ export interface IPickerListItem {
   avatarSrc?: string;
   secondaryText?: string;
   showCheckbox?: boolean;
+  selectedTagOptions?: TagProps;
 }
 
 export type PickerType = 'single' | 'multi';
@@ -145,4 +147,8 @@ export interface IPickerProps extends ComponentCoreProps {
    * https://virtuoso.dev/virtuoso-api-reference/
    */
   virtuosoProps?: VirtuosoProps<IPickerListItem, unknown>;
+  /**
+   * Additional props for the input element
+   */
+  inputProps?: InputHTMLAttributes<HTMLInputElement> | Record<string, unknown>;
 }

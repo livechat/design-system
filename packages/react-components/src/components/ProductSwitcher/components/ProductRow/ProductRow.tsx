@@ -1,5 +1,4 @@
 import { FC, MouseEvent } from 'react';
-import * as React from 'react';
 
 import { Info } from '@livechat/design-system-icons';
 import cx from 'clsx';
@@ -14,9 +13,10 @@ import { ProductTile } from '../ProductTile/ProductTile';
 import styles from './ProductRow.module.scss';
 
 type IProps = {
-  onClick: (event: MouseEvent, id: ProductId, url: string) => void;
+  onClick: (event: MouseEvent, id: ProductId) => void;
   product: ProductOption;
   isActive?: boolean;
+  isDarkMode: boolean;
 };
 
 const baseClass = 'product-row';
@@ -27,6 +27,7 @@ export const ProductRow: FC<IProps> = ({
     icon,
     iconColor,
     backgroundColors,
+    borderColor,
     notificationCount,
     name,
     url,
@@ -38,6 +39,7 @@ export const ProductRow: FC<IProps> = ({
   },
   onClick,
   isActive = false,
+  isDarkMode,
 }) => {
   return (
     <>
@@ -46,7 +48,7 @@ export const ProductRow: FC<IProps> = ({
         href={url}
         target="_blank"
         aria-label={`Go to ${name} product`}
-        onClick={(event) => onClick(event, id, url)}
+        onClick={(event) => onClick(event, id)}
         className={cx(styles[baseClass], {
           [styles[`${baseClass}--expired`]]: expired,
         })}
@@ -57,6 +59,7 @@ export const ProductRow: FC<IProps> = ({
             iconColor={iconColor}
             expired={expired}
             backgroundColors={backgroundColors}
+            borderColor={borderColor}
             notificationCount={notificationCount}
             withBorder={isActive}
           />
@@ -64,6 +67,9 @@ export const ProductRow: FC<IProps> = ({
             {name}
             {expired && (
               <Tooltip
+                className={cx({
+                  [styles[`${baseClass}__tooltip-dark-shadow`]]: isDarkMode,
+                })}
                 triggerRenderer={
                   <Icon
                     source={Info}
@@ -72,12 +78,14 @@ export const ProductRow: FC<IProps> = ({
                 }
                 placement="right"
               >
-                Your licence is expired
+                Your licence is expired.
               </Tooltip>
             )}
             {typeof trialDaysLeft !== 'undefined' && (
               <Tooltip
-                className={styles[`${baseClass}__trial-tooltip`]}
+                className={cx(styles[`${baseClass}__trial-tooltip`], {
+                  [styles[`${baseClass}__tooltip-dark-shadow`]]: isDarkMode,
+                })}
                 triggerRenderer={
                   <Icon
                     source={Info}
@@ -86,8 +94,8 @@ export const ProductRow: FC<IProps> = ({
                 }
                 placement="right"
               >
-                {trialDaysLeft} trial {plural(trialDaysLeft, 'day', 'days')}{' '}
-                left in your trial. Time to upgrade
+                {trialDaysLeft} {plural(trialDaysLeft, 'day', 'days')} left in
+                your trial. Time to upgrade.
               </Tooltip>
             )}
             {nameAdornment}

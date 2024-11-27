@@ -16,6 +16,11 @@ $base-class: 'app-frame';
     padding-bottom: 6px;
     width: 100%;
     height: 100%;
+    overflow: hidden;
+
+    &--mobile {
+      padding: 0;
+    }
 
     &__top-bar {
       display: flex;
@@ -39,6 +44,10 @@ $base-class: 'app-frame';
       height: 100%;
       overflow: hidden;
 
+      &--mobile {
+        flex-direction: column;
+      }
+
       &__nav-bar-wrapper {
         flex-shrink: 0;
         transition: all var(--transition-duration-fast-2) ease-in-out;
@@ -60,6 +69,14 @@ $base-class: 'app-frame';
         height: 100%;
         overflow: hidden;
         color: var(--content-default);
+
+        &--mobile {
+          border-radius: 0;
+        }
+      }
+
+      &__mobile-top-bar {
+        width: 100%;
       }
     }
   }

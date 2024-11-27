@@ -53,7 +53,9 @@ export interface IDetailsCardProps {
 const baseClass = 'details-card';
 const NON_INTERACTIVE_TAGS = ['input', 'button', 'select', 'textarea', 'a'];
 
-export const DetailsCard: React.FC<IDetailsCardProps> = ({
+export const DetailsCard: React.FC<
+  React.PropsWithChildren<IDetailsCardProps>
+> = ({
   children,
   className,
   leftNode,

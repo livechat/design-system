@@ -1,0 +1,11 @@
+$base-class: 'mobile-navigation';
+
+.#{$base-class} {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-around;
+  background-color: var(--navbar-background);
+  padding: 6px;
+}

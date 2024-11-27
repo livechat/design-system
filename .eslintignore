@@ -3,6 +3,8 @@ dist
 scripts
 lib
 .env
+*.mdx
 *.log
 storybook-static
 vite.config.js
+!.storybook

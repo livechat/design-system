@@ -6,25 +6,209 @@ import * as Stories from './Tooltip.stories';
 
 <Title>Tooltip</Title>
 
-[Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+[Intro](#Intro) | [Usage](#Usage) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
 
 ## Intro <a id="Intro" />
 
-### Simple Tooltip
+The Tooltip component provides contextual information when users interact with elements in your application. It enhances user experience by offering additional insights without cluttering the interface.
+
+## Usage <a id="Usage" />
+
+- [Default Tooltip](#DefaultTooltip)
+- [Info Tooltip](#InfoTooltip)
+- [Interactive Tooltip](#InteractiveTooltip)
+- [Reports Tooltip](#ReportsTooltip)
+- [User Guide Tooltip](#UserGuideTooltip)
+
+
+### Default Tooltip <a id="DefaultTooltip" />
+
+A simple tooltip that appears on hover or focus.
+
+```tsx
+import { Tooltip, Button } from '@livechat/design-system-react-components';
+
+<Tooltip triggerRenderer={<Button>Trigger</Button>}>
+  Simple text content
+</Tooltip>;
+```
 
 <Canvas of={Stories.Default} />
 
-### Info Tooltip
+### Info Tooltip <a id="InfoTooltip" />
+
+A tooltip with additional header and close button.
+
+```tsx
+import {
+  Tooltip,
+  Button,
+  Info,
+} from '@livechat/design-system-react-components';
+
+<Tooltip triggerRenderer={<Button>Trigger</Button>}>
+  <Info
+    header="Header - concise and clear"
+    text="Tooltip content is used to explain the details of elements or features."
+    handleCloseAction={() => {}}
+  />
+</Tooltip>;
+```
 
 <Canvas of={Stories.TooltipInfo} />
 
-### Interactive Tooltip
+### Interactive Tooltip <a id="InteractiveTooltip" />
+
+A tooltip that can be interacted with.
+
+```tsx
+import {
+  Tooltip,
+  Interactive,
+  Button,
+} from '@livechat/design-system-react-components';
+
+<Tooltip triggerRenderer={<Button>Trigger</Button>}>
+  <Interactive
+    header="Header - concise and clear"
+    image={{
+      src: 'https://placehold.co/600x400',
+      alt: 'image',
+    }}
+    text="Tooltip content is used to explain the details of elements or features."
+    primaryButton={{
+      handleClick: () => {},
+      label: 'Primary Button',
+    }}
+    secondaryButton={{
+      handleClick: () => {},
+      label: 'Secondary',
+    }}
+  />
+</Tooltip>;
+```
 
 <Canvas of={Stories.TooltipInteractive} />
 
-### Reports Tooltip
+### Reports Tooltip <a id="ReportsTooltip" />
+
+A tooltip that displays a report view.
+
+```tsx
+import {
+  Tooltip,
+  Reports,
+  Button,
+} from '@livechat/design-system-react-components';
+
+<Tooltip triggerRenderer={<Button>Trigger</Button>}>
+  <Reports title="Date or Series" description="Additional information">
+    <div className="example-class">Reports component content</div>
+  </Reports>
+  <Reports title="Date or Series" description="Additional information">
+    <div className="example-class">Reports component content</div>
+  </Reports>
+  <Reports title="Date or Series" description="Additional information">
+    <div className="example-class">Reports component content</div>
+  </Reports>
+</Tooltip>
+```
 
 <Canvas of={Stories.TooltipReports} />
+
+### User Guide Tooltip <a id="UserGuideTooltip" />
+
+A simple user guide that can be used to guide users through a series of steps.
+
+```tsx
+import {
+  UserGuide,
+  Button,
+} from '@livechat/design-system-react-components';
+
+const reducer = (
+    state: { isVisible: boolean; reference: string },
+  action: { type: string }
+) => {
+  if (action.type === 'reference1') {
+    return {
+      ...state,
+      reference: 'reference1',
+    };
+  }
+  if (action.type === 'reference2') {
+    return {
+      ...state,
+      reference: 'reference2',
+    };
+  }
+  if (action.type === 'reference3') {
+    return {
+      ...state,
+      reference: 'reference3',
+    };
+  }
+  if (action.type === 'isVisible') {
+    return {
+      reference: 'reference1',
+      isVisible: !state.isVisible,
+    };
+  }
+
+  return state;
+};
+
+const [state, dispatch] = React.useReducer(reducer, {
+  reference: 'reference1',
+  isVisible: false,
+});
+
+return (
+  <div className="simple-user-guide-container">
+    <Button onClick={() => dispatch({ type: 'isVisible' })}>
+      Start guide
+    </Button>
+    <div className="guide-container">
+      <div
+        onClick={() => dispatch({ type: 'reference1' })}
+        id="reference1"
+        className="guide-reference"
+      >
+        Example reference 1
+      </div>
+      <div
+        onClick={() => dispatch({ type: 'reference2' })}
+        id="reference2"
+        className="guide-reference"
+      >
+        Example reference 2
+      </div>
+
+      <div
+        onClick={() => dispatch({ type: 'reference3' })}
+        id="reference3"
+        className="guide-reference"
+      >
+        Example reference 3
+      </div>
+
+      <UserGuide
+        isVisible={state.isVisible}
+        parentElementName={`#${state.reference}`}
+        zIndex={1000}
+        shouldSlide
+      >
+        {state.reference === 'reference1' && <Button onClick={() => dispatch({ type: 'reference2' })}>Next</Button>}
+        {state.reference === 'reference2' && <Button onClick={() => dispatch({ type: 'reference3' })}>Next</Button>}
+        {state.reference === 'reference3' && <Button onClick={() => dispatch({ type: 'isVisible' })}>Finish</Button>}
+      </UserGuide>
+    </div>
+  </div>
+);
+
+```
+
+<Canvas of={Stories.SimpleUserGuide} />
 
 ## Component API <a id="ComponentAPI" />
 

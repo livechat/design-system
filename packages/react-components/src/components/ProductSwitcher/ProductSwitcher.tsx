@@ -24,7 +24,6 @@ import { Text } from '../Typography';
 
 import { ProductRow } from './components/ProductRow/ProductRow';
 import { ProductTile } from './components/ProductTile/ProductTile';
-import { openOrFocusTab } from './helpers';
 import { ProductId, ProductSwitcherProps } from './types';
 
 import styles from './ProductSwitcher.module.scss';
@@ -36,6 +35,7 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
   mainProductId,
   openedOnInit = false,
   isVisible,
+  isDarkMode = true,
   onOpen,
   onClose,
   onSelect,
@@ -102,10 +102,9 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
     return null;
   }
 
-  const handleClick = (event: MouseEvent, id: ProductId, url: string) => {
-    event.preventDefault();
-    if (id !== mainProductId) {
-      openOrFocusTab(url, id);
+  const handleClick = (event: MouseEvent, id: ProductId) => {
+    if (id === mainProductId) {
+      event.preventDefault();
     }
     setIsOpen(false);
     onSelect?.(id);
@@ -126,7 +125,8 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
           offsetCrossAxis={2}
           arrowOffsetY={2}
           offsetMainAxis={10}
-          className={styles[`${baseClass}__tooltip`]}
+          hoverOnDelay={400}
+          className={cx(styles[`${baseClass}__tooltip`])}
           placement="right"
           floatingStrategy="fixed"
           kind="invert"
@@ -139,6 +139,7 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
               notificationCount={combinedNotificationCount}
             />
           }
+          closeOnTriggerBlur
         >
           Switch product
         </Tooltip>
@@ -151,12 +152,16 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
         >
           {isMounted && (
             <div
-              className={cx('lc-dark-theme', styles[baseClass])}
+              className={cx(
+                isDarkMode ? 'lc-dark-theme' : 'lc-light-theme',
+                styles[baseClass]
+              )}
               style={transitionStyles}
             >
               <div className={styles[`${baseClass}__content`]}>
                 {productOptions.map((product) => (
                   <ProductRow
+                    isDarkMode={isDarkMode}
                     key={product.id}
                     isActive={product.id === mainProductId}
                     product={product}
@@ -175,7 +180,7 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
                   <Icon
                     size="xlarge"
                     source={TextLogoFull}
-                    customColor="var(--content-locked-white)"
+                    customColor="var(--content-basic-primary)"
                   />
                 </a>
               </div>

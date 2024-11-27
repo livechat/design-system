@@ -17,6 +17,7 @@ import {
   SSOProductIdMap,
   ProductOption,
   ProductSubscription,
+  Env,
 } from './types';
 
 describe('helpers', () => {
@@ -26,10 +27,11 @@ describe('helpers', () => {
         'client123',
         'https://redirect.com',
         'org123',
+        'livechat',
         'prod'
       );
       expect(url).toBe(
-        'https://accounts.livechat.com?client_id=client123&redirect_uri=https%3A%2F%2Fredirect.com&response_type=token&organization_id=org123'
+        'https://accounts.livechat.com?client_id=client123&redirect_uri=https%3A%2F%2Fredirect.com&response_type=token&organization_id=org123&utm_source=my.livechatinc.com&utm_medium=referral&utm_campaign=productswitcher'
       );
     });
 
@@ -38,10 +40,11 @@ describe('helpers', () => {
         'client123',
         'https://redirect.com',
         'org123',
+        'helpdesk',
         'staging'
       );
       expect(url).toBe(
-        'https://accounts.staging.livechat.com?client_id=client123&redirect_uri=https%3A%2F%2Fredirect.com&response_type=token&organization_id=org123'
+        'https://accounts.staging.livechat.com?client_id=client123&redirect_uri=https%3A%2F%2Fredirect.com&response_type=token&organization_id=org123&utm_source=app.staging.helpdesk.com&utm_medium=referral&utm_campaign=productswitcher'
       );
     });
   });
@@ -103,12 +106,13 @@ describe('helpers', () => {
         redirectData,
         subscriptions,
         organizationId,
+        'accounts',
         'staging'
       );
       expect(result.trialDaysLeft).toBe(5);
       expect(result.expired).toBe(false);
       expect(result.url).toBe(
-        'https://accounts.staging.livechat.com?client_id=client1&redirect_uri=https%3A%2F%2Fredirect1.com&response_type=token&organization_id=org1'
+        'https://accounts.staging.livechat.com?client_id=client1&redirect_uri=https%3A%2F%2Fredirect1.com&response_type=token&organization_id=org1&utm_source=accounts.staging.livechat.com/panel&utm_medium=referral&utm_campaign=productswitcher'
       );
     });
 
@@ -123,7 +127,9 @@ describe('helpers', () => {
           product as ProductOption,
           redirectData,
           subscriptions,
-          organizationId
+          organizationId,
+          'chatbot',
+          'test' as Env
         );
       }).toThrowError('Product data for unknownProduct not found');
     });

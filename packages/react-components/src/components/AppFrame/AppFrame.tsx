@@ -2,9 +2,10 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
+import { useAnimations, useMobileViewDetector } from '../../hooks';
 import { AppFrameProvider, useAppFrame } from '../../providers';
 
-import { useAppFrameAnimations } from './hooks/useAppFrameAnimations';
+import { MOBILE_BREAKPOINT } from './constants';
 import { IAppFrameProps } from './types';
 
 import styles from './AppFrame.module.scss';
@@ -17,6 +18,7 @@ const Frame = (props: IAppFrameProps) => {
     children,
     className,
     navigation,
+    mobileNavigation,
     sideNavigation,
     topBar,
     topBarClassName,
@@ -24,36 +26,52 @@ const Frame = (props: IAppFrameProps) => {
     contentClassName,
   } = props;
   const mergedClassNames = cx(styles[baseClass], className);
-  const { isSideNavigationVisible } = useAppFrame();
+  const {
+    isSideNavigationVisible,
+    setIsMobileViewEnabled,
+    isMobileViewEnabled,
+  } = useAppFrame();
   const sideNavWrapperRef = React.useRef<HTMLDivElement>(null);
-  const { isOpen, isMounted } = useAppFrameAnimations({
+  const { isOpen, isMounted } = useAnimations({
     isVisible: isSideNavigationVisible,
     elementRef: sideNavWrapperRef,
   });
+  const { isMobile, handleResizeRef } = useMobileViewDetector({
+    mobileBreakpoint: MOBILE_BREAKPOINT,
+  });
+
+  React.useEffect(() => {
+    setIsMobileViewEnabled(isMobile);
+  }, [isMobile]);
 
   return (
-    <div className={mergedClassNames}>
-      {navigation}
-      <div className={styles[pageContainerClass]}>
-        <div
-          className={cx(
-            styles[`${pageContainerClass}__top-bar`],
-            {
-              [styles[`${pageContainerClass}__top-bar--visible`]]: topBar,
-            },
-            'lc-dark-theme',
-            topBarClassName
-          )}
-        >
-          {topBar}
-        </div>
+    <div className={mergedClassNames} ref={handleResizeRef}>
+      {!isMobileViewEnabled && navigation}
+      <div
+        className={cx(styles[pageContainerClass], {
+          [styles[`${pageContainerClass}--mobile`]]: isMobileViewEnabled,
+        })}
+      >
+        {!isMobileViewEnabled && (
+          <div
+            className={cx(
+              styles[`${pageContainerClass}__top-bar`],
+              {
+                [styles[`${pageContainerClass}__top-bar--visible`]]: topBar,
+              },
+              topBarClassName
+            )}
+          >
+            {topBar}
+          </div>
+        )}
         <div
           className={cx(styles[`${pageContainerClass}__content-wrapper`], {
-            [styles[`${pageContainerClass}__content-wrapper--with-top-bar`]]:
-              topBar,
+            [styles[`${pageContainerClass}__content-wrapper--mobile`]]:
+              isMobileViewEnabled,
           })}
         >
-          {sideNavigation && (
+          {!isMobileViewEnabled && sideNavigation && (
             <div
               ref={sideNavWrapperRef}
               className={cx(
@@ -72,22 +90,41 @@ const Frame = (props: IAppFrameProps) => {
               {isMounted && sideNavigation}
             </div>
           )}
+          {isMobileViewEnabled && (
+            <div
+              className={
+                styles[`${pageContainerClass}__content-wrapper__mobile-top-bar`]
+              }
+            >
+              {topBar}
+            </div>
+          )}
           <div
             className={cx(
               styles[`${pageContainerClass}__content-wrapper__content`],
-              contentClassName
+              contentClassName,
+              {
+                [styles[
+                  `${pageContainerClass}__content-wrapper__content--mobile`
+                ]]: isMobileViewEnabled,
+              }
             )}
           >
             {children}
           </div>
+          {isMobileViewEnabled && mobileNavigation}
         </div>
       </div>
     </div>
   );
 };
 
-export const AppFrame: React.FC<IAppFrameProps> = (props) => (
-  <AppFrameProvider>
-    <Frame {...props} />
-  </AppFrameProvider>
-);
+export const AppFrame: React.FC<IAppFrameProps> = (props) => {
+  const { isSideNavigationVisible, ...restProps } = props;
+
+  return (
+    <AppFrameProvider isSideNavigationVisible={isSideNavigationVisible}>
+      <Frame {...restProps} />
+    </AppFrameProvider>
+  );
+};

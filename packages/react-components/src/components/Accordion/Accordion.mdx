@@ -1,0 +1,59 @@
+import { Canvas, ArgTypes, Meta, Title } from '@storybook/blocks';
+
+import * as AccordionStories from './Accordion.stories';
+
+<Meta of={AccordionStories} />
+
+<Title>Accordion</Title>
+
+[Intro](#Intro) | [Default Accordion](#Default) | [Promo Accordion](#Promo) | [Component API](#ComponentAPI)
+
+## Intro <a id="Intro" />
+
+Accordion is a simple component for building expandable tiles that display provided content when opened.
+
+### Default Accordion <a id="Default" />
+
+<Canvas of={AccordionStories.Examples} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+import { Accordion } from '@livechat/design-system-react-components';
+
+  <Accordion
+    label={{
+      closed: (<div>Label for closed accordion</div>),
+      open: (<div>Label for open accordion</div>),
+    }}
+    multilineElement={<div>Multiline element</div>}
+    footer={<div>Footer element</div>}
+  >
+  Default accordion content
+</Accordion>
+```
+
+### Promo Accordion <a id="Promo" />
+
+<Canvas of={AccordionStories.AccordionPromoExamples} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+import { AccordionPromo } from '@livechat/design-system-react-components';
+
+  <AccordionPromo
+    label={{
+      closed: (<div>Label for closed accordion</div>),
+      open: (<div>Label for open accordion</div>),
+    }}
+    multilineElement={<div>Multiline element</div>}
+    footer={<div>Footer element</div>}
+  >
+  Default accordion content
+</AccordionPromo>
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={AccordionStories.Default} sort="requiredFirst" />

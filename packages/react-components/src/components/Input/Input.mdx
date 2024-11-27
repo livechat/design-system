@@ -1,18 +1,48 @@
-import { Canvas, ArgTypes, Meta, Title } from '@storybook/blocks';
+import { Canvas, ArgTypes, Meta, Title, Unstyled } from '@storybook/blocks';
+
+import { Alert } from '../Alert';
 
 import * as InputStories from './Input.stories';
+import { linkTo } from '@storybook/addon-links';
 
 <Meta of={InputStories} />
 
 <Title>Input</Title>
 
-[Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+ [Intro](#Intro) | [Usage](#Usage) | [Example implementation](#ExampleImplementation) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+## Intro <a id="Intro" />
+
+<Unstyled>
+  <Alert
+    kind="info"
+    primaryButton={{
+      label: 'Browse FormField',
+      handleClick: linkTo('Forms/FormField'),
+    }}
+  >
+    If you want to use the Input component with <b>field validation</b> and other
+    additional features, you should use the <b>FormField</b> component.
+  </Alert>
+</Unstyled>
+
+The Input component is a fundamental building block for creating interactive
+forms in web applications. It provides a customizable text input field with
+various options for styling and behavior.
+
+## Usage <a id="Usage" />
+
+The Input component can be used as a standalone component or wrapped inside a
+<a href="/?path=/docs/forms-formfield--docs">FormField</a>. FormField is a wrapper component that provides a label, a validation message container and an optional helper text.
+
+### Example implementation <a id="ExampleImplementation" />
 
 <Canvas of={InputStories.Default} sourceState="none" />
 
-#### Example implementation
 
 ```jsx
+import { Input } from '@livechat/design-system-react-components';
+
 <Input inputSize="large" placeholder="Placeholder text" onChange={(e) => {}} />
 ```
 
@@ -28,6 +58,7 @@ introduces. These are designed to complement and enhance the standard input
 behavior:
 
 <ArgTypes of={InputStories.Default} sort="requiredFirst" />
+
 
 ## Content Spec <a id="ContentSpec" />
 

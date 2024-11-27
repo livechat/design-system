@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { FC, MouseEvent, KeyboardEvent, PropsWithChildren } from 'react';
 
 import cx from 'clsx';
 
@@ -8,7 +8,7 @@ import styles from './ActionCard.module.scss';
 
 const baseClass = 'action-card';
 
-export const ActionCard: React.FC<ActionCardProps> = ({
+export const ActionCard: FC<PropsWithChildren<ActionCardProps>> = ({
   className,
   children,
   secondColumn,
@@ -18,7 +18,7 @@ export const ActionCard: React.FC<ActionCardProps> = ({
 }) => {
   const mergedClassNames = cx(styles[baseClass], className);
 
-  const handleOnClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleOnClick = (e: MouseEvent<HTMLDivElement>) => {
     if (e.currentTarget !== document.activeElement) {
       return;
     }
@@ -26,7 +26,7 @@ export const ActionCard: React.FC<ActionCardProps> = ({
     onClick?.();
   };
 
-  const handleOnKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+  const handleOnKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.currentTarget !== document.activeElement) {
       return;
     }

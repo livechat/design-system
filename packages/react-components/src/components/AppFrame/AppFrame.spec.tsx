@@ -1,9 +1,8 @@
-import * as React from 'react';
-
 import { render, vi } from 'test-utils';
 
 import { AppFrame } from './AppFrame';
 import {
+  MobileNavigation,
   Navigation,
   NavigationItem,
   SideNavigation,
@@ -25,10 +24,19 @@ const defaultProps = {
         id="item-1"
         label="Item 1"
         icon={<div>Icon</div>}
-        url="#"
         onClick={vi.fn()}
       />
     </Navigation>
+  ),
+  mobileNavigation: (
+    <MobileNavigation data-testid="mobile-navigation">
+      <NavigationItem
+        id="item-1"
+        label="Item 1"
+        icon={<div>Icon</div>}
+        onClick={vi.fn()}
+      />
+    </MobileNavigation>
   ),
 };
 
@@ -46,10 +54,11 @@ describe('<AppFrame> component', () => {
     expect(container.firstChild).toHaveClass('custom-class');
   });
 
-  it('should render with given navigation', () => {
-    const { getByTestId } = renderComponent(defaultProps);
+  it('should render navigation and not render mobile navigation', () => {
+    const { getByTestId, queryByTestId } = renderComponent(defaultProps);
 
     expect(getByTestId('navigation')).toBeInTheDocument();
+    expect(queryByTestId('mobile-navigation')).not.toBeInTheDocument();
   });
 
   it('should render with top bar if provided', () => {

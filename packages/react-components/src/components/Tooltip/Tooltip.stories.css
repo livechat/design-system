@@ -19,6 +19,33 @@
   height: 800px;
 }
 
+.simple-user-guide-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.guide-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.guide-reference {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--border-default);
+  border-radius: 4px;
+  background-color: var(--surface-basic-default);
+  font-size: 18px;
+  padding: 10px;
+}
+
 .tooltip-preview-reports {
   display: flex;
   align-items: center;
@@ -32,7 +59,7 @@
 
 .tooltip-story {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   margin: auto;
   width: 700px;

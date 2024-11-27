@@ -4,14 +4,14 @@ import { Text } from '../../Typography';
 import styles from '../Tooltip.module.scss';
 
 export interface IReportsProps {
-  title: string;
-  description?: string;
+  title: React.ReactNode;
+  description?: React.ReactNode;
   children: React.ReactNode;
 }
 
 const baseClass = 'reports-tooltip';
 
-export const Reports: React.FC<IReportsProps> = ({
+export const Reports: React.FC<React.PropsWithChildren<IReportsProps>> = ({
   title,
   description,
   children,

@@ -22,6 +22,8 @@ interface IProps extends React.HTMLAttributes<HTMLElement> {
   uppercase?: boolean;
   /** Optional prop to set the bold */
   bold?: boolean;
+  /** Optional prop to set the semi-bold */
+  semiBold?: boolean;
   /** Optional prop to set the underline */
   underline?: boolean;
   /** Optional prop to set the strike */
@@ -40,6 +42,7 @@ export const Text: React.FC<React.PropsWithChildren<IProps>> = ({
   caps = false,
   uppercase = false,
   bold = false,
+  semiBold = false,
   underline = false,
   strike = false,
   children,
@@ -57,7 +60,8 @@ export const Text: React.FC<React.PropsWithChildren<IProps>> = ({
       className: cx(
         {
           [styles[`${baseClassPrefix}-${size}`]]: true,
-          [styles[`${baseClassPrefix}--bold`]]: bold,
+          [styles[`${baseClassPrefix}--semi-bold`]]: semiBold && !bold,
+          [styles[`${baseClassPrefix}--bold`]]: bold && !semiBold,
           [styles[`${baseClassPrefix}--strike`]]: strike,
           [styles[`${baseClassPrefix}--underline`]]: underline,
           [styles[`${baseClassPrefix}--uppercase`]]: uppercase || caps,

@@ -1,0 +1,39 @@
+.accordion-content-container {
+  border-left: 1px dashed var(--border-basic-primary);
+  padding-left: var(--spacing-6);
+}
+
+.rule-picker {
+  margin-bottom: var(--spacing-4);
+  max-width: 50%;
+}
+
+.label {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 5px;
+  align-items: center;
+}
+
+.multiline {
+  border-radius: var(--radius-3);
+  background-color: var(--surface-tertiary-default);
+  padding: var(--spacing-3);
+  white-space: pre-wrap;
+
+  p {
+    margin-top: 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.accordion-promo-closed-heading {
+  margin-bottom: 4px;
+}
+
+.accordion-promo-closed-description {
+  color: var(--content-basic-secondary);
+}

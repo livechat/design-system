@@ -2,6 +2,8 @@ name: Update PR Description
 on:
   pull_request:
     types: [opened]
+    branches:
+      - main
 jobs:
   update-description:
     runs-on: ubuntu-latest

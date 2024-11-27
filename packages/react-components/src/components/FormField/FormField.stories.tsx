@@ -1,18 +1,14 @@
-import * as React from 'react';
-
-import { Search } from '@livechat/design-system-icons';
+import { Info } from '@livechat/design-system-icons';
 import { Meta, StoryFn } from '@storybook/react';
 
-import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Icon } from '../Icon';
-import { Input } from '../Input';
+import { Input, InputProps } from '../Input';
 
 import { FormField as FormFieldComponent, FormFieldProps } from './FormField';
 
 export default {
   title: 'Forms/FormField',
   component: FormFieldComponent,
-  tags: ['autodocs'],
   argTypes: {
     children: {
       control: false,
@@ -29,17 +25,18 @@ export default {
   },
 } as Meta<typeof FormFieldComponent>;
 
-const ExampleIcon = () => <Icon source={Search} />;
-const ExampleInput = () => <Input placeholder="Placeholder text" />;
-const LabelText = 'Example label text';
-const DescriptionText = 'Example description text';
+const ExampleIcon = () => <Icon source={Info} />;
+const ExampleInput = ({ ...args }: InputProps) => (
+  <Input placeholder="Placeholder text" {...args} />
+);
+const LabelText = 'Email';
+const DescriptionText = 'Enter your email address';
+const PlaceholderText = 'e.g., john@example.com';
 
 const StoryTemplate: StoryFn<FormFieldProps> = (args: FormFieldProps) => (
   <div>
     <FormFieldComponent {...args}>
-      {args.children || (
-        <Input error={!!args.error} placeholder="Placeholder text" />
-      )}
+      {args.children || <Input placeholder={PlaceholderText} />}
     </FormFieldComponent>
   </div>
 );
@@ -47,66 +44,51 @@ const StoryTemplate: StoryFn<FormFieldProps> = (args: FormFieldProps) => (
 export const Default = StoryTemplate.bind({});
 Default.args = {};
 
-export const Examples = (): React.ReactElement => {
-  return (
-    <div>
-      <StoryDescriptor title="With Label">
-        <FormFieldComponent labelText={LabelText} description={DescriptionText}>
-          <ExampleInput />
-        </FormFieldComponent>
-      </StoryDescriptor>
-      <StoryDescriptor title="With Inline Label">
-        <FormFieldComponent
-          labelText={LabelText}
-          inline
-          description={DescriptionText}
-        >
-          <ExampleInput />
-        </FormFieldComponent>
-      </StoryDescriptor>
-      <StoryDescriptor title="With Label and Right node">
-        <FormFieldComponent
-          labelText={LabelText}
-          labelRightNode={<ExampleIcon />}
-          description={DescriptionText}
-        >
-          <ExampleInput />
-        </FormFieldComponent>
-      </StoryDescriptor>
-      <StoryDescriptor title="With Inline Label and Right node">
-        <FormFieldComponent
-          labelText={LabelText}
-          labelRightNode={<ExampleIcon />}
-          inline
-          description={DescriptionText}
-        >
-          <ExampleInput />
-        </FormFieldComponent>
-      </StoryDescriptor>
-      <StoryDescriptor title="With Label and Label Adornment">
-        <FormFieldComponent
-          labelText={LabelText}
-          labelAdornment={'(Optional)'}
-          description={DescriptionText}
-        >
-          <ExampleInput />
-        </FormFieldComponent>
-      </StoryDescriptor>
-      <StoryDescriptor title="With Inline Label and Label Adornment">
-        <FormFieldComponent
-          labelText={LabelText}
-          labelAdornment={'(Optional)'}
-          inline
-          description={DescriptionText}
-        >
-          <ExampleInput />
-        </FormFieldComponent>
-      </StoryDescriptor>
-    </div>
-  );
-};
+export const WithLabel: StoryFn<FormFieldProps> = () => (
+  <FormFieldComponent labelText={LabelText}>
+    <ExampleInput placeholder={PlaceholderText} />
+  </FormFieldComponent>
+);
 
-export const TextFieldWithError = StoryTemplate.bind({});
-TextFieldWithError.args = {
-  error: 'Error text',
-};
+export const WithInlineLabel: StoryFn<FormFieldProps> = () => (
+  <FormFieldComponent labelText={LabelText} inline>
+    <ExampleInput />
+  </FormFieldComponent>
+);
+
+export const WithLabelDescriptionAndRightNode: StoryFn<FormFieldProps> = () => (
+  <FormFieldComponent
+    labelText={LabelText}
+    labelRightNode={<ExampleIcon />}
+    description={DescriptionText}
+  >
+    <ExampleInput placeholder={PlaceholderText} />
+  </FormFieldComponent>
+);
+
+export const WithLabelAndLabelAdornment: StoryFn<FormFieldProps> = () => (
+  <FormFieldComponent
+    labelText="Username"
+    labelAdornment={'(Optional)'}
+    description="Username must be unique"
+  >
+    <ExampleInput />
+  </FormFieldComponent>
+);
+
+export const WithInlineLabelAndLabelAdornment: StoryFn<FormFieldProps> = () => (
+  <FormFieldComponent
+    labelText="Username"
+    labelAdornment={'(Optional)'}
+    description="Username must be unique"
+    inline
+  >
+    <ExampleInput />
+  </FormFieldComponent>
+);
+
+export const TextFieldWithError: StoryFn<FormFieldProps> = () => (
+  <FormFieldComponent labelText="Username" error="Username must be unique">
+    <ExampleInput error />
+  </FormFieldComponent>
+);

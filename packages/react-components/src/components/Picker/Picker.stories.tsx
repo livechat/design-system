@@ -3,12 +3,14 @@ import * as React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import { customHeightForChromatic } from '../../utils/chromatic-story-helpers';
 import noop from '../../utils/noop';
 
 import {
   DEFAULT_PICKER_OPTIONS,
   DEFAULT_EXTENDED_OPTIONS,
   DEFAULT_MORE_PICKER_OPTIONS,
+  CUSTOM_ITEMS,
 } from './constants';
 import { Picker } from './Picker';
 import { IPickerListItem, IPickerProps } from './types';
@@ -27,9 +29,15 @@ export default {
     },
     onSelect: { action: 'changed' },
   },
+  parameters: {
+    chromatic: { delay: 300 },
+  },
 } as Meta<typeof Picker>;
 
-const commonWidth: React.CSSProperties = { width: 300 };
+const commonWidth: React.CSSProperties = {
+  width: 300,
+  height: customHeightForChromatic('1000px'),
+};
 
 const PickerComponent = (args: IPickerProps) => {
   const [selectedItems, setSelectedItems] = React.useState<
@@ -141,12 +149,18 @@ export const PickerWithMoreOptions = (): React.ReactElement => (
   </div>
 );
 
-const CustomPickerOption: React.FC<React.PropsWithChildren<any>> = ({
+const CustomPickerOption: React.FC<React.PropsWithChildren> = ({
   children,
 }) => <div className="custom-picker-option">{children}</div>;
 
 export const PickerWithOptionsAsCustomElements = (): React.ReactElement => (
-  <div style={{ ...commonWidth, marginBottom: 320 }}>
+  <div
+    style={{
+      ...commonWidth,
+      marginBottom: 320,
+      height: customHeightForChromatic('1000px'),
+    }}
+  >
     <StoryDescriptor title="Single select">
       <PickerComponent
         openedOnInit
@@ -273,6 +287,35 @@ export const PickerWithOptionsAsCustomElements = (): React.ReactElement => (
         ]}
         type="multi"
         onSelect={noop}
+      />
+    </StoryDescriptor>
+  </div>
+);
+
+export const PickerWithCustomSelectedItem = (): React.ReactElement => (
+  <div style={{ ...commonWidth, marginBottom: 320 }}>
+    <StoryDescriptor title="Multi select + Custom option selected">
+      <PickerComponent
+        options={DEFAULT_PICKER_OPTIONS}
+        onSelect={noop}
+        type="multi"
+        selected={[
+          { key: 'two', name: 'Option two' },
+          { key: 'custom-option', name: 'Custom option' },
+        ]}
+      />
+    </StoryDescriptor>
+  </div>
+);
+
+export const MultiPickerWithCustomSelectedTagProps = (): React.ReactElement => (
+  <div style={{ ...commonWidth, marginBottom: 320 }}>
+    <StoryDescriptor title="Multi select + Custom option selected">
+      <PickerComponent
+        options={CUSTOM_ITEMS}
+        selected={CUSTOM_ITEMS}
+        onSelect={noop}
+        type="multi"
       />
     </StoryDescriptor>
   </div>

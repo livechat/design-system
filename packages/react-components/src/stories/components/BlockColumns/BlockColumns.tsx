@@ -14,9 +14,9 @@ interface IDosAndDontsProps {
 
 const baseClass = 'block-columns';
 
-export const BlockColumnsContainer: React.FC = ({ children }) => (
-  <div className={styles['block-columns-container']}>{children}</div>
-);
+export const BlockColumnsContainer: React.FC<React.PropsWithChildren> = ({
+  children,
+}) => <div className={styles['block-columns-container']}>{children}</div>;
 
 export const BlockColumns: React.FC<
   React.PropsWithChildren<IDosAndDontsProps>

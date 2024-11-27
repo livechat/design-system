@@ -3,9 +3,13 @@ import * as React from 'react';
 import { Close } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
+import { useAnimations } from '../../../../hooks';
+import { resizeCallback } from '../../../../hooks/helpers';
+import { NODE } from '../../../../hooks/types';
+import { useAppFrame } from '../../../../providers';
 import { Button } from '../../../Button';
 import { Icon } from '../../../Icon';
-import { useAppFrameAnimations } from '../../hooks/useAppFrameAnimations';
+import { ALERTS_MOBILE_BREAKPOINT } from '../../constants';
 
 import {
   INavigationTopBarProps,
@@ -14,6 +18,7 @@ import {
 } from './types';
 
 import styles from './NavigationTopBar.module.scss';
+
 const baseClass = 'navigation-top-bar';
 const alertClass = `${baseClass}__alert`;
 
@@ -31,10 +36,12 @@ export const NavigationTopBar = ({
   className,
   additionalNodes,
 }: INavigationTopBarProps): React.ReactElement => {
+  const { isMobileViewEnabled } = useAppFrame();
+
   return (
     <div className={cx(styles[baseClass], className)}>
-      {children}
-      {additionalNodes}
+      <div className={styles[`${baseClass}__alerts-wrapper`]}>{children}</div>
+      {!isMobileViewEnabled && additionalNodes}
     </div>
   );
 };
@@ -89,16 +96,24 @@ export const NavigationTopBarAlert: React.FC<ITopBarAlertProps> = ({
   secondaryCta,
   isVisible = true,
 }) => {
+  const [isMobile, setIsMobile] = React.useState<boolean>(false);
   const alertRef = React.useRef<HTMLDivElement>(null);
-  const { isMounted, isOpen } = useAppFrameAnimations({
+  const { isMounted, isOpen } = useAnimations({
     isVisible,
     elementRef: alertRef,
+    includeSleepWakeScenario: true,
   });
-
-  const isMobile = window.matchMedia('(max-width: 768px)').matches;
-
-  const secondaryCtaKind = kind === 'warning' ? 'link-inverted' : 'text';
-  const primaryCtaKind = kind === 'warning' ? 'secondary' : 'high-contrast';
+  const handleResizeRef = React.useCallback(
+    (node: NODE) =>
+      resizeCallback(node, (newSize: DOMRectReadOnly) =>
+        setIsMobile(newSize.width < ALERTS_MOBILE_BREAKPOINT)
+      ),
+    []
+  );
+  const mobileCtaKind = kind === 'warning' ? 'link-inverted' : 'text';
+  const desktopCtaKind = kind === 'warning' ? 'secondary' : 'high-contrast';
+  const customPrimaryCtaKind = primaryCta?.kind;
+  const customSecondaryCtaKind = secondaryCta?.kind;
 
   const Ctas =
     primaryCta || secondaryCta ? (
@@ -106,14 +121,24 @@ export const NavigationTopBarAlert: React.FC<ITopBarAlertProps> = ({
         {primaryCta && (
           <Button
             size="compact"
-            kind={isMobile ? secondaryCtaKind : primaryCtaKind}
             {...primaryCta}
+            kind={
+              isMobile ? mobileCtaKind : customPrimaryCtaKind || desktopCtaKind
+            }
           >
             {primaryCta.label}
           </Button>
         )}
         {secondaryCta && (
-          <Button size="compact" kind={secondaryCtaKind} {...secondaryCta}>
+          <Button
+            size="compact"
+            {...secondaryCta}
+            kind={
+              isMobile
+                ? mobileCtaKind
+                : customSecondaryCtaKind || desktopCtaKind
+            }
+          >
             {secondaryCta.label}
           </Button>
         )}
@@ -140,29 +165,31 @@ export const NavigationTopBarAlert: React.FC<ITopBarAlertProps> = ({
   return (
     <>
       {isMounted && (
-        <div
-          className={cx(
-            styles[`${alertClass}__wrapper`],
-            {
-              [styles[`${alertClass}__wrapper--open`]]: isOpen,
-            },
-            'lc-dark-theme' // Alerts are forced into dark mode to maintain consistency of the colors
-          )}
-          ref={alertRef}
-          role="status"
-        >
+        <div ref={handleResizeRef}>
           <div
-            data-testid="navigation-top-bar-alert"
             className={cx(
-              styles[alertClass],
-              styles[`${alertClass}--${kind}`],
+              styles[`${alertClass}__wrapper`],
               {
-                [styles[`${alertClass}--open`]]: isOpen,
+                [styles[`${alertClass}__wrapper--open`]]: isOpen,
               },
-              className
+              'lc-dark-theme' // Alerts are forced into dark mode to maintain consistency of the colors
             )}
+            ref={alertRef}
+            role="status"
           >
-            {Children}
+            <div
+              data-testid="navigation-top-bar-alert"
+              className={cx(
+                styles[alertClass],
+                styles[`${alertClass}--${kind}`],
+                {
+                  [styles[`${alertClass}--open`]]: isOpen,
+                },
+                className
+              )}
+            >
+              {Children}
+            </div>
           </div>
         </div>
       )}

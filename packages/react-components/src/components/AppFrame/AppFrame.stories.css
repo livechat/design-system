@@ -39,3 +39,58 @@
   font-size: 14px;
   font-weight: 600;
 }
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.app-content-1 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.page-title {
+  display: flex;
+  gap: var(--spacing-3);
+  align-content: center;
+  text-align: center;
+}
+
+.tooltip-trigger {
+  display: flex;
+  align-items: center;
+}
+
+.switchers {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 270px;
+}
+
+.switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  p {
+    margin: 0;
+  }
+}
+
+.app-content-2 {
+  padding: 16px;
+  width: 100%;
+  max-width: 800px;
+}

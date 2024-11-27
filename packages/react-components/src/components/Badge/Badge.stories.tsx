@@ -39,7 +39,7 @@ export const Kinds = (): React.ReactElement => (
     <StoryDescriptor title="Primary">
       <Badge kind="primary" count={1} />
     </StoryDescriptor>
-    <StoryDescriptor title="Secondary (Deprecated)">
+    <StoryDescriptor title="Secondary">
       <Badge kind="secondary" count={1} />
     </StoryDescriptor>
     <StoryDescriptor title="Tertiary">

@@ -6,6 +6,7 @@ import {
   UseDismissProps,
   Strategy,
   UseClickProps,
+  FloatingPortalProps,
 } from '@floating-ui/react';
 
 import { ButtonProps } from '../Button';
@@ -144,6 +145,20 @@ export interface ITooltipProps {
    * https://floating-ui.com/docs/usefloating#strategy
    */
   floatingStrategy?: Strategy;
+
+  /**
+   * Set to render the tooltip in a portal
+   */
+  portal?: boolean;
+  /**
+   * Props for the FloatingPortal component, see FloatingPortal docs or https://floating-ui.com/docs/FloatingPortal
+   */
+  portalProps?: FloatingPortalProps;
+  /**
+   * Set to hide the tooltip when reference element is hidden
+   * IMPORTANT: This prop enables the `hide` middleware from `floating-ui` library: https://floating-ui.com/docs/hide. But for some reason, it doesn't work in tests because always returns `true` in `referenceHidden` check.
+   */
+  hideWhenReferenceHidden?: boolean;
 }
 
 export interface ITooltipInfoProps {
@@ -161,6 +176,7 @@ export interface ITooltipInfoProps {
   text: string;
   /**
    * Set to show close button
+   * @deprecated Use `handleCloseAction` instead
    */
   closeWithX?: boolean;
   /**
@@ -191,6 +207,7 @@ export interface ITooltipInteractiveProps {
   };
   /**
    * Set to show close button
+   * @deprecated Use `handleCloseAction` instead
    */
   closeWithX?: boolean;
   /**
@@ -204,9 +221,9 @@ export interface ITooltipInteractiveProps {
   /**
    * The Interactive tooltip primary button props
    */
-  primaryButton: TooltipButton;
+  primaryButton: TooltipButton | React.ReactNode;
   /**
    * The Interactive tooltip secondary button props
    */
-  secondaryButton?: TooltipButton;
+  secondaryButton?: TooltipButton | React.ReactNode;
 }
