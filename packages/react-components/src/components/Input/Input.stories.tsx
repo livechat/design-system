@@ -6,7 +6,8 @@ import { Meta, StoryFn } from '@storybook/react';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Icon } from '../Icon';
 
-import { Input, InputProps } from './Input';
+import { Input, InputPromo as InputPromoComponent } from './Input';
+import { IInputProps } from './types';
 
 const placeholderText = 'Placeholder text';
 
@@ -27,7 +28,7 @@ export default {
   },
 } as Meta<typeof Input>;
 
-export const Default: StoryFn<InputProps> = (args: InputProps) => (
+export const Default: StoryFn<IInputProps> = (args: IInputProps) => (
   <Input {...args} />
 );
 
@@ -118,6 +119,82 @@ export const WithIcons = (): React.ReactElement => (
     </StoryDescriptor>
     <StoryDescriptor title="Disabled input with password type">
       <Input placeholder={placeholderText} type="password" disabled />
+    </StoryDescriptor>
+  </>
+);
+
+export const InputPromo = (): React.ReactElement => (
+  <InputPromoComponent placeholder={placeholderText} />
+);
+
+export const InputPromoStates = (): React.ReactElement => (
+  <>
+    <StoryDescriptor title="With error">
+      <InputPromoComponent error={true} placeholder={placeholderText} />
+    </StoryDescriptor>
+    <StoryDescriptor title="Disabled">
+      <InputPromoComponent disabled={true} placeholder={placeholderText} />
+    </StoryDescriptor>
+  </>
+);
+
+export const InputPromoTypes = (): React.ReactElement => (
+  <>
+    <StoryDescriptor title="Text">
+      <InputPromoComponent type="text" placeholder={placeholderText} />
+    </StoryDescriptor>
+    <StoryDescriptor title="Password">
+      <InputPromoComponent type="password" placeholder={placeholderText} />
+    </StoryDescriptor>
+  </>
+);
+
+export const InputPromoWithIcons = (): React.ReactElement => (
+  <>
+    <StoryDescriptor title="Left icon">
+      <InputPromoComponent
+        icon={{
+          source: <Icon source={AddCircleIcon} />,
+          place: 'left',
+        }}
+        placeholder={placeholderText}
+      />
+    </StoryDescriptor>
+    <StoryDescriptor title="Right icon">
+      <InputPromoComponent
+        icon={{
+          source: <Icon source={AddCircleIcon} />,
+          place: 'right',
+        }}
+        placeholder={placeholderText}
+      />
+    </StoryDescriptor>
+    <StoryDescriptor title="Left icon with password type">
+      <InputPromoComponent
+        icon={{
+          source: <Icon source={AddCircleIcon} />,
+          place: 'left',
+        }}
+        placeholder={placeholderText}
+        type="password"
+      />
+    </StoryDescriptor>
+    <StoryDescriptor title="Disabled input with icon">
+      <InputPromoComponent
+        icon={{
+          source: <Icon source={AddCircleIcon} />,
+          place: 'left',
+        }}
+        placeholder={placeholderText}
+        disabled
+      />
+    </StoryDescriptor>
+    <StoryDescriptor title="Disabled input with password type">
+      <InputPromoComponent
+        placeholder={placeholderText}
+        type="password"
+        disabled
+      />
     </StoryDescriptor>
   </>
 );

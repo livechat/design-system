@@ -212,7 +212,7 @@ $content-basic-internal-note: #3a310c;
   --action-neutral-hover: #68686f;
   --action-neutral-disabled: rgb(141 141 149 / 20%);
   --action-high-contrast-default: #1b1b20;
-  --action-high-contrast-hover: #{$decor-gray600};
+  --action-high-contrast-hover: #43434b;
   --action-high-contrast-active: #131317;
   --action-high-contrast-disabled: rgb(27 27 32 / 20%);
   --color-bot: #50009c; // deprecated
@@ -397,4 +397,6 @@ $content-basic-internal-note: #3a310c;
   --surface-check-list-item-open-background: #fff;
   --surface-check-list-background: #{$surface-secondary-default};
   --content-basic-placeholder: hsl(240deg 10% 8% / 59%);
+  --input-promo-border-default: #8d8d95;
+  --input-promo-border-hover: #62626d;
 }

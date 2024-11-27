@@ -2,7 +2,8 @@ import { Info } from '@livechat/design-system-icons';
 import { Meta, StoryFn } from '@storybook/react';
 
 import { Icon } from '../Icon';
-import { Input, InputProps } from '../Input';
+import { Input } from '../Input';
+import { IInputProps } from '../Input/types';
 
 import { FormField as FormFieldComponent, FormFieldProps } from './FormField';
 
@@ -26,7 +27,7 @@ export default {
 } as Meta<typeof FormFieldComponent>;
 
 const ExampleIcon = () => <Icon source={Info} />;
-const ExampleInput = ({ ...args }: InputProps) => (
+const ExampleInput = ({ ...args }: IInputProps) => (
   <Input placeholder="Placeholder text" {...args} />
 );
 const LabelText = 'Email';
