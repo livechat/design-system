@@ -4,12 +4,14 @@ import {
   ArrowsSort,
   ArrowDownward,
   ArrowUpward,
+  Call,
 } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Icon } from '../Icon';
+import { Text } from '../Typography';
 
-import { Column, SortOrder } from './types';
+import { Column, SortConfig, SortOrder } from './types';
 
 import styles from './TableHeader.module.scss';
 
@@ -17,6 +19,7 @@ const baseClass = 'header';
 const headerCellClass = `${baseClass}__cell`;
 const resizerClass = `${baseClass}__resizer`;
 const contentClass = `${baseClass}__content`;
+const hiddenIconClass = `${baseClass}__hiddenIcon`;
 
 interface TableHeaderProps<T> {
   columns: Column<T>[];
@@ -28,6 +31,31 @@ interface TableHeaderProps<T> {
   selectable?: boolean;
   hoveredColumnIndex: number | null;
   setHoveredColumnIndex: (index: number | null) => void;
+}
+
+function renderSortIcon<T>(
+  sortConfig: SortConfig<T>,
+  columnKey: keyof T,
+  sortable: boolean,
+  hovered: boolean
+) {
+  if (sortConfig.key === columnKey && sortConfig.direction !== SortOrder.None) {
+    return (
+      <Icon
+        source={
+          sortConfig.direction === SortOrder.Ascending
+            ? ArrowDownward
+            : ArrowUpward
+        }
+        kind="primary"
+      />
+    );
+  }
+  if (hovered && sortable) {
+    return <Icon source={ArrowsSort} kind="subtle" />;
+  }
+
+  return <Icon source={Call} className={styles[hiddenIconClass]} />;
 }
 
 export const TableHeader = <T,>({
@@ -63,20 +91,15 @@ export const TableHeader = <T,>({
               onClick={() => handleSort(column.key)}
               className={styles[contentClass]}
             >
-              {column.header}
-              {sortConfig.key === column.key &&
-              sortConfig.direction !== SortOrder.None ? (
-                <Icon
-                  source={
-                    sortConfig.direction === SortOrder.Ascending
-                      ? ArrowDownward
-                      : ArrowUpward
-                  }
-                  kind="primary"
-                />
-              ) : (
-                hoveredColumnIndex === index &&
-                column.sortable && <Icon source={ArrowsSort} kind="subtle" />
+              <Text size="sm" bold noMargin>
+                {column.header}
+              </Text>
+
+              {renderSortIcon(
+                sortConfig,
+                column.key,
+                column.sortable ?? false,
+                hoveredColumnIndex === index
               )}
               {resizable && (
                 <span

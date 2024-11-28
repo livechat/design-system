@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { Checkbox } from '../Checkbox';
+import { Text } from '../Typography';
 
 import { Column } from './types';
 
@@ -42,7 +43,9 @@ export const TableRow = <T,>({
           key={String(column.key)}
           style={{ width: `${columnWidths[index]}px` }}
         >
-          {row[column.key] as React.ReactNode}
+          <Text size="md" noMargin>
+            {row[column.key] as React.ReactNode}
+          </Text>
         </td>
       ))}
     </tr>
