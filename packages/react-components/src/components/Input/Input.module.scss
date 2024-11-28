@@ -1,7 +1,12 @@
-.input {
+$base-class: 'input';
+
+.#{$base-class} {
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  transition:
+    border-color var(--transition-duration-fast-2) ease,
+    background-color var(--transition-duration-fast-2) ease;
   outline: none;
   border: 1px solid var(--border-basic-primary);
   border-radius: var(--radius-3);
@@ -27,6 +32,21 @@
     border-color: var(--border-basic-disabled);
     background-color: var(--surface-primary-disabled);
     color: var(--content-basic-disabled);
+  }
+
+  &--promo {
+    border: 2px solid var(--input-promo-border-default);
+    padding: 0 var(--spacing-4);
+    height: 52px;
+
+    &:hover {
+      border-color: var(--input-promo-border-hover);
+    }
+
+    &.#{$base-class}--focused,
+    &.#{$base-class}--focused:hover {
+      box-shadow: var(--state-active-field);
+    }
   }
 
   &--focused,
