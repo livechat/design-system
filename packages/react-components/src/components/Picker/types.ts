@@ -1,6 +1,7 @@
 import { InputHTMLAttributes, ReactElement } from 'react';
 
 import {
+  FloatingPortalProps,
   Placement,
   Strategy,
   UseClickProps,
@@ -132,6 +133,10 @@ export interface IPickerProps extends ComponentCoreProps {
    * Floating strategy for the picker component from @floating-ui/react
    */
   floatingStrategy?: Strategy;
+  /**
+   * Root node the portal container from @floating-ui/react will be appended to
+   */
+  root?: FloatingPortalProps['root'];
   /**
    * Set the `floating-ui` useDismiss hook params if you need more control
    * https://floating-ui.com/docs/usedismiss
