@@ -29,3 +29,11 @@
     }
   }
 }
+
+.accordion-promo-closed-heading {
+  margin-bottom: 4px;
+}
+
+.accordion-promo-closed-description {
+  color: var(--content-basic-secondary);
+}

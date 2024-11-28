@@ -1,8 +1,11 @@
 import * as React from 'react';
 
+import { useSleepWakeSync } from './useSleepWakeSync';
+
 interface UseAnimationsProps {
   isVisible: boolean;
   elementRef: React.RefObject<HTMLDivElement>;
+  includeSleepWakeScenario?: boolean;
 }
 
 interface IUseAnimations {
@@ -14,6 +17,7 @@ interface IUseAnimations {
 export const useAnimations = ({
   isVisible,
   elementRef,
+  includeSleepWakeScenario = false,
 }: UseAnimationsProps): IUseAnimations => {
   const [isMounted, setIsMounted] = React.useState(isVisible);
   const [isOpen, setIsOpen] = React.useState(isVisible);
@@ -55,26 +59,16 @@ export const useAnimations = ({
     }
   }, [shouldBeVisible]);
 
-  // Effect to listen for visibility changes (detecting sleep/wake scenarios)
-  React.useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible') {
-        // Reset the animation state when returning to the visible state
-        setShouldBeVisible(isVisible);
-      }
-    };
-
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-
-    return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
-    };
-  }, [isVisible]);
-
   // Synchronize shouldBeVisible with the isVisible prop
   React.useEffect(() => {
     setShouldBeVisible(isVisible);
   }, [isVisible]);
+
+  // Effect to listen for visibility changes (detecting sleep/wake scenarios)
+  useSleepWakeSync(
+    () => setShouldBeVisible(isVisible),
+    includeSleepWakeScenario
+  );
 
   return {
     isOpen,

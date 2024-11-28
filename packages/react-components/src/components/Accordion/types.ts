@@ -6,7 +6,7 @@ export type AccordionLabel =
   | React.ReactNode
   | { open: React.ReactNode; closed: React.ReactNode };
 
-export interface IAccordionProps extends ComponentCoreProps {
+export interface IAccordionGlobalProps extends ComponentCoreProps {
   /**
    * Specify the content of the accordion
    */
@@ -20,9 +20,9 @@ export interface IAccordionProps extends ComponentCoreProps {
    */
   multilineElement?: React.ReactNode;
   /**
-   * Specify the kind of the accordion
+   * Specify the footer element, which will be displayed at the bottom
    */
-  kind?: 'default' | 'warning' | 'error';
+  footer?: React.ReactNode;
   /**
    * Specify if the accordion should be open on init
    */
@@ -39,6 +39,26 @@ export interface IAccordionProps extends ComponentCoreProps {
    * Optional handler called on accordion open
    */
   onOpen?: () => void;
+}
+
+export interface IAccordionProps extends IAccordionGlobalProps {
+  /**
+   * Specify the kind of the accordion
+   */
+  kind?: 'default' | 'warning' | 'error';
+}
+
+export interface IAccordionPromoProps extends IAccordionGlobalProps {}
+
+export interface IAccordionComponentProps extends IAccordionGlobalProps {
+  /**
+   * CSS class name for the main accordion wrapper
+   */
+  mainClassName: string;
+  /**
+   * Set to display promo accordion
+   */
+  isPromo?: boolean;
 }
 
 export interface IAccordionAnimatedLabelProps {

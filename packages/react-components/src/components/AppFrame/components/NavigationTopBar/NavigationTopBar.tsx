@@ -101,6 +101,7 @@ export const NavigationTopBarAlert: React.FC<ITopBarAlertProps> = ({
   const { isMounted, isOpen } = useAnimations({
     isVisible,
     elementRef: alertRef,
+    includeSleepWakeScenario: true,
   });
   const handleResizeRef = React.useCallback(
     (node: NODE) =>
@@ -110,8 +111,7 @@ export const NavigationTopBarAlert: React.FC<ITopBarAlertProps> = ({
     []
   );
   const mobileCtaKind = kind === 'warning' ? 'link-inverted' : 'text';
-  const desktopCtaKind =
-    kind === 'warning' ? 'plain-lock-black' : 'high-contrast';
+  const desktopCtaKind = kind === 'warning' ? 'secondary' : 'high-contrast';
   const customPrimaryCtaKind = primaryCta?.kind;
   const customSecondaryCtaKind = secondaryCta?.kind;
 

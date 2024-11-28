@@ -39,6 +39,11 @@ $base-class: 'accordion';
     }
   }
 
+  &--promo {
+    border: 1px solid var(--border-basic-secondary);
+    background-color: var(--surface-primary-default);
+  }
+
   &--open {
     border: 1px solid var(--action-primary-default);
     box-shadow: var(--shadow-float);
@@ -59,6 +64,10 @@ $base-class: 'accordion';
     &--open {
       transform: rotate(180deg);
     }
+
+    &--promo {
+      top: 26px;
+    }
   }
 
   &__label {
@@ -68,6 +77,11 @@ $base-class: 'accordion';
 
     &:hover {
       cursor: pointer;
+    }
+
+    &--promo {
+      padding: var(--spacing-6) var(--spacing-12) var(--spacing-6)
+        var(--spacing-6);
     }
   }
 
@@ -84,6 +98,19 @@ $base-class: 'accordion';
       &--open {
         opacity: 1;
       }
+
+      &--promo {
+        padding: 0 var(--spacing-12) var(--spacing-6) var(--spacing-6);
+      }
+    }
+  }
+
+  &__footer {
+    border-top: 1px solid var(--border-basic-secondary);
+    padding: var(--spacing-5);
+
+    &--promo {
+      padding: var(--spacing-6);
     }
   }
 }
