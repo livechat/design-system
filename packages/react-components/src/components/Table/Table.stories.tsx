@@ -57,28 +57,28 @@ const data: Data[] = [
     name: 'John Doe',
     age: 28,
     role: 'Developer',
-    action: <Button>Edit</Button>,
+    action: <Button size="xcompact">Edit</Button>,
   },
   {
     id: 2,
     name: 'Jane Smith',
     age: 34,
     role: 'Designer',
-    action: <Button>Edit</Button>,
+    action: <Button size="xcompact">Edit</Button>,
   },
   {
     id: 3,
     name: 'Alice Johnson',
     age: 42,
     role: 'Manager',
-    action: <Button>Edit</Button>,
+    action: <Button size="xcompact">Edit</Button>,
   },
   {
     id: 4,
     name: 'Mike Williams',
     age: 25,
     role: 'Intern',
-    action: <Button>Edit</Button>,
+    action: <Button size="xcompact">Edit</Button>,
   },
 ];
 
