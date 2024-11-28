@@ -150,6 +150,16 @@ export const Table = <T,>({
     setColumnWidths(initialWidths);
   }, []);
 
+  if (selectable && (!selectedRows || !onSelectionChange)) {
+    throw new Error(
+      '`onSelectionChange` and `selectedRows` are required when selectable is true'
+    );
+  }
+
+  if (columns.find((column) => column.sortable && !column.sortValue)) {
+    throw new Error('`sortValue` is required when sortable is true');
+  }
+
   return (
     <>
       {selectable && (
