@@ -4,6 +4,10 @@ export type Size = 'compact' | 'medium' | 'large';
 
 export interface ComponentCoreProps {
   /**
+   * The children of the component
+   */
+  children?: React.ReactNode;
+  /**
    * Custom style for the avatar
    */
   style?: React.CSSProperties;

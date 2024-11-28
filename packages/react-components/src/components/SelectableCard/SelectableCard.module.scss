@@ -1,0 +1,49 @@
+$base-class: 'selectable-card';
+
+.#{$base-class} {
+  display: flex;
+  transition: border-color var(--transition-duration-fast-2) ease-in-out;
+  border: 1px solid var(--border-basic-secondary);
+  border-radius: var(--radius-3);
+  background: var(--surface-primary-default);
+  width: max-content;
+
+  &:hover {
+    border-color: var(--border-basic-hover);
+    cursor: pointer;
+  }
+
+  &:focus-visible {
+    outline: 0;
+    box-shadow: var(--shadow-focus);
+  }
+
+  &--thumbnail {
+    padding: var(--spacing-3) var(--spacing-5);
+  }
+
+  &--gallery {
+    padding: var(--spacing-5);
+  }
+
+  &--interactive {
+    border-radius: var(--radius-4);
+    padding: var(--spacing-9) var(--spacing-8);
+  }
+
+  &--selected,
+  &--selected:hover {
+    border-color: var(--action-primary-default);
+  }
+
+  &__select-indicator {
+    display: flex;
+    align-items: center;
+    margin-right: var(--spacing-2);
+    height: 21px;
+
+    &__checkbox {
+      height: 16px;
+    }
+  }
+}
