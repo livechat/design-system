@@ -120,7 +120,7 @@ export const InputComponent = React.forwardRef<
 );
 
 export const Input = React.forwardRef<HTMLInputElement, IInputProps>(
-  ({ inputSize, ...props }, ref) => {
+  ({ inputSize = 'medium', ...props }, ref) => {
     const mainClassName = cx(
       styles[baseClass],
       styles[`${baseClass}--${inputSize}`]
