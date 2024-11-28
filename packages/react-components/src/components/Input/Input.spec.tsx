@@ -6,9 +6,10 @@ import { render, userEvent, vi } from 'test-utils';
 
 import { Icon } from '../Icon';
 
-import { Input, InputProps } from './Input';
+import { Input } from './Input';
+import { IInputProps } from './types';
 
-const renderComponent = (props: InputProps) =>
+const renderComponent = (props: IInputProps) =>
   render(<Input {...props} data-testid="input" />);
 
 describe('<Input> component', () => {

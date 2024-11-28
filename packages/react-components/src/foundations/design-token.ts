@@ -383,6 +383,8 @@ export const DesignToken = {
     '--surface-check-list-item-open-background',
   SurfaceCheckListBackground: '--surface-check-list-background',
   ContentBasicPlaceholder: '--content-basic-placeholder',
+  InputPromoBorderDefault: '--input-promo-border-default',
+  InputPromoBorderHover: '--input-promo-border-hover',
 };
 
 export type DesignTokenKey = keyof typeof DesignToken;

@@ -1,31 +1,4 @@
 :root,
-.lc-legacy-theme {
-  --shadow-float: 0 2px 6px 0 rgb(66 77 87 / 40%);
-  --shadow-pop-over: 0 6px 20px 0 rgb(66 77 87 / 40%);
-  --shadow-modal: 0 10px 50px 0 rgb(66 77 87 / 40%);
-  --shadow-tooltip: 0 1px 10px 0 rgb(66 77 87 / 30%);
-  --shadow-tooltip-arrow-bottom: 8px -6px 10px -2px rgb(66 77 87 / 30%);
-  --shadow-tooltip-arrow-top: -7px 6px 5px -3px rgb(66 77 87 / 30%);
-  --shadow-tooltip-arrow-right: -5px -5px 10px -2px rgb(66 77 87 / 30%);
-  --shadow-tooltip-arrow-left: 6px 6px 10px -2px rgb(66 77 87 / 30%);
-  --shadow-tooltip-arrow: -2px -2px 3px -2px rgb(66 77 87 / 10%);
-  --shadow-focus: 0 0 1px 1px var(--background-01), 0 0 1px 3px #4284f5;
-  --shadow-divider-bottom: 0 -1px 0 0 #eeeeef inset;
-  --shadow-divider-top: 0 1px 0 0 #eeeeef inset;
-  --shadow-divider-right: -1px 0 0 0 #eeeeef inset;
-  --shadow-divider-left: 1px 0 0 0 #eeeeef inset;
-  --shadow-divider-bottom-left: 1px -1px 0 0 #eeeeef inset;
-  --shadow-divider-top-left: 1px 1px 0 0 #eeeeef inset;
-  --shadow-divider-top-right: -1px 1px 0 0 #eeeeef inset;
-  --shadow-divider-bottom-right: -1px -1px 0 0 #eeeeef inset;
-  --shadow-message-box: 0 0 8px 0 rgb(19 19 23 / 12%);
-  --shadow-fixed-right: 2px 0 10px rgb(19 19 23 / 18%);
-  --shadow-fixed-left: -2px 0 10px rgb(19 19 23 / 18%);
-  --shadow-fixed-top: 0 -2px 10px rgb(19 19 23 / 18%);
-  --shadow-fixed-bottom: 0 2px 10px rgb(19 19 23 / 18%);
-  --focus-ring-inner: inset 0 0 1px 2px var(--action-primary-default);
-}
-
 .lc-light-theme {
   --shadow-float: 0 2px 6px 0 rgb(19 19 23 / 20%);
   --shadow-pop-over: 0 6px 20px 0 rgb(19 19 23 / 30%);
@@ -51,6 +24,7 @@
   --shadow-fixed-top: 0 -2px 10px rgb(19 19 23 / 18%);
   --shadow-fixed-bottom: 0 2px 10px rgb(19 19 23 / 18%);
   --focus-ring-inner: inset 0 0 1px 2px var(--action-primary-default);
+  --state-active-field: 0 0 0 4px rgb(0 89 225 / 15%);
 }
 
 .lc-dark-theme {
@@ -81,4 +55,5 @@
   --shadow-fixed-top: 0 -2px 10px rgb(19 19 23 / 18%);
   --shadow-fixed-bottom: 0 2px 10px rgb(19 19 23 / 18%);
   --focus-ring-inner: inset 0 0 1px 2px var(--action-primary-default);
+  --state-active-field: 0 0 0 4px rgb(104 175 255 / 25%);
 }

@@ -10,40 +10,18 @@ import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { Text } from '../Typography';
 
+import {
+  IInputComponentProps,
+  IInputIcon,
+  IInputPromoProps,
+  IInputProps,
+} from './types';
+
 import styles from './Input.module.scss';
-
-interface InputIcon {
-  source: React.ReactElement;
-  place: 'left' | 'right';
-}
-
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
-  /**
-   * Specify the input size
-   */
-  inputSize?: 'xsmall' | 'compact' | 'medium' | 'large';
-  /**
-   * Specify whether the input should be in error state
-   */
-  error?: boolean;
-  /**
-   * Specify whether the input should be disabled
-   */
-  disabled?: boolean;
-  /**
-   * Set the icon and its position
-   */
-  icon?: InputIcon;
-  /**
-   * Set to enable ellipsis
-   */
-  cropOnBlur?: boolean;
-}
 
 const baseClass = 'input';
 
-const renderIcon = (icon: InputIcon, disabled?: boolean) =>
+const renderIcon = (icon: IInputIcon, disabled?: boolean) =>
   React.cloneElement(icon.source, {
     ['data-testid']: `input-icon-${icon.place}`,
     className: cx(
@@ -55,14 +33,18 @@ const renderIcon = (icon: InputIcon, disabled?: boolean) =>
     ),
   });
 
-export const Input = React.forwardRef<HTMLInputElement, InputProps>(
+export const InputComponent = React.forwardRef<
+  HTMLInputElement,
+  IInputComponentProps
+>(
   (
     {
-      inputSize = 'medium',
       error = false,
       disabled,
       icon = null,
       className,
+      mainClassName,
+      isPromo = false,
       cropOnBlur = true,
       ...inputProps
     },
@@ -75,16 +57,15 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const [isPasswordVisible, setIsPasswordVisible] = React.useState(false);
     const { type, onFocus, onBlur } = inputProps;
     const mergedClassNames = cx(
-      className,
-      styles[baseClass],
-      styles[`${baseClass}--${inputSize}`],
+      mainClassName,
       {
         [styles[`${baseClass}--disabled`]]: disabled,
         [styles[`${baseClass}--focused`]]: isFocused,
         [styles[`${baseClass}--error`]]: error,
         [styles[`${baseClass}--crop`]]: cropOnBlur,
         [styles[`${baseClass}--read-only`]]: inputProps.readOnly,
-      }
+      },
+      className
     );
     const iconCustomColor = !disabled
       ? 'var(--content-default)'
@@ -101,6 +82,7 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <Text
         as="div"
+        size={isPromo ? 'lg' : 'md'}
         className={mergedClassNames}
         aria-disabled={disabled}
         tab-index="0"
@@ -133,6 +115,36 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           />
         )}
       </Text>
+    );
+  }
+);
+
+export const Input = React.forwardRef<HTMLInputElement, IInputProps>(
+  ({ inputSize = 'medium', ...props }, ref) => {
+    const mainClassName = cx(
+      styles[baseClass],
+      styles[`${baseClass}--${inputSize}`]
+    );
+
+    return (
+      <InputComponent mainClassName={mainClassName} {...props} ref={ref} />
+    );
+  }
+);
+
+const promoBaseClass = `${baseClass}--promo`;
+
+export const InputPromo = React.forwardRef<HTMLInputElement, IInputPromoProps>(
+  (props, ref) => {
+    const mainClassName = cx(styles[baseClass], styles[promoBaseClass]);
+
+    return (
+      <InputComponent
+        mainClassName={mainClassName}
+        isPromo
+        {...props}
+        ref={ref}
+      />
     );
   }
 );
