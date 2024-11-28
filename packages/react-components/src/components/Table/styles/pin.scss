@@ -4,11 +4,9 @@
       position: sticky;
       top: 0;
       z-index: 5;
-      box-shadow: 0 12px 12px -7px #1313172e;
+      box-shadow: var(--shadow-fixed-bottom);
     }
-  }
-
- @else {
+  } @else {
     @warn "Invalid pinned value: #{$type}. Supported value is 'header'.";
   }
 }
