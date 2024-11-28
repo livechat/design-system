@@ -19,7 +19,7 @@ export const Table = <T,>({
   data,
   columns,
   stripped,
-  size = 'small',
+  size = 'medium',
   pin,
   selectable,
   getRowId,

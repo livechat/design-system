@@ -31,7 +31,7 @@ export const TableRow = <T,>({
   return (
     <tr className={styles[baseClass]}>
       {selectable && (
-        <td>
+        <td role="cell" aria-selected={isSelected(rowId)}>
           <Checkbox
             checked={isSelected(rowId)}
             onChange={() => toggleRowSelection(rowId)}
@@ -41,7 +41,11 @@ export const TableRow = <T,>({
       {columns.map((column, index) => (
         <td
           key={String(column.key)}
-          style={{ width: `${columnWidths[index]}px` }}
+          style={{
+            width: columnWidths[index] ? `${columnWidths[index]}px` : 'auto',
+          }}
+          role="cell"
+          data-column={String(column.key)}
         >
           <Text size="md" noMargin>
             {row[column.key] as React.ReactNode}
