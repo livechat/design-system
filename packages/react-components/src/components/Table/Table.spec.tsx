@@ -11,10 +11,10 @@ type Data = {
 };
 
 const columns: Column<Data>[] = [
-  { key: 'id', header: 'ID', sortable: true },
-  { key: 'name', header: 'Name', sortable: true },
-  { key: 'age', header: 'Age', sortable: true },
-  { key: 'role', header: 'Role', sortable: true },
+  { key: 'id', header: 'ID' },
+  { key: 'name', header: 'Name' },
+  { key: 'age', header: 'Age' },
+  { key: 'role', header: 'Role' },
 ];
 
 const data: Data[] = [
@@ -40,12 +40,14 @@ describe('<Table> component', () => {
 
   it('should allow row selection if selectable prop is enabled', () => {
     const onSelectionChange = vi.fn();
+    const selectedRows = new Set<string>();
     const { getAllByRole } = render(
       <Table
         data={data}
         columns={columns}
         getRowId={getRowId}
         selectable={true}
+        selectedRows={selectedRows}
         onSelectionChange={onSelectionChange}
       />
     );

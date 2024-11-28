@@ -26,6 +26,7 @@ const columns: Column<(typeof data)[0]>[] = [
     key: 'id',
     header: 'ID',
     sortable: true,
+    sortValue: (item: Data) => item.id,
   },
   {
     key: 'name',
@@ -37,6 +38,7 @@ const columns: Column<(typeof data)[0]>[] = [
     key: 'age',
     header: 'Age',
     sortable: true,
+    sortValue: (item: Data) => item.age,
   },
   {
     key: 'role',
