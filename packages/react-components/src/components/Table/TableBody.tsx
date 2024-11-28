@@ -21,19 +21,23 @@ export const TableBody = <T,>({
   toggleRowSelection,
 }: TableBodyProps<T>) => {
   return (
-    <tbody>
-      {data.map((row) => (
-        <TableRow
-          key={getRowId(row)}
-          row={row}
-          columns={columns}
-          columnWidths={columnWidths}
-          selectable={selectable}
-          isSelected={isSelected}
-          toggleRowSelection={toggleRowSelection}
-          rowId={getRowId(row)}
-        />
-      ))}
+    <tbody role="rowgroup">
+      {data.map((row) => {
+        const rowId = getRowId(row);
+
+        return (
+          <TableRow
+            key={rowId}
+            row={row}
+            columns={columns}
+            columnWidths={columnWidths}
+            selectable={selectable}
+            isSelected={isSelected}
+            toggleRowSelection={toggleRowSelection}
+            rowId={getRowId(row)}
+          />
+        );
+      })}
     </tbody>
   );
 };
