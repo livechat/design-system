@@ -42,6 +42,11 @@ $base-class: 'input';
     &:hover {
       border-color: var(--input-promo-border-hover);
     }
+
+    &.#{$base-class}--focused,
+    &.#{$base-class}--focused:hover {
+      box-shadow: var(--state-active-field);
+    }
   }
 
   &--focused,
