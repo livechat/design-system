@@ -6,6 +6,7 @@ $base-class: 'table';
 .#{$base-class} {
   width: 100%;
   border-collapse: collapse;
+  contain: paint;
 
   &--small {
     @include size.table-size(48px, 8px, 16px);
