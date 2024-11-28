@@ -27,7 +27,7 @@ export const useTable = <T>({
 
   const toggleRowSelection = useCallback(
     (id: string | number) => {
-      const updatedSelectedRows = new Set(selectedRows);
+      const updatedSelectedRows = new Set(selectedRows || []);
       if (updatedSelectedRows.has(id)) {
         updatedSelectedRows.delete(id);
       } else {

@@ -49,10 +49,9 @@ const columns: Column<(typeof data)[0]>[] = [
   {
     key: 'action',
     header: 'Action',
-    sortable: false,
-    sortValue: undefined,
   },
 ];
+
 const data: Data[] = [
   {
     id: 1,

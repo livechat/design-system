@@ -39,7 +39,11 @@ function renderSortIcon<T>(
   sortable: boolean,
   hovered: boolean
 ) {
-  if (sortConfig.key === columnKey && sortConfig.direction !== SortOrder.None) {
+  if (
+    sortConfig.key === columnKey &&
+    sortConfig.direction !== SortOrder.None &&
+    sortable
+  ) {
     return (
       <Icon
         source={
@@ -86,6 +90,7 @@ export const TableHeader = <T,>({
             })}
             onMouseEnter={() => setHoveredColumnIndex(index)}
             onMouseLeave={() => setHoveredColumnIndex(null)}
+            role="columnheader"
           >
             <span
               onClick={() => handleSort(column.key)}
