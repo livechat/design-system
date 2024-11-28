@@ -6,6 +6,7 @@ $base-class: 'header';
 .#{$base-class} {
   border-bottom: 1px solid var(--border-basic-tertiary);
   background-color: var(--background-01);
+  height: var(--spacing-9);
   line-height: var(--spacing-5);
   color: var(--content-basic-secondary);
   font-size: 13px;
@@ -31,6 +32,10 @@ $base-class: 'header';
     }
   }
 
+  &__hiddenIcon {
+    visibility: hidden;
+  }
+
   &__resizer {
     position: absolute;
     top: 0;
@@ -49,15 +54,13 @@ $base-class: 'header';
   }
 
   &__content {
+    display: flex;
     position: relative;
+    gap: var(--spacing-2);
   }
 
   td,
   th {
     text-align: left;
-  }
-
-  th > span {
-    display: flex;
   }
 }
