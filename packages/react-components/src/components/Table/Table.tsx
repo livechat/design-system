@@ -55,14 +55,25 @@ export const Table = <T,>({
   const handleMouseDown = (index: number, event: React.MouseEvent) => {
     event.preventDefault();
     const startX = event.clientX;
-    const target = event.currentTarget as HTMLElement;
-    const startWidth = columnWidths[index] || target.offsetWidth;
+    const startWidth =
+      columnWidths[index] || (event.currentTarget as HTMLElement).offsetWidth;
+    const nextWidth = columnWidths[index + 1] || 0;
+
+    const SCALING_FACTOR = 1.05;
 
     const handleMouseMove = (moveEvent: MouseEvent) => {
-      const delta = moveEvent.clientX - startX;
+      const delta = (moveEvent.clientX - startX) * SCALING_FACTOR;
+
       setColumnWidths((prevWidths) => {
         const newWidths = [...prevWidths];
-        newWidths[index] = Math.max(50, startWidth + delta); // Minimalna szerokość
+        const newWidth = Math.max(50, startWidth + delta);
+        const adjustedNextWidth = Math.max(50, nextWidth - delta);
+
+        newWidths[index] = newWidth;
+
+        if (index + 1 < newWidths.length) {
+          newWidths[index + 1] = adjustedNextWidth;
+        }
 
         return newWidths;
       });
