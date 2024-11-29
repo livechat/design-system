@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 export type Column<T> = {
   key: keyof T;
   header: string;
@@ -61,6 +63,17 @@ export interface ITableProps<T> {
    * @param selectedIds - A set of selected row IDs.
    */
   onSelectionChange?: (selectedIds: Set<string | number>) => void;
+  /**
+   * Defines a customizable message to display the count of selected rows in the table. By default,
+   * the message appears as "{count} selected items".
+   */
+  rowSelectionMessage?: string | React.ReactNode;
+  /**
+   * Allows you to define a custom action bar that appears when rows are selected. The action bar
+   * can contain buttons or other UI elements for performing bulk operations on the selected rows,
+   * such as "Delete All" or "Export."
+   */
+  rowActions?: React.ReactNode;
 }
 
 export interface SortConfig<T> {

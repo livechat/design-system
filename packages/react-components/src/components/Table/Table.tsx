@@ -26,6 +26,8 @@ export const Table = <T,>({
   resizable,
   selectedRows,
   onSelectionChange,
+  rowSelectionMessage,
+  rowActions,
 }: ITableProps<T>) => {
   const columnRefs = React.useRef<(HTMLTableCellElement | null)[]>([]);
   const [hoveredColumnIndex, setHoveredColumnIndex] = React.useState<
@@ -168,7 +170,10 @@ export const Table = <T,>({
             checked={selectedCount === data.length}
             onChange={toggleSelectAll}
           />
-          <Text size="md">{selectedCount} selected items</Text>
+          {rowSelectionMessage || (
+            <Text size="md">{selectedCount} selected items</Text>
+          )}
+          {rowActions}
         </div>
       )}
       <table
