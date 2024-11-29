@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { Meta, StoryFn } from '@storybook/react';
+import cx from 'clsx';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Button } from '../Button';
@@ -8,10 +9,15 @@ import { Button } from '../Button';
 import { Table } from './Table';
 import { Column } from './types';
 
+import styles from './Table.module.scss';
+
 export default {
   title: 'Components/Table',
   component: Table,
 } as Meta<typeof Table>;
+
+const actionBarClass = 'action-bar';
+const dividerClass = `${actionBarClass}__divider`;
 
 type Data = {
   id: number;
@@ -291,6 +297,17 @@ export const Selecting: StoryFn = () => {
     new Set()
   );
 
+  const Divider = () => <div className={cx(styles[dividerClass])} />;
+
+  const rowActions = (
+    <div className={cx(styles[actionBarClass])}>
+      <Divider />
+      <Button kind="link">Action</Button> <Button kind="link">Action</Button>
+      <Divider />
+      <Button kind="link">Action</Button> <Button kind="link">Action</Button>
+    </div>
+  );
+
   return (
     <Table
       size="medium"
@@ -300,6 +317,7 @@ export const Selecting: StoryFn = () => {
       selectable
       selectedRows={selectedRows}
       onSelectionChange={setSelectedRows}
+      rowActions={rowActions}
     />
   );
 };

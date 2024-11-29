@@ -2,6 +2,7 @@
 @use './styles/size';
 
 $base-class: 'table';
+$action-bar-class: 'action-bar';
 
 .#{$base-class} {
   width: 100%;
@@ -70,5 +71,25 @@ $base-class: 'table';
 
   th > div {
     display: flex;
+  }
+}
+
+.#{$action-bar-class} {
+  display: flex;
+  gap: var(--spacing-2);
+
+  &__divider {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin-right: var(--spacing-2);
+      background-color: var(--border-basic-secondary);
+      width: 1px;
+      height: var(--spacing-6);
+      content: '';
+    }
   }
 }

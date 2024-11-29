@@ -75,7 +75,11 @@ export const TableHeader = <T,>({
 }: TableHeaderProps<T>) => {
   return (
     <thead>
-      <tr className={cx(styles[baseClass])}>
+      <tr
+        className={cx(styles[baseClass], {
+          [styles[`${baseClass}--selectable`]]: selectable,
+        })}
+      >
         {selectable && <th />}
         {columns.map((column, index) => (
           <th

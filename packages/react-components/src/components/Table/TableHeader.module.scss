@@ -59,6 +59,10 @@ $base-class: 'header';
     gap: var(--spacing-2);
   }
 
+  &--selectable {
+    border-top: 1px solid var(--border-basic-tertiary);
+  }
+
   td,
   th {
     text-align: left;
