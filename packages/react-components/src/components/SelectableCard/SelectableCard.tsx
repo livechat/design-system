@@ -15,10 +15,11 @@ const baseClass = 'selectable-card';
 export const SelectableCard: FC<ISelectableCardProps> = ({
   children,
   className,
-  kind,
+  kind = 'interactive',
   selectionType,
   isSelected = false,
   onClick,
+  style,
 }) => {
   const mergedClassName = cx(
     styles[baseClass],
@@ -54,6 +55,7 @@ export const SelectableCard: FC<ISelectableCardProps> = ({
       className={mergedClassName}
       onClick={handleInteractiveClick}
       onKeyDown={handleOnKeyDown}
+      style={style}
     >
       <div className={styles[`${baseClass}__select-indicator`]}>
         {selectionType === 'radio' ? (

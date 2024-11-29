@@ -8,13 +8,13 @@ export interface ComponentCoreProps {
    */
   children?: React.ReactNode;
   /**
-   * Custom style for the avatar
-   */
-  style?: React.CSSProperties;
-  /**
    * The CSS class name
    */
   className?: string;
+  /**
+   * The CSS properties for the component
+   */
+  style?: React.CSSProperties;
   /**
    * Test id passed to the wrapper element
    */

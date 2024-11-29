@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
+import cx from 'clsx';
+
 import { Text } from '../../../Typography';
 import { SelectableCard } from '../../SelectableCard';
 
@@ -14,10 +16,11 @@ export const ThumbnailSelectableCard: FC<IThumbnailSelectableCardProps> = ({
   description,
   icon,
   customElement,
+  contentClassName,
   ...props
 }) => (
   <SelectableCard {...props} kind="thumbnail">
-    <div className={styles[baseClass]}>
+    <div className={cx(styles[baseClass], contentClassName)}>
       {icon && <div className={styles[`${baseClass}__icon`]}>{icon}</div>}
       {!customElement && (
         <div className={styles[`${baseClass}__content`]}>
