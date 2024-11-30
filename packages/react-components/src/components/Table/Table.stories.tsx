@@ -6,7 +6,7 @@ import cx from 'clsx';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Button } from '../Button';
 
-import { generateData } from './helpers';
+import { generateData } from './stories-helpers';
 import { Table } from './Table';
 import { Column, Data } from './types';
 
