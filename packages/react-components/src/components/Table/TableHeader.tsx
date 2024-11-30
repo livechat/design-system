@@ -97,7 +97,11 @@ export const TableHeader = <T,>({
             role="columnheader"
           >
             <span
-              onClick={() => handleSort(column.key)}
+              onClick={() => {
+                if (column.sortable) {
+                  handleSort(column.key);
+                }
+              }}
               className={styles[contentClass]}
             >
               <Text size="sm" bold noMargin>
@@ -114,6 +118,8 @@ export const TableHeader = <T,>({
                 <span
                   className={styles[resizerClass]}
                   onMouseDown={(e) => handleMouseDown(index, e)}
+                  role="button"
+                  aria-label="resize"
                 />
               )}
             </span>
