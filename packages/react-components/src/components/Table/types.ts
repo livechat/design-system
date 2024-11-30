@@ -80,3 +80,11 @@ export interface SortConfig<T> {
   key: keyof T | null;
   direction: SortOrder;
 }
+
+export type Data = {
+  id: number;
+  name: string;
+  age: number;
+  role: string;
+  action: React.ReactNode;
+};
