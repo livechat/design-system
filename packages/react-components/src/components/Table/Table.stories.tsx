@@ -6,9 +6,13 @@ import cx from 'clsx';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Button } from '../Button';
 
+import {
+  dataForPinningExample,
+  columnsForPinningExample,
+} from './stories-constants';
 import { generateData } from './stories-helpers';
 import { Table } from './Table';
-import { Column, Data } from './types';
+import { Column, Data, DataForPinningExample } from './types';
 
 import styles from './Table.module.scss';
 
@@ -101,16 +105,30 @@ export const Sizes: StoryFn = (): React.ReactElement => {
 
 export const Pinning: StoryFn = () => {
   const getRowId = (row: Data) => row.id;
-  const data = generateData(20);
+  const data = generateData(10);
 
   return (
-    <Table
-      size="medium"
-      data={data}
-      columns={columns}
-      getRowId={getRowId}
-      pin="header"
-    />
+    <>
+      <StoryDescriptor title="Header">
+        <Table
+          size="large"
+          data={data}
+          columns={columns}
+          getRowId={getRowId}
+          pin="header"
+        />
+      </StoryDescriptor>
+      <StoryDescriptor title="Left Column" />
+      <StoryDescriptor title="" style={{ overflow: 'scroll' }}>
+        <Table
+          size="medium"
+          data={dataForPinningExample}
+          columns={columnsForPinningExample}
+          getRowId={(row: DataForPinningExample) => row.userId}
+          pin="leftColumn"
+        />
+      </StoryDescriptor>
+    </>
   );
 };
 
