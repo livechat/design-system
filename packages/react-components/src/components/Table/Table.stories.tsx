@@ -132,7 +132,7 @@ export const Pinning: StoryFn = () => {
   );
 };
 
-export const Selecting: StoryFn = () => {
+export const MultiSelect: StoryFn = () => {
   const getRowId = (row: Data) => row.id;
   const data = generateData(4);
   const [selectedRows, setSelectedRows] = React.useState<Set<string | number>>(
