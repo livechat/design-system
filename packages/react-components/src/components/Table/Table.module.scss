@@ -25,6 +25,10 @@ $action-bar-class: 'action-bar';
     @include pin.generatePin('header');
   }
 
+  &--pinned_leftColumn {
+    @include pin.generatePin('leftColumn');
+  }
+
   &__cell {
     text-align: start;
     line-height: 21px;

@@ -9,7 +9,7 @@ export type Column<T> = {
 
 export type TableSize = 'small' | 'medium' | 'large';
 
-export type PinOptions = 'header';
+export type PinOptions = 'header' | 'leftColumn';
 
 export enum SortOrder {
   Ascending = 'asc',
@@ -37,7 +37,7 @@ export interface ITableProps<T> {
   size?: TableSize;
   /**
    * Determines if certain table features, like the header, should remain pinned.
-   * Currently supports only `header` pinning.
+   * Currently supports only `header` and `leftColumn` pinning.
    */
   pin?: PinOptions;
   /**
@@ -88,3 +88,16 @@ export type Data = {
   role: string;
   action: React.ReactNode;
 };
+
+export interface DataForPinningExample {
+  userId: number;
+  fullName: string;
+  years: number;
+  jobTitle: string;
+  team: string;
+  office: string;
+  availability: string;
+  workExperience: string;
+  income: string;
+  controls: React.ReactNode;
+}
