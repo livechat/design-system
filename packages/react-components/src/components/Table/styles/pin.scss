@@ -33,6 +33,6 @@
   }
 
  @else {
-    @warn "Invalid pinned value: #{$type}. Supported value are 'header' and 'leftColumn'.";
+    @warn "Invalid pinned value: #{$type}. Supported values are 'header' and 'leftColumn'.";
   }
 }

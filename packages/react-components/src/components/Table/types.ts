@@ -11,6 +11,8 @@ export type TableSize = 'small' | 'medium' | 'large';
 
 export type PinOptions = 'header' | 'leftColumn';
 
+export type StrippedOptions = 'rows' | 'columns';
+
 export enum SortOrder {
   Ascending = 'asc',
   Descending = 'desc',
@@ -27,9 +29,11 @@ export interface ITableProps<T> {
    */
   columns: Column<T>[];
   /**
-   * Whether to display alternating row background colors for better readability.
+   * The parameter allows you to customize alternating background colors for rows
+   * or columns in the table, enhancing readability and visual separation. Allowed values
+   * are 'rows' or 'columns'
    */
-  stripped?: boolean;
+  stripped?: StrippedOptions;
   /**
    * Specifies the size of the table, which affects row height and spacing.
    * Options: 'small', 'medium', 'large'.
