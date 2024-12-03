@@ -1,5 +1,6 @@
 @use './styles/pin';
 @use './styles/size';
+@use './styles/strips';
 
 $base-class: 'table';
 $action-bar-class: 'action-bar';
@@ -54,14 +55,12 @@ $action-bar-class: 'action-bar';
     }
   }
 
-  &--stripped {
-    tbody tr:nth-child(odd) {
-      background-color: var(--surface-secondary-default);
+  &--stripped_rows {
+    @include strips.generateStrips('rows');
+  }
 
-      &:hover {
-        background-color: var(--surface-primary-disabled);
-      }
-    }
+  &--stripped_columns {
+    @include strips.generateStrips('columns');
   }
 
   tbody {

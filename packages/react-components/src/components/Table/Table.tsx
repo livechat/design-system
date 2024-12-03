@@ -181,9 +181,7 @@ export const Table = <T,>({
           styles[`${baseClass}`],
           styles[`${baseClass}--${size}`],
           styles[`${baseClass}--pinned_${pin}`],
-          {
-            [styles[`${baseClass}--stripped`]]: stripped,
-          }
+          styles[`${baseClass}--stripped_${stripped}`]
         )}
       >
         <TableHeader

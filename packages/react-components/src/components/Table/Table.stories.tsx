@@ -79,6 +79,34 @@ export const Resizing: StoryFn = () => {
   );
 };
 
+export const Stripped: StoryFn = () => {
+  const getRowId = (row: Data) => row.id;
+  const data = generateData(4);
+
+  return (
+    <>
+      <StoryDescriptor title="Rows">
+        <Table
+          size="medium"
+          data={data}
+          columns={columns}
+          getRowId={getRowId}
+          stripped="rows"
+        />
+      </StoryDescriptor>
+      <StoryDescriptor title="Columns">
+        <Table
+          size="medium"
+          data={data}
+          columns={columns}
+          getRowId={getRowId}
+          stripped="columns"
+        />
+      </StoryDescriptor>
+    </>
+  );
+};
+
 export const Sizes: StoryFn = (): React.ReactElement => {
   const getRowId = (row: Data) => row.id;
   const data = generateData(4);
