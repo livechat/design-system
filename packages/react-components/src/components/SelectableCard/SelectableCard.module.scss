@@ -43,7 +43,13 @@ $base-class: 'selectable-card';
 
   &--interactive {
     border-radius: var(--radius-4);
-    padding: var(--spacing-9) var(--spacing-8);
+    padding: var(--spacing-8);
+
+    .#{$base-class}__select-indicator {
+      position: absolute;
+      top: 13px;
+      left: 16px;
+    }
   }
 
   &--selected,
