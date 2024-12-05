@@ -81,17 +81,27 @@ export const usePickerItems = ({
     let items = options;
 
     if (searchPhrase) {
-      items = items.filter((item) => {
-        if (item.groupHeader) {
-          return false;
-        }
+      items = items
+        .filter((item) => {
+          if (item.groupHeader) {
+            return true;
+          }
 
-        const search = searchPhrase.toLowerCase();
-        const itemName = item.name.toLowerCase();
-        const itemSecondaryText = item.secondaryText?.toLowerCase();
+          const search = searchPhrase.toLowerCase();
+          const itemName = item.name.toLowerCase();
+          const itemSecondaryText = item.secondaryText?.toLowerCase();
 
-        return itemName.includes(search) || itemSecondaryText?.includes(search);
-      });
+          return (
+            itemName.includes(search) || itemSecondaryText?.includes(search)
+          );
+        })
+        .filter(
+          (item, index, array) =>
+            !(
+              item.groupHeader &&
+              (array[index + 1]?.groupHeader || index === array.length - 1)
+            )
+        );
     }
 
     if (shouldShowSelectAll && items.length > 1) {
