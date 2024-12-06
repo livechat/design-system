@@ -17,7 +17,12 @@ export const InteractiveSelectableCard: FC<IInteractiveSelectableCardProps> = ({
 }) => {
   return (
     <SelectableCard {...props} kind="interactive">
-      <div className={cx(styles[baseClass], contentClassName)}>{children}</div>
+      <div
+        role="presentation"
+        className={cx(styles[baseClass], contentClassName)}
+      >
+        {children}
+      </div>
     </SelectableCard>
   );
 };

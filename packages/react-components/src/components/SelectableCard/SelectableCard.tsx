@@ -50,6 +50,7 @@ export const SelectableCard: FC<ISelectableCardProps> = ({
 
   return (
     <div
+      aria-selected={isSelected}
       role="button"
       tabIndex={0}
       className={mergedClassName}

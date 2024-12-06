@@ -20,21 +20,26 @@ export const ThumbnailSelectableCard: FC<IThumbnailSelectableCardProps> = ({
   ...props
 }) => (
   <SelectableCard {...props} kind="thumbnail">
-    <div className={cx(styles[baseClass], contentClassName)}>
-      {icon && <div className={styles[`${baseClass}__icon`]}>{icon}</div>}
+    <div
+      role="presentation"
+      className={cx(styles[baseClass], contentClassName)}
+    >
       {!customElement && (
-        <div className={styles[`${baseClass}__content`]}>
-          <Text as="span" className={styles[`${baseClass}__content__label`]}>
-            {label}
-          </Text>
-          <Text
-            size="sm"
-            as="span"
-            className={styles[`${baseClass}__content__description`]}
-          >
-            {description}
-          </Text>
-        </div>
+        <>
+          {icon && <div className={styles[`${baseClass}__icon`]}>{icon}</div>}
+          <div className={styles[`${baseClass}__content`]}>
+            <Text as="span" className={styles[`${baseClass}__content__label`]}>
+              {label}
+            </Text>
+            <Text
+              size="sm"
+              as="span"
+              className={styles[`${baseClass}__content__description`]}
+            >
+              {description}
+            </Text>
+          </div>
+        </>
       )}
       {customElement}
     </div>

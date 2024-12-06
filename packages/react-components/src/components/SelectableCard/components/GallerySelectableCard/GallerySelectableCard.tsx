@@ -30,7 +30,10 @@ export const GallerySelectableCard: FC<IGallerySelectableCardProps> = ({
           : {}
       }
     >
-      <div className={cx(styles[baseClass], contentClassName)}>
+      <div
+        role="presentation"
+        className={cx(styles[baseClass], contentClassName)}
+      >
         {icon && !customElement && icon}
         {customElement}
         {label && (
