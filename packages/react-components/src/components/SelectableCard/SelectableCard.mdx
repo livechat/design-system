@@ -39,6 +39,10 @@ import { SelectableCard } from '@livechat/design-system-react-components';
 
 The `ThumbnailSelectableCard` is a component built on top of `SelectableCard`, containing its own interface aimed at easily building components for a specific use case.
 
+##### Important
+
+`label` prop is required, hovewer it will not be displayed if `customElement` is provided. (this rule also applies to the `description` and `icon`)
+
 <Canvas of={ThumbnailSelectableCard.RadioTypeExamples} sourceState="none" />
 
 #### Example implementation
@@ -61,6 +65,10 @@ import { ThumbnailSelectableCard } from '@livechat/design-system-react-component
 ### GallerySelectableCard <a id="Gallery" />
 
 The `GallerySelectableCard` is a component built on top of `SelectableCard`, containing its own interface aimed at easily building components for a specific use case.
+
+##### Important
+
+Since the interface does not assume mandatory props related to the UI for this type of card, you must remember to provide an `icon` or `customElemnt` or `label`, otherwise the card will be empty.
 
 <Canvas of={GallerySelectableCard.RadioTypeExamples} sourceState="none" />
 
