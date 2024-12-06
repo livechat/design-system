@@ -27,7 +27,7 @@ interface IRadioCardsProps {
 export const RadioCards: React.FC<IRadioCardsProps> = ({ children }) => {
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
 
-  return [...Array(3)].map((_, index) =>
+  return [...Array(2)].map((_, index) =>
     getComponent(
       index,
       selectedIndex === index,
@@ -53,7 +53,7 @@ export const CheckboxCards: React.FC<ICheckboxCardsProps> = ({ children }) => {
     }
   };
 
-  return [...Array(3)].map((_, index) =>
+  return [...Array(2)].map((_, index) =>
     getComponent(
       index,
       selectedIndex.includes(index),

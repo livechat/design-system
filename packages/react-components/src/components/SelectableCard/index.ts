@@ -1,2 +1,9 @@
 export { SelectableCard } from './SelectableCard';
-export { ThumbnailSelectableCard } from './components/';
+export {
+  ThumbnailSelectableCard,
+  GallerySelectableCard,
+  InteractiveSelectableCard,
+  GridWrapper,
+  GridCol,
+  GridRow,
+} from './components/';
