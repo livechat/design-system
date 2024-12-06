@@ -3,7 +3,7 @@ import * as React from 'react';
 import { ISelectableCardCoreProps } from '../../types';
 
 export interface IThumbnailSelectableCardProps
-  extends ISelectableCardCoreProps {
+  extends Omit<ISelectableCardCoreProps, 'children'> {
   /**
    * The label of the card
    */

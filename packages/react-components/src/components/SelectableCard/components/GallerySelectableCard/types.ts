@@ -2,7 +2,8 @@ import * as React from 'react';
 
 import { ISelectableCardCoreProps } from '../../types';
 
-export interface IGallerySelectableCardProps extends ISelectableCardCoreProps {
+export interface IGallerySelectableCardProps
+  extends Omit<ISelectableCardCoreProps, 'children'> {
   /**
    * The label of the card
    */
