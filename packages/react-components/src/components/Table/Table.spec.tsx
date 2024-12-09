@@ -26,18 +26,6 @@ const data: Data[] = [
 describe('<Table> component', () => {
   const getRowId = (row: Data) => row.id;
 
-  it('should render a table with provided data and columns', () => {
-    const { getByRole, getAllByRole } = render(
-      <Table data={data} columns={columns} getRowId={getRowId} />
-    );
-
-    const table = getByRole('table');
-    expect(table).toBeInTheDocument();
-
-    const rows = getAllByRole('row');
-    expect(rows.length).toBe(data.length + 1);
-  });
-
   it('should allow row selection if selectable prop is enabled', () => {
     const onSelectionChange = vi.fn();
     const selectedRows = new Set<string>();

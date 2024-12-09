@@ -17,6 +17,9 @@ import * as Stories from './Table.stories';
 
 ```jsx
 
+import React from 'react';
+import { Button, Column, Table } from '@livechat/design-system-react-components';
+
 type Data = {
   id: number;
   name: string;
@@ -87,11 +90,10 @@ const data: Data[] = [
   },
 ];
 
- const getRowId = (row: Data) => row.id;
+const getRowId = (row: Data) => row.id;
 
-  return (
-    <Table size="medium" data={data} columns={columns} getRowId={getRowId} />
-  );
+<Table size="medium" data={data} columns={columns} getRowId={getRowId} />
+  
 ```
 
 ## Component API <a id="ComponentAPI" />
