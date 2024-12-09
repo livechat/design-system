@@ -46,7 +46,13 @@ describe('<GallerySelectableCard> component', () => {
     });
 
     expect(getByText('Label')).toBeInTheDocument();
-    expect(container.firstChild).toHaveStyle('margin-bottom: 29px');
+    if (container.firstChild instanceof Element) {
+      expect(container.firstChild.className).toMatch(
+        /gallery-selectable-card--with-label/
+      );
+    } else {
+      throw new Error('Expected firstChild to be an Element');
+    }
   });
 
   it('should render custom element', () => {
