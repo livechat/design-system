@@ -1,0 +1,144 @@
+import { Canvas, ArgTypes, Meta, Title } from '@storybook/blocks';
+
+import * as SelectableCardStories from './SelectableCard.stories';
+import * as ThumbnailSelectableCard from './components/ThumbnailSelectableCard/ThumbnailSelectableCard.stories';
+import * as GallerySelectableCard from './components/GallerySelectableCard/GallerySelectableCard.stories';
+import * as InteractiveSelectableCard from './components/InteractiveSelectableCard/InteractiveSelectableCard.stories';
+
+<Meta of={SelectableCardStories} />
+
+<Title>SelectableCard</Title>
+
+[Intro](#Intro) | [SelectableCard](#Default) | [ThumbnailSelectableCard](#Thumbnail) | [GallerySelectableCard](#Gallery) | [InteractiveSelectableCard](#Interactive) | [InteractiveGrid](#InteractiveGrid) | [Component API](#ComponentAPI)
+
+## Intro <a id="Intro" />
+
+`SelectableCard` is an interactive component used to create forms with card-based inputs. It supports radio and checkbox modes, making it ideal for scenarios where you want to provide visually engaging options for users to select.
+
+### Default SelectableCard <a id="Default" />
+
+The `SelectableCard` component is mainly used as a base for other card types ([Thumbnail](#Thumbnail), [Gallery](#Gallery), [Interactive](#Interactive)), containing the main logic responsible for interacting with the card, possibility to set the radio or checkbox type of card, basic styles and keyboard interaction.
+
+<Canvas of={SelectableCardStories.Default} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+import { SelectableCard } from '@livechat/design-system-react-components';
+
+<SelectableCard
+  selectionType="radio"
+  isSelected
+  onClick={() => {}}
+>
+  Default accordion content
+</SelectableCard>
+```
+
+### ThumbnailSelectableCard <a id="Thumbnail" />
+
+The `ThumbnailSelectableCard` is a component built on top of `SelectableCard`, containing its own interface aimed at easily building components for a specific use case.
+
+##### Important
+
+`label` prop is required, hovewer it will not be displayed if `customElement` is provided. (this rule also applies to the `description` and `icon`)
+
+<Canvas of={ThumbnailSelectableCard.RadioTypeExamples} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+import { Palette } from '@livechat/design-system-icons';
+import { ThumbnailSelectableCard } from '@livechat/design-system-react-components';
+
+<ThumbnailSelectableCard
+  label="Card label"
+  selectionType="radio"
+  description="Card description"
+  icon={<Icon source={Palette} />}
+  isSelected
+  onClick={() => {}}
+/>
+```
+
+
+### GallerySelectableCard <a id="Gallery" />
+
+The `GallerySelectableCard` is a component built on top of `SelectableCard`, containing its own interface aimed at easily building components for a specific use case.
+
+##### Important
+
+Since the interface does not assume mandatory props related to the UI for this type of card, you must remember to provide an `icon` or `customElement`.
+
+<Canvas of={GallerySelectableCard.RadioTypeExamples} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+import { Palette } from '@livechat/design-system-icons';
+import { GallerySelectableCard } from '@livechat/design-system-react-components';
+
+<GallerySelectableCard
+  label="Card label"
+  selectionType="radio"
+  icon={<Icon source={Palette} />}
+  isSelected
+  onClick={() => {}}
+/>
+```
+
+### InteractiveSelectableCard <a id="Interactive" />
+
+The `InteractiveSelectableCard` is a component built on top of `SelectableCard`. 
+Unlike other components, the interface is simple, and building the content is not limited to interface props.
+Content is fully open to your own implementation, but for faster arrangement of elements inside, a small grid system is available in the form of components, called `InteractiveGrid`.
+
+<Canvas of={InteractiveSelectableCard.RadioTypeExamples} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+import { Palette } from '@livechat/design-system-icons';
+import { InteractiveSelectableCard, GridWrapper, GridCol } from '@livechat/design-system-react-components';
+
+<InteractiveSelectableCard
+  selectionType="radio"
+  isSelected
+  onClick={() => {}}
+>
+  <GridWrapper>
+    <GridCol>
+      <div>
+        <Heading size="xs" className="interactive-heading">
+          Default custom page event
+        </Heading>
+        <Text className="interactive-text">
+          Goal is achieved when a specific condition set in your website’s
+          code. This can be filling out a registration form.
+        </Text>
+      </div>
+    </GridCol>
+    <GridCol>
+      <div className="interactive-custom-element">
+        <Icon source={Palette} />
+        <div>Replace me with Image, animation, video</div>
+      </div>
+    </GridCol>
+  </GridWrapper>
+</InteractiveSelectableCard>
+```
+
+## InteractiveGrid <a id="InteractiveGrid" />
+
+The grid components were created with the idea of ​​faster arrangement of elements inside the `InteractiveSelectableCard` and are intended exclusively for this. They allow you to quickly create a column layout, or arrange content in rows, all in accordance with the UI assumptions.
+
+The grid components consists of:
+- `GridWrapper` - necessary to use other components
+- `GridCol` - for column layout, it will move to row layout in smaller screens
+- `GridRow` - for row layout
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={SelectableCardStories.Default} sort="requiredFirst" />
+
+
