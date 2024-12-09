@@ -49,7 +49,7 @@ export const RadioTypeExamples = () => (
             </div>
           </GridRow>
           <GridRow>
-            <div className="interactive-custom-element">
+            <div className="base-custom-element interactive-custom-element">
               <Icon source={Palette} />
               <div>Replace me with Image, animation, video</div>
             </div>
@@ -72,7 +72,7 @@ export const RadioTypeExamples = () => (
             </div>
           </GridCol>
           <GridCol>
-            <div className="interactive-custom-element">
+            <div className="base-custom-element interactive-custom-element">
               <Icon source={Palette} />
               <div>Replace me with Image, animation, video</div>
             </div>
@@ -113,7 +113,7 @@ export const CheckboxTypeExamples = () => (
             </div>
           </GridRow>
           <GridRow>
-            <div className="interactive-custom-element">
+            <div className="base-custom-element interactive-custom-element">
               <Icon source={Palette} />
               <div>Replace me with Image, animation, video</div>
             </div>
@@ -136,7 +136,7 @@ export const CheckboxTypeExamples = () => (
             </div>
           </GridCol>
           <GridCol>
-            <div className="interactive-custom-element">
+            <div className="base-custom-element interactive-custom-element">
               <Icon source={Palette} />
               <div>Replace me with Image, animation, video</div>
             </div>

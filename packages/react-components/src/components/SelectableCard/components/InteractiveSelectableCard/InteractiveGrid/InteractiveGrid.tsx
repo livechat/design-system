@@ -18,20 +18,18 @@ export const GridWrapper: FC<IGridComponentProps> = ({
   );
 };
 
-const gridRowBaseClass = 'grid-row';
-export const GridRow: FC<IGridComponentProps> = ({ children, className }) => {
-  return (
-    <div className={`${styles[gridRowBaseClass]} ${className || ''}`}>
-      {children}
-    </div>
-  );
-};
+const GridComponent: FC<
+  IGridComponentProps & { baseClass: string; role?: string }
+> = ({ children, className, baseClass, role = 'presentation' }) => (
+  <div role={role} className={`${styles[baseClass]} ${className || ''}`}>
+    {children}
+  </div>
+);
 
-const gridColBaseClass = 'grid-col';
-export const GridCol: FC<IGridComponentProps> = ({ children, className }) => {
-  return (
-    <div className={`${styles[gridColBaseClass]} ${className || ''}`}>
-      {children}
-    </div>
-  );
-};
+export const GridRow: FC<IGridComponentProps> = (props) => (
+  <GridComponent {...props} baseClass="grid-row" />
+);
+
+export const GridCol: FC<IGridComponentProps> = (props) => (
+  <GridComponent {...props} baseClass="grid-col" />
+);

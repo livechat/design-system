@@ -16,19 +16,16 @@ export const GallerySelectableCard: FC<IGallerySelectableCardProps> = ({
   icon,
   customElement,
   contentClassName,
+  className,
   ...props
 }) => {
   return (
     <SelectableCard
       {...props}
+      className={cx(className, {
+        [styles[`${baseClass}--with-label`]]: label,
+      })}
       kind="gallery"
-      style={
-        label
-          ? {
-              marginBottom: '29px',
-            }
-          : {}
-      }
     >
       <div
         role="presentation"

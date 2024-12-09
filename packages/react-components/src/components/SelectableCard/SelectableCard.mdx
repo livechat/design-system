@@ -57,7 +57,7 @@ import { ThumbnailSelectableCard } from '@livechat/design-system-react-component
   description="Card description"
   icon={<Icon source={Palette} />}
   isSelected
-  onClick={() = {}}
+  onClick={() => {}}
 />
 ```
 
@@ -68,7 +68,7 @@ The `GallerySelectableCard` is a component built on top of `SelectableCard`, con
 
 ##### Important
 
-Since the interface does not assume mandatory props related to the UI for this type of card, you must remember to provide an `icon` or `customElemnt` or `label`, otherwise the card will be empty.
+Since the interface does not assume mandatory props related to the UI for this type of card, you must remember to provide an `icon` or `customElement`.
 
 <Canvas of={GallerySelectableCard.RadioTypeExamples} sourceState="none" />
 
@@ -83,7 +83,7 @@ import { GallerySelectableCard } from '@livechat/design-system-react-components'
   selectionType="radio"
   icon={<Icon source={Palette} />}
   isSelected
-  onClick={() = {}}
+  onClick={() => {}}
 />
 ```
 
@@ -104,7 +104,7 @@ import { InteractiveSelectableCard, GridWrapper, GridCol } from '@livechat/desig
 <InteractiveSelectableCard
   selectionType="radio"
   isSelected
-  onClick={() = {}}
+  onClick={() => {}}
 >
   <GridWrapper>
     <GridCol>

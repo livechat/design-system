@@ -40,7 +40,7 @@ const getComponent = (
     {...(withIcon && { icon: <Icon source={ICONS[index]} /> })}
     {...(withCustomElement && {
       customElement: (
-        <div className="thumbnail-custom-element">
+        <div className="base-custom-element thumbnail-custom-element">
           <Icon size="small" source={ICONS[index]} />
           <div>{`Custom element ${index + 1}`}</div>
         </div>

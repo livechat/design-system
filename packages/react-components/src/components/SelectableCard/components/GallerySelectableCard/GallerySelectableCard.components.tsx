@@ -10,39 +10,53 @@ import {
 import { Icon } from '../../../Icon';
 
 import { GallerySelectableCard } from './GallerySelectableCard';
+import { IGallerySelectableCardProps } from './types';
 
 const ICONS = [Palette, Building, AccountCircle, Group];
-
-interface IRadioCardsProps {
-  withIcon?: boolean;
-  withCustomElement?: boolean;
-}
 
 const getComponent = (
   index: number,
   isSelected: boolean,
   setSelectedIndex: (index: number) => void,
-  withIcon: boolean | undefined,
-  withCustomElement: boolean | undefined,
+  withIcon: boolean,
+  withCustomElement: boolean,
   type: 'radio' | 'checkbox'
-) => (
-  <GallerySelectableCard
-    key={index}
-    label={`Card ${index + 1}`}
-    selectionType={type}
-    isSelected={isSelected}
-    onClick={() => setSelectedIndex(index)}
-    {...(withIcon && { icon: <Icon size="xlarge" source={ICONS[index]} /> })}
-    {...(withCustomElement && {
+) => {
+  let props: IGallerySelectableCardProps = {
+    label: `Card ${index + 1}`,
+    selectionType: type,
+    isSelected,
+    onClick: () => setSelectedIndex(index),
+    icon: undefined,
+    customElement: undefined,
+  };
+
+  if (withIcon) {
+    const { customElement: _, ...newProps } = props;
+    props = {
+      ...newProps,
+      icon: <Icon size="xlarge" source={ICONS[index]} />,
+    };
+  } else if (withCustomElement) {
+    const { icon: _, ...newProps } = props;
+    props = {
+      ...newProps,
       customElement: (
-        <div className="gallery-custom-element">
+        <div className="base-custom-element gallery-custom-element">
           <Icon size="small" source={ICONS[index]} />
           <div>{`Custom element ${index + 1}`}</div>
         </div>
       ),
-    })}
-  />
-);
+    };
+  }
+
+  return <GallerySelectableCard key={index} {...props} />;
+};
+
+interface IRadioCardsProps {
+  withIcon: boolean;
+  withCustomElement: boolean;
+}
 
 export const RadioCards: React.FC<IRadioCardsProps> = ({
   withIcon,
@@ -63,8 +77,8 @@ export const RadioCards: React.FC<IRadioCardsProps> = ({
 };
 
 interface ICheckboxCardsProps {
-  withIcon?: boolean;
-  withCustomElement?: boolean;
+  withIcon: boolean;
+  withCustomElement: boolean;
 }
 
 export const CheckboxCards: React.FC<ICheckboxCardsProps> = ({

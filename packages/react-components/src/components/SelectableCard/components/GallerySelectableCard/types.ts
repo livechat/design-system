@@ -2,18 +2,34 @@ import * as React from 'react';
 
 import { ISelectableCardCoreProps } from '../../types';
 
-export interface IGallerySelectableCardProps
-  extends Omit<ISelectableCardCoreProps, 'children'> {
+type BaseProps = {
   /**
    * The label of the card
    */
   label?: string;
+};
+
+type WithIcon = BaseProps & {
   /**
    * The icon of the card
    */
-  icon?: React.ReactNode;
+  icon: React.ReactNode;
   /**
    * The custom element of the card
    */
-  customElement?: React.ReactNode;
-}
+  customElement?: never;
+};
+
+type WithCustomElement = BaseProps & {
+  /**
+   * The icon of the card
+   */
+  icon?: never;
+  /**
+   * The custom element of the card
+   */
+  customElement: React.ReactNode;
+};
+
+export type IGallerySelectableCardProps = (WithIcon | WithCustomElement) &
+  Omit<ISelectableCardCoreProps, 'children'>;

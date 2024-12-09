@@ -18,10 +18,10 @@ export default {
 export const RadioTypeExamples = () => (
   <>
     <StoryDescriptor title="With Icon">
-      <RadioCards withIcon />
+      <RadioCards withIcon withCustomElement={false} />
     </StoryDescriptor>
     <StoryDescriptor title="With Custom element">
-      <RadioCards withIcon withCustomElement />
+      <RadioCards withIcon={false} withCustomElement />
     </StoryDescriptor>
   </>
 );
@@ -29,10 +29,10 @@ export const RadioTypeExamples = () => (
 export const CheckboxTypeExamples = () => (
   <>
     <StoryDescriptor title="With Icon">
-      <CheckboxCards withIcon />
+      <CheckboxCards withIcon withCustomElement={false} />
     </StoryDescriptor>
     <StoryDescriptor title="With Custom element">
-      <CheckboxCards withIcon withCustomElement />
+      <CheckboxCards withIcon={false} withCustomElement />
     </StoryDescriptor>
   </>
 );

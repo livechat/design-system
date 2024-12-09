@@ -9,7 +9,10 @@ export const useInteractive = ({
 }: UseInteractiveProps): IUseInteractive => {
   const handleInteractiveClick = React.useCallback(
     (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-      const target = e.target as HTMLElement;
+      const target = e.target;
+
+      if (!(target instanceof HTMLElement)) return;
+
       const targetTagName = target.tagName.toLowerCase();
 
       if (!NON_INTERACTIVE_TAGS.includes(targetTagName)) {

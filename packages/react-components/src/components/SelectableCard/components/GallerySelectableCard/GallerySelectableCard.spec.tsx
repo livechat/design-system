@@ -22,6 +22,7 @@ describe('<GallerySelectableCard> component', () => {
       ...DEFAULT_PROPS,
       className: 'my-class',
       contentClassName: 'my-content-class',
+      icon: <div role="img" />,
     });
 
     expect(container.firstChild).toHaveClass('my-class');
@@ -41,6 +42,7 @@ describe('<GallerySelectableCard> component', () => {
     const { container, getByText } = renderComponent({
       ...DEFAULT_PROPS,
       label: 'Label',
+      icon: <div role="img" />,
     });
 
     expect(getByText('Label')).toBeInTheDocument();
@@ -53,17 +55,6 @@ describe('<GallerySelectableCard> component', () => {
       customElement: <div>Custom element</div>,
     });
 
-    expect(getByText('Custom element')).toBeInTheDocument();
-  });
-
-  it('should not render icon if custom element is provided', () => {
-    const { getByText, queryByRole } = renderComponent({
-      ...DEFAULT_PROPS,
-      icon: <div role="img" />,
-      customElement: <div>Custom element</div>,
-    });
-
-    expect(queryByRole('img')).not.toBeInTheDocument();
     expect(getByText('Custom element')).toBeInTheDocument();
   });
 });

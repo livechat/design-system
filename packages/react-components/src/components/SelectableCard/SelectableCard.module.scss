@@ -8,7 +8,7 @@ $base-class: 'selectable-card';
     box-shadow var(--transition-duration-fast-2) ease-in-out;
   border: 1px solid var(--border-basic-secondary);
   border-radius: var(--radius-3);
-  box-shadow: 0;
+  box-shadow: none;
   background: var(--surface-primary-default);
   width: max-content;
 
@@ -28,6 +28,7 @@ $base-class: 'selectable-card';
 
     .#{$base-class}__select-indicator {
       margin-right: var(--spacing-2);
+      height: 21px;
     }
   }
 
@@ -36,8 +37,8 @@ $base-class: 'selectable-card';
 
     .#{$base-class}__select-indicator {
       position: absolute;
-      top: 9px;
-      left: 12px;
+      top: var(--spacing-3);
+      left: var(--spacing-3);
     }
   }
 
@@ -47,8 +48,8 @@ $base-class: 'selectable-card';
 
     .#{$base-class}__select-indicator {
       position: absolute;
-      top: 13px;
-      left: 16px;
+      top: var(--spacing-4);
+      left: var(--spacing-4);
     }
   }
 
@@ -61,7 +62,7 @@ $base-class: 'selectable-card';
   &__select-indicator {
     display: flex;
     align-items: center;
-    height: 21px;
+    height: 16px;
 
     &__checkbox {
       height: 16px;

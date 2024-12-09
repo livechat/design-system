@@ -20,6 +20,7 @@ export const SelectableCard: FC<ISelectableCardProps> = ({
   isSelected = false,
   onClick,
   style,
+  ...props
 }) => {
   const mergedClassName = cx(
     styles[baseClass],
@@ -51,12 +52,14 @@ export const SelectableCard: FC<ISelectableCardProps> = ({
   return (
     <div
       aria-selected={isSelected}
+      aria-label={typeof children === 'string' ? children : undefined}
       role="button"
       tabIndex={0}
       className={mergedClassName}
       onClick={handleInteractiveClick}
       onKeyDown={handleOnKeyDown}
       style={style}
+      {...props}
     >
       <div className={styles[`${baseClass}__select-indicator`]}>
         {selectionType === 'radio' ? (
