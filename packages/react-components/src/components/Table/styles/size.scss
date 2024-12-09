@@ -1,0 +1,13 @@
+@mixin table-size($height, $padding-v, $padding-h) {
+  tbody tr {
+    height: $height;
+  }
+
+  th > span:first-child {
+    padding: 0 $padding-h;
+  }
+
+  td {
+    padding: $padding-v $padding-h;
+  }
+}

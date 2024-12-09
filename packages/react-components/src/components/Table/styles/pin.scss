@@ -1,0 +1,46 @@
+@mixin generatePin($type) {
+  @if $type == 'header' {
+    thead {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      box-shadow: var(--shadow-fixed-bottom);
+    }
+  }
+
+ @else if $type == 'leftColumn' {
+    tr > td:first-child,
+    th:first-child {
+      position: sticky;
+      left: 0;
+      z-index: 5;
+      background-color: var(--background-01);
+    }
+
+    tr:hover > td:first-child {
+      background-color: var(--surface-primary-hover);
+    }
+
+    tr > td:first-child::after,
+    th:first-child::after {
+      position: absolute;
+      top: 0;
+      right: -5px;
+      bottom: 0;
+      z-index: 5;
+      box-shadow: var(--shadow-fixed-right);
+      background-color: var(--background-01);
+      width: 5px;
+      content: '';
+      clip-path: inset(0 -15px 0 0);
+    }
+
+    tr:hover > td:first-child::after {
+      background-color: var(--surface-primary-hover);
+    }
+  }
+
+ @else {
+    @warn "Invalid pinned value: #{$type}. Supported values are 'header' and 'leftColumn'.";
+  }
+}

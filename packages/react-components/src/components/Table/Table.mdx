@@ -1,0 +1,111 @@
+import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+
+import * as Stories from './Table.stories';
+
+<Title>Table</Title>
+
+[Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+## Intro <a id="Intro" />
+
+`Table` component is a flexible and interactive table designed for displaying structured data. It supports key features such as sorting, column resizing, row selection, and a customizable layout. 
+
+
+<Canvas of={Stories.Default} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+
+import React from 'react';
+import { Button, Column, Table } from '@livechat/design-system-react-components';
+
+type Data = {
+  id: number;
+  name: string;
+  age: number;
+  role: string;
+  action: React.ReactNode;
+};
+
+const columns: Column<Data>[] = [
+  {
+    key: 'id',
+    header: 'ID',
+    sortable: true,
+    sortValue: (item: Data) => item.id,
+  },
+  {
+    key: 'name',
+    header: 'Name',
+    sortable: true,
+    sortValue: (item: Data) => item.name.toLowerCase(),
+  },
+  {
+    key: 'age',
+    header: 'Age',
+    sortable: true,
+    sortValue: (item: Data) => item.age,
+  },
+  {
+    key: 'role',
+    header: 'Role',
+    sortable: true,
+    sortValue: (item: Data) => item.role,
+  },
+  {
+    key: 'action',
+    header: 'Action',
+  },
+];
+
+const data: Data[] = [
+  {
+    id: 1,
+    name: 'John Doe',
+    age: 28,
+    role: 'Developer',
+    action: <Button size="xcompact">Edit</Button>,
+  },
+  {
+    id: 2,
+    name: 'Jane Smith',
+    age: 34,
+    role: 'Designer',
+    action: <Button size="xcompact">Edit</Button>,
+  },
+  {
+    id: 3,
+    name: 'Alice Johnson',
+    age: 42,
+    role: 'Manager',
+    action: <Button size="xcompact">Edit</Button>,
+  },
+  {
+    id: 4,
+    name: 'Mike Williams',
+    age: 25,
+    role: 'Intern',
+    action: <Button size="xcompact">Edit</Button>,
+  },
+];
+
+const getRowId = (row: Data) => row.id;
+
+<Table size="medium" data={data} columns={columns} getRowId={getRowId} />
+  
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={Stories.Default}  />
+
+## Content Spec <a id="ContentSpec" />
+
+<a
+  className="sb-unstyled"
+  href="https://www.figma.com/design/9FDwjR8lYvincseDkKypC4/Component-Documentations?node-id=21446-18742&node-type=canvas&t=XufCAXr9dcNjfXDk-0"
+  target="_blank"
+>
+  Go to Figma documentation
+</a>
