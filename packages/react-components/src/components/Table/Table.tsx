@@ -28,6 +28,7 @@ export const Table = <T,>({
   onSelectionChange,
   rowSelectionMessage,
   rowActions,
+  testId,
 }: ITableProps<T>) => {
   const columnRefs = React.useRef<(HTMLTableCellElement | null)[]>([]);
   const [hoveredColumnIndex, setHoveredColumnIndex] = React.useState<
@@ -183,6 +184,7 @@ export const Table = <T,>({
           styles[`${baseClass}--pinned_${pin}`],
           styles[`${baseClass}--stripped_${stripped}`]
         )}
+        data-testid={testId}
       >
         <TableHeader
           columns={columns}

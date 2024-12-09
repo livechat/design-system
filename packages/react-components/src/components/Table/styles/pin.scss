@@ -17,6 +17,10 @@
       background-color: var(--background-01);
     }
 
+    tr:hover > td:first-child {
+      background-color: var(--surface-primary-hover);
+    }
+
     tr > td:first-child::after,
     th:first-child::after {
       position: absolute;
@@ -29,6 +33,10 @@
       width: 5px;
       content: '';
       clip-path: inset(0 -15px 0 0);
+    }
+
+    tr:hover > td:first-child::after {
+      background-color: var(--surface-primary-hover);
     }
   }
 

@@ -78,6 +78,10 @@ export interface ITableProps<T> {
    * such as "Delete All" or "Export."
    */
   rowActions?: React.ReactNode;
+  /**
+   * Sets the `data-testid` attribute, allowing the table to be easily selected in automated tests.
+   */
+  testId?: string;
 }
 
 export interface SortConfig<T> {

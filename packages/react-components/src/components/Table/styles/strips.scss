@@ -17,6 +17,14 @@
     tbody tr:hover td:nth-child(even) {
       background-color: var(--surface-primary-hover);
     }
+
+    thead tr th:nth-child(even) {
+      background-color: var(--surface-secondary-default);
+    }
+
+    thead tr:hover th:nth-child(even) {
+      background-color: var(--surface-primary-hover);
+    }
   }
 
  @else {
