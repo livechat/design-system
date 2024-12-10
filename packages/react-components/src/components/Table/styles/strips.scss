@@ -1,0 +1,33 @@
+@mixin generateStrips($type) {
+  @if $type == 'rows' {
+    tbody tr:nth-child(odd) {
+      background-color: var(--surface-secondary-default);
+
+      &:hover {
+        background-color: var(--surface-primary-disabled) !important;
+      }
+    }
+  }
+
+ @else if $type == 'columns' {
+    tbody tr td:nth-child(even) {
+      background-color: var(--surface-secondary-default);
+    }
+
+    tbody tr:hover td:nth-child(even) {
+      background-color: var(--surface-primary-hover);
+    }
+
+    thead tr th:nth-child(even) {
+      background-color: var(--surface-secondary-default);
+    }
+
+    thead tr:hover th:nth-child(even) {
+      background-color: var(--surface-primary-hover);
+    }
+  }
+
+ @else {
+    @warn "Invalid stripped value: #{$type}. Supported values are 'rows' and 'columns'.";
+  }
+}

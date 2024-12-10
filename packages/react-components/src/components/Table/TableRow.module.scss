@@ -1,0 +1,11 @@
+$base-class: 'row';
+$table-class: 'table';
+
+.#{$base-class} {
+  border-bottom: 1px solid var(--border-basic-tertiary);
+  background-color: var(--background-01);
+
+  &:not(.#{$table-class}__header):hover {
+    background-color: var(--surface-primary-hover);
+  }
+}
