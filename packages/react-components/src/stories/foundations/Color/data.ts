@@ -1476,6 +1476,16 @@ export const ColorsData: Record<
     desc: '',
     deprecated: false,
   },
+  InputPromoBorderDefault: {
+    group: ColorGroup.BorderBasic,
+    desc: '',
+    deprecated: false,
+  },
+  InputPromoBorderHover: {
+    group: ColorGroup.BorderBasic,
+    desc: '',
+    deprecated: false,
+  },
   AnimatedGradientValue1: {
     group: ColorGroup.AnimationGradient,
     desc: 'Part of the gradient used for animation in Skeleton component',

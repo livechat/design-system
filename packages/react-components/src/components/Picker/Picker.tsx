@@ -39,6 +39,7 @@ export const Picker: React.FC<IPickerProps> = ({
   onSelect,
   placement,
   floatingStrategy,
+  root,
   useDismissHookProps,
   useClickHookProps,
   virtuosoProps,
@@ -149,7 +150,7 @@ export const Picker: React.FC<IPickerProps> = ({
       </PickerTrigger>
       <FloatingNode id={nodeId}>
         {isOpen && (
-          <FloatingPortal>
+          <FloatingPortal root={root}>
             <PickerList
               pickerType={type}
               options={items}
