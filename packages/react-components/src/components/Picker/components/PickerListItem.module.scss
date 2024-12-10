@@ -90,8 +90,7 @@ $base-class: 'picker-list';
       margin-bottom: var(--spacing-05);
       background-color: var(--picker-list-group-background);
       cursor: auto;
-      padding: 12px 12px 4px;
-      height: 36px;
+      padding: 8px 12px;
       color: var(--content-basic-secondary);
 
       &::after {
@@ -99,7 +98,7 @@ $base-class: 'picker-list';
         top: 0;
         z-index: -1;
         background: var(--picker-list-group-background);
-        height: 36px;
+        height: 100%;
         content: '';
       }
 
