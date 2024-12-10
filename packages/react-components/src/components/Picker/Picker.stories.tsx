@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { Meta, StoryFn } from '@storybook/react';
 
+import image from '../../stories/assets/avatar.jpg';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { customHeightForChromatic } from '../../utils/chromatic-story-helpers';
 import noop from '../../utils/noop';
@@ -171,10 +172,7 @@ export const PickerWithOptionsAsCustomElements = (): React.ReactElement => (
             customElement: {
               listItemBody: (
                 <CustomPickerOption>
-                  <img
-                    className="image"
-                    src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
-                  />
+                  <img className="image" src={image} />
                   <div>
                     <div className="title">Example custom element one</div>
                     <div className="description">Example custom element</div>
@@ -183,10 +181,7 @@ export const PickerWithOptionsAsCustomElements = (): React.ReactElement => (
               ),
               selectedItemBody: (
                 <CustomPickerOption>
-                  <img
-                    className="image selected"
-                    src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
-                  />
+                  <img className="image selected" src={image} />
                   <div className="title selected">
                     Example custom element one
                   </div>
@@ -200,10 +195,7 @@ export const PickerWithOptionsAsCustomElements = (): React.ReactElement => (
             customElement: {
               listItemBody: (
                 <CustomPickerOption>
-                  <img
-                    className="image"
-                    src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
-                  />
+                  <img className="image" src={image} />
                   <div>
                     <div className="title">Example custom element two</div>
                     <div className="description">Example custom element</div>
@@ -212,10 +204,7 @@ export const PickerWithOptionsAsCustomElements = (): React.ReactElement => (
               ),
               selectedItemBody: (
                 <CustomPickerOption>
-                  <img
-                    className="image selected"
-                    src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
-                  />
+                  <img className="image selected" src={image} />
                   <div className="title selected">
                     Example custom element two
                   </div>
@@ -236,10 +225,7 @@ export const PickerWithOptionsAsCustomElements = (): React.ReactElement => (
             customElement: {
               listItemBody: (
                 <CustomPickerOption>
-                  <img
-                    className="image"
-                    src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
-                  />
+                  <img className="image" src={image} />
                   <div>
                     <div className="title">Example custom element one</div>
                     <div className="description">Example custom element</div>
@@ -248,10 +234,7 @@ export const PickerWithOptionsAsCustomElements = (): React.ReactElement => (
               ),
               selectedItemBody: (
                 <CustomPickerOption>
-                  <img
-                    className="image selected"
-                    src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
-                  />
+                  <img className="image selected" src={image} />
                   <div className="title selected">Example element one</div>
                 </CustomPickerOption>
               ),
@@ -263,10 +246,7 @@ export const PickerWithOptionsAsCustomElements = (): React.ReactElement => (
             customElement: {
               listItemBody: (
                 <CustomPickerOption>
-                  <img
-                    className="image"
-                    src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
-                  />
+                  <img className="image" src={image} />
                   <div>
                     <div className="title">Example custom element two</div>
                     <div className="description">Example custom element</div>
@@ -275,10 +255,7 @@ export const PickerWithOptionsAsCustomElements = (): React.ReactElement => (
               ),
               selectedItemBody: (
                 <CustomPickerOption>
-                  <img
-                    className="image selected"
-                    src="https://avatars2.githubusercontent.com/u/29309941?s=88&v=4"
-                  />
+                  <img className="image selected" src={image} />
                   <div className="title selected">Example element two</div>
                 </CustomPickerOption>
               ),
