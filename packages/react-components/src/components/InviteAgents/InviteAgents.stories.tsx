@@ -1,6 +1,8 @@
 import { action } from '@storybook/addon-actions';
 import { Meta, StoryObj } from '@storybook/react';
 
+import image from '../../stories/assets/avatar.jpg';
+
 import { InviteAgents } from './InviteAgents';
 
 const meta: Meta<typeof InviteAgents> = {
@@ -37,21 +39,21 @@ const mockAgents = [
     name: 'Alice Johnson 2',
     email: 'alic2@example.com',
     status: 'available' as const,
-    avatar: 'https://via.placeholder.com/150',
+    avatar: image,
     isBot: false,
   },
   {
     name: 'Bob Smith',
     email: 'bob3@example.com',
     status: 'unavailable' as const,
-    avatar: 'https://via.placeholder.com/150',
+    avatar: image,
     isBot: false,
   },
   ...[...Array(10)].map((_, index) => ({
     name: `Unknown Agent ${index}`,
     email: `unknown${index}@example.com`,
     status: 'available' as const,
-    avatar: 'https://via.placeholder.com/150',
+    avatar: image,
     isBot: index % 2 === 0,
   })),
 ];

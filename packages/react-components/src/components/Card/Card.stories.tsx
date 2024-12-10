@@ -3,6 +3,7 @@ import * as React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Meta } from '@storybook/react';
 
+import image from '../../stories/assets/folder.svg';
 import { Card, CardProps } from '../Card';
 
 export default {
@@ -24,7 +25,7 @@ export const Default = (args: CardProps): React.ReactElement => (
 
 Default.args = {
   title: 'Card title',
-  src: 'https://via.placeholder.com/100',
+  src: image,
   alt: 'Image description',
   children:
     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore',
@@ -35,7 +36,7 @@ export const Expandable = (): React.ReactElement => (
   <Card
     title="Expandable card"
     description="Click show more to expand"
-    src="https://via.placeholder.com/100"
+    src={image}
     expandableContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
   >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -47,7 +48,7 @@ export const WithButtons = (): React.ReactElement => (
   <Card
     title="Expandable card"
     description="Click show more to expand"
-    src="https://via.placeholder.com/100"
+    src={image}
     buttonsOptions={[
       {
         kind: 'secondary',
@@ -70,7 +71,7 @@ export const ExpandableWithButtons = (): React.ReactElement => (
   <Card
     title="Expandable card"
     description="Click show more to expand"
-    src="https://via.placeholder.com/100"
+    src={image}
     expandableContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"
     buttonsOptions={[
       {

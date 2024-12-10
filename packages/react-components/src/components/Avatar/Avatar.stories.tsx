@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import { Meta } from '@storybook/react';
 
+import image from '../../stories/assets/avatar.jpg';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
 import { Avatar, AvatarProps } from './Avatar';
@@ -16,8 +17,6 @@ export const Default = (args: AvatarProps): React.ReactElement => (
   <Avatar {...args} />
 );
 
-const defaultImage =
-  'https://cdn-labs.livechat-files.com/api/file/lc/img/100019504/df59da4b5b0cdb6030efb08787fd255d.jpg';
 const defaultName = 'John Doe';
 
 Default.args = {
@@ -28,7 +27,7 @@ Default.args = {
 export const Types = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Image">
-      <Avatar type="image" src={defaultImage} alt="User avatar" />
+      <Avatar type="image" src={image} alt="User avatar" />
     </StoryDescriptor>
     <StoryDescriptor title="Text">
       <Avatar type="text" text={'Support Heroes'} />
@@ -100,10 +99,10 @@ export const FallbackAvatar = (): React.ReactElement => (
 export const Rim = (): React.ReactElement => (
   <>
     <StoryDescriptor title="Rim">
-      <Avatar withRim type="image" src={defaultImage} />
+      <Avatar withRim type="image" src={image} />
     </StoryDescriptor>{' '}
     <StoryDescriptor title="Rim with status">
-      <Avatar withRim status="available" type="image" src={defaultImage} />
+      <Avatar withRim status="available" type="image" src={image} />
     </StoryDescriptor>
   </>
 );
@@ -113,12 +112,7 @@ export const SizesWithStatus = (): React.ReactElement => {
     <>
       {AvatarSizes.map((size) => (
         <StoryDescriptor title={size} key={size}>
-          <Avatar
-            type="image"
-            src={defaultImage}
-            size={size}
-            status="available"
-          />
+          <Avatar type="image" src={image} size={size} status="available" />
           <Avatar
             type="text"
             text={defaultName}
@@ -137,7 +131,7 @@ export const SizesWithRim = (): React.ReactElement => {
     <>
       {AvatarSizes.map((size) => (
         <StoryDescriptor title={size} key={size} gap="12px">
-          <Avatar type="image" src={defaultImage} size={size} withRim />
+          <Avatar type="image" src={image} size={size} withRim />
           <Avatar
             type="text"
             text={defaultName}

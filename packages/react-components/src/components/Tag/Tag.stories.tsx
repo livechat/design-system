@@ -3,6 +3,7 @@ import * as React from 'react';
 import * as TablerIcons from '@livechat/design-system-icons';
 import { Meta } from '@storybook/react';
 
+import image from '../../stories/assets/avatar.jpg';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import noop from '../../utils/noop';
 import { Icon } from '../Icon';
@@ -15,9 +16,7 @@ const exampleIcon = <Icon source={TablerIcons.Smiles} size="small" />;
 const exampleAvatar = (
   <img
     style={{ borderRadius: '50%', width: '20px', height: '20px' }}
-    src={
-      'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200'
-    }
+    src={image}
     alt="tag-avatar"
     data-testid="lc-tag-avatar"
   />
