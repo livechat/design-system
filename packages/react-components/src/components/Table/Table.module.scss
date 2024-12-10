@@ -1,0 +1,98 @@
+@use './styles/pin';
+@use './styles/size';
+@use './styles/strips';
+
+$base-class: 'table';
+$action-bar-class: 'action-bar';
+
+.#{$base-class} {
+  width: 100%;
+  border-collapse: collapse;
+  contain: paint;
+
+  &--small {
+    @include size.table-size(48px, 8px, 16px);
+  }
+
+  &--medium {
+    @include size.table-size(56px, 12px, 16px);
+  }
+
+  &--large {
+    @include size.table-size(64px, 14px, 16px);
+  }
+
+  &--pinned_header {
+    @include pin.generatePin('header');
+  }
+
+  &--pinned_leftColumn {
+    @include pin.generatePin('leftColumn');
+  }
+
+  &__cell {
+    text-align: start;
+    line-height: 21px;
+    font-size: 14px;
+  }
+
+  &__selected {
+    display: flex;
+    gap: var(--spacing-1);
+    align-items: center;
+    padding: var(--spacing-2);
+    font-weight: 500;
+
+    > p {
+      margin: 0;
+      font-weight: 500;
+    }
+
+    > div:first-child {
+      display: flex;
+      align-items: center;
+      margin-right: var(--spacing-1);
+    }
+  }
+
+  &--stripped_rows {
+    @include strips.generateStrips('rows');
+  }
+
+  &--stripped_columns {
+    @include strips.generateStrips('columns');
+  }
+
+  tbody {
+    width: 100%;
+  }
+
+  td,
+  th {
+    text-align: left;
+  }
+
+  th > div {
+    display: flex;
+  }
+}
+
+.#{$action-bar-class} {
+  display: flex;
+  gap: var(--spacing-2);
+
+  &__divider {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin-right: var(--spacing-2);
+      background-color: var(--border-basic-secondary);
+      width: 1px;
+      height: var(--spacing-6);
+      content: '';
+    }
+  }
+}
