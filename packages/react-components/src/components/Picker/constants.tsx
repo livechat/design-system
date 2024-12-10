@@ -1,5 +1,6 @@
 import { DayMode } from '@livechat/design-system-icons';
 
+import image from '../../stories/assets/avatar.jpg';
 import { Icon } from '../Icon';
 import { TagKind } from '../Tag';
 
@@ -83,7 +84,7 @@ export const DEFAULT_MORE_PICKER_OPTIONS: IPickerListItem[] = [
   {
     key: 'four',
     name: 'Option with avatar',
-    avatarSrc: 'https://avatars2.githubusercontent.com/u/29309941?s=88&v=4',
+    avatarSrc: image,
   },
 ];
 
