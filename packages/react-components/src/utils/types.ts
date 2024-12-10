@@ -4,13 +4,17 @@ export type Size = 'compact' | 'medium' | 'large';
 
 export interface ComponentCoreProps {
   /**
-   * Custom style for the avatar
+   * The children of the component
    */
-  style?: React.CSSProperties;
+  children?: React.ReactNode;
   /**
    * The CSS class name
    */
   className?: string;
+  /**
+   * The CSS properties for the component
+   */
+  style?: React.CSSProperties;
   /**
    * Test id passed to the wrapper element
    */

@@ -1,0 +1,20 @@
+$base-class: 'thumbnail-selectable-card';
+
+.#{$base-class} {
+  display: flex;
+  gap: var(--spacing-2);
+
+  &__icon {
+    display: flex;
+    height: 21px;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+
+    &__description {
+      color: var(--content-basic-secondary);
+    }
+  }
+}

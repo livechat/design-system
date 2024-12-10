@@ -1,0 +1,21 @@
+$grid-wrapper-base-class: 'grid-wrapper';
+$grid-row-base-class: 'grid-row';
+$grid-col-base-class: 'grid-col';
+
+.#{$grid-wrapper-base-class} {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-5) var(--spacing-16);
+}
+
+.#{$grid-row-base-class} {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+}
+
+.#{$grid-col-base-class} {
+  display: flex;
+  flex: 1;
+  flex-flow: column nowrap;
+}

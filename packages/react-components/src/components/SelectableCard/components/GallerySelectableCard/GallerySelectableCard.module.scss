@@ -1,0 +1,21 @@
+$base-class: 'gallery-selectable-card';
+
+.#{$base-class} {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 60px;
+  min-height: 72px;
+
+  &--with-label {
+    margin-bottom: 29px;
+  }
+
+  &__label {
+    position: absolute;
+    top: 100%;
+    margin-top: var(--spacing-1);
+    text-align: center;
+    color: var(--content-basic-secondary);
+  }
+}
