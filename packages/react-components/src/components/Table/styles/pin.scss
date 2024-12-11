@@ -6,9 +6,7 @@
       z-index: 5;
       box-shadow: var(--shadow-fixed-bottom);
     }
-  }
-
- @else if $type == 'leftColumn' {
+  } @else if $type == 'leftColumn' {
     tr > td:first-child,
     th:first-child {
       position: sticky;
@@ -38,9 +36,7 @@
     tr:hover > td:first-child::after {
       background-color: var(--surface-primary-hover);
     }
-  }
-
- @else {
+  } @else {
     @warn "Invalid pinned value: #{$type}. Supported values are 'header' and 'leftColumn'.";
   }
 }

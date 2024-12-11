@@ -7,9 +7,7 @@
         background-color: var(--surface-primary-disabled) !important;
       }
     }
-  }
-
- @else if $type == 'columns' {
+  } @else if $type == 'columns' {
     tbody tr td:nth-child(even) {
       background-color: var(--surface-secondary-default);
     }
@@ -25,9 +23,7 @@
     thead tr:hover th:nth-child(even) {
       background-color: var(--surface-primary-hover);
     }
-  }
-
- @else {
+  } @else {
     @warn "Invalid stripped value: #{$type}. Supported values are 'rows' and 'columns'.";
   }
 }
