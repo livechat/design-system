@@ -1,15 +1,9 @@
 import { ReactElement, useCallback, useEffect, useMemo, useRef } from 'react';
 
-import {
-  isAfter,
-  isSameDay,
-  subMonths,
-  differenceInCalendarDays,
-} from 'date-fns';
+import { isAfter, isSameDay, differenceInCalendarDays } from 'date-fns';
 
 import {
   calculateDatePickerMonth,
-  getRangeDatePickerModifiers,
   getSelectedOption,
   isDateWithinRange,
   isSelectingFirstDay,
@@ -206,16 +200,12 @@ export const RangeDatePicker = ({
 
   const getRangeDatePickerApi = (): IRangeDatePickerChildrenPayload => {
     const { currentMonth, from, selectedItem, temporaryTo, to } = state;
-    const modifiers = useMemo(
-      () => getRangeDatePickerModifiers(from, temporaryTo),
-      [from, temporaryTo]
-    );
     const selectedOption = useMemo(() => {
       return getSelectedOption(selectedItem, options);
     }, [options, selectedItem]);
 
     const selectedDays = useMemo(() => {
-      return [from, { from, to: temporaryTo }];
+      return { from, to: temporaryTo };
     }, [from, temporaryTo]);
 
     const disabledDays = useMemo(() => {
@@ -232,15 +222,13 @@ export const RangeDatePicker = ({
         toDate: to,
       },
       datepicker: {
-        range: true,
+        mode: 'range',
         month: currentMonth,
         numberOfMonths: 2,
         onDayClick: handleDayClick,
-        selectedDays,
-        modifiers,
-        initialMonth: toMonth && subMonths(toMonth, 1),
-        toMonth: toMonth,
-        disabledDays,
+        selected: selectedDays,
+        endMonth: toMonth,
+        disabled: disabledDays,
         onDayMouseEnter: handleDayMouseEnter,
         onMonthChange: handleMonthChange,
       },

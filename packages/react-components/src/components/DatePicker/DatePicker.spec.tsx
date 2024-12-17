@@ -57,7 +57,7 @@ describe('<DatePicker> component', () => {
   });
 
   it('should have Monday as a default first weekday', () => {
-    const { getAllByRole } = renderComponent({ firstDayOfWeek: 9 });
+    const { getAllByRole } = renderComponent({ weekStartsOn: undefined });
 
     const weekdays = getAllByRole('columnheader');
 
