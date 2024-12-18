@@ -96,4 +96,16 @@ $base-class: 'date-picker';
     border-bottom-left-radius: 0;
     background-color: var(--action-primary-default);
   }
+
+  &__disabled {
+    opacity: 0.4;
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    button {
+      cursor: not-allowed;
+    }
+  }
 }

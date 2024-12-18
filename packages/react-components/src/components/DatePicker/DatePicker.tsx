@@ -22,6 +22,7 @@ export const DatePicker: React.FC<IDatePickerProps> = ({
   startMonth,
   toMonth,
   endMonth,
+  onMonthChange,
   ...props
 }) => {
   const [currentMonth, setCurrentMonth] = React.useState(month || new Date());
@@ -41,16 +42,16 @@ export const DatePicker: React.FC<IDatePickerProps> = ({
   }, [month, currentMonth, toMonth, fromMonth]);
 
   const handleMonthChange = React.useCallback(
-    (month: Date) => {
-      if (props.onMonthChange && month) {
-        props.onMonthChange(month);
+    (newMonth: Date) => {
+      if (onMonthChange) {
+        onMonthChange(newMonth);
 
         return;
       }
 
-      setCurrentMonth(month);
+      setCurrentMonth(newMonth);
     },
-    [month, props.onMonthChange]
+    [month, onMonthChange]
   );
 
   return (
@@ -68,6 +69,7 @@ export const DatePicker: React.FC<IDatePickerProps> = ({
         range_start: cx(styles[`${baseClass}__range-start`]),
         range_middle: cx(styles[`${baseClass}__range-middle`]),
         range_end: cx(styles[`${baseClass}__range-end`]),
+        disabled: cx(styles[`${baseClass}__disabled`]),
       }}
       onMonthChange={handleMonthChange}
       month={currentMonth}

@@ -81,6 +81,7 @@ export const DatePickerCustomNavigation: React.FC<
     <div className={styles[baseClass]}>
       <div className={styles[`${baseClass}__nav-wrapper`]}>
         <Button
+          data-testid="date-picker-prev-year-button"
           kind="plain"
           size="xcompact"
           icon={<Icon source={DoubleArrowLeft} />}
@@ -88,6 +89,7 @@ export const DatePickerCustomNavigation: React.FC<
           disabled={!shouldDisablePreviousButton}
         />
         <Button
+          data-testid="date-picker-prev-month-button"
           kind="plain"
           size="xcompact"
           icon={<Icon source={ChevronLeft} />}
@@ -97,6 +99,7 @@ export const DatePickerCustomNavigation: React.FC<
       </div>
       <div className={styles[`${baseClass}__nav-wrapper`]}>
         <Button
+          data-testid="date-picker-next-month-button"
           kind="plain"
           size="xcompact"
           icon={<Icon source={ChevronRight} />}
@@ -104,6 +107,7 @@ export const DatePickerCustomNavigation: React.FC<
           disabled={!shouldDisableNextButton}
         />
         <Button
+          data-testid="date-picker-next-year-button"
           kind="plain"
           size="xcompact"
           icon={<Icon source={DoubleArrowRight} />}
