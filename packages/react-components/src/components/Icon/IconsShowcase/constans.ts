@@ -107,6 +107,8 @@ export const IconsData: Record<IconName, IconGroup> = {
   AddTemplate: IconGroup.General,
   AdjustFilled: IconGroup.General,
   Adjust: IconGroup.General,
+  AiColored: IconGroup.General,
+  AiOutlined: IconGroup.General,
   AiSummaryFilled: IconGroup.General,
   AiSummary: IconGroup.General,
   AlertSpamFilled: IconGroup.General,
