@@ -2,27 +2,20 @@ import * as React from 'react';
 
 import { Meta, StoryFn } from '@storybook/react';
 
-import { DatePicker as DatePickerComponent } from './DatePicker';
+import { DatePicker } from './DatePicker';
 import { IDatePickerProps } from './types';
+
+const DISABLED_RANGE_OPTIONS = [
+  'No Disabled Dates',
+  'Disable Before Current Date',
+  'Disable After Current Date',
+];
 
 export default {
   title: 'Components/DatePicker',
-  component: DatePickerComponent,
-  parameters: {
-    date: new Date('2023-07-01'),
-  },
+  component: DatePicker,
   argTypes: {
-    innerRef: {
-      table: {
-        disable: true,
-      },
-    },
-    range: {
-      table: {
-        disable: true,
-      },
-    },
-    firstDayOfWeek: {
+    weekStartsOn: {
       description: 'Number representing first day of the week',
       table: {
         type: {
@@ -35,80 +28,98 @@ export default {
         type: 'number',
       },
     },
-    disabledDays: {
-      description:
-        'You can disable choosen dates. Pass either a date or array of dates',
+    disabled: {
+      description: 'Range of disabled dates',
+      control: {
+        type: 'select',
+      },
+      options: DISABLED_RANGE_OPTIONS,
+      defaultValue: DISABLED_RANGE_OPTIONS[0],
       table: {
         type: {
-          summary: 'Date | Array<Date>',
+          summary: 'object',
+          detail:
+            '{ before: Date } | { after: Date } | { dayOfWeek: []: array of numbers 0-6 } | undefined',
         },
-      },
-      control: {
-        type: 'date',
-      },
-    },
-    fromMonth: {
-      control: {
-        type: 'date',
-      },
-    },
-    toMonth: {
-      control: {
-        type: 'date',
       },
     },
     month: {
+      description: 'Providing this prop will make the date picker controlled',
+      control: {
+        type: 'date',
+      },
+    },
+    startMonth: {
+      description: 'Start month for the date picker',
+      control: {
+        type: 'date',
+      },
+    },
+    endMonth: {
+      description: 'End month for the date picker',
       control: {
         type: 'date',
       },
     },
   },
-} as Meta<typeof DatePickerComponent>;
+} as Meta<typeof DatePicker>;
 
 const StoryTemplate = (args: IDatePickerProps) => {
-  const argsSelectedDate = args.selectedDays
-    ? new Date(args.selectedDays as Date)
-    : void 0;
-  const argsDisabledDays = args.disabledDays
-    ? new Date(args.disabledDays as Date)
-    : void 0;
-  const [selectedDate, setSelectedDate] = React.useState<
-    IDatePickerProps['selectedDays'] | undefined
-  >(argsSelectedDate);
+  const { month, ...restArgs } = args;
+
+  const [selectedDate, setSelectedDate] = React.useState<Date | undefined>();
+  const [selectedMonth, setSelectedMonth] = React.useState<Date | undefined>();
+  const [initialMonth] = React.useState<Date | undefined>(
+    month ? new Date(month) : undefined
+  );
+
+  React.useEffect(() => {
+    const newMonth = month ? new Date(month) : undefined;
+
+    if (newMonth !== initialMonth) {
+      setSelectedMonth(newMonth);
+    }
+  }, [month, initialMonth]);
+
+  const getDisabledDates = () => {
+    switch (restArgs.disabled as unknown) {
+      case DISABLED_RANGE_OPTIONS[1]:
+        return { before: new Date() };
+      case DISABLED_RANGE_OPTIONS[2]:
+        return { after: new Date() };
+      default:
+        return undefined;
+    }
+  };
 
   return (
-    <div style={{ width: '300px' }}>
-      <DatePickerComponent
-        {...args}
-        toMonth={args.toMonth ? new Date(args.toMonth) : void 0}
-        fromMonth={args.fromMonth ? new Date(args.fromMonth) : void 0}
-        month={args.month ? new Date(args.month) : void 0}
-        disabledDays={argsDisabledDays}
-        onDayClick={(date: Date) => {
-          setSelectedDate(date);
-          alert(`Selected date: ${date.toDateString()}`);
-        }}
-        selectedDays={selectedDate}
-      />
-    </div>
+    <DatePicker
+      {...restArgs}
+      mode="single"
+      selected={selectedDate}
+      month={selectedMonth || initialMonth}
+      onSelect={setSelectedDate}
+      onMonthChange={setSelectedMonth}
+      disabled={getDisabledDates()}
+    />
   );
 };
 
-export const DatePicker: StoryFn = StoryTemplate.bind({});
-DatePicker.args = {};
+export const Default: StoryFn = StoryTemplate.bind({});
+Default.args = {};
 
-export const DatePickerWithDatesBetweenTwoMonths: StoryFn = StoryTemplate.bind(
-  {}
-);
-DatePickerWithDatesBetweenTwoMonths.args = {
-  fromMonth: new Date('06/20/2021'),
-  toMonth: new Date('09/20/2021'),
-  month: new Date('09/20/2021'),
+export const WithCustomCurrentDate: StoryFn = StoryTemplate.bind({});
+WithCustomCurrentDate.args = {
+  today: new Date('01/20/2024'),
 };
 
-export const DatePickerWithCustomFirstDayOfWeek: StoryFn = StoryTemplate.bind(
-  {}
-);
-DatePickerWithCustomFirstDayOfWeek.args = {
-  firstDayOfWeek: 0,
+export const WithDatesBetweenTwoMonths: StoryFn = StoryTemplate.bind({});
+WithDatesBetweenTwoMonths.args = {
+  startMonth: new Date('11/20/2023'),
+  endMonth: new Date('01/20/2024'),
+};
+
+export const WithCustomFirstDayOfWeek: StoryFn = StoryTemplate.bind({});
+WithCustomFirstDayOfWeek.args = {
+  weekStartsOn: 0,
 };
