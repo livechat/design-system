@@ -65,3 +65,9 @@ export const NoWhiteSpacesText = {
     text: 'john.doensky.lorem.ipsum.lorem.ipsum.lorem.dolorem@gmail.com',
   },
 };
+
+export const SpecialCharacters = {
+  args: {
+    text: '🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥',
+  },
+};

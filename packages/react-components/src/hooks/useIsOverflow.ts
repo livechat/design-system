@@ -18,13 +18,9 @@ export const useIsOverflow = <T extends HTMLElement>(
     }
   }, [ref]);
 
-  const checkOverflowDebounced = useCallback(
-    () =>
-      debounce(() => {
-        checkOverflow();
-      }, 100),
-    [checkOverflow]
-  );
+  const checkOverflowDebounced = debounce(() => {
+    checkOverflow();
+  }, 100);
 
   useLayoutEffect(() => {
     checkOverflow();
