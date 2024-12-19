@@ -1,0 +1,30 @@
+import { Canvas, ArgTypes, Meta, Title } from '@storybook/blocks';
+
+import * as OverflowTooltipTextStories from './OverflowTooltipText.stories';
+
+<Meta of={OverflowTooltipTextStories} />
+
+<Title>OverflowTooltipText</Title>
+
+[Intro](#Intro) | [Component API](#ComponentAPI)
+
+## Intro <a id="Intro" />
+
+The OverflowTooltipText component displays a text element with a tooltip that appears when the text overflows its container.
+It is typically used to ensure that long or truncated text can still be fully viewed by the user, enhancing readability and providing additional context in space-constrained layouts.
+
+<Canvas of={OverflowTooltipTextStories.Default} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+<Text>
+  <OverflowTooltipText
+    text="This is a long text that will be truncated and displayed as a tooltip"
+  />
+</Text>
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={OverflowTooltipTextStories.Default} sort="requiredFirst" />

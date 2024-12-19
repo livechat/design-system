@@ -1,0 +1,1 @@
+export { OverflowTooltipText } from './OverflowTooltipText';

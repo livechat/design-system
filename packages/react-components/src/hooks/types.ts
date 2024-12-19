@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export type NODE = HTMLDivElement | null;
+export type NODE = HTMLElement | null;
 export type CALLBACK = (newSize: DOMRectReadOnly) => void;
 
 export interface IUseHeightResizer {
@@ -25,4 +25,10 @@ export interface IUseInteractive {
   handleInteractiveClick: (
     e: React.MouseEvent<HTMLElement, MouseEvent>
   ) => void;
+}
+
+export interface IUseOnHover {
+  isHovered: boolean;
+  handleMouseOver: () => void;
+  handleMouseOut: () => void;
 }
