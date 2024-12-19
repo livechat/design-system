@@ -5,7 +5,8 @@ import cx from 'clsx';
 
 import { IActionMenuOption } from 'components/ActionMenu/types';
 
-import { ActionMenu, ActionMenuItem } from '../ActionMenu';
+import { ActionMenu } from '../ActionMenu';
+import { ActionMenuItem } from '../ActionMenuItem';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
 
