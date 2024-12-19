@@ -8,7 +8,7 @@ export * from './components/Accordion';
 export * from './components/ActionBar';
 export * from './components/ActionCard';
 export * from './components/ActionMenu';
-export * from './components/Alert';
+export * from './components/ActionMenuItem';
 export * from './components/AppFrame';
 export * from './components/AutoComplete';
 export * from './components/Avatar';
