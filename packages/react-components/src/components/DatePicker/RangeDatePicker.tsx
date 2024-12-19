@@ -23,6 +23,7 @@ export const RangeDatePicker = ({
   initialToDate,
   toMonth,
   onChange,
+  onSelect,
   children,
 }: IRangeDatePickerProps): ReactElement => {
   const prevSelectedItem = useRef<string | null>(
@@ -118,6 +119,17 @@ export const RangeDatePicker = ({
 
     onChange(optionsHash[selectedItem]);
   }, [onChange, state.selectedItem, options]);
+
+  const handleOnSelect = useCallback(() => {
+    const { from, to } = state;
+
+    if (from && to && onSelect) {
+      onSelect({
+        from,
+        to,
+      });
+    }
+  }, [onSelect]);
 
   const handleDayMouseEnter = useCallback(
     (day: Date) => {
@@ -231,6 +243,7 @@ export const RangeDatePicker = ({
         disabled: disabledDays,
         onDayMouseEnter: handleDayMouseEnter,
         onMonthChange: handleMonthChange,
+        onSelect: handleOnSelect,
       },
       selectedOption,
     };

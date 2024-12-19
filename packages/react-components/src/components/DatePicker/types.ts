@@ -1,6 +1,6 @@
 import { Reducer, ReactElement } from 'react';
 
-import { DayPickerProps } from 'react-day-picker';
+import { DayPickerProps, DateRange } from 'react-day-picker';
 
 export type IDatePickerProps = DayPickerProps;
 
@@ -92,5 +92,6 @@ export interface IRangeDatePickerProps {
   initialToDate?: Date;
   toMonth?: Date;
   onChange: (selected: IRangeDatePickerOption | null) => void;
+  onSelect?: (selected: DateRange | null) => void;
   children(payload: IRangeDatePickerChildrenPayload): ReactElement;
 }
