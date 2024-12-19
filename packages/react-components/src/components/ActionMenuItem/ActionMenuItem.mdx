@@ -1,0 +1,40 @@
+import { Canvas, ArgTypes, Meta, Title } from '@storybook/blocks';
+
+import * as ActionMenuItemStories from './ActionMenuItem.stories';
+
+<Meta of={ActionMenuItemStories} />
+
+<Title>ActionMenuItem</Title>
+
+[Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+## Intro <a id="Intro" />
+
+The Action Menu Item component is designed to be used within menus, such as the ActionMenu or other custom menus.
+It represents a single menu option, allowing users to interact with or select actions.
+This component typically displays a label and optionally supports additional elements icons or additional context, which can be positioned on either the left or right side of the item.
+This makes it a flexible building block for creating intuitive menus.
+
+<Canvas of={ActionMenuItemStories.Default} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+<ActionMenuItem>Simple Option 1</ActionMenuItem>
+// OR
+<ActionMenuItem leftNode={<Icon icon="chat" />} rightNode={<Icon icon="chevron-down" />}>Complex option 2</ActionMenuItem>
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={ActionMenuItemStories.Default} sort="requiredFirst" />
+
+## Content Spec <a id="ContentSpec" />
+
+<a
+  className="sb-unstyled"
+  href="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=97-20299&mode=design&t=yMPgy8XRD1OTobuX-4"
+  target="_blank"
+>
+  Go to Figma documentation
+</a>

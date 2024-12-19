@@ -11,7 +11,8 @@ import cx from 'clsx';
 
 import { ThemeClassName } from '../../providers';
 import { plural } from '../../utils/plural';
-import { ActionMenu, ActionMenuItem } from '../ActionMenu';
+import { ActionMenu } from '../ActionMenu';
+import { ActionMenuItem } from '../ActionMenuItem';
 import { Avatar } from '../Avatar';
 import { Icon } from '../Icon';
 import { Interactive, Tooltip } from '../Tooltip';
