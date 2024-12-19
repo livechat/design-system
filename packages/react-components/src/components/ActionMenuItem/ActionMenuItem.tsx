@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { FC, PropsWithChildren } from 'react';
 
 import cx from 'clsx';
 
@@ -10,9 +10,12 @@ import styles from './ActionMenuItem.module.scss';
 
 const baseClass = 'action-menu-item';
 
-export const ActionMenuItem: React.FC<
-  React.PropsWithChildren<ActionMenuItemProps>
-> = ({ leftNode, rightNode, children, kind }) => {
+export const ActionMenuItem: FC<PropsWithChildren<ActionMenuItemProps>> = ({
+  leftNode,
+  rightNode,
+  children,
+  kind,
+}) => {
   return (
     <div
       className={cx(styles[baseClass], {

@@ -83,7 +83,7 @@ export const Default = (): ReactElement => {
 export const WarningKind = (): ReactElement => {
   return (
     <div style={{ height: customHeightForChromatic('1000px') }}>
-      <div className="action-menu-preview">
+      <div className="action-menu-item-preview">
         <ActionMenu
           options={warningOptions}
           triggerRenderer={
