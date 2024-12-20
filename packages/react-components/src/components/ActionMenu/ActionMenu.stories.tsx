@@ -3,6 +3,7 @@ import * as React from 'react';
 import { MoreHoriz, Add, Settings } from '@livechat/design-system-icons';
 
 import { customHeightForChromatic } from '../../utils/chromatic-story-helpers';
+import { ActionMenuItem } from '../ActionMenuItem';
 import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
@@ -10,7 +11,6 @@ import { RadioButton } from '../RadioButton';
 import { Switch } from '../Switch';
 
 import { ActionMenu } from './ActionMenu';
-import { ActionMenuItem } from './ActionMenuItem';
 import { exampleOptions } from './stories-constants';
 
 import './ActionMenu.stories.css';
@@ -18,9 +18,6 @@ import './ActionMenu.stories.css';
 export default {
   title: 'Components/ActionMenu',
   component: ActionMenu,
-  subcomponents: {
-    ActionMenuItem,
-  },
   parameters: {
     chromatic: { delay: 300 },
   },

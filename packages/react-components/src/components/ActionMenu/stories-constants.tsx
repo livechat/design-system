@@ -7,9 +7,8 @@ import {
 } from '@livechat/design-system-icons';
 
 import noop from '../../utils/noop';
+import { ActionMenuItem } from '../ActionMenuItem';
 import { Icon } from '../Icon';
-
-import { ActionMenuItem } from './ActionMenuItem';
 
 export const exampleOptions = [
   {
