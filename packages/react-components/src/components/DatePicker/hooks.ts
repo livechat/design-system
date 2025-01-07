@@ -27,6 +27,8 @@ export const useRangeDatePickerState = (
     to: undefined,
     temporaryTo: undefined,
     currentMonth: initialCurrentMonth,
+    customTempFrom: undefined,
+    customTempTo: undefined,
   };
 
   const initialState = {
@@ -86,6 +88,12 @@ export const useRangeDatePickerState = (
         return {
           ...state,
           to: action.payload.date,
+        };
+      case RangeDatePickerAction.SET_CUSTOM_TEMP_RANGE:
+        return {
+          ...state,
+          customTempFrom: action.payload.customTempFrom,
+          customTempTo: action.payload.customTempTo,
         };
       default:
         return state;

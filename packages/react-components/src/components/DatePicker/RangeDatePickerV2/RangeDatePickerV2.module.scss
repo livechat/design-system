@@ -1,0 +1,92 @@
+$base-class: 'range-date-picker';
+
+.#{$base-class} {
+  &__popover {
+    padding: var(--spacing-3);
+    max-width: 100%;
+  }
+
+  &__trigger {
+    display: flex;
+    transition: border-color var(--transition-duration-fast-2) ease-in-out;
+    border: 1px solid var(--border-basic-primary);
+    border-radius: var(--radius-3);
+    background-color: var(--surface-primary-default);
+    padding: var(--spacing-2);
+
+    &:hover {
+      border-color: var(--border-basic-hover);
+      cursor: pointer;
+    }
+
+    &__label {
+      flex: 1;
+      margin: 0;
+    }
+
+    &__right-node {
+      display: flex;
+      align-items: center;
+      margin-left: var(--spacing-2);
+    }
+
+    &--active,
+    &--active:hover {
+      border-color: var(--action-primary-default);
+    }
+  }
+
+  &__date-picker {
+    display: flex;
+    flex-direction: row;
+
+    &__list {
+      margin: 0 var(--spacing-4) 0 0;
+      padding: 0;
+      width: 160px;
+      list-style: none;
+
+      &__item {
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: var(--spacing-05);
+        border: 0;
+        border-radius: var(--radius-3);
+        background: none;
+        padding: 7px var(--spacing-3);
+        width: 100%;
+        min-height: 36px;
+        color: var(--content-basic-primary);
+
+        &:hover {
+          background-color: var(--picker-list-option-background-hover);
+          cursor: pointer;
+        }
+
+        &:active {
+          background-color: var(--picker-list-option-background-active);
+        }
+
+        &:focus-visible {
+          outline: 2px solid var(--action-primary-default);
+          outline-offset: -2px;
+        }
+
+        &--selected {
+          background-color: var(--picker-list-option-background-active);
+        }
+
+        &__icon {
+          margin-left: var(--spacing-2);
+        }
+      }
+    }
+
+    &__callendar {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+}

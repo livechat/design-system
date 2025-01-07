@@ -22,6 +22,7 @@ export enum RangeDatePickerAction {
   SELECT_SECOND_DAY_AS_FROM = 'SELECT_SECOND_DAY_AS_FROM',
   SELECT_SECOND_DAY_AS_TO = 'SELECT_SECOND_DAY_AS_TO',
   CURRENT_MONTH_CHANGE = 'CURRENT_MONTH_CHANGE',
+  SET_CUSTOM_TEMP_RANGE = 'SET_CUSTOM_TEMP_RANGE',
 }
 
 export type IRangeDatePickerReducerAction =
@@ -47,6 +48,13 @@ export type IRangeDatePickerReducerAction =
       payload: {
         date?: Date;
       };
+    }
+  | {
+      type: RangeDatePickerAction.SET_CUSTOM_TEMP_RANGE;
+      payload: {
+        customTempFrom?: Date;
+        customTempTo?: Date;
+      };
     };
 
 export interface IRangeDatePickerState {
@@ -55,6 +63,8 @@ export interface IRangeDatePickerState {
   to?: Date;
   temporaryTo?: Date;
   currentMonth: Date;
+  customTempFrom?: Date;
+  customTempTo?: Date;
 }
 
 export type RangeDatePickerReducer = Reducer<
@@ -85,13 +95,31 @@ export interface IRangeDatePickerChildrenPayload {
   selectedOption?: IRangeDatePickerOption;
 }
 
-export interface IRangeDatePickerProps {
+export interface IRangeDatePickerV1Props {
+  onChange: (selected: IRangeDatePickerOption | null) => void;
   options: IRangeDatePickerOption[];
   initialSelectedItemKey?: string;
+  onRangeSelect?: never;
+  customTempFromDate?: never;
+  customTempToDate?: never;
+}
+
+export interface IRangeDatePickerV2Props {
+  onRangeSelect: (selected: DateRange | null) => void;
+  customTempFromDate?: Date;
+  customTempToDate?: Date;
+  options?: never;
+  onChange?: never;
+  initialSelectedItemKey?: never;
+}
+
+export interface IRangeDatePickerCoreProps {
   initialFromDate?: Date;
   initialToDate?: Date;
   toMonth?: Date;
-  onChange: (selected: IRangeDatePickerOption | null) => void;
   onSelect?: (selected: DateRange | null) => void;
   children(payload: IRangeDatePickerChildrenPayload): ReactElement;
 }
+
+export type IRangeDatePickerProps = IRangeDatePickerCoreProps &
+  (IRangeDatePickerV1Props | IRangeDatePickerV2Props);
