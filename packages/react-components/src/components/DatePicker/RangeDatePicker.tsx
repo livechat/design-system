@@ -1,6 +1,11 @@
 import { ReactElement, useCallback, useEffect, useMemo, useRef } from 'react';
 
-import { isAfter, isSameDay, differenceInCalendarDays } from 'date-fns';
+import {
+  isAfter,
+  isSameDay,
+  differenceInCalendarDays,
+  isBefore,
+} from 'date-fns';
 
 import {
   calculateDatePickerMonth,
@@ -27,6 +32,7 @@ export const RangeDatePicker = ({
   onChange,
   onRangeSelect,
   onSelect,
+  onCustomTempDateRangeChange,
   children,
 }: IRangeDatePickerProps): ReactElement => {
   const prevSelectedItem = useRef<string | null>(
@@ -150,6 +156,13 @@ export const RangeDatePicker = ({
     onChange?.(optionsHash[selectedItem]);
   }, [onChange, state.selectedItem, options]);
 
+  useEffect(() => {
+    onCustomTempDateRangeChange?.({
+      from: state.temporaryFrom,
+      to: state.temporaryTo,
+    });
+  }, [state.temporaryFrom, state.temporaryTo]);
+
   const handleOnSelect = useCallback(() => {
     const { from, to } = state;
 
@@ -163,15 +176,27 @@ export const RangeDatePicker = ({
 
   const handleDayMouseEnter = useCallback(
     (day: Date) => {
+      const { from, to } = state;
       const isInRange = toMonth
         ? differenceInCalendarDays(toMonth, day) >= 0
         : true;
 
-      if (!isSelectingFirstDay(state.from, state.to) && isInRange) {
-        dispatch({
-          type: RangeDatePickerAction.NEW_TEMPORARY_TO_VALUE,
-          payload: { date: day },
-        });
+      if (!isSelectingFirstDay(from, to) && isInRange) {
+        if (from && isBefore(day, from)) {
+          dispatch({
+            type: RangeDatePickerAction.NEW_TEMPORARY_FROM_VALUE,
+            payload: { date: day },
+          });
+          dispatch({
+            type: RangeDatePickerAction.NEW_TEMPORARY_TO_VALUE,
+            payload: { date: from },
+          });
+        } else {
+          dispatch({
+            type: RangeDatePickerAction.NEW_TEMPORARY_TO_VALUE,
+            payload: { date: day },
+          });
+        }
       }
     },
     [toMonth, state.from, state.to]
@@ -188,6 +213,10 @@ export const RangeDatePicker = ({
       if (isSelectingFirstDay(from, to)) {
         dispatch({
           type: RangeDatePickerAction.SELECT_FIRST_DAY,
+          payload: { date: day },
+        });
+        dispatch({
+          type: RangeDatePickerAction.NEW_TEMPORARY_FROM_VALUE,
           payload: { date: day },
         });
       } else if (
@@ -245,6 +274,7 @@ export const RangeDatePicker = ({
       currentMonth,
       from,
       selectedItem,
+      temporaryFrom,
       temporaryTo,
       to,
       customTempFrom,
@@ -255,8 +285,8 @@ export const RangeDatePicker = ({
     }, [options, selectedItem]);
 
     const selectedDays = useMemo(() => {
-      return { from, to: temporaryTo };
-    }, [from, temporaryTo]);
+      return { from: temporaryFrom || from, to: temporaryTo };
+    }, [from, temporaryFrom, temporaryTo]);
 
     const customSelectedDays = useMemo(() => {
       if (!customTempFrom || !customTempTo) {

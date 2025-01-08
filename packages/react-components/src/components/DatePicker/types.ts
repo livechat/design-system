@@ -14,6 +14,7 @@ export interface IDatePickerCustomNavigationProps {
 
 export enum RangeDatePickerAction {
   NEW_SELECTED_ITEM = 'NEW_SELECTED_ITEM',
+  NEW_TEMPORARY_FROM_VALUE = 'NEW_TEMPORARY_FROM_VALUE',
   NEW_TEMPORARY_TO_VALUE = 'NEW_TEMPORARY_TO_VALUE',
   CLEAR = 'CLEAR',
   SET_FROM = 'SET_FROM',
@@ -34,6 +35,7 @@ export type IRangeDatePickerReducerAction =
     }
   | {
       type:
+        | RangeDatePickerAction.NEW_TEMPORARY_FROM_VALUE
         | RangeDatePickerAction.NEW_TEMPORARY_TO_VALUE
         | RangeDatePickerAction.SELECT_FIRST_DAY
         | RangeDatePickerAction.SELECT_SECOND_DAY_AS_FROM
@@ -61,6 +63,7 @@ export interface IRangeDatePickerState {
   selectedItem: string | null;
   from?: Date;
   to?: Date;
+  temporaryFrom?: Date;
   temporaryTo?: Date;
   currentMonth: Date;
   customTempFrom?: Date;
@@ -100,12 +103,14 @@ export interface IRangeDatePickerV1Props {
   options: IRangeDatePickerOption[];
   initialSelectedItemKey?: string;
   onRangeSelect?: never;
+  onCustomTempDateRangeChange?: never;
   customTempFromDate?: never;
   customTempToDate?: never;
 }
 
 export interface IRangeDatePickerV2Props {
   onRangeSelect: (selected: DateRange | null) => void;
+  onCustomTempDateRangeChange: (date: DateRange | undefined) => void;
   customTempFromDate?: Date;
   customTempToDate?: Date;
   options?: never;
