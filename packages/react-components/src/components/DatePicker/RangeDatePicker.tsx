@@ -181,8 +181,8 @@ export const RangeDatePicker = ({
         ? differenceInCalendarDays(toMonth, day) >= 0
         : true;
 
-      if (!isSelectingFirstDay(from, to) && isInRange) {
-        if (from && isBefore(day, from)) {
+      if (from && !isSelectingFirstDay(from, to) && isInRange) {
+        if (isBefore(day, from)) {
           dispatch({
             type: RangeDatePickerAction.NEW_TEMPORARY_FROM_VALUE,
             payload: { date: day },
@@ -195,6 +195,10 @@ export const RangeDatePicker = ({
           dispatch({
             type: RangeDatePickerAction.NEW_TEMPORARY_TO_VALUE,
             payload: { date: day },
+          });
+          dispatch({
+            type: RangeDatePickerAction.NEW_TEMPORARY_FROM_VALUE,
+            payload: { date: from },
           });
         }
       }
@@ -217,6 +221,10 @@ export const RangeDatePicker = ({
         });
         dispatch({
           type: RangeDatePickerAction.NEW_TEMPORARY_FROM_VALUE,
+          payload: { date: day },
+        });
+        dispatch({
+          type: RangeDatePickerAction.NEW_TEMPORARY_TO_VALUE,
           payload: { date: day },
         });
       } else if (

@@ -1,4 +1,4 @@
-import { FC, useState, useCallback } from 'react';
+import { FC, useState, useCallback, useEffect } from 'react';
 
 import { Check, Calendar, Close } from '@livechat/design-system-icons';
 import cx from 'clsx';
@@ -11,7 +11,7 @@ import { Icon } from '../../Icon';
 import { Popover } from '../../Popover';
 
 import { RangeDatePickerV2Label } from './components/RangeDatePickerV2Label';
-import { OPTIONS } from './helpers';
+import { isSameDate, OPTIONS } from './helpers';
 import { IRangeDatePickerV2Props, RANGE_DATE_PICKER_OPTION_ID } from './types';
 
 import styles from './RangeDatePickerV2.module.scss';
@@ -21,24 +21,43 @@ const baseClass = 'range-date-picker';
 const todayDate = startOfToday();
 
 export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
-  selectedId,
+  initiallyOpen = false,
+  initialSelectedOptionId,
   onRangeSelect,
+  triggerClassName,
+  rangeDatePickerClassName,
   ...props
 }) => {
-  const { initialFromDate, initialToDate, ...restProps } = props;
-  const [date, setDate] = useState<DateRange | undefined>({
-    from: initialFromDate,
-    to: initialToDate,
-  });
+  const { initialFromDate, initialToDate } = props;
+  const initialDate =
+    initialFromDate || initialToDate
+      ? {
+          from: initialFromDate,
+          to: initialToDate,
+        }
+      : undefined;
+  const [date, setDate] = useState<DateRange | undefined>(initialDate);
   const [tempDate, setTempDate] = useState<DateRange | undefined>();
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(initiallyOpen);
   const [currentSelectedId, setCurrentSelectedId] = useState<
     RANGE_DATE_PICKER_OPTION_ID | undefined
-  >(selectedId);
+  >();
 
-  const handleRangeSelecting = (range: DateRange | null) => {
+  useEffect(() => {
+    if (initialSelectedOptionId && !date) {
+      const option = OPTIONS.find(({ id }) => id === initialSelectedOptionId);
+      if (option) {
+        handleOnOptionClick(option.value, option.id);
+      }
+    }
+  });
+
+  const handleRangeSelecting = (
+    range: DateRange | null,
+    id?: RANGE_DATE_PICKER_OPTION_ID
+  ) => {
     setDate(range ? range : undefined);
-    onRangeSelect(range);
+    onRangeSelect(range, id);
     setTempDate(undefined);
     setCurrentSelectedId(undefined);
   };
@@ -50,18 +69,15 @@ export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
 
   const handleOnOptionClick = useCallback(
     ({ from, to }: DateRange, id: RANGE_DATE_PICKER_OPTION_ID) => {
-      handleRangeSelecting({ from, to });
+      handleRangeSelecting({ from, to }, id);
       handleClosing();
-
-      if (!selectedId) {
-        setCurrentSelectedId(id);
-      }
+      setCurrentSelectedId(id);
     },
     []
   );
 
   const handleOnRangeSelect = useCallback((range: DateRange | null) => {
-    if (!range) {
+    if (!range || isSameDate(range, date)) {
       return;
     }
 
@@ -79,9 +95,14 @@ export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
         placement="bottom-start"
         triggerRenderer={() => (
           <div
-            className={cx(styles[`${baseClass}__trigger`], {
-              [styles[`${baseClass}__trigger--active`]]: isVisible,
-            })}
+            data-testid="range-date-picker-trigger"
+            className={cx(
+              styles[`${baseClass}__trigger`],
+              {
+                [styles[`${baseClass}__trigger--active`]]: isVisible,
+              },
+              triggerClassName
+            )}
           >
             <RangeDatePickerV2Label tempDate={tempDate} date={date} />
             <div
@@ -109,11 +130,18 @@ export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
           </div>
         )}
       >
-        <div className={styles[`${baseClass}__date-picker`]}>
+        <div
+          data-testid="range-date-picker"
+          className={cx(
+            styles[`${baseClass}__date-picker`],
+            rangeDatePickerClassName
+          )}
+        >
           <ul role="menu" className={styles[`${baseClass}__date-picker__list`]}>
             {OPTIONS.map((option) => (
               <li role="none" key={option.id}>
                 <button
+                  aria-selected={currentSelectedId === option.id}
                   role="menuitem"
                   className={cx(
                     styles[`${baseClass}__date-picker__list__item`],
@@ -130,7 +158,6 @@ export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
                   {option.label}
                   {currentSelectedId === option.id && (
                     <div
-                      // data-testid={`${option.id}-selected-icon`}
                       className={
                         styles[`${baseClass}__date-picker__list__item__icon`]
                       }
@@ -149,7 +176,7 @@ export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
               customTempToDate={tempDate?.to || date?.to}
               onCustomTempDateRangeChange={setTempDate}
               initialToDate={todayDate}
-              {...restProps}
+              {...props}
             >
               {({ datepicker }) => <DatePicker {...datepicker} />}
             </RangeDatePicker>

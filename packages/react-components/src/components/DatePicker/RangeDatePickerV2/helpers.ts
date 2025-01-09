@@ -5,6 +5,7 @@ import {
   subDays,
   subMonths,
 } from 'date-fns';
+import { DateRange } from 'react-day-picker';
 
 import { RANGE_DATE_PICKER_OPTION_ID } from './types';
 
@@ -51,3 +52,16 @@ export const OPTIONS: RangeDatePickerSelectOptions[] = [
     value: { from: startOfMonth(todayDate), to: todayDate },
   },
 ];
+
+type IsSameDate = (range?: DateRange, date?: DateRange) => boolean;
+
+export const isSameDate: IsSameDate = (range, date) => {
+  if (date?.from && date.to && range?.from && range.to) {
+    return (
+      date.from.getTime() === range.from.getTime() &&
+      date.to.getTime() === range.to.getTime()
+    );
+  }
+
+  return false;
+};

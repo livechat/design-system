@@ -98,7 +98,7 @@ export interface IRangeDatePickerChildrenPayload {
   selectedOption?: IRangeDatePickerOption;
 }
 
-export interface IRangeDatePickerV1Props {
+export interface IRangeDatePickerV1CoreProps {
   onChange: (selected: IRangeDatePickerOption | null) => void;
   options: IRangeDatePickerOption[];
   initialSelectedItemKey?: string;
@@ -108,7 +108,7 @@ export interface IRangeDatePickerV1Props {
   customTempToDate?: never;
 }
 
-export interface IRangeDatePickerV2Props {
+export interface IRangeDatePickerV2CoreProps {
   onRangeSelect: (selected: DateRange | null) => void;
   onCustomTempDateRangeChange: (date: DateRange | undefined) => void;
   customTempFromDate?: Date;
@@ -127,4 +127,4 @@ export interface IRangeDatePickerCoreProps {
 }
 
 export type IRangeDatePickerProps = IRangeDatePickerCoreProps &
-  (IRangeDatePickerV1Props | IRangeDatePickerV2Props);
+  (IRangeDatePickerV1CoreProps | IRangeDatePickerV2CoreProps);

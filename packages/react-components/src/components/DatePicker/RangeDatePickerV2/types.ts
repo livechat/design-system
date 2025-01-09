@@ -12,6 +12,12 @@ export type RANGE_DATE_PICKER_OPTION_ID =
 
 export interface IRangeDatePickerV2Props
   extends Omit<IRangeDatePickerCoreProps, 'children'> {
-  selectedId?: RANGE_DATE_PICKER_OPTION_ID;
-  onRangeSelect: (selected: DateRange | null) => void;
+  triggerClassName?: string;
+  rangeDatePickerClassName?: string;
+  initiallyOpen?: boolean;
+  initialSelectedOptionId?: RANGE_DATE_PICKER_OPTION_ID;
+  onRangeSelect: (
+    selected: DateRange | null,
+    id?: RANGE_DATE_PICKER_OPTION_ID
+  ) => void;
 }
