@@ -10,7 +10,7 @@ import { ICheckListItem } from '../types';
 import styles from './CheckListItem.module.scss';
 
 const baseClass = 'checklist-item';
-const INNER_CONTENT_PADDING = 3;
+const INNER_CONTENT_PADDING = 7;
 
 export const CheckListItem: React.FC<ICheckListItem> = ({
   id,
