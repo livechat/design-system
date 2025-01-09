@@ -4,7 +4,7 @@ import cx from 'clsx';
 import { format } from 'date-fns';
 import { DateRange } from 'react-day-picker';
 
-import { Text } from '../../../Typography';
+import { Text } from '../../Typography';
 
 import styles from './RangeDatePickerV2Label.module.scss';
 

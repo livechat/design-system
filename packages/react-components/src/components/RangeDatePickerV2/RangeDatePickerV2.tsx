@@ -5,10 +5,10 @@ import cx from 'clsx';
 import { startOfToday } from 'date-fns';
 import { DateRange } from 'react-day-picker';
 
-import { Button } from '../../Button';
-import { DatePicker, RangeDatePicker } from '../../DatePicker';
-import { Icon } from '../../Icon';
-import { Popover } from '../../Popover';
+import { Button } from '../Button';
+import { DatePicker, RangeDatePicker } from '../DatePicker';
+import { Icon } from '../Icon';
+import { Popover } from '../Popover';
 
 import { RangeDatePickerV2Label } from './components/RangeDatePickerV2Label';
 import { isSameDate, OPTIONS } from './helpers';

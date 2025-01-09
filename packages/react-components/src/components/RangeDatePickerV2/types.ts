@@ -1,6 +1,6 @@
 import { DateRange } from 'react-day-picker';
 
-import { IRangeDatePickerCoreProps } from '../types';
+import { IRangeDatePickerCoreProps } from '../DatePicker/types';
 
 export type RANGE_DATE_PICKER_OPTION_ID =
   | 'today'
