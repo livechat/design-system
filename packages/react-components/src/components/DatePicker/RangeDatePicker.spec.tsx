@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { vi } from 'vitest';
 
 import { render, userEvent } from 'test-utils';
@@ -9,6 +10,8 @@ import {
   IRangeDatePickerProps,
   IRangeDatePickerChildrenPayload,
 } from './types';
+
+const formattedDate = (date: Date) => format(date, 'EEEE, MMMM do, yyyy');
 
 const options = [
   {
@@ -34,15 +37,14 @@ describe('<RangeDatePicker> component', () => {
   it('should call onChange callback if user chooses custom date', () => {
     const onChange = vi.fn();
     const { getByLabelText } = renderComponent({
-      initialFromDate: new Date(2022, 0, 1),
-      initialToDate: new Date(2022, 1, 1),
+      toMonth: new Date(2022, 1, 1),
       onChange,
       options,
       initialSelectedItemKey: 'custom_date',
       children,
     });
-    const startDate = getByLabelText(new Date(2022, 0, 1).toDateString());
-    const endDate = getByLabelText(new Date(2022, 1, 1).toDateString());
+    const startDate = getByLabelText(formattedDate(new Date(2022, 0, 1)));
+    const endDate = getByLabelText(formattedDate(new Date(2022, 1, 1)));
 
     userEvent.click(startDate);
     userEvent.click(endDate);
