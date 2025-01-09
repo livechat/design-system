@@ -25,9 +25,9 @@ export const DatePickerCustomNavigation: React.FC<
   IDatePickerCustomNavigationProps
 > = ({ currentMonth, setMonth, startMonth, endMonth, numberOfMonths }) => {
   const shouldDisablePreviousButton =
-    !startMonth || !isSameMonth(currentMonth, startMonth);
+    startMonth && isSameMonth(currentMonth, startMonth);
   const shouldDisableNextButton =
-    !endMonth || !isSameMonth(currentMonth, endMonth);
+    endMonth && isSameMonth(currentMonth, endMonth);
 
   const handlePreviousMonth = () => {
     const newMonth = new Date(currentMonth);
@@ -86,7 +86,7 @@ export const DatePickerCustomNavigation: React.FC<
           size="xcompact"
           icon={<Icon source={DoubleArrowLeft} />}
           onClick={handlePreviousYearClick}
-          disabled={!shouldDisablePreviousButton}
+          disabled={shouldDisablePreviousButton}
         />
         <Button
           data-testid="date-picker-prev-month-button"
@@ -94,7 +94,7 @@ export const DatePickerCustomNavigation: React.FC<
           size="xcompact"
           icon={<Icon source={ChevronLeft} />}
           onClick={handlePreviousMonth}
-          disabled={!shouldDisablePreviousButton}
+          disabled={shouldDisablePreviousButton}
         />
       </div>
       <div className={styles[`${baseClass}__nav-wrapper`]}>
@@ -104,7 +104,7 @@ export const DatePickerCustomNavigation: React.FC<
           size="xcompact"
           icon={<Icon source={ChevronRight} />}
           onClick={handleNextMonth}
-          disabled={!shouldDisableNextButton}
+          disabled={shouldDisableNextButton}
         />
         <Button
           data-testid="date-picker-next-year-button"
@@ -112,7 +112,7 @@ export const DatePickerCustomNavigation: React.FC<
           size="xcompact"
           icon={<Icon source={DoubleArrowRight} />}
           onClick={handleNextYearClick}
-          disabled={!shouldDisableNextButton}
+          disabled={shouldDisableNextButton}
         />
       </div>
     </div>
