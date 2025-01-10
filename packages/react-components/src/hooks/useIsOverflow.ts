@@ -1,4 +1,10 @@
-import { useState, useLayoutEffect, useCallback, RefObject } from 'react';
+import {
+  useState,
+  useLayoutEffect,
+  useCallback,
+  RefObject,
+  useEffect,
+} from 'react';
 
 import debounce from 'lodash.debounce';
 
@@ -35,7 +41,13 @@ export const useIsOverflow = <T extends HTMLElement>(
     return () => {
       resizeCallback(null, () => {});
     };
-  }, [ref, checkOverflowDebounced]);
+  }, [ref, checkOverflowDebounced, checkOverflow]);
+
+  useEffect(() => {
+    return () => {
+      checkOverflowDebounced.cancel();
+    };
+  }, [checkOverflowDebounced]);
 
   return isOverflow;
 };

@@ -13,18 +13,16 @@ export const OverflowTooltipText: FC<OverflowTooltipTextProps> = ({ text }) => {
   const isOverflow = useIsOverflow(wrapperRef);
   const { isHovered, handleMouseOut, handleMouseOver } = useOnHover(isOverflow);
 
-  const renderChildren = () => {
-    return (
-      <div
-        onMouseEnter={handleMouseOver}
-        onMouseLeave={handleMouseOut}
-        ref={wrapperRef}
-        className={styles.text}
-      >
-        {text}
-      </div>
-    );
-  };
+  const renderChildren = (
+    <div
+      onMouseEnter={handleMouseOver}
+      onMouseLeave={handleMouseOut}
+      ref={wrapperRef}
+      className={styles.text}
+    >
+      {text}
+    </div>
+  );
 
   return (
     <Tooltip
