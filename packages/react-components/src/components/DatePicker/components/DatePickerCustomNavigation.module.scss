@@ -1,0 +1,11 @@
+$base-class: 'date-picker-custom-navigation';
+
+.#{$base-class} {
+  display: flex;
+  position: absolute;
+  top: -1px;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}

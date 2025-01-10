@@ -35,6 +35,7 @@ export * from './components/Loader';
 export * from './components/Modal';
 export * from './components/NumericInput';
 export * from './components/OnboardingChecklist';
+export * from './components/OverflowTooltipText';
 export * from './components/Picker';
 export * from './components/Popover';
 export * from './components/ProductSwitcher';

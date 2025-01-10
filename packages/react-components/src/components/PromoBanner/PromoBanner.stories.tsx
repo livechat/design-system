@@ -1,5 +1,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 
+import image from '../../stories/assets/folder.svg';
+
 import {
   PromoBannerProps,
   PromoBanner as PromoBannerComponent,
@@ -31,7 +33,7 @@ const StoryTemplate: StoryFn<PromoBannerProps> = (args: PromoBannerProps) => (
 export const PromoBanner = StoryTemplate.bind({});
 PromoBanner.args = {
   header: 'This example headline has 40 characters',
-  img: 'https://via.placeholder.com/100',
+  img: image,
   buttonText: 'Example',
   linkText: 'Example',
   onButtonClick: () => {
@@ -61,7 +63,7 @@ WithButtons.args = {
 export const WithImage = StoryTemplate.bind({});
 WithImage.args = {
   header: 'This example headline has 40 characters',
-  img: 'https://via.placeholder.com/100',
+  img: image,
 };
 
 export const WithClose = StoryTemplate.bind({});

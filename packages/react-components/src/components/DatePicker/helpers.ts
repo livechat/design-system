@@ -1,23 +1,10 @@
-import cx from 'clsx';
-import {
-  isAfter,
-  isSameDay,
-  isSameMonth,
-  subMonths,
-  differenceInCalendarDays,
-} from 'date-fns';
-import { Modifiers } from 'react-day-picker';
-import { ClassNames } from 'react-day-picker/types/ClassNames';
+import { isAfter, isSameDay, isSameMonth, subMonths } from 'date-fns';
 
 import {
   IRangeDatePickerProps,
   IRangeDatePickerState,
   IRangeDatePickerOption,
 } from './types';
-
-import styles from './DatePicker.module.scss';
-
-const baseClass = 'date-picker';
 
 export const isDateWithinRange = (
   date: Date,
@@ -52,38 +39,6 @@ export const calculateDatePickerMonth = (
   }
 
   return initialToDate;
-};
-
-export const getRangeDatePickerModifiers = (
-  from?: Date,
-  to?: Date
-): Partial<Modifiers> => {
-  const base = {
-    [styles[`${baseClass}__day--monday`]]: { daysOfWeek: [1] },
-    [styles[`${baseClass}__day--sunday`]]: { daysOfWeek: [0] },
-    [styles[`${baseClass}__day--start`]]: from,
-    [styles[`${baseClass}__day--end`]]: from,
-  };
-
-  if (!to || !from) return base;
-
-  const diff = differenceInCalendarDays(to, from);
-
-  if (diff > 0) {
-    return {
-      ...base,
-      [styles[`${baseClass}__day--end`]]: to,
-    };
-  }
-
-  if (diff < 0) {
-    return {
-      ...base,
-      [styles[`${baseClass}__day--start`]]: to,
-    };
-  }
-
-  return base;
 };
 
 export const getSelectedOption = (
@@ -137,45 +92,3 @@ export const getInitialStateFromProps = (
 
   return state;
 };
-
-export const getDatePickerClassNames = (
-  range?: boolean,
-  classNames?: ClassNames
-): ClassNames & { start: string; end: string } => ({
-  container: cx({
-    [styles[`${baseClass}`]]: true,
-    [styles[`${baseClass}--range`]]: range,
-  }),
-  wrapper: styles[`${baseClass}__wrapper`],
-  interactionDisabled: styles[`${baseClass}--interaction-disabled`],
-  months: styles[`${baseClass}__months`],
-  month: styles[`${baseClass}__month`],
-  navBar: styles[`${baseClass}__nav-bar`],
-  navButtonPrev: cx(
-    styles[`${baseClass}__nav-button`],
-    styles[`${baseClass}__nav-button--prev`]
-  ),
-  navButtonNext: cx(
-    styles[`${baseClass}__nav-button`],
-    styles[`${baseClass}__nav-button--next`]
-  ),
-  navButtonInteractionDisabled:
-    styles[`${baseClass}__nav-button--interaction-disabled`],
-  caption: styles[`${baseClass}__caption`],
-  weekdays: styles[`${baseClass}__weekdays`],
-  weekdaysRow: styles[`${baseClass}__weekdays-row`],
-  weekday: styles[`${baseClass}__weekday`],
-  body: styles[`${baseClass}__body`],
-  week: styles[`${baseClass}__week`],
-  weekNumber: styles[`${baseClass}__week-number`],
-  day: styles[`${baseClass}__day`],
-  footer: styles[`${baseClass}__footer`],
-  todayButton: styles[`${baseClass}__today-button`],
-  today: styles[`${baseClass}__day--today`],
-  selected: styles[`${baseClass}__day--selected`],
-  disabled: styles[`${baseClass}__day--disabled`],
-  outside: styles[`${baseClass}__day--outside`],
-  start: styles[`${baseClass}__day--start`],
-  end: styles[`${baseClass}__day--end`],
-  ...classNames,
-});
