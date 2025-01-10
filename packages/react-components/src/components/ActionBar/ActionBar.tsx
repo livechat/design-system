@@ -6,9 +6,9 @@ import cx from 'clsx';
 import { IActionMenuOption } from 'components/ActionMenu/types';
 
 import { ActionMenu } from '../ActionMenu';
-import { ActionMenuItem } from '../ActionMenuItem';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
+import { ListItem } from '../ListItem';
 
 import { ActionBarItem } from './ActionBarItem';
 import { IActionBarOption, IActionBarProps } from './types';
@@ -85,9 +85,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
         if (!o.hideInMenu) {
           const item = {
             key: o.key,
-            element: (
-              <ActionMenuItem leftNode={o.element}>{o.label}</ActionMenuItem>
-            ),
+            element: <ListItem leftNode={o.element}>{o.label}</ListItem>,
             withDivider: o.withDivider,
             onClick: o.onClick,
           };

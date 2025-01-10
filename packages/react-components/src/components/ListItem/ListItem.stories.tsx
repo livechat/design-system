@@ -10,15 +10,16 @@ import { customHeightForChromatic } from '../../utils/chromatic-story-helpers';
 import noop from '../../utils/noop';
 import { ActionMenu } from '../ActionMenu';
 import { Button } from '../Button';
+import { Card } from '../Card';
 import { Icon } from '../Icon';
 
-import { ActionMenuItem } from './ActionMenuItem';
+import { ListItem } from './ListItem';
 
-import './ActionMenuItem.stories.css';
+import './ListItem.stories.css';
 
 export default {
-  title: 'Components/ActionMenuItem',
-  component: ActionMenuItem,
+  title: 'Components/ListItem',
+  component: ListItem,
   parameters: {
     chromatic: { delay: 300 },
   },
@@ -27,18 +28,18 @@ export default {
 const defaultOptions = [
   {
     key: 'one',
-    element: <ActionMenuItem>Simple Item 1</ActionMenuItem>,
+    element: <ListItem>Simple Item 1</ListItem>,
     onClick: noop,
   },
   {
     key: 'two',
     element: (
-      <ActionMenuItem
+      <ListItem
         leftNode={<Icon source={ContentCopy} />}
         rightNode={<Icon source={CloseCircle} />}
       >
         Complex Item 2
-      </ActionMenuItem>
+      </ListItem>
     ),
     onClick: noop,
   },
@@ -47,19 +48,19 @@ const defaultOptions = [
 const warningOptions = [
   {
     key: 'one',
-    element: <ActionMenuItem kind="warning">Simple Item 1</ActionMenuItem>,
+    element: <ListItem kind="warning">Simple Item 1</ListItem>,
     onClick: noop,
   },
   {
     key: 'two',
     element: (
-      <ActionMenuItem
+      <ListItem
         kind="warning"
         leftNode={<Icon source={ContentCopy} />}
         rightNode={<Icon source={CloseCircle} />}
       >
         Complex Item 2
-      </ActionMenuItem>
+      </ListItem>
     ),
     onClick: noop,
   },
@@ -67,7 +68,40 @@ const warningOptions = [
 export const Default = (): ReactElement => {
   return (
     <div style={{ height: customHeightForChromatic('1000px') }}>
-      <div className="action-menu-preview">
+      <div className="list-item-preview">
+        <ListItem
+          leftNode={<Icon source={ContentCopy} />}
+          rightNode={<Icon source={CloseCircle} />}
+        >
+          List Item
+        </ListItem>
+      </div>
+    </div>
+  );
+};
+
+export const CardList = (): ReactElement => {
+  return (
+    <div style={{ height: customHeightForChromatic('1000px'), width: '300px' }}>
+      <Card>
+        <ListItem
+          leftNode={<Icon source={ContentCopy} />}
+          rightNode={<Icon source={CloseCircle} />}
+        >
+          List Item 1
+        </ListItem>
+        <ListItem leftNode={<Icon source={ContentCopy} />}>
+          List Item 2
+        </ListItem>
+      </Card>
+    </div>
+  );
+};
+
+export const WithActionMenu = (): ReactElement => {
+  return (
+    <div style={{ height: customHeightForChromatic('1000px') }}>
+      <div className="list-item-preview">
         <ActionMenu
           options={defaultOptions}
           triggerRenderer={
@@ -80,10 +114,10 @@ export const Default = (): ReactElement => {
   );
 };
 
-export const WarningKind = (): ReactElement => {
+export const WithActionMenuWarningKind = (): ReactElement => {
   return (
     <div style={{ height: customHeightForChromatic('1000px') }}>
-      <div className="action-menu-item-preview">
+      <div className="list-item-preview">
         <ActionMenu
           options={warningOptions}
           triggerRenderer={

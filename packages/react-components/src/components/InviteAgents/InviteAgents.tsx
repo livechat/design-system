@@ -12,9 +12,9 @@ import cx from 'clsx';
 import { ThemeClassName } from '../../providers';
 import { plural } from '../../utils/plural';
 import { ActionMenu } from '../ActionMenu';
-import { ActionMenuItem } from '../ActionMenuItem';
 import { Avatar } from '../Avatar';
 import { Icon } from '../Icon';
+import { ListItem } from '../ListItem';
 import { Interactive, Tooltip } from '../Tooltip';
 import { Text } from '../Typography';
 
@@ -96,17 +96,17 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
       key: 'chatbot',
       onClick: handleSetUpChatbotClick,
       element: (
-        <ActionMenuItem leftNode={<Icon source={ChatBotColored} />}>
+        <ListItem leftNode={<Icon source={ChatBotColored} />}>
           Set up ChatBot
-        </ActionMenuItem>
+        </ListItem>
       ),
     },
     {
       key: 'teammate',
       element: (
-        <ActionMenuItem leftNode={<Icon source={PersonAdd} />}>
+        <ListItem leftNode={<Icon source={PersonAdd} />}>
           Invite teammate
-        </ActionMenuItem>
+        </ListItem>
       ),
       onClick: handleAddTeammateClick,
     },

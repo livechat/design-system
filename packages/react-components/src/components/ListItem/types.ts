@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-export interface ActionMenuItemProps {
+export interface ListItemProps {
   /**
    * Renders given element on the left of element
    */

@@ -1,5 +1,6 @@
-.action-menu-item-preview {
+.list-item-preview {
   display: flex;
   justify-content: center;
   margin-bottom: 200px;
+  width: 300px;
 }
