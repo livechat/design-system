@@ -16,6 +16,7 @@ import {
   useInteractions,
   useRole,
   useTransitionStyles,
+  UseTransitionStylesProps,
 } from '@floating-ui/react';
 import cx from 'clsx';
 
@@ -41,6 +42,7 @@ export const Popover: React.FC<React.PropsWithChildren<IPopoverProps>> = ({
   useDismissHookProps,
   useClickHookProps,
   floatingStrategy,
+  transitionOptions,
 }) => {
   const [visible, setVisible] = React.useState(openedOnInit);
   const parentId = useFloatingParentNodeId();
@@ -83,7 +85,7 @@ export const Popover: React.FC<React.PropsWithChildren<IPopoverProps>> = ({
     role,
   ]);
 
-  const { styles: transitionStyles } = useTransitionStyles(context, {
+  const defaultTransitionStyles = {
     initial: ({ side }) => ({
       opacity: 0,
       ...((side === 'bottom' && {
@@ -99,7 +101,12 @@ export const Popover: React.FC<React.PropsWithChildren<IPopoverProps>> = ({
           marginLeft: -10,
         })),
     }),
-  });
+  } as UseTransitionStylesProps;
+
+  const { styles: transitionStyles } = useTransitionStyles(
+    context,
+    transitionOptions ? transitionOptions : defaultTransitionStyles
+  );
 
   const mergedClassNames = cx(styles['popover'], className);
 

@@ -30,6 +30,11 @@ $base-class: 'range-date-picker';
       }
     }
 
+    &:focus-visible {
+      outline: 0;
+      box-shadow: var(--shadow-focus);
+    }
+
     &__right-node {
       display: flex;
       align-items: center;
@@ -84,8 +89,8 @@ $base-class: 'range-date-picker';
         }
 
         &:focus-visible {
-          outline: 2px solid var(--action-primary-default);
-          outline-offset: -2px;
+          outline: 0;
+          box-shadow: var(--shadow-focus);
         }
 
         &--selected {

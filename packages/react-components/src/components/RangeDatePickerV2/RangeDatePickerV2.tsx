@@ -1,10 +1,11 @@
-import { FC, useState, useCallback, useEffect } from 'react';
+import { FC, useState, useCallback, useEffect, useRef } from 'react';
 
 import { Check, Calendar, Close } from '@livechat/design-system-icons';
 import cx from 'clsx';
 import { startOfToday } from 'date-fns';
 import { DateRange } from 'react-day-picker';
 
+import { KeyCodes } from '../../utils/keyCodes';
 import { Button } from '../Button';
 import { DatePicker, RangeDatePicker } from '../DatePicker';
 import { Icon } from '../Icon';
@@ -42,6 +43,42 @@ export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
   const [currentSelectedId, setCurrentSelectedId] = useState<
     RANGE_DATE_PICKER_OPTION_ID | undefined
   >();
+  const indexRef = useRef<number>(0);
+  const ref = useRef<HTMLUListElement | null>(null);
+
+  const getIndex = (val: number): number => indexRef.current + val;
+
+  const focusElement = (val: number) => {
+    indexRef.current = getIndex(val);
+    const elements = ref.current?.children;
+    const elementToFocus =
+      elements &&
+      (elements[indexRef.current]?.children[0] as HTMLButtonElement);
+
+    return elementToFocus?.focus();
+  };
+
+  const onKeyDown = (e: KeyboardEvent) => {
+    if (e.key === KeyCodes.arrowUp && indexRef.current > 0) {
+      e.preventDefault();
+      focusElement(-1);
+    }
+
+    if (e.key === KeyCodes.arrowDown && indexRef.current + 1 < OPTIONS.length) {
+      e.preventDefault();
+      focusElement(+1);
+    }
+  };
+
+  useEffect(() => {
+    if (isVisible) {
+      document.addEventListener('keydown', onKeyDown);
+
+      return () => document.removeEventListener('keydown', onKeyDown);
+    } else {
+      indexRef.current = -1;
+    }
+  }, [isVisible, onKeyDown]);
 
   useEffect(() => {
     if (initialSelectedOptionId && !date) {
@@ -95,6 +132,8 @@ export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
         placement="bottom-start"
         triggerRenderer={() => (
           <div
+            tabIndex={0}
+            role="button"
             data-testid="range-date-picker-trigger"
             className={cx(
               styles[`${baseClass}__trigger`],
@@ -137,7 +176,11 @@ export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
             rangeDatePickerClassName
           )}
         >
-          <ul role="menu" className={styles[`${baseClass}__date-picker__list`]}>
+          <ul
+            role="menu"
+            ref={ref}
+            className={styles[`${baseClass}__date-picker__list`]}
+          >
             {OPTIONS.map((option) => (
               <li role="none" key={option.id}>
                 <button
