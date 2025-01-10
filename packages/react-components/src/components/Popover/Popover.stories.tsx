@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { ChevronDown } from '@livechat/design-system-icons';
 import { Meta, StoryFn } from '@storybook/react';
 
@@ -10,8 +8,6 @@ import { Text } from '../Typography';
 import { Popover as PopoverComponent } from './Popover';
 
 import './Popover.stories.css';
-
-import type { IPopoverProps } from './types';
 
 const placements = [
   'top',
@@ -67,7 +63,7 @@ export default {
   ],
 } as Meta<typeof PopoverComponent>;
 
-export const Default = (args: IPopoverProps): React.ReactElement => (
+const Template: StoryFn<typeof PopoverComponent> = (args) => (
   <PopoverComponent
     {...args}
     triggerRenderer={() => (
@@ -83,28 +79,15 @@ export const Default = (args: IPopoverProps): React.ReactElement => (
     </div>
   </PopoverComponent>
 );
+
+export const Default = Template.bind({});
+export const CustomAnimation = Template.bind({});
+
 Default.args = {
   placement: 'bottom-start',
   isVisible: undefined,
   openedOnInit: true,
 };
-
-export const CustomAnimation = (args: IPopoverProps): React.ReactElement => (
-  <PopoverComponent
-    {...args}
-    triggerRenderer={() => (
-      <Button icon={<Icon source={ChevronDown}></Icon>} iconPosition={'right'}>
-        Open Popover
-      </Button>
-    )}
-  >
-    <div className="content-wrapper">
-      <div className="content">
-        <Text>Popover content</Text>
-      </div>
-    </div>
-  </PopoverComponent>
-);
 
 CustomAnimation.args = {
   placement: 'bottom-start',
