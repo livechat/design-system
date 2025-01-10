@@ -16,7 +16,7 @@ describe('<ListItem> component', () => {
   it('should render given elements', () => {
     const { getByText } = renderComponent(defaultProps);
 
-    expect(getByText('Menu item')).toBeInTheDocument();
+    expect(getByText('List item')).toBeInTheDocument();
     expect(getByText('Left node')).toBeInTheDocument();
     expect(getByText('Right node')).toBeInTheDocument();
   });
