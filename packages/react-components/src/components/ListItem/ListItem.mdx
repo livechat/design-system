@@ -1,0 +1,41 @@
+import { Canvas, ArgTypes, Meta, Title } from '@storybook/blocks';
+
+import * as ListItemStories from './ListItem.stories.tsx';
+
+<Meta of={ListItemStories} />
+
+<Title>ListItem</Title>
+
+[Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+## Intro <a id="Intro" />
+
+The List Item component is designed to be a universal styled element, suitable for use in various contexts such as menus,
+navigation, or data presentation. It provides a structured way to display a collection of items, offering flexibility for customization.
+
+This component can include individual items that may feature labels, icons, or additional context,
+which can be positioned on either the left or right side of the items.
+
+<Canvas of={ListItemStories.Default} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+<ListItem>Simple Option 1</ListItem>
+// OR
+<ListItem leftNode={<Icon icon="chat" />} rightNode={<Icon icon="chevron-down" />}>Complex option 2</ListItem>
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={ListItemStories.Default} sort="requiredFirst" />
+
+## Content Spec <a id="ContentSpec" />
+
+<a
+  className="sb-unstyled"
+  href="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=97-20299&mode=design&t=yMPgy8XRD1OTobuX-4"
+  target="_blank"
+>
+  Go to Figma documentation
+</a>

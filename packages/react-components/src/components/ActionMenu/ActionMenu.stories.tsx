@@ -6,11 +6,11 @@ import { customHeightForChromatic } from '../../utils/chromatic-story-helpers';
 import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
+import { ListItem } from '../ListItem';
 import { RadioButton } from '../RadioButton';
 import { Switch } from '../Switch';
 
 import { ActionMenu } from './ActionMenu';
-import { ActionMenuItem } from './ActionMenuItem';
 import { exampleOptions } from './stories-constants';
 
 import './ActionMenu.stories.css';
@@ -18,9 +18,6 @@ import './ActionMenu.stories.css';
 export default {
   title: 'Components/ActionMenu',
   component: ActionMenu,
-  subcomponents: {
-    ActionMenuItem,
-  },
   parameters: {
     chromatic: { delay: 300 },
   },
@@ -61,11 +58,11 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
           {
             key: 'one',
             element: (
-              <ActionMenuItem>
+              <ListItem>
                 <RadioButton checked={radioButtonValue === 'one'}>
                   Radio label one
                 </RadioButton>
-              </ActionMenuItem>
+              </ListItem>
             ),
             onClick: () => setRadioButtonValue('one'),
           },
@@ -73,11 +70,11 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
             key: 'two',
             withDivider: true,
             element: (
-              <ActionMenuItem>
+              <ListItem>
                 <RadioButton checked={radioButtonValue === 'two'}>
                   Radio label two
                 </RadioButton>
-              </ActionMenuItem>
+              </ListItem>
             ),
             onClick: () => setRadioButtonValue('two'),
           },
@@ -85,26 +82,26 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
             key: 'three',
             withDivider: true,
             element: (
-              <ActionMenuItem
+              <ListItem
                 rightNode={
                   <Switch on={switchOneValue} state="regular" size="medium" />
                 }
               >
                 Toggle label one
-              </ActionMenuItem>
+              </ListItem>
             ),
             onClick: () => setSwitchOneValue((s) => !s),
           },
           {
             key: 'four',
             element: (
-              <ActionMenuItem
+              <ListItem
                 rightNode={
                   <Switch on={switchTwoValue} state="regular" size="medium" />
                 }
               >
                 Toggle label two
-              </ActionMenuItem>
+              </ListItem>
             ),
             onClick: () => setSwitchTwoValue((s) => !s),
           },
@@ -116,7 +113,7 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
           {
             key: 'five',
             element: (
-              <ActionMenuItem
+              <ListItem
                 leftNode={
                   <Checkbox checked={checkboxOneValue}>
                     Checkbox label one
@@ -129,7 +126,7 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
           {
             key: 'six',
             element: (
-              <ActionMenuItem
+              <ListItem
                 leftNode={
                   <Checkbox checked={checkboxTwoValue}>
                     Checkbox label two
@@ -168,17 +165,17 @@ export const WithSelectedOptions = (): React.ReactElement => {
           options={[
             {
               key: 'one',
-              element: <ActionMenuItem>Option one</ActionMenuItem>,
+              element: <ListItem>Option one</ListItem>,
               onClick: () => handleSelectOption('one'),
             },
             {
               key: 'two',
-              element: <ActionMenuItem>Option two</ActionMenuItem>,
+              element: <ListItem>Option two</ListItem>,
               onClick: () => handleSelectOption('two'),
             },
             {
               key: 'three',
-              element: <ActionMenuItem>Option three</ActionMenuItem>,
+              element: <ListItem>Option three</ListItem>,
               onClick: () => handleSelectOption('three'),
             },
           ]}
