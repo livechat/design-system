@@ -146,6 +146,11 @@ export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
               },
               triggerClassName
             )}
+            onKeyDown={(e) => {
+              if (e.key === KeyCodes.enter || e.key === KeyCodes.spacebar) {
+                focusElement(+1);
+              }
+            }}
           >
             <RangeDatePickerV2Label tempDate={tempDate} date={date} />
             <div
