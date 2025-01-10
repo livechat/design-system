@@ -1,26 +1,15 @@
-import { Reducer, Ref, ReactElement } from 'react';
+import { Reducer, ReactElement } from 'react';
 
-import ReactDayPicker, { DayPickerProps } from 'react-day-picker';
-import { ClassNames } from 'react-day-picker/types/ClassNames';
+import { DayPickerProps, DateRange } from 'react-day-picker';
 
-export interface IDatePickerProps
-  extends Omit<DayPickerProps, 'todayButton' | 'showWeekNumbers'> {
-  innerRef?: Ref<ReactDayPicker>;
-  range?: boolean;
-}
+export type IDatePickerProps = DayPickerProps;
 
-export interface IDatePickerNavbarProps {
-  showPreviousButton?: boolean;
-  showNextButton?: boolean;
-  month: Date;
-  fromMonth?: Date;
-  toMonth?: Date;
+export interface IDatePickerCustomNavigationProps {
+  currentMonth: Date;
+  setMonth: (date: Date) => void;
+  startMonth?: Date;
+  endMonth?: Date;
   numberOfMonths?: number;
-  className?: string;
-  classNames: ClassNames;
-  onPreviousClick?: () => void;
-  onNextClick?: () => void;
-  onMonthChange: (newMonth: Date) => void;
 }
 
 export enum RangeDatePickerAction {
@@ -83,21 +72,6 @@ export interface IRangeDatePickerOption {
   } | null;
 }
 
-interface IRangeDatePickerChildrenPayloadDatePicker {
-  modifiers?: DayPickerProps['modifiers'];
-  initialMonth?: Date;
-  month: Date;
-  range?: boolean;
-  numberOfMonths: number;
-  fromMonth?: Date;
-  toMonth?: Date;
-  selectedDays?: DayPickerProps['selectedDays'];
-  disabledDays?: DayPickerProps['disabledDays'];
-  onDayMouseEnter: DayPickerProps['onDayMouseEnter'];
-  onDayClick(day: Date): void;
-  onMonthChange(month: Date): void;
-}
-
 export interface IRangeDatePickerChildrenPayload {
   select: {
     selected: string | number;
@@ -107,7 +81,7 @@ export interface IRangeDatePickerChildrenPayload {
     fromDate?: Date;
     toDate?: Date;
   };
-  datepicker: IRangeDatePickerChildrenPayloadDatePicker;
+  datepicker: DayPickerProps;
   selectedOption?: IRangeDatePickerOption;
 }
 
@@ -118,5 +92,6 @@ export interface IRangeDatePickerProps {
   initialToDate?: Date;
   toMonth?: Date;
   onChange: (selected: IRangeDatePickerOption | null) => void;
+  onSelect?: (selected: DateRange | null) => void;
   children(payload: IRangeDatePickerChildrenPayload): ReactElement;
 }
