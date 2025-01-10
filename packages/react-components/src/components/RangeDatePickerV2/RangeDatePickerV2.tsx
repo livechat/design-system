@@ -43,7 +43,7 @@ export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
   const [currentSelectedId, setCurrentSelectedId] = useState<
     RANGE_DATE_PICKER_OPTION_ID | undefined
   >();
-  const indexRef = useRef<number>(0);
+  const indexRef = useRef<number>(-1);
   const ref = useRef<HTMLUListElement | null>(null);
 
   const getIndex = (val: number): number => indexRef.current + val;

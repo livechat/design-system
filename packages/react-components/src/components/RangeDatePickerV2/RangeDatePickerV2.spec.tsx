@@ -1,3 +1,5 @@
+import { startOfToday, subDays } from 'date-fns';
+
 import { render, vi, userEvent } from 'test-utils';
 
 import { RangeDatePickerV2 } from './RangeDatePickerV2';
@@ -70,6 +72,46 @@ describe('<RangeDatePickerV2> component', () => {
     );
   });
 
+  it('should call onRangeSelect with selected range if selected start date is after after end date', () => {
+    const onRangeSelect = vi.fn();
+    const { getByLabelText } = renderComponent({
+      ...DEFAULT_PROPS,
+      onRangeSelect,
+      initiallyOpen: true,
+    });
+
+    userEvent.click(getByLabelText('Thursday, February 6th, 2025'));
+    userEvent.click(getByLabelText('Thursday, January 16th, 2025'));
+
+    expect(onRangeSelect).toHaveBeenCalledWith(
+      {
+        from: new Date(2025, 0, 16),
+        to: new Date(2025, 1, 6),
+      },
+      undefined
+    );
+  });
+
+  it('should call onRangeSelect with selected range if selected same date twice', () => {
+    const onRangeSelect = vi.fn();
+    const { getByLabelText } = renderComponent({
+      ...DEFAULT_PROPS,
+      onRangeSelect,
+      initiallyOpen: true,
+    });
+
+    userEvent.click(getByLabelText('Thursday, January 16th, 2025'));
+    userEvent.click(getByLabelText('Thursday, January 16th, 2025, selected'));
+
+    expect(onRangeSelect).toHaveBeenCalledWith(
+      {
+        from: new Date(2025, 0, 16),
+        to: new Date(2025, 0, 16),
+      },
+      undefined
+    );
+  });
+
   it('should call onRangeSelect with selected range and option id', () => {
     const onRangeSelect = vi.fn();
     const { getByText } = renderComponent({
@@ -77,13 +119,14 @@ describe('<RangeDatePickerV2> component', () => {
       onRangeSelect,
       initiallyOpen: true,
     });
+    const todayDate = startOfToday();
 
     userEvent.click(getByText('Last 7 days'));
 
     expect(onRangeSelect).toHaveBeenCalledWith(
       {
-        from: new Date(2025, 0, 3),
-        to: new Date(2025, 0, 9),
+        from: subDays(todayDate, 6),
+        to: todayDate,
       },
       'last7days'
     );

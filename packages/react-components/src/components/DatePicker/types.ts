@@ -119,6 +119,7 @@ export interface IRangeDatePickerV2CoreProps {
 }
 
 export interface IRangeDatePickerCoreProps {
+  today?: Date;
   initialFromDate?: Date;
   initialToDate?: Date;
   toMonth?: Date;
