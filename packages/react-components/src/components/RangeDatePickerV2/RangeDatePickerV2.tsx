@@ -70,25 +70,6 @@ export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
     }
   };
 
-  useEffect(() => {
-    if (isVisible) {
-      document.addEventListener('keydown', onKeyDown);
-
-      return () => document.removeEventListener('keydown', onKeyDown);
-    } else {
-      indexRef.current = -1;
-    }
-  }, [isVisible, onKeyDown]);
-
-  useEffect(() => {
-    if (initialSelectedOptionId && !date) {
-      const option = OPTIONS.find(({ id }) => id === initialSelectedOptionId);
-      if (option) {
-        handleOnOptionClick(option.value, option.id);
-      }
-    }
-  });
-
   const handleRangeSelecting = (
     range: DateRange | null,
     id?: RANGE_DATE_PICKER_OPTION_ID
@@ -110,17 +91,39 @@ export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
       handleClosing();
       setCurrentSelectedId(id);
     },
-    []
+    [handleRangeSelecting, handleClosing]
   );
 
-  const handleOnRangeSelect = useCallback((range: DateRange | null) => {
-    if (!range || isSameDate(range, date)) {
-      return;
-    }
+  const handleOnRangeSelect = useCallback(
+    (range: DateRange | null) => {
+      if (!range || isSameDate(range, date)) {
+        return;
+      }
 
-    handleRangeSelecting(range);
-    handleClosing();
-  }, []);
+      handleRangeSelecting(range);
+      handleClosing();
+    },
+    [date]
+  );
+
+  useEffect(() => {
+    if (isVisible) {
+      document.addEventListener('keydown', onKeyDown);
+
+      return () => document.removeEventListener('keydown', onKeyDown);
+    } else {
+      indexRef.current = -1;
+    }
+  }, [isVisible, onKeyDown]);
+
+  useEffect(() => {
+    if (initialSelectedOptionId && !date) {
+      const option = OPTIONS.find(({ id }) => id === initialSelectedOptionId);
+      if (option) {
+        handleOnOptionClick(option.value, option.id);
+      }
+    }
+  }, [initialSelectedOptionId, date, handleOnOptionClick]);
 
   return (
     <div className={styles[baseClass]}>
@@ -135,6 +138,7 @@ export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
             tabIndex={0}
             role="button"
             data-testid="range-date-picker-trigger"
+            aria-label="Select date range"
             className={cx(
               styles[`${baseClass}__trigger`],
               {
@@ -171,6 +175,7 @@ export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
       >
         <div
           data-testid="range-date-picker"
+          id="date-range-popup"
           className={cx(
             styles[`${baseClass}__date-picker`],
             rangeDatePickerClassName

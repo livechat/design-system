@@ -56,7 +56,7 @@ export const OPTIONS: RangeDatePickerSelectOptions[] = [
 type IsSameDate = (range?: DateRange, date?: DateRange) => boolean;
 
 export const isSameDate: IsSameDate = (range, date) => {
-  if (date?.from && date.to && range?.from && range.to) {
+  if (date?.from && date?.to && range?.from && range?.to) {
     return (
       date.from.getTime() === range.from.getTime() &&
       date.to.getTime() === range.to.getTime()
