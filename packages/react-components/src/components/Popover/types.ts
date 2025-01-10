@@ -7,6 +7,7 @@ import {
   UseDismissProps,
   FlipOptions,
   Strategy,
+  UseTransitionStylesProps,
 } from '@floating-ui/react';
 
 export interface IPopoverProps {
@@ -70,4 +71,10 @@ export interface IPopoverProps {
    * https://floating-ui.com/docs/usefloating#strategy
    */
   floatingStrategy?: Strategy;
+  /**
+   * Options to define or customize the transition styles for the popover's appearance and disappearance.
+   * Uses the default transition styles if not specified.
+   * @see https://floating-ui.com/docs/usetransition
+   */
+  transitionOptions?: UseTransitionStylesProps;
 }
