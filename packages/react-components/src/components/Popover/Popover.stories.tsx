@@ -58,6 +58,13 @@ export default {
     controls: { expanded: true },
     chromatic: { delay: 300 },
   },
+  decorators: [
+    (Story: StoryFn) => (
+      <div className="popper-story default">
+        <Story />
+      </div>
+    ),
+  ],
 } as Meta<typeof PopoverComponent>;
 
 export const Default = (args: IPopoverProps): React.ReactElement => (
@@ -76,15 +83,37 @@ export const Default = (args: IPopoverProps): React.ReactElement => (
     </div>
   </PopoverComponent>
 );
-Default.decorators = [
-  (Story: StoryFn) => (
-    <div className="popper-story default">
-      <Story />
-    </div>
-  ),
-];
 Default.args = {
   placement: 'bottom-start',
   isVisible: undefined,
   openedOnInit: true,
+};
+
+export const CustomAnimation = (args: IPopoverProps): React.ReactElement => (
+  <PopoverComponent
+    {...args}
+    triggerRenderer={() => (
+      <Button icon={<Icon source={ChevronDown}></Icon>} iconPosition={'right'}>
+        Open Popover
+      </Button>
+    )}
+  >
+    <div className="content-wrapper">
+      <div className="content">
+        <Text>Popover content</Text>
+      </div>
+    </div>
+  </PopoverComponent>
+);
+
+CustomAnimation.args = {
+  placement: 'bottom-start',
+  isVisible: undefined,
+  openedOnInit: true,
+  transitionOptions: {
+    duration: 2000,
+    initial: {
+      opacity: 0,
+    },
+  },
 };
