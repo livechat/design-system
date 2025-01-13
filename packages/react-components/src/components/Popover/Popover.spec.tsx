@@ -1,3 +1,4 @@
+import { waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 
 import { render, userEvent } from 'test-utils';
@@ -65,14 +66,18 @@ describe('<Popover> component', () => {
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it('closes the popover when Escape key is pressed', () => {
+  it('closes the popover when Escape key is pressed', async () => {
     const { queryByRole } = renderComponent({
       ...defaultProps,
       openedOnInit: true,
     });
 
     userEvent.keyboard('[Escape]');
-    expect(queryByRole('dialog')).not.toBeInTheDocument();
+
+    // Wait for close animation to finish
+    await waitFor(() => {
+      expect(queryByRole('dialog')).not.toBeInTheDocument();
+    });
   });
 
   it('should not close the popover when Escape key is pressed if closeOnEsc is set false', () => {
