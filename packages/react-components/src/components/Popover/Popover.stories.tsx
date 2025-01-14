@@ -52,7 +52,7 @@ export default {
   parameters: {
     layout: 'centered',
     controls: { expanded: true },
-    chromatic: { delay: 300 },
+    chromatic: { delay: 600 },
   },
   decorators: [
     (Story: StoryFn) => (
@@ -94,7 +94,7 @@ CustomAnimation.args = {
   isVisible: undefined,
   openedOnInit: true,
   transitionOptions: {
-    duration: 2000,
+    duration: 500,
     initial: {
       opacity: 0,
     },
