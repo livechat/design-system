@@ -31,13 +31,9 @@ export const generateData = (length: number): Data[] => {
     'Emily Adams',
     'David Harris',
     'Sophia Thomas',
-    'James Lewis',
-    'Olivia Walker',
-    'Daniel Hall',
-    'Isabella Scott',
   ];
 
-  const age = [24, 43, 47, 18, 56, 5, 67, 78, 66, 65, 77, 78, 89, 23, 33, 11];
+  const age = [24, 43, 47, 18, 56, 5, 67, 78, 66, 65, 77, 78];
 
   return Array.from({ length }, (_, index) => ({
     id: index + 1,
