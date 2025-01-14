@@ -1,6 +1,8 @@
 $base-class: 'date-picker';
 
 .#{$base-class} {
+  min-width: 224px;
+
   &__wrapper {
     display: inline-flex;
     align-items: center;

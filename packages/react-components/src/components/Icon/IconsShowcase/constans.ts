@@ -291,6 +291,8 @@ export const IconsData: Record<IconName, IconGroup> = {
   KeyboardFilled: IconGroup.General,
   Keyboard: IconGroup.General,
   Language: IconGroup.General,
+  LayoutGrid: IconGroup.General,
+  LayoutGridFilled: IconGroup.General,
   Line: IconGroup.General,
   LineColored: IconGroup.General,
   LinkFilled: IconGroup.General,

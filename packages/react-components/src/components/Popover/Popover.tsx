@@ -103,7 +103,7 @@ export const Popover: React.FC<React.PropsWithChildren<IPopoverProps>> = ({
     }),
   } as UseTransitionStylesProps;
 
-  const { styles: transitionStyles } = useTransitionStyles(
+  const { isMounted, styles: transitionStyles } = useTransitionStyles(
     context,
     transitionOptions ? transitionOptions : defaultTransitionStyles
   );
@@ -121,7 +121,7 @@ export const Popover: React.FC<React.PropsWithChildren<IPopoverProps>> = ({
         {isTriggerAsFunction ? triggerRenderer() : triggerRenderer}
       </div>
       <FloatingNode id={nodeId}>
-        {currentlyVisible && (
+        {isMounted && (
           <FloatingFocusManager context={context} modal={false}>
             <div
               className={mergedClassNames}

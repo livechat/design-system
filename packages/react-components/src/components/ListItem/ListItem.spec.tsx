@@ -1,22 +1,22 @@
 import { render } from 'test-utils';
 
-import { ActionMenuItem } from './ActionMenuItem';
-import { ActionMenuItemProps } from './types';
+import { ListItem } from './ListItem';
+import { ListItemProps } from './types';
 
 const defaultProps = {
   leftNode: <div>Left node</div>,
   rightNode: <div>Right node</div>,
 };
 
-const renderComponent = (props: ActionMenuItemProps) => {
-  return render(<ActionMenuItem {...props}>Menu item</ActionMenuItem>);
+const renderComponent = (props: ListItemProps) => {
+  return render(<ListItem {...props}>List item</ListItem>);
 };
 
-describe('<ActionMenuItem> component', () => {
+describe('<ListItem> component', () => {
   it('should render given elements', () => {
     const { getByText } = renderComponent(defaultProps);
 
-    expect(getByText('Menu item')).toBeInTheDocument();
+    expect(getByText('List item')).toBeInTheDocument();
     expect(getByText('Left node')).toBeInTheDocument();
     expect(getByText('Right node')).toBeInTheDocument();
   });

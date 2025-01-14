@@ -55,43 +55,45 @@ export const DatePicker: React.FC<IDatePickerProps> = ({
   );
 
   return (
-    <DayPicker
-      classNames={{
-        weekday: cx(
-          styles[`${baseClass}__wrapper`],
-          styles[`${baseClass}__weekday`]
-        ),
-        day: cx(styles[`${baseClass}__wrapper`], styles[`${baseClass}__day`]),
-        day_button: cx(styles[`${baseClass}__day-button`]),
-        today: cx(styles[`${baseClass}__today`]),
-        selected: cx(styles[`${baseClass}__selected`]),
-        month_caption: cx(styles[`${baseClass}__month-caption`]),
-        range_start: cx(styles[`${baseClass}__range-start`]),
-        range_middle: cx(styles[`${baseClass}__range-middle`]),
-        range_end: cx(styles[`${baseClass}__range-end`]),
-        disabled: cx(styles[`${baseClass}__disabled`]),
-      }}
-      onMonthChange={handleMonthChange}
-      month={currentMonth}
-      components={{
-        CaptionLabel: ({ children }) => (
-          <Text as="span" bold>
-            {children}
-          </Text>
-        ),
-        Nav: () => (
-          <DatePickerCustomNavigation
-            currentMonth={currentMonth}
-            setMonth={handleMonthChange}
-            startMonth={startMonth || fromMonth}
-            endMonth={endMonth || toMonth}
-          />
-        ),
-      }}
-      startMonth={startMonth || fromMonth}
-      endMonth={endMonth || toMonth}
-      weekStartsOn={weekStartsOn}
-      {...props}
-    />
+    <div className={styles[`${baseClass}`]}>
+      <DayPicker
+        classNames={{
+          weekday: cx(
+            styles[`${baseClass}__wrapper`],
+            styles[`${baseClass}__weekday`]
+          ),
+          day: cx(styles[`${baseClass}__wrapper`], styles[`${baseClass}__day`]),
+          day_button: cx(styles[`${baseClass}__day-button`]),
+          today: cx(styles[`${baseClass}__today`]),
+          selected: cx(styles[`${baseClass}__selected`]),
+          month_caption: cx(styles[`${baseClass}__month-caption`]),
+          range_start: cx(styles[`${baseClass}__range-start`]),
+          range_middle: cx(styles[`${baseClass}__range-middle`]),
+          range_end: cx(styles[`${baseClass}__range-end`]),
+          disabled: cx(styles[`${baseClass}__disabled`]),
+        }}
+        onMonthChange={handleMonthChange}
+        month={currentMonth}
+        components={{
+          CaptionLabel: ({ children }) => (
+            <Text as="span" bold>
+              {children}
+            </Text>
+          ),
+          Nav: () => (
+            <DatePickerCustomNavigation
+              currentMonth={currentMonth}
+              setMonth={handleMonthChange}
+              startMonth={startMonth || fromMonth}
+              endMonth={endMonth || toMonth}
+            />
+          ),
+        }}
+        startMonth={startMonth || fromMonth}
+        endMonth={endMonth || toMonth}
+        weekStartsOn={weekStartsOn}
+        {...props}
+      />
+    </div>
   );
 };
