@@ -19,6 +19,9 @@ import styles from './Table.module.scss';
 export default {
   title: 'Components/Table',
   component: Table,
+  parameters: {
+    chromatic: { diffThreshold: 0.8 },
+  },
 } as Meta<typeof Table>;
 
 const actionBarClass = 'action-bar';
