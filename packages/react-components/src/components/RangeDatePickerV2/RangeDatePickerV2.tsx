@@ -228,7 +228,7 @@ export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
               customTempFromDate={tempDate?.from || date?.from}
               customTempToDate={tempDate?.to || date?.to}
               onCustomTempDateRangeChange={setTempDate}
-              initialToDate={todayDate}
+              initialToDate={date?.to || todayDate}
               {...props}
             >
               {({ datepicker }) => <DatePicker {...datepicker} />}
