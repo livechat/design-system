@@ -47,6 +47,11 @@ export const useRangeDatePickerState = (
           temporaryTo: void 0,
           currentMonth: initialCurrentMonth,
         };
+      case RangeDatePickerAction.NEW_TEMPORARY_FROM_VALUE:
+        return {
+          ...state,
+          temporaryFrom: action.payload.date,
+        };
       case RangeDatePickerAction.NEW_TEMPORARY_TO_VALUE:
         return {
           ...state,
