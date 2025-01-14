@@ -19,6 +19,9 @@ import styles from './Table.module.scss';
 export default {
   title: 'Components/Table',
   component: Table,
+  parameters: {
+    chromatic: { delay: 300 },
+  },
 } as Meta<typeof Table>;
 
 const actionBarClass = 'action-bar';
