@@ -3,12 +3,16 @@ const isChromaticEnv = () => {
 };
 
 export const customHeightForChromatic = (height: string): string => {
-  return isChromaticEnv() ? height : 'auto';
+  const isChromatic = isChromaticEnv();
+
+  return isChromatic ? height : 'auto';
 };
 
 export const customWidthForChromatic = (
   chromaticWidth: string,
   defaultWidth: string
 ): string => {
-  return isChromaticEnv() ? chromaticWidth : defaultWidth;
+  const isChromatic = isChromaticEnv();
+
+  return isChromatic ? chromaticWidth : defaultWidth;
 };
