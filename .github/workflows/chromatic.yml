@@ -35,6 +35,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Set Environment Variable
+        run: echo "CHROMATIC_ENV=true" >> $GITHUB_ENV
+
       - name: Build packages
         run: npm run build:icons
 

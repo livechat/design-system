@@ -1,12 +1,14 @@
-import isChromatic from 'chromatic/isChromatic';
+const isChromaticEnv = () => {
+  return typeof process !== 'undefined' && process.env.CHROMATIC_ENV === 'true';
+};
 
 export const customHeightForChromatic = (height: string): string => {
-  return isChromatic() ? height : 'auto';
+  return isChromaticEnv() ? height : 'auto';
 };
 
 export const customWidthForChromatic = (
   chromaticWidth: string,
   defaultWidth: string
 ): string => {
-  return isChromatic() ? chromaticWidth : defaultWidth;
+  return isChromaticEnv() ? chromaticWidth : defaultWidth;
 };
