@@ -6,6 +6,9 @@ name: 'Chromatic'
 # Event for the workflow
 on: push
 
+env:
+  CHROMATIC_ENV: true
+
 # List of jobs
 jobs:
   chromatic-deployment:
@@ -32,8 +35,8 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - name: Set Environment Variable
-        run: echo "CHROMATIC_ENV=true" >> $GITHUB_ENV
+      # - name: Set Environment Variable
+      #   run: echo "CHROMATIC_ENV=true" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: npm ci
