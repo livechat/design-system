@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { customWidthForChromatic } from '../../utils/chromatic-story-helpers';
 import { Checkbox } from '../Checkbox';
 import { Text } from '../Typography';
 
@@ -42,7 +43,10 @@ export const TableRow = <T,>({
         <td
           key={String(column.key)}
           style={{
-            width: columnWidths[index] ? `${columnWidths[index]}px` : 'auto',
+            width: customWidthForChromatic(
+              '100px',
+              columnWidths[index] ? `${columnWidths[index]}px` : 'auto'
+            ),
           }}
           role="cell"
           data-column={String(column.key)}
