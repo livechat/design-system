@@ -37,14 +37,13 @@ export const generateData = (length: number): Data[] => {
     'Isabella Scott',
   ];
 
-  const getRandomElement = <T,>(arr: T[]): T =>
-    arr[Math.floor(Math.random() * arr.length)];
+  const age = [24, 43, 47, 18, 56, 5, 67, 78, 66, 65, 77, 78, 89, 23, 33, 11];
 
   return Array.from({ length }, (_, index) => ({
     id: index + 1,
-    name: getRandomElement(names),
-    age: Math.floor(Math.random() * 43) + 18,
-    role: getRandomElement(roles),
+    name: names[index],
+    age: age[index],
+    role: roles[index],
     action: <Button size="xcompact">Edit</Button>,
   }));
 };
