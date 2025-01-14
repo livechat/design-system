@@ -111,3 +111,7 @@ $base-class: 'date-picker';
     }
   }
 }
+
+.#{$base-class}__range-start.#{$base-class}__range-end {
+  border-radius: var(--radius-3);
+}
