@@ -21,7 +21,7 @@ interface IOwnProps {
   shouldSlide?: boolean;
   className?: string;
   disableSpotlightPointerEvents?: boolean;
-  hideTooltip?: boolean;
+  showTooltip?: boolean;
 }
 
 interface IUserGuide
@@ -37,7 +37,7 @@ export const UserGuide: React.FC<React.PropsWithChildren<IUserGuide>> = (
     parentElementName,
     isVisible = false,
     shouldSlide = true,
-    hideTooltip = false,
+    showTooltip = true,
     zIndex = 0,
   } = props;
 
@@ -99,7 +99,7 @@ export const UserGuide: React.FC<React.PropsWithChildren<IUserGuide>> = (
         disablePointerEvents
         zIndex={zIndex}
       />
-      {hideTooltip && (
+      {showTooltip && (
         <Tooltip
           {...props}
           triggerRenderer={<></>}
