@@ -21,6 +21,7 @@ interface IOwnProps {
   shouldSlide?: boolean;
   className?: string;
   disableSpotlightPointerEvents?: boolean;
+  hideTooltip?: boolean;
 }
 
 interface IUserGuide
@@ -36,6 +37,8 @@ export const UserGuide: React.FC<React.PropsWithChildren<IUserGuide>> = (
     parentElementName,
     isVisible = false,
     shouldSlide = true,
+    hideTooltip = false,
+    zIndex = 0,
   } = props;
 
   const [parentElement, setParentElement] = React.useState<Element | null>(
@@ -94,24 +97,27 @@ export const UserGuide: React.FC<React.PropsWithChildren<IUserGuide>> = (
         isVisible={isVisible}
         slide={isSliding}
         disablePointerEvents
+        zIndex={zIndex}
       />
-      <Tooltip
-        {...props}
-        triggerRenderer={<></>}
-        referenceElement={{
-          getBoundingClientRect: () => {
-            return rect;
-          },
-          contextElement: parentElement,
-        }}
-        className={cx({
-          [styles[baseClass]]: true,
-          [styles[`${baseClass}--slide`]]: isSliding,
-          className: className,
-        })}
-      >
-        {props.children}
-      </Tooltip>
+      {hideTooltip && (
+        <Tooltip
+          {...props}
+          triggerRenderer={<></>}
+          referenceElement={{
+            getBoundingClientRect: () => {
+              return rect;
+            },
+            contextElement: parentElement,
+          }}
+          className={cx({
+            [styles[baseClass]]: true,
+            [styles[`${baseClass}--slide`]]: isSliding,
+            className: className,
+          })}
+        >
+          {props.children}
+        </Tooltip>
+      )}
     </FloatingPortal>
   ) : null;
 };

@@ -11,11 +11,13 @@ const SpotlightOverlay = ({
   isVisible,
   slide,
   disablePointerEvents,
+  zIndex,
 }: {
   gap: DOMRect | null;
   isVisible: boolean;
   slide: boolean;
   disablePointerEvents: boolean;
+  zIndex: number;
 }): React.ReactElement | null => {
   if (!gap) return null;
   const overlayLeft = {
@@ -23,24 +25,28 @@ const SpotlightOverlay = ({
     left: '0',
     width: `${gap.left}px`,
     height: `${gap.height}px`,
+    zIndex: zIndex,
   };
   const overlayRight = {
     top: `${gap.top}px`,
     left: `${gap.right}px`,
     width: `calc(100% - ${gap.right}px)`,
     height: `${gap.height}px`,
+    zIndex: zIndex,
   };
   const overlayTop = {
     top: '0',
     left: '0',
     width: '100%',
     height: `${gap.top}px`,
+    zIndex: zIndex,
   };
   const overlayBottom = {
     top: `${gap.bottom}px`,
     left: '0',
     width: '100%',
     height: `calc(100% - ${gap.bottom}px)`,
+    zIndex: zIndex,
   };
 
   const spotlight = {
@@ -49,6 +55,7 @@ const SpotlightOverlay = ({
     width: `${gap.width}px`,
     height: `${gap.height}px`,
     backgroundColor: 'transparent',
+    zIndex: zIndex,
   };
 
   return (
