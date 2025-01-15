@@ -28,6 +28,20 @@ const ShadowDescription: Record<ShadowTokenKey, string> = {
   FixedLeft: 'Fixed shadow on left of the element',
   FixedTop: 'Fixed shadow on top of the element',
   FixedBottom: 'Fixed shadow on bottom of the element',
+  ShadowAiCopilotAnimationStart:
+    'Initial shadow for AI animations',
+  ShadowAiCopilotAnimationMedium1:
+    'Intermediate shadow for AI animations',
+  ShadowAiCopilotAnimationMedium2:
+    'Mid-level shadow for AI animations',
+  ShadowAiCopilotAnimationMedium3:
+    'Another mid-level shadow option for AI animations',
+  ShadowAiCopilotAnimationEnd:
+    'Ending shadow for AI animations',
+  ShadowAiOtherFloat:
+    'Shadow used for floating AI elements',
+  ShadowAiOtherActiveField:
+    'Shadow used for active AI fields',
 };
 
 export const ShadowTokens: ShadowShape[] = Object.entries(ShadowToken).map(

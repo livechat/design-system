@@ -1,59 +1,77 @@
 :root,
 .lc-light-theme {
-  --shadow-float: 0 2px 6px 0 rgb(19 19 23 / 20%);
-  --shadow-pop-over: 0 6px 20px 0 rgb(19 19 23 / 30%);
-  --shadow-modal: 0 10px 50px 0 rgb(19 19 23 / 40%);
-  --shadow-tooltip: 0 1px 10px 0 rgb(66 77 87 / 30%);
-  --shadow-tooltip-arrow-bottom: 8px -6px 10px -2px rgb(66 77 87 / 30%);
-  --shadow-tooltip-arrow-top: -7px 6px 5px -3px rgb(66 77 87 / 30%);
-  --shadow-tooltip-arrow-right: -5px -5px 10px -2px rgb(66 77 87 / 30%);
-  --shadow-tooltip-arrow-left: 6px 6px 10px -2px rgb(66 77 87 / 30%);
-  --shadow-tooltip-arrow: -2px -2px 3px -2px rgb(66 77 87 / 10%);
-  --shadow-focus: 0 0 1px 1px var(--background-01), 0 0 1px 3px #0059e1;
-  --shadow-divider-bottom: 0 -1px 0 0 #eeeeef inset;
-  --shadow-divider-top: 0 1px 0 0 #eeeeef inset;
-  --shadow-divider-right: -1px 0 0 0 #eeeeef inset;
-  --shadow-divider-left: 1px 0 0 0 #eeeeef inset;
-  --shadow-divider-bottom-left: 1px -1px 0 0 #eeeeef inset;
-  --shadow-divider-top-left: 1px 1px 0 0 #eeeeef inset;
-  --shadow-divider-top-right: -1px 1px 0 0 #eeeeef inset;
-  --shadow-divider-bottom-right: -1px -1px 0 0 #eeeeef inset;
-  --shadow-message-box: 0 0 8px 0 rgb(19 19 23 / 12%);
-  --shadow-fixed-right: 2px 0 10px rgb(19 19 23 / 18%);
-  --shadow-fixed-left: -2px 0 10px rgb(19 19 23 / 18%);
-  --shadow-fixed-top: 0 -2px 10px rgb(19 19 23 / 18%);
-  --shadow-fixed-bottom: 0 2px 10px rgb(19 19 23 / 18%);
-  --focus-ring-inner: inset 0 0 1px 2px var(--action-primary-default);
-  --state-active-field: 0 0 0 4px rgb(0 89 225 / 15%);
+    --shadow-float: 0 2px 6px 0 rgb(19 19 23 / 20%);
+    --shadow-pop-over: 0 6px 20px 0 rgb(19 19 23 / 30%);
+    --shadow-modal: 0 10px 50px 0 rgb(19 19 23 / 40%);
+    --shadow-tooltip: 0 1px 10px 0 rgb(66 77 87 / 30%);
+    --shadow-tooltip-arrow-bottom: 8px -6px 10px -2px rgb(66 77 87 / 30%);
+    --shadow-tooltip-arrow-top: -7px 6px 5px -3px rgb(66 77 87 / 30%);
+    --shadow-tooltip-arrow-right: -5px -5px 10px -2px rgb(66 77 87 / 30%);
+    --shadow-tooltip-arrow-left: 6px 6px 10px -2px rgb(66 77 87 / 30%);
+    --shadow-tooltip-arrow: -2px -2px 3px -2px rgb(66 77 87 / 10%);
+    --shadow-focus: 0 0 1px 1px var(--background-01), 0 0 1px 3px #0059e1;
+    --shadow-divider-bottom: 0 -1px 0 0 #eeeeef inset;
+    --shadow-divider-top: 0 1px 0 0 #eeeeef inset;
+    --shadow-divider-right: -1px 0 0 0 #eeeeef inset;
+    --shadow-divider-left: 1px 0 0 0 #eeeeef inset;
+    --shadow-divider-bottom-left: 1px -1px 0 0 #eeeeef inset;
+    --shadow-divider-top-left: 1px 1px 0 0 #eeeeef inset;
+    --shadow-divider-top-right: -1px 1px 0 0 #eeeeef inset;
+    --shadow-divider-bottom-right: -1px -1px 0 0 #eeeeef inset;
+    --shadow-message-box: 0 0 8px 0 rgb(19 19 23 / 12%);
+    --shadow-fixed-right: 2px 0 10px rgb(19 19 23 / 18%);
+    --shadow-fixed-left: -2px 0 10px rgb(19 19 23 / 18%);
+    --shadow-fixed-top: 0 -2px 10px rgb(19 19 23 / 18%);
+    --shadow-fixed-bottom: 0 2px 10px rgb(19 19 23 / 18%);
+    --focus-ring-inner: inset 0 0 1px 2px var(--action-primary-default);
+    --state-active-field: 0 0 0 4px rgb(0 89 225 / 15%);
+    --shadow-ai-copilot-animation-start: 0 -4px 22px 1px rgb(0 102 255 / 30%),
+    0 12px 32px 1px rgb(113 111 255 / 60%),
+    0 0 0 1px rgb(145 70 255 / 100%) inset;
+    --shadow-ai-copilot-animation-medium1: 0 -4px 22px 1px rgb(0 102 255 / 30%),
+    0 12px 32px 1px rgb(113 111 255 / 60%),
+    0 0 0 1px rgb(145 70 255 / 100%) inset;
+    --shadow-ai-copilot-animation-medium2: 0 -2px 24px 1px rgb(0 102 255 / 60%),
+    0 12px 32px 1px rgb(113 111 255 / 40%),
+    0 0 0 1px rgb(0 102 255 / 100%) inset;
+    --shadow-ai-copilot-animation-medium3: 0 -2px 24px 1px rgb(0 102 255 / 60%),
+    0 12px 32px 1px rgb(113 111 255 / 40%),
+    0 0 0 1px rgb(0 102 255 / 100%) inset;
+    --shadow-ai-copilot-animation-end: 0 6px 28px 0 rgb(19 19 23 / 30%);
+    --shadow-ai-other-float: 1px 2px 6px 0 rgb(255 80 154 / 15%),
+    -1px 0 6px 0 rgb(0 128 255 / 20%);
+    --shadow-ai-other-active-field: 1px 2px 6px 0 rgb(255 47 119 / 15%),
+    -1px -2px 6px 0 rgb(0 128 255 / 20%),
+    0 0 0 4px rgb(0 122 255 / 5%);
 }
 
 .lc-dark-theme {
-  --shadow-float: 0 2px 12px 0 rgb(0 0 0 / 30%), 0 1px 4px 0 rgb(0 0 0 / 30%),
+    --shadow-float: 0 2px 12px 0 rgb(0 0 0 / 30%), 0 1px 4px 0 rgb(0 0 0 / 30%),
     0 0 0 1px rgb(255 255 255 / 10%) inset;
-  --shadow-pop-over: 0 0 2px 1px rgb(0 0 0 / 15%),
+    --shadow-pop-over: 0 0 2px 1px rgb(0 0 0 / 15%),
     0 4px 16px 1px rgb(1 1 1 / 50%), inset 0 0 0 1px rgb(255 255 255 / 15%);
-  --shadow-modal: 0 10px 50px 0 rgb(1 1 1 / 80%),
+    --shadow-modal: 0 10px 50px 0 rgb(1 1 1 / 80%),
     0 0 0 1px rgb(255 255 255 / 15%);
-  --shadow-tooltip: initial;
-  --shadow-tooltip-arrow-bottom: unset;
-  --shadow-tooltip-arrow-top: unset;
-  --shadow-tooltip-arrow-right: unset;
-  --shadow-tooltip-arrow-left: unset;
-  --shadow-tooltip-arrow: initial;
-  --shadow-focus: 0 0 1px 1px var(--background-01), 0 0 1px 3px #68afff;
-  --shadow-divider-bottom: 0 -1px 0 0 #3b3b43 inset;
-  --shadow-divider-top: 0 1px 0 0 #3b3b43 inset;
-  --shadow-divider-right: -1px 0 0 0 #3b3b43 inset;
-  --shadow-divider-left: 1px 0 0 0 #3b3b43 inset;
-  --shadow-divider-bottom-left: 1px -1px 0 0 #3b3b43 inset;
-  --shadow-divider-top-left: 1px 1px 0 0 #3b3b43 inset;
-  --shadow-divider-top-right: -1px 1px 0 0 #3b3b43 inset;
-  --shadow-divider-bottom-right: -1px -1px 0 0 #3b3b43 inset;
-  --shadow-message-box: 0 0 8px 0 rgb(0 0 0 / 60%);
-  --shadow-fixed-right: 2px 0 10px rgb(19 19 23 / 18%);
-  --shadow-fixed-left: -2px 0 10px rgb(19 19 23 / 18%);
-  --shadow-fixed-top: 0 -2px 10px rgb(19 19 23 / 18%);
-  --shadow-fixed-bottom: 0 2px 10px rgb(19 19 23 / 18%);
-  --focus-ring-inner: inset 0 0 1px 2px var(--action-primary-default);
-  --state-active-field: 0 0 0 4px rgb(104 175 255 / 25%);
+    --shadow-tooltip: initial;
+    --shadow-tooltip-arrow-bottom: unset;
+    --shadow-tooltip-arrow-top: unset;
+    --shadow-tooltip-arrow-right: unset;
+    --shadow-tooltip-arrow-left: unset;
+    --shadow-tooltip-arrow: initial;
+    --shadow-focus: 0 0 1px 1px var(--background-01), 0 0 1px 3px #68afff;
+    --shadow-divider-bottom: 0 -1px 0 0 #3b3b43 inset;
+    --shadow-divider-top: 0 1px 0 0 #3b3b43 inset;
+    --shadow-divider-right: -1px 0 0 0 #3b3b43 inset;
+    --shadow-divider-left: 1px 0 0 0 #3b3b43 inset;
+    --shadow-divider-bottom-left: 1px -1px 0 0 #3b3b43 inset;
+    --shadow-divider-top-left: 1px 1px 0 0 #3b3b43 inset;
+    --shadow-divider-top-right: -1px 1px 0 0 #3b3b43 inset;
+    --shadow-divider-bottom-right: -1px -1px 0 0 #3b3b43 inset;
+    --shadow-message-box: 0 0 8px 0 rgb(0 0 0 / 60%);
+    --shadow-fixed-right: 2px 0 10px rgb(19 19 23 / 18%);
+    --shadow-fixed-left: -2px 0 10px rgb(19 19 23 / 18%);
+    --shadow-fixed-top: 0 -2px 10px rgb(19 19 23 / 18%);
+    --shadow-fixed-bottom: 0 2px 10px rgb(19 19 23 / 18%);
+    --focus-ring-inner: inset 0 0 1px 2px var(--action-primary-default);
+    --state-active-field: 0 0 0 4px rgb(104 175 255 / 25%);
 }

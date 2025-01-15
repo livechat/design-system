@@ -399,4 +399,18 @@ $content-basic-internal-note: #3a310c;
   --content-basic-placeholder: hsl(240deg 10% 8% / 59%);
   --input-promo-border-default: #8d8d95;
   --input-promo-border-hover: #62626d;
+  --surface-ai-copilot-basic-default: linear-gradient(95.09deg, #CDDEF9 0%, #E7E5FD 45.76%, #F9F2FF 100.89%);
+  --surface-ai-copilot-basic-hover: linear-gradient(95.09deg, #A6C4F5 0%, #D1CFFC 45.76%, #F3E6FF 100.89%);
+  --surface-ai-copilot-basic-active: linear-gradient(95.09deg, #A3B1F6 0%, #C9BBFC 45.76%, #E8D0FF 100.89%);
+  --surface-ai-copilot-invert-01: linear-gradient(254.49deg, rgba(187, 154, 255, 0.18) -0.38%, rgba(104, 175, 255, 0.18) 94.44%);
+  --surface-ai-copilot-invert-02: linear-gradient(254.49deg, #3C364C -0.38%, #1B2B46 96.36%);
+  --surface-ai-other-01-default: linear-gradient(95.09deg, #EEE8FF 0%, #FFF4DD 110.26%);
+  --surface-ai-other-01-hover: linear-gradient(95.09deg, #E5D8FF 0%, #F4E3E0 110.26%);
+  --surface-ai-other-01-active: linear-gradient(95.09deg, #E0D0FF 0%, #EFDAE2 110.26%);
+  --surface-ai-other-02-default: linear-gradient(95.09deg, #EEE8FF 0%, #F4FAFF 110.26%);
+  --border-ai-copilot-basic-default: conic-gradient(from 171.11deg at 50% 50%, #B466FF -46.87deg, #7E54FF 0.45deg, #45ACFF 163.12deg, #D7CDFF 240deg, #B466FF 313.12deg, #7E54FF 360.45deg);
+  --border-ai-other-01: linear-gradient(105.24deg, #007CEB 30.18%, #8745EB 47.61%, #EB236A 73.95%, #DD4503 104.36%);
+  --content-ai-copilot-basic: linear-gradient(254.49deg, #8609FF -0.38%, #004BC2 94.44%);
+  --content-ai-copilot-invert: linear-gradient(254.49deg, #B99AFF -0.38%, #68AFFF 94.44%);
+  --content-ai-other-1-default: linear-gradient(90deg, #007CEB 0%, #8745EB 29.5%, #EB236A 74.05%, #DD4503 125.51%);
 }

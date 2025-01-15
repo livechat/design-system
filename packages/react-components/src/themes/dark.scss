@@ -397,4 +397,10 @@ $surface-invert-primary: #e2e2e4;
   --content-basic-placeholder: hsl(240deg 6% 97% / 59%);
   --input-promo-border-default: #62626d;
   --input-promo-border-hover: #8d8d95;
+  --surface-ai-copilot-basic-default: linear-gradient(95.09deg, #302476 0%, #442A76 50.44%, #53307C 100.89%);
+  --surface-ai-copilot-basic-hover: linear-gradient(95.09deg, #44378D 0%, #593D8D 50.44%, #674293 100.89%);
+  --surface-ai-copilot-invert-01: linear-gradient(254.49deg, #3C364C -0.38%, #1B2B46 96.36%);
+  --surface-ai-copilot-invert-02: linear-gradient(254.49deg, #3C364C -0.38%, #2D3A4C 96.36%);
+  --surface-ai-other-01-default: linear-gradient(95.09deg, #4A1F73 0%, #532E1F 110.26%);
+  --surface-ai-other-02-default: linear-gradient(95.09deg, #513E79 0%, #1F2D44 110.26%);
 }
