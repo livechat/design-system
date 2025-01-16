@@ -60,6 +60,7 @@ $base-class: 'range-date-picker';
     flex-direction: row;
 
     &__list {
+      flex-shrink: 0;
       margin: 0 var(--spacing-4) 0 0;
       padding: 0;
       width: 160px;
@@ -78,6 +79,7 @@ $base-class: 'range-date-picker';
         width: 100%;
         min-height: 36px;
         color: var(--content-basic-primary);
+        font-size: 14px;
 
         &:hover {
           background-color: var(--picker-list-option-background-hover);

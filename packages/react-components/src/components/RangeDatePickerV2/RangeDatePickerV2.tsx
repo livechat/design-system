@@ -10,6 +10,7 @@ import { Button } from '../Button';
 import { DatePicker, RangeDatePicker } from '../DatePicker';
 import { Icon } from '../Icon';
 import { Popover } from '../Popover';
+import { Text } from '../Typography';
 
 import { RangeDatePickerV2Label } from './components/RangeDatePickerV2Label';
 import { isSameDate, OPTIONS } from './helpers';
@@ -18,8 +19,8 @@ import { IRangeDatePickerV2Props, RANGE_DATE_PICKER_OPTION_ID } from './types';
 import styles from './RangeDatePickerV2.module.scss';
 
 const baseClass = 'range-date-picker';
-
 const todayDate = startOfToday();
+const MOBILE_BREAKPOINT = 680;
 
 export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
   initiallyOpen = false,
@@ -38,6 +39,7 @@ export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
         }
       : undefined;
   const [date, setDate] = useState<DateRange | undefined>(initialDate);
+  const [isMobile, setIsMobile] = useState<boolean>(false);
   const [tempDate, setTempDate] = useState<DateRange | undefined>();
   const [isVisible, setIsVisible] = useState(initiallyOpen);
   const [currentSelectedId, setCurrentSelectedId] = useState<
@@ -45,6 +47,14 @@ export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
   >();
   const indexRef = useRef<number>(-1);
   const ref = useRef<HTMLUListElement | null>(null);
+
+  window.onresize = () => {
+    if (window.innerWidth <= MOBILE_BREAKPOINT) {
+      return setIsMobile(true);
+    }
+
+    return setIsMobile(false);
+  };
 
   const getIndex = (val: number): number => indexRef.current + val;
 
@@ -208,7 +218,7 @@ export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
                   onMouseEnter={() => setTempDate(option.value)}
                   onMouseLeave={() => setTempDate(undefined)}
                 >
-                  {option.label}
+                  <Text as="span">{option.label}</Text>
                   {currentSelectedId === option.id && (
                     <div
                       className={
@@ -231,7 +241,9 @@ export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
               initialToDate={date?.to || todayDate}
               {...props}
             >
-              {({ datepicker }) => <DatePicker {...datepicker} />}
+              {({ datepicker }) => (
+                <DatePicker {...datepicker} numberOfMonths={isMobile ? 1 : 2} />
+              )}
             </RangeDatePicker>
           </div>
         </div>
