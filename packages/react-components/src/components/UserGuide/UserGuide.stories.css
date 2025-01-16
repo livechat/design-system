@@ -1,0 +1,33 @@
+.preview-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 800px;
+}
+
+.simple-user-guide-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.guide-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.guide-reference {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed var(--border-default);
+  border-radius: 4px;
+  background-color: var(--surface-basic-default);
+  padding: 10px;
+  font-size: 18px;
+}
