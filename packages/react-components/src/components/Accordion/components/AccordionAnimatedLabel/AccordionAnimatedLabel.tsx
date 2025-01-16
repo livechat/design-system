@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { useAnimations } from '../../../hooks';
-import { IAccordionAnimatedLabelProps } from '../types';
+import { useAnimations } from '../../../../hooks';
+import { IAccordionAnimatedLabelProps } from '../../types';
 
 import * as styles from './styles';
 
@@ -35,7 +35,7 @@ export const AccordionAnimatedLabel: React.FC<IAccordionAnimatedLabelProps> = ({
   }, [isOpen, isOpenMounted, isClosedMounted]);
 
   return (
-    <div className={styles.animatedLabelBaseStyles(containerHeight)}>
+    <div className={styles.baseStyles(containerHeight)}>
       {isOpenMounted && (
         <div ref={openRef} className={styles.element(isOpenVisible)}>
           {open}

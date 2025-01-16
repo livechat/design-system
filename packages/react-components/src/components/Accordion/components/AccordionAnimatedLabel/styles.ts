@@ -1,19 +1,8 @@
 import { css } from '@emotion/css';
 
-import { SpacingToken, TransitionDurationToken } from '../../../foundations';
+import { TransitionDurationToken } from '../../../../foundations';
 
-export const multilineBaseStyles = css`
-  transition: inherit;
-  height: 100%;
-  overflow: hidden;
-`;
-
-export const inner = css`
-  padding: 0 var(${SpacingToken.Spacing12}) var(${SpacingToken.Spacing5})
-    var(${SpacingToken.Spacing5});
-`;
-
-export const animatedLabelBaseStyles = (containerHeight?: number) => css`
+export const baseStyles = (containerHeight?: number) => css`
   display: flex;
   position: relative;
   align-items: center;

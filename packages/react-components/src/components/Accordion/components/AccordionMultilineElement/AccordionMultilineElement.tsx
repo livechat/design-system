@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { useAnimations, useHeightResizer } from '../../../hooks';
+import { useAnimations, useHeightResizer } from '../../../../hooks';
 
 import * as styles from './styles';
 
@@ -21,7 +21,7 @@ export const AccordionMultilineElement: React.FC<
 
   return (
     <div
-      className={styles.multilineBaseStyles}
+      className={styles.baseStyles}
       style={{ maxHeight: isVisible ? size : 0 }}
       ref={multilineRef}
     >

@@ -7,7 +7,7 @@ import { useAnimations, useHeightResizer } from '../../hooks';
 import { Icon } from '../Icon';
 import { Heading, Text, TTextSize } from '../Typography';
 
-import { AccordionMultilineElement } from './components/AccordionMultilineElement';
+import { AccordionMultilineElement } from './components';
 import { getLabel } from './helpers';
 import { useAccordion } from './hooks';
 import * as styles from './styles';
