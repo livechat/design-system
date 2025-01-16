@@ -13,7 +13,6 @@ const defaultProps: ICheckListItem = {
   cta: <button>CTA</button>,
   isActive: false,
   isChecked: false,
-  isLastElement: false,
   onClick: vi.fn(),
 };
 

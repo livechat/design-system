@@ -16,7 +16,6 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
   id,
   isActive,
   isChecked,
-  isLastElement,
   title,
   titleHint,
   description,
@@ -68,9 +67,6 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
         })}
       >
         {isChecked && <Icon size="small" source={Check} />}
-        {!isLastElement && (
-          <span className={styles[`${baseClass}__check-mark__line`]} />
-        )}
       </span>
       <div
         ref={itemRef}
