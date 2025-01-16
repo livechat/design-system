@@ -43,6 +43,7 @@ export * from './components/Progress';
 export * from './components/PromoBanner';
 export * from './components/PromoBannerV2';
 export * from './components/RadioButton';
+export * from './components/RangeDatePickerV2';
 export * from './components/SearchInput';
 export * from './components/SelectableCard';
 export * from './components/Skeleton';
