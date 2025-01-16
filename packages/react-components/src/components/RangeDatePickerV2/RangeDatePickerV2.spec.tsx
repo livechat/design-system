@@ -7,7 +7,7 @@ import { IRangeDatePickerV2Props } from './types';
 
 const DEFAULT_PROPS = {
   onRangeSelect: vi.fn(),
-  initialToDate: new Date(2025, 0, 1), // to prevent changing the date on each test run
+  initialToDate: new Date(2024, 0, 1), // to prevent changing the date on each test run
 };
 
 const renderComponent = (props: IRangeDatePickerV2Props) => {
@@ -60,13 +60,13 @@ describe('<RangeDatePickerV2> component', () => {
       initiallyOpen: true,
     });
 
-    userEvent.click(getByLabelText('Thursday, January 16th, 2025'));
-    userEvent.click(getByLabelText('Thursday, February 6th, 2025'));
+    userEvent.click(getByLabelText('Tuesday, January 16th, 2024'));
+    userEvent.click(getByLabelText('Monday, February 5th, 2024'));
 
     expect(onRangeSelect).toHaveBeenCalledWith(
       {
-        from: new Date(2025, 0, 16),
-        to: new Date(2025, 1, 6),
+        from: new Date(2024, 0, 16),
+        to: new Date(2024, 1, 5),
       },
       undefined
     );
@@ -80,13 +80,13 @@ describe('<RangeDatePickerV2> component', () => {
       initiallyOpen: true,
     });
 
-    userEvent.click(getByLabelText('Thursday, February 6th, 2025'));
-    userEvent.click(getByLabelText('Thursday, January 16th, 2025'));
+    userEvent.click(getByLabelText('Monday, February 5th, 2024'));
+    userEvent.click(getByLabelText('Tuesday, January 16th, 2024'));
 
     expect(onRangeSelect).toHaveBeenCalledWith(
       {
-        from: new Date(2025, 0, 16),
-        to: new Date(2025, 1, 6),
+        from: new Date(2024, 0, 16),
+        to: new Date(2024, 1, 5),
       },
       undefined
     );
@@ -100,13 +100,13 @@ describe('<RangeDatePickerV2> component', () => {
       initiallyOpen: true,
     });
 
-    userEvent.click(getByLabelText('Thursday, January 16th, 2025'));
-    userEvent.click(getByLabelText('Thursday, January 16th, 2025, selected'));
+    userEvent.click(getByLabelText('Tuesday, January 16th, 2024'));
+    userEvent.click(getByLabelText('Tuesday, January 16th, 2024, selected'));
 
     expect(onRangeSelect).toHaveBeenCalledWith(
       {
-        from: new Date(2025, 0, 16),
-        to: new Date(2025, 0, 16),
+        from: new Date(2024, 0, 16),
+        to: new Date(2024, 0, 16),
       },
       undefined
     );
