@@ -15,6 +15,8 @@ import {
   useFloatingParentNodeId,
   useInteractions,
   useRole,
+  useTransitionStyles,
+  UseTransitionStylesProps,
 } from '@floating-ui/react';
 import cx from 'clsx';
 
@@ -40,6 +42,7 @@ export const Popover: React.FC<React.PropsWithChildren<IPopoverProps>> = ({
   useDismissHookProps,
   useClickHookProps,
   floatingStrategy,
+  transitionOptions,
 }) => {
   const [visible, setVisible] = React.useState(openedOnInit);
   const parentId = useFloatingParentNodeId();
@@ -82,6 +85,29 @@ export const Popover: React.FC<React.PropsWithChildren<IPopoverProps>> = ({
     role,
   ]);
 
+  const defaultTransitionStyles = {
+    initial: ({ side }) => ({
+      opacity: 0,
+      ...((side === 'bottom' && {
+        marginTop: -10,
+      }) ||
+        (side === 'top' && {
+          marginTop: 10,
+        }) ||
+        (side === 'left' && {
+          marginLeft: 10,
+        }) ||
+        (side === 'right' && {
+          marginLeft: -10,
+        })),
+    }),
+  } as UseTransitionStylesProps;
+
+  const { isMounted, styles: transitionStyles } = useTransitionStyles(
+    context,
+    transitionOptions ? transitionOptions : defaultTransitionStyles
+  );
+
   const mergedClassNames = cx(styles['popover'], className);
 
   const PopoverComponent = (
@@ -95,12 +121,15 @@ export const Popover: React.FC<React.PropsWithChildren<IPopoverProps>> = ({
         {isTriggerAsFunction ? triggerRenderer() : triggerRenderer}
       </div>
       <FloatingNode id={nodeId}>
-        {currentlyVisible && (
+        {isMounted && (
           <FloatingFocusManager context={context} modal={false}>
             <div
               className={mergedClassNames}
               ref={refs.setFloating}
-              style={floatingStyles}
+              style={{
+                ...floatingStyles,
+                ...transitionStyles,
+              }}
               {...getFloatingProps()}
             >
               {isTextContent ? <Text as="div">{children}</Text> : children}
