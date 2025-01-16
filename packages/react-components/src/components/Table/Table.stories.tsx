@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { Meta, StoryFn } from '@storybook/react';
+import isChromatic from 'chromatic/isChromatic';
 import cx from 'clsx';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
@@ -15,10 +16,20 @@ import { Table } from './Table';
 import { Column, Data, DataForPinningExample } from './types';
 
 import styles from './Table.module.scss';
+import storyStyles from './Table.stories.module.scss';
 
 export default {
   title: 'Components/Table',
   component: Table,
+  decorators: [
+    (Story: StoryFn) => (
+      <div
+        className={cx(isChromatic() && storyStyles['table-width-chromatic'])}
+      >
+        <Story />
+      </div>
+    ),
+  ],
 } as Meta<typeof Table>;
 
 const actionBarClass = 'action-bar';
