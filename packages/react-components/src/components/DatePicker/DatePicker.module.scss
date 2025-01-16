@@ -29,6 +29,10 @@ $base-class: 'date-picker';
       background-color: var(--surface-primary-hover);
       cursor: pointer;
     }
+
+    button {
+      font-size: 13px;
+    }
   }
 
   &__day-button {
