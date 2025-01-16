@@ -27,6 +27,8 @@ export const useRangeDatePickerState = (
     to: undefined,
     temporaryTo: undefined,
     currentMonth: initialCurrentMonth,
+    customTempFrom: undefined,
+    customTempTo: undefined,
   };
 
   const initialState = {
@@ -47,6 +49,11 @@ export const useRangeDatePickerState = (
           temporaryTo: void 0,
           currentMonth: initialCurrentMonth,
         };
+      case RangeDatePickerAction.NEW_TEMPORARY_FROM_VALUE:
+        return {
+          ...state,
+          temporaryFrom: action.payload.date,
+        };
       case RangeDatePickerAction.NEW_TEMPORARY_TO_VALUE:
         return {
           ...state,
@@ -57,7 +64,10 @@ export const useRangeDatePickerState = (
           ...state,
           from: action.payload.date,
           to: void 0,
+          temporaryFrom: void 0,
           temporaryTo: void 0,
+          customTempFrom: void 0,
+          customTempTo: void 0,
         };
       case RangeDatePickerAction.SELECT_SECOND_DAY_AS_FROM:
         return {
@@ -86,6 +96,12 @@ export const useRangeDatePickerState = (
         return {
           ...state,
           to: action.payload.date,
+        };
+      case RangeDatePickerAction.SET_CUSTOM_TEMP_RANGE:
+        return {
+          ...state,
+          customTempFrom: action.payload.customTempFrom,
+          customTempTo: action.payload.customTempTo,
         };
       default:
         return state;

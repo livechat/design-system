@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { ChevronDown } from '@livechat/design-system-icons';
 import { Meta, StoryFn } from '@storybook/react';
 
@@ -10,8 +8,6 @@ import { Text } from '../Typography';
 import { Popover as PopoverComponent } from './Popover';
 
 import './Popover.stories.css';
-
-import type { IPopoverProps } from './types';
 
 const placements = [
   'top',
@@ -56,11 +52,18 @@ export default {
   parameters: {
     layout: 'centered',
     controls: { expanded: true },
-    chromatic: { delay: 300 },
+    chromatic: { delay: 600 },
   },
+  decorators: [
+    (Story: StoryFn) => (
+      <div className="popper-story default">
+        <Story />
+      </div>
+    ),
+  ],
 } as Meta<typeof PopoverComponent>;
 
-export const Default = (args: IPopoverProps): React.ReactElement => (
+const Template: StoryFn<typeof PopoverComponent> = (args) => (
   <PopoverComponent
     {...args}
     triggerRenderer={() => (
@@ -76,15 +79,24 @@ export const Default = (args: IPopoverProps): React.ReactElement => (
     </div>
   </PopoverComponent>
 );
-Default.decorators = [
-  (Story: StoryFn) => (
-    <div className="popper-story default">
-      <Story />
-    </div>
-  ),
-];
+
+export const Default = Template.bind({});
+export const CustomAnimation = Template.bind({});
+
 Default.args = {
   placement: 'bottom-start',
   isVisible: undefined,
   openedOnInit: true,
+};
+
+CustomAnimation.args = {
+  placement: 'bottom-start',
+  isVisible: undefined,
+  openedOnInit: true,
+  transitionOptions: {
+    duration: 500,
+    initial: {
+      opacity: 0,
+    },
+  },
 };

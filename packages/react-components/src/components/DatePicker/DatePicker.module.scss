@@ -1,6 +1,8 @@
 $base-class: 'date-picker';
 
 .#{$base-class} {
+  min-width: 224px;
+
   &__wrapper {
     display: inline-flex;
     align-items: center;
@@ -26,6 +28,10 @@ $base-class: 'date-picker';
     &:hover {
       background-color: var(--surface-primary-hover);
       cursor: pointer;
+    }
+
+    button {
+      font-size: 13px;
     }
   }
 
@@ -108,4 +114,8 @@ $base-class: 'date-picker';
       cursor: not-allowed;
     }
   }
+}
+
+.#{$base-class}__range-start.#{$base-class}__range-end {
+  border-radius: var(--radius-3);
 }

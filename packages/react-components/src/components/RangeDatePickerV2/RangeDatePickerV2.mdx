@@ -1,0 +1,31 @@
+import { Canvas, ArgTypes, Meta, Title } from '@storybook/blocks';
+
+import * as RangeDatePickerV2 from './RangeDatePickerV2.stories';
+
+<Meta of={RangeDatePickerV2} />
+
+<Title>RangeDatePickerV2</Title>
+
+[Intro](#Intro) | [Component API](#ComponentAPI)
+
+## Intro <a id="Intro" />
+
+RangeDatePickerV2 is a component that allows you to select a date range using a calendar by selecting the start and end date, or using predefined options. The whole thing is displayed after interacting with a trigger that displays the selected dates, which makes it much easier to use the component in places where every free space counts.
+
+<Canvas of={RangeDatePickerV2.Default} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+import { RangeDatePickerV2 } from '@livechat/design-system-react-components';
+
+<RangeDatePickerV2
+  initialFromDate={new Date()}
+  initialToDate={new Date()}
+  onRangeSelect={({ from, to }) => {}}
+/>
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={RangeDatePickerV2.Default} sort="requiredFirst" />

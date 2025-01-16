@@ -8,40 +8,29 @@ import {
 
 import noop from '../../utils/noop';
 import { Icon } from '../Icon';
-
-import { ActionMenuItem } from './ActionMenuItem';
+import { ListItem } from '../ListItem';
 
 export const exampleOptions = [
   {
     key: 'one',
-    element: (
-      <ActionMenuItem leftNode={<Icon source={ContentCopy} />}>
-        Copy
-      </ActionMenuItem>
-    ),
+    element: <ListItem leftNode={<Icon source={ContentCopy} />}>Copy</ListItem>,
     onClick: noop,
   },
   {
     key: 'two',
     element: (
-      <ActionMenuItem leftNode={<Icon source={MoveTo} />}>
-        Move to...
-      </ActionMenuItem>
+      <ListItem leftNode={<Icon source={MoveTo} />}>Move to...</ListItem>
     ),
     onClick: noop,
   },
   {
     key: 'three',
-    element: (
-      <ActionMenuItem leftNode={<Icon source={Edit} />}>Edit</ActionMenuItem>
-    ),
+    element: <ListItem leftNode={<Icon source={Edit} />}>Edit</ListItem>,
     onClick: noop,
   },
   {
     key: 'four',
-    element: (
-      <ActionMenuItem leftNode={<Icon source={Block} />}>Block</ActionMenuItem>
-    ),
+    element: <ListItem leftNode={<Icon source={Block} />}>Block</ListItem>,
     disabled: true,
     withDivider: true,
     onClick: noop,
@@ -49,15 +38,15 @@ export const exampleOptions = [
   {
     key: 'five',
     element: (
-      <ActionMenuItem kind="warning" leftNode={<Icon source={Delete} />}>
+      <ListItem kind="warning" leftNode={<Icon source={Delete} />}>
         Delete item
-      </ActionMenuItem>
+      </ListItem>
     ),
     onClick: noop,
   },
   ...[...Array(10)].map((_, index) => ({
     key: `option${index + 8}`,
-    element: <ActionMenuItem>{`Menu item #${index + 8}`}</ActionMenuItem>,
+    element: <ListItem>{`Menu item #${index + 8}`}</ListItem>,
     onClick: noop,
   })),
 ];
