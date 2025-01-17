@@ -95,3 +95,7 @@ $radius: var(--radius-3);
     }
   }
 }
+
+:global(.user-guide-visible) {
+  overflow: hidden !important;
+}

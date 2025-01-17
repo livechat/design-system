@@ -10,8 +10,6 @@ import VirtualReference from './virtualElementReference';
 
 import styles from './UserGuide.module.scss';
 
-// TODO is it still needed
-// const spotlightPadding = 8;
 const baseClass = 'user-guide';
 
 const virtualReference = (element: Element, padding: number = 0) =>
@@ -22,14 +20,12 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = (props) => {
     className,
     parentElementName,
     isVisible = false,
-    shouldSlide = true,
     elementStyles,
   } = props;
 
   const [parentElement, setParentElement] = useState<Element | null>(null);
 
   const [rect, setRect] = useState<DOMRect | null>(null);
-  const [isSliding, setIsSliding] = useState<boolean>(shouldSlide);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleViewportChange = () => {
@@ -37,7 +33,6 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = (props) => {
       setRect(
         virtualReference(parentElement).getBoundingClientRect() as DOMRect
       );
-      setIsSliding(false);
     }
   };
 
@@ -65,7 +60,6 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = (props) => {
       setRect(
         virtualReference(parentElement).getBoundingClientRect() as DOMRect
       );
-    setIsSliding(true);
   }, [parentElement]);
 
   useEffect(() => {
@@ -75,7 +69,25 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = (props) => {
       Object.assign(clonedElement.style, elementStyles);
       containerRef.current.appendChild(clonedElement);
     }
+
+    return () => {
+      if (containerRef.current) {
+        containerRef.current.innerHTML = '';
+      }
+    };
   }, [parentElement, containerRef.current, isVisible]);
+
+  useEffect(() => {
+    if (isVisible) {
+      document.body.classList.add('user-guide-visible');
+    } else {
+      document.body.classList.remove('user-guide-visible');
+    }
+
+    return () => {
+      document.body.classList.remove('user-guide-visible');
+    };
+  }, [isVisible]);
 
   const cloneReferenceElement = () => {
     if (!rect) return null;
@@ -83,7 +95,6 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = (props) => {
     return (
       <div
         ref={containerRef}
-        className={cx({ [styles[`${baseClass}--slide`]]: isSliding })}
         style={{
           position: 'absolute',
           top: rect.top,
@@ -91,7 +102,7 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = (props) => {
           width: rect.width,
           height: rect.height,
         }}
-      ></div>
+      />
     );
   };
 
@@ -119,7 +130,6 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = (props) => {
             }}
             className={cx({
               [styles[baseClass]]: true,
-              [styles[`${baseClass}--slide`]]: isSliding,
               className: className,
             })}
           >
