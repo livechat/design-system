@@ -21,6 +21,7 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = (props) => {
     parentElementName,
     isVisible = false,
     elementStyles,
+    isInteractive = false,
   } = props;
 
   const [parentElement, setParentElement] = useState<Element | null>(null);
@@ -101,6 +102,7 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = (props) => {
           left: rect.left,
           width: rect.width,
           height: rect.height,
+          pointerEvents: isInteractive ? 'auto' : 'none',
         }}
       />
     );

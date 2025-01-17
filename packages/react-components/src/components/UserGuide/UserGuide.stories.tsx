@@ -3,6 +3,7 @@ import { CSSProperties, FC, ReactElement, useReducer } from 'react';
 import { Meta } from '@storybook/react';
 
 import { Button } from '../Button';
+import { Input } from '../Input';
 import './UserGuide.stories.css';
 import { ITooltipProps } from '../Tooltip';
 
@@ -122,7 +123,7 @@ export const Default = (): ReactElement => {
   );
 };
 
-export const SlideAnimationWithColor = (): ReactElement => {
+export const UserGuideWithInteractiveElements = (): ReactElement => {
   const reducer = (
     state: { isVisible: boolean; reference: string },
     action: { type: string }
@@ -131,18 +132,6 @@ export const SlideAnimationWithColor = (): ReactElement => {
       return {
         ...state,
         reference: 'reference1',
-      };
-    }
-    if (action.type === 'reference2') {
-      return {
-        ...state,
-        reference: 'reference2',
-      };
-    }
-    if (action.type === 'reference3') {
-      return {
-        ...state,
-        reference: 'reference3',
       };
     }
     if (action.type === 'isVisible') {
@@ -169,24 +158,70 @@ export const SlideAnimationWithColor = (): ReactElement => {
         <div
           onClick={() => dispatch({ type: 'reference1' })}
           id="reference1"
-          className="guide-reference"
+          className="guide-reference gap"
         >
-          Example reference 1
-        </div>
-        <div
-          onClick={() => dispatch({ type: 'reference2' })}
-          id="reference2"
-          className="guide-reference-2"
-        >
-          Example reference 2
+          <Button>Example Button</Button>
+          <Button kind="secondary">Example Button 2</Button>
+          <Input placeholder="Example Input" />
         </div>
 
-        <div
-          onClick={() => dispatch({ type: 'reference3' })}
-          id="reference3"
-          className="guide-reference"
+        <UserGuide
+          isVisible={state.isVisible}
+          parentElementName={`#${state.reference}`}
+          zIndex={1000}
+          isInteractive={true}
         >
-          Example reference 3
+          {state.reference === 'reference1' ? (
+            <Button onClick={() => dispatch({ type: 'isVisible' })}>
+              Next
+            </Button>
+          ) : null}
+        </UserGuide>
+      </div>
+    </div>
+  );
+};
+
+export const UserGuideWitNonInteractiveElements = (): ReactElement => {
+  const reducer = (
+    state: { isVisible: boolean; reference: string },
+    action: { type: string }
+  ) => {
+    if (action.type === 'reference1') {
+      return {
+        ...state,
+        reference: 'reference1',
+      };
+    }
+    if (action.type === 'isVisible') {
+      return {
+        reference: 'reference1',
+        isVisible: !state.isVisible,
+      };
+    }
+
+    return state;
+  };
+
+  const [state, dispatch] = useReducer(reducer, {
+    reference: 'reference1',
+    isVisible: false,
+  });
+
+  return (
+    <div className="simple-user-guide-container">
+      <Button onClick={() => dispatch({ type: 'isVisible' })}>
+        Start guide
+      </Button>
+      <div className="guide-container">
+        <div
+          onClick={() => dispatch({ type: 'reference1' })}
+          id="reference1"
+          className="guide-reference gap"
+        >
+          <Button>Example reference 2</Button>
+          <Button kind="secondary">Example reference</Button>
+          <Input placeholder="Example input" />
         </div>
 
         <UserGuide
@@ -195,20 +230,8 @@ export const SlideAnimationWithColor = (): ReactElement => {
           zIndex={1000}
         >
           {state.reference === 'reference1' ? (
-            <Button onClick={() => dispatch({ type: 'reference2' })}>
-              Next
-            </Button>
-          ) : null}
-
-          {state.reference === 'reference2' ? (
-            <Button onClick={() => dispatch({ type: 'reference3' })}>
-              Next
-            </Button>
-          ) : null}
-
-          {state.reference === 'reference3' ? (
             <Button onClick={() => dispatch({ type: 'isVisible' })}>
-              Finish
+              Next
             </Button>
           ) : null}
         </UserGuide>

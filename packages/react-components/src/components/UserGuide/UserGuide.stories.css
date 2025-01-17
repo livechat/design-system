@@ -31,13 +31,6 @@
   font-size: 18px;
 }
 
-.guide-reference-2 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px dashed var(--border-default);
-  border-radius: 4px;
-  background-color: #0b4d2b;
-  padding: 10px;
-  font-size: 18px;
+.gap {
+  gap: 10px;
 }
