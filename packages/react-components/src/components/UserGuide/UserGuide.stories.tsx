@@ -98,7 +98,6 @@ export const Default = (): ReactElement => {
           isVisible={state.isVisible}
           parentElementName={`#${state.reference}`}
           zIndex={1000}
-          shouldSlide={true}
         >
           {state.reference === 'reference1' ? (
             <Button onClick={() => dispatch({ type: 'reference2' })}>
@@ -194,7 +193,6 @@ export const SlideAnimationWithColor = (): ReactElement => {
           isVisible={state.isVisible}
           parentElementName={`#${state.reference}`}
           zIndex={1000}
-          shouldSlide={true}
         >
           {state.reference === 'reference1' ? (
             <Button onClick={() => dispatch({ type: 'reference2' })}>
@@ -357,7 +355,6 @@ const UserGuideWithTooltip: FC<ITooltipProps> = (props) => {
           isVisible={state.isVisible}
           parentElementName={`#${state.reference}`}
           zIndex={1000}
-          shouldSlide={true}
         >
           {state.reference === 'reference1' ? (
             <UserGuideStep
@@ -519,7 +516,6 @@ const TooltipUserGuideExampleWithCustomStyles: FC<ITooltipProps> = (props) => {
           isVisible={state.isVisible}
           parentElementName={`#${state.reference}`}
           zIndex={1000}
-          shouldSlide={true}
           elementStyles={state.elementStyles}
         >
           {state.reference === 'reference1' ? (
