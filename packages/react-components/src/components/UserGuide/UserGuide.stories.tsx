@@ -3,7 +3,6 @@ import { CSSProperties, FC, ReactElement, useReducer } from 'react';
 import { Meta } from '@storybook/react';
 
 import { Button } from '../Button';
-import { Input } from '../Input';
 import './UserGuide.stories.css';
 import { ITooltipProps } from '../Tooltip';
 
@@ -115,123 +114,6 @@ export const Default = (): ReactElement => {
           {state.reference === 'reference3' ? (
             <Button onClick={() => dispatch({ type: 'isVisible' })}>
               Finish
-            </Button>
-          ) : null}
-        </UserGuide>
-      </div>
-    </div>
-  );
-};
-
-export const UserGuideWithInteractiveElements = (): ReactElement => {
-  const reducer = (
-    state: { isVisible: boolean; reference: string },
-    action: { type: string }
-  ) => {
-    if (action.type === 'reference1') {
-      return {
-        ...state,
-        reference: 'reference1',
-      };
-    }
-    if (action.type === 'isVisible') {
-      return {
-        reference: 'reference1',
-        isVisible: !state.isVisible,
-      };
-    }
-
-    return state;
-  };
-
-  const [state, dispatch] = useReducer(reducer, {
-    reference: 'reference1',
-    isVisible: false,
-  });
-
-  return (
-    <div className="simple-user-guide-container">
-      <Button onClick={() => dispatch({ type: 'isVisible' })}>
-        Start guide
-      </Button>
-      <div className="guide-container">
-        <div
-          onClick={() => dispatch({ type: 'reference1' })}
-          id="reference1"
-          className="guide-reference gap"
-        >
-          <Button>Example Button</Button>
-          <Button kind="secondary">Example Button 2</Button>
-          <Input placeholder="Example Input" />
-        </div>
-
-        <UserGuide
-          isVisible={state.isVisible}
-          parentElementName={`#${state.reference}`}
-          zIndex={1000}
-          isInteractive={true}
-        >
-          {state.reference === 'reference1' ? (
-            <Button onClick={() => dispatch({ type: 'isVisible' })}>
-              Next
-            </Button>
-          ) : null}
-        </UserGuide>
-      </div>
-    </div>
-  );
-};
-
-export const UserGuideWitNonInteractiveElements = (): ReactElement => {
-  const reducer = (
-    state: { isVisible: boolean; reference: string },
-    action: { type: string }
-  ) => {
-    if (action.type === 'reference1') {
-      return {
-        ...state,
-        reference: 'reference1',
-      };
-    }
-    if (action.type === 'isVisible') {
-      return {
-        reference: 'reference1',
-        isVisible: !state.isVisible,
-      };
-    }
-
-    return state;
-  };
-
-  const [state, dispatch] = useReducer(reducer, {
-    reference: 'reference1',
-    isVisible: false,
-  });
-
-  return (
-    <div className="simple-user-guide-container">
-      <Button onClick={() => dispatch({ type: 'isVisible' })}>
-        Start guide
-      </Button>
-      <div className="guide-container">
-        <div
-          onClick={() => dispatch({ type: 'reference1' })}
-          id="reference1"
-          className="guide-reference gap"
-        >
-          <Button>Example reference 2</Button>
-          <Button kind="secondary">Example reference</Button>
-          <Input placeholder="Example input" />
-        </div>
-
-        <UserGuide
-          isVisible={state.isVisible}
-          parentElementName={`#${state.reference}`}
-          zIndex={1000}
-        >
-          {state.reference === 'reference1' ? (
-            <Button onClick={() => dispatch({ type: 'isVisible' })}>
-              Next
             </Button>
           ) : null}
         </UserGuide>

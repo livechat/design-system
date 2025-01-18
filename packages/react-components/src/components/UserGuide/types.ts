@@ -8,5 +8,4 @@ export interface IUserGuide
     Omit<ModalPortalProps, 'children'> {
   className?: string;
   elementStyles?: CSSProperties;
-  isInteractive?: boolean;
 }
