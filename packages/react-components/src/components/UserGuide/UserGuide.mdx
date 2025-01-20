@@ -1,0 +1,122 @@
+import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+
+import * as Stories from './UserGuide.stories';
+
+<Meta of={Stories} />
+
+<Title>UserGuide</Title>
+
+[Intro](#Intro) | [Usage](#Usage) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+## Intro <a id="Intro" />
+
+The UserGuide component provides a guided tour functionality to help users navigate through different features of your application. It enhances user experience by offering step-by-step guidance in an interactive way.
+
+## Usage <a id="Usage" />
+
+### Simple User Guide <a id="SimpleUserGuide" />
+
+A simple user guide that can be used to guide users through a series of steps.
+
+```tsx
+import {
+  UserGuide,
+  Button,
+} from '@livechat/design-system-react-components';
+
+const reducer = (
+    state: { isVisible: boolean; reference: string },
+  action: { type: string }
+) => {
+  if (action.type === 'reference1') {
+    return {
+      ...state,
+      reference: 'reference1',
+    };
+  }
+  if (action.type === 'reference2') {
+    return {
+      ...state,
+      reference: 'reference2',
+    };
+  }
+  if (action.type === 'reference3') {
+    return {
+      ...state,
+      reference: 'reference3',
+    };
+  }
+  if (action.type === 'isVisible') {
+    return {
+      reference: 'reference1',
+      isVisible: !state.isVisible,
+    };
+  }
+
+  return state;
+};
+
+const [state, dispatch] = React.useReducer(reducer, {
+  reference: 'reference1',
+  isVisible: false,
+});
+
+return (
+  <div className="simple-user-guide-container">
+    <Button onClick={() => dispatch({ type: 'isVisible' })}>
+      Start guide
+    </Button>
+    <div className="guide-container">
+      <div
+        onClick={() => dispatch({ type: 'reference1' })}
+        id="reference1"
+        className="guide-reference"
+      >
+        Example reference 1
+      </div>
+      <div
+        onClick={() => dispatch({ type: 'reference2' })}
+        id="reference2"
+        className="guide-reference"
+      >
+        Example reference 2
+      </div>
+
+      <div
+        onClick={() => dispatch({ type: 'reference3' })}
+        id="reference3"
+        className="guide-reference"
+      >
+        Example reference 3
+      </div>
+
+      <UserGuide
+        isVisible={state.isVisible}
+        parentElementName={`#${state.reference}`}
+        zIndex={1000}
+        shouldSlide
+      >
+        {state.reference === 'reference1' && <Button onClick={() => dispatch({ type: 'reference2' })}>Next</Button>}
+        {state.reference === 'reference2' && <Button onClick={() => dispatch({ type: 'reference3' })}>Next</Button>}
+        {state.reference === 'reference3' && <Button onClick={() => dispatch({ type: 'isVisible' })}>Finish</Button>}
+      </UserGuide>
+    </div>
+  </div>
+);
+```
+
+<Canvas of={Stories.Default} />
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={Stories.Default} sort="requiredFirst" />
+
+## Content Spec <a id="ContentSpec" />
+
+<a
+  className="sb-unstyled"
+  href="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=97-24893&mode=dev"
+  target="_blank"
+>
+  Go to Figma documentation
+</a> 

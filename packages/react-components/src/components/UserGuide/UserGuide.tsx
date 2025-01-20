@@ -85,6 +85,12 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
       Object.assign(clonedElement.style, elementStyles);
       containerRef.current.appendChild(clonedElement);
     }
+
+    return () => {
+      if (containerRef.current) {
+        containerRef.current.innerHTML = '';
+      }
+    };
   }, [parentElement, containerRef.current, isVisible]);
 
   useEffect(() => {
@@ -105,8 +111,9 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
           left: rect.left,
           width: rect.width,
           height: rect.height,
+          pointerEvents: 'none',
         }}
-      ></div>
+      />
     );
   };
 
