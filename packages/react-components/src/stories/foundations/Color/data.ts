@@ -1716,16 +1716,6 @@ export const ColorsData: Record<
     desc: 'Hover border color for Copilot-related UI elements',
     deprecated: undefined,
   },
-  BorderAiCopilotBasicActive: {
-    group: ColorGroup.BorderAiBasic,
-    desc: '',
-    deprecated: undefined,
-  },
-  BorderAiCopilotBasicHover: {
-    group: ColorGroup.BorderAiBasic,
-    desc: '',
-    deprecated: undefined,
-  },
   BorderAiOther01: {
     group: ColorGroup.BorderAiOther,
     desc: 'Border color for AI-related features and UI elements',
