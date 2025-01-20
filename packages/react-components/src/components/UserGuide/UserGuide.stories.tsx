@@ -1,14 +1,15 @@
-import { CSSProperties, FC, ReactElement, useReducer } from 'react';
+import { ReactElement, useReducer } from 'react';
 
+import { Placement } from '@floating-ui/react';
 import { Meta } from '@storybook/react';
 
 import { Button } from '../Button';
 import './UserGuide.stories.css';
-import { ITooltipProps } from '../Tooltip';
 
+import { UserGuideStep } from './components/UserGuideStep';
 import beautifulImage from './placeholder.png';
+import { CursorTiming } from './types';
 import { UserGuide } from './UserGuide';
-import { UserGuideStep } from './UserGuideStep';
 
 export default {
   title: 'Components/UserGuide',
@@ -29,245 +30,11 @@ export default {
 
 export const Default = (): ReactElement => {
   const reducer = (
-    state: { isVisible: boolean; reference: string },
-    action: { type: string }
-  ) => {
-    if (action.type === 'reference1') {
-      return {
-        ...state,
-        reference: 'reference1',
-      };
-    }
-    if (action.type === 'reference2') {
-      return {
-        ...state,
-        reference: 'reference2',
-      };
-    }
-    if (action.type === 'reference3') {
-      return {
-        ...state,
-        reference: 'reference3',
-      };
-    }
-    if (action.type === 'isVisible') {
-      return {
-        reference: 'reference1',
-        isVisible: !state.isVisible,
-      };
-    }
-
-    return state;
-  };
-
-  const [state, dispatch] = useReducer(reducer, {
-    reference: 'reference1',
-    isVisible: false,
-  });
-
-  return (
-    <div className="simple-user-guide-container">
-      <Button onClick={() => dispatch({ type: 'isVisible' })}>
-        Start guide
-      </Button>
-      <div className="guide-container">
-        <div
-          onClick={() => dispatch({ type: 'reference1' })}
-          id="reference1"
-          className="guide-reference"
-        >
-          Example reference 1
-        </div>
-        <div
-          onClick={() => dispatch({ type: 'reference2' })}
-          id="reference2"
-          className="guide-reference"
-        >
-          Example reference 2
-        </div>
-
-        <div
-          onClick={() => dispatch({ type: 'reference3' })}
-          id="reference3"
-          className="guide-reference"
-        >
-          Example reference 3
-        </div>
-
-        <UserGuide
-          isVisible={state.isVisible}
-          parentElementName={`#${state.reference}`}
-          zIndex={1000}
-          shouldSlide={true}
-        >
-          {state.reference === 'reference1' ? (
-            <Button onClick={() => dispatch({ type: 'reference2' })}>
-              Next
-            </Button>
-          ) : null}
-
-          {state.reference === 'reference2' ? (
-            <Button onClick={() => dispatch({ type: 'reference3' })}>
-              Next
-            </Button>
-          ) : null}
-
-          {state.reference === 'reference3' ? (
-            <Button onClick={() => dispatch({ type: 'isVisible' })}>
-              Finish
-            </Button>
-          ) : null}
-        </UserGuide>
-      </div>
-    </div>
-  );
-};
-
-export const SlideAnimationWithColor = (): ReactElement => {
-  const reducer = (
-    state: { isVisible: boolean; reference: string },
-    action: { type: string }
-  ) => {
-    if (action.type === 'reference1') {
-      return {
-        ...state,
-        reference: 'reference1',
-      };
-    }
-    if (action.type === 'reference2') {
-      return {
-        ...state,
-        reference: 'reference2',
-      };
-    }
-    if (action.type === 'reference3') {
-      return {
-        ...state,
-        reference: 'reference3',
-      };
-    }
-    if (action.type === 'isVisible') {
-      return {
-        reference: 'reference1',
-        isVisible: !state.isVisible,
-      };
-    }
-
-    return state;
-  };
-
-  const [state, dispatch] = useReducer(reducer, {
-    reference: 'reference1',
-    isVisible: false,
-  });
-
-  return (
-    <div className="simple-user-guide-container">
-      <Button onClick={() => dispatch({ type: 'isVisible' })}>
-        Start guide
-      </Button>
-      <div className="guide-container">
-        <div
-          onClick={() => dispatch({ type: 'reference1' })}
-          id="reference1"
-          className="guide-reference"
-        >
-          Example reference 1
-        </div>
-        <div
-          onClick={() => dispatch({ type: 'reference2' })}
-          id="reference2"
-          className="guide-reference-2"
-        >
-          Example reference 2
-        </div>
-
-        <div
-          onClick={() => dispatch({ type: 'reference3' })}
-          id="reference3"
-          className="guide-reference"
-        >
-          Example reference 3
-        </div>
-
-        <UserGuide
-          isVisible={state.isVisible}
-          parentElementName={`#${state.reference}`}
-          zIndex={1000}
-          shouldSlide={true}
-        >
-          {state.reference === 'reference1' ? (
-            <Button onClick={() => dispatch({ type: 'reference2' })}>
-              Next
-            </Button>
-          ) : null}
-
-          {state.reference === 'reference2' ? (
-            <Button onClick={() => dispatch({ type: 'reference3' })}>
-              Next
-            </Button>
-          ) : null}
-
-          {state.reference === 'reference3' ? (
-            <Button onClick={() => dispatch({ type: 'isVisible' })}>
-              Finish
-            </Button>
-          ) : null}
-        </UserGuide>
-      </div>
-    </div>
-  );
-};
-
-export const ExtendedContentUserGuide = (args: ITooltipProps): ReactElement => (
-  <div className="preview-container">
-    <UserGuideWithTooltip {...args}></UserGuideWithTooltip>
-  </div>
-);
-
-ExtendedContentUserGuide.args = {
-  placement: 'bottom',
-  isVisible: true,
-  theme: 'default',
-  triggerOnClick: false,
-  arrowOffsetY: 0,
-  arrowOffsetX: 0,
-  offsetMainAxis: 8,
-  withFadeAnimation: true,
-  transitionDuration: 200,
-  transitionDelay: 0,
-  hoverOutDelayTimeout: 100,
-};
-
-export const UserGuideWithCustomStylesForSpotlightElement = (
-  args: ITooltipProps
-): ReactElement => (
-  <div className="preview-container">
-    <TooltipUserGuideExampleWithCustomStyles
-      {...args}
-    ></TooltipUserGuideExampleWithCustomStyles>
-  </div>
-);
-
-ExtendedContentUserGuide.args = {
-  placement: 'bottom',
-  isVisible: true,
-  theme: 'default',
-  triggerOnClick: false,
-  arrowOffsetY: 0,
-  arrowOffsetX: 0,
-  offsetMainAxis: 8,
-  withFadeAnimation: true,
-  transitionDuration: 200,
-  transitionDelay: 0,
-  hoverOutDelayTimeout: 100,
-};
-
-const UserGuideWithTooltip: FC<ITooltipProps> = (props) => {
-  const reducer = (
     state: {
       isVisible: boolean;
       reference: string;
+      cursorPosition?: string;
+      cursorTiming?: string;
     },
     action: { type: string }
   ) => {
@@ -275,24 +42,32 @@ const UserGuideWithTooltip: FC<ITooltipProps> = (props) => {
       return {
         ...state,
         reference: 'reference1',
+        cursorPosition: 'left',
+        cursorTiming: 'fast1',
       };
     }
     if (action.type === 'reference2') {
       return {
         ...state,
         reference: 'reference2',
+        cursorPosition: 'right-start',
+        cursorTiming: 'moderate2',
       };
     }
     if (action.type === 'reference3') {
       return {
         ...state,
         reference: 'reference3',
+        cursorPosition: 'left-end',
+        cursorTiming: 'fast2',
       };
     }
     if (action.type === 'isVisible') {
       return {
         reference: 'reference1',
         isVisible: !state.isVisible,
+        cursorPosition: 'left',
+        cursorTiming: 'fast1',
       };
     }
 
@@ -302,273 +77,93 @@ const UserGuideWithTooltip: FC<ITooltipProps> = (props) => {
   const [state, dispatch] = useReducer(reducer, {
     reference: 'reference1',
     isVisible: false,
+    cursorPosition: 'left',
+    cursorTiming: 'fast1',
   });
 
   return (
-    <div>
+    <div className="simple-user-guide-container">
       <Button onClick={() => dispatch({ type: 'isVisible' })}>
         Start guide
       </Button>
-      <div
-        style={{
-          width: '500px',
-          height: '600px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
-        <div
-          onClick={() => dispatch({ type: 'reference1' })}
-          id="reference1"
-          style={{
-            display: 'block',
-            backgroundColor: 'red',
-            height: '50px',
-            width: '100px',
-          }}
-        ></div>
-        <div
-          onClick={() => dispatch({ type: 'reference2' })}
-          id="reference2"
-          style={{
-            display: 'block',
-            backgroundColor: 'red',
-            height: '50px',
-            width: '100px',
-            alignSelf: 'flex-start',
-            borderRadius: '24px',
-          }}
-        ></div>
-
-        <div
-          onClick={() => dispatch({ type: 'reference3' })}
-          id="reference3"
-          style={{
-            display: 'block',
-            backgroundColor: 'red',
-            height: '50px',
-            width: '100px',
-          }}
-        ></div>
+      <div style={{ display: 'flex' }}>
+        <div style={{ marginTop: 300 }}>
+          <div
+            onClick={() => dispatch({ type: 'reference1' })}
+            id="reference1"
+            className="guide-reference"
+          >
+            Example reference 1
+          </div>
+        </div>
+        <div style={{ marginTop: 50 }}>
+          <div
+            onClick={() => dispatch({ type: 'reference2' })}
+            id="reference2"
+            className="guide-reference"
+          >
+            Example reference 2
+          </div>
+        </div>
+        <div style={{ marginTop: 500 }}>
+          <div
+            onClick={() => dispatch({ type: 'reference3' })}
+            id="reference3"
+            className="guide-reference"
+          >
+            Example reference 3
+          </div>
+        </div>
 
         <UserGuide
-          {...props}
           isVisible={state.isVisible}
           parentElementName={`#${state.reference}`}
+          cursorPosition={state.cursorPosition as Placement}
+          cursorTiming={state.cursorTiming as CursorTiming}
           zIndex={1000}
-          shouldSlide={true}
         >
           {state.reference === 'reference1' ? (
             <UserGuideStep
-              header="Header - concise and clear"
+              header="Title text goes here"
+              text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
               image={{
                 src: beautifulImage,
                 alt: 'image',
               }}
-              text="Tooltip content is used to explain the details of elements or features."
-              handleClickPrimary={() => dispatch({ type: 'reference2' })}
-              handleCloseAction={() => dispatch({ type: 'isVisible' })}
               currentStep={1}
               stepMax={3}
-              closeWithX
+              handleClickPrimary={() => dispatch({ type: 'reference2' })}
+              handleCloseAction={() => dispatch({ type: 'isVisible' })}
             />
           ) : null}
 
           {state.reference === 'reference2' ? (
             <UserGuideStep
-              header="Header - concise and clear"
+              header="Title text goes here"
+              text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
               image={{
                 src: beautifulImage,
                 alt: 'image',
               }}
-              text="Tooltip content is used to explain the details of elements or features."
-              handleClickPrimary={() => dispatch({ type: 'reference3' })}
-              handleCloseAction={() => dispatch({ type: 'isVisible' })}
               currentStep={2}
               stepMax={3}
-              closeWithX
+              handleClickPrimary={() => dispatch({ type: 'reference3' })}
+              handleCloseAction={() => dispatch({ type: 'isVisible' })}
             />
           ) : null}
 
           {state.reference === 'reference3' ? (
             <UserGuideStep
-              header="Header - concise and clear"
+              header="Title text goes here"
+              text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
               image={{
                 src: beautifulImage,
                 alt: 'image',
-              }}
-              text="Tooltip content is used to explain the details of elements or features."
-              handleClickPrimary={() => dispatch({ type: 'isVisible' })}
-              handleCloseAction={() => {
-                dispatch({ type: 'isVisible' });
               }}
               currentStep={3}
               stepMax={3}
-              closeWithX
-            />
-          ) : null}
-        </UserGuide>
-      </div>
-    </div>
-  );
-};
-
-const TooltipUserGuideExampleWithCustomStyles: FC<ITooltipProps> = (props) => {
-  const reducer = (
-    state: {
-      isVisible: boolean;
-      reference: string;
-      elementStyles?: CSSProperties;
-    },
-    action: { type: string }
-  ) => {
-    if (action.type === 'reference1') {
-      return {
-        ...state,
-        reference: 'reference1',
-      };
-    }
-    if (action.type === 'reference2') {
-      return {
-        ...state,
-        reference: 'reference2',
-        elementStyles: {
-          boxShadow:
-            '0px -4px 22px 1px rgba(0, 102, 255, 0.3), 0px 12px 32px 1px rgba(113, 111, 255, 0.6), 0px 0px 0px 1px rgba(145, 70, 255, 1) inset',
-        },
-      };
-    }
-    if (action.type === 'reference3') {
-      return {
-        ...state,
-        reference: 'reference3',
-        elementStyles: {
-          transform: 'scale(1.1)',
-          backgroundColor: 'blue',
-        },
-      };
-    }
-    if (action.type === 'isVisible') {
-      return {
-        reference: 'reference1',
-        isVisible: !state.isVisible,
-        elementStyles: { boxShadow: '0 0 0 2px yellow' },
-      };
-    }
-
-    return state;
-  };
-
-  const [state, dispatch] = useReducer(reducer, {
-    reference: 'reference1',
-    isVisible: false,
-    elementStyles: { boxShadow: '0 0 0 2px yellow' },
-  });
-
-  return (
-    <div>
-      <Button onClick={() => dispatch({ type: 'isVisible' })}>
-        Start guide
-      </Button>
-      <div
-        style={{
-          width: '500px',
-          height: '600px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
-        <div
-          onClick={() => dispatch({ type: 'reference1' })}
-          id="reference1"
-          style={{
-            display: 'block',
-            backgroundColor: 'red',
-            height: '50px',
-            width: '100px',
-          }}
-        ></div>
-        <div
-          onClick={() => dispatch({ type: 'reference2' })}
-          id="reference2"
-          style={{
-            display: 'block',
-            backgroundColor: 'red',
-            height: '50px',
-            width: '100px',
-            alignSelf: 'flex-start',
-            borderRadius: '24px',
-          }}
-        ></div>
-
-        <div
-          onClick={() => dispatch({ type: 'reference3' })}
-          id="reference3"
-          style={{
-            display: 'block',
-            backgroundColor: 'red',
-            height: '50px',
-            width: '100px',
-          }}
-        ></div>
-
-        <UserGuide
-          {...props}
-          isVisible={state.isVisible}
-          parentElementName={`#${state.reference}`}
-          zIndex={1000}
-          shouldSlide={true}
-          elementStyles={state.elementStyles}
-        >
-          {state.reference === 'reference1' ? (
-            <UserGuideStep
-              header="Header - concise and clear"
-              image={{
-                src: beautifulImage,
-                alt: 'image',
-              }}
-              text="Tooltip content is used to explain the details of elements or features."
-              handleClickPrimary={() => dispatch({ type: 'reference2' })}
-              handleCloseAction={() => dispatch({ type: 'isVisible' })}
-              currentStep={1}
-              stepMax={3}
-              closeWithX
-            />
-          ) : null}
-
-          {state.reference === 'reference2' ? (
-            <UserGuideStep
-              header="Header - concise and clear"
-              image={{
-                src: beautifulImage,
-                alt: 'image',
-              }}
-              text="Tooltip content is used to explain the details of elements or features."
-              handleClickPrimary={() => dispatch({ type: 'reference3' })}
-              handleCloseAction={() => dispatch({ type: 'isVisible' })}
-              currentStep={2}
-              stepMax={3}
-              closeWithX
-            />
-          ) : null}
-
-          {state.reference === 'reference3' ? (
-            <UserGuideStep
-              header="Header - concise and clear"
-              image={{
-                src: beautifulImage,
-                alt: 'image',
-              }}
-              text="Tooltip content is used to explain the details of elements or features."
               handleClickPrimary={() => dispatch({ type: 'isVisible' })}
-              handleCloseAction={() => {
-                dispatch({ type: 'isVisible' });
-              }}
-              currentStep={3}
-              stepMax={3}
-              closeWithX
+              handleCloseAction={() => dispatch({ type: 'isVisible' })}
             />
           ) : null}
         </UserGuide>

@@ -13,14 +13,6 @@
   justify-content: center;
 }
 
-.guide-container {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  align-items: center;
-  justify-content: center;
-}
-
 .guide-reference {
   display: flex;
   align-items: center;

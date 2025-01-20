@@ -1,0 +1,40 @@
+$base-class: 'user-guide-step';
+
+.#{$base-class} {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-4);
+  background: linear-gradient(45deg, #cddef9, #e7e5fd, #f9f2ff);
+  padding: var(--spacing-4);
+  width: 340px;
+
+  &__heading {
+    margin-bottom: var(--spacing-3);
+  }
+
+  &__content {
+    margin-bottom: var(--spacing-4);
+    color: var(--content-basic-secondary);
+  }
+
+  &__image-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--spacing-4);
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    &__step-counter {
+      color: var(--content-basic-secondary);
+    }
+
+    &__button-primary {
+      align-self: flex-end;
+    }
+  }
+}

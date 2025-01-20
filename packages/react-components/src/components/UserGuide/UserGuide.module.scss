@@ -1,7 +1,10 @@
+@use './styles/transitions';
+
 @import '../../utils/StackingContextLevel';
 
 $base-class: 'user-guide';
 $radius: var(--radius-3);
+$arrow-size: 45px;
 
 .#{$base-class} {
   z-index: $stacking-context-level-tooltip;
@@ -20,78 +23,195 @@ $radius: var(--radius-3);
     background-color: rgb(19 19 23 / 50%);
   }
 
-  &--slide {
-    transition-duration: 0.2s;
+  &__floating {
+    @include transitions.durations();
+
     transition-property: top, bottom, left, right;
     transition-timing-function: ease-in-out;
   }
 
-  &__user-guide-step {
-    padding: var(--spacing-1);
-    width: 270px;
-  }
+  &__guide {
+    position: relative;
 
-  &-header {
-    margin-bottom: var(--spacing-1);
+    &__arrow {
+      @include transitions.durations();
 
-    &--info {
-      padding-right: var(--spacing-5);
-    }
-  }
+      display: flex;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition-property: top, left, transform;
+      transition-timing-function: ease-in-out;
 
-  &-image-container {
-    margin-top: 30px;
-  }
+      &--right-start {
+        top: calc(0px - $arrow-size + #{$arrow-size / 2});
+      }
 
-  &-image {
-    margin-bottom: 12px;
-    border-radius: 4px;
-    width: 100%;
-    max-height: 138px;
-    aspect-ratio: 16 / 9;
-  }
+      &--right {
+        top: calc(50% - #{$arrow-size / 2});
+        transform: rotate(-45deg);
+      }
 
-  &-text {
-    &--info {
-      padding-right: var(--spacing-5);
-    }
-  }
+      &--right-end {
+        top: calc(100% - #{$arrow-size / 2});
+        transform: rotate(-90deg);
+      }
 
-  &-close {
-    position: absolute;
-    top: var(--spacing-2);
-    right: var(--spacing-2);
-    border: 0;
-    background: none;
-    padding: var(--spacing-1);
+      &--bottom-start,
+      &--bottom,
+      &--bottom-end {
+        top: calc(0px - #{$arrow-size});
+      }
 
-    &:hover {
-      cursor: pointer;
-    }
-  }
+      &--bottom-start {
+        left: calc(0px + #{$arrow-size} - #{$arrow-size / 2});
+      }
 
-  &-step {
-    line-height: 20px;
-    font-size: 14px;
-    font-weight: 400;
-    font-style: normal;
-  }
+      &--bottom {
+        left: calc(50% - #{$arrow-size / 2});
+        transform: rotate(45deg);
+      }
 
-  &-footer {
-    display: flex;
-    justify-content: space-between;
-    margin: var(--spacing-4) 0 0;
+      &--bottom-end {
+        left: calc(100% - #{$arrow-size} - #{$arrow-size / 2});
+        transform: rotate(90deg);
+      }
 
-    &--interactive {
-      justify-content: flex-start;
+      &--top-start,
+      &--top,
+      &--top-end {
+        top: 100%;
+      }
 
-      button:not(:first-child) {
-        margin-left: var(--spacing-4);
+      &--top-start {
+        left: calc(0px + #{$arrow-size} - #{$arrow-size / 2});
+        transform: rotate(-90deg);
+      }
+
+      &--top {
+        left: calc(50% - #{$arrow-size / 2});
+        transform: rotate(-135deg);
+      }
+
+      &--top-end {
+        left: calc(100% - #{$arrow-size} - #{$arrow-size / 2});
+        transform: rotate(-180deg);
+      }
+
+      &--left-start,
+      &--left,
+      &--left-end {
+        left: calc(100% - $arrow-size);
+      }
+
+      &--left-start {
+        top: calc(0px - $arrow-size + #{$arrow-size / 2});
+        transform: rotate(90deg);
+      }
+
+      &--left {
+        top: calc(50% - #{$arrow-size / 2});
+        left: calc(100% - $arrow-size);
+        transform: rotate(135deg);
+      }
+
+      &--left-end {
+        top: calc(100% - #{$arrow-size / 2});
+        transform: rotate(180deg);
       }
     }
 
-    &--user-guide-step {
-      align-items: center;
+    &__content {
+      @include transitions.durations();
+
+      transition-property: margin;
+      transition-timing-function: ease-in-out;
+      opacity: 0;
+      margin: 0;
+      animation: var(--transition-duration-moderate-1) fade-in
+        var(--transition-duration-moderate-2) forwards;
+
+      &--right-start,
+      &--right,
+      &--right-end {
+        margin-left: $arrow-size;
+      }
+
+      &--right-start {
+        margin-top: $arrow-size;
+      }
+
+      &--right-end {
+        margin-bottom: $arrow-size;
+      }
+
+      &--bottom-start,
+      &--bottom,
+      &--bottom-end {
+        margin-top: $arrow-size;
+      }
+
+      &--bottom-start {
+        margin-left: $arrow-size;
+      }
+
+      &--bottom-end {
+        margin-right: $arrow-size;
+      }
+
+      &--top-start,
+      &--top,
+      &--top-end {
+        margin-bottom: $arrow-size;
+      }
+
+      &--top-start {
+        margin-left: $arrow-size;
+      }
+
+      &--top-end {
+        margin-right: $arrow-size;
+      }
+
+      &--left-start,
+      &--left,
+      &--left-end {
+        margin-right: $arrow-size;
+      }
+
+      &--left-start {
+        margin-top: $arrow-size;
+      }
+
+      &--left-end {
+        margin-bottom: $arrow-size;
+      }
     }
+  }
+
+  &__cursor {
+    transition: transform ease-in-out 0.2s;
+
+    &--bottom {
+      transform: rotate(0deg);
+    }
+
+    &--left {
+      transform: rotate(-45deg);
+    }
+
+    &--right {
+      transform: rotate(45deg);
+    }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
