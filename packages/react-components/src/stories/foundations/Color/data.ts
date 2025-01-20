@@ -1656,4 +1656,84 @@ export const ColorsData: Record<
     desc: '',
     deprecated: undefined,
   },
+  SurfaceAiCopilotBasicDefault: {
+    group: ColorGroup.SurfaceAiCopilotBasic,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceAiCopilotBasicHover: {
+    group: ColorGroup.SurfaceAiCopilotBasic,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceAiCopilotBasicActive: {
+    group: ColorGroup.SurfaceAiCopilotBasic,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceAiCopilotInvert01: {
+    group: ColorGroup.SurfaceAiCopilotInvert,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceAiCopilotInvert02: {
+    group: ColorGroup.SurfaceAiCopilotInvert,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceAiOther01Default: {
+    group: ColorGroup.SurfaceAiOther,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceAiOther01Hover: {
+    group: ColorGroup.SurfaceAiOther,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceAiOther01Active: {
+    group: ColorGroup.SurfaceAiOther,
+    desc: '',
+    deprecated: undefined,
+  },
+  SurfaceAiOther02Default: {
+    group: ColorGroup.SurfaceAiOther,
+    desc: '',
+    deprecated: undefined,
+  },
+  BorderAiCopilotBasicDefault: {
+    group: ColorGroup.BorderAiBasic,
+    desc: '',
+    deprecated: undefined,
+  },
+  BorderAiCopilotBasicActive: {
+    group: ColorGroup.BorderAiBasic,
+    desc: '',
+    deprecated: undefined,
+  },
+  BorderAiCopilotBasicHover: {
+    group: ColorGroup.BorderAiBasic,
+    desc: '',
+    deprecated: undefined,
+  },
+  BorderAiOther01: {
+    group: ColorGroup.BorderAiOther,
+    desc: '',
+    deprecated: undefined,
+  },
+  ContentAiCopilotBasic: {
+    group: ColorGroup.ContentAiBasic,
+    desc: '',
+    deprecated: undefined,
+  },
+  ContentAiCopilotInvert: {
+    group: ColorGroup.ContentAiBasic,
+    desc: '',
+    deprecated: undefined,
+  },
+  ContentAiOther1Default: {
+    group: ColorGroup.ContentAiBasic,
+    desc: '',
+    deprecated: undefined,
+  },
 };

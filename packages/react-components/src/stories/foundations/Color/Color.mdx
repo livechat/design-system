@@ -1,6 +1,5 @@
-import { Meta, Canvas } from '@storybook/blocks';
+import { Meta } from '@storybook/blocks';
 import { ColorTable } from './ColorTable';
-import { ColorsTokens } from './constants';
 import { getColorsByGroup } from './helpers';
 import { ColorGroup } from './types';
 
@@ -66,6 +65,10 @@ When for ui content we want to use same color between all of the themes (Light/D
 
 <ColorTable data={getColorsByGroup(ColorGroup.ContentGradient)} />
 
+### AI Basic
+
+<ColorTable data={getColorsByGroup(ColorGroup.ContentAiBasic)} />
+
 ## Surface <a id="Surface" />
 
 - [Primary](#Primary)
@@ -80,6 +83,9 @@ When for ui content we want to use same color between all of the themes (Light/D
 - [Avatar](#Avatar)
 - [Gradient](#Gradient)
 - [Background](#Background)
+- [AI Copilot Basic](#AiCopilotBasic)
+- [AI Copilot Invert](#AiCopilotInvert)
+- [AI Other](#AiOther)
 
 Surface colors can be used to create a visual hierarchy within a design, with different surfaces or layers of UI elements having different colors to indicate different levels of importance or information. For example, a primary surface color may be used for the main content area of a page, while secondary surface colors may be used for navigation bars or other less important elements.
 
@@ -171,6 +177,18 @@ Surfaces for a specific case, skeleton elements, modal overlay etc.
 
 <ColorTable data={getColorsByGroup(ColorGroup.SurfaceGradient)} />
 
+### AI Copilot Basic <a id="AiCopilotBasic" />
+
+<ColorTable data={getColorsByGroup(ColorGroup.SurfaceAiCopilotBasic)} />
+
+### AI Copilot Invert <a id="AiCopilotInvert" />
+
+<ColorTable data={getColorsByGroup(ColorGroup.SurfaceAiCopilotInvert)} />
+
+### AI Other <a id="AiOther" />
+
+<ColorTable data={getColorsByGroup(ColorGroup.SurfaceAiOther)} />
+
 ## Background <a id="Background" />
 
 <ColorTable data={getColorsByGroup(ColorGroup.Background)} />
@@ -179,6 +197,8 @@ Surfaces for a specific case, skeleton elements, modal overlay etc.
 
 - [Basic](#Basic)
 - [Inverted](#Inverted)
+- [Border AI](#BorderAi)
+- [Other Border AI](#OtherBorderAi)
 
 Borders are used to visually separate elements or create a visual hierarchy. Borders used on basic and accent surfaces to separate different sections of a screen or to define buttons and other interactive elements.
 
@@ -193,6 +213,18 @@ Borders used on basic and accent surfaces
 Borders used on inverted surfaces
 
 <ColorTable data={getColorsByGroup(ColorGroup.BorderInvert)} />
+
+### Border AI <a id="BorderAi" />
+
+Borders used on basic AI elements
+
+<ColorTable data={getColorsByGroup(ColorGroup.BorderAiBasic)} />
+
+### Other Border AI <a id="OtherBorderAi" />
+
+Borders used on other AI elements
+
+<ColorTable data={getColorsByGroup(ColorGroup.BorderAiOther)} />
 
 ## Actions
 
