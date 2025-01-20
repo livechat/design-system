@@ -137,7 +137,7 @@ export const WithCustomContentAndNoIllustration: Story = {
         <div className={styles['empty-state-story__custom-content__row']}>
           <div className={styles['empty-state-story__custom-content__box']}>
             <Icon size="xlarge" source={FacebookIcon} />
-            <Text bold>Facebook Messanger</Text>
+            <Text bold>Facebook Messenger</Text>
           </div>
           <div className={styles['empty-state-story__custom-content__box']}>
             <Icon size="xlarge" source={GoogleIcon} />
