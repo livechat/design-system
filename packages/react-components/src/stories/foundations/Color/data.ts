@@ -1706,6 +1706,16 @@ export const ColorsData: Record<
     desc: '',
     deprecated: undefined,
   },
+  BorderAiCopilotBasicActive: {
+    group: ColorGroup.BorderAiBasic,
+    desc: '',
+    deprecated: undefined,
+  },
+  BorderAiCopilotBasicHover: {
+    group: ColorGroup.BorderAiBasic,
+    desc: '',
+    deprecated: undefined,
+  },
   BorderAiOther01: {
     group: ColorGroup.BorderAiOther,
     desc: '',
