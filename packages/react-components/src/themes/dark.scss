@@ -411,9 +411,9 @@ $surface-invert-primary: #e2e2e4;
   );
   --surface-ai-copilot-basic-active: linear-gradient(
     95.09deg,
-    #a3b1f6 0%,
-    #c9bbfc 45.76%,
-    #e8d0ff 100.89%
+    #5142a9 0%,
+    #6a48a7 50.44%,
+    #7b4fb0 100.89%
   );
   --surface-ai-copilot-invert-01: linear-gradient(
     254.49deg,
@@ -432,13 +432,13 @@ $surface-invert-primary: #e2e2e4;
   );
   --surface-ai-other-01-hover: linear-gradient(
     95.09deg,
-    #e5d8ff 0%,
-    #f4e3e0 110.26%
+    #5a268d 0%,
+    #683a27 110.26%
   );
   --surface-ai-other-01-active: linear-gradient(
     95.09deg,
-    #e0d0ff 0%,
-    #efdae2 110.26%
+    #652a9d 0%,
+    #894c33 110.26%
   );
   --surface-ai-other-02-default: linear-gradient(
     95.09deg,
@@ -447,53 +447,53 @@ $surface-invert-primary: #e2e2e4;
   );
   --border-ai-copilot-basic-default: conic-gradient(
     from 171.11deg at 50% 50%,
-    #b466ff -46.87deg,
-    #7e54ff 0.45deg,
-    #45acff 163.12deg,
-    #d7cdff 240deg,
-    #b466ff 313.12deg,
-    #7e54ff 360.45deg
+    #cd3dff -46.87deg,
+    #a35bff 0.45deg,
+    #1eb0ff 163.12deg,
+    #fff 240deg,
+    #cd3dff 313.12deg,
+    #a35bff 360.45deg
   );
   --border-ai-copilot-basic-hover: conic-gradient(
     from 171.11deg at 50% 50%,
-    #9b33ff -46.87deg,
-    #561fff 0.45deg,
-    #1496ff 163.12deg,
-    #ebe6ff 240deg,
-    #9b33ff 313.12deg,
-    #561fff 360.45deg
+    #a242ff -46.87deg,
+    #a487ff 0.45deg,
+    #70bfff 163.12deg,
+    #e7e0ff 240deg,
+    #a242ff 313.12deg,
+    #a487ff 360.45deg
   );
   --border-ai-copilot-basic-active: conic-gradient(
     from 171.11deg at 50% 50%,
-    #c930ff -46.87deg,
-    #7000ff 0.45deg,
-    #00b3ff 163.12deg,
+    #cd3dff -46.87deg,
+    #a35bff 0.45deg,
+    #1eb0ff 163.12deg,
     #fff 240deg,
-    #c930ff 313.12deg,
-    #7000ff 360.45deg
+    #cd3dff 313.12deg,
+    #a35bff 360.45deg
   );
   --border-ai-other-01: linear-gradient(
     105.24deg,
-    #007ceb 30.18%,
-    #8745eb 47.61%,
-    #eb236a 73.95%,
-    #dd4503 104.36%
+    #0c82f8 30.18%,
+    #9d67ef 47.61%,
+    #ee4480 73.95%,
+    #e84f55 104.36%
   );
   --content-ai-copilot-basic: linear-gradient(
+    254.49deg,
+    #bb9aff -0.38%,
+    #68afff 94.44%
+  );
+  --content-ai-copilot-invert: linear-gradient(
     254.49deg,
     #8609ff -0.38%,
     #004bc2 94.44%
   );
-  --content-ai-copilot-invert: linear-gradient(
-    254.49deg,
-    #b99aff -0.38%,
-    #68afff 94.44%
-  );
   --content-ai-other-1-default: linear-gradient(
     90deg,
-    #007ceb 0%,
-    #8745eb 29.5%,
-    #eb236a 74.05%,
-    #dd4503 125.51%
+    #0c82f8 1.6%,
+    #9d67ef 35.77%,
+    #ee4480 71.92%,
+    #e84f55 99.28%
   );
 }
