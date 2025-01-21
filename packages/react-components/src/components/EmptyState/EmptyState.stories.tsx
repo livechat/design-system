@@ -123,7 +123,7 @@ WithCustomContentAndNoIllustration.args = {
         </div>
       </div>
 
-      <Button kind="link">See more</Button>
+      <Button kind="link">Custom See more button</Button>
     </div>
   ),
 };
