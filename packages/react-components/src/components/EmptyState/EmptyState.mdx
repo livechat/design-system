@@ -1,0 +1,33 @@
+import { Canvas, Controls, Meta, Title } from '@storybook/blocks';
+
+import * as EmptyStateStories from './EmptyState.stories';
+
+<Meta of={EmptyStateStories} />
+
+<Title>EmptyState</Title>
+
+[Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+## Intro <a id="Intro" />
+
+<Canvas of={EmptyStateStories.Default} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+<EmptyState />
+```
+
+## Component API <a id="ComponentAPI" />
+
+<Controls of={EmptyStateStories.Default} sort="requiredFirst" />
+
+## Content Spec <a id="ContentSpec" />
+
+<a
+  className="sb-unstyled"
+  href="https://www.figma.com/design/9FDwjR8lYvincseDkKypC4/%5BDS%5D-Component-Documentations?node-id=24836-28755&t=XiUCfb1mKh8KKhcQ-0"
+  target="_blank"
+>
+  Go to Figma documentation
+</a>
