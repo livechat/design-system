@@ -1703,7 +1703,7 @@ export const ColorsData: Record<
   },
   BorderAiCopilotBasicDefault: {
     group: ColorGroup.BorderAiBasic,
-    desc: ' Default border color for Copilot-related UI elements',
+    desc: 'Default border color for Copilot-related UI elements',
     deprecated: undefined,
   },
   BorderAiCopilotBasicActive: {
