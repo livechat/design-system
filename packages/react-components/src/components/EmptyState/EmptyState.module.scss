@@ -29,9 +29,9 @@ $base-class: 'empty-state';
     margin-bottom: var(--spacing-6);
     border-radius: var(--radius-4);
     width: auto;
-    max-width: 600px;
+    max-width: min(100%, 600px);
     height: auto;
-    max-height: 300px;
+    max-height: min(100%, 300px);
     object-fit: contain;
   }
 
