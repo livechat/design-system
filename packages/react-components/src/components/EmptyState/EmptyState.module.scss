@@ -12,7 +12,11 @@ $base-class: 'empty-state';
   &--full {
     flex-direction: column;
     justify-content: center;
-    padding: var(--spacing-6);
+    padding: var(--spacing-16) var(--spacing-6);
+
+    @media (width <= 600px) {
+      padding: var(--spacing-8) var(--spacing-6);
+    }
   }
 
   &__image {
