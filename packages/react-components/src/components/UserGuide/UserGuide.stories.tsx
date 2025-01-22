@@ -12,7 +12,13 @@ import {
   ExpirationCounter,
   MobileNavigation,
 } from '../AppFrame/components';
-import { ExampleTopBar, getArchivesSubMenu, getBadgeContent, getChatsMenu, getEngageSubMenu } from '../AppFrame/stories-helpers';
+import {
+  ExampleTopBar,
+  getArchivesSubMenu,
+  getBadgeContent,
+  getChatsMenu,
+  getEngageSubMenu,
+} from '../AppFrame/stories-helpers';
 import { Avatar } from '../Avatar';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
@@ -41,7 +47,7 @@ export default {
   parameters: {
     controls: { expanded: true },
     chromatic: { delay: 300 },
-    layout: 'fullscreen'
+    layout: 'fullscreen',
   },
   subcomponents: { UserGuideStep },
 } as Meta<typeof UserGuide>;
@@ -138,7 +144,6 @@ export const Default = (): ReactElement => {
           parentElementName={`#${state.reference}`}
           cursorPosition={state.cursorPosition as Placement}
           cursorTiming={state.cursorTiming as CursorTiming}
-          zIndex={1000}
         >
           {state.reference === 'reference1' ? (
             <UserGuideStep
@@ -369,7 +374,7 @@ export const Example = (): ReactElement => {
     cursorPosition: 'right-start',
     cursorTiming: 'moderate2',
   });
-  
+
   return (
     <>
       <AppFrame
@@ -483,7 +488,6 @@ export const Example = (): ReactElement => {
         cursorPosition={state.cursorPosition as Placement}
         cursorTiming={state.cursorTiming as CursorTiming}
         elementStyles={state.elementStyles}
-        zIndex={100000}
       >
         {state.reference === 'home' ? (
           <UserGuideStep
@@ -557,7 +561,9 @@ export const Example = (): ReactElement => {
             text="Some text, maximum 210 characters."
             currentStep={7}
             stepMax={9}
-            handleClickPrimary={() => dispatch({ type: 'action-bar-area-menu-button' })}
+            handleClickPrimary={() =>
+              dispatch({ type: 'action-bar-area-menu-button' })
+            }
             handleCloseAction={() => dispatch({ type: 'isVisible' })}
           />
         ) : null}
@@ -585,5 +591,5 @@ export const Example = (): ReactElement => {
         ) : null}
       </UserGuide>
     </>
-  )
-}
+  );
+};
