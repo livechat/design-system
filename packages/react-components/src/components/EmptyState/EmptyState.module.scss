@@ -17,6 +17,7 @@ $base-class: 'empty-state';
 
   &__image {
     margin-bottom: var(--spacing-6);
+    border-radius: var(--radius-4);
     width: auto;
     max-width: 100%;
     height: auto;

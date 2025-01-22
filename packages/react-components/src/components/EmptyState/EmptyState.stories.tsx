@@ -25,7 +25,7 @@ type Story = StoryObj<typeof EmptyState>;
 
 export const Default: Story = {
   args: {
-    image: 'https://placehold.co/600x400',
+    image: 'https://placehold.co/600x300',
     title: 'No data',
     description: 'There is no data to display',
     actions: (
