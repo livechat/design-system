@@ -51,13 +51,11 @@ export const EmptyState = ({
         </>
       )}
 
-      <>
-        {type === 'full' && description && (
-          <Text noMargin className={styles[`${baseClass}__description`]}>
-            {description}
-          </Text>
-        )}
-      </>
+      {type === 'full' && description && (
+        <Text noMargin className={styles[`${baseClass}__description`]}>
+          {description}
+        </Text>
+      )}
       {actions && (
         <div
           className={cx(
