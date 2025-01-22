@@ -5,7 +5,7 @@ $base-class: 'checklist-item';
   position: relative;
   gap: 16px;
   transition: all var(--transition-duration-moderate-1);
-  margin-bottom: 8px;
+  margin-bottom: var(--spacing-2);
 
   &--active {
     height: 100%;
