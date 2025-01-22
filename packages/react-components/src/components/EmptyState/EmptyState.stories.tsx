@@ -72,6 +72,11 @@ export const Inline: Story = {
     type: 'inline',
     actions: <Button kind="link">Plain action</Button>,
   },
+  parameters: {
+    controls: {
+      exclude: ['description', 'image'],
+    },
+  },
 };
 
 export const WithIcon: Story = {
