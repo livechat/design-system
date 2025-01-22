@@ -127,6 +127,14 @@ export const SmallImage: Story = {
   },
 };
 
+export const VeryBigImage: Story = {
+  args: {
+    image: 'https://placehold.co/800x300',
+    title: 'All tickets solved',
+    description: 'Follow the instruction to start working with tickets',
+  },
+};
+
 export const WithCustomContentAndNoIllustration: Story = {
   args: {
     title: 'Title up to 50 characters',
