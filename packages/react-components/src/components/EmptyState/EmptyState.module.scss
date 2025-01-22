@@ -4,6 +4,12 @@ $base-class: 'empty-state';
   display: flex;
   align-items: center;
 
+  &--centered {
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
   &--inline {
     flex-direction: row;
     justify-content: space-between;

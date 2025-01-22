@@ -15,9 +15,16 @@ export const EmptyState = ({
   title,
   description,
   actions,
+  centered = false,
 }: IEmptyStateProps) => {
   return (
-    <div className={cx(styles[baseClass], styles[`${baseClass}--${type}`])}>
+    <div
+      className={cx(
+        styles[baseClass],
+        styles[`${baseClass}--${type}`],
+        centered && styles[`${baseClass}--centered`]
+      )}
+    >
       {image && (
         <img
           className={styles[`${baseClass}__image`]}

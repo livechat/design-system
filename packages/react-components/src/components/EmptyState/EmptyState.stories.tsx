@@ -92,6 +92,7 @@ export const WithIcon: Story = {
 
 export const Centered: Story = {
   args: {
+    centered: true,
     icon: (
       <Icon className={styles['empty-state-story__icon']} source={InfoIcon} />
     ),
