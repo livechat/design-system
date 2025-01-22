@@ -1,39 +1,65 @@
-import { Icon } from '../Icon';
-import { Heading, Text } from '../Typography';
+import cx from 'clsx';
+
+import { Display, Heading, Text } from '../Typography';
 
 import { IEmptyStateProps } from './types';
 
-export const EmptyState = (props: IEmptyStateProps) => {
+import styles from './EmptyState.module.scss';
+
+const baseClass = 'empty-state';
+
+export const EmptyState = ({
+  type = 'full',
+  image,
+  icon,
+  title,
+  description,
+  actions,
+}: IEmptyStateProps) => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: props.type === 'inline' ? 'row' : 'column',
-        alignItems: 'center',
-        justifyContent: props.type === 'inline' ? 'space-between' : 'center',
-        gap: '16px',
-      }}
-    >
-      {props.image && <img src={props.image} alt={props.title} />}
-      {props.type === 'inline' ? (
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          {props.icon && <Icon source={props.icon} />}
-          <Text>{props.title}</Text>
+    <div className={cx(styles[baseClass], styles[`${baseClass}--${type}`])}>
+      {image && (
+        <img
+          className={styles[`${baseClass}__image`]}
+          src={image}
+          alt={title}
+        />
+      )}
+      {type === 'inline' ? (
+        <div className={styles[`${baseClass}__content-inline`]}>
+          {icon && <Display data-testid="icon">{icon}</Display>}
+          <Text noMargin>{title}</Text>
         </div>
       ) : (
         <>
-          {props.icon && <Icon size="xlarge" source={props.icon} />}
-          <Heading style={{ margin: '0' }}>{props.title}</Heading>
+          {icon && (
+            <Display
+              className={styles[`${baseClass}__icon--${type}`]}
+              data-testid="icon"
+            >
+              {icon}
+            </Display>
+          )}
+          <Heading className={styles[`${baseClass}__title`]}>{title}</Heading>
         </>
       )}
 
-      <div>
-        {props.type === 'full' && props.description && (
-          <div>{props.description}</div>
+      <>
+        {type === 'full' && description && (
+          <Text noMargin className={styles[`${baseClass}__description`]}>
+            {description}
+          </Text>
         )}
-      </div>
-      {props.actions && (
-        <div style={{ display: 'flex', gap: '8px' }}>{props.actions}</div>
+      </>
+      {actions && (
+        <div
+          className={cx(
+            styles[`${baseClass}__actions`],
+            styles[`${baseClass}__actions--${type}`]
+          )}
+        >
+          {actions}
+        </div>
       )}
     </div>
   );

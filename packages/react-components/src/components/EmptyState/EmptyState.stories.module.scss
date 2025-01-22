@@ -1,0 +1,42 @@
+.empty-state-story {
+  &--centered {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  &__custom-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2);
+    align-items: center;
+
+    &__row {
+      display: flex;
+      gap: var(--spacing-2);
+    }
+
+    &__box {
+      border-radius: 8px;
+      background-color: var(--surface-secondary-default);
+      padding: var(--spacing-6);
+      width: 220px;
+    }
+  }
+
+  &__icon {
+    svg {
+      width: 40px;
+      height: 40px;
+      color: var(--content-basic-disabled);
+    }
+  }
+
+  &__action-menu {
+    width: 200px;
+
+    &__item {
+      width: 400px;
+    }
+  }
+}

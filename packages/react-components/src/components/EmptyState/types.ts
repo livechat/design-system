@@ -1,10 +1,8 @@
 import { ReactNode } from 'react';
 
-import { IconSource } from 'components/Icon';
-
 export type IEmptyStateProps = (
   | {
-      type?: 'full' | undefined;
+      type?: 'full';
       description?: string | ReactNode;
     }
   | {
@@ -14,4 +12,8 @@ export type IEmptyStateProps = (
 ) & {
   title: string;
   actions?: ReactNode;
-} & ({ image: string; icon?: never } | { image?: never; icon: IconSource });
+} & (
+    | { image?: string; icon?: never }
+    | { image?: never; icon?: ReactNode }
+    | { image?: never; icon?: never }
+  );

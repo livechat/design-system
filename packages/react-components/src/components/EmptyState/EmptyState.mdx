@@ -10,12 +10,21 @@ import * as EmptyStateStories from './EmptyState.stories';
 
 ## Intro <a id="Intro" />
 
+The Empty State component is used to display a placeholder when there is no content to show in a container or page. 
+It helps communicate to users why content is missing and what actions they can take,
+ providing a better user experience than showing a blank space.
+
 <Canvas of={EmptyStateStories.Default} sourceState="none" />
 
 #### Example implementation
 
 ```jsx
-<EmptyState />
+<EmptyState
+  icon={InfoIcon}
+  title="No data"
+  description="There is no data to display"
+  actions={<Button kind="primary">Go to settings</Button>}
+/>
 ```
 
 ## Component API <a id="ComponentAPI" />
