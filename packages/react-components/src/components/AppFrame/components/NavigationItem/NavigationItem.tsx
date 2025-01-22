@@ -51,6 +51,7 @@ export const NavigationItem: React.FC<INavigationItemProps> = ({
 
   return (
     <li
+      id={id}
       key={id}
       className={cx(
         styles[baseClass],
@@ -77,6 +78,7 @@ export const NavigationItem: React.FC<INavigationItemProps> = ({
         triggerRenderer={
           <>
             <a
+              // id={id}
               tabIndex={disabled ? -1 : 0}
               aria-label={label}
               className={cx(

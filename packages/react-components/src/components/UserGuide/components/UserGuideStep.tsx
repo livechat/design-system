@@ -1,27 +1,19 @@
-import { FC, MouseEvent, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 
 import { Button } from '../../Button';
 import { Text } from '../../Typography';
+
+import { IUserGuideStepProps } from './types';
 
 import styles from './UserGuideStep.module.scss';
 
 const baseClass = 'user-guide-step';
 
-export const UserGuideStep: FC<{
-  header: string;
-  text: string;
-  image?: {
-    src: string;
-    alt: string;
-  };
-  currentStep: number;
-  stepMax: number;
-  handleClickPrimary: () => void;
-  handleCloseAction?: (ev: KeyboardEvent | MouseEvent) => void;
-}> = ({
+export const UserGuideStep: FC<IUserGuideStepProps> = ({
   header,
   text,
   image,
+  video,
   currentStep,
   stepMax,
   handleCloseAction,
@@ -57,6 +49,16 @@ export const UserGuideStep: FC<{
             alt={image.alt}
           />
         </div>
+      )}
+      {video && !image && (
+        <video
+          src={video.src}
+          playsInline={video.playsInline}
+          autoPlay={video.autoPlay}
+          muted={video.muted}
+          loop={video.loop}
+          controls={video.controls}
+        />
       )}
       <Text as="span" className={styles[`${baseClass}__content`]}>
         {text}

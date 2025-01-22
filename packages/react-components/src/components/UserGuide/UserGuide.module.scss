@@ -7,20 +7,11 @@ $radius: var(--radius-3);
 $arrow-size: 45px;
 
 .#{$base-class} {
-  z-index: $stacking-context-level-tooltip;
-  border: 1px solid var(--tooltip-border);
-  border-radius: $radius;
-  box-shadow: var(--shadow-tooltip);
-  background-color: var(--tooltip-background-basic);
-  padding: var(--spacing-3);
-  max-width: 320px;
-  color: var(--content-basic-primary);
-  font-size: inherit;
-
   &__overlay {
     position: fixed;
     inset: 0;
     background-color: rgb(19 19 23 / 50%);
+    z-index: $stacking-context-level-tooltip;
   }
 
   &__floating {
@@ -28,9 +19,11 @@ $arrow-size: 45px;
 
     transition-property: top, bottom, left, right;
     transition-timing-function: ease-in-out;
+    z-index: $stacking-context-level-tooltip;
   }
 
   &__guide {
+    display: flex;
     position: relative;
 
     &__arrow {
@@ -44,148 +37,87 @@ $arrow-size: 45px;
       transition-timing-function: ease-in-out;
 
       &--right-start {
-        top: calc(0px - $arrow-size + #{$arrow-size / 2});
+        top: 9px;
+        transform: rotate(-50deg);
       }
 
       &--right {
         top: calc(50% - #{$arrow-size / 2});
-        transform: rotate(-45deg);
+        transform: rotate(-90deg);
       }
 
       &--right-end {
-        top: calc(100% - #{$arrow-size / 2});
-        transform: rotate(-90deg);
+        top: calc(100% - 45px - 9px);
+        transform: rotate(-130deg)
       }
 
       &--bottom-start,
       &--bottom,
       &--bottom-end {
-        top: calc(0px - #{$arrow-size});
+        top: 0px;
       }
 
       &--bottom-start {
-        left: calc(0px + #{$arrow-size} - #{$arrow-size / 2});
+        left: 9px;
+        transform: rotate(-40deg);
       }
 
       &--bottom {
         left: calc(50% - #{$arrow-size / 2});
-        transform: rotate(45deg);
+        transform: rotate(0deg);
       }
 
       &--bottom-end {
-        left: calc(100% - #{$arrow-size} - #{$arrow-size / 2});
-        transform: rotate(90deg);
+        left: calc(100% - #{$arrow-size} - 9px);
+        transform: rotate(40deg);
       }
 
       &--top-start,
       &--top,
       &--top-end {
-        top: 100%;
+        top: calc(100% - #{$arrow-size});
       }
 
       &--top-start {
-        left: calc(0px + #{$arrow-size} - #{$arrow-size / 2});
-        transform: rotate(-90deg);
+        left: 9px;
+        transform: rotate(-140deg);
       }
 
       &--top {
         left: calc(50% - #{$arrow-size / 2});
-        transform: rotate(-135deg);
+        transform: rotate(-180deg);
       }
 
       &--top-end {
-        left: calc(100% - #{$arrow-size} - #{$arrow-size / 2});
-        transform: rotate(-180deg);
+        left: calc(100% - #{$arrow-size} - 9px);
+        transform: rotate(140deg);
       }
 
       &--left-start,
       &--left,
       &--left-end {
-        left: calc(100% - $arrow-size);
+        left: calc(100% - 43px);
       }
 
       &--left-start {
-        top: calc(0px - $arrow-size + #{$arrow-size / 2});
-        transform: rotate(90deg);
+        top: 9px;
+        transform: rotate(50deg);
       }
 
       &--left {
         top: calc(50% - #{$arrow-size / 2});
         left: calc(100% - $arrow-size);
-        transform: rotate(135deg);
+        transform: rotate(90deg);
       }
 
       &--left-end {
-        top: calc(100% - #{$arrow-size / 2});
-        transform: rotate(180deg);
+        top: calc(100% - 45px - 9px);
+        transform: rotate(130deg);
       }
     }
 
     &__content {
-      @include transitions.durations();
-
-      transition-property: margin;
-      transition-timing-function: ease-in-out;
-      opacity: 0;
-      margin: 0;
-      animation: var(--transition-duration-moderate-1) fade-in
-        var(--transition-duration-moderate-2) forwards;
-
-      &--right-start,
-      &--right,
-      &--right-end {
-        margin-left: $arrow-size;
-      }
-
-      &--right-start {
-        margin-top: $arrow-size;
-      }
-
-      &--right-end {
-        margin-bottom: $arrow-size;
-      }
-
-      &--bottom-start,
-      &--bottom,
-      &--bottom-end {
-        margin-top: $arrow-size;
-      }
-
-      &--bottom-start {
-        margin-left: $arrow-size;
-      }
-
-      &--bottom-end {
-        margin-right: $arrow-size;
-      }
-
-      &--top-start,
-      &--top,
-      &--top-end {
-        margin-bottom: $arrow-size;
-      }
-
-      &--top-start {
-        margin-left: $arrow-size;
-      }
-
-      &--top-end {
-        margin-right: $arrow-size;
-      }
-
-      &--left-start,
-      &--left,
-      &--left-end {
-        margin-right: $arrow-size;
-      }
-
-      &--left-start {
-        margin-top: $arrow-size;
-      }
-
-      &--left-end {
-        margin-bottom: $arrow-size;
-      }
+      margin: 42px;
     }
   }
 
@@ -214,4 +146,8 @@ $arrow-size: 45px;
   100% {
     opacity: 1;
   }
+}
+
+:global(.user-guide-visible) {
+  overflow: hidden !important;
 }
