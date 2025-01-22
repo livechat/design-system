@@ -14,6 +14,10 @@
     &__row {
       display: flex;
       gap: var(--spacing-2);
+
+      @media (width <= 600px) {
+        flex-direction: column;
+      }
     }
 
     &__box {
@@ -21,6 +25,10 @@
       background-color: var(--surface-secondary-default);
       padding: var(--spacing-6);
       width: 220px;
+    }
+
+    @media (width <= 600px) {
+      flex-direction: column;
     }
   }
 
