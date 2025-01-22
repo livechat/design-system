@@ -47,5 +47,74 @@ export const States = (): React.ReactElement => (
         Checkbox label
       </CheckboxComponent>
     </StoryDescriptor>
+    <StoryDescriptor title="Indeterminate">
+      <CheckboxComponent
+        indeterminate={true}
+        checked={false}
+        description="Enabled"
+      >
+        Checkbox label
+      </CheckboxComponent>
+      <CheckboxComponent
+        indeterminate={true}
+        checked={false}
+        description="Disabled"
+        disabled
+      >
+        Checkbox label
+      </CheckboxComponent>
+    </StoryDescriptor>
   </>
 );
+
+const plainOptions = ['Apple', 'Pear'];
+
+export const IndeterminateState = (): React.ReactElement => {
+  const [checkedList, setCheckedList] = React.useState<string[]>(['Apple']);
+
+  const checkAll = plainOptions.length === checkedList.length;
+  const indeterminate =
+    checkedList.length > 0 && checkedList.length < plainOptions.length;
+
+  const onCheckAllChange: CheckboxProps['onChange'] = (e) => {
+    const target = e.target as HTMLInputElement;
+    setCheckedList(target.checked ? plainOptions : []);
+  };
+
+  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    const newCheckedList = checkedList.includes(value)
+      ? checkedList.filter((item) => item !== value)
+      : [...checkedList, value];
+    setCheckedList(newCheckedList);
+  };
+
+  return (
+    <>
+      <CheckboxComponent
+        indeterminate={indeterminate}
+        onChange={onCheckAllChange}
+        checked={checkAll}
+      >
+        Check all
+      </CheckboxComponent>
+
+      <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+        <CheckboxComponent
+          defaultValue="Apple"
+          checked={checkedList.includes('Apple')}
+          onChange={handleOnChange}
+        >
+          Apple
+        </CheckboxComponent>
+        <CheckboxComponent
+          defaultValue="Pear"
+          checked={checkedList.includes('Pear')}
+          onChange={handleOnChange}
+        >
+          Pear
+        </CheckboxComponent>
+      </div>
+    </>
+  );
+};

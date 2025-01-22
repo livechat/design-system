@@ -40,13 +40,35 @@
       opacity: 0;
       z-index: 1;
       background-color: var(--content-invert-primary);
-      width: 24px;
-      height: 24px;
+      width: 16px;
+      height: 16px;
       content: '';
-      /* stylelint-disable */
+      /* stylelint-disable-next-line property-no-vendor-prefix */
       -webkit-mask: url('./check.svg') no-repeat 50% 50%;
       mask: url('./check.svg') no-repeat 50% 50%;
-      /* stylelint-enable */
+      /* stylelint-disable-next-line property-no-vendor-prefix */
+      -webkit-mask-size: contain;
+      mask-size: contain;
+    }
+
+    &:indeterminate {
+      border-color: var(--action-primary-default);
+      background-color: var(--action-primary-default);
+
+      &::after {
+        opacity: 1;
+        border-radius: 2px;
+        width: 10px;
+        height: 2px;
+        /* stylelint-disable-next-line property-no-vendor-prefix */
+        -webkit-mask: none;
+        mask: none;
+      }
+
+      &:hover {
+        border-color: var(--action-primary-hover);
+        background-color: var(--action-primary-hover);
+      }
     }
 
     &:hover {
@@ -58,8 +80,8 @@
     }
 
     &:checked {
-      border-color: var(--color-action-default);
-      background-color: var(--color-action-default);
+      border-color: var(--action-primary-default);
+      background-color: var(--action-primary-default);
 
       .checkbox__checkmark {
         opacity: 1;
@@ -67,8 +89,8 @@
     }
 
     &:checked:hover {
-      border-color: var(--action-primary-default);
-      background-color: var(--action-primary-default);
+      border-color: var(--action-primary-hover);
+      background-color: var(--action-primary-hover);
     }
 
     &:focus-visible {
@@ -96,7 +118,8 @@
         border-color: var(--border-basic-disabled);
         background-color: var(--surface-primary-disabled);
 
-        &:checked {
+        &:checked,
+        &:indeterminate {
           border-color: transparent;
           background-color: var(--action-primary-disabled);
         }
