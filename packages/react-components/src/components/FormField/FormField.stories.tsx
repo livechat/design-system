@@ -93,3 +93,9 @@ export const TextFieldWithError: StoryFn<FormFieldProps> = () => (
     <ExampleInput error />
   </FormFieldComponent>
 );
+
+export const TextFieldReadOnlyWithInput: StoryFn<FormFieldProps> = () => (
+  <FormFieldComponent labelText="Username" readonly>
+    <ExampleInput />
+  </FormFieldComponent>
+);

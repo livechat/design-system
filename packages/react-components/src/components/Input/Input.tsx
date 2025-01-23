@@ -6,6 +6,7 @@ import {
 } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
+import { useReadOnlyFormFieldContext } from '../../providers/ReadOnlyFormFieldProvider';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { Text } from '../Typography';
@@ -51,6 +52,7 @@ export const InputComponent = React.forwardRef<
     ref
   ) => {
     const innerRef = React.useRef<HTMLInputElement>(null);
+    const { readonly } = useReadOnlyFormFieldContext();
 
     React.useImperativeHandle(ref, () => innerRef.current!, []);
     const [isFocused, setIsFocused] = React.useState(false);
@@ -63,7 +65,7 @@ export const InputComponent = React.forwardRef<
         [styles[`${baseClass}--focused`]]: isFocused,
         [styles[`${baseClass}--error`]]: error,
         [styles[`${baseClass}--crop`]]: cropOnBlur,
-        [styles[`${baseClass}--read-only`]]: inputProps.readOnly,
+        [styles[`${baseClass}--read-only`]]: readonly || inputProps.readOnly,
       },
       className
     );
@@ -91,6 +93,7 @@ export const InputComponent = React.forwardRef<
         {shouldRenderLeftIcon && renderIcon(icon, disabled)}
         <input
           {...inputProps}
+          readOnly={readonly}
           ref={innerRef}
           onFocus={(e) => {
             setIsFocused(true);

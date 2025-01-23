@@ -82,8 +82,9 @@ $base-class: 'input';
   }
 
   &--read-only {
-    border-color: var(--border-basic-disabled);
-    background-color: var(--surface-primary-disabled);
+    // TODO styles
+    border: 0;
+    background: none;
   }
 
   &--error,
