@@ -17,7 +17,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    margin-bottom: 4px;
+    margin-bottom: var(--spacing-1);
 
     label {
       margin-bottom: 0;
