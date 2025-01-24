@@ -10,6 +10,10 @@ export interface IUserGuideStepProps {
    */
   text: string;
   /**
+   * The speed of the typing animation
+   */
+  typingSpeed?: number;
+  /**
    * The image of the step
    */
   image?: {

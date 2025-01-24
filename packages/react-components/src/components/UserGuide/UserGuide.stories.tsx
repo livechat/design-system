@@ -492,7 +492,8 @@ export const Example = (): ReactElement => {
         {state.reference === 'home' ? (
           <UserGuideStep
             header="This is navigation item"
-            text=""
+            text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
+            typingSpeed={20}
             currentStep={1}
             stepMax={9}
             handleClickPrimary={() => dispatch({ type: 'archives' })}
@@ -504,6 +505,7 @@ export const Example = (): ReactElement => {
           <UserGuideStep
             header="This is selected navigation item"
             text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
+            typingSpeed={20}
             currentStep={2}
             stepMax={9}
             handleClickPrimary={() => dispatch({ type: 'user' })}
@@ -515,6 +517,7 @@ export const Example = (): ReactElement => {
           <UserGuideStep
             header="This is user button"
             text="Some text, maximum 210 characters."
+            typingSpeed={100}
             currentStep={3}
             stepMax={9}
             handleClickPrimary={() => dispatch({ type: 'chat-list-column' })}

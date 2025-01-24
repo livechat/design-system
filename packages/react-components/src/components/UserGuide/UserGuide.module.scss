@@ -10,8 +10,10 @@ $arrow-size: 45px;
   &__overlay {
     position: fixed;
     inset: 0;
-    background-color: rgb(19 19 23 / 50%);
+    background-color: var(--surface-other-overlay);
     z-index: $stacking-context-level-tooltip;
+    animation: fade-in var(--transition-duration-moderate-2) forwards;
+    backdrop-filter: blur(2px);
   }
 
   &__floating {
@@ -20,11 +22,60 @@ $arrow-size: 45px;
     transition-property: top, bottom, left, right;
     transition-timing-function: ease-in-out;
     z-index: $stacking-context-level-tooltip;
+    opacity: 0;
+    animation-duration: var(--transition-duration-moderate-2);
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-name: fade-in;
   }
 
   &__guide {
     display: flex;
     position: relative;
+    height: 0px;
+    width: 0px;
+
+    &--right-start,
+    &--left-start {
+      align-items: flex-start;
+    }
+
+    &--right,
+    &--left {
+      align-items: center;
+    }
+
+    &--right-end,
+    &--left-end {
+      align-items: flex-end
+    }
+
+    &--bottom-start,
+    &--top-start {
+      justify-content: flex-start;
+    }
+
+    &--bottom,
+    &--top {
+      justify-content: center;
+    }
+
+    &--bottom-end,
+    &--top-end {
+      justify-content: flex-end
+    }
+
+    &--top-start,
+    &--top,
+    &--top-end {
+      align-items: flex-end;
+    }
+
+    &--left-start,
+    &--left,
+    &--left-end {
+      justify-content: flex-end;
+    }
 
     &__arrow {
       @include transitions.durations();
@@ -118,6 +169,12 @@ $arrow-size: 45px;
 
     &__content {
       margin: 42px;
+      opacity: 0;
+      animation-delay: var(--transition-duration-moderate-2);
+      animation-duration: var(--transition-duration-moderate-2);
+      animation-timing-function: ease-in-out;
+      animation-fill-mode: forwards;
+      animation-name: fade-in;
     }
   }
 

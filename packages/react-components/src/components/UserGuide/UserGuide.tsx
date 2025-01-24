@@ -138,8 +138,8 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
             ref={refs.setFloating}
             style={{
               position: strategy,
-              top: y ?? 0,
-              left: x ?? 0,
+              top: y === 0 ? '50%' : y,
+              left: x === 0 ? '50%' : x,
             }}
             className={cx(
               styles[`${baseClass}__floating`],
@@ -147,7 +147,13 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
               className
             )}
           >
-            <div ref={contentRef} className={styles[`${baseClass}__guide`]}>
+            <div 
+              ref={contentRef} 
+              className={cx(
+                styles[`${baseClass}__guide`],
+                styles[`${baseClass}__guide--${placement}`]
+              )}
+            >
               <div
                 className={cx(
                   styles[`${baseClass}__guide__arrow`],

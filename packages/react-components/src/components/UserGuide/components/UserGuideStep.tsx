@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { Button } from '../../Button';
 import { Text } from '../../Typography';
@@ -16,9 +16,28 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
   video,
   currentStep,
   stepMax,
+  typingSpeed = 0,
   handleCloseAction,
   handleClickPrimary,
 }) => {
+  const [displayedText, setDisplayedText] = useState('');
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (!text) return;
+
+    const interval = setInterval(() => {
+      if (index < text.length) {
+        setDisplayedText((prev) => prev + text[index]);
+        setIndex((prevIndex) => prevIndex + 1);
+      } else {
+        clearInterval(interval);
+      }
+    }, typingSpeed);
+
+    return () => clearInterval(interval);
+  }, [text, typingSpeed, index]);
+
   useEffect(() => {
     if (handleCloseAction) {
       document.addEventListener('keydown', handleCloseAction);
@@ -60,8 +79,8 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
           controls={video.controls}
         />
       )}
-      <Text as="span" className={styles[`${baseClass}__content`]}>
-        {text}
+      <Text id="user-guide-step-typed-text" as="span" className={styles[`${baseClass}__content`]}>
+        {displayedText}
       </Text>
       <div className={styles[`${baseClass}__footer`]}>
         <Button
