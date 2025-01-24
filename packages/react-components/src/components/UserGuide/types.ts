@@ -29,4 +29,8 @@ export interface IUserGuide {
    * The visibility of the user guide
    */
   isVisible?: boolean;
+  /**
+   * The custom z-index value for the overlay
+   */
+  zIndex?: number;
 }

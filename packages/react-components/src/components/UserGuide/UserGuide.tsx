@@ -24,6 +24,7 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
   parentElementName,
   isVisible = false,
   elementStyles,
+  zIndex,
 }) => {
   const [parentElement, setParentElement] = useState<Element | null>(null);
   const [rect, setRect] = useState<DOMRect | null>(null);
@@ -130,6 +131,7 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
         className={cx(styles[`${baseClass}__overlay`])}
         style={{
           display: isVisible ? 'block' : 'none',
+          zIndex: zIndex,
         }}
       >
         {cloneReferenceElement()}
