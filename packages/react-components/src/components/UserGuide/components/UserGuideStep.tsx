@@ -8,6 +8,8 @@ import { IUserGuideStepProps } from './types';
 import styles from './UserGuideStep.module.scss';
 
 const baseClass = 'user-guide-step';
+const TYPING_SPEED = 15;
+const TYPING_DELAY = 800;
 
 export const UserGuideStep: FC<IUserGuideStepProps> = ({
   header,
@@ -16,16 +18,15 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
   video,
   currentStep,
   stepMax,
-  typingSpeed = 0,
+  typingAnimation = false,
   handleCloseAction,
   handleClickPrimary,
 }) => {
-  const delay = typingSpeed === 0 ? 0 : 800;
   const [displayedText, setDisplayedText] = useState('');
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    if (!text) return;
+    if (!text || !typingAnimation) return;
 
     const startTyping = () => {
       const interval = setInterval(() => {
@@ -40,15 +41,15 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
             return prevIndex;
           }
         });
-      }, typingSpeed);
+      }, TYPING_SPEED);
     };
 
-    const timeout = setTimeout(startTyping, delay);
+    const timeout = setTimeout(startTyping, TYPING_DELAY);
 
     return () => {
       clearTimeout(timeout);
     };
-  }, [text, typingSpeed, delay]);
+  }, [text]);
 
   useEffect(() => {
     if (handleCloseAction) {
@@ -96,7 +97,7 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
         as="span"
         className={styles[`${baseClass}__content`]}
       >
-        {displayedText}
+        {typingAnimation ? displayedText : text}
       </Text>
       <div className={styles[`${baseClass}__footer`]}>
         <Button

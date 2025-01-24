@@ -10,9 +10,9 @@ export interface IUserGuideStepProps {
    */
   text: string;
   /**
-   * The speed of the typing animation
+   * Set to enable typing animation for the text
    */
-  typingSpeed?: number;
+  typingAnimation?: boolean;
   /**
    * The image of the step
    */
