@@ -58,7 +58,7 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
         document.removeEventListener('keydown', handleCloseAction);
       };
     }
-  }, []);
+  }, [handleCloseAction]);
 
   return (
     <div className={styles[`${baseClass}`]}>

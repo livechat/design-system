@@ -98,7 +98,7 @@ $arrow-size: 45px;
       }
 
       &--right-end {
-        top: calc(100% - 45px - 9px);
+        top: calc(100% - $arrow-size - 9px);
         transform: rotate(-130deg)
       }
 
@@ -162,7 +162,7 @@ $arrow-size: 45px;
       }
 
       &--left-end {
-        top: calc(100% - 45px - 9px);
+        top: calc(100% - $arrow-size - 9px);
         transform: rotate(130deg);
       }
     }
