@@ -24,6 +24,7 @@
     --transition-duration-fast-1: 0ms;
     --transition-duration-fast-2: 0ms;
     --transition-duration-moderate-1: 0ms;
+    --transition-duration-moderate-2: 0ms;
     --delay-instant: 0ms;
     --delay-moderate: 0ms;
     --delay-slow: 0ms;
@@ -36,6 +37,7 @@
   --transition-duration-fast-1: 0ms;
   --transition-duration-fast-2: 0ms;
   --transition-duration-moderate-1: 0ms;
+  --transition-duration-moderate-2: 0ms;
   --delay-instant: 0ms;
   --delay-moderate: 0ms;
   --delay-slow: 0ms;

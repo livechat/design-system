@@ -50,13 +50,13 @@
 .chats-list-item {
   display: flex;
   flex-direction: row;
-  padding: 19px 24px;
+  padding: 19px var(--spacing-6);
 }
 
 .chats-list-item-content {
   display: flex;
   flex-direction: column;
-  margin-left: 16px;
+  margin-left: var(--spacing-4);
 }
 
 .sections-list {

@@ -18,7 +18,7 @@ export const AppContent = ({ onStartGuideClick }: { onStartGuideClick: () => voi
         </div>
         <div className="chats-list">
           {[...Array(7)].map((_, index) => (
-            <div id={`chats-list-item-${index}`} className="chats-list-item">
+            <div key={`chats-list-item-${index}`} id={`chats-list-item-${index}`} className="chats-list-item">
               <SkeletonWrapper>
                 <SkeletonAvatar size={36} />
                 <SkeletonWrapper vertical>
