@@ -20,23 +20,35 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
   handleCloseAction,
   handleClickPrimary,
 }) => {
+  const delay = typingSpeed === 0 ? 0 : 800;
   const [displayedText, setDisplayedText] = useState('');
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     if (!text) return;
 
-    const interval = setInterval(() => {
-      if (index < text.length) {
-        setDisplayedText((prev) => prev + text[index]);
-        setIndex((prevIndex) => prevIndex + 1);
-      } else {
-        clearInterval(interval);
-      }
-    }, typingSpeed);
+    const startTyping = () => {
+      const interval = setInterval(() => {
+        setIndex((prevIndex) => {
+          if (prevIndex < text.length) {
+            setDisplayedText((prevText) => prevText + text[prevIndex]);
 
-    return () => clearInterval(interval);
-  }, [text, typingSpeed, index]);
+            return prevIndex + 1;
+          } else {
+            clearInterval(interval);
+
+            return prevIndex;
+          }
+        });
+      }, typingSpeed);
+    };
+
+    const timeout = setTimeout(startTyping, delay);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [text, typingSpeed, delay]);
 
   useEffect(() => {
     if (handleCloseAction) {
@@ -79,7 +91,11 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
           controls={video.controls}
         />
       )}
-      <Text id="user-guide-step-typed-text" as="span" className={styles[`${baseClass}__content`]}>
+      <Text
+        id="user-guide-step-typed-text"
+        as="span"
+        className={styles[`${baseClass}__content`]}
+      >
         {displayedText}
       </Text>
       <div className={styles[`${baseClass}__footer`]}>
