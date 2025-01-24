@@ -114,9 +114,19 @@ export const TextFieldWithError: StoryFn<FormFieldProps> = () => (
 const ReadOnlyTemplate: StoryFn<FormFieldProps> = (args) => (
   <ReadOnlyFormFieldContextProvider readOnly={args.readOnly}>
     <div>
+      <StoryDescriptor title="WithNoValue">
+        <FormFieldComponent {...args}>
+          <ExampleInput />
+        </FormFieldComponent>
+      </StoryDescriptor>
       <StoryDescriptor title="WithInput">
         <FormFieldComponent {...args}>
-          <ExampleInput value="" />
+          <ExampleInput value="test value" />
+        </FormFieldComponent>
+      </StoryDescriptor>
+      <StoryDescriptor title="WithPromoInput">
+        <FormFieldComponent {...args} boldLabel>
+          <ExampleInputPromo value="test value" />
         </FormFieldComponent>
       </StoryDescriptor>
       <StoryDescriptor title="WithPicker">
