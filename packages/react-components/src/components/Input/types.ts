@@ -23,6 +23,10 @@ export interface IInputGlobalProps
    * Set to enable ellipsis
    */
   cropOnBlur?: boolean;
+  /**
+   * Set the text to display with read-only state when there is no data. Default to 'No data'
+   */
+  noDataFallbackText?: string;
 }
 
 export interface IInputProps extends IInputGlobalProps {

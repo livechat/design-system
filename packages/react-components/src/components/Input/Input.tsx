@@ -47,12 +47,14 @@ export const InputComponent = React.forwardRef<
       mainClassName,
       isPromo = false,
       cropOnBlur = true,
+      noDataFallbackText = 'No data',
       ...inputProps
     },
     ref
   ) => {
     const innerRef = React.useRef<HTMLInputElement>(null);
-    const { readonly } = useReadOnlyFormFieldContext();
+    const { readOnly } = useReadOnlyFormFieldContext();
+    const computedReadOnly = readOnly || inputProps.readOnly;
 
     React.useImperativeHandle(ref, () => innerRef.current!, []);
     const [isFocused, setIsFocused] = React.useState(false);
@@ -65,7 +67,7 @@ export const InputComponent = React.forwardRef<
         [styles[`${baseClass}--focused`]]: isFocused,
         [styles[`${baseClass}--error`]]: error,
         [styles[`${baseClass}--crop`]]: cropOnBlur,
-        [styles[`${baseClass}--read-only`]]: readonly || inputProps.readOnly,
+        [styles[`${baseClass}--read-only`]]: computedReadOnly,
       },
       className
     );
@@ -81,6 +83,14 @@ export const InputComponent = React.forwardRef<
       innerRef.current?.focus();
     };
 
+    if (computedReadOnly) {
+      return (
+        <Text noMargin semiBold>
+          {inputProps.value || noDataFallbackText}
+        </Text>
+      );
+    }
+
     return (
       <Text
         as="div"
@@ -93,7 +103,7 @@ export const InputComponent = React.forwardRef<
         {shouldRenderLeftIcon && renderIcon(icon, disabled)}
         <input
           {...inputProps}
-          readOnly={readonly}
+          readOnly={computedReadOnly}
           ref={innerRef}
           onFocus={(e) => {
             setIsFocused(true);

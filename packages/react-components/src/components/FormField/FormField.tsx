@@ -51,7 +51,7 @@ export interface FormFieldProps {
   /**
    * Whether the form field is read-only
    */
-  readonly?: boolean;
+  readOnly?: boolean;
 }
 
 export const FormField: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
@@ -64,7 +64,7 @@ export const FormField: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
   labelFor,
   children,
   labelRightNode,
-  readonly = false,
+  readOnly = false,
 }) => {
   const childrenRef = React.useRef<HTMLDivElement>(null);
   const [labelHeight, setLabelHeight] = React.useState('auto');
@@ -88,7 +88,7 @@ export const FormField: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
   });
 
   return (
-    <ReadOnlyFormFieldContextProvider readonly={readonly}>
+    <ReadOnlyFormFieldContextProvider readOnly={readOnly}>
       <div className={mergedClassNames}>
         {labelRightNode && inline && (
           <React.Fragment>
@@ -133,7 +133,7 @@ export const FormField: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
                     className={styles[`${baseClass}__label-left-node`]}
                     htmlFor={labelFor}
                   >
-                    <Text as="span" size="sm" bold={readonly}>
+                    <Text as="span" size="sm">
                       {labelText}
                     </Text>
                   </label>

@@ -2,25 +2,25 @@ import { ReactNode, createContext, useContext } from 'react';
 import type { FC } from 'react';
 
 interface ReadOnlyFormFieldContextValue {
-  readonly: boolean;
+  readOnly: boolean;
 }
 
 const ReadOnlyFormFieldContext = createContext<ReadOnlyFormFieldContextValue>({
-  readonly: false,
+  readOnly: false,
 });
 
 export interface ReadOnlyFormFieldContextProps {
-  readonly?: boolean;
+  readOnly?: boolean;
   children?: ReactNode;
 }
 
 export const ReadOnlyFormFieldContextProvider: FC<
   ReadOnlyFormFieldContextProps
-> = ({ children, readonly = false }) => {
+> = ({ children, readOnly = false }) => {
   return (
     <ReadOnlyFormFieldContext.Provider
       value={{
-        readonly,
+        readOnly,
       }}
     >
       {children}
