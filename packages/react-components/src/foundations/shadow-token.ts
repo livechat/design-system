@@ -22,6 +22,13 @@ export const ShadowToken = {
   FixedLeft: '--shadow-fixed-left',
   FixedTop: '--shadow-fixed-top',
   FixedBottom: '--shadow-fixed-bottom',
+  ShadowAiCopilotAnimationStart: '--shadow-ai-copilot-animation-start',
+  ShadowAiCopilotAnimationMedium1: '--shadow-ai-copilot-animation-medium1',
+  ShadowAiCopilotAnimationMedium2: '--shadow-ai-copilot-animation-medium2',
+  ShadowAiCopilotAnimationMedium3: '--shadow-ai-copilot-animation-medium3',
+  ShadowAiCopilotAnimationEnd: '--shadow-ai-copilot-animation-end',
+  ShadowAiOtherFloat: '--shadow-ai-other-float',
+  ShadowAiOtherActiveField: '--shadow-ai-other-active-field',
 };
 
 export type ShadowTokenKey = keyof typeof ShadowToken;

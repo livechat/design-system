@@ -82,6 +82,7 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
               {greetingText && (
                 <Text
                   size="lg"
+                  semiBold
                   className={styles[`${baseClass}__header__label`]}
                 >
                   {greetingText}
@@ -104,7 +105,6 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
                   titleHint={item.titleHint}
                   isActive={item.id === activeItemId}
                   isChecked={completedItemsIds.includes(item.id)}
-                  isLastElement={index === items.length - 1}
                   onClick={onActiveChange}
                   cta={item.cta}
                 />

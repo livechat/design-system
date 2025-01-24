@@ -3,9 +3,9 @@ $base-class: 'checklist-item';
 .#{$base-class} {
   display: flex;
   position: relative;
-  gap: 20px;
+  gap: 16px;
   transition: all var(--transition-duration-moderate-1);
-  margin-bottom: 4px;
+  margin-bottom: var(--spacing-2);
 
   &--active {
     height: 100%;
@@ -29,16 +29,6 @@ $base-class: 'checklist-item';
     &--checked {
       border-color: var(--surface-accent-emphasis-high-positive);
       background-color: var(--surface-accent-emphasis-high-positive);
-    }
-
-    &__line {
-      position: absolute;
-      top: 48px;
-      bottom: -28px;
-      left: 11.5px;
-      z-index: 1;
-      border-left: 1px dashed var(--border-basic-primary);
-      width: 1px;
     }
   }
 
@@ -93,6 +83,7 @@ $base-class: 'checklist-item';
 
     &__hint {
       display: inline-block;
+      color: var(--content-basic-secondary);
     }
 
     &__inner {

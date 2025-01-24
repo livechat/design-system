@@ -21,6 +21,7 @@ export * from './components/DatePicker';
 export * from './components/DetailsCard';
 export * from './components/DetailsCardInfo';
 export * from './components/FieldDescription';
+export * from './components/EmptyState';
 export * from './components/FieldError';
 export * from './components/FieldGroup';
 export * from './components/Form';

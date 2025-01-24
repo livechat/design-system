@@ -1656,4 +1656,84 @@ export const ColorsData: Record<
     desc: '',
     deprecated: undefined,
   },
+  SurfaceAiCopilotBasicDefault: {
+    group: ColorGroup.SurfaceAiCopilotBasic,
+    desc: 'Default state background color for Copilot-related UI',
+    deprecated: undefined,
+  },
+  SurfaceAiCopilotBasicHover: {
+    group: ColorGroup.SurfaceAiCopilotBasic,
+    desc: 'Hover state background color for Copilot-related UI',
+    deprecated: undefined,
+  },
+  SurfaceAiCopilotBasicActive: {
+    group: ColorGroup.SurfaceAiCopilotBasic,
+    desc: 'Active state background color for Copilot-related UI',
+    deprecated: undefined,
+  },
+  SurfaceAiCopilotInvert01: {
+    group: ColorGroup.SurfaceAiCopilotInvert,
+    desc: 'Inverse background color for contrasting Copilot elements, used in dark or alternative themes',
+    deprecated: undefined,
+  },
+  SurfaceAiCopilotInvert02: {
+    group: ColorGroup.SurfaceAiCopilotInvert,
+    desc: 'Inverse background color for additional Copilot-related UI',
+    deprecated: undefined,
+  },
+  SurfaceAiOther01Default: {
+    group: ColorGroup.SurfaceAiOther,
+    desc: 'Default state background color for AI-related features',
+    deprecated: undefined,
+  },
+  SurfaceAiOther01Hover: {
+    group: ColorGroup.SurfaceAiOther,
+    desc: 'Hover state background color for AI-related features',
+    deprecated: undefined,
+  },
+  SurfaceAiOther01Active: {
+    group: ColorGroup.SurfaceAiOther,
+    desc: 'Active state background color for AI-related features',
+    deprecated: undefined,
+  },
+  SurfaceAiOther02Default: {
+    group: ColorGroup.SurfaceAiOther,
+    desc: 'Additional default state background color for AI-related features',
+    deprecated: undefined,
+  },
+  BorderAiCopilotBasicDefault: {
+    group: ColorGroup.BorderAiBasic,
+    desc: 'Default border color for Copilot-related UI elements',
+    deprecated: undefined,
+  },
+  BorderAiCopilotBasicActive: {
+    group: ColorGroup.BorderAiBasic,
+    desc: 'Active border color for Copilot-related UI elements',
+    deprecated: undefined,
+  },
+  BorderAiCopilotBasicHover: {
+    group: ColorGroup.BorderAiBasic,
+    desc: 'Hover border color for Copilot-related UI elements',
+    deprecated: undefined,
+  },
+  BorderAiOther01: {
+    group: ColorGroup.BorderAiOther,
+    desc: 'Border color for AI-related features and UI elements',
+    deprecated: undefined,
+  },
+  ContentAiCopilotBasic: {
+    group: ColorGroup.ContentAiBasic,
+    desc: 'Base color for text and content in Copilot-related UI',
+    deprecated: undefined,
+  },
+  ContentAiCopilotInvert: {
+    group: ColorGroup.ContentAiBasic,
+    desc: 'Inverse color for text and content in Copilot UI, used to maintain readability in dark or alternative themes',
+    deprecated: undefined,
+  },
+  ContentAiOther1Default: {
+    group: ColorGroup.ContentAiBasic,
+    desc: 'Default color for text and content in AI-related UI elements outside the Copilot experience',
+    deprecated: undefined,
+  },
 };

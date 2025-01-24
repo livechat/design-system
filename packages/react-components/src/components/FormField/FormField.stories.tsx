@@ -6,7 +6,7 @@ import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { AutoComplete } from '../AutoComplete';
 import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
-import { Input } from '../Input';
+import { Input, InputPromo } from '../Input';
 import { IInputProps } from '../Input/types';
 import { NumericInput } from '../NumericInput';
 import { Picker } from '../Picker';
@@ -32,12 +32,20 @@ export default {
     labelRightNode: {
       control: false,
     },
+    parameters: {
+      controls: {
+        exclude: ['boldLabel'],
+      },
+    },
   },
 } as Meta<typeof FormFieldComponent>;
 
 const ExampleIcon = () => <Icon source={Info} />;
 const ExampleInput = ({ ...args }: IInputProps) => (
   <Input placeholder="Placeholder text" {...args} />
+);
+const ExampleInputPromo = ({ ...args }: IInputProps) => (
+  <InputPromo placeholder="Placeholder text" {...args} />
 );
 const LabelText = 'Email';
 const DescriptionText = 'Enter your email address';
@@ -158,3 +166,9 @@ TextFieldReadOnly.args = {
   labelText: 'My label',
   readOnly: true,
 };
+
+export const BoldLabelWithPromoInput: StoryFn<FormFieldProps> = () => (
+  <FormFieldComponent labelText="Username" boldLabel>
+    <ExampleInputPromo />
+  </FormFieldComponent>
+);

@@ -25,6 +25,10 @@ export interface FormFieldProps {
    */
   labelFor?: string;
   /**
+   * Makes the label text bold. Note: This prop should only be used together with PromoInput.
+   */
+  boldLabel?: boolean;
+  /**
    * The CSS class for field container
    */
   className?: string;
@@ -64,6 +68,7 @@ export const FormField: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
   labelFor,
   children,
   labelRightNode,
+  boldLabel = false,
   readOnly = false,
 }) => {
   const childrenRef = React.useRef<HTMLDivElement>(null);
@@ -133,7 +138,7 @@ export const FormField: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
                     className={styles[`${baseClass}__label-left-node`]}
                     htmlFor={labelFor}
                   >
-                    <Text as="span" size="sm">
+                    <Text as="span" size="sm" bold={boldLabel}>
                       {labelText}
                     </Text>
                   </label>
