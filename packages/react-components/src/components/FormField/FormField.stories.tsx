@@ -2,7 +2,7 @@ import { Info } from '@livechat/design-system-icons';
 import { Meta, StoryFn } from '@storybook/react';
 
 import { Icon } from '../Icon';
-import { Input } from '../Input';
+import { Input, InputPromo } from '../Input';
 import { IInputProps } from '../Input/types';
 
 import { FormField as FormFieldComponent, FormFieldProps } from './FormField';
@@ -23,12 +23,20 @@ export default {
     labelRightNode: {
       control: false,
     },
+    parameters: {
+      controls: {
+        exclude: ['boldLabel'],
+      },
+    },
   },
 } as Meta<typeof FormFieldComponent>;
 
 const ExampleIcon = () => <Icon source={Info} />;
 const ExampleInput = ({ ...args }: IInputProps) => (
   <Input placeholder="Placeholder text" {...args} />
+);
+const ExampleInputPromo = ({ ...args }: IInputProps) => (
+  <InputPromo placeholder="Placeholder text" {...args} />
 );
 const LabelText = 'Email';
 const DescriptionText = 'Enter your email address';
@@ -91,5 +99,11 @@ export const WithInlineLabelAndLabelAdornment: StoryFn<FormFieldProps> = () => (
 export const TextFieldWithError: StoryFn<FormFieldProps> = () => (
   <FormFieldComponent labelText="Username" error="Username must be unique">
     <ExampleInput error />
+  </FormFieldComponent>
+);
+
+export const BoldLabelWithPromoInput: StoryFn<FormFieldProps> = () => (
+  <FormFieldComponent labelText="Username" boldLabel>
+    <ExampleInputPromo />
   </FormFieldComponent>
 );
