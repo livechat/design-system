@@ -8,7 +8,7 @@ import { IUserGuideStepProps } from './types';
 import styles from './UserGuideStep.module.scss';
 
 const baseClass = 'user-guide-step';
-const TYPING_SPEED = 15;
+const TYPING_SPEED = 10;
 const TYPING_DELAY = 800;
 
 export const UserGuideStep: FC<IUserGuideStepProps> = ({
