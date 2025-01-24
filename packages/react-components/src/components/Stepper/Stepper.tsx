@@ -14,7 +14,7 @@ export const Stepper: React.FC<StepperProps> = ({
   activeStep,
   steps,
   className,
-  'data-testid': dataTestId,
+  'data-testid': dataTestId = 'stepper',
   ...divProps
 }) => {
   if (activeStep < 1 || activeStep > steps) {
@@ -28,7 +28,10 @@ export const Stepper: React.FC<StepperProps> = ({
       <Text size="sm" className={styles[`${baseClass}__counter`]}>
         {activeStep}/{steps}
       </Text>
-      <div className={styles[`${baseClass}__steps__container`]}>
+      <div
+        className={styles[`${baseClass}__steps__container`]}
+        data-testid={`${dataTestId}-container`}
+      >
         {Array.from({ length: steps }, (_, index) => {
           const stepNumber = index + 1;
           const isCompleted = stepNumber <= activeStep;
