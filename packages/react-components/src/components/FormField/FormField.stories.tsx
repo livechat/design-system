@@ -16,6 +16,14 @@ import { Textarea } from '../Textarea';
 
 import { FormField as FormFieldComponent, FormFieldProps } from './FormField';
 
+const DEFAULT_PICKER_OPTIONS = [
+  { key: 'one', name: 'Option one' },
+  { key: 'groupA', name: 'Group A title header', groupHeader: true },
+  { key: 'two', name: 'Option two' },
+  { key: 'three', name: 'Option three' },
+  { key: 'groupB', name: 'Group B title header', groupHeader: true },
+];
+
 export default {
   title: 'Forms/FormField',
   component: FormFieldComponent,
@@ -131,7 +139,11 @@ const ReadOnlyTemplate: StoryFn<FormFieldProps> = (args) => (
       </StoryDescriptor>
       <StoryDescriptor title="WithPicker">
         <FormFieldComponent {...args}>
-          <Picker onSelect={() => {}} options={[]} />
+          <Picker
+            onSelect={() => {}}
+            options={DEFAULT_PICKER_OPTIONS}
+            selected={DEFAULT_PICKER_OPTIONS.slice(0, 3)}
+          />
         </FormFieldComponent>
       </StoryDescriptor>
       <StoryDescriptor title="WithTagInput">

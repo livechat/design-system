@@ -9,6 +9,7 @@ import cx from 'clsx';
 import { useReadOnlyFormFieldContext } from '../../providers/ReadOnlyFormFieldProvider';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
+import { ReadOnlyText } from '../ReadOnlyText';
 import { Text } from '../Typography';
 
 import {
@@ -85,9 +86,10 @@ export const InputComponent = React.forwardRef<
 
     if (computedReadOnly) {
       return (
-        <Text noMargin semiBold>
-          {inputProps.value || noDataFallbackText}
-        </Text>
+        <ReadOnlyText
+          value={inputProps.value?.toString()}
+          noDataFallbackText={noDataFallbackText}
+        />
       );
     }
 

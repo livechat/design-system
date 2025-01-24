@@ -138,7 +138,14 @@ export const FormField: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
                     className={styles[`${baseClass}__label-left-node`]}
                     htmlFor={labelFor}
                   >
-                    <Text as="span" size="sm" bold={!readOnly && boldLabel}>
+                    <Text
+                      as="span"
+                      size="sm"
+                      bold={!readOnly && boldLabel}
+                      customColor={
+                        readOnly ? 'var(--content-basic-secondary)' : undefined
+                      }
+                    >
                       {labelText}
                     </Text>
                   </label>
