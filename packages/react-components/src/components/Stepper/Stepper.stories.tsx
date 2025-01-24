@@ -1,8 +1,4 @@
-import * as React from 'react';
-
 import { type Meta, type StoryObj } from '@storybook/react';
-
-import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
 import { Stepper } from './Stepper';
 
@@ -38,23 +34,3 @@ export const Completed: Story = {
     steps: 6,
   },
 };
-
-export const CustomSizes = (): React.ReactElement => (
-  <>
-    <StoryDescriptor title="Small width">
-      <div style={{ width: '200px' }}>
-        <Stepper steps={4} activeStep={2} />
-      </div>
-    </StoryDescriptor>
-    <StoryDescriptor title="Medium width">
-      <div style={{ width: '400px' }}>
-        <Stepper steps={4} activeStep={2} />
-      </div>
-    </StoryDescriptor>
-    <StoryDescriptor title="Large width">
-      <div style={{ width: '600px' }}>
-        <Stepper steps={4} activeStep={2} />
-      </div>
-    </StoryDescriptor>
-  </>
-);

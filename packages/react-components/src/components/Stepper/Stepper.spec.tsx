@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom';
 
 import { Stepper } from './Stepper';
 
@@ -28,17 +27,6 @@ describe('Stepper', () => {
 
     expect(screen.getByTestId('stepper')).toHaveClass(customClass);
   });
-
-  it('throws error when activeStep is out of range', () => {
-    expect(() => {
-      render(<Stepper activeStep={0} steps={3} />);
-    }).toThrow('Active step must be between 1 and 3');
-
-    expect(() => {
-      render(<Stepper activeStep={4} steps={3} />);
-    }).toThrow('Active step must be between 1 and 3');
-  });
-
   it('passes additional props to the main div', () => {
     render(<Stepper activeStep={1} steps={3} aria-label="progress" />);
 
@@ -46,5 +34,47 @@ describe('Stepper', () => {
       'aria-label',
       'progress'
     );
+  });
+  describe('boundary values and normalization', () => {
+    it('should set minimum steps value to 1 when negative value is provided', () => {
+      render(<Stepper steps={-5} activeStep={1} />);
+
+      expect(screen.getByTestId('stepper')).toHaveTextContent('1/1');
+    });
+
+    it('should set minimum steps value to 1 when zero is provided', () => {
+      render(<Stepper steps={0} activeStep={1} />);
+
+      expect(screen.getByTestId('stepper')).toHaveTextContent('1/1');
+    });
+
+    it('should normalize activeStep to 1 when negative value is provided', () => {
+      render(<Stepper steps={5} activeStep={-3} />);
+
+      expect(screen.getByTestId('stepper')).toHaveTextContent('1/5');
+    });
+
+    it('should normalize activeStep to steps value when exceeding number of steps', () => {
+      render(<Stepper steps={3} activeStep={10} />);
+
+      expect(screen.getByTestId('stepper')).toHaveTextContent('3/3');
+    });
+
+    it('should properly normalize both steps and activeStep', () => {
+      render(<Stepper steps={-2} activeStep={-3} />);
+
+      expect(screen.getByTestId('stepper')).toHaveTextContent('1/1');
+    });
+
+    it('should normalize activeStep to steps value when activeStep is a float', () => {
+      render(<Stepper steps={5} activeStep={1.5} />);
+
+      expect(screen.getByTestId('stepper')).toHaveTextContent('2/5');
+    });
+    it('should normalize steps to 1 when steps is a float', () => {
+      render(<Stepper steps={1.5} activeStep={1} />);
+
+      expect(screen.getByTestId('stepper')).toHaveTextContent('1/2');
+    });
   });
 });

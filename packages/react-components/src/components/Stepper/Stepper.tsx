@@ -17,25 +17,27 @@ export const Stepper: React.FC<StepperProps> = ({
   'data-testid': dataTestId = 'stepper',
   ...divProps
 }) => {
-  if (activeStep < 1 || activeStep > steps) {
-    throw new Error(`Active step must be between 1 and ${steps}`);
-  }
+  const normalizedSteps = Math.round(Math.max(1, steps));
+
+  const normalizedActiveStep = Math.round(
+    Math.min(Math.max(1, activeStep), normalizedSteps)
+  );
 
   const mergedClassNames = cx(styles[baseClass], className);
 
   return (
     <div className={mergedClassNames} data-testid={dataTestId} {...divProps}>
       <Text size="sm" className={styles[`${baseClass}__counter`]}>
-        {activeStep}/{steps}
+        {normalizedActiveStep}/{normalizedSteps}
       </Text>
       <div
         className={styles[`${baseClass}__steps__container`]}
         data-testid={`${dataTestId}-container`}
       >
-        {Array.from({ length: steps }, (_, index) => {
+        {Array.from({ length: normalizedSteps }, (_, index) => {
           const stepNumber = index + 1;
-          const isCompleted = stepNumber <= activeStep;
-          const isActive = stepNumber > activeStep;
+          const isCompleted = stepNumber <= normalizedActiveStep;
+          const isActive = stepNumber > normalizedActiveStep;
 
           return (
             <div

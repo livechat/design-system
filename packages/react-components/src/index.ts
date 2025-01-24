@@ -62,3 +62,4 @@ export * from './components/UpdateBadge';
 export * from './components/FileUploadProgress';
 export * from './components/UploadBar';
 export * from './components/FloatingPortal';
+export * from './components/Stepper';
