@@ -33,4 +33,12 @@ export interface IUserGuide {
    * The custom z-index value for the overlay
    */
   zIndex?: number;
+  /**
+   * The first step of the user guide, rendered on the center of the screen
+   */
+  isFirstStep?: boolean;
+  /**
+   * The last step of the user guide, rendered on the center of the screen
+   */
+  isLastStep?: boolean;
 }

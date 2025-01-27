@@ -29,6 +29,18 @@ $animations: (
     z-index: $stacking-context-level-tooltip;
     animation: fade-in var(--transition-duration-moderate-2) forwards;
     backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__content {
+      opacity: 0;
+      animation-delay: var(--transition-duration-moderate-2);
+      animation-duration: var(--transition-duration-moderate-2);
+      animation-timing-function: ease-in-out;
+      animation-fill-mode: forwards;
+      animation-name: fade-in;
+    }
   }
 
   &__floating {

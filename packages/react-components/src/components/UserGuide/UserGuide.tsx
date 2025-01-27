@@ -25,6 +25,8 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
   isVisible = false,
   elementStyles,
   zIndex,
+  isFirstStep,
+  isLastStep
 }) => {
   const [parentElement, setParentElement] = useState<Element | null>(null);
   const [rect, setRect] = useState<DOMRect | null>(null);
@@ -125,18 +127,26 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
     );
   };
 
-  return parentElement ? (
+  return (
     <>
       <div
         className={cx(styles[`${baseClass}__overlay`])}
         style={{
-          display: isVisible ? 'block' : 'none',
+          display: isVisible ? 'flex' : 'none',
           zIndex: zIndex,
         }}
       >
-        {cloneReferenceElement()}
+        {parentElement && cloneReferenceElement()}
+        {(isFirstStep || isLastStep) && (
+          <div 
+            key={isFirstStep ? 'user-guide-first-step' : 'user-guide-last-step'}
+            className={styles[`${baseClass}__overlay__content`]}
+          >
+            {children}
+          </div>
+        )}
       </div>
-      {isVisible && rect && (
+      {isVisible && rect && !isFirstStep && !isLastStep && (
         <FloatingPortal>
           <div
             ref={refs.setFloating}
@@ -184,5 +194,5 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
         </FloatingPortal>
       )}
     </>
-  ) : null;
+  );
 };
