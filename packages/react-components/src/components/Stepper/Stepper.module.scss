@@ -3,7 +3,7 @@ $base-class: 'stepper';
 .#{$base-class} {
   &__counter {
     margin-bottom: var(--spacing-2);
-    color: var(--content-basic-disabled);
+    color: var(--content-basic-placeholder);
     font-weight: var(--font-weight-medium);
   }
 
