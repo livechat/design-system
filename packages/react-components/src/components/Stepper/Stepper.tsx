@@ -26,7 +26,12 @@ export const Stepper: React.FC<StepperProps> = ({
   const mergedClassNames = cx(styles[baseClass], className);
 
   return (
-    <div className={mergedClassNames} data-testid={dataTestId} {...divProps}>
+    <div
+      className={mergedClassNames}
+      data-testid={dataTestId}
+      aria-label="Stepper"
+      {...divProps}
+    >
       <Text size="sm" className={styles[`${baseClass}__counter`]}>
         {normalizedActiveStep}/{normalizedSteps}
       </Text>
@@ -42,6 +47,7 @@ export const Stepper: React.FC<StepperProps> = ({
           return (
             <div
               key={stepNumber}
+              aria-completed={isCompleted}
               className={cx(styles[`${baseClass}__step`], {
                 [styles[`${baseClass}__step--completed`]]: isCompleted,
                 [styles[`${baseClass}__step--active`]]: isActive,

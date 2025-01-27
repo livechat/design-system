@@ -16,9 +16,9 @@ describe('Stepper', () => {
 
     const steps = screen.getByTestId('stepper-container').children;
 
-    expect(steps[0].className).toContain('completed');
-    expect(steps[1].className).toContain('completed');
-    expect(steps[2].className).toContain('active');
+    expect(steps[0].getAttribute('aria-completed')).toBe('true');
+    expect(steps[1].getAttribute('aria-completed')).toBe('true');
+    expect(steps[2].getAttribute('aria-completed')).toBe('false');
   });
 
   it('accepts and applies custom className', () => {
