@@ -43,6 +43,10 @@ export interface TagInputProps<T>
    * Add Tag on blur
    */
   addOnBlur?: boolean;
+  /**
+   * Set the no data fallback text
+   */
+  noDataFallbackText?: string;
 }
 
 export type TagInputValues =

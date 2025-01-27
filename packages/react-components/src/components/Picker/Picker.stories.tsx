@@ -92,6 +92,10 @@ export const States = (): React.ReactElement => (
         options={DEFAULT_PICKER_OPTIONS}
         onSelect={noop}
         inputProps={{ readOnly: true }}
+        selected={[
+          { key: 'two', name: 'Option two' },
+          { key: 'three', name: 'Option three' },
+        ]}
       />
     </StoryDescriptor>
     <StoryDescriptor title="Error">

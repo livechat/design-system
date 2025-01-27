@@ -148,7 +148,10 @@ const ReadOnlyTemplate: StoryFn<FormFieldProps> = (args) => (
       </StoryDescriptor>
       <StoryDescriptor title="WithTagInput">
         <FormFieldComponent {...args}>
-          <TagInput onChange={() => {}} />
+          <TagInput
+            tags={['tag1', 'tag2', 'tag3', 'tag4']}
+            onChange={() => {}}
+          />
         </FormFieldComponent>
       </StoryDescriptor>
 
