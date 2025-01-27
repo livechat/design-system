@@ -4,13 +4,11 @@ import { Meta, StoryFn } from '@storybook/react';
 import { ReadOnlyFormFieldContextProvider } from '../../providers/ReadOnlyFormFieldProvider';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { AutoComplete } from '../AutoComplete';
-import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
 import { Input, InputPromo } from '../Input';
 import { IInputProps } from '../Input/types';
 import { NumericInput } from '../NumericInput';
 import { Picker } from '../Picker';
-import { RadioButton } from '../RadioButton';
 import { TagInput } from '../TagInput';
 import { Textarea } from '../Textarea';
 
@@ -155,31 +153,22 @@ const ReadOnlyTemplate: StoryFn<FormFieldProps> = (args) => (
         </FormFieldComponent>
       </StoryDescriptor>
 
-      {/* // Those also? */}
       <StoryDescriptor title="WithNumericInput">
         <FormFieldComponent {...args}>
           <NumericInput value="456" onChange={() => {}} />
         </FormFieldComponent>
       </StoryDescriptor>
-      <StoryDescriptor title="WithCheckbox">
-        <FormFieldComponent {...args}>
-          <Checkbox />
-        </FormFieldComponent>
-      </StoryDescriptor>
       <StoryDescriptor title="WithTextarea">
         <FormFieldComponent {...args}>
-          <Textarea />
-        </FormFieldComponent>
-      </StoryDescriptor>
-      <StoryDescriptor title="WithRadio">
-        <FormFieldComponent {...args}>
-          <RadioButton />
-          <RadioButton />
+          <Textarea value="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
         </FormFieldComponent>
       </StoryDescriptor>
       <StoryDescriptor title="WithAutocomplete">
         <FormFieldComponent {...args}>
-          <AutoComplete />
+          <AutoComplete
+            options={['option1', 'option2', 'option3']}
+            value="option2"
+          />
         </FormFieldComponent>
       </StoryDescriptor>
     </div>

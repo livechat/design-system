@@ -126,6 +126,15 @@ export const Examples = (): React.ReactElement => {
           <AutoComplete options={options} placeholder={placeholderText} />
         </form>
       </StoryDescriptor>
+
+      <StoryDescriptor title="Read Only">
+        <AutoComplete
+          options={options}
+          value="Option 1"
+          placeholder={placeholderText}
+          readOnly
+        />
+      </StoryDescriptor>
     </div>
   );
 };
