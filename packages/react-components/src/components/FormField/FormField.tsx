@@ -2,7 +2,10 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import { ReadOnlyFormFieldContextProvider } from '../../providers/ReadOnlyFormFieldProvider';
+import {
+  ReadOnlyFormFieldContextProvider,
+  useReadOnlyFormFieldContext,
+} from '../../providers/ReadOnlyFormFieldProvider';
 import { FieldDescription } from '../FieldDescription';
 import { FieldError } from '../FieldError';
 import { Text } from '../Typography';
@@ -58,7 +61,7 @@ export interface FormFieldProps {
   readOnly?: boolean;
 }
 
-export const FormField: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
+const FormFieldContent: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
   inline,
   error,
   description,
@@ -73,6 +76,8 @@ export const FormField: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
 }) => {
   const childrenRef = React.useRef<HTMLDivElement>(null);
   const [labelHeight, setLabelHeight] = React.useState('auto');
+
+  const { isEmpty } = useReadOnlyFormFieldContext();
 
   const mergedClassNames = cx(
     styles[baseClass],
@@ -93,101 +98,109 @@ export const FormField: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
   });
 
   return (
-    <ReadOnlyFormFieldContextProvider readOnly={readOnly}>
-      <div className={mergedClassNames}>
-        {labelRightNode && inline && (
-          <React.Fragment>
-            <Text
-              as="div"
-              size="sm"
-              className={cx(
-                styles[`${baseClass}__label-right-node`],
-                styles[`${baseClass}__label-right-node--inline`]
-              )}
-            >
-              {labelRightNode}
-            </Text>
-            <div className={styles[`${baseClass}__row-break`]} />
-          </React.Fragment>
+    <div className={mergedClassNames}>
+      {labelRightNode && inline && (
+        <React.Fragment>
+          <Text
+            as="div"
+            size="sm"
+            className={cx(
+              styles[`${baseClass}__label-right-node`],
+              styles[`${baseClass}__label-right-node--inline`]
+            )}
+          >
+            {labelRightNode}
+          </Text>
+          <div className={styles[`${baseClass}__row-break`]} />
+        </React.Fragment>
+      )}
+      <div
+        className={cx(
+          styles[`${baseClass}__wrapper`],
+          inline && styles[`${baseClass}__wrapper--inline`]
         )}
-        <div
-          className={cx(
-            styles[`${baseClass}__wrapper`],
-            inline && styles[`${baseClass}__wrapper--inline`]
-          )}
-        >
-          {(labelText || labelRightNode) && (
-            <div
-              className={cx(
-                styles[`${baseClass}__label`],
-                inline && styles[`${baseClass}__label--inline`],
-                !labelText && styles[`${baseClass}__label--no-text`]
-              )}
-            >
-              {labelText && (
-                <div
-                  className={cx(
-                    styles[`${baseClass}__label-wrapper`],
-                    inline && styles[`${baseClass}__label-wrapper--inline`]
-                  )}
-                  style={{
-                    height: labelHeight,
-                  }}
-                >
-                  <label
-                    className={styles[`${baseClass}__label-left-node`]}
-                    htmlFor={labelFor}
-                  >
-                    <Text
-                      as="span"
-                      size="sm"
-                      bold={!readOnly && boldLabel}
-                      customColor={
-                        readOnly ? 'var(--content-basic-secondary)' : undefined
-                      }
-                    >
-                      {labelText}
-                    </Text>
-                  </label>
-                  {labelAdornment && (
-                    <Text
-                      as="div"
-                      size="sm"
-                      className={cx(
-                        styles[`${baseClass}__label-adornment`],
-                        inline &&
-                          styles[`${baseClass}__label-adornment--inline`]
-                      )}
-                    >
-                      {labelAdornment}
-                    </Text>
-                  )}
-                </div>
-              )}
-              {labelRightNode && !inline && (
-                <Text
-                  as="div"
-                  size="sm"
-                  className={cx(styles[`${baseClass}__label-right-node`])}
-                >
-                  {labelRightNode}
-                </Text>
-              )}
-            </div>
-          )}
-          <div className={cx(styles[`${baseClass}__content`])}>
-            <div ref={childrenRef}>{children}</div>
-            {error && <FieldError>{error}</FieldError>}
-            {!error && description && (
-              <FieldDescription
-                className={cx(styles[`${baseClass}__content__description`])}
+      >
+        {(labelText || labelRightNode) && (
+          <div
+            className={cx(
+              styles[`${baseClass}__label`],
+              inline && styles[`${baseClass}__label--inline`],
+              !labelText && styles[`${baseClass}__label--no-text`]
+            )}
+          >
+            {labelText && (
+              <div
+                className={cx(
+                  styles[`${baseClass}__label-wrapper`],
+                  inline && styles[`${baseClass}__label-wrapper--inline`]
+                )}
+                style={{
+                  height: labelHeight,
+                }}
               >
-                {description}
-              </FieldDescription>
+                <label
+                  className={styles[`${baseClass}__label-left-node`]}
+                  htmlFor={labelFor}
+                >
+                  <Text
+                    as="span"
+                    size="sm"
+                    bold={!readOnly && boldLabel}
+                    customColor={
+                      isEmpty ? 'var(--content-basic-secondary)' : undefined
+                    }
+                  >
+                    {labelText}
+                  </Text>
+                </label>
+                {labelAdornment && (
+                  <Text
+                    as="div"
+                    size="sm"
+                    className={cx(
+                      styles[`${baseClass}__label-adornment`],
+                      inline && styles[`${baseClass}__label-adornment--inline`]
+                    )}
+                  >
+                    {labelAdornment}
+                  </Text>
+                )}
+              </div>
+            )}
+            {labelRightNode && !inline && (
+              <Text
+                as="div"
+                size="sm"
+                className={cx(styles[`${baseClass}__label-right-node`])}
+              >
+                {labelRightNode}
+              </Text>
             )}
           </div>
+        )}
+        <div className={cx(styles[`${baseClass}__content`])}>
+          <div ref={childrenRef}>{children}</div>
+          {error && <FieldError>{error}</FieldError>}
+          {!error && description && (
+            <FieldDescription
+              className={cx(styles[`${baseClass}__content__description`])}
+            >
+              {description}
+            </FieldDescription>
+          )}
         </div>
       </div>
+    </div>
+  );
+};
+
+export const FormField: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
+  readOnly,
+  ...props
+}) => {
+  return (
+    <ReadOnlyFormFieldContextProvider readOnly={readOnly}>
+      <FormFieldContent readOnly={readOnly} {...props} />
     </ReadOnlyFormFieldContextProvider>
   );
 };

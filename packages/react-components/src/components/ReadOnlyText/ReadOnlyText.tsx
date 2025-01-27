@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+
+import { useReadOnlyFormFieldContext } from '../../providers/ReadOnlyFormFieldProvider';
 import { Text } from '../Typography';
 
 export interface ReadOnlyTextProps {
@@ -15,6 +18,16 @@ export const ReadOnlyText = ({
   value,
   noDataFallbackText = '-',
 }: ReadOnlyTextProps) => {
+  const { setIsEmpty } = useReadOnlyFormFieldContext();
+
+  useEffect(() => {
+    if (!value) {
+      setIsEmpty(true);
+    } else {
+      setIsEmpty(false);
+    }
+  }, [value]);
+
   return (
     <Text
       noMargin
