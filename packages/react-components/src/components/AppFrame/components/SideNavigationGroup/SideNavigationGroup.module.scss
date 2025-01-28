@@ -26,9 +26,6 @@ $transition: all var(--transition-duration-fast-2) ease-in-out;
     gap: var(--spacing-2);
     align-items: center;
     align-self: stretch;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-wrap: nowrap;
   }
 
   &__simple-label {
