@@ -9,6 +9,7 @@ $base-class: 'user-guide-bubble-step';
   color: var(--content-basic-primary);
 
   &__bubble {
+    transition: border-radius var(--transition-duration-fast-1) ease-in-out;
     opacity: 0;
     border-radius: var(--radius-4);
     background: linear-gradient(45deg, #cddef9, #e7e5fd, #f9f2ff);
@@ -20,6 +21,10 @@ $base-class: 'user-guide-bubble-step';
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
 
+    &--next-msg {
+      border-bottom-left-radius: 0;
+    }
+
     &--header {
       display: flex;
       flex-direction: row;
@@ -27,10 +32,15 @@ $base-class: 'user-guide-bubble-step';
       align-items: center;
     }
 
+    &--message {
+      border-top-left-radius: 0;
+    }
+
     &--cta {
       display: flex;
       gap: var(--spacing-2);
       justify-content: space-between;
+      border-top-left-radius: 0;
     }
   }
 }

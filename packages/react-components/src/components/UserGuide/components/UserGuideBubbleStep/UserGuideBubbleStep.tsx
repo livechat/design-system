@@ -23,6 +23,8 @@ export const UserGuideBubbleStep: FC<IUserGuideBubbleStepProps> = ({
   cta,
 }) => {
   const [visibleBubbles, setVisibleBubbles] = useState<string[]>(['header']);
+  const isMessageVisible = visibleBubbles.includes('message');
+  const isCtaVisisble = cta && visibleBubbles.includes('cta');
 
   return (
     <div className={styles[`${baseClass}`]}>
@@ -30,7 +32,10 @@ export const UserGuideBubbleStep: FC<IUserGuideBubbleStepProps> = ({
         <div
           className={cx(
             styles[`${baseClass}__bubble`],
-            styles[`${baseClass}__bubble--header`]
+            styles[`${baseClass}__bubble--header`],
+            {
+              [styles[`${baseClass}__bubble--next-msg`]]: isMessageVisible,
+            }
           )}
         >
           {headerIcon && (
@@ -49,11 +54,14 @@ export const UserGuideBubbleStep: FC<IUserGuideBubbleStepProps> = ({
           </Text>
         </div>
       )}
-      {visibleBubbles.includes('message') && (
+      {isMessageVisible && (
         <div
           className={cx(
             styles[`${baseClass}__bubble`],
-            styles[`${baseClass}__bubble--message`]
+            styles[`${baseClass}__bubble--message`],
+            {
+              [styles[`${baseClass}__bubble--next-msg`]]: isCtaVisisble,
+            }
           )}
         >
           <Text as="span">
@@ -66,7 +74,7 @@ export const UserGuideBubbleStep: FC<IUserGuideBubbleStepProps> = ({
           </Text>
         </div>
       )}
-      {cta && visibleBubbles.includes('cta') && (
+      {isCtaVisisble && (
         <div
           className={cx(
             styles[`${baseClass}__bubble`],
