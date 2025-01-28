@@ -81,11 +81,6 @@ $base-class: 'input';
     }
   }
 
-  &--read-only {
-    border: 0;
-    background: none;
-  }
-
   &--error,
   &--error:hover {
     border-color: var(--border-basic-negative);

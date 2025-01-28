@@ -16,7 +16,7 @@ export interface ReadOnlyTextProps {
 
 export const ReadOnlyText = ({
   value,
-  noDataFallbackText = '-',
+  noDataFallbackText = 'No data',
 }: ReadOnlyTextProps) => {
   const { setIsEmpty } = useReadOnlyFormFieldContext();
 

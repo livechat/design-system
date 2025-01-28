@@ -68,7 +68,6 @@ export const InputComponent = React.forwardRef<
         [styles[`${baseClass}--focused`]]: isFocused,
         [styles[`${baseClass}--error`]]: error,
         [styles[`${baseClass}--crop`]]: cropOnBlur,
-        [styles[`${baseClass}--read-only`]]: computedReadOnly,
       },
       className
     );
@@ -105,7 +104,6 @@ export const InputComponent = React.forwardRef<
         {shouldRenderLeftIcon && renderIcon(icon, disabled)}
         <input
           {...inputProps}
-          readOnly={computedReadOnly}
           ref={innerRef}
           onFocus={(e) => {
             setIsFocused(true);

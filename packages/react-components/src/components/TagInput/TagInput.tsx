@@ -119,7 +119,6 @@ export const TagInput = <T extends TagInputValues>({
     onChange([...(tags || []), ...newTags] as T[]);
   };
 
-  // TODO test this with children??
   if (computedReadOnly) {
     return (
       <ReadOnlyText

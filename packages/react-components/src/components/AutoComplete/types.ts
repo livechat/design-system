@@ -32,6 +32,8 @@ export interface AutoCompleteProps extends Omit<IInputProps, 'type'> {
   single?: boolean;
   /** If true, the option list will be hidden if there is only one option and it is an exact match to the input value. */
   hideIfExactMatch?: boolean;
-  /** Text to display if there is no data */
+  /**
+   * Set the text to display with read-only state when there is no data. Default to 'No data'
+   */
   noDataFallbackText?: string;
 }

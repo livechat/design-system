@@ -44,7 +44,7 @@ export interface TagInputProps<T>
    */
   addOnBlur?: boolean;
   /**
-   * Set the no data fallback text
+   * Set the text to display with read-only state when there is no data. Default to 'No data'
    */
   noDataFallbackText?: string;
 }
