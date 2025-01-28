@@ -20,6 +20,12 @@ const DEFAULT_PICKER_OPTIONS = [
   { key: 'two', name: 'Option two' },
   { key: 'three', name: 'Option three' },
   { key: 'groupB', name: 'Group B title header', groupHeader: true },
+  { key: 'four', name: 'Option four' },
+  { key: 'five', name: 'Option five' },
+  { key: 'six', name: 'Option six' },
+  { key: 'seven', name: 'Option seven' },
+  { key: 'eight', name: 'Option eight' },
+  { key: 'nine', name: 'Option nine' },
 ];
 
 export default {
@@ -143,6 +149,19 @@ const ReadOnlyTemplate: StoryFn<FormFieldProps> = (args) => (
             selected={DEFAULT_PICKER_OPTIONS.slice(0, 3)}
           />
         </FormFieldComponent>
+      </StoryDescriptor>
+      <StoryDescriptor title="WithPickerWithExampleWidthContstraints">
+        <div
+          style={{ width: '200px', padding: '10px', border: '1px solid gray' }}
+        >
+          <FormFieldComponent {...args}>
+            <Picker
+              onSelect={() => {}}
+              options={DEFAULT_PICKER_OPTIONS}
+              selected={DEFAULT_PICKER_OPTIONS.slice(0, 9)}
+            />
+          </FormFieldComponent>
+        </div>
       </StoryDescriptor>
       <StoryDescriptor title="WithTagInput">
         <FormFieldComponent {...args}>

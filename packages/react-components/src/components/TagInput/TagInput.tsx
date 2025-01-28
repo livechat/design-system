@@ -119,10 +119,19 @@ export const TagInput = <T extends TagInputValues>({
     onChange([...(tags || []), ...newTags] as T[]);
   };
 
+  // TODO test this with children??
   if (computedReadOnly) {
     return (
       <ReadOnlyText
-        value={tags?.filter(Boolean).join(', ')}
+        value={tags
+          ?.filter(Boolean)
+          .map((tag) =>
+            typeof tag === 'string'
+              ? tag
+              : tag.value ||
+                (typeof tag.children === 'string' ? tag.children : '')
+          )
+          .join(', ')}
         noDataFallbackText={noDataFallbackText}
       />
     );
