@@ -1,0 +1,46 @@
+$base-class: 'user-guide-bubble-step';
+
+.#{$base-class} {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  gap: 1px;
+  width: 340px;
+  color: var(--content-basic-primary);
+
+  &__bubble {
+    opacity: 0;
+    border-radius: var(--radius-4);
+    background: linear-gradient(45deg, #cddef9, #e7e5fd, #f9f2ff);
+    padding: var(--radius-4);
+    width: fit-content;
+    min-height: 53px;
+    animation-name: fade-in;
+    animation-duration: var(--transition-duration-moderate-2);
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+
+    &--header {
+      display: flex;
+      flex-direction: row;
+      gap: var(--spacing-2);
+      align-items: center;
+    }
+
+    &--cta {
+      display: flex;
+      gap: var(--spacing-2);
+      justify-content: space-between;
+    }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

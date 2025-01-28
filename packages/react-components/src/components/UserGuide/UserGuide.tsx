@@ -19,23 +19,25 @@ const virtualReference = (element: Element, padding: number = 0) =>
 export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
   className,
   children,
-  cursorPosition = 'bottom',
+  cursorPosition = 'bottom-start',
   cursorTiming = 'fast2',
   parentElementName,
   isVisible = false,
   elementStyles,
   zIndex,
   isFirstStep,
-  isLastStep
+  isLastStep,
 }) => {
   const [parentElement, setParentElement] = useState<Element | null>(null);
   const [rect, setRect] = useState<DOMRect | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const cursorPlacement =
+    isFirstStep || isLastStep ? 'bottom-start' : cursorPosition;
 
   const { refs, x, y, strategy, placement, update } = useFloating({
     middleware: [shift(), flip()],
-    placement: cursorPosition,
+    placement: cursorPlacement,
     open: true,
     whileElementsMounted: autoUpdate,
   });
@@ -137,23 +139,15 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
         }}
       >
         {parentElement && cloneReferenceElement()}
-        {(isFirstStep || isLastStep) && (
-          <div 
-            key={isFirstStep ? 'user-guide-first-step' : 'user-guide-last-step'}
-            className={styles[`${baseClass}__overlay__content`]}
-          >
-            {children}
-          </div>
-        )}
       </div>
-      {isVisible && rect && !isFirstStep && !isLastStep && (
+      {isVisible && (
         <FloatingPortal>
           <div
             ref={refs.setFloating}
             style={{
               position: strategy,
-              top: y === 0 ? '50%' : y,
-              left: x === 0 ? '50%' : x,
+              top: isFirstStep || isLastStep ? '40%' : y,
+              left: isFirstStep || isLastStep ? '45%' : x,
             }}
             className={cx(
               styles[`${baseClass}__floating`],
@@ -161,8 +155,8 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
               className
             )}
           >
-            <div 
-              ref={contentRef} 
+            <div
+              ref={contentRef}
               className={cx(
                 styles[`${baseClass}__guide`],
                 styles[`${baseClass}__guide--${placement}`]

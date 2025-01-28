@@ -1,15 +1,14 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect } from 'react';
 
-import { Button } from '../../Button';
-import { Text } from '../../Typography';
+import { Button } from '../../../Button';
+import { Text } from '../../../Typography';
+import { AnimatedTextContainer } from '../AnimatedTextContainer/AnimatedTextContainer';
 
 import { IUserGuideStepProps } from './types';
 
 import styles from './UserGuideStep.module.scss';
 
 const baseClass = 'user-guide-step';
-const TYPING_SPEED = 10;
-const TYPING_DELAY = 800;
 
 export const UserGuideStep: FC<IUserGuideStepProps> = ({
   header,
@@ -22,35 +21,6 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
   handleCloseAction,
   handleClickPrimary,
 }) => {
-  const [displayedText, setDisplayedText] = useState('');
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    if (!text || !typingAnimation) return;
-
-    const startTyping = () => {
-      const interval = setInterval(() => {
-        setIndex((prevIndex) => {
-          if (prevIndex < text.length) {
-            setDisplayedText((prevText) => prevText + text[prevIndex]);
-
-            return prevIndex + 1;
-          } else {
-            clearInterval(interval);
-
-            return prevIndex;
-          }
-        });
-      }, TYPING_SPEED);
-    };
-
-    const timeout = setTimeout(startTyping, TYPING_DELAY);
-
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [text]);
-
   useEffect(() => {
     if (handleCloseAction) {
       document.addEventListener('keydown', handleCloseAction);
@@ -97,7 +67,7 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
         as="span"
         className={styles[`${baseClass}__content`]}
       >
-        {typingAnimation ? displayedText : text}
+        <AnimatedTextContainer text={text} typingAnimation={typingAnimation} />
       </Text>
       <div className={styles[`${baseClass}__footer`]}>
         <Button

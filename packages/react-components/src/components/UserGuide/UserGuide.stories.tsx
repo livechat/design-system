@@ -25,7 +25,7 @@ import { Icon } from '../Icon';
 import { ProductSwitcher, useProductSwitcher } from '../ProductSwitcher';
 import { Tooltip } from '../Tooltip';
 
-import { UserGuideStep } from './components/UserGuideStep';
+import { UserGuideBubbleStep, UserGuideStep } from './components';
 import beautifulImage from './placeholder.png';
 import { AppContent } from './stories-helpers';
 import { CursorTiming } from './types';
@@ -230,7 +230,7 @@ const defaultImage =
 export const Example = (): ReactElement => {
   const [activeItem, setActiveItem] = useState('archives');
   const [activeSubItem, setActiveSubItem] = useState(0);
-  const [topBarVisible, setTopBarVisible] = useState(true);
+  const [topBarVisible] = useState(true);
   const [visibleAlert, setVisibleAlert] = useState<number | null>(0);
 
   const { products } = useProductSwitcher({
@@ -288,6 +288,7 @@ export const Example = (): ReactElement => {
         ...state,
         reference: 'first-step',
         isVisible: true,
+        cursorPosition: 'right-end',
       };
     }
     if (action.type === 'last-step') {
@@ -370,10 +371,9 @@ export const Example = (): ReactElement => {
     }
     if (action.type === 'isVisible') {
       return {
-        reference: 'home',
+        reference: 'firs-step',
         isVisible: !state.isVisible,
-        cursorPosition: 'right-start',
-        cursorTiming: 'moderate2',
+        cursorPosition: 'right-end',
       };
     }
 
@@ -490,145 +490,173 @@ export const Example = (): ReactElement => {
           ) : null
         }
       >
-        <AppContent onStartGuideClick={() => dispatch({ type: 'first-step' })} />
+        <AppContent
+          onStartGuideClick={() => dispatch({ type: 'first-step' })}
+        />
       </AppFrame>
-      <UserGuide
-        isVisible={state.isVisible}
-        parentElementName={`#${state.reference}`}
-        cursorPosition={state.cursorPosition as Placement}
-        cursorTiming={state.cursorTiming as CursorTiming}
-        elementStyles={state.elementStyles}
-        isFirstStep={state.reference === 'first-step'}
-        isLastStep={state.reference === 'last-step'}
-      >
-        {state.reference === 'first-step' ? (
-          <UserGuideStep
-            header="This is the first step"
-            text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
-            typingAnimation
-            currentStep={1}
-            stepMax={11}
-            handleClickPrimary={() => dispatch({ type: 'home' })}
-            handleCloseAction={() => dispatch({ type: 'isVisible' })}
-          />
-        ) : null}
+      {state.isVisible && (
+        <UserGuide
+          isVisible={state.isVisible}
+          parentElementName={`#${state.reference}`}
+          cursorPosition={state.cursorPosition as Placement}
+          cursorTiming={state.cursorTiming as CursorTiming}
+          elementStyles={state.elementStyles}
+          isFirstStep={state.reference === 'first-step'}
+          isLastStep={state.reference === 'last-step'}
+        >
+          {state.reference === 'first-step' ? (
+            <UserGuideBubbleStep
+              headerMessage="Welcome to chats section"
+              headerIcon={<Icon source={Icons.OneColored} />}
+              message="We have prepared the playground ready for you to test all capabilities of chat section. If you have any question, just trigger me from the upper -right corner of the screen!"
+              cta={
+                <>
+                  <Button
+                    kind="high-contrast"
+                    onClick={() => dispatch({ type: 'home' })}
+                  >
+                    Let's dive in
+                  </Button>
+                  <Button
+                    kind="plain"
+                    onClick={() => dispatch({ type: 'isVisible' })}
+                  >
+                    Maybe later
+                  </Button>
+                </>
+              }
+            />
+          ) : null}
 
-        {state.reference === 'last-step' ? (
-          <UserGuideStep
-            header="This is the last step"
-            text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
-            typingAnimation
-            currentStep={11}
-            stepMax={11}
-            handleClickPrimary={() => dispatch({ type: 'isVisible' })}
-            handleCloseAction={() => dispatch({ type: 'isVisible' })}
-          />
-        ) : null}
+          {state.reference === 'last-step' ? (
+            <UserGuideBubbleStep
+              headerMessage="Thanks for joining my tour"
+              headerIcon={<Icon source={Icons.OneColored} />}
+              message="We have prepared the playground ready for you to test all capabilities of chat section. If you have any question, just trigger me from the upper -right corner of the screen!"
+              cta={
+                <>
+                  <Button
+                    kind="high-contrast"
+                    onClick={() => dispatch({ type: 'isVisible' })}
+                  >
+                    Finish
+                  </Button>
+                  <Button
+                    kind="plain"
+                    onClick={() => dispatch({ type: 'first-step' })}
+                  >
+                    Start again
+                  </Button>
+                </>
+              }
+            />
+          ) : null}
 
-        {state.reference === 'home' ? (
-          <UserGuideStep
-            header="This is navigation item"
-            text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
-            typingAnimation
-            currentStep={2}
-            stepMax={11}
-            handleClickPrimary={() => dispatch({ type: 'archives' })}
-            handleCloseAction={() => dispatch({ type: 'isVisible' })}
-          />
-        ) : null}
+          {state.reference === 'home' ? (
+            <UserGuideStep
+              header="This is navigation item"
+              text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
+              typingAnimation
+              currentStep={1}
+              stepMax={9}
+              handleClickPrimary={() => dispatch({ type: 'archives' })}
+              handleCloseAction={() => dispatch({ type: 'isVisible' })}
+            />
+          ) : null}
 
-        {state.reference === 'archives' ? (
-          <UserGuideStep
-            header="This is selected navigation item"
-            text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
-            typingAnimation
-            currentStep={3}
-            stepMax={11}
-            handleClickPrimary={() => dispatch({ type: 'user' })}
-            handleCloseAction={() => dispatch({ type: 'isVisible' })}
-          />
-        ) : null}
+          {state.reference === 'archives' ? (
+            <UserGuideStep
+              header="This is selected navigation item"
+              text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
+              typingAnimation
+              currentStep={2}
+              stepMax={9}
+              handleClickPrimary={() => dispatch({ type: 'user' })}
+              handleCloseAction={() => dispatch({ type: 'isVisible' })}
+            />
+          ) : null}
 
-        {state.reference === 'user' ? (
-          <UserGuideStep
-            header="This is user button"
-            text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
-            typingAnimation
-            currentStep={4}
-            stepMax={11}
-            handleClickPrimary={() => dispatch({ type: 'chat-list-column' })}
-            handleCloseAction={() => dispatch({ type: 'isVisible' })}
-          />
-        ) : null}
+          {state.reference === 'user' ? (
+            <UserGuideStep
+              header="This is user button"
+              text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
+              typingAnimation
+              currentStep={3}
+              stepMax={9}
+              handleClickPrimary={() => dispatch({ type: 'chat-list-column' })}
+              handleCloseAction={() => dispatch({ type: 'isVisible' })}
+            />
+          ) : null}
 
-        {state.reference === 'chat-list-column' ? (
-          <UserGuideStep
-            header="This is chat list column"
-            text="Some text, maximum 210 characters."
-            currentStep={5}
-            stepMax={11}
-            handleClickPrimary={() => dispatch({ type: 'text-area' })}
-            handleCloseAction={() => dispatch({ type: 'isVisible' })}
-          />
-        ) : null}
+          {state.reference === 'chat-list-column' ? (
+            <UserGuideStep
+              header="This is chat list column"
+              text="Some text, maximum 210 characters."
+              currentStep={4}
+              stepMax={9}
+              handleClickPrimary={() => dispatch({ type: 'text-area' })}
+              handleCloseAction={() => dispatch({ type: 'isVisible' })}
+            />
+          ) : null}
 
-        {state.reference === 'text-area' ? (
-          <UserGuideStep
-            header="This is text area component"
-            text="Some text, maximum 210 characters."
-            currentStep={6}
-            stepMax={11}
-            handleClickPrimary={() => dispatch({ type: 'action-bar-area' })}
-            handleCloseAction={() => dispatch({ type: 'isVisible' })}
-          />
-        ) : null}
+          {state.reference === 'text-area' ? (
+            <UserGuideStep
+              header="This is text area component"
+              text="Some text, maximum 210 characters."
+              currentStep={5}
+              stepMax={9}
+              handleClickPrimary={() => dispatch({ type: 'action-bar-area' })}
+              handleCloseAction={() => dispatch({ type: 'isVisible' })}
+            />
+          ) : null}
 
-        {state.reference === 'action-bar-area' ? (
-          <UserGuideStep
-            header="This is action bar component"
-            text="Some text, maximum 210 characters."
-            currentStep={7}
-            stepMax={11}
-            handleClickPrimary={() => dispatch({ type: 'one' })}
-            handleCloseAction={() => dispatch({ type: 'isVisible' })}
-          />
-        ) : null}
+          {state.reference === 'action-bar-area' ? (
+            <UserGuideStep
+              header="This is action bar component"
+              text="Some text, maximum 210 characters."
+              currentStep={6}
+              stepMax={9}
+              handleClickPrimary={() => dispatch({ type: 'one' })}
+              handleCloseAction={() => dispatch({ type: 'isVisible' })}
+            />
+          ) : null}
 
-        {state.reference === 'one' ? (
-          <UserGuideStep
-            header="This is action bar button"
-            text="Some text, maximum 210 characters."
-            currentStep={8}
-            stepMax={11}
-            handleClickPrimary={() =>
-              dispatch({ type: 'action-bar-area-menu-button' })
-            }
-            handleCloseAction={() => dispatch({ type: 'isVisible' })}
-          />
-        ) : null}
+          {state.reference === 'one' ? (
+            <UserGuideStep
+              header="This is action bar button"
+              text="Some text, maximum 210 characters."
+              currentStep={7}
+              stepMax={9}
+              handleClickPrimary={() =>
+                dispatch({ type: 'action-bar-area-menu-button' })
+              }
+              handleCloseAction={() => dispatch({ type: 'isVisible' })}
+            />
+          ) : null}
 
-        {state.reference === 'action-bar-area-menu-button' ? (
-          <UserGuideStep
-            header="This is action bar menu trigger button"
-            text="Some text, maximum 210 characters."
-            currentStep={9}
-            stepMax={11}
-            handleClickPrimary={() => dispatch({ type: 'accordion' })}
-            handleCloseAction={() => dispatch({ type: 'isVisible' })}
-          />
-        ) : null}
+          {state.reference === 'action-bar-area-menu-button' ? (
+            <UserGuideStep
+              header="This is action bar menu trigger button"
+              text="Some text, maximum 210 characters."
+              currentStep={8}
+              stepMax={9}
+              handleClickPrimary={() => dispatch({ type: 'accordion' })}
+              handleCloseAction={() => dispatch({ type: 'isVisible' })}
+            />
+          ) : null}
 
-        {state.reference === 'accordion' ? (
-          <UserGuideStep
-            header="This is accordion component"
-            text="Some text, maximum 210 characters."
-            currentStep={10}
-            stepMax={11}
-            handleClickPrimary={() => dispatch({ type: 'last-step' })}
-            handleCloseAction={() => dispatch({ type: 'isVisible' })}
-          />
-        ) : null}
-      </UserGuide>
+          {state.reference === 'accordion' ? (
+            <UserGuideStep
+              header="This is accordion component"
+              text="Some text, maximum 210 characters."
+              currentStep={9}
+              stepMax={9}
+              handleClickPrimary={() => dispatch({ type: 'last-step' })}
+              handleCloseAction={() => dispatch({ type: 'isVisible' })}
+            />
+          ) : null}
+        </UserGuide>
+      )}
     </>
   );
 };
