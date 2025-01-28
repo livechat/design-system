@@ -119,18 +119,14 @@ export const TagInput = <T extends TagInputValues>({
     onChange([...(tags || []), ...newTags] as T[]);
   };
 
+  const getTagValue = (tag: T): string => {
+    if (typeof tag === 'string') return tag;
+    return tag.value || (typeof tag.children === 'string' ? tag.children : '');
+  };
   if (computedReadOnly) {
     return (
       <ReadOnlyText
-        value={tags
-          ?.filter(Boolean)
-          .map((tag) =>
-            typeof tag === 'string'
-              ? tag
-              : tag.value ||
-                (typeof tag.children === 'string' ? tag.children : '')
-          )
-          .join(', ')}
+        value={tags?.filter(Boolean).map(getTagValue).join(', ')}
         noDataFallbackText={noDataFallbackText}
       />
     );

@@ -21,12 +21,8 @@ export const ReadOnlyText = ({
   const { setIsEmpty } = useReadOnlyFormFieldContext();
 
   useEffect(() => {
-    if (!value) {
-      setIsEmpty(true);
-    } else {
-      setIsEmpty(false);
-    }
-  }, [value]);
+    setIsEmpty(!value);
+  }, [value, setIsEmpty]);
 
   return (
     <Text
