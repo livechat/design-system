@@ -4,6 +4,7 @@ import { Meta, StoryFn } from '@storybook/react';
 import { ReadOnlyFormFieldContextProvider } from '../../providers/ReadOnlyFormFieldProvider';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { AutoComplete } from '../AutoComplete';
+import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
 import { Input, InputPromo } from '../Input';
 import { IInputProps } from '../Input/types';
@@ -188,6 +189,13 @@ const ReadOnlyTemplate: StoryFn<FormFieldProps> = (args) => (
             options={['option1', 'option2', 'option3']}
             value="option2"
           />
+        </FormFieldComponent>
+      </StoryDescriptor>
+      <StoryDescriptor title="WithCheckbox">
+        <FormFieldComponent {...args}>
+          <Checkbox checked description="Checkbox description">
+            Checkbox label
+          </Checkbox>
         </FormFieldComponent>
       </StoryDescriptor>
     </div>
