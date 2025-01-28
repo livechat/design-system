@@ -139,7 +139,11 @@ const FormFieldContent: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
                 }}
               >
                 <label
-                  className={styles[`${baseClass}__label-left-node`]}
+                  className={cx(
+                    styles[`${baseClass}__label-left-node`],
+                    readOnly &&
+                      styles[`${baseClass}__label-left-node--read-only`]
+                  )}
                   htmlFor={labelFor}
                 >
                   <Text
