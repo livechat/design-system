@@ -20,6 +20,8 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   label,
   rightNode,
   className,
+  labelClassName,
+  labelWrapperClassName,
   children,
   isCollapsible,
   onItemHover,
@@ -52,7 +54,7 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
 
     const listElements = children as React.ReactElement[];
     const hasListActiveElements = !!listElements?.some(
-      (el) => el.props?.isActive
+      (el) => el?.props?.isActive
     );
 
     setHasActiveElements(hasListActiveElements);
@@ -83,7 +85,10 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
             </div>
           }
           label={
-            <Text className={styles[`${baseClass}__label`]} bold>
+            <Text
+              className={cx(styles[`${baseClass}__label`], labelClassName)}
+              bold
+            >
               {localLabel}
             </Text>
           }
@@ -91,15 +96,28 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
           onClick={toggle}
           onItemHover={onItemHover}
           rightNode={localRightNode}
+          className={labelWrapperClassName}
         />
       ) : (
-        <Text
-          bold
-          className={styles[`${baseClass}__simple-label`]}
-          onMouseEnter={onItemHover || noop}
+        <span
+          className={cx(
+            styles[`${baseClass}__simple-label-wrapper`],
+            labelWrapperClassName
+          )}
         >
-          {localLabel}
-        </Text>
+          <Text
+            bold
+            className={cx(styles[`${baseClass}__simple-label`], labelClassName)}
+            onMouseEnter={onItemHover || noop}
+          >
+            {localLabel}
+          </Text>
+          {localRightNode && (
+            <span className={styles[`${baseClass}__right-node`]}>
+              {localRightNode}
+            </span>
+          )}
+        </span>
       )}
 
       <div

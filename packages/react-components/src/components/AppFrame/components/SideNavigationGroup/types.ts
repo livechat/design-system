@@ -12,7 +12,7 @@ export interface ISideNavigationGroupProps extends ComponentCoreProps {
    */
   label?: React.ReactNode | ((isOpen: boolean) => React.ReactNode);
   /**
-   * The right node of the side navigation list if `isCollapsible` is set to true
+   * The right node of the side navigation list
    */
   rightNode?: React.ReactNode | ((isOpen: boolean) => React.ReactNode);
   /**
@@ -27,4 +27,12 @@ export interface ISideNavigationGroupProps extends ComponentCoreProps {
    * Specify whether the list should be open on the first render
    */
   shouldOpenOnInit?: boolean;
+  /**
+   * The CSS class name for the label
+   */
+  labelClassName?: string;
+  /**
+   * The CSS class name for the label wrapper
+   */
+  labelWrapperClassName?: string;
 }

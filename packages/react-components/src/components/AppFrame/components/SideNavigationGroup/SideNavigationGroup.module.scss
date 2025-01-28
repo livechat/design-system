@@ -21,6 +21,16 @@ $transition: all var(--transition-duration-fast-2) ease-in-out;
     text-wrap: nowrap;
   }
 
+  &__simple-label-wrapper {
+    display: flex;
+    gap: var(--spacing-2);
+    align-items: center;
+    align-self: stretch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+  }
+
   &__simple-label {
     margin: 0;
     padding: 0 var(--spacing-3);
@@ -29,6 +39,11 @@ $transition: all var(--transition-duration-fast-2) ease-in-out;
     line-height: 32px;
     color: var(--content-locked-white);
     text-wrap: nowrap;
+  }
+
+  &__right-node {
+    display: inline-block;
+    flex-shrink: 0;
   }
 
   &__list-wrapper {
