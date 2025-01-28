@@ -10,6 +10,7 @@ import { Input, InputPromo } from '../Input';
 import { IInputProps } from '../Input/types';
 import { NumericInput } from '../NumericInput';
 import { Picker } from '../Picker';
+import { RadioButton } from '../RadioButton';
 import { TagInput } from '../TagInput';
 import { Textarea } from '../Textarea';
 
@@ -196,6 +197,13 @@ const ReadOnlyTemplate: StoryFn<FormFieldProps> = (args) => (
           <Checkbox checked description="Checkbox description">
             Checkbox label
           </Checkbox>
+        </FormFieldComponent>
+      </StoryDescriptor>
+      <StoryDescriptor title="WithRadioButton">
+        <FormFieldComponent {...args}>
+          <RadioButton checked description="RadioButton description">
+            RadioButton label
+          </RadioButton>
         </FormFieldComponent>
       </StoryDescriptor>
     </div>
