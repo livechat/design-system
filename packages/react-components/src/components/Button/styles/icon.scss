@@ -86,6 +86,14 @@
         }
       }
     }
+
+    &--plain {
+      @each $size-name, $values in $sizes {
+        &.#{$base-class}--#{$size-name} {
+          padding: 0;
+        }
+      }
+    }
   }
 
   &--bg {
