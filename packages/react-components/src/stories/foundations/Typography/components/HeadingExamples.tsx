@@ -8,14 +8,14 @@ export const HeadingExamples: React.FC = () => {
       <>
         <Heading size={size}>Heading {size.toUpperCase()}</Heading>
         {['2xs', '3xs'].includes(size) && (
-          <>
+          <React.Fragment key={size}>
             <Heading size={size} uppercase>
               Heading {size.toUpperCase()} with uppercase
             </Heading>
             <Heading size={size} uppercase bold>
               Heading {size.toUpperCase()} with uppercase and bold
             </Heading>
-          </>
+          </React.Fragment>
         )}
       </>
     );
