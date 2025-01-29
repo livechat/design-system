@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 @mixin icon-styles() {
   width: 20px;
   height: 20px;
@@ -20,17 +22,68 @@
 }
 
 @mixin icon-only($base-class) {
-  padding: 4px;
-
   &.#{$base-class} {
-    &--xcompact {
-      padding: 4px;
-      width: 24px;
-      height: 24px;
+    $sizes: (
+      'xcompact': (
+        'padding': 4px,
+        'size': 24px,
+        'icon-size': 16px,
+      ),
+      'compact': (
+        'padding': 6px,
+        'size': 32px,
+        'icon-size': 20px,
+      ),
+      'medium': (
+        'padding': var(--spacing-2),
+        'size': 36px,
+        'icon-size': 20px,
+      ),
+      'large': (
+        'padding': var(--spacing-3),
+        'size': 44px,
+        'icon-size': 20px,
+      ),
+    );
 
-      .#{$base-class}__icon {
-        width: 16px;
-        height: 16px;
+    @each $size-name, $values in $sizes {
+      &--#{$size-name} {
+        padding: map.get($values, 'padding');
+        width: map.get($values, 'size');
+        height: map.get($values, 'size');
+
+        .#{$base-class}__icon {
+          width: map.get($values, 'icon-size');
+          height: map.get($values, 'icon-size');
+        }
+      }
+    }
+
+    &--text-lock-black {
+      @each $size-name, $values in $sizes {
+        &.#{$base-class}--#{$size-name} {
+          padding: 0;
+          height: 24px;
+        }
+      }
+    }
+
+    &--link-light,
+    &--link-inverted {
+      @each $size-name, $values in $sizes {
+        &.#{$base-class}--#{$size-name} {
+          padding: 0;
+
+          @if $size-name == 'xcompact' {
+            width: 24px;
+            height: 24px;
+          }
+
+ @else {
+            width: 28px;
+            height: 28px;
+          }
+        }
       }
     }
   }
