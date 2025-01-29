@@ -13,6 +13,7 @@ const SIZE_TO_ELEMENT_MAP = {
   sm: 'h4',
   xs: 'h5',
   ['2xs']: 'h6',
+  // HTML only provides h1-h6 elements, so smaller heading sizes reuse h6
   ['3xs']: 'h6',
 };
 

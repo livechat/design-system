@@ -7,7 +7,7 @@ export const HeadingExamples: React.FC = () => {
     return (
       <>
         <Heading size={size}>Heading {size.toUpperCase()}</Heading>
-        {(size === '2xs' || size === '3xs') && (
+        {['2xs', '3xs'].includes(size) && (
           <>
             <Heading size={size} uppercase>
               Heading {size.toUpperCase()} with uppercase
