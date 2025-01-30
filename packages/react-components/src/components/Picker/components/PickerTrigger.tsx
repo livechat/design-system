@@ -25,6 +25,7 @@ export interface PickerTriggerProps {
   isOpen: boolean;
   onClear: () => void;
   setTriggerFocus: (v: boolean) => void;
+  onArrowClick: () => void;
 }
 
 const baseClass = 'picker-trigger';
@@ -46,6 +47,7 @@ export const PickerTrigger: React.FC<
   onClear,
   children,
   setTriggerFocus,
+  onArrowClick,
 }) => {
   const mergedClassNames = cx(
     styles[baseClass],
@@ -65,6 +67,11 @@ export const PickerTrigger: React.FC<
   const handleOnClearClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     onClear();
+  };
+
+  const handleArrowClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onArrowClick();
   };
 
   React.useEffect(() => {
@@ -111,12 +118,15 @@ export const PickerTrigger: React.FC<
             <Icon kind="primary" size="small" source={Close} />
           </div>
         )}
-        <Icon
-          className={styles[`${baseClass}__chevron-icon`]}
-          source={!isOpen ? ChevronDown : ChevronUp}
-          size="medium"
-          disabled={isDisabled}
-        />
+        <div onClick={handleArrowClick}>
+          <Icon
+            data-testid={`${baseClass}__chevron-icon`}
+            className={styles[`${baseClass}__chevron-icon`]}
+            source={!isOpen ? ChevronDown : ChevronUp}
+            size="medium"
+            disabled={isDisabled}
+          />
+        </div>
       </div>
     </button>
   );

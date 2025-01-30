@@ -145,6 +145,7 @@ export const Picker: React.FC<IPickerProps> = ({
         isMultiSelect={type === 'multi'}
         size={size}
         setTriggerFocus={setTriggerFocus}
+        onArrowClick={() => handleVisibilityChange(!isOpen)}
       >
         <PickerTriggerBody
           isOpen={isOpen}
