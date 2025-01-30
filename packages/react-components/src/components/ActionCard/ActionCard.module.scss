@@ -20,7 +20,7 @@ $base-class: 'action-card';
     border: 0;
     border-radius: var(--radius-4);
     background-color: var(--surface-secondary-disabled);
-    cursor: default !important;
+    cursor: default;
     width: 100%;
     min-height: 280px;
 
