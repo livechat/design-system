@@ -541,13 +541,19 @@ export const Example = (): ReactElement => {
                 <>
                   <Button
                     kind="high-contrast"
-                    onClick={() => dispatch({ type: 'isVisible' })}
+                    onClick={() => {
+                      dispatch({ type: 'isVisible' });
+                      setisCompleted(false);
+                    }}
                   >
                     Finish
                   </Button>
                   <Button
                     kind="plain"
-                    onClick={() => dispatch({ type: 'first-step' })}
+                    onClick={() => {
+                      dispatch({ type: 'first-step' });
+                      setisCompleted(false);
+                    }}
                   >
                     Start again
                   </Button>
