@@ -1,3 +1,5 @@
+@import '../../styles/animations';
+
 $base-class: 'action-card';
 
 @mixin verticalStyles {
@@ -13,6 +15,23 @@ $base-class: 'action-card';
 
 .main-wrapper {
   container-type: inline-size;
+
+  &.#{$base-class}--loading {
+    border: 0;
+    border-radius: var(--radius-4);
+    background-color: var(--surface-secondary-disabled);
+    cursor: default !important;
+    width: 100%;
+    min-height: 280px;
+
+    .#{$base-class} {
+      display: none;
+    }
+  }
+
+  &.#{$base-class}--loading--animated {
+    @include skeleton-loading;
+  }
 }
 
 .#{$base-class} {

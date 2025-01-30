@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+export type LoadingState = 'default' | 'animated' | 'none';
+
 export interface ActionCardProps {
   /**
    * The CSS class for main container
@@ -21,4 +23,12 @@ export interface ActionCardProps {
    * Optional handler called on card click
    */
   onClick?: () => void;
+  /**
+   * Specify if the card is in loading state
+   */
+  isLoading?: boolean;
+  /**
+   * Specify if the card is in animated loading state
+   */
+  isLoadingAnimated?: boolean;
 }
