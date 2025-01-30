@@ -1,22 +1,15 @@
-import { FC, useState, ReactElement, ReactNode, useEffect } from 'react';
+import { FC, useState, useEffect } from 'react';
 
 import cx from 'clsx';
 
 import { Text } from '../../../Typography';
 import { AnimatedTextContainer } from '../AnimatedTextContainer/AnimatedTextContainer';
 
+import { IUserGuideBubbleStepProps } from './types';
+
 import styles from './UserGuideBubbleStep.module.scss';
 
 const baseClass = 'user-guide-bubble-step';
-
-interface IUserGuideBubbleStepProps {
-  headerMessage: string;
-  headerIcon?: ReactElement;
-  message: string;
-  cta: ReactNode;
-  isCompleted?: boolean;
-  handleAnimationComplete?: () => void;
-}
 
 export const UserGuideBubbleStep: FC<IUserGuideBubbleStepProps> = ({
   headerMessage,

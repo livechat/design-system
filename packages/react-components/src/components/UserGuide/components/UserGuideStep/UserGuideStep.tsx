@@ -85,22 +85,24 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
           >
             {currentStep === stepMax ? 'Finish' : 'Next'}
           </Button>
-          <Text
-            as="span"
-            className={styles[`${baseClass}__footer__step-counter`]}
-          >
-            Step {currentStep} of {stepMax}
-          </Text>
-          {handleCloseAction && (
-            <Button
-              kind="plain"
-              size="large"
-              onClick={handleCloseAction}
-              className={styles[`${baseClass}__footer__button-close`]}
+          <span>
+            {handleCloseAction && (
+              <Button
+                kind="plain"
+                size="large"
+                onClick={handleCloseAction}
+                className={styles[`${baseClass}__footer__button-close`]}
+              >
+                Skip all
+              </Button>
+            )}
+            <Text
+              as="span"
+              className={styles[`${baseClass}__footer__step-counter`]}
             >
-              Skip all
-            </Button>
-          )}
+              Step {currentStep} of {stepMax}
+            </Text>
+          </span>
         </div>
       )}
     </div>

@@ -26,7 +26,6 @@ import { ProductSwitcher, useProductSwitcher } from '../ProductSwitcher';
 import { Tooltip } from '../Tooltip';
 
 import { UserGuideBubbleStep, UserGuideStep } from './components';
-import beautifulImage from './placeholder.png';
 import { AppContent } from './stories-helpers';
 import { CursorTiming } from './types';
 import { UserGuide } from './UserGuide';
@@ -49,151 +48,8 @@ export default {
     chromatic: { delay: 300 },
     layout: 'fullscreen',
   },
-  subcomponents: { UserGuideStep },
+  subcomponents: { UserGuideStep, UserGuideBubbleStep },
 } as Meta<typeof UserGuide>;
-
-export const Default = (): ReactElement => {
-  const reducer = (
-    state: {
-      isVisible: boolean;
-      reference: string;
-      cursorPosition?: string;
-      cursorTiming?: string;
-    },
-    action: { type: string }
-  ) => {
-    if (action.type === 'reference1') {
-      return {
-        ...state,
-        reference: 'reference1',
-        cursorPosition: 'left',
-        cursorTiming: 'moderate2',
-      };
-    }
-    if (action.type === 'reference2') {
-      return {
-        ...state,
-        reference: 'reference2',
-        cursorPosition: 'right-start',
-        cursorTiming: 'moderate2',
-      };
-    }
-    if (action.type === 'reference3') {
-      return {
-        ...state,
-        reference: 'reference3',
-        cursorPosition: 'left-end',
-        cursorTiming: 'moderate2',
-      };
-    }
-    if (action.type === 'isVisible') {
-      return {
-        reference: 'reference1',
-        isVisible: !state.isVisible,
-        cursorPosition: 'left',
-        cursorTiming: 'moderate2',
-      };
-    }
-
-    return state;
-  };
-
-  const [state, dispatch] = useReducer(reducer, {
-    reference: 'reference1',
-    isVisible: false,
-    cursorPosition: 'left',
-    cursorTiming: 'moderate2',
-  });
-
-  return (
-    <div className="simple-user-guide-container">
-      <Button onClick={() => dispatch({ type: 'isVisible' })}>
-        Start guide
-      </Button>
-      <div style={{ display: 'flex' }}>
-        <div style={{ marginTop: 300 }}>
-          <div
-            onClick={() => dispatch({ type: 'reference1' })}
-            id="reference1"
-            className="guide-reference"
-          >
-            Example reference 1
-          </div>
-        </div>
-        <div style={{ marginTop: 50 }}>
-          <div
-            onClick={() => dispatch({ type: 'reference2' })}
-            id="reference2"
-            className="guide-reference"
-          >
-            Example reference 2
-          </div>
-        </div>
-        <div style={{ marginTop: 500 }}>
-          <div
-            onClick={() => dispatch({ type: 'reference3' })}
-            id="reference3"
-            className="guide-reference"
-          >
-            Example reference 3
-          </div>
-        </div>
-
-        <UserGuide
-          isVisible={state.isVisible}
-          parentElementName={`#${state.reference}`}
-          cursorPosition={state.cursorPosition as Placement}
-          cursorTiming={state.cursorTiming as CursorTiming}
-        >
-          {state.reference === 'reference1' ? (
-            <UserGuideStep
-              header="Title text goes here"
-              text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
-              image={{
-                src: beautifulImage,
-                alt: 'image',
-              }}
-              currentStep={1}
-              stepMax={3}
-              handleClickPrimary={() => dispatch({ type: 'reference2' })}
-              handleCloseAction={() => dispatch({ type: 'isVisible' })}
-            />
-          ) : null}
-
-          {state.reference === 'reference2' ? (
-            <UserGuideStep
-              header="Title text goes here"
-              text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
-              image={{
-                src: beautifulImage,
-                alt: 'image',
-              }}
-              currentStep={2}
-              stepMax={3}
-              handleClickPrimary={() => dispatch({ type: 'reference3' })}
-              handleCloseAction={() => dispatch({ type: 'isVisible' })}
-            />
-          ) : null}
-
-          {state.reference === 'reference3' ? (
-            <UserGuideStep
-              header="Title text goes here"
-              text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
-              image={{
-                src: beautifulImage,
-                alt: 'image',
-              }}
-              currentStep={3}
-              stepMax={3}
-              handleClickPrimary={() => dispatch({ type: 'isVisible' })}
-              handleCloseAction={() => dispatch({ type: 'isVisible' })}
-            />
-          ) : null}
-        </UserGuide>
-      </div>
-    </div>
-  );
-};
 
 const navigationItems = [
   'home',
@@ -515,12 +371,14 @@ export const Example = (): ReactElement => {
                 <>
                   <Button
                     kind="high-contrast"
+                    size="large"
                     onClick={() => dispatch({ type: 'home' })}
                   >
                     Let's dive in
                   </Button>
                   <Button
                     kind="plain"
+                    size="large"
                     onClick={() => dispatch({ type: 'isVisible' })}
                   >
                     Maybe later
@@ -541,6 +399,7 @@ export const Example = (): ReactElement => {
                 <>
                   <Button
                     kind="high-contrast"
+                    size="large"
                     onClick={() => {
                       dispatch({ type: 'isVisible' });
                       setisCompleted(false);
@@ -550,6 +409,7 @@ export const Example = (): ReactElement => {
                   </Button>
                   <Button
                     kind="plain"
+                    size="large"
                     onClick={() => {
                       dispatch({ type: 'first-step' });
                       setisCompleted(false);
@@ -669,4 +529,43 @@ export const Example = (): ReactElement => {
       )}
     </>
   );
+};
+
+export const UserGuideStepExample = (): ReactElement => {
+  return (
+    <UserGuideStep
+      header="This is navigation item"
+      text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
+      currentStep={1}
+      stepMax={9}
+      handleClickPrimary={() => {}}
+      handleCloseAction={() => {}}
+    />
+  );
+};
+UserGuideStepExample.parameters = {
+  layout: 'cetered',
+};
+
+export const UserGuideBubbleStepExample = (): ReactElement => {
+  return (
+    <UserGuideBubbleStep
+      headerMessage="Welcome to chats section"
+      headerIcon={<Icon source={Icons.OneColored} />}
+      message="We have prepared the playground ready for you to test all capabilities of chat section. If you have any question, just trigger me from the upper -right corner of the screen!"
+      cta={
+        <>
+          <Button kind="high-contrast" size="large" onClick={() => {}}>
+            Let's dive in
+          </Button>
+          <Button kind="plain" size="large" onClick={() => {}}>
+            Maybe later
+          </Button>
+        </>
+      }
+    />
+  );
+};
+UserGuideBubbleStepExample.parameters = {
+  layout: 'cetered',
 };

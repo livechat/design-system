@@ -34,11 +34,17 @@ $base-class: 'user-guide-step';
     animation-fill-mode: forwards;
 
     &__step-counter {
+      white-space: nowrap;
       color: var(--content-basic-secondary);
     }
 
     &__button-primary {
       align-self: flex-end;
+    }
+
+    &__button-close {
+      margin-right: var(--spacing-1);
+      color: var(--content-basic-secondary);
     }
   }
 }
