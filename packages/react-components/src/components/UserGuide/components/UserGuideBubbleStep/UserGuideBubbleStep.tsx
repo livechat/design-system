@@ -1,4 +1,4 @@
-import { FC, useState, ReactElement, ReactNode } from 'react';
+import { FC, useState, ReactElement, ReactNode, useEffect } from 'react';
 
 import cx from 'clsx';
 
@@ -13,7 +13,9 @@ interface IUserGuideBubbleStepProps {
   headerMessage: string;
   headerIcon?: ReactElement;
   message: string;
-  cta?: ReactNode;
+  cta: ReactNode;
+  isCompleted?: boolean;
+  handleAnimationComplete?: () => void;
 }
 
 export const UserGuideBubbleStep: FC<IUserGuideBubbleStepProps> = ({
@@ -21,67 +23,101 @@ export const UserGuideBubbleStep: FC<IUserGuideBubbleStepProps> = ({
   headerIcon,
   message,
   cta,
+  isCompleted,
+  handleAnimationComplete,
 }) => {
   const [visibleBubbles, setVisibleBubbles] = useState<string[]>(['header']);
+  const isHeaderVisible = visibleBubbles.includes('header');
   const isMessageVisible = visibleBubbles.includes('message');
   const isCtaVisisble = cta && visibleBubbles.includes('cta');
 
+  useEffect(() => {
+    if (visibleBubbles.length === 3) {
+      handleAnimationComplete && handleAnimationComplete();
+    }
+  }, [visibleBubbles]);
+
   return (
     <div className={styles[`${baseClass}`]}>
-      {visibleBubbles.includes('header') && (
+      {isHeaderVisible && (
         <div
-          className={cx(
-            styles[`${baseClass}__bubble`],
-            styles[`${baseClass}__bubble--header`],
-            {
-              [styles[`${baseClass}__bubble--next-msg`]]: isMessageVisible,
-            }
-          )}
+          className={cx(styles[`${baseClass}__bubble-wrapper`], {
+            [styles[`${baseClass}__bubble-wrapper--completed`]]: isCompleted,
+          })}
         >
-          {headerIcon && (
-            <div className={styles[`${baseClass}__bubble__icon`]}>
-              {headerIcon}
-            </div>
-          )}
-          <Text as="span">
-            <AnimatedTextContainer
-              text={headerMessage}
-              typingAnimation
-              onTypingEnd={() =>
-                setVisibleBubbles([...visibleBubbles, 'message'])
+          <div
+            className={cx(
+              styles[`${baseClass}__bubble`],
+              styles[`${baseClass}__bubble--header`],
+              {
+                [styles[`${baseClass}__bubble--next-msg`]]: isMessageVisible,
+                [styles[`${baseClass}__bubble--completed`]]: isCompleted,
               }
-            />
-          </Text>
+            )}
+          >
+            {headerIcon && (
+              <div className={styles[`${baseClass}__bubble__icon`]}>
+                {headerIcon}
+              </div>
+            )}
+            <Text as="span">
+              <AnimatedTextContainer
+                text={headerMessage}
+                typingAnimation
+                onTypingEnd={() =>
+                  setVisibleBubbles([...visibleBubbles, 'message'])
+                }
+              />
+            </Text>
+          </div>
         </div>
       )}
       {isMessageVisible && (
         <div
-          className={cx(
-            styles[`${baseClass}__bubble`],
-            styles[`${baseClass}__bubble--message`],
-            {
-              [styles[`${baseClass}__bubble--next-msg`]]: isCtaVisisble,
-            }
-          )}
+          className={cx(styles[`${baseClass}__bubble-wrapper`], {
+            [styles[`${baseClass}__bubble-wrapper--completed`]]: isCompleted,
+          })}
         >
-          <Text as="span">
-            <AnimatedTextContainer
-              text={message}
-              typingAnimation
-              typingDelay={0}
-              onTypingEnd={() => setVisibleBubbles([...visibleBubbles, 'cta'])}
-            />
-          </Text>
+          <div
+            className={cx(
+              styles[`${baseClass}__bubble`],
+              styles[`${baseClass}__bubble--message`],
+              {
+                [styles[`${baseClass}__bubble--next-msg`]]: isCtaVisisble,
+                [styles[`${baseClass}__bubble--completed`]]: isCompleted,
+              }
+            )}
+          >
+            <Text as="span">
+              <AnimatedTextContainer
+                text={message}
+                typingAnimation
+                typingDelay={0}
+                onTypingEnd={() =>
+                  setVisibleBubbles([...visibleBubbles, 'cta'])
+                }
+              />
+            </Text>
+          </div>
         </div>
       )}
       {isCtaVisisble && (
         <div
-          className={cx(
-            styles[`${baseClass}__bubble`],
-            styles[`${baseClass}__bubble--cta`]
-          )}
+          className={cx(styles[`${baseClass}__bubble-wrapper`], {
+            [styles[`${baseClass}__bubble-wrapper--completed`]]: isCompleted,
+          })}
         >
-          {cta}
+          <div
+            className={cx(
+              styles[`${baseClass}__bubble`],
+              styles[`${baseClass}__bubble--cta`],
+              {
+                [styles[`${baseClass}__bubble--completed`]]: isCompleted,
+              }
+            )}
+          >
+            {cta}
+          </div>
         </div>
       )}
     </div>

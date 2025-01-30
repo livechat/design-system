@@ -385,6 +385,8 @@ export const Example = (): ReactElement => {
     isVisible: false,
   });
 
+  const [isCompleted, setisCompleted] = useState(false);
+
   return (
     <>
       <AppFrame
@@ -530,6 +532,8 @@ export const Example = (): ReactElement => {
 
           {state.reference === 'last-step' ? (
             <UserGuideBubbleStep
+              isCompleted={isCompleted}
+              handleAnimationComplete={() => setisCompleted(true)}
               headerMessage="Thanks for joining my tour"
               headerIcon={<Icon source={Icons.OneColored} />}
               message="We have prepared the playground ready for you to test all capabilities of chat section. If you have any question, just trigger me from the upper -right corner of the screen!"

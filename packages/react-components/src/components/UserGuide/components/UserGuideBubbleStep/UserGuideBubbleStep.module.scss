@@ -8,18 +8,60 @@ $base-class: 'user-guide-bubble-step';
   width: 340px;
   color: var(--content-basic-primary);
 
+  &__bubble-wrapper {
+    position: relative;
+    width: fit-content;
+
+    &::before {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      border-radius: var(--radius-4);
+      box-shadow: var(--shadow-modal);
+      content: '';
+    }
+
+    &--completed {
+      &::before {
+        animation-name: shadow-glow;
+        animation-duration: var(--transition-duration-slow-2);
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+      }
+    }
+  }
+
   &__bubble {
+    position: relative;
     transition: border-radius var(--transition-duration-fast-1) ease-in-out;
     opacity: 0;
+    z-index: 1;
     border-radius: var(--radius-4);
     background: linear-gradient(45deg, #cddef9, #e7e5fd, #f9f2ff);
     padding: var(--radius-4);
     width: fit-content;
     min-height: 53px;
+    overflow: hidden;
     animation-name: fade-in;
     animation-duration: var(--transition-duration-moderate-2);
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
+
+    &--completed {
+      &::after {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        z-index: -1;
+        background: linear-gradient(95deg, #ffe9bc 0%, #fffdf8 111.28%);
+        animation-name: background-glow;
+        animation-duration: 3s;
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-fill-mode: forwards;
+        content: '';
+      }
+    }
 
     &--next-msg {
       border-bottom-left-radius: 0;
@@ -42,6 +84,42 @@ $base-class: 'user-guide-bubble-step';
       justify-content: space-between;
       border-top-left-radius: 0;
     }
+  }
+}
+
+@keyframes shadow-glow {
+  0% {
+    box-shadow: var(--shadow-modal);
+  }
+
+  50% {
+    box-shadow: var(--shadow-tour-animation);
+  }
+
+  100% {
+    box-shadow: var(--shadow-modal);
+  }
+}
+
+@keyframes background-glow {
+  0% {
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
   }
 }
 
