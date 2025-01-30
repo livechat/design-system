@@ -53,9 +53,13 @@ export const ActionCard: FC<PropsWithChildren<ActionCardProps>> = ({
 
   return (
     <div className={wrapperClassNames}>
+      <div aria-live="polite" className={styles['visually-hidden']}>
+        {isLoading ? 'Loading content' : null}
+      </div>
       <div
         role={isLoading ? 'presentation' : 'button'}
         aria-label="Action Card"
+        aria-busy={isLoading}
         tabIndex={isLoading ? -1 : 0}
         className={mergedClassNames}
         onClick={handleOnClick}
