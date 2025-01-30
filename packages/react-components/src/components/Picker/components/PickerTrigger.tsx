@@ -69,7 +69,7 @@ export const PickerTrigger: React.FC<
     onClear();
   };
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = () => {
     if (!isDisabled) {
       onToggle();
     }
