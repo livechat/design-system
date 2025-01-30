@@ -42,6 +42,8 @@ export const IconsData: Record<IconName, IconGroup> = {
   CaretDownFilled: IconGroup.Arrows,
   CaretUp: IconGroup.Arrows,
   CaretUpFilled: IconGroup.Arrows,
+  ArrowsDiagonalMinimize: IconGroup.Arrows,
+  ArrowsDiagonal: IconGroup.Arrows,
 
   //FileType
   FiletypeExe: IconGroup.FileType,
@@ -457,6 +459,9 @@ export const IconsData: Record<IconName, IconGroup> = {
   TrendingUp: IconGroup.General,
   ZoomIn: IconGroup.General,
   ZoomOut: IconGroup.General,
+  LayoutSidebarLeft: IconGroup.General,
+  SquareRoundedPlusFilled: IconGroup.General,
+  SquareRoundedPlus: IconGroup.General,
 
   //Brands
   ChipCopilotColored: IconGroup.Brands,
@@ -527,12 +532,8 @@ export const IconsData: Record<IconName, IconGroup> = {
   Hubspot: IconGroup.Brands,
   Stripe: IconGroup.Brands,
   Mailchimp: IconGroup.Brands,
-  LayoutSidebarLeft: IconGroup.General,
+  WhatsAppColored: IconGroup.Brands,
   TextAccounts: IconGroup.Brands,
   TextLogoFull: IconGroup.Brands,
   TextPlatform: IconGroup.Brands,
-  SquareRoundedPlusFilled: IconGroup.General,
-  SquareRoundedPlus: IconGroup.General,
-  ArrowsDiagonalMinimize: IconGroup.Arrows,
-  ArrowsDiagonal: IconGroup.Arrows,
 };
