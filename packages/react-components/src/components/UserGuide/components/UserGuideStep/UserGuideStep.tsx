@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { Button } from '../../../Button';
 import { Text } from '../../../Typography';
@@ -21,6 +21,8 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
   handleCloseAction,
   handleClickPrimary,
 }) => {
+  const [isTypingEnd, setIsTypingEnd] = useState(false);
+
   useEffect(() => {
     if (handleCloseAction) {
       document.addEventListener('keydown', handleCloseAction);
@@ -67,34 +69,40 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
         as="span"
         className={styles[`${baseClass}__content`]}
       >
-        <AnimatedTextContainer text={text} typingAnimation={typingAnimation} />
+        <AnimatedTextContainer
+          text={text}
+          typingAnimation={typingAnimation}
+          onTypingEnd={() => setIsTypingEnd(true)}
+        />
       </Text>
-      <div className={styles[`${baseClass}__footer`]}>
-        <Button
-          kind="high-contrast"
-          size="large"
-          onClick={handleClickPrimary}
-          className={styles[`${baseClass}__footer__button-primary`]}
-        >
-          {currentStep === stepMax ? 'Finish' : 'Next'}
-        </Button>
-        <Text
-          as="span"
-          className={styles[`${baseClass}__footer__step-counter`]}
-        >
-          Step {currentStep} of {stepMax}
-        </Text>
-        {handleCloseAction && (
+      {isTypingEnd && (
+        <div className={styles[`${baseClass}__footer`]}>
           <Button
-            kind="plain"
+            kind="high-contrast"
             size="large"
-            onClick={handleCloseAction}
-            className={styles[`${baseClass}__footer__button-close`]}
+            onClick={handleClickPrimary}
+            className={styles[`${baseClass}__footer__button-primary`]}
           >
-            Skip all
+            {currentStep === stepMax ? 'Finish' : 'Next'}
           </Button>
-        )}
-      </div>
+          <Text
+            as="span"
+            className={styles[`${baseClass}__footer__step-counter`]}
+          >
+            Step {currentStep} of {stepMax}
+          </Text>
+          {handleCloseAction && (
+            <Button
+              kind="plain"
+              size="large"
+              onClick={handleCloseAction}
+              className={styles[`${baseClass}__footer__button-close`]}
+            >
+              Skip all
+            </Button>
+          )}
+        </div>
+      )}
     </div>
   );
 };

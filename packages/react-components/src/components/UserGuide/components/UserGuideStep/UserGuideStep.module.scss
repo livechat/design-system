@@ -28,6 +28,10 @@ $base-class: 'user-guide-step';
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    animation-name: fade-in;
+    animation-duration: var(--transition-duration-moderate-2);
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
 
     &__step-counter {
       color: var(--content-basic-secondary);
@@ -36,5 +40,15 @@ $base-class: 'user-guide-step';
     &__button-primary {
       align-self: flex-end;
     }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
