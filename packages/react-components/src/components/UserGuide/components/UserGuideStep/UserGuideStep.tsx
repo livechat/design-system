@@ -1,8 +1,8 @@
 import { FC, useEffect, useState } from 'react';
 
+import { AnimatedTextContainer } from '../../../AnimatedTextContainer';
 import { Button } from '../../../Button';
 import { Text } from '../../../Typography';
-import { AnimatedTextContainer } from '../AnimatedTextContainer/AnimatedTextContainer';
 
 import { IUserGuideStepProps } from './types';
 

@@ -1,15 +1,9 @@
 import { FC, useEffect, useState } from 'react';
 
+import { IAnimatedTextContainerProps } from './types';
+
 const TYPING_SPEED = 10;
 const TYPING_DELAY = 600;
-
-interface IAnimatedTextContainerProps {
-  text: string;
-  typingAnimation?: boolean;
-  typingDelay?: number;
-  typingSpeed?: number;
-  onTypingEnd?: () => void;
-}
 
 export const AnimatedTextContainer: FC<IAnimatedTextContainerProps> = ({
   text,
@@ -24,8 +18,8 @@ export const AnimatedTextContainer: FC<IAnimatedTextContainerProps> = ({
   useEffect(() => {
     if (!text) return;
 
-    if (!typingAnimation) {
-      return onTypingEnd && onTypingEnd();
+    if (!typingAnimation && onTypingEnd) {
+      return onTypingEnd();
     }
 
     const startTyping = () => {
@@ -37,7 +31,7 @@ export const AnimatedTextContainer: FC<IAnimatedTextContainerProps> = ({
             return prevIndex + 1;
           } else {
             clearInterval(interval);
-            onTypingEnd && onTypingEnd();
+            onTypingEnd?.();
 
             return prevIndex;
           }
@@ -50,7 +44,7 @@ export const AnimatedTextContainer: FC<IAnimatedTextContainerProps> = ({
     return () => {
       clearTimeout(timeout);
     };
-  }, [text]);
+  }, [text, typingAnimation]);
 
   return <>{typingAnimation ? displayedText : text}</>;
 };

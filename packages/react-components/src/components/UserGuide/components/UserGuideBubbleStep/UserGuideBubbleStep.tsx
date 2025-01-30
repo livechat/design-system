@@ -2,8 +2,8 @@ import { FC, useState, useEffect } from 'react';
 
 import cx from 'clsx';
 
+import { AnimatedTextContainer } from '../../../AnimatedTextContainer';
 import { Text } from '../../../Typography';
-import { AnimatedTextContainer } from '../AnimatedTextContainer/AnimatedTextContainer';
 
 import { IUserGuideBubbleStepProps } from './types';
 
