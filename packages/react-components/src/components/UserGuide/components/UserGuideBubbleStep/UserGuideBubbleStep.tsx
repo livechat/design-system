@@ -51,7 +51,6 @@ export const UserGuideBubbleStep: FC<IUserGuideBubbleStepProps> = ({
               styles[`${baseClass}__bubble--header`],
               {
                 [styles[`${baseClass}__bubble--next-msg`]]: isMessageVisible,
-                [styles[`${baseClass}__bubble--completed`]]: isCompleted,
               }
             )}
           >
@@ -84,7 +83,6 @@ export const UserGuideBubbleStep: FC<IUserGuideBubbleStepProps> = ({
               styles[`${baseClass}__bubble--message`],
               {
                 [styles[`${baseClass}__bubble--next-msg`]]: isCtaVisisble,
-                [styles[`${baseClass}__bubble--completed`]]: isCompleted,
               }
             )}
           >
@@ -110,10 +108,7 @@ export const UserGuideBubbleStep: FC<IUserGuideBubbleStepProps> = ({
           <div
             className={cx(
               styles[`${baseClass}__bubble`],
-              styles[`${baseClass}__bubble--cta`],
-              {
-                [styles[`${baseClass}__bubble--completed`]]: isCompleted,
-              }
+              styles[`${baseClass}__bubble--cta`]
             )}
           >
             {cta}

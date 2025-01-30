@@ -47,22 +47,6 @@ $base-class: 'user-guide-bubble-step';
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
 
-    &--completed {
-      &::after {
-        position: absolute;
-        inset: 0;
-        opacity: 0;
-        z-index: -1;
-        background: linear-gradient(95deg, #ffe9bc 0%, #fffdf8 111.28%);
-        animation-name: background-glow;
-        animation-duration: 3s;
-        animation-timing-function: ease-in-out;
-        animation-iteration-count: infinite;
-        animation-fill-mode: forwards;
-        content: '';
-      }
-    }
-
     &--next-msg {
       border-bottom-left-radius: 0;
     }
