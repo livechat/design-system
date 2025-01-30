@@ -22,7 +22,11 @@ export const AnimatedTextContainer: FC<IAnimatedTextContainerProps> = ({
   const [_, setIndex] = useState(0);
 
   useEffect(() => {
-    if (!text || !typingAnimation) return;
+    if (!text) return;
+
+    if (!typingAnimation) {
+      return onTypingEnd && onTypingEnd();
+    }
 
     const startTyping = () => {
       const interval = setInterval(() => {
