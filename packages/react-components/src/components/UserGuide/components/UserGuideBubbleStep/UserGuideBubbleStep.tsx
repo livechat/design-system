@@ -18,6 +18,7 @@ export const UserGuideBubbleStep: FC<IUserGuideBubbleStepProps> = ({
   cta,
   isCompleted,
   handleAnimationComplete,
+  disableTypingAnimations,
 }) => {
   const [visibleBubbles, setVisibleBubbles] = useState<string[]>(['header']);
   const isHeaderVisible = visibleBubbles.includes('header');
@@ -55,7 +56,7 @@ export const UserGuideBubbleStep: FC<IUserGuideBubbleStepProps> = ({
             <Text as="span">
               <AnimatedTextContainer
                 text={headerMessage}
-                typingAnimation
+                typingAnimation={!disableTypingAnimations}
                 onTypingEnd={() =>
                   setVisibleBubbles([...visibleBubbles, 'message'])
                 }
@@ -82,7 +83,7 @@ export const UserGuideBubbleStep: FC<IUserGuideBubbleStepProps> = ({
             <Text as="span">
               <AnimatedTextContainer
                 text={message}
-                typingAnimation
+                typingAnimation={!disableTypingAnimations}
                 typingDelay={0}
                 onTypingEnd={() =>
                   setVisibleBubbles([...visibleBubbles, 'cta'])

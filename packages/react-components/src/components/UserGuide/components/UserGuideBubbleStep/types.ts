@@ -25,4 +25,8 @@ export interface IUserGuideBubbleStepProps {
    * The function to be called when the all bubbles animations complete
    */
   handleAnimationComplete?: () => void;
+  /**
+   * Set to true to disable typing animations
+   */
+  disableTypingAnimations?: boolean;
 }

@@ -35,16 +35,14 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
 
   return (
     <div className={styles[`${baseClass}`]}>
-      {header && (
-        <Text
-          size="lg"
-          bold
-          as="span"
-          className={styles[`${baseClass}__heading`]}
-        >
-          {header}
-        </Text>
-      )}
+      <Text
+        size="lg"
+        bold
+        as="span"
+        className={styles[`${baseClass}__heading`]}
+      >
+        {header}
+      </Text>
       {image && (
         <div className={styles[`${baseClass}__image-wrapper`]}>
           <img
@@ -56,6 +54,7 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
       )}
       {video && !image && (
         <video
+          data-testid="user-guide-step-video"
           src={video.src}
           playsInline={video.playsInline}
           autoPlay={video.autoPlay}
