@@ -40,5 +40,8 @@ export const States = (): React.ReactElement => (
         placeholder={placeholderText}
       />
     </StoryDescriptor>
+    <StoryDescriptor title="Read only">
+      <Textarea readOnly value={exampleText} placeholder={placeholderText} />
+    </StoryDescriptor>
   </>
 );

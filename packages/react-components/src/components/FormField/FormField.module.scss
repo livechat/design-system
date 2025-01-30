@@ -7,9 +7,11 @@
     flex-direction: column;
   }
 
-  &__wrapper--inline {
-    display: flex;
-    flex-flow: row nowrap;
+  &__wrapper {
+    &--inline {
+      display: flex;
+      flex-flow: row nowrap;
+    }
   }
 
   &__label {
@@ -67,6 +69,10 @@
     line-height: 20px;
     color: var(--content-basic-primary);
     font-size: 14px;
+
+    &--read-only {
+      cursor: default;
+    }
   }
 
   &__label-right-node {

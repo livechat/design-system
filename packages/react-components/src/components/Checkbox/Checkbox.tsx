@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
+import { useReadOnlyFormFieldContext } from '../../providers/ReadOnlyFormFieldProvider';
 import { FieldDescription } from '../FieldDescription';
 import { Text } from '../Typography';
 
@@ -12,6 +13,10 @@ export interface CheckboxProps extends React.HTMLAttributes<HTMLInputElement> {
    * Specify whether the checkbox should be disabled
    */
   disabled?: boolean;
+  /**
+   * Specify whether the checkbox should be read only
+   */
+  readOnly?: boolean;
   /**
    * Specify whether the checkbox should be checked
    */
@@ -41,12 +46,16 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     },
     ref
   ) => {
+    const { readOnly } = useReadOnlyFormFieldContext();
+    const computedReadOnly = readOnly || restInputProps.readOnly;
+
     return (
       <div
         className={cx(styles[baseClass], className, {
           [styles[`${baseClass}--selected`]]: checked,
           [styles[`${baseClass}--disabled`]]: disabled,
           [styles[`${baseClass}--indeterminate`]]: indeterminate,
+          [styles[`${baseClass}--read-only`]]: computedReadOnly,
         })}
       >
         <label className={styles[`${baseClass}__label`]}>

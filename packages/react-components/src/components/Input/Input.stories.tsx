@@ -63,6 +63,9 @@ export const States = (): React.ReactElement => (
     <StoryDescriptor title="Disabled">
       <Input disabled={true} placeholder={placeholderText} />
     </StoryDescriptor>
+    <StoryDescriptor title="ReadOnly">
+      <Input readOnly value="My input test value" />
+    </StoryDescriptor>
   </>
 );
 
@@ -134,6 +137,13 @@ export const InputPromoStates = (): React.ReactElement => (
     </StoryDescriptor>
     <StoryDescriptor title="Disabled">
       <InputPromoComponent disabled={true} placeholder={placeholderText} />
+    </StoryDescriptor>
+    <StoryDescriptor title="ReadOnly">
+      <InputPromoComponent
+        readOnly
+        placeholder={placeholderText}
+        value="My test value"
+      />
     </StoryDescriptor>
   </>
 );
