@@ -2,6 +2,7 @@
   box-sizing: border-box;
   display: inline-flex;
   position: relative;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
   transition-duration: 200ms;
@@ -14,6 +15,7 @@
   text-align: center;
   text-decoration: none;
   line-height: 20px;
+  white-space: nowrap;
   font-size: 14px;
   font-weight: 600;
   user-select: none;
