@@ -1,7 +1,5 @@
 import * as React from 'react';
 
-export type LoadingState = 'default' | 'animated' | 'none';
-
 export interface ActionCardProps {
   /**
    * The CSS class for main container
