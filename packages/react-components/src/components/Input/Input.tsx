@@ -6,8 +6,10 @@ import {
 } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
+import { useReadOnlyFormFieldContext } from '../../providers/ReadOnlyFormFieldProvider';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
+import { ReadOnlyText } from '../ReadOnlyText';
 import { Text } from '../Typography';
 
 import {
@@ -46,11 +48,14 @@ export const InputComponent = React.forwardRef<
       mainClassName,
       isPromo = false,
       cropOnBlur = true,
+      noDataFallbackText = 'No data',
       ...inputProps
     },
     ref
   ) => {
     const innerRef = React.useRef<HTMLInputElement>(null);
+    const { readOnly } = useReadOnlyFormFieldContext();
+    const computedReadOnly = readOnly || inputProps.readOnly;
 
     React.useImperativeHandle(ref, () => innerRef.current!, []);
     const [isFocused, setIsFocused] = React.useState(false);
@@ -63,7 +68,6 @@ export const InputComponent = React.forwardRef<
         [styles[`${baseClass}--focused`]]: isFocused,
         [styles[`${baseClass}--error`]]: error,
         [styles[`${baseClass}--crop`]]: cropOnBlur,
-        [styles[`${baseClass}--read-only`]]: inputProps.readOnly,
       },
       className
     );
@@ -78,6 +82,15 @@ export const InputComponent = React.forwardRef<
     const focusInput = () => {
       innerRef.current?.focus();
     };
+
+    if (computedReadOnly) {
+      return (
+        <ReadOnlyText
+          value={inputProps.value?.toString()}
+          noDataFallbackText={noDataFallbackText}
+        />
+      );
+    }
 
     return (
       <Text
