@@ -45,7 +45,7 @@ export const useAnimations = ({
       transitionTimeout.current = window.setTimeout(handleTransitionEnd, 300); // Adjust duration as needed
 
       return () => {
-        clearTimeout(transitionTimeout.current);
+        clearTimeout(transitionTimeout.current as number);
         currentElement.removeEventListener(
           'transitionend',
           handleTransitionEnd
