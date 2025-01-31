@@ -27,8 +27,12 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   isCollapsible,
   isLinkLabel,
   isActive,
+  isOpen: isListOpen,
+  isMounted: isListMounted,
+  setShouldBeVisible: setListShouldBeVisible,
   onItemHover,
   onClick,
+  listWrapperRef: externalListWrapperRef,
   shouldOpenOnInit = false,
 }) => {
   const [hasActiveElements, setHasActiveElements] =
@@ -36,19 +40,23 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   const [listHeight, setListHeight] = React.useState<number>(0);
   const hadActiveListElementsRef = React.useRef(false);
   const listWrapperRef = React.useRef<HTMLDivElement>(null);
+  const localListWrapperRef = externalListWrapperRef ?? listWrapperRef;
   const { isOpen, isMounted, setShouldBeVisible } = useAnimations({
     isVisible: !isCollapsible || shouldOpenOnInit,
-    elementRef: listWrapperRef,
+    elementRef: localListWrapperRef,
   });
 
+  const localIsOpen = isListOpen ?? isOpen;
+  const localIsMounted = isListMounted ?? isMounted;
+  const localSetShouldBeVisible = setListShouldBeVisible ?? setShouldBeVisible;
   const localRightNode =
-    typeof rightNode === 'function' ? rightNode(isOpen) : rightNode;
-  const localLabel = typeof label === 'function' ? label(isOpen) : label;
+    typeof rightNode === 'function' ? rightNode(localIsOpen) : rightNode;
+  const localLabel = typeof label === 'function' ? label(localIsOpen) : label;
 
-  const openList = (): void => setShouldBeVisible(true);
+  const openList = (): void => localSetShouldBeVisible(true);
   const toggle = (): void => {
     if (!isCollapsible) return;
-    setShouldBeVisible((prev) => !prev);
+    localSetShouldBeVisible((prev) => !prev);
   };
 
   const handleClick = (): void => (onClick ? onClick({ toggle }) : toggle());
@@ -86,7 +94,7 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
           leftNode={
             <div
               className={cx(styles[`${baseClass}__chevron`], {
-                [styles[`${baseClass}__chevron--active`]]: isOpen,
+                [styles[`${baseClass}__chevron--active`]]: localIsOpen,
               })}
             >
               {isCollapsible ? (
@@ -132,19 +140,21 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
       )}
 
       <div
-        ref={listWrapperRef}
+        ref={localListWrapperRef}
         className={cx([
           styles[`${baseClass}__list-wrapper`],
           {
-            [styles[`${baseClass}__list-wrapper--expanded`]]: isOpen,
+            [styles[`${baseClass}__list-wrapper--expanded`]]: localIsOpen,
           },
           listWrapperClassName,
         ])}
         style={
-          isCollapsible ? { maxHeight: isOpen ? listHeight : 0 } : undefined
+          isCollapsible
+            ? { maxHeight: localIsOpen ? listHeight : 0 }
+            : undefined
         }
       >
-        {isMounted && (
+        {localIsMounted && (
           <ul className={cx(styles[`${baseClass}__list`], className)}>
             {children}
           </ul>

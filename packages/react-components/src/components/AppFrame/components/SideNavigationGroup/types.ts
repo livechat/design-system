@@ -32,6 +32,18 @@ export interface ISideNavigationGroupProps extends ComponentCoreProps {
    */
   isActive?: boolean;
   /**
+   * Specify whether the list is open
+   */
+  isOpen?: boolean;
+  /**
+   * Specify whether the list is mounted
+   */
+  isMounted?: boolean;
+  /**
+   * Set whether the list should be visible
+   */
+  setShouldBeVisible?: React.Dispatch<React.SetStateAction<boolean>>;
+  /**
    * The function to call on list label click
    */
   onClick?: ({ toggle }: IOnClickProps) => void;
@@ -39,6 +51,10 @@ export interface ISideNavigationGroupProps extends ComponentCoreProps {
    * The function to call on item hover
    */
   onItemHover?: () => void;
+  /**
+   * The ref of the list wrapper
+   */
+  listWrapperRef?: React.RefObject<HTMLDivElement>;
   /**
    * Specify whether the list should be open on the first render
    */
