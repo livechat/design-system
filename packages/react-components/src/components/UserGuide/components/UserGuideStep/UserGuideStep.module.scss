@@ -10,6 +10,7 @@ $base-class: 'user-guide-step';
 
   &__heading {
     margin-bottom: var(--spacing-3);
+    color: var(--content-basic-primary);
   }
 
   &__content {

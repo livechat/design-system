@@ -1,5 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 
+import cx from 'clsx';
+
 import { AnimatedTextContainer } from '../../../AnimatedTextContainer';
 import { Button } from '../../../Button';
 import { Text } from '../../../Typography';
@@ -34,7 +36,7 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
   }, [handleCloseAction]);
 
   return (
-    <div className={styles[`${baseClass}`]}>
+    <div className={cx('lc-light-theme', styles[`${baseClass}`])}>
       <Text
         size="lg"
         bold

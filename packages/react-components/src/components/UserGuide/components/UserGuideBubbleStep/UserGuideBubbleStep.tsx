@@ -32,7 +32,7 @@ export const UserGuideBubbleStep: FC<IUserGuideBubbleStepProps> = ({
   }, [visibleBubbles]);
 
   return (
-    <div className={styles[`${baseClass}`]}>
+    <div className={cx('lc-light-theme', styles[`${baseClass}`])}>
       {isHeaderVisible && (
         <div
           className={cx(styles[`${baseClass}__bubble-wrapper`], {
