@@ -89,10 +89,10 @@ describe('<Picker> component', () => {
     expect(onClose).not.toHaveBeenCalled(); // because it was not visible
   });
 
-  it('should toggle dropdown when clicking on the arrow', () => {
+  it('should toggle dropdown when clicking on the input or arrow', () => {
     const onOpen = vi.fn();
     const onClose = vi.fn();
-    const { getByTestId, queryByTestId } = renderComponent({
+    const { getByTestId, queryByTestId, getByRole } = renderComponent({
       ...defaultProps,
       onOpen,
       onClose,
@@ -103,7 +103,7 @@ describe('<Picker> component', () => {
     expect(onOpen).toHaveBeenCalled();
     expect(getByTestId('picker-list')).toBeVisible();
 
-    userEvent.click(getByTestId('picker-trigger__chevron-icon'));
+    userEvent.click(getByRole('textbox'));
 
     expect(onClose).toHaveBeenCalled();
     expect(queryByTestId('picker-list')).toBeNull();
