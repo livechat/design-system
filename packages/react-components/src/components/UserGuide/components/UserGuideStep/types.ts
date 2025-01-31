@@ -10,6 +10,10 @@ export interface IUserGuideStepProps {
    */
   text: string;
   /**
+   * Set to enable typing animation for the text
+   */
+  typingAnimation?: boolean;
+  /**
    * The image of the step
    */
   image?: {

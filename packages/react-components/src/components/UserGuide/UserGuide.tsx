@@ -19,21 +19,25 @@ const virtualReference = (element: Element, padding: number = 0) =>
 export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
   className,
   children,
-  cursorPosition = 'bottom',
+  cursorPosition = 'bottom-start',
   cursorTiming = 'fast2',
   parentElementName,
   isVisible = false,
   elementStyles,
   zIndex,
+  isFirstStep,
+  isLastStep,
 }) => {
   const [parentElement, setParentElement] = useState<Element | null>(null);
   const [rect, setRect] = useState<DOMRect | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const cursorPlacement =
+    isFirstStep || isLastStep ? 'bottom-start' : cursorPosition;
 
   const { refs, x, y, strategy, placement, update } = useFloating({
     middleware: [shift(), flip()],
-    placement: cursorPosition,
+    placement: cursorPlacement,
     open: true,
     whileElementsMounted: autoUpdate,
   });
@@ -124,25 +128,25 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
     );
   };
 
-  return parentElement ? (
+  return (
     <>
       <div
         className={cx(styles[`${baseClass}__overlay`])}
         style={{
-          display: isVisible ? 'block' : 'none',
+          display: isVisible ? 'flex' : 'none',
           zIndex: zIndex,
         }}
       >
-        {cloneReferenceElement()}
+        {parentElement && cloneReferenceElement()}
       </div>
-      {isVisible && rect && (
+      {isVisible && (
         <FloatingPortal>
           <div
             ref={refs.setFloating}
             style={{
               position: strategy,
-              top: y ?? 0,
-              left: x ?? 0,
+              top: isFirstStep || isLastStep ? '40%' : y,
+              left: isFirstStep || isLastStep ? '45%' : x,
             }}
             className={cx(
               styles[`${baseClass}__floating`],
@@ -150,7 +154,13 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
               className
             )}
           >
-            <div ref={contentRef} className={styles[`${baseClass}__guide`]}>
+            <div
+              ref={contentRef}
+              className={cx(
+                styles[`${baseClass}__guide`],
+                styles[`${baseClass}__guide--${placement}`]
+              )}
+            >
               <div
                 className={cx(
                   styles[`${baseClass}__guide__arrow`],
@@ -177,5 +187,5 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
         </FloatingPortal>
       )}
     </>
-  ) : null;
+  );
 };

@@ -1,3 +1,3 @@
 export { UserGuide } from './UserGuide';
-export { UserGuideStep } from './components/UserGuideStep';
+export { UserGuideStep, UserGuideBubbleStep } from './components/';
 export type { IUserGuide } from './types';
