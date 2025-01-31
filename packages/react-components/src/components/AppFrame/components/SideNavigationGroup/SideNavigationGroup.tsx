@@ -58,9 +58,11 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
       return;
     }
 
-    const listElements = children as React.ReactElement[];
+    const listElements = React.Children.toArray(
+      children
+    ) as React.ReactElement[];
     const hasListActiveElements = !!listElements?.some(
-      (el) => el?.props?.isActive
+      (el) => el.props?.isActive
     );
 
     setHasActiveElements(hasListActiveElements);
