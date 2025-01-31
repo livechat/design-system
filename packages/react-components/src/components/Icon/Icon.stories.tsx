@@ -12,67 +12,62 @@ const iterator = Object.keys(TablerIcons);
 
 const SHORTCUT_ITEMS = [
   {
-    icon: TablerIcons.AccountCircle,
+    icon: TablerIcons.ShortcutCommand,
     text: 'Command',
     unicode: '⌘',
   },
   {
-    icon: TablerIcons.Activities,
+    icon: TablerIcons.ShortcutOption,
     text: 'Option',
     unicode: '⌥ ',
   },
   {
-    icon: TablerIcons.HandWave,
+    icon: TablerIcons.ShortcutControl,
     text: 'Control',
     unicode: '⌃',
   },
   {
-    icon: TablerIcons.HandWave,
+    icon: TablerIcons.ShortcutShift,
     text: 'Shift',
     unicode: '⇧',
   },
   {
-    icon: TablerIcons.HandWave,
+    icon: TablerIcons.ShortcutTab,
     text: 'Tab',
     unicode: '⇥',
   },
   {
-    icon: TablerIcons.HandWave,
+    icon: TablerIcons.ShortcutCapsLock,
     text: 'Caps Lock',
     unicode: '⇪',
   },
   {
-    icon: TablerIcons.HandWave,
-    text: 'Escape',
-    unicode: '⎋',
-  },
-  {
-    icon: TablerIcons.HandWave,
-    text: 'Backspace',
+    icon: TablerIcons.ShortcutDelete,
+    text: 'Delete',
     unicode: '⌫',
   },
   {
-    icon: TablerIcons.HandWave,
+    icon: TablerIcons.ShortcutEnter,
     text: 'Enter',
     unicode: '↵',
   },
   {
-    icon: TablerIcons.HandWave,
+    icon: TablerIcons.ShortcutArrowUp,
     text: 'Arrow up',
     unicode: '↑',
   },
   {
-    icon: TablerIcons.HandWave,
+    icon: TablerIcons.ShortcutArrowDown,
     text: 'Arrow down',
     unicode: '↓',
   },
   {
-    icon: TablerIcons.HandWave,
+    icon: TablerIcons.ShortcutArrowBack,
     text: 'Arrow left',
     unicode: '←',
   },
   {
-    icon: TablerIcons.HandWave,
+    icon: TablerIcons.ShortcutArrowRight,
     text: 'Arrow right',
     unicode: '→',
   },
