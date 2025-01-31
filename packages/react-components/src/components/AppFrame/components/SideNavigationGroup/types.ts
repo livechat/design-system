@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import { IUseAnimations } from '../../../../hooks/useAnimations';
 import { ComponentCoreProps } from '../../../../utils/types';
 
 interface IOnClickProps {
@@ -34,15 +35,15 @@ export interface ISideNavigationGroupProps extends ComponentCoreProps {
   /**
    * Specify whether the list is open
    */
-  isOpen?: boolean;
+  isOpen?: IUseAnimations['isOpen'];
   /**
    * Specify whether the list is mounted
    */
-  isMounted?: boolean;
+  isMounted?: IUseAnimations['isMounted'];
   /**
    * Set whether the list should be visible
    */
-  setShouldBeVisible?: React.Dispatch<React.SetStateAction<boolean>>;
+  setShouldBeVisible?: IUseAnimations['setShouldBeVisible'];
   /**
    * The function to call on list label click
    */

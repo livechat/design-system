@@ -8,7 +8,7 @@ interface UseAnimationsProps {
   includeSleepWakeScenario?: boolean;
 }
 
-interface IUseAnimations {
+export interface IUseAnimations {
   isOpen: boolean;
   isMounted: boolean;
   setShouldBeVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -45,7 +45,7 @@ export const useAnimations = ({
       transitionTimeout.current = window.setTimeout(handleTransitionEnd, 300); // Adjust duration as needed
 
       return () => {
-        clearTimeout(transitionTimeout.current as number);
+        clearTimeout(transitionTimeout.current);
         currentElement.removeEventListener(
           'transitionend',
           handleTransitionEnd
