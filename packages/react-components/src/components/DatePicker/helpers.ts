@@ -43,9 +43,9 @@ export const calculateDatePickerMonth = (
 
 export const getSelectedOption = (
   itemId: string | null,
-  options: IRangeDatePickerOption[]
+  options?: IRangeDatePickerOption[]
 ): IRangeDatePickerOption | undefined => {
-  const selectedOption = options.find((item) => {
+  const selectedOption = options?.find((item) => {
     return item.id === itemId;
   });
 

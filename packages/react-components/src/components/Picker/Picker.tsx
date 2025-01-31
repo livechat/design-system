@@ -3,6 +3,9 @@ import * as React from 'react';
 import { FloatingNode, FloatingPortal } from '@floating-ui/react';
 import cx from 'clsx';
 
+import { useReadOnlyFormFieldContext } from '../../providers/ReadOnlyFormFieldProvider';
+import { ReadOnlyText } from '../ReadOnlyText';
+
 import { PickerList } from './components/PickerList';
 import { PickerTrigger } from './components/PickerTrigger';
 import { PickerTriggerBody } from './components/PickerTriggerBody';
@@ -44,6 +47,7 @@ export const Picker: React.FC<IPickerProps> = ({
   useClickHookProps,
   virtuosoProps,
   inputProps,
+  noDataFallbackText = 'No data',
   ...props
 }) => {
   const [open, setOpen] = React.useState(openedOnInit);
@@ -51,6 +55,8 @@ export const Picker: React.FC<IPickerProps> = ({
   const isControlled = isVisible !== undefined;
   const isOpen = isControlled ? isVisible : open;
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const { readOnly } = useReadOnlyFormFieldContext();
+  const computedReadOnly = readOnly || inputProps?.readOnly;
 
   const handleVisibilityChange = (newValue: boolean, event?: Event) => {
     if (newValue) {
@@ -110,6 +116,18 @@ export const Picker: React.FC<IPickerProps> = ({
     onVisibilityChange: handleVisibilityChange,
     searchPhrase,
   });
+
+  if (computedReadOnly) {
+    return (
+      <ReadOnlyText
+        value={selected
+          ?.map((option) => (!option.groupHeader ? option.name : null))
+          .filter(Boolean)
+          .join(', ')}
+        noDataFallbackText={noDataFallbackText}
+      />
+    );
+  }
 
   return (
     <div id={id} className={cx(styles['picker-wrapper'], className)}>

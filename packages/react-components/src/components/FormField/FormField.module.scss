@@ -7,9 +7,11 @@
     flex-direction: column;
   }
 
-  &__wrapper--inline {
-    display: flex;
-    flex-flow: row nowrap;
+  &__wrapper {
+    &--inline {
+      display: flex;
+      flex-flow: row nowrap;
+    }
   }
 
   &__label {
@@ -17,7 +19,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    margin-bottom: 4px;
+    margin-bottom: var(--spacing-1);
 
     label {
       margin-bottom: 0;
@@ -67,6 +69,10 @@
     line-height: 20px;
     color: var(--content-basic-primary);
     font-size: 14px;
+
+    &--read-only {
+      cursor: default;
+    }
   }
 
   &__label-right-node {

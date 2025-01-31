@@ -31,7 +31,6 @@ export interface ICheckListItem
   extends Omit<IChecklistItemProps, 'placeholder'> {
   isActive: boolean;
   isChecked: boolean;
-  isLastElement: boolean;
   onClick: (id: string) => void;
 }
 

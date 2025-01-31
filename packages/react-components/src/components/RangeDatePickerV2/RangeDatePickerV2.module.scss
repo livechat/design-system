@@ -1,0 +1,113 @@
+$base-class: 'range-date-picker';
+
+.#{$base-class} {
+  &__popover {
+    padding: var(--spacing-3);
+    max-width: 100%;
+  }
+
+  &__trigger {
+    display: flex;
+    position: relative;
+    transition: border-color var(--transition-duration-fast-2) ease-in-out;
+    border: 1px solid var(--border-basic-primary);
+    border-radius: var(--radius-3);
+    background-color: var(--surface-primary-default);
+    padding: var(--spacing-2);
+
+    &:hover {
+      border-color: var(--border-basic-hover);
+      cursor: pointer;
+
+      .#{$base-class}__trigger__right-node--active {
+        .#{$base-class}__trigger__right-node__icon {
+          display: none;
+        }
+
+        .#{$base-class}__trigger__right-node__button {
+          display: inline-flex;
+        }
+      }
+    }
+
+    &:focus-visible {
+      outline: 0;
+      box-shadow: var(--shadow-focus);
+    }
+
+    &__right-node {
+      display: flex;
+      align-items: center;
+      margin-left: var(--spacing-2);
+
+      &__button {
+        display: none;
+        position: absolute;
+        top: auto;
+        right: 6px;
+        bottom: auto;
+      }
+    }
+
+    &--active,
+    &--active:hover {
+      border-color: var(--action-primary-default);
+    }
+  }
+
+  &__date-picker {
+    display: flex;
+    flex-direction: row;
+
+    &__list {
+      flex-shrink: 0;
+      margin: 0 var(--spacing-4) 0 0;
+      padding: 0;
+      width: 160px;
+      list-style: none;
+
+      &__item {
+        display: flex;
+        position: relative;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: var(--spacing-05);
+        border: 0;
+        border-radius: var(--radius-3);
+        background: none;
+        padding: 7px var(--spacing-3);
+        width: 100%;
+        min-height: 36px;
+        color: var(--content-basic-primary);
+        font-size: 14px;
+
+        &:hover {
+          background-color: var(--picker-list-option-background-hover);
+          cursor: pointer;
+        }
+
+        &:active {
+          background-color: var(--picker-list-option-background-active);
+        }
+
+        &:focus-visible {
+          outline: 0;
+          box-shadow: var(--shadow-focus);
+        }
+
+        &--selected {
+          background-color: var(--picker-list-option-background-active);
+        }
+
+        &__icon {
+          margin-left: var(--spacing-2);
+        }
+      }
+    }
+
+    &__callendar {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+}

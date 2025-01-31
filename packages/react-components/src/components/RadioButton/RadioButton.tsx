@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
+import { useReadOnlyFormFieldContext } from '../../providers/ReadOnlyFormFieldProvider';
 import { FieldDescription } from '../FieldDescription';
 import { Text } from '../Typography';
 
@@ -12,6 +13,7 @@ export interface RadioButtonProps
   description?: React.ReactNode;
   checked?: boolean;
   disabled?: boolean;
+  readOnly?: boolean;
 }
 
 const baseClass = 'radio-button';
@@ -21,9 +23,13 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
     { children, className = '', description, checked, disabled, ...props },
     ref
   ) => {
+    const { readOnly } = useReadOnlyFormFieldContext();
+    const computedReadOnly = readOnly || props.readOnly;
+
     const mergedClassNames = cx(styles[baseClass], className, {
       [styles[`${baseClass}--selected`]]: checked,
       [styles[`${baseClass}--disabled`]]: disabled,
+      [styles[`${baseClass}--read-only`]]: computedReadOnly,
     });
 
     return (

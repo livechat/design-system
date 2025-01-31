@@ -52,6 +52,11 @@ NumericInputWithDisabled.args = {
   disabled: true,
 };
 
+export const NumericInputWithReadOnly = StoryTemplate.bind({});
+NumericInputWithReadOnly.args = {
+  readOnly: true,
+};
+
 export const NumericInputWithError = StoryTemplate.bind({});
 NumericInputWithError.args = {
   error: 'Error',

@@ -59,9 +59,25 @@
     cursor: default;
   }
 
-  &--selected {
+  &--read-only {
+    cursor: default;
+    pointer-events: none;
+
     .radio-button__circle {
-      border-color: var(--action-primary-default);
+      border-color: var(--content-basic-primary);
+      background-color: var(--surface-primary-default);
+    }
+
+    .radio-button__inner-circle {
+      background-color: var(--content-basic-primary);
+    }
+  }
+
+  &--selected {
+    &:not(.radio-button--read-only) {
+      .radio-button__circle {
+        border-color: var(--action-primary-default);
+      }
     }
 
     .radio-button__inner-circle {
