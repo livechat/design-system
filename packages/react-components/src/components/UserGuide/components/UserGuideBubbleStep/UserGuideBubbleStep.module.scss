@@ -37,7 +37,7 @@ $base-class: 'user-guide-bubble-step';
     opacity: 0;
     z-index: 1;
     border-radius: var(--radius-4);
-    background: linear-gradient(45deg, #cddef9, #e7e5fd, #f9f2ff);
+    background: var(--surface-ai-copilot-basic-default);
     padding: var(--radius-4);
     width: fit-content;
     min-height: 53px;

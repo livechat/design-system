@@ -4,7 +4,8 @@ $base-class: 'user-guide-step';
   display: flex;
   flex-direction: column;
   border-radius: var(--radius-4);
-  background: linear-gradient(45deg, #cddef9, #e7e5fd, #f9f2ff);
+  box-shadow: var(--shadow-modal);
+  background: var(--surface-ai-copilot-basic-default);
   padding: var(--spacing-4);
   width: 340px;
 
