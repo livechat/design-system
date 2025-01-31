@@ -227,7 +227,7 @@ export const Example = (): ReactElement => {
     }
     if (action.type === 'isVisible') {
       return {
-        reference: 'firs-step',
+        reference: 'first-step',
         isVisible: !state.isVisible,
         cursorPosition: 'right-end',
       };
@@ -534,6 +534,7 @@ export const Example = (): ReactElement => {
 export const UserGuideStepExample = (): ReactElement => {
   return (
     <UserGuideStep
+      aria-label="Navigation guide step"
       header="This is navigation item"
       text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
       currentStep={1}
@@ -550,6 +551,7 @@ UserGuideStepExample.parameters = {
 export const UserGuideBubbleStepExample = (): ReactElement => {
   return (
     <UserGuideBubbleStep
+      aria-label="Welcome guide step"
       headerMessage="Welcome to chats section"
       headerIcon={<Icon source={Icons.OneColored} />}
       message="We have prepared the playground ready for you to test all capabilities of chat section. If you have any question, just trigger me from the upper -right corner of the screen!"
