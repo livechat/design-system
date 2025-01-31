@@ -98,6 +98,27 @@
     }
   }
 
+  &--read-only {
+    .checkbox {
+      &__input {
+        border-color: var(--border-basic-secondary);
+        background-color: var(--surface-primary-default);
+
+        &::after {
+          background-color: var(--content-basic-primary);
+        }
+      }
+
+      &__label,
+      &__input,
+      &__helper,
+      &__text {
+        cursor: default;
+        pointer-events: none;
+      }
+    }
+  }
+
   &--selected {
     &:hover {
       .checkbox__input:checked + .checkbox__square {

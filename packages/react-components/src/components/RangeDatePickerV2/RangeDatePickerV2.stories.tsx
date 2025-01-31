@@ -26,8 +26,3 @@ WithInitialDates.args = {
   initialFromDate: new Date('2025-01-20'),
   initialToDate: new Date('2025-02-06'),
 };
-
-export const WithInitialSelectedOption: StoryFn = StoryTemplate.bind({});
-WithInitialSelectedOption.args = {
-  initialSelectedOptionId: 'last7days',
-};

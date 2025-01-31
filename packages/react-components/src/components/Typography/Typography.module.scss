@@ -46,6 +46,14 @@
   font-style: normal;
 }
 
+@mixin heading-3xs {
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  font-size: 10px;
+  font-weight: 400;
+  font-style: normal;
+}
+
 @mixin heading-uppercase {
   text-transform: uppercase;
   letter-spacing: 0.2px;
@@ -135,6 +143,10 @@
 
 .heading-2xs {
   @include heading-2xs;
+}
+
+.heading-3xs {
+  @include heading-3xs;
 }
 
 .heading-uppercase {

@@ -43,6 +43,10 @@ export interface TagInputProps<T>
    * Add Tag on blur
    */
   addOnBlur?: boolean;
+  /**
+   * Set the text to display with read-only state when there is no data. Default to 'No data'
+   */
+  noDataFallbackText?: string;
 }
 
 export type TagInputValues =
