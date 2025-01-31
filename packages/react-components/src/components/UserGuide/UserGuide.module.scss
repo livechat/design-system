@@ -18,7 +18,7 @@ $animations: (
   'top-end': fade-in-top-end,
   'bottom-start': fade-in-bottom-start,
   'bottom': fade-in-bottom,
-  'bottom-end': fade-in-bottom-end
+  'bottom-end': fade-in-bottom-end,
 );
 
 .#{$base-class} {
@@ -74,7 +74,7 @@ $animations: (
 
     &--right-end,
     &--left-end {
-      align-items: flex-end
+      align-items: flex-end;
     }
 
     &--bottom-start,
@@ -89,7 +89,7 @@ $animations: (
 
     &--bottom-end,
     &--top-end {
-      justify-content: flex-end
+      justify-content: flex-end;
     }
 
     &--top-start,
@@ -126,7 +126,7 @@ $animations: (
 
       &--right-end {
         top: calc(100% - $arrow-size - 9px);
-        transform: rotate(-130deg)
+        transform: rotate(-130deg);
       }
 
       &--bottom-start,

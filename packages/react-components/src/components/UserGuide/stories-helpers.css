@@ -19,7 +19,8 @@
   padding: 8px;
 }
 
-.left, .right {
+.left,
+.right {
   flex-basis: 25%;
   flex-shrink: 0;
   max-width: 280px;

@@ -9,7 +9,11 @@ import { Heading, Text } from '../Typography';
 
 import './stories-helpers.css';
 
-export const AppContent = ({ onStartGuideClick }: { onStartGuideClick: () => void }): ReactElement => {
+export const AppContent = ({
+  onStartGuideClick,
+}: {
+  onStartGuideClick: () => void;
+}): ReactElement => {
   return (
     <div className="main">
       <div id="chat-list-column" className="column left">
@@ -18,7 +22,11 @@ export const AppContent = ({ onStartGuideClick }: { onStartGuideClick: () => voi
         </div>
         <div className="chats-list">
           {[...Array(7)].map((_, index) => (
-            <div key={`chats-list-item-${index}`} id={`chats-list-item-${index}`} className="chats-list-item">
+            <div
+              key={`chats-list-item-${index}`}
+              id={`chats-list-item-${index}`}
+              className="chats-list-item"
+            >
               <SkeletonWrapper>
                 <SkeletonAvatar size={36} />
                 <SkeletonWrapper vertical>
@@ -49,9 +57,7 @@ export const AppContent = ({ onStartGuideClick }: { onStartGuideClick: () => voi
           </SkeletonWrapper>
         </div>
         <div className="start-guide ">
-          <Button onClick={onStartGuideClick}>
-            Start guide
-          </Button>
+          <Button onClick={onStartGuideClick}>Start guide</Button>
         </div>
         <div className="text-area">
           <SkeletonWrapper id="text-area">
@@ -80,5 +86,5 @@ export const AppContent = ({ onStartGuideClick }: { onStartGuideClick: () => voi
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
