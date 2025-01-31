@@ -69,8 +69,11 @@ export const PickerTrigger: React.FC<
     onClear();
   };
 
-  const handleClick = () => {
-    if (!isDisabled) {
+  const handleClick = (e: React.MouseEvent | React.KeyboardEvent) => {
+    if (
+      !isDisabled &&
+      !(isOpen && (e.target as HTMLElement).tagName === 'BUTTON')
+    ) {
       onToggle();
     }
   };
@@ -120,15 +123,13 @@ export const PickerTrigger: React.FC<
             <Icon kind="primary" size="small" source={Close} />
           </div>
         )}
-        <div>
-          <Icon
-            data-testid={`${baseClass}__chevron-icon`}
-            className={styles[`${baseClass}__chevron-icon`]}
-            source={!isOpen ? ChevronDown : ChevronUp}
-            size="medium"
-            disabled={isDisabled}
-          />
-        </div>
+        <Icon
+          data-testid={`${baseClass}__chevron-icon`}
+          className={styles[`${baseClass}__chevron-icon`]}
+          source={!isOpen ? ChevronDown : ChevronUp}
+          size="medium"
+          disabled={isDisabled}
+        />
       </div>
     </button>
   );

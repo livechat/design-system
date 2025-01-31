@@ -208,10 +208,10 @@ describe('<Picker> component', () => {
   it('should render given text for search empty state if no search result found', () => {
     const { getByText, getByRole } = renderComponent({
       ...defaultProps,
+      isVisible: true,
       noSearchResultText: 'No results found',
     });
 
-    userEvent.click(getByText('Select option'));
     userEvent.type(getByRole('textbox'), 'not existing option');
     expect(getByText('No results found')).toBeVisible();
   });
