@@ -83,6 +83,9 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
             size="large"
             onClick={handleClickPrimary}
             className={styles[`${baseClass}__footer__button-primary`]}
+            aria-label={
+              currentStep === stepMax ? 'Finish user guide' : 'Next step'
+            }
           >
             {currentStep === stepMax ? 'Finish' : 'Next'}
           </Button>
@@ -93,6 +96,7 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
                 size="large"
                 onClick={handleCloseAction}
                 className={styles[`${baseClass}__footer__button-close`]}
+                aria-label="Skip all steps"
               >
                 Skip all
               </Button>

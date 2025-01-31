@@ -44,7 +44,7 @@ export const AnimatedTextContainer: FC<IAnimatedTextContainerProps> = ({
     return () => {
       clearTimeout(timeout);
     };
-  }, [text, typingAnimation]);
+  }, [text, typingAnimation, typingSpeed, typingDelay, onTypingEnd]);
 
   return <>{typingAnimation ? displayedText : text}</>;
 };

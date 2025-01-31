@@ -544,7 +544,7 @@ export const UserGuideStepExample = (): ReactElement => {
   );
 };
 UserGuideStepExample.parameters = {
-  layout: 'cetered',
+  layout: 'centered',
 };
 
 export const UserGuideBubbleStepExample = (): ReactElement => {
@@ -567,5 +567,5 @@ export const UserGuideBubbleStepExample = (): ReactElement => {
   );
 };
 UserGuideBubbleStepExample.parameters = {
-  layout: 'cetered',
+  layout: 'centered',
 };
