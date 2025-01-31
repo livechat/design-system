@@ -60,6 +60,7 @@ export * from './components/Tooltip';
 export * from './components/Typography';
 export * from './components/Textarea';
 export * from './components/UpdateBadge';
+export * from './components/UserGuide';
 export * from './components/FileUploadProgress';
 export * from './components/UploadBar';
 export * from './components/FloatingPortal';
