@@ -2,6 +2,10 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
+import {
+  ReadOnlyFormFieldContextProvider,
+  useReadOnlyFormFieldContext,
+} from '../../providers/ReadOnlyFormFieldProvider';
 import { FieldDescription } from '../FieldDescription';
 import { FieldError } from '../FieldError';
 import { Text } from '../Typography';
@@ -23,6 +27,10 @@ export interface FormFieldProps {
    * Define to associate the label with the field
    */
   labelFor?: string;
+  /**
+   * Makes the label text bold. Note: This prop should only be used together with PromoInput.
+   */
+  boldLabel?: boolean;
   /**
    * The CSS class for field container
    */
@@ -47,9 +55,13 @@ export interface FormFieldProps {
    * Renders given element above the filed
    */
   labelRightNode?: React.ReactNode;
+  /**
+   * Whether the form field is read-only
+   */
+  readOnly?: boolean;
 }
 
-export const FormField: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
+const FormFieldContent: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
   inline,
   error,
   description,
@@ -59,9 +71,14 @@ export const FormField: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
   labelFor,
   children,
   labelRightNode,
+  boldLabel = false,
+  readOnly = false,
 }) => {
   const childrenRef = React.useRef<HTMLDivElement>(null);
   const [labelHeight, setLabelHeight] = React.useState('auto');
+
+  const { isEmpty } = useReadOnlyFormFieldContext();
+
   const mergedClassNames = cx(
     styles[baseClass],
     {
@@ -122,10 +139,21 @@ export const FormField: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
                 }}
               >
                 <label
-                  className={styles[`${baseClass}__label-left-node`]}
+                  className={cx(
+                    styles[`${baseClass}__label-left-node`],
+                    readOnly &&
+                      styles[`${baseClass}__label-left-node--read-only`]
+                  )}
                   htmlFor={labelFor}
                 >
-                  <Text as="span" size="sm">
+                  <Text
+                    as="span"
+                    size="sm"
+                    bold={!readOnly && boldLabel}
+                    customColor={
+                      isEmpty ? 'var(--content-basic-secondary)' : undefined
+                    }
+                  >
                     {labelText}
                   </Text>
                 </label>
@@ -167,5 +195,16 @@ export const FormField: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
         </div>
       </div>
     </div>
+  );
+};
+
+export const FormField: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
+  readOnly,
+  ...props
+}) => {
+  return (
+    <ReadOnlyFormFieldContextProvider readOnly={readOnly}>
+      <FormFieldContent readOnly={readOnly} {...props} />
+    </ReadOnlyFormFieldContextProvider>
   );
 };

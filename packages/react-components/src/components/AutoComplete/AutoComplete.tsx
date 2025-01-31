@@ -2,12 +2,14 @@ import * as React from 'react';
 
 import { FloatingNode, FloatingPortal } from '@floating-ui/react';
 
+import { useReadOnlyFormFieldContext } from '../../providers/ReadOnlyFormFieldProvider';
 import noop from '../../utils/noop';
 import { Input } from '../Input';
 import { IPickerListItem, PickerList } from '../Picker';
 import { DEFAULT_LIST_HEIGHT, MIN_LIST_HEIGHT } from '../Picker/constants';
 import { useFloatingPicker } from '../Picker/hooks/useFloatingPicker';
 import { usePickerItems } from '../Picker/hooks/usePickerItems';
+import { ReadOnlyText } from '../ReadOnlyText';
 
 import {
   areAllOptionsStrings,
@@ -44,11 +46,14 @@ export const AutoComplete = React.forwardRef<
       single,
       alwaysShowAllOptions,
       hideIfExactMatch = true,
+      noDataFallbackText = 'No data',
       ...inputProps
     },
     ref
   ) => {
     const inputRef = React.useRef<HTMLInputElement>(null);
+    const { readOnly: readOnlyContext } = useReadOnlyFormFieldContext();
+    const computedReadOnly = readOnlyContext || readOnly;
 
     React.useImperativeHandle(ref, () => inputRef.current!, []);
 
@@ -157,6 +162,15 @@ export const AutoComplete = React.forwardRef<
       placement,
       floatingStrategy,
     });
+
+    if (computedReadOnly) {
+      return (
+        <ReadOnlyText
+          value={inputValue?.toString()}
+          noDataFallbackText={noDataFallbackText}
+        />
+      );
+    }
 
     return (
       <div ref={setReference} {...getReferenceProps()}>

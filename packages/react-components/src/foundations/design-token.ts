@@ -385,6 +385,22 @@ export const DesignToken = {
   ContentBasicPlaceholder: '--content-basic-placeholder',
   InputPromoBorderDefault: '--input-promo-border-default',
   InputPromoBorderHover: '--input-promo-border-hover',
+  SurfaceAiCopilotBasicDefault: '--surface-ai-copilot-basic-default',
+  SurfaceAiCopilotBasicHover: '--surface-ai-copilot-basic-hover',
+  SurfaceAiCopilotBasicActive: '--surface-ai-copilot-basic-active',
+  SurfaceAiCopilotInvert01: '--surface-ai-copilot-invert-01',
+  SurfaceAiCopilotInvert02: '--surface-ai-copilot-invert-02',
+  SurfaceAiOther01Default: '--surface-ai-other-01-default',
+  SurfaceAiOther01Hover: '--surface-ai-other-01-hover',
+  SurfaceAiOther01Active: '--surface-ai-other-01-active',
+  SurfaceAiOther02Default: '--surface-ai-other-02-default',
+  BorderAiCopilotBasicDefault: '--border-ai-copilot-basic-default',
+  BorderAiCopilotBasicHover: '--border-ai-copilot-basic-hover',
+  BorderAiCopilotBasicActive: '--border-ai-copilot-basic-active',
+  BorderAiOther01: '--border-ai-other-01',
+  ContentAiCopilotBasic: '--content-ai-copilot-basic',
+  ContentAiCopilotInvert: '--content-ai-copilot-invert',
+  ContentAiOther1Default: '--content-ai-other-1-default',
 };
 
 export type DesignTokenKey = keyof typeof DesignToken;
