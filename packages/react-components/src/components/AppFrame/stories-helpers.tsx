@@ -164,7 +164,8 @@ export const ExampleTopBar: React.FC<{
   topBarVisible: boolean;
   visibleAlert: number | null;
   setVisibleAlert: (index: number | null) => void;
-}> = ({ topBarVisible, visibleAlert, setVisibleAlert }) => {
+  id?: string;
+}> = ({ topBarVisible, visibleAlert, setVisibleAlert, id }) => {
   const [kind, setKind] = React.useState<
     'info' | 'success' | 'warning' | 'error'
   >('warning');
@@ -197,6 +198,7 @@ export const ExampleTopBar: React.FC<{
       }
     >
       <DisconnectedAlert
+        id={id}
         show={visibleAlert === 0}
         onClose={() => closeAlert()}
       />

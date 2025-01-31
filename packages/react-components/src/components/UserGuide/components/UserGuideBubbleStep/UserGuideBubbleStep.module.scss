@@ -1,0 +1,118 @@
+$base-class: 'user-guide-bubble-step';
+
+.#{$base-class} {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  gap: 1px;
+  width: 340px;
+  color: var(--content-basic-primary);
+
+  &__bubble-wrapper {
+    position: relative;
+    width: fit-content;
+
+    &::before {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      border-radius: var(--radius-4);
+      box-shadow: var(--shadow-modal);
+      content: '';
+    }
+
+    &--completed {
+      &::before {
+        animation-name: shadow-glow;
+        animation-duration: var(--transition-duration-slow-2);
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+      }
+    }
+  }
+
+  &__bubble {
+    position: relative;
+    transition: border-radius var(--transition-duration-fast-1) ease-in-out;
+    opacity: 0;
+    z-index: 1;
+    border-radius: var(--radius-4);
+    background: var(--surface-ai-copilot-basic-default);
+    padding: var(--radius-4);
+    width: fit-content;
+    min-height: 53px;
+    overflow: hidden;
+    animation-name: fade-in;
+    animation-duration: var(--transition-duration-moderate-2);
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+
+    &--next-msg {
+      border-bottom-left-radius: 0;
+    }
+
+    &--header {
+      display: flex;
+      flex-direction: row;
+      gap: var(--spacing-2);
+      align-items: center;
+    }
+
+    &--message {
+      border-top-left-radius: 0;
+    }
+
+    &--cta {
+      display: flex;
+      gap: var(--spacing-2);
+      justify-content: space-between;
+      border-top-left-radius: 0;
+    }
+  }
+}
+
+@keyframes shadow-glow {
+  0% {
+    box-shadow: var(--shadow-modal);
+  }
+
+  50% {
+    box-shadow: var(--shadow-tour-animation);
+  }
+
+  100% {
+    box-shadow: var(--shadow-modal);
+  }
+}
+
+@keyframes background-glow {
+  0% {
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
