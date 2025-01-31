@@ -2,6 +2,10 @@ import * as React from 'react';
 
 import { ComponentCoreProps } from '../../../../utils/types';
 
+interface IOnClickProps {
+  toggle: () => void;
+}
+
 export interface ISideNavigationGroupProps extends ComponentCoreProps {
   /**
    * It will display your side navigation elements
@@ -20,6 +24,18 @@ export interface ISideNavigationGroupProps extends ComponentCoreProps {
    */
   isCollapsible?: boolean;
   /**
+   * Specify whether the label is a link
+   */
+  isLinkLabel?: boolean;
+  /**
+   * Specify whether the list label is active
+   */
+  isActive?: boolean;
+  /**
+   * The function to call on list label click
+   */
+  onClick?: ({ toggle }: IOnClickProps) => void;
+  /**
    * The function to call on item hover
    */
   onItemHover?: () => void;
@@ -35,4 +51,8 @@ export interface ISideNavigationGroupProps extends ComponentCoreProps {
    * The CSS class name for the label wrapper
    */
   labelWrapperClassName?: string;
+  /**
+   * The CSS class name for the list wrapper
+   */
+  listWrapperClassName?: string;
 }

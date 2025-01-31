@@ -22,9 +22,13 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   className,
   labelClassName,
   labelWrapperClassName,
+  listWrapperClassName,
   children,
   isCollapsible,
+  isLinkLabel,
+  isActive,
   onItemHover,
+  onClick,
   shouldOpenOnInit = false,
 }) => {
   const [hasActiveElements, setHasActiveElements] =
@@ -36,16 +40,18 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
     isVisible: !isCollapsible || shouldOpenOnInit,
     elementRef: listWrapperRef,
   });
+
   const localRightNode =
     typeof rightNode === 'function' ? rightNode(isOpen) : rightNode;
   const localLabel = typeof label === 'function' ? label(isOpen) : label;
 
   const openList = (): void => setShouldBeVisible(true);
-
   const toggle = (): void => {
     if (!isCollapsible) return;
     setShouldBeVisible((prev) => !prev);
   };
+
+  const handleClick = (): void => (onClick ? onClick({ toggle }) : toggle());
 
   React.useEffect(() => {
     if (!children || !isCollapsible) {
@@ -73,7 +79,7 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
 
   return (
     <div data-testid="side-navigation-group" className={styles[baseClass]}>
-      {isCollapsible ? (
+      {isCollapsible || isLinkLabel ? (
         <SideNavigationItem
           leftNode={
             <div
@@ -81,7 +87,9 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
                 [styles[`${baseClass}__chevron--active`]]: isOpen,
               })}
             >
-              <Icon source={ChevronRight} size="small" />
+              {isCollapsible ? (
+                <Icon source={ChevronRight} size="small" />
+              ) : null}
             </div>
           }
           label={
@@ -92,8 +100,9 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
               {localLabel}
             </Text>
           }
+          isActive={isActive}
           isMainEntry
-          onClick={toggle}
+          onClick={handleClick}
           onItemHover={onItemHover}
           rightNode={localRightNode}
           className={labelWrapperClassName}
@@ -127,6 +136,7 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
           {
             [styles[`${baseClass}__list-wrapper--expanded`]]: isOpen,
           },
+          listWrapperClassName,
         ])}
         style={
           isCollapsible ? { maxHeight: isOpen ? listHeight : 0 } : undefined
