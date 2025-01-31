@@ -27,9 +27,9 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   isCollapsible,
   isLinkLabel,
   isActive,
-  isOpen: isListOpen,
-  isMounted: isListMounted,
-  setShouldBeVisible: setListShouldBeVisible,
+  isOpen: externalIsOpen,
+  isMounted: externalIsMounted,
+  setShouldBeVisible: externalSetShouldBeVisible,
   onItemHover,
   onClick,
   listWrapperRef: externalListWrapperRef,
@@ -46,9 +46,10 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
     elementRef: localListWrapperRef,
   });
 
-  const localIsOpen = isListOpen ?? isOpen;
-  const localIsMounted = isListMounted ?? isMounted;
-  const localSetShouldBeVisible = setListShouldBeVisible ?? setShouldBeVisible;
+  const localIsOpen = externalIsOpen ?? isOpen;
+  const localIsMounted = externalIsMounted ?? isMounted;
+  const localSetShouldBeVisible =
+    externalSetShouldBeVisible ?? setShouldBeVisible;
   const localRightNode =
     typeof rightNode === 'function' ? rightNode(localIsOpen) : rightNode;
   const localLabel = typeof label === 'function' ? label(localIsOpen) : label;
