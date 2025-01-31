@@ -63,10 +63,9 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
   }, [parentElement]);
 
   useEffect(() => {
-    const handleResize = () => update();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', update);
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', update);
   }, [update]);
 
   useEffect(() => {
@@ -97,7 +96,7 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
         containerRef.current.innerHTML = '';
       }
     };
-  }, [parentElement, containerRef.current, isVisible]);
+  }, [parentElement, containerRef.current]);
 
   useEffect(() => {
     if (isVisible) {
