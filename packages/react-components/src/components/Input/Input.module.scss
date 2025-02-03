@@ -81,11 +81,6 @@ $base-class: 'input';
     }
   }
 
-  &--read-only {
-    border-color: var(--border-basic-disabled);
-    background-color: var(--surface-primary-disabled);
-  }
-
   &--error,
   &--error:hover {
     border-color: var(--border-basic-negative);

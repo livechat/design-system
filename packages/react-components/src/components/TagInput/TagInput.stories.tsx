@@ -99,3 +99,9 @@ export const Sizes = (): React.ReactElement => (
     </StoryDescriptor>
   </>
 );
+
+export const ReadOnlyTagInput = ({ ...args }) => {
+  const [tags, setTags] = React.useState(['tag1', 'tag2']);
+
+  return <TagInput {...args} tags={tags} onChange={setTags} readOnly />;
+};

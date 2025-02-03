@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import { Meta } from '@storybook/react';
 
+import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+
 import {
   RadioButton as RadioButtonComponent,
   RadioButtonProps,
@@ -32,4 +34,25 @@ RadioButton.args = {
   disabled: false,
   description: 'Help text',
   children: 'Radio label',
+};
+
+export const RadioButtonReadOnly = ({
+  children,
+  ...args
+}: RadioButtonProps): React.ReactElement => (
+  <>
+    <StoryDescriptor title="Checked">
+      <RadioButtonComponent {...args} checked>
+        {children}
+      </RadioButtonComponent>
+    </StoryDescriptor>
+    <StoryDescriptor title="UnChecked">
+      <RadioButtonComponent {...args}>{children}</RadioButtonComponent>
+    </StoryDescriptor>
+  </>
+);
+
+RadioButtonReadOnly.args = {
+  ...RadioButton.args,
+  readOnly: true,
 };

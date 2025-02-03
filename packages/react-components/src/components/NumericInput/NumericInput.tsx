@@ -3,8 +3,10 @@ import * as React from 'react';
 import { ChevronUp, ChevronDown } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
+import { useReadOnlyFormFieldContext } from '../../providers/ReadOnlyFormFieldProvider';
 import { KeyCodes } from '../../utils/keyCodes';
 import { Icon } from '../Icon';
+import { ReadOnlyText } from '../ReadOnlyText';
 
 import styles from './NumericInput.module.scss';
 
@@ -19,6 +21,7 @@ export type NumericInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   disabled?: boolean;
   noControls?: boolean;
   onChange: (value: string) => void;
+  noDataFallbackText?: string;
 };
 
 export const NumericInput: React.FC<
@@ -33,9 +36,12 @@ export const NumericInput: React.FC<
   noControls,
   style,
   onChange,
+  noDataFallbackText = 'No data',
   ...restProps
 }) => {
   const inputRef = React.useRef<null | HTMLInputElement>(null);
+  const { readOnly } = useReadOnlyFormFieldContext();
+  const computedReadOnly = readOnly || restProps.readOnly;
 
   const mergedClassNames = cx(
     styles[baseClass],
@@ -110,6 +116,15 @@ export const NumericInput: React.FC<
 
     return updateValue(-1);
   };
+
+  if (computedReadOnly) {
+    return (
+      <ReadOnlyText
+        value={value?.toString()}
+        noDataFallbackText={noDataFallbackText}
+      />
+    );
+  }
 
   return (
     <div className={mergedClassNames} style={style}>

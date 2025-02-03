@@ -1,0 +1,62 @@
+$base-class: 'user-guide-step';
+
+.#{$base-class} {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-4);
+  box-shadow: var(--shadow-modal);
+  background: var(--surface-ai-copilot-basic-default);
+  padding: var(--spacing-4);
+  width: 340px;
+
+  &__heading {
+    margin-bottom: var(--spacing-3);
+    color: var(--content-basic-primary);
+  }
+
+  &__content {
+    margin-bottom: var(--spacing-4);
+    color: var(--content-basic-secondary);
+  }
+
+  &__image-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: var(--spacing-4);
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    animation-name: fade-in;
+    animation-duration: var(--transition-duration-moderate-2);
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+
+    &__step-counter {
+      white-space: nowrap;
+      color: var(--content-basic-secondary);
+    }
+
+    &__button-primary {
+      align-self: flex-end;
+    }
+
+    &__button-close {
+      margin-right: var(--spacing-1);
+      color: var(--content-basic-secondary);
+    }
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

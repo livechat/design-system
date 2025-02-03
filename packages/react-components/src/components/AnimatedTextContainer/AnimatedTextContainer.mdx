@@ -1,0 +1,32 @@
+import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+
+import * as Stories from './AnimatedTextContainer.stories';
+
+<Meta of={Stories} />
+
+<Title>AnimatedTextContainer</Title>
+
+[Intro](#Intro) | [Usage](#Usage) | [Component API](#ComponentAPI)
+
+## Intro <a id="Intro" />
+
+The `AnimatedTextContainer` components gives the possibility to put own text which will be rendered with typing animation. It also provides possibility to put own handler which will be executed at the end of animation.
+
+<Canvas of={Stories.Default} />
+
+## Usage <a id="Usage" />
+
+```tsx
+import { AnimatedTextContainer } from '@livechat/design-system-react-components';
+
+return (
+  <AnimatedTextContainer
+    text={/* your text here */}
+    onTypingEnd={/* your handler here */}
+  />
+)
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={Stories.Default} sort="requiredFirst" />

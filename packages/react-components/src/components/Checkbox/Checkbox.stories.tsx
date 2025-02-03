@@ -38,12 +38,18 @@ export const States = (): React.ReactElement => (
       <CheckboxComponent checked description="Disabled" disabled>
         Checkbox label
       </CheckboxComponent>
+      <CheckboxComponent checked description="ReadOnly" readOnly>
+        Checkbox label
+      </CheckboxComponent>
     </StoryDescriptor>
     <StoryDescriptor title="Unchecked">
       <CheckboxComponent checked={false} description="Enabled">
         Checkbox label
       </CheckboxComponent>
       <CheckboxComponent checked={false} description="Disabled" disabled>
+        Checkbox label
+      </CheckboxComponent>
+      <CheckboxComponent checked={false} description="ReadOnly" readOnly>
         Checkbox label
       </CheckboxComponent>
     </StoryDescriptor>
@@ -60,6 +66,14 @@ export const States = (): React.ReactElement => (
         checked={false}
         description="Disabled"
         disabled
+      >
+        Checkbox label
+      </CheckboxComponent>
+      <CheckboxComponent
+        indeterminate={true}
+        checked={false}
+        description="ReadOnly"
+        readOnly
       >
         Checkbox label
       </CheckboxComponent>

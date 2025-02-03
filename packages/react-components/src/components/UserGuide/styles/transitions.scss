@@ -1,0 +1,17 @@
+@mixin durations() {
+  &--fast1 {
+    transition-duration: var(--transition-duration-fast-1);
+  }
+
+  &--fast2 {
+    transition-duration: var(--transition-duration-fast-2);
+  }
+
+  &--moderate1 {
+    transition-duration: var(--transition-duration-moderate-1);
+  }
+
+  &--moderate2 {
+    transition-duration: var(--transition-duration-moderate-2);
+  }
+}
