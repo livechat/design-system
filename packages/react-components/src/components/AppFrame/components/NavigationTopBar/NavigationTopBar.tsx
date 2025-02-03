@@ -35,11 +35,12 @@ export const NavigationTopBar = ({
   children,
   className,
   additionalNodes,
+  id,
 }: INavigationTopBarProps): React.ReactElement => {
   const { isMobileViewEnabled } = useAppFrame();
 
   return (
-    <div className={cx(styles[baseClass], className)}>
+    <div className={cx(styles[baseClass], className)} id={id}>
       <div className={styles[`${baseClass}__alerts-wrapper`]}>{children}</div>
       {!isMobileViewEnabled && additionalNodes}
     </div>
@@ -95,6 +96,7 @@ export const NavigationTopBarAlert: React.FC<ITopBarAlertProps> = ({
   primaryCta,
   secondaryCta,
   isVisible = true,
+  id,
 }) => {
   const [isMobile, setIsMobile] = React.useState<boolean>(false);
   const alertRef = React.useRef<HTMLDivElement>(null);
@@ -178,6 +180,7 @@ export const NavigationTopBarAlert: React.FC<ITopBarAlertProps> = ({
             role="status"
           >
             <div
+              id={id}
               data-testid="navigation-top-bar-alert"
               className={cx(
                 styles[alertClass],

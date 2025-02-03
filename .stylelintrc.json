@@ -9,6 +9,7 @@
     "selector-class-pattern": null,
     "no-descending-specificity": null,
     "order/properties-alphabetical-order": null,
-    "import-notation": "string"
+    "import-notation": "string",
+    "no-invalid-position-at-import-rule": null
   }
 }

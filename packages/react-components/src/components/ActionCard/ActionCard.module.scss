@@ -1,3 +1,5 @@
+@import '../../styles/animations';
+
 $base-class: 'action-card';
 
 @mixin verticalStyles {
@@ -11,8 +13,37 @@ $base-class: 'action-card';
   }
 }
 
+.visually-hidden {
+  position: absolute;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip: rect(0, 0, 0, 0);
+}
+
 .main-wrapper {
   container-type: inline-size;
+
+  &.#{$base-class}--loading {
+    border: 0;
+    border-radius: var(--radius-4);
+    background-color: var(--surface-secondary-disabled);
+    cursor: default;
+    width: 100%;
+    min-height: 280px;
+
+    .#{$base-class} {
+      display: none;
+    }
+  }
+
+  &.#{$base-class}--loading--animated {
+    @include skeleton-loading;
+  }
 }
 
 .#{$base-class} {

@@ -1,6 +1,27 @@
 import * as React from 'react';
 
-export interface ActionCardProps {
+export type ActionCardProps = (
+  | {
+      /**
+       * Specify if the card is in loading state
+       */
+      isLoading: true;
+      /**
+       * Specify if the card is in animated loading state
+       */
+      isLoadingAnimated?: boolean;
+    }
+  | {
+      /**
+       * Specify if the card is in loading state
+       */
+      isLoading?: false;
+      /**
+       * Loading animation is not available when not loading
+       */
+      isLoadingAnimated?: never;
+    }
+) & {
   /**
    * The CSS class for main container
    */
@@ -21,4 +42,4 @@ export interface ActionCardProps {
    * Optional handler called on card click
    */
   onClick?: () => void;
-}
+};
