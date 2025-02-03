@@ -126,6 +126,8 @@ import { SideNavigationGroup } from '@livechat/design-system-react-components';
 ...
 ```
 
+Additionally, `SideNavigationGroup` exposes `isOpen`, `isMounted` and `setShouldBeVisible` props, allowing external control of the list visibility state. To maintain consistency with the default behavior of the component, when using these props it is recommended to do so with the `useAnimations` hook. For that purpose a ref can be created and passed as `listWrapperRef` prop to `SideNavigationGroup` - the same ref should also be passed to the external `useAnimations` hook. All of the aforementioned props should be used together to ensure `SideNavigationGroup` behaves as expected.
+
 #### `SideNavigationItem` component
 
 The `SideNavigationItem` component is used to create single side navigation element. It displays button with the given label and it can be supplemented by passing your own elements via the `leftNode` and `rightNode` props.
