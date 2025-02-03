@@ -87,6 +87,8 @@ This is a problem that occurred after the last update of Storybook and related p
 ## Styling the components aka migration to `@emotion`
 We are transitioning our design system components from SCSS to `@emotion` for styling. This change aims to enhance maintainability, improve performance, and provide a more seamless styling approach within React.
 
+**When updating or contributing to the design system, please use Emotion syntax instead of module SCSS files.**
+
 ### What Changes?
 Styles previously written in `.scss` files are now defined using Emotion’s css API.
 Components no longer import `.scss` files but instead define styles within `styles.ts` files.
