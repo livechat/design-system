@@ -9,6 +9,7 @@ import { Icon } from '../../../Icon';
 import { Text } from '../../../Typography';
 import { SideNavigationItem } from '../SideNavigationItem/SideNavigationItem';
 
+import { SIDE_NAVIGATION_LINK_LABEL_TEST_ID } from './constants';
 import { ISideNavigationGroupProps } from './types';
 
 import styles from './SideNavigationGroup.module.scss';
@@ -117,6 +118,9 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
           onItemHover={onItemHover}
           rightNode={localRightNode}
           className={labelWrapperClassName}
+          data-testid={
+            isLinkLabel ? SIDE_NAVIGATION_LINK_LABEL_TEST_ID : undefined
+          }
         />
       ) : (
         <span
