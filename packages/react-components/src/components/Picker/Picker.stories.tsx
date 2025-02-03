@@ -87,6 +87,17 @@ export const States = (): React.ReactElement => (
         disabled
       />
     </StoryDescriptor>
+    <StoryDescriptor title="ReadOnly">
+      <PickerComponent
+        options={DEFAULT_PICKER_OPTIONS}
+        onSelect={noop}
+        inputProps={{ readOnly: true }}
+        selected={[
+          { key: 'two', name: 'Option two' },
+          { key: 'three', name: 'Option three' },
+        ]}
+      />
+    </StoryDescriptor>
     <StoryDescriptor title="Error">
       <PickerComponent options={DEFAULT_PICKER_OPTIONS} onSelect={noop} error />
     </StoryDescriptor>

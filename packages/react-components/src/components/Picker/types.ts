@@ -156,4 +156,8 @@ export interface IPickerProps extends ComponentCoreProps {
    * Additional props for the input element
    */
   inputProps?: InputHTMLAttributes<HTMLInputElement> | Record<string, unknown>;
+  /**
+   * Set the text to display with read-only state when there is no data. Default to 'No data'
+   */
+  noDataFallbackText?: string;
 }

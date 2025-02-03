@@ -25,6 +25,32 @@
   --shadow-fixed-bottom: 0 2px 10px rgb(19 19 23 / 18%);
   --focus-ring-inner: inset 0 0 1px 2px var(--action-primary-default);
   --state-active-field: 0 0 0 4px rgb(0 89 225 / 15%);
+  --shadow-tour-animation: 0 8px 32px 1px rgb(150 0 209 / 80%),
+    0 -8px 32px 0 rgba(5 172 255 / 90%), 0 8px 16px 0 rgb(5 172 255 / 20%) inset,
+    0 -8px 16px 1px rgba(150 0 209 / 10%) inset,
+    0 8px 32px 1px rgb(150 0 209 / 80%), 0 -8px 32px 0 rgb(5 172 255 / 90%),
+    0 8px 16px 0 rgb(5 172 255 / 20%) inset,
+    0 -8px 16px 1px rgb(150 0 209 / 10%) inset;
+  --shadow-ai-copilot-animation-start: 0 -4px 22px 1px rgb(0 102 255 / 30%),
+    0 12px 32px 1px rgb(113 111 255 / 60%),
+    0 0 0 1px rgb(145 70 255 / 100%) inset;
+  --shadow-ai-copilot-animation-medium1: 0 -4px 22px 1px rgb(0 102 255 / 30%),
+    0 12px 32px 1px rgb(113 111 255 / 60%),
+    0 0 0 1px rgb(145 70 255 / 100%) inset;
+  --shadow-ai-copilot-animation-medium2: 0 -2px 24px 1px hsl(216deg 100% 50% /
+          60%),
+    0 12px 32px 1px hsl(241deg 100% 72% / 40%),
+    0 0 0 1px hsl(216deg 100% 50% / 100%) inset;
+  --shadow-ai-copilot-animation-medium3: 0 -2px 24px 1px hsl(216deg 100% 50% /
+          60%),
+    0 12px 32px 1px hsl(241deg 100% 72% / 40%),
+    0 0 0 1px hsl(216deg 100% 50% / 100%) inset;
+  --shadow-ai-copilot-animation-end: 0 6px 28px 0 rgb(19 19 23 / 30%);
+  --shadow-ai-other-float: 1px 2px 6px 0 hsl(323deg 100% 38% / 15%),
+    -1px 0 6px 0 hsl(210deg 100% 52% / 20%);
+  --shadow-ai-other-active-field: 1px 2px 6px 0 hsl(337deg 95% 58% / 15%),
+    -1px -2px 6px 0 hsl(210deg 100% 52% / 20%),
+    0 0 0 4px hsl(212deg 100% 50% / 5%);
 }
 
 .lc-dark-theme {
@@ -56,4 +82,33 @@
   --shadow-fixed-bottom: 0 2px 10px rgb(19 19 23 / 18%);
   --focus-ring-inner: inset 0 0 1px 2px var(--action-primary-default);
   --state-active-field: 0 0 0 4px rgb(104 175 255 / 25%);
+  --shadow-tour-animation: 0 8px 32px 1px rgb(150 0 209 / 80%),
+    0 -8px 32px 0 rgba(5 172 255 / 90%), 0 8px 16px 0 rgb(5 172 255 / 20%) inset,
+    0 -8px 16px 1px rgba(150 0 209 / 10%) inset,
+    0 8px 32px 1px rgb(150 0 209 / 80%), 0 -8px 32px 0 rgb(5 172 255 / 90%),
+    0 8px 16px 0 rgb(5 172 255 / 20%) inset,
+    0 -8px 16px 1px rgb(150 0 209 / 10%) inset;
+  --shadow-ai-copilot-animation-start: 0 0 3px 0 hsl(261deg 100% 78% / 100%)
+      inset,
+    0 -4px 30px 1px hsl(216deg 100% 50% / 30%),
+    0 12px 32px 1px hsl(264deg 100% 64% / 60%);
+  --shadow-ai-copilot-animation-medium1: 0 0 3px 0 hsl(213deg 100% 68% / 100%)
+      inset,
+    0 -8px 32px 1px hsl(213deg 100% 60% / 40%),
+    0 12px 32px 1px hsl(264deg 100% 64% / 30%);
+  --shadow-ai-copilot-animation-medium2: 0 0 2px 0 hsl(213deg 100% 68% / 100%)
+      inset,
+    0 -8px 32px 1px hsl(213deg 100% 60% / 20%),
+    0 12px 32px 1px hsl(264deg 100% 64% / 15%);
+  --shadow-ai-copilot-animation-medium3: 0 4px 16px 1px hsl(0deg 0% 0% / 50%),
+    0 0 0 1px hsl(0deg 0% 100% / 15%) inset, 0 0 2px 1px hsl(0deg 0% 0% / 15%),
+    0 12px 32px 1px hsl(264deg 100% 64% / 10%),
+    0 -8px 28px 1px hsl(213deg 100% 60% / 20%);
+  --shadow-ai-copilot-animation-end: 0 4px 32px 1px hsl(0deg 0% 0% / 50%),
+    0 0 0 1px hsl(0deg 0% 100% / 15%) inset, 0 0 2px 1px hsl(0deg 0% 0% / 15%);
+  --shadow-ai-other-float: 1px 2px 6px 0 hsl(323deg 100% 38% / 50%),
+    -1px 0 6px 0 hsl(210deg 100% 52% / 50%);
+  --shadow-ai-other-active-field: 1px 2px 6px 0 hsl(333deg 47% 4% / 45%),
+    -1px -2px 6px 0 hsl(210deg 100% 52% / 50%),
+    0 0 0 4px hsl(212deg 97% 73% / 15%);
 }

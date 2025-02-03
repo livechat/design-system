@@ -2,8 +2,10 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
+import { useReadOnlyFormFieldContext } from '../../providers/ReadOnlyFormFieldProvider';
 import { KeyCodes } from '../../utils/keyCodes';
 import { FieldError } from '../FieldError';
+import { ReadOnlyText } from '../ReadOnlyText';
 import { Text } from '../Typography';
 
 import { EditableTag } from './components/EditableTag';
@@ -34,6 +36,8 @@ export const TagInput = <T extends TagInputValues>({
   inputClassName,
   onBlur,
   addOnBlur = true,
+  readOnly,
+  noDataFallbackText = 'No data',
   ...props
 }: TagInputProps<T>): React.ReactElement => {
   const mergedClassNames = cx(
@@ -51,6 +55,8 @@ export const TagInput = <T extends TagInputValues>({
 
   const [inputValue, setInputValue] = React.useState('');
   const inputRef = React.useRef<HTMLInputElement>(null);
+  const { readOnly: readOnlyContext } = useReadOnlyFormFieldContext();
+  const computedReadOnly = readOnlyContext || readOnly;
 
   const addTag = (value: string) => {
     if (value.trim() !== '') {
@@ -112,6 +118,19 @@ export const TagInput = <T extends TagInputValues>({
     const newTags = text.split(/[\s,;\n]+/);
     onChange([...(tags || []), ...newTags] as T[]);
   };
+
+  const getTagValue = (tag: T): string => {
+    if (typeof tag === 'string') return tag;
+    return tag.value || (typeof tag.children === 'string' ? tag.children : '');
+  };
+  if (computedReadOnly) {
+    return (
+      <ReadOnlyText
+        value={tags?.filter(Boolean).map(getTagValue).join(', ')}
+        noDataFallbackText={noDataFallbackText}
+      />
+    );
+  }
 
   const renderTag = (tag: T, index: number) => {
     if (typeof tag === 'string') {

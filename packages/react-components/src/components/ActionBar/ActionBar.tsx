@@ -135,6 +135,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
             )}
             triggerRenderer={
               <Button
+                id={`${id}-menu-button`}
                 className={cx(
                   styles[`${menuWrapperClass}__button`],
                   buttonElement && styles[`${menuWrapperClass}__button--active`]
