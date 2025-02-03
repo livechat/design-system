@@ -38,6 +38,7 @@ export const ExpirationCounter: React.FC<IExpirationCounterProps> = ({
 }) => (
   <li key={id} className={cx(styles[baseClass], className)}>
     <a
+      id={id}
       tabIndex={0}
       href={url}
       onClick={(e) => onClick(e, id)}

@@ -1,13 +1,9 @@
 import * as React from 'react';
 
-import cx from 'clsx';
+import { useAnimations } from '../../../../hooks';
+import { IAccordionAnimatedLabelProps } from '../../types';
 
-import { useAnimations } from '../../../hooks';
-import { IAccordionAnimatedLabelProps } from '../types';
-
-import styles from './AccordionAnimatedLabel.module.scss';
-
-const baseClass = `accordion-animated-label`;
+import * as styles from './styles';
 
 export const AccordionAnimatedLabel: React.FC<IAccordionAnimatedLabelProps> = ({
   open,
@@ -39,27 +35,14 @@ export const AccordionAnimatedLabel: React.FC<IAccordionAnimatedLabelProps> = ({
   }, [isOpen, isOpenMounted, isClosedMounted]);
 
   return (
-    <div
-      className={styles[baseClass]}
-      style={{ height: containerHeight ? `${containerHeight}px` : 'auto' }}
-    >
+    <div className={styles.baseStyles(containerHeight)}>
       {isOpenMounted && (
-        <div
-          ref={openRef}
-          className={cx(styles[`${baseClass}__open`], {
-            [styles[`${baseClass}__open--visible`]]: isOpenVisible,
-          })}
-        >
+        <div ref={openRef} className={styles.element(isOpenVisible)}>
           {open}
         </div>
       )}
       {isClosedMounted && (
-        <div
-          ref={closedRef}
-          className={cx(styles[`${baseClass}__close`], {
-            [styles[`${baseClass}__close--visible`]]: isClosedVisible,
-          })}
-        >
+        <div ref={closedRef} className={styles.element(isClosedVisible)}>
           {closed}
         </div>
       )}
