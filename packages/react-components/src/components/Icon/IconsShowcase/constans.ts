@@ -526,6 +526,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   SafariColored: IconGroup.Brands,
   ShopifyColored: IconGroup.Brands,
   ShoppingCartFilled: IconGroup.Brands,
+  Slack: IconGroup.Brands,
   TelegramColored: IconGroup.Brands,
   TelegramMono: IconGroup.Brands,
   TextLogo: IconGroup.Brands,
