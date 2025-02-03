@@ -6,7 +6,8 @@ import styles from './examples.module.scss';
 export const DisconnectedAlert: React.FC<{
   show: boolean;
   onClose: () => void;
-}> = ({ show, onClose }) => {
+  id?: string;
+}> = ({ show, onClose, id }) => {
   const [isReconnecting, setIsReconnecting] = React.useState(false);
   const [isReconnected, setIsReconnected] = React.useState(false);
 
@@ -31,6 +32,7 @@ export const DisconnectedAlert: React.FC<{
 
   return (
     <NavigationTopBar.Alert
+      id={id}
       kind={isReconnected ? 'success' : 'error'}
       isVisible={show}
       primaryCta={

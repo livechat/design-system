@@ -4,6 +4,10 @@ export type Size = 'compact' | 'medium' | 'large';
 
 export interface ComponentCoreProps {
   /**
+   * The ID of the component
+   */
+  id?: string;
+  /**
    * The children of the component
    */
   children?: React.ReactNode;

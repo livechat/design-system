@@ -51,6 +51,7 @@ export const NavigationItem: React.FC<INavigationItemProps> = ({
 
   return (
     <li
+      id={id}
       key={id}
       className={cx(
         styles[baseClass],
