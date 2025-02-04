@@ -103,7 +103,7 @@ The `SideNavigation` component serves as a container for side navigation element
 The `SideNavigationGroup` component is used to create collapsible items within the `SideNavigation`. It groups the `SideNavigationItem` items under same category.
 It is not a component required to create a side navigation structure. Its main task is to aggregate elements under a label, with the option of enabling expansion of the list of elements via the `isCollapsible` prop.
 
-In `isCollapsible` mode, the `SideNavigationGroup` component should automatically open if there is any child element inside with `isActive` set. With `SideNavigationItem` components passed as children directly, any of them with `isActive` prop set to `true` will cause the group component to automaticly open. Using `SideNavigationItem` as direct childs is the assumed pattern of building side navigation, however if you need to wrap these components (or use your own) to make the menu open automatically, you need to provide and handle `isActive` to the child component yourself. Alternatively you can use `shouldOpenOnInit` prop which will automatically open the list, regardless of whether any item has `isActive` set.
+In `isCollapsible` mode, the `SideNavigationGroup` component should automatically open if there is any child element inside with `isActive` set. With `SideNavigationItem` components passed as children directly, any of them with `isActive` prop set to `true` will cause the group component to automatically open. Using `SideNavigationItem` as direct children is the assumed pattern of building side navigation, however if you need to wrap these components (or use your own) to make the menu open automatically, you need to provide and handle `isActive` to the child component yourself. Alternatively you can use `shouldOpenOnInit` prop which will automatically open the list, regardless of whether any item has `isActive` set.
 
 ```jsx
 import { SideNavigationGroup } from '@livechat/design-system-react-components';
@@ -126,7 +126,8 @@ import { SideNavigationGroup } from '@livechat/design-system-react-components';
 ...
 ```
 
-Additionally, `SideNavigationGroup` exposes `isOpen`, `isMounted` and `setShouldBeVisible` props, allowing external control of the list visibility state. To maintain consistency with the default behavior of the component, when using these props it is recommended to do so with the `useAnimations` hook. For that purpose a ref can be created and passed as `listWrapperRef` prop to `SideNavigationGroup` - the same ref should also be passed to the external `useAnimations` hook. All of the aforementioned props should be used together to ensure `SideNavigationGroup` behaves as expected.
+Additionally, `SideNavigationGroup` exposes `isOpen`, `isMounted` and `setShouldBeVisible` props. These allow parent components to have full control over the navigation group's state if needed. To maintain consistency with the default behavior of `SideNavigationGroup`, when using these props it is recommended to do so with the `useAnimations` hook. For that purpose a ref can be created and passed as `listWrapperRef` prop to `SideNavigationGroup` - the same ref should then be passed to the `useAnimations` hook. 
+All the aforementioned props should be used together to ensure `SideNavigationGroup` behaves as expected.
 
 #### `SideNavigationItem` component
 
