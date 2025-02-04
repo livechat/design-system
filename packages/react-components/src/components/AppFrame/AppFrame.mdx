@@ -127,7 +127,36 @@ import { SideNavigationGroup } from '@livechat/design-system-react-components';
 ```
 
 Additionally, `SideNavigationGroup` exposes `isOpen`, `isMounted` and `setShouldBeVisible` props. These allow parent components to have full control over the navigation group's state if needed. To maintain consistency with the default behavior of `SideNavigationGroup`, when using these props it is recommended to do so with the `useAnimations` hook. For that purpose a ref can be created and passed as `listWrapperRef` prop to `SideNavigationGroup` - the same ref should then be passed to the `useAnimations` hook. 
+
 All the aforementioned props should be used together to ensure `SideNavigationGroup` behaves as expected.
+
+```jsx
+import { useRef } from 'react';
+import { SideNavigationGroup, useAnimations } from '@livechat/design-system-react-components';
+
+const ParentComponent = () => {
+  const listWrapperRef = useRef(null);
+  const { isOpen, isMounted, setShouldBeVisible } = useAnimations({
+    isVisible: ..., // initial visibility state
+    elementRef: listWrapperRef,
+  });
+
+  ...
+    <SideNavigationGroup 
+      isCollapsible 
+      label="Controlled by parent" 
+      listWrapperRef={listWrapperRef} 
+      isOpen={isOpen} 
+      isMounted={isMounted} 
+      setShouldBeVisible={setShouldBeVisible}
+    >
+      ...
+        // children components
+      ...
+    </SideNavigationGroup>
+  ...
+};
+```
 
 #### `SideNavigationItem` component
 
