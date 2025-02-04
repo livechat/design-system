@@ -17,6 +17,7 @@ import styles from './Button.module.scss';
 export type ButtonProps = {
   /**
    * Specify the button kind
+   * @note The 'basic' kind is deprecated and will be removed in a future release. Please use 'secondary' instead.
    */
   kind?: ButtonKind;
   /**
@@ -62,7 +63,7 @@ export const Button = React.forwardRef<
       disabled = false,
       type = 'button',
       fullWidth = false,
-      kind = 'basic',
+      kind = 'secondary',
       size = 'medium',
       icon = null,
       iconPosition = 'left',
