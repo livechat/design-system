@@ -15,3 +15,11 @@ export const Text = (args: ISkeletonText): React.ReactElement => (
   />
 );
 Text.args = {};
+
+export const TextWithCustomWidth = (
+  args: ISkeletonText
+): React.ReactElement => <SkeletonText {...args} />;
+
+TextWithCustomWidth.args = {
+  width: 100,
+};
