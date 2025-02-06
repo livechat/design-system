@@ -89,6 +89,26 @@ describe('<Picker> component', () => {
     expect(onClose).not.toHaveBeenCalled(); // because it was not visible
   });
 
+  it('should toggle dropdown when clicking on the input or arrow', () => {
+    const onOpen = vi.fn();
+    const onClose = vi.fn();
+    const { getByTestId, queryByTestId, getByRole } = renderComponent({
+      ...defaultProps,
+      onOpen,
+      onClose,
+    });
+
+    userEvent.click(getByTestId('picker-trigger__chevron-icon'));
+
+    expect(onOpen).toHaveBeenCalled();
+    expect(getByTestId('picker-list')).toBeVisible();
+
+    userEvent.click(getByRole('textbox'));
+
+    expect(onClose).toHaveBeenCalled();
+    expect(queryByTestId('picker-list')).toBeNull();
+  });
+
   it('should call onSelect includes the currently selected options in multiselect mode', () => {
     const onSelect = vi.fn();
     const onClose = vi.fn();
@@ -188,10 +208,10 @@ describe('<Picker> component', () => {
   it('should render given text for search empty state if no search result found', () => {
     const { getByText, getByRole } = renderComponent({
       ...defaultProps,
+      isVisible: true,
       noSearchResultText: 'No results found',
     });
 
-    userEvent.click(getByText('Select option'));
     userEvent.type(getByRole('textbox'), 'not existing option');
     expect(getByText('No results found')).toBeVisible();
   });

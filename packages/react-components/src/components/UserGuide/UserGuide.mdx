@@ -1,0 +1,127 @@
+import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+
+import * as Stories from './UserGuide.stories';
+
+<Meta of={Stories} />
+
+<Title>UserGuide</Title>
+
+[Intro](#Intro) | [Usage](#Usage) | [Style highlighted element](#style) | [UserGuideStep](#UserGuideStep) | [UserGuideBubbleStep](#UserGuideBubbleStep) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+## Intro <a id="Intro" />
+
+The `UserGuide` component provides a guided tour functionality to help users navigate through different features of your application. It enhances user experience by offering step-by-step guidance in an interactive way.
+
+## Usage <a id="Usage" />
+
+Here’s an example of how you can integrate the `UserGuide` component into your application:
+
+```tsx
+import {
+  UserGuide,
+  UserGuideStep,
+} from '@livechat/design-system-react-components';
+
+return (
+  <div>
+    <div id="reference1">
+      Example reference 1
+    </div>
+    <div id="reference2">
+      Example reference 2
+    </div>
+    <div id="reference3">
+      Example reference 3
+    </div>
+
+    <UserGuide
+      isVisible={/* your state managment */}
+      parentElementName={/* the id of the element to highlight, example: #reference1 */}
+      cursorPosition={/* direction of the cursor pointer */}
+      cursorTiming={/* timing animations */}
+      elementStyles={/* custom styles for highlighted element */}
+    >
+      {/* here you should put the `UserGuideStep` or `UserGuideBubbleStep` components */}
+
+      <UserGuideStep
+        header="Title text goes here"
+        text="Text goes here"
+        currentStep={1}
+        stepMax={3}
+        handleClickPrimary={/* your handler for primary button */}
+        handleCloseAction={/* your handler for close button */}
+      />
+    </UserGuide>
+  </div>
+);
+```
+
+The above example only shows the way of implementation, state management is on the implementation side. 
+You can manage it in any way, the most important is to place in `UserGuide` an element that is to be 
+displayed next to the element the guide points to. We suggest using `UserGuideStep`.
+
+#### Important
+
+- `parentElementName` - it requires the correct id of the element which should be highlighted, the element should be visible in the UI
+
+## Style highlighted element <a id="style" />
+
+Component allows to easily style the highlighted element, by passing own styles properties. To do this, you need to enchant the `UserGuide` component with styles object using the `elementStyles` prop:
+
+```tsx
+<UserGuide
+  ...
+  elementStyles={/* custom styles for highlighted element */}
+  ...
+>
+```
+
+You can use your state managment to put different styles for highliughted elements, the component will update it.
+
+## UserGuideStep <a id="UserGuideStep" />
+
+`UserGuideStep` is the component which should be used as the steps of the user guide. Used inside the `UserGuide` it will be positioned with the cursor based on the `cursorPosition`.
+
+<Canvas of={Stories.UserGuideStepExample} />
+
+```tsx
+<UserGuideStep
+  header="This is selected navigation item"
+  text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
+  currentStep={1}
+  stepMax={9}
+  handleClickPrimary={/* your handler for primary button */}
+  handleCloseAction={/* your handler for close button */}
+/>
+```
+
+## UserGuideBubbleStep <a id="UserGuideBubbleStep" />
+
+`UserGuideBubbleStep` is a variant of the guide step that displays content in a bubble format with celebration animations. Used inside the `UserGuide`, it provides a different visual style for highlighting features.
+
+<Canvas of={Stories.UserGuideBubbleStepExample} />
+
+```tsx
+<UserGuideBubbleStep
+  isCompleted={/* your state managment to enable animation of celebration state */}
+  handleAnimationComplete={/* use your custom handler when component end the final animation */}
+  headerMessage="Welcome to chats section"
+  headerIcon={<Icon source={Icons.OneColored} />}
+  message="We have prepared the playground ready for you to test all capabilities of chat section. If you have any question, just trigger me from the upper -right corner of the screen!"
+  cta={/* your custom cta buttons */}
+/>
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={Stories.Example} sort="requiredFirst" />
+
+## Content Spec <a id="ContentSpec" />
+
+<a
+  className="sb-unstyled"
+  href="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=97-24893&mode=dev"
+  target="_blank"
+>
+  Go to Figma documentation
+</a> 

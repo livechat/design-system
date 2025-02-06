@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Meta } from '@storybook/react';
 
 import image from '../../stories/assets/chat-window.png';
+import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Button } from '../Button';
 import { Heading, Text } from '../Typography';
 
@@ -75,5 +76,22 @@ export const TwoColumns = (): React.ReactElement => {
     >
       <PrimaryColumnComponent />
     </ActionCard>
+  );
+};
+
+export const Loading = (): React.ReactElement => {
+  return (
+    <>
+      <StoryDescriptor title="Loading">
+        <ActionCard isLoading>
+          <PrimaryColumnComponent />
+        </ActionCard>
+      </StoryDescriptor>
+      <StoryDescriptor title="Loading with animation">
+        <ActionCard isLoading isLoadingAnimated>
+          <PrimaryColumnComponent />
+        </ActionCard>
+      </StoryDescriptor>
+    </>
   );
 };

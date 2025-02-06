@@ -73,4 +73,13 @@ describe('<ActionCard> component', () => {
     expect(onClick).not.toHaveBeenCalled();
     expect(onButtonClick).toHaveBeenCalledTimes(1);
   });
+
+  it('should display loading state when isLoading is true', () => {
+    const { queryByText } = renderComponent({
+      isLoading: true,
+    });
+
+    expect(queryByText('Example content')).toBeNull();
+    expect(queryByText('Example button')).toBeNull();
+  });
 });
