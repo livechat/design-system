@@ -60,6 +60,26 @@ import {
 
 A tooltip that can be interacted with.
 
+#### Media Properties
+
+The Interactive tooltip supports two types of media content:
+
+- **Image**
+  - Provided via the `image` prop
+  - Requires both `src` and `alt` properties
+  - Maintains original aspect ratio
+  - Example: `image={{ src: 'path/to/image.jpg', alt: 'Description' }}`
+
+- **Video**
+  - Provided via the `video` prop
+  - Accepts a string URL to the video file
+  - Maintains original aspect ratio
+  - Auto-plays, loops, and starts muted by default
+  - Example: `video="path/to/video.mp4"`
+
+Note: Only one media type (either image or video) can be used at a time.
+
+
 ```tsx
 import {
   Tooltip,
@@ -87,7 +107,9 @@ import {
 </Tooltip>;
 ```
 
-<Canvas of={Stories.TooltipInteractive} />
+<Canvas of={Stories.TooltipInteractiveWithImage} />
+
+<Canvas of={Stories.TooltipInteractiveWithVideo} />
 
 ### Reports Tooltip <a id="ReportsTooltip" />
 

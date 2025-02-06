@@ -20,6 +20,7 @@ export const Interactive: React.FC<ITooltipInteractiveProps> = ({
   header,
   text,
   image,
+  video,
   closeWithX,
   theme,
   handleCloseAction,
@@ -89,12 +90,26 @@ export const Interactive: React.FC<ITooltipInteractiveProps> = ({
         </button>
       )}
       {image && (
-        <div className={styles[`${baseClass}-image-container`]}>
+        <div className={styles[`${baseClass}-media-container`]}>
           <img
-            className={styles[`${baseClass}-image`]}
+            className={styles[`${baseClass}-media`]}
             src={image.src}
             alt={image.alt}
           />
+        </div>
+      )}
+      {video && (
+        <div className={styles[`${baseClass}-media-container`]}>
+          <video
+            className={styles[`${baseClass}-media`]}
+            autoPlay
+            loop
+            muted
+            playsInline
+            controls={false}
+          >
+            <source src={video} />
+          </video>
         </div>
       )}
       {header && (
