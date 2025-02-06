@@ -131,14 +131,22 @@ Is a component that is intended to wrap other `Skeleton` components, manage thei
 
 `SkeletonText` is a component designed to present a placeholder or loading state for text type content. Can be used on its own or with the `SkeletonWrapper` element that will also control the animation.
 
+The component uses `width: 100%` by default, but you can specify a custom width in pixels using the optional `width` prop.
+
 <Canvas withSource="none">
   <SkeletonWrapper animated>
+    {/* Default full width */}
+    <SkeletonText />
+    {/* Custom width in pixels */}
     <SkeletonText width={350} />
   </SkeletonWrapper>
 </Canvas>
 
 ```jsx
 <SkeletonWrapper animated>
+  {/* Default full width */}
+  <SkeletonText />
+  {/* Custom width in pixels */}
   <SkeletonText width={350} />
 </SkeletonWrapper>
 ```
