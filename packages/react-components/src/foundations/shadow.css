@@ -51,6 +51,10 @@
   --shadow-ai-other-active-field: 1px 2px 6px 0 hsl(337deg 95% 58% / 15%),
     -1px -2px 6px 0 hsl(210deg 100% 52% / 20%),
     0 0 0 4px hsl(212deg 100% 50% / 5%);
+  --shadow-tour-animation-end: 0 8px 16px 1px hsl(283deg 100% 41% / 30%),
+    0 -8px 16px 0 hsl(200deg 100% 51% / 40%),
+    0 8px 16px 0 hsl(200deg 100% 51% / 20%) inset,
+    0 -8px 16px 1px hsl(283deg 100% 41% / 10%) inset;
 }
 
 .lc-dark-theme {
@@ -111,4 +115,8 @@
   --shadow-ai-other-active-field: 1px 2px 6px 0 hsl(333deg 47% 4% / 45%),
     -1px -2px 6px 0 hsl(210deg 100% 52% / 50%),
     0 0 0 4px hsl(212deg 97% 73% / 15%);
+  --shadow-tour-animation-end: 0 8px 16px 1px hsl(283deg 100% 41% / 30%),
+    0 -8px 16px 0 hsl(200deg 100% 51% / 40%),
+    0 8px 16px 0 hsl(200deg 100% 51% / 20%) inset,
+    0 -8px 16px 1px hsl(283deg 100% 41% / 10%) inset;
 }

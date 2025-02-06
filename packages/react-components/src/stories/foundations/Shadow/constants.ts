@@ -42,6 +42,8 @@ const ShadowDescription: Record<ShadowTokenKey, string> = {
     'Shadow color used for floating AI-related UI elements, adding elevation and dimension',
   ShadowAiOtherActiveField:
     'Shadow color applied to active AI-related input fields, enhancing focus and visibility',
+  ShadowTourAnimationEnd:
+    'Shadow color applied to the tour animation end, enhancing focus and visibility',
 };
 
 export const ShadowTokens: ShadowShape[] = Object.entries(ShadowToken).map(
