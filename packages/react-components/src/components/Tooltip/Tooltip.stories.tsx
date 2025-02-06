@@ -119,7 +119,9 @@ TooltipInfo.decorators = [
   ),
 ];
 
-export const TooltipInteractive = (args: ITooltipProps): React.ReactElement => (
+export const TooltipInteractiveWithImage = (
+  args: ITooltipProps
+): React.ReactElement => (
   <Tooltip {...args} triggerRenderer={<Button>Trigger</Button>}>
     <Interactive
       theme={args.kind || args.theme}
@@ -141,10 +143,38 @@ export const TooltipInteractive = (args: ITooltipProps): React.ReactElement => (
     />
   </Tooltip>
 );
-TooltipInteractive.args = {
+TooltipInteractiveWithImage.args = {
   isVisible: true,
 };
-TooltipInteractive.decorators = [
+TooltipInteractiveWithImage.decorators = [
+  (Story: StoryFn) => (
+    <div className="tooltip-story interactive">
+      <Story />
+    </div>
+  ),
+];
+
+export const TooltipInteractiveWithVideo = (
+  args: ITooltipProps
+): React.ReactElement => (
+  <Tooltip {...args} triggerRenderer={<Button>Trigger</Button>}>
+    <Interactive
+      theme={args.kind || args.theme}
+      header="Header - concise and clear"
+      video="https://cdn.livechat-static.com/api/file/lc/img/default/assets/copilot-popover.mp4"
+      text="Tooltip content is used to explain the details of elements or features."
+      handleCloseAction={noop}
+      primaryButton={{
+        handleClick: noop,
+        label: 'Primary Button',
+      }}
+    />
+  </Tooltip>
+);
+TooltipInteractiveWithVideo.args = {
+  isVisible: true,
+};
+TooltipInteractiveWithVideo.decorators = [
   (Story: StoryFn) => (
     <div className="tooltip-story interactive">
       <Story />
