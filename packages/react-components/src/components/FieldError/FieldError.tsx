@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Info } from '@livechat/design-system-icons';
+import { Error } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { Icon } from '../Icon';
@@ -22,7 +22,7 @@ export const FieldError: React.FC<React.PropsWithChildren<FieldErrorProps>> = ({
   return (
     <Text as="span" size="sm" {...props} className={mergedClassNames}>
       <Icon
-        source={Info}
+        source={Error}
         className={styles[`${baseClass}__icon`]}
         size="small"
       />
