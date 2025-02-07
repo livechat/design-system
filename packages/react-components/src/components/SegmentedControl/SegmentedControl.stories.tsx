@@ -7,6 +7,8 @@ import { SegmentedControl, SegmentedControlProps } from './SegmentedControl';
 
 const buttonSizes = ['compact', 'medium', 'large'];
 const buttonIcon = <Icon source={TablerIcons.AddCircle} />;
+const buttonIcon2 = <Icon source={TablerIcons.OpenInNew} />;
+const buttonIcon3 = <Icon source={TablerIcons.ContentCopy} />;
 
 export default {
   title: 'Components/Segmented Control',
@@ -51,4 +53,16 @@ Uncontrolled.args = {
     { id: 'fourth', label: 'fourth' },
   ],
   currentId: 'one',
+};
+
+export const WithIcons: StoryFn<SegmentedControlProps> = (
+  args: SegmentedControlProps
+) => <SegmentedControl {...args} />;
+
+WithIcons.args = {
+  buttons: [
+    { id: 'one', icon: buttonIcon },
+    { id: 'two', icon: buttonIcon2 },
+    { id: 'three', icon: buttonIcon3, disabled: true },
+  ],
 };
