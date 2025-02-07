@@ -63,6 +63,6 @@ WithIcons.args = {
   buttons: [
     { id: 'one', icon: buttonIcon },
     { id: 'two', icon: buttonIcon2 },
-    { id: 'two', icon: buttonIcon3, disabled: true },
+    { id: 'three', icon: buttonIcon3, disabled: true },
   ],
 };
