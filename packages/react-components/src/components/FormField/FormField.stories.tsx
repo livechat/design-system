@@ -225,37 +225,75 @@ export const BoldLabelWithPromoInput: StoryFn<FormFieldProps> = () => (
   </FormFieldComponent>
 );
 export const WithCharacterCounter = (): React.ReactElement => {
-  const [value, setValue] = React.useState('');
-  const maxLength = 5;
-  const characterCount = value.length;
-  const isExceeded = characterCount > maxLength;
+  const [value1, setValue1] = React.useState('');
+  const [value2, setValue2] = React.useState('');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+  const maxLength = 5;
+  const characterCount1 = value1.length;
+  const characterCount2 = value2.length;
+  const isExceeded1 = characterCount1 > maxLength;
+  const isExceeded2 = characterCount2 > maxLength;
+
+  const handleChange1 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue1(e.target.value);
   };
 
-  const CounterComponent = () => (
+  const handleChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue2(e.target.value);
+  };
+
+  const CounterComponent1 = () => (
     <Text
       noMargin
       size="sm"
       customColor={
-        isExceeded
+        isExceeded1
           ? 'var(--content-basic-negative)'
           : 'var(--content-basic-secondary)'
       }
     >
-      {characterCount}/{maxLength}
+      {characterCount1}/{maxLength}
     </Text>
   );
 
+  const CounterComponent2 = () => (
+    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <Text
+        noMargin
+        size="sm"
+        customColor={
+          isExceeded2
+            ? 'var(--content-basic-negative)'
+            : 'var(--content-basic-secondary)'
+        }
+      >
+        {characterCount2}/{maxLength}
+      </Text>
+    </div>
+  );
+
   return (
-    <FormFieldComponent labelRightNode={<CounterComponent />}>
-      <Input
-        value={value}
-        onChange={handleChange}
-        placeholder="Type something..."
-        error={isExceeded}
-      />
-    </FormFieldComponent>
+    <>
+      <StoryDescriptor title="Right aligned counter">
+        <FormFieldComponent labelRightNode={<CounterComponent1 />}>
+          <Input
+            value={value1}
+            onChange={handleChange1}
+            placeholder="Type something..."
+            error={isExceeded1}
+          />
+        </FormFieldComponent>
+      </StoryDescriptor>
+      <StoryDescriptor title="Bottom aligned counter">
+        <FormFieldComponent description={<CounterComponent2 />}>
+          <Input
+            value={value2}
+            onChange={handleChange2}
+            placeholder="Type something..."
+            error={isExceeded2}
+          />
+        </FormFieldComponent>
+      </StoryDescriptor>
+    </>
   );
 };
