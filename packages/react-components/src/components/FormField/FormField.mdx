@@ -113,6 +113,45 @@ To display error messages, use the `error` prop.
 
 <Canvas of={FormFieldStories.TextFieldWithError} sourceState="none" />
 
+### Example implementation with character counter
+
+To use FormField with character counter, you need to implement the counter component based on your inputs values and pass it to the `labelRightNode` prop.
+If you need to display the counter on the bottom of the FormField, you can pass the component to the `description` prop.
+
+```tsx
+  const [value, setValue] = React.useState('');
+  const maxLength = 5;
+  const characterCount = value.length;
+  const isExceeded = characterCount > maxLength;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
+  const CounterComponent = () => (
+      <Text
+        noMargin
+        size="sm"
+        customColor={
+          isExceeded
+            ? 'var(--content-basic-negative)'
+            : 'var(--content-basic-secondary)'
+        }
+      >
+        {characterCount}/{maxLength}
+      </Text>
+  );
+
+<FormField
+  labelText="Input with counter"
+  labelRightNode={<CounterComponent />}
+>
+  <Input type="text" placeholder="Enter your username" />
+</FormField>
+```
+
+<Canvas of={FormFieldStories.WithCharacterCounter} sourceState="none" />
+
 ## Component API <a id="ComponentAPI" />
 
 <ArgTypes of={FormFieldStories.Default} sort="requiredFirst" />
