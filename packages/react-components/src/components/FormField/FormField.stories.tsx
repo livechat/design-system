@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 import { Info } from '@livechat/design-system-icons';
 import { Meta, StoryFn } from '@storybook/react';
 
@@ -13,6 +15,7 @@ import { Picker } from '../Picker';
 import { RadioButton } from '../RadioButton';
 import { TagInput } from '../TagInput';
 import { Textarea } from '../Textarea';
+import { Text } from '../Typography';
 
 import { FormField as FormFieldComponent, FormFieldProps } from './FormField';
 
@@ -221,3 +224,38 @@ export const BoldLabelWithPromoInput: StoryFn<FormFieldProps> = () => (
     <ExampleInputPromo />
   </FormFieldComponent>
 );
+export const WithCharacterCounter = (): React.ReactElement => {
+  const [value, setValue] = React.useState('');
+  const maxLength = 5;
+  const characterCount = value.length;
+  const isExceeded = characterCount > maxLength;
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
+  };
+
+  const CounterComponent = () => (
+    <Text
+      noMargin
+      size="sm"
+      customColor={
+        isExceeded
+          ? 'var(--content-basic-negative)'
+          : 'var(--content-basic-secondary)'
+      }
+    >
+      {characterCount}/{maxLength}
+    </Text>
+  );
+
+  return (
+    <FormFieldComponent labelRightNode={<CounterComponent />}>
+      <Input
+        value={value}
+        onChange={handleChange}
+        placeholder="Type something..."
+        error={isExceeded}
+      />
+    </FormFieldComponent>
+  );
+};
