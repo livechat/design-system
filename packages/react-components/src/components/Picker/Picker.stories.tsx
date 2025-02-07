@@ -308,3 +308,43 @@ export const MultiPickerWithCustomSelectedTagProps = (): React.ReactElement => (
     </StoryDescriptor>
   </div>
 );
+
+export const SearchBehavior = (): React.ReactElement => (
+  <div style={{ ...commonWidth, marginBottom: 320 }}>
+    <StoryDescriptor title="Single select - Clear search after selection">
+      <PickerComponent
+        options={DEFAULT_PICKER_OPTIONS}
+        onSelect={noop}
+        type="single"
+        clearSearchAfterSelection
+      />
+    </StoryDescriptor>
+
+    <StoryDescriptor title="Single select - Keep search after selection">
+      <PickerComponent
+        options={DEFAULT_PICKER_OPTIONS}
+        onSelect={noop}
+        type="single"
+        clearSearchAfterSelection={false}
+      />
+    </StoryDescriptor>
+
+    <StoryDescriptor title="Multi select - Clear search after selection">
+      <PickerComponent
+        options={DEFAULT_PICKER_OPTIONS}
+        onSelect={noop}
+        type="multi"
+        clearSearchAfterSelection
+      />
+    </StoryDescriptor>
+
+    <StoryDescriptor title="Multi select - Keep search after selection">
+      <PickerComponent
+        options={DEFAULT_PICKER_OPTIONS}
+        onSelect={noop}
+        type="multi"
+        clearSearchAfterSelection={false}
+      />
+    </StoryDescriptor>
+  </div>
+);
