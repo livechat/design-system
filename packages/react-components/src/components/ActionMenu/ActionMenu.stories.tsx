@@ -79,7 +79,7 @@ export const KeepOpenOnItemClick = (): React.ReactElement => {
             onClick: () => setRadioButtonValue('two'),
           },
           {
-            key: 'three',
+            key: 'three1',
             withDivider: true,
             element: (
               <ListItem
