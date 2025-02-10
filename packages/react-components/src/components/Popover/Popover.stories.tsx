@@ -1,5 +1,6 @@
 import { ChevronDown } from '@livechat/design-system-icons';
 import { Meta, StoryFn } from '@storybook/react';
+import isChromatic from 'chromatic/isChromatic';
 
 import { Button } from '../Button';
 import { Icon } from '../Icon';
@@ -52,7 +53,7 @@ export default {
   parameters: {
     layout: 'centered',
     controls: { expanded: true },
-    chromatic: { delay: 600 },
+    // chromatic: { delay: 600 },
   },
   decorators: [
     (Story: StoryFn) => (
@@ -87,6 +88,9 @@ Default.args = {
   placement: 'bottom-start',
   isVisible: undefined,
   openedOnInit: true,
+  transitionOptions: {
+    duration: isChromatic() ? 0 : undefined,
+  },
 };
 
 CustomAnimation.args = {
@@ -94,7 +98,7 @@ CustomAnimation.args = {
   isVisible: undefined,
   openedOnInit: true,
   transitionOptions: {
-    duration: 500,
+    duration: isChromatic() ? 0 : 500,
     initial: {
       opacity: 0,
     },

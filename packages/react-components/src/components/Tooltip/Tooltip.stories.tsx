@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { Meta, StoryFn } from '@storybook/react';
+import isChromatic from 'chromatic/isChromatic';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { customHeightForChromatic } from '../../utils/chromatic-story-helpers';
@@ -49,7 +50,7 @@ export default {
   },
   parameters: {
     controls: { expanded: true },
-    chromatic: { delay: 300 },
+    // chromatic: { delay: 300 },
   },
   subcomponents: {
     Info,
@@ -66,6 +67,9 @@ export const Default = (args: ITooltipProps): React.ReactElement => (
 );
 Default.args = {
   isVisible: true,
+  transitionOptions: {
+    duration: isChromatic() ? 0 : undefined,
+  },
 };
 Default.decorators = [
   (Story: StoryFn) => (
@@ -110,6 +114,9 @@ export const TooltipInfo = (args: ITooltipProps): React.ReactElement => (
 );
 TooltipInfo.args = {
   isVisible: true,
+  transitionOptions: {
+    duration: isChromatic() ? 0 : undefined,
+  },
 };
 TooltipInfo.decorators = [
   (Story: StoryFn) => (
@@ -143,6 +150,9 @@ export const TooltipInteractive = (args: ITooltipProps): React.ReactElement => (
 );
 TooltipInteractive.args = {
   isVisible: true,
+  transitionOptions: {
+    duration: isChromatic() ? 0 : undefined,
+  },
 };
 TooltipInteractive.decorators = [
   (Story: StoryFn) => (
@@ -170,6 +180,9 @@ export const TooltipReports = (args: ITooltipProps): React.ReactElement => (
 TooltipReports.args = {
   isVisible: true,
   fullSpaceContent: true,
+  transitionOptions: {
+    duration: isChromatic() ? 0 : undefined,
+  },
 };
 TooltipReports.decorators = [
   (Story: StoryFn) => (
