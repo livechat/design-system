@@ -80,7 +80,7 @@ export const TableHeader = <T,>({
           [styles[`${baseClass}--selectable`]]: selectable,
         })}
       >
-        {selectable && <th />}
+        {selectable && <th role="presentation" />}
         {columns.map((column, index) => (
           <th
             key={String(column.key)}

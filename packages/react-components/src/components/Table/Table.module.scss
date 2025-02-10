@@ -3,7 +3,6 @@
 @use './styles/strips';
 
 $base-class: 'table';
-$action-bar-class: 'action-bar';
 
 .#{$base-class} {
   width: 100%;
@@ -38,10 +37,29 @@ $action-bar-class: 'action-bar';
 
   &__selected {
     display: flex;
-    gap: var(--spacing-1);
+    position: sticky;
+    top: 0;
     align-items: center;
-    padding: var(--spacing-2);
+    justify-content: space-between;
+    z-index: 100;
+    box-shadow: var(--shadow-pop-over);
+    background-color: var(--surface-invert-primary);
+    padding: var(--spacing-2) var(--spacing-2) var(--spacing-2) var(--spacing-4);
     font-weight: 500;
+
+    &__divider {
+      margin: 0 var(--spacing-4);
+      background-color: var(--border-invert-secondary);
+      width: 1px;
+      height: 24px;
+    }
+
+    &__content {
+      display: flex;
+      gap: var(--spacing-2);
+      align-items: center;
+      color: var(--content-invert-primary);
+    }
 
     > p {
       margin: 0;
@@ -74,25 +92,5 @@ $action-bar-class: 'action-bar';
 
   th > div {
     display: flex;
-  }
-}
-
-.#{$action-bar-class} {
-  display: flex;
-  gap: var(--spacing-2);
-
-  &__divider {
-    position: relative;
-
-    &::before {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      margin-right: var(--spacing-2);
-      background-color: var(--border-basic-secondary);
-      width: 1px;
-      height: var(--spacing-6);
-      content: '';
-    }
   }
 }

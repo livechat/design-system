@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
+import { Button } from '../Button';
 import { Checkbox } from '../Checkbox';
 import { Text } from '../Typography';
 
@@ -128,10 +129,10 @@ export const Table = <T,>({
     if (!column) return data;
 
     return [...data].sort((a, b) => {
-      const sortValueA = column.sortValue
+      const sortValueA = column.sortable
         ? column.sortValue(a)
         : a[sortConfig.key as unknown as keyof T];
-      const sortValueB = column.sortValue
+      const sortValueB = column.sortable
         ? column.sortValue(b)
         : b[sortConfig.key as unknown as keyof T];
 
@@ -153,28 +154,37 @@ export const Table = <T,>({
     setColumnWidths(initialWidths);
   }, []);
 
-  if (selectable && (!selectedRows || !onSelectionChange)) {
-    throw new Error(
-      '`onSelectionChange` and `selectedRows` are required when selectable is true'
-    );
-  }
-
-  if (columns.find((column) => column.sortable && !column.sortValue)) {
-    throw new Error('`sortValue` is required when sortable is true');
-  }
-
   return (
     <>
       {selectable && (
-        <div className={styles[`${selectedClass}`]}>
-          <Checkbox
-            checked={selectedCount === data.length}
-            onChange={toggleSelectAll}
-          />
-          {rowSelectionMessage || (
-            <Text size="md">{selectedCount} selected items</Text>
-          )}
-          {rowActions}
+        <div className={cx(styles[`${selectedClass}`])}>
+          <div className={styles[`${selectedClass}__content`]}>
+            <Checkbox
+              checked={selectedCount === data.length}
+              indeterminate={
+                selectedCount !== undefined &&
+                selectedCount > 0 &&
+                selectedCount < data.length
+              }
+              onChange={toggleSelectAll}
+            />
+            {rowSelectionMessage || (
+              <Text noMargin bold size="sm">
+                {selectedCount} selected
+              </Text>
+            )}
+            <div className={styles[`${selectedClass}__divider`]} />
+            <Button
+              size="compact"
+              onClick={toggleSelectAll}
+              kind="link-inverted"
+            >
+              {selectedCount === data.length
+                ? `Deselect all (${data.length})`
+                : `Select all (${data.length})`}
+            </Button>
+          </div>
+          <div>{rowActions}</div>
         </div>
       )}
       <table
