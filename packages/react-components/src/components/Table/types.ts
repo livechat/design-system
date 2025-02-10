@@ -1,11 +1,16 @@
 import * as React from 'react';
 
-export type Column<T> = {
+export type BaseColumn<T> = {
   key: keyof T;
   header: string;
   sortable?: boolean;
-  sortValue?: (item: T) => string | number;
 };
+
+export type Column<T> = BaseColumn<T> &
+  (
+    | { sortable?: false }
+    | { sortable: true; sortValue: (row: T) => string | number }
+  );
 
 export type TableSize = 'small' | 'medium' | 'large';
 
@@ -19,7 +24,7 @@ export enum SortOrder {
   None = 'none',
 }
 
-export interface ITableProps<T> {
+type BaseTableProps<T> = {
   /**
    * The data to be displayed in the table. Each item represents a row.
    */
@@ -27,7 +32,7 @@ export interface ITableProps<T> {
   /**
    * The configuration for table columns, including keys, headers, and optional sorting logic.
    */
-  columns: Column<T>[];
+  columns: Array<Column<T>>;
   /**
    * The parameter allows you to customize alternating background colors for rows
    * or columns in the table, enhancing readability and visual separation. Allowed values
@@ -55,34 +60,49 @@ export interface ITableProps<T> {
    */
   resizable?: boolean;
   /**
+   * Sets the `data-testid` attribute, allowing the table to be easily selected in automated tests.
+   */
+  testId?: string;
+};
+
+type NonSelectableTableProps<T> = BaseTableProps<T> & {
+  selectable?: false;
+  selectedRows?: never;
+  onSelectionChange?: never;
+  rowSelectionMessage?: never;
+  rowActions?: never;
+};
+
+type SelectableTableProps<T> = BaseTableProps<T> & {
+  /**
    * Enables row selection mode, adding checkboxes to each row and the header for selection.
    */
-  selectable?: true;
+  selectable: true;
   /**
    * A set of currently selected row IDs. Useful for controlling the selection state externally.
    */
-  selectedRows?: Set<string | number>;
+  selectedRows: Set<string | number>;
   /**
    * A callback function triggered when the selected rows change.
    * @param selectedIds - A set of selected row IDs.
    */
-  onSelectionChange?: (selectedIds: Set<string | number>) => void;
+  onSelectionChange: (selectedIds: Set<string | number>) => void;
   /**
    * Defines a customizable message to display the count of selected rows in the table. By default,
    * the message appears as "{count} selected items".
    */
-  rowSelectionMessage?: string | React.ReactNode;
+  rowSelectionMessage?: React.ReactNode;
   /**
    * Allows you to define a custom action bar that appears when rows are selected. The action bar
    * can contain buttons or other UI elements for performing bulk operations on the selected rows,
    * such as "Delete All" or "Export."
    */
   rowActions?: React.ReactNode;
-  /**
-   * Sets the `data-testid` attribute, allowing the table to be easily selected in automated tests.
-   */
-  testId?: string;
-}
+};
+
+export type ITableProps<T> =
+  | NonSelectableTableProps<T>
+  | SelectableTableProps<T>;
 
 export interface SortConfig<T> {
   key: keyof T | null;

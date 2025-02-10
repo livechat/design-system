@@ -13,10 +13,10 @@ type Data = {
 };
 
 const columns: Column<Data>[] = [
-  { key: 'id', header: 'ID', sortable: true },
-  { key: 'name', header: 'Name', sortable: true },
+  { key: 'id', header: 'ID', sortable: true, sortValue: (row) => row.id },
+  { key: 'name', header: 'Name', sortable: true, sortValue: (row) => row.name },
   { key: 'age', header: 'Age', sortable: false },
-  { key: 'role', header: 'Role', sortable: true },
+  { key: 'role', header: 'Role', sortable: true, sortValue: (row) => row.role },
 ];
 
 describe('<TableHeader> component', () => {
@@ -79,7 +79,7 @@ describe('<TableHeader> component', () => {
     const handleSort = vi.fn();
 
     const columns: Column<Data>[] = [
-      { key: 'id', header: 'ID', sortable: true },
+      { key: 'id', header: 'ID', sortable: true, sortValue: (row) => row.id },
       { key: 'name', header: 'Name', sortable: false },
     ];
 

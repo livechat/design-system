@@ -61,6 +61,10 @@ $base-class: 'header';
 
   &--selectable {
     border-top: 1px solid var(--border-basic-tertiary);
+
+    > th:first-child {
+      pointer-events: none;
+    }
   }
 
   td,

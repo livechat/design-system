@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+import { cx } from '@emotion/css';
+
 import { Checkbox } from '../Checkbox';
 import { Text } from '../Typography';
 
@@ -29,7 +31,12 @@ export const TableRow = <T,>({
   rowId,
 }: TableRowProps<T>) => {
   return (
-    <tr className={styles[baseClass]}>
+    <tr
+      className={cx(
+        styles[baseClass],
+        isSelected(rowId) ? styles[`${baseClass}__selected`] : undefined
+      )}
+    >
       {selectable && (
         <td role="cell" aria-selected={isSelected(rowId)}>
           <Checkbox

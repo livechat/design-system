@@ -119,6 +119,8 @@
   padding: 0;
   height: auto;
   text-decoration: underline;
+  text-decoration-skip-ink: none;
+  text-underline-position: from-font;
   color: var(--action-high-contrast-default);
 
   &:hover {
@@ -153,6 +155,8 @@
   &:hover,
   &:active {
     text-decoration: underline;
+    text-decoration-skip-ink: none;
+    text-underline-position: from-font;
   }
 
   &:disabled {
@@ -171,6 +175,8 @@
 
 @mixin link-inverted() {
   text-decoration: underline;
+  text-decoration-skip-ink: none;
+  text-underline-position: from-font;
   color: var(--content-invert-primary);
 
   &:hover {
@@ -291,6 +297,8 @@
   padding: 0;
   height: auto;
   text-decoration: underline;
+  text-decoration-skip-ink: none;
+  text-underline-position: from-font;
   color: var(--action-lock-default);
 
   &:hover {
