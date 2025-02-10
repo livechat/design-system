@@ -160,6 +160,7 @@ export const Table = <T,>({
         <div className={cx(styles[`${selectedClass}`])}>
           <div className={styles[`${selectedClass}__content`]}>
             <Checkbox
+              className={styles[`${selectedClass}__checkbox`]}
               checked={selectedCount === data.length}
               indeterminate={
                 selectedCount !== undefined &&

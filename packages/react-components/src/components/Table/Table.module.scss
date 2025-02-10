@@ -54,6 +54,10 @@ $base-class: 'table';
       height: 24px;
     }
 
+    &__checkbox {
+      display: flex;
+    }
+
     &__content {
       display: flex;
       gap: var(--spacing-2);
