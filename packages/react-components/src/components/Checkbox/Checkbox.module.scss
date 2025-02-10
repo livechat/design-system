@@ -1,5 +1,5 @@
 .checkbox {
-  display: inline-block;
+  display: flex;
 
   &__label {
     display: inline-flex;
@@ -7,7 +7,6 @@
     align-items: center;
     cursor: pointer;
     width: 100%;
-    min-height: 24px;
   }
 
   &__text {
