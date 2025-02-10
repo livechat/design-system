@@ -53,7 +53,11 @@ export default {
   parameters: {
     layout: 'centered',
     controls: { expanded: true },
-    // chromatic: { delay: 600 },
+  },
+  args: {
+    transitionOptions: {
+      duration: isChromatic() ? 0 : undefined,
+    },
   },
   decorators: [
     (Story: StoryFn) => (
@@ -88,9 +92,6 @@ Default.args = {
   placement: 'bottom-start',
   isVisible: undefined,
   openedOnInit: true,
-  transitionOptions: {
-    duration: isChromatic() ? 0 : undefined,
-  },
 };
 
 CustomAnimation.args = {
