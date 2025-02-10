@@ -130,6 +130,10 @@ export const usePickerItems = ({
         return [key];
       });
       setOpen(false);
+
+      if (clearSearchAfterSelection) {
+        clearInput();
+      }
     } else {
       if (key === SELECT_ALL_OPTION_KEY) {
         if (selectedKeys.length === getNormalizedItems(options).length) {

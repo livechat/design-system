@@ -9,6 +9,7 @@ import { Icon } from '../../../Icon';
 import { Text } from '../../../Typography';
 import { SideNavigationItem } from '../SideNavigationItem/SideNavigationItem';
 
+import { SIDE_NAVIGATION_LINK_LABEL_TEST_ID } from './constants';
 import { ISideNavigationGroupProps } from './types';
 
 import styles from './SideNavigationGroup.module.scss';
@@ -20,9 +21,19 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   label,
   rightNode,
   className,
+  labelClassName,
+  labelWrapperClassName,
+  listWrapperClassName,
   children,
   isCollapsible,
+  isLinkLabel,
+  isActive,
+  isOpen: externalIsOpen,
+  isMounted: externalIsMounted,
+  setShouldBeVisible: externalSetShouldBeVisible,
   onItemHover,
+  onClick,
+  listWrapperRef: externalListWrapperRef,
   shouldOpenOnInit = false,
 }) => {
   const [hasActiveElements, setHasActiveElements] =
@@ -30,27 +41,36 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
   const [listHeight, setListHeight] = React.useState<number>(0);
   const hadActiveListElementsRef = React.useRef(false);
   const listWrapperRef = React.useRef<HTMLDivElement>(null);
+  const localListWrapperRef = externalListWrapperRef ?? listWrapperRef;
   const { isOpen, isMounted, setShouldBeVisible } = useAnimations({
     isVisible: !isCollapsible || shouldOpenOnInit,
-    elementRef: listWrapperRef,
+    elementRef: localListWrapperRef,
   });
+
+  const localIsOpen = externalIsOpen ?? isOpen;
+  const localIsMounted = externalIsMounted ?? isMounted;
+  const localSetShouldBeVisible =
+    externalSetShouldBeVisible ?? setShouldBeVisible;
   const localRightNode =
-    typeof rightNode === 'function' ? rightNode(isOpen) : rightNode;
-  const localLabel = typeof label === 'function' ? label(isOpen) : label;
+    typeof rightNode === 'function' ? rightNode(localIsOpen) : rightNode;
+  const localLabel = typeof label === 'function' ? label(localIsOpen) : label;
 
-  const openList = (): void => setShouldBeVisible(true);
-
+  const openList = (): void => localSetShouldBeVisible(true);
   const toggle = (): void => {
     if (!isCollapsible) return;
-    setShouldBeVisible((prev) => !prev);
+    localSetShouldBeVisible((prev) => !prev);
   };
+
+  const handleClick = (): void => (onClick ? onClick({ toggle }) : toggle());
 
   React.useEffect(() => {
     if (!children || !isCollapsible) {
       return;
     }
 
-    const listElements = children as React.ReactElement[];
+    const listElements = React.Children.toArray(
+      children
+    ) as React.ReactElement[];
     const hasListActiveElements = !!listElements?.some(
       (el) => el.props?.isActive
     );
@@ -71,50 +91,75 @@ export const SideNavigationGroup: React.FC<ISideNavigationGroupProps> = ({
 
   return (
     <div data-testid="side-navigation-group" className={styles[baseClass]}>
-      {isCollapsible ? (
+      {isCollapsible || isLinkLabel ? (
         <SideNavigationItem
           leftNode={
             <div
               className={cx(styles[`${baseClass}__chevron`], {
-                [styles[`${baseClass}__chevron--active`]]: isOpen,
+                [styles[`${baseClass}__chevron--active`]]: localIsOpen,
               })}
             >
-              <Icon source={ChevronRight} size="small" />
+              {isCollapsible ? (
+                <Icon source={ChevronRight} size="small" />
+              ) : null}
             </div>
           }
           label={
-            <Text className={styles[`${baseClass}__label`]} bold>
+            <Text
+              className={cx(styles[`${baseClass}__label`], labelClassName)}
+              bold
+            >
               {localLabel}
             </Text>
           }
+          isActive={isActive}
           isMainEntry
-          onClick={toggle}
+          onClick={handleClick}
           onItemHover={onItemHover}
           rightNode={localRightNode}
+          className={labelWrapperClassName}
+          data-testid={
+            isLinkLabel ? SIDE_NAVIGATION_LINK_LABEL_TEST_ID : undefined
+          }
         />
       ) : (
-        <Text
-          bold
-          className={styles[`${baseClass}__simple-label`]}
-          onMouseEnter={onItemHover || noop}
+        <span
+          className={cx(
+            styles[`${baseClass}__simple-label-wrapper`],
+            labelWrapperClassName
+          )}
         >
-          {localLabel}
-        </Text>
+          <Text
+            bold
+            className={cx(styles[`${baseClass}__simple-label`], labelClassName)}
+            onMouseEnter={onItemHover || noop}
+          >
+            {localLabel}
+          </Text>
+          {localRightNode && (
+            <span className={styles[`${baseClass}__right-node`]}>
+              {localRightNode}
+            </span>
+          )}
+        </span>
       )}
 
       <div
-        ref={listWrapperRef}
+        ref={localListWrapperRef}
         className={cx([
           styles[`${baseClass}__list-wrapper`],
           {
-            [styles[`${baseClass}__list-wrapper--expanded`]]: isOpen,
+            [styles[`${baseClass}__list-wrapper--expanded`]]: localIsOpen,
           },
+          listWrapperClassName,
         ])}
         style={
-          isCollapsible ? { maxHeight: isOpen ? listHeight : 0 } : undefined
+          isCollapsible
+            ? { maxHeight: localIsOpen ? listHeight : 0 }
+            : undefined
         }
       >
-        {isMounted && (
+        {localIsMounted && (
           <ul className={cx(styles[`${baseClass}__list`], className)}>
             {children}
           </ul>
