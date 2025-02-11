@@ -19,10 +19,17 @@ $base-class: 'user-guide-step';
     color: var(--content-basic-secondary);
   }
 
-  &__image-wrapper {
-    display: flex;
-    justify-content: center;
+  &__media-wrapper {
     margin-bottom: var(--spacing-4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__media {
+    max-height: 240px;
+    max-width: 100%;
+    border-radius: var(--radius-3);
   }
 
   &__footer {
