@@ -9,6 +9,7 @@ import { Button } from '../Button';
 
 import './Tooltip.stories.css';
 import { Info, Interactive, Reports, Simple } from './components';
+import exampleVideo from './onboarding_final.mp4';
 import beautifulImage from './placeholder.png';
 import { Tooltip } from './Tooltip';
 import { ITooltipProps } from './types';
@@ -161,7 +162,7 @@ export const TooltipInteractiveWithVideo = (
     <Interactive
       theme={args.kind || args.theme}
       header="Header - concise and clear"
-      video="https://cdn.livechat-static.com/api/file/lc/img/default/assets/copilot-popover.mp4"
+      video={exampleVideo}
       text="Tooltip content is used to explain the details of elements or features."
       handleCloseAction={noop}
       primaryButton={{
