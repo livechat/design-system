@@ -48,7 +48,7 @@ $animations: (
 
     transition-property: top, bottom, left, right;
     transition-timing-function: ease-in-out;
-    z-index: $stacking-context-level-tooltip;
+    z-index: $stacking-context-level-modal;
     opacity: 0;
     animation-duration: var(--transition-duration-moderate-2);
     animation-timing-function: ease-in-out;
