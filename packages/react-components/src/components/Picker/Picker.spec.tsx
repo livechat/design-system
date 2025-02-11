@@ -296,4 +296,63 @@ describe('<Picker> component', () => {
 
     expect(getByRole('textbox')).toHaveValue('');
   });
+
+  it('should clear search input after selection if clearSearchAfterSelection is provided (single-select mode)', () => {
+    const { getByRole, getByText, rerender } = renderComponent({
+      ...defaultProps,
+      type: 'single',
+      clearSearchAfterSelection: true,
+      isVisible: true,
+    });
+
+    userEvent.type(getByRole('textbox'), 'Option one');
+    userEvent.click(getByText('Option one'));
+
+    rerender(
+      <Picker
+        {...defaultProps}
+        type="single"
+        isVisible
+        clearSearchAfterSelection
+        selected={[
+          {
+            key: 'one',
+            name: 'Option one',
+          },
+        ]}
+      />
+    );
+
+    expect(getByRole('textbox')).toHaveValue('');
+  });
+
+  it('should not clear search input after selection if clearSearchAfterSelection is false (single-select mode)', () => {
+    const searchText = 'Option one';
+    const { getByRole, getByText, rerender } = renderComponent({
+      ...defaultProps,
+      type: 'single',
+      clearSearchAfterSelection: false,
+      isVisible: true,
+    });
+
+    userEvent.type(getByRole('textbox'), searchText);
+    userEvent.click(getByText('Option one'));
+
+    rerender(
+      <Picker
+        {...defaultProps}
+        type="single"
+        isVisible
+        clearSearchAfterSelection={false}
+        selected={[
+          {
+            key: 'one',
+            name: 'Option one',
+          },
+        ]}
+      />
+    );
+
+    expect(getByRole('textbox')).toHaveValue(searchText);
+  });
 });
