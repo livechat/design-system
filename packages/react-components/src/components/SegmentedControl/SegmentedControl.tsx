@@ -13,7 +13,7 @@ export type ButtonSize = 'compact' | 'medium' | 'large';
 
 type ButtonElement = {
   id: string;
-  label: string;
+  label?: string;
 } & Pick<ButtonProps, 'disabled' | 'loading' | 'icon'>;
 
 export interface SegmentedControlProps
