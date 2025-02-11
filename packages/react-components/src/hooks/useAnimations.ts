@@ -8,7 +8,7 @@ interface UseAnimationsProps {
   includeSleepWakeScenario?: boolean;
 }
 
-interface IUseAnimations {
+export interface IUseAnimations {
   isOpen: boolean;
   isMounted: boolean;
   setShouldBeVisible: React.Dispatch<React.SetStateAction<boolean>>;

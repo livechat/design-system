@@ -5,6 +5,7 @@ $base-class: 'app-frame';
   flex-direction: row;
   background-color: var(--navbar-background);
   width: 100%;
+  height: 100vh; // Fallback for older browsers that don't support dvh
   height: 100dvh;
   color: var(--content-invert-default);
 
