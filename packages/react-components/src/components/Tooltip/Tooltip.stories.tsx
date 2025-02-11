@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { Meta, StoryFn } from '@storybook/react';
+import isChromatic from 'chromatic/isChromatic';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { customHeightForChromatic } from '../../utils/chromatic-story-helpers';
@@ -48,9 +49,13 @@ export default {
       },
     },
   },
+  args: {
+    transitionOptions: {
+      duration: isChromatic() ? 0 : undefined,
+    },
+  },
   parameters: {
     controls: { expanded: true },
-    chromatic: { delay: 300 },
   },
   subcomponents: {
     Info,

@@ -548,6 +548,52 @@ UserGuideStepExample.parameters = {
   layout: 'centered',
 };
 
+export const UserGuideStepExampleWithImage = (): ReactElement => {
+  return (
+    <UserGuideStep
+      image={{
+        src: 'https://placehold.co/600x300',
+        alt: 'test image',
+      }}
+      aria-label="Navigation guide step"
+      header="This is navigation item"
+      text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
+      currentStep={1}
+      stepMax={9}
+      handleClickPrimary={() => {}}
+      handleCloseAction={() => {}}
+    />
+  );
+};
+UserGuideStepExampleWithImage.parameters = {
+  layout: 'centered',
+};
+
+export const UserGuideStepExampleWithVideo = (): ReactElement => {
+  return (
+    <UserGuideStep
+      video={{
+        src: 'https://cdn.livechat-static.com/api/file/lc/img/default/assets/copilot-popover.mp4',
+        playsInline: true,
+        autoPlay: true,
+        muted: true,
+        loop: true,
+        controls: true,
+      }}
+      aria-label="Navigation guide step"
+      header="This is navigation item"
+      text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
+      currentStep={1}
+      stepMax={9}
+      handleClickPrimary={() => {}}
+      handleCloseAction={() => {}}
+    />
+  );
+};
+UserGuideStepExampleWithVideo.parameters = {
+  layout: 'centered',
+};
+
 export const UserGuideBubbleStepExample = (): ReactElement => {
   return (
     <UserGuideBubbleStep

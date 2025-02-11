@@ -137,6 +137,7 @@ export const PromoBannerV2: React.FC<
               icon={<Icon source={Close} kind="primary" />}
               kind="plain"
               size="compact"
+              aria-label="Close banner"
             />
           </div>
         )}
