@@ -29,6 +29,7 @@ export const ShadowToken = {
   ShadowAiCopilotAnimationEnd: '--shadow-ai-copilot-animation-end',
   ShadowAiOtherFloat: '--shadow-ai-other-float',
   ShadowAiOtherActiveField: '--shadow-ai-other-active-field',
+  ShadowTourAnimationEnd: '--shadow-tour-animation-end',
 };
 
 export type ShadowTokenKey = keyof typeof ShadowToken;
