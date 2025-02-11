@@ -1,5 +1,6 @@
 import './index.scss';
 
+export { useAnimations } from './hooks';
 export * from './foundations';
 export * from './providers';
 export * from './utils';

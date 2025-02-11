@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { Meta, StoryFn } from '@storybook/react';
+import isChromatic from 'chromatic/isChromatic';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { customHeightForChromatic } from '../../utils/chromatic-story-helpers';
@@ -9,6 +10,7 @@ import { Button } from '../Button';
 
 import './Tooltip.stories.css';
 import { Info, Interactive, Reports, Simple } from './components';
+import exampleVideo from './onboarding_final.mp4';
 import beautifulImage from './placeholder.png';
 import { Tooltip } from './Tooltip';
 import { ITooltipProps } from './types';
@@ -47,9 +49,13 @@ export default {
       },
     },
   },
+  args: {
+    transitionOptions: {
+      duration: isChromatic() ? 0 : undefined,
+    },
+  },
   parameters: {
     controls: { expanded: true },
-    chromatic: { delay: 300 },
   },
   subcomponents: {
     Info,
@@ -119,7 +125,9 @@ TooltipInfo.decorators = [
   ),
 ];
 
-export const TooltipInteractive = (args: ITooltipProps): React.ReactElement => (
+export const TooltipInteractiveWithImage = (
+  args: ITooltipProps
+): React.ReactElement => (
   <Tooltip {...args} triggerRenderer={<Button>Trigger</Button>}>
     <Interactive
       theme={args.kind || args.theme}
@@ -141,10 +149,38 @@ export const TooltipInteractive = (args: ITooltipProps): React.ReactElement => (
     />
   </Tooltip>
 );
-TooltipInteractive.args = {
+TooltipInteractiveWithImage.args = {
   isVisible: true,
 };
-TooltipInteractive.decorators = [
+TooltipInteractiveWithImage.decorators = [
+  (Story: StoryFn) => (
+    <div className="tooltip-story interactive">
+      <Story />
+    </div>
+  ),
+];
+
+export const TooltipInteractiveWithVideo = (
+  args: ITooltipProps
+): React.ReactElement => (
+  <Tooltip {...args} triggerRenderer={<Button>Trigger</Button>}>
+    <Interactive
+      theme={args.kind || args.theme}
+      header="Header - concise and clear"
+      video={exampleVideo}
+      text="Tooltip content is used to explain the details of elements or features."
+      handleCloseAction={noop}
+      primaryButton={{
+        handleClick: noop,
+        label: 'Primary Button',
+      }}
+    />
+  </Tooltip>
+);
+TooltipInteractiveWithVideo.args = {
+  isVisible: true,
+};
+TooltipInteractiveWithVideo.decorators = [
   (Story: StoryFn) => (
     <div className="tooltip-story interactive">
       <Story />

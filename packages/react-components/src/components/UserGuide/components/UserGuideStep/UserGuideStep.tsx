@@ -46,24 +46,27 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
         {header}
       </Text>
       {image && (
-        <div className={styles[`${baseClass}__image-wrapper`]}>
+        <div className={styles[`${baseClass}__media-wrapper`]}>
           <img
-            className={styles[`${baseClass}-image`]}
+            className={styles[`${baseClass}__media`]}
             src={image.src}
             alt={image.alt}
           />
         </div>
       )}
       {video && !image && (
-        <video
-          data-testid="user-guide-step-video"
-          src={video.src}
-          playsInline={video.playsInline}
-          autoPlay={video.autoPlay}
-          muted={video.muted}
-          loop={video.loop}
-          controls={video.controls}
-        />
+        <div className={styles[`${baseClass}__media-wrapper`]}>
+          <video
+            className={styles[`${baseClass}__media`]}
+            data-testid="user-guide-step-video"
+            src={video.src}
+            playsInline={video.playsInline}
+            autoPlay={video.autoPlay}
+            muted={video.muted}
+            loop={video.loop}
+            controls={video.controls}
+          />
+        </div>
       )}
       <Text
         id="user-guide-step-typed-text"
