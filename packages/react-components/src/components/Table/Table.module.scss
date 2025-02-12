@@ -52,6 +52,8 @@ $base-class: 'table';
     align-items: center;
     justify-content: space-between;
     z-index: 100;
+    border-top-left-radius: var(--radius-3);
+    border-top-right-radius: var(--radius-3);
     background-color: var(--surface-invert-primary);
     padding: var(--spacing-2) var(--spacing-2) var(--spacing-2) var(--spacing-4);
     font-weight: 500;
