@@ -59,12 +59,13 @@ $base-class: 'header';
     gap: var(--spacing-2);
   }
 
+  &__select-cell {
+    padding: var(--spacing-2) var(--spacing-4);
+    width: 48px;
+  }
+
   &--selectable {
     border-top: 1px solid var(--border-basic-tertiary);
-
-    > th:first-child {
-      pointer-events: none;
-    }
   }
 
   td,

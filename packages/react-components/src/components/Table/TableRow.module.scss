@@ -9,6 +9,10 @@ $table-class: 'table';
     background-color: var(--surface-primary-hover);
   }
 
+  &__select-cell {
+    width: 48px;
+  }
+
   &__selected {
     background-color: var(--surface-secondary-active);
   }

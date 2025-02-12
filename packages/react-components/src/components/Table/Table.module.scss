@@ -23,6 +23,16 @@ $base-class: 'table';
 
   &--pinned_header {
     @include pin.generatePin('header');
+
+    &--selectable {
+      thead {
+        position: sticky;
+        top: 48px;
+        z-index: 5;
+        box-shadow: var(--shadow-fixed-bottom);
+        background-color: var(--background-01);
+      }
+    }
   }
 
   &--pinned_leftColumn {
@@ -42,7 +52,6 @@ $base-class: 'table';
     align-items: center;
     justify-content: space-between;
     z-index: 100;
-    box-shadow: var(--shadow-pop-over);
     background-color: var(--surface-invert-primary);
     padding: var(--spacing-2) var(--spacing-2) var(--spacing-2) var(--spacing-4);
     font-weight: 500;

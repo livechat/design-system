@@ -2,8 +2,6 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import { Button } from '../Button';
-import { Checkbox } from '../Checkbox';
 import { Text } from '../Typography';
 
 import { useTable } from './hooks';
@@ -159,31 +157,11 @@ export const Table = <T,>({
       {selectable && (
         <div className={cx(styles[`${selectedClass}`])}>
           <div className={styles[`${selectedClass}__content`]}>
-            <Checkbox
-              className={styles[`${selectedClass}__checkbox`]}
-              checked={selectedCount === data.length}
-              indeterminate={
-                selectedCount !== undefined &&
-                selectedCount > 0 &&
-                selectedCount < data.length
-              }
-              onChange={toggleSelectAll}
-            />
             {rowSelectionMessage || (
               <Text noMargin bold size="sm">
                 {selectedCount} selected
               </Text>
             )}
-            <div className={styles[`${selectedClass}__divider`]} />
-            <Button
-              size="compact"
-              onClick={toggleSelectAll}
-              kind="link-inverted"
-            >
-              {selectedCount === data.length
-                ? `Deselect all (${data.length})`
-                : `Select all (${data.length})`}
-            </Button>
           </div>
           <div>{rowActions}</div>
         </div>
@@ -193,6 +171,7 @@ export const Table = <T,>({
           styles[`${baseClass}`],
           styles[`${baseClass}--${size}`],
           styles[`${baseClass}--pinned_${pin}`],
+          selectable && styles[`${baseClass}--pinned_header--selectable`],
           styles[`${baseClass}--stripped_${stripped}`]
         )}
         data-testid={testId}
@@ -207,6 +186,9 @@ export const Table = <T,>({
           selectable={selectable}
           hoveredColumnIndex={hoveredColumnIndex}
           setHoveredColumnIndex={setHoveredColumnIndex}
+          selectedCount={selectedCount}
+          dataLength={data.length}
+          toggleSelectAll={toggleSelectAll}
         />
         <TableBody
           data={sortedData}

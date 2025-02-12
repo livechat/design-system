@@ -38,7 +38,11 @@ export const TableRow = <T,>({
       )}
     >
       {selectable && (
-        <td role="cell" aria-selected={isSelected(rowId)}>
+        <td
+          role="cell"
+          aria-selected={isSelected(rowId)}
+          className={styles[`${baseClass}__select-cell`]}
+        >
           <Checkbox
             checked={isSelected(rowId)}
             onChange={() => toggleRowSelection(rowId)}
