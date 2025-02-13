@@ -2,11 +2,12 @@ import { FC, MouseEvent, KeyboardEvent, PropsWithChildren } from 'react';
 
 import cx from 'clsx';
 
+import { skeletonLoading } from '../../styles/animations';
+
+import * as styles from './styles';
 import { ActionCardProps } from './types';
 
-import styles from './ActionCard.module.scss';
-
-const baseClass = 'action-card';
+const componentName = 'action-card';
 
 export const ActionCard: FC<PropsWithChildren<ActionCardProps>> = ({
   className,
@@ -18,11 +19,10 @@ export const ActionCard: FC<PropsWithChildren<ActionCardProps>> = ({
   isLoading = false,
   isLoadingAnimated = false,
 }) => {
-  const mergedClassNames = cx(styles[baseClass], className);
+  const mergedClassNames = cx(styles.baseStyles(isLoading), className);
 
-  const wrapperClassNames = cx(styles[`main-wrapper`], {
-    [styles[`${baseClass}--loading`]]: isLoading,
-    [styles[`${baseClass}--loading--animated`]]: isLoadingAnimated,
+  const wrapperClassNames = cx(styles.mainWrapper(isLoading), {
+    [skeletonLoading]: isLoadingAnimated,
   });
 
   const handleOnClick = (e: MouseEvent<HTMLDivElement>) => {
@@ -53,7 +53,7 @@ export const ActionCard: FC<PropsWithChildren<ActionCardProps>> = ({
 
   return (
     <div className={wrapperClassNames}>
-      <div aria-live="polite" className={styles['visually-hidden']}>
+      <div aria-live="polite" className={styles.viasuallyHidden}>
         {isLoading ? 'Loading content' : null}
       </div>
       <div
@@ -68,23 +68,15 @@ export const ActionCard: FC<PropsWithChildren<ActionCardProps>> = ({
         {!isLoading && (
           <>
             <div
-              data-testid={`${baseClass}-first-column`}
-              className={cx(
-                styles[`${baseClass}__column`],
-                styles[`${baseClass}__column--first`],
-                firstColumnClassName
-              )}
+              data-testid={`${componentName}-first-column`}
+              className={cx(styles.firstColumn, firstColumnClassName)}
             >
               {children}
             </div>
             {secondColumn && (
               <div
-                data-testid={`${baseClass}-second-column`}
-                className={cx(
-                  styles[`${baseClass}__column`],
-                  styles[`${baseClass}__column--second`],
-                  secondColumnClassName
-                )}
+                data-testid={`${componentName}-second-column`}
+                className={cx(styles.secondColumn, secondColumnClassName)}
               >
                 {secondColumn}
               </div>
