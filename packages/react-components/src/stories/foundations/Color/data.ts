@@ -1736,4 +1736,807 @@ export const ColorsData: Record<
     desc: 'Default color for text and content in AI-related UI elements outside the Copilot experience',
     deprecated: undefined,
   },
+
+  SequentialBlue25: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential blue scale - lightest',
+    deprecated: false,
+  },
+  SequentialBlue50: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential blue scale',
+    deprecated: false,
+  },
+  SequentialBlue100: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential blue scale',
+    deprecated: false,
+  },
+  SequentialBlue200: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential blue scale',
+    deprecated: false,
+  },
+  SequentialBlue300: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential blue scale',
+    deprecated: false,
+  },
+  SequentialBlue400: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential blue scale',
+    deprecated: false,
+  },
+  SequentialBlue500: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential blue scale',
+    deprecated: false,
+  },
+  SequentialBlue600: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential blue scale',
+    deprecated: false,
+  },
+  SequentialBlue700: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential blue scale',
+    deprecated: false,
+  },
+  SequentialBlue800: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential blue scale',
+    deprecated: false,
+  },
+  SequentialBlue900: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential blue scale',
+    deprecated: false,
+  },
+  SequentialBlue950: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential blue scale - darkest',
+    deprecated: false,
+  },
+
+  SequentialYellow25: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential yellow scale - lightest',
+    deprecated: false,
+  },
+  SequentialYellow50: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential yellow scale',
+    deprecated: false,
+  },
+  SequentialYellow100: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential yellow scale',
+    deprecated: false,
+  },
+  SequentialYellow200: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential yellow scale',
+    deprecated: false,
+  },
+  SequentialYellow300: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential yellow scale',
+    deprecated: false,
+  },
+  SequentialYellow400: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential yellow scale',
+    deprecated: false,
+  },
+  SequentialYellow500: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential yellow scale',
+    deprecated: false,
+  },
+  SequentialYellow600: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential yellow scale',
+    deprecated: false,
+  },
+  SequentialYellow700: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential yellow scale',
+    deprecated: false,
+  },
+  SequentialYellow800: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential yellow scale',
+    deprecated: false,
+  },
+  SequentialYellow900: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential yellow scale',
+    deprecated: false,
+  },
+  SequentialYellow950: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential yellow scale - darkest',
+    deprecated: false,
+  },
+
+  SequentialGreen25: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential green scale - lightest',
+    deprecated: false,
+  },
+  SequentialGreen50: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential green scale',
+    deprecated: false,
+  },
+  SequentialGreen100: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential green scale',
+    deprecated: false,
+  },
+  SequentialGreen200: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential green scale',
+    deprecated: false,
+  },
+  SequentialGreen300: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential green scale',
+    deprecated: false,
+  },
+  SequentialGreen400: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential green scale',
+    deprecated: false,
+  },
+  SequentialGreen500: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential green scale',
+    deprecated: false,
+  },
+  SequentialGreen600: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential green scale',
+    deprecated: false,
+  },
+  SequentialGreen700: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential green scale',
+    deprecated: false,
+  },
+  SequentialGreen800: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential green scale',
+    deprecated: false,
+  },
+  SequentialGreen900: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential green scale',
+    deprecated: false,
+  },
+  SequentialGreen950: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential green scale - darkest',
+    deprecated: false,
+  },
+
+  SequentialMagenta25: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential magenta scale - lightest',
+    deprecated: false,
+  },
+  SequentialMagenta50: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential magenta scale',
+    deprecated: false,
+  },
+  SequentialMagenta100: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential magenta scale',
+    deprecated: false,
+  },
+  SequentialMagenta200: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential magenta scale',
+    deprecated: false,
+  },
+  SequentialMagenta300: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential magenta scale',
+    deprecated: false,
+  },
+  SequentialMagenta400: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential magenta scale',
+    deprecated: false,
+  },
+  SequentialMagenta500: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential magenta scale',
+    deprecated: false,
+  },
+  SequentialMagenta600: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential magenta scale',
+    deprecated: false,
+  },
+  SequentialMagenta700: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential magenta scale',
+    deprecated: false,
+  },
+  SequentialMagenta800: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential magenta scale',
+    deprecated: false,
+  },
+  SequentialMagenta900: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential magenta scale',
+    deprecated: false,
+  },
+  SequentialMagenta950: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential magenta scale - darkest',
+    deprecated: false,
+  },
+
+  SequentialOrange25: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential orange scale - lightest',
+    deprecated: false,
+  },
+  SequentialOrange50: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential orange scale',
+    deprecated: false,
+  },
+  SequentialOrange100: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential orange scale',
+    deprecated: false,
+  },
+  SequentialOrange200: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential orange scale',
+    deprecated: false,
+  },
+  SequentialOrange300: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential orange scale',
+    deprecated: false,
+  },
+  SequentialOrange400: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential orange scale',
+    deprecated: false,
+  },
+  SequentialOrange500: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential orange scale',
+    deprecated: false,
+  },
+  SequentialOrange600: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential orange scale',
+    deprecated: false,
+  },
+  SequentialOrange700: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential orange scale',
+    deprecated: false,
+  },
+  SequentialOrange800: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential orange scale',
+    deprecated: false,
+  },
+  SequentialOrange900: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential orange scale',
+    deprecated: false,
+  },
+  SequentialOrange950: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential orange scale - darkest',
+    deprecated: false,
+  },
+
+  // Sequential Purple Scale
+  SequentialPurple25: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential purple scale - lightest',
+    deprecated: false,
+  },
+  SequentialPurple50: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential purple scale',
+    deprecated: false,
+  },
+  SequentialPurple100: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential purple scale',
+    deprecated: false,
+  },
+  SequentialPurple200: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential purple scale',
+    deprecated: false,
+  },
+  SequentialPurple300: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential purple scale',
+    deprecated: false,
+  },
+  SequentialPurple400: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential purple scale',
+    deprecated: false,
+  },
+  SequentialPurple500: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential purple scale',
+    deprecated: false,
+  },
+  SequentialPurple600: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential purple scale',
+    deprecated: false,
+  },
+  SequentialPurple700: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential purple scale',
+    deprecated: false,
+  },
+  SequentialPurple800: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential purple scale',
+    deprecated: false,
+  },
+  SequentialPurple900: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential purple scale',
+    deprecated: false,
+  },
+  SequentialPurple950: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential purple scale - darkest',
+    deprecated: false,
+  },
+
+  // Sequential Red Scale
+  SequentialRed25: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential red scale - lightest',
+    deprecated: false,
+  },
+  SequentialRed50: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential red scale',
+    deprecated: false,
+  },
+  SequentialRed100: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential red scale',
+    deprecated: false,
+  },
+  SequentialRed200: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential red scale',
+    deprecated: false,
+  },
+  SequentialRed300: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential red scale',
+    deprecated: false,
+  },
+  SequentialRed400: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential red scale',
+    deprecated: false,
+  },
+  SequentialRed500: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential red scale',
+    deprecated: false,
+  },
+  SequentialRed600: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential red scale',
+    deprecated: false,
+  },
+  SequentialRed700: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential red scale',
+    deprecated: false,
+  },
+  SequentialRed800: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential red scale',
+    deprecated: false,
+  },
+  SequentialRed900: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential red scale',
+    deprecated: false,
+  },
+  SequentialRed950: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sequential red scale - darkest',
+    deprecated: false,
+  },
+
+  // Categorical Main Colors
+  CategoricalMain1: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Primary categorical color',
+    deprecated: false,
+  },
+  CategoricalMain2: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Secondary categorical color',
+    deprecated: false,
+  },
+  CategoricalMain3: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Tertiary categorical color',
+    deprecated: false,
+  },
+  CategoricalMain4: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Fourth categorical color',
+    deprecated: false,
+  },
+  CategoricalMain5: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Fifth categorical color',
+    deprecated: false,
+  },
+  CategoricalMain6: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Sixth categorical color',
+    deprecated: false,
+  },
+  CategoricalMain7: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Seventh categorical color',
+    deprecated: false,
+  },
+  CategoricalMain8: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Eighth categorical color',
+    deprecated: false,
+  },
+  CategoricalMain9: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Ninth categorical color',
+    deprecated: false,
+  },
+  CategoricalMain10: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Tenth categorical color',
+    deprecated: false,
+  },
+  CategoricalMain11: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Eleventh categorical color',
+    deprecated: false,
+  },
+  CategoricalMain12: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Twelfth categorical color',
+    deprecated: false,
+  },
+  CategoricalMain13: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Thirteenth categorical color',
+    deprecated: false,
+  },
+  CategoricalMain14: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Fourteenth categorical color',
+    deprecated: false,
+  },
+
+  UifoundationSurfaceDefault: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Default surface for data visualization',
+    deprecated: false,
+  },
+  UifoundationBorderGrid: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Grid border in data visualization',
+    deprecated: false,
+  },
+  UifoundationBorderAxis: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Axis border in data visualization',
+    deprecated: false,
+  },
+
+  // Categorical 1-Color Options
+  Categorical1colorColor1: {
+    group: ColorGroup.DataVisualization,
+    desc: 'First color in 1-color palette',
+    deprecated: false,
+  },
+  Categorical1colorColor2: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Second color in 1-color palette',
+    deprecated: false,
+  },
+  Categorical1colorColor3: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Third color in 1-color palette',
+    deprecated: false,
+  },
+  Categorical1colorColor4: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Fourth color in 1-color palette',
+    deprecated: false,
+  },
+
+  Categorical2colorsOption1Color1: {
+    group: ColorGroup.DataVisualization,
+    desc: 'First color in 2-colors option 1',
+    deprecated: false,
+  },
+  Categorical2colorsOption1Color2: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Second color in 2-colors option 1',
+    deprecated: false,
+  },
+  Categorical2colorsOption2Color1: {
+    group: ColorGroup.DataVisualization,
+    desc: 'First color in 2-colors option 2',
+    deprecated: false,
+  },
+  Categorical2colorsOption2Color2: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Second color in 2-colors option 2',
+    deprecated: false,
+  },
+  Categorical2colorsOption3Color1: {
+    group: ColorGroup.DataVisualization,
+    desc: 'First color in 2-colors option 3',
+    deprecated: false,
+  },
+  Categorical2colorsOption3Color2: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Second color in 2-colors option 3',
+    deprecated: false,
+  },
+  Categorical2colorsOption4Color1: {
+    group: ColorGroup.DataVisualization,
+    desc: 'First color in 2-colors option 4',
+    deprecated: false,
+  },
+  Categorical2colorsOption4Color2: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Second color in 2-colors option 4',
+    deprecated: false,
+  },
+  Categorical2colorsOption5Color1: {
+    group: ColorGroup.DataVisualization,
+    desc: 'First color in 2-colors option 5',
+    deprecated: false,
+  },
+  Categorical2colorsOption5Color2: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Second color in 2-colors option 5',
+    deprecated: false,
+  },
+  Categorical2colorsOption6Color1: {
+    group: ColorGroup.DataVisualization,
+    desc: 'First color in 2-colors option 6',
+    deprecated: false,
+  },
+  Categorical2colorsOption6Color2: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Second color in 2-colors option 6',
+    deprecated: false,
+  },
+
+  Categorical3colorsOption1Color1: {
+    group: ColorGroup.DataVisualization,
+    desc: 'First color in 3-colors option 1',
+    deprecated: false,
+  },
+  Categorical3colorsOption1Color2: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Second color in 3-colors option 1',
+    deprecated: false,
+  },
+  Categorical3colorsOption1Color3: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Third color in 3-colors option 1',
+    deprecated: false,
+  },
+  Categorical3colorsOption2Color1: {
+    group: ColorGroup.DataVisualization,
+    desc: 'First color in 3-colors option 2',
+    deprecated: false,
+  },
+  Categorical3colorsOption2Color2: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Second color in 3-colors option 2',
+    deprecated: false,
+  },
+  Categorical3colorsOption2Color3: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Third color in 3-colors option 2',
+    deprecated: false,
+  },
+  Categorical3colorsOption3Color1: {
+    group: ColorGroup.DataVisualization,
+    desc: 'First color in 3-colors option 3',
+    deprecated: false,
+  },
+  Categorical3colorsOption3Color2: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Second color in 3-colors option 3',
+    deprecated: false,
+  },
+  Categorical3colorsOption3Color3: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Third color in 3-colors option 3',
+    deprecated: false,
+  },
+  Categorical3colorsOption4Color1: {
+    group: ColorGroup.DataVisualization,
+    desc: 'First color in 3-colors option 4',
+    deprecated: false,
+  },
+  Categorical3colorsOption4Color2: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Second color in 3-colors option 4',
+    deprecated: false,
+  },
+  Categorical3colorsOption4Color3: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Third color in 3-colors option 4',
+    deprecated: false,
+  },
+  Categorical3colorsOption5Color1: {
+    group: ColorGroup.DataVisualization,
+    desc: 'First color in 3-colors option 5',
+    deprecated: false,
+  },
+  Categorical3colorsOption5Color2: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Second color in 3-colors option 5',
+    deprecated: false,
+  },
+  Categorical3colorsOption5Color3: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Third color in 3-colors option 5',
+    deprecated: false,
+  },
+  Categorical3colorsOption6Color1: {
+    group: ColorGroup.DataVisualization,
+    desc: 'First color in 3-colors option 6',
+    deprecated: false,
+  },
+  Categorical3colorsOption6Color2: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Second color in 3-colors option 6',
+    deprecated: false,
+  },
+  Categorical3colorsOption6Color3: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Third color in 3-colors option 6',
+    deprecated: false,
+  },
+
+  Categorical4colorsOption1Color1: {
+    group: ColorGroup.DataVisualization,
+    desc: 'First color in 4-colors option 1',
+    deprecated: false,
+  },
+  Categorical4colorsOption1Color2: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Second color in 4-colors option 1',
+    deprecated: false,
+  },
+  Categorical4colorsOption1Color3: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Third color in 4-colors option 1',
+    deprecated: false,
+  },
+  Categorical4colorsOption1Color4: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Fourth color in 4-colors option 1',
+    deprecated: false,
+  },
+  Categorical4colorsOption2Color1: {
+    group: ColorGroup.DataVisualization,
+    desc: 'First color in 4-colors option 2',
+    deprecated: false,
+  },
+  Categorical4colorsOption2Color2: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Second color in 4-colors option 2',
+    deprecated: false,
+  },
+  Categorical4colorsOption2Color3: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Third color in 4-colors option 2',
+    deprecated: false,
+  },
+  Categorical4colorsOption2Color4: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Fourth color in 4-colors option 2',
+    deprecated: false,
+  },
+  Categorical4colorsOption3Color1: {
+    group: ColorGroup.DataVisualization,
+    desc: 'First color in 4-colors option 3',
+    deprecated: false,
+  },
+  Categorical4colorsOption3Color2: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Second color in 4-colors option 3',
+    deprecated: false,
+  },
+  Categorical4colorsOption3Color3: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Third color in 4-colors option 3',
+    deprecated: false,
+  },
+  Categorical4colorsOption3Color4: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Fourth color in 4-colors option 3',
+    deprecated: false,
+  },
+
+  Categorical5colorsOption1Color1: {
+    group: ColorGroup.DataVisualization,
+    desc: 'First color in 5-colors option 1',
+    deprecated: false,
+  },
+  Categorical5colorsOption1Color2: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Second color in 5-colors option 1',
+    deprecated: false,
+  },
+  Categorical5colorsOption1Color3: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Third color in 5-colors option 1',
+    deprecated: false,
+  },
+  Categorical5colorsOption1Color4: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Fourth color in 5-colors option 1',
+    deprecated: false,
+  },
+  Categorical5colorsOption1Color5: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Fifth color in 5-colors option 1',
+    deprecated: false,
+  },
+  Categorical5colorsOption2Color1: {
+    group: ColorGroup.DataVisualization,
+    desc: 'First color in 5-colors option 2',
+    deprecated: false,
+  },
+  Categorical5colorsOption2Color2: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Second color in 5-colors option 2',
+    deprecated: false,
+  },
+  Categorical5colorsOption2Color3: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Third color in 5-colors option 2',
+    deprecated: false,
+  },
+  Categorical5colorsOption2Color4: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Fourth color in 5-colors option 2',
+    deprecated: false,
+  },
+  Categorical5colorsOption2Color5: {
+    group: ColorGroup.DataVisualization,
+    desc: 'Fifth color in 5-colors option 2',
+    deprecated: false,
+  },
 };
