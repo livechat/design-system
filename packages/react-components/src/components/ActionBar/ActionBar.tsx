@@ -11,7 +11,7 @@ import { Icon } from '../Icon';
 import { ListItem } from '../ListItem';
 
 import { ActionBarItem } from './ActionBarItem';
-import * as styles2 from './styles';
+import * as styles from './styles';
 import { IActionBarOption, IActionBarProps } from './types';
 
 const singleElementSize = 44;
@@ -93,8 +93,8 @@ export const ActionBar: React.FC<IActionBarProps> = ({
   const buttonElement = menuOptions.find((o) => o.key === activeOptionKey);
 
   return (
-    <div id={id} className={cx(styles2.actionBar(vertical), className)}>
-      <div className={styles2.actionBarItems(isScrollType)}>
+    <div id={id} className={cx(styles.actionBar(vertical), className)}>
+      <div className={styles.actionBarItems(isScrollType)}>
         {options.slice(0, visibleItemsCount).map((o) => (
           <ActionBarItem
             option={o}
@@ -104,9 +104,7 @@ export const ActionBar: React.FC<IActionBarProps> = ({
         ))}
       </div>
       {shouldDisplayMenu && (
-        <div
-          className={styles2.actionBarMenuWrapper(!!buttonElement, vertical)}
-        >
+        <div className={styles.actionBarMenuWrapper(!!buttonElement, vertical)}>
           <ActionMenu
             selectedOptions={activeOptionKey ? [activeOptionKey] : []}
             onOpen={() => setIsMenuOpen(true)}
@@ -114,11 +112,11 @@ export const ActionBar: React.FC<IActionBarProps> = ({
             floatingStrategy="fixed"
             placement={vertical ? 'left-start' : 'bottom-end'}
             options={getMenuItems()}
-            triggerClassName={cx(vertical && styles2.actionBarTriggerVertical)}
+            triggerClassName={cx(vertical && styles.actionBarTriggerVertical)}
             triggerRenderer={
               <Button
                 id={`${id}-menu-button`}
-                className={styles2.actionBarMenuButton(
+                className={styles.actionBarMenuButton(
                   !!buttonElement,
                   vertical
                 )}
@@ -127,13 +125,13 @@ export const ActionBar: React.FC<IActionBarProps> = ({
                   <Icon
                     source={ChevronDown}
                     kind="primary"
-                    className={styles2.actionBarMenuButtonIcon(isMenuOpen)}
+                    className={styles.actionBarMenuButtonIcon(isMenuOpen)}
                   />
                 }
                 iconPosition="right"
               >
                 {buttonElement && (
-                  <div className={styles2.actionBarMenuButtonWithItem}>
+                  <div className={styles.actionBarMenuButtonWithItem}>
                     {buttonElement.element}
                   </div>
                 )}

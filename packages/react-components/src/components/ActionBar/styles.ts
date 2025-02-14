@@ -92,12 +92,6 @@ export const actionBarItemButton = (
     height: 24px;
   }
 
-  ${vertical &&
-  `
-    flex-shrink: 0;
-    margin: var(${SpacingToken.Spacing1}) 0;
-    `}
-
   ${withDivider &&
   ` 
   &::after {
@@ -141,7 +135,7 @@ export const actionBarMenuWrapper = (
     &::after {
       position: absolute;
       content: '';
-      background-color: var(--action-primary-default);
+      background-color: var(${DesignToken.ActionPrimaryDefault});
       
       ${
         vertical
@@ -223,4 +217,8 @@ export const actionBarMenuButtonIcon = (isMenuOpen: boolean) => css`
   `
    transform: rotate(180deg);
   `}
+`;
+
+export const actionBarItemTooltip = css`
+  display: grid;
 `;
