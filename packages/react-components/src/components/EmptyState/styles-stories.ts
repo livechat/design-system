@@ -27,10 +27,6 @@ export const customContent = css`
   flex-direction: column;
   gap: var(${SpacingToken.Spacing2});
   align-items: center;
-
-  @media (width <= 600px) {
-    flex-direction: column;
-  }
 `;
 
 export const customContentRow = css`
