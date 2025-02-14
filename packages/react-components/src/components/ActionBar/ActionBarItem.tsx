@@ -33,7 +33,6 @@ export const ActionBarItem: React.FC<IActionBarItem> = ({
         <Tooltip
           kind="invert"
           placement={vertical ? 'left' : 'bottom'}
-          triggerClassName={styles.actionBarItemTooltip}
           triggerRenderer={() => button}
           floatingStrategy="fixed"
           useClickHookProps={{

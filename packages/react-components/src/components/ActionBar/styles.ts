@@ -1,5 +1,12 @@
 import { css, keyframes } from '@emotion/css';
 
+import {
+  TransitionDurationToken,
+  SpacingToken,
+  RadiusToken,
+  DesignToken,
+} from '../../foundations';
+
 export const fadeIn = keyframes`
     0% {
       opacity: 0;
@@ -24,25 +31,13 @@ export const actionBar = (vertical?: boolean) => css`
   display: flex;
   position: relative;
   height: 100%;
-
-  ${vertical &&
-  `
-    flex-direction: column;
-  `}
+  flex-direction: ${vertical ? 'column' : 'row'};
 `;
 
 export const actionBarItems = (isScrollType?: boolean) => css`
   display: flex;
   flex-direction: inherit;
-
-  ${isScrollType &&
-  `
-    overflow: auto;
-  `}
-`;
-
-export const actionBarItemTooltip = css`
-  display: grid;
+  ${isScrollType && 'overflow: auto;'}
 `;
 
 export const actionBarItemButtonWrapper = (
@@ -52,44 +47,37 @@ export const actionBarItemButtonWrapper = (
   display: flex;
   position: relative;
   align-items: center;
-  margin: 0 var(--spacing-1);
-  width: fit-content;
+  width: ${vertical ? '100%' : 'fit-content'};
+  margin: ${vertical
+    ? `var(${SpacingToken.Spacing1}) 0;`
+    : `0 var(${SpacingToken.Spacing1})`};
+  ${vertical && 'justify-content: center;'}
 
   ${isActive &&
   `
     &::after {
     position: absolute;
-    bottom: 0;
-    border-top-left-radius: var(--radius-3);
-    border-top-right-radius: var(--radius-3);
-    background-color: var(--action-primary-default);
-    width: 100%;
-    height: 3px;
     content: '';
-  }
-  `}
+    background-color: var(${DesignToken.ActionPrimaryDefault});
 
-  ${vertical &&
-  `
-      justify-content: center;
-        margin: var(--spacing-1) 0;
-        width: 100%;
-  `}
-  
-  ${vertical &&
-  isActive &&
-  `
-  &::after {
-    position: absolute;
-    left: 0;
-    border-top-left-radius: 0;
-    border-top-right-radius: var(--radius-3);
-    border-bottom-right-radius: var(--radius-3);
-    background-color: var(--action-primary-default);
-    width: 3px;
-    height: 100%;
-    content: '';
-  }
+        ${
+          vertical
+            ? `
+            left: 0;
+            width: 3px;
+            height: 100%;
+            border-top-left-radius: 0;
+            border-top-right-radius: var(${RadiusToken.Radius3});
+            border-bottom-right-radius: var(${RadiusToken.Radius3});`
+            : `
+            bottom: 0;
+            width: 100%;
+            height: 3px;
+            border-top-left-radius: var(${RadiusToken.Radius3});
+            border-top-right-radius: var(${RadiusToken.Radius3});
+        `
+        }
+    }
   `}
 `;
 
@@ -106,37 +94,34 @@ export const actionBarItemButton = (
 
   ${vertical &&
   `
-       flex-shrink: 0;
-      margin: var(--spacing-1) 0;
-      `}
-
-  ${withDivider &&
-  !vertical &&
-  ` 
-    &::after {
-            position: absolute;
-            top: 0;
-            right: -5.5px;
-            bottom: 0;
-            background-color: var(--border-basic-secondary);
-            width: 1px;
-            content: '';
-          }
-  `}
-
-  ${withDivider &&
-  vertical &&
-  `
-     &::after {
-            position: absolute;
-            right: 0;
-            bottom: -5.5px;
-            left: 0;
-            background-color: var(--border-basic-secondary);
-            height: 1px;
-            content: '';
-          }
+    flex-shrink: 0;
+    margin: var(${SpacingToken.Spacing1}) 0;
     `}
+
+  ${withDivider &&
+  ` 
+  &::after {
+      position: absolute;
+      content: '';
+      background-color: var(${DesignToken.BorderBasicSecondary});
+      
+      ${
+        vertical
+          ? `
+        right: 0;
+        bottom: -5.5px;
+        left: 0;
+        height: 1px;
+      `
+          : `
+        top: 0;
+        right: -5.5px;
+        bottom: 0;
+        width: 1px;
+      `
+      }
+    }
+  `}
 `;
 
 export const actionBarMenuWrapper = (
@@ -145,46 +130,38 @@ export const actionBarMenuWrapper = (
 ) => css`
   display: flex;
   position: relative;
-  align-items: center;
-  margin-left: var(--spacing-1);
+  align-items: ${vertical ? 'normal' : 'center'};
+  margin: ${vertical
+    ? `var(${SpacingToken.Spacing1}) 0 0 0`
+    : `0 0 0 var(${SpacingToken.Spacing1})`};
+  ${vertical && 'justify-content: center;'}
 
   ${hasButton &&
-  vertical &&
   `
     &::after {
-    position: absolute;
-    left: 0;
-    border-top-left-radius: 0;
-    border-top-right-radius: var(--radius-3);
-    border-bottom-right-radius: var(--radius-3);
-    background-color: var(--action-primary-default);
-    width: 3px;
-    height: 100%;
-    content: '';
-  }
-  `}
-
-  ${hasButton &&
-  !vertical &&
-  `
-     &::after {
-    position: absolute;
-    bottom: 0;
-    border-top-left-radius: var(--radius-3);
-    border-top-right-radius: var(--radius-3);
-    background-color: var(--action-primary-default);
-    width: 100%;
-    height: 3px;
-    content: '';
-  }
-  `}
-
-  ${vertical &&
-  `
-      align-items: normal;
-      justify-content: center;
-      margin-top: var(--spacing-1);
-      margin-left: 0;
+      position: absolute;
+      content: '';
+      background-color: var(--action-primary-default);
+      
+      ${
+        vertical
+          ? `
+        left: 0;
+        width: 3px;
+        height: 100%;
+        border-top-left-radius: 0;
+        border-top-right-radius: var(${RadiusToken.Radius3});
+        border-bottom-right-radius: var(${RadiusToken.Radius3});
+      `
+          : `
+        bottom: 0;
+        width: 100%;
+        height: 3px;
+        border-top-left-radius: var(${RadiusToken.Radius3});
+        border-top-right-radius: var(${RadiusToken.Radius3});
+      `
+      }
+    }
   `}
 `;
 
@@ -201,39 +178,35 @@ export const actionBarMenuButton = (
 
   ${vertical &&
   `
-   flex-direction: column;
-        height: auto;
-        min-height: 36px;
-
-        > span {
-          margin-left: 0;
-        }
-
+    flex-direction: column;
+    height: auto;
+    min-height: 36px;
+    
+    > span {
+      margin-left: 0;
+      ${hasButton && 'margin-top: var(--spacing-1);'}
+    }
   `}
 
   ${hasButton &&
   `
-     background-color: var(--surface-primary-active);
-        padding: 6px !important;
-  `}
-
-  ${hasButton &&
-  vertical &&
-  `
+    background-color: var(--surface-primary-active);
+    padding: 6px !important;
+    ${
+      vertical &&
+      `
       width: 36px;
-
-          &::after {
-            bottom: 0;
-            left: -9px;
-            border-top-left-radius: 0;
-            border-bottom-right-radius: var(--radius-3);
-            width: 3px;
-            height: 100%;
-          }
-
-          > span {
-            margin-top: var(--spacing-1);
-          }
+      
+      &::after {
+        bottom: 0;
+        left: -9px;
+        border-top-left-radius: 0;
+        border-bottom-right-radius: var(--radius-3);
+        width: 3px;
+        height: 100%;
+      }
+    `
+    }
   `}
 `;
 
@@ -245,7 +218,7 @@ export const actionBarMenuButtonWithItem = css`
 `;
 
 export const actionBarMenuButtonIcon = (isMenuOpen: boolean) => css`
-  transition: transform var(--transition-duration-moderate-1);
+  transition: transform var(${TransitionDurationToken.Moderate1});
   ${isMenuOpen &&
   `
    transform: rotate(180deg);
