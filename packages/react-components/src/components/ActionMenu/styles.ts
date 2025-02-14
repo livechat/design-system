@@ -109,7 +109,8 @@ export const groupHeader = css`
   margin-bottom: var(${SpacingToken.Spacing05});
   background-color: var(${DesignToken.PickerListGroupBackground});
   cursor: auto;
-  padding: 12px 12px 4px;
+  padding: var(${SpacingToken.Spacing3}) var(${SpacingToken.Spacing3})
+    var(${SpacingToken.Spacing1});
   height: 36px;
   text-transform: uppercase;
   color: var(${DesignToken.ContentBasicSecondary});

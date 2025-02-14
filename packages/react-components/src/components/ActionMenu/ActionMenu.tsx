@@ -184,12 +184,10 @@ export const ActionMenu: React.FC<IActionMenuProps> = ({
           disabled={option.disabled}
           onClick={() => handleItemClick(index, option.onClick)}
           role="menuitem"
-          className={cx(
-            styles.item(
-              option.disabled,
-              option.withDivider,
-              selectedOptions?.includes(option.key)
-            )
+          className={styles.item(
+            option.disabled,
+            option.withDivider,
+            selectedOptions?.includes(option.key)
           )}
         >
           {option.element}
