@@ -50,7 +50,7 @@ export const mainWrapper = (isLoading?: boolean) => css`
   `}
 `;
 
-export const viasuallyHidden = css`
+export const visuallyHidden = css`
   position: absolute;
   margin: -1px;
   border: 0;

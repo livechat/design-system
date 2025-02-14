@@ -53,7 +53,7 @@ export const ActionCard: FC<PropsWithChildren<ActionCardProps>> = ({
 
   return (
     <div className={wrapperClassNames}>
-      <div aria-live="polite" className={styles.viasuallyHidden}>
+      <div aria-live="polite" className={styles.visuallyHidden}>
         {isLoading ? 'Loading content' : null}
       </div>
       <div
