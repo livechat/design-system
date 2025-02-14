@@ -6,7 +6,7 @@ import { Size } from '../../utils';
 import { Badge } from '../Badge';
 import { Text } from '../Typography';
 
-import styles from './Tab.module.scss';
+import * as styles from './styles';
 
 type HTMLProps =
   | (React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string })
@@ -35,8 +35,6 @@ export type TabProps = HTMLProps & {
   icon?: React.ReactElement;
 };
 
-const baseClass = 'tab';
-
 export const Tab: React.FC<React.PropsWithChildren<TabProps>> = ({
   children,
   className,
@@ -59,22 +57,20 @@ export const Tab: React.FC<React.PropsWithChildren<TabProps>> = ({
       aria-selected={isSelected}
       size="md"
       bold={isSelected}
-      className={cx(
-        className,
-        styles[baseClass],
-        styles[`${baseClass}--${size}`],
-        isSelected && styles[`${baseClass}--selected`],
-        disabled && styles[`${baseClass}--disabled`]
-      )}
+      className={cx(styles.tab(size, isSelected, disabled), className)}
     >
       {icon && (
-        <div data-testId="icon" className={styles[`${baseClass}__icon`]}>
+        <div data-testId="icon" className={styles.tabIcon}>
           {icon}
         </div>
       )}
       {children}
       {shouldDisplayAsCounter && (
-        <Text as="span" size="md" className={styles[`${baseClass}__count`]}>
+        <Text
+          as="span"
+          size="md"
+          className={styles.tabCount(isSelected, disabled)}
+        >
           ({count})
         </Text>
       )}
@@ -83,7 +79,7 @@ export const Tab: React.FC<React.PropsWithChildren<TabProps>> = ({
           data-testid="tab-badge"
           count={count}
           size="compact"
-          className={styles[`${baseClass}__badge`]}
+          className={styles.tabBadge}
         />
       )}
     </Text>
