@@ -69,7 +69,10 @@ export const Tab: React.FC<React.PropsWithChildren<TabProps>> = ({
         <Text
           as="span"
           size="md"
-          className={styles.tabCount(isSelected, disabled)}
+          className={cx(
+            styles.TAB_COUNT_CLASS,
+            styles.tabCount(isSelected, disabled)
+          )}
         >
           ({count})
         </Text>

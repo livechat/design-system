@@ -4,6 +4,8 @@ import { Size } from 'utils';
 
 import { DesignToken, RadiusToken, SpacingToken } from '../../foundations';
 
+export const TAB_COUNT_CLASS = 'tab-count';
+
 export const tabs = css`
   position: relative;
   border-bottom: 1px solid var(${DesignToken.BorderBasicTertiary});
@@ -54,8 +56,7 @@ export const tab = (
       text-decoration: none;
       color: var(${DesignToken.ActionPrimaryDefault});
 
-      /* Target only the tabCount class specifically */
-      .${tabCount()} {
+      .${TAB_COUNT_CLASS} {
         color: var(${DesignToken.ActionPrimaryDefault});
       }
     }
