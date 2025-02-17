@@ -4,58 +4,11 @@ import { Close } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { ThemeClassName } from '../../providers';
-import { Button, ButtonKind, ButtonProps } from '../Button';
+import { Button } from '../Button';
 import { Icon } from '../Icon';
 
-import styles from './PromoBannerV2.module.scss';
-
-const baseClass = 'promo-banner-v2';
-
-type OldButtonProps = {
-  handleClick: () => void;
-  label: string;
-  kind?: ButtonKind;
-};
-
-export interface IPromoBannerV2Props {
-  /**
-   * Specify an optional className to be applied to the main container node
-   */
-  className?: string;
-  /**
-   * Element with additional content for second column
-   */
-  additionalContent?: React.ReactNode;
-  /**
-   * Shows the primary CTA button
-   */
-  primaryButton?: OldButtonProps & ButtonProps;
-  /**
-   * Shows the secondary CTA button
-   */
-  secondaryButton?: OldButtonProps & ButtonProps;
-  /**
-   * Set to true to display the banner vertically
-   */
-  vertical?: boolean;
-  /**
-   * Specify an optional className to be applied to the content node
-   */
-  contentClassName?: string;
-  /**
-   * Specify an optional className to be applied to the additional content node
-   */
-  additionalContentClassName?: string;
-  /**
-   * Event handler for close button press
-   */
-  onClose?: () => void;
-  /**
-   * Specify the kind of PromoBannerV2
-   * @default 'default'
-   */
-  kind?: 'default' | 'dark';
-}
+import * as styles from './styles';
+import { IPromoBannerV2Props } from './types';
 
 export const PromoBannerV2: React.FC<
   React.PropsWithChildren<IPromoBannerV2Props>
@@ -72,27 +25,21 @@ export const PromoBannerV2: React.FC<
   kind = 'default',
 }) => {
   const mergedClassNames = cx(
-    styles['main-wrapper'],
-    styles[`${baseClass}--${kind}`],
+    styles.mainWrapper,
     kind === 'dark' && ThemeClassName.Dark,
     className
   );
 
   return (
     <div role="banner" className={mergedClassNames}>
-      <div
-        className={cx(
-          styles[baseClass],
-          vertical && styles[`${baseClass}--vertical`]
-        )}
-      >
+      <div className={styles.baseStyles(vertical)}>
         <div
           data-testId="content"
-          className={cx(styles[`${baseClass}__content`], contentClassName)}
+          className={cx(styles.content, 'content', contentClassName)}
         >
           {children}
           {(primaryButton || secondaryButton) && (
-            <div className={styles[`${baseClass}__content__cta`]}>
+            <div className={styles.cta}>
               {primaryButton && (
                 <Button
                   {...primaryButton}
@@ -108,7 +55,7 @@ export const PromoBannerV2: React.FC<
                   kind={secondaryButton?.kind || 'text'}
                   onClick={secondaryButton.handleClick}
                   className={cx(
-                    styles[`${baseClass}__content__cta__secondary`],
+                    styles.secondaryButton,
                     secondaryButton.className
                   )}
                 >
@@ -122,7 +69,8 @@ export const PromoBannerV2: React.FC<
           <div
             data-testId="additional-content"
             className={cx(
-              styles[`${baseClass}__additional-content`],
+              styles.additionalContent,
+              'additional-content',
               additionalContentClassName
             )}
           >
@@ -130,9 +78,14 @@ export const PromoBannerV2: React.FC<
           </div>
         )}
         {onClose && (
-          <div className={styles[`${baseClass}__close`]}>
+          <div
+            className={cx(
+              styles.closeButtonContainer,
+              'close-button-container'
+            )}
+          >
             <Button
-              className={styles[`${baseClass}__close__btn`]}
+              className={styles.closeButton}
               onClick={onClose}
               icon={<Icon source={Close} kind="primary" />}
               kind="plain"

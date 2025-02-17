@@ -5,7 +5,8 @@ import { Display, Heading, Text } from '../Typography';
 
 import imageDefault from './assets/image2.png';
 import promoImage from './assets/promo-img.png';
-import { IPromoBannerV2Props, PromoBannerV2 } from './PromoBannerV2';
+import { PromoBannerV2 } from './PromoBannerV2';
+import { IPromoBannerV2Props } from './types';
 
 import './PromoBannerV2.stories.css';
 
