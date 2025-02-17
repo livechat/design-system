@@ -4,7 +4,7 @@ import { DesignToken, SpacingToken } from '../../foundations';
 
 export const baseStyles = css`
   display: flex;
-  gap: 20px;
+  gap: var(${SpacingToken.Spacing5});
   align-items: center;
   margin-bottom: var(${SpacingToken.Spacing3});
   height: 22px;
@@ -18,7 +18,7 @@ export const label = css`
 
 export const content = css`
   display: flex;
-  gap: 4px;
+  gap: var(${SpacingToken.Spacing1});
   align-items: center;
   justify-content: center;
 `;

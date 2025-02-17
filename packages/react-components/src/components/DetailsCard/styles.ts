@@ -80,7 +80,7 @@ export const label = (hideLabelOnOpen?: boolean) => css`
 
   ${hideLabelOnOpen &&
   `
-    margin-right: 36px;
+    margin-right: var(${SpacingToken.Spacing9});
   `}
 `;
 
@@ -105,7 +105,7 @@ export const contentLabel = css`
 export const button = (isOpen?: boolean, hideLabelOnOpen?: boolean) => css`
   position: absolute;
   top: 18px;
-  right: 16px;
+  right: var(${SpacingToken.Spacing4});
   transition: all 0.2s ease;
   z-index: 1;
 
@@ -155,7 +155,7 @@ export const content = (
 
   ${hideLabelOnOpen &&
   `
-    padding-top: var(--spacing-6);
+    padding-top: var(${SpacingToken.Spacing6});
   `}
 
   ${fullSpaceContent &&
