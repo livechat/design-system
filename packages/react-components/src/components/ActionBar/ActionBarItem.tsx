@@ -1,27 +1,16 @@
 import * as React from 'react';
 
-import cx from 'clsx';
-
 import { Button } from '../Button';
 import { Tooltip } from '../Tooltip';
 
+import * as styles from './styles';
 import { IActionBarItem } from './types';
-
-import styles from './ActionBar.module.scss';
-
-const baseClass = 'action-bar__items';
-const menuWrapperClass = `${baseClass}__button-wrapper`;
 
 export const ActionBarItem: React.FC<IActionBarItem> = ({
   option,
   isActive,
   vertical,
 }) => {
-  const mergedButtonClassNames = cx(styles[menuWrapperClass], {
-    [styles[`${menuWrapperClass}--active`]]: isActive,
-    [styles[`${menuWrapperClass}--vertical`]]: vertical,
-  });
-
   const button = (
     <Button
       id={option.key}
@@ -30,12 +19,7 @@ export const ActionBarItem: React.FC<IActionBarItem> = ({
       kind="plain"
       onClick={option.onClick}
       icon={option.element}
-      className={cx(styles[`${menuWrapperClass}__button`], {
-        [styles[`${menuWrapperClass}__button--with-vertical-divider`]]:
-          vertical && option.withDivider,
-        [styles[`${menuWrapperClass}__button--with-divider`]]:
-          !vertical && option.withDivider,
-      })}
+      className={styles.actionBarItemButton(!!option.withDivider, !!vertical)}
     />
   );
 
@@ -44,12 +28,12 @@ export const ActionBarItem: React.FC<IActionBarItem> = ({
       <div
         data-testid={option.key}
         key={option.key}
-        className={mergedButtonClassNames}
+        className={styles.actionBarItemButtonWrapper(!!isActive, !!vertical)}
       >
         <Tooltip
           kind="invert"
           placement={vertical ? 'left' : 'bottom'}
-          triggerClassName={styles[`${baseClass}__tooltip`]}
+          triggerClassName={styles.actionBarItemTooltip}
           triggerRenderer={() => button}
           floatingStrategy="fixed"
           useClickHookProps={{
@@ -65,7 +49,10 @@ export const ActionBarItem: React.FC<IActionBarItem> = ({
   }
 
   return (
-    <div data-testid={option.key} className={mergedButtonClassNames}>
+    <div
+      data-testid={option.key}
+      className={styles.actionBarItemButtonWrapper(!!isActive, !!vertical)}
+    >
       {button}
     </div>
   );
