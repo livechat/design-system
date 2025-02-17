@@ -48,7 +48,7 @@
 }
 
 .dark-promo-additional-content {
-  align-items: center;
+  align-items: center !important;
 
   img {
     border-radius: 12px;

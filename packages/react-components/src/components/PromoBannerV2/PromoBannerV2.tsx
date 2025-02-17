@@ -25,7 +25,7 @@ export const PromoBannerV2: React.FC<
   kind = 'default',
 }) => {
   const mergedClassNames = cx(
-    styles.mainWrapper,
+    styles.mainWrapper(kind === 'dark'),
     kind === 'dark' && ThemeClassName.Dark,
     className
   );

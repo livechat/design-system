@@ -1,6 +1,11 @@
 import { css } from '@emotion/css';
 
-import { DesignToken, RadiusToken, SpacingToken } from '../../foundations';
+import {
+  DesignToken,
+  RadiusToken,
+  SpacingToken,
+  ShadowToken,
+} from '../../foundations';
 
 const VERTICAL_BREAKPOINT = 559;
 
@@ -43,12 +48,19 @@ export const baseStyles = (isVertical?: boolean) => css`
   }
 `;
 
-export const mainWrapper = css`
+export const mainWrapper = (isDarkMode?: boolean) => css`
   border-radius: var(${RadiusToken.Radius3});
   background-color: var(${DesignToken.SurfaceAccentEmphasisLowInfo});
   overflow: hidden;
   color: var(${DesignToken.ContentBasicPrimary});
   container-type: inline-size;
+
+  ${isDarkMode &&
+  `
+    border-radius: var(${RadiusToken.Radius4});
+    box-shadow: var(${ShadowToken.PopOver});
+    background-color: var(${DesignToken.SurfaceSecondaryDefault});
+  `}
 `;
 
 export const content = css`
