@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import styles from './DetailsCardInfo.module.scss';
+import * as styles from './styles';
 
 export interface IDetailsCardInfoProps {
   /**
@@ -9,13 +9,11 @@ export interface IDetailsCardInfoProps {
   label: string;
 }
 
-const baseClass = 'details-card-info';
-
 export const DetailsCardInfo: React.FC<
   React.PropsWithChildren<IDetailsCardInfoProps>
 > = ({ children, label }) => (
-  <div className={styles[baseClass]}>
-    <div className={styles[`${baseClass}__label`]}>{label}</div>
-    <div className={styles[`${baseClass}__content`]}>{children}</div>
+  <div className={styles.baseStyles}>
+    <div className={styles.label}>{label}</div>
+    <div className={styles.content}>{children}</div>
   </div>
 );
