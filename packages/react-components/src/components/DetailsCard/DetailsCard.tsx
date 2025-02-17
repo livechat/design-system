@@ -7,7 +7,7 @@ import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { Heading } from '../Typography';
 
-import styles from './DetailsCard.module.scss';
+import * as styles from './styles';
 
 export interface IDetailsCardProps {
   /**
@@ -50,7 +50,6 @@ export interface IDetailsCardProps {
   ) => void;
 }
 
-const baseClass = 'details-card';
 const NON_INTERACTIVE_TAGS = ['input', 'button', 'select', 'textarea', 'a'];
 
 export const DetailsCard: React.FC<
@@ -70,11 +69,7 @@ export const DetailsCard: React.FC<
   const [isOpen, setIsOpen] = React.useState(openOnInit);
   const [size, setSize] = React.useState(0);
   const contentRef = React.useRef<HTMLDivElement>(null);
-  const mergedClassNames = cx(
-    styles[baseClass],
-    withDivider && styles[`${baseClass}--with-divider`],
-    className
-  );
+  const mergedClassNames = cx(styles.baseStyles(withDivider), className);
   const isLabelHidden = hideLabelOnOpen && isOpen;
   const isTextContent = typeof label === 'string';
 
@@ -117,45 +112,22 @@ export const DetailsCard: React.FC<
   return (
     <div className={mergedClassNames}>
       <div
-        className={cx(
-          styles[`${baseClass}__label-wrapper`],
-          hideLabelOnOpen && styles[`${baseClass}__label-wrapper--fading`],
-          isLabelHidden && styles[`${baseClass}__label-wrapper--hide`],
-          isOpen && styles[`${baseClass}__label-wrapper--open`]
-        )}
+        className={styles.labelWrapper(hideLabelOnOpen, isLabelHidden)}
         aria-expanded={isOpen}
         aria-hidden={isLabelHidden}
         data-testid="details-card-label"
         onClick={handleLabelClick}
       >
-        <div
-          className={cx(
-            styles[`${baseClass}__label`],
-            hideLabelOnOpen && styles[`${baseClass}__label--with-margin`]
-          )}
-        >
-          {leftNode && (
-            <div className={styles[`${baseClass}__label__left-node`]}>
-              {leftNode}
-            </div>
-          )}
+        <div className={styles.label(hideLabelOnOpen)}>
+          {leftNode && <div className={styles.leftNode}>{leftNode}</div>}
           {isTextContent ? (
-            <Heading
-              size="xs"
-              className={styles[`${baseClass}__label__content`]}
-            >
+            <Heading size="xs" className={styles.contentLabel}>
               {label}
             </Heading>
           ) : (
-            <div className={styles[`${baseClass}__label__content`]}>
-              {label}
-            </div>
+            <div className={styles.contentLabel}>{label}</div>
           )}
-          {rightNode && (
-            <div className={styles[`${baseClass}__label__right-node`]}>
-              {rightNode}
-            </div>
-          )}
+          {rightNode && <div className={styles.rightNode}>{rightNode}</div>}
         </div>
       </div>
       <Button
@@ -163,38 +135,25 @@ export const DetailsCard: React.FC<
         icon={
           <Icon
             source={ChevronRight}
-            className={cx(
-              styles[`${baseClass}__button__icon`],
-              isOpen && styles[`${baseClass}__button__icon--open`]
-            )}
+            className={styles.buttonWithIcon(isOpen)}
           />
         }
-        className={cx(
-          styles[`${baseClass}__button`],
-          !isOpen && styles[`${baseClass}__button--closed`],
-          isOpen && styles[`${baseClass}__button--open`],
-          hideLabelOnOpen && styles[`${baseClass}__button--fading`]
-        )}
+        className={cx(styles.button(isOpen, hideLabelOnOpen), {
+          [styles.FADING_BUTTON_CLASS]: hideLabelOnOpen,
+        })}
         onClick={handleButtonClick}
         aria-expanded={isOpen}
       />
       <div>
         <div
-          className={cx(
-            styles[`${baseClass}__content-wrapper`],
-            isOpen && styles[`${baseClass}__content-wrapper--open`]
-          )}
+          className={styles.contentWrapper(isOpen)}
           style={{
             maxHeight: isOpen ? size : 0,
           }}
         >
           <div
             ref={contentRef}
-            className={cx(
-              styles[`${baseClass}__content`],
-              fullSpaceContent && styles[`${baseClass}__content--full-space`],
-              hideLabelOnOpen && styles[`${baseClass}__content--spacing`]
-            )}
+            className={styles.content(fullSpaceContent, hideLabelOnOpen)}
           >
             {children}
           </div>

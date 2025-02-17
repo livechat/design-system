@@ -1,0 +1,6 @@
+:root {
+  --modal: 10000;
+  --tooltip: 3000;
+  --dropdown: 2000;
+  --popover: 1000;
+}
