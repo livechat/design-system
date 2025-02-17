@@ -4,9 +4,8 @@ import { useRef } from 'react';
 import { useIsOverflow, useOnHover } from '../../hooks';
 import { Tooltip } from '../Tooltip';
 
+import * as styles from './styles';
 import { type OverflowTooltipTextProps } from './types';
-
-import styles from './OverflowTooltipText.module.scss';
 
 export const OverflowTooltipText: FC<OverflowTooltipTextProps> = ({ text }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -18,7 +17,7 @@ export const OverflowTooltipText: FC<OverflowTooltipTextProps> = ({ text }) => {
       onMouseEnter={handleMouseOver}
       onMouseLeave={handleMouseOut}
       ref={wrapperRef}
-      className={styles.text}
+      className={styles.overflowTooltipText}
     >
       {text}
     </div>
