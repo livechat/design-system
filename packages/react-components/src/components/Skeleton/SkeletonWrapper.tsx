@@ -2,9 +2,7 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import styles from './Skeleton.module.scss';
-
-const baseClass = 'skeleton-wrapper';
+import * as styles from './styles';
 
 export interface ISkeletonWrapper extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -35,12 +33,7 @@ export const SkeletonWrapper: React.FC<
   });
 
   return (
-    <div
-      className={cx(styles[`${baseClass}`], {
-        [styles[`${baseClass}--vertical`]]: vertical,
-      })}
-      {...props}
-    >
+    <div className={cx(styles.skeletonWrapper(vertical))} {...props}>
       {childrenWithProps}
     </div>
   );
