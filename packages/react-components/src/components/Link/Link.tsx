@@ -2,14 +2,12 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import styles from './Link.module.scss';
+import * as styles from './styles';
 
 export interface LinkProps
   extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
   bold?: boolean;
 }
-
-const baseClass = 'link';
 
 /**
  * Simple component which renders an `<a>` element.
@@ -25,14 +23,5 @@ export const Link: React.FC<React.PropsWithChildren<LinkProps>> = ({
   className = '',
   ...rest
 }) => {
-  return (
-    <a
-      className={cx(
-        styles[baseClass],
-        bold && styles[`${baseClass}--bold`],
-        className
-      )}
-      {...rest}
-    />
-  );
+  return <a className={cx(styles.link(bold), className)} {...rest} />;
 };
