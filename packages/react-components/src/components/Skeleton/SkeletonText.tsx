@@ -2,9 +2,7 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import styles from './Skeleton.module.scss';
-
-const baseClass = 'skeleton-text';
+import * as styles from './styles';
 
 export interface ISkeletonText {
   /**
@@ -27,9 +25,7 @@ export const SkeletonText: React.FC<ISkeletonText> = ({
   animated,
 }) => (
   <div
-    className={cx(styles[`${baseClass}`], {
-      [styles[`${baseClass}--animated`]]: animated,
-    })}
+    className={cx(styles.skeletonText, animated && styles.animatedSkeleton)}
     style={{
       height,
       width,
