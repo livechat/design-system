@@ -44,7 +44,6 @@ export const labelWrapper = (
   opacity: 1;
   border: 0;
   background-color: transparent;
-  padding: 0;
   padding: var(${SpacingToken.Spacing6});
   width: 100%;
   max-height: ${MIN_CARD_HEIGHT}px;
