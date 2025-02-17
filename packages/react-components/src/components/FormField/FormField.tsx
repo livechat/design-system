@@ -10,9 +10,7 @@ import { FieldDescription } from '../FieldDescription';
 import { FieldError } from '../FieldError';
 import { Text } from '../Typography';
 
-import styles from './FormField.module.scss';
-
-const baseClass = 'form-field';
+import * as styles from './styles';
 
 export interface FormFieldProps {
   /**
@@ -79,14 +77,6 @@ const FormFieldContent: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
 
   const { isEmpty } = useReadOnlyFormFieldContext();
 
-  const mergedClassNames = cx(
-    styles[baseClass],
-    {
-      [styles[`${baseClass}--inline`]]: inline,
-    },
-    className
-  );
-
   React.useEffect(() => {
     const div = childrenRef;
 
@@ -98,52 +88,27 @@ const FormFieldContent: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
   });
 
   return (
-    <div className={mergedClassNames}>
+    <div className={cx(styles.formField(inline), className)}>
       {labelRightNode && inline && (
         <React.Fragment>
-          <Text
-            as="div"
-            size="sm"
-            className={cx(
-              styles[`${baseClass}__label-right-node`],
-              styles[`${baseClass}__label-right-node--inline`]
-            )}
-          >
+          <Text as="div" size="sm" className={styles.labelRightNode(inline)}>
             {labelRightNode}
           </Text>
-          <div className={styles[`${baseClass}__row-break`]} />
+          <div className={styles.rowBreak} />
         </React.Fragment>
       )}
-      <div
-        className={cx(
-          styles[`${baseClass}__wrapper`],
-          inline && styles[`${baseClass}__wrapper--inline`]
-        )}
-      >
+      <div className={styles.wrapper(inline)}>
         {(labelText || labelRightNode) && (
-          <div
-            className={cx(
-              styles[`${baseClass}__label`],
-              inline && styles[`${baseClass}__label--inline`],
-              !labelText && styles[`${baseClass}__label--no-text`]
-            )}
-          >
+          <div className={styles.label(inline, labelText)}>
             {labelText && (
               <div
-                className={cx(
-                  styles[`${baseClass}__label-wrapper`],
-                  inline && styles[`${baseClass}__label-wrapper--inline`]
-                )}
+                className={styles.labelWrapper(inline)}
                 style={{
                   height: labelHeight,
                 }}
               >
                 <label
-                  className={cx(
-                    styles[`${baseClass}__label-left-node`],
-                    readOnly &&
-                      styles[`${baseClass}__label-left-node--read-only`]
-                  )}
+                  className={styles.labelLeftNode(readOnly)}
                   htmlFor={labelFor}
                 >
                   <Text
@@ -161,10 +126,7 @@ const FormFieldContent: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
                   <Text
                     as="div"
                     size="sm"
-                    className={cx(
-                      styles[`${baseClass}__label-adornment`],
-                      inline && styles[`${baseClass}__label-adornment--inline`]
-                    )}
+                    className={styles.labelAdornment(inline)}
                   >
                     {labelAdornment}
                   </Text>
@@ -172,23 +134,17 @@ const FormFieldContent: React.FC<React.PropsWithChildren<FormFieldProps>> = ({
               </div>
             )}
             {labelRightNode && !inline && (
-              <Text
-                as="div"
-                size="sm"
-                className={cx(styles[`${baseClass}__label-right-node`])}
-              >
+              <Text as="div" size="sm" className={cx(styles.labelRightNode)}>
                 {labelRightNode}
               </Text>
             )}
           </div>
         )}
-        <div className={cx(styles[`${baseClass}__content`])}>
+        <div className={styles.content}>
           <div ref={childrenRef}>{children}</div>
           {error && <FieldError>{error}</FieldError>}
           {!error && description && (
-            <FieldDescription
-              className={cx(styles[`${baseClass}__content__description`])}
-            >
+            <FieldDescription className={styles.contentDescription}>
               {description}
             </FieldDescription>
           )}
