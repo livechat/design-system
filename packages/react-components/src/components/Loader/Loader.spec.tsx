@@ -1,6 +1,7 @@
 import { render } from 'test-utils';
 
-import { Loader, LoaderProps } from './Loader';
+import { Loader } from './Loader';
+import { LoaderProps } from './types';
 
 const renderComponent = (props: LoaderProps) => render(<Loader {...props} />);
 

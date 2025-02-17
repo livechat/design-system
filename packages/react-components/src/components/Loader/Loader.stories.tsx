@@ -4,7 +4,8 @@ import { Meta } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
-import { Loader, LoaderProps } from './Loader';
+import { Loader } from './Loader';
+import { LoaderProps } from './types';
 
 export default {
   title: 'Components/Loader',
