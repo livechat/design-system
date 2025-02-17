@@ -6,26 +6,20 @@ import cx from 'clsx';
 import { Icon } from '../Icon';
 import { Text } from '../Typography';
 
-import styles from './FieldError.module.scss';
+import * as styles from './styles';
 
 export type FieldErrorProps = React.HTMLAttributes<HTMLSpanElement>;
-
-const baseClass = 'field-error';
 
 export const FieldError: React.FC<React.PropsWithChildren<FieldErrorProps>> = ({
   children,
   className = '',
   ...props
 }) => {
-  const mergedClassNames = cx(styles[baseClass], className);
+  const mergedClassNames = cx(styles.fieldError, className);
 
   return (
     <Text as="span" size="sm" {...props} className={mergedClassNames}>
-      <Icon
-        source={Error}
-        className={styles[`${baseClass}__icon`]}
-        size="small"
-      />
+      <Icon source={Error} className={styles.fieldErrorIcon} size="small" />
       {children}
     </Text>
   );
