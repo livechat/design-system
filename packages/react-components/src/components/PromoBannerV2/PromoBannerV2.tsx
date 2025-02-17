@@ -1,7 +1,7 @@
 import * as React from 'react';
 
+import { cx } from '@emotion/css';
 import { Close } from '@livechat/design-system-icons';
-import cx from 'clsx';
 
 import { ThemeClassName } from '../../providers';
 import { Button } from '../Button';
