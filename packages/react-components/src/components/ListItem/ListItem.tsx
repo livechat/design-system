@@ -1,14 +1,9 @@
 import { FC, PropsWithChildren, useEffect } from 'react';
 
-import cx from 'clsx';
-
 import { Text } from '../Typography';
 
+import * as styles from './styles';
 import { ListItemProps } from './types';
-
-import styles from './ListItem.module.scss';
-
-const baseClass = 'list-item';
 
 export const ListItem: FC<PropsWithChildren<ListItemProps>> = ({
   leftNode,
@@ -17,20 +12,12 @@ export const ListItem: FC<PropsWithChildren<ListItemProps>> = ({
   kind,
 }) => {
   return (
-    <div
-      className={cx(styles[baseClass], {
-        [styles[`${baseClass}--warning`]]: kind === 'warning',
-      })}
-    >
-      {leftNode && (
-        <div className={styles[`${baseClass}__left-node`]}>{leftNode}</div>
-      )}
-      <Text as="div" className={styles[`${baseClass}__label`]}>
+    <div className={styles.listItem(kind === 'warning')}>
+      {leftNode && <div className={styles.listItemLeftNode}>{leftNode}</div>}
+      <Text as="div" className={styles.listItemLabel}>
         {children}
       </Text>
-      {rightNode && (
-        <div className={styles[`${baseClass}__right-node`]}>{rightNode}</div>
-      )}
+      {rightNode && <div className={styles.listItemRightNode}>{rightNode}</div>}
     </div>
   );
 };
