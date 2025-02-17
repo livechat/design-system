@@ -23,7 +23,6 @@ export const baseStyles = css`
 export const list = (withFooter?: boolean) => css`
   margin: 0;
   border-radius: var(${RadiusToken.Radius3});
-  padding: 0;
   padding: var(${SpacingToken.Spacing2});
   overflow-y: auto;
   list-style: none;
@@ -46,7 +45,6 @@ export const item = (
   margin-bottom: var(${SpacingToken.Spacing05});
   outline: 0;
   border: 0;
-  border-radius: 0;
   border-radius: var(${RadiusToken.Radius3});
   background: none;
   padding: 7px var(${SpacingToken.Spacing3});
