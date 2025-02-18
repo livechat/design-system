@@ -4,6 +4,7 @@ export const RadiusToken = {
   Radius2: '--radius-2',
   Radius3: '--radius-3',
   Radius4: '--radius-4',
+  UiFoundationRadiusBar: '--uifoundation-radius-bar',
   0: '--radius-0', // deprecated
   1: '--radius-1', // deprecated
   2: '--radius-2', // deprecated
