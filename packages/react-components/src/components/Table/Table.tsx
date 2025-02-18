@@ -159,6 +159,7 @@ export const Table = <T,>({
           className={cx(styles[`${selectedClass}`], {
             [styles[`${selectedClass}--visible`]]:
               selectable && !!selectedCount,
+            [styles[`${selectedClass}--hidden`]]: !selectable,
           })}
         >
           <div className={styles[`${selectedClass}__content`]}>

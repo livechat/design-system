@@ -87,6 +87,10 @@ $base-class: 'table';
       overflow: visible;
     }
 
+    &--hidden {
+      width: 0;
+    }
+
     &__divider {
       margin: 0 var(--spacing-4);
       background-color: var(--border-invert-secondary);
