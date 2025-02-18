@@ -8,6 +8,7 @@ import {
 } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
+import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
 import { Text } from '../Typography';
 
@@ -31,6 +32,9 @@ interface TableHeaderProps<T> {
   selectable?: boolean;
   hoveredColumnIndex: number | null;
   setHoveredColumnIndex: (index: number | null) => void;
+  selectedCount?: number;
+  dataLength?: number;
+  toggleSelectAll?: () => void;
 }
 
 function renderSortIcon<T>(
@@ -72,15 +76,32 @@ export const TableHeader = <T,>({
   selectable,
   hoveredColumnIndex,
   setHoveredColumnIndex,
+  selectedCount,
+  dataLength,
+  toggleSelectAll,
 }: TableHeaderProps<T>) => {
   return (
     <thead>
       <tr
         className={cx(styles[baseClass], {
-          [styles[`${baseClass}--selectable`]]: selectable,
+          [styles[`${baseClass}--selectable`]]: selectable && !!selectedCount,
         })}
       >
-        {selectable && <th />}
+        {selectable && (
+          <th
+            className={styles[`${baseClass}__select-cell`]}
+            onClick={toggleSelectAll}
+          >
+            <Checkbox
+              checked={selectedCount === dataLength}
+              indeterminate={
+                selectedCount !== undefined &&
+                selectedCount > 0 &&
+                selectedCount < (dataLength || 0)
+              }
+            />
+          </th>
+        )}
         {columns.map((column, index) => (
           <th
             key={String(column.key)}
