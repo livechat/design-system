@@ -42,8 +42,21 @@ export enum ColorGroup {
   Decor,
   SurfaceComponentSpecific,
   AnimationGradient,
-  DataVisualization,
   Deprecated, // ???
+  CategoricalMain,
+  Categorical1Color,
+  Categorical2Colors,
+  Categorical3Colors,
+  Categorical4Colors,
+  Categorical5Colors,
+  SequentialBlue,
+  SequentialYellow,
+  SequentialGreen,
+  SequentialMagenta,
+  SequentialOrange,
+  SequentialPurple,
+  SequentialRed,
+  UIFoundation,
 }
 
 export type ColorBaseBody = {
