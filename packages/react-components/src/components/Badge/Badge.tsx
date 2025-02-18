@@ -20,7 +20,9 @@ export const Badge: React.FC<IBadgeProps> = ({
   const content = {
     ['counter']: formatCount(count, max),
     ['alert']: '!',
-    ['dot']: <span data-testid="badge-dot" className="dot" />,
+    ['dot']: (
+      <span data-testid="badge-dot" className={`${styles.baseClass}-dot`} />
+    ),
   }[type];
 
   return (
