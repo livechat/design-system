@@ -82,6 +82,7 @@ $base-class: 'table';
       padding: var(--spacing-2) var(--spacing-2) var(--spacing-2)
         var(--spacing-4);
       height: 48px;
+      overflow: visible;
     }
 
     &__divider {
