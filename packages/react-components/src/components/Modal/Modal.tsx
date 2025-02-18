@@ -6,7 +6,8 @@ import { Heading, Text } from '../Typography';
 
 import { ModalBaseProps, ModalBase } from './components/ModalBase';
 import { ModalCloseButton } from './components/ModalCloseButton';
-import * as styles from './styles';
+
+import styles from './Modal.module.scss';
 
 export interface ModalProps extends ModalBaseProps {
   /**
@@ -31,6 +32,8 @@ export interface ModalProps extends ModalBaseProps {
   contentClassName?: string;
 }
 
+const baseClass = 'modal';
+
 export const Modal: React.FC<React.PropsWithChildren<ModalProps>> = ({
   children,
   className = '',
@@ -42,6 +45,8 @@ export const Modal: React.FC<React.PropsWithChildren<ModalProps>> = ({
   contentClassName,
   ...props
 }) => {
+  const mergedClassNames = cx(styles[baseClass], className);
+
   const isTextContent = typeof children === 'string';
 
   const onCloseButtonClick = (
@@ -54,15 +59,19 @@ export const Modal: React.FC<React.PropsWithChildren<ModalProps>> = ({
 
   return (
     <ModalBase
-      className={className}
+      className={mergedClassNames}
       fullSpaceContent={fullSpaceContent}
       onClose={onClose}
       isLabelled={!!labelHeading}
       {...props}
     >
       {labelHeading && (
-        <div className={styles.modalLabelHeader}>
-          <Heading size="sm" as="div" className={styles.modalLabelHeading}>
+        <div className={styles[`${baseClass}__label-header`]}>
+          <Heading
+            size="sm"
+            as="div"
+            className={styles[`${baseClass}__label-heading`]}
+          >
             {labelHeading}
           </Heading>
           <ModalCloseButton
@@ -73,23 +82,30 @@ export const Modal: React.FC<React.PropsWithChildren<ModalProps>> = ({
         </div>
       )}
       {!labelHeading && (
-        <div className={styles.modalHeader(!heading)}>
+        <div
+          className={cx(styles[`${baseClass}__header`], {
+            [styles[`${baseClass}__header--without-heading`]]: !heading,
+          })}
+        >
           {heading && (
-            <Heading size="sm" as="div" className={styles.modalHeading}>
+            <Heading
+              size="sm"
+              as="div"
+              className={styles[`${baseClass}__heading`]}
+            >
               {heading}
             </Heading>
           )}
           <ModalCloseButton onClick={onCloseButtonClick} />
         </div>
       )}
-      {/* // TODO check contentclassname */}
       <div
         data-testid="modal-body"
-        className={cx(styles.modalBody, contentClassName)}
+        className={cx(styles[`${baseClass}__body`], contentClassName)}
       >
         {isTextContent ? <Text as="div">{children}</Text> : children}
       </div>
-      {footer && <div className={styles.modalFooter}>{footer}</div>}
+      {footer && <div className={styles[`${baseClass}__footer`]}>{footer}</div>}
     </ModalBase>
   );
 };
