@@ -27,10 +27,15 @@ $base-class: 'table';
     &--selectable {
       thead {
         position: sticky;
-        top: 48px;
+        top: 0;
+        transition: top 0.2s ease-in-out;
         z-index: 5;
         box-shadow: var(--shadow-fixed-bottom);
         background-color: var(--background-01);
+      }
+
+      &.#{$base-class}--has-selected thead {
+        top: 48px;
       }
     }
   }
@@ -51,12 +56,33 @@ $base-class: 'table';
     top: 0;
     align-items: center;
     justify-content: space-between;
-    z-index: 100;
+    transform: translateY(-100%);
+    transition:
+      transform 0.2s ease-in-out,
+      opacity 0.2s ease-in-out,
+      height 0.2s ease-in-out,
+      margin 0.2s ease-in-out,
+      padding 0.2s ease-in-out;
+    opacity: 0;
+    z-index: 5;
+    margin: 0;
     border-top-left-radius: var(--radius-3);
     border-top-right-radius: var(--radius-3);
     background-color: var(--surface-invert-primary);
     padding: var(--spacing-2) var(--spacing-2) var(--spacing-2) var(--spacing-4);
+    padding: 0;
+    height: 0;
+    overflow: hidden;
     font-weight: 500;
+
+    &--visible {
+      transform: translateY(0);
+      opacity: 1;
+      margin: 0;
+      padding: var(--spacing-2) var(--spacing-2) var(--spacing-2)
+        var(--spacing-4);
+      height: 48px;
+    }
 
     &__divider {
       margin: 0 var(--spacing-4);

@@ -84,7 +84,7 @@ export const TableHeader = <T,>({
     <thead>
       <tr
         className={cx(styles[baseClass], {
-          [styles[`${baseClass}--selectable`]]: selectable,
+          [styles[`${baseClass}--selectable`]]: selectable && !!selectedCount,
         })}
       >
         {selectable && (

@@ -154,8 +154,13 @@ export const Table = <T,>({
 
   return (
     <>
-      {selectable && (
-        <div className={cx(styles[`${selectedClass}`])}>
+      {
+        <div
+          className={cx(styles[`${selectedClass}`], {
+            [styles[`${selectedClass}--visible`]]:
+              selectable && !!selectedCount,
+          })}
+        >
           <div className={styles[`${selectedClass}__content`]}>
             {rowSelectionMessage || (
               <Text noMargin bold size="sm">
@@ -165,13 +170,14 @@ export const Table = <T,>({
           </div>
           <div>{rowActions}</div>
         </div>
-      )}
+      }
       <table
         className={cx(
           styles[`${baseClass}`],
           styles[`${baseClass}--${size}`],
           styles[`${baseClass}--pinned_${pin}`],
           selectable && styles[`${baseClass}--pinned_header--selectable`],
+          selectable && !!selectedCount && styles[`${baseClass}--has-selected`],
           styles[`${baseClass}--stripped_${stripped}`]
         )}
         data-testid={testId}
