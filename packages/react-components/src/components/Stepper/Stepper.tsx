@@ -4,11 +4,8 @@ import cx from 'clsx';
 
 import { Text } from '../Typography';
 
+import * as styles from './styles';
 import { StepperProps } from './types';
-
-import styles from './Stepper.module.scss';
-
-const baseClass = 'stepper';
 
 export const Stepper: React.FC<StepperProps> = ({
   activeStep,
@@ -23,20 +20,18 @@ export const Stepper: React.FC<StepperProps> = ({
     Math.min(Math.max(1, activeStep), normalizedSteps)
   );
 
-  const mergedClassNames = cx(styles[baseClass], className);
-
   return (
     <div
-      className={mergedClassNames}
+      className={className}
       data-testid={dataTestId}
       aria-label="Stepper"
       {...divProps}
     >
-      <Text size="sm" className={styles[`${baseClass}__counter`]}>
+      <Text size="sm" className={styles.stepperCounter}>
         {normalizedActiveStep}/{normalizedSteps}
       </Text>
       <div
-        className={styles[`${baseClass}__steps__container`]}
+        className={styles.stepperStepsContainer}
         data-testid={`${dataTestId}-container`}
       >
         {Array.from({ length: normalizedSteps }, (_, index) => {
@@ -48,10 +43,7 @@ export const Stepper: React.FC<StepperProps> = ({
             <div
               key={stepNumber}
               aria-completed={isCompleted}
-              className={cx(styles[`${baseClass}__step`], {
-                [styles[`${baseClass}__step--completed`]]: isCompleted,
-                [styles[`${baseClass}__step--active`]]: isActive,
-              })}
+              className={cx(styles.stepperStep(isCompleted, isActive))}
             />
           );
         })}
