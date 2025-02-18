@@ -6,9 +6,8 @@ import { Display, Heading, Text } from '../Typography';
 import imageDefault from './assets/image2.png';
 import promoImage from './assets/promo-img.png';
 import { PromoBannerV2 } from './PromoBannerV2';
+import * as styles from './PromoBannerV2.stories.styles';
 import { IPromoBannerV2Props } from './types';
-
-import './PromoBannerV2.stories.css';
 
 export default {
   title: 'Components/PromoBannerV2',
@@ -44,7 +43,7 @@ const defaultProps = {
 export const Default = (args: IPromoBannerV2Props): React.ReactElement => (
   <PromoBannerV2 {...args} additionalContent={<img src={imageDefault} />}>
     <div style={{ marginBottom: 'var(--spacing-1)' }}>
-      <Heading as="div" size="sm" className="promo-header">
+      <Heading as="div" size="sm" className={styles.promoHeader}>
         Title text up 2 lines
       </Heading>
     </div>
@@ -63,7 +62,7 @@ export const WithStyledAdditionalContent = (
       <PromoBannerV2
         {...args}
         additionalContent={
-          <div className="image-position">
+          <div className={styles.imagePosition}>
             <img src={promoImage} />
           </div>
         }
@@ -78,7 +77,7 @@ export const WithStyledAdditionalContent = (
       <PromoBannerV2
         {...defaultProps}
         additionalContent={
-          <div className="image-position">
+          <div className={styles.imagePosition}>
             <img src={promoImage} />
           </div>
         }
@@ -99,10 +98,10 @@ WithStyledAdditionalContent.args = {
 
 export const WithStyledMainContent = (): React.ReactElement => (
   <div style={{ maxWidth: 1100 }}>
-    <PromoBannerV2 className="custom-background">
-      <div className="custom-text-position">
-        <span className="head">Feed Chip</span>
-        <span className="text">with knowledge...</span>
+    <PromoBannerV2 className={styles.customBackground}>
+      <div className={styles.customBackground}>
+        <span className={styles.head}>Feed Chip</span>
+        <span className={styles.text}>with knowledge...</span>
       </div>
     </PromoBannerV2>
   </div>
@@ -111,11 +110,11 @@ export const WithStyledMainContent = (): React.ReactElement => (
 export const Dark = (args: IPromoBannerV2Props): React.ReactElement => (
   <PromoBannerV2
     {...args}
-    className="dark-promo-banner"
+    className={styles.darkPromoBanner}
     additionalContent={<img src="https://placehold.co/600x360" />}
-    additionalContentClassName="dark-promo-additional-content"
+    additionalContentClassName={styles.darkPromoAdditionalContent}
   >
-    <Heading size="sm" className="dark-promo-header">
+    <Heading size="sm" className={styles.darkPromoHeader}>
       Hi 👋 Using Shopify integration?
     </Heading>
     <Text noMargin>

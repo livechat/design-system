@@ -35,7 +35,11 @@ export const PromoBannerV2: React.FC<
       <div className={styles.baseStyles(vertical)}>
         <div
           data-testId="content"
-          className={cx(styles.content, 'content', contentClassName)}
+          className={cx(
+            styles.content,
+            `${styles.baseClass}-content`,
+            contentClassName
+          )}
         >
           {children}
           {(primaryButton || secondaryButton) && (
@@ -67,7 +71,7 @@ export const PromoBannerV2: React.FC<
         </div>
         {additionalContent && (
           <div
-            data-testId="additional-content"
+            data-testId={`${styles.baseClass}-additional-content`}
             className={cx(
               styles.additionalContent,
               'additional-content',
@@ -81,7 +85,7 @@ export const PromoBannerV2: React.FC<
           <div
             className={cx(
               styles.closeButtonContainer,
-              'close-button-container'
+              `${styles.baseClass}-close-button-container`
             )}
           >
             <Button

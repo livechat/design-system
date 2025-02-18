@@ -7,26 +7,27 @@ import {
   ShadowToken,
 } from '../../foundations';
 
+export const baseClass = 'promo-banner-v2';
 const VERTICAL_BREAKPOINT = 559;
 
 const verticalStyles = css`
   flex-direction: column;
 
-  .content {
+  .${baseClass}-content {
     flex: 0 1 auto;
     order: 2;
     padding: var(${SpacingToken.Spacing4}) var(${SpacingToken.Spacing5})
       var(${SpacingToken.Spacing5});
   }
 
-  .additional-content {
+  .${baseClass}-additional-content {
     justify-content: left;
     order: 1;
     padding: var(${SpacingToken.Spacing5}) var(${SpacingToken.Spacing5}) 0;
     padding-top: var(${SpacingToken.Spacing10});
   }
 
-  .close-button-container {
+  .${baseClass}-close-button-container {
     position: absolute;
     top: var(${SpacingToken.Spacing3});
     right: var(${SpacingToken.Spacing3});
