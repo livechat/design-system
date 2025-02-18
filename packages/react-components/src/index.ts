@@ -56,6 +56,7 @@ export * from './components/Tab';
 export * from './components/Table';
 export * from './components/Tag';
 export * from './components/TagInput';
+export * from './components/TimePicker';
 export * from './components/Toast';
 export * from './components/Tooltip';
 export * from './components/Typography';
