@@ -71,10 +71,10 @@ export const PromoBannerV2: React.FC<
         </div>
         {additionalContent && (
           <div
-            data-testId={`${styles.baseClass}-additional-content`}
+            data-testId="additional-content"
             className={cx(
               styles.additionalContent,
-              'additional-content',
+              `${styles.baseClass}-additional-content`,
               additionalContentClassName
             )}
           >
