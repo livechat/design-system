@@ -7,7 +7,7 @@ import { Button, ButtonProps } from '../Button';
 import { Icon } from '../Icon';
 import { Text, Heading } from '../Typography';
 
-import styles from './Card.module.scss';
+import * as styles from './styles';
 
 export type CardButtonOptions = Pick<
   ButtonProps,
@@ -41,12 +41,6 @@ export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
 }
 
-const baseClass = 'card';
-const headerClass = `${baseClass}__header`;
-const headingClass = `${headerClass}__heading`;
-const actionsClass = `${baseClass}__actions`;
-const noImageClass = `${headerClass}__no-image`;
-
 export const Card: React.FC<React.PropsWithChildren<CardProps>> = ({
   alt,
   buttonsOptions = [],
@@ -66,50 +60,39 @@ export const Card: React.FC<React.PropsWithChildren<CardProps>> = ({
   const shouldShowActions = shouldShowActionButtons || shouldShowExpandAction;
   const isTitleAvailable = title;
   const isImageAvailable = src;
-  const noImageAvailable = isImageAvailable ? '' : styles[noImageClass];
+  const noImageAvailable = isImageAvailable ? '' : styles.cardHeaderNoImage;
 
   return (
-    <div className={cx(styles[baseClass], className)} {...divProps}>
+    <div className={cx(styles.card, className)} {...divProps}>
       {isTitleAvailable && (
-        <div className={cx(styles[headerClass], noImageAvailable)}>
+        <div className={cx(styles.cardHeader, noImageAvailable)}>
           {isImageAvailable && (
-            <img
-              alt={alt}
-              className={styles[`${headerClass}__image`]}
-              src={src}
-            />
+            <img alt={alt} className={styles.cardHeaderImage} src={src} />
           )}
-          <div className={styles[headingClass]}>
-            <Heading size="xs" className={styles[`${headingClass}__title`]}>
+          <div className={styles.cardHeaderHeading}>
+            <Heading size="xs" className={styles.cardHeaderHeadingTitle}>
               {title}
             </Heading>
             {description && (
-              <Text
-                size="sm"
-                className={styles[`${headingClass}__description`]}
-              >
+              <Text size="sm" className={styles.cardHeaderHeadingDescription}>
                 {description}
               </Text>
             )}
           </div>
         </div>
       )}
-      <Text as="div" size="md" className={styles[`${baseClass}__content`]}>
+      <Text as="div" size="md" className={styles.cardContent}>
         {children}
       </Text>
       {isExpanded && (
-        <Text
-          as="div"
-          size="md"
-          className={styles[`${baseClass}__expanded-content`]}
-        >
+        <Text as="div" size="md" className={styles.cardContent}>
           {expandableContent}
         </Text>
       )}
       {shouldShowActions && (
-        <div className={styles[actionsClass]}>
-          <div className={styles[`${actionsClass}__line`]} />
-          <div className={styles[`${actionsClass}__buttons`]}>
+        <div className={styles.cardActions}>
+          <div className={styles.cardActionsLine} />
+          <div className={styles.cardActionsButtons}>
             {shouldShowActionButtons &&
               buttonsOptions.map(
                 ({ kind, onClick, children: buttonChildren }, index) => (
@@ -125,7 +108,7 @@ export const Card: React.FC<React.PropsWithChildren<CardProps>> = ({
               )}
             {shouldShowExpandAction && (
               <Button
-                className={styles[`${actionsClass}__buttons-expander`]}
+                className={styles.cardActionsButtonsExpander}
                 kind="link"
                 iconPosition="right"
                 icon={<Icon source={expandIcon} />}

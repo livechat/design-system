@@ -189,7 +189,31 @@ export interface ITooltipInfoProps {
   handleCloseAction?: (ev: React.MouseEvent) => void;
 }
 
-export interface ITooltipInteractiveProps {
+type TooltipMediaImage = {
+  /**
+   * The Interactive tooltip image
+   */
+  image: {
+    src: string;
+    alt: string;
+  };
+  video?: never;
+};
+
+type TooltipMediaVideo = {
+  /**
+   * The Interactive tooltip video. Renders with autoplay, loop, and muted by default
+   */
+  video: string;
+  image?: never;
+};
+
+type TooltipMedia =
+  | TooltipMediaImage
+  | TooltipMediaVideo
+  | { image?: never; video?: never };
+
+export type ITooltipInteractiveProps = {
   /**
    * The Interactive tooltip header
    */
@@ -198,13 +222,6 @@ export interface ITooltipInteractiveProps {
    * The Interactive tooltip text
    */
   text: string;
-  /**
-   * The Interactive tooltip image
-   */
-  image?: {
-    src: string;
-    alt: string;
-  };
   /**
    * Set to show close button
    * @deprecated Use `handleCloseAction` instead
@@ -226,4 +243,4 @@ export interface ITooltipInteractiveProps {
    * The Interactive tooltip secondary button props
    */
   secondaryButton?: TooltipButton | React.ReactNode;
-}
+} & TooltipMedia;
