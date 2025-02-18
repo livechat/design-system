@@ -99,7 +99,7 @@ WithStyledAdditionalContent.args = {
 export const WithStyledMainContent = (): React.ReactElement => (
   <div style={{ maxWidth: 1100 }}>
     <PromoBannerV2 className={styles.customBackground}>
-      <div className={styles.customBackground}>
+      <div className={styles.customTextPosition}>
         <span className={styles.head}>Feed Chip</span>
         <span className={styles.text}>with knowledge...</span>
       </div>

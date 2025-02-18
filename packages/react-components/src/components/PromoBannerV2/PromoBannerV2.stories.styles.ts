@@ -2,6 +2,8 @@ import { css } from '@emotion/css';
 
 import { SpacingToken } from '../../foundations';
 
+import illustration from './assets/Illustration.svg';
+
 export const imagePosition = css`
   display: flex;
   align-items: flex-end;
@@ -19,7 +21,7 @@ export const promoHeader = css`
 `;
 
 export const customBackground = css`
-  background-image: url('./assets/Illustration.svg');
+  background-image: url(${illustration});
   background-position: right;
   background-repeat: no-repeat;
   height: 286px;
