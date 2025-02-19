@@ -5,7 +5,7 @@ import cx from 'clsx';
 import { FieldDescription } from '../FieldDescription';
 import { FieldError } from '../FieldError';
 
-import * as styles from './styles';
+import styles from './FieldGroup.module.scss';
 
 export interface FieldGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   description?: React.ReactNode;
@@ -13,6 +13,8 @@ export interface FieldGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   inline?: boolean;
   stretch?: boolean;
 }
+
+const baseClass = 'field-group';
 
 export const FieldGroup: React.FC<React.PropsWithChildren<FieldGroupProps>> = ({
   className = '',
@@ -23,7 +25,10 @@ export const FieldGroup: React.FC<React.PropsWithChildren<FieldGroupProps>> = ({
   stretch,
   ...props
 }) => {
-  const mergedClassNames = cx(styles.fieldGroup(inline, stretch), className);
+  const mergedClassNames = cx(styles[baseClass], className, {
+    [styles[`${baseClass}--inline`]]: inline,
+    [styles[`${baseClass}--stretched`]]: stretch,
+  });
 
   return (
     <div {...props} className={mergedClassNames}>

@@ -4,7 +4,7 @@ import cx from 'clsx';
 
 import { Text, Heading } from '../Typography';
 
-import * as styles from './styles';
+import styles from './FormGroup.module.scss';
 
 export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -21,6 +21,8 @@ export interface FormGroupProps extends React.HTMLAttributes<HTMLDivElement> {
   helperText?: string;
 }
 
+const baseClass = 'form-group';
+
 export const FormGroup: React.FC<React.PropsWithChildren<FormGroupProps>> = ({
   className = '',
   children,
@@ -28,7 +30,7 @@ export const FormGroup: React.FC<React.PropsWithChildren<FormGroupProps>> = ({
   helperText,
   ...props
 }) => {
-  const mergedClassNames = cx(styles.formGroup, className);
+  const mergedClassNames = cx(styles[baseClass], className);
 
   return (
     <div
@@ -38,14 +40,18 @@ export const FormGroup: React.FC<React.PropsWithChildren<FormGroupProps>> = ({
       className={mergedClassNames}
     >
       {(labelText || helperText) && (
-        <div className={styles.header}>
+        <div className={styles[`${baseClass}__header`]}>
           {labelText && (
-            <Heading as="div" size="sm" className={styles.label}>
+            <Heading
+              as="div"
+              size="sm"
+              className={styles[`${baseClass}__label`]}
+            >
               {labelText}
             </Heading>
           )}
           {helperText && (
-            <Text as="div" size="sm" className={styles.helper}>
+            <Text as="div" size="sm" className={styles[`${baseClass}__helper`]}>
               {helperText}
             </Text>
           )}

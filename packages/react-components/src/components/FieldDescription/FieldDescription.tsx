@@ -4,14 +4,16 @@ import cx from 'clsx';
 
 import { Text } from '../Typography';
 
-import * as styles from './styles';
+import styles from './FieldDescription.module.scss';
 
 export type FieldDescriptionProps = React.HTMLAttributes<HTMLSpanElement>;
+
+const baseClass = 'field-description';
 
 export const FieldDescription: React.FC<
   React.PropsWithChildren<FieldDescriptionProps>
 > = ({ children, className = '', ...props }) => {
-  const mergedClassNames = cx(styles.fieldDescription, className);
+  const mergedClassNames = cx(styles[baseClass], className);
 
   return (
     <Text as="span" size="sm" {...props} className={mergedClassNames}>

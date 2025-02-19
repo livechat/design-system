@@ -4,7 +4,7 @@ import cx from 'clsx';
 
 import { Text, Heading } from '../Typography';
 
-import * as styles from './styles';
+import styles from './Form.module.scss';
 
 export interface FormProps extends React.HTMLAttributes<HTMLFormElement> {
   /**
@@ -21,6 +21,8 @@ export interface FormProps extends React.HTMLAttributes<HTMLFormElement> {
   formFooter?: React.ReactNode;
 }
 
+const baseClass = 'form';
+
 export const Form: React.FC<React.PropsWithChildren<FormProps>> = ({
   className,
   children,
@@ -30,23 +32,25 @@ export const Form: React.FC<React.PropsWithChildren<FormProps>> = ({
   ...restProps
 }) => {
   return (
-    <form className={cx(styles.form, className)} {...restProps}>
+    <form className={cx(styles[baseClass], className)} {...restProps}>
       {(labelText || helperText) && (
-        <div className={styles.formSection}>
+        <div className={styles[`${baseClass}__header`]}>
           {labelText && (
-            <Heading size="sm" className={styles.formLabel}>
+            <Heading size="sm" className={styles[`${baseClass}__label`]}>
               {labelText}
             </Heading>
           )}
           {helperText && (
-            <Text as="p" size="sm" className={styles.formHelper}>
+            <Text as="p" size="sm" className={styles[`${baseClass}__helper`]}>
               {helperText}
             </Text>
           )}
         </div>
       )}
       {children}
-      {formFooter && <div className={styles.formSection}>{formFooter}</div>}
+      {formFooter && (
+        <div className={styles[`${baseClass}__footer`]}>{formFooter}</div>
+      )}
     </form>
   );
 };

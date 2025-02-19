@@ -1,0 +1,11 @@
+.field-error {
+  display: flex;
+  align-items: flex-start;
+  margin: var(--spacing-1) 0 0;
+  color: var(--content-basic-negative);
+
+  &__icon {
+    margin-top: 2px;
+    margin-right: var(--spacing-1);
+  }
+}
