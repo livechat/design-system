@@ -1,0 +1,22 @@
+$base-class: 'details-card-info';
+
+.#{$base-class} {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: var(--spacing-3);
+  height: 22px;
+  font-size: 15px;
+
+  &__label {
+    width: 105px;
+    color: var(--content-basic-secondary);
+  }
+
+  &__content {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+  }
+}
