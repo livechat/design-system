@@ -40,6 +40,10 @@ export const generateData = (length: number): Data[] => {
     name: names[index],
     age: age[index],
     role: roles[index],
-    action: <Button size="xcompact">Edit</Button>,
+    action: (
+      <Button kind="secondary" size="xcompact">
+        Edit
+      </Button>
+    ),
   }));
 };

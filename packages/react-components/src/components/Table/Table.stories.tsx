@@ -1,11 +1,14 @@
 import * as React from 'react';
 
+import { Add as AddIcon, ChevronDown } from '@livechat/design-system-icons';
 import { Meta, StoryFn } from '@storybook/react';
 import isChromatic from 'chromatic/isChromatic';
 import cx from 'clsx';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
+import { ActionMenu } from '../ActionMenu';
 import { Button } from '../Button';
+import { Icon } from '../Icon';
 
 import {
   dataForPinningExample,
@@ -15,7 +18,6 @@ import { generateData } from './stories-helpers';
 import { Table } from './Table';
 import { Column, Data, DataForPinningExample } from './types';
 
-import styles from './Table.module.scss';
 import storyStyles from './Table.stories.module.scss';
 
 export default {
@@ -31,9 +33,6 @@ export default {
     ),
   ],
 } as Meta<typeof Table>;
-
-const actionBarClass = 'action-bar';
-const dividerClass = `${actionBarClass}__divider`;
 
 const columns: Column<Data>[] = [
   {
@@ -173,19 +172,65 @@ export const Pinning: StoryFn = () => {
 
 export const MultiSelect: StoryFn = () => {
   const getRowId = (row: Data) => row.id;
-  const data = generateData(4);
+  const data = generateData(12);
   const [selectedRows, setSelectedRows] = React.useState<Set<string | number>>(
     new Set()
   );
 
-  const Divider = () => <div className={cx(styles[dividerClass])} />;
+  const Divider = () => (
+    <div
+      style={{
+        width: '1px',
+        height: '24px',
+        margin: '0 var(--spacing-4)',
+        backgroundColor: 'var(--border-invert-secondary)',
+      }}
+    />
+  );
 
   const rowActions = (
-    <div className={cx(styles[actionBarClass])}>
+    <div
+      style={{ display: 'flex', gap: 'var(--spacing-2)', alignItems: 'center' }}
+    >
+      <ActionMenu
+        options={[
+          {
+            key: 'Action 1',
+            element: 'Action 1',
+          },
+          {
+            key: 'Action 2',
+            element: 'Action 2',
+          },
+        ]}
+        triggerRenderer={
+          <Button
+            style={{ paddingRight: '0' }}
+            kind="link-inverted"
+            size="compact"
+            iconPosition="right"
+            icon={<Icon source={ChevronDown} />}
+          >
+            Action Menu
+          </Button>
+        }
+      />
       <Divider />
-      <Button kind="link">Action</Button> <Button kind="link">Action</Button>
+      <Button
+        style={{ paddingLeft: '0' }}
+        icon={<Icon source={AddIcon} />}
+        kind="link-inverted"
+        size="compact"
+      >
+        Action 1
+      </Button>
       <Divider />
-      <Button kind="link">Action</Button> <Button kind="link">Action</Button>
+      <Button kind="secondary" size="compact">
+        Action 2
+      </Button>
+      <Button kind="secondary" size="compact">
+        Action 3
+      </Button>
     </div>
   );
 
