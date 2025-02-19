@@ -4,8 +4,6 @@ import { DesignToken, SpacingToken } from '../../foundations';
 
 import { IBadgeProps } from './types';
 
-export const baseClass = 'badge';
-
 export const baseStyles = (
   kind: IBadgeProps['kind'],
   size: IBadgeProps['size']
@@ -20,7 +18,7 @@ export const baseStyles = (
   font-size: 12px;
   font-weight: 600;
 
-  .${baseClass}-dot {
+  .dot {
     margin: 0 -2px;
     background-color: var(${DesignToken.ContentInvertPrimary});
   }
@@ -34,7 +32,7 @@ export const baseStyles = (
     background-color: var(${DesignToken.SurfaceAccentEmphasisHighNegative});
     color: var(${DesignToken.ContentLockedWhite});
 
-    .${baseClass}-dot {
+    .dot {
       background-color: var(${DesignToken.ContentLockedWhite});
     }
   `}
@@ -44,7 +42,7 @@ export const baseStyles = (
     background-color: var(${DesignToken.SurfaceInvertSecondary});
     color: var(${DesignToken.ContentInvertPrimary});
 
-    .${baseClass}-dot {
+    .dot {
       background-color: var(${DesignToken.ContentLockedWhite});
     }
   `}
@@ -54,7 +52,7 @@ export const baseStyles = (
     background-color: var(${DesignToken.SurfaceTertiaryDefault});
     color: var(${DesignToken.ContentBasicSecondary});
 
-    .${baseClass}-dot {
+    .dot {
       background-color: var(${DesignToken.ContentBasicPrimary});
     }
   `}
@@ -66,7 +64,7 @@ export const baseStyles = (
     min-width: 24px;
     height: 24px;
 
-    .${baseClass}-dot {
+    .dot {
       border-radius: 10px;
       width: 10px;
       height: 10px;
@@ -80,7 +78,7 @@ export const baseStyles = (
     min-width: 20px;
     height: 20px;
 
-    .${baseClass}-dot {
+    .dot {
       border-radius: 8px;
       width: 8px;
       height: 8px;
@@ -94,7 +92,7 @@ export const baseStyles = (
     min-width: 16px;
     height: 16px;
 
-    .${baseClass}-dot {
+    .dot {
       border-radius: 6px;
       width: 6px;
       height: 6px;
