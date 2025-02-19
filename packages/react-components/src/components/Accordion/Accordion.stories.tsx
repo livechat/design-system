@@ -15,7 +15,7 @@ import {
 } from './Accordion';
 import { RULE_PICKER_OPTIONS, TAGS_PICKER_OPTIONS } from './stories-helpers';
 
-import './Accordion.stories.css';
+import './Accordion.css';
 
 export default {
   title: 'Components/Accordion',

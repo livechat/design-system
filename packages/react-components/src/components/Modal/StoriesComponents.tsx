@@ -3,7 +3,7 @@ import * as React from 'react';
 import modalImage from '../../stories/assets/modal-image.png';
 import noop from '../../utils/noop';
 import { Button } from '../Button';
-import './Modal.stories.css';
+import './Modal.css';
 import { FormField } from '../FormField';
 import { Input } from '../Input';
 import { Picker } from '../Picker';

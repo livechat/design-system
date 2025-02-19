@@ -8,7 +8,7 @@ import {
   RadioCards,
 } from './ThumbnailSelectableCard.components';
 
-import '../../SelectableCard.stories.css';
+import '../../SelectableCard.css';
 
 export default {
   title: 'Components/SelectableCard/ThumbnailSelectableCard',

@@ -7,7 +7,7 @@ import imageDefault from './assets/image2.png';
 import promoImage from './assets/promo-img.png';
 import { IPromoBannerV2Props, PromoBannerV2 } from './PromoBannerV2';
 
-import './PromoBannerV2.stories.css';
+import './PromoBannerV2.css';
 
 export default {
   title: 'Components/PromoBannerV2',

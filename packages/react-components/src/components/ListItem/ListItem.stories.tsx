@@ -15,7 +15,7 @@ import { Icon } from '../Icon';
 
 import { ListItem } from './ListItem';
 
-import './ListItem.stories.css';
+import './ListItem.css';
 
 export default {
   title: 'Components/ListItem',
