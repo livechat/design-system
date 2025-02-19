@@ -1,7 +1,12 @@
+import cx from 'clsx';
+
 import { Display, Heading, Text } from '../Typography';
 
-import * as styles from './styles';
 import { IEmptyStateProps } from './types';
+
+import styles from './EmptyState.module.scss';
+
+const baseClass = 'empty-state';
 
 export const EmptyState = ({
   type = 'full',
@@ -13,33 +18,53 @@ export const EmptyState = ({
   centered = false,
 }: IEmptyStateProps) => {
   return (
-    <div className={styles.emptyState(type, centered)}>
+    <div
+      className={cx(
+        styles[baseClass],
+        styles[`${baseClass}--${type}`],
+        centered && styles[`${baseClass}--centered`]
+      )}
+    >
       {image && (
-        <img className={styles.emptyStateImage} src={image} alt={title} />
+        <img
+          className={styles[`${baseClass}__image`]}
+          src={image}
+          alt={title}
+        />
       )}
       {type === 'inline' ? (
-        <div className={styles.emptyStateContentInline}>
+        <div className={styles[`${baseClass}__content-inline`]}>
           {icon && <Display data-testid="icon">{icon}</Display>}
           <Text noMargin>{title}</Text>
         </div>
       ) : (
         <>
           {icon && (
-            <Display className={styles.emptyStateIcon(type)} data-testid="icon">
+            <Display
+              className={styles[`${baseClass}__icon--${type}`]}
+              data-testid="icon"
+            >
               {icon}
             </Display>
           )}
-          <Heading className={styles.emptyStateTitle}>{title}</Heading>
+          <Heading className={styles[`${baseClass}__title`]}>{title}</Heading>
         </>
       )}
 
       {type === 'full' && description && (
-        <Text noMargin className={styles.emptyStateDescription}>
+        <Text noMargin className={styles[`${baseClass}__description`]}>
           {description}
         </Text>
       )}
       {actions && (
-        <div className={styles.emptyStateActions(type)}>{actions}</div>
+        <div
+          className={cx(
+            styles[`${baseClass}__actions`],
+            styles[`${baseClass}__actions--${type}`]
+          )}
+        >
+          {actions}
+        </div>
       )}
     </div>
   );

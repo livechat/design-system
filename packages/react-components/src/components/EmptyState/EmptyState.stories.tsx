@@ -13,7 +13,8 @@ import { ListItem } from '../ListItem';
 import { Text } from '../Typography';
 
 import { EmptyState } from './EmptyState';
-import * as styles from './styles-stories';
+
+import styles from './EmptyState.stories.module.scss';
 
 export default {
   title: 'Components/EmptyState',
@@ -43,13 +44,13 @@ export const Default: Story = {
 export const Inline: Story = {
   decorators: [
     (Story) => (
-      <div className={styles.actionMenu}>
+      <div className={styles['empty-state-story__action-menu']}>
         <ActionMenu
           options={[
             {
               key: '1',
               element: (
-                <div className={styles.actionMenuItem}>
+                <div className={styles['empty-state-story__action-menu__item']}>
                   <ListItem>
                     <Story />
                   </ListItem>
@@ -80,7 +81,9 @@ export const Inline: Story = {
 
 export const WithIcon: Story = {
   args: {
-    icon: <Icon className={styles.icon} source={InfoIcon} />,
+    icon: (
+      <Icon className={styles['empty-state-story__icon']} source={InfoIcon} />
+    ),
     title: 'No data',
     description: 'There is no data to display',
     actions: (
@@ -95,7 +98,9 @@ export const WithIcon: Story = {
 export const Centered: Story = {
   args: {
     centered: true,
-    icon: <Icon className={styles.icon} source={InfoIcon} />,
+    icon: (
+      <Icon className={styles['empty-state-story__icon']} source={InfoIcon} />
+    ),
     title: 'No data',
     description: 'There is no data to display',
     actions: (
@@ -107,7 +112,7 @@ export const Centered: Story = {
   },
   decorators: [
     (Story) => (
-      <div className={styles.centered}>
+      <div className={styles['empty-state-story--centered']}>
         <Story />
       </div>
     ),
@@ -136,13 +141,13 @@ export const WithCustomContentAndNoIllustration: Story = {
     description:
       'A description with a maximum of 100 characters. That usually means only one or two sentences.',
     actions: (
-      <div className={styles.customContent}>
-        <div className={styles.customContentRow}>
-          <div className={styles.customContentBox}>
+      <div className={styles['empty-state-story__custom-content']}>
+        <div className={styles['empty-state-story__custom-content__row']}>
+          <div className={styles['empty-state-story__custom-content__box']}>
             <Icon size="xlarge" source={FacebookIcon} />
             <Text bold>Facebook Messenger</Text>
           </div>
-          <div className={styles.customContentBox}>
+          <div className={styles['empty-state-story__custom-content__box']}>
             <Icon size="xlarge" source={GoogleIcon} />
             <Text bold>Google Messages</Text>
           </div>
@@ -155,7 +160,9 @@ export const WithCustomContentAndNoIllustration: Story = {
 
 export const WithoutActionsOnlyDescription: Story = {
   args: {
-    icon: <Icon className={styles.icon} source={InfoIcon} />,
+    icon: (
+      <Icon className={styles['empty-state-story__icon']} source={InfoIcon} />
+    ),
     title: 'No data',
     description: (
       <Text style={{ margin: 0 }}>
