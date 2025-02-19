@@ -7,4 +7,3 @@ export {
   TransitionTimingToken,
   TransitionDelayToken,
 } from './transition-token';
-export { StackingContextLevelToken } from './stacking-context-level';

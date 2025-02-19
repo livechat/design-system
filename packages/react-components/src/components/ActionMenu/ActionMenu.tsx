@@ -24,8 +24,11 @@ import { KeyCodes } from '../../utils/keyCodes';
 import { Icon } from '../Icon';
 import { Text } from '../Typography';
 
-import * as styles from './styles';
 import { IActionMenuOption, IActionMenuProps } from './types';
+
+import styles from './ActionMenu.module.scss';
+
+const baseClass = 'action-menu';
 
 export const ActionMenu: React.FC<IActionMenuProps> = ({
   className,
@@ -169,7 +172,11 @@ export const ActionMenu: React.FC<IActionMenuProps> = ({
   const getOptionElement = (option: IActionMenuOption, index: number) => {
     if (option.groupHeader) {
       return (
-        <li key={option.key} role="none" className={styles.groupHeader}>
+        <li
+          key={option.key}
+          role="none"
+          className={styles[`${baseClass}__list__group-header`]}
+        >
           {option.element}
         </li>
       );
@@ -184,17 +191,19 @@ export const ActionMenu: React.FC<IActionMenuProps> = ({
           disabled={option.disabled}
           onClick={() => handleItemClick(index, option.onClick)}
           role="menuitem"
-          className={styles.item(
-            option.disabled,
-            option.withDivider,
-            selectedOptions?.includes(option.key)
-          )}
+          className={cx(styles[`${baseClass}__list__item`], {
+            [styles[`${baseClass}__list__item--disabled`]]: option.disabled,
+            [styles[`${baseClass}__list__item--with-divider`]]:
+              option.withDivider,
+            [styles[`${baseClass}__list__item--selected`]]:
+              selectedOptions?.includes(option.key),
+          })}
         >
           {option.element}
           {selectedOptions?.includes(option.key) && (
             <div
               data-testid={`${option.key}-selected-icon`}
-              className={styles.icon}
+              className={styles[`${baseClass}__list__item__icon`]}
             >
               <Icon source={Check} kind="action-primary" />
             </div>
@@ -219,7 +228,7 @@ export const ActionMenu: React.FC<IActionMenuProps> = ({
         {currentlyVisible && (
           <div
             ref={refs.setFloating}
-            className={styles.baseStyles}
+            className={styles[baseClass]}
             style={{
               position: strategy,
               top: y !== null && y !== undefined ? y : '',
@@ -232,7 +241,13 @@ export const ActionMenu: React.FC<IActionMenuProps> = ({
             {options.length > 0 && (
               <ul
                 {...props}
-                className={cx(styles.list(!!footer), className)}
+                className={cx(
+                  styles[`${baseClass}__list`],
+                  {
+                    [styles[`${baseClass}__list--with-footer`]]: footer,
+                  },
+                  className
+                )}
                 role="menu"
                 ref={ref}
               >
@@ -240,7 +255,11 @@ export const ActionMenu: React.FC<IActionMenuProps> = ({
               </ul>
             )}
             {footer && (
-              <Text size="sm" as="div" className={styles.footer}>
+              <Text
+                size="sm"
+                as="div"
+                className={styles[`${baseClass}__footer`]}
+              >
                 {footer}
               </Text>
             )}
