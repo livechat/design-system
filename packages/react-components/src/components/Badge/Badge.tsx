@@ -3,10 +3,37 @@ import * as React from 'react';
 import cx from 'clsx';
 
 import { formatCount } from './Badge.helpers';
-import * as styles from './styles';
-import { IBadgeProps } from './types';
 
-export const Badge: React.FC<IBadgeProps> = ({
+import styles from './Badge.module.scss';
+
+const baseClass = 'badge';
+
+export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
+  /**
+   * Value to display
+   */
+  count?: number;
+  /**
+   * Specify the badge kind
+   */
+  kind?: 'primary' | 'secondary' | 'tertiary';
+  /**
+   * The maximum value after which a "+" will be displayed next to the number
+   */
+  max?: number;
+  /**
+   * Specify the badge size
+   * @param large - is deprecated, use "medium" or "compact" instead
+   */
+  size?: 'large' | 'medium' | 'compact';
+  /**
+   * Specify the badge type
+   * @param dot - is deprecated, use "UpdateBadge" component instead
+   */
+  type?: 'counter' | 'alert' | 'dot';
+}
+
+export const Badge: React.FC<React.PropsWithChildren<BadgeProps>> = ({
   className,
   count = 0,
   max = 99,
@@ -15,12 +42,19 @@ export const Badge: React.FC<IBadgeProps> = ({
   type = 'counter',
   ...spanProps
 }) => {
-  const mergedClassNames = cx(styles.baseStyles(kind, size), className);
+  const mergedClassNames = cx(
+    className,
+    styles[baseClass],
+    styles[`${baseClass}--${kind}`],
+    styles[`${baseClass}--${size}`]
+  );
 
   const content = {
     ['counter']: formatCount(count, max),
     ['alert']: '!',
-    ['dot']: <span data-testid="badge-dot" className="dot" />,
+    ['dot']: (
+      <span data-testid="badge-dot" className={styles[`${baseClass}__dot`]} />
+    ),
   }[type];
 
   return (

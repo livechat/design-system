@@ -4,16 +4,15 @@ import { StoryFn } from '@storybook/react';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 
-import { Badge } from './Badge';
-import { IBadgeProps } from './types';
+import { Badge, BadgeProps } from './Badge';
 
 export default {
   title: 'Components/Badge/Badge',
   component: Badge,
 };
 
-export const Default: StoryFn<IBadgeProps> = (
-  args: IBadgeProps
+export const Default: StoryFn<BadgeProps> = (
+  args: BadgeProps
 ): React.ReactElement => <Badge {...args} />;
 
 Default.storyName = 'Badge';
