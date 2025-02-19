@@ -1,14 +1,61 @@
 import * as React from 'react';
 
-import { cx } from '@emotion/css';
 import { Close } from '@livechat/design-system-icons';
+import cx from 'clsx';
 
 import { ThemeClassName } from '../../providers';
-import { Button } from '../Button';
+import { Button, ButtonKind, ButtonProps } from '../Button';
 import { Icon } from '../Icon';
 
-import * as styles from './styles';
-import { IPromoBannerV2Props } from './types';
+import styles from './PromoBannerV2.module.scss';
+
+const baseClass = 'promo-banner-v2';
+
+type OldButtonProps = {
+  handleClick: () => void;
+  label: string;
+  kind?: ButtonKind;
+};
+
+export interface IPromoBannerV2Props {
+  /**
+   * Specify an optional className to be applied to the main container node
+   */
+  className?: string;
+  /**
+   * Element with additional content for second column
+   */
+  additionalContent?: React.ReactNode;
+  /**
+   * Shows the primary CTA button
+   */
+  primaryButton?: OldButtonProps & ButtonProps;
+  /**
+   * Shows the secondary CTA button
+   */
+  secondaryButton?: OldButtonProps & ButtonProps;
+  /**
+   * Set to true to display the banner vertically
+   */
+  vertical?: boolean;
+  /**
+   * Specify an optional className to be applied to the content node
+   */
+  contentClassName?: string;
+  /**
+   * Specify an optional className to be applied to the additional content node
+   */
+  additionalContentClassName?: string;
+  /**
+   * Event handler for close button press
+   */
+  onClose?: () => void;
+  /**
+   * Specify the kind of PromoBannerV2
+   * @default 'default'
+   */
+  kind?: 'default' | 'dark';
+}
 
 export const PromoBannerV2: React.FC<
   React.PropsWithChildren<IPromoBannerV2Props>
@@ -25,25 +72,27 @@ export const PromoBannerV2: React.FC<
   kind = 'default',
 }) => {
   const mergedClassNames = cx(
-    styles.mainWrapper(kind === 'dark'),
+    styles['main-wrapper'],
+    styles[`${baseClass}--${kind}`],
     kind === 'dark' && ThemeClassName.Dark,
     className
   );
 
   return (
     <div role="banner" className={mergedClassNames}>
-      <div className={styles.baseStyles(vertical)}>
+      <div
+        className={cx(
+          styles[baseClass],
+          vertical && styles[`${baseClass}--vertical`]
+        )}
+      >
         <div
           data-testId="content"
-          className={cx(
-            styles.content,
-            `${styles.baseClass}-content`,
-            contentClassName
-          )}
+          className={cx(styles[`${baseClass}__content`], contentClassName)}
         >
           {children}
           {(primaryButton || secondaryButton) && (
-            <div className={styles.cta}>
+            <div className={styles[`${baseClass}__content__cta`]}>
               {primaryButton && (
                 <Button
                   {...primaryButton}
@@ -59,7 +108,7 @@ export const PromoBannerV2: React.FC<
                   kind={secondaryButton?.kind || 'text'}
                   onClick={secondaryButton.handleClick}
                   className={cx(
-                    styles.secondaryButton,
+                    styles[`${baseClass}__content__cta__secondary`],
                     secondaryButton.className
                   )}
                 >
@@ -73,8 +122,7 @@ export const PromoBannerV2: React.FC<
           <div
             data-testId="additional-content"
             className={cx(
-              styles.additionalContent,
-              `${styles.baseClass}-additional-content`,
+              styles[`${baseClass}__additional-content`],
               additionalContentClassName
             )}
           >
@@ -82,14 +130,9 @@ export const PromoBannerV2: React.FC<
           </div>
         )}
         {onClose && (
-          <div
-            className={cx(
-              styles.closeButtonContainer,
-              `${styles.baseClass}-close-button-container`
-            )}
-          >
+          <div className={styles[`${baseClass}__close`]}>
             <Button
-              className={styles.closeButton}
+              className={styles[`${baseClass}__close__btn`]}
               onClick={onClose}
               icon={<Icon source={Close} kind="primary" />}
               kind="plain"
