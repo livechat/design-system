@@ -15,7 +15,7 @@ import { Button, ButtonProps } from '../Button';
 import { Icon, IconSource, IconKind } from '../Icon';
 import { Text } from '../Typography';
 
-import * as styles from './styles';
+import styles from './Alert.module.scss';
 
 type AlertKind = 'info' | 'warning' | 'success' | 'error';
 
@@ -62,6 +62,8 @@ const IconConfig: Record<AlertKind, { source: IconSource; kind: IconKind }> = {
   },
 };
 
+const baseClass = 'alert';
+
 export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
   children,
   className,
@@ -73,6 +75,15 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [containerSize, setContainerSize] = React.useState<string | null>(null);
+
+  const mergedClassNames = cx(
+    styles[baseClass],
+    styles[`${baseClass}--${kind}`],
+    containerSize === 'large' && styles[`${baseClass}--large`],
+    containerSize === 'medium' && styles[`${baseClass}--medium`],
+    containerSize === 'small' && styles[`${baseClass}--small`],
+    className
+  );
 
   React.useEffect(() => {
     const resize = () => {
@@ -102,20 +113,23 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
   });
 
   return (
-    <div ref={containerRef} className={cx(styles.alert(kind), className)} {...props}>
-      <div className={styles.alertContent(containerSize)}>
-        <div className={styles.alertContentWrapper(containerSize)}>
+    <div ref={containerRef} className={mergedClassNames} {...props}>
+      <div className={styles[`${baseClass}__content`]}>
+        <div className={styles[`${baseClass}__content__wrapper`]}>
           <Icon
             {...IconConfig[kind]}
             size="large"
-            className={styles.alertIcon(containerSize)}
+            className={styles[`${baseClass}__icon`]}
           />
-          <Text as="div" className={styles.alertContentWrapperText}>
+          <Text
+            as="div"
+            className={styles[`${baseClass}__content__wrapper__text`]}
+          >
             {children}
           </Text>
         </div>
         {(primaryButton || secondaryButton) && (
-          <div className={styles.alertContentWrapperCta(containerSize)}>
+          <div className={styles[`${baseClass}__content__wrapper__cta`]}>
             {primaryButton && (
               <Button
                 kind="high-contrast"
@@ -128,7 +142,7 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
             {secondaryButton && (
               <Button
                 className={cx(
-                  styles.alertContentWrapperCtaLink,
+                  styles[`${baseClass}__content__wrapper__cta__link`],
                   secondaryButton.className
                 )}
                 kind="text"
@@ -144,7 +158,7 @@ export const Alert: React.FC<React.PropsWithChildren<AlertProps>> = ({
       {onClose && (
         <Button
           aria-label="Close alert"
-          className={styles.alertCloseIcon(containerSize)}
+          className={styles[`${baseClass}__close-icon`]}
           size="compact"
           kind="plain"
           icon={<Icon source={CloseIcon} />}
