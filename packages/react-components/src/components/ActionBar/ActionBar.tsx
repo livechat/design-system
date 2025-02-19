@@ -11,9 +11,12 @@ import { Icon } from '../Icon';
 import { ListItem } from '../ListItem';
 
 import { ActionBarItem } from './ActionBarItem';
-import * as styles from './styles';
 import { IActionBarOption, IActionBarProps } from './types';
 
+import styles from './ActionBar.module.scss';
+
+const baseClass = 'action-bar';
+const menuWrapperClass = 'action-bar__menu-wrapper';
 const singleElementSize = 44;
 
 export const ActionBar: React.FC<IActionBarProps> = ({
@@ -31,6 +34,11 @@ export const ActionBar: React.FC<IActionBarProps> = ({
   const [menuOptions, setMenuOptions] = React.useState<IActionBarOption[]>([]);
   const [isMenuOpen, setIsMenuOpen] = React.useState<boolean>(false);
   const isScrollType = type === 'scroll';
+  const mergedClassNames = cx(
+    styles[baseClass],
+    className,
+    vertical && styles[`${baseClass}--vertical`]
+  );
   const shouldDisplayMenu = !isScrollType && menuOptions.length !== 0;
 
   React.useEffect(() => {
@@ -93,8 +101,12 @@ export const ActionBar: React.FC<IActionBarProps> = ({
   const buttonElement = menuOptions.find((o) => o.key === activeOptionKey);
 
   return (
-    <div id={id} className={cx(styles.actionBar(vertical), className)}>
-      <div className={styles.actionBarItems(isScrollType)}>
+    <div id={id} className={mergedClassNames}>
+      <div
+        className={cx(styles[`${baseClass}__items`], {
+          [styles[`${baseClass}__items--scroll`]]: isScrollType,
+        })}
+      >
         {options.slice(0, visibleItemsCount).map((o) => (
           <ActionBarItem
             option={o}
@@ -104,7 +116,13 @@ export const ActionBar: React.FC<IActionBarProps> = ({
         ))}
       </div>
       {shouldDisplayMenu && (
-        <div className={styles.actionBarMenuWrapper(!!buttonElement, vertical)}>
+        <div
+          className={cx(
+            styles[menuWrapperClass],
+            buttonElement && styles[`${menuWrapperClass}--active`],
+            vertical && styles[`${menuWrapperClass}--vertical`]
+          )}
+        >
           <ActionMenu
             selectedOptions={activeOptionKey ? [activeOptionKey] : []}
             onOpen={() => setIsMenuOpen(true)}
@@ -112,26 +130,36 @@ export const ActionBar: React.FC<IActionBarProps> = ({
             floatingStrategy="fixed"
             placement={vertical ? 'left-start' : 'bottom-end'}
             options={getMenuItems()}
-            triggerClassName={cx(vertical && styles.actionBarTriggerVertical)}
+            triggerClassName={cx(
+              vertical && styles[`${menuWrapperClass}__trigger-vertical`]
+            )}
             triggerRenderer={
               <Button
                 id={`${id}-menu-button`}
-                className={styles.actionBarMenuButton(
-                  !!buttonElement,
-                  vertical
+                className={cx(
+                  styles[`${menuWrapperClass}__button`],
+                  buttonElement && styles[`${menuWrapperClass}__button--active`]
                 )}
                 kind="plain"
                 icon={
                   <Icon
                     source={ChevronDown}
                     kind="primary"
-                    className={styles.actionBarMenuButtonIcon(isMenuOpen)}
+                    className={cx(
+                      styles[`${menuWrapperClass}__button__icon`],
+                      isMenuOpen &&
+                        styles[`${menuWrapperClass}__button__icon--open`]
+                    )}
                   />
                 }
                 iconPosition="right"
               >
                 {buttonElement && (
-                  <div className={styles.actionBarMenuButtonWithItem}>
+                  <div
+                    className={cx(
+                      styles[`${menuWrapperClass}__button__with-item`]
+                    )}
+                  >
                     {buttonElement.element}
                   </div>
                 )}

@@ -1,0 +1,26 @@
+@mixin select-indicator-h() {
+  &::after {
+    position: absolute;
+    bottom: 0;
+    border-top-left-radius: var(--radius-3);
+    border-top-right-radius: var(--radius-3);
+    background-color: var(--action-primary-default);
+    width: 100%;
+    height: 3px;
+    content: '';
+  }
+}
+
+@mixin select-indicator-v() {
+  &::after {
+    position: absolute;
+    left: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: var(--radius-3);
+    border-bottom-right-radius: var(--radius-3);
+    background-color: var(--action-primary-default);
+    width: 3px;
+    height: 100%;
+    content: '';
+  }
+}
