@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import cx from 'clsx';
+import { cx } from '@emotion/css';
 
 import { Checkbox } from '../Checkbox';
 import { Text } from '../Typography';
