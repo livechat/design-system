@@ -2,7 +2,9 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import * as styles from './styles';
+import styles from './Skeleton.module.scss';
+
+const baseClass = 'skeleton-avatar';
 
 export interface ISkeletonAvatar {
   /**
@@ -25,10 +27,10 @@ export const SkeletonAvatar: React.FC<ISkeletonAvatar> = ({
   animated,
 }) => (
   <div
-    className={cx(
-      styles.skeletonAvatar(square),
-      animated && styles.animatedSkeleton
-    )}
+    className={cx(styles[`${baseClass}`], {
+      [styles[`${baseClass}--square`]]: square,
+      [styles[`${baseClass}--animated`]]: animated,
+    })}
     style={{
       width: size,
       height: size,

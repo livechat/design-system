@@ -1,0 +1,43 @@
+@import '../../styles/animations';
+
+$base-class: 'skeleton';
+
+@mixin background() {
+  background-color: var(--surface-secondary-disabled);
+}
+
+.skeleton-wrapper {
+  display: flex;
+  gap: var(--spacing-2);
+  width: 100%;
+
+  &--vertical {
+    flex-direction: column;
+  }
+}
+
+.skeleton-avatar {
+  @include background;
+
+  flex-shrink: 0;
+  border-radius: 50%;
+
+  &--square {
+    border-radius: var(--radius-3);
+  }
+
+  &--animated {
+    @include skeleton-loading;
+  }
+}
+
+.skeleton-text {
+  @include background;
+
+  border-radius: var(--radius-3);
+  width: 100%;
+
+  &--animated {
+    @include skeleton-loading;
+  }
+}
