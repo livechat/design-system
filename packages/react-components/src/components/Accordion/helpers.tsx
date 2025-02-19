@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { AccordionAnimatedLabel } from './components';
+import { AccordionAnimatedLabel } from './components/AccordionAnimatedLabel';
 
 import type { AccordionLabel } from './types';
 

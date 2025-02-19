@@ -1,6 +1,6 @@
 import { render } from 'test-utils';
 
-import { IAccordionAnimatedLabelProps } from '../../types';
+import { IAccordionAnimatedLabelProps } from '../types';
 
 import { AccordionAnimatedLabel } from './AccordionAnimatedLabel';
 
