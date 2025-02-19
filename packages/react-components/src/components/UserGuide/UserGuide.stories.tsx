@@ -30,7 +30,7 @@ import { AppContent } from './stories-helpers';
 import { CursorTiming } from './types';
 import { UserGuide } from './UserGuide';
 
-import './UserGuide.css';
+import './UserGuide.stories.css';
 
 export default {
   title: 'Components/UserGuide',

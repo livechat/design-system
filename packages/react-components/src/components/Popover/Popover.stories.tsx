@@ -8,7 +8,7 @@ import { Text } from '../Typography';
 
 import { Popover as PopoverComponent } from './Popover';
 
-import './Popover.css';
+import './Popover.stories.css';
 
 const placements = [
   'top',

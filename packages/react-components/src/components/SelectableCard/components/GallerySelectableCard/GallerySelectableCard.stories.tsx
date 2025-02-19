@@ -8,7 +8,7 @@ import {
 
 import { GallerySelectableCard } from './GallerySelectableCard';
 
-import '../../SelectableCard.css';
+import '../../SelectableCard.stories.css';
 
 export default {
   title: 'Components/SelectableCard/GallerySelectableCard',

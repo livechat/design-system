@@ -13,7 +13,7 @@ import { Switch } from '../Switch';
 import { ActionMenu } from './ActionMenu';
 import { exampleOptions } from './stories-constants';
 
-import './ActionMenu.css';
+import './ActionMenu.stories.css';
 
 export default {
   title: 'Components/ActionMenu',

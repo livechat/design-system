@@ -23,7 +23,7 @@ import {
 } from './components/NavigationTopBar/examples';
 import { NavigationTopBar } from './components/NavigationTopBar/NavigationTopBar';
 
-import './AppFrame.css';
+import './AppFrame.stories.css';
 
 interface ExampleAppContentProps {
   showToggle: boolean;

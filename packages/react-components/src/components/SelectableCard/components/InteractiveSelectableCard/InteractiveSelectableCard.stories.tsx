@@ -12,7 +12,7 @@ import {
   RadioCards,
 } from './InteractiveSelectableCard.components';
 
-import '../../SelectableCard.css';
+import '../../SelectableCard.stories.css';
 
 export default {
   title: 'Components/SelectableCard/InteractiveSelectableCard',
