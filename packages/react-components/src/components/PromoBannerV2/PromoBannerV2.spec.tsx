@@ -1,6 +1,7 @@
 import { render, userEvent, vi } from 'test-utils';
 
-import { IPromoBannerV2Props, PromoBannerV2 } from './PromoBannerV2';
+import { PromoBannerV2 } from './PromoBannerV2';
+import { IPromoBannerV2Props } from './types';
 
 const contentText = 'Example content';
 const additionalContentText = 'Additional example content';

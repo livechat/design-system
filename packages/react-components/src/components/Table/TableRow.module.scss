@@ -8,4 +8,12 @@ $table-class: 'table';
   &:not(.#{$table-class}__header):hover {
     background-color: var(--surface-primary-hover);
   }
+
+  &__select-cell {
+    width: 48px;
+  }
+
+  &__selected {
+    background-color: var(--surface-secondary-active);
+  }
 }

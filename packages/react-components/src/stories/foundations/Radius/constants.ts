@@ -45,6 +45,10 @@ const RadiusDescription: Record<
     size: '8px',
   },
   Radius4: { desc: '', size: '16px' },
+  UiFoundationRadiusBar: {
+    desc: 'Bar radius value for data visualization: This specifies a 2-pixel border radius for bars in data visualization components.',
+    size: '2px',
+  },
 };
 
 export const RadiusTokens: RadiusShape[] = Object.entries(RadiusToken)

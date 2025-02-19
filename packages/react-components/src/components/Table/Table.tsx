@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import cx from 'clsx';
 
-import { Checkbox } from '../Checkbox';
 import { Text } from '../Typography';
 
 import { useTable } from './hooks';
@@ -128,10 +127,10 @@ export const Table = <T,>({
     if (!column) return data;
 
     return [...data].sort((a, b) => {
-      const sortValueA = column.sortValue
+      const sortValueA = column.sortable
         ? column.sortValue(a)
         : a[sortConfig.key as unknown as keyof T];
-      const sortValueB = column.sortValue
+      const sortValueB = column.sortable
         ? column.sortValue(b)
         : b[sortConfig.key as unknown as keyof T];
 
@@ -153,35 +152,33 @@ export const Table = <T,>({
     setColumnWidths(initialWidths);
   }, []);
 
-  if (selectable && (!selectedRows || !onSelectionChange)) {
-    throw new Error(
-      '`onSelectionChange` and `selectedRows` are required when selectable is true'
-    );
-  }
-
-  if (columns.find((column) => column.sortable && !column.sortValue)) {
-    throw new Error('`sortValue` is required when sortable is true');
-  }
-
   return (
     <>
-      {selectable && (
-        <div className={styles[`${selectedClass}`]}>
-          <Checkbox
-            checked={selectedCount === data.length}
-            onChange={toggleSelectAll}
-          />
-          {rowSelectionMessage || (
-            <Text size="md">{selectedCount} selected items</Text>
-          )}
-          {rowActions}
+      {
+        <div
+          className={cx(styles[`${selectedClass}`], {
+            [styles[`${selectedClass}--visible`]]:
+              selectable && !!selectedCount,
+            [styles[`${selectedClass}--hidden`]]: !selectable,
+          })}
+        >
+          <div className={styles[`${selectedClass}__content`]}>
+            {rowSelectionMessage || (
+              <Text noMargin bold size="sm">
+                {selectedCount} selected
+              </Text>
+            )}
+          </div>
+          <div>{rowActions}</div>
         </div>
-      )}
+      }
       <table
         className={cx(
           styles[`${baseClass}`],
           styles[`${baseClass}--${size}`],
           styles[`${baseClass}--pinned_${pin}`],
+          selectable && styles[`${baseClass}--pinned_header--selectable`],
+          selectable && !!selectedCount && styles[`${baseClass}--has-selected`],
           styles[`${baseClass}--stripped_${stripped}`]
         )}
         data-testid={testId}
@@ -196,6 +193,9 @@ export const Table = <T,>({
           selectable={selectable}
           hoveredColumnIndex={hoveredColumnIndex}
           setHoveredColumnIndex={setHoveredColumnIndex}
+          selectedCount={selectedCount}
+          dataLength={data.length}
+          toggleSelectAll={toggleSelectAll}
         />
         <TableBody
           data={sortedData}
