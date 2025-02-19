@@ -18,8 +18,10 @@ import { ProgressCircle } from '../Progress';
 import { ProgressStatus, ProgressSize } from '../Progress/constants';
 import { Text } from '../Typography';
 
-import * as styles from './styles';
+import styles from './UploadBar.module.scss';
 
+const baseClass = 'upload-bar';
+const wrapperHeaderClass = `${baseClass}__wrapper__header`;
 const TRANSITION_TIMEOUT = 300;
 
 export interface UploadBarProps {
@@ -74,7 +76,7 @@ const getHeaderIcon = (status: ProgressStatus, progressValue: number) => {
     return (
       <div
         data-testid="success-icon"
-        className={styles.wrapperHeaderSuccessIcon}
+        className={styles[`${wrapperHeaderClass}__success-icon`]}
       >
         <Icon source={CheckIcon} />
       </div>
@@ -83,7 +85,10 @@ const getHeaderIcon = (status: ProgressStatus, progressValue: number) => {
 
   if (status === 'error') {
     return (
-      <div data-testid="error-icon" className={styles.wrapperHeaderErrorIcon}>
+      <div
+        data-testid="error-icon"
+        className={styles[`${wrapperHeaderClass}__error-icon`]}
+      >
         <Icon source={ErrorIcon} />
       </div>
     );
@@ -91,7 +96,7 @@ const getHeaderIcon = (status: ProgressStatus, progressValue: number) => {
 
   return (
     <ProgressCircle
-      className={styles.loader}
+      className={styles[`${wrapperHeaderClass}__loader`]}
       status={status}
       progressValue={progressValue}
     />
@@ -114,7 +119,11 @@ export const UploadBar: React.FC<React.PropsWithChildren<UploadBarProps>> = ({
 }) => {
   const [expanded, setExpanded] = React.useState(isExpanded || false);
   const withError = status === 'error';
-  const mergedClassNames = cx(styles.uploadBar(withError), className);
+  const withSuccess = status === 'success';
+  const mergedClassNames = cx(styles[baseClass], className, {
+    [styles[`${baseClass}--error`]]: withError,
+    [styles[`${baseClass}--success`]]: withSuccess,
+  });
   const shouldShowCollapseButton = !(
     withError &&
     (onRetryButtonClick || onCloseButtonClick)
@@ -125,8 +134,8 @@ export const UploadBar: React.FC<React.PropsWithChildren<UploadBarProps>> = ({
   if (mode === 'single') {
     return (
       <div className={mergedClassNames}>
-        <div className={styles.wrapper}>
-          <div className={styles.wrapperHeader}>
+        <div className={styles[`${baseClass}__wrapper`]}>
+          <div className={styles[`${wrapperHeaderClass}`]}>
             <FileUploadProgress
               title={withError ? errorMessage || title : title}
               progressValue={progressValue}
@@ -149,19 +158,22 @@ export const UploadBar: React.FC<React.PropsWithChildren<UploadBarProps>> = ({
 
   return (
     <div className={mergedClassNames}>
-      <div className={styles.wrapper} onClick={handleOnWrapperClick}>
-        <div className={styles.wrapperHeader}>
-          <div className={styles.wrapperHeaderIcon}>
+      <div
+        className={styles[`${baseClass}__wrapper`]}
+        onClick={handleOnWrapperClick}
+      >
+        <div className={styles[`${wrapperHeaderClass}`]}>
+          <div className={styles[`${wrapperHeaderClass}__icon`]}>
             {getHeaderIcon(status, progressValue)}
           </div>
-          <div className={styles.wrapperHeaderTitle}>
+          <div className={styles[`${wrapperHeaderClass}__title`]}>
             <Text size="sm" as="div">
               {withError ? errorMessage : title}
             </Text>
           </div>
           {shouldShowCollapseButton && (
             <button
-              className={styles.wrapperHeaderCollapseButton}
+              className={styles[`${wrapperHeaderClass}__collapse-button`]}
               type="button"
               aria-label="Collapse button"
               onClick={handleOnWrapperClick}
@@ -174,7 +186,7 @@ export const UploadBar: React.FC<React.PropsWithChildren<UploadBarProps>> = ({
             </button>
           )}
           {status === 'error' && (
-            <div className={styles.wrapperHeaderActionsContainer}>
+            <div className={styles[`${wrapperHeaderClass}__actions-container`]}>
               <FileUploadProgressActions
                 status={status}
                 onCloseButtonClick={onCloseButtonClick}
@@ -189,16 +201,18 @@ export const UploadBar: React.FC<React.PropsWithChildren<UploadBarProps>> = ({
           <CSSTransition
             timeout={TRANSITION_TIMEOUT}
             classNames={{
-              enter: styles.filesEnter,
-              enterActive: styles.filesEnterActive,
-              exit: styles.filesExit,
-              exitActive: styles.filesExitActive,
-              exitDone: styles.filesExitActive,
+              enter: styles[`${baseClass}__files--enter`],
+              enterActive: styles[`${baseClass}__files--enter-active`],
+              exit: styles[`${baseClass}__files--exit`],
+              exitActive: styles[`${baseClass}__files--exit-active`],
+              exitDone: styles[`${baseClass}__files--exit-done`],
             }}
           >
-            <div className={styles.files}>
-              <div className={styles.filesWrapper}>
-                <div className={styles.filesList}>{children}</div>
+            <div className={styles[`${baseClass}__files`]}>
+              <div className={styles[`${baseClass}__files-wrapper`]}>
+                <div className={styles[`${baseClass}__files__list`]}>
+                  {children}
+                </div>
               </div>
             </div>
           </CSSTransition>

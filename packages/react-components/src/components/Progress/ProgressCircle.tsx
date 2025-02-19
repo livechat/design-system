@@ -4,7 +4,8 @@ import cx from 'clsx';
 
 import { ProgressSize, ProgressStatus } from './constants';
 import { getPercentNumber } from './Progress.helpers';
-import * as styles from './styles';
+
+import styles from './ProgressCircle.module.scss';
 
 const THICKNESS_FROM_SIZE: Record<ProgressSize, number> = {
   small: 2,
@@ -17,6 +18,8 @@ const SIZE_VALUE_FROM_SIZE = {
   medium: 36,
   large: 56,
 };
+
+const baseClass = 'progress-circle';
 
 export interface ProgressCircleProps {
   /**
@@ -54,7 +57,14 @@ export const ProgressCircle: React.ExoticComponent<
     const thickness = THICKNESS_FROM_SIZE[size];
     const sizeValue = SIZE_VALUE_FROM_SIZE[size];
 
-    const mergedClassNames = cx(styles.progressCircle(size), className);
+    const mergedClassNames = cx(
+      styles[baseClass],
+      {
+        [styles[`${baseClass}--${size}`]]: size,
+        [styles[`${baseClass}--${status}`]]: status,
+      },
+      className
+    );
 
     const circumference = 2 * Math.PI * ((sizeValue - thickness) / 2);
 
@@ -79,7 +89,7 @@ export const ProgressCircle: React.ExoticComponent<
       >
         <svg viewBox={svgViewBox}>
           <circle
-            className={styles.progressCircleBgLine(status)}
+            className={styles[`${baseClass}__bg-line--${status}`]}
             cx={sizeValue}
             cy={sizeValue}
             r={(sizeValue - thickness) / 2}
@@ -87,7 +97,7 @@ export const ProgressCircle: React.ExoticComponent<
             strokeWidth={thickness}
           />
           <circle
-            className={styles.progressCircleIndicator(status)}
+            className={styles[`${baseClass}__indicator--${status}`]}
             style={indicatorStyle}
             cx={sizeValue}
             cy={sizeValue}

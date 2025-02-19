@@ -4,7 +4,10 @@ import cx from 'clsx';
 
 import { ProgressSize, ProgressStatus } from './constants';
 import { getPercentNumber } from './Progress.helpers';
-import * as styles from './styles';
+
+import styles from './ProgressBar.module.scss';
+
+const baseClass = 'progress-bar';
 
 export interface ProgressBarProps {
   /**
@@ -40,7 +43,14 @@ export const ProgressBar: React.ExoticComponent<
   ) => {
     const percentNumber = getPercentNumber(status, percent);
 
-    const mergedClassNames = cx(styles.progressBar(size, status), className);
+    const mergedClassNames = cx(
+      styles[baseClass],
+      {
+        [styles[`${baseClass}--${size}`]]: size,
+        [styles[`${baseClass}--${status}`]]: status,
+      },
+      className
+    );
 
     return (
       <div
@@ -51,7 +61,7 @@ export const ProgressBar: React.ExoticComponent<
       >
         <div
           data-testid="progress-bar-indicator"
-          className={styles.indicator(status)}
+          className={styles[`${baseClass}__indicator--${status}`]}
           style={{ width: `${percentNumber}%` }}
         />
       </div>
