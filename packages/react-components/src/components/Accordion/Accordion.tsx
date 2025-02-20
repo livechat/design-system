@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { cx } from '@emotion/css';
 import { ChevronDown } from '@livechat/design-system-icons';
+import cx from 'clsx';
 
 import { useAnimations, useHeightResizer } from '../../hooks';
 import { Icon } from '../Icon';
@@ -10,12 +10,13 @@ import { Heading, Text, TTextSize } from '../Typography';
 import { AccordionMultilineElement } from './components';
 import { getLabel } from './helpers';
 import { useAccordion } from './hooks';
-import * as styles from './styles';
 import {
   IAccordionProps,
   IAccordionPromoProps,
   IAccordionComponentProps,
 } from './types';
+
+import styles from './Accordion.module.scss';
 
 const AccordionComponent: React.FC<IAccordionComponentProps> = ({
   className,
@@ -53,7 +54,7 @@ const AccordionComponent: React.FC<IAccordionComponentProps> = ({
   const mergedClassName = cx(
     mainClassName,
     {
-      [styles.open]: isExpanded,
+      [styles[`${baseClass}--open`]]: isExpanded,
     },
     className
   );
@@ -63,7 +64,9 @@ const AccordionComponent: React.FC<IAccordionComponentProps> = ({
     const props = {
       'aria-expanded': isExpanded,
       as: 'div',
-      className: styles.label(isPromo),
+      className: cx(styles[`${baseClass}__label`], {
+        [styles[`${baseClass}__label--promo`]]: isPromo,
+      }),
       onClick: () => handleExpandChange(isExpanded),
       bold: !isPromo ? true : undefined,
       ...(isPromo ? { size: 'xs' as TTextSize } : {}),
@@ -82,7 +85,10 @@ const AccordionComponent: React.FC<IAccordionComponentProps> = ({
     >
       <Icon
         source={ChevronDown}
-        className={styles.chevron(isExpanded, isPromo)}
+        className={cx(styles[`${baseClass}__chevron`], {
+          [styles[`${baseClass}__chevron--open`]]: isExpanded,
+          [styles[`${baseClass}__chevron--promo`]]: isPromo,
+        })}
       />
       {buildHeader(isPromo)}
       {multilineElement && (
@@ -91,7 +97,7 @@ const AccordionComponent: React.FC<IAccordionComponentProps> = ({
         </AccordionMultilineElement>
       )}
       <div
-        className={styles.content}
+        className={styles[`${baseClass}__content`]}
         style={{ maxHeight: isExpanded ? size : 0 }}
         ref={contentRef}
       >
@@ -100,7 +106,10 @@ const AccordionComponent: React.FC<IAccordionComponentProps> = ({
             <>
               <Text
                 as="div"
-                className={styles.contentInner(isExpanded, isPromo)}
+                className={cx(styles[`${baseClass}__content__inner`], {
+                  [styles[`${baseClass}__content__inner--open`]]: isExpanded,
+                  [styles[`${baseClass}__content__inner--promo`]]: isPromo,
+                })}
               >
                 {children}
               </Text>
@@ -109,7 +118,9 @@ const AccordionComponent: React.FC<IAccordionComponentProps> = ({
                   as="div"
                   aria-label="Accordion footer"
                   role="complementary"
-                  className={styles.footer(isPromo)}
+                  className={cx(styles[`${baseClass}__footer`], {
+                    [styles[`${baseClass}__footer--promo`]]: isPromo,
+                  })}
                 >
                   {footer}
                 </Text>
@@ -122,14 +133,18 @@ const AccordionComponent: React.FC<IAccordionComponentProps> = ({
   );
 };
 
+const baseClass = 'accordion';
+
 export const Accordion: React.FC<IAccordionProps> = ({ kind, ...props }) => {
-  const mainClassName = cx(styles.baseStyles(), styles.kind(kind));
+  const mainClassName = cx(styles[baseClass], styles[`${baseClass}--${kind}`]);
 
   return <AccordionComponent mainClassName={mainClassName} {...props} />;
 };
 
+const promoBaseClass = `${baseClass}--promo`;
+
 export const AccordionPromo: React.FC<IAccordionPromoProps> = (props) => {
-  const mainClassName = cx(styles.baseStyles(true));
+  const mainClassName = cx(styles[baseClass], styles[promoBaseClass]);
 
   return (
     <AccordionComponent mainClassName={mainClassName} isPromo {...props} />

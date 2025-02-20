@@ -2,7 +2,9 @@ import * as React from 'react';
 
 import { useAnimations, useHeightResizer } from '../../../../hooks';
 
-import * as styles from './styles';
+import styles from './AccordionMultilineElement.module.scss';
+
+const baseClass = 'accordion-multiline';
 
 export interface IAccordionMultilineElementProps {
   children: React.ReactNode;
@@ -21,12 +23,14 @@ export const AccordionMultilineElement: React.FC<
 
   return (
     <div
-      className={styles.baseStyles}
+      className={styles[`${baseClass}`]}
       style={{ maxHeight: isVisible ? size : 0 }}
       ref={multilineRef}
     >
       <div ref={handleResizeRef}>
-        {isMounted && <div className={styles.inner}>{children}</div>}
+        {isMounted && (
+          <div className={styles[`${baseClass}__inner`]}>{children}</div>
+        )}
       </div>
     </div>
   );
