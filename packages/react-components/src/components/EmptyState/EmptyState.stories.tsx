@@ -73,6 +73,7 @@ export const Inline: Story = {
     actions: <Button kind="link">Plain action</Button>,
   },
   parameters: {
+    chromatic: { delay: 300 },
     controls: {
       exclude: ['description', 'image'],
     },

@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react';
 import { Heading, Text } from '../Typography';
 
 import { OverflowTooltipText } from './OverflowTooltipText';
-import './OverflowTooltipText.stories.css';
+import './OverflowTooltipTextStories.css';
 import { OverflowTooltipTextProps } from './types';
 
 export default {
