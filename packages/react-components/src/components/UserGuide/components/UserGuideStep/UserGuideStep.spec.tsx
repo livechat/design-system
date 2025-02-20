@@ -20,7 +20,7 @@ describe('<UserGuideStep> component', () => {
 
     expect(getByText('Header')).toBeInTheDocument();
     expect(getByText('Text')).toBeInTheDocument();
-    expect(getByText('Step 1 of 2')).toBeInTheDocument();
+    expect(getByText('/ 2 steps')).toBeInTheDocument();
     expect(getByRole('button', { name: 'Next' })).toBeInTheDocument();
   });
 

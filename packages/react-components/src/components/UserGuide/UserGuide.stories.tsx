@@ -365,7 +365,6 @@ export const Example = (): ReactElement => {
           {state.reference === 'first-step' ? (
             <UserGuideBubbleStep
               headerMessage="Welcome to chats section"
-              headerIcon={<Icon source={Icons.OneColored} />}
               message="We have prepared the playground ready for you to test all capabilities of chat section. If you have any question, just trigger me from the upper -right corner of the screen!"
               cta={
                 <>
@@ -393,7 +392,6 @@ export const Example = (): ReactElement => {
               isCompleted={isCompleted}
               handleAnimationComplete={() => setisCompleted(true)}
               headerMessage="Thanks for joining my tour"
-              headerIcon={<Icon source={Icons.OneColored} />}
               message="We have prepared the playground ready for you to test all capabilities of chat section. If you have any question, just trigger me from the upper -right corner of the screen!"
               cta={
                 <>
@@ -599,7 +597,6 @@ export const UserGuideBubbleStepExample = (): ReactElement => {
     <UserGuideBubbleStep
       aria-label="Welcome guide step"
       headerMessage="Welcome to chats section"
-      headerIcon={<Icon source={Icons.OneColored} />}
       message="We have prepared the playground ready for you to test all capabilities of chat section. If you have any question, just trigger me from the upper -right corner of the screen!"
       cta={
         <>

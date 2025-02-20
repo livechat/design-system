@@ -1,8 +1,10 @@
 import { FC, useState, useEffect } from 'react';
 
+import { OneColored } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { AnimatedTextContainer } from '../../../AnimatedTextContainer';
+import { Icon } from '../../../Icon';
 import { Text } from '../../../Typography';
 
 import { IUserGuideBubbleStepProps } from './types';
@@ -13,7 +15,6 @@ const baseClass = 'user-guide-bubble-step';
 
 export const UserGuideBubbleStep: FC<IUserGuideBubbleStepProps> = ({
   headerMessage,
-  headerIcon,
   message,
   cta,
   isCompleted,
@@ -48,11 +49,9 @@ export const UserGuideBubbleStep: FC<IUserGuideBubbleStepProps> = ({
               }
             )}
           >
-            {headerIcon && (
-              <div className={styles[`${baseClass}__bubble__icon`]}>
-                {headerIcon}
-              </div>
-            )}
+            <div className={styles[`${baseClass}__bubble__icon`]}>
+              <Icon size="large" source={OneColored} />
+            </div>
             <Text as="span">
               <AnimatedTextContainer
                 text={headerMessage}

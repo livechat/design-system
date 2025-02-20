@@ -6,30 +6,34 @@ $base-class: 'user-guide-step';
   border-radius: var(--radius-4);
   box-shadow: var(--shadow-modal);
   background: var(--surface-ai-copilot-basic-default);
-  padding: var(--spacing-4);
+  padding: var(--spacing-4) var(--spacing-5) var(--spacing-5);
   width: 340px;
 
   &__heading {
+    display: flex;
+    flex-direction: row;
+    gap: var(--spacing-2);
+    align-items: center;
     margin-bottom: var(--spacing-3);
     color: var(--content-basic-primary);
   }
 
   &__content {
     margin-bottom: var(--spacing-4);
-    color: var(--content-basic-secondary);
+    color: var(--content-basic-primary);
   }
 
   &__media-wrapper {
-    margin-bottom: var(--spacing-4);
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: var(--spacing-4);
   }
 
   &__media {
-    max-height: 240px;
-    max-width: 100%;
     border-radius: var(--radius-3);
+    max-width: 100%;
+    max-height: 240px;
   }
 
   &__footer {
@@ -45,6 +49,10 @@ $base-class: 'user-guide-step';
     &__step-counter {
       white-space: nowrap;
       color: var(--content-basic-secondary);
+
+      &__current-step {
+        color: var(--content-basic-primary);
+      }
     }
 
     &__button-primary {
