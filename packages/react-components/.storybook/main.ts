@@ -12,6 +12,7 @@ const config: StorybookConfig = {
     getAbsolutePath('@storybook/addon-backgrounds'),
     getAbsolutePath('@chromatic-com/storybook'),
   ],
+
   framework: {
     name: '@storybook/react-vite',
     options: {
@@ -23,6 +24,7 @@ const config: StorybookConfig = {
     reactDocgen: 'react-docgen-typescript',
   },
   core: {
+    builder: '@storybook/builder-vite',
     disableTelemetry: true,
   },
   async viteFinal(config) {

@@ -8,7 +8,7 @@ import { customHeightForChromatic } from '../../utils/chromatic-story-helpers';
 import noop from '../../utils/noop';
 import { Button } from '../Button';
 
-import './Tooltip.stories.css';
+import './TooltipStories.css';
 import { Info, Interactive, Reports, Simple } from './components';
 import exampleVideo from './onboarding_final.mp4';
 import beautifulImage from './placeholder.png';

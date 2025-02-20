@@ -30,7 +30,7 @@ import {
   getEngageSubMenu,
 } from './stories-helpers';
 
-import './AppFrame.stories.css';
+import './AppFrameStories.css';
 
 const defaultImage =
   'https://cdn-labs.livechat-files.com/api/file/lc/img/100019504/df59da4b5b0cdb6030efb08787fd255d.jpg';
