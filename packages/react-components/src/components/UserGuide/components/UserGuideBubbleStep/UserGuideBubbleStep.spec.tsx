@@ -22,15 +22,6 @@ describe('<UserGuideBubbleStep> component', () => {
     expect(getByRole('button', { name: 'Primary' })).toBeInTheDocument();
   });
 
-  it('should render icon if provided', () => {
-    const { getByTestId } = renderComponent({
-      ...DEFAULT_PROPS,
-      headerIcon: <div data-testid="icon" />,
-    });
-
-    expect(getByTestId('icon')).toBeInTheDocument();
-  });
-
   it('should call handleAnimationComplete when all bubbles are visible', () => {
     const handleAnimationComplete = vi.fn();
     const { getByRole } = renderComponent({

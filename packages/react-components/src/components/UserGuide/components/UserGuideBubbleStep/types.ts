@@ -1,14 +1,10 @@
-import { ReactElement, ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 export interface IUserGuideBubbleStepProps {
   /**
    * The message for the first bubble
    */
   headerMessage: string;
-  /**
-   * The optional icon for the first bubble
-   */
-  headerIcon?: ReactElement;
   /**
    * The message for the second bubble
    */
