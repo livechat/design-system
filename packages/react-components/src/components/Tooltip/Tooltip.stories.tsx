@@ -50,12 +50,11 @@ export default {
     },
   },
   args: {
-    transitionOptions: {
-      duration: isChromatic() ? 0 : undefined,
-    },
+    withFadeAnimation: isChromatic() ? false : undefined,
   },
   parameters: {
     controls: { expanded: true },
+    chromatic: { delay: 300 },
   },
   subcomponents: {
     Info,
@@ -81,7 +80,7 @@ Default.decorators = [
   ),
 ];
 
-export const Kinds = (): React.ReactElement => (
+export const Kinds = (args: ITooltipProps): React.ReactElement => (
   <>
     {kinds.map((kind) => {
       const title = kind
@@ -91,6 +90,7 @@ export const Kinds = (): React.ReactElement => (
       return (
         <StoryDescriptor title={title}>
           <Tooltip
+            {...args}
             placement="right"
             isVisible
             kind={kind}
