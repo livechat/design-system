@@ -15,7 +15,7 @@ import { Heading } from '../Typography';
 
 import { DetailsCard, IDetailsCardProps } from './DetailsCard';
 
-import './DetailsCard.stories.css';
+import './DetailsCardStories.css';
 
 export default {
   title: 'Components/DetailsCard',

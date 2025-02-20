@@ -8,7 +8,7 @@ import { customHeightForChromatic } from '../../utils/chromatic-story-helpers';
 import noop from '../../utils/noop';
 import { Button } from '../Button';
 
-import './Tooltip.stories.css';
+import './TooltipStories.css';
 import { Info, Interactive, Reports, Simple } from './components';
 import exampleVideo from './onboarding_final.mp4';
 import beautifulImage from './placeholder.png';
@@ -50,12 +50,14 @@ export default {
     },
   },
   args: {
+    withFadeAnimation: isChromatic() ? false : undefined,
     transitionOptions: {
       duration: isChromatic() ? 0 : undefined,
     },
   },
   parameters: {
     controls: { expanded: true },
+    chromatic: { delay: 300 },
   },
   subcomponents: {
     Info,
@@ -81,7 +83,7 @@ Default.decorators = [
   ),
 ];
 
-export const Kinds = (): React.ReactElement => (
+export const Kinds = (args: ITooltipProps): React.ReactElement => (
   <>
     {kinds.map((kind) => {
       const title = kind
@@ -91,6 +93,7 @@ export const Kinds = (): React.ReactElement => (
       return (
         <StoryDescriptor title={title}>
           <Tooltip
+            {...args}
             placement="right"
             isVisible
             kind={kind}
