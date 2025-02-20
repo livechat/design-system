@@ -3,10 +3,13 @@ import * as React from 'react';
 import * as Icons from '@livechat/design-system-icons';
 
 import { Button } from '../Button';
+import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
 
 import { OnboardingChecklist } from './OnboardingChecklist';
 import { IChecklistItemProps } from './types';
+
+import './OnboardingChecklistStories.css';
 
 export default {
   title: 'Components/OnboardingChecklist',
@@ -79,7 +82,15 @@ const getItems = (
   {
     id: '4',
     title: 'Set up a chatbot',
-    description: 'Collect feedback from your customers',
+    customContent: (
+      <div className="checkboxes">
+        <Checkbox>Option 1</Checkbox>
+        <Checkbox>Option 2</Checkbox>
+        <Checkbox>Option 3</Checkbox>
+        <Checkbox>Option 4</Checkbox>
+        <Checkbox>Option 5</Checkbox>
+      </div>
+    ),
     placeholder: <Icon size="xxxlarge" source={Icons.KnowledgeBaseColored} />,
     cta: (
       <>

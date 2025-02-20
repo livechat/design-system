@@ -19,6 +19,7 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
   title,
   titleHint,
   description,
+  customContent,
   onClick,
   cta,
 }) => {
@@ -106,12 +107,25 @@ export const CheckListItem: React.FC<ICheckListItem> = ({
             style={{ maxHeight: isActive ? size : 0 }}
           >
             <div ref={descriptionRef}>
-              <Text
-                size="lg"
-                className={styles[`${baseClass}__content__inner__description`]}
-              >
-                {description}
-              </Text>
+              {description && (
+                <Text
+                  size="lg"
+                  className={
+                    styles[`${baseClass}__content__inner__description`]
+                  }
+                >
+                  {description}
+                </Text>
+              )}
+              {customContent && (
+                <div
+                  className={
+                    styles[`${baseClass}__content__inner__description`]
+                  }
+                >
+                  {customContent}
+                </div>
+              )}
               <div className={styles[`${baseClass}__content__inner__cta`]}>
                 {cta}
               </div>
