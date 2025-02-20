@@ -72,8 +72,8 @@ export const InputComponent = React.forwardRef<
       className
     );
     const iconCustomColor = !disabled
-      ? 'var(--content-default)'
-      : 'var(--content-disabled)';
+      ? 'var(--content-basic-primary)'
+      : 'var(--content-basic-disabled)';
     const iconSource = isPasswordVisible ? VisibilityOnIcon : VisibilityOffIcon;
     const shouldRenderLeftIcon = icon && icon.place === 'left';
     const shouldRenderRightIcon =

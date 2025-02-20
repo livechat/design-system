@@ -40,10 +40,10 @@ $transition-with-delay: var(--transition-duration-fast-2) ease-in-out
 
   &--disabled,
   &--disabled:hover {
-    border-color: var(--border-disabled);
-    background-color: var(--surface-basic-disabled);
+    border-color: var(--border-basic-disabled);
+    background-color: var(--surface-primary-disabled);
     cursor: not-allowed;
-    color: var(--content-disabled);
+    color: var(--content-basic-disabled);
   }
 
   &--collapsable {
