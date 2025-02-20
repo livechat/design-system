@@ -55,7 +55,7 @@ $base-class: 'user-guide-bubble-step';
       display: flex;
       flex-direction: row;
       gap: var(--spacing-2);
-      align-items: center;
+      align-items: flex-start;
     }
 
     &--message {

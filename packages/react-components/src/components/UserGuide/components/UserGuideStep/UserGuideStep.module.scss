@@ -13,7 +13,7 @@ $base-class: 'user-guide-step';
     display: flex;
     flex-direction: row;
     gap: var(--spacing-2);
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: var(--spacing-3);
     color: var(--content-basic-primary);
   }
