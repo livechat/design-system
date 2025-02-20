@@ -28,6 +28,20 @@ export const TransitionDurationExample: React.FC = () => {
           className={cx(styles['example-box'], styles['duration-moderate1'])}
         />
       </div>
+      <div className={cx(styles['row'])}>
+        <Text>Moderate2</Text>
+        <div
+          className={cx(styles['example-box'], styles['duration-moderate2'])}
+        />
+      </div>
+      <div className={cx(styles['row'])}>
+        <Text>Slow1</Text>
+        <div className={cx(styles['example-box'], styles['duration-slow1'])} />
+      </div>
+      <div className={cx(styles['row'])}>
+        <Text>Slow2</Text>
+        <div className={cx(styles['example-box'], styles['duration-slow2'])} />
+      </div>
     </div>
   );
 };

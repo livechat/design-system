@@ -614,3 +614,31 @@ export const UserGuideBubbleStepExample = (): ReactElement => {
 UserGuideBubbleStepExample.parameters = {
   layout: 'centered',
 };
+
+export const UserGuideBubbleStepExampleWithAnimation = (): ReactElement => {
+  const [isCompleted, setisCompleted] = useState(false);
+
+  return (
+    <UserGuideBubbleStep
+      isCompleted={isCompleted}
+      handleAnimationComplete={() => setisCompleted(true)}
+      aria-label="Welcome guide step"
+      headerMessage="Welcome to chats section"
+      headerIcon={<Icon source={Icons.OneColored} />}
+      message="We have prepared the playground ready for you to test all capabilities of chat section. If you have any question, just trigger me from the upper -right corner of the screen!"
+      cta={
+        <>
+          <Button kind="high-contrast" size="large" onClick={() => {}}>
+            Let's dive in
+          </Button>
+          <Button kind="plain" size="large" onClick={() => {}}>
+            Maybe later
+          </Button>
+        </>
+      }
+    />
+  );
+};
+UserGuideBubbleStepExampleWithAnimation.parameters = {
+  layout: 'centered',
+};
