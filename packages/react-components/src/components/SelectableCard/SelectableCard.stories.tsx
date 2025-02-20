@@ -12,7 +12,7 @@ import {
 } from './components';
 import { SelectableCard } from './SelectableCard';
 
-import './SelectableCard.stories.css';
+import './SelectableCardStories.css';
 
 export default {
   title: 'Components/SelectableCard',
