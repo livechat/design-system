@@ -48,6 +48,18 @@
   transition-duration: var(--transition-duration-moderate-1);
 }
 
+.duration-moderate2 {
+  transition-duration: var(--transition-duration-moderate-2);
+}
+
+.duration-slow1 {
+  transition-duration: var(--transition-duration-slow-1);
+}
+
+.duration-slow2 {
+  transition-duration: var(--transition-duration-slow-2);
+}
+
 .timing-ease-in {
   transition-timing-function: var(--transition-timing-ease-in);
 }
