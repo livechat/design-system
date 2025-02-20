@@ -13,11 +13,13 @@ const baseClass = 'range-date-picker-v2-label';
 interface IRangeDatePickerV2LabelProps {
   tempDate?: DateRange;
   date?: DateRange;
+  selectedOptionName?: string;
 }
 
 export const RangeDatePickerV2Label: FC<IRangeDatePickerV2LabelProps> = ({
   tempDate,
   date,
+  selectedOptionName,
 }) => {
   const getStartDate = () => {
     if (tempDate?.from) {
@@ -49,7 +51,8 @@ export const RangeDatePickerV2Label: FC<IRangeDatePickerV2LabelProps> = ({
         [styles[`${baseClass}--selected`]]: date?.from && date?.to,
       })}
     >
-      {getStartDate()} - {getEndDate()}
+      {getStartDate()} - {getEndDate()}{' '}
+      {selectedOptionName && `(${selectedOptionName})`}
     </Text>
   );
 };
