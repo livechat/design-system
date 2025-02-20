@@ -4,6 +4,7 @@
   --transition-duration-fast-2: 200ms;
   --transition-duration-moderate-1: 300ms;
   --transition-duration-moderate-2: 500ms;
+  --transition-duration-slow-1: 1000ms;
   --transition-duration-slow-2: 1500ms;
 
   /* Timing */
@@ -26,6 +27,7 @@
     --transition-duration-fast-2: 0ms;
     --transition-duration-moderate-1: 0ms;
     --transition-duration-moderate-2: 0ms;
+    --transition-duration-slow-1: 0ms;
     --transition-duration-slow-2: 0ms;
     --delay-instant: 0ms;
     --delay-moderate: 0ms;
@@ -40,6 +42,7 @@
   --transition-duration-fast-2: 0ms;
   --transition-duration-moderate-1: 0ms;
   --transition-duration-moderate-2: 0ms;
+  --transition-duration-slow-1: 0ms;
   --transition-duration-slow-2: 0ms;
   --delay-instant: 0ms;
   --delay-moderate: 0ms;

@@ -57,7 +57,7 @@ export default {
   },
   parameters: {
     controls: { expanded: true },
-    chromatic: { delay: 300 },
+    chromatic: { delay: 500 },
   },
   subcomponents: {
     Info,
