@@ -16,7 +16,11 @@ export interface IChecklistItemProps {
   /**
    * Set the description of the item
    */
-  description: string;
+  description?: string;
+  /**
+   * Set the custom content of the item
+   */
+  customContent?: React.ReactElement;
   /**
    * The element to display when the item is active
    */
