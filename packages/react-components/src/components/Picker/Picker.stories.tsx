@@ -16,7 +16,7 @@ import {
 import { Picker } from './Picker';
 import { IPickerListItem, IPickerProps } from './types';
 
-import './Picker.stories.css';
+import './PickerStories.css';
 
 export default {
   title: 'Components/Picker',

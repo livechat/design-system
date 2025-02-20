@@ -8,7 +8,7 @@ import { Text } from '../Typography';
 
 import { Popover as PopoverComponent } from './Popover';
 
-import './Popover.stories.css';
+import './PopoverStories.css';
 
 const placements = [
   'top',
@@ -53,10 +53,14 @@ export default {
   parameters: {
     layout: 'centered',
     controls: { expanded: true },
+    chromatic: { delay: 300 },
   },
   args: {
     transitionOptions: {
       duration: isChromatic() ? 0 : undefined,
+      initial: {
+        opacity: isChromatic() ? 1 : 0,
+      },
     },
   },
   decorators: [
