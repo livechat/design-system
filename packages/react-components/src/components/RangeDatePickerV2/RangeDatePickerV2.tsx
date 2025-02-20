@@ -162,7 +162,13 @@ export const RangeDatePickerV2: FC<IRangeDatePickerV2Props> = ({
               }
             }}
           >
-            <RangeDatePickerV2Label tempDate={tempDate} date={date} />
+            <RangeDatePickerV2Label
+              tempDate={tempDate}
+              date={date}
+              selectedOptionName={
+                OPTIONS.find(({ id }) => id === currentSelectedId)?.label
+              }
+            />
             <div
               className={cx(
                 styles[`${baseClass}__trigger__right-node`],
