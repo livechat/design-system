@@ -46,6 +46,9 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
       );
     }
 
+    const getAvatarType = (item: IPickerListItem) =>
+      item.avatar?.type || (item.avatarSrc ? 'image' : 'text');
+
     return (
       <>
         {item.showCheckbox && (
@@ -65,7 +68,7 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
           <Avatar
             className={styles[`${itemClassName}__avatar`]}
             src={item.avatar?.src || item.avatarSrc}
-            type={item.avatar?.type || (item.avatarSrc ? 'image' : 'text')}
+            type={getAvatarType(item)}
             text={item.name}
             alt={item.name}
             size="xxsmall"

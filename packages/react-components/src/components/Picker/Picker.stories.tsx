@@ -359,7 +359,6 @@ const AVATAR_OPTIONS = {
     {
       key: '1',
       name: 'John Smith',
-      avatarSrc: 'text',
       avatar: { src: image, type: 'image' },
     },
     {
