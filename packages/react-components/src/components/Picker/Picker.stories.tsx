@@ -348,3 +348,75 @@ export const SearchBehavior = (): React.ReactElement => (
     </StoryDescriptor>
   </div>
 );
+
+const AVATAR_OPTIONS = {
+  NO_AVATARS: [
+    { key: '1', name: 'Option One' },
+    { key: '2', name: 'Option Two' },
+    { key: '3', name: 'Option Three' },
+  ] as IPickerListItem[],
+  WITH_AVATARS: [
+    {
+      key: '1',
+      name: 'John Smith',
+      avatarSrc: 'text',
+      avatar: { src: image, type: 'image' },
+    },
+    {
+      key: '2',
+      name: 'Jane Doe',
+      avatar: { src: image, type: 'image' },
+    },
+    {
+      key: '3',
+      name: 'Bob Wilson',
+      avatar: { src: image, type: 'image' },
+    },
+  ] as IPickerListItem[],
+  DEFAULT_AVATARS: [
+    { key: '1', name: 'John Smith', avatar: { type: 'text' } },
+    { key: '2', name: 'Jane Doe', avatar: { type: 'text' } },
+    { key: '3', name: 'Bob Wilson', avatar: { type: 'text' } },
+  ] as IPickerListItem[],
+  MIXED_AVATARS: [
+    {
+      key: '1',
+      name: 'John Smith',
+      avatar: { src: image, type: 'image' },
+    },
+    { key: '2', name: 'Jane Doe', avatar: { type: 'text' } },
+    { key: '3', name: 'Bob Wilson', avatar: { type: 'text' } },
+    {
+      key: '4',
+      name: 'Alice Brown',
+      avatar: { src: image, type: 'image' },
+    },
+  ] as IPickerListItem[],
+};
+
+export const AvatarVariations = (): React.ReactElement => (
+  <div style={{ ...commonWidth, marginBottom: 320 }}>
+    <StoryDescriptor title="No avatars">
+      <PickerComponent
+        options={AVATAR_OPTIONS.NO_AVATARS}
+        onSelect={noop}
+        openedOnInit
+      />
+    </StoryDescriptor>
+
+    <StoryDescriptor title="With custom avatars">
+      <PickerComponent options={AVATAR_OPTIONS.WITH_AVATARS} onSelect={noop} />
+    </StoryDescriptor>
+
+    <StoryDescriptor title="With default avatars">
+      <PickerComponent
+        options={AVATAR_OPTIONS.DEFAULT_AVATARS}
+        onSelect={noop}
+      />
+    </StoryDescriptor>
+
+    <StoryDescriptor title="Mixed avatars">
+      <PickerComponent options={AVATAR_OPTIONS.MIXED_AVATARS} onSelect={noop} />
+    </StoryDescriptor>
+  </div>
+);
