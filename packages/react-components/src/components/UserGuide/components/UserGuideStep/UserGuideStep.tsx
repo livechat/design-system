@@ -24,6 +24,7 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
   typingAnimation = false,
   handleCloseAction,
   handleClickPrimary,
+  className,
 }) => {
   const [isTypingEnd, setIsTypingEnd] = useState(false);
 
@@ -38,7 +39,7 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
   }, [handleCloseAction]);
 
   return (
-    <div className={cx('lc-light-theme', styles[`${baseClass}`])}>
+    <div className={cx('lc-light-theme', styles[`${baseClass}`], className)}>
       <span className={styles[`${baseClass}__heading`]}>
         <Icon size="large" source={OneColored} />
         <Text size="lg" bold as="span">
