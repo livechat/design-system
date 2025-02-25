@@ -26,7 +26,7 @@ $animations: (
     position: fixed;
     inset: 0;
     background-color: var(--surface-other-overlay);
-    z-index: $stacking-context-level-tooltip;
+    z-index: $stacking-context-level-modal;
     animation: fade-in var(--transition-duration-moderate-2) forwards;
     backdrop-filter: blur(2px);
     display: flex;
@@ -48,7 +48,7 @@ $animations: (
 
     transition-property: top, bottom, left, right;
     transition-timing-function: ease-in-out;
-    z-index: $stacking-context-level-modal;
+    z-index: 10001;
     opacity: 0;
     animation-duration: var(--transition-duration-moderate-2);
     animation-timing-function: ease-in-out;

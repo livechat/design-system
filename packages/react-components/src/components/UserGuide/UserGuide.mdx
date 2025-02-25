@@ -39,7 +39,7 @@ return (
       parentElementName={/* the id of the element to highlight, example: #reference1 */}
       cursorPosition={/* direction of the cursor pointer */}
       cursorTiming={/* timing animations */}
-      elementStyles={/* custom styles for highlighted element */}
+      elementClassName={/* custom class name for highlighted element */}
     >
       {/* here you should put the `UserGuideStep` or `UserGuideBubbleStep` components */}
 
@@ -66,17 +66,17 @@ displayed next to the element the guide points to. We suggest using `UserGuideSt
 
 ## Style highlighted element <a id="style" />
 
-Component allows to easily style the highlighted element, by passing own styles properties. To do this, you need to enchant the `UserGuide` component with styles object using the `elementStyles` prop:
+Component allows to easily style the highlighted element by passing a custom className. To do this, you need to provide the `UserGuide` component with a `elementClassName` prop:
 
 ```tsx
 <UserGuide
   ...
-  elementStyles={/* custom styles for highlighted element */}
+  elementClassName={/* custom class name for highlighted element */}
   ...
 >
 ```
 
-You can use your state managment to put different styles for highliughted elements, the component will update it.
+You can use your state management to apply different class names for highlighted elements, the component will update accordingly.
 
 ## UserGuideStep <a id="UserGuideStep" />
 
@@ -87,7 +87,7 @@ You can use your state managment to put different styles for highliughted elemen
 ```tsx
 <UserGuideStep
   header="This is selected navigation item"
-  text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
+  text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let's see how it looks like and let's make it 4 lines. Ok, cool."
   currentStep={1}
   stepMax={9}
   handleClickPrimary={/* your handler for primary button */}
