@@ -148,7 +148,7 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
             style={{
               position: strategy,
               top: isFirstStep || isLastStep ? '40%' : y,
-              left: isFirstStep || isLastStep ? '45%' : x,
+              left: isFirstStep || isLastStep ? 'calc(50% - 211px)' : x,
             }}
             className={cx(
               styles[`${baseClass}__floating`],
