@@ -12,7 +12,7 @@ import { Checkbox } from '../Checkbox';
 import { Icon } from '../Icon';
 import { Text } from '../Typography';
 
-import { Column, SortConfig, SortOrder } from './types';
+import { TableColumn, SortConfig, SortOrder } from './types';
 
 import styles from './TableHeader.module.scss';
 
@@ -23,7 +23,7 @@ const contentClass = `${baseClass}__content`;
 const hiddenIconClass = `${baseClass}__hiddenIcon`;
 
 interface TableHeaderProps<T> {
-  columns: Column<T>[];
+  columns: TableColumn<T>[];
   sortConfig: { key: keyof T | null; direction: SortOrder };
   handleSort: (key: keyof T) => void;
   resizable?: boolean;
