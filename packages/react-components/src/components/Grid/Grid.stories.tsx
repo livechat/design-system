@@ -66,16 +66,16 @@ export const Default: Story = {
           </Column>
         </Row>
         <Row>
-          <Column sm={2} md={4} lg={8}>
+          <Column sm={1} md={4} lg={4}>
             <Box>1/4</Box>
           </Column>
-          <Column sm={2} md={4} lg={8}>
+          <Column sm={1} md={4} lg={4}>
             <Box>1/4</Box>
           </Column>
-          <Column sm={2} md={4} lg={8}>
+          <Column sm={1} md={4} lg={4}>
             <Box>1/4</Box>
           </Column>
-          <Column sm={2} md={4} lg={8}>
+          <Column sm={1} md={4} lg={4}>
             <Box>1/4</Box>
           </Column>
         </Row>
