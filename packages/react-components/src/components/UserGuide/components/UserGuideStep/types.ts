@@ -47,4 +47,8 @@ export interface IUserGuideStepProps {
    * The function to be called when the the skip button is clicked
    */
   handleCloseAction?: (ev: KeyboardEvent | MouseEvent) => void;
+  /**
+   * Additional CSS class name to apply to the step container
+   */
+  className?: string;
 }
