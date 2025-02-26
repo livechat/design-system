@@ -26,6 +26,6 @@
 }
 
 .description {
-  color: var(--content-subtle);
+  color: var(--content-basic-secondary);
   font-size: 14px;
 }
