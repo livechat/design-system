@@ -25,6 +25,8 @@ const AccordionComponent: React.FC<IAccordionComponentProps> = ({
   label,
   multilineElement,
   openOnInit = false,
+  fullWidthContent,
+  hideChevron,
   isOpen,
   isPromo,
   footer,
@@ -83,13 +85,15 @@ const AccordionComponent: React.FC<IAccordionComponentProps> = ({
       onKeyDown={handleKeyDown}
       {...props}
     >
-      <Icon
-        source={ChevronDown}
-        className={cx(styles[`${baseClass}__chevron`], {
-          [styles[`${baseClass}__chevron--open`]]: isExpanded,
-          [styles[`${baseClass}__chevron--promo`]]: isPromo,
-        })}
-      />
+      {!hideChevron && (
+        <Icon
+          source={ChevronDown}
+          className={cx(styles[`${baseClass}__chevron`], {
+            [styles[`${baseClass}__chevron--open`]]: isExpanded,
+            [styles[`${baseClass}__chevron--promo`]]: isPromo,
+          })}
+        />
+      )}
       {buildHeader(isPromo)}
       {multilineElement && (
         <AccordionMultilineElement isExpanded={isExpanded}>
@@ -109,6 +113,8 @@ const AccordionComponent: React.FC<IAccordionComponentProps> = ({
                 className={cx(styles[`${baseClass}__content__inner`], {
                   [styles[`${baseClass}__content__inner--open`]]: isExpanded,
                   [styles[`${baseClass}__content__inner--promo`]]: isPromo,
+                  [styles[`${baseClass}__content__inner--full-width`]]:
+                    fullWidthContent,
                 })}
               >
                 {children}

@@ -12,6 +12,7 @@ $base-class: 'accordion';
   background-color: var(--surface-secondary-default);
   width: 100%;
   min-height: 24px;
+  overflow: hidden;
 
   &:focus-visible {
     outline: 0;
@@ -101,6 +102,10 @@ $base-class: 'accordion';
 
       &--promo {
         padding: 0 var(--spacing-12) var(--spacing-6) var(--spacing-6);
+      }
+
+      &--full-width {
+        padding: 0;
       }
     }
   }
