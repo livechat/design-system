@@ -15,7 +15,8 @@
 
 .column {
   position: relative;
-  width: 100%;
+  flex: 1 1 auto;
+  max-width: 100%;
   min-height: 1px;
 }
 
@@ -27,8 +28,7 @@
 }
 
 .columnSmAuto {
-  flex: 0 0 auto;
-  width: auto;
+  flex: 1 1 auto;
   max-width: 100%;
 }
 
@@ -46,8 +46,7 @@
       }
 
       .column#{capitalize($breakpoint)}Auto {
-        flex: 0 0 auto;
-        width: auto;
+        flex: 1 1 auto;
         max-width: 100%;
       }
     }

@@ -4,17 +4,15 @@ import cx from 'clsx';
 
 import styles from './Column.module.scss';
 
-type ColumnSpan = boolean | number;
-
 export interface ColumnProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Specify column span for different breakpoints
    */
-  sm?: ColumnSpan;
-  md?: ColumnSpan;
-  lg?: ColumnSpan;
-  xlg?: ColumnSpan;
-  max?: ColumnSpan;
+  sm?: number;
+  md?: number;
+  lg?: number;
+  xlg?: number;
+  max?: number;
   /**
    * Additional custom className
    */
@@ -43,11 +41,6 @@ export const Column: React.FC<ColumnProps> = ({
       [styles[`columnLg${lg}`]]: lg && typeof lg === 'number',
       [styles[`columnXlg${xlg}`]]: xlg && typeof xlg === 'number',
       [styles[`columnMax${max}`]]: max && typeof max === 'number',
-      [styles.columnSmAuto]: sm === true,
-      [styles.columnMdAuto]: md === true,
-      [styles.columnLgAuto]: lg === true,
-      [styles.columnXlgAuto]: xlg === true,
-      [styles.columnMaxAuto]: max === true,
     },
     className
   );

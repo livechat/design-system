@@ -192,3 +192,23 @@ export const NestedGrid: Story = {
     </GridWithVisualizer>
   ),
 };
+
+export const ThreeColumnExample: Story = {
+  render: () => (
+    <GridWithVisualizer>
+      <Grid>
+        <Row>
+          <Column sm={2} md={2} lg={4}>
+            <Box>Fixed Left (lg-4 columns, md-2 columns, sm-2 columns)</Box>
+          </Column>
+          <Column>
+            <Box>Auto-adjusting Middle</Box>
+          </Column>
+          <Column sm={2} md={2} lg={4}>
+            <Box>Fixed Right (lg-4 columns, md-2 columns, sm-2 columns)</Box>
+          </Column>
+        </Row>
+      </Grid>
+    </GridWithVisualizer>
+  ),
+};

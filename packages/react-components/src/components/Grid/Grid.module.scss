@@ -49,17 +49,6 @@ $grid-columns: (
   }
 }
 
-.row {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.column {
-  position: relative;
-  width: 100%;
-  min-height: 1px;
-}
-
 // Generate column classes for each breakpoint
 @each $breakpoint, $columns in $grid-columns {
   @include breakpoint(map.get($breakpoints, $breakpoint)) {
