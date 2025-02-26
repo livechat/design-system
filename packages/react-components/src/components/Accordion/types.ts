@@ -36,6 +36,10 @@ export interface IAccordionGlobalProps extends ComponentCoreProps {
    */
   fullWidthContent?: boolean;
   /**
+   * Set to hide the chevron icon
+   */
+  hideChevron?: boolean;
+  /**
    * Optional handler called on accordion close
    */
   onClose?: () => void;

@@ -132,6 +132,11 @@ export const Examples = (): React.ReactElement => {
           </div>
         </Accordion>
       </StoryDescriptor>
+      <StoryDescriptor title="With hidden chevron icon">
+        <Accordion label="Default" hideChevron>
+          Default accordion content
+        </Accordion>
+      </StoryDescriptor>
     </div>
   );
 };
