@@ -1,0 +1,55 @@
+@use 'sass:math';
+@use 'sass:map';
+@use '../../Grid.module.scss' as grid;
+
+@function capitalize($string) {
+  @return to-upper-case(str-slice($string, 1, 1)) + str-slice($string, 2);
+}
+
+@mixin breakpoint($size) {
+  /* stylelint-disable-next-line media-query-no-invalid */
+  @media (min-width: #{$size}) {
+    @content;
+  }
+}
+
+.column {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+}
+
+@for $i from 1 through map.get(grid.$grid-columns, 'sm') {
+  .columnSm#{$i} {
+    flex: 0 0 math.percentage(math.div($i, map.get(grid.$grid-columns, 'sm')));
+    max-width: math.percentage(math.div($i, map.get(grid.$grid-columns, 'sm')));
+  }
+}
+
+.columnSmAuto {
+  flex: 0 0 auto;
+  width: auto;
+  max-width: 100%;
+}
+
+// Generate column classes for other breakpoints
+@each $breakpoint, $columns in grid.$grid-columns {
+  @if $breakpoint != 'sm' {
+    $min-width: map.get(grid.$breakpoints, $breakpoint);
+
+    @include breakpoint($min-width) {
+      @for $i from 1 through $columns {
+        .column#{capitalize($breakpoint)}#{$i} {
+          flex: 0 0 math.percentage(math.div($i, $columns));
+          max-width: math.percentage(math.div($i, $columns));
+        }
+      }
+
+      .column#{capitalize($breakpoint)}Auto {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: 100%;
+      }
+    }
+  }
+}

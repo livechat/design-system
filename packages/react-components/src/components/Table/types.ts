@@ -6,7 +6,7 @@ export type BaseColumn<T> = {
   sortable?: boolean;
 };
 
-export type Column<T> = BaseColumn<T> &
+export type TableColumn<T> = BaseColumn<T> &
   (
     | { sortable?: false }
     | { sortable: true; sortValue: (row: T) => string | number }
@@ -32,7 +32,7 @@ type BaseTableProps<T> = {
   /**
    * The configuration for table columns, including keys, headers, and optional sorting logic.
    */
-  columns: Array<Column<T>>;
+  columns: Array<TableColumn<T>>;
   /**
    * The parameter allows you to customize alternating background colors for rows
    * or columns in the table, enhancing readability and visual separation. Allowed values

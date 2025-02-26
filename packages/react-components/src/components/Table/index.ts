@@ -1,3 +1,3 @@
 export { Table } from './Table';
-export type { ITableProps, Column } from './types';
+export type { ITableProps, TableColumn } from './types';
 export { useTable } from './hooks';

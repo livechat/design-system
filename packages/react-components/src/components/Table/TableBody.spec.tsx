@@ -1,7 +1,7 @@
 import { render, fireEvent, vi } from 'test-utils';
 
 import { TableBody } from './TableBody';
-import { Column } from './types';
+import { TableColumn } from './types';
 
 type Data = {
   id: number;
@@ -10,7 +10,7 @@ type Data = {
   role: string;
 };
 
-const columns: Column<Data>[] = [
+const columns: TableColumn<Data>[] = [
   { key: 'id', header: 'ID' },
   { key: 'name', header: 'Name' },
   { key: 'age', header: 'Age' },

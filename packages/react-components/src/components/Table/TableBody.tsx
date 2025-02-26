@@ -1,9 +1,9 @@
 import { TableRow } from './TableRow';
-import { Column } from './types';
+import { TableColumn } from './types';
 
 interface TableBodyProps<T> {
   data: T[];
-  columns: Column<T>[];
+  columns: TableColumn<T>[];
   getRowId: (row: T) => string | number;
   columnWidths: (number | undefined)[];
   selectable?: boolean;

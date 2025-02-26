@@ -16,7 +16,7 @@ import {
 } from './stories-constants';
 import { generateData } from './stories-helpers';
 import { Table } from './Table';
-import { Column, Data, DataForPinningExample } from './types';
+import { TableColumn, Data, DataForPinningExample } from './types';
 
 import storyStyles from './Table.stories.module.scss';
 
@@ -34,7 +34,7 @@ export default {
   ],
 } as Meta<typeof Table>;
 
-const columns: Column<Data>[] = [
+const columns: TableColumn<Data>[] = [
   {
     key: 'id',
     header: 'ID',

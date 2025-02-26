@@ -3,7 +3,7 @@ import * as React from 'react';
 import { render, fireEvent, vi } from 'test-utils';
 
 import { TableHeader } from './TableHeader';
-import { Column, SortOrder } from './types';
+import { TableColumn, SortOrder } from './types';
 
 type Data = {
   id: number;
@@ -12,7 +12,7 @@ type Data = {
   role: string;
 };
 
-const columns: Column<Data>[] = [
+const columns: TableColumn<Data>[] = [
   { key: 'id', header: 'ID', sortable: true, sortValue: (row) => row.id },
   { key: 'name', header: 'Name', sortable: true, sortValue: (row) => row.name },
   { key: 'age', header: 'Age', sortable: false },
@@ -78,7 +78,7 @@ describe('<TableHeader> component', () => {
   it('does not call handleSort when a non-sortable column is clicked', () => {
     const handleSort = vi.fn();
 
-    const columns: Column<Data>[] = [
+    const columns: TableColumn<Data>[] = [
       { key: 'id', header: 'ID', sortable: true, sortValue: (row) => row.id },
       { key: 'name', header: 'Name', sortable: false },
     ];

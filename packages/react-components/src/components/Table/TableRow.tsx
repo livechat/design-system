@@ -5,7 +5,7 @@ import cx from 'clsx';
 import { Checkbox } from '../Checkbox';
 import { Text } from '../Typography';
 
-import { Column } from './types';
+import { TableColumn } from './types';
 
 import styles from './TableRow.module.scss';
 
@@ -13,7 +13,7 @@ const baseClass = 'row';
 
 interface TableRowProps<T> {
   row: T;
-  columns: Column<T>[];
+  columns: TableColumn<T>[];
   columnWidths: (number | undefined)[];
   selectable?: boolean;
   isSelected: (id: string | number) => boolean;

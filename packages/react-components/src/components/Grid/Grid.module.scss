@@ -1,0 +1,78 @@
+@use 'sass:math';
+@use 'sass:map';
+@use 'sass:string';
+
+// Helper function
+@function capitalize($string) {
+  @return string.to-upper-case(string.slice($string, 1, 1)) +
+    string.slice($string, 2);
+}
+
+// Configuration
+$breakpoints: (
+  sm: 320px,
+  md: 672px,
+  lg: 1024px,
+  xlg: 1312px,
+  max: 1584px,
+);
+
+$grid-columns: (
+  sm: 4,
+  md: 8,
+  lg: 16,
+  xlg: 16,
+  max: 16,
+);
+
+// Mixins
+@mixin breakpoint($size) {
+  /* stylelint-disable-next-line media-query-no-invalid */
+  @media (min-width: #{$size}) {
+    @content;
+  }
+}
+
+@mixin column-styles($width) {
+  flex: 0 0 $width;
+  max-width: $width;
+}
+
+// Base styles
+.grid {
+  box-sizing: border-box;
+  margin-right: auto;
+  margin-left: auto;
+
+  &.fullWidth {
+    width: 100%;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.column {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+}
+
+// Generate column classes for each breakpoint
+@each $breakpoint, $columns in $grid-columns {
+  @include breakpoint(map.get($breakpoints, $breakpoint)) {
+    @for $i from 1 through $columns {
+      .column#{capitalize($breakpoint)}#{$i} {
+        @include column-styles(math.percentage(math.div($i, $columns)));
+      }
+    }
+
+    .column#{capitalize($breakpoint)}Auto {
+      flex: 0 0 auto;
+      width: auto;
+      max-width: 100%;
+    }
+  }
+}
