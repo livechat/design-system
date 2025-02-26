@@ -11,6 +11,7 @@ import { VirtuosoProps } from 'react-virtuoso';
 
 import { Size } from '../../utils';
 import { ComponentCoreProps } from '../../utils/types';
+import { AvatarType } from '../Avatar/types';
 import { IconSource } from '../Icon';
 import { TagProps } from '../Tag';
 
@@ -24,7 +25,14 @@ export interface IPickerListItem {
   groupHeader?: boolean;
   disabled?: boolean;
   icon?: IconSource;
+  /**
+   * @deprecated Use avatar object instead
+   */
   avatarSrc?: string;
+  avatar?: {
+    src?: string;
+    type: AvatarType;
+  } | null;
   secondaryText?: string;
   showCheckbox?: boolean;
   selectedTagOptions?: TagProps;
