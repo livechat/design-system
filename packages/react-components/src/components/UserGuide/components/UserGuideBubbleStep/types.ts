@@ -25,4 +25,8 @@ export interface IUserGuideBubbleStepProps {
    * Set to true to disable typing animations
    */
   disableTypingAnimations?: boolean;
+  /**
+   * Additional CSS class name to apply to the step container
+   */
+  className?: string;
 }

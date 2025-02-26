@@ -20,6 +20,7 @@ export const UserGuideBubbleStep: FC<IUserGuideBubbleStepProps> = ({
   isCompleted,
   handleAnimationComplete,
   disableTypingAnimations,
+  className,
 }) => {
   const [visibleBubbles, setVisibleBubbles] = useState<string[]>(['header']);
   const isHeaderVisible = visibleBubbles.includes('header');
@@ -33,7 +34,7 @@ export const UserGuideBubbleStep: FC<IUserGuideBubbleStepProps> = ({
   }, [visibleBubbles]);
 
   return (
-    <div className={cx('lc-light-theme', styles[`${baseClass}`])}>
+    <div className={cx('lc-light-theme', styles[`${baseClass}`], className)}>
       {isHeaderVisible && (
         <div
           className={cx(styles[`${baseClass}__bubble-wrapper`], {

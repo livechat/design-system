@@ -14,7 +14,7 @@ The `UserGuide` component provides a guided tour functionality to help users nav
 
 ## Usage <a id="Usage" />
 
-Here’s an example of how you can integrate the `UserGuide` component into your application:
+Here's an example of how you can integrate the `UserGuide` component into your application:
 
 ```tsx
 import {
@@ -81,6 +81,44 @@ You can use your state management to apply different class names for highlighted
 ## UserGuideStep <a id="UserGuideStep" />
 
 `UserGuideStep` is the component which should be used as the steps of the user guide. Used inside the `UserGuide` it will be positioned with the cursor based on the `cursorPosition`.
+
+### Media Handling
+
+When adding images or videos to UserGuideStep, keep in mind the following constraints:
+
+- Maximum height: 240px
+- Maximum width: 100% of the container (340px) (380px full width - 2*20px for padding)
+- Media will maintain its aspect ratio while scaling
+- Supported via `image` or `video` props:
+
+```tsx
+// Image example
+<UserGuideStep
+  image={{
+    src: "path/to/image",
+    alt: "Description"
+  }}
+  // ... other props
+/>
+
+// Video example
+<UserGuideStep
+  video={{
+    src: "path/to/video",
+    autoPlay: true,
+    muted: true,
+    loop: true,
+    controls: false,
+    playsInline: true
+  }}
+  // ... other props
+/>
+```
+
+For best results:
+- Optimize images to be close to the display size (380px width)
+- Use 16:9 or 4:3 aspect ratios for consistent appearance
+- Images/videos that are too tall will be scaled down to 240px height
 
 <Canvas of={Stories.UserGuideStepExample} />
 
