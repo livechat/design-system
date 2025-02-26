@@ -64,6 +64,7 @@ $base-class: 'app-frame';
       }
 
       &__content {
+        border: 1px solid var(--border-basic-tertiary);
         border-radius: 16px;
         background-color: var(--surface-primary-default);
         width: 100%;
