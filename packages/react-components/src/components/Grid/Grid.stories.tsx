@@ -212,3 +212,23 @@ export const ThreeColumnExample: Story = {
     </GridWithVisualizer>
   ),
 };
+
+export const FixedPixelWidthColumns: Story = {
+  render: () => (
+    <GridWithVisualizer>
+      <Grid>
+        <Row>
+          <Column style={{ flex: '0 0 200px' }}>
+            <Box>Fixed Left (200px)</Box>
+          </Column>
+          <Column>
+            <Box>Auto-adjusting Middle</Box>
+          </Column>
+          <Column style={{ flex: '0 0 200px' }}>
+            <Box>Fixed Right (200px)</Box>
+          </Column>
+        </Row>
+      </Grid>
+    </GridWithVisualizer>
+  ),
+};
