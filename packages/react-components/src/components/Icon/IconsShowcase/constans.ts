@@ -138,6 +138,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   BlockFilled: IconGroup.General,
   Block: IconGroup.General,
   Book: IconGroup.General,
+  BookFilled: IconGroup.General,
   BookmarkFilled: IconGroup.General,
   Bookmark: IconGroup.General,
   BotFilled: IconGroup.General,
