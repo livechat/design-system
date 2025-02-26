@@ -1,9 +1,11 @@
 import { FC, useEffect, useState } from 'react';
 
+import { OneColored } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
 import { AnimatedTextContainer } from '../../../AnimatedTextContainer';
 import { Button } from '../../../Button';
+import { Icon } from '../../../Icon';
 import { Text } from '../../../Typography';
 
 import { IUserGuideStepProps } from './types';
@@ -22,6 +24,7 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
   typingAnimation = false,
   handleCloseAction,
   handleClickPrimary,
+  className,
 }) => {
   const [isTypingEnd, setIsTypingEnd] = useState(false);
 
@@ -36,15 +39,13 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
   }, [handleCloseAction]);
 
   return (
-    <div className={cx('lc-light-theme', styles[`${baseClass}`])}>
-      <Text
-        size="lg"
-        bold
-        as="span"
-        className={styles[`${baseClass}__heading`]}
-      >
-        {header}
-      </Text>
+    <div className={cx('lc-light-theme', styles[`${baseClass}`], className)}>
+      <span className={styles[`${baseClass}__heading`]}>
+        <Icon size="large" source={OneColored} />
+        <Text size="lg" bold as="span">
+          {header}
+        </Text>
+      </span>
       {image && (
         <div className={styles[`${baseClass}__media-wrapper`]}>
           <img
@@ -104,7 +105,14 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
               as="span"
               className={styles[`${baseClass}__footer__step-counter`]}
             >
-              Step {currentStep} of {stepMax}
+              <span
+                className={
+                  styles[`${baseClass}__footer__step-counter__current-step`]
+                }
+              >
+                {currentStep}
+              </span>{' '}
+              / {stepMax} steps
             </Text>
           </span>
         </div>

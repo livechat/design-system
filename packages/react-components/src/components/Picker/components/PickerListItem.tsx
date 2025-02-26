@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Check } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
+import { Avatar } from '../../Avatar';
 import { Checkbox } from '../../Checkbox';
 import { Icon } from '../../Icon';
 import { Heading, Text } from '../../Typography';
@@ -45,6 +46,9 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
       );
     }
 
+    const getAvatarType = (item: IPickerListItem) =>
+      item.avatar?.type || (item.avatarSrc ? 'image' : 'text');
+
     return (
       <>
         {item.showCheckbox && (
@@ -60,11 +64,14 @@ export const PickerListItem: React.FC<IPickerListItemProps> = ({
             source={item.icon}
           />
         )}
-        {item.avatarSrc && (
-          <img
-            className={cx(styles[`${itemClassName}__avatar`])}
-            src={item.avatarSrc}
+        {(item.avatar || item.avatarSrc) && (
+          <Avatar
+            className={styles[`${itemClassName}__avatar`]}
+            src={item.avatar?.src || item.avatarSrc}
+            type={getAvatarType(item)}
+            text={item.name}
             alt={item.name}
+            size="xxsmall"
           />
         )}
         <div className={styles[`${itemClassName}__label-container`]}>

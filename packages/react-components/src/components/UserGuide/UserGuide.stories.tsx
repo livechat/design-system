@@ -1,4 +1,4 @@
-import { CSSProperties, ReactElement, useReducer, useState } from 'react';
+import { ReactElement, useReducer, useState } from 'react';
 
 import { Placement } from '@floating-ui/react';
 import * as Icons from '@livechat/design-system-icons';
@@ -135,7 +135,7 @@ export const Example = (): ReactElement => {
       reference: string;
       cursorPosition?: string;
       cursorTiming?: string;
-      elementStyles?: CSSProperties;
+      elementClassName?: string;
     },
     action: { type: string }
   ) => {
@@ -159,6 +159,7 @@ export const Example = (): ReactElement => {
         reference: 'home',
         cursorPosition: 'right-start',
         cursorTiming: 'moderate2',
+        elementClassName: 'element-highlighted',
       };
     }
     if (action.type === 'archives') {
@@ -175,6 +176,7 @@ export const Example = (): ReactElement => {
         reference: 'user',
         cursorPosition: 'right-end',
         cursorTiming: 'moderate2',
+        elementClassName: '',
       };
     }
     if (action.type === 'chat-list-column') {
@@ -183,6 +185,7 @@ export const Example = (): ReactElement => {
         reference: 'chat-list-column',
         cursorPosition: 'right',
         cursorTiming: 'moderate2',
+        elementClassName: '',
       };
     }
     if (action.type === 'text-area') {
@@ -191,6 +194,7 @@ export const Example = (): ReactElement => {
         reference: 'text-area',
         cursorPosition: 'top',
         cursorTiming: 'moderate2',
+        elementClassName: '',
       };
     }
     if (action.type === 'action-bar-area') {
@@ -199,6 +203,7 @@ export const Example = (): ReactElement => {
         reference: 'action-bar-area',
         cursorPosition: 'left',
         cursorTiming: 'moderate2',
+        elementClassName: '',
       };
     }
     if (action.type === 'one') {
@@ -207,6 +212,7 @@ export const Example = (): ReactElement => {
         reference: 'one',
         cursorPosition: 'bottom-end',
         cursorTiming: 'moderate2',
+        elementClassName: '',
       };
     }
     if (action.type === 'action-bar-area-menu-button') {
@@ -215,6 +221,7 @@ export const Example = (): ReactElement => {
         reference: 'action-bar-area-menu-button',
         cursorPosition: 'bottom-end',
         cursorTiming: 'moderate2',
+        elementClassName: '',
       };
     }
     if (action.type === 'accordion') {
@@ -223,6 +230,7 @@ export const Example = (): ReactElement => {
         reference: 'accordion',
         cursorPosition: 'left',
         cursorTiming: 'moderate2',
+        elementClassName: '',
       };
     }
     if (action.type === 'isVisible') {
@@ -230,6 +238,7 @@ export const Example = (): ReactElement => {
         reference: 'first-step',
         isVisible: !state.isVisible,
         cursorPosition: 'right-end',
+        elementClassName: '',
       };
     }
 
@@ -358,14 +367,13 @@ export const Example = (): ReactElement => {
           parentElementName={`#${state.reference}`}
           cursorPosition={state.cursorPosition as Placement}
           cursorTiming={state.cursorTiming as CursorTiming}
-          elementStyles={state.elementStyles}
+          elementClassName={state.elementClassName}
           isFirstStep={state.reference === 'first-step'}
           isLastStep={state.reference === 'last-step'}
         >
           {state.reference === 'first-step' ? (
             <UserGuideBubbleStep
               headerMessage="Welcome to chats section"
-              headerIcon={<Icon source={Icons.OneColored} />}
               message="We have prepared the playground ready for you to test all capabilities of chat section. If you have any question, just trigger me from the upper -right corner of the screen!"
               cta={
                 <>
@@ -393,7 +401,6 @@ export const Example = (): ReactElement => {
               isCompleted={isCompleted}
               handleAnimationComplete={() => setisCompleted(true)}
               headerMessage="Thanks for joining my tour"
-              headerIcon={<Icon source={Icons.OneColored} />}
               message="We have prepared the playground ready for you to test all capabilities of chat section. If you have any question, just trigger me from the upper -right corner of the screen!"
               cta={
                 <>
@@ -425,7 +432,7 @@ export const Example = (): ReactElement => {
           {state.reference === 'home' ? (
             <UserGuideStep
               header="This is navigation item"
-              text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
+              text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let's see how it looks like and let's make it 4 lines. Ok, cool."
               typingAnimation
               currentStep={1}
               stepMax={9}
@@ -437,7 +444,7 @@ export const Example = (): ReactElement => {
           {state.reference === 'archives' ? (
             <UserGuideStep
               header="This is selected navigation item"
-              text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
+              text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let's see how it looks like and let's make it 4 lines. Ok, cool."
               typingAnimation
               currentStep={2}
               stepMax={9}
@@ -449,7 +456,7 @@ export const Example = (): ReactElement => {
           {state.reference === 'user' ? (
             <UserGuideStep
               header="This is user button"
-              text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
+              text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let's see how it looks like and let's make it 4 lines. Ok, cool."
               typingAnimation
               currentStep={3}
               stepMax={9}
@@ -536,7 +543,7 @@ export const UserGuideStepExample = (): ReactElement => {
     <UserGuideStep
       aria-label="Navigation guide step"
       header="This is navigation item"
-      text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
+      text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let's see how it looks like and let's make it 4 lines. Ok, cool."
       currentStep={1}
       stepMax={9}
       handleClickPrimary={() => {}}
@@ -557,7 +564,7 @@ export const UserGuideStepExampleWithImage = (): ReactElement => {
       }}
       aria-label="Navigation guide step"
       header="This is navigation item"
-      text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
+      text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let's see how it looks like and let's make it 4 lines. Ok, cool."
       currentStep={1}
       stepMax={9}
       handleClickPrimary={() => {}}
@@ -582,7 +589,7 @@ export const UserGuideStepExampleWithVideo = (): ReactElement => {
       }}
       aria-label="Navigation guide step"
       header="This is navigation item"
-      text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let’s see how it looks like and let’s make it 4 lines. Ok, cool."
+      text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let's see how it looks like and let's make it 4 lines. Ok, cool."
       currentStep={1}
       stepMax={9}
       handleClickPrimary={() => {}}
@@ -599,7 +606,6 @@ export const UserGuideBubbleStepExample = (): ReactElement => {
     <UserGuideBubbleStep
       aria-label="Welcome guide step"
       headerMessage="Welcome to chats section"
-      headerIcon={<Icon source={Icons.OneColored} />}
       message="We have prepared the playground ready for you to test all capabilities of chat section. If you have any question, just trigger me from the upper -right corner of the screen!"
       cta={
         <>
@@ -615,5 +621,32 @@ export const UserGuideBubbleStepExample = (): ReactElement => {
   );
 };
 UserGuideBubbleStepExample.parameters = {
+  layout: 'centered',
+};
+
+export const UserGuideBubbleStepExampleWithAnimation = (): ReactElement => {
+  const [isCompleted, setisCompleted] = useState(false);
+
+  return (
+    <UserGuideBubbleStep
+      isCompleted={isCompleted}
+      handleAnimationComplete={() => setisCompleted(true)}
+      aria-label="Welcome guide step"
+      headerMessage="Welcome to chats section"
+      message="We have prepared the playground ready for you to test all capabilities of chat section. If you have any question, just trigger me from the upper -right corner of the screen!"
+      cta={
+        <>
+          <Button kind="high-contrast" size="large" onClick={() => {}}>
+            Let's dive in
+          </Button>
+          <Button kind="plain" size="large" onClick={() => {}}>
+            Maybe later
+          </Button>
+        </>
+      }
+    />
+  );
+};
+UserGuideBubbleStepExampleWithAnimation.parameters = {
   layout: 'centered',
 };

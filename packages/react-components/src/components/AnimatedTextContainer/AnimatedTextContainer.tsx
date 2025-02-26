@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 
 import { IAnimatedTextContainerProps } from './types';
 
@@ -13,7 +13,7 @@ export const AnimatedTextContainer: FC<IAnimatedTextContainerProps> = ({
   onTypingEnd,
 }) => {
   const [displayedText, setDisplayedText] = useState('');
-  const [_, setIndex] = useState(0);
+  const indexRef = useRef(0);
 
   useEffect(() => {
     if (!text) return;
@@ -24,18 +24,16 @@ export const AnimatedTextContainer: FC<IAnimatedTextContainerProps> = ({
 
     const startTyping = () => {
       const interval = setInterval(() => {
-        setIndex((prevIndex) => {
-          if (prevIndex < text.length) {
-            setDisplayedText((prevText) => prevText + text[prevIndex]);
+        const currentIndex = indexRef.current;
 
-            return prevIndex + 1;
-          } else {
-            clearInterval(interval);
-            onTypingEnd?.();
+        if (currentIndex < text.length) {
+          setDisplayedText((prevText) => prevText + text[currentIndex]);
 
-            return prevIndex;
-          }
-        });
+          indexRef.current = currentIndex + 1;
+        } else {
+          clearInterval(interval);
+          onTypingEnd?.();
+        }
       }, typingSpeed);
     };
 

@@ -26,3 +26,13 @@
 .gap {
   gap: 10px;
 }
+
+.element-highlighted {
+  border-radius: var(--radius-3);
+  box-shadow: var(--shadow-tour-animation-end);
+  background-color: var(--surface-primary-default);
+
+  svg {
+    color: var(--content-locked-black);
+  }
+}

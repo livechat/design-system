@@ -55,7 +55,7 @@ $base-class: 'user-guide-bubble-step';
       display: flex;
       flex-direction: row;
       gap: var(--spacing-2);
-      align-items: center;
+      align-items: flex-start;
     }
 
     &--message {
@@ -76,34 +76,12 @@ $base-class: 'user-guide-bubble-step';
     box-shadow: var(--shadow-modal);
   }
 
-  50% {
+  30% {
     box-shadow: var(--shadow-tour-animation);
   }
 
   100% {
     box-shadow: var(--shadow-modal);
-  }
-}
-
-@keyframes background-glow {
-  0% {
-    opacity: 0;
-  }
-
-  15% {
-    opacity: 0;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  85% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 0;
   }
 }
 

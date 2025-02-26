@@ -101,6 +101,7 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
                   key={index}
                   id={item.id}
                   description={item.description}
+                  customContent={item.customContent}
                   title={item.title}
                   titleHint={item.titleHint}
                   isActive={item.id === activeItemId}
