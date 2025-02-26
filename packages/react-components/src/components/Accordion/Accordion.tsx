@@ -25,6 +25,7 @@ const AccordionComponent: React.FC<IAccordionComponentProps> = ({
   label,
   multilineElement,
   openOnInit = false,
+  fullWidthContent,
   isOpen,
   isPromo,
   footer,
@@ -109,6 +110,8 @@ const AccordionComponent: React.FC<IAccordionComponentProps> = ({
                 className={cx(styles[`${baseClass}__content__inner`], {
                   [styles[`${baseClass}__content__inner--open`]]: isExpanded,
                   [styles[`${baseClass}__content__inner--promo`]]: isPromo,
+                  [styles[`${baseClass}__content__inner--full-width`]]:
+                    fullWidthContent,
                 })}
               >
                 {children}
