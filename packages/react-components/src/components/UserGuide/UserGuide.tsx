@@ -23,7 +23,7 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
   cursorTiming = 'fast2',
   parentElementName,
   isVisible = false,
-  elementStyles,
+  elementClassName,
   zIndex,
   isFirstStep,
   isLastStep,
@@ -87,7 +87,9 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
     if (parentElement && containerRef.current) {
       containerRef.current.innerHTML = '';
       const clonedElement = parentElement.cloneNode(true) as HTMLElement;
-      Object.assign(clonedElement.style, elementStyles);
+      if (elementClassName) {
+        clonedElement.className += ` ${elementClassName}`;
+      }
       containerRef.current.appendChild(clonedElement);
     }
 
@@ -96,7 +98,7 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
         containerRef.current.innerHTML = '';
       }
     };
-  }, [parentElement, containerRef.current]);
+  }, [parentElement, containerRef.current, elementClassName]);
 
   useEffect(() => {
     if (isVisible) {

@@ -1,5 +1,3 @@
-import { CSSProperties } from 'react';
-
 import { Placement } from '@floating-ui/react';
 
 export type CursorTiming = 'fast1' | 'fast2' | 'moderate1' | 'moderate2';
@@ -10,9 +8,9 @@ export interface IUserGuide {
    */
   className?: string;
   /**
-   * The CSS properties for the highlighted element
+   * The class name for the highlighted element
    */
-  elementStyles?: CSSProperties;
+  elementClassName?: string;
   /**
    * The position for the floating element which sets the cursor position
    */
