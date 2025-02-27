@@ -120,6 +120,23 @@ export const Examples = (): React.ReactElement => {
           Default accordion content
         </Accordion>
       </StoryDescriptor>
+      <StoryDescriptor title="With full width content">
+        <Accordion label="Default" fullWidthContent>
+          <div className="multiline no-radius">
+            <p>{`Hello {{ticket.requesterName}},`}</p>
+            <p>
+              We haven't heard back from you for some time. If you need any
+              further help, please follow up on this email.
+            </p>
+            <p>Thank you.</p>
+          </div>
+        </Accordion>
+      </StoryDescriptor>
+      <StoryDescriptor title="With hidden chevron icon">
+        <Accordion label="Default" hideChevron>
+          Default accordion content
+        </Accordion>
+      </StoryDescriptor>
     </div>
   );
 };

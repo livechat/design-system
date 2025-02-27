@@ -255,7 +255,11 @@ export const getChatsMenu = (
   </SideNavigation>
 );
 
-const getCustomLabel = (label: string, component: React.ReactNode) => (
+const getCustomLabel = (
+  label: string,
+  component: React.ReactNode,
+  isActive?: boolean
+) => (
   <span
     style={{
       display: 'flex',
@@ -264,7 +268,14 @@ const getCustomLabel = (label: string, component: React.ReactNode) => (
       gap: 8,
     }}
   >
-    {label} {component}
+    <span
+      style={{
+        opacity: isActive ? 1 : 0.6,
+      }}
+    >
+      {label}
+    </span>{' '}
+    {component}
   </span>
 );
 
@@ -302,10 +313,12 @@ const getAdvancedNavElements = (
     <SideNavigationItem
       label={getCustomLabel(
         `Option ${index + 5}`,
-        getCustomLabelElement(index + 5)
+        getCustomLabelElement(index + 5),
+        activeSubItem === index + 5
       )}
       leftNode={
         <Tooltip
+          kind="invert"
           placement="top-start"
           floatingStrategy="fixed"
           triggerRenderer={<Icon source={Icons.HelpFilled} size="small" />}
