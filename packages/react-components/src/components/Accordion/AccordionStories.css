@@ -30,6 +30,10 @@
   }
 }
 
+.multiline.no-radius {
+  border-radius: 0;
+}
+
 .accordion-promo-closed-heading {
   margin-bottom: 4px;
 }

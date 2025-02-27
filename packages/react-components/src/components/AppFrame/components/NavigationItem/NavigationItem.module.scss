@@ -26,16 +26,12 @@ $base-class: 'navigation-item';
     border-radius: var(--radius-3);
     width: 42px;
     height: 42px;
-    color: var(--content-locked-white);
+    color: var(--content-basic-primary);
 
     &:hover:not(.#{$base-class}__button--disabled) {
       opacity: 1;
-      background-color: color-mix(
-        in srgb,
-        var(--surface-locked-white) 15%,
-        transparent
-      );
-      color: var(--content-locked-white);
+      background-color: var(--surface-opacity-basic-hover);
+      color: var(--content-basic-primary);
 
       span {
         transform: scale(1);
@@ -70,11 +66,7 @@ $base-class: 'navigation-item';
 
     &--active {
       opacity: 1;
-      background-color: color-mix(
-        in srgb,
-        var(--surface-locked-white) 15%,
-        transparent
-      );
+      background-color: var(--surface-opacity-basic-active);
     }
 
     &--opacity {
