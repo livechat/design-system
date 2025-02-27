@@ -1,0 +1,28 @@
+@import '../../utils/StackingContextLevel';
+
+$base-class: 'floating-panel';
+
+.#{$base-class} {
+  position: absolute;
+  transition: all var(--transition-duration-moderate-2) ease-in-out;
+  opacity: 0;
+  z-index: $stacking-context-level-popover;
+  box-shadow: var(--shadow-pop-over);
+  background-color: var(--surface-primary-default);
+
+  &--bottom,
+  &--top {
+    right: 0;
+    left: 0;
+  }
+
+  &--left,
+  &--right {
+    top: 0;
+    bottom: 0;
+  }
+
+  &--visible {
+    opacity: 1;
+  }
+}

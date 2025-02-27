@@ -6,6 +6,7 @@ interface UseAnimationsProps {
   isVisible: boolean;
   elementRef: React.RefObject<HTMLDivElement>;
   includeSleepWakeScenario?: boolean;
+  animationDuration?: number;
 }
 
 export interface IUseAnimations {
@@ -18,6 +19,7 @@ export const useAnimations = ({
   isVisible,
   elementRef,
   includeSleepWakeScenario = false,
+  animationDuration = 300,
 }: UseAnimationsProps): IUseAnimations => {
   const [isMounted, setIsMounted] = React.useState(isVisible);
   const [isOpen, setIsOpen] = React.useState(isVisible);
@@ -42,7 +44,10 @@ export const useAnimations = ({
       setIsOpen(false);
 
       // Fallback timer in case transitionend doesn’t fire due to sleep
-      transitionTimeout.current = window.setTimeout(handleTransitionEnd, 300); // Adjust duration as needed
+      transitionTimeout.current = window.setTimeout(
+        handleTransitionEnd,
+        animationDuration
+      ); // Adjust duration as needed
 
       return () => {
         clearTimeout(transitionTimeout.current as number);

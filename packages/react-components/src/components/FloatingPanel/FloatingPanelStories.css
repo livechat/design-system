@@ -1,0 +1,17 @@
+.horizontal-panel {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+}
+
+.vertical-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 100%;
+}
