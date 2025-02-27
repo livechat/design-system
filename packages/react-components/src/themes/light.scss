@@ -133,7 +133,7 @@ $content-basic-internal-note: #3a310c;
   --content-basic-disabled: #8d8d95;
   --content-basic-negative: #ae0003;
   --content-basic-warning: #755b00;
-  --content-basic-positive: #005321;
+  --content-basic-positive: #007031;
   --content-basic-info: #003fa4;
   --content-basic-purple: #6100bd;
   --content-basic-gradient-01: linear-gradient(
@@ -345,7 +345,7 @@ $content-basic-internal-note: #3a310c;
   --surface-avatar-8: #a372ff;
   --surface-avatar-9: #b08c00;
   --surface-avatar-10: #00a449;
-  --navbar-background: #050505;
+  --navbar-background: #{$surface-secondary-default}; // --Surface-Secondary-Default,
   --tooltip-background-basic: #fff;
   --tooltip-background-invert: #{$decor-gray800};
   --tooltip-border: transparent;
