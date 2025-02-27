@@ -15,3 +15,15 @@
   width: 200px;
   height: 100%;
 }
+
+.default-example {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-basic-secondary);
+  border-radius: 8px;
+  width: 600px;
+  height: 600px;
+  overflow: hidden;
+}

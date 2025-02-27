@@ -13,8 +13,10 @@ const baseClass = 'floating-panel';
 
 export const FloatingPanel: FC<IFloatingPanelProps> = ({
   children,
+  className,
   isVisible = false,
   placement = 'bottom',
+  ...props
 }) => {
   const [panelHeight, setPanelHeight] = useState<number>(0);
   const [panelWidth, setPanelWidth] = useState<number>(0);
@@ -24,6 +26,14 @@ export const FloatingPanel: FC<IFloatingPanelProps> = ({
     elementRef: floatingElementWrapperRef,
     animationDuration: 500,
   });
+  const mergedClassNames = cx(
+    styles[baseClass],
+    styles[`${baseClass}--${placement}`],
+    className,
+    {
+      [styles[`${baseClass}--visible`]]: isOpen,
+    }
+  );
 
   useEffect(() => {
     if (isMounted && panelHeight === 0) {
@@ -43,10 +53,9 @@ export const FloatingPanel: FC<IFloatingPanelProps> = ({
   return (
     <div
       ref={floatingElementWrapperRef}
-      className={cx(styles[baseClass], styles[`${baseClass}--${placement}`], {
-        [styles[`${baseClass}--visible`]]: isOpen,
-      })}
+      className={mergedClassNames}
       style={getFloatingStyles(placement, isOpen, panelHeight, panelWidth)}
+      {...props}
     >
       {children}
     </div>

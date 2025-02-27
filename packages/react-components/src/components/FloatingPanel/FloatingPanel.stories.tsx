@@ -71,6 +71,25 @@ const secondaryNavigationIcons = [
 const defaultImage =
   'https://cdn-labs.livechat-files.com/api/file/lc/img/100019504/df59da4b5b0cdb6030efb08787fd255d.jpg';
 
+export const Default = (): ReactElement => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  return (
+    <div className="default-example">
+      <Button onClick={() => setIsVisible(!isVisible)}>
+        {isVisible ? 'Hide' : 'Show'}
+      </Button>
+      <FloatingPanel isVisible={isVisible}>
+        Example floating panel
+      </FloatingPanel>
+    </div>
+  );
+};
+Default.parameters = {
+  chromatic: { delay: 500 },
+  layout: 'centered',
+};
+
 export const Example = (): ReactElement => {
   const [activeItem, setActiveItem] = useState('archives');
   const [activeSubItem, setActiveSubItem] = useState(0);
