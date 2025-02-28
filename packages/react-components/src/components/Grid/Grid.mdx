@@ -1,0 +1,152 @@
+import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+
+import * as Stories from './Grid.stories';
+
+<Meta of={Stories} />
+
+<Title>Grid</Title>
+
+[Intro](#Intro) | [Usage](#Usage) | [Breakpoints](#Breakpoints) | [Column System](#ColumnSystem) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+## Intro <a id="Intro" />
+
+The `Grid` component provides a flexible and responsive layout system based on CSS Grid and Flexbox. It helps create consistent layouts across different screen sizes using a column-based system.
+
+## Usage <a id="Usage" />
+
+> Note: In the examples below, some stories include a grid overlay to help visualize the column structure. 
+> This overlay is only available in Storybook and is not part of the actual component.
+
+Here's a basic example of how to use the Grid system:
+
+```tsx
+import { Grid, Row, Column } from '@livechat/design-system-react-components';
+
+return (
+  <Grid>
+    <Row>
+      <Column lg={8}>
+        <div>Half width on large screens</div>
+      </Column>
+      <Column lg={8}>
+        <div>Half width on large screens</div>
+      </Column>
+    </Row>
+    <Row>
+      <Column lg={4}>
+        <div>Quarter width</div>
+      </Column>
+      <Column lg={4}>
+        <div>Quarter width</div>
+      </Column>
+      <Column lg={4}>
+        <div>Quarter width</div>
+      </Column>
+      <Column lg={4}>
+        <div>Quarter width</div>
+      </Column>
+    </Row>
+  </Grid>
+);
+```
+
+## Breakpoints <a id="Breakpoints" />
+
+The grid system uses five breakpoints by default:
+
+```scss
+$breakpoints: (
+  sm: 320px,   // Small devices
+  md: 672px,   // Medium devices
+  lg: 1024px,  // Large devices
+  xlg: 1312px, // Extra large devices
+  max: 1584px  // Maximum width
+);
+```
+
+## Column System <a id="ColumnSystem" />
+
+The grid uses different column counts for different breakpoints:
+
+```scss
+$grid-columns: (
+  sm: 4,   // 4 columns for small screens
+  md: 8,   // 8 columns for medium screens
+  lg: 16,  // 16 columns for large screens
+  xlg: 16, // 16 columns for extra large screens
+  max: 16  // 16 columns for maximum width
+);
+```
+
+### Column Props
+
+Columns can be specified for each breakpoint:
+
+```tsx
+<Column 
+  sm={2}   // Takes 2 of 4 columns (50%) on small screens
+  md={4}   // Takes 4 of 8 columns (50%) on medium screens
+  lg={8}   // Takes 8 of 16 columns (50%) on large screens
+  xlg={8}  // Takes 8 of 16 columns (50%) on extra large screens
+  max={8}  // Takes 8 of 16 columns (50%) at maximum width
+>
+  Content
+</Column>
+```
+
+### Auto-width Columns
+
+You can create flexible columns that automatically adjust their width:
+
+```tsx
+<Row>
+  <Column>
+    Auto width
+  </Column>
+  <Column>
+    Auto width
+  </Column>
+</Row>
+```
+
+### Nested Grids
+
+The Grid system supports nesting:
+
+```tsx
+<Grid>
+  <Row>
+    <Column lg={8}>
+      <Grid>
+        <Row>
+          <Column lg={8}>Nested content</Column>
+          <Column lg={8}>Nested content</Column>
+        </Row>
+      </Grid>
+    </Column>
+    <Column lg={8}>
+      Regular content
+    </Column>
+  </Row>
+</Grid>
+```
+
+## Component API <a id="ComponentAPI" />
+
+### Grid Props
+
+<ArgTypes of={Stories.Default} include={['fullWidth', 'className']} />
+
+### Column Props
+
+<ArgTypes of={Stories.Default} include={['sm', 'md', 'lg', 'xlg', 'max']} />
+
+## Content Spec <a id="ContentSpec" />
+
+<a
+  className="sb-unstyled"
+  href="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=97-24893&mode=dev"
+  target="_blank"
+>
+  Go to Figma documentation
+</a> 
