@@ -4,6 +4,7 @@ import { Placement } from '@floating-ui/react';
 import * as Icons from '@livechat/design-system-icons';
 import { Meta } from '@storybook/react';
 
+import exampleVideo from '../../assets/onboarding_final.mp4';
 import { AppFrame } from '../AppFrame';
 import {
   Navigation,
@@ -580,7 +581,7 @@ export const UserGuideStepExampleWithVideo = (): ReactElement => {
   return (
     <UserGuideStep
       video={{
-        src: 'https://cdn.livechat-static.com/api/file/lc/img/default/assets/copilot-popover.mp4',
+        src: exampleVideo,
         playsInline: true,
         autoPlay: true,
         muted: true,

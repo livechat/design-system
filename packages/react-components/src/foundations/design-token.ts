@@ -1,50 +1,26 @@
 export const DesignToken = {
-  /** @deprecated */
-  Background: '--background',
   Background01: '--background-01',
   Background02: '--background-02',
   Background03: '--background-03',
-  /** @deprecated */
-  SurfaceBasicDefault: '--surface-basic-default',
   SurfacePrimaryDefault: '--surface-primary-default',
-  /** @deprecated */
-  SurfaceBasicSubtle: '--surface-basic-subtle',
   SurfaceSecondaryDefault: '--surface-secondary-default',
   SurfaceSecondaryHover: '--surface-secondary-hover',
   SurfaceSecondaryActive: '--surface-secondary-active',
   SurfaceSecondaryDisabled: '--surface-secondary-disabled',
-  /** @deprecated */
-  SurfacePrimaryHoverOpacity: '--surface-primary-hover-opacity',
-  /** @deprecated */
-  SurfaceBasicHover: '--surface-basic-hover',
   SurfacePrimaryHover: '--surface-primary-hover',
-  /** @deprecated */
-  SurfaceBasicActive: '--surface-basic-active',
   SurfacePrimaryActive: '--surface-primary-active',
   SurfacePrimaryActiveColored: '--surface-primary-active-colored',
-  /** @deprecated */
-  SurfaceBasicDisabled: '--surface-basic-disabled',
   SurfacePrimaryDisabled: '--surface-primary-disabled',
   SurfaceTertiaryDefault: '--surface-tertiary-default',
-  /** @deprecated */
-  SurfaceSecondarySubtle: '--surface-secondary-subtle',
   SurfaceModerateDefault: '--surface-moderate-default',
   SurfaceModerateHover: '--surface-moderate-hover',
   SurfaceModerateActive: '--surface-moderate-active',
   SurfaceTertiaryHover: '--surface-tertiary-hover',
   SurfaceTertiaryActive: '--surface-tertiary-active',
   SurfaceTertiaryDisabled: '--surface-tertiary-disabled',
-  /** @deprecated */
-  SurfaceFeedbackInfo: '--surface-feedback-info',
   SurfaceAccentEmphasisLowInfo: '--surface-accent-emphasis-low-info',
-  /** @deprecated */
-  SurfaceFeedbackNegative: '--surface-feedback-negative',
   SurfaceAccentEmphasisLowNegative: '--surface-accent-emphasis-low-negative',
-  /** @deprecated */
-  SurfaceFeedbackWarning: '--surface-feedback-warning',
   SurfaceAccentEmphasisLowWarning: '--surface-accent-emphasis-low-warning',
-  /** @deprecated */
-  SurfaceFeedbackPositive: '--surface-feedback-positive',
   SurfaceAccentEmphasisLowPositive: '--surface-accent-emphasis-low-positive',
   SurfaceAccentEmphasisLowPurple: '--surface-accent-emphasis-low-purple',
   SurfaceAccentEmphasisMinInfo: '--surface-accent-emphasis-min-info',
@@ -52,28 +28,19 @@ export const DesignToken = {
   SurfaceAccentEmphasisMinWarning: '--surface-accent-emphasis-min-warning',
   SurfaceAccentEmphasisMinPositive: '--surface-accent-emphasis-min-positive',
   SurfaceAccentEmphasisMinPurple: '--surface-accent-emphasis-min-purple',
-  SurfaceAccentOndarkNegativeDefault:
-    '--surface-accent-ondark-negative-default',
+  SurfaceAccentOndarkNegativeDefault: '--surface-accent-ondark-negative-default',
   SurfaceAccentOndarkNegativeHover: '--surface-accent-ondark-negative-hover',
   SurfaceAccentOndarkWarningDefault: '--surface-accent-ondark-warning-default',
   SurfaceAccentOndarkWarningHover: '--surface-accent-ondark-warning-hover',
   SurfaceAccentOndarkInfoDefault: '--surface-accent-ondark-info-default',
   SurfaceAccentOndarkInfoHover: '--surface-accent-ondark-info-hover',
-  SurfaceAccentOndarkPositiveDefault:
-    '--surface-accent-ondark-positive-default',
+  SurfaceAccentOndarkPositiveDefault: '--surface-accent-ondark-positive-default',
   SurfaceAccentOndarkPositiveHover: '--surface-accent-ondark-positive-hover',
-  SurfaceAccentEmphasisSubtleNegative:
-    '--surface-accent-emphasis-subtle-negative',
-  SurfaceAccentEmphasisSubtleWarning:
-    '--surface-accent-emphasis-subtle-warning',
+  SurfaceAccentEmphasisSubtleNegative: '--surface-accent-emphasis-subtle-negative',
+  SurfaceAccentEmphasisSubtleWarning: '--surface-accent-emphasis-subtle-warning',
   SurfaceAccentEmphasisSubtleInfo: '--surface-accent-emphasis-subtle-info',
-  SurfaceAccentEmphasisSubtlePositive:
-    '--surface-accent-emphasis-subtle-positive',
-  /** @deprecated */
-  SurfaceInvertDefault: '--surface-invert-default',
+  SurfaceAccentEmphasisSubtlePositive: '--surface-accent-emphasis-subtle-positive',
   SurfaceInvertPrimary: '--surface-invert-primary',
-  /** @deprecated */
-  SurfaceInvertSubtle: '--surface-invert-subtle',
   SurfaceInvertSecondary: '--surface-invert-secondary',
   SurfaceInvertDisabled: '--surface-invert-disabled',
   SurfaceLockedDefault: '--surface-locked-default',
@@ -82,10 +49,8 @@ export const DesignToken = {
   SurfaceLockedDisabled: '--surface-locked-disabled',
   SurfaceLockedWhite: '--surface-locked-white',
   SurfaceLockedBlack: '--surface-locked-black',
-  SurfaceAccentEmphasisMediumNegative:
-    '--surface-accent-emphasis-medium-negative',
-  SurfaceAccentEmphasisMediumPositive:
-    '--surface-accent-emphasis-medium-positive',
+  SurfaceAccentEmphasisMediumNegative: '--surface-accent-emphasis-medium-negative',
+  SurfaceAccentEmphasisMediumPositive: '--surface-accent-emphasis-medium-positive',
   SurfaceAccentEmphasisHighInfo: '--surface-accent-emphasis-high-info',
   SurfaceAccentEmphasisHighNegative: '--surface-accent-emphasis-high-negative',
   SurfaceAccentEmphasisHighWarning: '--surface-accent-emphasis-high-warning',
@@ -95,8 +60,6 @@ export const DesignToken = {
   SurfaceOpacityBasicActive: '--surface-opacity-basic-active',
   SurfaceOpacityInvertHover: '--surface-opacity-invert-hover',
   SurfaceOpacityInvertActive: '--surface-opacity-invert-active',
-  /** @deprecated */
-  SurfaceOverlay: '--surface-overlay',
   SurfaceGradient01: '--surface-gradient-01',
   SurfaceGradient02: '--surface-gradient-02',
   SurfaceGradient03: '--surface-gradient-03',
@@ -115,19 +78,11 @@ export const DesignToken = {
   SurfaceOtherAgent: '--surface-other-agent',
   SurfaceOtherAgentHover: '--surface-other-agent-hover',
   SurfaceOtherSkeleton: '--surface-other-skeleton',
-  /** @deprecated */
-  SurfaceOtherInternalNote: '--surface-other-internal-note',
   SurfaceOtherInternalNoteHover: '--surface-other-internal-note-hover',
   SurfaceOtherVisitor: '--surface-other-visitor',
   SurfaceOtherVisitorHover: '--surface-other-visitor-hover',
-  /** @deprecated */
-  ContentDefault: '--content-default',
   ContentBasicPrimary: '--content-basic-primary',
-  /** @deprecated */
-  ContentSubtle: '--content-subtle',
   ContentBasicSecondary: '--content-basic-secondary',
-  /** @deprecated */
-  ContentDisabled: '--content-disabled',
   ContentBasicDisabled: '--content-basic-disabled',
   ContentBasicNegative: '--content-basic-negative',
   ContentBasicWarning: '--content-basic-warning',
@@ -135,36 +90,20 @@ export const DesignToken = {
   ContentBasicInfo: '--content-basic-info',
   ContentBasicPurple: '--content-basic-purple',
   ContentBasicGradient01: '--content-basic-gradient-01',
-  /** @deprecated */
-  ContentWhiteLocked: '--content-white-locked',
   ContentLockedWhite: '--content-locked-white',
-  /** @deprecated */
-  ContentBlackLocked: '--content-black-locked',
   ContentLockedBlack: '--content-locked-black',
   ContentLockedDefault: '--content-locked-default',
   ContentLockedHover: '--content-locked-hover',
   ContentLockedActive: '--content-locked-active',
   ContentLockedDisabled: '--content-locked-disabled',
-  /** @deprecated */
-  ContentInvertDefault: '--content-invert-default',
   ContentInvertPrimary: '--content-invert-primary',
-  /** @deprecated */
-  ContentInvertSubtle: '--content-invert-subtle',
   ContentInvertSecondary: '--content-invert-secondary',
   ContentInvertDisabled: '--content-invert-disabled',
   ContentInvertGradient01: '--content-invert-gradient-01',
-  /** @deprecated */
-  BorderDefault: '--border-default',
   BorderBasicPrimary: '--border-basic-primary',
   BorderBasicSecondary: '--border-basic-secondary',
-  /** @deprecated */
-  BorderSubtle: '--border-subtle',
   BorderBasicTertiary: '--border-basic-tertiary',
-  /** @deprecated */
-  BorderHover: '--border-hover',
   BorderBasicHover: '--border-basic-hover',
-  /** @deprecated */
-  BorderDisabled: '--border-disabled',
   BorderBasicDisabled: '--border-basic-disabled',
   BorderBasicNegative: '--border-basic-negative',
   BorderBasicWarning: '--border-basic-warning',
@@ -172,54 +111,24 @@ export const DesignToken = {
   BorderBasicInfo: '--border-basic-info',
   BorderBasicPurple: '--border-basic-purple',
   BorderBasicContrast: '--border-basic-contrast',
-  /** @deprecated */
-  BorderInvertDefault: '--border-invert-default',
   BorderInvertPrimary: '--border-invert-primary',
-  /** @deprecated */
-  BorderInvertSubtle: '--border-invert-subtle',
   BorderInvertSecondary: '--border-invert-secondary',
   BorderInvertHover: '--border-invert-hover',
   BorderInvertDisabled: '--border-invert-disabled',
-  /** @deprecated */
-  ColorActionActive: '--color-action-active',
   ActionPrimaryActive: '--action-primary-active',
-  /** @deprecated */
-  ColorActionHover: '--color-action-hover',
   ActionPrimaryHover: '--action-primary-hover',
-  /** @deprecated */
-  ColorActionDefault: '--color-action-default',
   ActionPrimaryDefault: '--action-primary-default',
   ColorActionDefaultRgb: '--color-action-default-rgb',
-  /** @deprecated */
-  ColorActionDisabled: '--color-action-disabled',
   ActionPrimaryDisabled: '--action-primary-disabled',
-  /** @deprecated */
-  ColorNegativeActive: '--color-negative-active',
   ActionNegativeActive: '--action-negative-active',
-  /** @deprecated */
-  ColorNegativeHover: '--color-negative-hover',
   ActionNegativeHover: '--action-negative-hover',
-  /** @deprecated */
-  ColorNegativeDefault: '--color-negative-default',
   ActionNegativeDefault: '--action-negative-default',
-  /** @deprecated */
-  ColorNegativeDisabled: '--color-negative-disabled',
   ActionNegativeDisabled: '--action-negative-disabled',
-  /** @deprecated */
-  ColorWarningDefault: '--color-warning-default',
   ActionWarningDefault: '--action-warning-default',
-  /** @deprecated */
-  ColorWarningHover: '--color-warning-hover',
   ActionWarningHover: '--action-warning-hover',
   ActionWarningDisabled: '--action-warning-disabled',
-  /** @deprecated */
-  ColorPositiveDefault: '--color-positive-default',
   ActionPositiveDefault: '--action-positive-default',
-  /** @deprecated */
-  ColorPositiveHover: '--color-positive-hover',
   ActionPositiveHover: '--action-positive-hover',
-  /** @deprecated */
-  ColorPositiveDisabled: '--color-positive-disabled',
   ActionPositiveDisabled: '--action-positive-disabled',
   ActionNeutralDefault: '--action-neutral-default',
   ActionNeutralHover: '--action-neutral-hover',
@@ -228,8 +137,6 @@ export const DesignToken = {
   ActionHighContrastHover: '--action-high-contrast-hover',
   ActionHighContrastActive: '--action-high-contrast-active',
   ActionHighContrastDisabled: '--action-high-contrast-disabled',
-  /** @deprecated */
-  ColorBot: '--color-bot',
   SurfaceOtherBot: '--surface-other-bot',
   SurfaceOtherBotHover: '--surface-other-bot-hover',
   ColorBlack: '--color-black',
@@ -335,8 +242,7 @@ export const DesignToken = {
   PickerListBackground: '--picker-list-background',
   PickerListGroupBackground: '--picker-list-group-background',
   PickerListOptionBackgroundHover: '--picker-list-option-background-hover',
-  PickerListOptionBackgroundActiveHover:
-    '--picker-list-option-background-active-hover',
+  PickerListOptionBackgroundActiveHover: '--picker-list-option-background-active-hover',
   PickerListOptionBackgroundFocus: '--picker-list-option-background-focus',
   PickerListOptionBackgroundActive: '--picker-list-option-background-active',
   PopoverBackground: '--popover-background',
@@ -364,23 +270,18 @@ export const DesignToken = {
   ActionLockHover: '--action-lock-hover',
   ActionLockActive: '--action-lock-active',
   ActionLockDisabled: '--action-lock-disabled',
-  SurfaceOtherInternalNoteMessageArea:
-    '--surface-other-internal-note-message-area',
+  SurfaceOtherInternalNoteMessageArea: '--surface-other-internal-note-message-area',
   SurfaceOtherInternalNoteDefault: '--surface-other-internal-note-default',
-  ContentBasicInternalNoteMessagePlaceholder:
-    '--content-basic-internal-note-message-placeholder',
-  ContentBasicInternalNoteMessageActive:
-    '--content-basic-internal-note-message-active',
-  OnePopoverMessageBackgroundDefault:
-    '--one-popover-message-background-default',
+  ContentBasicInternalNoteMessagePlaceholder: '--content-basic-internal-note-message-placeholder',
+  ContentBasicInternalNoteMessageActive: '--content-basic-internal-note-message-active',
+  OnePopoverMessageBackgroundDefault: '--one-popover-message-background-default',
   OnePopoverBorderDefault: '--one-popover-border-default',
   OnePopoverBorderActive: '--one-popover-border-active',
   OneTooltipBackground: '--one-tooltip-background',
   ContentBasicAutofill: '--content-basic-autofill',
   ProductsHello: '--products-hello',
   ProductsPlatform: '--products-platform',
-  SurfaceCheckListItemOpenBackground:
-    '--surface-check-list-item-open-background',
+  SurfaceCheckListItemOpenBackground: '--surface-check-list-item-open-background',
   SurfaceCheckListBackground: '--surface-check-list-background',
   ContentBasicPlaceholder: '--content-basic-placeholder',
   InputPromoBorderDefault: '--input-promo-border-default',
