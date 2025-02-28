@@ -36,7 +36,7 @@ export const FloatingPanel: FC<IFloatingPanelProps> = ({
   );
 
   useEffect(() => {
-    if (isMounted && panelHeight === 0) {
+    if (isMounted) {
       setPanelHeight(
         floatingElementWrapperRef?.current?.getBoundingClientRect().height || 0
       );
@@ -52,6 +52,8 @@ export const FloatingPanel: FC<IFloatingPanelProps> = ({
 
   return (
     <div
+      role="floating-panel"
+      aria-visible={isOpen}
       ref={floatingElementWrapperRef}
       className={mergedClassNames}
       style={getFloatingStyles(placement, isOpen, panelHeight, panelWidth)}
