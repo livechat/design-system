@@ -131,11 +131,6 @@ export const ColorsData: Record<
     desc: '',
     deprecated: false,
   },
-  Background: {
-    group: ColorGroup.Background,
-    desc: 'Common background',
-    deprecated: true,
-  },
   Background01: {
     group: ColorGroup.Background,
     desc: 'Main background color',
@@ -206,26 +201,6 @@ export const ColorsData: Record<
     desc: 'Outlined tag border, yellow tag border',
     deprecated: false,
   },
-  BorderDefault: {
-    group: ColorGroup.Deprecated,
-    desc: 'Replace with a BorderBasicPrimary',
-    deprecated: true,
-  },
-  BorderDisabled: {
-    group: ColorGroup.Deprecated,
-    desc: 'Replace with a BorderBasicDisabled',
-    deprecated: true,
-  },
-  BorderHover: {
-    group: ColorGroup.Deprecated,
-    desc: 'Replace with a BorderBasicHover',
-    deprecated: true,
-  },
-  BorderInvertDefault: {
-    group: ColorGroup.BorderInvert,
-    desc: 'Border color on inverted surface',
-    deprecated: false,
-  },
   BorderInvertDisabled: {
     group: ColorGroup.BorderInvert,
     desc: 'Disabled border state for interactive components as default state on iverted (oposite to primary surface or dark) surface',
@@ -245,41 +220,6 @@ export const ColorsData: Record<
     group: ColorGroup.BorderInvert,
     desc: 'Used as divider for non interactive components on iverted (oposite to primary surface or dark) surface',
     deprecated: false,
-  },
-  BorderInvertSubtle: {
-    group: ColorGroup.Deprecated,
-    desc: 'Replace with a BorderInvertSecondary',
-    deprecated: true,
-  },
-  BorderSubtle: {
-    group: ColorGroup.Deprecated,
-    desc: 'Replace with a BorderBasicSecondary',
-    deprecated: true,
-  },
-  BtnBasicBackgroundActive: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  BtnBasicBackgroundDisabled: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  BtnBasicBackgroundEnabled: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  BtnBasicBackgroundHover: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  BtnBasicBackgroundLoading: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
   },
   BtnPlainIconBackgroundActive: {
     group: ColorGroup.SurfaceComponentSpecific,
@@ -315,91 +255,6 @@ export const ColorsData: Record<
     group: ColorGroup.SurfaceComponentSpecific,
     desc: 'Loading state background for Secondary button',
     deprecated: false,
-  },
-  ColorActionActive: {
-    group: ColorGroup.Deprecated,
-    desc: 'Can be replaced with a ActionPrimaryActive',
-    deprecated: true,
-  },
-  ColorActionDefault: {
-    group: ColorGroup.Deprecated,
-    desc: 'Can be replaced with a ActionPrimaryDefault',
-    deprecated: true,
-  },
-  ColorActionDefaultRgb: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  ColorActionDisabled: {
-    group: ColorGroup.Deprecated,
-    desc: 'Can be replaced with a ActionPrimaryDisabled',
-    deprecated: true,
-  },
-  ColorActionHover: {
-    group: ColorGroup.Deprecated,
-    desc: 'Can be replaced with a ActionPrimaryHover',
-    deprecated: true,
-  },
-  ColorBlack: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  ColorBot: {
-    group: ColorGroup.SurfaceOther,
-    desc: 'Surface color for Bot message',
-    deprecated: false,
-  },
-  ColorNegativeActive: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  ColorNegativeDefault: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  ColorNegativeDisabled: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  ColorNegativeHover: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  ColorPositiveDefault: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  ColorPositiveDisabled: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  ColorPositiveHover: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  ColorWarningDefault: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  ColorWarningHover: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  ColorWhite: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
   },
   ContentBasicPrimary: {
     group: ColorGroup.ContentBasic,
@@ -456,21 +311,6 @@ export const ColorsData: Record<
     desc: 'Gradient color for content, text and icons',
     deprecated: false,
   },
-  ContentBlackLocked: {
-    group: ColorGroup.ContentLocked,
-    desc: 'Always black content color in all themes',
-    deprecated: false,
-  },
-  ContentDefault: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  ContentDisabled: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
   ContentInvertPrimary: {
     group: ColorGroup.ContentInvert,
     desc: 'Primary content on inverted sufrace, text and icons',
@@ -479,11 +319,6 @@ export const ColorsData: Record<
   ContentInvertSecondary: {
     group: ColorGroup.ContentInvert,
     desc: 'Secondary content on inverted sufrace, text and icons',
-    deprecated: false,
-  },
-  ContentInvertDefault: {
-    group: ColorGroup.ContentInvert,
-    desc: 'Primary content on inverted surface, text and icons',
     deprecated: false,
   },
   ContentInvertDisabled: {
@@ -495,11 +330,6 @@ export const ColorsData: Record<
     group: ColorGroup.ContentInvert,
     desc: 'Secondary content on inverted sufrace(dark surface or opposite to primary surface)',
     deprecated: false,
-  },
-  ContentInvertSubtle: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
   },
   ContentLockedBlack: {
     group: ColorGroup.ContentLocked,
@@ -530,16 +360,6 @@ export const ColorsData: Record<
     group: ColorGroup.ContentLocked,
     desc: 'White content color which is the same in all themes',
     deprecated: false,
-  },
-  ContentSubtle: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  ContentWhiteLocked: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
   },
   DecorBlue100: {
     group: ColorGroup.Decor,
@@ -1136,51 +956,6 @@ export const ColorsData: Record<
     desc: 'Avatar background color',
     deprecated: false,
   },
-  SurfaceBasicActive: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  SurfaceBasicDefault: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  SurfaceBasicDisabled: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  SurfaceBasicHover: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  SurfaceBasicSubtle: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  SurfaceFeedbackInfo: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  SurfaceFeedbackNegative: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  SurfaceFeedbackPositive: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
-  SurfaceFeedbackWarning: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
   SurfaceGradient01: {
     group: ColorGroup.SurfaceGradient,
     desc: 'Surface gradient color, as a background for banners, tags, badges',
@@ -1246,11 +1021,6 @@ export const ColorsData: Record<
     desc: 'Surface gradient color, as a background for banners, tags, badges',
     deprecated: false,
   },
-  SurfaceInvertDefault: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
-  },
   SurfaceInvertDisabled: {
     group: ColorGroup.SurfaceInvert,
     desc: 'Inverted disabled surface background color',
@@ -1265,11 +1035,6 @@ export const ColorsData: Record<
     group: ColorGroup.SurfaceInvert,
     desc: 'Inverted secondary surface background color',
     deprecated: false,
-  },
-  SurfaceInvertSubtle: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
   },
   SurfaceLockedActive: {
     group: ColorGroup.SurfaceLocked,
@@ -1346,11 +1111,6 @@ export const ColorsData: Record<
     desc: 'Skeleton background',
     deprecated: false,
   },
-  SurfaceOtherInternalNote: {
-    group: ColorGroup.SurfaceOther,
-    desc: '',
-    deprecated: false,
-  },
   SurfaceOtherInternalNoteHover: {
     group: ColorGroup.SurfaceOther,
     desc: '',
@@ -1365,11 +1125,6 @@ export const ColorsData: Record<
     group: ColorGroup.SurfaceOther,
     desc: '',
     deprecated: false,
-  },
-  SurfaceOverlay: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
   },
   SurfacePrimaryActive: {
     group: ColorGroup.SurfacePrimary,
@@ -1396,11 +1151,6 @@ export const ColorsData: Record<
     desc: 'Hover state for primary surface. Hovered item on default primary surface',
     deprecated: false,
   },
-  SurfacePrimaryHoverOpacity: {
-    group: ColorGroup.SurfacePrimary,
-    desc: 'Hover state for primary surface in message text area.',
-    deprecated: true,
-  },
   SurfaceSecondaryActive: {
     group: ColorGroup.SurfaceSecondary,
     desc: 'Activefor secondary surface',
@@ -1420,11 +1170,6 @@ export const ColorsData: Record<
     group: ColorGroup.SurfaceSecondary,
     desc: 'Hover state background color for secondary surface. Hovered item on secondary default surface or on primary default',
     deprecated: false,
-  },
-  SurfaceSecondarySubtle: {
-    group: ColorGroup.Deprecated,
-    desc: '',
-    deprecated: true,
   },
   SurfaceTertiaryActive: {
     group: ColorGroup.SurfaceTertiary,
@@ -2537,6 +2282,46 @@ export const ColorsData: Record<
   Categorical5colorsOption2Color5: {
     group: ColorGroup.Categorical5ColorsOption2,
     desc: 'Fifth color in 5-colors option 2',
+    deprecated: false,
+  },
+  ColorActionDefaultRgb: {
+    group: ColorGroup.ContentBasic,
+    desc: 'RGB values for action default color',
+    deprecated: false,
+  },
+  ColorBlack: {
+    group: ColorGroup.ContentBasic,
+    desc: 'Pure black color',
+    deprecated: false,
+  },
+  ColorWhite: {
+    group: ColorGroup.ContentBasic,
+    desc: 'Pure white color',
+    deprecated: false,
+  },
+  BtnBasicBackgroundEnabled: {
+    group: ColorGroup.SurfaceComponentSpecific,
+    desc: 'Basic button background in enabled state',
+    deprecated: false,
+  },
+  BtnBasicBackgroundHover: {
+    group: ColorGroup.SurfaceComponentSpecific,
+    desc: 'Basic button background in hover state',
+    deprecated: false,
+  },
+  BtnBasicBackgroundDisabled: {
+    group: ColorGroup.SurfaceComponentSpecific,
+    desc: 'Basic button background in disabled state',
+    deprecated: false,
+  },
+  BtnBasicBackgroundActive: {
+    group: ColorGroup.SurfaceComponentSpecific,
+    desc: 'Basic button background in active state',
+    deprecated: false,
+  },
+  BtnBasicBackgroundLoading: {
+    group: ColorGroup.SurfaceComponentSpecific,
+    desc: 'Basic button background in loading state',
     deprecated: false,
   },
 };

@@ -14,40 +14,28 @@ $content-basic-internal-note: #3a310c;
 
 :root,
 .lc-light-theme {
-  --background: #fff; // deprecated
   --background-01: #fff;
   --background-02: #fff;
   --background-03: #f1f1f2;
-  --surface-basic-default: #fff; // deprecated
   --surface-primary-default: #{$surface-primary-default};
-  --surface-basic-subtle: #f6f6f7; // deprecated
   --surface-secondary-default: #{$surface-secondary-default};
   --surface-secondary-hover: #ececec;
   --surface-secondary-active: #e7e7e7;
   --surface-secondary-disabled: #f0f0f1;
-  --surface-basic-hover: #e2e2e4; // deprecated
   --surface-primary-hover: #{$surface-primary-hover};
-  --surface-primary-hover-opacity: rgb(19 19 23 / 7%); // deprecated
-  --surface-basic-active: #c9c9cd; // deprecated
   --surface-primary-active: #{$surface-primary-active};
   --surface-primary-active-colored: rgb(0 102 255 / 25%);
-  --surface-basic-disabled: #f6f6f7; // deprecated
   --surface-primary-disabled: #f7f7f7;
   --surface-tertiary-default: #e6e6e7;
-  --surface-secondary-subtle: #e4e8ec; // deprecated
   --surface-moderate-default: #d8d8da;
   --surface-moderate-hover: #d1d1d4;
   --surface-moderate-active: #cdcdcf;
   --surface-tertiary-hover: #{$surface-tertiary-hover};
   --surface-tertiary-active: #e2e2e3;
   --surface-tertiary-disabled: #ebebec;
-  --surface-feedback-info: #daedff; // deprecated
   --surface-accent-emphasis-low-info: #daedff;
-  --surface-feedback-negative: #ffe5e5; // deprecated
   --surface-accent-emphasis-low-negative: #ffe5e5;
-  --surface-feedback-warning: #fff2d6; // deprecated
   --surface-accent-emphasis-low-warning: #ffe9bc;
-  --surface-feedback-positive: #e4f4ed; // deprecated
   --surface-accent-emphasis-low-positive: #d1f4d5;
   --surface-accent-emphasis-low-purple: #eee8ff;
   --surface-accent-emphasis-min-info: #{$surface-accent-emphasis-min-info};
@@ -67,9 +55,7 @@ $content-basic-internal-note: #3a310c;
   --surface-accent-emphasis-subtle-warning: #fee19b;
   --surface-accent-emphasis-subtle-info: #c9e4ff;
   --surface-accent-emphasis-subtle-positive: #bfeec8;
-  --surface-invert-default: #1b1b20; // deprecated
   --surface-invert-primary: #131317;
-  --surface-invert-subtle: #4e4e58; // deprecated
   --surface-invert-secondary: #3b3b43;
   --surface-invert-disabled: #8d8d95;
   --surface-locked-default: #fff;
@@ -89,12 +75,10 @@ $content-basic-internal-note: #3a310c;
   --surface-opacity-basic-active: rgb(19 19 23 / 9%);
   --surface-opacity-invert-hover: rgb(255 255 255 / 10%);
   --surface-opacity-invert-active: rgb(255 255 255 / 15%);
-  --surface-overlay: rgb(19 19 23 / 70%); // deprecated
   --surface-other-overlay: rgb(19 19 23 / 70%);
   --surface-other-agent: #0059e1;
   --surface-other-agent-hover: #07419a;
   --surface-other-skeleton: #e2e2e4;
-  --surface-other-internal-note: #fff2d6; // deprecated
   --surface-other-internal-note-hover: #fee3a0;
   --surface-other-visitor: #f5f5f5;
   --surface-other-visitor-hover: #e4e4e5;
@@ -125,11 +109,8 @@ $content-basic-internal-note: #3a310c;
     #fbfdff 67.15%,
     #fff 70.53%
   );
-  --content-default: #131317; // deprecated
   --content-basic-primary: #{$content-basic-primary};
-  --content-subtle: #62626d; // deprecated
   --content-basic-secondary: #62626d;
-  --content-disabled: #8d8d95; // deprecated
   --content-basic-disabled: #8d8d95;
   --content-basic-negative: #ae0003;
   --content-basic-warning: #755b00;
@@ -141,17 +122,13 @@ $content-basic-internal-note: #3a310c;
     #8609ff -0.38%,
     #004bc2 94.44%
   );
-  --content-white-locked: #fff; // deprecated
   --content-locked-white: #fff;
-  --content-black-locked: #131317; // deprecated
   --content-locked-black: #000;
   --content-locked-default: #131317;
   --content-locked-hover: #131317;
   --content-locked-active: #003fa4;
   --content-locked-disabled: rgb(255 255 255 / 70%);
-  --content-invert-default: #fff; // deprecated
   --content-invert-primary: #fff;
-  --content-invert-subtle: rgb(255 255 255 / 70%); // deprecated
   --content-invert-secondary: rgb(255 255 255 / 70%);
   --content-invert-disabled: rgb(255 255 255 / 50%);
   --content-invert-gradient-01: linear-gradient(
@@ -159,14 +136,10 @@ $content-basic-internal-note: #3a310c;
     #b99aff -0.38%,
     #68afff 94.44%
   );
-  --border-default: #c9c9cd; // deprecated
   --border-basic-primary: #c9c9cd;
   --border-basic-secondary: #e2e2e4;
-  --border-subtle: #eeeeef; // deprecated
   --border-basic-tertiary: #e5e5e6;
-  --border-hover: #ababb1; // deprecated
   --border-basic-hover: #ababb1;
-  --border-disabled: #e2e2e4; // deprecated
   --border-basic-disabled: #e2e2e4;
   --border-basic-negative: #ae0003;
   --border-basic-warning: #755b00;
@@ -174,39 +147,24 @@ $content-basic-internal-note: #3a310c;
   --border-basic-info: #003fa4;
   --border-basic-purple: #6100bd;
   --border-basic-contrast: #131317;
-  --border-invert-default: rgb(255 255 255 / 70%); // deprecated
   --border-invert-primary: rgb(255 255 255 / 70%);
-  --border-invert-subtle: rgb(255 255 255 / 30%); // deprecated
   --border-invert-secondary: rgb(255 255 255 / 30%);
   --border-invert-hover: #fff;
   --border-invert-disabled: rgb(255 255 255 / 50%);
-  --color-action-active: #003fa4; // deprecated
   --action-primary-active: #09367c;
-  --color-action-hover: #004bc2; // deprecated
   --action-primary-hover: #0644a4;
-  --color-action-default: #06f; // deprecated
   --action-primary-default: #{$action-primary-default};
   --color-action-default-rgb: 0, 102, 255;
-  --color-action-disabled: #9dceff; // deprecated
   --action-primary-disabled: rgb(0 89 225 / 20%);
-  --color-negative-active: #930002; // deprecated
   --action-negative-active: #6f090e;
-  --color-negative-hover: #ae0003; // deprecated
   --action-negative-hover: #8d0004;
-  --color-negative-default: #ca0005; // deprecated
   --action-negative-default: #ca0005;
-  --color-negative-disabled: #eba3a3; // deprecated
   --action-negative-disabled: rgb(202 0 5 / 20%);
-  --color-warning-default: #e8bb00; // deprecated
   --action-warning-default: #e8bb00;
-  --color-warning-hover: #c9a100; // deprecated
   --action-warning-hover: #a88907;
   --action-warning-disabled: rgb(232 187 0 / 20%);
-  --color-positive-default: #00893c; // deprecated
   --action-positive-default: #00893c;
-  --color-positive-hover: #006329; // deprecated
   --action-positive-hover: #066631;
-  --color-positive-disabled: #d1f4d5; // deprecated
   --action-positive-disabled: rgb(0 137 60 / 25%);
   --action-neutral-default: #8d8d95;
   --action-neutral-hover: #68686f;
@@ -215,7 +173,6 @@ $content-basic-internal-note: #3a310c;
   --action-high-contrast-hover: #43434b;
   --action-high-contrast-active: #131317;
   --action-high-contrast-disabled: rgb(27 27 32 / 20%);
-  --color-bot: #50009c; // deprecated
   --surface-other-bot: linear-gradient(
     95.09deg,
     #cddef9 0%,
