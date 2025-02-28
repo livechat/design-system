@@ -11,6 +11,26 @@ $base-class: 'floating-panel';
   background-color: var(--surface-primary-default);
   min-height: 100px;
 
+  &--bottom {
+    border-top: 1px solid var(--border-basic-secondary);
+    box-shadow: var(--shadow-fixed-bottom);
+  }
+
+  &--top {
+    border-bottom: 1px solid var(--border-basic-secondary);
+    box-shadow: var(--shadow-fixed-top);
+  }
+
+  &--left {
+    border-right: 1px solid var(--border-basic-secondary);
+    box-shadow: var(--shadow-fixed-left);
+  }
+
+  &--right {
+    border-left: 1px solid var(--border-basic-secondary);
+    box-shadow: var(--shadow-fixed-right);
+  }
+
   &--bottom,
   &--top {
     right: 0;
