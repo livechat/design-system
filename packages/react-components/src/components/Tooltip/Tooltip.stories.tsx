@@ -3,6 +3,7 @@ import * as React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
 import isChromatic from 'chromatic/isChromatic';
 
+import exampleVideo from '../../assets/onboarding_final.mp4';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { customHeightForChromatic } from '../../utils/chromatic-story-helpers';
 import noop from '../../utils/noop';
@@ -10,7 +11,6 @@ import { Button } from '../Button';
 
 import './TooltipStories.css';
 import { Info, Interactive, Reports, Simple } from './components';
-import exampleVideo from './onboarding_final.mp4';
 import beautifulImage from './placeholder.png';
 import { Tooltip } from './Tooltip';
 import { ITooltipProps } from './types';
