@@ -1,0 +1,30 @@
+import { ArgTypes, Canvas, Meta, Title } from '@storybook/blocks';
+import * as FloatingPanelStories from './FloatingPanel.stories';
+
+<Meta of={FloatingPanelStories} />
+
+<Title>FloatingPanel</Title>
+
+[Intro](#Intro) | [Implementation](#Implementation) | [Component API](#ComponentAPI)
+
+## Intro <a id="Intro" />
+
+The `FloatingPanel` component is a UI element designed to appear when form fields change. It provides contextual information or actions related to user input.
+
+<Canvas of={FloatingPanelStories.Default} />
+
+### Implementation <a id="Implementation" />
+
+Positioning: The `FloatingPanel` is positioned absolutely within its container. This means that the parent element must have `position: relative` to ensure the panel is placed correctly.
+
+```jsx
+<div style={{ position: 'relative' }}>
+  <FloatingPanel isVisible={true} placement="bottom">
+    Your content here...
+  </FloatingPanel>
+</div>
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={FloatingPanelStories.Default} sort="requiredFirst" />
