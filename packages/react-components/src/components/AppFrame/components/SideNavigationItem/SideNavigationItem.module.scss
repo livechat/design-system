@@ -14,13 +14,13 @@ $base-class: 'side-navigation-item';
     padding: 5.5px var(--spacing-3);
     text-decoration: none;
     line-height: 20px;
-    color: var(--content-basic-primary);
+    color: var(--content-locked-white);
     font-size: 13px;
 
     &:hover {
       background-color: var(--surface-opacity-basic-hover);
       text-decoration: none;
-      color: var(--content-basic-primary);
+      color: var(--content-locked-white);
 
       > p,
       > span {
@@ -28,7 +28,7 @@ $base-class: 'side-navigation-item';
       }
 
       .#{$base-class}__custom-label {
-        color: var(--content-basic-primary);
+        color: var(--content-locked-white);
       }
     }
 
@@ -95,11 +95,11 @@ $base-class: 'side-navigation-item';
     text-overflow: ellipsis;
     line-height: 21px;
     white-space: nowrap;
-    color: var(--content-basic-primary);
+    color: rgb(255 255 255 / 60%);
     font-size: 14px;
 
     &--active {
-      color: var(--content-basic-primary);
+      color: var(--content-locked-white);
     }
   }
 }

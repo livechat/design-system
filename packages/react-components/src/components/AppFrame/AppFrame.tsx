@@ -78,6 +78,7 @@ const Frame = (props: IAppFrameProps) => {
                 styles[
                   `${pageContainerClass}__content-wrapper__nav-bar-wrapper`
                 ],
+                'lc-dark-theme',
                 sideNavigationContainerClassName,
                 {
                   [styles[
