@@ -80,12 +80,16 @@ export const NavigationItem: React.FC<INavigationItemProps> = ({
             <a
               tabIndex={disabled ? -1 : 0}
               aria-label={label}
-              className={cx(styles[`${baseClass}__button`], {
-                [styles[`${baseClass}__button--active`]]: isActive,
-                [styles[`${baseClass}__button--opacity`]]: disableOpacity,
-                [styles[`${baseClass}__button--disabled`]]: disabled,
-                [styles[`${baseClass}__button--mobile`]]: isMobileViewEnabled,
-              })}
+              className={cx(
+                styles[`${baseClass}__button`],
+                {
+                  [styles[`${baseClass}__button--active`]]: isActive,
+                  [styles[`${baseClass}__button--opacity`]]: disableOpacity,
+                  [styles[`${baseClass}__button--disabled`]]: disabled,
+                  [styles[`${baseClass}__button--mobile`]]: isMobileViewEnabled,
+                },
+                'lc-dark-theme'
+              )}
               onClick={(e) => !disabled && onClick(e, id)}
               href={url}
               {...props}
