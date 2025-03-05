@@ -1,2 +1,2 @@
 export * from './Grid';
-export * from './components/Column/Column';
+export * from './components/column/Column';
