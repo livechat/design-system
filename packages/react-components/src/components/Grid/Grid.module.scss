@@ -2,13 +2,11 @@
 @use 'sass:map';
 @use 'sass:string';
 
-// Helper function
 @function capitalize($string) {
   @return string.to-upper-case(string.slice($string, 1, 1)) +
     string.slice($string, 2);
 }
 
-// Configuration
 $breakpoints: (
   sm: 320px,
   md: 672px,
@@ -41,12 +39,8 @@ $grid-columns: (
 // Base styles
 .grid {
   box-sizing: border-box;
-  margin-right: auto;
-  margin-left: auto;
-
-  &.fullWidth {
-    width: 100%;
-  }
+  display: flex;
+  flex-wrap: wrap;
 }
 
 // Generate column classes for each breakpoint

@@ -20,19 +20,16 @@ The `Grid` component provides a flexible and responsive layout system based on C
 Here's a basic example of how to use the Grid system:
 
 ```tsx
-import { Grid, Row, Column } from '@livechat/design-system-react-components';
+import { Grid, Column } from '@livechat/design-system-react-components';
 
 return (
   <Grid>
-    <Row>
       <Column lg={8}>
         <div>Half width on large screens</div>
       </Column>
       <Column lg={8}>
         <div>Half width on large screens</div>
       </Column>
-    </Row>
-    <Row>
       <Column lg={4}>
         <div>Quarter width</div>
       </Column>
@@ -45,7 +42,6 @@ return (
       <Column lg={4}>
         <div>Quarter width</div>
       </Column>
-    </Row>
   </Grid>
 );
 ```
@@ -94,6 +90,37 @@ Columns can be specified for each breakpoint:
 </Column>
 ```
 
+When specifying breakpoints, columns follow these behaviors:
+
+1. **Single Breakpoint**
+```tsx
+<Column sm={4}>
+  {/* Takes 4 columns on small screens */}
+  {/* Maintains this same width percentage on larger breakpoints */}
+  {/* (Since sm=4 means 100% on small screens, it will stay 100% on larger screens) */}
+</Column>
+
+<Column lg={8}>
+  {/* Starts as a flexible column (autoadjusting width flex: 1 1 auto) on smaller screens */}
+  {/* Takes 8 columns (50%) starting from large breakpoint */}
+</Column>
+```
+
+2. **Multiple Breakpoints with Gaps**
+```tsx
+<Column sm={2} lg={8}>
+  {/* Takes 2 columns (50%) on small screens */}
+  {/* Maintains 50% width on medium screens (inherited from sm breakpoint) */}
+  {/* Takes 8 columns (50%) on large screens and up */}
+</Column>
+```
+
+3. **Default Behavior**
+- By default, columns have `flex: 1 1 auto` and `max-width: 100%`
+- When a breakpoint is specified, it sets a fixed width percentage using `flex: 0 0` and corresponding `max-width`
+- The width set at a breakpoint persists until another breakpoint overwrites it
+- There is no "reverting" to auto-adjustment after a breakpoint - the last specified width continues to apply
+
 ### Auto-width Columns
 
 You can create flexible columns that automatically adjust their width:
@@ -115,21 +142,29 @@ The Grid system supports nesting:
 
 ```tsx
 <Grid>
-  <Row>
     <Column lg={8}>
       <Grid>
-        <Row>
-          <Column lg={8}>Nested content</Column>
-          <Column lg={8}>Nested content</Column>
-        </Row>
+        <Column lg={8}>Nested content</Column>
+        <Column lg={8}>Nested content</Column>
       </Grid>
     </Column>
     <Column lg={8}>
       Regular content
     </Column>
-  </Row>
 </Grid>
 ```
+
+#### Nested Grid Proportions
+
+When using nested grids, it's important to understand how column widths relate to each other. Each grid is divided into 16 columns, and when you nest a grid inside a column, that column becomes the new "100%" width for the nested grid.
+
+For example:
+- If you have a column that's `lg={4}` (4/16 = 25% of the outer grid)
+- And inside it, you place a nested grid with a column that's `lg={8}` (8/16 = 50% of the nested grid)
+- The nested column will actually occupy 50% of 25% of the total width, which equals 12.5% of the outer grid width
+- This is equivalent to a `lg={2}` column in the outer grid (2/16 = 12.5%)
+
+This proportional relationship helps maintain consistent spacing and alignment throughout your layout hierarchy.
 
 ## Component API <a id="ComponentAPI" />
 
