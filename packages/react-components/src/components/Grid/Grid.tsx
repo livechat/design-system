@@ -4,6 +4,14 @@ import cx from 'clsx';
 
 import styles from './Grid.module.scss';
 
+type Alignment = 'start' | 'center' | 'end' | 'stretch';
+type JustifyContent =
+  | 'start'
+  | 'center'
+  | 'end'
+  | 'space-between'
+  | 'space-around';
+
 export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Additional custom className
@@ -21,6 +29,14 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
    * Vertical spacing between rows (in pixels)
    */
   verticalSpacing?: number;
+  /**
+   * Vertical alignment of columns
+   */
+  align?: Alignment;
+  /**
+   * Horizontal alignment of columns
+   */
+  justify?: JustifyContent;
 }
 
 export const Grid: React.FC<GridProps> = ({
@@ -28,10 +44,19 @@ export const Grid: React.FC<GridProps> = ({
   children,
   horizontalSpacing,
   verticalSpacing,
+  align,
+  justify,
   style,
   ...rest
 }) => {
-  const gridClasses = cx(styles.grid, className);
+  const gridClasses = cx(
+    styles.grid,
+    {
+      [styles[`align-${align}`]]: align,
+      [styles[`justify-${justify}`]]: justify,
+    },
+    className
+  );
 
   const gridStyle = {
     ...style,

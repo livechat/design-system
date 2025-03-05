@@ -19,14 +19,22 @@ export default meta;
 type Story = StoryObj<typeof Grid>;
 
 // Styled div to make grid visible
-const Box = ({ children }: { children: React.ReactNode }) => (
+const Box = ({
+  children,
+  style,
+}: {
+  children: React.ReactNode;
+  style?: React.CSSProperties;
+}) => (
   <div
     style={{
       backgroundColor: 'var(--surface-basic-active)',
       border: '1px solid var(--content-locked-black)',
       textAlign: 'center',
       height: '100%',
+
       minHeight: '50px',
+      ...style,
     }}
   >
     {children}
@@ -347,6 +355,59 @@ export const WithSpacing: Story = {
             </Column>
             <Column sm={4}>
               <Box>Column 3</Box>
+            </Column>
+          </Grid>
+        </div>
+      </div>
+    </GridWithVisualizer>
+  ),
+};
+
+export const Alignment: Story = {
+  render: () => (
+    <GridWithVisualizer>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        <div>
+          <h3>Vertical Alignment (align=end)</h3>
+          <Grid align="end">
+            <Column sm={1}>
+              <Box style={{ height: '100px' }}>Tall</Box>
+            </Column>
+            <Column sm={1}>
+              <Box style={{ height: '50px' }}>Short</Box>
+            </Column>
+            <Column sm={2}>
+              <Box style={{ height: '75px' }}>Medium</Box>
+            </Column>
+          </Grid>
+        </div>
+
+        <div>
+          <h3>Horizontal Alignment (justify=end)</h3>
+          <Grid justify="end">
+            <Column sm={1}>
+              <Box>Left</Box>
+            </Column>
+            <Column sm={1}>
+              <Box>Center</Box>
+            </Column>
+            <Column sm={1}>
+              <Box>Right</Box>
+            </Column>
+          </Grid>
+        </div>
+
+        <div>
+          <h3>Combined Alignment (justify=center, align=center)</h3>
+          <Grid align="center" justify="center">
+            <Column sm={1}>
+              <Box style={{ height: '100px' }}>Start</Box>
+            </Column>
+            <Column sm={1}>
+              <Box style={{ height: '50px' }}>Middle</Box>
+            </Column>
+            <Column sm={1}>
+              <Box style={{ height: '75px' }}>End</Box>
             </Column>
           </Grid>
         </div>
