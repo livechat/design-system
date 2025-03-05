@@ -22,6 +22,8 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
   currentStep,
   stepMax,
   typingAnimation = false,
+  typingDelay,
+  typingSpeed,
   handleCloseAction,
   handleClickPrimary,
   className,
@@ -77,6 +79,8 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
         <AnimatedTextContainer
           text={text}
           typingAnimation={typingAnimation}
+          typingDelay={typingDelay}
+          typingSpeed={typingSpeed}
           onTypingEnd={() => setIsTypingEnd(true)}
         />
       </Text>

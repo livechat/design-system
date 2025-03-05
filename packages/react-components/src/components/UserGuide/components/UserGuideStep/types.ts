@@ -51,4 +51,12 @@ export interface IUserGuideStepProps {
    * Additional CSS class name to apply to the step container
    */
   className?: string;
+  /**
+   * Typing animation speed
+   */
+  typingSpeed?: number;
+  /**
+   * Delay before typing starts
+   */
+  typingDelay?: number;
 }
