@@ -306,3 +306,51 @@ export const BreakpointInheritance: Story = {
     </GridWithVisualizer>
   ),
 };
+
+export const WithSpacing: Story = {
+  render: () => (
+    <GridWithVisualizer>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        <div>
+          <h3>
+            With horizontalSpacing={8} verticalSpacing={8}
+          </h3>
+          <Grid horizontalSpacing={8} verticalSpacing={8}>
+            <Column sm={1}>
+              <Box>Column 1</Box>
+            </Column>
+            <Column sm={1}>
+              <Box>Column 2</Box>
+            </Column>
+            <Column sm={1}>
+              <Box>Column 3</Box>
+            </Column>
+            <Column sm={1}>
+              <Box>Column 4</Box>
+            </Column>
+            <Column sm={4}>
+              <Box>Column 3</Box>
+            </Column>
+          </Grid>
+        </div>
+
+        <div>
+          <h3>
+            With mixed horizontalSpacing={8} verticalSpacing={16}
+          </h3>
+          <Grid horizontalSpacing={8} verticalSpacing={16}>
+            <Column sm={2}>
+              <Box>Column 1</Box>
+            </Column>
+            <Column sm={2}>
+              <Box>Column 2</Box>
+            </Column>
+            <Column sm={4}>
+              <Box>Column 3</Box>
+            </Column>
+          </Grid>
+        </div>
+      </div>
+    </GridWithVisualizer>
+  ),
+};
