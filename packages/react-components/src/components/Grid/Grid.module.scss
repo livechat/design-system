@@ -1,0 +1,105 @@
+@use 'sass:math';
+@use 'sass:map';
+@use 'sass:string';
+
+@function capitalize($string) {
+  @return string.to-upper-case(string.slice($string, 1, 1)) +
+    string.slice($string, 2);
+}
+
+$breakpoints: (
+  sm: 320px,
+  md: 672px,
+  lg: 1024px,
+  xlg: 1312px,
+  max: 1584px,
+);
+
+$grid-columns: (
+  sm: 4,
+  md: 8,
+  lg: 16,
+  xlg: 16,
+  max: 16,
+);
+
+// Mixins
+@mixin breakpoint($size) {
+  /* stylelint-disable-next-line media-query-no-invalid */
+  @media (min-width: #{$size}) {
+    @content;
+  }
+}
+
+@mixin column-styles($width) {
+  flex: 0 0 $width;
+  max-width: $width;
+}
+
+// Base styles
+.grid {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--grid-v-spacing, 0) 0;
+  margin: calc(var(--grid-h-spacing, 0) / -2);
+
+  // Make columns respect the horizontal spacing
+  > * {
+    padding: 0 calc(var(--grid-h-spacing, 0) / 2);
+  }
+
+  // Alignment styles
+  &.align-start {
+    align-items: flex-start;
+  }
+
+  &.align-center {
+    align-items: center;
+  }
+
+  &.align-end {
+    align-items: flex-end;
+  }
+
+  &.align-stretch {
+    align-items: stretch;
+  }
+
+  &.justify-start {
+    justify-content: flex-start;
+  }
+
+  &.justify-center {
+    justify-content: center;
+  }
+
+  &.justify-end {
+    justify-content: flex-end;
+  }
+
+  &.justify-space-between {
+    justify-content: space-between;
+  }
+
+  &.justify-space-around {
+    justify-content: space-around;
+  }
+}
+
+// Generate column classes for each breakpoint
+@each $breakpoint, $columns in $grid-columns {
+  @include breakpoint(map.get($breakpoints, $breakpoint)) {
+    @for $i from 1 through $columns {
+      .column#{capitalize($breakpoint)}#{$i} {
+        @include column-styles(math.percentage(math.div($i, $columns)));
+      }
+    }
+
+    .column#{capitalize($breakpoint)}Auto {
+      flex: 0 0 auto;
+      width: auto;
+      max-width: 100%;
+    }
+  }
+}

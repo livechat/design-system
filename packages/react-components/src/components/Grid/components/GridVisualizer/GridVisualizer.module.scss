@@ -1,0 +1,49 @@
+@use 'sass:color';
+
+.wrapper {
+  width: 100%;
+  min-height: 200px;
+}
+
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.gridContainer {
+  display: flex;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.gridColumn {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: rgb(100 93 93 / 5%);
+  padding-bottom: 4px;
+  font-size: 12px;
+}
+
+.gridColumnInner {
+  flex: 1;
+  border-right: 1px dashed rgb(100 93 93 / 20%);
+  border-left: 1px dashed rgb(100 93 93 / 20%);
+  width: 100%;
+}
+
+.gridInfo {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1000;
+  border-radius: 4px;
+  background: rgb(0 0 0 / 80%);
+  padding: 8px 12px;
+  color: #fff;
+  font-size: 14px;
+}
