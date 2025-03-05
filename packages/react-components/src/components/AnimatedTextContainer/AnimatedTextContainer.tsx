@@ -2,8 +2,8 @@ import { FC, useEffect, useRef, useState } from 'react';
 
 import { IAnimatedTextContainerProps } from './types';
 
-const TYPING_SPEED = 10;
-const TYPING_DELAY = 600;
+const TYPING_SPEED = 8;
+const TYPING_DELAY = 100;
 
 export const AnimatedTextContainer: FC<IAnimatedTextContainerProps> = ({
   text,
