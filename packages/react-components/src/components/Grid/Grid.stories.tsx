@@ -60,33 +60,27 @@ export const Default: Story = {
   render: () => (
     <GridWithVisualizer>
       <Grid>
-        <Column sm={4} md={4}>
-          <Box>Column 1</Box>
+        <Column sm={4} md={4} lg={4}>
+          <Box>Column 1 (always 4 columns)</Box>
         </Column>
-        <Column lg={8}>
-          <Box>Column 2</Box>
-        </Column>
-        <Column>
-          <Box>Column 3</Box>
+        <Column sm={2} md={4} lg={8}>
+          <Box>Column 2 (always 50%)</Box>
         </Column>
         <Column>
-          <Box>Column 4</Box>
+          <Box>Column 3 (flexible)</Box>
         </Column>
         <Column>
-          <Box>Column 5</Box>
+          <Box>Column 4 (flexible)</Box>
         </Column>
-        <Column>
-          <Box>Column 6</Box>
-        </Column>
-        <Column>
-          <Box>Column 7</Box>
+        <Column sm={4}>
+          <Box>Column 5 (always full width)</Box>
         </Column>
       </Grid>
     </GridWithVisualizer>
   ),
 };
 
-export const FixedColumnSizes: Story = {
+export const FixedColumnPercentageSizes: Story = {
   render: () => (
     <GridWithVisualizer>
       <Grid>
@@ -315,54 +309,6 @@ export const BreakpointInheritance: Story = {
   ),
 };
 
-export const WithSpacing: Story = {
-  render: () => (
-    <GridWithVisualizer>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-        <div>
-          <h3>
-            With horizontalSpacing={8} verticalSpacing={8}
-          </h3>
-          <Grid horizontalSpacing={8} verticalSpacing={8}>
-            <Column sm={1}>
-              <Box>Column 1</Box>
-            </Column>
-            <Column sm={1}>
-              <Box>Column 2</Box>
-            </Column>
-            <Column sm={1}>
-              <Box>Column 3</Box>
-            </Column>
-            <Column sm={1}>
-              <Box>Column 4</Box>
-            </Column>
-            <Column sm={4}>
-              <Box>Column 3</Box>
-            </Column>
-          </Grid>
-        </div>
-
-        <div>
-          <h3>
-            With mixed horizontalSpacing={8} verticalSpacing={16}
-          </h3>
-          <Grid horizontalSpacing={8} verticalSpacing={16}>
-            <Column sm={2}>
-              <Box>Column 1</Box>
-            </Column>
-            <Column sm={2}>
-              <Box>Column 2</Box>
-            </Column>
-            <Column sm={4}>
-              <Box>Column 3</Box>
-            </Column>
-          </Grid>
-        </div>
-      </div>
-    </GridWithVisualizer>
-  ),
-};
-
 export const Alignment: Story = {
   render: () => (
     <GridWithVisualizer>
@@ -416,14 +362,14 @@ export const Alignment: Story = {
   ),
 };
 
-export const NestedGridWithSpacingAndAlignment: Story = {
+export const NestedGridWithAlignment: Story = {
   render: () => (
     <GridWithVisualizer>
-      <Grid verticalSpacing={24} justify="center">
+      <Grid justify="center">
         <Column lg={12}>
           <Box>
             <p>Outer Grid centered (12 columns)</p>
-            <Grid horizontalSpacing={8} justify="center">
+            <Grid justify="center">
               <Column lg={6}>
                 <Box>Inner Grid centered (6 inner grid columns)</Box>
               </Column>
@@ -436,7 +382,7 @@ export const NestedGridWithSpacingAndAlignment: Story = {
         <Column lg={8}>
           <Box>
             <p>Outer Grid centered (8 columns)</p>
-            <Grid justify="space-between" horizontalSpacing={8}>
+            <Grid justify="space-between">
               <Column lg={4}>
                 <Box>Inner Grid spaced-between (4 inner grid columns)</Box>
               </Column>

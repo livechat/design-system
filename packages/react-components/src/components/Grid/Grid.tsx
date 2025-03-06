@@ -22,14 +22,6 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
    */
   children?: React.ReactNode;
   /**
-   * Horizontal spacing between columns (in pixels)
-   */
-  horizontalSpacing?: number;
-  /**
-   * Vertical spacing between rows (in pixels)
-   */
-  verticalSpacing?: number;
-  /**
    * Vertical alignment of columns
    */
   align?: Alignment;
@@ -42,11 +34,8 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
 export const Grid: React.FC<GridProps> = ({
   className,
   children,
-  horizontalSpacing,
-  verticalSpacing,
   align,
   justify,
-  style,
   ...rest
 }) => {
   const gridClasses = cx(
@@ -58,14 +47,8 @@ export const Grid: React.FC<GridProps> = ({
     className
   );
 
-  const gridStyle = {
-    ...style,
-    '--grid-h-spacing': horizontalSpacing ? `${horizontalSpacing}px` : null,
-    '--grid-v-spacing': verticalSpacing ? `${verticalSpacing}px` : null,
-  } as React.CSSProperties;
-
   return (
-    <div className={gridClasses} style={gridStyle} {...rest}>
+    <div className={gridClasses} {...rest}>
       {children}
     </div>
   );
