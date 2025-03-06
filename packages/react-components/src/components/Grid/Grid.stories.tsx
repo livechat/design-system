@@ -414,7 +414,7 @@ export const ColumnSizing: Story = {
         </div>
 
         <div>
-          <h3>Fixed Width with Min/Max Constraints</h3>
+          <h3>Flexible width with Min/Max Constraints</h3>
           <Grid>
             <Column minWidth="200px" maxWidth="300px">
               <Box>constrained between 200px-300px</Box>
