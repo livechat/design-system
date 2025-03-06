@@ -184,4 +184,75 @@ This proportional relationship helps maintain consistent spacing and alignment t
   target="_blank"
 >
   Go to Figma documentation
-</a> 
+</a>
+
+### Column Sizing Methods
+
+The Column component supports three different approaches to sizing:
+
+1. **Grid-based Sizing** (using breakpoint props)
+```tsx
+<Column sm={2} md={4} lg={8}>
+  {/* Takes specific column spans at different breakpoints */}
+</Column>
+```
+
+2. **Direct Width Control**
+```tsx
+<Column width="200px">
+  {/* Fixed width column */}
+</Column>
+
+<Column width="50%">
+  {/* Percentage-based width */}
+</Column>
+```
+
+3. **Flexible with Constraints**
+```tsx
+<Column minWidth="150px" maxWidth="300px">
+  {/* Flexible column with size constraints */}
+</Column>
+```
+
+> **Important**: These sizing methods are mutually exclusive. You cannot mix breakpoint-based sizing (sm, md, lg, etc.) with direct width control or constraints.
+
+#### Width Properties
+
+- `width`: Sets a fixed width for the column (CSS width value)
+- `minWidth`: Sets a minimum width constraint (CSS width value)
+- `maxWidth`: Sets a maximum width constraint (CSS width value)
+
+These properties accept any valid CSS width value (px, %, rem, etc.).
+
+#### Usage Guidelines
+
+1. **Breakpoint-based Sizing**
+   - Best for responsive layouts that need different widths at different screen sizes
+   - Uses the grid's column system
+   - Cannot be combined with width/minWidth/maxWidth
+
+2. **Direct Width Control**
+   - Best for fixed-width columns
+   - Can be combined with minWidth/maxWidth for constraints
+   - Cannot be used with breakpoint props (sm, md, lg, etc.)
+
+3. **Flexible with Constraints**
+   - Best for columns that need to flex while respecting size limits
+   - Can use minWidth and/or maxWidth independently
+   - Works with the auto-flexible behavior
+
+#### Examples
+
+```tsx
+// Fixed width
+<Column width="200px">Fixed width</Column>
+
+// Flexible with constraints
+<Column minWidth="150px" maxWidth="300px">
+  Flexible with limits
+</Column>
+
+// Auto-flexible (default behavior)
+<Column>Flexible width</Column>
+``` 

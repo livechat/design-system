@@ -221,24 +221,6 @@ export const ThreeColumnExample: Story = {
   ),
 };
 
-export const FixedPixelWidthColumns: Story = {
-  render: () => (
-    <GridWithVisualizer>
-      <Grid>
-        <Column style={{ flex: '0 0 200px' }}>
-          <Box>Fixed Left (200px)</Box>
-        </Column>
-        <Column>
-          <Box>Auto-adjusting Middle</Box>
-        </Column>
-        <Column style={{ flex: '0 0 200px' }}>
-          <Box>Fixed Right (200px)</Box>
-        </Column>
-      </Grid>
-    </GridWithVisualizer>
-  ),
-};
-
 export const BreakpointInheritance: Story = {
   render: () => (
     <GridWithVisualizer>
@@ -393,6 +375,56 @@ export const NestedGridWithAlignment: Story = {
           </Box>
         </Column>
       </Grid>
+    </GridWithVisualizer>
+  ),
+};
+
+export const ColumnSizing: Story = {
+  render: () => (
+    <GridWithVisualizer>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+        <div>
+          <h3>Fixed Width Columns</h3>
+          <Grid>
+            <Column width="200px">
+              <Box>Fixed 200px</Box>
+            </Column>
+            <Column>
+              <Box>Auto-flexible</Box>
+            </Column>
+            <Column width="300px">
+              <Box>Fixed 300px</Box>
+            </Column>
+          </Grid>
+        </div>
+
+        <div>
+          <h3>Min/Max Width Constraints</h3>
+          <Grid>
+            <Column minWidth="150px" maxWidth="300px">
+              <Box>Flexible (min: 150px, max: 300px)</Box>
+            </Column>
+            <Column minWidth="200px">
+              <Box>Flexible (min: 200px)</Box>
+            </Column>
+            <Column maxWidth="250px">
+              <Box>Flexible (max: 250px)</Box>
+            </Column>
+          </Grid>
+        </div>
+
+        <div>
+          <h3>Fixed Width with Min/Max Constraints</h3>
+          <Grid>
+            <Column minWidth="200px" maxWidth="300px">
+              <Box>constrained between 200px-300px</Box>
+            </Column>
+            <Column>
+              <Box>Auto-flexible</Box>
+            </Column>
+          </Grid>
+        </div>
+      </div>
     </GridWithVisualizer>
   ),
 };

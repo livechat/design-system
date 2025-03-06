@@ -4,35 +4,68 @@ import cx from 'clsx';
 
 import styles from './Column.module.scss';
 
-export interface ColumnProps extends React.HTMLAttributes<HTMLDivElement> {
-  /**
-   * Specify column span for different breakpoints
-   */
+interface BaseColumnProps {
+  children?: React.ReactNode;
+  className?: string;
+}
+
+interface BreakpointProps {
   sm?: number;
   md?: number;
   lg?: number;
   xlg?: number;
   max?: number;
-  /**
-   * Additional custom className
-   */
-  className?: string;
-  /**
-   * Child elements
-   */
-  children?: React.ReactNode;
+  // Ensure width props can't be used with breakpoints
+  width?: never;
+  minWidth?: never;
+  maxWidth?: never;
 }
 
+interface FixedWidthProps {
+  width: string;
+  // Ensure other width controls and breakpoints can't be used with fixed width
+  minWidth?: never;
+  maxWidth?: never;
+  sm?: never;
+  md?: never;
+  lg?: never;
+  xlg?: never;
+  max?: never;
+}
+
+interface MinMaxWidthProps {
+  minWidth?: string;
+  maxWidth?: string;
+  // Ensure fixed width and breakpoints can't be used with min/max controls
+  width?: never;
+  sm?: never;
+  md?: never;
+  lg?: never;
+  xlg?: never;
+  max?: never;
+}
+
+export type ColumnProps = BaseColumnProps &
+  (BreakpointProps | FixedWidthProps | MinMaxWidthProps);
+
 export const Column: React.FC<ColumnProps> = ({
+  children,
+  className,
   sm,
   md,
   lg,
   xlg,
   max,
-  className,
-  children,
-  ...rest
+  width,
+  minWidth,
+  maxWidth,
 }) => {
+  const combinedStyle: React.CSSProperties = {
+    ...(width && { flex: `0 0 ${width}`, width }),
+    ...(minWidth && { minWidth }),
+    ...(maxWidth && { maxWidth }),
+  };
+
   const columnClasses = cx(
     styles.column,
     {
@@ -46,7 +79,7 @@ export const Column: React.FC<ColumnProps> = ({
   );
 
   return (
-    <div className={columnClasses} {...rest}>
+    <div className={columnClasses} style={combinedStyle}>
       {children}
     </div>
   );
