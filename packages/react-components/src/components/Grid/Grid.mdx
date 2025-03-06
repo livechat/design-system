@@ -6,7 +6,7 @@ import * as Stories from './Grid.stories';
 
 <Title>Grid</Title>
 
-[Intro](#Intro) | [Usage](#Usage) | [Breakpoints](#Breakpoints) | [Column System](#ColumnSystem) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+[Intro](#Intro) | [Usage](#Usage) | [Breakpoints](#Breakpoints) | [Column System](#ColumnSystem) | [Component API](#ComponentAPI)
 
 ## Intro <a id="Intro" />
 
@@ -108,16 +108,15 @@ When specifying breakpoints, columns follow these behaviors:
 
 2. **Multiple Breakpoints with Gaps**
 ```tsx
-<Column sm={2} lg={8}>
+<Column sm={2} lg={16}>
   {/* Takes 2 columns (50%) on small screens */}
   {/* Maintains 50% width on medium screens (inherited from sm breakpoint) */}
-  {/* Takes 8 columns (50%) on large screens and up */}
+  {/* Takes 16 columns (100%) on large screens and up */}
 </Column>
 ```
 
 3. **Default Behavior**
 - By default, columns have `flex: 1 1 auto` and `max-width: 100%`
-- When a breakpoint is specified, it sets a fixed width percentage using `flex: 0 0` and corresponding `max-width`
 - The width set at a breakpoint persists until another breakpoint overwrites it
 - There is no "reverting" to auto-adjustment after a breakpoint - the last specified width continues to apply
 
@@ -126,14 +125,14 @@ When specifying breakpoints, columns follow these behaviors:
 You can create flexible columns that automatically adjust their width:
 
 ```tsx
-<Row>
+<Grid>
   <Column>
     Auto width
   </Column>
   <Column>
     Auto width
   </Column>
-</Row>
+</Grid>
 ```
 
 ### Nested Grids
@@ -166,38 +165,19 @@ For example:
 
 This proportional relationship helps maintain consistent spacing and alignment throughout your layout hierarchy.
 
-## Component API <a id="ComponentAPI" />
-
-### Grid Props
-
-<ArgTypes of={Stories.Default} include={['fullWidth', 'className']} />
-
-### Column Props
-
-<ArgTypes of={Stories.Default} include={['sm', 'md', 'lg', 'xlg', 'max']} />
-
-## Content Spec <a id="ContentSpec" />
-
-<a
-  className="sb-unstyled"
-  href="https://www.figma.com/file/9FDwjR8lYvincseDkKypC4/Component-Documentations?type=design&node-id=97-24893&mode=dev"
-  target="_blank"
->
-  Go to Figma documentation
-</a>
 
 ### Column Sizing Methods
 
 The Column component supports three different approaches to sizing:
 
-1. **Grid-based Sizing** (using breakpoint props)
+1. **Grid-based sizing** (using breakpoint props)
 ```tsx
 <Column sm={2} md={4} lg={8}>
   {/* Takes specific column spans at different breakpoints */}
 </Column>
 ```
 
-2. **Direct Width Control**
+2. **Direct width control**
 ```tsx
 <Column width="200px">
   {/* Fixed width column */}
@@ -208,7 +188,7 @@ The Column component supports three different approaches to sizing:
 </Column>
 ```
 
-3. **Flexible with Constraints**
+3. **Flexible with constraints**
 ```tsx
 <Column minWidth="150px" maxWidth="300px">
   {/* Flexible column with size constraints */}
@@ -227,17 +207,17 @@ These properties accept any valid CSS width value (px, %, rem, etc.).
 
 #### Usage Guidelines
 
-1. **Breakpoint-based Sizing**
+1. **Breakpoint-based sizing**
    - Best for responsive layouts that need different widths at different screen sizes
    - Uses the grid's column system
    - Cannot be combined with width/minWidth/maxWidth
 
-2. **Direct Width Control**
+2. **Direct width control**
    - Best for fixed-width columns
    - Can be combined with minWidth/maxWidth for constraints
    - Cannot be used with breakpoint props (sm, md, lg, etc.)
 
-3. **Flexible with Constraints**
+3. **Flexible with constraints**
    - Best for columns that need to flex while respecting size limits
    - Can use minWidth and/or maxWidth independently
    - Works with the auto-flexible behavior
@@ -256,3 +236,13 @@ These properties accept any valid CSS width value (px, %, rem, etc.).
 // Auto-flexible (default behavior)
 <Column>Flexible width</Column>
 ``` 
+
+## Component API <a id="ComponentAPI" />
+
+### Grid Props
+
+<ArgTypes of={Stories.Default} include={['fullWidth', 'className']} />
+
+### Column Props
+
+<ArgTypes of={Stories.Default} />
