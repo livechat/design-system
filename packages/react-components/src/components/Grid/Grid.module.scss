@@ -41,13 +41,8 @@ $grid-columns: (
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--grid-v-spacing, 0) 0;
-  margin: calc(var(--grid-h-spacing, 0) / -2);
-
-  // Make columns respect the horizontal spacing
-  > * {
-    padding: 0 calc(var(--grid-h-spacing, 0) / 2);
-  }
+  gap: var(--grid-v-spacing, 0) var(--grid-h-spacing, 0);
+  width: 100%;
 
   // Alignment styles
   &.align-start {

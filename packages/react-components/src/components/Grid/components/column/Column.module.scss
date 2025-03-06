@@ -22,8 +22,9 @@
 
 @for $i from 1 through map.get(grid.$grid-columns, 'sm') {
   .columnSm#{$i} {
-    flex: 0 0 math.percentage(math.div($i, map.get(grid.$grid-columns, 'sm')));
-    max-width: math.percentage(math.div($i, map.get(grid.$grid-columns, 'sm')));
+    @include grid.column-styles(
+      math.percentage(math.div($i, map.get(grid.$grid-columns, 'sm')))
+    );
   }
 }
 
@@ -40,8 +41,7 @@
     @include breakpoint($min-width) {
       @for $i from 1 through $columns {
         .column#{capitalize($breakpoint)}#{$i} {
-          flex: 0 0 math.percentage(math.div($i, $columns));
-          max-width: math.percentage(math.div($i, $columns));
+          @include grid.column-styles(math.percentage(math.div($i, $columns)));
         }
       }
 

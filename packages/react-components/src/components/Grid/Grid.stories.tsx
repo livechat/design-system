@@ -386,13 +386,13 @@ export const Alignment: Story = {
           <h3>Horizontal Alignment (justify=end)</h3>
           <Grid justify="end">
             <Column sm={1}>
-              <Box>Left</Box>
+              <Box>1</Box>
             </Column>
             <Column sm={1}>
-              <Box>Center</Box>
+              <Box>2</Box>
             </Column>
             <Column sm={1}>
-              <Box>Right</Box>
+              <Box>3</Box>
             </Column>
           </Grid>
         </div>
@@ -412,6 +412,41 @@ export const Alignment: Story = {
           </Grid>
         </div>
       </div>
+    </GridWithVisualizer>
+  ),
+};
+
+export const NestedGridWithSpacingAndAlignment: Story = {
+  render: () => (
+    <GridWithVisualizer>
+      <Grid verticalSpacing={24} justify="center">
+        <Column lg={12}>
+          <Box>
+            <p>Outer Grid centered (12 columns)</p>
+            <Grid horizontalSpacing={8} justify="center">
+              <Column lg={6}>
+                <Box>Inner Grid centered (6 inner grid columns)</Box>
+              </Column>
+              <Column lg={2}>
+                <Box>Inner Grid centered (2 inner grid columns)</Box>
+              </Column>
+            </Grid>
+          </Box>
+        </Column>
+        <Column lg={8}>
+          <Box>
+            <p>Outer Grid centered (8 columns)</p>
+            <Grid justify="space-between" horizontalSpacing={8}>
+              <Column lg={4}>
+                <Box>Inner Grid spaced-between (4 inner grid columns)</Box>
+              </Column>
+              <Column lg={4}>
+                <Box>Inner Grid spaced-between (4 inner grid columns)</Box>
+              </Column>
+            </Grid>
+          </Box>
+        </Column>
+      </Grid>
     </GridWithVisualizer>
   ),
 };
