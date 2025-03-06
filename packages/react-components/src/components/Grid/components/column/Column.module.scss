@@ -21,6 +21,19 @@
   min-height: 1px;
 }
 
+.columnFixedWidth {
+  flex: 0 0 var(--column-width);
+  width: var(--column-width);
+}
+
+.columnMinWidth {
+  min-width: var(--column-min-width);
+}
+
+.columnMaxWidth {
+  max-width: var(--column-max-width);
+}
+
 @for $i from 1 through map.get(grid.$grid-columns, 'sm') {
   .columnSm#{$i} {
     @include grid.column-styles(

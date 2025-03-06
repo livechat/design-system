@@ -60,26 +60,31 @@ export const Column: React.FC<ColumnProps> = ({
   minWidth,
   maxWidth,
 }) => {
-  const combinedStyle: React.CSSProperties = {
-    ...(width && { flex: `0 0 ${width}`, width }),
-    ...(minWidth && { minWidth }),
-    ...(maxWidth && { maxWidth }),
-  };
-
   const columnClasses = cx(
     styles.column,
     {
+      // Breakpoint classes
       [styles[`columnSm${sm}`]]: sm && typeof sm === 'number',
       [styles[`columnMd${md}`]]: md && typeof md === 'number',
       [styles[`columnLg${lg}`]]: lg && typeof lg === 'number',
       [styles[`columnXlg${xlg}`]]: xlg && typeof xlg === 'number',
       [styles[`columnMax${max}`]]: max && typeof max === 'number',
+      [styles.columnFixedWidth]: width,
+      [styles.columnMinWidth]: minWidth,
+      [styles.columnMaxWidth]: maxWidth,
     },
     className
   );
 
+  // Create CSS custom properties for dynamic values
+  const style = {
+    ...(width && { '--column-width': width }),
+    ...(minWidth && { '--column-min-width': minWidth }),
+    ...(maxWidth && { '--column-max-width': maxWidth }),
+  } as React.CSSProperties;
+
   return (
-    <div className={columnClasses} style={combinedStyle}>
+    <div className={columnClasses} style={style}>
       {children}
     </div>
   );
