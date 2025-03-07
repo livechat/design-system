@@ -1,11 +1,7 @@
 @use 'sass:math';
 @use 'sass:map';
 @use 'sass:string';
-
-@function capitalize($string) {
-  @return string.to-upper-case(string.slice($string, 1, 1)) +
-    string.slice($string, 2);
-}
+@use './_grid-utils.scss' as grid-utils;
 
 $breakpoints: (
   sm: 320px,
@@ -22,13 +18,6 @@ $grid-columns: (
   xlg: 16,
   max: 16,
 );
-
-@mixin breakpoint($size) {
-  /* stylelint-disable-next-line media-query-no-invalid */
-  @media (min-width: #{$size}) {
-    @content;
-  }
-}
 
 @mixin column-styles($width) {
   flex: 0 0 $width;
@@ -77,16 +66,15 @@ $grid-columns: (
 
 // Generate column classes for each breakpoint
 @each $breakpoint, $columns in $grid-columns {
-  @include breakpoint(map.get($breakpoints, $breakpoint)) {
+  @include grid-utils.breakpoint(map.get($breakpoints, $breakpoint)) {
     @for $i from 1 through $columns {
-      .column#{capitalize($breakpoint)}#{$i} {
+      .column#{grid-utils.capitalize($breakpoint)}#{$i} {
         @include column-styles(math.percentage(math.div($i, $columns)));
       }
     }
 
-    .column#{capitalize($breakpoint)}Auto {
-      flex: 0 0 auto;
-      width: auto;
+    .column#{grid-utils.capitalize($breakpoint)}Auto {
+      flex: 1 1 auto;
       max-width: 100%;
     }
   }

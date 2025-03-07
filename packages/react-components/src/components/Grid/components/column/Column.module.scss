@@ -1,17 +1,7 @@
 @use 'sass:math';
 @use 'sass:map';
 @use '../../Grid.module.scss' as grid;
-
-@function capitalize($string) {
-  @return to-upper-case(str-slice($string, 1, 1)) + str-slice($string, 2);
-}
-
-@mixin breakpoint($size) {
-  /* stylelint-disable-next-line media-query-no-invalid */
-  @media (min-width: #{$size}) {
-    @content;
-  }
-}
+@use '../../_grid-utils.scss' as grid-utils;
 
 .column {
   position: relative;
@@ -52,14 +42,14 @@
   @if $breakpoint != 'sm' {
     $min-width: map.get(grid.$breakpoints, $breakpoint);
 
-    @include breakpoint($min-width) {
+    @include grid-utils.breakpoint($min-width) {
       @for $i from 1 through $columns {
-        .column#{capitalize($breakpoint)}#{$i} {
+        .column#{grid-utils.capitalize($breakpoint)}#{$i} {
           @include grid.column-styles(math.percentage(math.div($i, $columns)));
         }
       }
 
-      .column#{capitalize($breakpoint)}Auto {
+      .column#{grid-utils.capitalize($breakpoint)}Auto {
         flex: 1 1 auto;
         max-width: 100%;
       }
