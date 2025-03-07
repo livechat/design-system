@@ -1,0 +1,14 @@
+.system-message-timestamp {
+  &__value {
+    margin: 0 0 0 var(--spacing-1);
+    color: var(--content-basic-secondary);
+  }
+
+  &__tooltip-wrapper {
+    user-select: none;
+  }
+
+  &__tooltip-text {
+    margin: 0;
+  }
+}
