@@ -1,0 +1,81 @@
+@use 'sass:math';
+@use 'sass:map';
+@use 'sass:string';
+@use './_grid-utils.scss' as grid-utils;
+
+$breakpoints: (
+  sm: 320px,
+  md: 672px,
+  lg: 1024px,
+  xlg: 1312px,
+  max: 1584px,
+);
+
+$grid-columns: (
+  sm: 4,
+  md: 8,
+  lg: 16,
+  xlg: 16,
+  max: 16,
+);
+
+@mixin column-styles($width) {
+  flex: 0 0 $width;
+  max-width: $width;
+}
+
+.grid {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  // Alignment styles
+  &.align-start {
+    align-items: flex-start;
+  }
+
+  &.align-center {
+    align-items: center;
+  }
+
+  &.align-end {
+    align-items: flex-end;
+  }
+
+  &.justify-start {
+    justify-content: flex-start;
+  }
+
+  &.justify-center {
+    justify-content: center;
+  }
+
+  &.justify-end {
+    justify-content: flex-end;
+  }
+
+  &.justify-space-between {
+    justify-content: space-between;
+  }
+
+  &.justify-space-around {
+    justify-content: space-around;
+  }
+}
+
+// Generate column classes for each breakpoint
+@each $breakpoint, $columns in $grid-columns {
+  @include grid-utils.breakpoint(map.get($breakpoints, $breakpoint)) {
+    @for $i from 1 through $columns {
+      .column#{grid-utils.capitalize($breakpoint)}#{$i} {
+        @include column-styles(math.percentage(math.div($i, $columns)));
+      }
+    }
+
+    .column#{grid-utils.capitalize($breakpoint)}Auto {
+      flex: 1 1 auto;
+      max-width: 100%;
+    }
+  }
+}
