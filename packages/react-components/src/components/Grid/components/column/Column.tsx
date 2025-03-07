@@ -63,7 +63,6 @@ export const Column: React.FC<ColumnProps> = ({
   const columnClasses = cx(
     styles.column,
     {
-      // Breakpoint classes
       [styles[`columnSm${sm}`]]: sm && typeof sm === 'number',
       [styles[`columnMd${md}`]]: md && typeof md === 'number',
       [styles[`columnLg${lg}`]]: lg && typeof lg === 'number',

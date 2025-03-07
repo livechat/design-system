@@ -4,7 +4,7 @@ import cx from 'clsx';
 
 import styles from './Grid.module.scss';
 
-type Alignment = 'start' | 'center' | 'end' | 'stretch';
+type Alignment = 'start' | 'center' | 'end';
 type JustifyContent =
   | 'start'
   | 'center'

@@ -23,7 +23,6 @@ $grid-columns: (
   max: 16,
 );
 
-// Mixins
 @mixin breakpoint($size) {
   /* stylelint-disable-next-line media-query-no-invalid */
   @media (min-width: #{$size}) {
@@ -36,7 +35,6 @@ $grid-columns: (
   max-width: $width;
 }
 
-// Base styles
 .grid {
   box-sizing: border-box;
   display: flex;
@@ -54,10 +52,6 @@ $grid-columns: (
 
   &.align-end {
     align-items: flex-end;
-  }
-
-  &.align-stretch {
-    align-items: stretch;
   }
 
   &.justify-start {

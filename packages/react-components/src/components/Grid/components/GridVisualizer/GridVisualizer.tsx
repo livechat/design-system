@@ -15,6 +15,10 @@ const getColumnCount = (
   return { count: 16, breakpoint: 'lg' };
 };
 
+/**
+ * GridVisualizer is a component that displays a grid overlay on the screen.
+ * It is used ONLY in the storybook to visualize the grid system and the columns.
+ */
 export const GridVisualizer: React.FC<GridVisualizerProps> = ({
   children,
   showGrid = false,

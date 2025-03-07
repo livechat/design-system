@@ -62,7 +62,7 @@ $breakpoints: (
 
 ## Column System <a id="ColumnSystem" />
 
-The grid uses different column counts for different breakpoints:
+The grid uses the doubling columns system, which means that the number of columns is doubled for each of the main breakpoint:
 
 ```scss
 $grid-columns: (
@@ -210,11 +210,9 @@ These properties accept any valid CSS width value (px, %, rem, etc.).
 1. **Breakpoint-based sizing**
    - Best for responsive layouts that need different widths at different screen sizes
    - Uses the grid's column system
-   - Cannot be combined with width/minWidth/maxWidth
 
 2. **Direct width control**
    - Best for fixed-width columns
-   - Can be combined with minWidth/maxWidth for constraints
    - Cannot be used with breakpoint props (sm, md, lg, etc.)
 
 3. **Flexible with constraints**
@@ -228,9 +226,13 @@ These properties accept any valid CSS width value (px, %, rem, etc.).
 // Fixed width
 <Column width="200px">Fixed width</Column>
 
-// Flexible with constraints
-<Column minWidth="150px" maxWidth="300px">
-  Flexible with limits
+// Breakpoint-based width
+<Column 
+  sm={4}
+  md={6}
+  lg={8}
+>
+  Grid breakpoint column based width
 </Column>
 
 // Auto-flexible (default behavior)

@@ -23,7 +23,7 @@ export const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
         ariaLabel={label}
         size="medium"
       />
-      <span className={styles.label}>{label}</span>
+      <span>{label}</span>
     </div>
   );
 };

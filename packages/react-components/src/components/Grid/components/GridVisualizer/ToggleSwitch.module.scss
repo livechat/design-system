@@ -1,11 +1,6 @@
 .container {
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-2);
   align-items: center;
-  margin: 16px;
-}
-
-.label {
-  color: var(--text-primary);
-  font-size: 14px;
+  margin: var(--spacing-4);
 }
