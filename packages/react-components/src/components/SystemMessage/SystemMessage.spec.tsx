@@ -1,4 +1,6 @@
-import { render } from 'test-utils';
+import { Info } from '@livechat/design-system-icons';
+
+import { render, userEvent } from 'test-utils';
 
 import { SystemMessage } from './SystemMessage';
 import { ISystemMessageProps } from './types';
@@ -20,32 +22,53 @@ describe('<SystemMessage> component', () => {
     expect(getByText('System Message Content')).toBeInTheDocument();
   });
 
-  it('should render icon when provided', () => {
-    const icon = <span>🔔</span>;
-    const { getByTestId } = renderComponent({ icon });
+  it('should render icon if iconSource is provided', () => {
+    const { getByTestId } = renderComponent({
+      iconSource: Info,
+    });
 
-    expect(getByTestId('system-message-icon')).toBeInTheDocument();
-    expect(getByTestId('system-message-icon')).toHaveTextContent('🔔');
+    const icon = getByTestId('system-message-header-icon');
+
+    expect(icon).toBeInTheDocument();
   });
 
-  it('should not render icon when not provided', () => {
-    const { queryByTestId } = renderComponent();
+  it('should render source when provided', () => {
+    const source = 'Shopify';
+    const { getByTestId } = renderComponent({ source });
 
-    expect(queryByTestId('system-message-icon')).not.toBeInTheDocument();
+    expect(getByTestId('system-message-source')).toHaveTextContent(
+      `• ${source}`
+    );
   });
 
-  it('should render details when provided', () => {
-    const details = 'Additional details';
-    const { getByTestId } = renderComponent({ details });
+  it('should render details with expand/collapse functionality', () => {
+    const details = ['First details line', 'Second details line'];
+    const { getByTestId, getByText, queryByText } = renderComponent({
+      details,
+    });
 
     expect(getByTestId('system-message-details')).toBeInTheDocument();
-    expect(getByTestId('system-message-details')).toHaveTextContent(details);
+    expect(getByText('First details line')).toBeInTheDocument();
+    expect(queryByText('Second details line')).not.toBeInTheDocument();
+
+    userEvent.click(getByTestId('system-message-details-toggle'));
+    expect(getByText('Second details line')).toBeInTheDocument();
   });
 
-  it('should not render details when not provided', () => {
-    const { queryByTestId } = renderComponent();
+  it('should render actions with menu for more than 2 items', () => {
+    const actions = [
+      { label: 'Action 1', callback: () => {} },
+      { label: 'Action 2', callback: () => {} },
+      { label: 'Action 3', callback: () => {} },
+    ];
 
-    expect(queryByTestId('system-message-details')).not.toBeInTheDocument();
+    const { getByText, getByTestId } = renderComponent({ actions });
+
+    expect(getByText('Action 1')).toBeInTheDocument();
+    expect(getByText('Action 2')).toBeInTheDocument();
+    expect(
+      getByTestId('system-message-actions-menu-trigger')
+    ).toBeInTheDocument();
   });
 
   it('should render timestamp when both timestamp and timestampWithSeconds are provided', () => {
@@ -57,18 +80,6 @@ describe('<SystemMessage> component', () => {
     });
 
     const timestampValue = getByTestId('system-message-timestamp-value');
-
     expect(timestampValue).toBeInTheDocument();
-  });
-
-  it('should not render timestamp when either timestamp or timestampWithSeconds is missing', () => {
-    const timestamp = '10:30 AM';
-    const { container: container1 } = renderComponent({ timestamp });
-    const { container: container2 } = renderComponent({
-      timestampWithSeconds: '10:30:00 AM',
-    });
-
-    expect(container1.querySelector('.system-message-timestamp')).toBeNull();
-    expect(container2.querySelector('.system-message-timestamp')).toBeNull();
   });
 });

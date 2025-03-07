@@ -1,8 +1,6 @@
 import { Info } from '@livechat/design-system-icons';
 import { Meta, StoryObj } from '@storybook/react';
 
-import { Icon } from '../Icon';
-
 import { SystemMessage } from './SystemMessage';
 
 const meta: Meta<typeof SystemMessage> = {
@@ -18,37 +16,140 @@ type Story = StoryObj<typeof SystemMessage>;
 
 export const Default: Story = {
   args: {
-    icon: <Icon source={Info} />,
+    iconSource: Info,
     children: 'System notification',
-    details: 'This is a system message with details',
+    source: 'Shopify',
+    details: ['This is a system message with details'],
     timestamp: '10:30 AM',
     timestampWithSeconds: '10:30:00 AM',
+    titleBold: true,
+    alignment: 'right',
   },
 };
 
-export const WithoutIcon: Story = {
+export const WithDetails: Story = {
   args: {
-    children: 'Simple notification',
-    details: 'This is a system message without an icon',
-    timestamp: '3:20 PM',
-    timestampWithSeconds: '3:20:00 PM',
+    iconSource: Info,
+    children: 'System notification',
+    source: 'Shopify',
+    details: [
+      'This is a system message with details',
+      'This is another detail',
+      'This is going to be very very long detail. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    ],
+    timestamp: '10:30 AM',
+    timestampWithSeconds: '10:30:00 AM',
+    titleBold: true,
+    alignment: 'right',
   },
 };
 
-export const WithoutTimestamp: Story = {
+export const WithAction: Story = {
   args: {
-    icon: <Icon source={Info} />,
-    children: 'No timestamp',
-    details: 'This system message does not display a timestamp',
-    timestamp: '',
-    timestampWithSeconds: '',
+    iconSource: Info,
+    children: 'System notification',
+    source: 'Shopify',
+    details: [
+      'This is a system message with details',
+      'This is another detail',
+      'This is going to be very very long detail. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    ],
+    timestamp: '10:30 AM',
+    timestampWithSeconds: '10:30:00 AM',
+    titleBold: true,
+    alignment: 'right',
+    actions: [
+      {
+        label: 'Action',
+        callback: () => {},
+      },
+      {
+        label: 'Another action',
+        callback: () => {},
+      },
+    ],
   },
 };
 
-export const TitleOnly: Story = {
+export const WithMultipleActions: Story = {
   args: {
-    children: 'Title only message',
-    timestamp: '',
-    timestampWithSeconds: '',
+    iconSource: Info,
+    children: 'System notification',
+    source: 'Shopify',
+    details: [
+      'This is a system message with details',
+      'This is another detail',
+      'This is going to be very very long detail. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    ],
+    timestamp: '10:30 AM',
+    timestampWithSeconds: '10:30:00 AM',
+    titleBold: true,
+    alignment: 'right',
+    actions: [
+      {
+        label: 'Action',
+        callback: () => {},
+      },
+      {
+        label: 'Another action',
+        callback: () => {},
+      },
+      {
+        label: 'Action with icon',
+        callback: () => {},
+        icon: Info,
+      },
+      {
+        label: 'Another action with icon',
+        callback: () => {},
+        icon: Info,
+      },
+      {
+        label: 'Action no icon',
+        callback: () => {},
+      },
+    ],
+  },
+};
+
+export const WithKindPositive: Story = {
+  args: {
+    iconSource: Info,
+    children: 'Positive system message',
+    source: 'Shopify',
+    details: [
+      'This is a system message with details',
+      'This is another detail',
+      'This is going to be very very long detail. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    ],
+    timestamp: '10:30 AM',
+    timestampWithSeconds: '10:30:00 AM',
+    titleBold: true,
+    alignment: 'right',
+    kind: 'positive',
+    actions: [
+      {
+        label: 'Action',
+        callback: () => {},
+      },
+      {
+        label: 'Another action',
+        callback: () => {},
+      },
+      {
+        label: 'Action with icon',
+        callback: () => {},
+        icon: Info,
+      },
+      {
+        label: 'Another action with icon',
+        callback: () => {},
+        icon: Info,
+      },
+      {
+        label: 'Action no icon',
+        callback: () => {},
+      },
+    ],
   },
 };

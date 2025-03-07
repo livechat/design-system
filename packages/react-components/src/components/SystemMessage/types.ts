@@ -1,6 +1,15 @@
 import * as React from 'react';
 
 import { ComponentCoreProps } from '../../utils/types';
+import { IconSource } from '../Icon';
+
+export type SystemMessageKind = 'info' | 'positive' | 'warning' | 'error';
+
+export type SystemMessageAction = {
+  label: string;
+  callback: () => void;
+  icon?: IconSource;
+};
 
 export interface ISystemMessageProps extends ComponentCoreProps {
   /**
@@ -9,14 +18,34 @@ export interface ISystemMessageProps extends ComponentCoreProps {
   children: React.ReactNode;
 
   /**
+   * Alignment of the system message
+   */
+  alignment?: 'left' | 'right';
+
+  /**
+   * Kind of the system message
+   */
+  kind?: SystemMessageKind;
+
+  /**
    * Icon to display in the system message
    */
-  icon?: React.ReactNode;
+  iconSource?: IconSource;
+
+  /**
+   * Whether the title should be bold
+   */
+  titleBold?: boolean;
+
+  /**
+   * Source of the message
+   */
+  source?: string;
 
   /**
    * Details text for the system message
    */
-  details?: string;
+  details?: string[];
 
   /**
    * Timestamp for the system message
@@ -27,4 +56,9 @@ export interface ISystemMessageProps extends ComponentCoreProps {
    * Timestamp with seconds for the system message
    */
   timestampWithSeconds?: string;
+
+  /**
+   * Actions to display in the system message
+   */
+  actions?: SystemMessageAction[];
 }

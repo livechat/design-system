@@ -9,9 +9,45 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+
+    &--alignment-left {
+      justify-content: flex-start;
+    }
+
+    &--alignment-right {
+      justify-content: flex-end;
+      text-align: right;
+    }
   }
 
   &__header-wrapper-title {
+    &--kind-info {
+      color: var(--content-basic-secondary);
+
+      &.system-message__header-wrapper-title--bold {
+        color: var(--content-basic-primary);
+      }
+    }
+
+    &--kind-positive {
+      color: var(--content-basic-positive);
+    }
+
+    &--kind-warning {
+      color: var(--content-basic-warning);
+    }
+
+    &--kind-error {
+      color: var(--content-basic-negative);
+    }
+
+    &--bold {
+      font-weight: 600;
+    }
+  }
+
+  &__header-wrapper-source {
+    margin: 0 0 0 var(--spacing-1);
     color: var(--content-basic-secondary);
   }
 
@@ -19,10 +55,71 @@
     margin-right: var(--spacing-1);
   }
 
-  &__details {
+  &__details-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+    max-width: 400px;
+    color: var(--content-basic-secondary);
+
+    &--alignment-left {
+      justify-content: flex-start;
+    }
+
+    &--alignment-left-margin {
+      margin-left: var(--spacing-6);
+    }
+
+    &--alignment-right {
+      justify-content: flex-end;
+      text-align: right;
+    }
+  }
+
+  &__details-toggle {
+    cursor: pointer;
+  }
+
+  &__details-first-line {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    color: var(--content-basic-secondary);
+
+    &--alignment-left {
+      justify-content: flex-start;
+    }
+
+    &--alignment-right {
+      justify-content: flex-end;
+      text-align: right;
+    }
+  }
+
+  &__actions-wrapper {
+    display: flex;
+    gap: var(--spacing-3);
+    align-items: center;
+
+    &--alignment-left {
+      justify-content: flex-start;
+    }
+
+    &--alignment-left-margin {
+      margin-left: var(--spacing-6);
+    }
+
+    &--alignment-right {
+      justify-content: flex-end;
+      text-align: right;
+    }
+  }
+
+  &__actions-wrapper-menu-trigger {
+    cursor: pointer;
+  }
+
+  &__action-item {
+    margin: 0;
+    cursor: pointer;
+    color: var(--action-high-contrast-default);
   }
 }
