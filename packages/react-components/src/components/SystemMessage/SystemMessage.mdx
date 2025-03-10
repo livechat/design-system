@@ -16,19 +16,17 @@ import * as Stories from './SystemMessage.stories';
 
 ```jsx
 <SystemMessage
-  iconSource={Info}
-  kind="info"
-  alignment="left"
-  titleBold
->
-  System notification
-  details={['This is a system message']}
-  actions={[
-    {
-      label: 'Action',
-      callback: () => {},
-    }
-  ]}
+    iconSource={Info}
+    kind="info"
+    alignment="left"
+    titleBold
+    details={['This is a system message']}
+    actions={[
+        {
+            label: 'Action',
+            callback: () => {},
+        }
+    ]}
 </SystemMessage>
 ```
 

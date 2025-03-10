@@ -155,8 +155,8 @@ export const SystemMessage: React.FC<
     return (
       <div data-testid="system-message-details" className={detailsClassName}>
         <div className={detailsFirstLineClassName}>
-          {details.slice(0, 1).map((detail) => (
-            <Text as="div" size="xs">
+          {details.slice(0, 1).map((detail, index) => (
+            <Text as="div" size="xs" key={`detail-first-${index}`}>
               {detail}
             </Text>
           ))}
@@ -175,7 +175,7 @@ export const SystemMessage: React.FC<
         </div>
         {isDetailsExpanded &&
           details.slice(1).map((detail) => (
-            <div key={detail.replace(' ', '-')}>
+            <div key={`detail-${details.indexOf(detail)}`}>
               <Text as="div" size="xs">
                 {detail}
               </Text>
