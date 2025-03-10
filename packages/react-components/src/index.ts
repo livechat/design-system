@@ -43,7 +43,6 @@ export * from './components/Picker';
 export * from './components/Popover';
 export * from './components/ProductSwitcher';
 export * from './components/Progress';
-export * from './components/PromoBanner';
 export * from './components/PromoBannerV2';
 export * from './components/RadioButton';
 export * from './components/RangeDatePickerV2';
