@@ -60,6 +60,7 @@ export const SystemMessage: React.FC<
     }
   );
   const detailsFirstLineClassName = cx(
+    styles[`${baseClass}__details-line`],
     styles[`${baseClass}__details-first-line`],
     styles[`${baseClass}__details-first-line--alignment-${alignment}`]
   );
@@ -193,7 +194,10 @@ export const SystemMessage: React.FC<
         </div>
         {isDetailsExpanded &&
           details.slice(1).map((detail) => (
-            <div key={`detail-${details.indexOf(detail)}`}>
+            <div
+              className={styles[`${baseClass}__details-line`]}
+              key={`detail-${details.indexOf(detail)}`}
+            >
               <Text as="div" size="xs">
                 {detail}
               </Text>
