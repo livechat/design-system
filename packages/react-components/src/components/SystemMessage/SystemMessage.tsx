@@ -7,7 +7,8 @@ import {
 } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
-import { ActionMenu } from '../ActionMenu';
+import { ActionMenu, IActionMenuOption } from '../ActionMenu';
+import { Button } from '../Button';
 import { Icon, IconKind, IconSource } from '../Icon';
 import { ListItem } from '../ListItem';
 import { Text } from '../Typography';
@@ -29,7 +30,7 @@ export const SystemMessage: React.FC<
   children,
   source,
   alignment = 'right',
-  kind = 'info',
+  kind = 'default',
   iconSource,
   titleBold = false,
   details,
@@ -50,7 +51,7 @@ export const SystemMessage: React.FC<
     styles[`${baseClass}__header-wrapper`],
     styles[`${baseClass}__header-wrapper--alignment-${alignment}`]
   );
-  const detailsClassName = cx(
+  const detailsWrapperClassName = cx(
     styles[`${baseClass}__details-wrapper`],
     styles[`${baseClass}__details-wrapper--alignment-${alignment}`],
     {
@@ -71,7 +72,7 @@ export const SystemMessage: React.FC<
     }
   );
 
-  const getIcon = (
+  const getHeaderIcon = (
     iconSource: IconSource,
     kind: SystemMessageKind
   ): React.ReactNode => {
@@ -90,18 +91,42 @@ export const SystemMessage: React.FC<
       case 'error':
         iconKind = 'error';
         break;
+      case 'default':
+        iconKind = 'subtle';
+        break;
       default:
-        iconKind = 'primary';
+        iconKind = 'subtle';
         break;
     }
 
     return (
       <Icon
+        size="small"
         data-testid="system-message-header-icon"
         source={iconSource}
         kind={iconKind}
       />
     );
+  };
+
+  const getActionMenuOptions = (
+    actions: SystemMessageAction[]
+  ): IActionMenuOption[] => {
+    return actions.slice(2).map((action) => ({
+      key: action.label,
+      element: (
+        <ListItem
+          leftNode={
+            action.icon ? (
+              <Icon source={action.icon} kind="primary" />
+            ) : undefined
+          }
+        >
+          {action.label}
+        </ListItem>
+      ),
+      onClick: action.callback,
+    }));
   };
 
   const getActions = (actions: SystemMessageAction[]): React.ReactNode => {
@@ -122,27 +147,14 @@ export const SystemMessage: React.FC<
         {actions.length > 2 && (
           <ActionMenu
             placement="bottom-end"
-            options={actions.slice(2).map((action) => ({
-              key: action.label,
-              element: (
-                <ListItem
-                  leftNode={
-                    action.icon ? (
-                      <Icon source={action.icon} kind="primary" />
-                    ) : undefined
-                  }
-                >
-                  {action.label}
-                </ListItem>
-              ),
-              onClick: action.callback,
-            }))}
+            options={getActionMenuOptions(actions)}
             triggerRenderer={
-              <Icon
+              <Button
+                kind="plain"
+                size="xcompact"
                 data-testid="system-message-actions-menu-trigger"
                 className={styles[`${baseClass}__actions-wrapper-menu-trigger`]}
-                source={MoreHoriz}
-                kind="primary"
+                icon={<Icon source={MoreHoriz} kind="primary" />}
               />
             }
           />
@@ -153,7 +165,10 @@ export const SystemMessage: React.FC<
 
   const getDetails = (details: string[]): React.ReactNode => {
     return (
-      <div data-testid="system-message-details" className={detailsClassName}>
+      <div
+        data-testid="system-message-details"
+        className={detailsWrapperClassName}
+      >
         <div className={detailsFirstLineClassName}>
           {details.slice(0, 1).map((detail, index) => (
             <Text as="div" size="xs" key={`detail-first-${index}`}>
@@ -161,16 +176,19 @@ export const SystemMessage: React.FC<
             </Text>
           ))}
           {details.length > 1 && (
-            <div
+            <Button
+              kind="plain"
+              size="xcompact"
               data-testid="system-message-details-toggle"
               className={styles[`${baseClass}__details-toggle`]}
               onClick={() => setIsDetailsExpanded(!isDetailsExpanded)}
-            >
-              <Icon
-                source={isDetailsExpanded ? ChevronUp : ChevronDown}
-                kind="primary"
-              />
-            </div>
+              icon={
+                <Icon
+                  source={isDetailsExpanded ? ChevronUp : ChevronDown}
+                  kind="primary"
+                />
+              }
+            />
           )}
         </div>
         {isDetailsExpanded &&
@@ -196,7 +214,7 @@ export const SystemMessage: React.FC<
       >
         {iconSource && (
           <div className={styles[`${baseClass}__header-wrapper-icon`]}>
-            {getIcon(iconSource, kind)}
+            {getHeaderIcon(iconSource, kind)}
           </div>
         )}
         <Text

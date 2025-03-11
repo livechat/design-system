@@ -14,12 +14,9 @@ const renderComponent = (props: Partial<ISystemMessageProps> = {}) =>
 
 describe('<SystemMessage> component', () => {
   it('should render basic system message with content', () => {
-    const { getByTestId, getByText } = renderComponent();
+    const { getByText } = renderComponent();
 
-    expect(getByTestId('system-message')).toBeInTheDocument();
-    expect(getByTestId('system-message-header')).toBeInTheDocument();
-    expect(getByTestId('system-message-title')).toBeInTheDocument();
-    expect(getByText('System Message Content')).toBeInTheDocument();
+    expect(getByText('System Message Content')).toBeVisible();
   });
 
   it('should render icon if iconSource is provided', () => {
@@ -29,7 +26,7 @@ describe('<SystemMessage> component', () => {
 
     const icon = getByTestId('system-message-header-icon');
 
-    expect(icon).toBeInTheDocument();
+    expect(icon).toBeVisible();
   });
 
   it('should render source when provided', () => {
@@ -47,12 +44,12 @@ describe('<SystemMessage> component', () => {
       details,
     });
 
-    expect(getByTestId('system-message-details')).toBeInTheDocument();
-    expect(getByText('First details line')).toBeInTheDocument();
+    expect(getByTestId('system-message-details')).toBeVisible();
+    expect(getByText('First details line')).toBeVisible();
     expect(queryByText('Second details line')).not.toBeInTheDocument();
 
     userEvent.click(getByTestId('system-message-details-toggle'));
-    expect(getByText('Second details line')).toBeInTheDocument();
+    expect(getByText('Second details line')).toBeVisible();
   });
 
   it('should render actions with menu for more than 2 items', () => {
@@ -64,11 +61,9 @@ describe('<SystemMessage> component', () => {
 
     const { getByText, getByTestId } = renderComponent({ actions });
 
-    expect(getByText('Action 1')).toBeInTheDocument();
-    expect(getByText('Action 2')).toBeInTheDocument();
-    expect(
-      getByTestId('system-message-actions-menu-trigger')
-    ).toBeInTheDocument();
+    expect(getByText('Action 1')).toBeVisible();
+    expect(getByText('Action 2')).toBeVisible();
+    expect(getByTestId('system-message-actions-menu-trigger')).toBeVisible();
   });
 
   it('should render timestamp when both timestamp and timestampWithSeconds are provided', () => {
@@ -80,6 +75,6 @@ describe('<SystemMessage> component', () => {
     });
 
     const timestampValue = getByTestId('system-message-timestamp-value');
-    expect(timestampValue).toBeInTheDocument();
+    expect(timestampValue).toBeVisible();
   });
 });

@@ -2,13 +2,13 @@
   &__wrapper {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-1);
   }
 
   &__header-wrapper {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    margin-bottom: var(--spacing-1);
 
     &--alignment-left {
       justify-content: flex-start;
@@ -22,11 +22,7 @@
 
   &__header-wrapper-title {
     &--kind-info {
-      color: var(--content-basic-secondary);
-
-      &.system-message__header-wrapper-title--bold {
-        color: var(--content-basic-primary);
-      }
+      color: var(--content-basic-primary);
     }
 
     &--kind-positive {
@@ -39,6 +35,10 @@
 
     &--kind-error {
       color: var(--content-basic-negative);
+    }
+
+    &--kind-default {
+      color: var(--content-basic-secondary);
     }
 
     &--bold {
@@ -59,6 +59,7 @@
     display: flex;
     flex-direction: column;
     gap: var(--spacing-1);
+    margin-bottom: 2px;
     max-width: 400px;
     color: var(--content-basic-secondary);
 
@@ -67,7 +68,7 @@
     }
 
     &--alignment-left-margin {
-      margin-left: var(--spacing-6);
+      margin-left: var(--spacing-5);
     }
 
     &--alignment-right {
@@ -77,7 +78,7 @@
   }
 
   &__details-toggle {
-    cursor: pointer;
+    margin-left: var(--spacing-1);
   }
 
   &__details-first-line {
@@ -104,7 +105,7 @@
     }
 
     &--alignment-left-margin {
-      margin-left: var(--spacing-6);
+      margin-left: var(--spacing-5);
     }
 
     &--alignment-right {

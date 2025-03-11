@@ -22,7 +22,7 @@ export const Default: Story = {
     details: ['This is a system message with details'],
     timestamp: '10:30 AM',
     timestampWithSeconds: '10:30:00 AM',
-    titleBold: true,
+    titleBold: false,
     alignment: 'right',
   },
 };

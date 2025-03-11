@@ -20,13 +20,13 @@ describe('<SystemMessageTimestamp> component', () => {
   });
 
   it('should render tooltip with timestamp with seconds when hover on timestamp value', async () => {
-    const { getByTestId, queryByRole } = renderComponent();
+    const { getByTestId, getByRole } = renderComponent();
 
     const timestampValue = getByTestId('system-message-timestamp-value');
     userEvent.hover(timestampValue);
 
     await waitFor(() => {
-      expect(queryByRole('tooltip')).toBeInTheDocument();
+      expect(getByRole('tooltip')).toBeInTheDocument();
     });
   });
 });

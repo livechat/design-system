@@ -1,2 +1,6 @@
-export * from './SystemMessage';
-export type { ISystemMessageProps } from './types';
+export { SystemMessage } from './SystemMessage';
+export type {
+  ISystemMessageProps,
+  SystemMessageKind,
+  SystemMessageAction,
+} from './types';

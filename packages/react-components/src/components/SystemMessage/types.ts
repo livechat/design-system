@@ -3,7 +3,12 @@ import * as React from 'react';
 import { ComponentCoreProps } from '../../utils/types';
 import { IconSource } from '../Icon';
 
-export type SystemMessageKind = 'info' | 'positive' | 'warning' | 'error';
+export type SystemMessageKind =
+  | 'info'
+  | 'positive'
+  | 'warning'
+  | 'error'
+  | 'default';
 
 export type SystemMessageAction = {
   label: string;
@@ -14,6 +19,7 @@ export type SystemMessageAction = {
 export interface ISystemMessageProps extends ComponentCoreProps {
   /**
    * Children to display in the system message - will be displayed as title
+   * If your title is 60 characters or more, please use a description line.
    */
   children: React.ReactNode;
 
