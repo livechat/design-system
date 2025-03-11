@@ -57,3 +57,23 @@
 .gridWrapperMinWidth {
   min-width: 720px;
 }
+
+.arrowForward {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (width <= 1023px) {
+    display: none;
+  }
+}
+
+.arrowDown {
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  @media (width <= 1023px) {
+    display: flex;
+  }
+}

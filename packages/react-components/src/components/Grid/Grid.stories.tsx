@@ -1,7 +1,10 @@
 import * as React from 'react';
 
+import { ArrowForward, ArrowDownward } from '@livechat/design-system-icons';
+
 import { Badge } from '../Badge';
 import { Card } from '../Card';
+import { Icon } from '../Icon';
 import { Heading, Text } from '../Typography';
 
 import { GridVisualizer } from './components/GridVisualizer/GridVisualizer';
@@ -677,6 +680,54 @@ export const Example4AutomationAiAgentsMinWidth: Story = {
           </div>
         </Grid>
       </div>
+    </GridWithVisualizer>
+  ),
+};
+
+export const Example5SalesFunnelReportCardsWithArrows: Story = {
+  render: () => (
+    <GridWithVisualizer>
+      <Grid className={styles.gridVerticalGap}>
+        <Column sm={4} lg="auto">
+          <Card title="Total chats" className={styles.card}>
+            <div className={styles.cardContent}>
+              <Heading>2870</Heading>
+              <Badge>80</Badge>
+            </div>
+            <Text>vs 2790 for prev. period</Text>
+          </Card>
+        </Column>
+        <Column className={styles.arrowDown}>
+          <Icon source={ArrowDownward} />
+        </Column>
+        <Column width="fit-content" className={styles.arrowForward}>
+          <Icon source={ArrowForward} />
+        </Column>
+        <Column sm={4} lg="auto">
+          <Card title="Sales conversion" className={styles.card}>
+            <div className={styles.cardContent}>
+              <Heading>45%</Heading>
+              <Badge>12%</Badge>
+            </div>
+            <Text>vs 2790 for prev. period</Text>
+          </Card>
+        </Column>
+        <Column className={styles.arrowDown}>
+          <Icon source={ArrowDownward} />
+        </Column>
+        <Column width="fit-content" className={styles.arrowForward}>
+          <Icon source={ArrowForward} />
+        </Column>
+        <Column sm={4} lg="auto">
+          <Card title="Sales value" className={styles.card}>
+            <div className={styles.cardContent}>
+              <Heading>$13,6k</Heading>
+              <Badge>540</Badge>
+            </div>
+            <Text>vs $13k for prev. period</Text>
+          </Card>
+        </Column>
+      </Grid>
     </GridWithVisualizer>
   ),
 };
