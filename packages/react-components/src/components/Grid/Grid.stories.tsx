@@ -438,7 +438,7 @@ export const ColumnSizing: Story = {
 export const Example1SalesFunnelReportCards: Story = {
   render: () => (
     <GridWithVisualizer>
-      <Grid className={styles.gridWithGap}>
+      <Grid className={styles.gridVerticalGap}>
         <Column sm={4} md="auto">
           <Card title="Total chats" className={styles.card}>
             <div className={styles.cardContent}>
