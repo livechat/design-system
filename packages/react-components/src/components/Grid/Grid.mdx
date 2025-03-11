@@ -90,6 +90,24 @@ Columns can be specified for each breakpoint:
 </Column>
 ```
 
+Each breakpoint prop (`sm`, `md`, `lg`, `xlg`, `max`) can accept either:
+- A number representing the number of columns to span
+- The value `'auto'` to make the column automatically adjust its width
+
+For example:
+```tsx
+<Column sm={4} md="auto">
+  {/* Takes full width (4 columns) on small screens */}
+  {/* Automatically adjusts width on medium and larger screens */}
+</Column>
+```
+
+When using `'auto'` at a breakpoint:
+- The column will use `flex: 1 1 auto` to grow and shrink as needed
+- It will maintain `max-width: 100%` to prevent overflow
+- Perfect for responsive layouts where you want columns to naturally share available space
+- Useful for card layouts that should adjust based on content
+
 When specifying breakpoints, columns follow these behaviors:
 
 1. **Single Breakpoint**

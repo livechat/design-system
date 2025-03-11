@@ -10,11 +10,11 @@ interface BaseColumnProps {
 }
 
 interface BreakpointProps {
-  sm?: number;
-  md?: number;
-  lg?: number;
-  xlg?: number;
-  max?: number;
+  sm?: number | 'auto';
+  md?: number | 'auto';
+  lg?: number | 'auto';
+  xlg?: number | 'auto';
+  max?: number | 'auto';
   // Ensure width props can't be used with breakpoints
   width?: never;
   minWidth?: never;
@@ -68,6 +68,11 @@ export const Column: React.FC<ColumnProps> = ({
       [styles[`columnLg${lg}`]]: lg && typeof lg === 'number',
       [styles[`columnXlg${xlg}`]]: xlg && typeof xlg === 'number',
       [styles[`columnMax${max}`]]: max && typeof max === 'number',
+      [styles.columnSmAuto]: sm === 'auto',
+      [styles.columnMdAuto]: md === 'auto',
+      [styles.columnLgAuto]: lg === 'auto',
+      [styles.columnXlgAuto]: xlg === 'auto',
+      [styles.columnMaxAuto]: max === 'auto',
       [styles.columnFixedWidth]: width,
       [styles.columnMinWidth]: minWidth,
       [styles.columnMaxWidth]: maxWidth,

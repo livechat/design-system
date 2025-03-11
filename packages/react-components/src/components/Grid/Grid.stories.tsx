@@ -1,7 +1,13 @@
 import * as React from 'react';
 
+import { Badge } from '../Badge';
+import { Card } from '../Card';
+import { Heading, Text } from '../Typography';
+
 import { GridVisualizer } from './components/GridVisualizer/GridVisualizer';
 import { ToggleSwitch } from './components/GridVisualizer/ToggleSwitch';
+
+import styles from './GridStylesStories.module.scss';
 
 import { Grid, Column } from './index';
 
@@ -425,6 +431,183 @@ export const ColumnSizing: Story = {
           </Grid>
         </div>
       </div>
+    </GridWithVisualizer>
+  ),
+};
+
+export const Example1SalesFunnelReportCards: Story = {
+  render: () => (
+    <GridWithVisualizer>
+      <Grid className={styles.gridWithGap}>
+        <Column sm={4} md="auto">
+          <Card title="Total chats" className={styles.card}>
+            <div className={styles.cardContent}>
+              <Heading>2870</Heading>
+              <Badge>80</Badge>
+            </div>
+            <Text>vs 2790 for prev. period</Text>
+          </Card>
+        </Column>
+        <Column sm={4} md="auto">
+          <Card title="Sales conversion" className={styles.card}>
+            <div className={styles.cardContent}>
+              <Heading>45%</Heading>
+              <Badge>12%</Badge>
+            </div>
+            <Text>vs 2790 for prev. period</Text>
+          </Card>
+        </Column>
+        <Column sm={4} md="auto">
+          <Card title="Sales value" className={styles.card}>
+            <div className={styles.cardContent}>
+              <Heading>$13,6k</Heading>
+              <Badge>540</Badge>
+            </div>
+            <Text>vs $13k for prev. period</Text>
+          </Card>
+        </Column>
+      </Grid>
+    </GridWithVisualizer>
+  ),
+};
+
+export const Example2TotalMetricsChangeSummary: Story = {
+  render: () => (
+    <GridWithVisualizer>
+      <Grid className={styles.gridVerticalGap}>
+        <Column sm={4} md={4} lg={4}>
+          <Card title="Automation Savings" className={styles.cardHeight}>
+            <div className={styles.cardContent}>
+              <Heading>2870</Heading>
+              <Badge>80</Badge>
+            </div>
+            <Text>vs 2790 for prev. period</Text>
+
+            <div className={styles.divider} />
+            <div className={styles.cardContent}>
+              <Heading>134$</Heading>
+              <Badge>80</Badge>
+            </div>
+            <Text>vs 2790 for prev. period</Text>
+          </Card>
+        </Column>
+        <Column sm={4} md={4} lg={4}>
+          <Card title="Total cases" className={styles.cardHeight}>
+            <div className={styles.cardContent}>
+              <Heading>2721</Heading>
+              <Badge>810</Badge>
+            </div>
+            <Text>vs 2790 for prev. period</Text>
+
+            <div className={styles.divider} />
+            <div className={styles.cardContent}>
+              <Heading>1343$</Heading>
+              <Badge>80</Badge>
+            </div>
+            <Text>vs 2790 for prev. period</Text>
+          </Card>
+        </Column>
+        <Column sm={4} md={4} lg={4}>
+          <div className={styles.wrapper}>
+            <Card title="Chats first response time" className={styles.card}>
+              <div className={styles.cardContent}>
+                <Heading>28s</Heading>
+                <Badge>2</Badge>
+              </div>
+              <Text>vs 2790 for prev. period</Text>
+            </Card>
+            <Card title="Tickets first response time" className={styles.card}>
+              <div className={styles.cardContent}>
+                <Heading>18s</Heading>
+                <Badge>23</Badge>
+              </div>
+              <Text>vs 2790 for prev. period</Text>
+            </Card>
+          </div>
+        </Column>
+        <Column sm={4} md={4} lg={4}>
+          <div className={styles.wrapper}>
+            <Card title="Chats agents efficiency" className={styles.card}>
+              <div className={styles.cardContent}>
+                <Heading>80%</Heading>
+                <Badge>80</Badge>
+              </div>
+              <Text>vs 2790 for prev. period</Text>
+            </Card>
+            <Card title="Tickets solved average" className={styles.card}>
+              <div className={styles.cardContent}>
+                <Heading>8.4h</Heading>
+                <Badge>80</Badge>
+              </div>
+              <Text>vs 2790 for prev. period</Text>
+            </Card>
+          </div>
+        </Column>
+      </Grid>
+    </GridWithVisualizer>
+  ),
+};
+
+export const Example3AutomationAiAgents: Story = {
+  render: () => (
+    <GridWithVisualizer>
+      <Grid justify="center">
+        <div className={styles.gridWrapper}>
+          <Column sm={4}>
+            <Heading>Skills</Heading>
+          </Column>
+
+          <Card className={styles.backgroundCard}>
+            <Grid className={styles.gridVerticalGap}>
+              <Column sm={4} md="auto">
+                <Card title="Welcome message" className={styles.cardAutomation}>
+                  <Badge>Ai Skill</Badge>
+                </Card>
+              </Column>
+              <Column sm={4} md="auto">
+                <Card
+                  title="Order management"
+                  className={styles.cardAutomation}
+                >
+                  <Badge>Ai Skill</Badge>
+                </Card>
+              </Column>
+              <Column sm={4} md="auto">
+                <Card title="Add skill" className={styles.cardAutomation}>
+                  <Badge>+</Badge>
+                </Card>
+              </Column>
+            </Grid>
+          </Card>
+
+          <Column sm={4}>
+            <Heading>Knowledge</Heading>
+          </Column>
+
+          <Card className={styles.backgroundCard}>
+            <Grid className={styles.gridVerticalGap}>
+              <Column sm={4} md="auto">
+                <Card
+                  title="www.livechat.com"
+                  className={styles.cardAutomation}
+                >
+                  <Badge>Website</Badge>
+                </Card>
+              </Column>
+              <Column sm={4} md="auto">
+                <Card title="Pricing plans" className={styles.cardAutomation}>
+                  <Badge>PDF</Badge>
+                </Card>
+              </Column>
+              <Column sm={4} md="auto">
+                <Card title="Add knowledge" className={styles.cardAutomation}>
+                  <Badge>+</Badge>
+                </Card>
+              </Column>
+            </Grid>
+          </Card>
+        </div>
+      </Grid>
     </GridWithVisualizer>
   ),
 };
