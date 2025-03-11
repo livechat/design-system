@@ -611,3 +611,72 @@ export const Example3AutomationAiAgents: Story = {
     </GridWithVisualizer>
   ),
 };
+
+export const Example4AutomationAiAgentsMinWidth: Story = {
+  render: () => (
+    <GridWithVisualizer>
+      <div className={styles.gridWrapperMinWidth}>
+        <Grid justify="center">
+          <div className={styles.gridWrapper}>
+            <Column sm={4}>
+              <Heading>Skills</Heading>
+            </Column>
+
+            <Card className={styles.backgroundCard}>
+              <Grid className={styles.gridVerticalGap}>
+                <Column>
+                  <Card
+                    title="Welcome message"
+                    className={styles.cardAutomation}
+                  >
+                    <Badge>Ai Skill</Badge>
+                  </Card>
+                </Column>
+                <Column>
+                  <Card
+                    title="Order management"
+                    className={styles.cardAutomation}
+                  >
+                    <Badge>Ai Skill</Badge>
+                  </Card>
+                </Column>
+                <Column>
+                  <Card title="Add skill" className={styles.cardAutomation}>
+                    <Badge>+</Badge>
+                  </Card>
+                </Column>
+              </Grid>
+            </Card>
+
+            <Column sm={4}>
+              <Heading>Knowledge</Heading>
+            </Column>
+
+            <Card className={styles.backgroundCard}>
+              <Grid className={styles.gridVerticalGap}>
+                <Column>
+                  <Card
+                    title="www.livechat.com"
+                    className={styles.cardAutomation}
+                  >
+                    <Badge>Website</Badge>
+                  </Card>
+                </Column>
+                <Column>
+                  <Card title="Pricing plans" className={styles.cardAutomation}>
+                    <Badge>PDF</Badge>
+                  </Card>
+                </Column>
+                <Column>
+                  <Card title="Add knowledge" className={styles.cardAutomation}>
+                    <Badge>+</Badge>
+                  </Card>
+                </Column>
+              </Grid>
+            </Card>
+          </div>
+        </Grid>
+      </div>
+    </GridWithVisualizer>
+  ),
+};
