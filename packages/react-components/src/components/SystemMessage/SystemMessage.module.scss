@@ -6,7 +6,6 @@
 
   &__header-wrapper {
     display: flex;
-    align-items: center;
     justify-content: flex-end;
     margin-bottom: var(--spacing-1);
 
@@ -48,6 +47,7 @@
 
   &__header-wrapper-source {
     margin: 0 0 0 var(--spacing-1);
+    white-space: nowrap;
     color: var(--content-basic-secondary);
   }
 
