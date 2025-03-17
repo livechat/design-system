@@ -1,0 +1,129 @@
+.system-message {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: var(--spacing-1);
+
+    &--alignment-left {
+      justify-content: flex-start;
+    }
+
+    &--alignment-right {
+      justify-content: flex-end;
+      text-align: right;
+    }
+  }
+
+  &__header-wrapper-title {
+    &--kind-info {
+      color: var(--content-basic-primary);
+    }
+
+    &--kind-positive {
+      color: var(--content-basic-positive);
+    }
+
+    &--kind-warning {
+      color: var(--content-basic-warning);
+    }
+
+    &--kind-error {
+      color: var(--content-basic-negative);
+    }
+
+    &--kind-default {
+      color: var(--content-basic-secondary);
+    }
+
+    &--bold {
+      font-weight: 600;
+    }
+  }
+
+  &__header-wrapper-source {
+    margin: 0 0 0 var(--spacing-1);
+    white-space: nowrap;
+    color: var(--content-basic-secondary);
+  }
+
+  &__header-wrapper-icon {
+    margin-right: var(--spacing-1);
+  }
+
+  &__details-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
+    margin-bottom: 2px;
+    color: var(--content-basic-secondary);
+
+    &--alignment-left {
+      justify-content: flex-start;
+    }
+
+    &--alignment-left-margin {
+      margin-left: var(--spacing-5);
+    }
+
+    &--alignment-right {
+      align-items: end;
+      text-align: right;
+    }
+  }
+
+  &__details-toggle {
+    margin-left: var(--spacing-1);
+  }
+
+  &__details-line {
+    max-width: 400px;
+  }
+
+  &__details-first-line {
+    display: flex;
+    align-items: center;
+
+    &--alignment-left {
+      justify-content: flex-start;
+    }
+
+    &--alignment-right {
+      justify-content: flex-end;
+      text-align: right;
+    }
+  }
+
+  &__actions-wrapper {
+    display: flex;
+    gap: var(--spacing-3);
+    align-items: center;
+
+    &--alignment-left {
+      justify-content: flex-start;
+    }
+
+    &--alignment-left-margin {
+      margin-left: var(--spacing-5);
+    }
+
+    &--alignment-right {
+      justify-content: flex-end;
+      text-align: right;
+    }
+  }
+
+  &__actions-wrapper-menu-trigger {
+    cursor: pointer;
+  }
+
+  &__action-item {
+    margin: 0;
+    cursor: pointer;
+    color: var(--action-high-contrast-default);
+  }
+}

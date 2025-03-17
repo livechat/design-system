@@ -1,0 +1,45 @@
+import { Meta, Title, Canvas, ArgTypes } from '@storybook/blocks';
+
+import * as Stories from './SystemMessage.stories';
+
+<Meta of={Stories} />
+
+<Title>SystemMessage</Title>
+
+[Intro](#Intro) | [Component API](#ComponentAPI) | [Content Spec](#ContentSpec)
+
+## Intro <a id="Intro" />
+
+<Canvas of={Stories.WithKindPositive} sourceState="none" />
+
+#### Example implementation
+
+```jsx
+<SystemMessage
+    iconSource={Info}
+    kind="info"
+    alignment="left"
+    titleBold
+    details={['This is a system message']}
+    actions={[
+        {
+            label: 'Action',
+            callback: () => {},
+        }
+    ]}
+/>
+```
+
+## Component API <a id="ComponentAPI" />
+
+<ArgTypes of={Stories.Default} sort="requiredFirst" />
+
+## Content Spec <a id="ContentSpec" />
+
+<a
+  className="sb-unstyled"
+  href="https://www.figma.com/design/9FDwjR8lYvincseDkKypC4/%5BDS%5D-Component-Documentations?node-id=26833-31717&t=qPcXIfXhlphMhecq-0"
+  target="_blank"
+>
+  Go to Figma documentation
+</a>
