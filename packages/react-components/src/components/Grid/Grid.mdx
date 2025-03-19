@@ -64,81 +64,31 @@ $breakpoints: (
 
 ## Column System <a id="ColumnSystem" />
 
-The grid uses the doubling columns system, which means that the number of columns is doubled for each of the main breakpoint:
+The grid uses a consistent 12-column system across all breakpoints. This makes it simple to create predictable layouts that work across all screen sizes.
 
-```scss
-$grid-columns: (
-  sm: 4,   // 4 columns for small screens
-  md: 8,   // 8 columns for medium screens
-  lg: 16,  // 16 columns for large screens
-  xlg: 16, // 16 columns for extra large screens
-  max: 16  // 16 columns for maximum width
-);
-```
+Common column spans and their percentages:
+- 12 columns = 100%
+- 6 columns = 50%
+- 4 columns = 33.33%
+- 3 columns = 25%
+- 2 columns = 16.67%
+- 1 column = 8.33%
 
 ### Column Props
 
-Columns can be specified for each breakpoint:
-
 ```tsx
 <Column 
-  sm={2}   // Takes 2 of 4 columns (50%) on small screens
-  md={4}   // Takes 4 of 8 columns (50%) on medium screens
-  lg={8}   // Takes 8 of 16 columns (50%) on large screens
-  xlg={8}  // Takes 8 of 16 columns (50%) on extra large screens
-  max={8}  // Takes 8 of 16 columns (50%) at maximum width
+  sm={6}   // Takes 6 of 12 columns (50%) on small screens
+  md={6}   // Takes 6 of 12 columns (50%) on medium screens
+  lg={6}   // Takes 6 of 12 columns (50%) on large screens
 >
   Content
 </Column>
 ```
 
-Each breakpoint prop (`sm`, `md`, `lg`, `xlg`, `max`) can accept either:
-- A number representing the number of columns to span
-- The value `'auto'` to make the column automatically adjust its width
-
-For example:
-```tsx
-<Column sm={4} md="auto">
-  {/* Takes full width (4 columns) on small screens */}
-  {/* Automatically adjusts width on medium and larger screens */}
-</Column>
-```
-
-When using `'auto'` at a breakpoint:
-- The column will use `flex: 1 1 auto` to grow and shrink as needed
-- It will maintain `max-width: 100%` to prevent overflow
-- Perfect for responsive layouts where you want columns to naturally share available space
-- Useful for card layouts that should adjust based on content
-
-When specifying breakpoints, columns follow these behaviors:
-
-1. **Single Breakpoint**
-```tsx
-<Column sm={4}>
-  {/* Takes 4 columns on small screens */}
-  {/* Maintains this same width percentage on larger breakpoints */}
-  {/* (Since sm=4 means 100% on small screens, it will stay 100% on larger screens) */}
-</Column>
-
-<Column lg={8}>
-  {/* Starts as a flexible column (autoadjusting width flex: 1 1 auto) on smaller screens */}
-  {/* Takes 8 columns (50%) starting from large breakpoint */}
-</Column>
-```
-
-2. **Multiple Breakpoints with Gaps**
-```tsx
-<Column sm={2} lg={16}>
-  {/* Takes 2 columns (50%) on small screens */}
-  {/* Maintains 50% width on medium screens (inherited from sm breakpoint) */}
-  {/* Takes 16 columns (100%) on large screens and up */}
-</Column>
-```
-
-3. **Default Behavior**
-- By default, columns have `flex: 1 1 auto` and `max-width: 100%`
-- The width set at a breakpoint persists until another breakpoint overwrites it
-- There is no "reverting" to auto-adjustment after a breakpoint - the last specified width continues to apply
+Each breakpoint prop accepts:
+- A number from 1 to 12 representing the number of columns to span
+- The value `'auto'` for automatic width adjustment
 
 ### Auto-width Columns
 

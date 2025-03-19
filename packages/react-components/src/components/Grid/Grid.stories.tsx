@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { ArrowForward, ArrowDownward } from '@livechat/design-system-icons';
+import { ArrowDownward, ArrowForward } from '@livechat/design-system-icons';
 
 import { Badge } from '../Badge';
 import { Card } from '../Card';
@@ -69,11 +69,11 @@ export const Default: Story = {
   render: () => (
     <GridWithVisualizer>
       <Grid>
-        <Column sm={4} md={4} lg={4}>
-          <Box>Column 1 (always 4 columns)</Box>
+        <Column sm={3} md={3} lg={3}>
+          <Box>Column 1 (always 1/4 width)</Box>
         </Column>
-        <Column sm={2} md={4} lg={8}>
-          <Box>Column 2 (always 50%)</Box>
+        <Column sm={6} md={6} lg={6}>
+          <Box>Column 2 (always 1/2 width)</Box>
         </Column>
         <Column>
           <Box>Column 3 (flexible)</Box>
@@ -81,8 +81,8 @@ export const Default: Story = {
         <Column>
           <Box>Column 4 (flexible)</Box>
         </Column>
-        <Column sm={4}>
-          <Box>Column 5 (always full width)</Box>
+        <Column sm={12}>
+          <Box>Column 5 (full width)</Box>
         </Column>
       </Grid>
     </GridWithVisualizer>
@@ -93,26 +93,26 @@ export const FixedColumnPercentageSizes: Story = {
   render: () => (
     <GridWithVisualizer>
       <Grid>
-        <Column sm={4} md={8} lg={16}>
-          <Box>Full width</Box>
+        <Column sm={12}>
+          <Box>Full width (12/12)</Box>
         </Column>
-        <Column sm={2} md={4} lg={8}>
-          <Box>1/2</Box>
+        <Column sm={6}>
+          <Box>1/2 width (6/12)</Box>
         </Column>
-        <Column sm={2} md={4} lg={8}>
-          <Box>1/2</Box>
+        <Column sm={6}>
+          <Box>1/2 width (6/12)</Box>
         </Column>
-        <Column sm={1} md={4} lg={4}>
-          <Box>1/4</Box>
+        <Column sm={3}>
+          <Box>1/4 width (3/12)</Box>
         </Column>
-        <Column sm={1} md={4} lg={4}>
-          <Box>1/4</Box>
+        <Column sm={3}>
+          <Box>1/4 width (3/12)</Box>
         </Column>
-        <Column sm={1} md={4} lg={4}>
-          <Box>1/4</Box>
+        <Column sm={3}>
+          <Box>1/4 width (3/12)</Box>
         </Column>
-        <Column sm={1} md={4} lg={4}>
-          <Box>1/4</Box>
+        <Column sm={3}>
+          <Box>1/4 width (3/12)</Box>
         </Column>
       </Grid>
     </GridWithVisualizer>
@@ -123,18 +123,18 @@ export const ResponsiveColumns: Story = {
   render: () => (
     <GridWithVisualizer>
       <Grid>
-        <Column sm={4} md={4} lg={8}>
+        <Column sm={4} md={8}>
           <Box>
-            sm=4 md=4 lg=8
+            sm=4 md=4 lg and up=8
             <br />
-            (Full width on small, half on medium and large)
+            (Full width on small, half on medium and large and above)
           </Box>
         </Column>
-        <Column sm={4} md={4} lg={8}>
+        <Column sm={4} md={8}>
           <Box>
-            sm=4 md=4 lg=8
+            sm=4 md=4 lg and up=8
             <br />
-            (Full width on small, half on medium and large)
+            (Full width on small, half on medium and large and above)
           </Box>
         </Column>
         <Column sm={4} md={2} lg={4}>
@@ -167,7 +167,7 @@ export const AutoColumns: Story = {
         <Column>
           <Box>Auto width</Box>
         </Column>
-        <Column sm={2} md={4} lg={8}>
+        <Column sm={6}>
           <Box>Fixed width 50%</Box>
         </Column>
         <Column>
@@ -182,30 +182,30 @@ export const NestedGrid: Story = {
   render: () => (
     <GridWithVisualizer>
       <Grid>
-        <Column lg={8}>
+        <Column sm={6}>
           <Box>
-            Outer Grid (8 columns)
+            Outer Grid (6 columns)
             <Grid>
-              <Column lg={8}>
+              <Column sm={6}>
                 <Box>
-                  Inner Grid (8 inner grid columns,1/2 of parent = 4 outer
-                  columns)
+                  Inner Grid (6 inner grid columns, 3 outer grid columns, 1/2 of
+                  parent)
                 </Box>
               </Column>
-              <Column lg={8}>
+              <Column sm={6}>
                 <Box>
-                  Inner Grid (8 inner grid columns, 1/2 of parent = 4 outer
-                  columns)
+                  Inner Grid (6 inner grid columns, 3 outer grid columns, 1/2 of
+                  parent)
                 </Box>
               </Column>
             </Grid>
           </Box>
         </Column>
-        <Column lg={4}>
-          <Box>Outer Grid (4 columns)</Box>
+        <Column sm={3}>
+          <Box>Outer Grid (3 columns)</Box>
         </Column>
-        <Column lg={4}>
-          <Box>Outer Grid (4 columns)</Box>
+        <Column sm={3}>
+          <Box>Outer Grid (3 columns)</Box>
         </Column>
       </Grid>
     </GridWithVisualizer>
@@ -230,76 +230,6 @@ export const ThreeColumnExample: Story = {
   ),
 };
 
-export const BreakpointInheritance: Story = {
-  render: () => (
-    <GridWithVisualizer>
-      <Grid>
-        <Column sm={4}>
-          <Box>
-            sm=4 only
-            <br />
-            (100% width that persists across all breakpoints)
-          </Box>
-        </Column>
-        <Column lg={8}>
-          <Box>
-            lg=8 only
-            <br />
-            (Flexible until lg, then 50% width)
-          </Box>
-        </Column>
-        <Column sm={1} lg={8}>
-          <Box>
-            sm=1, lg=8
-            <br />
-            (25% on small, stays 25% on medium, becomes 50% on large)
-          </Box>
-        </Column>
-        <Column sm={2} md={6} lg={4}>
-          <Box>
-            sm=2, md=6, lg=4
-            <br />
-            (50% → 75% → 25%)
-          </Box>
-        </Column>
-      </Grid>
-      <div
-        style={{
-          marginTop: '20px',
-          padding: '10px',
-          backgroundColor: 'var(--surface-basic-disabled)',
-        }}
-      >
-        <p>Breakpoint behavior:</p>
-        <ul>
-          <li>Default state: columns are flexible (flex: 1 1 auto)</li>
-          <li>
-            When a breakpoint is set: width is fixed and persists until
-            overwritten
-          </li>
-          <li>
-            No automatic "reverting" to flexible layout after a breakpoint
-          </li>
-        </ul>
-        <p>In this example:</p>
-        <ul>
-          <li>
-            First row: Shows how sm=4 (100%) persists across all breakpoints
-          </li>
-          <li>
-            Second row: Shows default flexible behavior until lg breakpoint
-          </li>
-
-          <li>
-            Last row: Shows explicit transitions between breakpoints (sm=2 →
-            md=6 → lg=4)
-          </li>
-        </ul>
-      </div>
-    </GridWithVisualizer>
-  ),
-};
-
 export const Alignment: Story = {
   render: () => (
     <GridWithVisualizer>
@@ -307,10 +237,10 @@ export const Alignment: Story = {
         <div>
           <h3>Vertical Alignment (align=end)</h3>
           <Grid align="end">
-            <Column sm={1}>
+            <Column sm={2}>
               <Box style={{ height: '100px' }}>Tall</Box>
             </Column>
-            <Column sm={1}>
+            <Column sm={2}>
               <Box style={{ height: '50px' }}>Short</Box>
             </Column>
             <Column sm={2}>
@@ -353,42 +283,7 @@ export const Alignment: Story = {
   ),
 };
 
-export const NestedGridWithAlignment: Story = {
-  render: () => (
-    <GridWithVisualizer>
-      <Grid justify="center">
-        <Column lg={12}>
-          <Box>
-            <p>Outer Grid centered (12 columns)</p>
-            <Grid justify="center">
-              <Column lg={6}>
-                <Box>Inner Grid centered (6 inner grid columns)</Box>
-              </Column>
-              <Column lg={2}>
-                <Box>Inner Grid centered (2 inner grid columns)</Box>
-              </Column>
-            </Grid>
-          </Box>
-        </Column>
-        <Column lg={8}>
-          <Box>
-            <p>Outer Grid centered (8 columns)</p>
-            <Grid justify="space-between">
-              <Column lg={4}>
-                <Box>Inner Grid spaced-between (4 inner grid columns)</Box>
-              </Column>
-              <Column lg={4}>
-                <Box>Inner Grid spaced-between (4 inner grid columns)</Box>
-              </Column>
-            </Grid>
-          </Box>
-        </Column>
-      </Grid>
-    </GridWithVisualizer>
-  ),
-};
-
-export const ColumnSizing: Story = {
+export const FixedColumnSizing: Story = {
   render: () => (
     <GridWithVisualizer>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
@@ -441,8 +336,8 @@ export const ColumnSizing: Story = {
 export const Example1SalesFunnelReportCards: Story = {
   render: () => (
     <GridWithVisualizer>
-      <Grid className={styles.gridVerticalGap}>
-        <Column sm={4} md="auto">
+      <Grid>
+        <Column sm={12} md={4}>
           <Card title="Total chats" className={styles.card}>
             <div className={styles.cardContent}>
               <Heading>2870</Heading>
@@ -451,7 +346,7 @@ export const Example1SalesFunnelReportCards: Story = {
             <Text>vs 2790 for prev. period</Text>
           </Card>
         </Column>
-        <Column sm={4} md="auto">
+        <Column sm={12} md={4}>
           <Card title="Sales conversion" className={styles.card}>
             <div className={styles.cardContent}>
               <Heading>45%</Heading>
@@ -460,7 +355,7 @@ export const Example1SalesFunnelReportCards: Story = {
             <Text>vs 2790 for prev. period</Text>
           </Card>
         </Column>
-        <Column sm={4} md="auto">
+        <Column sm={12} md={4}>
           <Card title="Sales value" className={styles.card}>
             <div className={styles.cardContent}>
               <Heading>$13,6k</Heading>
@@ -477,8 +372,8 @@ export const Example1SalesFunnelReportCards: Story = {
 export const Example2TotalMetricsChangeSummary: Story = {
   render: () => (
     <GridWithVisualizer>
-      <Grid className={styles.gridVerticalGap}>
-        <Column sm={4} md={4} lg={4}>
+      <Grid>
+        <Column sm={12} md={6} lg={3}>
           <Card title="Automation Savings" className={styles.cardHeight}>
             <div className={styles.cardContent}>
               <Heading>2870</Heading>
@@ -494,7 +389,7 @@ export const Example2TotalMetricsChangeSummary: Story = {
             <Text>vs 2790 for prev. period</Text>
           </Card>
         </Column>
-        <Column sm={4} md={4} lg={4}>
+        <Column sm={12} md={6} lg={3}>
           <Card title="Total cases" className={styles.cardHeight}>
             <div className={styles.cardContent}>
               <Heading>2721</Heading>
@@ -510,7 +405,7 @@ export const Example2TotalMetricsChangeSummary: Story = {
             <Text>vs 2790 for prev. period</Text>
           </Card>
         </Column>
-        <Column sm={4} md={4} lg={4}>
+        <Column sm={12} md={6} lg={3}>
           <div className={styles.wrapper}>
             <Card title="Chats first response time" className={styles.card}>
               <div className={styles.cardContent}>
@@ -528,7 +423,7 @@ export const Example2TotalMetricsChangeSummary: Story = {
             </Card>
           </div>
         </Column>
-        <Column sm={4} md={4} lg={4}>
+        <Column sm={12} md={6} lg={3}>
           <div className={styles.wrapper}>
             <Card title="Chats agents efficiency" className={styles.card}>
               <div className={styles.cardContent}>
@@ -555,19 +450,19 @@ export const Example3AutomationAiAgents: Story = {
   render: () => (
     <GridWithVisualizer>
       <Grid justify="center">
-        <div className={styles.gridWrapper}>
-          <Column sm={4}>
+        <div>
+          <Column sm={12}>
             <Heading>Skills</Heading>
           </Column>
 
           <Card className={styles.backgroundCard}>
-            <Grid className={styles.gridVerticalGap}>
-              <Column sm={4} md="auto">
+            <Grid>
+              <Column sm={12} md={4}>
                 <Card title="Welcome message" className={styles.cardAutomation}>
                   <Badge>Ai Skill</Badge>
                 </Card>
               </Column>
-              <Column sm={4} md="auto">
+              <Column sm={12} md={4}>
                 <Card
                   title="Order management"
                   className={styles.cardAutomation}
@@ -575,7 +470,7 @@ export const Example3AutomationAiAgents: Story = {
                   <Badge>Ai Skill</Badge>
                 </Card>
               </Column>
-              <Column sm={4} md="auto">
+              <Column sm={12} md={4}>
                 <Card title="Add skill" className={styles.cardAutomation}>
                   <Badge>+</Badge>
                 </Card>
@@ -583,13 +478,13 @@ export const Example3AutomationAiAgents: Story = {
             </Grid>
           </Card>
 
-          <Column sm={4}>
+          <Column sm={12}>
             <Heading>Knowledge</Heading>
           </Column>
 
           <Card className={styles.backgroundCard}>
-            <Grid className={styles.gridVerticalGap}>
-              <Column sm={4} md="auto">
+            <Grid>
+              <Column sm={12} md={4}>
                 <Card
                   title="www.livechat.com"
                   className={styles.cardAutomation}
@@ -597,12 +492,12 @@ export const Example3AutomationAiAgents: Story = {
                   <Badge>Website</Badge>
                 </Card>
               </Column>
-              <Column sm={4} md="auto">
+              <Column sm={12} md={4}>
                 <Card title="Pricing plans" className={styles.cardAutomation}>
                   <Badge>PDF</Badge>
                 </Card>
               </Column>
-              <Column sm={4} md="auto">
+              <Column sm={12} md={4}>
                 <Card title="Add knowledge" className={styles.cardAutomation}>
                   <Badge>+</Badge>
                 </Card>
@@ -620,8 +515,8 @@ export const Example4AutomationAiAgentsMinWidth: Story = {
     <GridWithVisualizer>
       <div className={styles.gridWrapperMinWidth}>
         <Grid justify="center">
-          <div className={styles.gridWrapper}>
-            <Column sm={4}>
+          <div>
+            <Column sm={12}>
               <Heading>Skills</Heading>
             </Column>
 
@@ -651,7 +546,7 @@ export const Example4AutomationAiAgentsMinWidth: Story = {
               </Grid>
             </Card>
 
-            <Column sm={4}>
+            <Column sm={12}>
               <Heading>Knowledge</Heading>
             </Column>
 
@@ -687,8 +582,8 @@ export const Example4AutomationAiAgentsMinWidth: Story = {
 export const Example5SalesFunnelReportCardsWithArrows: Story = {
   render: () => (
     <GridWithVisualizer>
-      <Grid className={styles.gridVerticalGap}>
-        <Column sm={4} lg="auto">
+      <Grid align="center" justify="center">
+        <Column sm={12} lg={3}>
           <Card title="Total chats" className={styles.card}>
             <div className={styles.cardContent}>
               <Heading>2870</Heading>
@@ -697,13 +592,12 @@ export const Example5SalesFunnelReportCardsWithArrows: Story = {
             <Text>vs 2790 for prev. period</Text>
           </Card>
         </Column>
-        <Column className={styles.arrowDown}>
-          <Icon source={ArrowDownward} />
+        <Column sm={12} md={1}>
+          <Icon className={styles.arrowDown} source={ArrowDownward} />
+          <Icon className={styles.arrowForward} source={ArrowForward} />
         </Column>
-        <Column width="fit-content" className={styles.arrowForward}>
-          <Icon source={ArrowForward} />
-        </Column>
-        <Column sm={4} lg="auto">
+
+        <Column sm={12} lg={3}>
           <Card title="Sales conversion" className={styles.card}>
             <div className={styles.cardContent}>
               <Heading>45%</Heading>
@@ -712,13 +606,11 @@ export const Example5SalesFunnelReportCardsWithArrows: Story = {
             <Text>vs 2790 for prev. period</Text>
           </Card>
         </Column>
-        <Column className={styles.arrowDown}>
-          <Icon source={ArrowDownward} />
+        <Column sm={12} md={1}>
+          <Icon className={styles.arrowDown} source={ArrowDownward} />
+          <Icon className={styles.arrowForward} source={ArrowForward} />
         </Column>
-        <Column width="fit-content" className={styles.arrowForward}>
-          <Icon source={ArrowForward} />
-        </Column>
-        <Column sm={4} lg="auto">
+        <Column sm={12} lg={3}>
           <Card title="Sales value" className={styles.card}>
             <div className={styles.cardContent}>
               <Heading>$13,6k</Heading>

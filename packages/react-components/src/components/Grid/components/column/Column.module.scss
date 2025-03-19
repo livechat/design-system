@@ -24,10 +24,10 @@
   max-width: var(--column-max-width);
 }
 
-@for $i from 1 through map.get(grid.$grid-columns, 'sm') {
+@for $i from 1 through grid.$grid-columns {
   .columnSm#{$i} {
     @include grid.column-styles(
-      math.percentage(math.div($i, map.get(grid.$grid-columns, 'sm')))
+      math.percentage(math.div($i, grid.$grid-columns))
     );
   }
 }
@@ -38,14 +38,16 @@
 }
 
 // Generate column classes for other breakpoints
-@each $breakpoint, $columns in grid.$grid-columns {
+@each $breakpoint in map.keys(grid.$breakpoints) {
   @if $breakpoint != 'sm' {
     $min-width: map.get(grid.$breakpoints, $breakpoint);
 
     @include grid-utils.breakpoint($min-width) {
-      @for $i from 1 through $columns {
+      @for $i from 1 through grid.$grid-columns {
         .column#{grid-utils.capitalize($breakpoint)}#{$i} {
-          @include grid.column-styles(math.percentage(math.div($i, $columns)));
+          @include grid.column-styles(
+            math.percentage(math.div($i, grid.$grid-columns))
+          );
         }
       }
 

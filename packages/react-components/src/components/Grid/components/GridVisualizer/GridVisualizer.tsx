@@ -7,12 +7,24 @@ interface GridVisualizerProps {
   showGrid?: boolean;
 }
 
-const getColumnCount = (
-  width: number
-): { count: number; breakpoint: string } => {
-  if (width < 672) return { count: 4, breakpoint: 'sm' };
-  if (width < 1024) return { count: 8, breakpoint: 'md' };
-  return { count: 16, breakpoint: 'lg' };
+const GRID_COLUMNS = 12;
+
+const BREAKPOINTS = {
+  sm: 320,
+  md: 672,
+  lg: 1024,
+  xlg: 1312,
+  max: 1584,
+} as const;
+
+type Breakpoint = keyof typeof BREAKPOINTS;
+
+const getBreakpoint = (width: number): Breakpoint => {
+  if (width < BREAKPOINTS.md) return 'sm';
+  if (width < BREAKPOINTS.lg) return 'md';
+  if (width < BREAKPOINTS.xlg) return 'lg';
+  if (width < BREAKPOINTS.max) return 'xlg';
+  return 'max';
 };
 
 /**
@@ -23,20 +35,20 @@ export const GridVisualizer: React.FC<GridVisualizerProps> = ({
   children,
   showGrid = false,
 }) => {
-  const [gridInfo, setGridInfo] = React.useState({
-    count: 16,
-    breakpoint: 'lg',
-  });
+  const [breakpoint, setBreakpoint] = React.useState<Breakpoint>('lg');
+  const [width, setWidth] = React.useState(window.innerWidth);
 
   React.useEffect(() => {
-    const updateGridInfo = () => {
-      setGridInfo(getColumnCount(window.innerWidth));
+    const updateBreakpoint = () => {
+      const currentWidth = window.innerWidth;
+      setWidth(currentWidth);
+      setBreakpoint(getBreakpoint(currentWidth));
     };
 
-    updateGridInfo();
-    window.addEventListener('resize', updateGridInfo);
+    updateBreakpoint();
+    window.addEventListener('resize', updateBreakpoint);
 
-    return () => window.removeEventListener('resize', updateGridInfo);
+    return () => window.removeEventListener('resize', updateBreakpoint);
   }, []);
 
   return (
@@ -45,7 +57,7 @@ export const GridVisualizer: React.FC<GridVisualizerProps> = ({
         <>
           <div className={styles.gridOverlay}>
             <div className={styles.gridContainer}>
-              {Array.from({ length: gridInfo.count }).map((_, i) => (
+              {Array.from({ length: GRID_COLUMNS }).map((_, i) => (
                 <div key={i} className={styles.gridColumn}>
                   <div className={styles.gridColumnInner} />
                   {i + 1}
@@ -54,7 +66,7 @@ export const GridVisualizer: React.FC<GridVisualizerProps> = ({
             </div>
           </div>
           <div className={styles.gridInfo}>
-            Current grid: {gridInfo.count} columns ({gridInfo.breakpoint})
+            Current grid: {GRID_COLUMNS} columns ({breakpoint} - {width}px)
           </div>
         </>
       )}

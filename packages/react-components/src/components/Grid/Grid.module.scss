@@ -11,13 +11,7 @@ $breakpoints: (
   max: 1584px,
 );
 
-$grid-columns: (
-  sm: 4,
-  md: 8,
-  lg: 16,
-  xlg: 16,
-  max: 16,
-);
+$grid-columns: 12;
 
 @mixin column-styles($width) {
   flex: 0 0 $width;
@@ -65,11 +59,11 @@ $grid-columns: (
 }
 
 // Generate column classes for each breakpoint
-@each $breakpoint, $columns in $grid-columns {
+@each $breakpoint in map.keys($breakpoints) {
   @include grid-utils.breakpoint(map.get($breakpoints, $breakpoint)) {
-    @for $i from 1 through $columns {
+    @for $i from 1 through $grid-columns {
       .column#{grid-utils.capitalize($breakpoint)}#{$i} {
-        @include column-styles(math.percentage(math.div($i, $columns)));
+        @include column-styles(math.percentage(math.div($i, $grid-columns)));
       }
     }
 

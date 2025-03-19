@@ -1,5 +1,5 @@
 .card {
-  margin: 0 var(--spacing-4);
+  // margin: 0 var(--spacing-4);
   background-color: var(--surface-primary-active-colored);
 }
 
@@ -10,18 +10,18 @@
 }
 
 .cardHeight {
-  margin: 0 var(--spacing-4);
+  // margin: 0 var(--spacing-4);
   background-color: var(--surface-primary-active-colored);
   height: 382px;
 }
 
 .gridWithGap {
-  gap: var(--spacing-4);
-  margin: 0 var(--spacing-4);
+  // gap: var(--spacing-4);
+  // margin: 0 var(--spacing-4);
 }
 
 .gridVerticalGap {
-  gap: var(--spacing-4) 0;
+  // gap: var(--spacing-4) 0;
 }
 
 .divider {
@@ -33,7 +33,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-4);
+  // gap: var(--spacing-4);
 }
 
 .flex {
@@ -45,7 +45,7 @@
 }
 
 .cardAutomation {
-  margin: 0 var(--spacing-4);
+  // margin: 0 var(--spacing-4);
   background-color: var(--surface-primary-active-colored);
   min-width: 180px;
 }
