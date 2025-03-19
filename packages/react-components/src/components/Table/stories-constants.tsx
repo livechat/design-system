@@ -1,8 +1,8 @@
 import { Button } from '../Button';
 
-import { Column, DataForPinningExample } from './types';
+import { TableColumn, DataForPinningExample } from './types';
 
-export const columnsForPinningExample: Column<DataForPinningExample>[] = [
+export const columnsForPinningExample: TableColumn<DataForPinningExample>[] = [
   { key: 'userId', header: 'ID' },
   { key: 'fullName', header: 'Name' },
   { key: 'years', header: 'Age' },
