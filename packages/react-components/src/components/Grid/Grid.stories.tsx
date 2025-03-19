@@ -50,13 +50,7 @@ const Box = ({
   </div>
 );
 
-const GridWithVisualizer = ({
-  children,
-  gutter = 0,
-}: {
-  children: React.ReactNode;
-  gutter?: number;
-}) => {
+const GridWithVisualizer = ({ children }: { children: React.ReactNode }) => {
   const [showGrid, setShowGrid] = React.useState(true);
 
   return (
@@ -66,9 +60,7 @@ const GridWithVisualizer = ({
         onChange={setShowGrid}
         label="Show grid overlay"
       />
-      <GridVisualizer showGrid={showGrid} gutter={gutter}>
-        {children}
-      </GridVisualizer>
+      <GridVisualizer showGrid={showGrid}>{children}</GridVisualizer>
     </div>
   );
 };
@@ -343,8 +335,8 @@ export const FixedColumnSizing: Story = {
 
 export const Example1SalesFunnelReportCards: Story = {
   render: () => (
-    <GridWithVisualizer gutter={16}>
-      <Grid gutter={16}>
+    <GridWithVisualizer>
+      <Grid>
         <Column sm={12} md={4}>
           <Card title="Total chats" className={styles.card}>
             <div className={styles.cardContent}>
@@ -379,8 +371,8 @@ export const Example1SalesFunnelReportCards: Story = {
 
 export const Example2TotalMetricsChangeSummary: Story = {
   render: () => (
-    <GridWithVisualizer gutter={16}>
-      <Grid gutter={16}>
+    <GridWithVisualizer>
+      <Grid>
         <Column sm={12} md={6} lg={3}>
           <Card title="Automation Savings" className={styles.cardHeight}>
             <div className={styles.cardContent}>
@@ -456,8 +448,8 @@ export const Example2TotalMetricsChangeSummary: Story = {
 
 export const Example3AutomationAiAgents: Story = {
   render: () => (
-    <GridWithVisualizer gutter={16}>
-      <Grid justify="center" gutter={16}>
+    <GridWithVisualizer>
+      <Grid justify="center">
         <Column sm={12}>
           <Heading>Skills</Heading>
         </Column>
@@ -488,9 +480,9 @@ export const Example3AutomationAiAgents: Story = {
 
 export const Example4AutomationAiAgentsMinWidth: Story = {
   render: () => (
-    <GridWithVisualizer gutter={16}>
+    <GridWithVisualizer>
       <div className={styles.gridWrapperMinWidth}>
-        <Grid justify="center" gutter={16}>
+        <Grid justify="center">
           <div>
             <Column sm={12}>
               <Heading>Skills</Heading>
@@ -530,8 +522,8 @@ export const Example4AutomationAiAgentsMinWidth: Story = {
 
 export const Example5SalesFunnelReportCardsWithArrows: Story = {
   render: () => (
-    <GridWithVisualizer gutter={16}>
-      <Grid align="center" justify="center" gutter={16}>
+    <GridWithVisualizer>
+      <Grid align="center" justify="center">
         <Column sm={12} lg={3}>
           <Card title="Total chats" className={styles.card}>
             <div className={styles.cardContent}>
@@ -612,8 +604,8 @@ export const WithinSmallerContainer: Story = {
           </div>
         </div>
         <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-          <GridWithVisualizer gutter={8}>
-            <Grid gutter={8}>
+          <GridWithVisualizer>
+            <Grid spacing={{ sm: 8, md: 12, lg: 4 }}>
               <Column sm={8} md={12} lg={4}>
                 <Box>Column 1 (md-12, lg=4)</Box>
               </Column>

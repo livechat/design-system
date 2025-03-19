@@ -29,20 +29,57 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
    * Horizontal alignment of columns
    */
   justify?: JustifyContent;
+  // TODO rename to gutter
   /**
-   * Gap between columns and rows
+   * Spacing props
    */
-  gutter?: number;
+  spacing?: {
+    sm?: string | number;
+    md?: string | number;
+    lg?: string | number;
+    xlg?: string | number;
+    max?: string | number;
+  };
 }
+
+const getSpacingValue = (
+  spacing: string | number | undefined,
+  breakpoint: string
+): string => {
+  if (!spacing) return `var(--grid-spacing-${breakpoint})`;
+  return typeof spacing === 'number' ? `${spacing}px` : spacing;
+};
 
 export const Grid: React.FC<GridProps> = ({
   className,
   children,
   align,
   justify,
-  gutter = 0,
+  spacing,
   ...rest
 }) => {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [currentBreakpoint, setCurrentBreakpoint] =
+    React.useState<string>('sm');
+
+  // Add resize observer to track current breakpoint
+  React.useEffect(() => {
+    if (!containerRef.current) return;
+
+    const resizeObserver = new ResizeObserver((entries) => {
+      const width = entries[0].contentRect.width;
+      if (width >= 1584) setCurrentBreakpoint('max');
+      else if (width >= 1312) setCurrentBreakpoint('xlg');
+      else if (width >= 1024) setCurrentBreakpoint('lg');
+      else if (width >= 672) setCurrentBreakpoint('md');
+      else setCurrentBreakpoint('sm');
+    });
+
+    resizeObserver.observe(containerRef.current);
+
+    return () => resizeObserver.disconnect();
+  }, []);
+
   const gridClasses = cx(
     styles.grid,
     {
@@ -52,12 +89,16 @@ export const Grid: React.FC<GridProps> = ({
     className
   );
 
-  const gridStyle = {
-    '--grid-gutter': gutter ? `${gutter}px` : undefined,
+  // Calculate the current spacing
+  const style = {
+    '--grid-gutter': getSpacingValue(
+      spacing?.[currentBreakpoint as keyof typeof spacing],
+      currentBreakpoint
+    ),
   } as React.CSSProperties;
 
   return (
-    <div className={gridClasses} {...rest} style={gridStyle}>
+    <div ref={containerRef} className={gridClasses} {...rest} style={style}>
       {children}
     </div>
   );
