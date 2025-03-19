@@ -50,7 +50,13 @@ const Box = ({
   </div>
 );
 
-const GridWithVisualizer = ({ children }: { children: React.ReactNode }) => {
+const GridWithVisualizer = ({
+  children,
+  gutter = 0,
+}: {
+  children: React.ReactNode;
+  gutter?: number;
+}) => {
   const [showGrid, setShowGrid] = React.useState(true);
 
   return (
@@ -60,7 +66,9 @@ const GridWithVisualizer = ({ children }: { children: React.ReactNode }) => {
         onChange={setShowGrid}
         label="Show grid overlay"
       />
-      <GridVisualizer showGrid={showGrid}>{children}</GridVisualizer>
+      <GridVisualizer showGrid={showGrid} gutter={gutter}>
+        {children}
+      </GridVisualizer>
     </div>
   );
 };

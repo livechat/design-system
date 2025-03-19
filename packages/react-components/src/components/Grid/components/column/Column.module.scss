@@ -27,7 +27,10 @@
 @for $i from 1 through grid.$grid-columns {
   .columnSm#{$i} {
     @include grid.column-styles(
-      math.percentage(math.div($i, grid.$grid-columns))
+      calc(
+        100% * $i / grid.$grid-columns - (grid.$grid-columns - $i) *
+          (var(--grid-gutter, 1px) / grid.$grid-columns)
+      )
     );
   }
 }
@@ -46,7 +49,10 @@
       @for $i from 1 through grid.$grid-columns {
         .column#{grid-utils.capitalize($breakpoint)}#{$i} {
           @include grid.column-styles(
-            math.percentage(math.div($i, grid.$grid-columns))
+            calc(
+              100% * $i / grid.$grid-columns - (grid.$grid-columns - $i) *
+                (var(--grid-gutter, 1px) / grid.$grid-columns)
+            )
           );
         }
       }

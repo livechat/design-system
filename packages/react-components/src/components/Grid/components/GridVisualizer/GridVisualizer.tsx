@@ -5,6 +5,7 @@ import styles from './GridVisualizer.module.scss';
 interface GridVisualizerProps {
   children: React.ReactNode;
   showGrid?: boolean;
+  gutter?: string | number;
 }
 
 const GRID_COLUMNS = 12;
@@ -34,6 +35,7 @@ const getBreakpoint = (width: number): Breakpoint => {
 export const GridVisualizer: React.FC<GridVisualizerProps> = ({
   children,
   showGrid = false,
+  gutter = 0,
 }) => {
   const [breakpoint, setBreakpoint] = React.useState<Breakpoint>('lg');
   const [width, setWidth] = React.useState(window.innerWidth);
@@ -56,7 +58,7 @@ export const GridVisualizer: React.FC<GridVisualizerProps> = ({
       {showGrid && (
         <>
           <div className={styles.gridOverlay}>
-            <div className={styles.gridContainer}>
+            <div className={styles.gridContainer} style={{ gap: gutter }}>
               {Array.from({ length: GRID_COLUMNS }).map((_, i) => (
                 <div key={i} className={styles.gridColumn}>
                   <div className={styles.gridColumnInner} />

@@ -29,6 +29,10 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
    * Horizontal alignment of columns
    */
   justify?: JustifyContent;
+  /**
+   * Gap between columns and rows
+   */
+  gutter?: number;
 }
 
 export const Grid: React.FC<GridProps> = ({
@@ -36,6 +40,7 @@ export const Grid: React.FC<GridProps> = ({
   children,
   align,
   justify,
+  gutter = 0,
   ...rest
 }) => {
   const gridClasses = cx(
@@ -47,8 +52,12 @@ export const Grid: React.FC<GridProps> = ({
     className
   );
 
+  const gridStyle = {
+    '--grid-gutter': gutter ? `${gutter}px` : undefined,
+  } as React.CSSProperties;
+
   return (
-    <div className={gridClasses} {...rest}>
+    <div className={gridClasses} {...rest} style={gridStyle}>
       {children}
     </div>
   );
