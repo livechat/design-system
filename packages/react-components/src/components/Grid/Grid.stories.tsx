@@ -343,8 +343,8 @@ export const FixedColumnSizing: Story = {
 
 export const Example1SalesFunnelReportCards: Story = {
   render: () => (
-    <GridWithVisualizer>
-      <Grid>
+    <GridWithVisualizer gutter={16}>
+      <Grid gutter={16}>
         <Column sm={12} md={4}>
           <Card title="Total chats" className={styles.card}>
             <div className={styles.cardContent}>
@@ -379,8 +379,8 @@ export const Example1SalesFunnelReportCards: Story = {
 
 export const Example2TotalMetricsChangeSummary: Story = {
   render: () => (
-    <GridWithVisualizer>
-      <Grid>
+    <GridWithVisualizer gutter={16}>
+      <Grid gutter={16}>
         <Column sm={12} md={6} lg={3}>
           <Card title="Automation Savings" className={styles.cardHeight}>
             <div className={styles.cardContent}>
@@ -456,63 +456,31 @@ export const Example2TotalMetricsChangeSummary: Story = {
 
 export const Example3AutomationAiAgents: Story = {
   render: () => (
-    <GridWithVisualizer>
-      <Grid justify="center">
-        <div>
-          <Column sm={12}>
-            <Heading>Skills</Heading>
-          </Column>
+    <GridWithVisualizer gutter={16}>
+      <Grid justify="center" gutter={16}>
+        <Column sm={12}>
+          <Heading>Skills</Heading>
+        </Column>
 
-          <Card className={styles.backgroundCard}>
-            <Grid>
-              <Column sm={12} md={4}>
-                <Card title="Welcome message" className={styles.cardAutomation}>
-                  <Badge>Ai Skill</Badge>
-                </Card>
-              </Column>
-              <Column sm={12} md={4}>
-                <Card
-                  title="Order management"
-                  className={styles.cardAutomation}
-                >
-                  <Badge>Ai Skill</Badge>
-                </Card>
-              </Column>
-              <Column sm={12} md={4}>
-                <Card title="Add skill" className={styles.cardAutomation}>
-                  <Badge>+</Badge>
-                </Card>
-              </Column>
-            </Grid>
-          </Card>
-
-          <Column sm={12}>
-            <Heading>Knowledge</Heading>
-          </Column>
-
-          <Card className={styles.backgroundCard}>
-            <Grid>
-              <Column sm={12} md={4}>
-                <Card
-                  title="www.livechat.com"
-                  className={styles.cardAutomation}
-                >
-                  <Badge>Website</Badge>
-                </Card>
-              </Column>
-              <Column sm={12} md={4}>
-                <Card title="Pricing plans" className={styles.cardAutomation}>
-                  <Badge>PDF</Badge>
-                </Card>
-              </Column>
-              <Column sm={12} md={4}>
-                <Card title="Add knowledge" className={styles.cardAutomation}>
-                  <Badge>+</Badge>
-                </Card>
-              </Column>
-            </Grid>
-          </Card>
-        </div>
+        <Card className={styles.backgroundCard}>
+          <Grid>
+            <Column sm={12} md={4}>
+              <Card title="Welcome message" className={styles.cardAutomation}>
+                <Badge>Ai Skill</Badge>
+              </Card>
+            </Column>
+            <Column sm={12} md={4}>
+              <Card title="Order management" className={styles.cardAutomation}>
+                <Badge>Ai Skill</Badge>
+              </Card>
+            </Column>
+            <Column sm={12} md={4}>
+              <Card title="Add skill" className={styles.cardAutomation}>
+                <Badge>+</Badge>
+              </Card>
+            </Column>
+          </Grid>
+        </Card>
       </Grid>
     </GridWithVisualizer>
   ),
@@ -520,9 +488,9 @@ export const Example3AutomationAiAgents: Story = {
 
 export const Example4AutomationAiAgentsMinWidth: Story = {
   render: () => (
-    <GridWithVisualizer>
+    <GridWithVisualizer gutter={16}>
       <div className={styles.gridWrapperMinWidth}>
-        <Grid justify="center">
+        <Grid justify="center" gutter={16}>
           <div>
             <Column sm={12}>
               <Heading>Skills</Heading>
@@ -553,33 +521,6 @@ export const Example4AutomationAiAgentsMinWidth: Story = {
                 </Column>
               </Grid>
             </Card>
-
-            <Column sm={12}>
-              <Heading>Knowledge</Heading>
-            </Column>
-
-            <Card className={styles.backgroundCard}>
-              <Grid className={styles.gridVerticalGap}>
-                <Column>
-                  <Card
-                    title="www.livechat.com"
-                    className={styles.cardAutomation}
-                  >
-                    <Badge>Website</Badge>
-                  </Card>
-                </Column>
-                <Column>
-                  <Card title="Pricing plans" className={styles.cardAutomation}>
-                    <Badge>PDF</Badge>
-                  </Card>
-                </Column>
-                <Column>
-                  <Card title="Add knowledge" className={styles.cardAutomation}>
-                    <Badge>+</Badge>
-                  </Card>
-                </Column>
-              </Grid>
-            </Card>
           </div>
         </Grid>
       </div>
@@ -589,8 +530,8 @@ export const Example4AutomationAiAgentsMinWidth: Story = {
 
 export const Example5SalesFunnelReportCardsWithArrows: Story = {
   render: () => (
-    <GridWithVisualizer>
-      <Grid align="center" justify="center">
+    <GridWithVisualizer gutter={16}>
+      <Grid align="center" justify="center" gutter={16}>
         <Column sm={12} lg={3}>
           <Card title="Total chats" className={styles.card}>
             <div className={styles.cardContent}>

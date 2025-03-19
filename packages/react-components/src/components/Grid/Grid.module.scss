@@ -64,44 +64,15 @@ $grid-columns: 12;
   @include grid-utils.breakpoint(map.get($breakpoints, $breakpoint)) {
     @for $i from 1 through $grid-columns {
       .column#{grid-utils.capitalize($breakpoint)}#{$i} {
-        // TODO proper width with padding with gutter
         @include column-styles(
           calc(
             100% * $i / $grid-columns - ($grid-columns - $i) *
               (var(--grid-gutter, 1px) / $grid-columns)
           )
         );
-
-        // width: calc(
-        //   100% *
-        //     $i /
-        //     $grid-columns -
-        //     ($grid-columns - $i) *
-        //     (var(--grid-gutter, 1px) / $grid-columns)
-        // );
-        // flex: 1
-        //   1
-        //   calc(
-        //     100% *
-        //       $i /
-        //       $grid-columns -
-        //       ($grid-columns - $i) *
-        //       (var(--grid-gutter, 1px) / $grid-columns)
-        //   );
-        // flex: 0
-        //   0
-        //   calc(
-        //     100% *
-        //       $i /
-        //       $grid-columns -
-        //       ($grid-columns - $i) *
-        //       (var(--grid-gutter) / $grid-columns)
-        //   );
-        // padding: 0 var(--grid-gutter, 0);
       }
     }
 
-    // here as well
     .column#{grid-utils.capitalize($breakpoint)}Auto {
       flex: 1 1 auto;
       max-width: 100%;
