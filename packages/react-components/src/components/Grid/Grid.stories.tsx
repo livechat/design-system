@@ -572,3 +572,35 @@ export const Example5SalesFunnelReportCardsWithArrows: Story = {
     </GridWithVisualizer>
   ),
 };
+
+export const WithinSmallerContainer: Story = {
+  render: () => (
+    <div style={{ display: 'flex', height: '100vh' }}>
+      <div
+        style={{
+          width: '300px',
+          minHeight: '100%',
+          backgroundColor: 'black',
+          color: 'white',
+        }}
+      >
+        <Heading>Details</Heading>
+      </div>
+      <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+        <GridWithVisualizer gutter={8}>
+          <Grid gutter={8}>
+            <Column sm={12} md={4}>
+              <Box>Column 1</Box>
+            </Column>
+            <Column sm={12} md={4}>
+              <Box>Column 2</Box>
+            </Column>
+            <Column sm={12} md={4}>
+              <Box>Column 3</Box>
+            </Column>
+          </Grid>
+        </GridWithVisualizer>
+      </div>
+    </div>
+  ),
+};

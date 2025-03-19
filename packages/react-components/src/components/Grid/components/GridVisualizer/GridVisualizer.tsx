@@ -37,24 +37,38 @@ export const GridVisualizer: React.FC<GridVisualizerProps> = ({
   showGrid = false,
   gutter = 0,
 }) => {
-  const [breakpoint, setBreakpoint] = React.useState<Breakpoint>('lg');
-  const [width, setWidth] = React.useState(window.innerWidth);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = React.useState<number>(0);
 
   React.useEffect(() => {
-    const updateBreakpoint = () => {
-      const currentWidth = window.innerWidth;
-      setWidth(currentWidth);
-      setBreakpoint(getBreakpoint(currentWidth));
+    if (!containerRef.current) return;
+
+    const resizeObserver = new ResizeObserver(
+      (entries: ResizeObserverEntry[]) => {
+        for (const entry of entries) {
+          if (entry.contentBoxSize) {
+            const boxSize: ResizeObserverSize = Array.isArray(
+              entry.contentBoxSize
+            )
+              ? entry.contentBoxSize[0]
+              : entry.contentBoxSize;
+            setContainerWidth(Number(boxSize.inlineSize));
+          } else {
+            setContainerWidth(Number(entry.contentRect.width));
+          }
+        }
+      }
+    );
+
+    resizeObserver.observe(containerRef.current);
+
+    return () => {
+      resizeObserver.disconnect();
     };
-
-    updateBreakpoint();
-    window.addEventListener('resize', updateBreakpoint);
-
-    return () => window.removeEventListener('resize', updateBreakpoint);
   }, []);
 
   return (
-    <div className={styles.wrapper}>
+    <div ref={containerRef} style={{ width: '100%' }}>
       {showGrid && (
         <>
           <div className={styles.gridOverlay}>
@@ -68,7 +82,8 @@ export const GridVisualizer: React.FC<GridVisualizerProps> = ({
             </div>
           </div>
           <div className={styles.gridInfo}>
-            Current grid: {GRID_COLUMNS} columns ({breakpoint} - {width}px)
+            Current grid: {GRID_COLUMNS} columns (
+            {getBreakpoint(containerWidth)} - {containerWidth}px)
           </div>
         </>
       )}

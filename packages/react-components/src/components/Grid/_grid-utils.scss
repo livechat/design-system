@@ -7,7 +7,7 @@
 
 @mixin breakpoint($size) {
   /* stylelint-disable-next-line media-query-no-invalid */
-  @media (min-width: #{$size}) {
+  @container (min-width: #{$size}) {
     @content;
   }
 }
