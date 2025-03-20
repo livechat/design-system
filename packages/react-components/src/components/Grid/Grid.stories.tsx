@@ -450,29 +450,30 @@ export const Example3AutomationAiAgents: Story = {
   render: () => (
     <GridWithVisualizer>
       <Grid justify="center">
-        <Column sm={12}>
-          <Heading>Skills</Heading>
+        <Column className={styles.maxWidthWrapper}>
+          <Card className={styles.backgroundCard}>
+            <Grid>
+              <Column sm={12} md={4}>
+                <Card title="Welcome message" className={styles.cardAutomation}>
+                  <Badge>Ai Skill</Badge>
+                </Card>
+              </Column>
+              <Column sm={12} md={4}>
+                <Card
+                  title="Order management"
+                  className={styles.cardAutomation}
+                >
+                  <Badge>Ai Skill</Badge>
+                </Card>
+              </Column>
+              <Column sm={12} md={4}>
+                <Card title="Add skill" className={styles.cardAutomation}>
+                  <Badge>+</Badge>
+                </Card>
+              </Column>
+            </Grid>
+          </Card>
         </Column>
-
-        <Card className={styles.backgroundCard}>
-          <Grid>
-            <Column sm={12} md={4}>
-              <Card title="Welcome message" className={styles.cardAutomation}>
-                <Badge>Ai Skill</Badge>
-              </Card>
-            </Column>
-            <Column sm={12} md={4}>
-              <Card title="Order management" className={styles.cardAutomation}>
-                <Badge>Ai Skill</Badge>
-              </Card>
-            </Column>
-            <Column sm={12} md={4}>
-              <Card title="Add skill" className={styles.cardAutomation}>
-                <Badge>+</Badge>
-              </Card>
-            </Column>
-          </Grid>
-        </Card>
       </Grid>
     </GridWithVisualizer>
   ),
@@ -483,14 +484,10 @@ export const Example4AutomationAiAgentsMinWidth: Story = {
     <GridWithVisualizer>
       <div className={styles.gridWrapperMinWidth}>
         <Grid justify="center">
-          <div>
-            <Column sm={12}>
-              <Heading>Skills</Heading>
-            </Column>
-
+          <Column className={styles.maxWidthWrapper}>
             <Card className={styles.backgroundCard}>
               <Grid className={styles.gridVerticalGap}>
-                <Column>
+                <Column className={styles.maxWidthWrapper}>
                   <Card
                     title="Welcome message"
                     className={styles.cardAutomation}
@@ -513,7 +510,7 @@ export const Example4AutomationAiAgentsMinWidth: Story = {
                 </Column>
               </Grid>
             </Card>
-          </div>
+          </Column>
         </Grid>
       </div>
     </GridWithVisualizer>
