@@ -6,11 +6,11 @@ import * as Stories from './Grid.stories';
 
 <Title>Grid</Title>
 
-[Intro](#Intro) | [Usage](#Usage) | [Breakpoints](#Breakpoints) | [Column System](#ColumnSystem) | [Component API](#ComponentAPI)
+[Intro](#Intro) | [Usage](#Usage) | [Breakpoints](#Breakpoints) | [Gutters](#Gutters) | [Column System](#ColumnSystem) | [Component API](#ComponentAPI)
 
 ## Intro <a id="Intro" />
 
-The `Grid` component provides a flexible and responsive layout system based on CSS Grid and Flexbox. It helps create consistent layouts across different screen sizes using a column-based system.
+The `Grid` component provides a flexible and responsive layout system based on Flexbox. It helps create consistent layouts across different screen sizes using a column-based system.
 
 ## Usage <a id="Usage" />
 
@@ -48,7 +48,7 @@ return (
 
 ## Breakpoints <a id="Breakpoints" />
 
-The grid system uses five breakpoints by default:
+The grid system uses five breakpoints by default, implemented using CSS Container Queries:
 
 ```scss
 $breakpoints: (
@@ -60,7 +60,61 @@ $breakpoints: (
 );
 ```
 
+> **Important**: Since the breakpoints are implemented using Container Queries, the `Column` components must be direct children of the `Grid` component for the responsive behavior to work properly. Wrapping a `Column` in another element will break the responsive functionality.
+
+```tsx
+// ✅ Correct usage - Column is direct child of Grid
+<Grid>
+  <Column lg={6}>Content</Column>
+</Grid>
+
+// ❌ Incorrect usage - Column is not direct child
+<Grid>
+  <div>
+    <Column lg={6}>Content</Column>
+  </div>
+</Grid>
+```
+
 > **Note for TextApp**: Since TextApp is designed with a minimal layout width of 1024px (corresponding to the `lg` breakpoint), you may not need to implement responsive behaviors for smaller breakpoints (`sm` and `md`). Focus on using `lg`, `xlg`, and `max` breakpoints for your layout needs.
+
+## Gutters <a id="Gutters" />
+
+Gutters are the spaces between columns in the grid system. The Grid component handles gutters automatically with the following characteristics:
+
+- Default gutter values are:
+
+```scss
+$default-gutters: (
+  sm: var(--spacing-4), // 16px
+  md: var(--spacing-4), // 16px
+  lg: var(--spacing-4), // 16px
+  xlg: var(--spacing-8), // 32px
+  max: var(--spacing-8), // 32px
+);
+```
+
+```tsx
+<Grid>
+  <Column lg={6}>
+    {/* This column has 16px gutter on the right */}
+  </Column>
+  <Column lg={6}>
+    {/* This column has 16px gutter on the left */}
+  </Column>
+</Grid>
+```
+
+### Custom Gutters
+
+If you need to  override gutters for specific use cases, you can use the gutter prop:
+
+```tsx
+<Grid gutter={{sm: 2, md: 10, lg: 24}}>
+  <Column lg={6}>
+  </Column>
+</Grid>
+```
 
 ## Column System <a id="ColumnSystem" />
 
@@ -81,6 +135,8 @@ Common column spans and their percentages:
   sm={6}   // Takes 6 of 12 columns (50%) on small screens
   md={6}   // Takes 6 of 12 columns (50%) on medium screens
   lg={6}   // Takes 6 of 12 columns (50%) on large screens
+  xlg={6}  // Takes 6 of 12 columns (50%) on extra large screens
+  max={6}  // Takes 6 of 12 columns (50%) on maximum screens
 >
   Content
 </Column>
@@ -208,6 +264,8 @@ These properties accept any valid CSS width value (px, %, rem, etc.).
 // Auto-flexible (default behavior)
 <Column>Flexible width</Column>
 ``` 
+
+
 
 ## Component API <a id="ComponentAPI" />
 
