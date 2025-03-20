@@ -261,6 +261,9 @@ export const Alignment: Story = {
             <Column sm={1}>
               <Box>3</Box>
             </Column>
+            <Column sm={1}>
+              <Box>4</Box>
+            </Column>
           </Grid>
         </div>
 
@@ -271,7 +274,10 @@ export const Alignment: Story = {
               <Box style={{ height: '100px' }}>Start</Box>
             </Column>
             <Column sm={1}>
-              <Box style={{ height: '50px' }}>Middle</Box>
+              <Box style={{ height: '50px' }}>Middle 1</Box>
+            </Column>
+            <Column sm={1}>
+              <Box style={{ height: '50px' }}>Middle 2</Box>
             </Column>
             <Column sm={1}>
               <Box style={{ height: '75px' }}>End</Box>

@@ -6,7 +6,7 @@ import * as Stories from './Grid.stories';
 
 <Title>Grid</Title>
 
-[Intro](#Intro) | [Usage](#Usage) | [Breakpoints](#Breakpoints) | [Gutters](#Gutters) | [Column System](#ColumnSystem) | [Component API](#ComponentAPI)
+[Intro](#Intro) | [Usage](#Usage) | [Breakpoints](#Breakpoints) | [Gutters](#Gutters) | [Alignment](#Alignment) | [Column System](#ColumnSystem) | [Component API](#ComponentAPI)
 
 ## Intro <a id="Intro" />
 
@@ -55,8 +55,8 @@ $breakpoints: (
   sm: 320px,   // Small devices
   md: 672px,   // Medium devices
   lg: 1024px,  // Large devices
-  xlg: 1312px, // Extra large devices
-  max: 1584px  // Maximum width
+  xl: 1312px, // Extra large devices
+  2xl: 1584px  // Maximum width
 );
 ```
 
@@ -89,8 +89,8 @@ $default-gutters: (
   sm: var(--spacing-4), // 16px
   md: var(--spacing-4), // 16px
   lg: var(--spacing-4), // 16px
-  xlg: var(--spacing-8), // 32px
-  max: var(--spacing-8), // 32px
+  xl: var(--spacing-4), // 16px
+  2xl: var(--spacing-6), // 24px
 );
 ```
 
@@ -112,6 +112,69 @@ If you need to  override gutters for specific use cases, you can use the gutter 
 ```tsx
 <Grid gutter={{sm: 2, md: 10, lg: 24}}>
   <Column lg={6}>
+  </Column>
+</Grid>
+```
+
+## Alignment <a id="Alignment" />
+
+The Grid component supports both vertical and horizontal alignment of columns through the `align` and `justify` props.
+
+### Vertical Alignment (align)
+
+The `align` prop controls the vertical alignment of columns within a row. Available options:
+- `start` (default): Aligns columns to the top
+- `center`: Centers columns vertically
+- `end`: Aligns columns to the bottom
+
+```tsx
+<Grid align="center">
+  <Column lg={4}>
+    <div style={{ height: '100px' }}>Tall content</div>
+  </Column>
+  <Column lg={4}>
+    <div style={{ height: '50px' }}>Short content</div>
+  </Column>
+  <Column lg={4}>
+    <div style={{ height: '75px' }}>Medium content</div>
+  </Column>
+</Grid>
+```
+
+### Horizontal Alignment (justify)
+
+The `justify` prop controls the horizontal distribution of columns. Available options:
+- `start` (default): Aligns columns to the left
+- `center`: Centers columns horizontally
+- `end`: Aligns columns to the right
+- `space-between`: Maximizes space between columns
+- `space-around`: Distributes space evenly around columns
+
+```tsx
+<Grid justify="space-between">
+  <Column lg={3}>
+    <div>Left content</div>
+  </Column>
+  <Column lg={3}>
+    <div>Center content</div>
+  </Column>
+  <Column lg={3}>
+    <div>Right content</div>
+  </Column>
+</Grid>
+```
+
+### Combined Alignment
+
+You can combine both `align` and `justify` props for precise control over column positioning:
+
+```tsx
+<Grid align="center" justify="center">
+  <Column lg={4}>
+    <div>Centered both vertically and horizontally</div>
+  </Column>
+  <Column lg={4}>
+    <div>Also centered</div>
   </Column>
 </Grid>
 ```
