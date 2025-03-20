@@ -648,8 +648,8 @@ export const CustomGutters: Story = {
       </div>
 
       <div>
-        <h3>Large uniform gutters (sm=64, md=64, lg=64, xlg=64, max=64)</h3>
-        <Grid gutter={{ sm: 64, md: 64, lg: 64, xlg: 64, max: 64 }}>
+        <h3>Large uniform gutters (sm=64, md=64, lg=64, xl=64, 2xl=64)</h3>
+        <Grid gutter={{ sm: 64, md: 64, lg: 64, xl: 64, '2xl': 64 }}>
           <Column sm={6}>
             <Box>64px gutters</Box>
           </Column>

@@ -13,8 +13,8 @@ const BREAKPOINTS = {
   sm: 320,
   md: 672,
   lg: 1024,
-  xlg: 1312,
-  max: 1584,
+  xl: 1312,
+  '2xl': 1584,
 } as const;
 
 type Breakpoint = keyof typeof BREAKPOINTS;
@@ -22,9 +22,9 @@ type Breakpoint = keyof typeof BREAKPOINTS;
 const getBreakpoint = (width: number): Breakpoint => {
   if (width < BREAKPOINTS.md) return 'sm';
   if (width < BREAKPOINTS.lg) return 'md';
-  if (width < BREAKPOINTS.xlg) return 'lg';
-  if (width < BREAKPOINTS.max) return 'xlg';
-  return 'max';
+  if (width < BREAKPOINTS.xl) return 'lg';
+  if (width < BREAKPOINTS['2xl']) return 'xl';
+  return '2xl';
 };
 
 /**

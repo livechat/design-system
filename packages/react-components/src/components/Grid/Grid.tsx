@@ -36,8 +36,8 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
     sm?: string | number;
     md?: string | number;
     lg?: string | number;
-    xlg?: string | number;
-    max?: string | number;
+    xl?: string | number;
+    '2xl'?: string | number;
   };
 }
 
