@@ -2,8 +2,7 @@ import * as React from 'react';
 
 import { ArrowDownward, ArrowForward } from '@livechat/design-system-icons';
 
-import { GridMaxWidthToken } from 'foundations';
-
+import { GridMaxWidthToken } from '../../foundations/grid-max-width-tokens';
 import { Badge } from '../Badge';
 import { Card } from '../Card';
 import { Icon } from '../Icon';
