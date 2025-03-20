@@ -1,4 +1,3 @@
-// Import the default spacings from Grid.module.scss
 @use '../../Grid.module.scss' as grid;
 
 .wrapper {
@@ -18,9 +17,8 @@
   margin: 0 auto;
   height: 100%;
 
-  // Add default CSS custom properties for each breakpoint
-  @each $breakpoint, $spacing in grid.$default-spacings {
-    --grid-spacing-#{$breakpoint}: #{$spacing};
+  @each $breakpoint, $gutter in grid.$default-gutters {
+    --grid-gutter-#{$breakpoint}: #{$gutter};
   }
 }
 

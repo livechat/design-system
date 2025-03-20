@@ -11,13 +11,12 @@ $breakpoints: (
   max: 1584px,
 );
 
-// TODO should be adjusted
-$default-spacings: (
-  sm: 8px,
-  md: 16px,
-  lg: 24px,
-  xlg: 32px,
-  max: 32px,
+$default-gutters: (
+  sm: var(--spacing-4),
+  md: var(--spacing-4),
+  lg: var(--spacing-4),
+  xlg: var(--spacing-8),
+  max: var(--spacing-8),
 );
 
 $grid-columns: 12;
@@ -34,11 +33,11 @@ $grid-columns: 12;
   flex-wrap: wrap;
 
   // Add default CSS custom properties for each breakpoint
-  @each $breakpoint, $spacing in $default-spacings {
-    --grid-spacing-#{$breakpoint}: #{$spacing};
+  @each $breakpoint, $gutter in $default-gutters {
+    --grid-gutter-#{$breakpoint}: #{$gutter};
   }
 
-  gap: var(--grid-gutter, var(--grid-spacing-sm));
+  gap: var(--grid-gutter, var(--grid-gutter-sm));
   width: 100%;
 
   // Alignment styles

@@ -602,7 +602,7 @@ export const WithinSmallerContainer: Story = {
         </div>
         <div style={{ position: 'relative', width: '100%', height: '100%' }}>
           <GridWithVisualizer>
-            <Grid spacing={{ sm: 8, md: 12, lg: 4 }}>
+            <Grid>
               <Column sm={8} md={12} lg={4}>
                 <Box>Column 1 (md-12, lg=4)</Box>
               </Column>
@@ -618,4 +618,40 @@ export const WithinSmallerContainer: Story = {
       </div>
     );
   },
+};
+
+export const CustomGutters: Story = {
+  render: () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+      <div>
+        <h3>Custom gutters per breakpoint (sm=2, md=10, lg=24)</h3>
+        <Grid gutter={{ sm: 2, md: 10, lg: 24 }}>
+          <Column sm={6}>
+            <Box>Column with custom gutters</Box>
+          </Column>
+          <Column sm={6}>
+            <Box>Column with custom gutters</Box>
+          </Column>
+          <Column sm={6}>
+            <Box>Column with custom gutters</Box>
+          </Column>
+          <Column sm={6}>
+            <Box>Column with custom gutters</Box>
+          </Column>
+        </Grid>
+      </div>
+
+      <div>
+        <h3>Large uniform gutters (sm=64, md=64, lg=64, xlg=64, max=64)</h3>
+        <Grid gutter={{ sm: 64, md: 64, lg: 64, xlg: 64, max: 64 }}>
+          <Column sm={6}>
+            <Box>64px gutters</Box>
+          </Column>
+          <Column sm={6}>
+            <Box>64px gutters</Box>
+          </Column>
+        </Grid>
+      </div>
+    </div>
+  ),
 };

@@ -29,11 +29,10 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
    * Horizontal alignment of columns
    */
   justify?: JustifyContent;
-  // TODO rename to gutter
   /**
-   * Spacing props
+   * Gutter spacing between grid items
    */
-  spacing?: {
+  gutter?: {
     sm?: string | number;
     md?: string | number;
     lg?: string | number;
@@ -42,12 +41,12 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   };
 }
 
-const getSpacingValue = (
-  spacing: string | number | undefined,
+const getGutterValue = (
+  gutter: string | number | undefined,
   breakpoint: string
 ): string => {
-  if (!spacing) return `var(--grid-spacing-${breakpoint})`;
-  return typeof spacing === 'number' ? `${spacing}px` : spacing;
+  if (!gutter) return `var(--grid-gutter-${breakpoint})`;
+  return typeof gutter === 'number' ? `${gutter}px` : gutter;
 };
 
 export const Grid: React.FC<GridProps> = ({
@@ -55,7 +54,7 @@ export const Grid: React.FC<GridProps> = ({
   children,
   align,
   justify,
-  spacing,
+  gutter,
   ...rest
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -89,10 +88,9 @@ export const Grid: React.FC<GridProps> = ({
     className
   );
 
-  // Calculate the current spacing
   const style = {
-    '--grid-gutter': getSpacingValue(
-      spacing?.[currentBreakpoint as keyof typeof spacing],
+    '--grid-gutter': getGutterValue(
+      gutter?.[currentBreakpoint as keyof typeof gutter],
       currentBreakpoint
     ),
   } as React.CSSProperties;

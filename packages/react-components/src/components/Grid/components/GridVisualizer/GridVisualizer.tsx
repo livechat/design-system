@@ -5,13 +5,6 @@ import styles from './GridVisualizer.module.scss';
 interface GridVisualizerProps {
   children: React.ReactNode;
   showGrid?: boolean;
-  spacing?: {
-    sm?: string | number;
-    md?: string | number;
-    lg?: string | number;
-    xlg?: string | number;
-    max?: string | number;
-  };
 }
 
 const GRID_COLUMNS = 12;
@@ -34,14 +27,6 @@ const getBreakpoint = (width: number): Breakpoint => {
   return 'max';
 };
 
-const getSpacingValue = (
-  spacing: string | number | undefined,
-  breakpoint: Breakpoint
-): string => {
-  if (!spacing) return `var(--grid-spacing-${breakpoint})`;
-  return typeof spacing === 'number' ? `${spacing}px` : spacing;
-};
-
 /**
  * GridVisualizer is a component that displays a grid overlay on the screen.
  * It is used ONLY in the storybook to visualize the grid system and the columns.
@@ -49,7 +34,6 @@ const getSpacingValue = (
 export const GridVisualizer: React.FC<GridVisualizerProps> = ({
   children,
   showGrid = false,
-  spacing,
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = React.useState<number>(0);
@@ -86,11 +70,7 @@ export const GridVisualizer: React.FC<GridVisualizerProps> = ({
     };
   }, []);
 
-  // Calculate the current spacing
-  const gutterValue = getSpacingValue(
-    spacing?.[currentBreakpoint],
-    currentBreakpoint
-  );
+  const gutterValue = `var(--grid-gutter-${currentBreakpoint})`;
 
   return (
     <div ref={containerRef} style={{ width: '100%' }}>
@@ -108,9 +88,7 @@ export const GridVisualizer: React.FC<GridVisualizerProps> = ({
           </div>
           <div className={styles.gridInfo}>
             Current grid: {GRID_COLUMNS} columns ({currentBreakpoint} -{' '}
-            {containerWidth}px)
-            <br />
-            Spacing: {gutterValue}
+            {Math.round(containerWidth)}px)
           </div>
         </>
       )}
