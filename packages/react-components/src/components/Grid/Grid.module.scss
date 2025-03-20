@@ -19,6 +19,14 @@ $default-gutters: (
   '2xl': var(--spacing-6),
 );
 
+$default-margins: (
+  sm: var(--spacing-8),
+  md: var(--spacing-8),
+  lg: var(--spacing-8),
+  xl: var(--spacing-8),
+  '2xl': var(--spacing-8),
+);
+
 $grid-columns: 12;
 
 @mixin column-styles($width) {
@@ -27,18 +35,22 @@ $grid-columns: 12;
 }
 
 .grid {
-  container-type: inline-size;
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
+  gap: var(--grid-gutter, var(--grid-gutter-sm));
+  margin: var(--grid-margin, var(--grid-margin-sm));
+  width: calc(100% - 2 * var(--grid-margin, var(--grid-margin-sm)));
+  container-type: inline-size;
 
   // Add default CSS custom properties for each breakpoint
   @each $breakpoint, $gutter in $default-gutters {
     --grid-gutter-#{$breakpoint}: #{$gutter};
   }
 
-  gap: var(--grid-gutter, var(--grid-gutter-sm));
-  width: 100%;
+  @each $breakpoint, $margin in $default-margins {
+    --grid-margin-#{$breakpoint}: #{$margin};
+  }
 
   // Alignment styles
   &.align-start {

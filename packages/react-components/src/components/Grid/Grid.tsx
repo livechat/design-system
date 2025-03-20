@@ -39,6 +39,16 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
     xl?: string | number;
     '2xl'?: string | number;
   };
+  /**
+   * Margin spacing around the grid container
+   */
+  margin?: {
+    sm?: string | number;
+    md?: string | number;
+    lg?: string | number;
+    xl?: string | number;
+    '2xl'?: string | number;
+  };
 }
 
 const getGutterValue = (
@@ -49,12 +59,21 @@ const getGutterValue = (
   return typeof gutter === 'number' ? `${gutter}px` : gutter;
 };
 
+const getMarginValue = (
+  margin: string | number | undefined,
+  breakpoint: string
+): string => {
+  if (!margin) return `var(--grid-margin-${breakpoint})`;
+  return typeof margin === 'number' ? `${margin}px` : margin;
+};
+
 export const Grid: React.FC<GridProps> = ({
   className,
   children,
   align,
   justify,
   gutter,
+  margin,
   ...rest
 }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -91,6 +110,10 @@ export const Grid: React.FC<GridProps> = ({
   const style = {
     '--grid-gutter': getGutterValue(
       gutter?.[currentBreakpoint as keyof typeof gutter],
+      currentBreakpoint
+    ),
+    '--grid-margin': getMarginValue(
+      margin?.[currentBreakpoint as keyof typeof margin],
       currentBreakpoint
     ),
   } as React.CSSProperties;

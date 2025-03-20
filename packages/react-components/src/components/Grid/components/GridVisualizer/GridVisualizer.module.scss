@@ -14,11 +14,14 @@
 
 .gridContainer {
   display: flex;
-  margin: 0 auto;
   height: 100%;
 
   @each $breakpoint, $gutter in grid.$default-gutters {
     --grid-gutter-#{$breakpoint}: #{$gutter};
+  }
+
+  @each $breakpoint, $margin in grid.$default-margins {
+    --grid-margin-#{$breakpoint}: #{$margin};
   }
 }
 

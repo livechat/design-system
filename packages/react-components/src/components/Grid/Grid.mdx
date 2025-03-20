@@ -6,7 +6,7 @@ import * as Stories from './Grid.stories';
 
 <Title>Grid</Title>
 
-[Intro](#Intro) | [Usage](#Usage) | [Breakpoints](#Breakpoints) | [Gutters](#Gutters) | [Alignment](#Alignment) | [Column System](#ColumnSystem) | [Component API](#ComponentAPI)
+[Intro](#Intro) | [Usage](#Usage) | [Breakpoints](#Breakpoints) | [Gutters](#Gutters) | [Margins](#Margins) | [Alignment](#Alignment) | [Column System](#ColumnSystem) | [Component API](#ComponentAPI)
 
 ## Intro <a id="Intro" />
 
@@ -115,6 +115,45 @@ If you need to  override gutters for specific use cases, you can use the gutter 
   </Column>
 </Grid>
 ```
+
+## Margins <a id="Margins" />
+
+The Grid component supports configurable margins around the entire grid container. Like gutters, margins can be customized for different breakpoints.
+
+### Default Margins
+
+By default, the Grid component uses the following margin values:
+
+```scss
+$default-margins: (
+  sm: var(--spacing-8), // 32px
+  md: var(--spacing-8), // 32px
+  lg: var(--spacing-8), // 32px
+  xl: var(--spacing-8), // 32px
+  2xl: var(--spacing-8), // 32px
+);
+```
+
+### Custom Margins
+
+You can override the default margins using the `margin` prop. This prop accepts values for different breakpoints:
+
+```tsx
+<Grid margin={{
+  sm: 16,    
+  md: 24,      
+  lg: 32,    
+  xl: 40,    
+  '2xl': 48 
+}}>
+  <Column lg={6}>Content</Column>
+  <Column lg={6}>Content</Column>
+</Grid>
+```
+
+The margin prop accepts either:
+- Numbers (interpreted as pixels)
+- Strings (any valid CSS margin value, e.g., "2rem", "5%")
 
 ## Alignment <a id="Alignment" />
 

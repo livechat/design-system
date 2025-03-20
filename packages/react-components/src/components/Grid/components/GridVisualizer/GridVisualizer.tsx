@@ -71,13 +71,20 @@ export const GridVisualizer: React.FC<GridVisualizerProps> = ({
   }, []);
 
   const gutterValue = `var(--grid-gutter-${currentBreakpoint})`;
+  const marginValue = `var(--grid-margin-${currentBreakpoint})`;
 
   return (
     <div ref={containerRef} style={{ width: '100%' }}>
       {showGrid && (
         <>
           <div className={styles.gridOverlay}>
-            <div className={styles.gridContainer} style={{ gap: gutterValue }}>
+            <div
+              className={styles.gridContainer}
+              style={{
+                gap: gutterValue,
+                margin: marginValue,
+              }}
+            >
               {Array.from({ length: GRID_COLUMNS }).map((_, i) => (
                 <div key={i} className={styles.gridColumn}>
                   <div className={styles.gridColumnInner} />
@@ -89,6 +96,8 @@ export const GridVisualizer: React.FC<GridVisualizerProps> = ({
           <div className={styles.gridInfo}>
             Current grid: {GRID_COLUMNS} columns ({currentBreakpoint} -{' '}
             {Math.round(containerWidth)}px)
+            <br />
+            Margin: {marginValue}, Gutter: {gutterValue}
           </div>
         </>
       )}
