@@ -6,7 +6,7 @@ import * as Stories from './Grid.stories';
 
 <Title>Grid</Title>
 
-[Intro](#Intro) | [Usage](#Usage) | [Breakpoints](#Breakpoints) | [Gutters](#Gutters) | [Margins](#Margins) | [Alignment](#Alignment) | [Column System](#ColumnSystem) | [Component API](#ComponentAPI)
+[Intro](#Intro) | [Usage](#Usage) | [Grid Size Controller](#GridSizeController) | [Breakpoints](#Breakpoints) | [Gutters](#Gutters) | [Margins](#Margins) | [Alignment](#Alignment) | [Column System](#ColumnSystem) | [Component API](#ComponentAPI)
 
 ## Intro <a id="Intro" />
 
@@ -45,6 +45,34 @@ return (
   </Grid>
 );
 ```
+
+## Grid Size Controller <a id="GridSizeController" />
+
+The `GridSizeController` is a required wrapper component for the Grid components used as main layout. It enforces maximum width constraints for Grid layouts according to design specifications.
+
+```tsx
+import { Grid, Column, GridSizeController } from '@livechat/design-system-react-components';
+import { GridMaxWidthToken } from 'foundations';
+
+return (
+  <GridSizeController maxWidth={GridMaxWidthToken.GridMaxWidthXl}>
+    <Grid>
+      <Column lg={6}>Content</Column>
+      <Column lg={6}>Content</Column>
+    </Grid>
+  </GridSizeController>
+);
+```
+
+Available maxWidth tokens:
+- `GridMaxWidthXs`: 480px
+- `GridMaxWidthSm`: 576px
+- `GridMaxWidthMd`: 768px
+- `GridMaxWidthLg`: 992px
+- `GridMaxWidthXl`: 1200px
+- `GridMaxWidth2Xl`: 1400px
+
+> **Important**: Always wrap your Layout type Grid components with GridSizeController to ensure consistent layout widths across the application.
 
 ## Breakpoints <a id="Breakpoints" />
 

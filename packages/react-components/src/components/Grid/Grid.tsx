@@ -51,20 +51,13 @@ export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
   };
 }
 
-const getGutterValue = (
-  gutter: string | number | undefined,
-  breakpoint: string
+const getSpacingValue = (
+  value: string | number | undefined,
+  breakpoint: string,
+  type: 'gutter' | 'margin'
 ): string => {
-  if (!gutter) return `var(--grid-gutter-${breakpoint})`;
-  return typeof gutter === 'number' ? `${gutter}px` : gutter;
-};
-
-const getMarginValue = (
-  margin: string | number | undefined,
-  breakpoint: string
-): string => {
-  if (!margin) return `var(--grid-margin-${breakpoint})`;
-  return typeof margin === 'number' ? `${margin}px` : margin;
+  if (!value) return `var(--grid-${type}-${breakpoint})`;
+  return typeof value === 'number' ? `${value}px` : value;
 };
 
 export const Grid: React.FC<GridProps> = ({
@@ -108,13 +101,15 @@ export const Grid: React.FC<GridProps> = ({
   );
 
   const style = {
-    '--grid-gutter': getGutterValue(
+    '--grid-gutter': getSpacingValue(
       gutter?.[currentBreakpoint as keyof typeof gutter],
-      currentBreakpoint
+      currentBreakpoint,
+      'gutter'
     ),
-    '--grid-margin': getMarginValue(
+    '--grid-margin': getSpacingValue(
       margin?.[currentBreakpoint as keyof typeof margin],
-      currentBreakpoint
+      currentBreakpoint,
+      'margin'
     ),
   } as React.CSSProperties;
 

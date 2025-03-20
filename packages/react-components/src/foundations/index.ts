@@ -7,3 +7,7 @@ export {
   TransitionTimingToken,
   TransitionDelayToken,
 } from './transition-token';
+export {
+  GridMaxWidthToken,
+  type GridMaxWidthTokenKey,
+} from './grid-max-width-tokens';

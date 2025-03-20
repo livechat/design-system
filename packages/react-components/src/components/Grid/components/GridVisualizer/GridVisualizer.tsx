@@ -74,10 +74,15 @@ export const GridVisualizer: React.FC<GridVisualizerProps> = ({
   const marginValue = `var(--grid-margin-${currentBreakpoint})`;
 
   return (
-    <div ref={containerRef} style={{ width: '100%' }}>
+    <div ref={containerRef} style={{ width: '100%', position: 'relative' }}>
       {showGrid && (
         <>
-          <div className={styles.gridOverlay}>
+          <div
+            className={styles.gridOverlay}
+            style={{
+              inset: `calc(var(--grid-margin-${currentBreakpoint}) * -1) 0`,
+            }}
+          >
             <div
               className={styles.gridContainer}
               style={{

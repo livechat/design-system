@@ -2,14 +2,17 @@
 
 .wrapper {
   width: 100%;
-  min-height: 200px;
+  min-height: 400px;
 }
 
 .gridOverlay {
   position: absolute;
-  inset: 0;
   z-index: 1;
   pointer-events: none;
+
+  @each $breakpoint, $margin in grid.$default-margins {
+    --grid-margin-#{$breakpoint}: #{$margin};
+  }
 }
 
 .gridContainer {
@@ -18,10 +21,6 @@
 
   @each $breakpoint, $gutter in grid.$default-gutters {
     --grid-gutter-#{$breakpoint}: #{$gutter};
-  }
-
-  @each $breakpoint, $margin in grid.$default-margins {
-    --grid-margin-#{$breakpoint}: #{$margin};
   }
 }
 
@@ -37,7 +36,7 @@
 .gridColumnInner {
   flex: 1;
   border-right: 1px dashed rgb(100 93 93 / 20%);
-  border-left: 1px dashed rgb(100 93 93 / 20%);
+  border-left: 1px dashed rgb(100 93 93 / 43%);
   width: 100%;
 }
 
