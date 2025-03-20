@@ -7,17 +7,27 @@ $breakpoints: (
   sm: 320px,
   md: 672px,
   lg: 1024px,
-  xlg: 1312px,
-  max: 1584px,
+  xl: 1312px,
+  '2xl': 1584px,
 );
 
-$grid-columns: (
-  sm: 4,
-  md: 8,
-  lg: 16,
-  xlg: 16,
-  max: 16,
+$default-gutters: (
+  sm: var(--spacing-4),
+  md: var(--spacing-4),
+  lg: var(--spacing-4),
+  xl: var(--spacing-4),
+  '2xl': var(--spacing-6),
 );
+
+$default-margins: (
+  sm: var(--spacing-8),
+  md: var(--spacing-8),
+  lg: var(--spacing-8),
+  xl: var(--spacing-8),
+  '2xl': var(--spacing-8),
+);
+
+$grid-columns: 12;
 
 @mixin column-styles($width) {
   flex: 0 0 $width;
@@ -28,7 +38,19 @@ $grid-columns: (
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  gap: var(--grid-gutter, var(--grid-gutter-sm));
+  margin: var(--grid-margin, var(--grid-margin-sm));
+  width: calc(100% - 2 * var(--grid-margin, var(--grid-margin-sm)));
+  container-type: inline-size;
+
+  // Add default CSS custom properties for each breakpoint
+  @each $breakpoint, $gutter in $default-gutters {
+    --grid-gutter-#{$breakpoint}: #{$gutter};
+  }
+
+  @each $breakpoint, $margin in $default-margins {
+    --grid-margin-#{$breakpoint}: #{$margin};
+  }
 
   // Alignment styles
   &.align-start {
@@ -65,11 +87,16 @@ $grid-columns: (
 }
 
 // Generate column classes for each breakpoint
-@each $breakpoint, $columns in $grid-columns {
-  @include grid-utils.breakpoint(map.get($breakpoints, $breakpoint)) {
-    @for $i from 1 through $columns {
+@each $breakpoint in map.keys($breakpoints) {
+  @container (min-width: map.get($breakpoints, $breakpoint)) {
+    @for $i from 1 through $grid-columns {
       .column#{grid-utils.capitalize($breakpoint)}#{$i} {
-        @include column-styles(math.percentage(math.div($i, $columns)));
+        @include column-styles(
+          calc(
+            100% * $i / $grid-columns - ($grid-columns - $i) *
+              (var(--grid-gutter, 1px) / $grid-columns)
+          )
+        );
       }
     }
 

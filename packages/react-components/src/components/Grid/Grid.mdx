@@ -6,11 +6,11 @@ import * as Stories from './Grid.stories';
 
 <Title>Grid</Title>
 
-[Intro](#Intro) | [Usage](#Usage) | [Breakpoints](#Breakpoints) | [Column System](#ColumnSystem) | [Component API](#ComponentAPI)
+[Intro](#Intro) | [Usage](#Usage) | [Grid Size Controller](#GridSizeController) | [Breakpoints](#Breakpoints) | [Gutters](#Gutters) | [Margins](#Margins) | [Alignment](#Alignment) | [Column System](#ColumnSystem) | [Component API](#ComponentAPI)
 
 ## Intro <a id="Intro" />
 
-The `Grid` component provides a flexible and responsive layout system based on CSS Grid and Flexbox. It helps create consistent layouts across different screen sizes using a column-based system.
+The `Grid` component provides a flexible and responsive layout system based on Flexbox. It helps create consistent layouts across different screen sizes using a column-based system.
 
 ## Usage <a id="Usage" />
 
@@ -46,99 +46,235 @@ return (
 );
 ```
 
+## Grid Size Controller <a id="GridSizeController" />
+
+The `GridSizeController` is a required wrapper component for the Grid components used as main layout. It enforces maximum width constraints for Grid layouts according to design specifications.
+
+```tsx
+import { Grid, Column, GridSizeController } from '@livechat/design-system-react-components';
+import { GridMaxWidthToken } from 'foundations';
+
+return (
+  <GridSizeController maxWidth={GridMaxWidthToken.GridMaxWidthXl}>
+    <Grid>
+      <Column lg={6}>Content</Column>
+      <Column lg={6}>Content</Column>
+    </Grid>
+  </GridSizeController>
+);
+```
+
+Available maxWidth tokens:
+- `GridMaxWidthXs`: 480px
+- `GridMaxWidthSm`: 576px
+- `GridMaxWidthMd`: 768px
+- `GridMaxWidthLg`: 992px
+- `GridMaxWidthXl`: 1200px
+- `GridMaxWidth2Xl`: 1400px
+
+> **Important**: Always wrap your Layout type Grid components with GridSizeController to ensure consistent layout widths across the application.
+
 ## Breakpoints <a id="Breakpoints" />
 
-The grid system uses five breakpoints by default:
+The grid system uses five breakpoints by default, implemented using CSS Container Queries:
 
 ```scss
 $breakpoints: (
   sm: 320px,   // Small devices
   md: 672px,   // Medium devices
   lg: 1024px,  // Large devices
-  xlg: 1312px, // Extra large devices
-  max: 1584px  // Maximum width
+  xl: 1312px, // Extra large devices
+  2xl: 1584px  // Maximum width
 );
+```
+
+> **Important**: Since the breakpoints are implemented using Container Queries, the `Column` components must be direct children of the `Grid` component for the responsive behavior to work properly. Wrapping a `Column` in another element will break the responsive functionality.
+
+```tsx
+// ✅ Correct usage - Column is direct child of Grid
+<Grid>
+  <Column lg={6}>Content</Column>
+</Grid>
+
+// ❌ Incorrect usage - Column is not direct child
+<Grid>
+  <div>
+    <Column lg={6}>Content</Column>
+  </div>
+</Grid>
 ```
 
 > **Note for TextApp**: Since TextApp is designed with a minimal layout width of 1024px (corresponding to the `lg` breakpoint), you may not need to implement responsive behaviors for smaller breakpoints (`sm` and `md`). Focus on using `lg`, `xlg`, and `max` breakpoints for your layout needs.
 
-## Column System <a id="ColumnSystem" />
+## Gutters <a id="Gutters" />
 
-The grid uses the doubling columns system, which means that the number of columns is doubled for each of the main breakpoint:
+Gutters are the spaces between columns in the grid system. The Grid component handles gutters automatically with the following characteristics:
+
+- Default gutter values are:
 
 ```scss
-$grid-columns: (
-  sm: 4,   // 4 columns for small screens
-  md: 8,   // 8 columns for medium screens
-  lg: 16,  // 16 columns for large screens
-  xlg: 16, // 16 columns for extra large screens
-  max: 16  // 16 columns for maximum width
+$default-gutters: (
+  sm: var(--spacing-4), // 16px
+  md: var(--spacing-4), // 16px
+  lg: var(--spacing-4), // 16px
+  xl: var(--spacing-4), // 16px
+  2xl: var(--spacing-6), // 24px
 );
 ```
 
-### Column Props
+```tsx
+<Grid>
+  <Column lg={6}>
+    {/* This column has 16px gutter on the right */}
+  </Column>
+  <Column lg={6}>
+    {/* This column has 16px gutter on the left */}
+  </Column>
+</Grid>
+```
 
-Columns can be specified for each breakpoint:
+### Custom Gutters
+
+If you need to  override gutters for specific use cases, you can use the gutter prop:
+
+```tsx
+<Grid gutter={{sm: 2, md: 10, lg: 24}}>
+  <Column lg={6}>
+  </Column>
+</Grid>
+```
+
+## Margins <a id="Margins" />
+
+The Grid component supports configurable margins around the entire grid container. Like gutters, margins can be customized for different breakpoints.
+
+### Default Margins
+
+By default, the Grid component uses the following margin values:
+
+```scss
+$default-margins: (
+  sm: var(--spacing-8), // 32px
+  md: var(--spacing-8), // 32px
+  lg: var(--spacing-8), // 32px
+  xl: var(--spacing-8), // 32px
+  2xl: var(--spacing-8), // 32px
+);
+```
+
+### Custom Margins
+
+You can override the default margins using the `margin` prop. This prop accepts values for different breakpoints:
+
+```tsx
+<Grid margin={{
+  sm: 16,    
+  md: 24,      
+  lg: 32,    
+  xl: 40,    
+  '2xl': 48 
+}}>
+  <Column lg={6}>Content</Column>
+  <Column lg={6}>Content</Column>
+</Grid>
+```
+
+The margin prop accepts either:
+- Numbers (interpreted as pixels)
+- Strings (any valid CSS margin value, e.g., "2rem", "5%")
+
+## Alignment <a id="Alignment" />
+
+The Grid component supports both vertical and horizontal alignment of columns through the `align` and `justify` props.
+
+### Vertical Alignment (align)
+
+The `align` prop controls the vertical alignment of columns within a row. Available options:
+- `start` (default): Aligns columns to the top
+- `center`: Centers columns vertically
+- `end`: Aligns columns to the bottom
+
+```tsx
+<Grid align="center">
+  <Column lg={4}>
+    <div style={{ height: '100px' }}>Tall content</div>
+  </Column>
+  <Column lg={4}>
+    <div style={{ height: '50px' }}>Short content</div>
+  </Column>
+  <Column lg={4}>
+    <div style={{ height: '75px' }}>Medium content</div>
+  </Column>
+</Grid>
+```
+
+### Horizontal Alignment (justify)
+
+The `justify` prop controls the horizontal distribution of columns. Available options:
+- `start` (default): Aligns columns to the left
+- `center`: Centers columns horizontally
+- `end`: Aligns columns to the right
+- `space-between`: Maximizes space between columns
+- `space-around`: Distributes space evenly around columns
+
+```tsx
+<Grid justify="space-between">
+  <Column lg={3}>
+    <div>Left content</div>
+  </Column>
+  <Column lg={3}>
+    <div>Center content</div>
+  </Column>
+  <Column lg={3}>
+    <div>Right content</div>
+  </Column>
+</Grid>
+```
+
+### Combined Alignment
+
+You can combine both `align` and `justify` props for precise control over column positioning:
+
+```tsx
+<Grid align="center" justify="center">
+  <Column lg={4}>
+    <div>Centered both vertically and horizontally</div>
+  </Column>
+  <Column lg={4}>
+    <div>Also centered</div>
+  </Column>
+</Grid>
+```
+
+## Column System <a id="ColumnSystem" />
+
+The grid uses a consistent 12-column system across all breakpoints. This makes it simple to create predictable layouts that work across all screen sizes.
+
+Common column spans and their percentages:
+- 12 columns = 100%
+- 6 columns = 50%
+- 4 columns = 33.33%
+- 3 columns = 25%
+- 2 columns = 16.67%
+- 1 column = 8.33%
+
+### Column Props
 
 ```tsx
 <Column 
-  sm={2}   // Takes 2 of 4 columns (50%) on small screens
-  md={4}   // Takes 4 of 8 columns (50%) on medium screens
-  lg={8}   // Takes 8 of 16 columns (50%) on large screens
-  xlg={8}  // Takes 8 of 16 columns (50%) on extra large screens
-  max={8}  // Takes 8 of 16 columns (50%) at maximum width
+  sm={6}   // Takes 6 of 12 columns (50%) on small screens
+  md={6}   // Takes 6 of 12 columns (50%) on medium screens
+  lg={6}   // Takes 6 of 12 columns (50%) on large screens
+  xlg={6}  // Takes 6 of 12 columns (50%) on extra large screens
+  max={6}  // Takes 6 of 12 columns (50%) on maximum screens
 >
   Content
 </Column>
 ```
 
-Each breakpoint prop (`sm`, `md`, `lg`, `xlg`, `max`) can accept either:
-- A number representing the number of columns to span
-- The value `'auto'` to make the column automatically adjust its width
-
-For example:
-```tsx
-<Column sm={4} md="auto">
-  {/* Takes full width (4 columns) on small screens */}
-  {/* Automatically adjusts width on medium and larger screens */}
-</Column>
-```
-
-When using `'auto'` at a breakpoint:
-- The column will use `flex: 1 1 auto` to grow and shrink as needed
-- It will maintain `max-width: 100%` to prevent overflow
-- Perfect for responsive layouts where you want columns to naturally share available space
-- Useful for card layouts that should adjust based on content
-
-When specifying breakpoints, columns follow these behaviors:
-
-1. **Single Breakpoint**
-```tsx
-<Column sm={4}>
-  {/* Takes 4 columns on small screens */}
-  {/* Maintains this same width percentage on larger breakpoints */}
-  {/* (Since sm=4 means 100% on small screens, it will stay 100% on larger screens) */}
-</Column>
-
-<Column lg={8}>
-  {/* Starts as a flexible column (autoadjusting width flex: 1 1 auto) on smaller screens */}
-  {/* Takes 8 columns (50%) starting from large breakpoint */}
-</Column>
-```
-
-2. **Multiple Breakpoints with Gaps**
-```tsx
-<Column sm={2} lg={16}>
-  {/* Takes 2 columns (50%) on small screens */}
-  {/* Maintains 50% width on medium screens (inherited from sm breakpoint) */}
-  {/* Takes 16 columns (100%) on large screens and up */}
-</Column>
-```
-
-3. **Default Behavior**
-- By default, columns have `flex: 1 1 auto` and `max-width: 100%`
-- The width set at a breakpoint persists until another breakpoint overwrites it
-- There is no "reverting" to auto-adjustment after a breakpoint - the last specified width continues to apply
+Each breakpoint prop accepts:
+- A number from 1 to 12 representing the number of columns to span
+- The value `'auto'` for automatic width adjustment
 
 ### Auto-width Columns
 
@@ -258,6 +394,8 @@ These properties accept any valid CSS width value (px, %, rem, etc.).
 // Auto-flexible (default behavior)
 <Column>Flexible width</Column>
 ``` 
+
+
 
 ## Component API <a id="ComponentAPI" />
 

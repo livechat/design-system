@@ -1,12 +1,14 @@
 import * as React from 'react';
 
-import { ArrowForward, ArrowDownward } from '@livechat/design-system-icons';
+import { ArrowDownward, ArrowForward } from '@livechat/design-system-icons';
 
+import { GridMaxWidthToken } from '../../foundations/grid-max-width-tokens';
 import { Badge } from '../Badge';
 import { Card } from '../Card';
 import { Icon } from '../Icon';
 import { Heading, Text } from '../Typography';
 
+import { GridSizeController } from './components/GridSizeController/GridSizeController';
 import { GridVisualizer } from './components/GridVisualizer/GridVisualizer';
 import { ToggleSwitch } from './components/GridVisualizer/ToggleSwitch';
 
@@ -67,567 +69,420 @@ const GridWithVisualizer = ({ children }: { children: React.ReactNode }) => {
 
 export const Default: Story = {
   render: () => (
-    <GridWithVisualizer>
-      <Grid>
-        <Column sm={4} md={4} lg={4}>
-          <Box>Column 1 (always 4 columns)</Box>
-        </Column>
-        <Column sm={2} md={4} lg={8}>
-          <Box>Column 2 (always 50%)</Box>
-        </Column>
-        <Column>
-          <Box>Column 3 (flexible)</Box>
-        </Column>
-        <Column>
-          <Box>Column 4 (flexible)</Box>
-        </Column>
-        <Column sm={4}>
-          <Box>Column 5 (always full width)</Box>
-        </Column>
-      </Grid>
-    </GridWithVisualizer>
+    <GridSizeController maxWidth={GridMaxWidthToken.GridMaxWidthXl}>
+      <GridWithVisualizer>
+        <Grid>
+          <Column sm={3} md={3} lg={3}>
+            <Box>Column 1 (always 1/4 width)</Box>
+          </Column>
+          <Column sm={6} md={6} lg={6}>
+            <Box>Column 2 (always 1/2 width)</Box>
+          </Column>
+          <Column>
+            <Box>Column 3 (flexible)</Box>
+          </Column>
+          <Column>
+            <Box>Column 4 (flexible)</Box>
+          </Column>
+          <Column sm={12}>
+            <Box>Column 5 (full width)</Box>
+          </Column>
+        </Grid>
+      </GridWithVisualizer>
+    </GridSizeController>
   ),
 };
 
 export const FixedColumnPercentageSizes: Story = {
   render: () => (
-    <GridWithVisualizer>
-      <Grid>
-        <Column sm={4} md={8} lg={16}>
-          <Box>Full width</Box>
-        </Column>
-        <Column sm={2} md={4} lg={8}>
-          <Box>1/2</Box>
-        </Column>
-        <Column sm={2} md={4} lg={8}>
-          <Box>1/2</Box>
-        </Column>
-        <Column sm={1} md={4} lg={4}>
-          <Box>1/4</Box>
-        </Column>
-        <Column sm={1} md={4} lg={4}>
-          <Box>1/4</Box>
-        </Column>
-        <Column sm={1} md={4} lg={4}>
-          <Box>1/4</Box>
-        </Column>
-        <Column sm={1} md={4} lg={4}>
-          <Box>1/4</Box>
-        </Column>
-      </Grid>
-    </GridWithVisualizer>
+    <GridSizeController maxWidth={GridMaxWidthToken.GridMaxWidthXl}>
+      <GridWithVisualizer>
+        <Grid>
+          <Column sm={12}>
+            <Box>Full width (12/12)</Box>
+          </Column>
+          <Column sm={6}>
+            <Box>1/2 width (6/12)</Box>
+          </Column>
+          <Column sm={6}>
+            <Box>1/2 width (6/12)</Box>
+          </Column>
+          <Column sm={3}>
+            <Box>1/4 width (3/12)</Box>
+          </Column>
+          <Column sm={3}>
+            <Box>1/4 width (3/12)</Box>
+          </Column>
+          <Column sm={3}>
+            <Box>1/4 width (3/12)</Box>
+          </Column>
+          <Column sm={3}>
+            <Box>1/4 width (3/12)</Box>
+          </Column>
+        </Grid>
+      </GridWithVisualizer>
+    </GridSizeController>
   ),
 };
 
 export const ResponsiveColumns: Story = {
   render: () => (
-    <GridWithVisualizer>
-      <Grid>
-        <Column sm={4} md={4} lg={8}>
-          <Box>
-            sm=4 md=4 lg=8
-            <br />
-            (Full width on small, half on medium and large)
-          </Box>
-        </Column>
-        <Column sm={4} md={4} lg={8}>
-          <Box>
-            sm=4 md=4 lg=8
-            <br />
-            (Full width on small, half on medium and large)
-          </Box>
-        </Column>
-        <Column sm={4} md={2} lg={4}>
-          <Box>sm=4 md=2 lg=4</Box>
-        </Column>
-        <Column sm={4} md={2} lg={4}>
-          <Box>sm=4 md=2 lg=4</Box>
-        </Column>
-        <Column sm={4} md={2} lg={4}>
-          <Box>sm=4 md=2 lg=4</Box>
-        </Column>
-        <Column sm={4} md={2} lg={4}>
-          <Box>sm=4 md=2 lg=4</Box>
-        </Column>
-      </Grid>
-    </GridWithVisualizer>
+    <GridSizeController maxWidth={GridMaxWidthToken.GridMaxWidthXl}>
+      <GridWithVisualizer>
+        <Grid>
+          <Column sm={4} md={8}>
+            <Box>
+              sm=4 md=4 lg and up=8
+              <br />
+              (Full width on small, half on medium and large and above)
+            </Box>
+          </Column>
+          <Column sm={4} md={8}>
+            <Box>
+              sm=4 md=4 lg and up=8
+              <br />
+              (Full width on small, half on medium and large and above)
+            </Box>
+          </Column>
+          <Column sm={4} md={2} lg={4}>
+            <Box>sm=4 md=2 lg=4</Box>
+          </Column>
+          <Column sm={4} md={2} lg={4}>
+            <Box>sm=4 md=2 lg=4</Box>
+          </Column>
+          <Column sm={4} md={2} lg={4}>
+            <Box>sm=4 md=2 lg=4</Box>
+          </Column>
+          <Column sm={4} md={2} lg={4}>
+            <Box>sm=4 md=2 lg=4</Box>
+          </Column>
+        </Grid>
+      </GridWithVisualizer>
+    </GridSizeController>
   ),
 };
 
 export const AutoColumns: Story = {
   render: () => (
-    <GridWithVisualizer>
-      <Grid>
-        <Column>
-          <Box>Auto width</Box>
-        </Column>
-        <Column>
-          <Box>Auto width</Box>
-        </Column>
-        <Column>
-          <Box>Auto width</Box>
-        </Column>
-        <Column sm={2} md={4} lg={8}>
-          <Box>Fixed width 50%</Box>
-        </Column>
-        <Column>
-          <Box>Auto width</Box>
-        </Column>
-      </Grid>
-    </GridWithVisualizer>
+    <GridSizeController maxWidth={GridMaxWidthToken.GridMaxWidthXl}>
+      <GridWithVisualizer>
+        <Grid>
+          <Column>
+            <Box>Auto width</Box>
+          </Column>
+          <Column>
+            <Box>Auto width</Box>
+          </Column>
+          <Column>
+            <Box>Auto width</Box>
+          </Column>
+          <Column sm={6}>
+            <Box>Fixed width 50%</Box>
+          </Column>
+          <Column>
+            <Box>Auto width</Box>
+          </Column>
+        </Grid>
+      </GridWithVisualizer>
+    </GridSizeController>
   ),
 };
 
 export const NestedGrid: Story = {
   render: () => (
-    <GridWithVisualizer>
-      <Grid>
-        <Column lg={8}>
-          <Box>
-            Outer Grid (8 columns)
-            <Grid>
-              <Column lg={8}>
-                <Box>
-                  Inner Grid (8 inner grid columns,1/2 of parent = 4 outer
-                  columns)
-                </Box>
-              </Column>
-              <Column lg={8}>
-                <Box>
-                  Inner Grid (8 inner grid columns, 1/2 of parent = 4 outer
-                  columns)
-                </Box>
-              </Column>
-            </Grid>
-          </Box>
-        </Column>
-        <Column lg={4}>
-          <Box>Outer Grid (4 columns)</Box>
-        </Column>
-        <Column lg={4}>
-          <Box>Outer Grid (4 columns)</Box>
-        </Column>
-      </Grid>
-    </GridWithVisualizer>
+    <GridSizeController maxWidth={GridMaxWidthToken.GridMaxWidthXl}>
+      <GridWithVisualizer>
+        <Grid>
+          <Column sm={6}>
+            <Box>
+              Outer Grid (6 columns)
+              <Grid>
+                <Column sm={6}>
+                  <Box>
+                    Inner Grid (6 inner grid columns, 3 outer grid columns, 1/2
+                    of parent)
+                  </Box>
+                </Column>
+                <Column sm={6}>
+                  <Box>
+                    Inner Grid (6 inner grid columns, 3 outer grid columns, 1/2
+                    of parent)
+                  </Box>
+                </Column>
+              </Grid>
+            </Box>
+          </Column>
+          <Column sm={3}>
+            <Box>Outer Grid (3 columns)</Box>
+          </Column>
+          <Column sm={3}>
+            <Box>Outer Grid (3 columns)</Box>
+          </Column>
+        </Grid>
+      </GridWithVisualizer>
+    </GridSizeController>
   ),
 };
 
 export const ThreeColumnExample: Story = {
   render: () => (
-    <GridWithVisualizer>
-      <Grid>
-        <Column sm={1} md={2} lg={4}>
-          <Box>Fixed Left (lg-4 columns, md-2 columns, sm-1 column)</Box>
-        </Column>
-        <Column>
-          <Box>Auto-adjusting Middle</Box>
-        </Column>
-        <Column sm={1} md={2} lg={4}>
-          <Box>Fixed Right (lg-4 columns, md-2 columns, sm-1 column)</Box>
-        </Column>
-      </Grid>
-    </GridWithVisualizer>
-  ),
-};
-
-export const BreakpointInheritance: Story = {
-  render: () => (
-    <GridWithVisualizer>
-      <Grid>
-        <Column sm={4}>
-          <Box>
-            sm=4 only
-            <br />
-            (100% width that persists across all breakpoints)
-          </Box>
-        </Column>
-        <Column lg={8}>
-          <Box>
-            lg=8 only
-            <br />
-            (Flexible until lg, then 50% width)
-          </Box>
-        </Column>
-        <Column sm={1} lg={8}>
-          <Box>
-            sm=1, lg=8
-            <br />
-            (25% on small, stays 25% on medium, becomes 50% on large)
-          </Box>
-        </Column>
-        <Column sm={2} md={6} lg={4}>
-          <Box>
-            sm=2, md=6, lg=4
-            <br />
-            (50% → 75% → 25%)
-          </Box>
-        </Column>
-      </Grid>
-      <div
-        style={{
-          marginTop: '20px',
-          padding: '10px',
-          backgroundColor: 'var(--surface-basic-disabled)',
-        }}
-      >
-        <p>Breakpoint behavior:</p>
-        <ul>
-          <li>Default state: columns are flexible (flex: 1 1 auto)</li>
-          <li>
-            When a breakpoint is set: width is fixed and persists until
-            overwritten
-          </li>
-          <li>
-            No automatic "reverting" to flexible layout after a breakpoint
-          </li>
-        </ul>
-        <p>In this example:</p>
-        <ul>
-          <li>
-            First row: Shows how sm=4 (100%) persists across all breakpoints
-          </li>
-          <li>
-            Second row: Shows default flexible behavior until lg breakpoint
-          </li>
-
-          <li>
-            Last row: Shows explicit transitions between breakpoints (sm=2 →
-            md=6 → lg=4)
-          </li>
-        </ul>
-      </div>
-    </GridWithVisualizer>
+    <GridSizeController maxWidth={GridMaxWidthToken.GridMaxWidthXl}>
+      <GridWithVisualizer>
+        <Grid>
+          <Column sm={1} md={2} lg={4}>
+            <Box>Fixed Left (lg-4 columns, md-2 columns, sm-1 column)</Box>
+          </Column>
+          <Column>
+            <Box>Auto-adjusting Middle</Box>
+          </Column>
+          <Column sm={1} md={2} lg={4}>
+            <Box>Fixed Right (lg-4 columns, md-2 columns, sm-1 column)</Box>
+          </Column>
+        </Grid>
+      </GridWithVisualizer>
+    </GridSizeController>
   ),
 };
 
 export const Alignment: Story = {
   render: () => (
-    <GridWithVisualizer>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-        <div>
-          <h3>Vertical Alignment (align=end)</h3>
-          <Grid align="end">
-            <Column sm={1}>
-              <Box style={{ height: '100px' }}>Tall</Box>
-            </Column>
-            <Column sm={1}>
-              <Box style={{ height: '50px' }}>Short</Box>
-            </Column>
-            <Column sm={2}>
-              <Box style={{ height: '75px' }}>Medium</Box>
-            </Column>
-          </Grid>
-        </div>
+    <GridSizeController maxWidth={GridMaxWidthToken.GridMaxWidthXl}>
+      <GridWithVisualizer>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+          <div>
+            <h3>Vertical Alignment (align=end)</h3>
+            <Grid align="end">
+              <Column sm={2}>
+                <Box style={{ height: '100px' }}>Tall</Box>
+              </Column>
+              <Column sm={2}>
+                <Box style={{ height: '50px' }}>Short</Box>
+              </Column>
+              <Column sm={2}>
+                <Box style={{ height: '75px' }}>Medium</Box>
+              </Column>
+            </Grid>
+          </div>
 
-        <div>
-          <h3>Horizontal Alignment (justify=end)</h3>
-          <Grid justify="end">
-            <Column sm={1}>
-              <Box>1</Box>
-            </Column>
-            <Column sm={1}>
-              <Box>2</Box>
-            </Column>
-            <Column sm={1}>
-              <Box>3</Box>
-            </Column>
-          </Grid>
-        </div>
+          <div>
+            <h3>Horizontal Alignment (justify=end)</h3>
+            <Grid justify="end">
+              <Column sm={1}>
+                <Box>1</Box>
+              </Column>
+              <Column sm={1}>
+                <Box>2</Box>
+              </Column>
+              <Column sm={1}>
+                <Box>3</Box>
+              </Column>
+              <Column sm={1}>
+                <Box>4</Box>
+              </Column>
+            </Grid>
+          </div>
 
-        <div>
-          <h3>Combined Alignment (justify=center, align=center)</h3>
-          <Grid align="center" justify="center">
-            <Column sm={1}>
-              <Box style={{ height: '100px' }}>Start</Box>
-            </Column>
-            <Column sm={1}>
-              <Box style={{ height: '50px' }}>Middle</Box>
-            </Column>
-            <Column sm={1}>
-              <Box style={{ height: '75px' }}>End</Box>
-            </Column>
-          </Grid>
+          <div>
+            <h3>Combined Alignment (justify=center, align=center)</h3>
+            <Grid align="center" justify="center">
+              <Column sm={1}>
+                <Box style={{ height: '100px' }}>Start</Box>
+              </Column>
+              <Column sm={1}>
+                <Box style={{ height: '50px' }}>Middle 1</Box>
+              </Column>
+              <Column sm={1}>
+                <Box style={{ height: '50px' }}>Middle 2</Box>
+              </Column>
+              <Column sm={1}>
+                <Box style={{ height: '75px' }}>End</Box>
+              </Column>
+            </Grid>
+          </div>
         </div>
-      </div>
-    </GridWithVisualizer>
+      </GridWithVisualizer>
+    </GridSizeController>
   ),
 };
 
-export const NestedGridWithAlignment: Story = {
+export const FixedColumnSizing: Story = {
   render: () => (
-    <GridWithVisualizer>
-      <Grid justify="center">
-        <Column lg={12}>
-          <Box>
-            <p>Outer Grid centered (12 columns)</p>
-            <Grid justify="center">
-              <Column lg={6}>
-                <Box>Inner Grid centered (6 inner grid columns)</Box>
+    <GridSizeController maxWidth={GridMaxWidthToken.GridMaxWidthXl}>
+      <GridWithVisualizer>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+          <div>
+            <h3>Fixed Width Columns</h3>
+            <Grid>
+              <Column width="200px">
+                <Box>Fixed 200px</Box>
               </Column>
-              <Column lg={2}>
-                <Box>Inner Grid centered (2 inner grid columns)</Box>
+              <Column>
+                <Box>Auto-flexible</Box>
+              </Column>
+              <Column width="300px">
+                <Box>Fixed 300px</Box>
               </Column>
             </Grid>
-          </Box>
-        </Column>
-        <Column lg={8}>
-          <Box>
-            <p>Outer Grid centered (8 columns)</p>
-            <Grid justify="space-between">
-              <Column lg={4}>
-                <Box>Inner Grid spaced-between (4 inner grid columns)</Box>
+          </div>
+
+          <div>
+            <h3>Min/Max Width Constraints</h3>
+            <Grid>
+              <Column minWidth="150px" maxWidth="300px">
+                <Box>Flexible (min: 150px, max: 300px)</Box>
               </Column>
-              <Column lg={4}>
-                <Box>Inner Grid spaced-between (4 inner grid columns)</Box>
+              <Column minWidth="200px">
+                <Box>Flexible (min: 200px)</Box>
+              </Column>
+              <Column maxWidth="250px">
+                <Box>Flexible (max: 250px)</Box>
               </Column>
             </Grid>
-          </Box>
-        </Column>
-      </Grid>
-    </GridWithVisualizer>
-  ),
-};
+          </div>
 
-export const ColumnSizing: Story = {
-  render: () => (
-    <GridWithVisualizer>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-        <div>
-          <h3>Fixed Width Columns</h3>
-          <Grid>
-            <Column width="200px">
-              <Box>Fixed 200px</Box>
-            </Column>
-            <Column>
-              <Box>Auto-flexible</Box>
-            </Column>
-            <Column width="300px">
-              <Box>Fixed 300px</Box>
-            </Column>
-          </Grid>
+          <div>
+            <h3>Flexible width with Min/Max Constraints</h3>
+            <Grid>
+              <Column minWidth="200px" maxWidth="300px">
+                <Box>constrained between 200px-300px</Box>
+              </Column>
+              <Column>
+                <Box>Auto-flexible</Box>
+              </Column>
+            </Grid>
+          </div>
         </div>
-
-        <div>
-          <h3>Min/Max Width Constraints</h3>
-          <Grid>
-            <Column minWidth="150px" maxWidth="300px">
-              <Box>Flexible (min: 150px, max: 300px)</Box>
-            </Column>
-            <Column minWidth="200px">
-              <Box>Flexible (min: 200px)</Box>
-            </Column>
-            <Column maxWidth="250px">
-              <Box>Flexible (max: 250px)</Box>
-            </Column>
-          </Grid>
-        </div>
-
-        <div>
-          <h3>Flexible width with Min/Max Constraints</h3>
-          <Grid>
-            <Column minWidth="200px" maxWidth="300px">
-              <Box>constrained between 200px-300px</Box>
-            </Column>
-            <Column>
-              <Box>Auto-flexible</Box>
-            </Column>
-          </Grid>
-        </div>
-      </div>
-    </GridWithVisualizer>
+      </GridWithVisualizer>
+    </GridSizeController>
   ),
 };
 
 export const Example1SalesFunnelReportCards: Story = {
   render: () => (
-    <GridWithVisualizer>
-      <Grid className={styles.gridVerticalGap}>
-        <Column sm={4} md="auto">
-          <Card title="Total chats" className={styles.card}>
-            <div className={styles.cardContent}>
-              <Heading>2870</Heading>
-              <Badge>80</Badge>
-            </div>
-            <Text>vs 2790 for prev. period</Text>
-          </Card>
-        </Column>
-        <Column sm={4} md="auto">
-          <Card title="Sales conversion" className={styles.card}>
-            <div className={styles.cardContent}>
-              <Heading>45%</Heading>
-              <Badge>12%</Badge>
-            </div>
-            <Text>vs 2790 for prev. period</Text>
-          </Card>
-        </Column>
-        <Column sm={4} md="auto">
-          <Card title="Sales value" className={styles.card}>
-            <div className={styles.cardContent}>
-              <Heading>$13,6k</Heading>
-              <Badge>540</Badge>
-            </div>
-            <Text>vs $13k for prev. period</Text>
-          </Card>
-        </Column>
-      </Grid>
-    </GridWithVisualizer>
+    <GridSizeController maxWidth={GridMaxWidthToken.GridMaxWidthXl}>
+      <GridWithVisualizer>
+        <Grid>
+          <Column sm={12} md={4}>
+            <Card title="Total chats" className={styles.card}>
+              <div className={styles.cardContent}>
+                <Heading>2870</Heading>
+                <Badge>80</Badge>
+              </div>
+              <Text>vs 2790 for prev. period</Text>
+            </Card>
+          </Column>
+          <Column sm={12} md={4}>
+            <Card title="Sales conversion" className={styles.card}>
+              <div className={styles.cardContent}>
+                <Heading>45%</Heading>
+                <Badge>12%</Badge>
+              </div>
+              <Text>vs 2790 for prev. period</Text>
+            </Card>
+          </Column>
+          <Column sm={12} md={4}>
+            <Card title="Sales value" className={styles.card}>
+              <div className={styles.cardContent}>
+                <Heading>$13,6k</Heading>
+                <Badge>540</Badge>
+              </div>
+              <Text>vs $13k for prev. period</Text>
+            </Card>
+          </Column>
+        </Grid>
+      </GridWithVisualizer>
+    </GridSizeController>
   ),
 };
 
 export const Example2TotalMetricsChangeSummary: Story = {
   render: () => (
-    <GridWithVisualizer>
-      <Grid className={styles.gridVerticalGap}>
-        <Column sm={4} md={4} lg={4}>
-          <Card title="Automation Savings" className={styles.cardHeight}>
-            <div className={styles.cardContent}>
-              <Heading>2870</Heading>
-              <Badge>80</Badge>
-            </div>
-            <Text>vs 2790 for prev. period</Text>
-
-            <div className={styles.divider} />
-            <div className={styles.cardContent}>
-              <Heading>134$</Heading>
-              <Badge>80</Badge>
-            </div>
-            <Text>vs 2790 for prev. period</Text>
-          </Card>
-        </Column>
-        <Column sm={4} md={4} lg={4}>
-          <Card title="Total cases" className={styles.cardHeight}>
-            <div className={styles.cardContent}>
-              <Heading>2721</Heading>
-              <Badge>810</Badge>
-            </div>
-            <Text>vs 2790 for prev. period</Text>
-
-            <div className={styles.divider} />
-            <div className={styles.cardContent}>
-              <Heading>1343$</Heading>
-              <Badge>80</Badge>
-            </div>
-            <Text>vs 2790 for prev. period</Text>
-          </Card>
-        </Column>
-        <Column sm={4} md={4} lg={4}>
-          <div className={styles.wrapper}>
-            <Card title="Chats first response time" className={styles.card}>
+    <GridSizeController maxWidth={GridMaxWidthToken.GridMaxWidthXl}>
+      <GridWithVisualizer>
+        <Grid>
+          <Column sm={12} md={6} lg={3}>
+            <Card title="Automation Savings" className={styles.cardHeight}>
               <div className={styles.cardContent}>
-                <Heading>28s</Heading>
-                <Badge>2</Badge>
+                <Heading>2870</Heading>
+                <Badge>80</Badge>
               </div>
               <Text>vs 2790 for prev. period</Text>
-            </Card>
-            <Card title="Tickets first response time" className={styles.card}>
+
+              <div className={styles.divider} />
               <div className={styles.cardContent}>
-                <Heading>18s</Heading>
-                <Badge>23</Badge>
-              </div>
-              <Text>vs 2790 for prev. period</Text>
-            </Card>
-          </div>
-        </Column>
-        <Column sm={4} md={4} lg={4}>
-          <div className={styles.wrapper}>
-            <Card title="Chats agents efficiency" className={styles.card}>
-              <div className={styles.cardContent}>
-                <Heading>80%</Heading>
+                <Heading>134$</Heading>
                 <Badge>80</Badge>
               </div>
               <Text>vs 2790 for prev. period</Text>
             </Card>
-            <Card title="Tickets solved average" className={styles.card}>
+          </Column>
+          <Column sm={12} md={6} lg={3}>
+            <Card title="Total cases" className={styles.cardHeight}>
               <div className={styles.cardContent}>
-                <Heading>8.4h</Heading>
+                <Heading>2721</Heading>
+                <Badge>810</Badge>
+              </div>
+              <Text>vs 2790 for prev. period</Text>
+
+              <div className={styles.divider} />
+              <div className={styles.cardContent}>
+                <Heading>1343$</Heading>
                 <Badge>80</Badge>
               </div>
               <Text>vs 2790 for prev. period</Text>
             </Card>
-          </div>
-        </Column>
-      </Grid>
-    </GridWithVisualizer>
+          </Column>
+          <Column sm={12} md={6} lg={3}>
+            <div className={styles.wrapper}>
+              <Card title="Chats first response time" className={styles.card}>
+                <div className={styles.cardContent}>
+                  <Heading>28s</Heading>
+                  <Badge>2</Badge>
+                </div>
+                <Text>vs 2790 for prev. period</Text>
+              </Card>
+              <Card title="Tickets first response time" className={styles.card}>
+                <div className={styles.cardContent}>
+                  <Heading>18s</Heading>
+                  <Badge>23</Badge>
+                </div>
+                <Text>vs 2790 for prev. period</Text>
+              </Card>
+            </div>
+          </Column>
+          <Column sm={12} md={6} lg={3}>
+            <div className={styles.wrapper}>
+              <Card title="Chats agents efficiency" className={styles.card}>
+                <div className={styles.cardContent}>
+                  <Heading>80%</Heading>
+                  <Badge>80</Badge>
+                </div>
+                <Text>vs 2790 for prev. period</Text>
+              </Card>
+              <Card title="Tickets solved average" className={styles.card}>
+                <div className={styles.cardContent}>
+                  <Heading>8.4h</Heading>
+                  <Badge>80</Badge>
+                </div>
+                <Text>vs 2790 for prev. period</Text>
+              </Card>
+            </div>
+          </Column>
+        </Grid>
+      </GridWithVisualizer>
+    </GridSizeController>
   ),
 };
 
 export const Example3AutomationAiAgents: Story = {
   render: () => (
-    <GridWithVisualizer>
-      <Grid justify="center">
-        <div className={styles.gridWrapper}>
-          <Column sm={4}>
-            <Heading>Skills</Heading>
-          </Column>
-
-          <Card className={styles.backgroundCard}>
-            <Grid className={styles.gridVerticalGap}>
-              <Column sm={4} md="auto">
-                <Card title="Welcome message" className={styles.cardAutomation}>
-                  <Badge>Ai Skill</Badge>
-                </Card>
-              </Column>
-              <Column sm={4} md="auto">
-                <Card
-                  title="Order management"
-                  className={styles.cardAutomation}
-                >
-                  <Badge>Ai Skill</Badge>
-                </Card>
-              </Column>
-              <Column sm={4} md="auto">
-                <Card title="Add skill" className={styles.cardAutomation}>
-                  <Badge>+</Badge>
-                </Card>
-              </Column>
-            </Grid>
-          </Card>
-
-          <Column sm={4}>
-            <Heading>Knowledge</Heading>
-          </Column>
-
-          <Card className={styles.backgroundCard}>
-            <Grid className={styles.gridVerticalGap}>
-              <Column sm={4} md="auto">
-                <Card
-                  title="www.livechat.com"
-                  className={styles.cardAutomation}
-                >
-                  <Badge>Website</Badge>
-                </Card>
-              </Column>
-              <Column sm={4} md="auto">
-                <Card title="Pricing plans" className={styles.cardAutomation}>
-                  <Badge>PDF</Badge>
-                </Card>
-              </Column>
-              <Column sm={4} md="auto">
-                <Card title="Add knowledge" className={styles.cardAutomation}>
-                  <Badge>+</Badge>
-                </Card>
-              </Column>
-            </Grid>
-          </Card>
-        </div>
-      </Grid>
-    </GridWithVisualizer>
-  ),
-};
-
-export const Example4AutomationAiAgentsMinWidth: Story = {
-  render: () => (
-    <GridWithVisualizer>
-      <div className={styles.gridWrapperMinWidth}>
+    <GridSizeController maxWidth={GridMaxWidthToken.GridMaxWidthXl}>
+      <GridWithVisualizer>
         <Grid justify="center">
-          <div className={styles.gridWrapper}>
-            <Column sm={4}>
-              <Heading>Skills</Heading>
-            </Column>
-
+          <Column className={styles.maxWidthWrapper}>
             <Card className={styles.backgroundCard}>
-              <Grid className={styles.gridVerticalGap}>
-                <Column>
+              <Grid>
+                <Column sm={12} md={4}>
                   <Card
                     title="Welcome message"
                     className={styles.cardAutomation}
@@ -635,7 +490,7 @@ export const Example4AutomationAiAgentsMinWidth: Story = {
                     <Badge>Ai Skill</Badge>
                   </Card>
                 </Column>
-                <Column>
+                <Column sm={12} md={4}>
                   <Card
                     title="Order management"
                     className={styles.cardAutomation}
@@ -643,91 +498,203 @@ export const Example4AutomationAiAgentsMinWidth: Story = {
                     <Badge>Ai Skill</Badge>
                   </Card>
                 </Column>
-                <Column>
+                <Column sm={12} md={4}>
                   <Card title="Add skill" className={styles.cardAutomation}>
                     <Badge>+</Badge>
                   </Card>
                 </Column>
               </Grid>
             </Card>
-
-            <Column sm={4}>
-              <Heading>Knowledge</Heading>
-            </Column>
-
-            <Card className={styles.backgroundCard}>
-              <Grid className={styles.gridVerticalGap}>
-                <Column>
-                  <Card
-                    title="www.livechat.com"
-                    className={styles.cardAutomation}
-                  >
-                    <Badge>Website</Badge>
-                  </Card>
-                </Column>
-                <Column>
-                  <Card title="Pricing plans" className={styles.cardAutomation}>
-                    <Badge>PDF</Badge>
-                  </Card>
-                </Column>
-                <Column>
-                  <Card title="Add knowledge" className={styles.cardAutomation}>
-                    <Badge>+</Badge>
-                  </Card>
-                </Column>
-              </Grid>
-            </Card>
-          </div>
+          </Column>
         </Grid>
-      </div>
-    </GridWithVisualizer>
+      </GridWithVisualizer>
+    </GridSizeController>
+  ),
+};
+
+export const Example4AutomationAiAgentsMinWidth: Story = {
+  render: () => (
+    <GridSizeController maxWidth={GridMaxWidthToken.GridMaxWidthXl}>
+      <GridWithVisualizer>
+        <div className={styles.gridWrapperMinWidth}>
+          <Grid justify="center">
+            <Column className={styles.maxWidthWrapper}>
+              <Card className={styles.backgroundCard}>
+                <Grid className={styles.gridVerticalGap}>
+                  <Column className={styles.maxWidthWrapper}>
+                    <Card
+                      title="Welcome message"
+                      className={styles.cardAutomation}
+                    >
+                      <Badge>Ai Skill</Badge>
+                    </Card>
+                  </Column>
+                  <Column>
+                    <Card
+                      title="Order management"
+                      className={styles.cardAutomation}
+                    >
+                      <Badge>Ai Skill</Badge>
+                    </Card>
+                  </Column>
+                  <Column>
+                    <Card title="Add skill" className={styles.cardAutomation}>
+                      <Badge>+</Badge>
+                    </Card>
+                  </Column>
+                </Grid>
+              </Card>
+            </Column>
+          </Grid>
+        </div>
+      </GridWithVisualizer>
+    </GridSizeController>
   ),
 };
 
 export const Example5SalesFunnelReportCardsWithArrows: Story = {
   render: () => (
-    <GridWithVisualizer>
-      <Grid className={styles.gridVerticalGap}>
-        <Column sm={4} lg="auto">
-          <Card title="Total chats" className={styles.card}>
-            <div className={styles.cardContent}>
-              <Heading>2870</Heading>
-              <Badge>80</Badge>
-            </div>
-            <Text>vs 2790 for prev. period</Text>
-          </Card>
-        </Column>
-        <Column className={styles.arrowDown}>
-          <Icon source={ArrowDownward} />
-        </Column>
-        <Column width="fit-content" className={styles.arrowForward}>
-          <Icon source={ArrowForward} />
-        </Column>
-        <Column sm={4} lg="auto">
-          <Card title="Sales conversion" className={styles.card}>
-            <div className={styles.cardContent}>
-              <Heading>45%</Heading>
-              <Badge>12%</Badge>
-            </div>
-            <Text>vs 2790 for prev. period</Text>
-          </Card>
-        </Column>
-        <Column className={styles.arrowDown}>
-          <Icon source={ArrowDownward} />
-        </Column>
-        <Column width="fit-content" className={styles.arrowForward}>
-          <Icon source={ArrowForward} />
-        </Column>
-        <Column sm={4} lg="auto">
-          <Card title="Sales value" className={styles.card}>
-            <div className={styles.cardContent}>
-              <Heading>$13,6k</Heading>
-              <Badge>540</Badge>
-            </div>
-            <Text>vs $13k for prev. period</Text>
-          </Card>
-        </Column>
-      </Grid>
-    </GridWithVisualizer>
+    <GridSizeController maxWidth={GridMaxWidthToken.GridMaxWidthXl}>
+      <GridWithVisualizer>
+        <Grid align="center" justify="center">
+          <Column sm={12} lg={3}>
+            <Card title="Total chats" className={styles.card}>
+              <div className={styles.cardContent}>
+                <Heading>2870</Heading>
+                <Badge>80</Badge>
+              </div>
+              <Text>vs 2790 for prev. period</Text>
+            </Card>
+          </Column>
+          <Column sm={12} md={1}>
+            <Icon className={styles.arrowDown} source={ArrowDownward} />
+            <Icon className={styles.arrowForward} source={ArrowForward} />
+          </Column>
+
+          <Column sm={12} lg={3}>
+            <Card title="Sales conversion" className={styles.card}>
+              <div className={styles.cardContent}>
+                <Heading>45%</Heading>
+                <Badge>12%</Badge>
+              </div>
+              <Text>vs 2790 for prev. period</Text>
+            </Card>
+          </Column>
+          <Column sm={12} md={1}>
+            <Icon className={styles.arrowDown} source={ArrowDownward} />
+            <Icon className={styles.arrowForward} source={ArrowForward} />
+          </Column>
+          <Column sm={12} lg={3}>
+            <Card title="Sales value" className={styles.card}>
+              <div className={styles.cardContent}>
+                <Heading>$13,6k</Heading>
+                <Badge>540</Badge>
+              </div>
+              <Text>vs $13k for prev. period</Text>
+            </Card>
+          </Column>
+        </Grid>
+      </GridWithVisualizer>
+    </GridSizeController>
+  ),
+};
+
+export const WithinSmallerContainer: Story = {
+  render: () => {
+    const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
+
+    return (
+      <div style={{ display: 'flex', height: '100vh' }}>
+        <div
+          style={{
+            width: isSidebarOpen ? '300px' : '40px',
+            minHeight: '100%',
+            backgroundColor: 'black',
+            color: 'white',
+            transition: 'width 0.3s ease',
+            overflow: 'hidden',
+            position: 'relative',
+          }}
+        >
+          <div style={{ padding: '16px', width: '300px' }}>
+            <Heading>Details</Heading>
+            <button
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              style={{
+                position: 'absolute',
+                right: isSidebarOpen ? '16px' : '8px',
+                top: '16px',
+                padding: '8px',
+                backgroundColor: 'white',
+                color: 'black',
+                border: 'none',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                zIndex: 1,
+              }}
+            >
+              {isSidebarOpen ? '←' : '→'}
+            </button>
+          </div>
+        </div>
+        <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+          <GridSizeController maxWidth={GridMaxWidthToken.GridMaxWidthXl}>
+            <GridWithVisualizer>
+              <Grid>
+                <Column sm={8} md={12} lg={4}>
+                  <Box>Column 1 (md-12, lg=4)</Box>
+                </Column>
+                <Column sm={8} md={12} lg={4}>
+                  <Box>Column 2</Box>
+                </Column>
+                <Column sm={8} md={12} lg={4}>
+                  <Box>Column 3</Box>
+                </Column>
+              </Grid>
+            </GridWithVisualizer>
+          </GridSizeController>
+        </div>
+      </div>
+    );
+  },
+};
+
+export const CustomGutters: Story = {
+  render: () => (
+    <GridSizeController maxWidth={GridMaxWidthToken.GridMaxWidthXl}>
+      <GridWithVisualizer>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+          <div>
+            <h3>Custom gutters per breakpoint (sm=2, md=10, lg=24)</h3>
+            <Grid gutter={{ sm: 2, md: 10, lg: 24 }}>
+              <Column sm={6}>
+                <Box>Column with custom gutters</Box>
+              </Column>
+              <Column sm={6}>
+                <Box>Column with custom gutters</Box>
+              </Column>
+              <Column sm={6}>
+                <Box>Column with custom gutters</Box>
+              </Column>
+              <Column sm={6}>
+                <Box>Column with custom gutters</Box>
+              </Column>
+            </Grid>
+          </div>
+
+          <div>
+            <h3>Large uniform gutters (sm=64, md=64, lg=64, xl=64, 2xl=64)</h3>
+            <Grid gutter={{ sm: 64, md: 64, lg: 64, xl: 64, '2xl': 64 }}>
+              <Column sm={6}>
+                <Box>64px gutters</Box>
+              </Column>
+              <Column sm={6}>
+                <Box>64px gutters</Box>
+              </Column>
+            </Grid>
+          </div>
+        </div>
+      </GridWithVisualizer>
+    </GridSizeController>
   ),
 };

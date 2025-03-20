@@ -7,12 +7,24 @@ interface GridVisualizerProps {
   showGrid?: boolean;
 }
 
-const getColumnCount = (
-  width: number
-): { count: number; breakpoint: string } => {
-  if (width < 672) return { count: 4, breakpoint: 'sm' };
-  if (width < 1024) return { count: 8, breakpoint: 'md' };
-  return { count: 16, breakpoint: 'lg' };
+const GRID_COLUMNS = 12;
+
+const BREAKPOINTS = {
+  sm: 320,
+  md: 672,
+  lg: 1024,
+  xl: 1312,
+  '2xl': 1584,
+} as const;
+
+type Breakpoint = keyof typeof BREAKPOINTS;
+
+const getBreakpoint = (width: number): Breakpoint => {
+  if (width < BREAKPOINTS.md) return 'sm';
+  if (width < BREAKPOINTS.lg) return 'md';
+  if (width < BREAKPOINTS.xl) return 'lg';
+  if (width < BREAKPOINTS['2xl']) return 'xl';
+  return '2xl';
 };
 
 /**
@@ -23,29 +35,62 @@ export const GridVisualizer: React.FC<GridVisualizerProps> = ({
   children,
   showGrid = false,
 }) => {
-  const [gridInfo, setGridInfo] = React.useState({
-    count: 16,
-    breakpoint: 'lg',
-  });
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [containerWidth, setContainerWidth] = React.useState<number>(0);
+  const [currentBreakpoint, setCurrentBreakpoint] =
+    React.useState<Breakpoint>('sm');
 
   React.useEffect(() => {
-    const updateGridInfo = () => {
-      setGridInfo(getColumnCount(window.innerWidth));
+    if (!containerRef.current) return;
+
+    const resizeObserver = new ResizeObserver(
+      (entries: ResizeObserverEntry[]) => {
+        for (const entry of entries) {
+          let width: number;
+          if (entry.contentBoxSize) {
+            const boxSize: ResizeObserverSize = Array.isArray(
+              entry.contentBoxSize
+            )
+              ? entry.contentBoxSize[0]
+              : entry.contentBoxSize;
+            width = Number(boxSize.inlineSize);
+          } else {
+            width = Number(entry.contentRect.width);
+          }
+          setContainerWidth(width);
+          setCurrentBreakpoint(getBreakpoint(width));
+        }
+      }
+    );
+
+    resizeObserver.observe(containerRef.current);
+
+    return () => {
+      resizeObserver.disconnect();
     };
-
-    updateGridInfo();
-    window.addEventListener('resize', updateGridInfo);
-
-    return () => window.removeEventListener('resize', updateGridInfo);
   }, []);
 
+  const gutterValue = `var(--grid-gutter-${currentBreakpoint})`;
+  const marginValue = `var(--grid-margin-${currentBreakpoint})`;
+
   return (
-    <div className={styles.wrapper}>
+    <div ref={containerRef} style={{ width: '100%', position: 'relative' }}>
       {showGrid && (
         <>
-          <div className={styles.gridOverlay}>
-            <div className={styles.gridContainer}>
-              {Array.from({ length: gridInfo.count }).map((_, i) => (
+          <div
+            className={styles.gridOverlay}
+            style={{
+              inset: `calc(var(--grid-margin-${currentBreakpoint}) * -1) 0`,
+            }}
+          >
+            <div
+              className={styles.gridContainer}
+              style={{
+                gap: gutterValue,
+                margin: marginValue,
+              }}
+            >
+              {Array.from({ length: GRID_COLUMNS }).map((_, i) => (
                 <div key={i} className={styles.gridColumn}>
                   <div className={styles.gridColumnInner} />
                   {i + 1}
@@ -54,7 +99,10 @@ export const GridVisualizer: React.FC<GridVisualizerProps> = ({
             </div>
           </div>
           <div className={styles.gridInfo}>
-            Current grid: {gridInfo.count} columns ({gridInfo.breakpoint})
+            Current grid: {GRID_COLUMNS} columns ({currentBreakpoint} -{' '}
+            {Math.round(containerWidth)}px)
+            <br />
+            Margin: {marginValue}, Gutter: {gutterValue}
           </div>
         </>
       )}

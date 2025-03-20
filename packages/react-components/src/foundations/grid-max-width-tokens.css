@@ -1,0 +1,9 @@
+/* // TODO names mustr be adjusted */
+:root {
+  --grid-max-width-xs: 480px;
+  --grid-max-width-sm: 576px;
+  --grid-max-width-md: 768px;
+  --grid-max-width-lg: 992px;
+  --grid-max-width-xl: 1200px;
+  --grid-max-width-2xl: 1400px;
+}
