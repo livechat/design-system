@@ -3,6 +3,7 @@ import * as React from 'react';
 import { CheckCircle, ChevronDown } from '@livechat/design-system-icons';
 import cx from 'clsx';
 
+import { useAnimations, useHeightResizer } from '../../hooks';
 import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { Heading, Text } from '../Typography';
@@ -34,10 +35,28 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
     setIsOpen((prev) => !prev);
   };
 
-  React.useEffect(() => {
-    const delay = completionMessageData.delay || 1500;
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const contentRef = React.useRef<HTMLDivElement>(null);
+  const completeContentRef = React.useRef<HTMLDivElement>(null);
+  const { size, handleResizeRef } = useHeightResizer();
 
+  const { isOpen: isContentVisible, isMounted } = useAnimations({
+    isVisible: isOpen,
+    elementRef: contentRef,
+  });
+
+  const { isOpen: isCompleteVisible, isMounted: isCompleteMounted } =
+    useAnimations({
+      isVisible: !isOpen,
+      elementRef: completeContentRef,
+    });
+
+  const COMPLETE_CONTAINER_HEIGHT = completionMessageData.height || 96;
+
+  React.useEffect(() => {
     if (isCompleted) {
+      const delay = completionMessageData.delay || 1500;
+
       const timeoutId = setTimeout(() => {
         setIsChecklistCompleted(true);
         setIsOpen(false);
@@ -51,6 +70,7 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
 
   return (
     <div
+      ref={containerRef}
       className={cx(
         styles[baseClass],
         {
@@ -58,75 +78,108 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
         },
         className
       )}
-      style={
-        !isChecklistCompleted || isOpen || !completionMessageData.height
-          ? undefined
-          : { height: completionMessageData.height }
-      }
     >
-      {isOpen && (
-        <>
-          <div className={styles[`${baseClass}__column`]}>
-            <div className={styles[`${baseClass}__header`]}>
-              {greetingText && (
-                <Text
-                  size="lg"
-                  semiBold
-                  className={styles[`${baseClass}__header__label`]}
-                >
-                  {greetingText}
-                </Text>
-              )}
-              <Heading
-                size="lg"
-                className={styles[`${baseClass}__header__title`]}
+      <div
+        className={styles[`${baseClass}__content-container`]}
+        style={{
+          maxHeight: isContentVisible ? size : 0,
+          overflow: 'hidden',
+          transition: 'max-height var(--transition-duration-moderate-1)',
+        }}
+        ref={contentRef}
+      >
+        <div ref={handleResizeRef}>
+          {isMounted && (
+            <div
+              className={styles[`${baseClass}__content-wrapper`]}
+              style={{
+                opacity: isContentVisible ? 1 : 0,
+                transition: 'opacity var(--transition-duration-moderate-1)',
+              }}
+            >
+              <div className={styles[`${baseClass}__column`]}>
+                <div className={styles[`${baseClass}__header`]}>
+                  {greetingText && (
+                    <Text
+                      size="lg"
+                      semiBold
+                      className={styles[`${baseClass}__header__label`]}
+                    >
+                      {greetingText}
+                    </Text>
+                  )}
+                  <Heading
+                    size="lg"
+                    className={styles[`${baseClass}__header__title`]}
+                  >
+                    {title}
+                  </Heading>
+                </div>
+                <div className={styles[`${baseClass}__checklist`]}>
+                  {items.map((item, index) => (
+                    <CheckListItem
+                      key={index}
+                      id={item.id}
+                      description={item.description}
+                      customContent={item.customContent}
+                      title={item.title}
+                      titleHint={item.titleHint}
+                      isActive={item.id === activeItemId}
+                      isChecked={completedItemsIds.includes(item.id)}
+                      onClick={onActiveChange}
+                      cta={item.cta}
+                    />
+                  ))}
+                </div>
+              </div>
+              <div
+                className={cx(
+                  styles[`${baseClass}__column`],
+                  styles[`${baseClass}__column--right`],
+                  {
+                    [styles[`${baseClass}__column--right--completed`]]:
+                      isCompleted,
+                  },
+                  placeholderClassName
+                )}
               >
-                {title}
-              </Heading>
+                {!isCompleted && (
+                  <div className={styles[`${baseClass}__placeholder`]}>
+                    {
+                      items.find((item) => item.id === activeItemId)
+                        ?.placeholder
+                    }
+                  </div>
+                )}
+                {isCompleted && (
+                  <div className={styles[`${baseClass}__placeholder`]}>
+                    {completionMessageData.placeholder}
+                  </div>
+                )}
+              </div>
             </div>
-            <div className={styles[`${baseClass}__checklist`]}>
-              {items.map((item, index) => (
-                <CheckListItem
-                  key={index}
-                  id={item.id}
-                  description={item.description}
-                  customContent={item.customContent}
-                  title={item.title}
-                  titleHint={item.titleHint}
-                  isActive={item.id === activeItemId}
-                  isChecked={completedItemsIds.includes(item.id)}
-                  onClick={onActiveChange}
-                  cta={item.cta}
-                />
-              ))}
-            </div>
-          </div>
+          )}
+        </div>
+      </div>
+
+      <div
+        className={styles[`${baseClass}__complete-container`]}
+        style={{
+          maxHeight: isCompleteVisible ? COMPLETE_CONTAINER_HEIGHT : 0,
+          overflow: 'hidden',
+          transition: 'max-height var(--transition-duration-moderate-1)',
+          position: 'relative',
+        }}
+        ref={completeContentRef}
+      >
+        {isCompleteMounted && (
           <div
-            className={cx(
-              styles[`${baseClass}__column`],
-              styles[`${baseClass}__column--right`],
-              {
-                [styles[`${baseClass}__column--right--completed`]]: isCompleted,
-              },
-              placeholderClassName
-            )}
+            className={styles[`${baseClass}__complete`]}
+            style={{
+              opacity: isCompleteVisible ? 1 : 0,
+              transition: 'opacity var(--transition-duration-moderate-1)',
+            }}
           >
-            {!isCompleted && (
-              <div className={styles[`${baseClass}__placeholder`]}>
-                {items.find((item) => item.id === activeItemId)?.placeholder}
-              </div>
-            )}
-            {isCompleted && (
-              <div className={styles[`${baseClass}__placeholder`]}>
-                {completionMessageData.placeholder}
-              </div>
-            )}
-          </div>
-        </>
-      )}
-      {!isOpen && (
-        <>
-          <div className={styles[`${baseClass}__complete`]}>
             <div>
               <Icon
                 size="large"
@@ -156,8 +209,9 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
               </Heading>
             </div>
           </div>
-        </>
-      )}
+        )}
+      </div>
+
       {isChecklistCompleted && (
         <Button
           kind={isOpen ? 'float' : 'text'}
