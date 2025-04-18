@@ -166,3 +166,45 @@ export const Default = (): React.ReactElement => {
     />
   );
 };
+
+export const ShortBanner = (): React.ReactElement => {
+  const [activeItem, setActiveItem] = React.useState<string>('1');
+  const [checkedIds, setCheckedIds] = React.useState<string[]>([]);
+  const [isCompleted, setIsCompleted] = React.useState<boolean>(false);
+
+  const handlePrimaryClick = (id: string) => {
+    setCheckedIds((prev) => [...prev, id]);
+    setActiveItem((prev) => (parseInt(prev) + 1).toString());
+
+    if (checkedIds.length === 4) {
+      setIsCompleted(true);
+    }
+  };
+
+  const handleSecondaryClick = (id: string) => setActiveItem(id);
+
+  return (
+    <OnboardingChecklist
+      title="Here’s your getting started guide"
+      greetingText="Hello, Tim!"
+      items={getItems(handlePrimaryClick, handleSecondaryClick)}
+      activeItemId={activeItem}
+      completedItemsIds={checkedIds}
+      onActiveChange={handleSecondaryClick}
+      isCompleted={true}
+      completionMessageData={{
+        title: '',
+        greetingText: 'Hey Tim, nice work!',
+        delay: 3000,
+        placeholder: (
+          <video
+            src="https://cdn.livechat-static.com/api/file/lc/img/default/assets/onboarding-success.mp4"
+            playsInline
+            muted
+            autoPlay
+          />
+        ),
+      }}
+    />
+  );
+};
