@@ -170,7 +170,7 @@ export const Default = (): React.ReactElement => {
 export const ShortBanner = (): React.ReactElement => {
   const [activeItem, setActiveItem] = React.useState<string>('1');
   const [checkedIds, setCheckedIds] = React.useState<string[]>([]);
-  const [isCompleted, setIsCompleted] = React.useState<boolean>(false);
+  const [, setIsCompleted] = React.useState<boolean>(false);
 
   const handlePrimaryClick = (id: string) => {
     setCheckedIds((prev) => [...prev, id]);
