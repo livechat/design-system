@@ -15,29 +15,17 @@ $base-class: 'onboarding-checklist';
   &__content-container {
     transition: max-height var(--transition-duration-moderate-1);
     width: 100%;
-    overflow: hidden;
   }
 
   &__content-wrapper {
     display: flex;
     flex-direction: row;
-    transition: opacity var(--transition-duration-moderate-1);
     width: 100%;
-
-    &--visible {
-      opacity: 1;
-    }
-
-    &--hidden {
-      opacity: 0;
-    }
   }
 
   &__complete-container {
-    position: relative;
     transition: max-height var(--transition-duration-moderate-1);
     width: 100%;
-    overflow: hidden;
   }
 
   &__complete {
@@ -47,14 +35,6 @@ $base-class: 'onboarding-checklist';
     transition: opacity var(--transition-duration-moderate-1);
     padding: var(--spacing-6) var(--spacing-10);
     width: 100%;
-
-    &--visible {
-      opacity: 1;
-    }
-
-    &--hidden {
-      opacity: 0;
-    }
 
     &__icon {
       color: var(--surface-accent-emphasis-high-positive);

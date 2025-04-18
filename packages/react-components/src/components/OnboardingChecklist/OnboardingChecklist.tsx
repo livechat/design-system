@@ -83,18 +83,19 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
         className={styles[`${baseClass}__content-container`]}
         style={{
           maxHeight: isContentVisible ? size : 0,
+          overflow: 'hidden',
+          transition: 'max-height var(--transition-duration-moderate-1)',
         }}
         ref={contentRef}
       >
         <div ref={handleResizeRef}>
           {isMounted && (
             <div
-              className={cx(styles[`${baseClass}__content-wrapper`], {
-                [styles[`${baseClass}__content-wrapper--visible`]]:
-                  isContentVisible,
-                [styles[`${baseClass}__content-wrapper--hidden`]]:
-                  !isContentVisible,
-              })}
+              className={styles[`${baseClass}__content-wrapper`]}
+              style={{
+                opacity: isContentVisible ? 1 : 0,
+                transition: 'opacity var(--transition-duration-moderate-1)',
+              }}
             >
               <div className={styles[`${baseClass}__column`]}>
                 <div className={styles[`${baseClass}__header`]}>
@@ -165,15 +166,19 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
         className={styles[`${baseClass}__complete-container`]}
         style={{
           maxHeight: isCompleteVisible ? COMPLETE_CONTAINER_HEIGHT : 0,
+          overflow: 'hidden',
+          transition: 'max-height var(--transition-duration-moderate-1)',
+          position: 'relative',
         }}
         ref={completeContentRef}
       >
         {isCompleteMounted && (
           <div
-            className={cx(styles[`${baseClass}__complete`], {
-              [styles[`${baseClass}__complete--visible`]]: isCompleteVisible,
-              [styles[`${baseClass}__complete--hidden`]]: !isCompleteVisible,
-            })}
+            className={styles[`${baseClass}__complete`]}
+            style={{
+              opacity: isCompleteVisible ? 1 : 0,
+              transition: 'opacity var(--transition-duration-moderate-1)',
+            }}
           >
             <div>
               <Icon
