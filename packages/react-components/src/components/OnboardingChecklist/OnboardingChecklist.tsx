@@ -34,6 +34,7 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
   >(undefined);
   const containerRef = React.useRef<HTMLDivElement>(null);
   const COMPLETE_CONTAINER_HEIGHT = completionMessageData.height || 96;
+  const HEIGHT_BUFFER = 50; // Adjust??
 
   const handleButtonClick = () => {
     setIsOpen((prev) => !prev);
@@ -43,7 +44,7 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
     const delay = completionMessageData.delay || 1500;
     const container = containerRef.current;
 
-    if (isCompleted && container) {
+    if (isCompleted && container && !isChecklistCompleted) {
       const currentHeight = container.offsetHeight;
       setCurrentContainerHeight(currentHeight);
 
@@ -56,7 +57,16 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
         clearTimeout(timeoutId);
       };
     }
-  }, [isCompleted]);
+  }, [isCompleted, isChecklistCompleted]);
+
+  React.useEffect(() => {
+    if (containerRef.current) {
+      const newHeight = isOpen
+        ? containerRef.current.scrollHeight + HEIGHT_BUFFER
+        : COMPLETE_CONTAINER_HEIGHT;
+      setCurrentContainerHeight(newHeight);
+    }
+  }, [isOpen, isChecklistCompleted]);
 
   return (
     <div
@@ -69,10 +79,7 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
         className
       )}
       style={{
-        height:
-          !isChecklistCompleted || isOpen
-            ? currentContainerHeight
-            : COMPLETE_CONTAINER_HEIGHT,
+        height: currentContainerHeight,
       }}
     >
       {isOpen && (
