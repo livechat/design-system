@@ -15,8 +15,8 @@ $base-class: 'onboarding-checklist';
   &__complete {
     display: flex;
     flex-direction: row;
-    gap: var(--spacing-5);
-    padding: var(--spacing-6) var(--spacing-10);
+    gap: var(--spacing-4);
+    padding: var(--spacing-7) var(--spacing-10);
     width: 100%;
 
     &__icon {

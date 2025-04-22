@@ -33,8 +33,8 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
     number | undefined
   >(undefined);
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const COMPLETE_CONTAINER_HEIGHT = completionMessageData.height || 96;
-  const HEIGHT_BUFFER = 96;
+  const COMPLETE_CONTAINER_HEIGHT = completionMessageData.height || 108;
+  const HEIGHT_BUFFER = 108;
 
   const handleButtonClick = () => {
     setIsOpen((prev) => !prev);
