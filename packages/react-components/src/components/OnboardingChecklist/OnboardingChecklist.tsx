@@ -33,7 +33,8 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
     number | undefined
   >(undefined);
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const COMPLETE_CONTAINER_HEIGHT = completionMessageData.height || 96;
+  const COMPLETE_CONTAINER_HEIGHT = completionMessageData.height || 108;
+  const HEIGHT_BUFFER = 108;
 
   const handleButtonClick = () => {
     setIsOpen((prev) => !prev);
@@ -43,10 +44,9 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
     const delay = completionMessageData.delay || 1500;
     const container = containerRef.current;
 
-    if (isCompleted && container) {
+    if (isCompleted && container && !isChecklistCompleted) {
       const currentHeight = container.offsetHeight;
       setCurrentContainerHeight(currentHeight);
-
       const timeoutId = setTimeout(() => {
         setIsChecklistCompleted(true);
         setIsOpen(false);
@@ -56,7 +56,16 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
         clearTimeout(timeoutId);
       };
     }
-  }, [isCompleted]);
+  }, [isCompleted, isChecklistCompleted]);
+
+  React.useEffect(() => {
+    if (containerRef.current) {
+      const newHeight = isOpen
+        ? containerRef.current.scrollHeight + HEIGHT_BUFFER
+        : COMPLETE_CONTAINER_HEIGHT;
+      setCurrentContainerHeight(newHeight);
+    }
+  }, [isOpen, isChecklistCompleted]);
 
   return (
     <div
@@ -69,10 +78,7 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
         className
       )}
       style={{
-        height:
-          !isChecklistCompleted || isOpen
-            ? currentContainerHeight
-            : COMPLETE_CONTAINER_HEIGHT,
+        height: currentContainerHeight,
       }}
     >
       {isOpen && (
@@ -145,7 +151,12 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
                 source={CheckCircle}
               />
             </div>
-            <div>
+            <div
+              className={cx({
+                [styles[`${baseClass}__complete__content--no-greeting`]]:
+                  !completionMessageData?.greetingText,
+              })}
+            >
               {completionMessageData?.greetingText && (
                 <Text
                   size="lg"
@@ -176,7 +187,10 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
               )}
             />
           }
-          className={styles[`${baseClass}__button`]}
+          className={cx(styles[`${baseClass}__button`], {
+            [styles[`${baseClass}__button--open`]]: isOpen,
+            [styles[`${baseClass}__button--closed`]]: !isOpen,
+          })}
           onClick={handleButtonClick}
           aria-expanded={isOpen}
         />
