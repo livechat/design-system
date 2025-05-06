@@ -25,10 +25,12 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
   isCompleted = false,
   completionMessageData,
   className,
+  isOpen: isOpenProp,
 }) => {
   const [isChecklistCompleted, setIsChecklistCompleted] =
     React.useState(isCompleted);
-  const [isOpen, setIsOpen] = React.useState(!isCompleted);
+  const [isOpenState, setIsOpenState] = React.useState(!isCompleted);
+  const isOpen = isOpenProp !== undefined ? isOpenProp : isOpenState;
   const [currentContainerHeight, setCurrentContainerHeight] = React.useState<
     number | undefined
   >(undefined);
@@ -37,7 +39,7 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
   const HEIGHT_BUFFER = 108;
 
   const handleButtonClick = () => {
-    setIsOpen((prev) => !prev);
+    setIsOpenState(!isOpen);
   };
 
   React.useEffect(() => {
@@ -49,7 +51,7 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
       setCurrentContainerHeight(currentHeight);
       const timeoutId = setTimeout(() => {
         setIsChecklistCompleted(true);
-        setIsOpen(false);
+        setIsOpenState(false);
       }, delay);
 
       return () => {
