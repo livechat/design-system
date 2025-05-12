@@ -103,7 +103,7 @@ export interface IOnboardingChecklistProps {
    */
   completionMessageData: ICompletionMessageDataProps;
   /**
-   * Controls whether the checklist is open
+   * Controls whether the checklist is initially open
    */
-  isOpen?: boolean;
+  isInitiallyOpen?: boolean;
 }
