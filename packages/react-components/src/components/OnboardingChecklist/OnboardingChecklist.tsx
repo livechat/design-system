@@ -38,7 +38,7 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
   const HEIGHT_BUFFER = 108;
 
   const handleButtonClick = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((prev) => !prev);
   };
 
   React.useEffect(() => {
