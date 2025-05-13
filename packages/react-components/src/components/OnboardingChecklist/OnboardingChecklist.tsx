@@ -29,7 +29,9 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
 }) => {
   const [isChecklistCompleted, setIsChecklistCompleted] =
     React.useState(isCompleted);
-  const [isOpen, setIsOpen] = React.useState(isInitiallyOpen ?? !isCompleted);
+  const [isOpen, setIsOpen] = React.useState(
+    isCompleted ? isInitiallyOpen ?? false : true
+  );
   const [currentContainerHeight, setCurrentContainerHeight] = React.useState<
     number | undefined
   >(undefined);

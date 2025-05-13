@@ -104,6 +104,8 @@ export interface IOnboardingChecklistProps {
   completionMessageData: ICompletionMessageDataProps;
   /**
    * Controls whether the checklist is initially open
+   * Only applies when isCompleted is true.
+   * Incomplete checklist is always open.
    */
   isInitiallyOpen?: boolean;
 }
