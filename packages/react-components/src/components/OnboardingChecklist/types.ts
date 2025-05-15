@@ -108,4 +108,8 @@ export interface IOnboardingChecklistProps {
    * Incomplete checklist is always open.
    */
   isInitiallyOpen?: boolean;
+  /**
+   * Callback function when the open state of the checklist changes
+   */
+  onOpenChange?: (isOpen: boolean) => void;
 }

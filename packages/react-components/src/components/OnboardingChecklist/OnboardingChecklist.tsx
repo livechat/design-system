@@ -25,6 +25,7 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
   isCompleted = false,
   completionMessageData,
   isInitiallyOpen,
+  onOpenChange,
   className,
 }) => {
   const [isChecklistCompleted, setIsChecklistCompleted] =
@@ -40,7 +41,8 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
   const HEIGHT_BUFFER = 108;
 
   const handleButtonClick = () => {
-    setIsOpen((prev) => !prev);
+    setIsOpen(!isOpen);
+    onOpenChange?.(!isOpen);
   };
 
   React.useEffect(() => {
@@ -53,6 +55,7 @@ export const OnboardingChecklist: React.FC<IOnboardingChecklistProps> = ({
       const timeoutId = setTimeout(() => {
         setIsChecklistCompleted(true);
         setIsOpen(false);
+        onOpenChange?.(false);
       }, delay);
 
       return () => {
