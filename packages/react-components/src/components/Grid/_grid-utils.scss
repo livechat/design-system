@@ -1,0 +1,13 @@
+@use 'sass:string';
+
+@function capitalize($string) {
+  @return string.to-upper-case(string.slice($string, 1, 1)) +
+    string.slice($string, 2);
+}
+
+@mixin breakpoint($size) {
+  /* stylelint-disable-next-line media-query-no-invalid */
+  @media (min-width: #{$size}) {
+    @content;
+  }
+}
