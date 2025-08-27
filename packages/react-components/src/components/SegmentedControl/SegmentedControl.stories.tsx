@@ -1,5 +1,5 @@
 import * as TablerIcons from '@livechat/design-system-icons';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 
 import { Icon } from '../Icon';
 

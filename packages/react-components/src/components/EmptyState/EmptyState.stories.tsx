@@ -4,7 +4,7 @@ import {
   GoogleLightModeColored as GoogleIcon,
   MoreHoriz,
 } from '@livechat/design-system-icons';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { ActionMenu } from '../ActionMenu';
 import { Button } from '../Button';

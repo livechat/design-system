@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { DISABLED_CONTROLS } from '../../utils/story-parameters';

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { AddCircle as AddCircleIcon } from '@livechat/design-system-icons';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Icon } from '../Icon';

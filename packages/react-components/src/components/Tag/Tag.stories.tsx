@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import * as TablerIcons from '@livechat/design-system-icons';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 
 import image from '../../stories/assets/avatar.jpg';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';

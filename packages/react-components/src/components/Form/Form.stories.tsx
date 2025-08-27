@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 
 import { Button } from '../Button';
 import { Form as FormComponenet, FormProps } from '../Form';

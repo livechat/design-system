@@ -102,4 +102,14 @@ export interface IOnboardingChecklistProps {
    * Complete element which will be displayed when `isCompleted` is true
    */
   completionMessageData: ICompletionMessageDataProps;
+  /**
+   * Controls whether the checklist is initially open
+   * Only applies when isCompleted is true.
+   * Incomplete checklist is always open.
+   */
+  isInitiallyOpen?: boolean;
+  /**
+   * Callback function when the open state of the checklist changes
+   */
+  onOpenChange?: (isOpen: boolean) => void;
 }

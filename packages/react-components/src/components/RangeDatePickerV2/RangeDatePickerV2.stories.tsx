@@ -1,4 +1,4 @@
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 
 import { RangeDatePickerV2 } from './RangeDatePickerV2';
 import { IRangeDatePickerV2Props } from './types';
