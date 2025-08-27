@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { GreetingQuickReply, Error } from '@livechat/design-system-icons';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 
 import noop from '../../utils/noop';
 import { Button } from '../Button';

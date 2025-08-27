@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { action } from '@storybook/addon-actions';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 import image from '../../stories/assets/folder.svg';
 import { Card, CardProps } from '../Card';

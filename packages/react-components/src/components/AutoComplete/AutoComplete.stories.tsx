@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { StoryFn } from '@storybook/react';
+import { StoryFn } from '@storybook/react-vite';
 import debounce from 'lodash.debounce';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';

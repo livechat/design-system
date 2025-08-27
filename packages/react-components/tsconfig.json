@@ -26,6 +26,6 @@
       "test-utils": ["test/utils.ts"]
     }
   },
-  "include": ["src"],
+  "include": ["src", ".storybook"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

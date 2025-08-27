@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { Info } from '@livechat/design-system-icons';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 
 import { ReadOnlyFormFieldContextProvider } from '../../providers/ReadOnlyFormFieldProvider';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';

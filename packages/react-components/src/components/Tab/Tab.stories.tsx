@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { Smiles } from '@livechat/design-system-icons';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { Icon } from '../Icon';

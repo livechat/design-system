@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 
 import image from '../../stories/assets/chat-window.png';
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';

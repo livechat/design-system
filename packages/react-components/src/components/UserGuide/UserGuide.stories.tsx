@@ -2,7 +2,7 @@ import { ReactElement, useReducer, useState } from 'react';
 
 import { Placement } from '@floating-ui/react';
 import * as Icons from '@livechat/design-system-icons';
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 
 import exampleVideo from '../../assets/onboarding_final.mp4';
 import { AppFrame } from '../AppFrame';
