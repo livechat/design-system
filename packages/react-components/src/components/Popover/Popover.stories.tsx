@@ -1,5 +1,5 @@
 import { ChevronDown } from '@livechat/design-system-icons';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
 import isChromatic from 'chromatic/isChromatic';
 
 import { Button } from '../Button';

@@ -1,5 +1,5 @@
 import { Info } from '@livechat/design-system-icons';
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { SystemMessage } from './SystemMessage';
 

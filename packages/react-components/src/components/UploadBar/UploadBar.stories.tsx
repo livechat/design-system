@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react-vite';
 
 import noop from '../../utils/noop';
 import { PdfIcon } from '../../utils/PdfIcon';

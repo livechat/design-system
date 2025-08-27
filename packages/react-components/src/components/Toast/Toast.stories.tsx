@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { action } from '@storybook/addon-actions';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react-vite';
+import { action } from 'storybook/actions';
 
 import { StoryDescriptor } from '../../stories/components/StoryDescriptor';
 import { DISABLED_CONTROLS } from '../../utils/story-parameters';

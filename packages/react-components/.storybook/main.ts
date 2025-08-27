@@ -4,16 +4,15 @@ import { StorybookConfig } from '@storybook/react-vite';
 const config: StorybookConfig = {
   stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
-    getAbsolutePath('@storybook/addon-links'),
-    getAbsolutePath('@storybook/addon-essentials'),
-    getAbsolutePath('storybook-addon-mock-date'),
-    getAbsolutePath('@storybook/addon-a11y'),
-    getAbsolutePath('@storybook/addon-themes'),
-    getAbsolutePath('@storybook/addon-backgrounds'),
-    getAbsolutePath('@chromatic-com/storybook'),
+    '@storybook/addon-links',
+    'storybook-addon-mock-date',
+    '@storybook/addon-a11y',
+    '@storybook/addon-themes',
+    '@chromatic-com/storybook',
+    '@storybook/addon-docs',
   ],
   framework: {
-    name: '@storybook/react-vite',
+    name: getAbsolutePath('@storybook/react-vite'),
     options: {
       strictMode: true,
     },

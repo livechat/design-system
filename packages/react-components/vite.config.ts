@@ -28,7 +28,7 @@ export default defineConfig({
         },
       },
     },
-    target: ['esnext', 'es6'],
+    target: 'esnext',
   },
   test: {
     globals: true,
