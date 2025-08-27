@@ -26,6 +26,5 @@
       "test-utils": ["test/utils.ts"]
     }
   },
-  "include": ["src", ".storybook"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": ["src", ".storybook", "vite.config.ts"]
 }
