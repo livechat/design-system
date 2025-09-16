@@ -28,6 +28,10 @@ export interface IUserGuide {
    */
   isVisible?: boolean;
   /**
+   * The visibility of the overlay
+   */
+  hideOverlay?: boolean;
+  /**
    * The custom z-index value for the overlay
    */
   zIndex?: number;
