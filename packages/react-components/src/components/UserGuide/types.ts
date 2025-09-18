@@ -28,7 +28,7 @@ export interface IUserGuide {
    */
   isVisible?: boolean;
   /**
-   * The visibility of the overlay
+   * Set to true to hide the overlay
    */
   hideOverlay?: boolean;
   /**
