@@ -2,7 +2,7 @@ import { ReactElement, useReducer, useState } from 'react';
 
 import { Placement } from '@floating-ui/react';
 import * as Icons from '@livechat/design-system-icons';
-import { Meta } from '@storybook/react-vite';
+import { Meta, StoryFn } from '@storybook/react-vite';
 
 import exampleVideo from '../../assets/onboarding_final.mp4';
 import { AppFrame } from '../AppFrame';
@@ -28,7 +28,7 @@ import { Tooltip } from '../Tooltip';
 
 import { UserGuideBubbleStep, UserGuideStep } from './components';
 import { AppContent } from './stories-helpers';
-import { CursorTiming } from './types';
+import { CursorTiming, IUserGuide } from './types';
 import { UserGuide } from './UserGuide';
 
 import './UserGuideStories.css';
@@ -41,6 +41,38 @@ export default {
       control: false,
     },
     useDismissHookProps: {
+      control: false,
+    },
+    className: {
+      control: false,
+    },
+    elementClassName: {
+      control: false,
+    },
+    cursorPosition: {
+      control: false,
+    },
+    cursorTiming: {
+      control: false,
+    },
+    parentElementName: {
+      control: false,
+    },
+    isVisible: {
+      control: false,
+    },
+    hideOverlay: {
+      control: {
+        type: 'boolean',
+      },
+    },
+    zIndex: {
+      control: false,
+    },
+    isFirstStep: {
+      control: false,
+    },
+    isLastStep: {
       control: false,
     },
   },
@@ -84,7 +116,9 @@ const secondaryNavigationIcons = [
 const defaultImage =
   'https://cdn-labs.livechat-files.com/api/file/lc/img/100019504/df59da4b5b0cdb6030efb08787fd255d.jpg';
 
-export const Example = (): ReactElement => {
+export const Example: StoryFn<IUserGuide> = (
+  args: IUserGuide
+): ReactElement => {
   const [activeItem, setActiveItem] = useState('archives');
   const [activeSubItem, setActiveSubItem] = useState(0);
   const [topBarVisible] = useState(true);
@@ -371,6 +405,7 @@ export const Example = (): ReactElement => {
           elementClassName={state.elementClassName}
           isFirstStep={state.reference === 'first-step'}
           isLastStep={state.reference === 'last-step'}
+          hideOverlay={args.hideOverlay}
         >
           {state.reference === 'first-step' ? (
             <UserGuideBubbleStep
