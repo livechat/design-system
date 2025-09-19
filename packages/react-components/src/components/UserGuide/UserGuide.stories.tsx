@@ -43,6 +43,9 @@ export default {
     useDismissHookProps: {
       control: false,
     },
+    className: {
+      control: false,
+    },
     elementClassName: {
       control: false,
     },
