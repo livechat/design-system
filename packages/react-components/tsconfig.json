@@ -23,7 +23,10 @@
     "baseUrl": "src",
     "types": ["vite/client"],
     "paths": {
-      "test-utils": ["test/utils.ts"]
+      "test-utils": ["test/utils.ts"],
+      "vite": ["../node_modules/vite"],
+      "vite/*": ["../node_modules/vite/*"],
+      "@vitejs/plugin-react": ["../node_modules/@vitejs/plugin-react"]
     }
   },
   "include": ["src", ".storybook", "vite.config.ts"]

@@ -1,9 +1,16 @@
 {
   "compilerOptions": {
     "composite": true,
+    "target": "ESNext",
     "module": "esnext",
     "moduleResolution": "bundler",
-    "strict": true
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "vite": ["./node_modules/vite"],
+      "vite/*": ["./node_modules/vite/*"],
+      "@vitejs/plugin-react": ["./node_modules/@vitejs/plugin-react"]
+    }
   },
   "include": ["vite.config.ts"]
 }
