@@ -23,6 +23,7 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
   cursorTiming = 'fast2',
   parentElementName,
   isVisible = false,
+  hideOverlay = false,
   elementClassName,
   zIndex,
   isFirstStep,
@@ -135,7 +136,7 @@ export const UserGuide: FC<PropsWithChildren<IUserGuide>> = ({
       <div
         className={cx(styles[`${baseClass}__overlay`])}
         style={{
-          display: isVisible ? 'flex' : 'none',
+          display: isVisible && !hideOverlay ? 'flex' : 'none',
           zIndex: zIndex,
         }}
       >
