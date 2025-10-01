@@ -29,7 +29,7 @@ npm install @livechat/design-system-react-components @livechat/design-system-ico
 It is required to import the `CSS` directly into your project so it could be applied to components:
 
 ```js
-import '@livechat/design-system-react-components/dist/design-system-react-components.css
+import '@livechat/design-system-react-components/dist/design-system-react-components.css';
 ```
 
 You can import components directly from the npm package:
