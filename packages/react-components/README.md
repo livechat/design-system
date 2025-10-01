@@ -16,7 +16,6 @@
 
 This package contains a library of reusable React components designed to be used in various projects. These components are the building blocks of our design system and can be easily integrated into your applications.
 
-
 ## Installation
 
 Run the following command using [npm](https://www.npmjs.com/) (or with you other favorite package manager, eg. [yarn](https://yarnpkg.com/)):
@@ -30,7 +29,7 @@ npm install @livechat/design-system-react-components @livechat/design-system-ico
 It is required to import the `CSS` directly into your project so it could be applied to components:
 
 ```js
-import '@livechat/design-system-react-components/dist/style.css';
+import '@livechat/design-system-react-components/dist/design-system-react-components.css
 ```
 
 You can import components directly from the npm package:
@@ -54,7 +53,6 @@ At this stage of the project we consider Storybook and Figma as parts of our doc
 
 [Storybook](https://design.livechat.com/) - includes design system foundations, describes components API and allows to familiarize with the thier capabilities
 [Figma](https://www.figma.com/file/2pFu80PXO5A2tfyrAGnx91/Product-Components) - it's not an official documentation from design perspective but we follow a simple rule of working in public
-
 
 ### Development
 
