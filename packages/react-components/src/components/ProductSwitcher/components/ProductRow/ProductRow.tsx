@@ -46,7 +46,6 @@ export const ProductRow: FC<IProps> = ({
       {withDivider && <div className={styles[`${baseClass}__divider`]} />}
       <a
         href={url}
-        target="_blank"
         aria-label={`Go to ${name} product`}
         onClick={(event) => onClick(event, id)}
         className={cx(styles[baseClass], {
