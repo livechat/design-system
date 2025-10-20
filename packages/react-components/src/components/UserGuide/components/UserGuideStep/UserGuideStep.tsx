@@ -17,6 +17,7 @@ const baseClass = 'user-guide-step';
 export const UserGuideStep: FC<IUserGuideStepProps> = ({
   header,
   text,
+  cta,
   image,
   video,
   currentStep,
@@ -92,7 +93,7 @@ export const UserGuideStep: FC<IUserGuideStepProps> = ({
             onClick={handleClickPrimary}
             className={styles[`${baseClass}__footer__button-primary`]}
           >
-            {currentStep === stepMax ? 'Finish' : 'Next'}
+            {cta || (currentStep === stepMax ? 'Finish' : 'Next')}
           </Button>
           <span>
             {handleCloseAction && (
