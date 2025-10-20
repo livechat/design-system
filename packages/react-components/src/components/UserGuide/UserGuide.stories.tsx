@@ -644,7 +644,7 @@ export const UserGuideStepExampleWithCustomCTA = (): ReactElement => {
       header="This is navigation item"
       text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let's see how it looks like and let's make it 4 lines. Ok, cool."
       currentStep={1}
-      stepMax={1}
+      stepMax={9}
       cta="Custom CTA"
       handleClickPrimary={() => {}}
       handleCloseAction={() => {}}
