@@ -28,6 +28,7 @@ export const Table = <T,>({
   rowSelectionMessage,
   rowActions,
   testId,
+  customBackgroundColor,
 }: ITableProps<T>) => {
   const columnRefs = React.useRef<(HTMLTableCellElement | null)[]>([]);
   const [hoveredColumnIndex, setHoveredColumnIndex] = React.useState<
@@ -152,6 +153,12 @@ export const Table = <T,>({
     setColumnWidths(initialWidths);
   }, []);
 
+  const tableStyle = customBackgroundColor
+    ? ({
+        '--custom-table-bg': customBackgroundColor,
+      } as React.CSSProperties)
+    : {};
+
   return (
     <>
       {
@@ -182,6 +189,7 @@ export const Table = <T,>({
           styles[`${baseClass}--stripped_${stripped}`]
         )}
         data-testid={testId}
+        style={tableStyle}
       >
         <TableHeader
           columns={columns}

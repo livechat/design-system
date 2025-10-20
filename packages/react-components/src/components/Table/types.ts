@@ -63,6 +63,12 @@ type BaseTableProps<T> = {
    * Sets the `data-testid` attribute, allowing the table to be easily selected in automated tests.
    */
   testId?: string;
+  /**
+   * Custom background color for table elements in their default state.
+   * When provided, all table elements will use this color as their background-color.
+   * Other states (hover, selected, etc.) will remain unchanged.
+   */
+  customBackgroundColor?: string;
 };
 
 type NonSelectableTableProps<T> = BaseTableProps<T> & {
