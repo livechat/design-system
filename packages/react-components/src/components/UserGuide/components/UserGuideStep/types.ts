@@ -10,9 +10,9 @@ export interface IUserGuideStepProps {
    */
   text: string;
   /**
-   * The cta of the step
+   * The custom button cta of the step
    */
-  cta?: string;
+  customCta?: string;
   /**
    * Set to enable typing animation for the text
    */

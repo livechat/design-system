@@ -78,7 +78,7 @@ describe('<UserGuideStep> component', () => {
   it('should render custom cta when provided', () => {
     const { getByRole } = renderComponent({
       ...DEFAULT_PROPS,
-      cta: 'Custom CTA',
+      customCta: 'Custom CTA',
     });
 
     expect(getByRole('button', { name: 'Custom CTA' })).toBeInTheDocument();

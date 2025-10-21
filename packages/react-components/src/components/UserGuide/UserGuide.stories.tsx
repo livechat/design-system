@@ -645,7 +645,7 @@ export const UserGuideStepExampleWithCustomCTA = (): ReactElement => {
       text="Some text, maximum 210 characters. But can be divided into couple of message. More or less can be up to 4 lines. So let's see how it looks like and let's make it 4 lines. Ok, cool."
       currentStep={1}
       stepMax={9}
-      cta="Custom CTA"
+      customCta="Custom CTA"
       handleClickPrimary={() => {}}
       handleCloseAction={() => {}}
     />
