@@ -31,7 +31,7 @@ $base-class: 'table';
         transition: top 0.2s ease-in-out;
         z-index: 5;
         box-shadow: var(--shadow-fixed-bottom);
-        background-color: var(--background-01);
+        background-color: var(--custom-table-bg, var(--background-01));
       }
 
       &.#{$base-class}--has-selected thead {
