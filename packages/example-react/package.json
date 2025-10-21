@@ -1,7 +1,7 @@
 {
   "name": "example-react",
   "private": true,
-  "version": "2.33.0",
+  "version": "2.34.0",
   "scripts": {
     "start": "vite --open",
     "build": "tsc && vite build",
@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@livechat/design-system-icons": "^2.33.0",
-    "@livechat/design-system-react-components": "^2.33.0",
+    "@livechat/design-system-react-components": "^2.34.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.0"
   },
