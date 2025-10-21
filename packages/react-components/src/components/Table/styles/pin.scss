@@ -6,13 +6,15 @@
       z-index: 5;
       box-shadow: var(--shadow-fixed-bottom);
     }
-  } @else if $type == 'leftColumn' {
+  }
+
+ @else if $type == 'leftColumn' {
     tr > td:first-child,
     th:first-child {
       position: sticky;
       left: 0;
       z-index: 5;
-      background-color: var(--background-01);
+      background-color: var(--custom-table-bg, var(--background-01));
     }
 
     tr:hover > td:first-child {
@@ -27,7 +29,7 @@
       bottom: 0;
       z-index: 5;
       box-shadow: var(--shadow-fixed-right);
-      background-color: var(--background-01);
+      background-color: var(--custom-table-bg, var(--background-01));
       width: 5px;
       content: '';
       clip-path: inset(0 -15px 0 0);
@@ -36,7 +38,9 @@
     tr:hover > td:first-child::after {
       background-color: var(--surface-primary-hover);
     }
-  } @else {
+  }
+
+ @else {
     @warn "Invalid pinned value: #{$type}. Supported values are 'header' and 'leftColumn'.";
   }
 }

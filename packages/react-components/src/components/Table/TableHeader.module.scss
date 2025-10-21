@@ -5,7 +5,7 @@ $base-class: 'header';
 
 .#{$base-class} {
   border-bottom: 1px solid var(--border-basic-tertiary);
-  background-color: var(--background-01);
+  background-color: var(--custom-table-bg, var(--background-01));
   height: var(--spacing-12);
   line-height: var(--spacing-5);
   color: var(--content-basic-secondary);
@@ -27,7 +27,10 @@ $base-class: 'header';
 
     &--hoverDisabled {
       &:hover {
-        background-color: var(--background-01) !important;
+        background-color: var(
+          --custom-table-bg,
+          var(--background-01)
+        ) !important;
       }
     }
   }
