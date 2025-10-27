@@ -1,4 +1,4 @@
-import { IconsData } from './constans';
+import { IconsData } from './constants';
 import { IconGroup, IconName } from './types';
 
 export const getIconsByGroup = (group: IconGroup): IconName[] => {
