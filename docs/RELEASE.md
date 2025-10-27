@@ -44,9 +44,9 @@ This command will:
 - Run `build` - build the packages
 - Run `lerna version --conventional-commits --no-changelog --no-push` - create new package versions based on conventional commits
 
-During this phase, Lerna prompts to confirm the versions. Confirm.
+During this phase, Lerna prompts to confirm the versions.
 
-Lerna creates the version commit and tags locally but doesn't push.
+Lerna creates the version commit and tags locally, but doesn't push.
 
 ### 1.3 Commit and push version changes
 
