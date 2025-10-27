@@ -25,7 +25,7 @@ Create a new release branch from the latest `main` branch with a date-based name
 ```bash
 git checkout main
 git pull origin main
-git checkout -b release/2024-01-15
+git checkout -b release-2024-01-15
 ```
 
 Replace `2024-01-15` with your current date in `YYYY-MM-DD` format. 
@@ -42,11 +42,8 @@ This command will:
 - Run `check` - execute linter and unit tests
 - Run `prettier` - format the code across packages
 - Run `build` - build the packages
-- Run `lerna version --conventional-commits --no-changelog --no-push` - create new package versions based on conventional commits
+- Run `lerna version --conventional-commits --no-changelog --no-push --no-git-tag-version` - create new package versions based on conventional commits
 
-During this phase, Lerna prompts to confirm the versions.
-
-Lerna creates the version commit and tags locally, but doesn't push.
 
 ### 1.3 Commit and push version changes
 
@@ -55,15 +52,14 @@ After Lerna determines the version, commit and push the version changes:
 ```bash
 git add .
 git commit -m "chore(release): bump version to v<VERSION>"
-git push origin release/<DATE>
-git push origin --tags
+git push origin release-<DATE>
 ```
 
-Replace `<VERSION>` with the actual version proposed by Lerna (you'll see it in the commit) and `<DATE>` with your date-based branch name. Tags must be pushed explicitly with `git push origin --tags`.
+Replace `<VERSION>` with the actual version proposed by Lerna (you'll see it in the commit) and `<DATE>` with your date-based branch name.
 
 ### 1.4 Create Pull Request
 
-Open a PR from your `release/<DATE>` branch to `main`:
+Open a PR from your `release-<DATE>` branch to `main`:
 
 - **PR Title**: `chore(release): release v<VERSION>` (e.g., `chore(release): release v1.2.3`)
 - **PR Description**: Reference the actual version determined by Lerna and summarize the changes
@@ -81,10 +77,20 @@ After the release PR has been merged to `main`:
 ```bash
 git checkout main
 git pull origin main
-git fetch --tags
 ```
 
-### 2.2 Publish packages to npm
+### 2.2 Create and push git tag
+
+Since we use `--no-git-tag-version` flag in the release process, you need to manually create and push the git tag:
+
+```bash
+git tag v<VERSION>
+git push origin v<VERSION>
+```
+
+Replace `<VERSION>` with the actual version that was bumped during Step 1 (e.g., `v1.2.3`). You can find the version in the lerna.json file or check the latest commit message.
+
+### 2.3 Publish packages to npm
 
 Publish the packages to npm registry:
 
@@ -95,14 +101,13 @@ npm run deploy
 This runs `lerna publish from-package`, which:
 - Reads versions from `package.json` files
 - Publishes packages with bumped versions to npm
-- Does not create or push tags (already on remote from Step 1)
 
-### 2.3 Create GitHub Release
+### 2.4 Create GitHub Release
 
 On GitHub, add the release with the correct version and changelog:
 
-- The release should reference the tag created in Step 1 (e.g., `v1.2.3`)
-- Tag is already on `main` from Step 1
+- The release should reference the tag created in Step 2.2 (e.g., `v1.2.3`)
+- Tag is already on `main` from Step 2.2
 - Use the tag as the release name (e.g., `v1.2.3`)
 - Title: "What's Changed" or "Release v<VERSION>"
 - In the changelog, include:
