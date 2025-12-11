@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@svgr/cli": "^8.1.0",
-    "glob": "^10.3.10",
+    "glob": "^10.5.0",
     "typescript": "^5.4.5",
     "vite": "^7.1.11",
     "vite-plugin-dts": "^4.5.4"
