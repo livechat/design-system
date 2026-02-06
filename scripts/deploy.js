@@ -89,8 +89,12 @@ function isVersionPublished(name, version) {
       encoding: 'utf8',
     });
     return true;
-  } catch {
-    return false;
+  } catch (err) {
+    const text = [err.message, err.stderr].filter(Boolean).join('\n');
+    const notFound =
+      /404|E404|Not Found|No matching version/i.test(text);
+    if (notFound) return false;
+    throw err;
   }
 }
 
@@ -125,20 +129,34 @@ function main() {
   }
 
   let published = 0;
+  const failures = [];
   for (const pkg of packages) {
     if (isVersionPublished(pkg.name, pkg.version)) {
       console.log(`Skip ${pkg.name}@${pkg.version} (already published)`);
       continue;
     }
     console.log(`Publishing ${pkg.name}@${pkg.version}${dryRun ? ' (dry-run)' : ''}...`);
-    execFileSync('npm', ['publish', ...(dryRun ? ['--dry-run'] : [])], {
-      cwd: pkg.dir,
-      stdio: 'inherit',
-    });
-    published++;
+    try {
+      execFileSync('npm', ['publish', ...(dryRun ? ['--dry-run'] : [])], {
+        cwd: pkg.dir,
+        stdio: 'inherit',
+      });
+      published++;
+    } catch (err) {
+      failures.push({ identifier: `${pkg.name}@${pkg.version}`, message: err.message });
+    }
   }
 
-  console.log(published ? `Published ${published} package(s).` : 'Nothing new to publish.');
+  if (published) console.log(`Published ${published} package(s).`);
+  if (failures.length) {
+    console.log('Failed:');
+    for (const { identifier, message } of failures) {
+      console.log(`  ${identifier}: ${message}`);
+    }
+  } else if (!published) {
+    console.log('Nothing new to publish.');
+  }
+  process.exit(failures.length ? 1 : 0);
 }
 
 main();
