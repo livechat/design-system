@@ -23,7 +23,9 @@
     "prettier": "prettier --write packages",
     "check": "run-s lint test",
     "prepare-release": "npm run check && npm run prettier && npm run build && lerna version --conventional-commits --no-changelog --no-push --no-git-tag-version",
-    "deploy": "lerna publish from-package"
+    "deploy": "node scripts/deploy.js",
+    "deploy:dry-run": "node scripts/deploy.js --dry-run",
+    "deploy:preview": "node scripts/deploy.js --preview"
   },
   "repository": {
     "type": "git",
