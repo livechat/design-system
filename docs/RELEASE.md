@@ -104,9 +104,30 @@ Publish the packages to npm registry:
 npm run deploy
 ```
 
-This runs `lerna publish from-package`, which:
-- Reads versions from `package.json` files
-- Publishes packages with bumped versions to npm
+This runs the deploy script, which:
+- Finds publishable workspace packages (skips `"private": true`)
+- Publishes only packages whose current version is not yet on the registry
+- Uses `npm publish` (and npm’s pack) so no Lerna tar dependency is involved
+
+**Before deploying, you can verify what will be published:**
+
+1. **See exactly what files go into each package** (no publish, no upload):
+   ```bash
+   npm run deploy:preview
+   ```
+   This runs `npm pack --dry-run` for each publishable package and shows the file list (respecting `files` in package.json and .npmignore).
+
+2. **Do a full publish dry-run** (npm’s own checks, no upload):
+   ```bash
+   npm run deploy:dry-run
+   ```
+
+**Check that each package is “good” to publish:**
+
+- **`files` in package.json** – Only the listed paths (e.g. `dist`, `lib`) are included; avoid shipping source, tests, or secrets.
+- **`main` / `module` / `types` / `exports`** – Point to built outputs (e.g. `dist/`) so consumers get the right entry points.
+- **No secrets** – No `.env`, keys, or tokens in the packed files (preview list should not contain them).
+- **Version** – Matches what you intend to release (e.g. after `prepare-release`).
 
 ### 2.4 Create GitHub Release
 
