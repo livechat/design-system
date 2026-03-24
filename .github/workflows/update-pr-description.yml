@@ -6,6 +6,7 @@ on:
       - main
 jobs:
   update-description:
+    if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Update PR Description
@@ -17,22 +18,22 @@ jobs:
             const prNumber = context.payload.pull_request.number;
             const owner = context.repo.owner;
             const repo = context.repo.repo;
-            
+
             const { data: prData } = await github.rest.pulls.get({
               owner: owner,
               repo: repo,
               pull_number: prNumber
             });
-            
+
             let body = prData.body;
-            
+
             const issueNumberMatch = branchName.match(/feature\/(\d+)/);
             const issueNumber = issueNumberMatch ? issueNumberMatch[1] : '';
-            
+
             if (issueNumber) {
               body = prData.body.replace(/{issue-number}/g, issueNumber);
             }
-            
+
             const branchNameCropped = branchName.split('feature/')[1];
             body = prData.body.replace(/{branch-name}/g, branchNameCropped);
                         
