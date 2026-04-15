@@ -532,6 +532,7 @@ export const IconsData: Record<IconName, IconGroup> = {
   TelegramMono: IconGroup.Brands,
   TextLogo: IconGroup.Brands,
   TextLogoFilled: IconGroup.Brands,
+  TextNewLogo: IconGroup.Brands,
   WeeblyColored: IconGroup.Brands,
   WindowsColored: IconGroup.Brands,
   WindowsOriginal: IconGroup.Brands,
