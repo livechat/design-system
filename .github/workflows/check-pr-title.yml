@@ -10,6 +10,6 @@ jobs:
     steps:
       - name: check-for-cc
         id: check-for-cc
-        uses: agenthunt/conventional-commit-checker-action@v2.0.0
+        uses: agenthunt/conventional-commit-checker-action@9e552d650d0e205553ec7792d447929fc78e012b # v2.0.0
         with:
           pr-title-regex: '^((build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test|tweak|icon)(\(.+\))?: .{1,50})'
