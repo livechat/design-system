@@ -4,6 +4,9 @@ on:
     types: [opened]
     branches:
       - main
+
+permissions: read-all
+
 jobs:
   update-description:
     if: github.actor != 'dependabot[bot]'

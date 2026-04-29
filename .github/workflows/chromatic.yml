@@ -7,6 +7,9 @@ name: 'Chromatic'
 on: push
 
 # List of jobs
+
+permissions: read-all
+
 jobs:
   chromatic-deployment:
     # Operating System
