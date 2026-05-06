@@ -12,6 +12,9 @@ permissions: read-all
 
 jobs:
   chromatic-deployment:
+    permissions:
+      checks: write
+      statuses: write
     # Operating System
     runs-on: ubuntu-latest
     # Job steps
