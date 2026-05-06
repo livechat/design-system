@@ -5,8 +5,13 @@ on:
     branches:
       - release
 
+permissions: read-all
+
 jobs:
   release:
+    permissions:
+      contents: write
+      pull-requests: write
     runs-on: ubuntu-latest
 
     steps:

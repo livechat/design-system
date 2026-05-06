@@ -4,9 +4,14 @@ on:
     types: [opened]
     branches:
       - main
+
+permissions: read-all
+
 jobs:
   update-description:
     if: github.actor != 'dependabot[bot]'
+    permissions:
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: Update PR Description
