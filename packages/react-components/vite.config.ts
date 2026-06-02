@@ -4,8 +4,8 @@
 import * as path from 'path';
 
 import react from '@vitejs/plugin-react';
-import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   css: {
