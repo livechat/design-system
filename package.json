@@ -82,6 +82,7 @@
     "minimatch@>=9.0.0 <9.0.7": "9.0.7",
     "minimatch@>=10.0.0 <10.2.3": "10.2.3",
     "brace-expansion@2": "^2.0.3",
+    "ast-v8-to-istanbul": "1.0.2",
     "picomatch": "4.0.4",
     "react-scanner": {
       "picomatch": "4.0.4"
