@@ -64,7 +64,7 @@
     "stylelint-config-standard": "^34.0.0"
   },
   "volta": {
-    "node": "20.14.0"
+    "node": "20.17.0"
   },
   "overrides": {
     "sigstore": "^4.1.1",
