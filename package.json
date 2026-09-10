@@ -102,6 +102,9 @@
     "react-scanner": {
       "picomatch": "4.0.4"
     },
+    "nx": {
+      "smol-toml": "1.7.1"
+    },
     "@microsoft/api-extractor": "7.58.2",
     "vite-plugin-dts": {
       "@microsoft/api-extractor": {
