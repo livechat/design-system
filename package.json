@@ -87,7 +87,6 @@
     "react-scanner": {
       "picomatch": "4.0.4"
     },
-    "@microsoft/api-extractor": "7.58.2",
     "nx": {
       "undici": "^7.29.1"
     }
