@@ -88,6 +88,7 @@
     },
     "nx": {
       "undici": "^7.29.1"
-    }
+    },
+    "@typescript-eslint/typescript-estree@8": "^8.48.0"
   }
 }
