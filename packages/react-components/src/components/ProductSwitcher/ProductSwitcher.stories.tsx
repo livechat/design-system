@@ -100,8 +100,7 @@ export const WithPromoContent: Story = {
       >
         <Heading
           size="xs"
-          style={{ margin: 0 }}
-          customColor="var(--content-basic-primary)"
+          style={{ margin: 0, color: 'var(--content-basic-primary)' }}
         >
           LiveChat is just the start.
         </Heading>
