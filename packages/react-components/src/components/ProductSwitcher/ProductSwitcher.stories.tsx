@@ -95,7 +95,6 @@ export const WithPromoContent: Story = {
           padding: 'var(--spacing-4)',
           borderRadius: 'var(--radius-4)',
           background: 'var(--surface-primary-default)',
-          boxShadow: 'var(--shadow-float)',
         }}
       >
         <Heading
