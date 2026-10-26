@@ -4,7 +4,6 @@ import { customHeightForChromatic } from '../../utils/chromatic-story-helpers';
 import { Button } from '../Button';
 import { Heading, Text } from '../Typography';
 
-
 import { useProductSwitcher } from './hooks/useProductSwitcher';
 import { ProductSwitcher } from './ProductSwitcher';
 
@@ -99,7 +98,11 @@ export const WithPromoContent: Story = {
           boxShadow: 'var(--shadow-float)',
         }}
       >
-        <Heading size="xs" style={{ margin: 0 }}>
+        <Heading
+          size="xs"
+          style={{ margin: 0 }}
+          customColor="var(--content-basic-primary)"
+        >
           LiveChat is just the start.
         </Heading>
         <Text size="lg" noMargin customColor="var(--content-basic-secondary)">
