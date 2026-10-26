@@ -17,8 +17,14 @@ $base-class: 'product-switcher';
 
   &__promo {
     margin-top: var(--spacing-2);
-    border-top: 1px solid var(--border-basic-secondary);
-    padding-top: var(--spacing-2);
+
+    &::before {
+      display: block;
+      margin: 0 var(--spacing-3) var(--spacing-2);
+      background-color: var(--border-basic-secondary);
+      height: 1px;
+      content: '';
+    }
   }
 
   &__content {
