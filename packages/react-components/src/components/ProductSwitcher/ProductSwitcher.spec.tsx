@@ -35,6 +35,21 @@ describe('ProductSwitcher promo content', () => {
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
+  it('does not render a zero from a count-based promo condition', async () => {
+    render(
+      <ProductSwitcher
+        mainProductId="livechat"
+        productOptions={products}
+        openedOnInit
+        promoContent={0}
+      />
+    );
+    expect(
+      await screen.findByRole('link', { name: 'powered by' })
+    ).toBeInTheDocument();
+    expect(screen.queryByText('0', { exact: true })).not.toBeInTheDocument();
+  });
+
   it('keeps the product list and footer when promo content is omitted', async () => {
     render(
       <ProductSwitcher

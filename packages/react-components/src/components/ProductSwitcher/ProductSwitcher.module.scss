@@ -11,8 +11,11 @@ $base-class: 'product-switcher';
   width: 270px;
 
   &--with-promo {
+    box-sizing: border-box;
     width: 380px;
     max-width: calc(100vw - 64px);
+    max-height: var(--product-switcher-available-height, calc(100dvh - 24px));
+    overflow-y: auto;
   }
 
   &__promo {

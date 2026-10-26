@@ -73,6 +73,7 @@ const { products } = useProductSwitcher({
 
 Pass `promoContent` to render custom content below the product list and above the existing footer.
 The switcher expands to 380px (bounded by the viewport) and adds a divider only when this content is present.
+The promo panel is capped to the available viewport height and scrolls vertically when needed.
 The caller owns the content, targeting, links, and analytics. Omitting the prop preserves the existing layout.
 
 <Canvas of={ProductSwitcher.WithPromoContent} sourceState="none" />
