@@ -25,7 +25,7 @@ export const ProductSwitcherProducts: ProductOption[] = [
   },
   {
     id: 'chatbot',
-    name: 'ChatBot',
+    name: 'ChatBot.com',
     icon: ChatBotMono,
     backgroundColors: {
       main: 'var(--products-chatbot)',
@@ -36,7 +36,7 @@ export const ProductSwitcherProducts: ProductOption[] = [
   },
   {
     id: 'helpdesk',
-    name: 'HelpDesk',
+    name: 'HelpDesk.com',
     icon: HelpDeskMono,
     backgroundColors: {
       main: 'var(--products-helpdesk)',

@@ -1,6 +1,6 @@
 {
   "name": "@livechat/design-system-icons",
-  "version": "2.38.6",
+  "version": "2.39.6",
   "description": "",
   "publishConfig": {
     "access": "public"
@@ -21,8 +21,8 @@
     "@svgr/cli": "^8.1.0",
     "glob": "^13.0.0",
     "typescript": "^5.4.5",
-    "vite": "^7.3.2",
-    "vite-plugin-dts": "^4.5.4"
+    "vite": "^7.3.7",
+    "vite-plugin-dts": "^5.1.2"
   },
   "exports": {
     ".": {

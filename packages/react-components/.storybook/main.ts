@@ -1,4 +1,5 @@
-import { dirname, join } from 'path';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import { StorybookConfig } from '@storybook/react-vite';
 
 const config: StorybookConfig = {
@@ -32,12 +33,15 @@ const config: StorybookConfig = {
       // Add dependencies to pre-optimization
       // workaround, see https://github.com/storybookjs/storybook/issues/25256
       assetsInclude: ['/sb-preview/runtime.js'],
+      optimizeDeps: {
+        include: ['@sinonjs/fake-timers'],
+      },
     });
   },
 };
 
-function getAbsolutePath(value) {
-  return dirname(require.resolve(join(value, 'package.json')));
+function getAbsolutePath(value: string) {
+  return dirname(fileURLToPath(import.meta.resolve(`${value}/package.json`)));
 }
 
 export default config;
