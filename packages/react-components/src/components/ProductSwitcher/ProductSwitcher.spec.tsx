@@ -31,7 +31,7 @@ describe('ProductSwitcher promo content', () => {
       promo.compareDocumentPosition(footer) & Node.DOCUMENT_POSITION_FOLLOWING
     ).toBeTruthy();
     await waitFor(() => expect(promo).toBeVisible());
-    await userEvent.click(promo);
+    userEvent.click(promo);
     expect(onClick).toHaveBeenCalledTimes(1);
   });
 
