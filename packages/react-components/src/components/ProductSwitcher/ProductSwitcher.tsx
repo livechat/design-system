@@ -40,6 +40,7 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
   onClose,
   onSelect,
   textURL = 'https://www.text.com',
+  promoContent,
 }) => {
   const [isOpen, setIsOpen] = React.useState(openedOnInit);
   const [isTooltipOpen, setIsTooltipOpen] = useState<boolean | undefined>(
@@ -154,7 +155,8 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
             <div
               className={cx(
                 isDarkMode ? 'lc-dark-theme' : 'lc-light-theme',
-                styles[baseClass]
+                styles[baseClass],
+                !!promoContent && styles[`${baseClass}--with-promo`]
               )}
               style={transitionStyles}
             >
@@ -169,6 +171,11 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
                   />
                 ))}
               </div>
+              {promoContent && (
+                <div className={styles[`${baseClass}__promo`]}>
+                  {promoContent}
+                </div>
+              )}
               <div className={styles[`${baseClass}__footer`]}>
                 <a
                   href={textURL}

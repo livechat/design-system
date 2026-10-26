@@ -10,6 +10,17 @@ $base-class: 'product-switcher';
   padding: var(--spacing-3);
   width: 270px;
 
+  &--with-promo {
+    width: 380px;
+    max-width: calc(100vw - 64px);
+  }
+
+  &__promo {
+    margin-top: var(--spacing-2);
+    border-top: 1px solid var(--border-basic-secondary);
+    padding-top: var(--spacing-2);
+  }
+
   &__content {
     display: flex;
     flex-direction: column;
