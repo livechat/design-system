@@ -11,7 +11,7 @@ import cx from 'clsx';
 
 import { ThemeClassName } from '../../providers';
 import { plural } from '../../utils/plural';
-import { ActionMenu } from '../ActionMenu';
+import { ActionMenu, IActionMenuOption } from '../ActionMenu';
 import { Avatar } from '../Avatar';
 import { Icon } from '../Icon';
 import { ListItem } from '../ListItem';
@@ -37,6 +37,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
   tooltipArrowOffset = 13,
   onAvailableAgentsClick,
   showBotsInTooltip = true,
+  promoOption,
   ...props
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -91,7 +92,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
     setIsTooltipVisible(false);
   };
 
-  const menuOptions = [
+  const menuOptions: IActionMenuOption[] = [
     {
       key: 'chatbot',
       onClick: handleSetUpChatbotClick,
@@ -103,6 +104,7 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
     },
     {
       key: 'teammate',
+      withDivider: !!promoOption,
       element: (
         <ListItem leftNode={<Icon source={PersonAdd} />}>
           Invite teammate
@@ -111,6 +113,18 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
       onClick: handleAddTeammateClick,
     },
   ];
+
+  if (promoOption) {
+    menuOptions.push({
+      key: 'promo',
+      element: promoOption.element,
+      onClick: () => {
+        promoOption.onClick();
+        setIsMenuOpen(false);
+        setIsTooltipVisible(false);
+      },
+    });
+  }
 
   return (
     <div
@@ -229,6 +243,9 @@ const InviteAgentsComponent: FC<InviteAgentsProps> = ({
         onOpen={() => setIsMenuOpen(true)}
         onClose={() => setIsMenuOpen(false)}
         options={menuOptions}
+        className={cx({
+          [styles[`${baseClass}__menu--with-promo`]]: !!promoOption,
+        })}
         triggerRenderer={
           <AnimatedButton
             icon={<Icon source={Add} />}

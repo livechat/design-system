@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import { ComponentCoreProps } from '../../utils/types';
 
 export interface Agent {
@@ -37,4 +39,8 @@ export interface InviteAgentsProps extends ComponentCoreProps {
    * Whether to show bots in the tooltip
    */
   showBotsInTooltip?: boolean;
+  promoOption?: {
+    element: ReactNode;
+    onClick: () => void;
+  };
 }

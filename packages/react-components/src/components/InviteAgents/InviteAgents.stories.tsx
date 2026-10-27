@@ -1,7 +1,10 @@
+import { ArrowForward, Automation } from '@livechat/design-system-icons';
 import { Meta, StoryObj } from '@storybook/react-vite';
 import { action } from 'storybook/actions';
 
 import image from '../../stories/assets/avatar.jpg';
+import { Icon } from '../Icon';
+import { ListItem } from '../ListItem';
 
 import { InviteAgents } from './InviteAgents';
 
@@ -95,5 +98,22 @@ export const NoAgents: Story = {
     onAddTeammateClick: action('Add Teammate Clicked'),
     onSetUpChatbotClick: action('Set Up Chatbot Clicked'),
     onAvailableAgentsClick: action('Available Agents Clicked'),
+  },
+};
+
+export const WithPromoOption: Story = {
+  args: {
+    ...Default.args,
+    promoOption: {
+      element: (
+        <ListItem
+          leftNode={<Icon source={Automation} />}
+          rightNode={<Icon source={ArrowForward} />}
+        >
+          Automate your chats with AI Agent
+        </ListItem>
+      ),
+      onClick: action('Promo Clicked'),
+    },
   },
 };

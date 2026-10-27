@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { render, screen, vi, waitFor } from 'test-utils';
 
 import { InviteAgents } from './InviteAgents';
-import { Agent } from './types';
+import { Agent, InviteAgentsProps } from './types';
 
 describe('InviteAgents Component', () => {
   const mockOnAddAgentsClick = vi.fn();
@@ -12,11 +12,13 @@ describe('InviteAgents Component', () => {
 
   const renderComponent = (
     agents: Agent[] = [],
-    animatedInviteButton = false
+    animatedInviteButton = false,
+    promoOption?: InviteAgentsProps['promoOption']
   ) => {
     render(
       <InviteAgents
         agents={agents}
+        promoOption={promoOption}
         onSetUpChatbotClick={mockOnSetUpChatbotClick}
         onAddTeammateClick={mockOnAddAgentsClick}
         animatedInviteButton={animatedInviteButton}
@@ -217,5 +219,46 @@ describe('InviteAgents Component', () => {
     await waitFor(() => {
       expect(screen.getByText('2 bots')).toBeInTheDocument();
     });
+  });
+  it('adds a promo after existing actions and closes on selection', async () => {
+    const onPromoClick = vi.fn();
+    renderComponent([], false, {
+      element: <span>Discover automation</span>,
+      onClick: onPromoClick,
+    });
+
+    userEvent.click(screen.getByRole('button', { name: 'Invite' }));
+    const items = await screen.findAllByRole('menuitem');
+    expect(items.map((item) => item.textContent)).toEqual([
+      'Set up ChatBot',
+      'Invite teammate',
+      'Discover automation',
+    ]);
+    userEvent.click(items[2]);
+    expect(onPromoClick).toHaveBeenCalledTimes(1);
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+  });
+
+  it('supports selecting the promo with the keyboard', async () => {
+    const onPromoClick = vi.fn();
+    renderComponent([], false, {
+      element: <span>Discover automation</span>,
+      onClick: onPromoClick,
+    });
+
+    userEvent.click(screen.getByRole('button', { name: 'Invite' }));
+    await screen.findByRole('menu');
+    userEvent.keyboard('{arrowdown}{arrowdown}{arrowdown}{enter}');
+    expect(onPromoClick).toHaveBeenCalledTimes(1);
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+  });
+
+  it('preserves the two existing actions when no promo is supplied', async () => {
+    renderComponent();
+    userEvent.click(screen.getByRole('button', { name: 'Invite' }));
+    expect(await screen.findAllByRole('menuitem')).toHaveLength(2);
+    userEvent.click(screen.getByRole('menuitem', { name: 'Set up ChatBot' }));
+    expect(mockOnSetUpChatbotClick).toHaveBeenCalledTimes(1);
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument();
   });
 });
