@@ -26,6 +26,7 @@ export interface ProductSwitcherProps {
   mainProductId: ProductId;
   productOptions: ProductOption[];
   textURL?: string;
+  promoContent?: ReactNode;
   openedOnInit?: boolean;
   isVisible?: boolean;
   isDarkMode?: boolean;

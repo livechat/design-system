@@ -10,6 +10,26 @@ $base-class: 'product-switcher';
   padding: var(--spacing-3);
   width: 270px;
 
+  &--with-promo {
+    box-sizing: border-box;
+    width: 280px;
+    max-width: calc(100vw - 64px);
+    max-height: var(--product-switcher-available-height, calc(100dvh - 24px));
+    overflow-y: auto;
+  }
+
+  &__promo {
+    margin-top: var(--spacing-2);
+
+    &::before {
+      display: block;
+      margin: 0 var(--spacing-3) var(--spacing-2);
+      background-color: var(--border-basic-secondary);
+      height: 1px;
+      content: '';
+    }
+  }
+
   &__content {
     display: flex;
     flex-direction: column;
