@@ -41,6 +41,14 @@ return (
 
 ```
 
+## Promo option
+
+Pass `promoOption={{ element: <ListItem>...</ListItem>, onClick }}` to add a highlighted menu item after a divider below the existing actions. Selecting it closes the menu, and it participates in the usual keyboard navigation. Omit the prop to preserve the existing menu.
+
+The consumer owns the content, icons, targeting, navigation, and analytics.
+
+<Canvas of={InviteAgentsStories.WithPromoOption} />
+
 ## Component API <a id="ComponentAPI" />
 
 <ArgTypes of={InviteAgentsStories.Default} sort="requiredFirst" />

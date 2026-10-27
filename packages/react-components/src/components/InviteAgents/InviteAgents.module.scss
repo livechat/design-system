@@ -26,6 +26,35 @@ $base-class: 'invite-agents';
     }
   }
 
+  &__menu--with-promo {
+    width: 256px;
+    max-width: calc(100vw - var(--spacing-4));
+
+    > li > button {
+      padding-right: var(--spacing-2);
+      padding-left: var(--spacing-2);
+    }
+
+    > li:nth-last-child(2) > button::after {
+      right: 0;
+      left: 0;
+    }
+
+    > li:last-child > button {
+      box-shadow: var(--shadow-float);
+      background-color: var(--surface-primary-default);
+      padding: var(--spacing-2);
+
+      &:hover {
+        background-color: var(--picker-list-option-background-hover);
+      }
+
+      &:active {
+        background-color: var(--picker-list-option-background-active);
+      }
+    }
+  }
+
   &__not-accepting {
     display: flex;
     gap: var(--spacing-2);
