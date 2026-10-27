@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react-vite';
 
 import { customHeightForChromatic } from '../../utils/chromatic-story-helpers';
+import { Button } from '../Button';
+import { Heading, Text } from '../Typography';
 
 import { useProductSwitcher } from './hooks/useProductSwitcher';
 import { ProductSwitcher } from './ProductSwitcher';
@@ -76,5 +78,44 @@ export const Default: Story = {
         <ProductSwitcher {...props} productOptions={products} />
       </div>
     );
+  },
+};
+
+export const WithPromoContent: Story = {
+  ...Default,
+  args: {
+    ...Default.args,
+    promoContent: (
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'flex-start',
+          gap: 'var(--spacing-2)',
+          padding: 'var(--spacing-4)',
+          borderRadius: 'var(--radius-4)',
+          background: 'var(--surface-primary-default)',
+        }}
+      >
+        <Heading
+          size="xs"
+          style={{ margin: 0, color: 'var(--content-basic-primary)' }}
+        >
+          LiveChat is just the start.
+        </Heading>
+        <Text size="md" noMargin customColor="var(--content-basic-secondary)">
+          Learn more about our customer service growth platform and how to move
+          to Text for free.
+        </Text>
+        <Button
+          kind="high-contrast"
+          href="https://www.livechat.com/move-to-text"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn more
+        </Button>
+      </div>
+    ),
   },
 };

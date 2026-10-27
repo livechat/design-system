@@ -6,6 +6,7 @@ import {
   FloatingNode,
   FloatingTree,
   offset,
+  size,
   useClick,
   useDismiss,
   useFloating,
@@ -40,6 +41,7 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
   onClose,
   onSelect,
   textURL = 'https://www.text.com',
+  promoContent,
 }) => {
   const [isOpen, setIsOpen] = React.useState(openedOnInit);
   const [isTooltipOpen, setIsTooltipOpen] = useState<boolean | undefined>(
@@ -50,6 +52,7 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
 
   const isControlled = isVisible !== undefined;
   const currentlyVisible = isControlled ? isVisible : isOpen;
+  const hasPromoContent = Boolean(promoContent);
 
   const handleVisibilityChange = (opened: boolean, event?: Event) => {
     if (opened) {
@@ -70,7 +73,19 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
       setIsTooltipOpen(false);
       handleVisibilityChange(newValue, event);
     },
-    middleware: [offset({ mainAxis: 5 })],
+    middleware: [
+      offset({ mainAxis: 5 }),
+      hasPromoContent &&
+        size({
+          padding: 12,
+          apply({ availableHeight, elements }) {
+            elements.floating.style.setProperty(
+              '--product-switcher-available-height',
+              `${Math.max(0, Number(availableHeight))}px`
+            );
+          },
+        }),
+    ],
     whileElementsMounted: autoUpdate,
   });
 
@@ -154,7 +169,8 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
             <div
               className={cx(
                 isDarkMode ? 'lc-dark-theme' : 'lc-light-theme',
-                styles[baseClass]
+                styles[baseClass],
+                hasPromoContent && styles[`${baseClass}--with-promo`]
               )}
               style={transitionStyles}
             >
@@ -169,6 +185,11 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
                   />
                 ))}
               </div>
+              {hasPromoContent && (
+                <div className={styles[`${baseClass}__promo`]}>
+                  {promoContent}
+                </div>
+              )}
               <div className={styles[`${baseClass}__footer`]}>
                 <a
                   href={textURL}
