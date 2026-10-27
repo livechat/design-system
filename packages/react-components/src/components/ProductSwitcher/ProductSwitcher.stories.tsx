@@ -103,7 +103,7 @@ export const WithPromoContent: Story = {
         >
           LiveChat is just the start.
         </Heading>
-        <Text size="lg" noMargin customColor="var(--content-basic-secondary)">
+        <Text size="md" noMargin customColor="var(--content-basic-secondary)">
           Learn more about our customer service growth platform and how to move
           to Text for free.
         </Text>
