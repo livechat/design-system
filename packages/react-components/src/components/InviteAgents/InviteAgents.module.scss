@@ -44,8 +44,10 @@ $base-class: 'invite-agents';
       box-shadow: var(--shadow-float);
       background-color: var(--surface-primary-default);
       padding: var(--spacing-2);
+      min-height: 60px;
 
       &:hover {
+        box-shadow: none;
         background-color: var(--picker-list-option-background-hover);
       }
 

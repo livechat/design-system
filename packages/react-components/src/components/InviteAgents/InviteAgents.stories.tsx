@@ -110,7 +110,7 @@ export const WithPromoOption: Story = {
           leftNode={<Icon source={Automation} />}
           rightNode={<Icon source={ArrowForward} />}
         >
-          Automate chats with AI
+          Automate your chats with AI Agent
         </ListItem>
       ),
       onClick: action('Promo Clicked'),
