@@ -180,7 +180,11 @@ export const ProductSwitcher: FC<ProductSwitcherProps> = ({
                     isDarkMode={isDarkMode}
                     key={product.id}
                     isActive={product.id === mainProductId}
-                    product={product}
+                    product={
+                      hasPromoContent && product.id === 'accounts'
+                        ? { ...product, withDivider: false }
+                        : product
+                    }
                     onClick={handleClick}
                   />
                 ))}
