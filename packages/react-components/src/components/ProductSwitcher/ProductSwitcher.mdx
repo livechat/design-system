@@ -72,7 +72,8 @@ const { products } = useProductSwitcher({
 ## Optional promo content
 
 Pass `promoContent` to render custom content below the product list and above the existing footer.
-The switcher uses a width of up to 320px (bounded by the viewport) and adds a divider above the promo content.
+The switcher uses a width of up to 320px (bounded by the viewport), with a 16px gap between the last product and promo content.
+No divider is rendered above the promo content.
 The divider above Text Accounts is omitted when promo content is present.
 The promo panel is capped to the available viewport height and scrolls vertically when needed.
 The caller owns the content, targeting, links, and analytics. Omitting the prop preserves the existing layout.
