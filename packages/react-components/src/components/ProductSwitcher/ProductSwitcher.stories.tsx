@@ -105,10 +105,11 @@ export const WithPromoContent: Story = {
         </Heading>
         <Text size="md" noMargin customColor="var(--content-basic-secondary)">
           Learn more about our customer service growth platform and how to move
-          to Text for free.
+          to&nbsp;Text for free.
         </Text>
         <Button
           kind="high-contrast"
+          style={{ marginTop: 'var(--spacing-2)' }}
           href="https://www.livechat.com/move-to-text"
           target="_blank"
           rel="noopener noreferrer"

@@ -43,7 +43,9 @@ export const ProductRow: FC<IProps> = ({
 }) => {
   return (
     <>
-      {withDivider && <div className={styles[`${baseClass}__divider`]} />}
+      {withDivider && (
+        <div role="separator" className={styles[`${baseClass}__divider`]} />
+      )}
       <a
         href={url}
         aria-label={`Go to ${name} product`}

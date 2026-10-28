@@ -21,6 +21,7 @@ describe('ProductSwitcher promo content', () => {
       />
     );
     const promo = await screen.findByRole('button', { name: 'Learn more' });
+    expect(screen.queryByRole('separator')).not.toBeInTheDocument();
     const footer = screen.getByRole('link', { name: 'powered by' });
     const lastProduct = screen.getByText('Text Accounts');
     expect(
@@ -64,6 +65,7 @@ describe('ProductSwitcher promo content', () => {
     await waitFor(() =>
       expect(screen.getByText('Text Accounts')).toBeVisible()
     );
+    expect(screen.getByRole('separator')).toBeVisible();
     expect(
       screen.queryByRole('button', { name: 'Learn more' })
     ).not.toBeInTheDocument();
