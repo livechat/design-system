@@ -101,11 +101,11 @@ export const WithPromoContent: Story = {
           size="xs"
           style={{ margin: 0, color: 'var(--content-basic-primary)' }}
         >
-          LiveChat is just the start.
+          Upgrade to Text at the same price
         </Heading>
         <Text size="md" noMargin customColor="var(--content-basic-secondary)">
-          Learn more about our customer service growth platform and how to move
-          to&nbsp;Text for free.
+          Chats and tickets in one inbox, plus an AI Agent that supports and
+          sells for you. Your setup comes with you.
         </Text>
         <Button
           kind="high-contrast"
@@ -114,7 +114,7 @@ export const WithPromoContent: Story = {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn more
+          Discover Text
         </Button>
       </div>
     ),
