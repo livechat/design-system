@@ -166,7 +166,7 @@ export const stagingRedirectData: ProductData[] = [
     product: 'TeamChat',
   },
   {
-    clientId: '2fd9f1923f2233763b8637f7d10a6fe6',
+    clientId: 'd9989969540fe3605d20399a62afd3b3',
     redirectUri: 'https://accounts.staging.livechat.com/panel',
     product: 'Accounts',
   },
