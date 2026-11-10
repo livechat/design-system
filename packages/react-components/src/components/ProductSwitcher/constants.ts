@@ -204,7 +204,7 @@ export const prodRedirectData: ProductData[] = [
     product: 'TeamChat',
   },
   {
-    clientId: 'd9989969540fe3605d20399a62afd3b3',
+    clientId: '2fd9f1923f2233763b8637f7d10a6fe6',
     redirectUri: 'https://accounts.livechat.com/panel',
     product: 'Accounts',
   },
