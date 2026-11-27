@@ -64,7 +64,7 @@
     "stylelint-config-standard": "^34.0.0"
   },
   "volta": {
-    "node": "22.23.3"
+    "node": "22.23.5"
   },
   "overrides": {
     "@babel/core": "^7.29.6",
